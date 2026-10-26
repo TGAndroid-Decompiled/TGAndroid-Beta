@@ -29,7 +29,7 @@ public final class rt0 extends oo0 {
         fu0 fu0Var;
         boolean z11;
         aw0 aw0Var = this.I;
-        org.telegram.ui.ActionBar.w0 w0Var = aw0Var.f26681p0;
+        org.telegram.ui.ActionBar.w0 w0Var = aw0Var.f26683p0;
         if (w0Var == null) {
             return false;
         }
@@ -52,7 +52,7 @@ public final class rt0 extends oo0 {
             return true;
         }
         if (i10 == 12 && (fu0Var = aw0Var.V) != null) {
-            org.telegram.ui.vn vnVar = fu0Var.f45518a;
+            org.telegram.ui.vn vnVar = fu0Var.f45521a;
             org.telegram.ui.sk skVar = vnVar.A1;
             if (skVar != null) {
                 skVar.e(x0Var, true);
@@ -63,7 +63,7 @@ public final class rt0 extends oo0 {
                 z11 = true;
             }
             vnVar.E3 = z11;
-            vnVar.f44353o0 = z11;
+            vnVar.f44356o0 = z11;
             vnVar.uc(false);
             vnVar.Vc();
         }
@@ -84,25 +84,25 @@ public final class rt0 extends oo0 {
             z11 = false;
         }
         g(z11);
-        org.telegram.ui.ActionBar.w0 w0Var = aw0Var.f26678o0;
+        org.telegram.ui.ActionBar.w0 w0Var = aw0Var.f26680o0;
         if (w0Var != null) {
-            if (a() && aw0Var.f26702x1.getUserConfig().isPremium()) {
+            if (a() && aw0Var.f26704x1.getUserConfig().isPremium()) {
                 i11 = R.drawable.navbar_search_tag;
             } else {
                 i11 = R.drawable.outline_header_search;
             }
-            ak0 ak0Var = w0Var.f23202x;
-            if (ak0Var != null && w0Var.f23203y != i11) {
+            ak0 ak0Var = w0Var.f23204x;
+            if (ak0Var != null && w0Var.f23205y != i11) {
                 if (z10) {
-                    w0Var.f23203y = i11;
+                    w0Var.f23205y = i11;
                     AndroidUtilities.updateImageViewImageAnimated(ak0Var, i11);
                 } else {
-                    w0Var.f23203y = i11;
+                    w0Var.f23205y = i11;
                     ak0Var.setImageResource(i11);
                 }
             }
         }
-        org.telegram.ui.ActionBar.w0 w0Var2 = aw0Var.f26681p0;
+        org.telegram.ui.ActionBar.w0 w0Var2 = aw0Var.f26683p0;
         if (w0Var2 != null) {
             if (rt0Var != null && rt0Var.a() && aw0Var.getSelectedTab() == 11) {
                 i10 = R.string.SavedTagSearchHint;

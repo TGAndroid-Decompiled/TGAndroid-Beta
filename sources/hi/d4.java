@@ -159,7 +159,7 @@ public final class d4 extends d20 implements NotificationCenter.NotificationCent
         if (connectedbotstarref.participants > 0) {
             FrameLayout frameLayout2 = new FrameLayout(context);
             int dp2 = AndroidUtilities.dp(50.0f);
-            int i21 = y6.f23425h5;
+            int i21 = y6.f23427h5;
             Drawable c02 = y6.c0(dp2, y6.w0(i21, u6Var));
             b7 N2 = f7.N(i21);
             frameLayout2.setBackground(c02);
@@ -212,7 +212,7 @@ public final class d4 extends d20 implements NotificationCenter.NotificationCent
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
         int dp4 = AndroidUtilities.dp(28.0f);
-        int i23 = y6.f23297a7;
+        int i23 = y6.f23299a7;
         ShapeDrawable c04 = y6.c0(dp4, y6.w0(i23, u6Var));
         b7 N4 = f7.N(i23);
         linearLayout3.setBackground(c04);
@@ -231,7 +231,7 @@ public final class d4 extends d20 implements NotificationCenter.NotificationCent
         ImageView imageView2 = new ImageView(context);
         ImageView.ScaleType scaleType3 = scaleType;
         imageView2.setScaleType(scaleType3);
-        int i24 = y6.f23612r5;
+        int i24 = y6.f23614r5;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         f7.t(imageView2, i24, u6Var, mode);
         imageView2.setImageResource(R.drawable.settings_arrow);
@@ -365,7 +365,7 @@ public final class d4 extends d20 implements NotificationCenter.NotificationCent
         int i29 = i16;
         int w02 = y6.w0(i29, u6Var);
         int w03 = y6.w0(i29, u6Var);
-        int i30 = y6.f23446i6;
+        int i30 = y6.f23448i6;
         int v = y6.v(w03, y6.w0(i30, u6Var));
         org.telegram.ui.Cells.y j02 = y6.j0(dp5, dp5, dp5, dp5, w02, v, v);
         b7 N6 = f7.N(i29);
@@ -425,7 +425,7 @@ public final class d4 extends d20 implements NotificationCenter.NotificationCent
             connectedbotstarref2 = connectedbotstarref;
         }
         linearLayout.setOnClickListener(new bi.q(19, k3Var2, connectedbotstarref2));
-        k3Var2.fixNavigationBarKey(y6.f23425h5);
+        k3Var2.fixNavigationBarKey(y6.f23427h5);
         org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
         if (!AndroidUtilities.isTablet() && U != null && !AndroidUtilities.hasDialogOnTop(U)) {
             k3Var2.makeAttached(U);
@@ -437,7 +437,7 @@ public final class d4 extends d20 implements NotificationCenter.NotificationCent
     public static void w0(d4 d4Var, Context context, TLRPC.User user, TL_payments.connectedBotStarRef connectedbotstarref) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d4Var.resourceProvider);
         String string = LocaleController.getString(R.string.LeaveAffiliateLink);
-        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
         e2Var.R = string;
         e2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LeaveAffiliateLinkAlert, UserObject.getUserName(user)));
         alertDialog$Builder.k(LocaleController.getString(R.string.LeaveAffiliateLinkButton), new ai.f0(15, d4Var, connectedbotstarref));
@@ -519,28 +519,28 @@ public final class d4 extends d20 implements NotificationCenter.NotificationCent
         this.E = AndroidUtilities.dp(238.0f);
         vn vnVar = new vn(context, 3);
         this.U = vnVar;
-        f7.i(y6.f23445i5, vnVar, null);
+        f7.i(y6.f23447i5, vnVar, null);
         super.createView(context);
         this.S = new FrameLayout(context);
         ug.n nVar = new ug.n(context, 1, 3);
         this.T = nVar;
         nVar.setImportantForAccessibility(4);
-        ug.g gVar = this.T.f49813b;
-        gVar.f49797z = y6.fk;
+        ug.g gVar = this.T.f49816b;
+        gVar.f49800z = y6.fk;
         gVar.A = y6.gk;
         gVar.b();
         this.T.setStarParticlesView(this.e);
         this.S.addView(this.T, gb1.h(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         f0(LocaleController.getString(R.string.ChannelAffiliateProgramTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ChannelAffiliateProgramText)), this.S, null);
-        this.f38713c.setOnItemClickListener(new di.x4(2, this, context));
-        this.f38713c.setOnItemLongClickListener(new ai.f0(16, this, context));
+        this.f38716c.setOnItemClickListener(new di.x4(2, this, context));
+        this.f38716c.setOnItemLongClickListener(new ai.f0(16, this, context));
         s4.l lVar = new s4.l();
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         lVar.C = false;
         lVar.o(ds.h);
         lVar.n(350L);
-        this.f38713c.setItemAnimator(lVar);
-        this.f38713c.setOnScrollListener(new ai.b(this, 13));
+        this.f38716c.setItemAnimator(lVar);
+        this.f38716c.setOnScrollListener(new ai.b(this, 13));
         return this.fragmentView;
     }
 
@@ -564,7 +564,7 @@ public final class d4 extends d20 implements NotificationCenter.NotificationCent
 
     @Override
     public final s4.h0 g0() {
-        v3 v3Var = new v3(this, this.f38713c, getParentActivity(), this.currentAccount, this.classGuid, new e2(this, 1), getResourceProvider());
+        v3 v3Var = new v3(this, this.f38716c, getParentActivity(), this.currentAccount, this.classGuid, new e2(this, 1), getResourceProvider());
         this.V = v3Var;
         return v3Var;
     }

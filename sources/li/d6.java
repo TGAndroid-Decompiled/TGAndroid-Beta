@@ -770,7 +770,7 @@ public final class d6 extends FrameLayout implements p6, r9 {
             this.f17200s = linearLayout3;
             linearLayout3.setOrientation(0);
             LinearLayout linearLayout4 = this.f17200s;
-            int i10 = y6.f23446i6;
+            int i10 = y6.f23448i6;
             f7.R(linearLayout4, y6.Z(y6.w0(i10, this.f17194a), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f)), null, f7.N(i10), this.f17194a);
             this.f17200s.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
             addView(this.f17200s, gb1.h(-2, -2.0f, 53, 0.0f, -15.0f, -5.0f, 0.0f));
@@ -813,7 +813,7 @@ public final class d6 extends FrameLayout implements p6, r9 {
         ImageView imageView2 = this.f17201w;
         u6 u6Var = this.f17194a;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        int i12 = L.f22483a;
+        int i12 = L.f22485a;
         float f11 = L.d;
         int Q = f7.Q(i12, -1, 2, f11, u6Var);
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(Q, mode);
@@ -1219,7 +1219,7 @@ public final class d6 extends FrameLayout implements p6, r9 {
                 float lineBottom = layout.getLineBottom(lineCount) + g1Var.getPaddingTop() + measuredHeight;
                 int dp2 = AndroidUtilities.dp(3.333f);
                 this.L.getClass();
-                float C = org.telegram.messenger.t.C(16.0f, i10, dp2) - vh.b(3.333f, 2, AndroidUtilities.dp(23.66f) + jj0Var.f29657c);
+                float C = org.telegram.messenger.t.C(16.0f, i10, dp2) - vh.b(3.333f, 2, AndroidUtilities.dp(23.66f) + jj0Var.f29659c);
                 this.L.getClass();
                 int i12 = i11 - dp2;
                 float dp3 = i12 - AndroidUtilities.dp(17.66f);
@@ -1350,7 +1350,7 @@ public final class d6 extends FrameLayout implements p6, r9 {
         try {
             H();
             if (getBackground() instanceof y1) {
-                ((y1) getBackground()).a(y6.w0(y6.f23354d6, this.f17194a));
+                ((y1) getBackground()).a(y6.w0(y6.f23356d6, this.f17194a));
                 invalidate();
             }
         } catch (Exception e) {
@@ -1376,7 +1376,7 @@ public final class d6 extends FrameLayout implements p6, r9 {
         if (!super.verifyDrawable(drawable)) {
             jj0 jj0Var = this.L;
             if (jj0Var != null) {
-                if (drawable != jj0Var.f29656b && drawable != jj0Var.e) {
+                if (drawable != jj0Var.f29658b && drawable != jj0Var.e) {
                     return false;
                 }
                 return true;

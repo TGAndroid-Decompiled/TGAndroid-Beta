@@ -103,10 +103,10 @@ public final class l9 {
         ArrayList arrayList = this.f11183c;
         int i10 = this.f11181a;
         if (i10 == 4) {
-            return !arrayList.contains(Long.valueOf(user.f22174id));
+            return !arrayList.contains(Long.valueOf(user.f22176id));
         }
         if (i10 == 2) {
-            if (arrayList.contains(Long.valueOf(user.f22174id)) || !user.contact) {
+            if (arrayList.contains(Long.valueOf(user.f22176id)) || !user.contact) {
                 return false;
             }
             return true;
@@ -114,11 +114,11 @@ public final class l9 {
             return user.close_friend;
         } else {
             if (i10 == 3) {
-                if (arrayList.contains(Long.valueOf(user.f22174id))) {
+                if (arrayList.contains(Long.valueOf(user.f22176id))) {
                     return true;
                 }
                 for (ArrayList arrayList2 : this.d.values()) {
-                    if (arrayList2.contains(Long.valueOf(user.f22174id))) {
+                    if (arrayList2.contains(Long.valueOf(user.f22176id))) {
                         return true;
                     }
                 }

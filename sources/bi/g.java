@@ -64,10 +64,10 @@ public final class g implements dh.a {
                 ih.d.a(mm0Var, canvas, rectF, mm0Var, (FrameLayout) obj);
                 return;
             case 5:
-                ((org.telegram.ui.c7) obj2).f38345b0.d(canvas, rectF, (org.telegram.ui.e6) obj);
+                ((org.telegram.ui.c7) obj2).f38348b0.d(canvas, rectF, (org.telegram.ui.e6) obj);
                 return;
             case 6:
-                ((m40) obj2).f30379n.J(canvas, rectF, (FrameLayout) obj);
+                ((m40) obj2).f30381n.J(canvas, rectF, (FrameLayout) obj);
                 return;
             case 7:
                 ((ta0) obj2).R.J(canvas, rectF, (bh.r) obj);
@@ -75,9 +75,9 @@ public final class g implements dh.a {
             case 8:
                 lu luVar = (lu) obj2;
                 di.i4 i4Var = (di.i4) obj;
-                int childCount = luVar.f41364a.getChildCount();
+                int childCount = luVar.f41367a.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = luVar.f41364a.getChildAt(i11);
+                    View childAt = luVar.f41367a.getChildAt(i11);
                     if (childAt instanceof mm0) {
                         mm0 mm0Var2 = (mm0) childAt;
                         ih.d.a(mm0Var2, canvas, rectF, mm0Var2, i4Var);

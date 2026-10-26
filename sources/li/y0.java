@@ -72,7 +72,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         this.J = AndroidUtilities.dp(16.0f);
         this.K = AndroidUtilities.dp(16.0f);
         this.V = -1;
-        this.f17634a0 = f7.f22626b;
+        this.f17634a0 = f7.f22628b;
         this.f17635n = i10;
         this.f17636r = u6Var;
         setWillNotDraw(false);
@@ -100,7 +100,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23680uf));
+        hashSet.add(Integer.valueOf(y6.f23682uf));
     }
 
     @Override
@@ -118,7 +118,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
     public final void draw(Canvas canvas) {
         int i10;
         int i11 = this.f17634a0;
-        int i12 = f7.f22626b;
+        int i12 = f7.f22628b;
         if (i11 != i12) {
             this.f17634a0 = i12;
             try {
@@ -128,7 +128,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
                     radialProgress2.d = y6.w0(i10, u6Var);
                 }
                 if (this.W && (getBackground() instanceof y1)) {
-                    ((y1) getBackground()).a(y6.w0(y6.f23354d6, u6Var));
+                    ((y1) getBackground()).a(y6.w0(y6.f23356d6, u6Var));
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -399,7 +399,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
                 this.Q.draw(canvas);
                 canvas.restore();
             }
-            this.f17639x.setColor(y6.w0(y6.f23545nd, u6Var));
+            this.f17639x.setColor(y6.w0(y6.f23547nd, u6Var));
             StaticLayout staticLayout = this.Q;
             int i12 = 0;
             if (staticLayout == null) {
@@ -417,7 +417,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
             if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f17429a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
                 ((RecyclerView) getParent()).getClass();
                 int R = RecyclerView.R(this);
-                if (R > textSelectionHelper.f25408p0 && R <= textSelectionHelper.f25411s0) {
+                if (R > textSelectionHelper.f25410p0 && R <= textSelectionHelper.f25413s0) {
                     if (this.M) {
                         i11 = 0;
                     } else {
@@ -518,7 +518,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
 
     @Override
     public final void updateColors() {
-        this.f17637s.setColor(y6.w0(y6.f23680uf, this.f17636r));
+        this.f17637s.setColor(y6.w0(y6.f23682uf, this.f17636r));
         j0 j0Var = this.F;
         if (j0Var != null) {
             j0Var.a();

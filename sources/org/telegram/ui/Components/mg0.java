@@ -23,20 +23,20 @@ public abstract class mg0 extends FrameLayout {
     public float J;
     public boolean K;
     public wa0 L;
-    public int f30572a;
-    public PhotoViewer f30573b;
-    public LinearLayout f30574c;
+    public int f30574a;
+    public PhotoViewer f30575b;
+    public LinearLayout f30576c;
     public TextView d;
     public TextView e;
-    public xu f30575f;
+    public xu f30577f;
     public bi.cc h;
-    public RadialProgressView f30576n;
-    public View f30577r;
-    public String f30578s;
+    public RadialProgressView f30578n;
+    public View f30579r;
+    public String f30580s;
     public ArrayList v;
-    public String f30579w;
-    public boolean f30580x;
-    public TLRPC.WebPage f30581y;
+    public String f30581w;
+    public boolean f30582x;
+    public TLRPC.WebPage f30583y;
 
     public static void a(org.telegram.ui.vt0 vt0Var, String str) {
         String str2;
@@ -88,7 +88,7 @@ public abstract class mg0 extends FrameLayout {
     }
 
     public final boolean d() {
-        return this.f30580x;
+        return this.f30582x;
     }
 
     @Override
@@ -101,7 +101,7 @@ public abstract class mg0 extends FrameLayout {
 
     public final boolean e() {
         boolean z10;
-        if (this.f30580x && "inapp".equals(MessagesController.getInstance(this.f30572a).youtubePipType)) {
+        if (this.f30582x && "inapp".equals(MessagesController.getInstance(this.f30574a).youtubePipType)) {
             z10 = true;
         } else {
             z10 = false;
@@ -109,18 +109,18 @@ public abstract class mg0 extends FrameLayout {
         if (!z10 && !Settings.canDrawOverlays(getContext())) {
             g5.A((Activity) getContext(), null, false);
             return false;
-        } else if (this.f30576n.getVisibility() == 0) {
+        } else if (this.f30578n.getVisibility() == 0) {
             return false;
         } else {
-            if (ch0.f27157p0.P) {
+            if (ch0.f27159p0.P) {
                 ch0.j(false);
                 AndroidUtilities.runOnUIThread(new hg0(this, 0), 300L);
                 return true;
             }
             this.h.setVisibility(0);
             Activity activity = (Activity) getContext();
-            xu xuVar = this.f30575f;
-            TLRPC.WebPage webPage = this.f30581y;
+            xu xuVar = this.f30577f;
+            TLRPC.WebPage webPage = this.f30583y;
             if (ch0.x(z10, activity, this, xuVar, webPage.embed_width, webPage.embed_height, false)) {
                 ch0.w(PhotoViewer.u1());
             }
@@ -129,7 +129,7 @@ public abstract class mg0 extends FrameLayout {
     }
 
     public final void f() {
-        if (this.G && this.f30580x) {
+        if (this.G && this.f30582x) {
             h("pauseVideo();");
             this.G = false;
             b(true);
@@ -137,7 +137,7 @@ public abstract class mg0 extends FrameLayout {
     }
 
     public final void g() {
-        if (!this.G && this.f30580x) {
+        if (!this.G && this.f30582x) {
             h("playVideo();");
             this.G = true;
             b(false);
@@ -157,11 +157,11 @@ public abstract class mg0 extends FrameLayout {
     }
 
     public WebView getWebView() {
-        return this.f30575f;
+        return this.f30577f;
     }
 
     public final void h(String str) {
-        this.f30575f.evaluateJavascript(str, null);
+        this.f30577f.evaluateJavascript(str, null);
     }
 
     public final void i(long j10) {
@@ -179,9 +179,9 @@ public abstract class mg0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        xu xuVar = this.f30575f;
+        xu xuVar = this.f30577f;
         if (xuVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.f30581y;
+            TLRPC.WebPage webPage = this.f30583y;
             int i12 = webPage.embed_width;
             int i13 = 100;
             if (i12 == 0) {
@@ -209,8 +209,8 @@ public abstract class mg0 extends FrameLayout {
 
     public void setPlaybackSpeed(float f7) {
         this.E = f7;
-        if (this.f30576n.getVisibility() != 0) {
-            if (this.f30580x) {
+        if (this.f30578n.getVisibility() != 0) {
+            if (this.f30582x) {
                 h("setPlaybackSpeed(" + f7 + ");");
                 return;
             }

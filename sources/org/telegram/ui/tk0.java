@@ -45,31 +45,31 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
     public long P;
     public int Q;
     public int R;
-    public final ArrayList f43853a;
-    public final ArrayList f43854b;
-    public final ArrayList f43855c;
+    public final ArrayList f43856a;
+    public final ArrayList f43857b;
+    public final ArrayList f43858c;
     public org.telegram.ui.Components.mm0 d;
     public qk0 e;
-    public final org.telegram.ui.ActionBar.u6 f43856f;
+    public final org.telegram.ui.ActionBar.u6 f43859f;
     public int h;
-    public int f43857n;
-    public int f43858r;
-    public int f43859s;
+    public int f43860n;
+    public int f43861r;
+    public int f43862s;
     public int v;
-    public int f43860w;
-    public int f43861x;
-    public int f43862y;
+    public int f43863w;
+    public int f43864x;
+    public int f43865y;
 
     public tk0(Bundle bundle, org.telegram.ui.ActionBar.u6 u6Var) {
         super(bundle);
-        this.f43853a = new ArrayList();
-        this.f43854b = new ArrayList();
-        this.f43855c = new ArrayList();
+        this.f43856a = new ArrayList();
+        this.f43857b = new ArrayList();
+        this.f43858c = new ArrayList();
         this.F = 100;
         this.I = new SparseArray();
         this.L = -1;
         this.P = 0L;
-        this.f43856f = u6Var;
+        this.f43859f = u6Var;
     }
 
     public static void V(org.telegram.ui.tk0 r9, android.content.Context r10, android.view.View r11, int r12) {
@@ -79,7 +79,7 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
     public static void X(tk0 tk0Var) {
         tk0Var.I.clear();
         qk0 qk0Var = tk0Var.e;
-        qk0Var.q(0, qk0Var.f42861c.h);
+        qk0Var.q(0, qk0Var.f42864c.h);
         tk0Var.d0();
     }
 
@@ -92,11 +92,11 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
                     ImageView imageView = (ImageView) childAt;
                     if (imageView.getDrawable() instanceof org.telegram.ui.Components.ar) {
                         org.telegram.ui.Components.ar arVar = (org.telegram.ui.Components.ar) imageView.getDrawable();
-                        Drawable drawable = arVar.f26590a;
+                        Drawable drawable = arVar.f26592a;
                         if (drawable != null) {
                             drawable.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
                         }
-                        Drawable drawable2 = arVar.f26591b;
+                        Drawable drawable2 = arVar.f26593b;
                         if (drawable2 != null) {
                             drawable2.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
                         }
@@ -119,18 +119,18 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
     }
 
     public final void a0(rk0 rk0Var) {
-        int i10 = rk0Var.f43176c;
+        int i10 = rk0Var.f43179c;
         SparseArray sparseArray = this.I;
         if (sparseArray.get(i10) != null) {
-            sparseArray.remove(rk0Var.f43176c);
-        } else if (rk0Var.f43174a) {
-            sparseArray.put(rk0Var.f43176c, rk0Var);
+            sparseArray.remove(rk0Var.f43179c);
+        } else if (rk0Var.f43177a) {
+            sparseArray.put(rk0Var.f43179c, rk0Var);
         } else {
             return;
         }
         d0();
         qk0 qk0Var = this.e;
-        qk0Var.q(0, qk0Var.f42861c.h);
+        qk0Var.q(0, qk0Var.f42864c.h);
     }
 
     @Override
@@ -154,11 +154,11 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
                 this.simpleActionBar.setTitle(LocaleController.getString(R.string.NotificationsSoundReactions));
             }
         } else {
-            this.J = new org.telegram.ui.Components.po(context, null, false, this.f43856f);
+            this.J = new org.telegram.ui.Components.po(context, null, false, this.f43859f);
             if (this.K < 0) {
                 if (this.P != 0) {
                     TLRPC.TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(-this.K, this.P);
-                    pg.d.p(this.J.getAvatarImageView(), findTopic, false, true, this.f43856f);
+                    pg.d.p(this.J.getAvatarImageView(), findTopic, false, true, this.f43859f);
                     this.simpleActionBar.setTitle(findTopic.title);
                 } else {
                     TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-this.K));
@@ -190,34 +190,34 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
         this.e = qk0Var;
         qk0Var.C(true);
         this.d.setAdapter(this.e);
-        ((s4.l) this.d.getItemAnimator()).f47760m = false;
+        ((s4.l) this.d.getItemAnimator()).f47763m = false;
         ((s4.l) this.d.getItemAnimator()).C = false;
         this.d.setLayoutManager(new s4.c0());
         this.d.setOnItemClickListener(new di.x4(20, this, context));
         this.d.setOnItemLongClickListener(new qt(this, 28));
         getMediaDataController().ringtoneDataStore.g(false);
-        this.f43853a.clear();
-        this.f43854b.clear();
+        this.f43856a.clear();
+        this.f43857b.clear();
         for (int i11 = 0; i11 < getMediaDataController().ringtoneDataStore.e.size(); i11++) {
             xf.b bVar = (xf.b) getMediaDataController().ringtoneDataStore.e.get(i11);
             ?? obj = new Object();
             int i12 = this.F;
             this.F = i12 + 1;
-            obj.f43176c = i12;
-            obj.f43174a = true;
-            obj.d = bVar.f51738c;
-            TLRPC.Document document3 = bVar.f51736a;
+            obj.f43179c = i12;
+            obj.f43177a = true;
+            obj.d = bVar.f51741c;
+            TLRPC.Document document3 = bVar.f51739a;
             String str = document3.file_name_fixed;
-            obj.f43177f = str;
+            obj.f43180f = str;
             obj.e = document3;
-            obj.f43177f = c0(document3, str);
-            obj.f43178g = bVar.f51737b;
+            obj.f43180f = c0(document3, str);
+            obj.f43181g = bVar.f51740b;
             rk0 rk0Var = this.M;
-            if (rk0Var != null && (document = rk0Var.e) != null && (document2 = bVar.f51736a) != null && document.f22033id == document2.f22033id) {
+            if (rk0Var != null && (document = rk0Var.e) != null && (document2 = bVar.f51739a) != null && document.f22033id == document2.f22033id) {
                 this.M = null;
                 this.G = obj;
             }
-            this.f43853a.add(obj);
+            this.f43856a.add(obj);
         }
         RingtoneManager ringtoneManager = new RingtoneManager(ApplicationLoader.applicationContext);
         ringtoneManager.setType(2);
@@ -225,23 +225,23 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
         ?? obj2 = new Object();
         int i13 = this.F;
         this.F = i13 + 1;
-        obj2.f43176c = i13;
-        obj2.f43177f = LocaleController.getString(R.string.NoSound);
-        this.f43854b.add(obj2);
+        obj2.f43179c = i13;
+        obj2.f43180f = LocaleController.getString(R.string.NoSound);
+        this.f43857b.add(obj2);
         ?? obj3 = new Object();
         int i14 = this.F;
         this.F = i14 + 1;
-        obj3.f43176c = i14;
-        obj3.f43177f = LocaleController.getString(R.string.DefaultRingtone);
-        obj3.f43175b = true;
-        this.f43854b.add(obj3);
+        obj3.f43179c = i14;
+        obj3.f43180f = LocaleController.getString(R.string.DefaultRingtone);
+        obj3.f43178b = true;
+        this.f43857b.add(obj3);
         rk0 rk0Var2 = this.M;
-        if (rk0Var2 != null && rk0Var2.e == null && rk0Var2.f43178g.equals("NoSound")) {
+        if (rk0Var2 != null && rk0Var2.e == null && rk0Var2.f43181g.equals("NoSound")) {
             this.M = null;
             this.G = obj2;
         }
         rk0 rk0Var3 = this.M;
-        if (rk0Var3 != null && rk0Var3.e == null && rk0Var3.f43178g.equals("Default")) {
+        if (rk0Var3 != null && rk0Var3.e == null && rk0Var3.f43181g.equals("Default")) {
             this.M = null;
             this.G = obj3;
         }
@@ -251,17 +251,17 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
             ?? obj4 = new Object();
             int i15 = this.F;
             this.F = i15 + 1;
-            obj4.f43176c = i15;
-            obj4.f43177f = string;
-            obj4.f43178g = str2;
+            obj4.f43179c = i15;
+            obj4.f43180f = string;
+            obj4.f43181g = str2;
             rk0 rk0Var4 = this.M;
-            if (rk0Var4 != null && rk0Var4.e == null && rk0Var4.f43178g.equals(str2)) {
+            if (rk0Var4 != null && rk0Var4.e == null && rk0Var4.f43181g.equals(str2)) {
                 this.M = null;
                 this.G = obj4;
             }
-            this.f43854b.add(obj4);
+            this.f43857b.add(obj4);
         }
-        if (getMediaDataController().ringtoneDataStore.f51744f && this.G == null) {
+        if (getMediaDataController().ringtoneDataStore.f51747f && this.G == null) {
             this.G = obj3;
             this.H = true;
         }
@@ -289,7 +289,7 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
             HashMap hashMap = new HashMap();
             int i12 = 0;
             while (true) {
-                arrayList = this.f43853a;
+                arrayList = this.f43856a;
                 if (i12 >= arrayList.size()) {
                     break;
                 }
@@ -300,31 +300,31 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
             for (int i13 = 0; i13 < getMediaDataController().ringtoneDataStore.e.size(); i13++) {
                 xf.b bVar = (xf.b) getMediaDataController().ringtoneDataStore.e.get(i13);
                 ?? obj = new Object();
-                rk0 rk0Var = (rk0) hashMap.get(Integer.valueOf(bVar.f51738c));
+                rk0 rk0Var = (rk0) hashMap.get(Integer.valueOf(bVar.f51741c));
                 if (rk0Var != null) {
                     if (rk0Var == this.G) {
                         this.G = obj;
                     }
-                    obj.f43176c = rk0Var.f43176c;
+                    obj.f43179c = rk0Var.f43179c;
                 } else {
                     int i14 = this.F;
                     this.F = i14 + 1;
-                    obj.f43176c = i14;
+                    obj.f43179c = i14;
                 }
-                obj.f43174a = true;
-                obj.d = bVar.f51738c;
-                TLRPC.Document document3 = bVar.f51736a;
+                obj.f43177a = true;
+                obj.d = bVar.f51741c;
+                TLRPC.Document document3 = bVar.f51739a;
                 if (document3 != null) {
-                    obj.f43177f = document3.file_name_fixed;
+                    obj.f43180f = document3.file_name_fixed;
                 } else {
-                    obj.f43177f = new File(bVar.f51737b).getName();
+                    obj.f43180f = new File(bVar.f51740b).getName();
                 }
-                TLRPC.Document document4 = bVar.f51736a;
+                TLRPC.Document document4 = bVar.f51739a;
                 obj.e = document4;
-                obj.f43177f = c0(document4, obj.f43177f);
-                obj.f43178g = bVar.f51737b;
+                obj.f43180f = c0(document4, obj.f43180f);
+                obj.f43181g = bVar.f51740b;
                 rk0 rk0Var2 = this.M;
-                if (rk0Var2 != null && (document = rk0Var2.e) != null && (document2 = bVar.f51736a) != null && document.f22033id == document2.f22033id) {
+                if (rk0Var2 != null && (document = rk0Var2.e) != null && (document2 = bVar.f51739a) != null && document.f22033id == document2.f22033id) {
                     this.M = null;
                     this.G = obj;
                 }
@@ -332,8 +332,8 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
             }
             e0();
             this.e.l();
-            if (getMediaDataController().ringtoneDataStore.f51744f && this.G == null) {
-                ArrayList arrayList2 = this.f43854b;
+            if (getMediaDataController().ringtoneDataStore.f51747f && this.G == null) {
+                ArrayList arrayList2 = this.f43857b;
                 if (arrayList2.size() > 0) {
                     this.M = null;
                     this.G = (rk0) arrayList2.get(0);
@@ -343,40 +343,40 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
     }
 
     public final void e0() {
-        this.f43857n = -1;
-        this.f43858r = -1;
-        this.f43859s = -1;
+        this.f43860n = -1;
+        this.f43861r = -1;
+        this.f43862s = -1;
         this.v = -1;
-        this.f43861x = -1;
-        this.f43862y = -1;
+        this.f43864x = -1;
+        this.f43865y = -1;
         this.E = -1;
         this.h = 1;
-        ArrayList arrayList = this.f43853a;
+        ArrayList arrayList = this.f43856a;
         if (!arrayList.isEmpty()) {
             int i10 = this.h;
-            this.f43857n = i10;
+            this.f43860n = i10;
             int size = arrayList.size() + i10;
             this.h = size;
-            this.f43858r = size;
+            this.f43861r = size;
         }
         int i11 = this.h;
-        this.f43859s = i11;
+        this.f43862s = i11;
         this.h = i11 + 2;
         this.v = i11 + 1;
-        ArrayList arrayList2 = this.f43854b;
+        ArrayList arrayList2 = this.f43857b;
         if (!arrayList2.isEmpty()) {
             int i12 = this.h;
             int i13 = i12 + 1;
             this.h = i13;
-            this.f43861x = i12;
-            this.f43862y = i13;
+            this.f43864x = i12;
+            this.f43865y = i13;
             int size2 = arrayList2.size() + i13;
             this.h = size2;
             this.E = size2;
         }
         int i14 = this.h;
         this.h = i14 + 1;
-        this.f43860w = i14;
+        this.f43863w = i14;
     }
 
     @Override
@@ -386,7 +386,7 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
 
     @Override
     public final org.telegram.ui.ActionBar.u6 getResourceProvider() {
-        return this.f43856f;
+        return this.f43859f;
     }
 
     @Override
@@ -413,7 +413,7 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
                     if (path.startsWith("content://")) {
                         path = MediaController.copyFileToCache(intent.getData(), "mp3");
                     }
-                    if (this.N.f33047p0.P(new File(path))) {
+                    if (this.N.f33050p0.P(new File(path))) {
                         getMediaDataController().uploadRingtone(path);
                         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                         z11 = z10;
@@ -430,7 +430,7 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
                     if (uri2.startsWith("content://")) {
                         uri2 = MediaController.copyFileToCache(uri, "mp3");
                     }
-                    if (this.N.f33047p0.P(new File(uri2))) {
+                    if (this.N.f33050p0.P(new File(uri2))) {
                         getMediaDataController().uploadRingtone(uri2);
                         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                         z12 = true;
@@ -488,7 +488,7 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
             obj.e = new TLRPC.TL_document();
             this.M.e.f22033id = j11;
         } else {
-            obj.f43178g = string;
+            obj.f43181g = string;
         }
         return super.onFragmentCreate();
     }
@@ -534,15 +534,15 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
                 }
             }
             rk0 rk0Var = this.G;
-            if (rk0Var.f43174a && (document = rk0Var.e) != null) {
+            if (rk0Var.f43177a && (document = rk0Var.e) != null) {
                 edit.putLong(str3, document.f22033id);
-                edit.putString(str, this.G.f43177f);
+                edit.putString(str, this.G.f43180f);
                 edit.putString(str2, "NoSound");
-            } else if (rk0Var.f43178g != null) {
-                edit.putString(str, rk0Var.f43177f);
-                edit.putString(str2, this.G.f43178g);
+            } else if (rk0Var.f43181g != null) {
+                edit.putString(str, rk0Var.f43180f);
+                edit.putString(str2, this.G.f43181g);
                 edit.remove(str3);
-            } else if (rk0Var.f43175b) {
+            } else if (rk0Var.f43178b) {
                 edit.putString(str, "Default");
                 edit.putString(str2, "Default");
                 edit.remove(str3);
@@ -575,10 +575,10 @@ public final class tk0 extends org.telegram.ui.ActionBar.r2 implements org.teleg
 
     @Override
     public final void onThemeColorsChanged() {
-        org.telegram.ui.ActionBar.u6 u6Var = this.f43856f;
+        org.telegram.ui.ActionBar.u6 u6Var = this.f43859f;
         try {
             int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.N6, u6Var);
-            int w03 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23483k7, u6Var);
+            int w03 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23485k7, u6Var);
             if (this.d != null) {
                 if (w02 == this.Q && w03 == this.R) {
                     return;

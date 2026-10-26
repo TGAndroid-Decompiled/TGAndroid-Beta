@@ -52,7 +52,7 @@ import org.telegram.ui.Components.zq;
 import org.telegram.ui.Wallet.p5;
 import org.telegram.ui.z10;
 public class g1 extends FrameLayout implements p6 {
-    public static final int[] f52977v0 = {-2781403, -3635939};
+    public static final int[] f52980v0 = {-2781403, -3635939};
     public FrameLayout.LayoutParams E;
     public final tg.c1 F;
     public final tg.c1 G;
@@ -72,41 +72,41 @@ public class g1 extends FrameLayout implements p6 {
     public boolean U;
     public boolean V;
     public final h6 W;
-    public final int f52978a;
-    public tg.k f52979a0;
-    public final u6 f52980b;
-    public TL_stars.StarGift f52981b0;
-    public final eq0 f52982c;
-    public boolean f52983c0;
+    public final int f52981a;
+    public tg.k f52982a0;
+    public final u6 f52983b;
+    public TL_stars.StarGift f52984b0;
+    public final eq0 f52985c;
+    public boolean f52986c0;
     public final FrameLayout d;
-    public boolean f52984d0;
+    public boolean f52987d0;
     public final d1 e;
-    public TL_stars.SavedStarGift f52985e0;
-    public final h1 f52986f;
-    public boolean f52987f0;
-    public boolean f52988g0;
+    public TL_stars.SavedStarGift f52988e0;
+    public final h1 f52989f;
+    public boolean f52990f0;
+    public boolean f52991g0;
     public final j9 h;
-    public boolean f52989h0;
-    public boolean f52990i0;
-    public tg.k f52991j0;
-    public TLRPC.Document f52992k0;
-    public TL_stars.SavedStarGift f52993l0;
+    public boolean f52992h0;
+    public boolean f52993i0;
+    public tg.k f52994j0;
+    public TLRPC.Document f52995k0;
+    public TL_stars.SavedStarGift f52996l0;
     public zp m0;
-    public final y9 f52994n;
-    public int f52995n0;
-    public boolean f52996o0;
-    public boolean f52997p0;
-    public int f52998q0;
-    public final FrameLayout.LayoutParams f52999r;
-    public int[] f53000r0;
-    public final FrameLayout.LayoutParams f53001s;
-    public int f53002s0;
-    public boolean f53003t0;
-    public boolean f53004u0;
+    public final y9 f52997n;
+    public int f52998n0;
+    public boolean f52999o0;
+    public boolean f53000p0;
+    public int f53001q0;
+    public final FrameLayout.LayoutParams f53002r;
+    public int[] f53003r0;
+    public final FrameLayout.LayoutParams f53004s;
+    public int f53005s0;
+    public boolean f53006t0;
+    public boolean f53007u0;
     public final FrameLayout v;
-    public final ImageView f53005w;
-    public final TextView f53006x;
-    public final y9 f53007y;
+    public final ImageView f53008w;
+    public final TextView f53009x;
+    public final y9 f53010y;
 
     public g1(Context context, int i10, u6 u6Var) {
         super(context);
@@ -115,12 +115,12 @@ public class g1 extends FrameLayout implements p6 {
         this.P = -1.0f;
         this.S = new Rect();
         this.W = new h6(this, 0L, 320L, ds.h);
-        this.f52995n0 = -1;
-        this.f53004u0 = y6.I.q();
-        this.f52978a = i10;
-        this.f52980b = u6Var;
+        this.f52998n0 = -1;
+        this.f53007u0 = y6.I.q();
+        this.f52981a = i10;
+        this.f52983b = u6Var;
         gb1.c(this, 0.04f, 1.5f);
-        this.f52982c = new eq0(this);
+        this.f52985c = new eq0(this);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
         d1 d1Var = new d1(frameLayout, u6Var, true);
@@ -128,10 +128,10 @@ public class g1 extends FrameLayout implements p6 {
         frameLayout.setBackground(d1Var);
         addView(frameLayout, gb1.i(-1, -1, 119));
         h1 h1Var = new h1(context);
-        this.f52986f = h1Var;
+        this.f52989f = h1Var;
         addView(h1Var, gb1.h(-2, -2.0f, 53, 0.0f, 2.0f, 1.0f, 0.0f));
         y9 y9Var = new y9(context);
-        this.f53007y = y9Var;
+        this.f53010y = y9Var;
         y9Var.getImageReceiver().setAutoRepeat(0);
         FrameLayout.LayoutParams h = gb1.h(80, 80.0f, 17, 0.0f, 12.0f, 0.0f, 12.0f);
         this.E = h;
@@ -196,13 +196,13 @@ public class g1 extends FrameLayout implements p6 {
         frameLayout.addView(textView3, gb1.h(-2, -2.0f, 49, 0.0f, 161.0f, 0.0f, 8.0f));
         this.h = new j9((u6) null);
         y9 y9Var2 = new y9(context);
-        this.f52994n = y9Var2;
+        this.f52997n = y9Var2;
         y9Var2.setRoundRadius(AndroidUtilities.dp(20.0f));
         y9Var2.setVisibility(8);
         FrameLayout.LayoutParams h10 = gb1.h(20, 20.0f, 51, 2.0f, 2.0f, 2.0f, 2.0f);
-        this.f52999r = h10;
+        this.f53002r = h10;
         frameLayout.addView(y9Var2, h10);
-        this.f53001s = gb1.h(20, 20.0f, 51, 5.0f, 5.0f, 2.0f, 2.0f);
+        this.f53004s = gb1.h(20, 20.0f, 51, 5.0f, 5.0f, 2.0f, 2.0f);
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.v = frameLayout2;
         frameLayout2.setAlpha(0.0f);
@@ -216,14 +216,14 @@ public class g1 extends FrameLayout implements p6 {
         frameLayout2.addView(imageView, gb1.e(12.66f, 12.66f, 17));
         frameLayout.addView(frameLayout2, gb1.h(20, 20.0f, 51, 2.0f, 2.0f, 2.0f, 2.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f53005w = imageView2;
+        this.f53008w = imageView2;
         imageView2.setImageResource(R.drawable.mini_gram_14);
         imageView2.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
         imageView2.setVisibility(8);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         frameLayout.addView(imageView2, gb1.h(20, 20.0f, 51, 3.0f, 3.0f, 3.0f, 3.0f));
         TextView textView4 = new TextView(context);
-        this.f53006x = textView4;
+        this.f53009x = textView4;
         textView4.setTextSize(1, 10.0f);
         textView4.setTypeface(AndroidUtilities.bold());
         textView4.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), 0);
@@ -237,7 +237,7 @@ public class g1 extends FrameLayout implements p6 {
     }
 
     private TL_stars.TL_starGiftUnique getUniqueStarGift() {
-        TL_stars.SavedStarGift savedStarGift = this.f52985e0;
+        TL_stars.SavedStarGift savedStarGift = this.f52988e0;
         if (savedStarGift != null) {
             TL_stars.StarGift starGift = savedStarGift.gift;
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
@@ -249,16 +249,16 @@ public class g1 extends FrameLayout implements p6 {
     }
 
     private void setRibbonColorKey(int i10) {
-        this.f52986f.setColor(y6.w0(i10, this.f52980b));
-        this.f52995n0 = i10;
+        this.f52989f.setColor(y6.w0(i10, this.f52983b));
+        this.f52998n0 = i10;
     }
 
     public final void a() {
         int i10;
         int i11;
         boolean q5 = y6.I.q();
-        this.f53004u0 = q5;
-        if (this.f53003t0) {
+        this.f53007u0 = q5;
+        if (this.f53006t0) {
             i10 = 1090519039;
         } else if (q5) {
             i10 = 518759725;
@@ -267,14 +267,14 @@ public class g1 extends FrameLayout implements p6 {
         }
         if (q5) {
             i11 = -1333971;
-        } else if (this.f53002s0 == 2) {
+        } else if (this.f53005s0 == 2) {
             i11 = -4229632;
         } else {
             i11 = -2722014;
         }
         this.K.setBackground(new m1(i10));
         this.L.setTextColor(i11);
-        ImageView imageView = this.f53005w;
+        ImageView imageView = this.f53008w;
         imageView.setColorFilter(i11);
         imageView.setBackground(y6.c0(AndroidUtilities.dp(10.0f), i10));
     }
@@ -285,7 +285,7 @@ public class g1 extends FrameLayout implements p6 {
         hashSet.add(Integer.valueOf(y6.Mi));
         hashSet.add(Integer.valueOf(y6.uj));
         hashSet.add(Integer.valueOf(y6.wj));
-        hashSet.add(Integer.valueOf(y6.f23354d6));
+        hashSet.add(Integer.valueOf(y6.f23356d6));
     }
 
     public void b(i80 i80Var, Canvas canvas, float f7, float f10, float f11) {
@@ -307,7 +307,7 @@ public class g1 extends FrameLayout implements p6 {
         d1Var.b(canvas2, f11);
         d1Var.getPadding(this.S);
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(120.0f), f11);
-        y9 y9Var = this.f53007y;
+        y9 y9Var = this.f53010y;
         float f15 = f10 - f12;
         y9Var.getImageReceiver().setImageCoords((f7 - lerp) / 2.0f, (f15 - lerp) / 2.0f, lerp, lerp);
         y9Var.getImageReceiver().draw(canvas2);
@@ -335,14 +335,14 @@ public class g1 extends FrameLayout implements p6 {
             canvas2.restore();
             canvas2.restore();
         }
-        y9 y9Var2 = this.f52994n;
+        y9 y9Var2 = this.f52997n;
         if (y9Var2.getVisibility() == 0 && y9Var2.getAlpha() > 0.0f) {
             canvas2.save();
             canvas2.translate(AndroidUtilities.dp(2.0f) + rect.left, AndroidUtilities.dp(2.0f) + rect.top);
             y9Var2.draw(canvas2);
             canvas2.restore();
         }
-        h1 h1Var = this.f52986f;
+        h1 h1Var = this.f52989f;
         if (h1Var.getVisibility() == 0 && h1Var.getAlpha() > 0.0f) {
             canvas2.save();
             canvas2.translate(f7 - AndroidUtilities.dp(f13), AndroidUtilities.dp(2.0f));
@@ -363,11 +363,11 @@ public class g1 extends FrameLayout implements p6 {
                 this.R = new q11(LocaleController.formatPluralStringComma("Gift2CollectionNumber", uniqueStarGift.num), 13.0f, null);
             }
             q11 q11Var = this.Q;
-            q11Var.f31798p = f7 - AndroidUtilities.dp(8.0f);
+            q11Var.f31800p = f7 - AndroidUtilities.dp(8.0f);
             float f16 = f14 - f11;
             q11Var.c((f7 - this.Q.l()) / 2.0f, ((f10 - AndroidUtilities.dp(40.0f)) - (this.Q.j() / 2.0f)) + (AndroidUtilities.dp(50.0f) * f16), f11, -1, canvas);
             q11 q11Var2 = this.R;
-            q11Var2.f31798p = f7 - AndroidUtilities.dp(8.0f);
+            q11Var2.f31800p = f7 - AndroidUtilities.dp(8.0f);
             q11Var2.c((f7 - this.R.l()) / 2.0f, ((f10 - AndroidUtilities.dp(19.0f)) - (this.R.j() / 2.0f)) + (AndroidUtilities.dp(50.0f) * f16), 0.6f * f11, -1, canvas);
             canvas2 = canvas;
         }
@@ -380,7 +380,7 @@ public class g1 extends FrameLayout implements p6 {
             canvas2.restore();
             canvas2.restore();
         }
-        ImageView imageView = this.f53005w;
+        ImageView imageView = this.f53008w;
         if (imageView != null && imageView.getVisibility() == 0) {
             canvas2.save();
             canvas2.translate(imageView.getX(), imageView.getY());
@@ -396,11 +396,11 @@ public class g1 extends FrameLayout implements p6 {
         if (this.m0 == null) {
             zp zpVar = new zp(getContext(), 21, null);
             this.m0 = zpVar;
-            zpVar.b(-1, y6.f23354d6, y6.f23483k7);
+            zpVar.b(-1, y6.f23356d6, y6.f23485k7);
             this.m0.setDrawUnchecked(false);
             this.d.addView(this.m0, gb1.h(24, 24.0f, 51, 4.0f, 4.0f, 4.0f, 4.0f));
         }
-        this.f52994n.setVisibility(8);
+        this.f52997n.setVisibility(8);
         this.m0.a(z10, z11);
     }
 
@@ -456,7 +456,7 @@ public class g1 extends FrameLayout implements p6 {
             }
             frameLayout.setScaleY(f12);
         }
-        if (!this.T && this.V && !this.f52989h0 && (savedStarGift = this.f52985e0) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
+        if (!this.T && this.V && !this.f52992h0 && (savedStarGift = this.f52988e0) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
             z12 = true;
         }
         g(z12, z11);
@@ -469,7 +469,7 @@ public class g1 extends FrameLayout implements p6 {
         canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
         float e = this.W.e(this.V);
         if (e > 0.0f) {
-            this.f52982c.a(canvas, e);
+            this.f52985c.a(canvas, e);
         }
         canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
         super.dispatchDraw(canvas);
@@ -487,7 +487,7 @@ public class g1 extends FrameLayout implements p6 {
             this.W.a(z10);
         }
         invalidate();
-        if (!this.T && z10 && !this.f52989h0 && (savedStarGift = this.f52985e0) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
+        if (!this.T && z10 && !this.f52992h0 && (savedStarGift = this.f52988e0) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
             z12 = true;
         } else {
             z12 = false;
@@ -500,7 +500,7 @@ public class g1 extends FrameLayout implements p6 {
         float f10;
         this.e.f(z10, z11);
         float f11 = 0.0f;
-        ImageView imageView = this.f53005w;
+        ImageView imageView = this.f53008w;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
             if (z10) {
@@ -579,23 +579,23 @@ public class g1 extends FrameLayout implements p6 {
     }
 
     public TL_stars.StarGift getGift() {
-        return this.f52981b0;
+        return this.f52984b0;
     }
 
     public long getGiftId() {
-        TL_stars.StarGift starGift = this.f52981b0;
+        TL_stars.StarGift starGift = this.f52984b0;
         if (starGift != null) {
-            return starGift.f22254id;
+            return starGift.f22256id;
         }
         return 0L;
     }
 
     public tg.k getPremiumTier() {
-        return this.f52979a0;
+        return this.f52982a0;
     }
 
     public TL_stars.SavedStarGift getSavedGift() {
-        return this.f52985e0;
+        return this.f52988e0;
     }
 
     public final void h(org.telegram.tgnet.tl.TL_stars.StarGift r31, boolean r32, boolean r33, boolean r34, boolean r35, boolean r36) {
@@ -630,7 +630,7 @@ public class g1 extends FrameLayout implements p6 {
         d1Var.g(null);
         this.H.setVisibility(8);
         this.I.setVisibility(8);
-        y9 y9Var = this.f53007y;
+        y9 y9Var = this.f53010y;
         y9Var.setTranslationY(0.0f);
         tg.c1 c1Var = this.F;
         c1Var.H = true;
@@ -657,7 +657,7 @@ public class g1 extends FrameLayout implements p6 {
         } else {
             i10 = 8;
         }
-        ImageView imageView = this.f53005w;
+        ImageView imageView = this.f53008w;
         imageView.setVisibility(i10);
         FrameLayout frameLayout = this.v;
         if (stargiftattributebackdrop != null) {
@@ -665,14 +665,14 @@ public class g1 extends FrameLayout implements p6 {
         } else {
             int dp = AndroidUtilities.dp(20.0f);
             int i12 = y6.Oh;
-            u6 u6Var = this.f52980b;
+            u6 u6Var = this.f52983b;
             f7.C(frameLayout, y6.K(dp, y6.w0(i12, u6Var)), f7.N(i12), u6Var);
         }
         FrameLayout.LayoutParams layoutParams = this.E;
         layoutParams.gravity = 17;
         y9Var.setLayoutParams(layoutParams);
         float f13 = 0.4f;
-        if (this.f52993l0 == savedStarGift) {
+        if (this.f52996l0 == savedStarGift) {
             c1Var.setVisibility(0);
             ViewPropertyAnimator animate = c1Var.animate();
             if (savedStarGift.unsaved) {
@@ -716,11 +716,11 @@ public class g1 extends FrameLayout implements p6 {
             c1Var.setVisibility(i11);
         }
         boolean z16 = savedStarGift.gift instanceof TL_stars.TL_starGiftUnique;
-        y9 y9Var2 = this.f52994n;
+        y9 y9Var2 = this.f52997n;
         y9Var2.setColorFilter(null);
-        this.f52997p0 = false;
-        y9Var2.setLayoutParams(this.f52999r);
-        int i13 = this.f52978a;
+        this.f53000p0 = false;
+        y9Var2.setLayoutParams(this.f53002r);
+        int i13 = this.f52981a;
         if (z16 && savedStarGift.name_hidden) {
             y9Var2.setVisibility(8);
             j10 = 0;
@@ -731,7 +731,7 @@ public class g1 extends FrameLayout implements p6 {
             int dp2 = AndroidUtilities.dp(16.0f);
             int dp3 = AndroidUtilities.dp(16.0f);
             a2.e = dp2;
-            a2.f26593f = dp3;
+            a2.f26595f = dp3;
             y9Var2.setImageDrawable(a2);
         } else {
             j10 = 0;
@@ -782,7 +782,7 @@ public class g1 extends FrameLayout implements p6 {
                 zqVar.translate(0.0f, AndroidUtilities.dp(0.5f));
             }
             int v = y6.v(stargiftattributebackdrop.center_color | (-16777216), y6.o1(0.55f, stargiftattributebackdrop.pattern_color | (-16777216)));
-            this.f53002s0 = 0;
+            this.f53005s0 = 0;
             z10Var2.setBackground(new m1(1895825407, v));
             textView.setTextColor(-1);
             imageView.setBackground(y6.c0(AndroidUtilities.dp(10.0f), v));
@@ -822,30 +822,30 @@ public class g1 extends FrameLayout implements p6 {
                 textView.setText(dd.W0(false, org.telegram.messenger.t.i(Math.max(j11, j12), ',', sb2), 0.66f, null));
             }
             if (z16) {
-                this.f53002s0 = 0;
+                this.f53005s0 = 0;
                 textView.setTextColor(-1);
                 z10Var.setBackground(new m1(1090519039));
                 imageView.setBackground(y6.c0(AndroidUtilities.dp(10.0f), 1090519039));
                 imageView.setColorFilter(-1);
             } else {
-                this.f53002s0 = 2;
-                this.f53003t0 = false;
+                this.f53005s0 = 2;
+                this.f53006t0 = false;
                 a();
             }
             ((FrameLayout.LayoutParams) p5Var.getLayoutParams()).gravity = 49;
             ((ViewGroup.MarginLayoutParams) p5Var.getLayoutParams()).topMargin = AndroidUtilities.dp(103.0f);
         }
         this.M.setVisibility(8);
-        this.f52993l0 = savedStarGift;
-        this.f52991j0 = null;
-        TL_stars.SavedStarGift savedStarGift2 = this.f52985e0;
-        this.f52979a0 = null;
-        this.f52981b0 = null;
-        this.f52984d0 = false;
-        this.f52985e0 = savedStarGift;
-        this.f52987f0 = false;
-        this.f52988g0 = false;
-        this.f52989h0 = z11;
+        this.f52996l0 = savedStarGift;
+        this.f52994j0 = null;
+        TL_stars.SavedStarGift savedStarGift2 = this.f52988e0;
+        this.f52982a0 = null;
+        this.f52984b0 = null;
+        this.f52987d0 = false;
+        this.f52988e0 = savedStarGift;
+        this.f52990f0 = false;
+        this.f52991g0 = false;
+        this.f52992h0 = z11;
         this.Q = null;
         this.R = null;
         if (savedStarGift.pinned_to_top && (!z16 || savedStarGift.name_hidden)) {
@@ -867,15 +867,15 @@ public class g1 extends FrameLayout implements p6 {
     }
 
     public final void j(TLObject tLObject, TLRPC.Document document) {
-        y9 y9Var = this.f53007y;
+        y9 y9Var = this.f53010y;
         if (document == null) {
             y9Var.b();
-            this.f52992k0 = null;
-        } else if (this.f52992k0 == document) {
+            this.f52995k0 = null;
+        } else if (this.f52995k0 == document) {
         } else {
-            this.f52992k0 = document;
+            this.f52995k0 = document;
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
-            y9Var.l(ImageLocation.getForDocument(document), "80_80_nolimit_pcache", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "80_80_nolimit_pcache", DocumentObject.getSvgThumb(document, y6.f23297a7, 0.3f), tLObject);
+            y9Var.l(ImageLocation.getForDocument(document), "80_80_nolimit_pcache", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "80_80_nolimit_pcache", DocumentObject.getSvgThumb(document, y6.f23299a7, 0.3f), tLObject);
         }
     }
 
@@ -903,7 +903,7 @@ public class g1 extends FrameLayout implements p6 {
             if (f7 > 0.0f) {
                 colorMatrixColorFilter = new ColorMatrixColorFilter(new float[]{f10, 0.0f, 0.0f, 0.0f, Color.red(i11) * f7, 0.0f, f10, 0.0f, 0.0f, Color.green(i11) * f7, 0.0f, 0.0f, f10, 0.0f, Color.blue(i11) * f7, 0.0f, 0.0f, 0.0f, 1.0f - (0.5686275f * f7), 0.0f});
             }
-            y9 y9Var = this.f53007y;
+            y9 y9Var = this.f53010y;
             y9Var.setColorFilter(colorMatrixColorFilter);
             ImageReceiver imageReceiver = y9Var.getImageReceiver();
             int i12 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
@@ -930,11 +930,11 @@ public class g1 extends FrameLayout implements p6 {
                 } else {
                     i10 = org.telegram.messenger.t.i(uniqueStarGift.num, ',', new StringBuilder("#"));
                 }
-                h1 h1Var = this.f52986f;
+                h1 h1Var = this.f52989f;
                 if (z11) {
                     h1Var.getClass();
-                    h1Var.f53021b = i10;
-                    h1Var.f53020a.g(10, i10);
+                    h1Var.f53024b = i10;
+                    h1Var.f53023a.g(10, i10);
                     return;
                 }
                 h1Var.b(i10, true);
@@ -943,36 +943,36 @@ public class g1 extends FrameLayout implements p6 {
     }
 
     public final void l() {
-        TL_stars.SavedStarGift savedStarGift = this.f52985e0;
-        h1 h1Var = this.f52986f;
+        TL_stars.SavedStarGift savedStarGift = this.f52988e0;
+        h1 h1Var = this.f52989f;
         if (savedStarGift != null) {
             TL_stars.StarGift starGift = savedStarGift.gift;
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
                 h1Var.setVisibility(0);
-                if (this.f52985e0.gift.resell_amount != null) {
-                    int i10 = y6.f23354d6;
-                    u6 u6Var = this.f52980b;
+                if (this.f52988e0.gift.resell_amount != null) {
+                    int i10 = y6.f23356d6;
+                    u6 u6Var = this.f52983b;
                     int v = y6.v(y6.w0(i10, u6Var), y6.o1(0.04f, y6.w0(y6.G6, u6Var)));
                     setRibbonColorKey(y6.uj);
                     h1Var.setStrokeColor(v);
-                    this.f52996o0 = true;
+                    this.f52999o0 = true;
                     h1Var.setBackdrop(null);
                     h1Var.b(LocaleController.getString(R.string.Gift2OnSale), false);
                     return;
                 }
                 setRibbonColorKey(y6.Li);
                 h1Var.setStrokeColor(0);
-                this.f52996o0 = false;
-                h1Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ca.l(this.f52985e0.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
-                h1Var.b(org.telegram.messenger.t.i(this.f52985e0.gift.num, ',', new StringBuilder("#")), true);
+                this.f52999o0 = false;
+                h1Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ca.l(this.f52988e0.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
+                h1Var.b(org.telegram.messenger.t.i(this.f52988e0.gift.num, ',', new StringBuilder("#")), true);
                 return;
             } else if (starGift.limited) {
                 h1Var.setVisibility(0);
                 setRibbonColorKey(y6.Li);
                 h1Var.setStrokeColor(0);
-                this.f52996o0 = false;
+                this.f52999o0 = false;
                 h1Var.setBackdrop(null);
-                h1Var.b(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.f52985e0.gift.availability_total, 0)), true);
+                h1Var.b(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.f52988e0.gift.availability_total, 0)), true);
                 return;
             } else {
                 h1Var.setBackdrop(null);
@@ -980,24 +980,24 @@ public class g1 extends FrameLayout implements p6 {
                 return;
             }
         }
-        TL_stars.StarGift starGift2 = this.f52981b0;
+        TL_stars.StarGift starGift2 = this.f52984b0;
         if (starGift2 != null) {
-            if (!this.f52988g0 && !this.f52990i0) {
-                if (this.f52987f0 && starGift2.availability_resale > 0) {
+            if (!this.f52991g0 && !this.f52993i0) {
+                if (this.f52990f0 && starGift2.availability_resale > 0) {
                     h1Var.setVisibility(0);
                     setRibbonColorKey(y6.uj);
                     h1Var.setStrokeColor(0);
-                    this.f52996o0 = false;
+                    this.f52999o0 = false;
                     h1Var.setBackdrop(null);
                     h1Var.b(LocaleController.getString(R.string.Gift2Resale), false);
                     return;
-                } else if (this.f52984d0) {
+                } else if (this.f52987d0) {
                     h1Var.setVisibility(0);
                     setRibbonColorKey(y6.Li);
                     h1Var.setStrokeColor(0);
-                    this.f52996o0 = false;
-                    h1Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ca.l(this.f52981b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
-                    h1Var.b(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.f52981b0.availability_issued, 0)), true);
+                    this.f52999o0 = false;
+                    h1Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ca.l(this.f52984b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
+                    h1Var.b(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.f52984b0.availability_issued, 0)), true);
                     return;
                 } else {
                     boolean z10 = starGift2.limited;
@@ -1005,18 +1005,18 @@ public class g1 extends FrameLayout implements p6 {
                         h1Var.setVisibility(0);
                         setRibbonColorKey(y6.Mi);
                         h1Var.setStrokeColor(0);
-                        this.f52996o0 = false;
+                        this.f52999o0 = false;
                         h1Var.setBackdrop(null);
                         h1Var.b(LocaleController.getString(R.string.Gift2SoldOut), true);
                         return;
                     } else if (starGift2.auction) {
                         h1Var.setVisibility(0);
                         h1Var.setBackdrop(null);
-                        this.f52995n0 = -1;
+                        this.f52998n0 = -1;
                         h1Var.a(-2650077, -4227818);
                         h1Var.setStrokeColor(0);
-                        this.f52996o0 = false;
-                        if (this.f52981b0.auction_start_date > ConnectionsManager.getInstance(this.f52978a).getCurrentTime()) {
+                        this.f52999o0 = false;
+                        if (this.f52984b0.auction_start_date > ConnectionsManager.getInstance(this.f52981a).getCurrentTime()) {
                             h1Var.b(LocaleController.getString(R.string.Gift2LimitedAuctionSoon), true);
                             return;
                         } else {
@@ -1026,24 +1026,24 @@ public class g1 extends FrameLayout implements p6 {
                     } else if (starGift2.require_premium) {
                         h1Var.setVisibility(0);
                         h1Var.setBackdrop(null);
-                        this.f52995n0 = -1;
+                        this.f52998n0 = -1;
                         h1Var.a(-2650077, -4227818);
                         h1Var.setStrokeColor(0);
-                        this.f52996o0 = false;
+                        this.f52999o0 = false;
                         h1Var.b(LocaleController.getString(R.string.Gift2LimitedPremium), true);
                         return;
                     } else if (z10) {
                         h1Var.setVisibility(0);
                         setRibbonColorKey(y6.Li);
                         h1Var.setStrokeColor(0);
-                        this.f52996o0 = false;
+                        this.f52999o0 = false;
                         h1Var.setBackdrop(null);
                         h1Var.b(LocaleController.getString(R.string.Gift2LimitedRibbon), true);
                         return;
                     } else {
                         h1Var.setBackdrop(null);
                         h1Var.setStrokeColor(0);
-                        this.f52996o0 = false;
+                        this.f52999o0 = false;
                         h1Var.setVisibility(8);
                         return;
                     }
@@ -1051,30 +1051,30 @@ public class g1 extends FrameLayout implements p6 {
             }
             h1Var.setVisibility(0);
             setRibbonColorKey(y6.Li);
-            h1Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ca.l(this.f52981b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
+            h1Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ca.l(this.f52984b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
             h1Var.setStrokeColor(0);
-            this.f52996o0 = false;
-            h1Var.b(org.telegram.messenger.t.i(this.f52981b0.num, ',', new StringBuilder("#")), true);
+            this.f52999o0 = false;
+            h1Var.b(org.telegram.messenger.t.i(this.f52984b0.num, ',', new StringBuilder("#")), true);
             return;
         }
-        tg.k kVar = this.f52979a0;
+        tg.k kVar = this.f52982a0;
         if (kVar != null) {
             if (kVar.b() > 0) {
                 h1Var.setVisibility(0);
                 h1Var.setBackdrop(null);
-                this.f52995n0 = -1;
+                this.f52998n0 = -1;
                 h1Var.a(-2535425, -8229377);
                 h1Var.setStrokeColor(0);
-                this.f52996o0 = false;
-                String formatString = LocaleController.formatString(R.string.GiftPremiumOptionDiscount, Integer.valueOf(this.f52979a0.b()));
-                h1Var.f53021b = formatString;
-                h1Var.f53020a.f(12, formatString, true);
+                this.f52999o0 = false;
+                String formatString = LocaleController.formatString(R.string.GiftPremiumOptionDiscount, Integer.valueOf(this.f52982a0.b()));
+                h1Var.f53024b = formatString;
+                h1Var.f53023a.f(12, formatString, true);
                 return;
             }
             h1Var.setVisibility(8);
             h1Var.setBackdrop(null);
             h1Var.setStrokeColor(0);
-            this.f52996o0 = false;
+            this.f52999o0 = false;
         }
     }
 
@@ -1084,7 +1084,7 @@ public class g1 extends FrameLayout implements p6 {
     }
 
     public void setImageLayer(int i10) {
-        this.f53007y.setLayerNum(i10);
+        this.f53010y.setLayerNum(i10);
     }
 
     public void setImageSize(int i10) {
@@ -1094,23 +1094,23 @@ public class g1 extends FrameLayout implements p6 {
     }
 
     public void setRibbonColor(int i10) {
-        this.f52995n0 = -1;
-        h1 h1Var = this.f52986f;
+        this.f52998n0 = -1;
+        h1 h1Var = this.f52989f;
         h1Var.setColor(i10);
         h1Var.invalidate();
     }
 
     public void setRibbonText(String str) {
-        this.f52986f.b(str, true);
+        this.f52989f.b(str, true);
     }
 
     public void setRibbonTextOneOf(int i10) {
-        h1 h1Var = this.f52986f;
+        h1 h1Var = this.f52989f;
         h1Var.setVisibility(0);
         setRibbonColorKey(y6.Li);
         h1Var.setStrokeColor(0);
-        this.f52996o0 = false;
-        h1Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ca.l(this.f52981b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
+        this.f52999o0 = false;
+        h1Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ca.l(this.f52984b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
         h1Var.b(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(i10, 0)), true);
     }
 
@@ -1122,9 +1122,9 @@ public class g1 extends FrameLayout implements p6 {
         int i10;
         try {
             boolean q5 = y6.I.q();
-            if (q5 != this.f53004u0) {
-                this.f53004u0 = q5;
-                if (this.f53002s0 != 0 && this.K != null && this.L != null && this.f53005w != null) {
+            if (q5 != this.f53007u0) {
+                this.f53007u0 = q5;
+                if (this.f53005s0 != 0 && this.K != null && this.L != null && this.f53008w != null) {
                     a();
                 }
                 TextView textView = this.M;
@@ -1137,31 +1137,31 @@ public class g1 extends FrameLayout implements p6 {
                     textView.setTextColor(i10);
                 }
             }
-            h1 h1Var = this.f52986f;
-            u6 u6Var = this.f52980b;
+            h1 h1Var = this.f52989f;
+            u6 u6Var = this.f52983b;
             if (h1Var != null) {
-                int i11 = this.f52995n0;
+                int i11 = this.f52998n0;
                 if (i11 >= 0) {
-                    j1 j1Var = h1Var.f53020a;
-                    ((Paint) j1Var.f27243b).setColor(y6.w0(i11, u6Var));
+                    j1 j1Var = h1Var.f53023a;
+                    ((Paint) j1Var.f27245b).setColor(y6.w0(i11, u6Var));
                     j1Var.invalidateSelf();
                 }
-                if (this.f52996o0) {
-                    h1Var.setStrokeColor(y6.v(y6.w0(y6.f23354d6, u6Var), y6.o1(0.04f, y6.w0(y6.G6, u6Var))));
+                if (this.f52999o0) {
+                    h1Var.setStrokeColor(y6.v(y6.w0(y6.f23356d6, u6Var), y6.o1(0.04f, y6.w0(y6.G6, u6Var))));
                 }
                 h1Var.invalidate();
             }
-            if (this.f52997p0 && (y9Var = this.f52994n) != null && (w03 = y6.w0(y6.wj, u6Var)) != this.f52998q0) {
-                this.f52998q0 = w03;
+            if (this.f53000p0 && (y9Var = this.f52997n) != null && (w03 = y6.w0(y6.wj, u6Var)) != this.f53001q0) {
+                this.f53001q0 = w03;
                 y9Var.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
             }
             d1 d1Var = this.e;
             if (d1Var != null) {
-                int[] iArr = this.f53000r0;
-                if (iArr != null && d1Var.f52939m == iArr && (iArr[0] != (w02 = y6.w0(y6.Mi, u6Var)) || iArr[1] != w02)) {
+                int[] iArr = this.f53003r0;
+                if (iArr != null && d1Var.f52942m == iArr && (iArr[0] != (w02 = y6.w0(y6.Mi, u6Var)) || iArr[1] != w02)) {
                     iArr[1] = w02;
                     iArr[0] = w02;
-                    d1Var.f52940n = null;
+                    d1Var.f52943n = null;
                 }
                 d1Var.invalidateSelf();
             }

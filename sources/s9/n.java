@@ -1,26 +1,26 @@
 package s9;
 public final class n implements ra.b {
-    public static final Object f48004c = new Object();
-    public volatile Object f48005a = f48004c;
-    public volatile ra.b f48006b;
+    public static final Object f48007c = new Object();
+    public volatile Object f48008a = f48007c;
+    public volatile ra.b f48009b;
 
     public n(ra.b bVar) {
-        this.f48006b = bVar;
+        this.f48009b = bVar;
     }
 
     @Override
     public final Object get() {
         Object obj;
-        Object obj2 = this.f48005a;
-        Object obj3 = f48004c;
+        Object obj2 = this.f48008a;
+        Object obj3 = f48007c;
         if (obj2 == obj3) {
             synchronized (this) {
                 try {
-                    obj = this.f48005a;
+                    obj = this.f48008a;
                     if (obj == obj3) {
-                        obj = this.f48006b.get();
-                        this.f48005a = obj;
-                        this.f48006b = null;
+                        obj = this.f48009b.get();
+                        this.f48008a = obj;
+                        this.f48009b = null;
                     }
                 } catch (Throwable th2) {
                     throw th2;

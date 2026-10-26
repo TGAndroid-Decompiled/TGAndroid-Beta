@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 public final class bf extends ImageView {
-    public final int f26841a;
-    public final ChatActivityEnterView f26842b;
+    public final int f26843a;
+    public final ChatActivityEnterView f26844b;
 
     public bf(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
         super(context);
-        this.f26841a = i10;
-        this.f26842b = chatActivityEnterView;
+        this.f26843a = i10;
+        this.f26844b = chatActivityEnterView;
     }
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f26841a) {
+        switch (this.f26843a) {
             case 0:
                 super.onLayout(z10, i10, i11, i12, i13);
-                post(new ie(this.f26842b, 5));
+                post(new ie(this.f26844b, 5));
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -28,7 +28,7 @@ public final class bf extends ImageView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f26841a) {
+        switch (this.f26843a) {
             case 2:
                 if (getAlpha() <= 0.0f) {
                     return false;
@@ -41,26 +41,26 @@ public final class bf extends ImageView {
 
     @Override
     public final void setAlpha(float f7) {
-        switch (this.f26841a) {
+        switch (this.f26843a) {
             case 0:
                 super.setAlpha(f7);
-                ze zeVar = this.f26842b.J1;
+                ze zeVar = this.f26844b.J1;
                 if (zeVar != null) {
-                    zeVar.setTranslationX(zeVar.f35308a);
+                    zeVar.setTranslationX(zeVar.f35311a);
                     return;
                 }
                 return;
             case 1:
                 super.setAlpha(f7);
-                ze zeVar2 = this.f26842b.J1;
+                ze zeVar2 = this.f26844b.J1;
                 if (zeVar2 != null) {
-                    zeVar2.setTranslationX(zeVar2.f35308a);
+                    zeVar2.setTranslationX(zeVar2.f35311a);
                     return;
                 }
                 return;
             default:
                 super.setAlpha(f7);
-                ue ueVar = this.f26842b.Z0;
+                ue ueVar = this.f26844b.Z0;
                 if (ueVar != null) {
                     ueVar.invalidate();
                     return;
@@ -71,10 +71,10 @@ public final class bf extends ImageView {
 
     @Override
     public void setVisibility(int i10) {
-        switch (this.f26841a) {
+        switch (this.f26843a) {
             case 2:
                 super.setVisibility(i10);
-                ue ueVar = this.f26842b.Z0;
+                ue ueVar = this.f26844b.Z0;
                 if (ueVar != null) {
                     ueVar.invalidate();
                     return;

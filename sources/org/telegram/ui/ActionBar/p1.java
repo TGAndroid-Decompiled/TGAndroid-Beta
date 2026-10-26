@@ -9,40 +9,40 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.LaunchActivity;
 public final class p1 implements ViewTreeObserver.OnPreDrawListener {
-    public final q1 f22925a;
+    public final q1 f22927a;
 
     public p1(q1 q1Var) {
-        this.f22925a = q1Var;
+        this.f22927a = q1Var;
     }
 
     @Override
     public final boolean onPreDraw() {
         boolean z10;
         int i10;
-        q1 q1Var = this.f22925a;
-        FrameLayout frameLayout = q1Var.f22962a;
+        q1 q1Var = this.f22927a;
+        FrameLayout frameLayout = q1Var.f22964a;
         int height = frameLayout.getHeight();
         int i11 = height - q1Var.i();
-        int i12 = q1Var.f22967i;
-        if (i11 != i12 - q1Var.f22969k && height != i12 && q1Var.f22971m == null) {
-            if (q1Var.b() && Math.abs(q1Var.f22967i - height) >= AndroidUtilities.dp(20.0f)) {
-                if (q1Var.f22967i != -1 && q1Var.f22968j == q1Var.f22964c.getHeight()) {
-                    if (height < q1Var.f22964c.getBottom()) {
+        int i12 = q1Var.f22969i;
+        if (i11 != i12 - q1Var.f22971k && height != i12 && q1Var.f22973m == null) {
+            if (q1Var.b() && Math.abs(q1Var.f22969i - height) >= AndroidUtilities.dp(20.0f)) {
+                if (q1Var.f22969i != -1 && q1Var.f22970j == q1Var.f22966c.getHeight()) {
+                    if (height < q1Var.f22966c.getBottom()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    q1Var.f22977s = z10;
-                    int i13 = q1Var.f22967i;
+                    q1Var.f22979s = z10;
+                    int i13 = q1Var.f22969i;
                     if (q1Var.v) {
                         q1Var.v = false;
-                    } else if (q1Var.f22979u) {
-                        ValueAnimator valueAnimator = q1Var.f22971m;
+                    } else if (q1Var.f22981u) {
+                        ValueAnimator valueAnimator = q1Var.f22973m;
                         if (valueAnimator != null) {
                             valueAnimator.cancel();
                         }
                         int i14 = q1Var.i();
-                        ArrayList arrayList = q1Var.f22973o;
+                        ArrayList arrayList = q1Var.f22975o;
                         arrayList.clear();
                         FrameLayout frameLayout2 = frameLayout;
                         while (frameLayout2 != 0) {
@@ -69,61 +69,61 @@ public final class p1 implements ViewTreeObserver.OnPreDrawListener {
                         q1Var.g(height, z10);
                         float f7 = height - i13;
                         Math.abs(f7);
-                        q1Var.f22965f = true;
+                        q1Var.f22967f = true;
                         if (height > i13) {
                             float f10 = f7 - i14;
                             if (!z11) {
                                 frameLayout.setTranslationY(-f10);
                             }
                             q1Var.e(f10, 1.0f, z10);
-                            q1Var.f22974p = -f10;
-                            q1Var.f22975q = -i10;
-                            q1Var.f22976r = true;
+                            q1Var.f22976p = -f10;
+                            q1Var.f22977q = -i10;
+                            q1Var.f22978r = true;
                         } else {
                             if (!z11) {
-                                frameLayout.setTranslationY(q1Var.f22969k);
+                                frameLayout.setTranslationY(q1Var.f22971k);
                             }
-                            q1Var.e(-q1Var.f22969k, 0.0f, z10);
-                            q1Var.f22975q = -q1Var.f22969k;
-                            q1Var.f22974p = f7;
-                            q1Var.f22976r = false;
+                            q1Var.e(-q1Var.f22971k, 0.0f, z10);
+                            q1Var.f22977q = -q1Var.f22971k;
+                            q1Var.f22976p = f7;
+                            q1Var.f22978r = false;
                         }
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        q1Var.f22971m = ofFloat;
+                        q1Var.f22973m = ofFloat;
                         q1Var.e = false;
                         ofFloat.addUpdateListener(new x0(q1Var, 3));
-                        q1Var.f22971m.addListener(new h(q1Var, 2));
-                        q1Var.f22971m.setDuration(250L);
-                        q1Var.f22971m.setInterpolator(q1.f22961w);
-                        q1Var.f22972n.lock();
-                        if (q1Var.f22966g) {
-                            q1Var.f22966g = false;
+                        q1Var.f22973m.addListener(new h(q1Var, 2));
+                        q1Var.f22973m.setDuration(250L);
+                        q1Var.f22973m.setInterpolator(q1.f22963w);
+                        q1Var.f22974n.lock();
+                        if (q1Var.f22968g) {
+                            q1Var.f22968g = false;
                             SystemClock.elapsedRealtime();
                             AndroidUtilities.runOnUIThread(q1Var.h, 100L);
                         } else {
-                            q1Var.f22971m.start();
+                            q1Var.f22973m.start();
                         }
                     }
-                    q1Var.f22967i = height;
-                    q1Var.f22968j = q1Var.f22964c.getHeight();
-                    q1Var.f22969k = q1Var.i();
+                    q1Var.f22969i = height;
+                    q1Var.f22970j = q1Var.f22966c.getHeight();
+                    q1Var.f22971k = q1Var.i();
                     return false;
                 }
-                q1Var.f22967i = height;
-                q1Var.f22968j = q1Var.f22964c.getHeight();
-                q1Var.f22969k = q1Var.i();
+                q1Var.f22969i = height;
+                q1Var.f22970j = q1Var.f22966c.getHeight();
+                q1Var.f22971k = q1Var.i();
                 return false;
             }
-            q1Var.f22967i = height;
-            q1Var.f22968j = q1Var.f22964c.getHeight();
-            q1Var.f22969k = q1Var.i();
+            q1Var.f22969i = height;
+            q1Var.f22970j = q1Var.f22966c.getHeight();
+            q1Var.f22971k = q1Var.i();
             q1Var.e = false;
             return true;
         }
-        if (q1Var.f22971m == null) {
-            q1Var.f22967i = height;
-            q1Var.f22968j = q1Var.f22964c.getHeight();
-            q1Var.f22969k = q1Var.i();
+        if (q1Var.f22973m == null) {
+            q1Var.f22969i = height;
+            q1Var.f22970j = q1Var.f22966c.getHeight();
+            q1Var.f22971k = q1Var.i();
             q1Var.e = false;
         }
         return true;

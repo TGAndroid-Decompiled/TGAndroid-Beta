@@ -3,10 +3,10 @@ package org.telegram.ui;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class ci extends gu0 {
-    public final un f38463a;
+    public final un f38466a;
 
     public ci(un unVar) {
-        this.f38463a = unVar;
+        this.f38466a = unVar;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class ci extends gu0 {
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
         if (i10 >= 0) {
-            un unVar = this.f38463a;
+            un unVar = this.f38466a;
             if (i10 < unVar.Ua.size()) {
                 unVar.mb((TLRPC.BotInlineResult) unVar.Ua.get(i10), z10, i11, 0L);
             }

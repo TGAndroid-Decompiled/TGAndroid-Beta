@@ -19,15 +19,15 @@ import org.telegram.ui.Components.wc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cj0;
 public final class v implements Utilities.Callback2 {
-    public final int f45424a;
-    public final a1 f45425b;
-    public final x7 f45426c;
+    public final int f45427a;
+    public final a1 f45428b;
+    public final x7 f45429c;
     public final String d;
 
     public v(a1 a1Var, x7 x7Var, String str, int i10) {
-        this.f45424a = i10;
-        this.f45425b = a1Var;
-        this.f45426c = x7Var;
+        this.f45427a = i10;
+        this.f45428b = a1Var;
+        this.f45429c = x7Var;
         this.d = str;
     }
 
@@ -35,17 +35,17 @@ public final class v implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         int i10;
         cj0 cj0Var;
-        int i11 = this.f45424a;
+        int i11 = this.f45427a;
         String str = this.d;
-        x7 x7Var = this.f45426c;
-        a1 a1Var = this.f45425b;
+        x7 x7Var = this.f45429c;
+        a1 a1Var = this.f45428b;
         switch (i11) {
             case 0:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                a1 a1Var2 = this.f45425b;
+                a1 a1Var2 = this.f45428b;
                 u6 u6Var = a1Var2.e;
                 TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) bg.c.a((TL_keyboard.KeyboardButton) obj, TL_keyboard.TL_buttonTypeRequestPeer.class);
-                x7 x7Var2 = this.f45426c;
+                x7 x7Var2 = this.f45429c;
                 String str2 = this.d;
                 if (tL_buttonTypeRequestPeer != null) {
                     TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
@@ -63,16 +63,16 @@ public final class v implements Utilities.Callback2 {
                         Boolean bool = tL_requestPeerTypeUser.bot;
                         Boolean bool2 = tL_requestPeerTypeUser.premium;
                         c0 c0Var = new c0(a1Var2, zArr, str2, tL_buttonTypeRequestPeer, x7Var2);
-                        cj0 cj0Var2 = cj0.f38471u0;
+                        cj0 cj0Var2 = cj0.f38474u0;
                         r2 R = LaunchActivity.R();
                         if (R == null) {
                             cj0Var = null;
                         } else {
-                            cj0Var = cj0.f38471u0;
+                            cj0Var = cj0.f38474u0;
                             if (cj0Var == null) {
                                 cj0 cj0Var3 = new cj0(R, i10, bool, bool2, c0Var);
                                 cj0Var3.show();
-                                cj0.f38471u0 = cj0Var3;
+                                cj0.f38474u0 = cj0Var3;
                                 cj0Var = cj0Var3;
                             }
                         }
@@ -83,7 +83,7 @@ public final class v implements Utilities.Callback2 {
                         return;
                     } else {
                         Bundle c10 = vh.c(15, "onlySelect", "dialogsType", true);
-                        c10.putLong("requestPeerBotId", a1Var2.U.f22174id);
+                        c10.putLong("requestPeerBotId", a1Var2.U.f22176id);
                         try {
                             SerializedData serializedData = new SerializedData(tL_buttonTypeRequestPeer.peer_type.getObjectSize());
                             tL_buttonTypeRequestPeer.peer_type.serializeToStream(serializedData);
@@ -98,7 +98,7 @@ public final class v implements Utilities.Callback2 {
                         r2 U = LaunchActivity.U();
                         if (U != 0) {
                             ?? obj3 = new Object();
-                            obj3.f22926a = true;
+                            obj3.f22928a = true;
                             U.showAsSheet(f0Var, obj3);
                             return;
                         }

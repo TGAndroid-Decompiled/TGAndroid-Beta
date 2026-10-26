@@ -30,33 +30,33 @@ public final class q01 extends View {
     public final p01 O;
     public final ArrayList P;
     public final o01 Q;
-    public final org.telegram.ui.Cells.s9 f31774a;
-    public int f31775b;
-    public final g01 f31776c;
+    public final org.telegram.ui.Cells.s9 f31776a;
+    public int f31777b;
+    public final g01 f31778c;
     public final g01 d;
     public int e;
-    public boolean f31777f;
+    public boolean f31779f;
     public int h;
-    public int f31778n;
-    public int f31779r;
-    public int f31780s;
+    public int f31780n;
+    public int f31781r;
+    public int f31782s;
     public int v;
-    public int f31781w;
-    public boolean f31782x;
-    public int f31783y;
+    public int f31783w;
+    public boolean f31784x;
+    public int f31785y;
 
     public q01(Context context, p01 p01Var, org.telegram.ui.Cells.s9 s9Var) {
         super(context);
-        this.f31776c = new g01(this, true);
+        this.f31778c = new g01(this, true);
         this.d = new g01(this, false);
         this.e = 0;
-        this.f31777f = false;
+        this.f31779f = false;
         this.h = 1;
-        this.f31778n = 0;
-        this.f31779r = AndroidUtilities.dp(8.0f);
-        this.f31780s = AndroidUtilities.dp(9.0f);
+        this.f31780n = 0;
+        this.f31781r = AndroidUtilities.dp(8.0f);
+        this.f31782s = AndroidUtilities.dp(9.0f);
         this.v = AndroidUtilities.dp(12.0f);
-        this.f31782x = true;
+        this.f31784x = true;
         this.F = new int[0];
         this.J = new ArrayList();
         this.K = new ArrayList();
@@ -65,7 +65,7 @@ public final class q01 extends View {
         this.M = new RectF();
         this.N = new float[8];
         this.P = new ArrayList();
-        this.f31774a = s9Var;
+        this.f31776a = s9Var;
         setRowCount(Integer.MIN_VALUE);
         setColumnCount(Integer.MIN_VALUE);
         setOrientation(0);
@@ -85,11 +85,11 @@ public final class q01 extends View {
 
     public static void j(l01 l01Var, int i10, int i11, int i12, int i13) {
         k01 k01Var = new k01(i10, i11 + i10);
-        n01 n01Var = l01Var.f30010a;
-        l01Var.f30010a = new n01(n01Var.f30789a, k01Var, n01Var.f30791c, n01Var.d);
+        n01 n01Var = l01Var.f30012a;
+        l01Var.f30012a = new n01(n01Var.f30791a, k01Var, n01Var.f30793c, n01Var.d);
         k01 k01Var2 = new k01(i12, i13 + i12);
-        n01 n01Var2 = l01Var.f30011b;
-        l01Var.f30011b = new n01(n01Var2.f30789a, k01Var2, n01Var2.f30791c, n01Var2.d);
+        n01 n01Var2 = l01Var.f30013b;
+        l01Var.f30013b = new n01(n01Var2.f30791a, k01Var2, n01Var2.f30793c, n01Var2.d);
     }
 
     public final void a(int i10, int i11, int i12, int i13) {
@@ -98,10 +98,10 @@ public final class q01 extends View {
         l01 l01Var = new l01();
         k01 k01Var = new k01(i11, i13 + i11);
         c01 c01Var = U;
-        l01Var.f30010a = new n01(false, k01Var, c01Var, 0.0f);
-        l01Var.f30011b = new n01(false, new k01(i10, i12 + i10), c01Var, 0.0f);
-        j01Var.f29416a = l01Var;
-        j01Var.f29422j = i11;
+        l01Var.f30012a = new n01(false, k01Var, c01Var, 0.0f);
+        l01Var.f30013b = new n01(false, new k01(i10, i12 + i10), c01Var, 0.0f);
+        j01Var.f29418a = l01Var;
+        j01Var.f29424j = i11;
         arrayList.add(j01Var);
         h();
     }
@@ -113,7 +113,7 @@ public final class q01 extends View {
         }
         ArrayList arrayList = this.P;
         j01 j01Var = new j01(this, arrayList.size());
-        j01Var.f29418c = pagetablecell;
+        j01Var.f29420c = pagetablecell;
         l01 l01Var = new l01();
         int i14 = pagetablecell.rowspan;
         if (i14 == 0) {
@@ -121,10 +121,10 @@ public final class q01 extends View {
         }
         k01 k01Var = new k01(i11, i14 + i11);
         c01 c01Var = U;
-        l01Var.f30010a = new n01(false, k01Var, c01Var, 0.0f);
-        l01Var.f30011b = new n01(false, new k01(i10, i12 + i10), c01Var, 1.0f);
-        j01Var.f29416a = l01Var;
-        j01Var.f29422j = i11;
+        l01Var.f30012a = new n01(false, k01Var, c01Var, 0.0f);
+        l01Var.f30013b = new n01(false, new k01(i10, i12 + i10), c01Var, 1.0f);
+        j01Var.f29418a = l01Var;
+        j01Var.f29424j = i11;
         arrayList.add(j01Var);
         if (pagetablecell.rowspan > 1) {
             this.K.add(new PointF(i11, i11 + i13));
@@ -139,7 +139,7 @@ public final class q01 extends View {
         n01 n01Var2;
         Throwable th2;
         int i10;
-        int i11 = this.f31778n;
+        int i11 = this.f31780n;
         if (i11 == 0) {
             if (this.e == 0) {
                 z10 = true;
@@ -147,11 +147,11 @@ public final class q01 extends View {
                 z10 = false;
             }
             if (z10) {
-                g01Var = this.f31776c;
+                g01Var = this.f31778c;
             } else {
                 g01Var = this.d;
             }
-            int i12 = g01Var.f28361b;
+            int i12 = g01Var.f28363b;
             if (i12 == Integer.MIN_VALUE) {
                 i12 = 0;
             }
@@ -161,31 +161,31 @@ public final class q01 extends View {
                 int i13 = 0;
                 int i14 = 0;
                 for (int i15 = 0; i15 < childCount; i15++) {
-                    l01 l01Var = d(i15).f29416a;
+                    l01 l01Var = d(i15).f29418a;
                     if (z10) {
-                        n01Var = l01Var.f30010a;
+                        n01Var = l01Var.f30012a;
                     } else {
-                        n01Var = l01Var.f30011b;
+                        n01Var = l01Var.f30013b;
                     }
-                    k01 k01Var = n01Var.f30790b;
-                    boolean z11 = n01Var.f30789a;
+                    k01 k01Var = n01Var.f30792b;
+                    boolean z11 = n01Var.f30791a;
                     int a2 = k01Var.a();
                     if (a2 > 0 && a2 <= 1024) {
                         if (z11) {
-                            i13 = k01Var.f29765a;
+                            i13 = k01Var.f29767a;
                         }
                         if (z10) {
-                            n01Var2 = l01Var.f30011b;
+                            n01Var2 = l01Var.f30013b;
                         } else {
-                            n01Var2 = l01Var.f30010a;
+                            n01Var2 = l01Var.f30012a;
                         }
-                        k01 k01Var2 = n01Var2.f30790b;
+                        k01 k01Var2 = n01Var2.f30792b;
                         int a10 = k01Var2.a();
-                        int i16 = k01Var2.f29765a;
+                        int i16 = k01Var2.f29767a;
                         if (a10 > 0) {
                             th2 = null;
                             if (k01Var2.a() <= 1024) {
-                                boolean z12 = n01Var2.f30789a;
+                                boolean z12 = n01Var2.f30791a;
                                 int a11 = k01Var2.a();
                                 if (i12 != 0) {
                                     if (z12) {
@@ -240,9 +240,9 @@ public final class q01 extends View {
                 int childCount2 = getChildCount();
                 int i19 = 1;
                 for (int i20 = 0; i20 < childCount2; i20++) {
-                    i19 = (i19 * 31) + d(i20).f29416a.hashCode();
+                    i19 = (i19 * 31) + d(i20).f29418a.hashCode();
                 }
-                this.f31778n = i19;
+                this.f31780n = i19;
                 return;
             }
             g("Table grid count out of bounds");
@@ -251,7 +251,7 @@ public final class q01 extends View {
         int childCount3 = getChildCount();
         int i21 = 1;
         for (int i22 = 0; i22 < childCount3; i22++) {
-            i21 = (i21 * 31) + d(i22).f29416a.hashCode();
+            i21 = (i21 * 31) + d(i22).f29418a.hashCode();
         }
         if (i11 != i21) {
             h();
@@ -288,40 +288,40 @@ public final class q01 extends View {
             return f(j01Var, z10, z11);
         }
         if (z10) {
-            g01Var = this.f31776c;
+            g01Var = this.f31778c;
         } else {
             g01Var = this.d;
         }
         if (z11) {
-            if (g01Var.f28366j == null) {
-                g01Var.f28366j = new int[g01Var.e() + 1];
+            if (g01Var.f28368j == null) {
+                g01Var.f28368j = new int[g01Var.e() + 1];
             }
-            if (!g01Var.f28367k) {
+            if (!g01Var.f28369k) {
                 g01Var.b(true);
-                g01Var.f28367k = true;
+                g01Var.f28369k = true;
             }
-            iArr = g01Var.f28366j;
+            iArr = g01Var.f28368j;
         } else {
-            if (g01Var.f28368l == null) {
-                g01Var.f28368l = new int[g01Var.e() + 1];
+            if (g01Var.f28370l == null) {
+                g01Var.f28370l = new int[g01Var.e() + 1];
             }
-            if (!g01Var.f28369m) {
+            if (!g01Var.f28371m) {
                 g01Var.b(false);
-                g01Var.f28369m = true;
+                g01Var.f28371m = true;
             }
-            iArr = g01Var.f28368l;
+            iArr = g01Var.f28370l;
         }
-        l01 l01Var = j01Var.f29416a;
+        l01 l01Var = j01Var.f29418a;
         if (z10) {
-            n01Var = l01Var.f30011b;
+            n01Var = l01Var.f30013b;
         } else {
-            n01Var = l01Var.f30010a;
+            n01Var = l01Var.f30012a;
         }
-        k01 k01Var = n01Var.f30790b;
+        k01 k01Var = n01Var.f30792b;
         if (z11) {
-            i10 = k01Var.f29765a;
+            i10 = k01Var.f29767a;
         } else {
-            i10 = k01Var.f29766b;
+            i10 = k01Var.f29768b;
         }
         return iArr[i10];
     }
@@ -331,7 +331,7 @@ public final class q01 extends View {
         n01 n01Var;
         g01 g01Var;
         boolean z12;
-        l01 l01Var = j01Var.f29416a;
+        l01 l01Var = j01Var.f29418a;
         if (z10) {
             if (z11) {
                 i10 = ((ViewGroup.MarginLayoutParams) l01Var).leftMargin;
@@ -344,30 +344,30 @@ public final class q01 extends View {
             i10 = ((ViewGroup.MarginLayoutParams) l01Var).bottomMargin;
         }
         if (i10 == Integer.MIN_VALUE) {
-            if (!this.f31777f) {
+            if (!this.f31779f) {
                 return 0;
             }
             if (z10) {
-                n01Var = l01Var.f30011b;
+                n01Var = l01Var.f30013b;
             } else {
-                n01Var = l01Var.f30010a;
+                n01Var = l01Var.f30012a;
             }
             if (z10) {
-                g01Var = this.f31776c;
+                g01Var = this.f31778c;
             } else {
                 g01Var = this.d;
             }
-            k01 k01Var = n01Var.f30790b;
+            k01 k01Var = n01Var.f30792b;
             if (z10 && this.I) {
                 z12 = true;
             } else {
                 z12 = false;
             }
             if (z12 != z11) {
-                int i11 = k01Var.f29765a;
+                int i11 = k01Var.f29767a;
                 return 0;
             }
-            int i12 = k01Var.f29766b;
+            int i12 = k01Var.f29768b;
             g01Var.e();
             return 0;
         }
@@ -383,7 +383,7 @@ public final class q01 extends View {
     }
 
     public int getColumnCount() {
-        return this.f31776c.e();
+        return this.f31778c.e();
     }
 
     public int getOrientation() {
@@ -399,12 +399,12 @@ public final class q01 extends View {
     }
 
     public boolean getUseDefaultMargins() {
-        return this.f31777f;
+        return this.f31779f;
     }
 
     public final void h() {
-        this.f31778n = 0;
-        g01 g01Var = this.f31776c;
+        this.f31780n = 0;
+        g01 g01Var = this.f31778c;
         g01Var.k();
         g01 g01Var2 = this.d;
         g01Var2.k();
@@ -424,18 +424,18 @@ public final class q01 extends View {
         int childCount = getChildCount();
         for (int i14 = 0; i14 < childCount; i14++) {
             j01 d = d(i14);
-            l01 l01Var = d.f29416a;
+            l01 l01Var = d.f29418a;
             if (z10) {
                 int size = View.MeasureSpec.getSize(i10);
-                if (this.f31775b == 2) {
+                if (this.f31777b == 2) {
                     i12 = ((int) (size / 2.0f)) - (this.v * 4);
                 } else {
                     i12 = (int) (size / 1.5f);
                 }
-                d.e(this.O.createTextLayout(d.f29418c, i12));
-                if (d.f29417b != null) {
-                    ((ViewGroup.MarginLayoutParams) l01Var).height = Math.max(this.f31781w, d.f29419f + this.f31779r + this.f31780s);
-                    int emojiOnlyCount = d.f29417b.getEmojiOnlyCount();
+                d.e(this.O.createTextLayout(d.f29420c, i12));
+                if (d.f29419b != null) {
+                    ((ViewGroup.MarginLayoutParams) l01Var).height = Math.max(this.f31783w, d.f29421f + this.f31781r + this.f31782s);
+                    int emojiOnlyCount = d.f29419b.getEmojiOnlyCount();
                     if (emojiOnlyCount > 0) {
                         i13 = ((ViewGroup.MarginLayoutParams) l01Var).height * emojiOnlyCount;
                     } else {
@@ -454,21 +454,21 @@ public final class q01 extends View {
                     z11 = false;
                 }
                 if (z11) {
-                    n01Var = l01Var.f30011b;
+                    n01Var = l01Var.f30013b;
                 } else {
-                    n01Var = l01Var.f30010a;
+                    n01Var = l01Var.f30012a;
                 }
                 if (n01.a(n01Var, z11) == U) {
-                    k01 k01Var = n01Var.f30790b;
+                    k01 k01Var = n01Var.f30792b;
                     if (z11) {
-                        g01Var = this.f31776c;
+                        g01Var = this.f31778c;
                     } else {
                         g01Var = this.d;
                     }
                     int[] g7 = g01Var.g();
-                    int e = (g7[k01Var.f29766b] - g7[k01Var.f29765a]) - (e(d, z11, false) + e(d, z11, true));
+                    int e = (g7[k01Var.f29768b] - g7[k01Var.f29767a]) - (e(d, z11, false) + e(d, z11, true));
                     if (z11) {
-                        i01 i01Var = d.f29417b;
+                        i01 i01Var = d.f29419b;
                         if (i01Var != null) {
                             i11 = i01Var.getEmojiOnlyCount();
                         } else {
@@ -477,7 +477,7 @@ public final class q01 extends View {
                         if (i11 > 0) {
                             int max = Math.max(1, Math.round(e / i11));
                             ((ViewGroup.MarginLayoutParams) l01Var).height = max;
-                            d.f29425m = max;
+                            d.f29427m = max;
                         }
                         d.d(e(d, true, false) + e(d, true, true) + e, e(d, false, false) + e(d, false, true) + ((ViewGroup.MarginLayoutParams) l01Var).height, false);
                     } else {
@@ -512,24 +512,24 @@ public final class q01 extends View {
         q01 q01Var = this;
         q01Var.c();
         g01 g01Var = q01Var.d;
-        g01 g01Var2 = q01Var.f31776c;
+        g01 g01Var2 = q01Var.f31778c;
         if (g01Var2 != null && g01Var != null) {
             g01Var2.l();
             g01Var.l();
         }
-        q01Var.f31775b = 0;
+        q01Var.f31777b = 0;
         int childCount = q01Var.getChildCount();
         for (int i17 = 0; i17 < childCount; i17++) {
-            q01Var.f31775b = Math.max(q01Var.f31775b, q01Var.d(i17).f29416a.f30011b.f30790b.f29766b);
+            q01Var.f31777b = Math.max(q01Var.f31777b, q01Var.d(i17).f29418a.f30013b.f30792b.f29768b);
         }
         q01Var.i(i10, true);
         if (q01Var.e == 0) {
             i12 = g01Var2.i(i10);
-            if (q01Var.f31782x) {
+            if (q01Var.f31784x) {
                 i12 = Math.max(i12, View.MeasureSpec.getSize(i10));
-                g01Var2.v.f30349a = i12;
-                g01Var2.f28378w.f30349a = -i12;
-                g01Var2.f28373q = false;
+                g01Var2.v.f30351a = i12;
+                g01Var2.f28380w.f30351a = -i12;
+                g01Var2.f28375q = false;
                 g01Var2.g();
             }
             q01Var.i(i10, false);
@@ -542,13 +542,13 @@ public final class q01 extends View {
         }
         int max = Math.max(i13, q01Var.getSuggestedMinimumHeight());
         q01Var.setMeasuredDimension(i12, max);
-        g01Var2.v.f30349a = i12;
-        g01Var2.f28378w.f30349a = -i12;
-        g01Var2.f28373q = false;
+        g01Var2.v.f30351a = i12;
+        g01Var2.f28380w.f30351a = -i12;
+        g01Var2.f28375q = false;
         g01Var2.g();
-        g01Var.v.f30349a = max;
-        g01Var.f28378w.f30349a = -max;
-        g01Var.f28373q = false;
+        g01Var.v.f30351a = max;
+        g01Var.f28380w.f30351a = -max;
+        g01Var.f28375q = false;
         g01Var.g();
         int[] g7 = g01Var2.g();
         int[] g10 = g01Var.g();
@@ -561,19 +561,19 @@ public final class q01 extends View {
         while (i20 < childCount2) {
             int i21 = i20;
             j01 d = q01Var.d(i21);
-            l01 l01Var = d.f29416a;
-            n01 n01Var = l01Var.f30011b;
-            n01 n01Var2 = l01Var.f30010a;
-            k01 k01Var = n01Var.f30790b;
-            k01 k01Var2 = n01Var2.f30790b;
+            l01 l01Var = d.f29418a;
+            n01 n01Var = l01Var.f30013b;
+            n01 n01Var2 = l01Var.f30012a;
+            k01 k01Var = n01Var.f30792b;
+            k01 k01Var2 = n01Var2.f30792b;
             int i22 = childCount2;
-            int i23 = g7[k01Var.f29765a];
-            int i24 = g10[k01Var2.f29765a];
-            int i25 = g7[k01Var.f29766b] - i23;
-            int i26 = g10[k01Var2.f29766b] - i24;
-            int i27 = d.f29423k;
+            int i23 = g7[k01Var.f29767a];
+            int i24 = g10[k01Var2.f29767a];
+            int i25 = g7[k01Var.f29768b] - i23;
+            int i26 = g10[k01Var2.f29768b] - i24;
+            int i27 = d.f29425k;
             g01 g01Var3 = g01Var;
-            int i28 = d.f29424l;
+            int i28 = d.f29426l;
             gb1 a2 = n01.a(n01Var, true);
             gb1 a10 = n01.a(n01Var2, false);
             k6.c f7 = g01Var2.f();
@@ -601,17 +601,17 @@ public final class q01 extends View {
             }
             int i31 = i15;
             int i32 = i24 + H2 + a12 + e10;
-            if (d.f29418c != null) {
-                if (J != d.f29423k || J2 != d.f29424l) {
+            if (d.f29420c != null) {
+                if (J != d.f29425k || J2 != d.f29426l) {
                     i16 = 0;
                     d.d(J, J2, false);
                 } else {
                     i16 = 0;
                 }
-                int i33 = d.f29425m;
+                int i33 = d.f29427m;
                 if (i33 != 0 && i33 != J2) {
-                    k01 k01Var3 = d.f29416a.f30010a.f30790b;
-                    if (k01Var3.f29766b - k01Var3.f29765a <= 1) {
+                    k01 k01Var3 = d.f29418a.f30012a.f30792b;
+                    if (k01Var3.f29768b - k01Var3.f29767a <= 1) {
                         ArrayList arrayList2 = q01Var.K;
                         int size = arrayList2.size();
                         int i34 = i16;
@@ -619,7 +619,7 @@ public final class q01 extends View {
                             if (i34 < size) {
                                 PointF pointF = (PointF) arrayList2.get(i34);
                                 float f11 = pointF.x;
-                                float f12 = d.f29416a.f30010a.f30790b.f29765a;
+                                float f12 = d.f29418a.f30012a.f30792b.f29767a;
                                 if (f11 > f12 || pointF.y <= f12) {
                                     i34++;
                                 }
@@ -631,8 +631,8 @@ public final class q01 extends View {
                     }
                 }
             }
-            d.f29428p = i31;
-            d.f29429q = i32;
+            d.f29430p = i31;
+            d.f29431q = i32;
             i20 = i21 + 1;
             g01Var = g01Var3;
             childCount2 = i22;
@@ -642,23 +642,23 @@ public final class q01 extends View {
         int i35 = 0;
         while (i35 < size2) {
             j01 j01Var = (j01) arrayList.get(i35);
-            int i36 = j01Var.f29424l;
+            int i36 = j01Var.f29426l;
             int i37 = j01Var.d;
-            int i38 = i36 - j01Var.f29425m;
+            int i38 = i36 - j01Var.f29427m;
             ArrayList arrayList3 = q01Var.P;
             int size3 = arrayList3.size();
             for (int i39 = i37 + 1; i39 < size3; i39++) {
                 j01 j01Var2 = (j01) arrayList3.get(i39);
-                if (j01Var.f29416a.f30010a.f30790b.f29765a != j01Var2.f29416a.f30010a.f30790b.f29765a) {
+                if (j01Var.f29418a.f30012a.f30792b.f29767a != j01Var2.f29418a.f30012a.f30792b.f29767a) {
                     break;
                 }
-                int i40 = j01Var.f29425m;
-                int i41 = j01Var2.f29425m;
+                int i40 = j01Var.f29427m;
+                int i41 = j01Var2.f29427m;
                 if (i40 < i41) {
                     z10 = true;
                     break;
                 }
-                int i42 = j01Var2.f29424l - i41;
+                int i42 = j01Var2.f29426l - i41;
                 if (i42 > 0) {
                     i38 = Math.min(i38, i42);
                 }
@@ -671,16 +671,16 @@ public final class q01 extends View {
                         break;
                     }
                     j01 j01Var3 = (j01) arrayList3.get(i43);
-                    if (j01Var.f29416a.f30010a.f30790b.f29765a != j01Var3.f29416a.f30010a.f30790b.f29765a) {
+                    if (j01Var.f29418a.f30012a.f30792b.f29767a != j01Var3.f29418a.f30012a.f30792b.f29767a) {
                         break;
                     }
-                    int i44 = j01Var.f29425m;
-                    int i45 = j01Var3.f29425m;
+                    int i44 = j01Var.f29427m;
+                    int i45 = j01Var3.f29427m;
                     if (i44 < i45) {
                         z10 = true;
                         break;
                     }
-                    int i46 = j01Var3.f29424l - i45;
+                    int i46 = j01Var3.f29426l - i45;
                     if (i46 > 0) {
                         i38 = Math.min(i38, i46);
                     }
@@ -688,10 +688,10 @@ public final class q01 extends View {
                 }
             }
             if (!z10) {
-                j01Var.f29424l = j01Var.f29425m;
+                j01Var.f29426l = j01Var.f29427m;
                 j01Var.g();
                 max -= i38;
-                int i47 = j01Var.f29416a.f30010a.f30790b.f29765a;
+                int i47 = j01Var.f29418a.f30012a.f30792b.f29767a;
                 while (true) {
                     i47++;
                     if (i47 >= copyOf.length) {
@@ -708,24 +708,24 @@ public final class q01 extends View {
                     if (j01Var == j01Var4) {
                         i14 = i50;
                     } else {
-                        int i51 = j01Var.f29416a.f30010a.f30790b.f29765a;
-                        int i52 = j01Var4.f29416a.f30010a.f30790b.f29765a;
+                        int i51 = j01Var.f29418a.f30012a.f30792b.f29767a;
+                        int i52 = j01Var4.f29418a.f30012a.f30792b.f29767a;
                         if (i51 == i52) {
-                            if (j01Var4.f29425m != j01Var4.f29424l) {
+                            if (j01Var4.f29427m != j01Var4.f29426l) {
                                 arrayList.remove(j01Var4);
                                 if (j01Var4.d < i37) {
                                     i49--;
                                 }
                                 i48--;
                             }
-                            int i53 = j01Var4.f29424l - i38;
-                            j01Var4.f29424l = i53;
+                            int i53 = j01Var4.f29426l - i38;
+                            j01Var4.f29426l = i53;
                             i14 = i50;
-                            j01Var4.d(j01Var4.f29423k, i53, true);
+                            j01Var4.d(j01Var4.f29425k, i53, true);
                         } else {
                             i14 = i50;
                             if (i51 < i52) {
-                                j01Var4.f29429q -= i38;
+                                j01Var4.f29431q -= i38;
                             }
                         }
                     }
@@ -739,11 +739,11 @@ public final class q01 extends View {
         int childCount3 = q01Var.getChildCount();
         for (int i54 = 0; i54 < childCount3; i54++) {
             j01 d10 = q01Var.d(i54);
-            q01Var.O.onLayoutChild(d10.f29417b, d10.b(), d10.c());
-            d10.f29426n = d10.f29428p;
-            d10.f29427o = d10.f29423k;
+            q01Var.O.onLayoutChild(d10.f29419b, d10.b(), d10.c());
+            d10.f29428n = d10.f29430p;
+            d10.f29429o = d10.f29425k;
         }
-        q01Var.f31783y = i19;
+        q01Var.f31785y = i19;
         q01Var.E = max;
         q01Var.F = copyOf;
         q01Var.setMeasuredDimension(i19, max);
@@ -753,7 +753,7 @@ public final class q01 extends View {
     public final void requestLayout() {
         g01 g01Var;
         super.requestLayout();
-        g01 g01Var2 = this.f31776c;
+        g01 g01Var2 = this.f31778c;
         if (g01Var2 != null && (g01Var = this.d) != null) {
             g01Var2.l();
             g01Var.l();
@@ -766,14 +766,14 @@ public final class q01 extends View {
     }
 
     public void setColumnCount(int i10) {
-        this.f31776c.n(i10);
+        this.f31778c.n(i10);
         h();
         requestLayout();
     }
 
     public void setColumnOrderPreserved(boolean z10) {
-        g01 g01Var = this.f31776c;
-        g01Var.f28377u = z10;
+        g01 g01Var = this.f31778c;
+        g01Var.f28379u = z10;
         g01Var.k();
         h();
         requestLayout();
@@ -784,15 +784,15 @@ public final class q01 extends View {
     }
 
     public void setFillWidth(boolean z10) {
-        if (this.f31782x == z10) {
+        if (this.f31784x == z10) {
             return;
         }
-        this.f31782x = z10;
+        this.f31784x = z10;
         requestLayout();
     }
 
     public void setMinimumCellHeight(int i10) {
-        this.f31781w = i10;
+        this.f31783w = i10;
         requestLayout();
     }
 
@@ -808,23 +808,23 @@ public final class q01 extends View {
         int i11;
         int i12;
         int measuredWidth = getMeasuredWidth();
-        this.f31783y = Math.max(measuredWidth, i10);
+        this.f31785y = Math.max(measuredWidth, i10);
         for (int i13 = 0; i13 < getChildCount(); i13++) {
             j01 d = d(i13);
-            if (measuredWidth > 0 && (i12 = this.f31783y) != measuredWidth) {
+            if (measuredWidth > 0 && (i12 = this.f31785y) != measuredWidth) {
                 float f7 = measuredWidth;
-                int round = Math.round((d.f29426n * i12) / f7);
-                int round2 = Math.round(((d.f29426n + d.f29427o) * this.f31783y) / f7);
-                d.f29428p = round;
-                d.f29423k = Math.max(0, round2 - round);
-                if (d.f29418c != null && d.f29417b != null) {
+                int round = Math.round((d.f29428n * i12) / f7);
+                int round2 = Math.round(((d.f29428n + d.f29429o) * this.f31785y) / f7);
+                d.f29430p = round;
+                d.f29425k = Math.max(0, round2 - round);
+                if (d.f29420c != null && d.f29419b != null) {
                     d.f();
                 }
             } else {
-                int i14 = d.f29426n;
-                d.f29428p = i14;
-                d.f29423k = Math.max(0, (d.f29427o + i14) - i14);
-                if (d.f29418c != null && d.f29417b != null) {
+                int i14 = d.f29428n;
+                d.f29430p = i14;
+                d.f29425k = Math.max(0, (d.f29429o + i14) - i14);
+                if (d.f29420c != null && d.f29419b != null) {
                     d.f();
                 }
             }
@@ -845,22 +845,22 @@ public final class q01 extends View {
             }
             for (int i18 = 0; i18 < getChildCount(); i18++) {
                 j01 d10 = d(i18);
-                i01 i01Var = d10.f29417b;
+                i01 i01Var = d10.f29419b;
                 if (i01Var != null) {
                     i11 = i01Var.getEmojiOnlyCount();
                 } else {
                     i11 = 0;
                 }
                 if (i11 > 0) {
-                    k01 k01Var = d10.f29416a.f30010a.f30790b;
-                    int max = Math.max(0, k01Var.f29765a);
-                    int min = Math.min(i15, k01Var.f29766b);
+                    k01 k01Var = d10.f29418a.f30012a.f30792b;
+                    int max = Math.max(0, k01Var.f29767a);
+                    int min = Math.min(i15, k01Var.f29768b);
                     if (max < min) {
                         int i19 = 0;
                         for (int i20 = max; i20 < min; i20++) {
                             i19 += iArr2[i20];
                         }
-                        int max2 = Math.max(1, Math.round(d10.f29423k / i11)) - i19;
+                        int max2 = Math.max(1, Math.round(d10.f29425k / i11)) - i19;
                         while (max < min && max2 > 0) {
                             int i21 = min - max;
                             int i22 = ((max2 + i21) - 1) / i21;
@@ -881,17 +881,17 @@ public final class q01 extends View {
             this.E = iArr4[i15];
             for (int i25 = 0; i25 < getChildCount(); i25++) {
                 j01 d11 = d(i25);
-                k01 k01Var2 = d11.f29416a.f30010a.f30790b;
-                int max3 = Math.max(0, Math.min(i15, k01Var2.f29765a));
-                int max4 = Math.max(max3, Math.min(i15, k01Var2.f29766b));
+                k01 k01Var2 = d11.f29418a.f30012a.f30792b;
+                int max3 = Math.max(0, Math.min(i15, k01Var2.f29767a));
+                int max4 = Math.max(max3, Math.min(i15, k01Var2.f29768b));
                 int i26 = iArr4[max3];
                 int i27 = iArr4[max4];
-                d11.f29429q = i26;
-                d11.f29424l = Math.max(0, i27 - i26);
-                if (d11.f29418c != null) {
+                d11.f29431q = i26;
+                d11.f29426l = Math.max(0, i27 - i26);
+                if (d11.f29420c != null) {
                     d11.g();
                 }
-                this.O.onLayoutChild(d11.f29417b, d11.b(), d11.c());
+                this.O.onLayoutChild(d11.f29419b, d11.b(), d11.c());
             }
         }
         invalidate();
@@ -905,7 +905,7 @@ public final class q01 extends View {
 
     public void setRowOrderPreserved(boolean z10) {
         g01 g01Var = this.d;
-        g01Var.f28377u = z10;
+        g01Var.f28379u = z10;
         g01Var.k();
         h();
         requestLayout();
@@ -920,7 +920,7 @@ public final class q01 extends View {
     }
 
     public void setUseDefaultMargins(boolean z10) {
-        this.f31777f = z10;
+        this.f31779f = z10;
         requestLayout();
     }
 }

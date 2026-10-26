@@ -125,7 +125,7 @@ public class MP4Builder {
         ?? aVar = new com.googlecode.mp4parser.a("mvhd");
         aVar.f12321r = 1.0d;
         aVar.f12322s = 1.0f;
-        sc.d dVar = sc.d.f48079j;
+        sc.d dVar = sc.d.f48082j;
         aVar.v = dVar;
         Date date = new Date();
         h0.s(ue.a.c(g5.m.Q, aVar, aVar, date));
@@ -297,7 +297,7 @@ public class MP4Builder {
         String str;
         ?? bVar = new com.googlecode.mp4parser.b("trak");
         ?? aVar = new com.googlecode.mp4parser.a("tkhd");
-        sc.d dVar = sc.d.f48079j;
+        sc.d dVar = sc.d.f48082j;
         aVar.f12348w = dVar;
         ti.e c10 = ue.a.c(y.Z, aVar, aVar, new Boolean(true));
         com.googlecode.mp4parser.g.a().getClass();

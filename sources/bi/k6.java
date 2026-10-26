@@ -131,7 +131,7 @@ public final class k6 {
             j10 = i10;
         }
         org.telegram.ui.Components.h6 h6Var = this.f4964m;
-        h6Var.f28811g = j10;
+        h6Var.f28813g = j10;
         if (i11 >= i12) {
             z11 = true;
         } else {

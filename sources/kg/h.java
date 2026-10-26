@@ -405,9 +405,9 @@ public abstract class h extends View implements j {
                 f fVar = this.Q0;
                 if (fVar != null) {
                     getSelectedDate();
-                    g91 g91Var = (g91) ((hl0) fVar).f40032b;
+                    g91 g91Var = (g91) ((hl0) fVar).f40035b;
                     g91Var.f();
-                    g91Var.f39569b.f16618t0.d(false, false);
+                    g91Var.f39572b.f16618t0.d(false, false);
                 }
                 B();
                 invalidate();
@@ -607,7 +607,7 @@ public abstract class h extends View implements j {
                     this.v = f11;
                 } else {
                     float f13 = this.T0;
-                    this.v = (ds.f27585g.getInterpolation(f12) * (f11 - f13)) + f13;
+                    this.v = (ds.f27587g.getInterpolation(f12) * (f11 - f13)) + f13;
                 }
                 invalidate();
             }
@@ -622,7 +622,7 @@ public abstract class h extends View implements j {
                         this.f16621w = f15;
                     } else {
                         float f17 = this.U0;
-                        this.f16621w = (ds.f27585g.getInterpolation(f16) * (f15 - f17)) + f17;
+                        this.f16621w = (ds.f27587g.getInterpolation(f16) * (f15 - f17)) + f17;
                     }
                     invalidate();
                 }
@@ -659,7 +659,7 @@ public abstract class h extends View implements j {
         paint2.setColor(w05);
         this.Q.setColor(y6.w0(y6.dj, u6Var));
         this.R.setColor(y6.w0(y6.cj, u6Var));
-        this.S.setColor(y6.w0(y6.f23354d6, u6Var));
+        this.S.setColor(y6.w0(y6.f23356d6, u6Var));
         this.T.setColor(y6.w0(y6.ej, u6Var));
         this.f16618t0.b();
         this.f16609n = paint.getAlpha();

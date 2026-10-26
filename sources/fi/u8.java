@@ -77,19 +77,19 @@ public final class u8 extends qg.a {
         if (this != obj) {
             if (obj != null && u8.class == obj.getClass()) {
                 u8 u8Var = (u8) obj;
-                int i10 = this.f47037a;
-                if (i10 == u8Var.f47037a) {
+                int i10 = this.f47040a;
+                if (i10 == u8Var.f47040a) {
                     if (i10 != -1 || (this.f11761o == u8Var.f11761o && this.f11762p == u8Var.f11762p)) {
                         if (i10 != 3 || (this.f11754g == u8Var.f11754g && this.h == u8Var.h && this.f11755i == u8Var.f11755i && this.f11756j == u8Var.f11756j && this.f11757k == u8Var.f11757k && this.f11759m == u8Var.f11759m && this.f11760n == u8Var.f11760n)) {
                             if (i10 != 0 || this.f11752c == u8Var.f11752c) {
                                 if (i10 != 2 || TextUtils.equals(this.e, u8Var.e)) {
-                                    if (this.f47037a != 8 || TextUtils.equals(this.e, u8Var.e)) {
-                                        int i11 = this.f47037a;
+                                    if (this.f47040a != 8 || TextUtils.equals(this.e, u8Var.e)) {
+                                        int i11 = this.f47040a;
                                         if ((i11 != 4 && i11 != 11) || (TextUtils.equals(this.e, u8Var.e) && TextUtils.equals(this.f11753f, u8Var.f11753f))) {
-                                            if (this.f47037a != 6 || (TextUtils.equals(this.e, u8Var.e) && this.f11752c == u8Var.f11752c)) {
-                                                if (this.f47037a != 7 || (this.f11752c == u8Var.f11752c && TextUtils.equals(this.e, u8Var.e) && this.f11757k == u8Var.f11757k)) {
-                                                    if (this.f47037a != 9 || (this.f11763q == u8Var.f11763q && this.d == u8Var.d && TextUtils.equals(this.e, u8Var.e) && TextUtils.equals(this.f11753f, u8Var.f11753f))) {
-                                                        if (this.f47037a != 10 || this.f11763q == u8Var.f11763q) {
+                                            if (this.f47040a != 6 || (TextUtils.equals(this.e, u8Var.e) && this.f11752c == u8Var.f11752c)) {
+                                                if (this.f47040a != 7 || (this.f11752c == u8Var.f11752c && TextUtils.equals(this.e, u8Var.e) && this.f11757k == u8Var.f11757k)) {
+                                                    if (this.f47040a != 9 || (this.f11763q == u8Var.f11763q && this.d == u8Var.d && TextUtils.equals(this.e, u8Var.e) && TextUtils.equals(this.f11753f, u8Var.f11753f))) {
+                                                        if (this.f47040a != 10 || this.f11763q == u8Var.f11763q) {
                                                             return true;
                                                         }
                                                         return false;

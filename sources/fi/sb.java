@@ -325,7 +325,7 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
         rb rbVar = new rb(this, activity);
         this.f11645n = rbVar;
         y9 y9Var = new y9(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f47105a;
+        WeakHashMap weakHashMap = r0.i0.f47108a;
         r0.a0.i(rbVar, y9Var);
         this.f11645n.setFocusable(true);
         this.f11645n.setImportantForAccessibility(2);
@@ -385,12 +385,12 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
         this.f11629h0.setClipToOutline(true);
         p9 p9Var = new p9(this, 14);
         ?? view = new View(activity);
-        view.f27142a = new TextPaint(1);
-        view.f27143b = new TextPaint(1);
+        view.f27144a = new TextPaint(1);
+        view.f27145b = new TextPaint(1);
         ds dsVar = ds.h;
-        view.f27148s = new org.telegram.ui.Components.h6((View) view, 0L, 350L, dsVar);
+        view.f27150s = new org.telegram.ui.Components.h6((View) view, 0L, 350L, dsVar);
         view.I = new wa0(view, 9);
-        view.f27150x = p9Var;
+        view.f27152x = p9Var;
         this.C1 = view;
         gb gbVar = new gb(this, activity, this.f11659r0, this.f11663s0);
         this.X0 = gbVar;
@@ -638,7 +638,7 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
         r6Var.u(-1);
         r6Var.x(AndroidUtilities.bold());
         r6Var.setCallback(view2);
-        r6Var.f32119b = 1;
+        r6Var.f32121b = 1;
         view2.a(0L, false);
         this.J0 = view2;
         h0(false, false);
@@ -1453,7 +1453,7 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
                 iaVar.e = arrayList3;
                 iaVar.f11113w = new q11(Integer.toString(arrayList.size()), 20.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
                 iaVar.K = new q11(LocaleController.formatPluralStringComma("HintViewStoriesMultiple", arrayList.size()), 14.0f, null);
-                iaVar.f11107b.f32150g3.O(false);
+                iaVar.f11107b.f32152g3.O(false);
                 this.f11617d1.setSelected(this.H1.indexOf(this.K1));
             }
             if (!z16 && !z17 && this.H1 == null && ((w7Var8 = this.K1) == null || (!w7Var8.v() && this.K1.K))) {
@@ -1700,7 +1700,7 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
         }
         ta taVar = this.f11673v1;
         if (taVar != null && (a1Var = taVar.D0.d) != null) {
-            a1Var.postRunnable(a1Var.f47363w);
+            a1Var.postRunnable(a1Var.f47366w);
         }
         gb gbVar = this.X0;
         if (gbVar != null) {
@@ -2181,10 +2181,10 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
                 ta taVar2 = this.f11673v1;
                 taVar2.f10822x0 = true;
                 y5 y5Var = taVar2.G0;
-                y5Var.f48172a = true;
+                y5Var.f48175a = true;
                 y5Var.draw(canvas);
                 ta taVar3 = this.f11673v1;
-                taVar3.G0.f48172a = false;
+                taVar3.G0.f48175a = false;
                 taVar3.f10822x0 = false;
                 canvas.restore();
             }
@@ -2321,7 +2321,7 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
                             TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(charSequence);
                             if (userOrChat instanceof TLRPC.User) {
                                 TLRPC.User user2 = (TLRPC.User) userOrChat;
-                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f22174id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
+                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f22176id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
                                     arrayList2.add(charSequence);
                                 }
                             }
@@ -2337,7 +2337,7 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
                     TLObject userOrChat2 = MessagesController.getInstance(i12).getUserOrChat(charSequence2);
                     if (userOrChat2 instanceof TLRPC.User) {
                         TLRPC.User user3 = (TLRPC.User) userOrChat2;
-                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f22174id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
+                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f22176id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
                             arrayList2.add(charSequence2);
                         }
                     }
@@ -2432,7 +2432,7 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
                     int dp = AndroidUtilities.dp(64.0f);
                     int dp2 = AndroidUtilities.dp(64.0f);
                     arVar.e = dp;
-                    arVar.f26593f = dp2;
+                    arVar.f26595f = dp2;
                     this.A0.setCameraThumb(arVar);
                     if (activity.shouldShowRequestPermissionRationale("android.permission.CAMERA")) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, this.f11605a);
@@ -2440,10 +2440,10 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
                         int i11 = org.telegram.ui.ActionBar.y6.L5;
                         alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.y6.x0(null, i11, false), null);
                         alertDialog$Builder.n(i11, null);
-                        alertDialog$Builder.f22366a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
+                        alertDialog$Builder.f22368a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
                         alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new y9(this, 13));
                         alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                        alertDialog$Builder.f22366a.show();
+                        alertDialog$Builder.f22368a.show();
                         return;
                     }
                     activity.requestPermissions(new String[]{"android.permission.CAMERA"}, 111);
@@ -2736,14 +2736,14 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
             xj0Var2.N(i10, false, false);
         } else if (z10) {
             xj0 xj0Var3 = this.f11624f1;
-            if (xj0Var3.f34733a0 > 20) {
+            if (xj0Var3.f34736a0 > 20) {
                 xj0Var3.N(0, false, false);
             }
             this.f11624f1.P(20);
             this.f11624f1.start();
         } else {
             xj0 xj0Var4 = this.f11624f1;
-            int i11 = xj0Var4.f34733a0;
+            int i11 = xj0Var4.f34736a0;
             if (i11 != 0 && i11 < 43) {
                 xj0Var4.P(43);
                 this.f11624f1.start();
@@ -3603,7 +3603,7 @@ public final class sb implements NotificationCenter.NotificationCenterDelegate {
                 this.B1.getToolsView().setVisibility(8);
                 this.B1.getToolsView().setAlpha(0.0f);
                 this.B1.getToolsView().setTranslationY(AndroidUtilities.dp(186.0f));
-                this.B1.f27838i0.setVisibility(0);
+                this.B1.f27840i0.setVisibility(0);
             }
         }
     }

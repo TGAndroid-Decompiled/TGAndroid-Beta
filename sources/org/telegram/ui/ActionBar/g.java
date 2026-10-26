@@ -10,28 +10,28 @@ import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.z8;
 import org.telegram.ui.gg0;
 public final class g extends AnimatorListenerAdapter {
-    public final int f22628a;
-    public boolean f22629b;
-    public final boolean f22630c;
+    public final int f22630a;
+    public boolean f22631b;
+    public final boolean f22632c;
     public final Object d;
 
     public g(Object obj, boolean z10, boolean z11, int i10) {
-        this.f22628a = i10;
+        this.f22630a = i10;
         this.d = obj;
-        this.f22629b = z10;
-        this.f22630c = z11;
+        this.f22631b = z10;
+        this.f22632c = z11;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f22628a) {
+        switch (this.f22630a) {
             case 1:
-                this.f22629b = true;
+                this.f22631b = true;
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                actionBarLayout.f22324j1 = false;
-                actionBarLayout.f22341s.setAlpha(1.0f);
+                actionBarLayout.f22326j1 = false;
+                actionBarLayout.f22343s.setAlpha(1.0f);
                 ActionBarLayout.a(actionBarLayout, true);
-                actionBarLayout.f22331n1 = null;
+                actionBarLayout.f22333n1 = null;
                 return;
             case 2:
             default:
@@ -47,7 +47,7 @@ public final class g extends AnimatorListenerAdapter {
             case 4:
                 gg0 gg0Var = (gg0) this.d;
                 AnimatorSet[] animatorSetArr = gg0Var.K;
-                boolean z10 = this.f22629b;
+                boolean z10 = this.f22631b;
                 if (animatorSetArr[!z10 ? 1 : 0] != null && animatorSetArr[!z10 ? 1 : 0].equals(animator)) {
                     gg0Var.K[!z10 ? 1 : 0] = null;
                     return;
@@ -61,50 +61,50 @@ public final class g extends AnimatorListenerAdapter {
         float f7;
         li liVar;
         int i10;
-        switch (this.f22628a) {
+        switch (this.f22630a) {
             case 0:
                 k kVar = (k) this.d;
-                b6[] b6VarArr = kVar.f22771n;
+                b6[] b6VarArr = kVar.f22773n;
                 b6 b6Var = b6VarArr[1];
                 if (b6Var != null && b6Var.getParent() != null) {
                     ((ViewGroup) b6VarArr[1].getParent()).removeView(b6VarArr[1]);
                 }
                 b6VarArr[1] = null;
-                kVar.f22796x0 = false;
-                if (this.f22629b && this.f22630c) {
-                    kVar.f22780r.setVisibility(8);
+                kVar.f22798x0 = false;
+                if (this.f22631b && this.f22632c) {
+                    kVar.f22782r.setVisibility(8);
                 }
                 kVar.requestLayout();
                 return;
             case 1:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                if (!this.f22629b) {
-                    actionBarLayout.f22324j1 = false;
-                    actionBarLayout.f22341s.setAlpha(1.0f);
-                    ActionBarLayout.a(actionBarLayout, this.f22630c);
-                    actionBarLayout.f22331n1 = null;
+                if (!this.f22631b) {
+                    actionBarLayout.f22326j1 = false;
+                    actionBarLayout.f22343s.setAlpha(1.0f);
+                    ActionBarLayout.a(actionBarLayout, this.f22632c);
+                    actionBarLayout.f22333n1 = null;
                     return;
                 }
                 return;
             case 2:
                 g9 g9Var = (g9) this.d;
                 g9Var.G = null;
-                boolean z10 = this.f22629b;
+                boolean z10 = this.f22631b;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
                 g9Var.j0(f7, false);
-                if (this.f22630c) {
-                    z8 z8Var = g9Var.f28487a;
-                    z8Var.f28097w = -1.0f;
+                if (this.f22632c) {
+                    z8 z8Var = g9Var.f28489a;
+                    z8Var.f28099w = -1.0f;
                     z8Var.setExpanded(z10);
                     return;
                 }
                 return;
             case 3:
-                boolean z11 = this.f22629b;
+                boolean z11 = this.f22631b;
                 ti tiVar = (ti) this.d;
                 if (animator.equals(tiVar.P0)) {
                     if (!z11) {
@@ -115,7 +115,7 @@ public final class g extends AnimatorListenerAdapter {
                     } else if (tiVar.V0 && ((liVar = tiVar.B0) == null || liVar.L())) {
                         tiVar.A1.setVisibility(4);
                     }
-                    if (this.f22630c) {
+                    if (this.f22632c) {
                         tiVar.i2();
                         bh.p pVar = tiVar.R0;
                         if (z11) {
@@ -132,8 +132,8 @@ public final class g extends AnimatorListenerAdapter {
             default:
                 gg0 gg0Var = (gg0) this.d;
                 AnimatorSet[] animatorSetArr = gg0Var.K;
-                boolean z12 = this.f22629b;
-                if (animatorSetArr[!z12 ? 1 : 0] != null && animatorSetArr[!z12 ? 1 : 0].equals(animator) && !this.f22630c && z12 && gg0Var.M.getAlpha() != 1.0f) {
+                boolean z12 = this.f22631b;
+                if (animatorSetArr[!z12 ? 1 : 0] != null && animatorSetArr[!z12 ? 1 : 0].equals(animator) && !this.f22632c && z12 && gg0Var.M.getAlpha() != 1.0f) {
                     gg0Var.M.setAlpha(1.0f);
                     gg0Var.M.setScaleX(1.0f);
                     gg0Var.M.setScaleY(1.0f);
@@ -145,8 +145,8 @@ public final class g extends AnimatorListenerAdapter {
     }
 
     public g(ActionBarLayout actionBarLayout, boolean z10) {
-        this.f22628a = 1;
+        this.f22630a = 1;
         this.d = actionBarLayout;
-        this.f22630c = z10;
+        this.f22632c = z10;
     }
 }

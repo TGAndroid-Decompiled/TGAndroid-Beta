@@ -103,7 +103,7 @@ public final class a implements ih.f, n60 {
     public void b(ArrayList arrayList, boolean z10, boolean z11) {
         char c10;
         PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f9946c;
-        boolean[] zArr = privacyControlActivity.f35929y;
+        boolean[] zArr = privacyControlActivity.f35932y;
         int i10 = privacyControlActivity.S;
         int i11 = this.f9944a;
         boolean z12 = this.f9945b;
@@ -121,7 +121,7 @@ public final class a implements ih.f, n60 {
                 i12++;
             }
         } else {
-            boolean[] zArr2 = privacyControlActivity.f35927x;
+            boolean[] zArr2 = privacyControlActivity.f35930x;
             int i14 = privacyControlActivity.H;
             if (i14 == 2) {
                 c10 = 0;
@@ -140,6 +140,6 @@ public final class a implements ih.f, n60 {
             }
         }
         privacyControlActivity.F0();
-        privacyControlActivity.f35897a.l();
+        privacyControlActivity.f35900a.l();
     }
 }

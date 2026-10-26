@@ -4,78 +4,78 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.EmojiData;
 public final class ld0 implements Runnable {
-    public final int f30176a = 0;
-    public int f30177b;
-    public int f30178c;
+    public final int f30178a = 0;
+    public int f30179b;
+    public int f30180c;
     public final Object d;
 
     public ld0(org.telegram.ui.oy oyVar, int i10, int i11) {
         this.d = oyVar;
-        this.f30177b = i10;
-        this.f30178c = i11;
+        this.f30179b = i10;
+        this.f30180c = i11;
     }
 
     public void a() {
-        this.f30178c = 0;
-        this.f30177b = 0;
+        this.f30180c = 0;
+        this.f30179b = 0;
         md0 md0Var = (md0) this.d;
         md0Var.removeCallbacks(this);
-        if (md0Var.f30550o0) {
-            md0Var.f30550o0 = false;
-            md0Var.invalidate(0, md0Var.f30549n0, md0Var.getRight(), md0Var.getBottom());
+        if (md0Var.f30552o0) {
+            md0Var.f30552o0 = false;
+            md0Var.invalidate(0, md0Var.f30551n0, md0Var.getRight(), md0Var.getBottom());
         }
-        md0Var.f30551p0 = false;
+        md0Var.f30553p0 = false;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Cells.s1 s1Var;
         org.telegram.ui.un unVar;
-        switch (this.f30176a) {
+        switch (this.f30178a) {
             case 0:
                 md0 md0Var = (md0) this.d;
-                int i10 = this.f30178c;
+                int i10 = this.f30180c;
                 if (i10 != 1) {
                     if (i10 == 2) {
-                        int i11 = this.f30177b;
+                        int i11 = this.f30179b;
                         if (i11 != 1) {
                             if (i11 == 2) {
-                                if (!md0Var.f30551p0) {
+                                if (!md0Var.f30553p0) {
                                     md0Var.postDelayed(this, ViewConfiguration.getPressedStateDuration());
                                 }
-                                md0Var.f30551p0 = (byte) (!md0Var.f30551p0 ? 1 : 0);
+                                md0Var.f30553p0 = (byte) (!md0Var.f30553p0 ? 1 : 0);
                                 md0Var.invalidate(0, 0, md0Var.getRight(), md0Var.m0);
                                 return;
                             }
                             return;
                         }
-                        if (!md0Var.f30550o0) {
+                        if (!md0Var.f30552o0) {
                             md0Var.postDelayed(this, ViewConfiguration.getPressedStateDuration());
                         }
-                        md0Var.f30550o0 = (byte) (!md0Var.f30550o0 ? 1 : 0);
-                        md0Var.invalidate(0, md0Var.f30549n0, md0Var.getRight(), md0Var.getBottom());
+                        md0Var.f30552o0 = (byte) (!md0Var.f30552o0 ? 1 : 0);
+                        md0Var.invalidate(0, md0Var.f30551n0, md0Var.getRight(), md0Var.getBottom());
                         return;
                     }
                     return;
                 }
-                int i12 = this.f30177b;
+                int i12 = this.f30179b;
                 if (i12 != 1) {
                     if (i12 == 2) {
-                        md0Var.f30551p0 = true;
+                        md0Var.f30553p0 = true;
                         md0Var.invalidate(0, 0, md0Var.getRight(), md0Var.m0);
                         return;
                     }
                     return;
                 }
-                md0Var.f30550o0 = true;
-                md0Var.invalidate(0, md0Var.f30549n0, md0Var.getRight(), md0Var.getBottom());
+                md0Var.f30552o0 = true;
+                md0Var.invalidate(0, md0Var.f30551n0, md0Var.getRight(), md0Var.getBottom());
                 return;
             default:
                 org.telegram.ui.oy oyVar = (org.telegram.ui.oy) this.d;
-                int i13 = this.f30177b;
-                int i14 = this.f30178c;
+                int i13 = this.f30179b;
+                int i14 = this.f30180c;
                 mm0 mm0Var = oyVar.H;
-                if (oyVar.f42305n) {
+                if (oyVar.f42308n) {
                     int i15 = 0;
                     while (true) {
                         if (i15 < mm0Var.getChildCount()) {
@@ -94,7 +94,7 @@ public final class ld0 implements Runnable {
                             s1Var = null;
                         }
                     }
-                    if (s1Var != null && (unVar = oyVar.f42301a) != null) {
+                    if (s1Var != null && (unVar = oyVar.f42304a) != null) {
                         unVar.Wa(s1Var);
                         if (!EmojiData.hasEmojiSupportVibration(s1Var.getMessageObject().getStickerEmoji()) && !s1Var.getMessageObject().isPremiumSticker() && !s1Var.getMessageObject().isAnimatedAnimatedEmoji()) {
                             try {

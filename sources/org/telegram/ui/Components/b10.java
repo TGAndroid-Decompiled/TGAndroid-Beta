@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class b10 {
     public static z3.b a(z3.m mVar, byte[] bArr, int i10) {
         f9.f0 t10 = f9.i0.t();
-        mVar.G(bArr, 0, i10, z3.l.f52658c, new x2.e(t10, 3));
+        mVar.G(bArr, 0, i10, z3.l.f52661c, new x2.e(t10, 3));
         return new z3.b(t10.f());
     }
 
@@ -26,7 +26,7 @@ public abstract class b10 {
     }
 
     public static float c(RecyclerView recyclerView) {
-        int i10 = lw0.f30300l0;
+        int i10 = lw0.f30302l0;
         s4.p0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
             return 0.0f;

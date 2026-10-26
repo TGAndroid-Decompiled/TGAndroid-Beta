@@ -16,27 +16,27 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public final class o71 extends FrameLayout implements org.telegram.ui.ActionBar.p6, NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.y9 f42111a;
-    public final mk f42112b;
-    public final org.telegram.ui.Components.voip.h f42113c;
+    public final org.telegram.ui.Components.y9 f42114a;
+    public final mk f42115b;
+    public final org.telegram.ui.Components.voip.h f42116c;
     public int d;
     public int e;
-    public final SessionsActivity f42114f;
+    public final SessionsActivity f42117f;
 
     public o71(SessionsActivity sessionsActivity, Context context) {
         super(context);
-        this.f42114f = sessionsActivity;
+        this.f42117f = sessionsActivity;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f42113c = hVar;
+        this.f42116c = hVar;
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f42111a = y9Var;
+        this.f42114a = y9Var;
         addView(y9Var, org.telegram.ui.Components.gb1.h(120, 120.0f, 1, 0.0f, 16.0f, 0.0f, 0.0f));
-        hVar.f33820j = false;
-        hVar.f33824n = 1.2f;
+        hVar.f33823j = false;
+        hVar.f33827n = 1.2f;
         y9Var.setOnClickListener(new e8(this, 2));
         int i10 = org.telegram.ui.ActionBar.y6.G6;
         org.telegram.ui.ActionBar.y6.x0(null, i10, false);
-        int i11 = org.telegram.ui.ActionBar.y6.f23354d6;
+        int i11 = org.telegram.ui.ActionBar.y6.f23356d6;
         org.telegram.ui.ActionBar.y6.x0(null, i11, false);
         int i12 = org.telegram.ui.ActionBar.y6.Oh;
         org.telegram.ui.ActionBar.y6.x0(null, i12, false);
@@ -71,7 +71,7 @@ public final class o71 extends FrameLayout implements org.telegram.ui.ActionBar.
         }
         z90Var.setText(spannableStringBuilder);
         mk mkVar = new mk(this, context, 3);
-        this.f42112b = mkVar;
+        this.f42115b = mkVar;
         mkVar.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         mkVar.setGravity(17);
         mkVar.setTextSize(1, 14.0f);
@@ -96,7 +96,7 @@ public final class o71 extends FrameLayout implements org.telegram.ui.ActionBar.
         int i11;
         boolean z10;
         int i12;
-        SessionsActivity sessionsActivity = this.f42114f;
+        SessionsActivity sessionsActivity = this.f42117f;
         i10 = ((org.telegram.ui.ActionBar.r2) sessionsActivity).currentAccount;
         TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
         if (stickerSetByName == null) {
@@ -111,7 +111,7 @@ public final class o71 extends FrameLayout implements org.telegram.ui.ActionBar.
             document = null;
         }
         if (document != null) {
-            svgDrawable = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.y6.f23336c7, 0.2f);
+            svgDrawable = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.y6.f23338c7, 0.2f);
         }
         SvgHelper.SvgDrawable svgDrawable2 = svgDrawable;
         if (svgDrawable2 != null) {
@@ -129,7 +129,7 @@ public final class o71 extends FrameLayout implements org.telegram.ui.ActionBar.
             return;
         }
         ImageLocation forDocument = ImageLocation.getForDocument(document);
-        org.telegram.ui.Components.y9 y9Var = this.f42111a;
+        org.telegram.ui.Components.y9 y9Var = this.f42114a;
         y9Var.i(forDocument, "130_130", "tgs", svgDrawable2, tL_messages_stickerSet);
         y9Var.getImageReceiver().setAutoRepeat(2);
     }
@@ -146,7 +146,7 @@ public final class o71 extends FrameLayout implements org.telegram.ui.ActionBar.
         int i10;
         super.onAttachedToWindow();
         a();
-        i10 = ((org.telegram.ui.ActionBar.r2) this.f42114f).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.r2) this.f42117f).currentAccount;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
@@ -154,7 +154,7 @@ public final class o71 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void onDetachedFromWindow() {
         int i10;
         super.onDetachedFromWindow();
-        i10 = ((org.telegram.ui.ActionBar.r2) this.f42114f).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.r2) this.f42117f).currentAccount;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
@@ -168,7 +168,7 @@ public final class o71 extends FrameLayout implements org.telegram.ui.ActionBar.
         try {
             int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false);
             int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Qh, false);
-            mk mkVar = this.f42112b;
+            mk mkVar = this.f42115b;
             if (mkVar != null) {
                 if (x02 == this.d) {
                     if (x03 != this.e) {

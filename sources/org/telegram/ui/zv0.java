@@ -14,14 +14,14 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
 public final class zv0 implements View.OnClickListener {
-    public final int f46369a;
-    public final int f46370b;
-    public final Object f46371c;
+    public final int f46372a;
+    public final int f46373b;
+    public final Object f46374c;
 
     public zv0(Object obj, int i10, int i11) {
-        this.f46369a = i11;
-        this.f46371c = obj;
-        this.f46370b = i10;
+        this.f46372a = i11;
+        this.f46374c = obj;
+        this.f46373b = i10;
     }
 
     @Override
@@ -29,13 +29,13 @@ public final class zv0 implements View.OnClickListener {
         boolean z10;
         int i10;
         org.telegram.ui.Components.qc j10;
-        int i11 = this.f46369a;
-        int i12 = this.f46370b;
-        Object obj = this.f46371c;
+        int i11 = this.f46372a;
+        int i12 = this.f46373b;
+        Object obj = this.f46374c;
         switch (i11) {
             case 0:
                 MessageObject messageObject = (MessageObject) obj;
-                int i13 = PopupNotificationActivity.f35850b0;
+                int i13 = PopupNotificationActivity.f35853b0;
                 TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) view.getTag();
                 if (keyboardButtonProto != null) {
                     SendMessagesHelper.getInstance(i12).sendNotificationCallback(messageObject.getDialogId(), messageObject.getId(), keyboardButtonProto.getData());
@@ -141,18 +141,18 @@ public final class zv0 implements View.OnClickListener {
                     } else {
                         j10 = org.telegram.ui.Components.wc.b0(profileActivity).I(R.raw.chats_archived, LocaleController.formatPluralString("StoryArchived", i10, new Object[0]), LocaleController.getString(R.string.UndoNoCaps), 5000, false, a0Var).j();
                     }
-                    j10.f31899w = new fy0(4, profileActivity, zArr2);
+                    j10.f31901w = new fy0(4, profileActivity, zArr2);
                     return;
                 }
                 return;
             case 2:
                 w91 w91Var = (w91) obj;
-                w91Var.f45028h0.E(i12);
+                w91Var.f45031h0.E(i12);
                 w91Var.l0(i12, true);
                 return;
             default:
                 org.telegram.ui.Wallet.ha haVar = (org.telegram.ui.Wallet.ha) obj;
-                EditText editText = haVar.f36648a;
+                EditText editText = haVar.f36651a;
                 TextView[] textViewArr = haVar.N;
                 TextView textView = textViewArr[i12];
                 if (textView != null && !TextUtils.isEmpty(textView.getText())) {
@@ -161,7 +161,7 @@ public final class zv0 implements View.OnClickListener {
                     editText.setSelection(charSequence.length());
                     haVar.a();
                     haVar.a();
-                    Runnable runnable = haVar.f36653r;
+                    Runnable runnable = haVar.f36656r;
                     if (runnable != null) {
                         editText.post(runnable);
                         return;
@@ -173,8 +173,8 @@ public final class zv0 implements View.OnClickListener {
     }
 
     public zv0(MessageObject messageObject, int i10) {
-        this.f46369a = 0;
-        this.f46370b = i10;
-        this.f46371c = messageObject;
+        this.f46372a = 0;
+        this.f46373b = i10;
+        this.f46374c = messageObject;
     }
 }

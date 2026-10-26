@@ -89,7 +89,7 @@ public final class i9 implements GestureDetector.OnGestureListener {
                 y9Var.f9427e0 = f12 + f10;
             }
             m9 m9Var = y9Var.f9456s;
-            qc qcVar2 = qc.f31880x;
+            qc qcVar2 = qc.f31882x;
             if (qcVar2 != null && qcVar2.h == m9Var) {
                 qcVar2.b();
             }
@@ -109,7 +109,7 @@ public final class i9 implements GestureDetector.OnGestureListener {
                 f11 = 0.3f;
                 y9Var.W -= f10 * f11;
                 m9 m9Var2 = y9Var.f9456s;
-                qcVar = qc.f31880x;
+                qcVar = qc.f31882x;
                 if (qcVar != null && qcVar.h == m9Var2) {
                     qcVar.b();
                 }
@@ -120,7 +120,7 @@ public final class i9 implements GestureDetector.OnGestureListener {
         f11 = 0.6f;
         y9Var.W -= f10 * f11;
         m9 m9Var22 = y9Var.f9456s;
-        qcVar = qc.f31880x;
+        qcVar = qc.f31882x;
         if (qcVar != null) {
             qcVar.b();
         }

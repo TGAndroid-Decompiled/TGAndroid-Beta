@@ -88,7 +88,7 @@ public abstract class d implements Iterator {
                         this.d = i14;
                         Object b11 = b(i14);
                         int i15 = this.f397c + 1;
-                        if (i15 >= iVar.f52172f) {
+                        if (i15 >= iVar.f52175f) {
                             i15 = -1;
                         }
                         this.f397c = i15;
@@ -158,7 +158,7 @@ public abstract class d implements Iterator {
                     }
                     if (z12) {
                         this.f396b = i14 + 32;
-                        Object[] objArr2 = iVar.f52171c;
+                        Object[] objArr2 = iVar.f52174c;
                         objArr2.getClass();
                         iVar.remove(objArr2[i15]);
                         this.f397c--;

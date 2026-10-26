@@ -22,14 +22,14 @@ public final class k1 extends mi.n {
                 ((n1) this.f11079r).f11284j3 = true;
                 return;
             case 1:
-                ((sz) this.f11079r).f32725f0 = true;
+                ((sz) this.f11079r).f32728f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((c61) this.f11079r).f38332x1 = true;
+                ((c61) this.f11079r).f38335x1 = true;
                 return;
         }
     }
@@ -41,19 +41,19 @@ public final class k1 extends mi.n {
                 ((n1) this.f11079r).f11284j3 = false;
                 return;
             case 1:
-                ((sz) this.f11079r).f32725f0 = false;
+                ((sz) this.f11079r).f32728f0 = false;
                 return;
             case 2:
-                ((qx) this.f11079r).Q.f32725f0 = false;
+                ((qx) this.f11079r).Q.f32728f0 = false;
                 return;
             case 3:
-                ((q41) this.f11079r).R.f38332x1 = false;
+                ((q41) this.f11079r).R.f38335x1 = false;
                 return;
             case 4:
-                ((c61) this.f11079r).f38332x1 = false;
+                ((c61) this.f11079r).f38335x1 = false;
                 return;
             default:
-                ((q41) this.f11079r).R.f38332x1 = false;
+                ((q41) this.f11079r).R.f38335x1 = false;
                 return;
         }
     }

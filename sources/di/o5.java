@@ -30,7 +30,7 @@ public final class o5 extends lm0 {
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f == 1) {
+        if (e1Var.f47741f == 1) {
             return true;
         }
         return false;
@@ -139,11 +139,11 @@ public final class o5 extends lm0 {
         TLRPC.Message message2;
         t5 t5Var = this.d;
         int i16 = t5Var.v;
-        if (e1Var.f47738f == 1 && i10 >= 0) {
+        if (e1Var.f47741f == 1 && i10 >= 0) {
             ArrayList arrayList = this.f8879c;
             if (i10 < arrayList.size()) {
                 j5 j5Var = (j5) arrayList.get(i10);
-                org.telegram.ui.Cells.s6 s6Var = (org.telegram.ui.Cells.s6) e1Var.f47735a;
+                org.telegram.ui.Cells.s6 s6Var = (org.telegram.ui.Cells.s6) e1Var.f47738a;
                 TL_stories.StoryView storyView = j5Var.f8696b;
                 TL_stories.StoryReaction storyReaction = j5Var.f8697c;
                 if (storyView != null) {
@@ -225,7 +225,7 @@ public final class o5 extends lm0 {
                     } else {
                         z12 = true;
                     }
-                    s6Var.f25390a = z12;
+                    s6Var.f25392a = z12;
                     if (t5Var.d(storyView)) {
                         f7 = 1.0f;
                     } else {
@@ -280,7 +280,7 @@ public final class o5 extends lm0 {
                     if (i12 != 1 && i12 != 11 && i12 != i11) {
                         z13 = false;
                     }
-                    s6Var.f25390a = z13;
+                    s6Var.f25392a = z13;
                     s6Var.a(1.0f, false);
                 }
             }
@@ -314,7 +314,7 @@ public final class o5 extends lm0 {
                 c10 c10Var = new c10(t5Var.getContext(), bVar);
                 c10Var.setIsSingleCell(true);
                 c10Var.setViewType(28);
-                c10Var.f27029w = false;
+                c10Var.f27031w = false;
                 z90Var = c10Var;
                 break;
             case 5:
@@ -379,7 +379,7 @@ public final class o5 extends lm0 {
                         TextView textView = new TextView(n5Var.getContext());
                         textView.setText(string);
                         int i13 = org.telegram.ui.ActionBar.y6.Sh;
-                        org.telegram.ui.ActionBar.u6 u6Var = n5Var.f28016n;
+                        org.telegram.ui.ActionBar.u6 u6Var = n5Var.f28018n;
                         org.telegram.ui.ActionBar.f7.V(textView, i13, u6Var);
                         textView.setPadding(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f));
                         textView.setGravity(17);
@@ -398,7 +398,7 @@ public final class o5 extends lm0 {
                         org.telegram.ui.ActionBar.f7.k(i4Var, j02, N, h, u6Var);
                         gb1.c(i4Var, 0.05f, 1.5f);
                         i4Var.addView(textView);
-                        xa1 xa1Var = n5Var.f28012a;
+                        xa1 xa1Var = n5Var.f28014a;
                         xa1Var.setClipChildren(false);
                         xa1Var.addView(i4Var, gb1.x(-2, -2, 1, 0, 28, 0, 4));
                     }
@@ -422,14 +422,14 @@ public final class o5 extends lm0 {
                 c10Var2.setIgnoreHeightCheck(true);
                 c10Var2.setItemsCount(20);
                 c10Var2.setViewType(28);
-                c10Var2.f27029w = false;
+                c10Var2.f27031w = false;
                 z90Var = c10Var2;
                 break;
             case 11:
             case 12:
                 z90 z90Var3 = new z90(t5Var.getContext(), null);
                 z90Var3.setTextSize(1, 13.0f);
-                org.telegram.ui.ActionBar.f7.V(z90Var3, org.telegram.ui.ActionBar.y6.f23746y6, bVar);
+                org.telegram.ui.ActionBar.f7.V(z90Var3, org.telegram.ui.ActionBar.y6.f23748y6, bVar);
                 org.telegram.ui.ActionBar.f7.H(z90Var3, org.telegram.ui.ActionBar.y6.J6, bVar);
                 int dp2 = AndroidUtilities.dp(16.0f);
                 int dp3 = AndroidUtilities.dp(21.0f);

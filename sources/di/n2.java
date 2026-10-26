@@ -42,15 +42,15 @@ public final class n2 extends ye {
                 return;
             case 2:
                 un unVar = (un) this.f8813b;
-                unVar.f44502z9 = !z10;
+                unVar.f44505z9 = !z10;
                 if (z10) {
-                    if (unVar.f44375p9 != null) {
+                    if (unVar.f44378p9 != null) {
                         un.Y1(unVar, 0.0f);
-                        unVar.f44375p9 = null;
+                        unVar.f44378p9 = null;
                     }
                     unVar.q9 = false;
-                    unVar.f44397r9 = false;
-                    kl klVar = unVar.f44424t9;
+                    unVar.f44400r9 = false;
+                    kl klVar = unVar.f44427t9;
                     if (klVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(klVar.H);
                         klVar.a();
@@ -61,14 +61,14 @@ public final class n2 extends ye {
             default:
                 hc0 hc0Var = (hc0) this.f8813b;
                 zb0 zb0Var = hc0Var.e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = hc0Var.f28921s;
-                nc0 nc0Var = hc0Var.f28917c0;
-                if (nc0Var.f30960s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f32557b > 0.0f) {
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = hc0Var.f28923s;
+                nc0 nc0Var = hc0Var.f28919c0;
+                if (nc0Var.f30962s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f32559b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (zb0Var.v - zb0Var.f24116u > MessagesController.getInstance(nc0Var.f30961w).quoteLengthMax) {
+                        if (zb0Var.v - zb0Var.f24118u > MessagesController.getInstance(nc0Var.f30963w).quoteLengthMax) {
                             hc0Var.g();
                             return;
                         }
@@ -81,7 +81,7 @@ public final class n2 extends ye {
                         MessageObject c10 = hc0Var.c(messageObject);
                         MessagePreviewParams messagePreviewParams = nc0Var.d;
                         if (messagePreviewParams.quote == null) {
-                            int i10 = zb0Var.f24116u;
+                            int i10 = zb0Var.f24118u;
                             messagePreviewParams.quoteStart = i10;
                             int i11 = zb0Var.v;
                             messagePreviewParams.quoteEnd = i11;

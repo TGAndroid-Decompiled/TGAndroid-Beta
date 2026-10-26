@@ -40,14 +40,14 @@ import zh.h4;
 import zh.i4;
 import zh.l4;
 public final class c implements View.OnClickListener {
-    public final int f45199a;
-    public final Object f45200b;
-    public final Object f45201c;
+    public final int f45202a;
+    public final Object f45203b;
+    public final Object f45204c;
 
     public c(int i10, Object obj, Object obj2) {
-        this.f45199a = i10;
-        this.f45200b = obj;
-        this.f45201c = obj2;
+        this.f45202a = i10;
+        this.f45203b = obj;
+        this.f45204c = obj2;
     }
 
     @Override
@@ -55,59 +55,59 @@ public final class c implements View.OnClickListener {
         sg.m2 j10;
         TL_stars.SavedStarGift savedStarGift;
         int i10 = 0;
-        switch (this.f45199a) {
+        switch (this.f45202a) {
             case 0:
-                l lVar = (l) this.f45200b;
-                lVar.f45297b = true;
-                ((org.telegram.ui.x) this.f45201c).run();
-                lVar.f45303w.f32150g3.O(true);
+                l lVar = (l) this.f45203b;
+                lVar.f45300b = true;
+                ((org.telegram.ui.x) this.f45204c).run();
+                lVar.f45306w.f32152g3.O(true);
                 return;
             case 1:
-                rg.y yVar = (rg.y) this.f45200b;
-                Context context = (Context) this.f45201c;
-                if (!yVar.f47594n.c()) {
-                    Bitmap snapshotView = AndroidUtilities.snapshotView(yVar.f47594n.e());
+                rg.y yVar = (rg.y) this.f45203b;
+                Context context = (Context) this.f45204c;
+                if (!yVar.f47597n.c()) {
+                    Bitmap snapshotView = AndroidUtilities.snapshotView(yVar.f47597n.e());
                     Bitmap createBitmap = Bitmap.createBitmap(snapshotView.getWidth(), snapshotView.getHeight(), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
                     canvas.drawColor(-16777216);
-                    yVar.f47594n.b(canvas);
+                    yVar.f47597n.b(canvas);
                     canvas.drawBitmap(snapshotView, 0.0f, 0.0f, (Paint) null);
                     snapshotView.recycle();
                     rg.n nVar = new rg.n(yVar, context, createBitmap);
-                    yVar.f47594n.f().addView(nVar, gb1.g(-1.0f, -1));
-                    rg.v vVar = yVar.f47594n;
+                    yVar.f47597n.f().addView(nVar, gb1.g(-1.0f, -1));
+                    rg.v vVar = yVar.f47597n;
                     Objects.requireNonNull(vVar);
                     nVar.setColorListener(new n7(vVar, 5));
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                    duration.setInterpolator(ds.f27584f);
+                    duration.setInterpolator(ds.f27586f);
                     duration.addUpdateListener(new e4(nVar, 22));
                     duration.start();
-                    yVar.f47594n.a();
+                    yVar.f47597n.a();
                     yVar.dismiss();
                     return;
                 }
                 return;
             case 2:
-                p2 p2Var = (p2) this.f45200b;
-                kc kcVar = (kc) this.f45201c;
+                p2 p2Var = (p2) this.f45203b;
+                kc kcVar = (kc) this.f45204c;
                 sg.m2[] m2VarArr = p2Var.H;
-                if (m2VarArr != null && m2VarArr.length != 0 && p2Var.I != null && (j10 = p2Var.j(p2Var.f48450n0, p2Var.f48451o0)) != null) {
+                if (m2VarArr != null && m2VarArr.length != 0 && p2Var.I != null && (j10 = p2Var.j(p2Var.f48453n0, p2Var.f48454o0)) != null) {
                     kcVar.run(j10);
                     return;
                 }
                 return;
             case 3:
-                go.g0((un) this.f45201c, 41026, new ig.o((sh.c) this.f45200b, 20), null);
+                go.g0((un) this.f45204c, 41026, new ig.o((sh.c) this.f45203b, 20), null);
                 return;
             case 4:
-                tg.j0.V((tg.j0) this.f45200b, (Context) this.f45201c);
+                tg.j0.V((tg.j0) this.f45203b, (Context) this.f45204c);
                 return;
             case 5:
-                vg.s0 s0Var = (vg.s0) this.f45200b;
-                TLRPC.Chat chat = (TLRPC.Chat) this.f45201c;
+                vg.s0 s0Var = (vg.s0) this.f45203b;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f45204c;
                 ArrayList arrayList = s0Var.X;
                 if (!arrayList.isEmpty()) {
-                    vg.d0 d0Var = s0Var.f50252a0;
+                    vg.d0 d0Var = s0Var.f50255a0;
                     if (!d0Var.Q) {
                         d0Var.setLoading(true);
                         ArrayList arrayList2 = new ArrayList();
@@ -127,9 +127,9 @@ public final class c implements View.OnClickListener {
                 }
                 return;
             case 6:
-                vg.n1 n1Var = (vg.n1) this.f45200b;
-                ArrayList arrayList3 = (ArrayList) this.f45201c;
-                HashSet hashSet2 = n1Var.f50213h0;
+                vg.n1 n1Var = (vg.n1) this.f45203b;
+                ArrayList arrayList3 = (ArrayList) this.f45204c;
+                HashSet hashSet2 = n1Var.f50216h0;
                 int size2 = arrayList3.size();
                 while (i10 < size2) {
                     Object obj2 = arrayList3.get(i10);
@@ -137,7 +137,7 @@ public final class c implements View.OnClickListener {
                     Long l4 = (Long) obj2;
                     l4.getClass();
                     hashSet2.remove(l4);
-                    n1Var.f50218n0.remove(l4);
+                    n1Var.f50221n0.remove(l4);
                 }
                 n1Var.W();
                 n1Var.Z.b(true, hashSet2, new vg.a1(n1Var, 5), null);
@@ -145,13 +145,13 @@ public final class c implements View.OnClickListener {
                 n1Var.X();
                 return;
             case 7:
-                vg.n1.S((vg.n1) this.f45200b, (TLRPC.User) this.f45201c, view);
+                vg.n1.S((vg.n1) this.f45203b, (TLRPC.User) this.f45204c, view);
                 return;
             case 8:
-                final wg.e eVar = (wg.e) this.f45200b;
-                final xg.a aVar = (xg.a) this.f45201c;
+                final wg.e eVar = (wg.e) this.f45203b;
+                final xg.a aVar = (xg.a) this.f45204c;
                 if (eVar.d) {
-                    if (!aVar.f51748a.Q) {
+                    if (!aVar.f51751a.Q) {
                         aVar.b(true);
                         String str = eVar.h;
                         Utilities.Callback callback = new Utilities.Callback() {
@@ -163,12 +163,12 @@ public final class c implements View.OnClickListener {
                                         aVar.b(false);
                                         b0 b0Var = (b0) eVar;
                                         AndroidUtilities.runOnUIThread(new ti.g(b0Var, 10), 200L);
-                                        b0Var.f50144r.dismiss();
+                                        b0Var.f50147r.dismiss();
                                         return;
                                     default:
                                         aVar.b(false);
                                         e eVar2 = eVar;
-                                        j.c((TLRPC.TL_error) obj3, eVar2.f51180n, eVar2.f51178c, new c(eVar2, 1));
+                                        j.c((TLRPC.TL_error) obj3, eVar2.f51183n, eVar2.f51181c, new c(eVar2, 1));
                                         return;
                                 }
                             }
@@ -182,12 +182,12 @@ public final class c implements View.OnClickListener {
                                         aVar.b(false);
                                         b0 b0Var = (b0) eVar;
                                         AndroidUtilities.runOnUIThread(new ti.g(b0Var, 10), 200L);
-                                        b0Var.f50144r.dismiss();
+                                        b0Var.f50147r.dismiss();
                                         return;
                                     default:
                                         aVar.b(false);
                                         e eVar2 = eVar;
-                                        j.c((TLRPC.TL_error) obj3, eVar2.f51180n, eVar2.f51178c, new c(eVar2, 1));
+                                        j.c((TLRPC.TL_error) obj3, eVar2.f51183n, eVar2.f51181c, new c(eVar2, 1));
                                         return;
                                 }
                             }
@@ -200,41 +200,41 @@ public final class c implements View.OnClickListener {
                     }
                     return;
                 }
-                ((vg.b0) eVar).f50144r.dismiss();
+                ((vg.b0) eVar).f50147r.dismiss();
                 return;
             case 9:
-                TLRPC.Chat chat2 = (TLRPC.Chat) this.f45201c;
-                xg.f fVar = ((xg.g) this.f45200b).v;
+                TLRPC.Chat chat2 = (TLRPC.Chat) this.f45204c;
+                xg.f fVar = ((xg.g) this.f45203b).v;
                 if (fVar != null) {
-                    vg.a0 a0Var = ((vg.u) fVar).f50259a;
-                    a0Var.f50117c0.remove(chat2);
+                    vg.a0 a0Var = ((vg.u) fVar).f50262a;
+                    a0Var.f50120c0.remove(chat2);
                     a0Var.a0(true, true);
                     return;
                 }
                 return;
             case 10:
-                ((ig.o) this.f45200b).run((TLRPC.TL_payments_checkedGiftCode) this.f45201c);
+                ((ig.o) this.f45203b).run((TLRPC.TL_payments_checkedGiftCode) this.f45204c);
                 return;
             case 11:
-                ((ig.o) this.f45200b).run((TLRPC.Chat) this.f45201c);
+                ((ig.o) this.f45203b).run((TLRPC.Chat) this.f45204c);
                 return;
             case 12:
-                zh.c.P((zh.c) this.f45200b, (TL_stars.TL_StarGiftAuctionAcquiredGift) this.f45201c);
+                zh.c.P((zh.c) this.f45203b, (TL_stars.TL_StarGiftAuctionAcquiredGift) this.f45204c);
                 return;
             case 13:
-                h4 h4Var = (h4) this.f45200b;
+                h4 h4Var = (h4) this.f45203b;
                 h4Var.getClass();
-                if (((rc) this.f45201c).f5374f > 0) {
+                if (((rc) this.f45204c).f5374f > 0) {
                     h4Var.presentFragment(new dd());
                     return;
                 }
                 return;
             case 14:
-                g4.P((g4) this.f45200b, (f4) this.f45201c);
+                g4.P((g4) this.f45203b, (f4) this.f45204c);
                 return;
             case 15:
-                l4 l4Var = (l4) this.f45200b;
-                p4 p4Var = (p4) this.f45201c;
+                l4 l4Var = (l4) this.f45203b;
+                p4 p4Var = (p4) this.f45204c;
                 HashSet hashSet3 = l4Var.Z;
                 if (!hashSet3.isEmpty()) {
                     ArrayList arrayList4 = new ArrayList();
@@ -270,9 +270,9 @@ public final class c implements View.OnClickListener {
                 }
                 return;
             default:
-                t9 t9Var = ((i4) this.f45200b).f53046c.Y;
+                t9 t9Var = ((i4) this.f45203b).f53049c.Y;
                 t9Var.e = !t9Var.e;
-                ((ak) this.f45201c).run();
+                ((ak) this.f45204c).run();
                 t9Var.j(true);
                 return;
         }

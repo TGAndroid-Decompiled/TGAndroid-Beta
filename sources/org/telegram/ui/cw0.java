@@ -6,21 +6,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class cw0 implements org.telegram.ui.Components.og {
-    public final PopupNotificationActivity f38553a;
+    public final PopupNotificationActivity f38556a;
 
     public cw0(PopupNotificationActivity popupNotificationActivity) {
-        this.f38553a = popupNotificationActivity;
+        this.f38556a = popupNotificationActivity;
     }
 
     @Override
     public final void A(CharSequence charSequence, boolean z10, int i10, int i11, long j10) {
-        PopupNotificationActivity popupNotificationActivity = this.f38553a;
+        PopupNotificationActivity popupNotificationActivity = this.f38556a;
         if (popupNotificationActivity.Q == null) {
             return;
         }
         int i12 = popupNotificationActivity.S;
-        if (i12 >= 0 && i12 < popupNotificationActivity.f35852a0.size()) {
-            popupNotificationActivity.f35852a0.remove(popupNotificationActivity.S);
+        if (i12 >= 0 && i12 < popupNotificationActivity.f35855a0.size()) {
+            popupNotificationActivity.f35855a0.remove(popupNotificationActivity.S);
         }
         MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
         popupNotificationActivity.Q = null;
@@ -84,7 +84,7 @@ public final class cw0 implements org.telegram.ui.Components.og {
 
     @Override
     public final void o1() {
-        PopupNotificationActivity popupNotificationActivity = this.f38553a;
+        PopupNotificationActivity popupNotificationActivity = this.f38556a;
         MessageObject messageObject = popupNotificationActivity.Q;
         if (messageObject != null) {
             MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);

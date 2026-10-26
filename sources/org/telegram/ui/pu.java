@@ -3,14 +3,14 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class pu implements View.OnClickListener {
-    public final Context f42656a;
-    public final org.telegram.ui.ActionBar.r2 f42657b;
-    public final ru f42658c;
+    public final Context f42659a;
+    public final org.telegram.ui.ActionBar.r2 f42660b;
+    public final ru f42661c;
 
     public pu(ru ruVar, Context context, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f42658c = ruVar;
-        this.f42656a = context;
-        this.f42657b = r2Var;
+        this.f42661c = ruVar;
+        this.f42659a = context;
+        this.f42660b = r2Var;
     }
 
     @Override

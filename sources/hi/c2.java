@@ -47,7 +47,7 @@ public abstract class c2 {
         FrameLayout frameLayout2 = new FrameLayout(activity);
         int dp = AndroidUtilities.dp(28.0f);
         int dp2 = AndroidUtilities.dp(28.0f);
-        int i13 = y6.f23347ci;
+        int i13 = y6.f23349ci;
         ShapeDrawable d02 = y6.d0(dp, dp2, y6.x0(null, i13, false));
         b7 N = f7.N(i13);
         frameLayout2.setBackground(d02);
@@ -59,11 +59,11 @@ public abstract class c2 {
         y9Var.f(user, j9Var);
         frameLayout2.addView(y9Var, gb1.i(28, 28, 51));
         y9 y9Var2 = new y9(activity);
-        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(y6.x0(null, y6.f23768z9, false), PorterDuff.Mode.SRC_IN));
+        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(y6.x0(null, y6.f23770z9, false), PorterDuff.Mode.SRC_IN));
         y9Var2.setAnimatedEmojiDrawable(t5.n(i10, botVerifierSettings.icon, null, 3));
         frameLayout2.addView(y9Var2, gb1.h(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         b6 b6Var = new b6(activity);
-        f7.Y(b6Var, y6.f23462j5, null);
+        f7.Y(b6Var, y6.f23464j5, null);
         b6Var.setTextSize(13);
         b6Var.setEllipsizeByGradient(true);
         b6Var.l(str, false);
@@ -72,13 +72,13 @@ public abstract class c2 {
         frameLayout.addView(frameLayout2, gb1.h(-2, -2.0f, 17, 16.0f, 0.0f, 16.0f, 0.0f));
         final boolean[] zArr = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-        alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.BotRemoveVerificationTitle);
+        alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.BotRemoveVerificationTitle);
         if (i12 >= 0) {
             i11 = R.string.BotRemoveVerificationText;
         } else {
             i11 = R.string.BotRemoveVerificationChatText;
         }
-        alertDialog$Builder.f22366a.T = LocaleController.getString(i11);
+        alertDialog$Builder.f22368a.T = LocaleController.getString(i11);
         alertDialog$Builder.o(frameLayout);
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new org.telegram.ui.ActionBar.b2() {

@@ -253,7 +253,7 @@ public final class n9 extends org.telegram.ui.ActionBar.k3 implements Notificati
             if (messagesController.canAddToForward(dialog)) {
                 if (DialogObject.isUserDialog(dialog.f22031id)) {
                     TLRPC.User user = messagesController.getUser(Long.valueOf(dialog.f22031id));
-                    if (user != null && !user.bot && user.f22174id != 777000 && !UserObject.isUserSelf(user)) {
+                    if (user != null && !user.bot && user.f22176id != 777000 && !UserObject.isUserSelf(user)) {
                         arrayList.add(user);
                     }
                 } else if (DialogObject.isChatDialog(dialog.f22031id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f22031id))) != null && !ChatObject.isForum(chat)) {
@@ -282,8 +282,8 @@ public final class n9 extends org.telegram.ui.ActionBar.k3 implements Notificati
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (DialogObject.isUserDialog(dialog.f22031id)) {
                 TLRPC.User user2 = messagesController.getUser(Long.valueOf(dialog.f22031id));
-                if (user2 != null && !user2.bot && user2.f22174id != 777000 && !UserObject.isUserSelf(user2) && !user2.deleted && (!z10 || (concurrentHashMap != null && concurrentHashMap.get(Long.valueOf(user2.f22174id)) != null))) {
-                    hashMap.put(Long.valueOf(user2.f22174id), Boolean.TRUE);
+                if (user2 != null && !user2.bot && user2.f22176id != 777000 && !UserObject.isUserSelf(user2) && !user2.deleted && (!z10 || (concurrentHashMap != null && concurrentHashMap.get(Long.valueOf(user2.f22176id)) != null))) {
+                    hashMap.put(Long.valueOf(user2.f22176id), Boolean.TRUE);
                     arrayList.add(user2);
                 }
             } else if (z11 && DialogObject.isChatDialog(dialog.f22031id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f22031id))) != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
@@ -295,9 +295,9 @@ public final class n9 extends org.telegram.ui.ActionBar.k3 implements Notificati
             for (Map.Entry<Long, TLRPC.TL_contact> entry : concurrentHashMap.entrySet()) {
                 Long key = entry.getKey();
                 key.getClass();
-                if (!hashMap.containsKey(key) && (user = messagesController.getUser(key)) != null && !user.bot && user.f22174id != 777000 && !UserObject.isUserSelf(user)) {
+                if (!hashMap.containsKey(key) && (user = messagesController.getUser(key)) != null && !user.bot && user.f22176id != 777000 && !UserObject.isUserSelf(user)) {
                     arrayList.add(user);
-                    hashMap.put(Long.valueOf(user.f22174id), Boolean.TRUE);
+                    hashMap.put(Long.valueOf(user.f22176id), Boolean.TRUE);
                 }
             }
         }
@@ -505,7 +505,7 @@ public final class n9 extends org.telegram.ui.ActionBar.k3 implements Notificati
                 TLObject userOrChat = messagesController.getUserOrChat(str);
                 if (userOrChat instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) userOrChat;
-                    TLRPC.User user2 = messagesController.getUser(Long.valueOf(user.f22174id));
+                    TLRPC.User user2 = messagesController.getUser(Long.valueOf(user.f22176id));
                     if (user2 != null) {
                         user = user2;
                     }
@@ -527,8 +527,8 @@ public final class n9 extends org.telegram.ui.ActionBar.k3 implements Notificati
                 spannableStringBuilder.append((CharSequence) spannableString);
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);
-            alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.StoryRestrictions);
-            alertDialog$Builder.f22366a.T = AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder);
+            alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.StoryRestrictions);
+            alertDialog$Builder.f22368a.T = AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder);
             alertDialog$Builder.k(LocaleController.getString(R.string.Proceed), new androidx.car.app.utils.a(this, l9Var, runnable, 7));
             ic.a.r(R.string.Cancel, alertDialog$Builder, null);
             return;
@@ -559,7 +559,7 @@ public final class n9 extends org.telegram.ui.ActionBar.k3 implements Notificati
         if (arrayList2 != null) {
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 TLRPC.TL_contact tL_contact = arrayList2.get(i10);
-                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && !UserObject.isUserSelf(user) && !user.bot && user.f22174id != 777000) {
+                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && !UserObject.isUserSelf(user) && !user.bot && user.f22176id != 777000) {
                     arrayList.add(user);
                 }
             }
@@ -576,7 +576,7 @@ public final class n9 extends org.telegram.ui.ActionBar.k3 implements Notificati
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesBlocklistUpdate);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesSendAsUpdate);
-        int i10 = org.telegram.ui.ActionBar.y6.f23425h5;
+        int i10 = org.telegram.ui.ActionBar.y6.f23427h5;
         this.R.setColor(org.telegram.ui.ActionBar.y6.w0(i10, this.resourcesProvider));
         fixNavigationBarKey(i10);
         this.containerView = new q8(this, context);
@@ -651,7 +651,7 @@ public final class n9 extends org.telegram.ui.ActionBar.k3 implements Notificati
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
         try {
-            this.R.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23425h5, this.resourcesProvider));
+            this.R.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23427h5, this.resourcesProvider));
             ViewGroup viewGroup = this.containerView;
             if (viewGroup != null) {
                 viewGroup.invalidate();

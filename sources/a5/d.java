@@ -137,7 +137,7 @@ public final class d implements Runnable {
                         h0Var.f511b = (r1) next;
                         h0Var.d = vaVar;
                         obj5.h = new s1(h0Var);
-                        sb.m.f48061a.execute(new fg(kgVar, new ng((r3) obj5, 0), rbVar, kgVar.c(), 0));
+                        sb.m.f48064a.execute(new fg(kgVar, new ng((r3) obj5, 0), rbVar, kgVar.c(), 0));
                         dhVar2 = null;
                     }
                     hashMap.remove(rbVar);
@@ -251,7 +251,7 @@ public final class d implements Runnable {
                 ((o0) this.f285b).f();
                 return;
             case 14:
-                com.google.android.gms.common.api.c cVar = ((o0) ((rb.c) this.f285b).f47320b).f6584b;
+                com.google.android.gms.common.api.c cVar = ((o0) ((rb.c) this.f285b).f47323b).f6584b;
                 cVar.c(cVar.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 15:

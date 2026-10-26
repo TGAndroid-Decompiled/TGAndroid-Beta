@@ -27,8 +27,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 public abstract class gb1 {
-    public static final byte[] f28527a = {-119, 80, 78, 71, 13, 10, 26, 10};
-    public static RectF f28528b;
+    public static final byte[] f28529a = {-119, 80, 78, 71, 13, 10, 26, 10};
+    public static RectF f28530b;
 
     public static RelativeLayout.LayoutParams A(int i10, int i11) {
         return z(0, i10, 0, i11, -1);
@@ -97,7 +97,7 @@ public abstract class gb1 {
     public static void T() {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         for (u40 u40Var : u40.values()) {
-            edit.remove(u40Var.f33246a);
+            edit.remove(u40Var.f33249a);
         }
         edit.apply();
     }
@@ -142,17 +142,17 @@ public abstract class gb1 {
         if (path == null) {
             return;
         }
-        if (f28528b == null) {
-            f28528b = new RectF();
+        if (f28530b == null) {
+            f28530b = new RectF();
         }
         float f10 = 2.0f * f7;
         path.rewind();
-        f28528b.set(0.0f, -rectF.height(), f10, (-rectF.height()) + f10);
-        path.arcTo(f28528b, 180.0f, 90.0f);
-        f28528b.set(rectF.width() - f10, -rectF.height(), rectF.width(), (-rectF.height()) + f10);
-        path.arcTo(f28528b, 270.0f, 90.0f);
-        f28528b.set(rectF.width() - f10, -f10, rectF.width(), 0.0f);
-        path.arcTo(f28528b, 0.0f, 90.0f);
+        f28530b.set(0.0f, -rectF.height(), f10, (-rectF.height()) + f10);
+        path.arcTo(f28530b, 180.0f, 90.0f);
+        f28530b.set(rectF.width() - f10, -rectF.height(), rectF.width(), (-rectF.height()) + f10);
+        path.arcTo(f28530b, 270.0f, 90.0f);
+        f28530b.set(rectF.width() - f10, -f10, rectF.width(), 0.0f);
+        path.arcTo(f28530b, 0.0f, 90.0f);
         path.quadTo(f7, 0.0f, f7, 0.0f);
         path.cubicTo(AndroidUtilities.dp(7.62f), AndroidUtilities.dp(-0.5f), AndroidUtilities.dp(5.807f), AndroidUtilities.dp(-1.502f), AndroidUtilities.dp(6.02f), AndroidUtilities.dp(-1.386f));
         path.cubicTo(AndroidUtilities.dp(4.814f), AndroidUtilities.dp(-0.81f), AndroidUtilities.dp(2.706f), AndroidUtilities.dp(-0.133f), AndroidUtilities.dp(3.6f), AndroidUtilities.dp(-0.44f));

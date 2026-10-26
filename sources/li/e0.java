@@ -29,7 +29,7 @@ public final class e0 extends s61 {
     @Override
     public final View createView(Context context, mm0 mm0Var, int i10, int i11, u6 u6Var) {
         f0 f0Var = new f0(context, i10, u6Var);
-        f0Var.setBackground(new y1(y6.w0(y6.f23354d6, u6Var)));
+        f0Var.setBackground(new y1(y6.w0(y6.f23356d6, u6Var)));
         return f0Var;
     }
 

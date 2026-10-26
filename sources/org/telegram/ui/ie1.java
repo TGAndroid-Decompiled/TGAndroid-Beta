@@ -15,7 +15,7 @@ public final class ie1 extends org.telegram.ui.Components.y70 {
 
     @Override
     public final boolean X() {
-        TLRPC.Chat chat = this.B0.f40924b.getMessagesController().getChat(Long.valueOf(this.A0));
+        TLRPC.Chat chat = this.B0.f40927b.getMessagesController().getChat(Long.valueOf(this.A0));
         if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
             return true;
         }

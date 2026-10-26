@@ -38,7 +38,7 @@ public final class pb0 extends org.telegram.ui.Components.u60 {
     public final void k(int i10) {
         rb0 rb0Var = this.d;
         float f7 = i10 / 100.0f;
-        rb0Var.h.f30259x.U(f7, true);
+        rb0Var.h.f30261x.U(f7, true);
         rb0Var.h.setProgress(f7);
     }
 

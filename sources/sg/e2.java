@@ -15,21 +15,21 @@ import org.telegram.ui.Components.la;
 import org.telegram.ui.Components.pa;
 import org.telegram.ui.Components.zq;
 public abstract class e2 extends fi.d {
-    public final pa f48191k0;
-    public final RectF f48192l0;
+    public final pa f48194k0;
+    public final RectF f48195l0;
     public int m0;
-    public final p2 f48193n0;
-    public final u6 f48194o0;
-    public int f48195p0;
-    public boolean f48196q0;
+    public final p2 f48196n0;
+    public final u6 f48197o0;
+    public int f48198p0;
+    public boolean f48199q0;
 
     public e2(p2 p2Var, ContextThemeWrapper contextThemeWrapper, u6 u6Var, la laVar) {
         super(contextThemeWrapper, u6Var, false);
-        this.f48192l0 = new RectF();
-        this.f48195p0 = 8;
-        this.f48194o0 = u6Var;
-        this.f48193n0 = p2Var;
-        this.f48191k0 = new pa(laVar, this, 0, true);
+        this.f48195l0 = new RectF();
+        this.f48198p0 = 8;
+        this.f48197o0 = u6Var;
+        this.f48196n0 = p2Var;
+        this.f48194k0 = new pa(laVar, this, 0, true);
         setWillNotDraw(false);
         setTextColor(-1);
         setFlickeringLoading(true);
@@ -42,7 +42,7 @@ public abstract class e2 extends fi.d {
     @Override
     public void onDraw(Canvas canvas) {
         boolean z10 = this.f10692g0;
-        RectF rectF = this.f48192l0;
+        RectF rectF = this.f48195l0;
         if (z10) {
             float c10 = this.d.c() + getPaddingLeft() + getPaddingRight();
             rectF.set((getMeasuredWidth() - c10) / 2.0f, 0.0f, (getMeasuredWidth() + c10) / 2.0f, getMeasuredHeight());
@@ -54,7 +54,7 @@ public abstract class e2 extends fi.d {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.f48196q0) {
+        if (this.f48199q0) {
             i10 = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.d.c()), 1073741824);
         }
         super.onMeasure(i10, i11);
@@ -63,8 +63,8 @@ public abstract class e2 extends fi.d {
     @Override
     public void setAlpha(float f7) {
         m2[] m2VarArr;
-        p2 p2Var = this.f48193n0;
-        super.setAlpha((!p2Var.f48458y || (m2VarArr = p2Var.H) == null || m2VarArr.length <= 0) ? 0.0f : 0.0f);
+        p2 p2Var = this.f48196n0;
+        super.setAlpha((!p2Var.f48461y || (m2VarArr = p2Var.H) == null || m2VarArr.length <= 0) ? 0.0f : 0.0f);
     }
 
     public void setCancelState(boolean z10) {
@@ -108,8 +108,8 @@ public abstract class e2 extends fi.d {
     }
 
     public void setRad(int i10) {
-        this.f48195p0 = i10;
-        setForeground(y6.Z(y6.w0(y6.f23446i6, this.f48194o0), i10, i10));
+        this.f48198p0 = i10;
+        setForeground(y6.Z(y6.w0(y6.f23448i6, this.f48197o0), i10, i10));
     }
 
     public void setRestoreState(boolean z10) {

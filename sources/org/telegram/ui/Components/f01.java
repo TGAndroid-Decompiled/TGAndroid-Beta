@@ -4,18 +4,18 @@ import android.util.Pair;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 public final class f01 extends ArrayList {
-    public final Class f28029a;
-    public final Class f28030b;
+    public final Class f28031a;
+    public final Class f28032b;
 
     public f01(Class cls, Class cls2) {
-        this.f28029a = cls;
-        this.f28030b = cls2;
+        this.f28031a = cls;
+        this.f28032b = cls2;
     }
 
     public final k6.c h() {
         int size = size();
-        Object[] objArr = (Object[]) Array.newInstance(this.f28029a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance(this.f28030b, size);
+        Object[] objArr = (Object[]) Array.newInstance(this.f28031a, size);
+        Object[] objArr2 = (Object[]) Array.newInstance(this.f28032b, size);
         for (int i10 = 0; i10 < size; i10++) {
             objArr[i10] = ((Pair) get(i10)).first;
             objArr2[i10] = ((Pair) get(i10)).second;

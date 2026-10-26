@@ -23,7 +23,7 @@ public final class b6 extends View implements org.telegram.ui.ActionBar.p6 {
         this.f4342c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22625a;
+        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22627a;
         q6 q6Var = new q6(this, starGift, 60, 0.27f);
         this.f4340a = q6Var;
         q6Var.K = 3;
@@ -96,7 +96,7 @@ public final class b6 extends View implements org.telegram.ui.ActionBar.p6 {
         this.f4342c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22625a;
+        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22627a;
         q6 q6Var = new q6(this, tL_starGiftUnique, 60, 0.27f);
         this.f4340a = q6Var;
         q6Var.K = 3;

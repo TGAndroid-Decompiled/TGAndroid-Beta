@@ -4,11 +4,11 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class vb extends org.telegram.ui.Components.gb1 {
-    public MessageObject f44757c;
+    public MessageObject f44760c;
     public int d = 0;
     public boolean e = true;
-    public int f44758f = 0;
-    public int f44759g;
+    public int f44761f = 0;
+    public int f44762g;
     public final wb h;
 
     public vb(wb wbVar) {
@@ -17,17 +17,17 @@ public final class vb extends org.telegram.ui.Components.gb1 {
 
     @Override
     public final void N() {
-        MessageObject messageObject = this.f44757c;
+        MessageObject messageObject = this.f44760c;
         wb wbVar = this.h;
         if (messageObject != null) {
-            int indexOf = wbVar.f45075o0.indexOf(messageObject) + wbVar.E.f43440f;
+            int indexOf = wbVar.f45078o0.indexOf(messageObject) + wbVar.E.f43443f;
             if (indexOf >= 0) {
-                wbVar.f45087x.i1(indexOf, this.f44759g, false);
+                wbVar.f45090x.i1(indexOf, this.f44762g, false);
             }
         } else {
-            wbVar.f45087x.i1(this.d, this.f44758f, this.e);
+            wbVar.f45090x.i1(this.d, this.f44761f, this.e);
         }
-        this.f44757c = null;
+        this.f44760c = null;
         wbVar.V = true;
         wbVar.e1();
         AndroidUtilities.runOnUIThread(new zt0(this, 21));

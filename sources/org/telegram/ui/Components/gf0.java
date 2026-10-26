@@ -15,10 +15,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class gf0 {
-    public final jf0 f28563a;
+    public final jf0 f28565a;
 
     public gf0(jf0 jf0Var) {
-        this.f28563a = jf0Var;
+        this.f28565a = jf0Var;
     }
 
     public final ViewGroup a(Context context, int i10) {
@@ -53,7 +53,7 @@ public final class gf0 {
         int i22;
         int i23;
         int i24;
-        jf0 jf0Var = this.f28563a;
+        jf0 jf0Var = this.f28565a;
         ArrayList arrayList = jf0Var.L;
         ArrayList arrayList2 = jf0Var.M;
         if (i10 == 0) {
@@ -64,7 +64,7 @@ public final class gf0 {
         if (z10) {
             ?? frameLayout = new FrameLayout(context);
             TextView textView = new TextView(context);
-            frameLayout.f28957a = textView;
+            frameLayout.f28959a = textView;
             int i25 = org.telegram.ui.ActionBar.y6.G6;
             u6Var3 = ((org.telegram.ui.ActionBar.k3) jf0Var).resourcesProvider;
             boolean z13 = jf0Var.J;
@@ -107,8 +107,8 @@ public final class gf0 {
             }
             frameLayout.addView(textView, gb1.h(-1, -1.0f, i26, f7, 10.0f, f10, 0.0f));
             TextView textView2 = new TextView(context);
-            frameLayout.f28958b = textView2;
-            int i27 = org.telegram.ui.ActionBar.y6.f23765z6;
+            frameLayout.f28960b = textView2;
+            int i27 = org.telegram.ui.ActionBar.y6.f23767z6;
             u6Var4 = ((org.telegram.ui.ActionBar.k3) jf0Var).resourcesProvider;
             org.telegram.ui.ActionBar.f7.V(textView2, i27, u6Var4);
             textView2.setTextSize(1, 13.0f);
@@ -149,9 +149,9 @@ public final class gf0 {
             }
             frameLayout.addView(textView2, gb1.h(-2, -2.0f, i19, f11, 35.0f, f12, 0.0f));
             ImageView imageView = new ImageView(context);
-            frameLayout.f28959c = imageView;
+            frameLayout.f28961c = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i28 = org.telegram.ui.ActionBar.y6.f23518m6;
+            int i28 = org.telegram.ui.ActionBar.y6.f23520m6;
             u6Var5 = ((org.telegram.ui.ActionBar.k3) jf0Var).resourcesProvider;
             org.telegram.ui.ActionBar.f7.t(imageView, i28, u6Var5, PorterDuff.Mode.MULTIPLY);
             boolean z16 = LocaleController.isRTL;
@@ -178,7 +178,7 @@ public final class gf0 {
                 frameLayout.d = r92;
                 int i30 = org.telegram.ui.ActionBar.y6.M6;
                 int i31 = org.telegram.ui.ActionBar.y6.N6;
-                int i32 = org.telegram.ui.ActionBar.y6.f23354d6;
+                int i32 = org.telegram.ui.ActionBar.y6.f23356d6;
                 r92.d(i30, i31, i32, i32);
                 if (LocaleController.isRTL) {
                     i22 = 3;
@@ -216,7 +216,7 @@ public final class gf0 {
             linearLayout2.addView(y9Var, gb1.x(80, 80, 49, 0, 32, 0, 0));
             TextView textView3 = new TextView(context);
             org.telegram.messenger.vh.j(17.0f, 1, textView3);
-            int i33 = org.telegram.ui.ActionBar.y6.f23462j5;
+            int i33 = org.telegram.ui.ActionBar.y6.f23464j5;
             u6Var = ((org.telegram.ui.ActionBar.k3) jf0Var).resourcesProvider;
             org.telegram.ui.ActionBar.f7.V(textView3, i33, u6Var);
             textView3.setSingleLine(true);
@@ -233,7 +233,7 @@ public final class gf0 {
             linearLayout = linearLayout2;
             if (str != null) {
                 TextView g7 = org.telegram.messenger.t.g(context, 1, 14.0f);
-                int i35 = org.telegram.ui.ActionBar.y6.f23612r5;
+                int i35 = org.telegram.ui.ActionBar.y6.f23614r5;
                 u6Var2 = ((org.telegram.ui.ActionBar.k3) jf0Var).resourcesProvider;
                 org.telegram.ui.ActionBar.f7.V(g7, i35, u6Var2);
                 g7.setSingleLine(true);
@@ -282,9 +282,9 @@ public final class gf0 {
             } else {
                 z12 = false;
             }
-            ImageView imageView2 = hf0Var.f28959c;
-            hf0Var.f28957a.setText(vcardItem.getValue(true));
-            hf0Var.f28958b.setText(vcardItem.getType());
+            ImageView imageView2 = hf0Var.f28961c;
+            hf0Var.f28959a.setText(vcardItem.getValue(true));
+            hf0Var.f28960b.setText(vcardItem.getType());
             Switch r82 = hf0Var.d;
             if (r82 != null) {
                 r82.c(vcardItem.checked, false);

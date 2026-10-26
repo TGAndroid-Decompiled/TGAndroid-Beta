@@ -3,9 +3,9 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class r8 {
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f32157a;
-    public final org.telegram.ui.ActionBar.g1 f32158b;
-    public final q8 f32159c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f32159a;
+    public final org.telegram.ui.ActionBar.g1 f32160b;
+    public final q8 f32161c;
     public long d;
     public final z90 e;
 
@@ -14,7 +14,7 @@ public final class r8 {
     }
 
     public final void a() {
-        this.f32159c.dismiss();
+        this.f32161c.dismiss();
         this.d = System.currentTimeMillis();
     }
 
@@ -23,7 +23,7 @@ public final class r8 {
             AndroidUtilities.runOnUIThread(new h2(this, i10, 2));
             return;
         }
-        org.telegram.ui.ActionBar.g1 g1Var = this.f32158b;
+        org.telegram.ui.ActionBar.g1 g1Var = this.f32160b;
         if (i10 == 0) {
             g1Var.setVisibility(8);
         } else {

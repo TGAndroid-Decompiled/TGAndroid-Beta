@@ -4,21 +4,21 @@ import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ah0 extends s4.p {
-    public int f37792b;
-    public int f37793c;
+    public int f37795b;
+    public int f37796c;
     public int d;
     public int e;
-    public int f37794f;
-    public int f37795g;
+    public int f37797f;
+    public int f37798g;
     public int h;
-    public final SparseIntArray f37796i = new SparseIntArray();
-    public final SparseIntArray f37797j = new SparseIntArray();
-    public final ArrayList f37798k = new ArrayList();
-    public final ArrayList f37799l = new ArrayList();
-    public final jh0 f37800m;
+    public final SparseIntArray f37799i = new SparseIntArray();
+    public final SparseIntArray f37800j = new SparseIntArray();
+    public final ArrayList f37801k = new ArrayList();
+    public final ArrayList f37802l = new ArrayList();
+    public final jh0 f37803m;
 
     public ah0(jh0 jh0Var) {
-        this.f37800m = jh0Var;
+        this.f37803m = jh0Var;
     }
 
     public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
@@ -38,31 +38,31 @@ public final class ah0 extends s4.p {
         int i13;
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
         TLRPC.TL_chatInviteExported tL_chatInviteExported2;
-        int i14 = this.f37793c;
-        jh0 jh0Var = this.f37800m;
-        if (((i10 >= i14 && i10 < this.d) || (i10 >= this.e && i10 < this.f37794f)) && ((i11 >= (i13 = jh0Var.f40670y) && i11 < jh0Var.E) || (i11 >= jh0Var.H && i11 < jh0Var.I))) {
+        int i14 = this.f37796c;
+        jh0 jh0Var = this.f37803m;
+        if (((i10 >= i14 && i10 < this.d) || (i10 >= this.e && i10 < this.f37797f)) && ((i11 >= (i13 = jh0Var.f40673y) && i11 < jh0Var.E) || (i11 >= jh0Var.H && i11 < jh0Var.I))) {
             if (i11 >= i13 && i11 < jh0Var.E) {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) jh0Var.f40654i0.get(i11 - i13);
+                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) jh0Var.f40657i0.get(i11 - i13);
             } else {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) jh0Var.f40655j0.get(i11 - jh0Var.H);
+                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) jh0Var.f40658j0.get(i11 - jh0Var.H);
             }
-            int i15 = this.f37793c;
+            int i15 = this.f37796c;
             if (i10 >= i15 && i10 < this.d) {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f37798k.get(i10 - i15);
+                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f37801k.get(i10 - i15);
             } else {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f37799l.get(i10 - this.e);
+                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f37802l.get(i10 - this.e);
             }
             return tL_chatInviteExported2.link.equals(tL_chatInviteExported.link);
         }
-        int i16 = this.f37795g;
+        int i16 = this.f37798g;
         if (i10 >= i16 && i10 < this.h && i11 >= (i12 = jh0Var.U) && i11 < jh0Var.V) {
             if (i10 - i16 != i11 - i12) {
                 return false;
             }
             return true;
         }
-        int i17 = this.f37796i.get(i10, -1);
-        int i18 = this.f37797j.get(i11, -1);
+        int i17 = this.f37799i.get(i10, -1);
+        int i18 = this.f37800j.get(i11, -1);
         if (i17 < 0 || i17 != i18) {
             return false;
         }
@@ -71,22 +71,22 @@ public final class ah0 extends s4.p {
 
     @Override
     public final int d() {
-        return this.f37800m.X;
+        return this.f37803m.X;
     }
 
     @Override
     public final int e() {
-        return this.f37792b;
+        return this.f37795b;
     }
 
     public final void f(SparseIntArray sparseIntArray) {
         sparseIntArray.clear();
-        jh0 jh0Var = this.f37800m;
-        g(1, jh0Var.f40663r, sparseIntArray);
-        g(2, jh0Var.f40665s, sparseIntArray);
+        jh0 jh0Var = this.f37803m;
+        g(1, jh0Var.f40666r, sparseIntArray);
+        g(2, jh0Var.f40668s, sparseIntArray);
         g(3, jh0Var.v, sparseIntArray);
-        g(4, jh0Var.f40668w, sparseIntArray);
-        g(5, jh0Var.f40669x, sparseIntArray);
+        g(4, jh0Var.f40671w, sparseIntArray);
+        g(5, jh0Var.f40672x, sparseIntArray);
         g(6, jh0Var.L, sparseIntArray);
         g(7, jh0Var.N, sparseIntArray);
         g(8, jh0Var.O, sparseIntArray);

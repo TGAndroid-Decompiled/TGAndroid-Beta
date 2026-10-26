@@ -10,17 +10,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class u21 extends lm0 {
-    public final Context f33227c;
+    public final Context f33230c;
     public int d;
     public ArrayList e = new ArrayList();
-    public ArrayList f33228f = new ArrayList();
+    public ArrayList f33231f = new ArrayList();
     public org.telegram.ui.g4 h;
-    public String f33229n;
-    public final ThemeEditorView.EditorAlert f33230r;
+    public String f33232n;
+    public final ThemeEditorView.EditorAlert f33233r;
 
     public u21(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f33230r = editorAlert;
-        this.f33227c = context;
+        this.f33233r = editorAlert;
+        this.f33230c = context;
     }
 
     public static CharSequence E(String str, String str2) {
@@ -82,7 +82,7 @@ public final class u21 extends lm0 {
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         int c10;
-        if (e1Var.f47738f == 0) {
+        if (e1Var.f47741f == 0) {
             boolean z10 = true;
             int i11 = i10 - 1;
             org.telegram.ui.ActionBar.h7 h7Var = (org.telegram.ui.ActionBar.h7) ((ArrayList) this.e.get(i11)).get(0);
@@ -91,9 +91,9 @@ public final class u21 extends lm0 {
             } else {
                 c10 = h7Var.c();
             }
-            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) e1Var.f47735a;
-            d9Var.f24013a.setText((CharSequence) this.f33228f.get(i11));
-            d9Var.f24014b = c10;
+            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) e1Var.f47738a;
+            d9Var.f24015a.setText((CharSequence) this.f33231f.get(i11));
+            d9Var.f24016b = c10;
             if (c10 != 0) {
                 z10 = false;
             }
@@ -105,7 +105,7 @@ public final class u21 extends lm0 {
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         View d9Var;
-        Context context = this.f33227c;
+        Context context = this.f33230c;
         if (i10 != 0) {
             d9Var = new View(context);
             d9Var.setLayoutParams(new s4.q0(-1, AndroidUtilities.dp(56.0f)));

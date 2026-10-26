@@ -127,53 +127,53 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     public TLRPC.User U;
     public ny0 V;
     public Activity W;
-    public x0 f45151a;
-    public boolean f45152a0;
-    public String f45153b;
-    public String f45154b0;
-    public g0 f45155c;
-    public org.telegram.ui.ActionBar.e2 f45156c0;
+    public x0 f45154a;
+    public boolean f45155a0;
+    public String f45156b;
+    public String f45157b0;
+    public g0 f45158c;
+    public org.telegram.ui.ActionBar.e2 f45159c0;
     public z0 d;
-    public int f45157d0;
+    public int f45160d0;
     public final u6 e;
-    public long f45158e0;
-    public final TextView f45159f;
-    public long f45160f0;
-    public u9 f45161g0;
+    public long f45161e0;
+    public final TextView f45162f;
+    public long f45163f0;
+    public u9 f45164g0;
     public boolean h;
-    public boolean f45162h0;
-    public String f45163i0;
-    public hi.y f45164j0;
-    public hi.b1 f45165k0;
-    public hi.q0 f45166l0;
+    public boolean f45165h0;
+    public String f45166i0;
+    public hi.y f45167j0;
+    public hi.b1 f45168k0;
+    public hi.q0 f45169l0;
     public hi.w1 m0;
-    public final org.telegram.ui.Components.voip.h f45167n;
-    public hi.w1 f45168n0;
-    public final boolean f45169o0;
-    public int f45170p0;
-    public boolean f45171q0;
-    public SvgHelper.SvgDrawable f45172r;
-    public BotWebViewContainer$BotWebViewProxy f45173r0;
-    public final k4 f45174s;
-    public long f45175s0;
-    public boolean f45176t0;
-    public BotWebViewContainer$WebViewProxy f45177u0;
+    public final org.telegram.ui.Components.voip.h f45170n;
+    public hi.w1 f45171n0;
+    public final boolean f45172o0;
+    public int f45173p0;
+    public boolean f45174q0;
+    public SvgHelper.SvgDrawable f45175r;
+    public BotWebViewContainer$BotWebViewProxy f45176r0;
+    public final k4 f45177s;
+    public long f45178s0;
+    public boolean f45179t0;
+    public BotWebViewContainer$WebViewProxy f45180u0;
     public boolean v;
-    public x0 f45178v0;
-    public q0.a f45179w;
-    public int f45180w0;
-    public ValueCallback f45181x;
-    public boolean f45182x0;
-    public int f45183y;
-    public boolean f45184y0;
-    public float f45185z0;
+    public x0 f45181v0;
+    public q0.a f45182w;
+    public int f45183w0;
+    public ValueCallback f45184x;
+    public boolean f45185x0;
+    public int f45186y;
+    public boolean f45187y0;
+    public float f45188z0;
 
     public a1(int i10, Context context, u6 u6Var, boolean z10) {
         super(context);
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f45167n = hVar;
+        this.f45170n = hVar;
         int i11 = y6.Oh;
-        this.f45183y = j(i11);
+        this.f45186y = j(i11);
         int i12 = y6.Sh;
         this.E = j(i12);
         this.F = "";
@@ -191,25 +191,25 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         int i13 = R0;
         R0 = i13 + 1;
         this.O0 = i13;
-        this.f45169o0 = z10;
+        this.f45172o0 = z10;
         this.e = u6Var;
         g("created new webview container");
         if (context instanceof Activity) {
             this.W = (Activity) context;
         }
-        hVar.f33821k = false;
+        hVar.f33824k = false;
         hVar.b(i10, 153);
         k4 k4Var = new k4(this, context);
-        this.f45174s = k4Var;
+        this.f45177s = k4Var;
         int j10 = j(y6.Ki);
-        this.f45170p0 = j10;
+        this.f45173p0 = j10;
         k4Var.setColorFilter(new PorterDuffColorFilter(j10, PorterDuff.Mode.SRC_IN));
         k4Var.getImageReceiver().setAspectFit(true);
         addView(k4Var, gb1.i(-1, -2, 48));
         TextView textView = new TextView(context);
-        this.f45159f = textView;
+        this.f45162f = textView;
         textView.setText(LocaleController.getString(R.string.BotWebViewNotAvailablePlaceholder));
-        f7.V(textView, y6.f23746y6, u6Var);
+        f7.V(textView, y6.f23748y6, u6Var);
         textView.setTextSize(1, 15.0f);
         textView.setGravity(17);
         textView.setVisibility(8);
@@ -353,7 +353,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     private void setupFlickerParams(boolean z10) {
         int i10;
         this.v = z10;
-        k4 k4Var = this.f45174s;
+        k4 k4Var = this.f45177s;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) k4Var.getLayoutParams();
         if (z10) {
             i10 = 17;
@@ -399,7 +399,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public final boolean C() {
-        if (this.f45151a != null && this.R) {
+        if (this.f45154a != null && this.R) {
             y("back_button_pressed", null);
             return true;
         }
@@ -417,8 +417,8 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
             jSONObject.put("status", str2);
             y("invoice_closed", jSONObject);
             FileLog.d("invoice_closed " + jSONObject);
-            if (!z10 && Objects.equals(this.f45154b0, str)) {
-                this.f45154b0 = null;
+            if (!z10 && Objects.equals(this.f45157b0, str)) {
+                this.f45157b0 = null;
             }
         } catch (JSONException e) {
             FileLog.e(e);
@@ -431,7 +431,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         }
         this.P = 0L;
         boolean[] zArr = {false};
-        if (qf.d.e(uri, false, zArr) && !zArr[0] && this.f45155c != null) {
+        if (qf.d.e(uri, false, zArr) && !zArr[0] && this.f45158c != null) {
             setKeyboardFocusable(false);
         }
         qf.d.q(getContext(), uri, true, z10, false, null, str, false, true, z12);
@@ -442,22 +442,22 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     public final void L() {
         g("preserveWebView");
         this.B0 = true;
-        if (this.f45169o0) {
+        if (this.f45172o0) {
             y("visibility_changed", A(Boolean.FALSE, "is_visible"));
-            this.f45175s0++;
+            this.f45178s0++;
         }
-        x0 x0Var = this.f45151a;
+        x0 x0Var = this.f45154a;
         if (x0Var != null) {
             x0Var.f(null, null);
-            this.f45151a.setCloseListener(null);
+            this.f45154a.setCloseListener(null);
         }
-        BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = this.f45173r0;
+        BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = this.f45176r0;
         if (botWebViewContainer$BotWebViewProxy != null) {
-            botWebViewContainer$BotWebViewProxy.f45140a = null;
+            botWebViewContainer$BotWebViewProxy.f45143a = null;
         }
-        BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f45177u0;
+        BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f45180u0;
         if (botWebViewContainer$WebViewProxy != null) {
-            botWebViewContainer$WebViewProxy.f45141a = null;
+            botWebViewContainer$WebViewProxy.f45144a = null;
         }
     }
 
@@ -465,10 +465,10 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         String str2;
         this.M = i10;
         this.B0 = false;
-        boolean z11 = this.f45169o0;
+        boolean z11 = this.f45172o0;
         if (z11) {
-            this.f45175s0++;
-            this.f45176t0 = z10;
+            this.f45178s0++;
+            this.f45179t0 = z10;
             if (z10) {
                 str2 = k(str);
             } else {
@@ -528,10 +528,10 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     public final void Q() {
         try {
             if (this.G != null) {
-                E(this.f45173r0, f(), "web_app_setup_main_button", this.G);
+                E(this.f45176r0, f(), "web_app_setup_main_button", this.G);
             }
             if (this.L != null) {
-                E(this.f45173r0, f(), "web_app_setup_secondary_button", this.L);
+                E(this.f45176r0, f(), "web_app_setup_secondary_button", this.L);
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -588,8 +588,8 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
                         i9 i9Var = new i9(context, u6Var);
                         int i12 = -1;
                         ColorDrawable colorDrawable = new ColorDrawable(-1);
-                        i9Var.setBackground(new ar(colorDrawable, y6.W0(context, R.drawable.greydivider, y6.w0(y6.f23316b7, u6Var))));
-                        f7.y(i9Var, colorDrawable, y6.f23297a7, u6Var, PorterDuff.Mode.SRC_IN);
+                        i9Var.setBackground(new ar(colorDrawable, y6.W0(context, R.drawable.greydivider, y6.w0(y6.f23318b7, u6Var))));
+                        f7.y(i9Var, colorDrawable, y6.f23299a7, u6Var, PorterDuff.Mode.SRC_IN);
                         i9Var.setFixedSize(12);
                         d.addView(i9Var, gb1.x(-1, 12, 7, 0, 0, 0, 0));
                         q4 q4Var = new q4(context, u6Var);
@@ -608,7 +608,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
                                 z10 = false;
                             }
                             hi.u1 u1Var = new hi.u1(v1Var, z10, context);
-                            int i14 = y6.f23446i6;
+                            int i14 = y6.f23448i6;
                             a0 a0Var2 = a0Var;
                             org.telegram.ui.Cells.y g02 = y6.g0(y6.w0(i14, u6Var), 2, i12);
                             b7 N = f7.N(i14);
@@ -636,7 +636,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
                         dVar.setEnabled(z11);
                         viewGroup2.addView(dVar, gb1.x(-1, 48, 7, 8, 8, 8, 4));
                         k3Var.customView = viewGroup2;
-                        k3Var.fixNavigationBarKey(y6.f23425h5);
+                        k3Var.fixNavigationBarKey(y6.f23427h5);
                         dVar.setOnClickListener(new c4(zArr, a0Var3, strArr, k3Var, 3));
                         k3Var.setOnDismissListener(new u3(3, zArr, a0Var3));
                         k3Var.show();
@@ -658,7 +658,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     public void T(String str, boolean z10) {
         boolean z11;
         boolean z12;
-        x0 x0Var = this.f45151a;
+        x0 x0Var = this.f45154a;
         if (x0Var != null) {
             boolean z13 = x0Var.E;
         }
@@ -667,26 +667,26 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         } else {
             z11 = true;
         }
-        x0 x0Var2 = this.f45151a;
+        x0 x0Var2 = this.f45154a;
         if (x0Var2 != null && x0Var2.canGoForward()) {
             z12 = false;
         } else {
             z12 = true;
         }
         I(z11, z12);
-        x0 x0Var3 = this.f45151a;
+        x0 x0Var3 = this.f45154a;
         if (x0Var3 != null) {
-            x0Var3.f45440b = true;
+            x0Var3.f45443b = true;
         }
         if (this.N) {
             g("setPageLoaded: already loaded");
             return;
         }
-        k4 k4Var = this.f45174s;
+        k4 k4Var = this.f45177s;
         if (z10 && x0Var3 != null && k4Var != null) {
             AnimatorSet animatorSet = new AnimatorSet();
             Property property = View.ALPHA;
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.f45151a, property, 1.0f), ObjectAnimator.ofFloat(k4Var, property, 0.0f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.f45154a, property, 1.0f), ObjectAnimator.ofFloat(k4Var, property, 0.0f));
             animatorSet.addListener(new fc1(this, 14));
             animatorSet.start();
         } else {
@@ -698,10 +698,10 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
                 k4Var.setVisibility(8);
             }
         }
-        this.f45153b = str;
+        this.f45156b = str;
         g("setPageLoaded: isPageLoaded = true!");
         this.N = true;
-        this.f45155c.getClass();
+        this.f45158c.getClass();
     }
 
     public final void U(x7 x7Var, hi.w1 w1Var, String str, String str2, String str3) {
@@ -738,21 +738,21 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public final void V() {
-        x0 x0Var = this.f45151a;
-        if (x0Var != null && this.f45169o0) {
+        x0 x0Var = this.f45154a;
+        if (x0Var != null && this.f45172o0) {
             x0Var.removeJavascriptInterface("TelegramWebviewProxy");
             if (!a8.v1.a("WEB_MESSAGE_LISTENER")) {
                 g("Bot WebMessageListener is unsupported; native bridge disabled");
                 return;
             }
             Set singleton = Collections.singleton("*");
-            x0 x0Var2 = this.f45151a;
+            x0 x0Var2 = this.f45154a;
             if (!x0Var2.R) {
                 b5.a.a(x0Var2, "TelegramWebviewProxyMessage", singleton, new org.telegram.ui.Components.voip.j1(x0Var2, 1));
-                this.f45151a.R = true;
+                this.f45154a.R = true;
             }
             if (a8.v1.a("DOCUMENT_START_SCRIPT")) {
-                x0 x0Var3 = this.f45151a;
+                x0 x0Var3 = this.f45154a;
                 if (x0Var3.S == null) {
                     boolean z10 = b5.a.f3646a;
                     if (c5.m.d.b()) {
@@ -771,10 +771,10 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         TLRPC.User user;
         boolean z10;
         String str2 = "";
-        x0 x0Var3 = this.f45151a;
+        x0 x0Var3 = this.f45154a;
         if (x0Var3 != null) {
             x0Var3.destroy();
-            removeView(this.f45151a);
+            removeView(this.f45154a);
         }
         if (x0Var != null) {
             AndroidUtilities.removeFromParent(x0Var);
@@ -791,31 +791,31 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         }
         if (x0Var == null) {
             Context context = getContext();
-            boolean z11 = this.f45169o0;
+            boolean z11 = this.f45172o0;
             long j10 = 0;
             if (z11 && (user = this.U) != null) {
-                j10 = user.f22174id;
+                j10 = user.f22176id;
             }
             x0Var2 = new x0(context, z11, j10);
         } else {
             x0Var2 = x0Var;
         }
-        this.f45151a = x0Var2;
-        if (!this.f45169o0) {
+        this.f45154a = x0Var2;
+        if (!this.f45172o0) {
             CookieManager cookieManager = CookieManager.getInstance();
             cookieManager.setAcceptCookie(true);
-            cookieManager.setAcceptThirdPartyCookies(this.f45151a, true);
+            cookieManager.setAcceptThirdPartyCookies(this.f45154a, true);
             CookieManager.getInstance().flush();
-            this.f45151a.f45442f = this.f45178v0;
+            this.f45154a.f45445f = this.f45181v0;
         } else {
-            x0Var2.setBackgroundColor(j(y6.f23354d6));
+            x0Var2.setBackgroundColor(j(y6.f23356d6));
         }
         if (!MessagesController.getInstance(this.M).disableBotFullscreenBlur) {
-            this.f45151a.setLayerType(2, null);
+            this.f45154a.setLayerType(2, null);
         }
-        this.f45151a.f(this, this.d);
-        this.f45151a.setCloseListener(this.D0);
-        WebSettings settings = this.f45151a.getSettings();
+        this.f45154a.f(this, this.d);
+        this.f45154a.setCloseListener(this.D0);
+        WebSettings settings = this.f45154a.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setGeolocationEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -825,7 +825,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         settings.setAllowContentAccess(false);
         settings.setAllowFileAccessFromFileURLs(false);
         settings.setAllowUniversalAccessFromFileURLs(false);
-        if (!this.f45169o0) {
+        if (!this.f45172o0) {
             settings.setRenderPriority(WebSettings.RenderPriority.HIGH);
             settings.setCacheMode(-1);
             settings.setSaveFormData(true);
@@ -849,7 +849,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
             sb2.append(str3);
             sb2.append("; K)");
             String replaceAll = replace.replaceAll("\\(Linux; Android.+;[^)]+\\)", sb2.toString()).replaceAll("Version/[\\d\\.]+ ", "");
-            if (this.f45169o0) {
+            if (this.f45172o0) {
                 PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
                 int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                 if (devicePerformanceClass == 0) {
@@ -894,46 +894,46 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
             settings.setDatabasePath(file.getAbsolutePath());
         }
         GeolocationPermissions.getInstance().clearAll();
-        this.f45151a.setVerticalScrollBarEnabled(false);
-        if (x0Var == null && this.f45169o0) {
-            this.f45151a.setAlpha(0.0f);
+        this.f45154a.setVerticalScrollBarEnabled(false);
+        if (x0Var == null && this.f45172o0) {
+            this.f45154a.setAlpha(0.0f);
         }
-        addView(this.f45151a);
-        if (this.f45169o0) {
+        addView(this.f45154a);
+        if (this.f45172o0) {
             if (obj instanceof BotWebViewContainer$BotWebViewProxy) {
-                this.f45173r0 = (BotWebViewContainer$BotWebViewProxy) obj;
+                this.f45176r0 = (BotWebViewContainer$BotWebViewProxy) obj;
             }
-            if (this.f45173r0 == null) {
+            if (this.f45176r0 == null) {
                 ?? obj2 = new Object();
-                obj2.f45140a = this;
-                this.f45173r0 = obj2;
+                obj2.f45143a = this;
+                this.f45176r0 = obj2;
             }
-            this.f45173r0.f45140a = this;
+            this.f45176r0.f45143a = this;
             V();
         } else {
             if (obj instanceof BotWebViewContainer$WebViewProxy) {
-                this.f45177u0 = (BotWebViewContainer$WebViewProxy) obj;
+                this.f45180u0 = (BotWebViewContainer$WebViewProxy) obj;
             }
-            BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f45177u0;
+            BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f45180u0;
             if (botWebViewContainer$WebViewProxy == null) {
-                x0 x0Var4 = this.f45151a;
+                x0 x0Var4 = this.f45154a;
                 BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy2 = new BotWebViewContainer$WebViewProxy(x0Var4, this);
-                this.f45177u0 = botWebViewContainer$WebViewProxy2;
+                this.f45180u0 = botWebViewContainer$WebViewProxy2;
                 x0Var4.addJavascriptInterface(botWebViewContainer$WebViewProxy2, "TelegramWebviewProxy");
             } else if (x0Var == null) {
-                this.f45151a.addJavascriptInterface(botWebViewContainer$WebViewProxy, "TelegramWebviewProxy");
+                this.f45154a.addJavascriptInterface(botWebViewContainer$WebViewProxy, "TelegramWebviewProxy");
             }
-            this.f45177u0.f45141a = this;
+            this.f45180u0.f45144a = this;
         }
-        J(this.f45151a);
+        J(this.f45154a);
         Q0 = false;
     }
 
     public final void X(int i10, org.telegram.ui.ActionBar.e2 e2Var, Runnable runnable) {
         if (e2Var != null && !m(i10)) {
             e2Var.setOnDismissListener(new u3(16, this, runnable));
-            this.f45156c0 = e2Var;
-            e2Var.f22575j0 = false;
+            this.f45159c0 = e2Var;
+            e2Var.f22577j0 = false;
             e2Var.show();
             if (this.L0 != i10) {
                 this.L0 = i10;
@@ -958,15 +958,15 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public final void c() {
-        if (this.f45151a == null && !this.h) {
+        if (this.f45154a == null && !this.h) {
             try {
                 setupWebView(null);
             } catch (Throwable th2) {
                 FileLog.e(th2);
-                this.f45174s.setVisibility(8);
+                this.f45177s.setVisibility(8);
                 this.h = true;
-                this.f45159f.setVisibility(0);
-                x0 x0Var = this.f45151a;
+                this.f45162f.setVisibility(0);
+                x0 x0Var = this.f45154a;
                 if (x0Var != null) {
                     removeView(x0Var);
                 }
@@ -998,21 +998,21 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         ny0 ny0Var;
         Uri[] uriArr;
         if (i10 == NotificationCenter.didSetNewTheme) {
-            x0 x0Var = this.f45151a;
+            x0 x0Var = this.f45154a;
             if (x0Var != null) {
-                x0Var.setBackgroundColor(j(y6.f23354d6));
+                x0Var.setBackgroundColor(j(y6.f23356d6));
             }
-            if (!this.f45171q0) {
+            if (!this.f45174q0) {
                 int i12 = y6.Ki;
                 int j10 = j(i12);
-                this.f45170p0 = j10;
+                this.f45173p0 = j10;
                 PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(j10, PorterDuff.Mode.SRC_IN);
-                k4 k4Var = this.f45174s;
+                k4 k4Var = this.f45177s;
                 k4Var.setColorFilter(porterDuffColorFilter);
-                SvgHelper.SvgDrawable svgDrawable = this.f45172r;
+                SvgHelper.SvgDrawable svgDrawable = this.f45175r;
                 if (svgDrawable != null) {
-                    svgDrawable.setColor(this.f45170p0);
-                    this.f45172r.setupGradient(i12, this.e, 1.0f, false);
+                    svgDrawable.setColor(this.f45173p0);
+                    this.f45175r.setupGradient(i12, this.e, 1.0f, false);
                 }
                 k4Var.invalidate();
             }
@@ -1021,7 +1021,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
             int intValue = ((Integer) objArr[0]).intValue();
             int intValue2 = ((Integer) objArr[1]).intValue();
             Intent intent = (Intent) objArr[2];
-            if (intValue == 3000 && this.f45181x != null) {
+            if (intValue == 3000 && this.f45184x != null) {
                 if (intValue2 == -1 && intent != null) {
                     if (intent.getClipData() != null) {
                         ClipData clipData = intent.getClipData();
@@ -1032,12 +1032,12 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
                     } else if (intent.getData() != null) {
                         uriArr = new Uri[]{intent.getData()};
                     }
-                    this.f45181x.onReceiveValue(uriArr);
-                    this.f45181x = null;
+                    this.f45184x.onReceiveValue(uriArr);
+                    this.f45184x = null;
                 }
                 uriArr = null;
-                this.f45181x.onReceiveValue(uriArr);
-                this.f45181x = null;
+                this.f45184x.onReceiveValue(uriArr);
+                this.f45184x = null;
             }
         } else if (i10 == NotificationCenter.onRequestPermissionResultReceived) {
             int intValue3 = ((Integer) objArr[0]).intValue();
@@ -1052,7 +1052,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f45174s) {
+        if (view == this.f45177s) {
             if (this.v) {
                 canvas.save();
                 canvas.translate(0.0f, (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
@@ -1064,18 +1064,18 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
             if (!this.v) {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                this.f45167n.a(0.0f, canvas, rectF, this);
+                this.f45170n.a(0.0f, canvas, rectF, this);
                 invalidate();
             }
             return drawChild;
-        } else if (view == this.f45159f) {
+        } else if (view == this.f45162f) {
             canvas.save();
             canvas.translate(0.0f, (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
             boolean drawChild2 = super.drawChild(canvas, view, j10);
             canvas.restore();
             return drawChild2;
         } else {
-            if (view == this.f45151a) {
+            if (view == this.f45154a) {
                 if (!AndroidUtilities.makingGlobalBlurBitmap) {
                     if (getLayerType() == 2 && !canvas.isHardwareAccelerated()) {
                         return true;
@@ -1092,18 +1092,18 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         if (this.U == null) {
             return;
         }
-        hi.y yVar = this.f45164j0;
+        hi.y yVar = this.f45167j0;
         if (yVar == null) {
-            this.f45164j0 = hi.y.c(getContext(), this.M, this.U.f22174id);
+            this.f45167j0 = hi.y.c(getContext(), this.M, this.U.f22176id);
         } else {
             yVar.h();
         }
     }
 
     public final x7 f() {
-        x0 x0Var = this.f45151a;
-        long j10 = this.f45175s0;
-        boolean z10 = this.f45176t0;
+        x0 x0Var = this.f45154a;
+        long j10 = this.f45178s0;
+        boolean z10 = this.f45179t0;
         String str = this.G0;
         ?? obj = new Object();
         obj.f9382c = this;
@@ -1119,14 +1119,14 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public BotWebViewContainer$BotWebViewProxy getBotProxy() {
-        return this.f45173r0;
+        return this.f45176r0;
     }
 
     public int getMinHeight() {
         if (getParent() instanceof n4) {
             n4 n4Var = (n4) getParent();
             if (n4Var.J) {
-                return (int) ((n4Var.getMeasuredHeight() - n4Var.getOffsetY()) + this.f45185z0);
+                return (int) ((n4Var.getMeasuredHeight() - n4Var.getOffsetY()) + this.f45188z0);
             }
             return 0;
         }
@@ -1134,7 +1134,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public String getOriginHost() {
-        x0 x0Var = this.f45151a;
+        x0 x0Var = this.f45154a;
         if (x0Var == null) {
             return null;
         }
@@ -1142,7 +1142,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public BotWebViewContainer$WebViewProxy getProxy() {
-        return this.f45177u0;
+        return this.f45180u0;
     }
 
     public String getTrustedOrigin() {
@@ -1150,38 +1150,38 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public String getUrlLoaded() {
-        return this.f45153b;
+        return this.f45156b;
     }
 
     public x0 getWebView() {
-        return this.f45151a;
+        return this.f45154a;
     }
 
     public final void h() {
         g("destroyWebView preserving=" + this.B0);
-        x0 x0Var = this.f45151a;
+        x0 x0Var = this.f45154a;
         if (x0Var != null) {
             if (x0Var.getParent() != null) {
-                removeView(this.f45151a);
+                removeView(this.f45154a);
             }
             if (!this.B0) {
-                this.f45151a.destroy();
-                K(this.f45151a);
+                this.f45154a.destroy();
+                K(this.f45154a);
             }
             this.N = false;
-            if (this.f45164j0 != null) {
-                this.f45164j0 = null;
+            if (this.f45167j0 != null) {
+                this.f45167j0 = null;
             }
             if (this.m0 != null) {
                 this.m0 = null;
             }
-            if (this.f45168n0 != null) {
-                this.f45168n0 = null;
+            if (this.f45171n0 != null) {
+                this.f45171n0 = null;
             }
-            hi.b1 b1Var = this.f45165k0;
+            hi.b1 b1Var = this.f45168k0;
             if (b1Var != null) {
                 b1Var.f12888f.remove(this.K0);
-                this.f45165k0 = null;
+                this.f45168k0 = null;
                 this.J0 = null;
             }
         }
@@ -1244,7 +1244,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public final boolean m(int i10) {
-        if (this.f45156c0 != null || (this.N0 > 0 && System.currentTimeMillis() < this.N0)) {
+        if (this.f45159c0 != null || (this.N0 > 0 && System.currentTimeMillis() < this.N0)) {
             return true;
         }
         if (this.L0 != i10 || this.M0 <= 3) {
@@ -1259,7 +1259,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         boolean z12;
         boolean z13;
         invalidate();
-        if ((this.N || z11) && (z12 = this.f45169o0) && (getParent() instanceof n4)) {
+        if ((this.N || z11) && (z12 = this.f45172o0) && (getParent() instanceof n4)) {
             n4 n4Var = (n4) getParent();
             if (z10) {
                 if (n4Var.getSwipeOffsetY() == n4Var.getTopActionBarOffsetY() + (-n4Var.getOffsetY())) {
@@ -1269,11 +1269,11 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
                 }
                 this.O = z13;
             }
-            int max = Math.max(getMinHeight(), (int) (n4Var.getTopActionBarOffsetY() + ((n4Var.getMeasuredHeight() - n4Var.getOffsetY()) - n4Var.getSwipeOffsetY()) + this.f45185z0));
-            if (z11 || max != this.f45180w0 || this.f45182x0 != z10 || this.f45184y0 != this.O) {
-                this.f45180w0 = max;
-                this.f45182x0 = z10;
-                this.f45184y0 = this.O;
+            int max = Math.max(getMinHeight(), (int) (n4Var.getTopActionBarOffsetY() + ((n4Var.getMeasuredHeight() - n4Var.getOffsetY()) - n4Var.getSwipeOffsetY()) + this.f45188z0));
+            if (z11 || max != this.f45183w0 || this.f45185x0 != z10 || this.f45187y0 != this.O) {
+                this.f45183w0 = max;
+                this.f45185x0 = z10;
+                this.f45187y0 = this.O;
                 String str = "{height:" + (max / AndroidUtilities.density) + ",is_state_stable:" + z10 + ",is_expanded:" + this.O + "}";
                 if (z12 && !q()) {
                     g("notifyEvent viewport_changed dropped for untrusted document");
@@ -1288,7 +1288,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         boolean z10;
         if (x7Var != null) {
             String str = (String) x7Var.e;
-            if (((a1) x7Var.f9382c) == this && ((x0) x7Var.d) == this.f45151a && x7Var.f9380a == this.f45175s0 && (z10 = x7Var.f9381b) == this.f45176t0) {
+            if (((a1) x7Var.f9382c) == this && ((x0) x7Var.d) == this.f45154a && x7Var.f9380a == this.f45178s0 && (z10 = x7Var.f9381b) == this.f45179t0) {
                 if (z10) {
                     if (!TextUtils.isEmpty(str) && TextUtils.equals(str, this.G0) && TextUtils.equals(str, getOriginHost())) {
                         return true;
@@ -1329,22 +1329,22 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
             i11 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
         }
         super.onMeasure(i10, i11);
-        this.f45167n.f33817f = getMeasuredWidth();
+        this.f45170n.f33820f = getMeasuredWidth();
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        if (!this.f45152a0) {
+        if (!this.f45155a0) {
             n(true, false);
         }
     }
 
     public final boolean q() {
-        if (this.f45151a == null) {
+        if (this.f45154a == null) {
             return false;
         }
-        if (this.f45176t0) {
+        if (this.f45179t0) {
             if (TextUtils.isEmpty(this.G0) || !TextUtils.equals(this.G0, getOriginHost())) {
                 return false;
             }
@@ -1367,11 +1367,11 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
         TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(j10);
         String publicUsername = UserObject.getPublicUsername(user);
-        k4 k4Var = this.f45174s;
+        k4 k4Var = this.f45177s;
         if (publicUsername != null && publicUsername.equals("DurgerKingBot")) {
             k4Var.setVisibility(0);
             k4Var.setAlpha(1.0f);
-            k4Var.g(null, null, SvgHelper.getDrawable(R.raw.durgerking_placeholder, Integer.valueOf(j(y6.f23297a7))));
+            k4Var.g(null, null, SvgHelper.getDrawable(R.raw.durgerking_placeholder, Integer.valueOf(j(y6.f23299a7))));
             setupFlickerParams(false);
             return;
         }
@@ -1413,12 +1413,12 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
             k4Var.setVisibility(0);
             k4Var.setAlpha(1.0f);
             SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(userFull.bot_info.app_settings.placeholder_svg_path, 512, 512);
-            this.f45172r = drawableByPath;
+            this.f45175r = drawableByPath;
             if (drawableByPath != null) {
-                drawableByPath.setColor(this.f45170p0);
-                this.f45172r.setupGradient(y6.Ki, u6Var, 1.0f, false);
+                drawableByPath.setColor(this.f45173p0);
+                this.f45175r.setupGradient(y6.Ki, u6Var, 1.0f, false);
             }
-            k4Var.g(null, null, this.f45172r);
+            k4Var.g(null, null, this.f45175r);
             setupFlickerParams(true);
             return;
         }
@@ -1436,12 +1436,12 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         k4Var.setVisibility(0);
         k4Var.setAlpha(1.0f);
         SvgHelper.SvgDrawable drawableByPath2 = SvgHelper.getDrawableByPath(path, 512, 512);
-        this.f45172r = drawableByPath2;
+        this.f45175r = drawableByPath2;
         if (drawableByPath2 != null) {
-            drawableByPath2.setColor(this.f45170p0);
-            this.f45172r.setupGradient(y6.Ki, u6Var, 1.0f, false);
+            drawableByPath2.setColor(this.f45173p0);
+            this.f45175r.setupGradient(y6.Ki, u6Var, 1.0f, false);
         }
-        k4Var.g(null, null, this.f45172r);
+        k4Var.g(null, null, this.f45175r);
         setupFlickerParams(true);
     }
 
@@ -1450,7 +1450,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public void setDelegate(g0 g0Var) {
-        this.f45155c = g0Var;
+        this.f45158c = g0Var;
     }
 
     public void setFlickerViewColor(int i10) {
@@ -1460,19 +1460,19 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         } else {
             b10 = y6.b(0.025f, 0.15f, i10);
         }
-        if (this.f45170p0 == b10) {
+        if (this.f45173p0 == b10) {
             return;
         }
-        this.f45170p0 = b10;
+        this.f45173p0 = b10;
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(b10, PorterDuff.Mode.SRC_IN);
-        k4 k4Var = this.f45174s;
+        k4 k4Var = this.f45177s;
         k4Var.setColorFilter(porterDuffColorFilter);
-        SvgHelper.SvgDrawable svgDrawable = this.f45172r;
+        SvgHelper.SvgDrawable svgDrawable = this.f45175r;
         if (svgDrawable != null) {
-            svgDrawable.setColor(this.f45170p0);
-            this.f45172r.setupGradient(y6.Ki, this.e, 1.0f, false);
+            svgDrawable.setColor(this.f45173p0);
+            this.f45175r.setupGradient(y6.Ki, this.e, 1.0f, false);
         }
-        this.f45171q0 = true;
+        this.f45174q0 = true;
         k4Var.invalidate();
         invalidate();
     }
@@ -1491,7 +1491,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
 
     public void setOnCloseRequestedListener(Runnable runnable) {
         this.D0 = runnable;
-        x0 x0Var = this.f45151a;
+        x0 x0Var = this.f45154a;
         if (x0Var != null) {
             x0Var.setCloseListener(runnable);
         }
@@ -1503,9 +1503,9 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
 
     public void setOpener(x0 x0Var) {
         x0 x0Var2;
-        this.f45178v0 = x0Var;
-        if (!this.f45169o0 && (x0Var2 = this.f45151a) != null) {
-            x0Var2.f45442f = x0Var;
+        this.f45181v0 = x0Var;
+        if (!this.f45172o0 && (x0Var2 = this.f45154a) != null) {
+            x0Var2.f45445f = x0Var;
         }
     }
 
@@ -1514,11 +1514,11 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public void setViewPortByMeasureSuppressed(boolean z10) {
-        this.f45152a0 = z10;
+        this.f45155a0 = z10;
     }
 
     public void setViewPortHeightOffset(float f7) {
-        this.f45185z0 = f7;
+        this.f45188z0 = f7;
     }
 
     public void setWasOpenedByBot(c5 c5Var) {
@@ -1530,12 +1530,12 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public void setWebViewProgressListener(q0.a aVar) {
-        this.f45179w = aVar;
+        this.f45182w = aVar;
     }
 
     public void setWebViewScrollListener(z0 z0Var) {
         this.d = z0Var;
-        x0 x0Var = this.f45151a;
+        x0 x0Var = this.f45154a;
         if (x0Var != null) {
             x0Var.f(this, z0Var);
         }
@@ -1544,16 +1544,16 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     public final void t(int i10, String str, boolean z10) {
         String str2;
         this.M = i10;
-        if (this.f45169o0) {
-            this.f45175s0++;
-            this.f45176t0 = z10;
+        if (this.f45172o0) {
+            this.f45178s0++;
+            this.f45179t0 = z10;
             if (z10) {
                 str2 = k(str);
             } else {
                 str2 = null;
             }
             this.G0 = str2;
-            if (this.f45151a != null) {
+            if (this.f45154a != null) {
                 V();
             }
         }
@@ -1565,20 +1565,20 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
         k4 k4Var;
         int j10;
         try {
-            if (this.f45151a != null && (j10 = j(y6.f23354d6)) != this.C0) {
+            if (this.f45154a != null && (j10 = j(y6.f23356d6)) != this.C0) {
                 this.C0 = j10;
-                this.f45151a.setBackgroundColor(j10);
+                this.f45154a.setBackgroundColor(j10);
             }
-            if (!this.f45171q0 && (k4Var = this.f45174s) != null) {
-                int i10 = this.f45170p0;
+            if (!this.f45174q0 && (k4Var = this.f45177s) != null) {
+                int i10 = this.f45173p0;
                 int i11 = y6.Ki;
                 if (i10 != j(i11)) {
                     int j11 = j(i11);
-                    this.f45170p0 = j11;
+                    this.f45173p0 = j11;
                     k4Var.setColorFilter(new PorterDuffColorFilter(j11, PorterDuff.Mode.SRC_IN));
-                    SvgHelper.SvgDrawable svgDrawable = this.f45172r;
+                    SvgHelper.SvgDrawable svgDrawable = this.f45175r;
                     if (svgDrawable != null) {
-                        svgDrawable.setColor(this.f45170p0);
+                        svgDrawable.setColor(this.f45173p0);
                     }
                     k4Var.invalidate();
                 }
@@ -1591,7 +1591,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     public final void v(x7 x7Var) {
         if (this.U != null) {
             e();
-            hi.y yVar = this.f45164j0;
+            hi.y yVar = this.f45167j0;
             if (yVar == null) {
                 return;
             }
@@ -1612,7 +1612,7 @@ public abstract class a1 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public final void y(String str, JSONObject jSONObject) {
-        if (this.f45169o0 && !q()) {
+        if (this.f45172o0 && !q()) {
             g("notifyEvent " + str + " dropped for untrusted document");
             return;
         }

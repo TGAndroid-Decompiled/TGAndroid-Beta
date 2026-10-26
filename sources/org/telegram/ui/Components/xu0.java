@@ -13,27 +13,27 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class xu0 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final org.telegram.ui.ActionBar.u6 f34821a;
-    public final org.telegram.ui.Cells.m6 f34822b;
-    public final View f34823c;
+    public final org.telegram.ui.ActionBar.u6 f34824a;
+    public final org.telegram.ui.Cells.m6 f34825b;
+    public final View f34826c;
 
     public xu0(int i10, Context context, boolean z10, org.telegram.ui.ActionBar.u6 u6Var, mp0 mp0Var) {
         super(context);
         int i11;
         int i12;
-        this.f34821a = u6Var;
+        this.f34824a = u6Var;
         org.telegram.ui.Cells.m6 m6Var = new org.telegram.ui.Cells.m6(context, u6Var);
-        this.f34822b = m6Var;
-        int i13 = org.telegram.ui.ActionBar.y6.f23446i6;
+        this.f34825b = m6Var;
+        int i13 = org.telegram.ui.ActionBar.y6.f23448i6;
         org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.w0(i13, u6Var), 2, -1);
         org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i13);
         m6Var.setBackground(g02);
         org.telegram.ui.ActionBar.f7.k(m6Var, g02, null, N, u6Var);
         addView(m6Var, gb1.g(-2.0f, -1));
         View view = new View(context);
-        this.f34823c = view;
+        this.f34826c = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i14 = org.telegram.ui.ActionBar.y6.f23354d6;
+        int i14 = org.telegram.ui.ActionBar.y6.f23356d6;
         view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.y6.o1(0.4f, org.telegram.ui.ActionBar.y6.w0(i14, u6Var)), org.telegram.ui.ActionBar.y6.w0(i14, u6Var)}));
         addView(view, gb1.g(60.0f, -1));
         fi.d dVar = new fi.d(context, u6Var, true);
@@ -56,7 +56,7 @@ public final class xu0 extends FrameLayout implements org.telegram.ui.ActionBar.
         z90Var.setTextAlignment(4);
         z90Var.setGravity(17);
         org.telegram.ui.ActionBar.f7.V(z90Var, org.telegram.ui.ActionBar.y6.G6, u6Var);
-        org.telegram.ui.ActionBar.f7.H(z90Var, org.telegram.ui.ActionBar.y6.f23538n6, u6Var);
+        org.telegram.ui.ActionBar.f7.H(z90Var, org.telegram.ui.ActionBar.y6.f23540n6, u6Var);
         z90Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
         if (z10) {
             i12 = R.string.MoreSimilarBotsText;
@@ -72,7 +72,7 @@ public final class xu0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23354d6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23356d6));
     }
 
     @Override
@@ -82,12 +82,12 @@ public final class xu0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.ActionBar.u6 u6Var = this.f34821a;
-        View view = this.f34823c;
+        org.telegram.ui.ActionBar.u6 u6Var = this.f34824a;
+        View view = this.f34826c;
         if (view != null) {
             try {
                 if (view.getBackground() instanceof GradientDrawable) {
-                    int i10 = org.telegram.ui.ActionBar.y6.f23354d6;
+                    int i10 = org.telegram.ui.ActionBar.y6.f23356d6;
                     ((GradientDrawable) view.getBackground()).setColors(new int[]{org.telegram.ui.ActionBar.y6.o1(0.4f, org.telegram.ui.ActionBar.y6.w0(i10, u6Var)), org.telegram.ui.ActionBar.y6.w0(i10, u6Var)});
                 }
             } catch (Exception e) {

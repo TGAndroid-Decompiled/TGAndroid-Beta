@@ -7,37 +7,37 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class no implements RequestDelegate {
-    public final int f41956a;
-    public final ap f41957b;
+    public final int f41959a;
+    public final ap f41960b;
 
     public no(ap apVar, int i10) {
-        this.f41956a = i10;
-        this.f41957b = apVar;
+        this.f41959a = i10;
+        this.f41960b = apVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41956a) {
+        switch (this.f41959a) {
             case 0:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new po(this.f41957b, 3));
+                    AndroidUtilities.runOnUIThread(new po(this.f41960b, 3));
                     return;
                 }
                 return;
             case 1:
-                final ap apVar = this.f41957b;
+                final ap apVar = this.f41960b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
                                 ap apVar2 = apVar;
-                                ArrayList arrayList = apVar2.f37850f0;
-                                apVar2.f37847d0 = false;
+                                ArrayList arrayList = apVar2.f37853f0;
+                                apVar2.f37850d0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && apVar2.getParentActivity() != null) {
                                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                                        apVar2.f37857n.removeView((View) arrayList.get(i10));
+                                        apVar2.f37860n.removeView((View) arrayList.get(i10));
                                     }
                                     arrayList.clear();
                                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
@@ -50,7 +50,7 @@ public final class no implements RequestDelegate {
                                         }
                                         nVar.a(chat, z10);
                                         arrayList.add(nVar);
-                                        apVar2.f37867x.addView(nVar, org.telegram.ui.Components.gb1.r(-1, 72));
+                                        apVar2.f37870x.addView(nVar, org.telegram.ui.Components.gb1.r(-1, 72));
                                     }
                                     apVar2.d0();
                                     return;
@@ -67,7 +67,7 @@ public final class no implements RequestDelegate {
                                         }
                                     }
                                 }
-                                apVar3.f37865s0 = false;
+                                apVar3.f37868s0 = false;
                                 AndroidUtilities.runOnUIThread(new po(apVar3, 4));
                                 return;
                         }
@@ -75,19 +75,19 @@ public final class no implements RequestDelegate {
                 });
                 return;
             case 2:
-                final ap apVar2 = this.f41957b;
+                final ap apVar2 = this.f41960b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
                                 ap apVar22 = apVar2;
-                                ArrayList arrayList = apVar22.f37850f0;
-                                apVar22.f37847d0 = false;
+                                ArrayList arrayList = apVar22.f37853f0;
+                                apVar22.f37850d0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && apVar22.getParentActivity() != null) {
                                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                                        apVar22.f37857n.removeView((View) arrayList.get(i10));
+                                        apVar22.f37860n.removeView((View) arrayList.get(i10));
                                     }
                                     arrayList.clear();
                                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
@@ -100,7 +100,7 @@ public final class no implements RequestDelegate {
                                         }
                                         nVar.a(chat, z10);
                                         arrayList.add(nVar);
-                                        apVar22.f37867x.addView(nVar, org.telegram.ui.Components.gb1.r(-1, 72));
+                                        apVar22.f37870x.addView(nVar, org.telegram.ui.Components.gb1.r(-1, 72));
                                     }
                                     apVar22.d0();
                                     return;
@@ -117,7 +117,7 @@ public final class no implements RequestDelegate {
                                         }
                                     }
                                 }
-                                apVar3.f37865s0 = false;
+                                apVar3.f37868s0 = false;
                                 AndroidUtilities.runOnUIThread(new po(apVar3, 4));
                                 return;
                         }
@@ -125,7 +125,7 @@ public final class no implements RequestDelegate {
                 });
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ed(24, this.f41957b, tL_error));
+                AndroidUtilities.runOnUIThread(new ed(24, this.f41960b, tL_error));
                 return;
         }
     }

@@ -26,31 +26,31 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
     public int J;
     public ValueAnimator K;
     public int L;
-    public final int f35195a;
-    public final org.telegram.ui.ActionBar.u6 f35196b;
-    public eq0 f35197c;
+    public final int f35198a;
+    public final org.telegram.ui.ActionBar.u6 f35199b;
+    public eq0 f35200c;
     public final z90 d;
     public final r6 e;
-    public final di.h3 f35198f;
+    public final di.h3 f35201f;
     public final ImageView h;
-    public boolean f35199n;
-    public final h6 f35200r;
-    public boolean f35201s;
+    public boolean f35202n;
+    public final h6 f35203r;
+    public boolean f35204s;
     public int v;
-    public long f35202w;
-    public boolean f35203x;
-    public boolean f35204y;
+    public long f35205w;
+    public boolean f35206x;
+    public boolean f35207y;
 
     public z31(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f35200r = new h6(this, 360L, ds.h);
-        this.f35201s = false;
-        this.f35203x = false;
-        this.f35204y = false;
+        this.f35203r = new h6(this, 360L, ds.h);
+        this.f35204s = false;
+        this.f35206x = false;
+        this.f35207y = false;
         this.I = org.telegram.ui.ActionBar.y6.U8;
         this.L = 0;
-        this.f35195a = i10;
-        this.f35196b = u6Var;
+        this.f35198a = i10;
+        this.f35199b = u6Var;
         setClipChildren(false);
         setClipToPadding(false);
         z90 z90Var = new z90(context, u6Var);
@@ -67,9 +67,9 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         r6Var.w(AndroidUtilities.dp(11.0f));
         r6Var.x(AndroidUtilities.bold());
         r6Var.M = AndroidUtilities.displaySize.x;
-        r6Var.f32119b = 17;
+        r6Var.f32121b = 17;
         di.h3 h3Var = new di.h3(this, context, u6Var);
-        this.f35198f = h3Var;
+        this.f35201f = h3Var;
         addView(h3Var, gb1.h(-2, -2.0f, 21, 4.66f, 0.0f, 11.0f, 0.0f));
         gb1.b(h3Var);
         h();
@@ -90,11 +90,11 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public int getTextColor() {
         float f7;
-        int i10 = org.telegram.ui.ActionBar.y6.f23765z6;
-        org.telegram.ui.ActionBar.u6 u6Var = this.f35196b;
+        int i10 = org.telegram.ui.ActionBar.y6.f23767z6;
+        org.telegram.ui.ActionBar.u6 u6Var = this.f35199b;
         int w02 = org.telegram.ui.ActionBar.y6.w0(i10, u6Var);
         int w03 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, u6Var);
-        if (this.f35203x) {
+        if (this.f35206x) {
             f7 = 1.0f;
         } else {
             f7 = this.F;
@@ -103,15 +103,15 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
     }
 
     private void setLayout(boolean z10) {
-        if (this.f35204y == z10) {
+        if (this.f35207y == z10) {
             return;
         }
-        this.f35204y = z10;
+        this.f35207y = z10;
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23765z6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23767z6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.Oh));
     }
 
@@ -119,14 +119,14 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         boolean z11;
         String str;
         setLayout(false);
-        long j11 = this.f35202w;
+        long j11 = this.f35205w;
         long j12 = tL_forumTopic.f22079id;
         if (j11 == j12) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f35202w = j12;
+        this.f35205w = j12;
         this.h.setVisibility(8);
         z90 z90Var = this.d;
         z90Var.setVisibility(0);
@@ -152,17 +152,17 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         z90Var.setText(spannableStringBuilder);
         setSelected(z10);
         h();
-        e(tL_forumTopic.unread_count, MessagesController.getInstance(this.f35195a).isDialogMuted(j10, this.f35202w), z11);
+        e(tL_forumTopic.unread_count, MessagesController.getInstance(this.f35198a).isDialogMuted(j10, this.f35205w), z11);
         boolean z12 = tL_forumTopic.pinned;
-        if (this.f35201s != z12) {
-            this.f35201s = z12;
+        if (this.f35204s != z12) {
+            this.f35204s = z12;
         }
     }
 
     public final void c() {
         setLayout(false);
-        this.f35202w = 0L;
-        this.f35203x = true;
+        this.f35205w = 0L;
+        this.f35206x = true;
         this.h.setVisibility(8);
         z90 z90Var = this.d;
         z90Var.setVisibility(0);
@@ -172,8 +172,8 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         setSelected(false);
         h();
         e(0, true, false);
-        if (this.f35201s) {
-            this.f35201s = false;
+        if (this.f35204s) {
+            this.f35204s = false;
         }
     }
 
@@ -181,8 +181,8 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         int i10;
         int i11;
         setLayout(z11);
-        this.f35202w = 0L;
-        this.f35203x = false;
+        this.f35205w = 0L;
+        this.f35206x = false;
         int i12 = 8;
         if (z10) {
             i10 = 0;
@@ -193,7 +193,7 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         imageView.setVisibility(i10);
         if (z10) {
             w31 w31Var = new w31(getContext());
-            w31Var.f34353b.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f35196b));
+            w31Var.f34356b.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f35199b));
             imageView.setImageDrawable(w31Var);
         }
         if (z10) {
@@ -211,8 +211,8 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         setSelected(z12);
         h();
         e(0, true, false);
-        if (this.f35201s) {
-            this.f35201s = false;
+        if (this.f35204s) {
+            this.f35204s = false;
         }
     }
 
@@ -220,13 +220,13 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         if (view == this.d) {
             canvas.save();
-            float e = this.f35200r.e(this.f35199n);
+            float e = this.f35203r.e(this.f35202n);
             if (e > 0.0f) {
-                if (this.f35197c == null) {
-                    this.f35197c = new eq0(this);
+                if (this.f35200c == null) {
+                    this.f35200c = new eq0(this);
                 }
                 canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                this.f35197c.a(canvas, e);
+                this.f35200c.a(canvas, e);
                 canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
             }
             boolean drawChild = super.drawChild(canvas, view, j10);
@@ -266,7 +266,7 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
             this.K.start();
         }
         this.J = i10;
-        this.f35198f.invalidate();
+        this.f35201f.invalidate();
         if (getMeasuringWidth() != getMeasuredWidth()) {
             requestLayout();
         }
@@ -274,7 +274,7 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public final void f() {
         setLayout(false);
-        this.f35202w = -1L;
+        this.f35205w = -1L;
         this.h.setVisibility(8);
         z90 z90Var = this.d;
         z90Var.setVisibility(0);
@@ -286,8 +286,8 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         setSelected(false);
         h();
         e(0, true, false);
-        if (this.f35201s) {
-            this.f35201s = false;
+        if (this.f35204s) {
+            this.f35204s = false;
         }
     }
 
@@ -295,17 +295,17 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         boolean z11;
         setLayout(true);
         long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-        if (this.f35202w == peerDialogId) {
+        if (this.f35205w == peerDialogId) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f35202w = peerDialogId;
+        this.f35205w = peerDialogId;
         this.h.setVisibility(8);
         z90 z90Var = this.d;
         z90Var.setVisibility(0);
         org.telegram.ui.j5 j5Var = this.E;
-        int i10 = this.f35195a;
+        int i10 = this.f35198a;
         if (j5Var == null) {
             org.telegram.ui.j5 j5Var2 = new org.telegram.ui.j5(z90Var, 18.0f, i10);
             this.E = j5Var2;
@@ -316,22 +316,22 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         if (userOrChat != null) {
             spannableStringBuilder.append((CharSequence) "x  ");
             org.telegram.ui.j5 j5Var3 = this.E;
-            j9 j9Var = j5Var3.f40458c;
+            j9 j9Var = j5Var3.f40461c;
             j9Var.j(j5Var3.e, userOrChat);
-            j5Var3.f40457b.setForUserOrChat(userOrChat, j9Var);
+            j5Var3.f40460b.setForUserOrChat(userOrChat, j9Var);
             spannableStringBuilder.setSpan(this.E, 0, 1, 33);
         }
         spannableStringBuilder.append((CharSequence) DialogObject.getName(peerDialogId));
         z90Var.setText(TextUtils.ellipsize(spannableStringBuilder, z90Var.getPaint(), AndroidUtilities.dp(150.0f), TextUtils.TruncateAt.END));
         setSelected(z10);
         e(tL_forumTopic.unread_count, MessagesController.getInstance(i10).isDialogMuted(j10, peerDialogId), z11);
-        if (this.f35201s) {
-            this.f35201s = false;
+        if (this.f35204s) {
+            this.f35204s = false;
         }
     }
 
     public long getTopicId() {
-        return this.f35202w;
+        return this.f35205w;
     }
 
     public final void h() {
@@ -339,7 +339,7 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         z90 z90Var = this.d;
         z90Var.setTextColor(textColor);
         z90Var.setEmojiColor(textColor);
-        this.f35198f.invalidate();
+        this.f35201f.invalidate();
     }
 
     @Override
@@ -355,7 +355,7 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
         z90 z90Var = this.d;
         z90Var.layout(dp, i16 - (z90Var.getMeasuredHeight() / 2), z90Var.getMeasuredWidth() + AndroidUtilities.dp(11.0f), (z90Var.getMeasuredHeight() / 2) + i16);
         int i17 = (this.e.d > 0.0f ? 1 : (this.e.d == 0.0f ? 0 : -1));
-        di.h3 h3Var = this.f35198f;
+        di.h3 h3Var = this.f35201f;
         if (i17 > 0) {
             h3Var.layout((i14 - AndroidUtilities.dp(11.0f)) - h3Var.getMeasuredWidth(), i16 - (h3Var.getMeasuredHeight() / 2), i14 - AndroidUtilities.dp(11.0f), (h3Var.getMeasuredHeight() / 2) + i16);
         } else {
@@ -378,7 +378,7 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
     }
 
     public void setReorder(boolean z10) {
-        this.f35199n = z10;
+        this.f35202n = z10;
         invalidate();
     }
 
@@ -411,12 +411,12 @@ public final class z31 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void updateColors() {
         try {
-            if (this.d != null && this.f35198f != null) {
+            if (this.d != null && this.f35201f != null) {
                 h();
             }
             ImageView imageView = this.h;
             if (imageView != null && (imageView.getDrawable() instanceof w31)) {
-                ((w31) imageView.getDrawable()).f34353b.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f35196b));
+                ((w31) imageView.getDrawable()).f34356b.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f35199b));
                 imageView.invalidate();
             }
         } catch (Exception e) {

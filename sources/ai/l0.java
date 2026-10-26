@@ -115,8 +115,8 @@ public final class l0 extends AnimatorListenerAdapter {
                 } else {
                     f10 = 0.0f;
                 }
-                v3Var.f44589x = f10;
-                if (!v3Var.f44585n) {
+                v3Var.f44592x = f10;
+                if (!v3Var.f44588n) {
                     v3Var.n();
                 }
                 v3Var.i();
@@ -142,8 +142,8 @@ public final class l0 extends AnimatorListenerAdapter {
                     }
                     unVar.zb(null);
                     unVar.Y8 = null;
-                    unVar.f44292j1.invalidate();
-                    unVar.f44468x0.invalidate();
+                    unVar.f44295j1.invalidate();
+                    unVar.f44471x0.invalidate();
                     return;
                 }
                 return;
@@ -167,11 +167,11 @@ public final class l0 extends AnimatorListenerAdapter {
                 } else {
                     f11 = 0.0f;
                 }
-                hn0Var.f29023r = f11;
-                hn0Var.f29027y.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f11));
-                hn0Var.f29027y.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, hn0Var.f29023r));
-                hn0Var.f29027y.setAlpha(hn0Var.f29023r);
-                hn0Var.f29024s.invalidate();
+                hn0Var.f29025r = f11;
+                hn0Var.f29029y.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f11));
+                hn0Var.f29029y.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, hn0Var.f29025r));
+                hn0Var.f29029y.setAlpha(hn0Var.f29025r);
+                hn0Var.f29026s.invalidate();
                 hn0Var.v.invalidate();
                 Runnable runnable2 = (Runnable) this.f1568c;
                 if (runnable2 != null) {
@@ -186,7 +186,7 @@ public final class l0 extends AnimatorListenerAdapter {
                 tVar2.setScaleY(1.0f);
                 tVar2.setAlpha(1.0f);
                 if (this.f1567b) {
-                    tVar.f34101x.removeView(tVar2);
+                    tVar.f34104x.removeView(tVar2);
                     tVar.e();
                 }
                 tVar2.setVisibility(8);
@@ -196,37 +196,37 @@ public final class l0 extends AnimatorListenerAdapter {
                 p30 p30Var = v50Var.C2;
                 org.telegram.ui.Components.voip.t tVar3 = (org.telegram.ui.Components.voip.t) this.f1568c;
                 if (tVar3 != null) {
-                    tVar3.f34079f = false;
+                    tVar3.f34082f = false;
                 }
-                v50Var.d.getNotificationCenter().onAnimationFinish(v50Var.f44622d3);
-                v50Var.f44618c3 = false;
+                v50Var.d.getNotificationCenter().onAnimationFinish(v50Var.f44625d3);
+                v50Var.f44621c3 = false;
                 boolean z10 = this.f1567b;
                 if (z10) {
                     f12 = 1.0f;
                 } else {
                     f12 = 0.0f;
                 }
-                v50Var.f44621d2 = f12;
-                v50Var.a2.f33914n = f12;
+                v50Var.f44624d2 = f12;
+                v50Var.a2.f33917n = f12;
                 if (!z10) {
                     v50Var.W2.setAlpha(0);
                     v50Var.b1();
-                    if (v50Var.f44625e2.getParent() != null) {
+                    if (v50Var.f44628e2.getParent() != null) {
                         viewGroup2 = ((k3) v50Var).containerView;
-                        viewGroup2.removeView(v50Var.f44625e2);
+                        viewGroup2.removeView(v50Var.f44628e2);
                     }
-                    v50Var.f44625e2 = null;
+                    v50Var.f44628e2 = null;
                     p30Var.setVisibility(8);
-                    v50Var.f44630f2 = false;
+                    v50Var.f44633f2 = false;
                     v50Var.Y.X = true;
-                    v50Var.f44612b2.setVisibility(8);
-                    if (v50Var.f44681s0) {
-                        v50Var.f44681s0 = false;
+                    v50Var.f44615b2.setVisibility(8);
+                    if (v50Var.f44684s0) {
+                        v50Var.f44684s0 = false;
                         v50Var.O0(true);
                     }
                     org.telegram.ui.Components.voip.t tVar4 = v50Var.Z2;
                     if (tVar4 != null) {
-                        tVar4.f34071a.setRoundCorners(0.0f);
+                        tVar4.f34074a.setRoundCorners(0.0f);
                     }
                 } else {
                     p30Var.setAlpha(1.0f);
@@ -238,7 +238,7 @@ public final class l0 extends AnimatorListenerAdapter {
                 v50Var.S0();
                 viewGroup = ((k3) v50Var).containerView;
                 viewGroup.invalidate();
-                v50Var.f44609b.invalidate();
+                v50Var.f44612b.invalidate();
                 v50Var.Q.invalidate();
                 return;
             case 11:
@@ -258,8 +258,8 @@ public final class l0 extends AnimatorListenerAdapter {
                 } else {
                     f13 = 0.0f;
                 }
-                xv0Var.f45884y = f13;
-                xv0Var.f45872c.invalidate();
+                xv0Var.f45887y = f13;
+                xv0Var.f45875c.invalidate();
                 xv0Var.d.invalidate();
                 xv0Var.e();
                 Runnable runnable3 = (Runnable) this.f1568c;
@@ -275,21 +275,21 @@ public final class l0 extends AnimatorListenerAdapter {
                 } else {
                     f14 = 0.0f;
                 }
-                c41Var.f38257s = f14;
-                c41Var.f38248b.invalidate();
-                c41Var.f38250c.invalidate();
+                c41Var.f38260s = f14;
+                c41Var.f38251b.invalidate();
+                c41Var.f38253c.invalidate();
                 c41Var.e();
-                TextView textView = c41Var.f38260y;
+                TextView textView = c41Var.f38263y;
                 if (textView != null) {
-                    textView.setAlpha(c41Var.f38257s);
+                    textView.setAlpha(c41Var.f38260s);
                 }
                 if (c41Var.S) {
                     c41Var.N.invalidate();
                 }
                 if (!c41Var.S && (a41Var = c41Var.N) != null && a41Var.getSeekBarWaveform() != null) {
                     pp0 seekBarWaveform = c41Var.N.getSeekBarWaveform();
-                    seekBarWaveform.L = c41Var.f38257s;
-                    org.telegram.ui.Cells.s1 s1Var2 = seekBarWaveform.f31683n;
+                    seekBarWaveform.L = c41Var.f38260s;
+                    org.telegram.ui.Cells.s1 s1Var2 = seekBarWaveform.f31685n;
                     if (s1Var2 != null) {
                         s1Var2.invalidate();
                     }
@@ -307,9 +307,9 @@ public final class l0 extends AnimatorListenerAdapter {
                 } else {
                     f15 = 0.0f;
                 }
-                id1Var.f40225x = f15;
-                id1Var.f40214b.invalidate();
-                id1Var.f40216c.invalidate();
+                id1Var.f40228x = f15;
+                id1Var.f40217b.invalidate();
+                id1Var.f40219c.invalidate();
                 id1Var.e();
                 Runnable runnable5 = (Runnable) this.f1568c;
                 if (runnable5 != null) {
@@ -319,17 +319,17 @@ public final class l0 extends AnimatorListenerAdapter {
                 return;
             default:
                 v2 v2Var = (v2) this.d;
-                bi.r rVar = v2Var.f48535c;
+                bi.r rVar = v2Var.f48538c;
                 if (this.f1567b) {
                     f16 = 1.0f;
                 } else {
                     f16 = 0.0f;
                 }
-                v2Var.f48542y = f16;
+                v2Var.f48545y = f16;
                 rVar.setAlpha(f16);
-                rVar.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, v2Var.f48542y));
-                rVar.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, v2Var.f48542y));
-                v2Var.f48534b.invalidate();
+                rVar.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, v2Var.f48545y));
+                rVar.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, v2Var.f48545y));
+                v2Var.f48537b.invalidate();
                 Runnable runnable6 = (Runnable) this.f1568c;
                 if (runnable6 != null) {
                     AndroidUtilities.runOnUIThread(runnable6);

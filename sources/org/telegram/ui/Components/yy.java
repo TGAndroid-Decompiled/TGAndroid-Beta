@@ -18,9 +18,9 @@ public final class yy extends vz {
     @Override
     public final int A() {
         sz szVar = this.Y;
-        s4.h0 adapter = szVar.f32731h0.getAdapter();
-        xy xyVar = szVar.f32737j0;
-        if (adapter == xyVar && xyVar.f34851x.isEmpty()) {
+        s4.h0 adapter = szVar.f32734h0.getAdapter();
+        xy xyVar = szVar.f32740j0;
+        if (adapter == xyVar && xyVar.f34854x.isEmpty()) {
             return 0;
         }
         return B() - 1;
@@ -31,16 +31,16 @@ public final class yy extends vz {
         ArrayList<TLRPC.DocumentAttribute> arrayList;
         TLRPC.Document document;
         sz szVar = this.Y;
-        xy xyVar = szVar.f32737j0;
-        s4.h0 adapter = szVar.f32731h0.getAdapter();
-        xy xyVar2 = szVar.f32748n0;
+        xy xyVar = szVar.f32740j0;
+        s4.h0 adapter = szVar.f32734h0.getAdapter();
+        xy xyVar2 = szVar.f32751n0;
         TLRPC.Document document2 = null;
         r4 = null;
         ArrayList<TLRPC.DocumentAttribute> arrayList2 = null;
         if (adapter == xyVar2) {
             int i11 = xyVar2.H;
             if (i10 > i11) {
-                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) xyVar2.f34851x.get((i10 - i11) - 1);
+                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) xyVar2.f34854x.get((i10 - i11) - 1);
                 document = botInlineResult.document;
                 if (document != null) {
                     arrayList2 = document.attributes;
@@ -61,12 +61,12 @@ public final class yy extends vz {
             } else if (i10 == i11) {
                 return null;
             } else {
-                document2 = (TLRPC.Document) szVar.f32735i1.get(i10);
+                document2 = (TLRPC.Document) szVar.f32738i1.get(i10);
                 arrayList = document2.attributes;
                 return G1(document2, arrayList);
             }
-        } else if (!xyVar.f34851x.isEmpty()) {
-            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) xyVar.f34851x.get(i10);
+        } else if (!xyVar.f34854x.isEmpty()) {
+            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) xyVar.f34854x.get(i10);
             document = botInlineResult2.document;
             if (document != null) {
                 arrayList2 = document.attributes;
@@ -95,18 +95,18 @@ public final class yy extends vz {
         int i10;
         int i11;
         qw0 qw0Var = this.X;
-        qw0Var.f32053b = 100.0f;
-        qw0Var.f32052a = 100.0f;
+        qw0Var.f32055b = 100.0f;
+        qw0Var.f32054a = 100.0f;
         if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i10 = closestPhotoSizeWithSize.f22052w) != 0 && (i11 = closestPhotoSizeWithSize.h) != 0) {
-            qw0Var.f32052a = i10;
-            qw0Var.f32053b = i11;
+            qw0Var.f32054a = i10;
+            qw0Var.f32055b = i11;
         }
         if (list != null) {
             for (int i12 = 0; i12 < list.size(); i12++) {
                 TLRPC.DocumentAttribute documentAttribute = (TLRPC.DocumentAttribute) list.get(i12);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    qw0Var.f32052a = documentAttribute.f22034w;
-                    qw0Var.f32053b = documentAttribute.h;
+                    qw0Var.f32054a = documentAttribute.f22034w;
+                    qw0Var.f32055b = documentAttribute.h;
                     break;
                 }
             }

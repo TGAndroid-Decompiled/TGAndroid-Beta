@@ -12,16 +12,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.vh;
 import org.telegram.ui.Components.zp;
 public final class x7 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public t7[] f25717a;
-    public MessageObject[] f25718b;
-    public int[] f25719c;
+    public t7[] f25719a;
+    public MessageObject[] f25720b;
+    public int[] f25721c;
     public u7 d;
     public int e;
-    public boolean f25720f;
+    public boolean f25722f;
     public boolean h;
-    public Paint f25721n;
-    public int f25722r;
-    public int f25723s;
+    public Paint f25723n;
+    public int f25724r;
+    public int f25725s;
 
     public static int a(int i10) {
         if (AndroidUtilities.isTablet()) {
@@ -32,8 +32,8 @@ public final class x7 extends FrameLayout implements org.telegram.ui.ActionBar.p
 
     public final void b(int i10, boolean z10, boolean z11) {
         float f7;
-        t7 t7Var = this.f25717a[i10];
-        FrameLayout frameLayout = t7Var.f25453f;
+        t7 t7Var = this.f25719a[i10];
+        FrameLayout frameLayout = t7Var.f25455f;
         zp zpVar = t7Var.e;
         if (zpVar.getVisibility() != 0) {
             zpVar.setVisibility(0);
@@ -63,10 +63,10 @@ public final class x7 extends FrameLayout implements org.telegram.ui.ActionBar.p
     }
 
     public final void c(MessageObject messageObject, int i10, int i11) {
-        t7[] t7VarArr = this.f25717a;
-        MessageObject[] messageObjectArr = this.f25718b;
+        t7[] t7VarArr = this.f25719a;
+        MessageObject[] messageObjectArr = this.f25720b;
         messageObjectArr[i10] = messageObject;
-        this.f25719c[i10] = i11;
+        this.f25721c[i10] = i11;
         if (messageObject != null) {
             t7VarArr[i10].setVisibility(0);
             t7VarArr[i10].setMessageObject(messageObject);
@@ -84,7 +84,7 @@ public final class x7 extends FrameLayout implements org.telegram.ui.ActionBar.p
     @Override
     public final void invalidate() {
         for (int i10 = 0; i10 < 6; i10++) {
-            this.f25717a[i10].invalidate();
+            this.f25719a[i10].invalidate();
         }
         super.invalidate();
     }
@@ -103,8 +103,8 @@ public final class x7 extends FrameLayout implements org.telegram.ui.ActionBar.p
     public final void onMeasure(int i10, int i11) {
         int a2;
         int dp;
-        View[] viewArr = this.f25717a;
-        if (this.f25722r == 1) {
+        View[] viewArr = this.f25719a;
+        if (this.f25724r == 1) {
             a2 = vh.C(2.0f, this.e - 1, View.MeasureSpec.getSize(i10)) / this.e;
         } else {
             a2 = a(this.e);
@@ -113,7 +113,7 @@ public final class x7 extends FrameLayout implements org.telegram.ui.ActionBar.p
         int i12 = 0;
         for (int i13 = 0; i13 < this.e; i13++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i13].getLayoutParams();
-            if (this.f25720f) {
+            if (this.f25722f) {
                 dp = 0;
             } else {
                 dp = AndroidUtilities.dp(2.0f);
@@ -134,7 +134,7 @@ public final class x7 extends FrameLayout implements org.telegram.ui.ActionBar.p
             viewArr[i13].setLayoutParams(layoutParams);
         }
         this.h = false;
-        if (!this.f25720f) {
+        if (!this.f25722f) {
             i12 = AndroidUtilities.dp(2.0f);
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i12 + a2, 1073741824));
@@ -153,12 +153,12 @@ public final class x7 extends FrameLayout implements org.telegram.ui.ActionBar.p
     }
 
     public void setIsFirst(boolean z10) {
-        this.f25720f = z10;
+        this.f25722f = z10;
     }
 
     public void setItemsCount(int i10) {
         int i11;
-        t7[] t7VarArr = this.f25717a;
+        t7[] t7VarArr = this.f25719a;
         for (int i12 = 0; i12 < t7VarArr.length; i12++) {
             t7VarArr[i12].clearAnimation();
             t7 t7Var = t7VarArr[i12];
@@ -175,7 +175,7 @@ public final class x7 extends FrameLayout implements org.telegram.ui.ActionBar.p
     @Override
     public final void updateColors() {
         try {
-            this.f25721n.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Lh, false));
+            this.f25723n.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Lh, false));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

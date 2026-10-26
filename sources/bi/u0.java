@@ -42,15 +42,15 @@ public final class u0 implements Runnable {
             if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
                 ndVar.V.setText(LocaleController.formatString("LinkAvailable", R.string.LinkAvailable, str));
                 org.telegram.ui.Cells.w1 w1Var = ndVar.V;
-                int i10 = org.telegram.ui.ActionBar.y6.f23709w6;
+                int i10 = org.telegram.ui.ActionBar.y6.f23711w6;
                 w1Var.setTag(Integer.valueOf(i10));
                 org.telegram.ui.ActionBar.f7.V(ndVar.V, i10, null);
-                ndVar.f41840a0 = true;
+                ndVar.f41843a0 = true;
                 return;
             }
             if (tL_error != null && "USERNAME_INVALID".equals(tL_error.text) && tL_channels_checkUsername.username.length() == 4) {
                 ndVar.V.setText(LocaleController.getString(R.string.UsernameInvalidShort));
-                org.telegram.ui.ActionBar.f7.V(ndVar.V, org.telegram.ui.ActionBar.y6.f23579p7, null);
+                org.telegram.ui.ActionBar.f7.V(ndVar.V, org.telegram.ui.ActionBar.y6.f23581p7, null);
             } else if (tL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text)) {
                 if (tL_channels_checkUsername.username.length() == 4) {
                     ndVar.V.setText(LocaleController.getString(R.string.UsernameInvalidShortPurchase));
@@ -59,14 +59,14 @@ public final class u0 implements Runnable {
                 }
                 org.telegram.ui.ActionBar.f7.V(ndVar.V, org.telegram.ui.ActionBar.y6.F6, null);
             } else if (tL_error != null && "CHANNELS_ADMIN_PUBLIC_TOO_MUCH".equals(tL_error.text)) {
-                org.telegram.ui.ActionBar.f7.V(ndVar.V, org.telegram.ui.ActionBar.y6.f23579p7, null);
-                ndVar.f41853k0 = false;
+                org.telegram.ui.ActionBar.f7.V(ndVar.V, org.telegram.ui.ActionBar.y6.f23581p7, null);
+                ndVar.f41856k0 = false;
                 ndVar.h0();
             } else {
-                org.telegram.ui.ActionBar.f7.V(ndVar.V, org.telegram.ui.ActionBar.y6.f23579p7, null);
+                org.telegram.ui.ActionBar.f7.V(ndVar.V, org.telegram.ui.ActionBar.y6.f23581p7, null);
                 ndVar.V.setText(LocaleController.getString(R.string.LinkInUse));
             }
-            ndVar.f41840a0 = false;
+            ndVar.f41843a0 = false;
         }
     }
 
@@ -83,9 +83,9 @@ public final class u0 implements Runnable {
         long[] jArr = {-1};
         m4.v0 v0Var = new m4.v0(jArr, zArr2, imageView, imageView2, 13);
         TLRPC.TL_messages_rateTranscribedAudio tL_messages_rateTranscribedAudio = new TLRPC.TL_messages_rateTranscribedAudio();
-        tL_messages_rateTranscribedAudio.msg_id = unVar.f44371p5.getId();
-        tL_messages_rateTranscribedAudio.peer = unVar.getMessagesController().getInputPeer(unVar.f44371p5.messageOwner.peer_id);
-        tL_messages_rateTranscribedAudio.transcription_id = unVar.f44371p5.messageOwner.voiceTranscriptionId;
+        tL_messages_rateTranscribedAudio.msg_id = unVar.f44374p5.getId();
+        tL_messages_rateTranscribedAudio.peer = unVar.getMessagesController().getInputPeer(unVar.f44374p5.messageOwner.peer_id);
+        tL_messages_rateTranscribedAudio.transcription_id = unVar.f44374p5.messageOwner.voiceTranscriptionId;
         tL_messages_rateTranscribedAudio.good = zArr2[0];
         unVar.getConnectionsManager().sendRequest(tL_messages_rateTranscribedAudio, new org.telegram.ui.ea(unVar, v0Var, jArr, 4));
         AndroidUtilities.runOnUIThread(v0Var, 150L);
@@ -96,10 +96,10 @@ public final class u0 implements Runnable {
         org.telegram.ui.ActionBar.e2[] e2VarArr = (org.telegram.ui.ActionBar.e2[]) this.e;
         MessageObject messageObject = (MessageObject) this.f5506f;
         org.telegram.ui.u5 u5Var = (org.telegram.ui.u5) this.f5504b;
-        un unVar = fnVar.f39420a;
+        un unVar = fnVar.f39423a;
         if (((TLRPC.Message) this.d).suggested_post.schedule_date == 0) {
             e2VarArr[0].setOnDismissListener(null);
-            org.telegram.ui.ActionBar.k3 k3Var = org.telegram.ui.Components.g5.S(unVar.getParentActivity(), 0L, new m4.s0(20, fnVar, messageObject), unVar.getResourceProvider(), 1).f22599a;
+            org.telegram.ui.ActionBar.k3 k3Var = org.telegram.ui.Components.g5.S(unVar.getParentActivity(), 0L, new m4.s0(20, fnVar, messageObject), unVar.getResourceProvider(), 1).f22601a;
             k3Var.show();
             k3Var.setOnDismissListener(u5Var);
             return;
@@ -113,18 +113,18 @@ public final class u0 implements Runnable {
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f5504b;
         TLObject tLObject = (TLObject) this.e;
         TLRPC.TL_channels_checkUsername tL_channels_checkUsername = (TLRPC.TL_channels_checkUsername) this.f5506f;
-        apVar.f37852h0 = 0;
-        String str2 = apVar.f37853i0;
+        apVar.f37855h0 = 0;
+        String str2 = apVar.f37856i0;
         if (str2 != null && str2.equals(str)) {
             if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
                 apVar.h.setText(LocaleController.formatString("LinkAvailable", R.string.LinkAvailable, str));
-                apVar.h.setTextColorByKey(org.telegram.ui.ActionBar.y6.f23709w6);
-                apVar.f37855k0 = true;
+                apVar.h.setTextColorByKey(org.telegram.ui.ActionBar.y6.f23711w6);
+                apVar.f37858k0 = true;
                 return;
             }
             if (tL_error != null && "USERNAME_INVALID".equals(tL_error.text) && tL_channels_checkUsername.username.length() == 4) {
                 apVar.h.setText(LocaleController.getString(R.string.UsernameInvalidShort));
-                org.telegram.ui.ActionBar.f7.V(apVar.h.getTextView(), org.telegram.ui.ActionBar.y6.f23579p7, null);
+                org.telegram.ui.ActionBar.f7.V(apVar.h.getTextView(), org.telegram.ui.ActionBar.y6.f23581p7, null);
             } else if (tL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text)) {
                 if (tL_channels_checkUsername.username.length() == 4) {
                     apVar.h.setText(LocaleController.getString(R.string.UsernameInvalidShortPurchase));
@@ -133,13 +133,13 @@ public final class u0 implements Runnable {
                 }
                 org.telegram.ui.ActionBar.f7.V(apVar.h.getTextView(), org.telegram.ui.ActionBar.y6.F6, null);
             } else if (tL_error != null && "CHANNELS_ADMIN_PUBLIC_TOO_MUCH".equals(tL_error.text)) {
-                apVar.f37846c0 = false;
+                apVar.f37849c0 = false;
                 apVar.b0();
             } else {
                 apVar.h.setText(LocaleController.getString(R.string.LinkInUse));
-                apVar.h.setTextColorByKey(org.telegram.ui.ActionBar.y6.f23579p7);
+                apVar.h.setTextColorByKey(org.telegram.ui.ActionBar.y6.f23581p7);
             }
-            apVar.f37855k0 = false;
+            apVar.f37858k0 = false;
         }
     }
 

@@ -6,15 +6,15 @@ import android.view.ViewPropertyAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class q41 extends s4.u0 {
-    public final f51 f31833a;
+    public final f51 f31835a;
 
     public q41(f51 f51Var) {
-        this.f31833a = f51Var;
+        this.f31835a = f51Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
-        f51 f51Var = this.f31833a;
+        f51 f51Var = this.f31835a;
         p41 p41Var = f51Var.M;
         if (i10 == 0) {
             f51Var.L = false;
@@ -29,7 +29,7 @@ public final class q41 extends s4.u0 {
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         ViewGroup viewGroup;
         float f7;
-        f51 f51Var = this.f31833a;
+        f51 f51Var = this.f31835a;
         viewGroup = ((org.telegram.ui.ActionBar.k3) f51Var).containerView;
         viewGroup.invalidate();
         boolean canScrollVertically = f51Var.M.canScrollVertically(1);

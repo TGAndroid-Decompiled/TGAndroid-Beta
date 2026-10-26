@@ -264,7 +264,7 @@ public final class o0 extends FrameLayout {
         try {
             rf.b f7 = f(bitmap, nVar, new za.c(28), callbackReturn);
             if (f7 != null) {
-                str = (String) f7.f47332b;
+                str = (String) f7.f47335b;
             }
             return str;
         } finally {

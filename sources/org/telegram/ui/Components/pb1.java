@@ -28,47 +28,47 @@ public final class pb1 {
     public float O;
     public float P;
     public int Q;
-    public final an0 f31519a;
-    public final float f31520b;
-    public final Handler f31521c = new Handler(Looper.getMainLooper());
+    public final an0 f31521a;
+    public final float f31522b;
+    public final Handler f31523c = new Handler(Looper.getMainLooper());
     public final Paint d;
     public final Matrix e;
-    public final float[] f31522f;
-    public final float[] f31523g;
+    public final float[] f31524f;
+    public final float[] f31525g;
     public final Path h;
-    public final RectF f31524i;
-    public final float[] f31525j;
-    public final ob1 f31526k;
-    public final ob1 f31527l;
-    public final c3.s f31528m;
-    public final ob1 f31529n;
-    public vb1 f31530o;
-    public jb1 f31531p;
-    public boolean f31532q;
-    public boolean f31533r;
-    public long f31534s;
-    public long f31535t;
-    public float f31536u;
+    public final RectF f31526i;
+    public final float[] f31527j;
+    public final ob1 f31528k;
+    public final ob1 f31529l;
+    public final c3.s f31530m;
+    public final ob1 f31531n;
+    public vb1 f31532o;
+    public jb1 f31533p;
+    public boolean f31534q;
+    public boolean f31535r;
+    public long f31536s;
+    public long f31537t;
+    public float f31538u;
     public float v;
-    public boolean f31537w;
-    public boolean f31538x;
-    public boolean f31539y;
-    public boolean f31540z;
+    public boolean f31539w;
+    public boolean f31540x;
+    public boolean f31541y;
+    public boolean f31542z;
 
     public pb1(an0 an0Var, float f7) {
         Paint paint = new Paint(1);
         this.d = paint;
         this.e = new Matrix();
-        this.f31522f = new float[9];
-        this.f31523g = new float[7];
+        this.f31524f = new float[9];
+        this.f31525g = new float[7];
         this.h = new Path();
-        this.f31524i = new RectF();
-        this.f31525j = new float[8];
-        this.f31526k = new Runnable(this) {
-            public final pb1 f31251b;
+        this.f31526i = new RectF();
+        this.f31527j = new float[8];
+        this.f31528k = new Runnable(this) {
+            public final pb1 f31253b;
 
             {
-                this.f31251b = this;
+                this.f31253b = this;
             }
 
             @Override
@@ -77,9 +77,9 @@ public final class pb1 {
                 jb1 jb1Var;
                 switch (r2) {
                     case 0:
-                        pb1 pb1Var = this.f31251b;
-                        if (pb1Var.f31537w && pb1Var.f31538x) {
-                            c3.s sVar = pb1Var.f31528m;
+                        pb1 pb1Var = this.f31253b;
+                        if (pb1Var.f31539w && pb1Var.f31540x) {
+                            c3.s sVar = pb1Var.f31530m;
                             double uptimeMillis = SystemClock.uptimeMillis();
                             long j10 = sVar.f6092a;
                             if (j10 == 0) {
@@ -93,16 +93,16 @@ public final class pb1 {
                         }
                         return;
                     case 1:
-                        this.f31251b.j(false, false, false);
+                        this.f31253b.j(false, false, false);
                         return;
                     default:
-                        pb1 pb1Var2 = this.f31251b;
-                        if (pb1Var2.f31530o != null && (jb1Var = pb1Var2.f31531p) != null) {
+                        pb1 pb1Var2 = this.f31253b;
+                        if (pb1Var2.f31532o != null && (jb1Var = pb1Var2.f31533p) != null) {
                             vb1 i10 = jb1Var.i();
-                            vb1 vb1Var = pb1Var2.f31530o;
+                            vb1 vb1Var = pb1Var2.f31532o;
                             if (i10 == vb1Var) {
-                                vb1Var.f33620a.g();
-                                pb1Var2.f31519a.j();
+                                vb1Var.f33623a.g();
+                                pb1Var2.f31521a.j();
                                 return;
                             }
                             return;
@@ -111,11 +111,11 @@ public final class pb1 {
                 }
             }
         };
-        this.f31527l = new Runnable(this) {
-            public final pb1 f31251b;
+        this.f31529l = new Runnable(this) {
+            public final pb1 f31253b;
 
             {
-                this.f31251b = this;
+                this.f31253b = this;
             }
 
             @Override
@@ -124,9 +124,9 @@ public final class pb1 {
                 jb1 jb1Var;
                 switch (r2) {
                     case 0:
-                        pb1 pb1Var = this.f31251b;
-                        if (pb1Var.f31537w && pb1Var.f31538x) {
-                            c3.s sVar = pb1Var.f31528m;
+                        pb1 pb1Var = this.f31253b;
+                        if (pb1Var.f31539w && pb1Var.f31540x) {
+                            c3.s sVar = pb1Var.f31530m;
                             double uptimeMillis = SystemClock.uptimeMillis();
                             long j10 = sVar.f6092a;
                             if (j10 == 0) {
@@ -140,16 +140,16 @@ public final class pb1 {
                         }
                         return;
                     case 1:
-                        this.f31251b.j(false, false, false);
+                        this.f31253b.j(false, false, false);
                         return;
                     default:
-                        pb1 pb1Var2 = this.f31251b;
-                        if (pb1Var2.f31530o != null && (jb1Var = pb1Var2.f31531p) != null) {
+                        pb1 pb1Var2 = this.f31253b;
+                        if (pb1Var2.f31532o != null && (jb1Var = pb1Var2.f31533p) != null) {
                             vb1 i10 = jb1Var.i();
-                            vb1 vb1Var = pb1Var2.f31530o;
+                            vb1 vb1Var = pb1Var2.f31532o;
                             if (i10 == vb1Var) {
-                                vb1Var.f33620a.g();
-                                pb1Var2.f31519a.j();
+                                vb1Var.f33623a.g();
+                                pb1Var2.f31521a.j();
                                 return;
                             }
                             return;
@@ -158,12 +158,12 @@ public final class pb1 {
                 }
             }
         };
-        this.f31528m = new Object();
-        this.f31529n = new Runnable(this) {
-            public final pb1 f31251b;
+        this.f31530m = new Object();
+        this.f31531n = new Runnable(this) {
+            public final pb1 f31253b;
 
             {
-                this.f31251b = this;
+                this.f31253b = this;
             }
 
             @Override
@@ -172,9 +172,9 @@ public final class pb1 {
                 jb1 jb1Var;
                 switch (r2) {
                     case 0:
-                        pb1 pb1Var = this.f31251b;
-                        if (pb1Var.f31537w && pb1Var.f31538x) {
-                            c3.s sVar = pb1Var.f31528m;
+                        pb1 pb1Var = this.f31253b;
+                        if (pb1Var.f31539w && pb1Var.f31540x) {
+                            c3.s sVar = pb1Var.f31530m;
                             double uptimeMillis = SystemClock.uptimeMillis();
                             long j10 = sVar.f6092a;
                             if (j10 == 0) {
@@ -188,16 +188,16 @@ public final class pb1 {
                         }
                         return;
                     case 1:
-                        this.f31251b.j(false, false, false);
+                        this.f31253b.j(false, false, false);
                         return;
                     default:
-                        pb1 pb1Var2 = this.f31251b;
-                        if (pb1Var2.f31530o != null && (jb1Var = pb1Var2.f31531p) != null) {
+                        pb1 pb1Var2 = this.f31253b;
+                        if (pb1Var2.f31532o != null && (jb1Var = pb1Var2.f31533p) != null) {
                             vb1 i10 = jb1Var.i();
-                            vb1 vb1Var = pb1Var2.f31530o;
+                            vb1 vb1Var = pb1Var2.f31532o;
                             if (i10 == vb1Var) {
-                                vb1Var.f33620a.g();
-                                pb1Var2.f31519a.j();
+                                vb1Var.f33623a.g();
+                                pb1Var2.f31521a.j();
                                 return;
                             }
                             return;
@@ -207,8 +207,8 @@ public final class pb1 {
             }
         };
         this.K = -1;
-        this.f31519a = an0Var;
-        this.f31520b = f7;
+        this.f31521a = an0Var;
+        this.f31522b = f7;
         paint.setTextSize(f7 * 14.0f);
         paint.setColor(-8355712);
     }
@@ -244,21 +244,21 @@ public final class pb1 {
 
     public final void a(int i10) {
         org.telegram.ui.Cells.s1 cell;
-        an0 an0Var = this.f31519a;
+        an0 an0Var = this.f31521a;
         if (i10 != -1) {
             this.K = i10;
             if ((i10 & 32) != 0 && !this.A) {
                 this.A = true;
-                jb1 jb1Var = this.f31531p;
+                jb1 jb1Var = this.f31533p;
                 float f7 = this.O;
                 float f10 = this.P;
                 boolean z10 = this.D;
                 int i11 = this.H;
                 int i12 = this.G;
-                yb1 yb1Var = jb1Var.f29585f;
+                yb1 yb1Var = jb1Var.f29587f;
                 if (yb1Var != null) {
-                    long j10 = yb1Var.f35014r;
-                    if (!yb1Var.f35015s && j10 != 0) {
+                    long j10 = yb1Var.f35017r;
+                    if (!yb1Var.f35018s && j10 != 0) {
                         WidgetSandboxNative.touch(j10, 3, f7, f10, 0, true, z10, i11, i12);
                     }
                 }
@@ -271,7 +271,7 @@ public final class pb1 {
                         cell.performHapticFeedback(0);
                     } catch (Exception unused) {
                     }
-                    cell.Jc.j0(cell, cell.f25099g1, cell.f25112h1);
+                    cell.Jc.j0(cell, cell.f25101g1, cell.f25114h1);
                 }
             } else if (i13 == 1 && n() && !this.C) {
                 if (this.B) {
@@ -288,28 +288,28 @@ public final class pb1 {
             return;
         }
         this.E = false;
-        jb1 jb1Var = this.f31531p;
-        if (jb1Var != null && !this.f31533r) {
+        jb1 jb1Var = this.f31533p;
+        if (jb1Var != null && !this.f31535r) {
             float f7 = this.I;
             float f10 = this.J;
-            yb1 yb1Var = jb1Var.f29585f;
+            yb1 yb1Var = jb1Var.f29587f;
             if (yb1Var != null) {
-                long j10 = yb1Var.f35014r;
-                if (!yb1Var.f35015s && j10 != 0) {
+                long j10 = yb1Var.f35017r;
+                if (!yb1Var.f35018s && j10 != 0) {
                     WidgetSandboxNative.hover(j10, 1, f7, f10, 0);
                 }
             }
         }
-        this.f31519a.o("auto");
+        this.f31521a.o("auto");
     }
 
     public final void c() {
-        ob1 ob1Var = this.f31526k;
-        Handler handler = this.f31521c;
+        ob1 ob1Var = this.f31528k;
+        Handler handler = this.f31523c;
         handler.removeCallbacks(ob1Var);
-        handler.removeCallbacks(this.f31527l);
-        this.f31537w = false;
-        this.f31538x = false;
+        handler.removeCallbacks(this.f31529l);
+        this.f31539w = false;
+        this.f31540x = false;
     }
 
     public final void d() {
@@ -318,17 +318,17 @@ public final class pb1 {
             this.F = false;
             this.A = true;
         }
-        if (this.f31537w && !this.A && (jb1Var = this.f31531p) != null) {
+        if (this.f31539w && !this.A && (jb1Var = this.f31533p) != null) {
             this.A = true;
             float f7 = this.O;
             float f10 = this.P;
             boolean z10 = this.D;
             int i10 = this.H;
             int i11 = this.G;
-            yb1 yb1Var = jb1Var.f29585f;
+            yb1 yb1Var = jb1Var.f29587f;
             if (yb1Var != null) {
-                long j10 = yb1Var.f35014r;
-                if (!yb1Var.f35015s && j10 != 0) {
+                long j10 = yb1Var.f35017r;
+                if (!yb1Var.f35018s && j10 != 0) {
                     WidgetSandboxNative.touch(j10, 3, f7, f10, 0, true, z10, i10, i11);
                 }
             }
@@ -338,17 +338,17 @@ public final class pb1 {
     public final void e() {
         if (this.F) {
             this.F = false;
-            jb1 jb1Var = this.f31531p;
+            jb1 jb1Var = this.f31533p;
             if (jb1Var != null) {
                 float f7 = this.M;
                 float f10 = this.N;
                 boolean z10 = this.D;
                 int i10 = this.H;
                 int i11 = this.G;
-                yb1 yb1Var = jb1Var.f29585f;
+                yb1 yb1Var = jb1Var.f29587f;
                 if (yb1Var != null) {
-                    long j10 = yb1Var.f35014r;
-                    if (!yb1Var.f35015s && j10 != 0) {
+                    long j10 = yb1Var.f35017r;
+                    if (!yb1Var.f35018s && j10 != 0) {
                         WidgetSandboxNative.touch(j10, 0, f7, f10, 0, true, z10, i10, i11);
                     }
                 }
@@ -360,7 +360,7 @@ public final class pb1 {
         if (!this.C) {
             this.C = true;
             if (this.B) {
-                this.f31519a.requestDisallowParentIntercept(false);
+                this.f31521a.requestDisallowParentIntercept(false);
             }
         }
     }
@@ -368,14 +368,14 @@ public final class pb1 {
     public final void g() {
         if (!this.B && !this.C) {
             this.B = true;
-            this.f31519a.requestDisallowParentIntercept(true);
+            this.f31521a.requestDisallowParentIntercept(true);
         }
     }
 
     public final float h(float f7) {
         int i10;
         if (LocaleController.isRTL && (i10 = this.Q) > 0) {
-            return (i10 / this.f31520b) - f7;
+            return (i10 / this.f31522b) - f7;
         }
         return f7;
     }
@@ -384,15 +384,15 @@ public final class pb1 {
         boolean z13;
         boolean z14;
         int arbiterMove;
-        if (this.f31537w && !this.f31538x) {
-            this.f31521c.removeCallbacks(this.f31526k);
-            this.f31538x = true;
+        if (this.f31539w && !this.f31540x) {
+            this.f31523c.removeCallbacks(this.f31528k);
+            this.f31540x = true;
             double d = this.L;
             double h = h(this.M);
             double d10 = this.N;
             boolean z15 = this.D;
             int i10 = this.G;
-            c3.s sVar = this.f31528m;
+            c3.s sVar = this.f31530m;
             if (sVar.f6092a == 0) {
                 sVar.f6092a = WidgetSandboxNative.arbiterCreate();
             }
@@ -408,11 +408,11 @@ public final class pb1 {
             } else {
                 z14 = false;
             }
-            this.f31539y = z14;
+            this.f31541y = z14;
             if (z12 && !z13) {
                 z16 = true;
             }
-            this.f31540z = z16;
+            this.f31542z = z16;
             a(arbiterDown);
             if (this.O != this.M || this.P != this.N) {
                 double uptimeMillis = SystemClock.uptimeMillis();
@@ -426,12 +426,12 @@ public final class pb1 {
                 }
                 a(arbiterMove);
             }
-            if (!this.f31539y && !this.f31540z && !this.D) {
+            if (!this.f31541y && !this.f31542z && !this.D) {
                 f();
             } else {
                 g();
-                if ((this.f31539y || this.D) && !this.C) {
-                    this.f31519a.requestDisallowParentIntercept(true);
+                if ((this.f31541y || this.D) && !this.C) {
+                    this.f31521a.requestDisallowParentIntercept(true);
                 }
             }
             o();
@@ -441,20 +441,20 @@ public final class pb1 {
     public final void k(MotionEvent motionEvent, boolean z10) {
         jb1 jb1Var;
         yb1 yb1Var;
-        float f7 = this.f31520b;
+        float f7 = this.f31522b;
         int actionMasked = motionEvent.getActionMasked();
-        if (z10 && actionMasked != 10 && (jb1Var = this.f31531p) != null && !this.f31533r && (yb1Var = jb1Var.f29585f) != null && yb1Var.f35020y) {
+        if (z10 && actionMasked != 10 && (jb1Var = this.f31533p) != null && !this.f31535r && (yb1Var = jb1Var.f29587f) != null && yb1Var.f35023y) {
             this.E = true;
             this.I = motionEvent.getX() / f7;
             float y3 = motionEvent.getY() / f7;
             this.J = y3;
-            jb1 jb1Var2 = this.f31531p;
+            jb1 jb1Var2 = this.f31533p;
             float f10 = this.I;
             int i10 = i(motionEvent);
-            yb1 yb1Var2 = jb1Var2.f29585f;
+            yb1 yb1Var2 = jb1Var2.f29587f;
             if (yb1Var2 != null) {
-                long j10 = yb1Var2.f35014r;
-                if (!yb1Var2.f35015s && j10 != 0) {
+                long j10 = yb1Var2.f35017r;
+                if (!yb1Var2.f35018s && j10 != 0) {
                     WidgetSandboxNative.hover(j10, 0, f10, y3, i10);
                     return;
                 }
@@ -467,24 +467,24 @@ public final class pb1 {
 
     public final void l(boolean z10) {
         vb1 vb1Var;
-        an0 an0Var = this.f31519a;
+        an0 an0Var = this.f31521a;
         if (z10) {
-            wa0 wa0Var = an0Var.f26583w;
+            wa0 wa0Var = an0Var.f26585w;
             AndroidUtilities.cancelRunOnUIThread(wa0Var);
             if (!an0Var.v) {
-                yb1 yb1Var = an0Var.f26577b.f29585f;
-                if (yb1Var != null && (vb1Var = yb1Var.D) != null && (vb1Var.f33624g || yb1Var.v)) {
+                yb1 yb1Var = an0Var.f26579b.f29587f;
+                if (yb1Var != null && (vb1Var = yb1Var.D) != null && (vb1Var.f33627g || yb1Var.v)) {
                     an0Var.v = true;
-                    an0Var.f26582s = SystemClock.uptimeMillis();
-                    if (an0Var.h() != an0Var.f26584x) {
+                    an0Var.f26584s = SystemClock.uptimeMillis();
+                    if (an0Var.h() != an0Var.f26586x) {
                         an0Var.m("on screen, loaded", true);
                     }
                 } else {
                     AndroidUtilities.runOnUIThread(wa0Var, 1500L);
                 }
-            } else if (SystemClock.uptimeMillis() - an0Var.f26582s < 1500) {
+            } else if (SystemClock.uptimeMillis() - an0Var.f26584s < 1500) {
                 AndroidUtilities.runOnUIThread(wa0Var, 200L);
-            } else if (an0Var.h() != an0Var.f26584x) {
+            } else if (an0Var.h() != an0Var.f26586x) {
                 an0Var.m("on screen", true);
             }
         }
@@ -509,39 +509,39 @@ public final class pb1 {
 
     public final void o() {
         double arbiterHoldDeadline;
-        Handler handler = this.f31521c;
-        ob1 ob1Var = this.f31527l;
+        Handler handler = this.f31523c;
+        ob1 ob1Var = this.f31529l;
         handler.removeCallbacks(ob1Var);
-        long j10 = this.f31528m.f6092a;
+        long j10 = this.f31530m.f6092a;
         if (j10 == 0) {
             arbiterHoldDeadline = -1.0d;
         } else {
             arbiterHoldDeadline = WidgetSandboxNative.arbiterHoldDeadline(j10);
         }
-        if (this.f31537w && arbiterHoldDeadline >= 0.0d) {
+        if (this.f31539w && arbiterHoldDeadline >= 0.0d) {
             handler.postDelayed(ob1Var, Math.max(0L, ((long) Math.ceil(arbiterHoldDeadline)) - SystemClock.uptimeMillis()));
         }
     }
 
     public final void p() {
-        if (this.f31531p != null) {
-            if (this.f31533r) {
-                this.f31533r = false;
-                this.f31531p = null;
+        if (this.f31533p != null) {
+            if (this.f31535r) {
+                this.f31535r = false;
+                this.f31533p = null;
                 return;
             }
             d();
             b();
-            this.f31531p.k(false);
-            jb1 jb1Var = this.f31531p;
+            this.f31533p.k(false);
+            jb1 jb1Var = this.f31533p;
             if (jb1Var.h == this) {
                 jb1Var.h = null;
             }
-            this.f31531p = null;
-            this.f31521c.removeCallbacks(this.f31529n);
-            this.f31530o = null;
+            this.f31533p = null;
+            this.f31523c.removeCallbacks(this.f31531n);
+            this.f31532o = null;
             c();
-            c3.s sVar = this.f31528m;
+            c3.s sVar = this.f31530m;
             long j10 = sVar.f6092a;
             if (j10 == 0) {
                 return;

@@ -24,17 +24,17 @@ import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.c6;
 import org.telegram.ui.Components.r5;
 public final class z4 extends View {
-    public final j7 f53368a;
-    public final u6 f53369b;
-    public float f53370c;
+    public final j7 f53371a;
+    public final u6 f53372b;
+    public float f53373c;
     public float d;
     public Drawable e;
 
     public z4(Context context, int i10, u6 u6Var) {
         super(context);
-        this.f53369b = u6Var;
+        this.f53372b = u6Var;
         j7 j7Var = new j7(i10, this, u6Var);
-        this.f53368a = j7Var;
+        this.f53371a = j7Var;
         j7Var.f4895y.setCallback(this);
         NotificationCenter.listenEmojiLoading(this);
     }
@@ -42,7 +42,7 @@ public final class z4 extends View {
     public final void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z10) {
         float dp;
         float f7;
-        j7 j7Var = this.f53368a;
+        j7 j7Var = this.f53371a;
         r5 r5Var = j7Var.e;
         j1 j1Var = j7Var.f4881j;
         ImageReceiver imageReceiver = j7Var.d;
@@ -73,11 +73,11 @@ public final class z4 extends View {
         boolean z11 = tL_starGiftUnique.burned;
         j7Var.L = z11;
         if (z11) {
-            int w02 = y6.w0(y6.f23596q7, j7Var.f4877c);
-            Paint paint2 = (Paint) j1Var.f27243b;
+            int w02 = y6.w0(y6.f23598q7, j7Var.f4877c);
+            Paint paint2 = (Paint) j1Var.f27245b;
             paint2.setShader(null);
             paint2.setColor(w02);
-            j7Var.M = f7.f22626b;
+            j7Var.M = f7.f22628b;
             j1Var.f(11, LocaleController.getString(R.string.Gift2UniqueRibbonBurned), true);
         } else {
             j1Var.e(j7Var.f4882k, true, false);
@@ -119,26 +119,26 @@ public final class z4 extends View {
     }
 
     public j7 getLayout() {
-        return this.f53368a;
+        return this.f53371a;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f53368a.a();
+        this.f53371a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        j7 j7Var = this.f53368a;
+        j7 j7Var = this.f53371a;
         j7Var.S = false;
         j7Var.d.onDetachedFromWindow();
         j7Var.e.b();
         j0 j0Var = j7Var.f4895y;
         j0Var.d.onDetachedFromWindow();
-        c6.release((View) null, j0Var.f53062q);
-        j0Var.f53062q = null;
+        c6.release((View) null, j0Var.f53065q);
+        j0Var.f53065q = null;
     }
 
     @Override
@@ -149,14 +149,14 @@ public final class z4 extends View {
         } else {
             i10 = 0;
         }
-        u6 u6Var = this.f53369b;
+        u6 u6Var = this.f53372b;
         if (u6Var != null) {
             u6Var.b(0.0f, getY(), getMeasuredWidth(), i10);
         } else {
             y6.q(0.0f, getY(), getMeasuredWidth(), i10);
         }
-        j7 j7Var = this.f53368a;
-        this.f53370c = (getWidth() - ((int) j7Var.T.f19334f)) / 2.0f;
+        j7 j7Var = this.f53371a;
+        this.f53373c = (getWidth() - ((int) j7Var.T.f19334f)) / 2.0f;
         float dp = j7Var.T.f19334f + AndroidUtilities.dp(8.0f);
         float width = (getWidth() - dp) / 2.0f;
         float dp2 = this.d - AndroidUtilities.dp(4.0f);
@@ -167,7 +167,7 @@ public final class z4 extends View {
         this.e.setBounds(rect);
         this.e.draw(canvas);
         canvas.save();
-        canvas.translate(this.f53370c, this.d);
+        canvas.translate(this.f53373c, this.d);
         j7Var.b(canvas);
         j7Var.c(canvas);
         canvas.restore();
@@ -176,8 +176,8 @@ public final class z4 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        j7 j7Var = this.f53368a;
-        this.f53370c = (size - ((int) j7Var.T.f19334f)) / 2.0f;
+        j7 j7Var = this.f53371a;
+        this.f53373c = (size - ((int) j7Var.T.f19334f)) / 2.0f;
         float paddingTop = getPaddingTop();
         this.d = paddingTop;
         setMeasuredDimension(size, getPaddingBottom() + ((int) paddingTop) + j7Var.P);
@@ -185,7 +185,7 @@ public final class z4 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f53368a.e(this.f53370c, this.d, motionEvent);
+        return this.f53371a.e(this.f53373c, this.d, motionEvent);
     }
 
     public void setLayoutBackground(Drawable drawable) {
@@ -195,7 +195,7 @@ public final class z4 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f53368a.f4895y) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f53371a.f4895y) {
             return false;
         }
         return true;

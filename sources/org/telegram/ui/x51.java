@@ -5,18 +5,18 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class x51 extends AnimatorListenerAdapter {
-    public final boolean f45656a;
-    public final Runnable f45657b;
-    public final boolean[] f45658c;
+    public final boolean f45659a;
+    public final Runnable f45660b;
+    public final boolean[] f45661c;
     public final boolean d;
     public final Runnable e;
-    public final y51 f45659f;
+    public final y51 f45662f;
 
     public x51(y51 y51Var, boolean z10, Runnable runnable, boolean[] zArr, boolean z11, Runnable runnable2) {
-        this.f45659f = y51Var;
-        this.f45656a = z10;
-        this.f45657b = runnable;
-        this.f45658c = zArr;
+        this.f45662f = y51Var;
+        this.f45659a = z10;
+        this.f45660b = runnable;
+        this.f45661c = zArr;
         this.d = z11;
         this.e = runnable2;
     }
@@ -25,22 +25,22 @@ public final class x51 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         float f7;
         Runnable runnable;
-        y51 y51Var = this.f45659f;
-        k0 k0Var = y51Var.f45962s;
-        boolean z10 = this.f45656a;
+        y51 y51Var = this.f45662f;
+        k0 k0Var = y51Var.f45965s;
+        boolean z10 = this.f45659a;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         y51Var.I = f7;
-        AndroidUtilities.lerp(y51Var.f45958c, y51Var.d, f7, y51Var.e);
+        AndroidUtilities.lerp(y51Var.f45961c, y51Var.d, f7, y51Var.e);
         k0Var.invalidate();
         if (!z10) {
             y51Var.v.setAlpha(y51Var.I);
         }
-        if (y51Var.I < 0.5f && !z10 && (runnable = this.f45657b) != null) {
-            boolean[] zArr = this.f45658c;
+        if (y51Var.I < 0.5f && !z10 && (runnable = this.f45660b) != null) {
+            boolean[] zArr = this.f45661c;
             if (!zArr[0]) {
                 zArr[0] = true;
                 runnable.run();
@@ -48,8 +48,8 @@ public final class x51 extends AnimatorListenerAdapter {
         }
         if (!z10) {
             if (this.d) {
-                y51Var.f45956a.f41139b = false;
-                y51Var.P.f38296h0.invalidate();
+                y51Var.f45959a.f41142b = false;
+                y51Var.P.f38299h0.invalidate();
             }
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
         }

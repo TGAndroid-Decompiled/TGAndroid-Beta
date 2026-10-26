@@ -3,10 +3,10 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class xn0 implements no0 {
-    public final po0 f45814a;
+    public final po0 f45817a;
 
     public xn0(po0 po0Var) {
-        this.f45814a = po0Var;
+        this.f45817a = po0Var;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class xn0 implements no0 {
 
     @Override
     public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        po0 po0Var = this.f45814a;
+        po0 po0Var = this.f45817a;
         po0Var.I0 = tL_payments_validateRequestedInfo;
         po0Var.C0(tL_payments_validateRequestedInfo.info);
     }

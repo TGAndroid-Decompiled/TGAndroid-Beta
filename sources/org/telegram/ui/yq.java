@@ -3,15 +3,15 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class yq implements dr {
-    public final kr f46090a;
+    public final kr f46093a;
 
     public yq(kr krVar) {
-        this.f46090a = krVar;
+        this.f46093a = krVar;
     }
 
     @Override
     public final void c(long j10, TLObject tLObject) {
-        kr krVar = this.f46090a;
+        kr krVar = this.f46093a;
         if (krVar.J.f(j10) == null) {
             er x02 = krVar.x0();
             krVar.E.add(tLObject);
@@ -23,7 +23,7 @@ public final class yq implements dr {
 
     @Override
     public final void d(long j10) {
-        kr krVar = this.f46090a;
+        kr krVar = this.f46093a;
         if (krVar.J.f(j10) == null) {
             er x02 = krVar.x0();
             TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
@@ -38,7 +38,7 @@ public final class yq implements dr {
             }
             tL_channelParticipantBanned.date = krVar.getConnectionsManager().getCurrentTime();
             tL_channelParticipantBanned.kicked_by = krVar.getAccountInstance().getUserConfig().clientUserId;
-            krVar.f41038r.kicked_count++;
+            krVar.f41041r.kicked_count++;
             krVar.E.add(tL_channelParticipantBanned);
             krVar.J.k(tL_channelParticipantBanned, j10);
             krVar.A0(krVar.E);

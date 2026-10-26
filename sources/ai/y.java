@@ -71,7 +71,7 @@ public abstract class y extends FrameLayout implements NotificationCenter.Notifi
         mm0Var.setLayoutManager(tVar);
         pl0 pl0Var = new pl0(mm0Var, tVar);
         this.f1973f = pl0Var;
-        pl0Var.f31599i = new m(x0Var, 0);
+        pl0Var.f31601i = new m(x0Var, 0);
         mm0Var.setAdapter(pVar);
         mm0Var.setSelectorDrawableColor(0);
         mm0Var.setOnItemClickListener(new k(w0Var, 0));

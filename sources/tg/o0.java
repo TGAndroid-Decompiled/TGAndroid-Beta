@@ -6,23 +6,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.gq;
 import org.telegram.ui.Components.s6;
 public final class o0 extends s6 {
-    public final int f48970s;
+    public final int f48973s;
     public final p0 v;
 
     public o0(p0 p0Var, Context context, int i10) {
         super(context, true, true, true);
-        this.f48970s = i10;
+        this.f48973s = i10;
         this.v = p0Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f48970s) {
+        switch (this.f48973s) {
             case 0:
                 p0 p0Var = this.v;
                 if (p0Var.O > 0.0f) {
                     if (p0Var.N == null) {
-                        p0Var.N = new gq(p0Var.f48978f.getTextColor());
+                        p0Var.N = new gq(p0Var.f48981f.getTextColor());
                     }
                     int dp = (int) ((1.0f - p0Var.O) * AndroidUtilities.dp(24.0f));
                     p0Var.N.setBounds(0, dp, getWidth(), getHeight() + dp);
@@ -48,7 +48,7 @@ public final class o0 extends s6 {
                 p0 p0Var2 = this.v;
                 if (p0Var2.O > 0.0f) {
                     if (p0Var2.N == null) {
-                        p0Var2.N = new gq(p0Var2.f48978f.getTextColor());
+                        p0Var2.N = new gq(p0Var2.f48981f.getTextColor());
                     }
                     int dp2 = (int) ((1.0f - p0Var2.O) * AndroidUtilities.dp(24.0f));
                     p0Var2.N.setBounds(0, dp2, getWidth(), getHeight() + dp2);

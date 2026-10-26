@@ -30,20 +30,20 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
     public int L;
     public float M;
     public final kw N;
-    public Long f28721a;
-    public boolean f28722b;
-    public final boolean f28723c;
+    public Long f28723a;
+    public boolean f28724b;
+    public final boolean f28725c;
     public final y9 d;
     public final xj0 e;
-    public final tg.c1 f28724f;
+    public final tg.c1 f28726f;
     public final boolean h;
-    public final boolean f28725n;
-    public Long f28726r;
-    public TLRPC.Document f28727s;
+    public final boolean f28727n;
+    public Long f28728r;
+    public TLRPC.Document f28729s;
     public ey v;
-    public t5 f28728w;
-    public boolean f28729x;
-    public boolean f28730y;
+    public t5 f28730w;
+    public boolean f28731x;
+    public boolean f28732y;
 
     public gw(kw kwVar, Context context, int i10) {
         super(context);
@@ -51,7 +51,7 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
         setFocusable(true);
         this.M = -1.0f;
         this.h = true;
-        this.f28725n = false;
+        this.f28727n = false;
         setBackground(org.telegram.ui.ActionBar.y6.N(kwVar.k(), 0, 0));
         xj0 xj0Var = new xj0(i10, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), false, null);
         this.e = xj0Var;
@@ -70,7 +70,7 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
         }
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
         y9 y9Var = this.d;
-        if (y9Var != null && !this.f28723c) {
+        if (y9Var != null && !this.f28725c) {
             y9Var.setColorFilter(porterDuffColorFilter);
             y9Var.invalidate();
         }
@@ -82,7 +82,7 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
     }
 
     public final void a(Boolean bool) {
-        tg.c1 c1Var = this.f28724f;
+        tg.c1 c1Var = this.f28726f;
         if (c1Var == null) {
             return;
         }
@@ -110,8 +110,8 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
 
     public final void b() {
         di.f3 f3Var;
-        t5 t5Var = this.f28728w;
-        if (t5Var != null && (f3Var = t5Var.f32849k) != null) {
+        t5 t5Var = this.f28730w;
+        if (t5Var != null && (f3Var = t5Var.f32852k) != null) {
             if (f3Var.getLottieAnimation() != null) {
                 f3Var.getLottieAnimation().M(0);
                 f3Var.getLottieAnimation().stop();
@@ -126,28 +126,28 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
         if (y9Var == null) {
             return;
         }
-        if (this.f28729x && this.f28730y) {
-            t5 t5Var = this.f28728w;
-            if (t5Var == null && (this.f28727s != null || this.f28726r != null)) {
+        if (this.f28731x && this.f28732y) {
+            t5 t5Var = this.f28730w;
+            if (t5Var == null && (this.f28729s != null || this.f28728r != null)) {
                 y9Var.b();
-                TLRPC.Document document = this.f28727s;
+                TLRPC.Document document = this.f28729s;
                 kw kwVar = this.N;
                 if (document != null) {
-                    this.f28728w = t5.m(UserConfig.selectedAccount, kwVar.S, document);
+                    this.f28730w = t5.m(UserConfig.selectedAccount, kwVar.S, document);
                 } else {
-                    this.f28728w = t5.n(UserConfig.selectedAccount, this.f28726r.longValue(), null, kwVar.S);
+                    this.f28730w = t5.n(UserConfig.selectedAccount, this.f28728r.longValue(), null, kwVar.S);
                 }
-                this.f28728w.a(y9Var);
-                y9Var.setImageDrawable(this.f28728w);
+                this.f28730w.a(y9Var);
+                y9Var.setImageDrawable(this.f28730w);
             } else {
                 if (t5Var != null) {
                     t5Var.o(y9Var);
-                    this.f28728w = null;
+                    this.f28730w = null;
                 }
                 y9Var.b();
                 ey eyVar = this.v;
                 if (eyVar != null) {
-                    this.d.i(ImageLocation.getForStickerSet(eyVar.f28006b), "24_24", null, null, this.v);
+                    this.d.i(ImageLocation.getForStickerSet(eyVar.f28008b), "24_24", null, null, this.v);
                     if (this.v.d != null) {
                         MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSet(this.v.d, false);
                         this.v.d = null;
@@ -155,14 +155,14 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
                 }
             }
         } else {
-            t5 t5Var2 = this.f28728w;
+            t5 t5Var2 = this.f28730w;
             if (t5Var2 != null) {
                 t5Var2.o(y9Var);
-                this.f28728w = null;
+                this.f28730w = null;
             }
             y9Var.b();
         }
-        if (this.f28729x && this.f28730y) {
+        if (this.f28731x && this.f28732y) {
             y9Var.onAttachedToWindow();
         } else {
             y9Var.onDetachedFromWindow();
@@ -187,14 +187,14 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         xj0 xj0Var = this.e;
-        if (xj0Var != null && this.f28730y) {
+        if (xj0Var != null && this.f28732y) {
             xj0Var.draw(canvas);
         }
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (!this.f28730y) {
+        if (!this.f28732y) {
             return true;
         }
         return super.drawChild(canvas, view, j10);
@@ -217,7 +217,7 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
             f11 = 1.0f;
         }
         this.F = f11;
-        tg.c1 c1Var = this.f28724f;
+        tg.c1 c1Var = this.f28726f;
         c1Var.setScaleX(f11);
         c1Var.setScaleY(this.F);
         c1Var.setAlpha(this.F);
@@ -230,14 +230,14 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
     }
 
     public final void f() {
-        tg.c1 c1Var = this.f28724f;
+        tg.c1 c1Var = this.f28726f;
         if (c1Var != null && !c1Var.h && (getDrawable() instanceof t5)) {
             if (((t5) getDrawable()).c()) {
                 c1Var.setImageReceiver(null);
                 c1Var.setColor(this.N.Q);
                 return;
             }
-            di.f3 f3Var = ((t5) getDrawable()).f32849k;
+            di.f3 f3Var = ((t5) getDrawable()).f32852k;
             if (f3Var != null) {
                 c1Var.setImageReceiver(f3Var);
                 c1Var.invalidate();
@@ -307,20 +307,20 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f28729x = true;
+        this.f28731x = true;
         c();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f28729x = false;
+        this.f28731x = false;
         c();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (!this.f28730y) {
+        if (!this.f28732y) {
             return;
         }
         super.onDraw(canvas);
@@ -335,14 +335,14 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
         String contentDescription = accessibilityNodeInfo.getContentDescription();
         if (contentDescription == null) {
             ey eyVar = this.v;
-            if (eyVar != null && (stickerSet = eyVar.f28006b) != null && (str = stickerSet.title) != null) {
+            if (eyVar != null && (stickerSet = eyVar.f28008b) != null && (str = stickerSet.title) != null) {
                 contentDescription = str;
             } else {
-                TLRPC.Document document = this.f28727s;
+                TLRPC.Document document = this.f28729s;
                 if (document != null) {
                     contentDescription = MessageObject.findAnimatedEmojiEmoticon(document, null);
                 } else {
-                    Long l4 = this.f28726r;
+                    Long l4 = this.f28728r;
                     if (l4 != null && (f7 = t5.f(UserConfig.selectedAccount, l4.longValue())) != null) {
                         contentDescription = MessageObject.findAnimatedEmojiEmoticon(f7, null);
                     }
@@ -372,7 +372,7 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
             int i15 = (i13 - i11) / 2;
             y9Var.layout(i14 - (y9Var.getMeasuredWidth() / 2), i15 - (y9Var.getMeasuredHeight() / 2), (y9Var.getMeasuredWidth() / 2) + i14, (y9Var.getMeasuredHeight() / 2) + i15);
         }
-        tg.c1 c1Var = this.f28724f;
+        tg.c1 c1Var = this.f28726f;
         if (c1Var != null) {
             int i16 = i12 - i10;
             int i17 = i13 - i11;
@@ -387,7 +387,7 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
         if (y9Var != null) {
             y9Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
         }
-        tg.c1 c1Var = this.f28724f;
+        tg.c1 c1Var = this.f28726f;
         if (c1Var != null) {
             c1Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
         }
@@ -396,8 +396,8 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final boolean performClick() {
         di.f3 f3Var;
-        t5 t5Var = this.f28728w;
-        if (t5Var != null && (f3Var = t5Var.f32849k) != null) {
+        t5 t5Var = this.f28730w;
+        if (t5Var != null && (f3Var = t5Var.f32852k) != null) {
             if (f3Var.getAnimation() != null) {
                 f3Var.getAnimation().y(0L, true, false);
             }
@@ -408,9 +408,9 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
 
     public void setAnimatedEmojiDocument(TLRPC.Document document) {
         long j10;
-        TLRPC.Document document2 = this.f28727s;
-        if ((document2 != null || this.f28726r != null) && document != null) {
-            Long l4 = this.f28726r;
+        TLRPC.Document document2 = this.f28729s;
+        if ((document2 != null || this.f28728r != null) && document != null) {
+            Long l4 = this.f28728r;
             if (l4 != null) {
                 j10 = l4.longValue();
             } else {
@@ -420,23 +420,23 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
                 return;
             }
         }
-        t5 t5Var = this.f28728w;
+        t5 t5Var = this.f28730w;
         y9 y9Var = this.d;
         if (t5Var != null) {
             t5Var.o(y9Var);
-            this.f28728w = null;
+            this.f28730w = null;
         }
         y9Var.b();
-        this.f28727s = document;
-        this.f28726r = null;
+        this.f28729s = document;
+        this.f28728r = null;
         c();
     }
 
     public void setAnimatedEmojiDocumentId(long j10) {
         long j11;
-        TLRPC.Document document = this.f28727s;
-        if ((document != null || this.f28726r != null) && j10 != 0) {
-            Long l4 = this.f28726r;
+        TLRPC.Document document = this.f28729s;
+        if ((document != null || this.f28728r != null) && j10 != 0) {
+            Long l4 = this.f28728r;
             if (l4 != null) {
                 j11 = l4.longValue();
             } else {
@@ -446,19 +446,19 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
                 return;
             }
         }
-        t5 t5Var = this.f28728w;
+        t5 t5Var = this.f28730w;
         y9 y9Var = this.d;
         Long l10 = null;
         if (t5Var != null) {
             t5Var.o(y9Var);
-            this.f28728w = null;
+            this.f28730w = null;
         }
         y9Var.b();
-        this.f28727s = null;
+        this.f28729s = null;
         if (j10 != 0) {
             l10 = Long.valueOf(j10);
         }
-        this.f28726r = l10;
+        this.f28728r = l10;
         c();
     }
 
@@ -469,18 +469,18 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
     }
 
     public void setStickerThumb(ey eyVar) {
-        if (eyVar != null && eyVar.f28006b == null) {
+        if (eyVar != null && eyVar.f28008b == null) {
             eyVar = null;
         }
         ey eyVar2 = this.v;
-        if (eyVar2 != null && eyVar != null && eyVar2.f28006b.f22054id == eyVar.f28006b.f22054id) {
+        if (eyVar2 != null && eyVar != null && eyVar2.f28008b.f22054id == eyVar.f28008b.f22054id) {
             return;
         }
-        t5 t5Var = this.f28728w;
+        t5 t5Var = this.f28730w;
         y9 y9Var = this.d;
-        if (t5Var != null && this.f28727s == null && this.f28726r == null) {
+        if (t5Var != null && this.f28729s == null && this.f28728r == null) {
             t5Var.o(y9Var);
-            this.f28728w = null;
+            this.f28730w = null;
         }
         y9Var.b();
         this.v = eyVar;
@@ -521,13 +521,13 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
         setFocusable(true);
         this.M = -1.0f;
         this.h = false;
-        this.f28725n = z10;
+        this.f28727n = z10;
         if (z10) {
             setBackground(org.telegram.ui.ActionBar.y6.Z(kwVar.k(), 8, 8));
         }
         y9 y9Var = new y9(context);
         this.d = y9Var;
-        y9Var.f34988w = false;
+        y9Var.f34991w = false;
         y9Var.setImageDrawable(context.getResources().getDrawable(i10).mutate());
         d();
         addView(y9Var);
@@ -538,19 +538,19 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
         this.N = kwVar;
         setFocusable(true);
         this.M = -1.0f;
-        this.f28722b = true;
+        this.f28724b = true;
         this.h = false;
-        this.f28725n = false;
+        this.f28727n = false;
         dw dwVar = new dw(this, context);
         this.d = dwVar;
-        dwVar.f34988w = false;
-        this.f28727s = document;
-        this.f28723c = true;
+        dwVar.f34991w = false;
+        this.f28729s = document;
+        this.f28725c = true;
         dwVar.setColorFilter(kwVar.getEmojiColorFilter());
         addView(dwVar);
         int i10 = tg.c1.L;
         tg.c1 c1Var = new tg.c1(context, 1, kwVar.v);
-        this.f28724f = c1Var;
+        this.f28726f = c1Var;
         c1Var.setAlpha(0.0f);
         c1Var.setScaleX(0.0f);
         c1Var.setScaleY(0.0f);
@@ -564,19 +564,19 @@ public class gw extends ViewGroup implements org.telegram.ui.ActionBar.p6 {
         this.N = kwVar;
         setFocusable(true);
         this.M = -1.0f;
-        this.f28722b = true;
+        this.f28724b = true;
         this.h = false;
-        this.f28725n = false;
+        this.f28727n = false;
         di.k4 k4Var = new di.k4(this, context, 8);
         this.d = k4Var;
-        k4Var.f34988w = false;
-        this.f28726r = Long.valueOf(j10);
-        this.f28723c = true;
+        k4Var.f34991w = false;
+        this.f28728r = Long.valueOf(j10);
+        this.f28725c = true;
         k4Var.setColorFilter(kwVar.getEmojiColorFilter());
         addView(k4Var);
         int i10 = tg.c1.L;
         tg.c1 c1Var = new tg.c1(context, 1, kwVar.v);
-        this.f28724f = c1Var;
+        this.f28726f = c1Var;
         c1Var.setAlpha(0.0f);
         c1Var.setScaleX(0.0f);
         c1Var.setScaleY(0.0f);

@@ -81,7 +81,7 @@ public final class zd {
         imageReceiver.onAttachedToWindow();
         imageReceiver.setCrossfadeWithOldImage(true);
         j9Var2.g(21);
-        j9Var2.h(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23337c8, beVar.f4399b));
+        j9Var2.h(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23339c8, beVar.f4399b));
         this.f5878n = new q11(str, 12.0f, null);
     }
 
@@ -132,9 +132,9 @@ public final class zd {
                 int dp6 = (AndroidUtilities.dp(56.0f) / 2) + i12;
                 org.telegram.ui.Components.j9 j9Var = this.f5877m;
                 j9Var.setBounds(dp3, dp4, dp5, dp6);
-                j9Var.f29548y = (int) (e * f11 * e10);
+                j9Var.f29550y = (int) (e * f11 * e10);
                 j9Var.draw(canvas);
-                j9Var.f29548y = 255;
+                j9Var.f29550y = 255;
             }
         } else {
             f7 = 40.0f;
@@ -142,7 +142,7 @@ public final class zd {
             f11 = 255.0f;
         }
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((dp - (this.f5879o.f31788c / f10)) - AndroidUtilities.dp(5.66f), (AndroidUtilities.dp(23.0f) + dp2) - (AndroidUtilities.dp(16.0f) / f10), (this.f5879o.f31788c / f10) + dp + AndroidUtilities.dp(5.66f), (AndroidUtilities.dp(16.0f) / f10) + AndroidUtilities.dp(23.0f) + dp2);
+        rectF.set((dp - (this.f5879o.f31790c / f10)) - AndroidUtilities.dp(5.66f), (AndroidUtilities.dp(23.0f) + dp2) - (AndroidUtilities.dp(16.0f) / f10), (this.f5879o.f31790c / f10) + dp + AndroidUtilities.dp(5.66f), (AndroidUtilities.dp(16.0f) / f10) + AndroidUtilities.dp(23.0f) + dp2);
         canvas.drawRoundRect(rectF, rectF.height() / f10, rectF.height() / f10, aeVar.f4296f);
         int i13 = (int) (e * f11);
         Paint paint = this.h;
@@ -155,9 +155,9 @@ public final class zd {
         }
         canvas.drawRoundRect(rectF, rectF.height() / f10, rectF.height() / f10, paint);
         q11 q11Var = this.f5879o;
-        q11Var.c(dp - (q11Var.f31788c / f10), AndroidUtilities.dp(23.0f) + dp2, e, -1, canvas);
+        q11Var.c(dp - (q11Var.f31790c / f10), AndroidUtilities.dp(23.0f) + dp2, e, -1, canvas);
         q11 q11Var2 = this.f5878n;
-        q11Var2.f31798p = width - AndroidUtilities.dp(4.0f);
+        q11Var2.f31800p = width - AndroidUtilities.dp(4.0f);
         q11Var2.c(dp - (this.f5878n.l() / f10), AndroidUtilities.dp(42.0f) + dp2, e, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.G6, aeVar.v.f4399b), canvas);
         if (this.v > 0) {
             int i14 = (int) dp;
@@ -169,7 +169,7 @@ public final class zd {
             this.f5884t.draw(canvas);
             this.f5883s.draw(canvas);
             q11 q11Var3 = this.f5885u;
-            q11Var3.c(dp - (q11Var3.f31788c / f10), dp2 - AndroidUtilities.dp(27.0f), e, -1, canvas);
+            q11Var3.c(dp - (q11Var3.f31790c / f10), dp2 - AndroidUtilities.dp(27.0f), e, -1, canvas);
         }
         canvas.restore();
     }

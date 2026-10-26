@@ -550,7 +550,7 @@ public abstract class c5 {
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
         ?? obj = new Object();
-        obj.f34904a = i10;
+        obj.f34907a = i10;
         spannableStringBuilder2.setSpan(new z11(obj, 0), 0, spannableStringBuilder2.length(), 33);
         return spannableStringBuilder2;
     }

@@ -4,22 +4,22 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kg implements Runnable {
-    public final int f29914a;
-    public final Object f29915b;
-    public final Object f29916c;
+    public final int f29916a;
+    public final Object f29917b;
+    public final Object f29918c;
     public final Object d;
 
     public kg(Object obj, Object obj2, Object obj3, int i10) {
-        this.f29914a = i10;
-        this.f29915b = obj;
+        this.f29916a = i10;
+        this.f29917b = obj;
         this.d = obj2;
-        this.f29916c = obj3;
+        this.f29918c = obj3;
     }
 
     private final void a() {
-        cz0 cz0Var = (cz0) this.f29915b;
+        cz0 cz0Var = (cz0) this.f29917b;
         String str = (String) this.d;
-        SendMessagesHelper.ImportingSticker importingSticker = (SendMessagesHelper.ImportingSticker) this.f29916c;
+        SendMessagesHelper.ImportingSticker importingSticker = (SendMessagesHelper.ImportingSticker) this.f29918c;
         if (!cz0Var.isDismissed()) {
             cz0Var.Z.remove(str);
             if (!"application/x-tgsticker".equals(importingSticker.mimeType)) {
@@ -28,9 +28,9 @@ public final class kg implements Runnable {
                 importingSticker.validated = true;
                 int indexOf = cz0Var.Y.indexOf(importingSticker);
                 if (indexOf >= 0) {
-                    s4.e1 K = cz0Var.f27289c.K(indexOf);
+                    s4.e1 K = cz0Var.f27291c.K(indexOf);
                     if (K != null) {
-                        ((org.telegram.ui.Cells.i8) K.f47735a).setSticker(importingSticker);
+                        ((org.telegram.ui.Cells.i8) K.f47738a).setSticker(importingSticker);
                     }
                 } else {
                     cz0Var.d.l();
@@ -48,9 +48,9 @@ public final class kg implements Runnable {
     }
 
     public kg(te0 te0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
-        this.f29914a = 16;
-        this.f29915b = te0Var;
+        this.f29916a = 16;
+        this.f29917b = te0Var;
         this.d = tL_error;
-        this.f29916c = tLObject;
+        this.f29918c = tLObject;
     }
 }

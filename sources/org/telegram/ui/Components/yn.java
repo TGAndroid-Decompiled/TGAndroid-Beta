@@ -17,10 +17,10 @@ public final class yn extends org.telegram.ui.Cells.h6 {
     @Override
     public final void g(org.telegram.ui.Cells.g6 g6Var, ActionMode actionMode) {
         go goVar = this.G.d;
-        if (!goVar.f28636n && this.F == 11 && g6Var.isFocused() && g6Var.hasSelection()) {
+        if (!goVar.f28638n && this.F == 11 && g6Var.isFocused() && g6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.un.r8(menu, ((org.telegram.ui.un) goVar.f30213b.f33018f0).h, false, true, true, true);
+                org.telegram.ui.un.r8(menu, ((org.telegram.ui.un) goVar.f30215b.f33021f0).h, false, true, true, true);
             }
         }
     }
@@ -37,7 +37,7 @@ public final class yn extends org.telegram.ui.Cells.h6 {
 
     @Override
     public final void k(org.telegram.ui.Cells.g6 g6Var) {
-        this.G.d.f30213b.y1(g6Var, true);
+        this.G.d.f30215b.y1(g6Var, true);
     }
 
     @Override
@@ -59,9 +59,9 @@ public final class yn extends org.telegram.ui.Cells.h6 {
             i10++;
         }
         goVar.l0();
-        goVar.f28632k0 = (goVar.f28649t0 + i10) - 1;
-        goVar.f28647s.setItemAnimator(goVar.v);
-        goVar.f28645r.l();
+        goVar.f28634k0 = (goVar.f28651t0 + i10) - 1;
+        goVar.f28649s.setItemAnimator(goVar.v);
+        goVar.f28647r.l();
         return true;
     }
 }

@@ -52,11 +52,11 @@ final class WidgetSandboxBackend implements mb1, ta1 {
             for (Map.Entry<Integer, ua1> entry : this.canvases.entrySet()) {
                 if (entry.getKey().intValue() != i10) {
                     ua1 value = entry.getValue();
-                    Bitmap bitmap = value.f33333m;
+                    Bitmap bitmap = value.f33336m;
                     if (bitmap == null) {
                         width = 0;
                     } else {
-                        width = bitmap.getWidth() * value.f33333m.getHeight() * 8;
+                        width = bitmap.getWidth() * value.f33336m.getHeight() * 8;
                     }
                     j11 += width;
                 }
@@ -159,7 +159,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                         }
                     } else {
                         if (hb1Var != null) {
-                            if (hb1Var.f28908b != ((int) optLong2)) {
+                            if (hb1Var.f28910b != ((int) optLong2)) {
                             }
                         }
                         i13++;
@@ -194,7 +194,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                     float[] fArr5 = new float[length2];
                     nb1.c(optJSONArray5, fArr5, length2, new float[0]);
                     int i15 = i14 + 1;
-                    cb1 cb1Var = hb1Var.f28907a;
+                    cb1 cb1Var = hb1Var.f28909a;
                     double optDouble2 = optJSONObject.optDouble("ts");
                     double optDouble3 = optJSONObject.optDouble("td");
                     if (optJSONObject.optInt("tr") != 0) {
@@ -241,14 +241,14 @@ final class WidgetSandboxBackend implements mb1, ta1 {
     public Bitmap canvas(int i10) {
         Bitmap bitmap;
         ua1 ua1Var = this.canvases.get(Integer.valueOf(i10));
-        if (ua1Var == null || (bitmap = ua1Var.f33333m) == null) {
+        if (ua1Var == null || (bitmap = ua1Var.f33336m) == null) {
             return null;
         }
-        if (ua1Var.f33337q != ua1Var.f33336p || ua1Var.f33334n == null) {
-            ua1Var.f33334n = bitmap.copy(Bitmap.Config.ARGB_8888, false);
-            ua1Var.f33337q = ua1Var.f33336p;
+        if (ua1Var.f33340q != ua1Var.f33339p || ua1Var.f33337n == null) {
+            ua1Var.f33337n = bitmap.copy(Bitmap.Config.ARGB_8888, false);
+            ua1Var.f33340q = ua1Var.f33339p;
         }
-        return ua1Var.f33334n;
+        return ua1Var.f33337n;
     }
 
     @Override
@@ -257,7 +257,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
         if (ua1Var == null) {
             return null;
         }
-        return ua1Var.f33333m;
+        return ua1Var.f33336m;
     }
 
     public byte[] canvasRead(int i10, int i11, int i12, int i13, int i14) {
@@ -269,16 +269,16 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                 return new byte[i13 * i14 * 4];
             }
             byte[] bArr = new byte[Math.max(i14, 0) * Math.max(i13, 0) * 4];
-            if (ua1Var.f33333m != null) {
+            if (ua1Var.f33336m != null) {
                 int max = Math.max(0, i15);
                 int max2 = Math.max(0, i12);
-                int min = Math.min(ua1Var.f33333m.getWidth(), i15 + i13);
-                int min2 = Math.min(ua1Var.f33333m.getHeight(), i14 + i12);
+                int min = Math.min(ua1Var.f33336m.getWidth(), i15 + i13);
+                int min2 = Math.min(ua1Var.f33336m.getHeight(), i14 + i12);
                 if (min > max && min2 > max2) {
                     int i16 = min - max;
                     int i17 = min2 - max2;
                     int[] iArr = new int[i16 * i17];
-                    ua1Var.f33333m.getPixels(iArr, 0, i16, max, max2, i16, i17);
+                    ua1Var.f33336m.getPixels(iArr, 0, i16, max, max2, i16, i17);
                     int i18 = max2;
                     while (i18 < min2) {
                         int i19 = max;
@@ -306,13 +306,13 @@ final class WidgetSandboxBackend implements mb1, ta1 {
         assertWorker();
         ua1 remove = this.canvases.remove(Integer.valueOf(i10));
         if (remove != null) {
-            Bitmap bitmap = remove.f33333m;
+            Bitmap bitmap = remove.f33336m;
             if (bitmap != null) {
                 bitmap.recycle();
             }
-            remove.f33333m = null;
-            remove.f33335o = null;
-            remove.f33334n = null;
+            remove.f33336m = null;
+            remove.f33338o = null;
+            remove.f33337n = null;
         }
     }
 
@@ -331,24 +331,24 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                 this.canvases.put(Integer.valueOf(i10), ua1Var);
             }
             JSONArray jSONArray2 = new JSONArray(text(bArr));
-            Bitmap bitmap = ua1Var.f33333m;
-            if (bitmap == null || bitmap.getWidth() != i11 || ua1Var.f33333m.getHeight() != i12) {
-                Bitmap bitmap2 = ua1Var.f33333m;
+            Bitmap bitmap = ua1Var.f33336m;
+            if (bitmap == null || bitmap.getWidth() != i11 || ua1Var.f33336m.getHeight() != i12) {
+                Bitmap bitmap2 = ua1Var.f33336m;
                 if (bitmap2 != null) {
                     bitmap2.recycle();
                 }
-                ua1Var.f33333m = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
-                ua1Var.f33335o = new Canvas(ua1Var.f33333m);
+                ua1Var.f33336m = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
+                ua1Var.f33338o = new Canvas(ua1Var.f33336m);
             }
             int i16 = 0;
             int i17 = 0;
             while (i17 < jSONArray2.length()) {
                 JSONObject optJSONObject = jSONArray2.optJSONObject(i17);
                 if (optJSONObject != null) {
-                    Paint paint = ua1Var.f33325b;
+                    Paint paint = ua1Var.f33328b;
                     int optInt = optJSONObject.optInt("k");
                     if (optInt == 0) {
-                        ua1Var.f33333m.eraseColor(i16);
+                        ua1Var.f33336m.eraseColor(i16);
                     } else {
                         if (optInt == 6) {
                             int optInt2 = optJSONObject.optInt("w");
@@ -360,8 +360,8 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                                     int optDouble2 = (int) optJSONObject.optDouble("y");
                                     int max = Math.max(i16, optDouble);
                                     int max2 = Math.max(i16, optDouble2);
-                                    int min = Math.min(ua1Var.f33333m.getWidth(), optDouble + optInt2);
-                                    int min2 = Math.min(ua1Var.f33333m.getHeight(), optInt3 + optDouble2);
+                                    int min = Math.min(ua1Var.f33336m.getWidth(), optDouble + optInt2);
+                                    int min2 = Math.min(ua1Var.f33336m.getHeight(), optInt3 + optDouble2);
                                     if (min > max && min2 > max2) {
                                         int i18 = min - max;
                                         int i19 = min2 - max2;
@@ -383,7 +383,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                                         }
                                         i14 = i17;
                                         jSONArray = jSONArray2;
-                                        ua1Var.f33333m.setPixels(iArr2, 0, i18, max, max2, i18, i19);
+                                        ua1Var.f33336m.setPixels(iArr2, 0, i18, max, max2, i18, i19);
                                     }
                                 }
                             } catch (Exception unused) {
@@ -395,13 +395,13 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                             i15 = i16;
                             i14 = i17;
                             jSONArray = jSONArray2;
-                            ua1Var.f33335o.save();
+                            ua1Var.f33338o.save();
                             JSONArray optJSONArray = optJSONObject.optJSONArray("cl");
                             if (optJSONArray != null) {
                                 for (int i23 = i15; i23 < optJSONArray.length(); i23++) {
                                     JSONObject optJSONObject2 = optJSONArray.optJSONObject(i23);
                                     if (optJSONObject2 != null) {
-                                        Canvas canvas = ua1Var.f33335o;
+                                        Canvas canvas = ua1Var.f33338o;
                                         Path path = ua1Var.e;
                                         nb1.h(optJSONObject2, path);
                                         canvas.clipPath(path);
@@ -409,17 +409,17 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                                 }
                             }
                             if (optInt == 3) {
-                                Canvas canvas2 = ua1Var.f33335o;
+                                Canvas canvas2 = ua1Var.f33338o;
                                 Path path2 = ua1Var.d;
                                 nb1.h(optJSONObject, path2);
-                                canvas2.drawPath(path2, ua1Var.f33326c);
-                                ua1Var.f33335o.restore();
+                                canvas2.drawPath(path2, ua1Var.f33329c);
+                                ua1Var.f33338o.restore();
                             } else {
                                 float max3 = Math.max(0.0f, Math.min(1.0f, (float) optJSONObject.optDouble("a", 1.0d)));
                                 int optInt4 = optJSONObject.optInt("cm");
                                 JSONArray optJSONArray2 = optJSONObject.optJSONArray("sh");
                                 if (optJSONArray2 != null && optJSONObject.has("shc")) {
-                                    Bitmap createBitmap = Bitmap.createBitmap(ua1Var.f33333m.getWidth(), ua1Var.f33333m.getHeight(), Bitmap.Config.ARGB_8888);
+                                    Bitmap createBitmap = Bitmap.createBitmap(ua1Var.f33336m.getWidth(), ua1Var.f33336m.getHeight(), Bitmap.Config.ARGB_8888);
                                     ua1Var.c(new Canvas(createBitmap), optJSONObject, this);
                                     Paint paint2 = new Paint(1);
                                     float optDouble3 = ((float) optJSONArray2.optDouble(2)) / 2.0f;
@@ -430,29 +430,29 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                                     paint.reset();
                                     paint.setAlpha(Math.round(max3 * 255.0f));
                                     ua1.b(paint, optInt4);
-                                    ua1Var.f33335o.saveLayer(null, paint);
+                                    ua1Var.f33338o.saveLayer(null, paint);
                                     Paint paint3 = new Paint(1);
                                     paint3.setColor((int) optJSONObject.optLong("shc"));
                                     i13 = i15;
-                                    ua1Var.f33335o.drawBitmap(extractAlpha, iArr[i15] + ((float) optJSONArray2.optDouble(i13)), iArr[1] + ((float) optJSONArray2.optDouble(1)), paint3);
-                                    ua1Var.f33335o.drawBitmap(createBitmap, 0.0f, 0.0f, (Paint) null);
-                                    ua1Var.f33335o.restore();
+                                    ua1Var.f33338o.drawBitmap(extractAlpha, iArr[i15] + ((float) optJSONArray2.optDouble(i13)), iArr[1] + ((float) optJSONArray2.optDouble(1)), paint3);
+                                    ua1Var.f33338o.drawBitmap(createBitmap, 0.0f, 0.0f, (Paint) null);
+                                    ua1Var.f33338o.restore();
                                     extractAlpha.recycle();
                                     createBitmap.recycle();
                                 } else {
                                     i13 = i15;
                                     if (max3 >= 1.0f && optInt4 == 0) {
-                                        ua1Var.c(ua1Var.f33335o, optJSONObject, this);
+                                        ua1Var.c(ua1Var.f33338o, optJSONObject, this);
                                     } else {
                                         paint.reset();
                                         paint.setAlpha(Math.round(max3 * 255.0f));
                                         ua1.b(paint, optInt4);
-                                        ua1Var.f33335o.saveLayer(null, paint);
-                                        ua1Var.c(ua1Var.f33335o, optJSONObject, this);
-                                        ua1Var.f33335o.restore();
+                                        ua1Var.f33338o.saveLayer(null, paint);
+                                        ua1Var.c(ua1Var.f33338o, optJSONObject, this);
+                                        ua1Var.f33338o.restore();
                                     }
                                 }
-                                ua1Var.f33335o.restore();
+                                ua1Var.f33338o.restore();
                                 i17 = i14 + 1;
                                 i16 = i13;
                                 jSONArray2 = jSONArray;
@@ -471,7 +471,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                 i16 = i13;
                 jSONArray2 = jSONArray;
             }
-            ua1Var.f33336p++;
+            ua1Var.f33339p++;
             return;
         }
         canvasRelease(i10);
@@ -591,7 +591,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
         final yb1 yb1Var = this.owner;
         final String text = text(bArr);
         if (i10 == 8) {
-            yb1Var.f35000a.post(new Runnable() {
+            yb1Var.f35003a.post(new Runnable() {
                 @Override
                 public final void run() {
                     xb1 xb1Var;
@@ -618,7 +618,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                         case 1:
                             yb1 yb1Var3 = yb1Var;
                             String str2 = text;
-                            if (!yb1Var3.f35015s && (xb1Var = yb1Var3.H) != null) {
+                            if (!yb1Var3.f35018s && (xb1Var = yb1Var3.H) != null) {
                                 xb1Var.a(str2);
                                 return;
                             }
@@ -626,7 +626,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                         default:
                             yb1 yb1Var4 = yb1Var;
                             String str3 = text;
-                            if (!yb1Var4.f35015s && (xb1Var2 = yb1Var4.H) != null) {
+                            if (!yb1Var4.f35018s && (xb1Var2 = yb1Var4.H) != null) {
                                 try {
                                     xb1Var2.e(new JSONObject(str3));
                                 } catch (Exception unused2) {
@@ -642,9 +642,9 @@ final class WidgetSandboxBackend implements mb1, ta1 {
             if (b3Var != null) {
                 b3Var.run(text);
             }
-        } else if (!yb1Var.f35015s) {
+        } else if (!yb1Var.f35018s) {
             if (i10 == 11) {
-                yb1Var.f35000a.post(new Runnable() {
+                yb1Var.f35003a.post(new Runnable() {
                     @Override
                     public final void run() {
                         xb1 xb1Var;
@@ -671,7 +671,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                             case 1:
                                 yb1 yb1Var3 = yb1Var;
                                 String str2 = text;
-                                if (!yb1Var3.f35015s && (xb1Var = yb1Var3.H) != null) {
+                                if (!yb1Var3.f35018s && (xb1Var = yb1Var3.H) != null) {
                                     xb1Var.a(str2);
                                     return;
                                 }
@@ -679,7 +679,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                             default:
                                 yb1 yb1Var4 = yb1Var;
                                 String str3 = text;
-                                if (!yb1Var4.f35015s && (xb1Var2 = yb1Var4.H) != null) {
+                                if (!yb1Var4.f35018s && (xb1Var2 = yb1Var4.H) != null) {
                                     try {
                                         xb1Var2.e(new JSONObject(str3));
                                     } catch (Exception unused2) {
@@ -693,44 +693,44 @@ final class WidgetSandboxBackend implements mb1, ta1 {
             } else if (i10 == 9) {
                 b3 b3Var2 = yb1Var.I;
                 if (b3Var2 != null) {
-                    yb1Var.f35000a.post(new ai.j1(b3Var2, text));
+                    yb1Var.f35003a.post(new ai.j1(b3Var2, text));
                 }
             } else {
                 boolean z10 = false;
                 if (i10 == 6) {
-                    yb1Var.f35007k.set(false);
-                    yb1Var.f35000a.post(yb1Var.N);
+                    yb1Var.f35010k.set(false);
+                    yb1Var.f35003a.post(yb1Var.N);
                 } else if (i10 != 1 && i10 != 2) {
                     try {
                         if (i10 == 3) {
                             JSONObject jSONObject = new JSONObject(text);
-                            yb1Var.f35000a.post(new c00(yb1Var, jSONObject.optBoolean("x"), jSONObject.optBoolean("y"), jSONObject.optBoolean("hold"), 1));
+                            yb1Var.f35003a.post(new c00(yb1Var, jSONObject.optBoolean("x"), jSONObject.optBoolean("y"), jSONObject.optBoolean("hold"), 1));
                         } else if (i10 == 4) {
                             JSONObject jSONObject2 = new JSONObject(text);
                             if (jSONObject2.optBoolean("loaded")) {
-                                yb1Var.f35016t = true;
+                                yb1Var.f35019t = true;
                             }
-                            yb1Var.f35018w = "bottom".equals(jSONObject2.optString("resizeAnchor"));
-                            if (jSONObject2.optBoolean("rendered") && !yb1Var.f35017u) {
+                            yb1Var.f35021w = "bottom".equals(jSONObject2.optString("resizeAnchor"));
+                            if (jSONObject2.optBoolean("rendered") && !yb1Var.f35020u) {
                                 double optDouble = jSONObject2.optDouble("height", -1.0d);
-                                double min = Math.min(600.0f, Math.max(50.0f, yb1Var.f35012p / yb1Var.h));
-                                if (yb1Var.f35013q && optDouble > 0.0d && Math.abs(min - optDouble) <= 1.0d) {
+                                double min = Math.min(600.0f, Math.max(50.0f, yb1Var.f35015p / yb1Var.h));
+                                if (yb1Var.f35016q && optDouble > 0.0d && Math.abs(min - optDouble) <= 1.0d) {
                                     yb1Var.v = true;
                                 }
-                                yb1Var.f35017u = true;
+                                yb1Var.f35020u = true;
                             }
-                            synchronized (yb1Var.f35011o) {
-                                if (yb1Var.f35015s) {
+                            synchronized (yb1Var.f35014o) {
+                                if (yb1Var.f35018s) {
                                     return;
                                 }
                                 yb1Var.F = jSONObject2;
                                 if (!yb1Var.G) {
                                     yb1Var.G = true;
-                                    yb1Var.f35000a.post(yb1Var.M);
+                                    yb1Var.f35003a.post(yb1Var.M);
                                 }
                             }
                         } else if (i10 == 5) {
-                            yb1Var.f35000a.post(new Runnable() {
+                            yb1Var.f35003a.post(new Runnable() {
                                 @Override
                                 public final void run() {
                                     xb1 xb1Var;
@@ -757,7 +757,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                                         case 1:
                                             yb1 yb1Var3 = yb1Var;
                                             String str2 = text;
-                                            if (!yb1Var3.f35015s && (xb1Var = yb1Var3.H) != null) {
+                                            if (!yb1Var3.f35018s && (xb1Var = yb1Var3.H) != null) {
                                                 xb1Var.a(str2);
                                                 return;
                                             }
@@ -765,7 +765,7 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                                         default:
                                             yb1 yb1Var4 = yb1Var;
                                             String str3 = text;
-                                            if (!yb1Var4.f35015s && (xb1Var2 = yb1Var4.H) != null) {
+                                            if (!yb1Var4.f35018s && (xb1Var2 = yb1Var4.H) != null) {
                                                 try {
                                                     xb1Var2.e(new JSONObject(str3));
                                                 } catch (Exception unused2) {
@@ -778,23 +778,23 @@ final class WidgetSandboxBackend implements mb1, ta1 {
                             });
                         } else if (i10 == 7) {
                             float parseFloat = Float.parseFloat(text);
-                            AtomicBoolean atomicBoolean = yb1Var.f35009m;
+                            AtomicBoolean atomicBoolean = yb1Var.f35012m;
                             if (parseFloat == 0.0f) {
                                 z10 = true;
                             }
                             atomicBoolean.set(z10);
-                            yb1Var.f35000a.post(new org.telegram.ui.b0(yb1Var, parseFloat, 2));
+                            yb1Var.f35003a.post(new org.telegram.ui.b0(yb1Var, parseFloat, 2));
                         }
                     } catch (NumberFormatException | Exception unused) {
                     }
                 } else {
                     if (i10 == 1) {
-                        yb1Var.f35008l.set(true);
+                        yb1Var.f35011l.set(true);
                     } else {
-                        yb1Var.f35006j.set(true);
+                        yb1Var.f35009j.set(true);
                     }
-                    yb1Var.f35000a.removeCallbacks(yb1Var.N);
-                    yb1Var.f35000a.post(yb1Var.N);
+                    yb1Var.f35003a.removeCallbacks(yb1Var.N);
+                    yb1Var.f35003a.post(yb1Var.N);
                 }
             }
         }

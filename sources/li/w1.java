@@ -42,12 +42,12 @@ public final class w1 extends vg {
     public final boolean f() {
         switch (this.f17595n0) {
             case 0:
-                if (!((b2) this.f17596o0).L0 && this.f33660r <= 0) {
+                if (!((b2) this.f17596o0).L0 && this.f33663r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((a4) this.f17596o0).W && this.f33660r <= 0) {
+                if (!((a4) this.f17596o0).W && this.f33663r <= 0) {
                     return false;
                 }
                 return true;

@@ -42,7 +42,7 @@ public final class r1 {
         if (bVar instanceof w2.e) {
             w2.e eVar = (w2.e) bVar;
             yb.p(eVar.f13499y);
-            eVar.f50653a0 = j10;
+            eVar.f50656a0 = j10;
         }
     }
 
@@ -178,7 +178,7 @@ public final class r1 {
         boolean b10 = uVar.b(i12);
         if (!b10 || objArr != null) {
             if (!bVar.f13499y) {
-                x2.q qVar = uVar.f51360c[i12];
+                x2.q qVar = uVar.f51363c[i12];
                 if (qVar != null) {
                     i10 = qVar.length();
                 } else {

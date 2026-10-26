@@ -11,25 +11,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_agent;
 public final class ay0 implements Utilities.Callback {
-    public final int f37920a;
-    public final ProfileActivity f37921b;
+    public final int f37923a;
+    public final ProfileActivity f37924b;
 
     public ay0(ProfileActivity profileActivity, int i10) {
-        this.f37920a = i10;
-        this.f37921b = profileActivity;
+        this.f37923a = i10;
+        this.f37924b = profileActivity;
     }
 
     @Override
     public final void run(Object obj) {
         String userName;
-        int i10 = this.f37920a;
-        ProfileActivity profileActivity = this.f37921b;
+        int i10 = this.f37923a;
+        ProfileActivity profileActivity = this.f37924b;
         switch (i10) {
             case 0:
                 String str = (String) obj;
                 int i11 = ProfileActivity.R6;
                 TL_agent.agentProvider provider = profileActivity.getMessagesController().getAgentController().getProvider(str);
-                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f35976e1));
+                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f35979e1));
                 if (provider != null) {
                     str = provider.title;
                 }
@@ -45,8 +45,8 @@ public final class ay0 implements Utilities.Callback {
                 int i12 = ProfileActivity.R6;
                 if (view instanceof org.telegram.ui.Cells.g9) {
                     org.telegram.ui.Cells.g9 g9Var = (org.telegram.ui.Cells.g9) view;
-                    g9Var.f24170a.setLoading(profileActivity.f36049o5);
-                    g9Var.f24171b.setLoading(profileActivity.f36049o5);
+                    g9Var.f24172a.setLoading(profileActivity.f36052o5);
+                    g9Var.f24173b.setLoading(profileActivity.f36052o5);
                     return;
                 }
                 return;
@@ -58,13 +58,13 @@ public final class ay0 implements Utilities.Callback {
                 profileActivity.getClass();
                 ArrayList arrayList = new ArrayList(1);
                 arrayList.add((TLRPC.InputStickerSet) obj);
-                profileActivity.showDialog(new org.telegram.ui.Components.aw(profileActivity, profileActivity.getParentActivity(), profileActivity.f36123z0, arrayList));
+                profileActivity.showDialog(new org.telegram.ui.Components.aw(profileActivity, profileActivity.getParentActivity(), profileActivity.f36126z0, arrayList));
                 return;
             default:
                 View view2 = (View) obj;
                 int i14 = ProfileActivity.R6;
                 if (view2 instanceof org.telegram.ui.Cells.q4) {
-                    ((org.telegram.ui.Cells.q4) view2).setTextColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.L6, profileActivity.f36123z0));
+                    ((org.telegram.ui.Cells.q4) view2).setTextColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.L6, profileActivity.f36126z0));
                 } else if (view2 instanceof org.telegram.ui.Cells.g9) {
                     ((org.telegram.ui.Cells.g9) view2).updateColors();
                 } else if (view2 instanceof org.telegram.ui.Cells.v8) {
@@ -77,7 +77,7 @@ public final class ay0 implements Utilities.Callback {
                     jg.k1 k1Var = (jg.k1) view2;
                     org.telegram.ui.Components.pq pqVar = k1Var.f15765r;
                     int dp = AndroidUtilities.dp(8.0f);
-                    int i15 = org.telegram.ui.ActionBar.y6.f23558o6;
+                    int i15 = org.telegram.ui.ActionBar.y6.f23560o6;
                     org.telegram.ui.ActionBar.u6 u6Var = k1Var.f15760a;
                     int w02 = org.telegram.ui.ActionBar.y6.w0(i15, u6Var);
                     k1Var.a(w02);
@@ -93,7 +93,7 @@ public final class ay0 implements Utilities.Callback {
                     ((org.telegram.ui.Cells.l6) view2).updateColors();
                 }
                 j01 j01Var = profileActivity.d;
-                profileActivity.f35945a.getClass();
+                profileActivity.f35948a.getClass();
                 j01Var.j(RecyclerView.R(view2));
                 profileActivity.d.getClass();
                 return;

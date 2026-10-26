@@ -13,12 +13,12 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class dq0 extends org.telegram.ui.ActionBar.r2 {
-    public Bitmap f38918a;
-    public BitmapDrawable f38919b;
-    public cq0 f38920c;
+    public Bitmap f38921a;
+    public BitmapDrawable f38922b;
+    public cq0 f38923c;
     public bq0 d;
     public boolean e;
-    public boolean f38921f;
+    public boolean f38924f;
 
     @Override
     public final View createView(Context context) {
@@ -47,7 +47,7 @@ public final class dq0 extends org.telegram.ui.ActionBar.r2 {
     @Override
     public final boolean onFragmentCreate() {
         int max;
-        if (this.f38918a == null) {
+        if (this.f38921a == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
             if (string == null && uri == null) {
@@ -64,12 +64,12 @@ public final class dq0 extends org.telegram.ui.ActionBar.r2 {
             }
             float f7 = max;
             Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
-            this.f38918a = loadBitmap;
+            this.f38921a = loadBitmap;
             if (loadBitmap == null) {
                 return false;
             }
         }
-        this.f38919b = new BitmapDrawable(this.f38918a);
+        this.f38922b = new BitmapDrawable(this.f38921a);
         super.onFragmentCreate();
         return true;
     }
@@ -77,11 +77,11 @@ public final class dq0 extends org.telegram.ui.ActionBar.r2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        Bitmap bitmap = this.f38918a;
+        Bitmap bitmap = this.f38921a;
         if (bitmap != null && !this.e) {
             bitmap.recycle();
-            this.f38918a = null;
+            this.f38921a = null;
         }
-        this.f38919b = null;
+        this.f38922b = null;
     }
 }

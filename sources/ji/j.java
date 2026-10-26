@@ -157,7 +157,7 @@ public final class j extends LinearLayout implements p6 {
             if (z10) {
                 i10 = y6.W8;
             } else {
-                i10 = y6.f23538n6;
+                i10 = y6.f23540n6;
             }
             u6 u6Var = this.f15995a;
             f7.V(textView, i10, u6Var);
@@ -191,7 +191,7 @@ public final class j extends LinearLayout implements p6 {
         if (this.f15999n) {
             i10 = y6.W8;
         } else {
-            i10 = y6.f23538n6;
+            i10 = y6.f23540n6;
         }
         int w02 = y6.w0(i10, u6Var);
         TextView textView = this.f15998f;
@@ -207,6 +207,6 @@ public final class j extends LinearLayout implements p6 {
         } else {
             q5 = y6.I.q();
         }
-        this.f15996b.f29276b = q5;
+        this.f15996b.f29278b = q5;
     }
 }

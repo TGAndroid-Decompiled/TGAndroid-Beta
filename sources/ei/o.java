@@ -22,7 +22,7 @@ public final class o extends LinearLayout {
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f9992a = textView;
-        int i10 = y6.f23746y6;
+        int i10 = y6.f23748y6;
         f7.V(textView, i10, u6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);

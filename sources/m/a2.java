@@ -26,7 +26,7 @@ public final class a2 implements Runnable {
             default:
                 r1 r1Var2 = d2Var.f17697c;
                 if (r1Var2 != null) {
-                    WeakHashMap weakHashMap = r0.i0.f47105a;
+                    WeakHashMap weakHashMap = r0.i0.f47108a;
                     if (r1Var2.isAttachedToWindow() && d2Var.f17697c.getCount() > d2Var.f17697c.getChildCount() && d2Var.f17697c.getChildCount() <= d2Var.f17703x) {
                         d2Var.O.setInputMethodMode(2);
                         d2Var.h();

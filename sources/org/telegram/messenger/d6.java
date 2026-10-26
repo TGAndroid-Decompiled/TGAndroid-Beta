@@ -61,7 +61,7 @@ public final class d6 implements Runnable {
                 TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj;
                 String str = (String) obj6;
                 String str2 = (String) obj5;
-                ArrayList arrayList = ExternalActionActivity.f35495x;
+                ArrayList arrayList = ExternalActionActivity.f35498x;
                 try {
                     e2Var.dismiss();
                 } catch (Exception e) {
@@ -74,12 +74,12 @@ public final class d6 implements Runnable {
                     if (AndroidUtilities.isTablet()) {
                         externalActionActivity.d.c(-1, in0Var);
                     } else {
-                        externalActionActivity.f35499c.c(-1, in0Var);
+                        externalActionActivity.f35502c.c(-1, in0Var);
                     }
                     if (!AndroidUtilities.isTablet()) {
                         externalActionActivity.e.setVisibility(8);
                     }
-                    externalActionActivity.f35499c.e0();
+                    externalActionActivity.f35502c.e0();
                     if (AndroidUtilities.isTablet()) {
                         externalActionActivity.d.e0();
                         return;
@@ -106,9 +106,9 @@ public final class d6 implements Runnable {
                     rf.b bVar = new rf.b(13, false);
                     bVar.R(BillingController.PREMIUM_PRODUCT_DETAILS);
                     xw0Var.a();
-                    String str3 = xw0Var.f45892g.f7997a;
+                    String str3 = xw0Var.f45895g.f7997a;
                     if (!TextUtils.isEmpty(str3)) {
-                        bVar.f47333c = str3;
+                        bVar.f47336c = str3;
                         billingController.launchBillingFlow(activity2, accountInstance, tL_inputStorePaymentPremiumSubscription, Collections.singletonList(bVar.E()), gVar, false);
                         return;
                     }

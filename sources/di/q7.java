@@ -70,7 +70,7 @@ public final class q7 implements u9 {
                             TL_stories.StoryReaction storyReaction = j5Var.f8697c;
                             if (storyReaction instanceof TL_stories.TL_storyReactionPublicRepost) {
                                 TL_stories.TL_storyReactionPublicRepost tL_storyReactionPublicRepost = (TL_stories.TL_storyReactionPublicRepost) storyReaction;
-                                if (tL_storyReactionPublicRepost.story != null && DialogObject.getPeerDialogId(tL_storyReactionPublicRepost.peer_id) == j10 && tL_storyReactionPublicRepost.story.f22264id == i10) {
+                                if (tL_storyReactionPublicRepost.story != null && DialogObject.getPeerDialogId(tL_storyReactionPublicRepost.peer_id) == j10 && tL_storyReactionPublicRepost.story.f22266id == i10) {
                                     break;
                                 }
                             } else {
@@ -125,7 +125,7 @@ public final class q7 implements u9 {
             v9Var.h = iArr[0];
             v9Var.f9274i = iArr[1] - this.f9066s;
         } else if (view instanceof ka) {
-            v9Var.h = ((ka) view).f29884f3;
+            v9Var.h = ((ka) view).f29886f3;
             v9Var.f9274i = (view.getMeasuredHeight() - v9Var.f9273g.getPaddingBottom()) - this.f9066s;
         } else {
             v9Var.h = view.getPaddingTop();
@@ -184,7 +184,7 @@ public final class q7 implements u9 {
                 } else if (childAt instanceof org.telegram.ui.Cells.p2) {
                     org.telegram.ui.Cells.p2 p2Var = (org.telegram.ui.Cells.p2) childAt;
                     ImageReceiver imageReceiver = p2Var.Y1;
-                    org.telegram.ui.Cells.i2 i2Var = p2Var.f24727u0;
+                    org.telegram.ui.Cells.i2 i2Var = p2Var.f24729u0;
                     int i14 = (p2Var.getDialogId() > j10 ? 1 : (p2Var.getDialogId() == j10 ? 0 : -1));
                     boolean z11 = this.d;
                     if ((i14 == 0 && !z11) || (z11 && p2Var.N())) {
@@ -238,7 +238,7 @@ public final class q7 implements u9 {
                             fastScroll.getLocationInWindow(iArr);
                         }
                         v9Var.f9269a = childAt;
-                        v9Var.f9271c = w7Var.f25636c;
+                        v9Var.f9271c = w7Var.f25638c;
                         v9Var.e = new androidx.car.app.utils.a(w7Var, fastScroll, iArr, 5);
                         v9Var.f9273g = (View) w7Var.getParent();
                         v9Var.f9276k = 1.0f;
@@ -248,7 +248,7 @@ public final class q7 implements u9 {
                 } else if (childAt instanceof ab) {
                     ab abVar = (ab) childAt;
                     if (abVar.getDialogId() == j10) {
-                        k4 k4Var = abVar.f23870a;
+                        k4 k4Var = abVar.f23872a;
                         v9Var.f9269a = k4Var;
                         v9Var.f9278m = abVar.T;
                         v9Var.f9270b = k4Var.getImageReceiver();
@@ -260,7 +260,7 @@ public final class q7 implements u9 {
                 } else if (childAt instanceof org.telegram.ui.Cells.s6) {
                     org.telegram.ui.Cells.s6 s6Var = (org.telegram.ui.Cells.s6) childAt;
                     org.telegram.ui.Components.y9 y9Var = s6Var.h;
-                    if (s6Var.f25399y != j10) {
+                    if (s6Var.f25401y != j10) {
                         continue;
                     } else {
                         if (y9Var != null && y9Var.getImageReceiver() != null && y9Var.getImageReceiver().getImageDrawable() != null) {
@@ -268,7 +268,7 @@ public final class q7 implements u9 {
                         } else {
                             z10 = false;
                         }
-                        if (s6Var.f25394n == i11 && z10) {
+                        if (s6Var.f25396n == i11 && z10) {
                             v9Var.f9269a = y9Var;
                             v9Var.f9271c = y9Var.getImageReceiver();
                             v9Var.f9273g = (View) s6Var.getParent();
@@ -277,12 +277,12 @@ public final class q7 implements u9 {
                             if (alphaInternal < 1.0f) {
                                 Paint paint = new Paint(1);
                                 v9Var.f9275j = paint;
-                                paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23425h5, s6Var.getResourcesProvider()));
+                                paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23427h5, s6Var.getResourcesProvider()));
                             }
                             c(v9Var);
                             return true;
                         } else if (!z10) {
-                            org.telegram.ui.Cells.r6 r6Var = s6Var.f25392c;
+                            org.telegram.ui.Cells.r6 r6Var = s6Var.f25394c;
                             v9Var.f9269a = r6Var;
                             v9Var.f9278m = s6Var.E;
                             v9Var.f9270b = r6Var.getImageReceiver();
@@ -292,7 +292,7 @@ public final class q7 implements u9 {
                             if (alphaInternal2 < 1.0f) {
                                 Paint paint2 = new Paint(1);
                                 v9Var.f9275j = paint2;
-                                paint2.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23425h5, s6Var.getResourcesProvider()));
+                                paint2.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23427h5, s6Var.getResourcesProvider()));
                             }
                             c(v9Var);
                             return true;
@@ -302,8 +302,8 @@ public final class q7 implements u9 {
                     org.telegram.ui.Cells.m6 m6Var = (org.telegram.ui.Cells.m6) childAt;
                     if (m6Var.getDialogId() == j10) {
                         v9Var.f9269a = m6Var;
-                        v9Var.f9278m = m6Var.f24473u0;
-                        v9Var.f9270b = m6Var.f24468r;
+                        v9Var.f9278m = m6Var.f24475u0;
+                        v9Var.f9270b = m6Var.f24470r;
                         v9Var.f9273g = (View) m6Var.getParent();
                         v9Var.f9276k = 1.0f;
                         c(v9Var);

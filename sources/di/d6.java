@@ -59,13 +59,13 @@ public final class d6 implements RequestDelegate {
                 Paint paint = ta.H;
                 return;
             case 10:
-                int i10 = zo.f46334j3;
+                int i10 = zo.f46337j3;
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new ag.c(25));
                 return;
             case 12:
-                Pattern pattern = org.telegram.ui.Components.g5.f28418a;
+                Pattern pattern = org.telegram.ui.Components.g5.f28420a;
                 return;
             case 13:
                 int i11 = dx.H0;
@@ -80,7 +80,7 @@ public final class d6 implements RequestDelegate {
                 int i13 = p11.e;
                 return;
             case 17:
-                int i14 = jf0.f40589v0;
+                int i14 = jf0.f40592v0;
                 return;
             case 18:
                 AndroidUtilities.runOnUIThread(new lj0(tLObject, 4));
@@ -89,7 +89,7 @@ public final class d6 implements RequestDelegate {
                 int i15 = en0.R;
                 return;
             case 20:
-                List list = po0.f42581g1;
+                List list = po0.f42584g1;
                 return;
             case 21:
                 int i16 = ProfileActivity.R6;

@@ -25,7 +25,7 @@ public final class b6 extends LinearLayout {
         super(context);
         this.f10565r = e6Var;
         setOrientation(0);
-        int i10 = org.telegram.ui.ActionBar.y6.f23446i6;
+        int i10 = org.telegram.ui.ActionBar.y6.f23448i6;
         s5 s5Var = e6Var.f10819v1;
         setBackground(org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.w0(i10, s5Var), 2, -1));
         bh.p pVar = new bh.p(this, context);
@@ -55,7 +55,7 @@ public final class b6 extends LinearLayout {
         this.f10564n = imageView4;
         imageView4.setImageResource(R.drawable.msg_text_check);
         imageView4.setScaleType(scaleType);
-        org.telegram.ui.ActionBar.f7.t(imageView4, org.telegram.ui.ActionBar.y6.f23427h7, s5Var, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.f7.t(imageView4, org.telegram.ui.ActionBar.y6.f23429h7, s5Var, PorterDuff.Mode.MULTIPLY);
         imageView4.setVisibility(8);
         addView(imageView4, gb1.r(50, -1));
     }

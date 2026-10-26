@@ -12,7 +12,7 @@ public final class k6 extends ug.f {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.L.f36863x && super.onTouchEvent(motionEvent)) {
+        if (!this.L.f36866x && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

@@ -174,7 +174,7 @@ public final class b4 extends FrameLayout implements RendererCommon.RendererEven
                     TLRPC.User user = MessagesController.getInstance(this.f10548a).getUser(Long.valueOf(j10));
                     ImageLocation forUser = ImageLocation.getForUser(this.f10548a, user, 1);
                     if (user != null) {
-                        f10 = org.telegram.ui.Components.j9.d(user.f22174id);
+                        f10 = org.telegram.ui.Components.j9.d(user.f22176id);
                     } else {
                         f10 = i0.a.f(0.2f, -16777216, -1);
                     }

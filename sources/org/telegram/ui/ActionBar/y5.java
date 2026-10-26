@@ -14,22 +14,22 @@ import org.telegram.ui.Components.k80;
 public final class y5 extends w0 {
     public boolean A0;
     public boolean B0;
-    public final x5 f23287x0;
-    public boolean f23288y0;
-    public s0 f23289z0;
+    public final x5 f23289x0;
+    public boolean f23290y0;
+    public s0 f23291z0;
 
     public y5(Context context, x5 x5Var, int i10, int i11, boolean z10, u6 u6Var) {
         super(context, null, i10, i11, z10, u6Var);
         this.A0 = true;
         this.B0 = true;
-        this.f23287x0 = x5Var;
+        this.f23289x0 = x5Var;
         setDelegate(new v5(x5Var));
     }
 
     private z5 getShownOverlay() {
-        z5 openMenuOverlay = this.f23287x0.f23245a.getOpenMenuOverlay();
-        if (openMenuOverlay != null && openMenuOverlay.f23788b == this) {
-            if (openMenuOverlay.f23791n || openMenuOverlay.H) {
+        z5 openMenuOverlay = this.f23289x0.f23247a.getOpenMenuOverlay();
+        if (openMenuOverlay != null && openMenuOverlay.f23790b == this) {
+            if (openMenuOverlay.f23793n || openMenuOverlay.H) {
                 return openMenuOverlay;
             }
             return null;
@@ -39,7 +39,7 @@ public final class y5 extends w0 {
 
     @Override
     public final void E() {
-        s0 s0Var = this.f23289z0;
+        s0 s0Var = this.f23291z0;
         if (s0Var != null) {
             s0Var.k(getSearchField());
         }
@@ -47,12 +47,12 @@ public final class y5 extends w0 {
 
     @Override
     public final void F(boolean z10) {
-        this.f23287x0.f23245a.r(z10, true);
+        this.f23289x0.f23247a.r(z10, true);
     }
 
     @Override
     public final w0 J(s0 s0Var) {
-        this.f23289z0 = s0Var;
+        this.f23291z0 = s0Var;
         return this;
     }
 
@@ -64,19 +64,19 @@ public final class y5 extends w0 {
 
     @Override
     public final w0 N() {
-        this.f23288y0 = true;
-        this.f23287x0.f23245a.setSearchItem(this);
+        this.f23290y0 = true;
+        this.f23289x0.f23247a.setSearchItem(this);
         return this;
     }
 
     @Override
     public final void P(CharSequence charSequence, boolean z10) {
-        this.f23287x0.f23245a.setSearchFieldText(charSequence);
+        this.f23289x0.f23247a.setSearchFieldText(charSequence);
     }
 
     @Override
     public final boolean T(boolean z10) {
-        r5 r5Var = this.f23287x0.f23245a;
+        r5 r5Var = this.f23289x0.f23247a;
         if (r5Var.F) {
             r5Var.f(z10);
             return false;
@@ -87,8 +87,8 @@ public final class y5 extends w0 {
     @Override
     public final void U(View view, View view2) {
         boolean z10;
-        x5 x5Var = this.f23287x0;
-        z5 menuOverlay = x5Var.f23245a.getMenuOverlay();
+        x5 x5Var = this.f23289x0;
+        z5 menuOverlay = x5Var.f23247a.getMenuOverlay();
         eh.d dVar = null;
         if (menuOverlay == null) {
             super.U(null, null);
@@ -96,10 +96,10 @@ public final class y5 extends w0 {
         }
         y();
         if (s()) {
-            boolean z11 = x5Var.f23246b;
-            r5 r5Var = x5Var.f23245a;
+            boolean z11 = x5Var.f23248b;
+            r5 r5Var = x5Var.f23247a;
             if (!z11 || r5Var.o()) {
-                if (menuOverlay.f23788b == this && (((z10 = menuOverlay.f23791n) || menuOverlay.H) && z10)) {
+                if (menuOverlay.f23790b == this && (((z10 = menuOverlay.f23793n) || menuOverlay.H) && z10)) {
                     menuOverlay.a(true);
                     return;
                 }
@@ -109,19 +109,19 @@ public final class y5 extends w0 {
                     t0Var.b();
                 }
                 ActionBarPopupWindow$ActionBarPopupWindowLayout popupLayout = getPopupLayout();
-                if (!menuOverlay.f23791n || menuOverlay.f23788b != this) {
-                    y5 y5Var = menuOverlay.f23788b;
+                if (!menuOverlay.f23793n || menuOverlay.f23790b != this) {
+                    y5 y5Var = menuOverlay.f23790b;
                     if (y5Var != null && y5Var != this) {
                         menuOverlay.d();
                     }
-                    menuOverlay.f23787a = r5Var;
-                    menuOverlay.f23788b = this;
-                    ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = menuOverlay.f23789c;
+                    menuOverlay.f23789a = r5Var;
+                    menuOverlay.f23790b = this;
+                    ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = menuOverlay.f23791c;
                     if (actionBarPopupWindow$ActionBarPopupWindowLayout != popupLayout) {
                         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
                             AndroidUtilities.removeFromParent(actionBarPopupWindow$ActionBarPopupWindowLayout);
                         }
-                        menuOverlay.f23789c = popupLayout;
+                        menuOverlay.f23791c = popupLayout;
                     }
                     popupLayout.setBackgroundDrawable(null);
                     popupLayout.setPadding(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f));
@@ -129,7 +129,7 @@ public final class y5 extends w0 {
                     popupLayout.setTranslationY(0.0f);
                     popupLayout.setAlpha(1.0f);
                     f7.e0(popupLayout, false);
-                    k80.U(popupLayout, y6.o1(0.06f, y6.w0(y6.E8, menuOverlay.f23787a.f23026a)));
+                    k80.U(popupLayout, y6.o1(0.06f, y6.w0(y6.E8, menuOverlay.f23789a.f23028a)));
                     popupLayout.f();
                     if (popupLayout.getSwipeBack() != null) {
                         popupLayout.getSwipeBack().b(false);
@@ -157,17 +157,17 @@ public final class y5 extends w0 {
                         ((ViewGroup) parent).bringChildToFront(menuOverlay);
                     }
                     menuOverlay.setVisibility(0);
-                    menuOverlay.f23791n = true;
+                    menuOverlay.f23793n = true;
                     menuOverlay.v = SystemClock.uptimeMillis();
-                    menuOverlay.f23796y = Math.max(menuOverlay.E, menuOverlay.F);
-                    menuOverlay.f23795x = 0L;
+                    menuOverlay.f23798y = Math.max(menuOverlay.E, menuOverlay.F);
+                    menuOverlay.f23797x = 0L;
                     menuOverlay.H = true;
                     menuOverlay.invalidate();
                     r5Var.O = menuOverlay;
                     r5Var.P = this;
                     r5Var.invalidate();
                     menuOverlay.c();
-                    if (!menuOverlay.f23792r) {
+                    if (!menuOverlay.f23794r) {
                         getIconView().setAlpha(0.0f);
                     }
                     menuOverlay.setFocusableInTouchMode(true);
@@ -185,11 +185,11 @@ public final class y5 extends w0 {
 
     public final void Y(boolean z10, boolean z11) {
         boolean z12 = this.A0;
-        x5 x5Var = this.f23287x0;
+        x5 x5Var = this.f23289x0;
         if (z12 == z10) {
             if (!z10 && !z11 && getVisibility() != 8) {
                 super.setVisibility(8);
-                x5Var.f23248f = true;
+                x5Var.f23250f = true;
                 x5Var.requestLayout();
                 return;
             } else if (z10 && getVisibility() != 0) {
@@ -211,28 +211,28 @@ public final class y5 extends w0 {
         } else if (!z11 || !isLaidOut() || !x5Var.isLaidOut()) {
             super.setVisibility(8);
         }
-        if (!z11 || !x5Var.f23245a.p()) {
-            x5Var.f23248f = true;
+        if (!z11 || !x5Var.f23247a.p()) {
+            x5Var.f23250f = true;
         }
         x5Var.requestLayout();
     }
 
     public x5 getParentMenu() {
-        return this.f23287x0;
+        return this.f23289x0;
     }
 
     @Override
     public EditTextBoldCursor getSearchField() {
-        return this.f23287x0.f23245a.getSearchField();
+        return this.f23289x0.f23247a.getSearchField();
     }
 
     public s0 getSearchListener() {
-        return this.f23289z0;
+        return this.f23291z0;
     }
 
     @Override
     public final void n() {
-        this.f23287x0.f23245a.setSearchFieldText("");
+        this.f23289x0.f23247a.setSearchFieldText("");
     }
 
     @Override
@@ -257,19 +257,19 @@ public final class y5 extends w0 {
 
     @Override
     public void setSearchFieldCaption(CharSequence charSequence) {
-        this.f23287x0.f23245a.setSearchFieldCaption(charSequence);
+        this.f23289x0.f23247a.setSearchFieldCaption(charSequence);
     }
 
     @Override
     public void setSearchFieldHint(CharSequence charSequence) {
-        this.f23287x0.f23245a.setSearchFieldHint(charSequence);
+        this.f23289x0.f23247a.setSearchFieldHint(charSequence);
         setContentDescription(charSequence);
     }
 
     @Override
     public void setVisibility(int i10) {
         boolean z10;
-        x5 x5Var = this.f23287x0;
+        x5 x5Var = this.f23289x0;
         if (x5Var != null && i10 != 4) {
             boolean z11 = false;
             if (i10 == 0) {
@@ -277,8 +277,8 @@ public final class y5 extends w0 {
             } else {
                 z10 = false;
             }
-            r5 r5Var = x5Var.f23245a;
-            if (x5Var.isLaidOut() && r5Var.p() && (!x5Var.f23246b || (r5Var.o() && r5Var.getActionModeFactor() > 0.0f))) {
+            r5 r5Var = x5Var.f23247a;
+            if (x5Var.isLaidOut() && r5Var.p() && (!x5Var.f23248b || (r5Var.o() && r5Var.getActionModeFactor() > 0.0f))) {
                 z11 = true;
             }
             Y(z10, z11);
@@ -289,24 +289,24 @@ public final class y5 extends w0 {
 
     @Override
     public final boolean u() {
-        return this.f23288y0;
+        return this.f23290y0;
     }
 
     @Override
     public final boolean v() {
-        return this.f23287x0.f23245a.F;
+        return this.f23289x0.f23247a.F;
     }
 
     @Override
     public final boolean w() {
-        return this.f23287x0.f23245a.F;
+        return this.f23289x0.f23247a.F;
     }
 
     @Override
     public final boolean x() {
         z5 shownOverlay = getShownOverlay();
         if (shownOverlay != null) {
-            return shownOverlay.f23791n;
+            return shownOverlay.f23793n;
         }
         return super.x();
     }

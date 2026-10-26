@@ -16,15 +16,15 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c90 extends org.telegram.ui.ActionBar.k3 {
-    public static final int f27095s = 0;
-    public int f27096b;
-    public final String f27097c;
+    public static final int f27097s = 0;
+    public int f27098b;
+    public final String f27099c;
     public final org.telegram.ui.ActionBar.r2 d;
     public final TLRPC.ChatInvite e;
-    public final TLRPC.Chat f27098f;
+    public final TLRPC.Chat f27100f;
     public final TextView h;
-    public final RadialProgressView f27099n;
-    public wc f27100r;
+    public final RadialProgressView f27101n;
+    public wc f27102r;
 
     public c90(android.content.Context r33, org.telegram.tgnet.TLObject r34, java.lang.String r35, org.telegram.ui.ActionBar.r2 r36, org.telegram.ui.ActionBar.u6 r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c90.<init>(android.content.Context, org.telegram.tgnet.TLObject, java.lang.String, org.telegram.ui.ActionBar.r2, org.telegram.ui.ActionBar.u6):void");
@@ -92,57 +92,57 @@ public final class c90 extends org.telegram.ui.ActionBar.k3 {
     public static void q(c90 c90Var, long j10) {
         c90Var.dismiss();
         TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-        tL_messages_importChatInvite.hash = c90Var.f27097c;
+        tL_messages_importChatInvite.hash = c90Var.f27099c;
         ConnectionsManager.getInstance(c90Var.currentAccount).sendRequestTyped(tL_messages_importChatInvite, null, new bi.lc(c90Var, j10, tL_messages_importChatInvite), 2);
     }
 
     public static void r(c90 c90Var, boolean z10, long j10) {
-        TLRPC.Chat chat = c90Var.f27098f;
+        TLRPC.Chat chat = c90Var.f27100f;
         AndroidUtilities.runOnUIThread(new Runnable(c90Var) {
-            public final c90 f26435b;
+            public final c90 f26437b;
 
             {
-                this.f26435b = c90Var;
+                this.f26437b = c90Var;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        c90 c90Var2 = this.f26435b;
+                        c90 c90Var2 = this.f26437b;
                         if (!c90Var2.isDismissed()) {
                             c90Var2.h.setVisibility(4);
-                            c90Var2.f27099n.setVisibility(0);
+                            c90Var2.f27101n.setVisibility(0);
                             return;
                         }
                         return;
                     default:
-                        this.f26435b.dismiss();
+                        this.f26437b.dismiss();
                         return;
                 }
             }
         }, 400L);
         if (c90Var.e == null && chat != null) {
             MessagesController.getInstance(c90Var.currentAccount).addUserToChat(chat.f22027id, UserConfig.getInstance(c90Var.currentAccount).getCurrentUser(), 0, null, null, true, new Runnable(c90Var) {
-                public final c90 f26435b;
+                public final c90 f26437b;
 
                 {
-                    this.f26435b = c90Var;
+                    this.f26437b = c90Var;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            c90 c90Var2 = this.f26435b;
+                            c90 c90Var2 = this.f26437b;
                             if (!c90Var2.isDismissed()) {
                                 c90Var2.h.setVisibility(4);
-                                c90Var2.f27099n.setVisibility(0);
+                                c90Var2.f27101n.setVisibility(0);
                                 return;
                             }
                             return;
                         default:
-                            this.f26435b.dismiss();
+                            this.f26437b.dismiss();
                             return;
                     }
                 }
@@ -150,7 +150,7 @@ public final class c90 extends org.telegram.ui.ActionBar.k3 {
             return;
         }
         TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-        tL_messages_importChatInvite.hash = c90Var.f27097c;
+        tL_messages_importChatInvite.hash = c90Var.f27099c;
         ConnectionsManager.getInstance(c90Var.currentAccount).sendRequest(tL_messages_importChatInvite, new bi.m(c90Var, j10, z10, tL_messages_importChatInvite), 2);
     }
 
@@ -203,14 +203,14 @@ public final class c90 extends org.telegram.ui.ActionBar.k3 {
             wcVar = wc.b0(r2Var);
         }
         nc ncVar = new nc(context, r2Var.getResourceProvider());
-        ncVar.f30951a.f(R.raw.timer_3, 28, 28, null);
-        ncVar.f30952b.setText(LocaleController.getString(R.string.RequestToJoinSent));
+        ncVar.f30953a.f(R.raw.timer_3, 28, 28, null);
+        ncVar.f30954b.setText(LocaleController.getString(R.string.RequestToJoinSent));
         if (z10) {
             string = LocaleController.getString(R.string.RequestToJoinChannelSentDescription);
         } else {
             string = LocaleController.getString(R.string.RequestToJoinGroupSentDescription);
         }
-        ncVar.f30953c.setText(string);
+        ncVar.f30955c.setText(string);
         wcVar.b(ncVar, 2750).j();
     }
 
@@ -219,9 +219,9 @@ public final class c90 extends org.telegram.ui.ActionBar.k3 {
         int themedColor;
         super.onThemeColorsChanged();
         try {
-            if (this.navBarColor == this.f27096b && (themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6)) != this.navBarColor) {
+            if (this.navBarColor == this.f27098b && (themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6)) != this.navBarColor) {
                 fixNavigationBar(themedColor);
-                this.f27096b = this.navBarColor;
+                this.f27098b = this.navBarColor;
             }
         } catch (Exception e) {
             FileLog.e(e);

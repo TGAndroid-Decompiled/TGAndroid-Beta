@@ -8,21 +8,21 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public boolean f25464a;
-    public org.telegram.ui.Components.y9 f25465b;
-    public TextView f25466c;
+    public boolean f25466a;
+    public org.telegram.ui.Components.y9 f25467b;
+    public TextView f25468c;
     public TextView d;
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23338c9));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23340c9));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f25464a) {
-            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23476k0);
+        if (this.f25466a) {
+            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23478k0);
         }
     }
 
@@ -33,11 +33,11 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.p
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Components.y9 y9Var = this.f25465b;
+        org.telegram.ui.Components.y9 y9Var = this.f25467b;
         if (y9Var != null) {
             try {
                 if (y9Var.getImageReceiver() != null && (y9Var.getImageReceiver().getDrawable() instanceof pg.c)) {
-                    ((pg.c) y9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23338c9, false));
+                    ((pg.c) y9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23340c9, false));
                     y9Var.invalidate();
                 }
             } catch (Exception e) {

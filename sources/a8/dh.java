@@ -336,7 +336,7 @@ public class dh extends AbstractCollection implements List {
                     dhVar2.o();
                     return;
                 } else {
-                    ((y7.e) this.f413f).f52121c.put(this.f411b, this.f412c);
+                    ((y7.e) this.f413f).f52124c.put(this.f411b, this.f412c);
                     return;
                 }
         }
@@ -361,7 +361,7 @@ public class dh extends AbstractCollection implements List {
                     dhVar2.p();
                     return;
                 } else if (this.f412c.isEmpty()) {
-                    ((y7.e) this.f413f).f52121c.remove(this.f411b);
+                    ((y7.e) this.f413f).f52124c.remove(this.f411b);
                     return;
                 } else {
                     return;
@@ -595,7 +595,7 @@ public class dh extends AbstractCollection implements List {
                         throw new ConcurrentModificationException();
                     }
                     return;
-                } else if (this.f412c.isEmpty() && (collection = (Collection) ((y7.e) this.f413f).f52121c.get(this.f411b)) != null) {
+                } else if (this.f412c.isEmpty() && (collection = (Collection) ((y7.e) this.f413f).f52124c.get(this.f411b)) != null) {
                     this.f412c = collection;
                     return;
                 } else {

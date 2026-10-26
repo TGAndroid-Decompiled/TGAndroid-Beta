@@ -104,7 +104,7 @@ public final class m3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new bi.s9((Object) ((dg1) obj), (Object) tL_error, (Object) tLObject, this.f11247b, 28));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f37579g0;
+                int[][] iArr = WallpapersListActivity.f37582g0;
                 AndroidUtilities.runOnUIThread(new d80((WallpapersListActivity) obj, tLObject, z10, 14));
                 return;
         }

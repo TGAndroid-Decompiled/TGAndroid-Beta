@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 public final class d5 {
-    public final int f27391a;
-    public final int f27392b;
-    public final int f27393c;
+    public final int f27393a;
+    public final int f27394b;
+    public final int f27395c;
     public final int d;
     public final int e;
-    public final int f27394f;
-    public final int f27395g;
+    public final int f27396f;
+    public final int f27397g;
     public final int h;
 
     public d5(org.telegram.ui.ActionBar.u6 r14) {
@@ -14,13 +14,13 @@ public final class d5 {
     }
 
     public d5(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
-        this.f27391a = i10;
-        this.f27392b = i11;
-        this.f27393c = i12;
+        this.f27393a = i10;
+        this.f27394b = i11;
+        this.f27395c = i12;
         this.d = i13;
         this.e = i14;
-        this.f27394f = i15;
-        this.f27395g = i16;
+        this.f27396f = i15;
+        this.f27397g = i16;
         this.h = i17;
     }
 }

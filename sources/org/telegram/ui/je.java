@@ -13,30 +13,30 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class je extends FrameLayout {
-    public final org.telegram.ui.ActionBar.u6 f40568a;
-    public final org.telegram.ui.Components.b6 f40569b;
-    public final TextView f40570c;
+    public final org.telegram.ui.ActionBar.u6 f40571a;
+    public final org.telegram.ui.Components.b6 f40572b;
+    public final TextView f40573c;
     public final TextView d;
     public final DecimalFormat e;
-    public boolean f40571f;
+    public boolean f40574f;
 
     public je(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f40568a = u6Var;
+        this.f40571a = u6Var;
         LinearLayout d = org.telegram.messenger.vh.d(context, 1);
         addView(d, org.telegram.ui.Components.gb1.h(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
         TextView textView = new TextView(context);
-        this.f40570c = textView;
+        this.f40573c = textView;
         textView.setTextSize(1, 16.0f);
         org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, u6Var);
         d.addView(textView, org.telegram.ui.Components.gb1.r(-1, -2));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 13.0f);
-        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23746y6, u6Var);
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23748y6, u6Var);
         d.addView(textView2, org.telegram.ui.Components.gb1.o(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
         org.telegram.ui.Components.b6 b6Var = new org.telegram.ui.Components.b6(context);
-        this.f40569b = b6Var;
+        this.f40572b = b6Var;
         b6Var.setTypeface(AndroidUtilities.bold());
         b6Var.setTextSize(1, 13.0f);
         addView(b6Var, org.telegram.ui.Components.gb1.h(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
@@ -55,12 +55,12 @@ public final class je extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f40571f) {
-            org.telegram.ui.ActionBar.u6 u6Var = this.f40568a;
+        if (this.f40574f) {
+            org.telegram.ui.ActionBar.u6 u6Var = this.f40571a;
             if (u6Var != null) {
                 paint = u6Var.d("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.y6.f23476k0;
+                paint = org.telegram.ui.ActionBar.y6.f23478k0;
             }
             Paint paint2 = paint;
             if (paint2 != null) {

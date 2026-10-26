@@ -1,4 +1,4 @@
 package p0;
 public final class e {
-    public static final e f46476a = new Object();
+    public static final e f46479a = new Object();
 }

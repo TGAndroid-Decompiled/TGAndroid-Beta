@@ -87,7 +87,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(user.username);
         String str2 = user2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(user2.f22174id));
+            this.resolvedCache.put(str2, new CachedPeer(user2.f22176id));
         }
     }
 

@@ -5,16 +5,16 @@ import org.telegram.messenger.AndroidUtilities;
 public final class ri extends qf.c {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.s1 f43168f;
-    public final un f43169g;
+    public final org.telegram.ui.Cells.s1 f43171f;
+    public final un f43172g;
     public final Object h;
 
     public ri(un unVar, int i10, Object obj, org.telegram.ui.Cells.s1 s1Var, int i11) {
         this.d = i11;
-        this.f43169g = unVar;
+        this.f43172g = unVar;
         this.e = i10;
         this.h = obj;
-        this.f43168f = s1Var;
+        this.f43171f = s1Var;
     }
 
     @Override
@@ -40,19 +40,19 @@ public final class ri extends qf.c {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                un unVar = this.f43169g;
+                un unVar = this.f43172g;
                 unVar.Sb = i10;
                 unVar.Tb = 1;
                 unVar.Ub = (CharacterStyle) this.h;
-                this.f43168f.invalidate();
+                this.f43171f.invalidate();
                 return;
             default:
                 int i11 = this.e;
-                un unVar2 = this.f43169g;
+                un unVar2 = this.f43172g;
                 unVar2.Sb = i11;
                 unVar2.Tb = 3;
                 unVar2.Vb = (String) this.h;
-                this.f43168f.invalidate();
+                this.f43171f.invalidate();
                 return;
         }
     }

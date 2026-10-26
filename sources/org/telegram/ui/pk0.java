@@ -12,12 +12,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pk0 extends org.telegram.ui.ActionBar.j {
-    public final Context f42564a;
-    public final tk0 f42565b;
+    public final Context f42567a;
+    public final tk0 f42568b;
 
     public pk0(tk0 tk0Var, Context context) {
-        this.f42565b = tk0Var;
-        this.f42564a = context;
+        this.f42568b = tk0Var;
+        this.f42567a = context;
     }
 
     @Override
@@ -25,8 +25,8 @@ public final class pk0 extends org.telegram.ui.ActionBar.j {
         int i11;
         int i12;
         org.telegram.ui.ActionBar.r5 r5Var;
-        tk0 tk0Var = this.f42565b;
-        org.telegram.ui.ActionBar.u6 u6Var = tk0Var.f43856f;
+        tk0 tk0Var = this.f42568b;
+        org.telegram.ui.ActionBar.u6 u6Var = tk0Var.f43859f;
         SparseArray sparseArray = tk0Var.I;
         if (i10 == -1) {
             r5Var = ((org.telegram.ui.ActionBar.r2) tk0Var).simpleActionBar;
@@ -40,17 +40,17 @@ public final class pk0 extends org.telegram.ui.ActionBar.j {
         }
         if (i10 == 1) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(tk0Var.getParentActivity(), 0, u6Var);
-            alertDialog$Builder.f22366a.R = LocaleController.formatPluralString("DeleteTones", sparseArray.size(), new Object[0]);
-            alertDialog$Builder.f22366a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", sparseArray.size(), new Object[0]));
+            alertDialog$Builder.f22368a.R = LocaleController.formatPluralString("DeleteTones", sparseArray.size(), new Object[0]);
+            alertDialog$Builder.f22368a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", sparseArray.size(), new Object[0]));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.voip.c1(13));
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new qt(this, 29));
             TextView textView = (TextView) alertDialog$Builder.p().d(-1);
             if (textView != null) {
-                org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23596q7, u6Var);
+                org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23598q7, u6Var);
             }
         } else if (i10 == 2) {
             int size = sparseArray.size();
-            Context context = this.f42564a;
+            Context context = this.f42567a;
             if (size == 1) {
                 Intent intent = new Intent(context, LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");

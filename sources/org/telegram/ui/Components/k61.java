@@ -3,20 +3,20 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class k61 implements az0 {
-    public final TLRPC.InputStickerSet f29820a;
-    public final p61 f29821b;
+    public final TLRPC.InputStickerSet f29822a;
+    public final p61 f29823b;
 
     public k61(p61 p61Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f29821b = p61Var;
-        this.f29820a = inputStickerSet;
+        this.f29823b = p61Var;
+        this.f29822a = inputStickerSet;
     }
 
     @Override
     public final void a() {
-        p61 p61Var = this.f29821b;
-        s4.h0 adapter = p61Var.f31453n.getAdapter();
-        o61 o61Var = p61Var.f31455s;
-        TLRPC.InputStickerSet inputStickerSet = this.f29820a;
+        p61 p61Var = this.f29823b;
+        s4.h0 adapter = p61Var.f31455n.getAdapter();
+        o61 o61Var = p61Var.f31457s;
+        TLRPC.InputStickerSet inputStickerSet = this.f29822a;
         int i10 = 0;
         if (adapter == o61Var) {
             while (i10 < o61Var.e.size()) {

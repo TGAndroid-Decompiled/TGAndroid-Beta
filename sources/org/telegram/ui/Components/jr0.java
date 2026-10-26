@@ -13,20 +13,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class jr0 extends lm0 {
-    public final Context f29708c;
+    public final Context f29710c;
     public boolean d;
     public boolean e;
-    public ArrayList f29709f;
+    public ArrayList f29711f;
     public final mr0 h;
 
     public jr0(mr0 mr0Var, Context context) {
         this.h = mr0Var;
-        this.f29708c = context;
+        this.f29710c = context;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f != 1) {
+        if (e1Var.f47741f != 1) {
             return true;
         }
         return false;
@@ -37,9 +37,9 @@ public final class jr0 extends lm0 {
         if (this.d) {
             i11 = i10 - 2;
         }
-        ArrayList arrayList = this.f29709f;
+        ArrayList arrayList = this.f29711f;
         if (arrayList != null && i11 >= 0 && i11 < arrayList.size()) {
-            return (TLRPC.TL_forumTopic) this.f29709f.get(i11);
+            return (TLRPC.TL_forumTopic) this.f29711f.get(i11);
         }
         return null;
     }
@@ -47,7 +47,7 @@ public final class jr0 extends lm0 {
     @Override
     public final int h() {
         int i10;
-        ArrayList arrayList = this.f29709f;
+        ArrayList arrayList = this.f29711f;
         if (arrayList != null) {
             i10 = arrayList.size() + 1;
         } else {
@@ -69,11 +69,11 @@ public final class jr0 extends lm0 {
         boolean z10;
         long j10;
         int dp;
-        if (e1Var.f47738f == 0) {
-            org.telegram.ui.Cells.l7 l7Var = (org.telegram.ui.Cells.l7) e1Var.f47735a;
+        if (e1Var.f47741f == 0) {
+            org.telegram.ui.Cells.l7 l7Var = (org.telegram.ui.Cells.l7) e1Var.f47738a;
             if (i10 == 1 && this.d) {
                 l7Var.setAsNewBotForumTopic(this.e);
-            } else if (this.f29709f != null) {
+            } else if (this.f29711f != null) {
                 TLRPC.TL_forumTopic E = E(i10);
                 mr0 mr0Var = this.h;
                 TLRPC.Dialog dialog = mr0Var.D0;
@@ -82,10 +82,10 @@ public final class jr0 extends lm0 {
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Cells.i7 i7Var = l7Var.f24390b;
-                int i11 = l7Var.f24392f;
-                y9 y9Var = l7Var.f24389a;
-                TextView textView = l7Var.f24391c;
+                org.telegram.ui.Cells.i7 i7Var = l7Var.f24392b;
+                int i11 = l7Var.f24394f;
+                y9 y9Var = l7Var.f24391a;
+                TextView textView = l7Var.f24393c;
                 if (dialog != null) {
                     TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f22031id));
                     String str = "";
@@ -110,7 +110,7 @@ public final class jr0 extends lm0 {
                         long peerDialogId = DialogObject.getPeerDialogId(E.from_id);
                         if (DialogObject.isUserDialog(peerDialogId)) {
                             TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId));
-                            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23462j5, l7Var.h);
+                            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23464j5, l7Var.h);
                             i7Var.m(i11, user);
                             if (user != null) {
                                 textView.setText(ContactsController.formatName(user.first_name, user.last_name));
@@ -141,9 +141,9 @@ public final class jr0 extends lm0 {
                             str = upperCase.substring(0, 1);
                         }
                         h90Var.a(str);
-                        h90Var.f28876i = 1.8f;
+                        h90Var.f28878i = 1.8f;
                         ar arVar = new ar(aVar, h90Var, 0, 0);
-                        arVar.f26597w = true;
+                        arVar.f26599w = true;
                         y9Var.setImageDrawable(arVar);
                     }
                     if (chat != null && chat.forum && !z10) {
@@ -163,7 +163,7 @@ public final class jr0 extends lm0 {
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         View l7Var;
         org.telegram.ui.ActionBar.u6 u6Var;
-        Context context = this.f29708c;
+        Context context = this.f29710c;
         if (i10 == 0 || i10 == 2) {
             u6Var = ((org.telegram.ui.ActionBar.k3) this.h).resourcesProvider;
             l7Var = new org.telegram.ui.Cells.l7(context, u6Var);

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class q4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f37126a;
-    public final TL_wallet.walletTransaction[] f37127b;
-    public final di.s f37128c;
+    public final int f37129a;
+    public final TL_wallet.walletTransaction[] f37130b;
+    public final di.s f37131c;
 
     public q4(int i10, TL_wallet.walletTransaction[] wallettransactionArr, di.s sVar) {
-        this.f37126a = i10;
-        this.f37127b = wallettransactionArr;
-        this.f37128c = sVar;
+        this.f37129a = i10;
+        this.f37130b = wallettransactionArr;
+        this.f37131c = sVar;
     }
 
     @Override
@@ -19,11 +19,11 @@ public final class q4 implements NotificationCenter.NotificationCenterDelegate {
         TL_wallet.walletTransaction[] wallettransactionArr;
         TL_wallet.walletTransaction wallettransaction;
         if (i10 == NotificationCenter.walletUpdate || i10 == NotificationCenter.walletTransactionsUpdate) {
-            ArrayList arrayList = l0.w(this.f37126a).A().f36760c;
+            ArrayList arrayList = l0.w(this.f37129a).A().f36763c;
             int size = arrayList.size();
             int i12 = 0;
             while (true) {
-                wallettransactionArr = this.f37127b;
+                wallettransactionArr = this.f37130b;
                 if (i12 < size) {
                     Object obj = arrayList.get(i12);
                     i12++;
@@ -43,7 +43,7 @@ public final class q4 implements NotificationCenter.NotificationCenterDelegate {
             }
             if (wallettransaction != null) {
                 wallettransactionArr[0] = wallettransaction;
-                this.f37128c.run(wallettransaction);
+                this.f37131c.run(wallettransaction);
             }
         }
     }

@@ -40,7 +40,7 @@ public final class i5 extends FrameLayout {
         this.e = new RectF();
         this.f8676n = new RectF();
         this.f8677r = 1.0f;
-        int i10 = org.telegram.ui.ActionBar.y6.f23446i6;
+        int i10 = org.telegram.ui.ActionBar.y6.f23448i6;
         b bVar = t5Var.f9197s;
         paint.setColor(org.telegram.ui.ActionBar.y6.w0(i10, bVar));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -48,7 +48,7 @@ public final class i5 extends FrameLayout {
         TextView textView = new TextView(context);
         this.f8674c = textView;
         textView.setText(LocaleController.getString(R.string.AllViewers));
-        int i11 = org.telegram.ui.ActionBar.y6.f23462j5;
+        int i11 = org.telegram.ui.ActionBar.y6.f23464j5;
         org.telegram.ui.ActionBar.f7.V(textView, i11, bVar);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -73,7 +73,7 @@ public final class i5 extends FrameLayout {
         linearLayout2.setOrientation(0);
         um0 um0Var = new um0(getContext());
         this.v = um0Var;
-        um0Var.f33444r = true;
+        um0Var.f33447r = true;
         um0Var.a(R.drawable.menu_views_reactions3, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -121,8 +121,8 @@ public final class i5 extends FrameLayout {
                         h5 h5Var = new h5(i5Var, i5Var.getContext(), t5Var4.f9197s);
                         t5Var4.f9194f = h5Var;
                         LinearLayout linearLayout3 = i5Var.f8672a;
-                        h5Var.f29711b = true;
-                        h5Var.f29710a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        h5Var.f29713b = true;
+                        h5Var.f29712a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -163,8 +163,8 @@ public final class i5 extends FrameLayout {
                         h5 h5Var = new h5(i5Var, i5Var.getContext(), t5Var4.f9197s);
                         t5Var4.f9194f = h5Var;
                         LinearLayout linearLayout3 = i5Var.f8672a;
-                        h5Var.f29711b = true;
-                        h5Var.f29710a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        h5Var.f29713b = true;
+                        h5Var.f29712a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -205,8 +205,8 @@ public final class i5 extends FrameLayout {
                         h5 h5Var = new h5(i5Var, i5Var.getContext(), t5Var4.f9197s);
                         t5Var4.f9194f = h5Var;
                         LinearLayout linearLayout3 = i5Var.f8672a;
-                        h5Var.f29711b = true;
-                        h5Var.f29710a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        h5Var.f29713b = true;
+                        h5Var.f29712a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }

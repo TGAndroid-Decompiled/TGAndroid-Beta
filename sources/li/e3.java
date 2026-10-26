@@ -57,8 +57,8 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
     public void B(y2.i iVar, long j10, long j11) {
         boolean z10;
         l2.d dVar = (l2.d) this.f17210b;
-        synchronized (z2.b.f52633b) {
-            z10 = z2.b.f52634c;
+        synchronized (z2.b.f52636b) {
+            z10 = z2.b.f52637c;
         }
         if (!z10) {
             dVar.f16799a.y(new IOException(new ConcurrentModificationException()));
@@ -96,7 +96,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
         ka kaVar = (ka) this.f17210b;
         org.telegram.ui.Cells.g gVar = kaVar.v;
         if (kaVar.a()) {
-            kaVar.f24363s = 2;
+            kaVar.f24365s = 2;
             s1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -130,7 +130,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
 
     @Override
     public String H0() {
-        return ((org.telegram.ui.web.a1) this.f17210b).f45163i0;
+        return ((org.telegram.ui.web.a1) this.f17210b).f45166i0;
     }
 
     @Override
@@ -138,7 +138,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
         ka kaVar = (ka) this.f17210b;
         org.telegram.ui.Cells.g gVar = kaVar.v;
         if (kaVar.a()) {
-            kaVar.f24363s = 0;
+            kaVar.f24365s = 0;
             s1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -194,7 +194,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
 
     @Override
     public boolean O0(int i10, org.telegram.ui.Cells.s1 s1Var) {
-        if (i10 == ((ka) this.f17210b).f24363s) {
+        if (i10 == ((ka) this.f17210b).f24365s) {
             return true;
         }
         return false;
@@ -339,7 +339,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
     public void f(int i10) {
         ir0 ir0Var = (ir0) this.f17210b;
         mr0 mr0Var = ir0Var.K;
-        ir0Var.f29366s = i10;
+        ir0Var.f29368s = i10;
         if (ir0Var.v != i10) {
             ir0Var.d.clear();
         }
@@ -347,7 +347,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
         if (ir0Var.h() == 0 && !ir0Var.e.e() && !ir0Var.I) {
             mr0Var.R.e(false, true);
         } else {
-            mr0Var.f30729y0.b(i11);
+            mr0Var.f30731y0.b(i11);
         }
         ir0Var.l();
         int i12 = mr0.Z0;
@@ -395,7 +395,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
 
     @Override
     public boolean k0(int i10) {
-        if (i10 == ((ir0) this.f17210b).f29365r) {
+        if (i10 == ((ir0) this.f17210b).f29367r) {
             return true;
         }
         return false;
@@ -415,7 +415,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
     public void onDismiss() {
         org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f17210b;
         a1Var.y("scan_qr_popup_closed", null);
-        a1Var.f45162h0 = false;
+        a1Var.f45165h0 = false;
     }
 
     @Override
@@ -463,7 +463,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
                     }
                     arrayList.add(i10 + 1, aVar2);
                     v3Var.y4();
-                    v3Var.f32150g3.O(false);
+                    v3Var.f32152g3.O(false);
                     f2 f2Var2 = v3Var.R3;
                     if (f2Var2 != null) {
                         f2Var2.h();
@@ -504,13 +504,13 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
     public void v0() {
         rg.a1 a1Var = ((rg.c1) this.f17210b).d;
         if (a1Var != null) {
-            rg.z0 z0Var = a1Var.f47362s;
+            rg.z0 z0Var = a1Var.f47365s;
             if (z0Var != null) {
                 a1Var.cancelRunnable(z0Var);
-                a1Var.f47362s = null;
+                a1Var.f47365s = null;
             }
             rg.z0 z0Var2 = new rg.z0(a1Var, 1);
-            a1Var.f47362s = z0Var2;
+            a1Var.f47365s = z0Var2;
             a1Var.postRunnable(z0Var2, 1L);
         }
     }
@@ -547,7 +547,7 @@ public class e3 implements f1, m.x0, org.telegram.ui.Cells.j1, ig.z1, x9, s4.e0,
         ka kaVar = (ka) this.f17210b;
         org.telegram.ui.Cells.g gVar = kaVar.v;
         if (kaVar.a()) {
-            kaVar.f24363s = 2;
+            kaVar.f24365s = 2;
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
         }

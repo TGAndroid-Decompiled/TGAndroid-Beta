@@ -7,16 +7,16 @@ import org.telegram.ui.Components.qv0;
 import org.telegram.ui.Components.su0;
 import org.telegram.ui.Components.tl0;
 public final class i extends qv0 {
-    public final r f9986u3;
+    public final r f9986v3;
 
     public i(r rVar, Context context) {
         super(context);
-        this.f9986u3 = rVar;
+        this.f9986v3 = rVar;
     }
 
     @Override
     public final boolean D1() {
-        return this.f9986u3.f10002b;
+        return this.f9986v3.f10002b;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class i extends qv0 {
             }
         }
         float f7 = i11;
-        r rVar = this.f9986u3;
+        r rVar = this.f9986v3;
         o oVar = rVar.J;
         if (rVar.f10002b) {
             su0 su0Var = rVar.f10006r;
@@ -58,23 +58,23 @@ public final class i extends qv0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f9986u3.e;
+        return this.f9986v3.e;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f9986u3.f10003c;
+        return this.f9986v3.f10003c;
     }
 
     @Override
     public final int getColumnsCount() {
-        return this.f9986u3.d;
+        return this.f9986v3.d;
     }
 
     @Override
     public final tl0 getMovingAdapter() {
-        r rVar = this.f9986u3;
-        if (rVar.G.f47867y == 0 && !rVar.W.G.E1) {
+        r rVar = this.f9986v3;
+        if (rVar.G.f47870y == 0 && !rVar.W.G.E1) {
             return rVar.v;
         }
         return null;
@@ -82,11 +82,11 @@ public final class i extends qv0 {
 
     @Override
     public final tl0 getSupportingAdapter() {
-        return this.f9986u3.f10008w;
+        return this.f9986v3.f10008w;
     }
 
     @Override
     public final su0 getSupportingListView() {
-        return this.f9986u3.f10006r;
+        return this.f9986v3.f10006r;
     }
 }

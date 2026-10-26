@@ -12,44 +12,44 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class f81 extends View {
-    public final r6 f28085a;
-    public final r6 f28086b;
-    public final Paint f28087c;
+    public final r6 f28087a;
+    public final r6 f28088b;
+    public final Paint f28089c;
     public final Paint d;
     public final Paint e;
-    public boolean f28088f;
+    public boolean f28090f;
     public final h6 h;
-    public final int[] f28089n;
+    public final int[] f28091n;
 
     public f81(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f28087c = paint;
+        this.f28089c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.e = paint3;
         ds dsVar = ds.h;
         this.h = new h6(this, 0L, 300L, dsVar);
-        this.f28089n = new int[]{144, 240, 360, 480, 720, 1080, 1440, 2160};
+        this.f28091n = new int[]{144, 240, 360, 480, 720, 1080, 1440, 2160};
         r6 r6Var = new r6(true, false, false);
-        this.f28085a = r6Var;
+        this.f28087a = r6Var;
         r6Var.n(0.4f, 360L, dsVar);
         r6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         r6Var.u(-1);
         r6Var.w(AndroidUtilities.dpf2(10.6f));
         r6Var.setCallback(this);
-        r6Var.f32119b = 17;
+        r6Var.f32121b = 17;
         r6 r6Var2 = new r6(true, false, false);
-        this.f28086b = r6Var2;
+        this.f28088b = r6Var2;
         r6Var2.n(0.2f, 360L, dsVar);
         r6Var2.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         r6Var2.u(-1);
         r6Var2.w(AndroidUtilities.dpf2(8.6f));
         r6Var2.setCallback(this);
-        r6Var2.f32119b = 5;
+        r6Var2.f32121b = 5;
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        r6Var2.f32117a.setXfermode(new PorterDuffXfermode(mode));
+        r6Var2.f32119a.setXfermode(new PorterDuffXfermode(mode));
         r6Var2.M = AndroidUtilities.displaySize.x;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
@@ -65,9 +65,9 @@ public final class f81 extends View {
         } else {
             z12 = true;
         }
-        this.f28088f = z12;
-        r6 r6Var = this.f28085a;
-        r6 r6Var2 = this.f28086b;
+        this.f28090f = z12;
+        r6 r6Var = this.f28087a;
+        r6 r6Var2 = this.f28088b;
         if (z11) {
             r6Var.t("GIF", true, true);
             r6Var2.t("", true, true);
@@ -78,7 +78,7 @@ public final class f81 extends View {
                 str = "SD";
             }
             r6Var.t(str, true, true);
-            int[] iArr = this.f28089n;
+            int[] iArr = this.f28091n;
             int length = iArr.length - 1;
             while (true) {
                 if (length >= 0) {
@@ -94,14 +94,14 @@ public final class f81 extends View {
             if (length < 0) {
                 r6Var2.t("", true, true);
             } else if (length == 6) {
-                r6Var2.t("2K", TextUtils.isEmpty(r6Var2.f32124i), true);
+                r6Var2.t("2K", TextUtils.isEmpty(r6Var2.f32126i), true);
             } else if (length == 7) {
-                r6Var2.t("4K", TextUtils.isEmpty(r6Var2.f32124i), true);
+                r6Var2.t("4K", TextUtils.isEmpty(r6Var2.f32126i), true);
             } else {
-                r6Var2.t("" + iArr[length], TextUtils.isEmpty(r6Var2.f32124i), true);
+                r6Var2.t("" + iArr[length], TextUtils.isEmpty(r6Var2.f32126i), true);
             }
         }
-        setClickable(!this.f28088f);
+        setClickable(!this.f28090f);
         invalidate();
     }
 
@@ -109,14 +109,14 @@ public final class f81 extends View {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        float D = c3.h0.D(this.h.e(this.f28088f), 0.35f, 1.0f, 255.0f);
+        float D = c3.h0.D(this.h.e(this.f28090f), 0.35f, 1.0f, 255.0f);
         int i10 = (int) D;
-        Paint paint = this.f28087c;
+        Paint paint = this.f28089c;
         paint.setAlpha(i10);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
         float dpf2 = AndroidUtilities.dpf2(21.33f);
         float dpf22 = AndroidUtilities.dpf2(6.0f);
-        r6 r6Var = this.f28085a;
+        r6 r6Var = this.f28087a;
         float max = Math.max(dpf2, r6Var.c() + dpf22);
         float dpf23 = AndroidUtilities.dpf2(17.33f);
         RectF rectF = AndroidUtilities.rectTmp;
@@ -127,7 +127,7 @@ public final class f81 extends View {
         r6Var.setBounds(rect);
         r6Var.B = i10;
         r6Var.draw(canvas);
-        r6 r6Var2 = this.f28086b;
+        r6 r6Var2 = this.f28088b;
         float c10 = r6Var2.c() + (AndroidUtilities.dpf2(2.0f) * r6Var2.i());
         float dpf24 = AndroidUtilities.dpf2(8.33f);
         rect.set((int) ((AndroidUtilities.dpf2(16.0f) + (getWidth() / 2.0f)) - c10), (int) ((getHeight() / 2.0f) - AndroidUtilities.dpf2(14.0f)), (int) (AndroidUtilities.dpf2(16.0f) + (getWidth() / 2.0f)), (int) (((getHeight() / 2.0f) - AndroidUtilities.dpf2(14.0f)) + dpf24));
@@ -150,19 +150,19 @@ public final class f81 extends View {
 
     public void setPhotoState(boolean z10) {
         String str;
-        this.f28088f = false;
+        this.f28090f = false;
         if (z10) {
             str = "HD";
         } else {
             str = "SD";
         }
-        this.f28085a.t(str, true, true);
-        this.f28086b.t("", false, true);
+        this.f28087a.t(str, true, true);
+        this.f28088b.t("", false, true);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f28085a != drawable && this.f28086b != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f28087a != drawable && this.f28088b != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

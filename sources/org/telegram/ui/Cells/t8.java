@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class t8 extends FrameLayout {
-    public TextView f25456a;
+    public TextView f25458a;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -13,7 +13,7 @@ public final class t8 extends FrameLayout {
     }
 
     public void setTextColor(int i10) {
-        this.f25456a.setTextColor(i10);
+        this.f25458a.setTextColor(i10);
     }
 
     @Override

@@ -14,36 +14,36 @@ public final class al0 implements Runnable {
     public final boolean E;
     public final String F;
     public final org.telegram.ui.web.a1 G;
-    public final fi.d f37819a;
-    public final fi.d f37820b;
-    public final TLRPC.TL_urlAuthResultRequest f37821c;
+    public final fi.d f37822a;
+    public final fi.d f37823b;
+    public final TLRPC.TL_urlAuthResultRequest f37824c;
     public final TL_wallet.inputTonConnectOauthSession[] d;
     public final TLRPC.TL_messages_requestUrlAuth e;
-    public final String[] f37822f;
+    public final String[] f37825f;
     public final org.telegram.ui.Cells.a9 h;
-    public final boolean[] f37823n;
-    public final boolean[] f37824r;
-    public final int[] f37825s;
+    public final boolean[] f37826n;
+    public final boolean[] f37827r;
+    public final int[] f37828s;
     public final boolean[] v;
-    public final org.telegram.ui.ActionBar.k3 f37826w;
-    public final String f37827x;
-    public final org.telegram.ui.ActionBar.u6 f37828y;
+    public final org.telegram.ui.ActionBar.k3 f37829w;
+    public final String f37830x;
+    public final org.telegram.ui.ActionBar.u6 f37831y;
 
     public al0(fi.d dVar, fi.d dVar2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String[] strArr, org.telegram.ui.Cells.a9 a9Var, boolean[] zArr, boolean[] zArr2, int[] iArr, boolean[] zArr3, org.telegram.ui.ActionBar.k3 k3Var, String str, org.telegram.ui.ActionBar.u6 u6Var, boolean z10, String str2, org.telegram.ui.web.a1 a1Var) {
-        this.f37819a = dVar;
-        this.f37820b = dVar2;
-        this.f37821c = tL_urlAuthResultRequest;
+        this.f37822a = dVar;
+        this.f37823b = dVar2;
+        this.f37824c = tL_urlAuthResultRequest;
         this.d = inputtonconnectoauthsessionArr;
         this.e = tL_messages_requestUrlAuth;
-        this.f37822f = strArr;
+        this.f37825f = strArr;
         this.h = a9Var;
-        this.f37823n = zArr;
-        this.f37824r = zArr2;
-        this.f37825s = iArr;
+        this.f37826n = zArr;
+        this.f37827r = zArr2;
+        this.f37828s = iArr;
         this.v = zArr3;
-        this.f37826w = k3Var;
-        this.f37827x = str;
-        this.f37828y = u6Var;
+        this.f37829w = k3Var;
+        this.f37830x = str;
+        this.f37831y = u6Var;
         this.E = z10;
         this.F = str2;
         this.G = a1Var;
@@ -51,9 +51,9 @@ public final class al0 implements Runnable {
 
     @Override
     public final void run() {
-        final fi.d dVar = this.f37819a;
-        if (!dVar.Q && !this.f37820b.Q) {
-            final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = this.f37821c;
+        final fi.d dVar = this.f37822a;
+        if (!dVar.Q && !this.f37823b.Q) {
+            final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = this.f37824c;
             boolean z10 = tL_urlAuthResultRequest.request_wallet;
             TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = this.d;
             if (!z10 || inputtonconnectoauthsessionArr[0] != null) {
@@ -71,7 +71,7 @@ public final class al0 implements Runnable {
                     tL_messages_acceptUrlAuth.flags |= 4;
                     tL_messages_acceptUrlAuth.url = tL_messages_requestUrlAuth.url;
                 }
-                String str = this.f37822f[0];
+                String str = this.f37825f[0];
                 if (str != null) {
                     tL_messages_acceptUrlAuth.match_code = str;
                 }
@@ -80,24 +80,24 @@ public final class al0 implements Runnable {
                     z11 = false;
                 }
                 tL_messages_acceptUrlAuth.write_allowed = z11;
-                tL_messages_acceptUrlAuth.share_phone_number = this.f37823n[0];
+                tL_messages_acceptUrlAuth.share_phone_number = this.f37826n[0];
                 TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = inputtonconnectoauthsessionArr[0];
                 tL_messages_acceptUrlAuth.tonconnect_session = inputtonconnectoauthsession;
                 inputtonconnectoauthsessionArr[0] = null;
-                if (this.f37824r[0]) {
+                if (this.f37827r[0]) {
                     if (inputtonconnectoauthsession != null) {
                         Arrays.fill(inputtonconnectoauthsession.challenge_answer, (byte) 0);
                         return;
                     }
                     return;
                 }
-                final int[] iArr = this.f37825s;
+                final int[] iArr = this.f37828s;
                 ConnectionsManager connectionsManager = ConnectionsManager.getInstance(iArr[0]);
                 ?? obj = new Object();
                 final boolean[] zArr = this.v;
-                final org.telegram.ui.ActionBar.k3 k3Var = this.f37826w;
-                final String str2 = this.f37827x;
-                final org.telegram.ui.ActionBar.u6 u6Var = this.f37828y;
+                final org.telegram.ui.ActionBar.k3 k3Var = this.f37829w;
+                final String str2 = this.f37830x;
+                final org.telegram.ui.ActionBar.u6 u6Var = this.f37831y;
                 final boolean z12 = this.E;
                 final String str3 = this.F;
                 final org.telegram.ui.web.a1 a1Var = this.G;

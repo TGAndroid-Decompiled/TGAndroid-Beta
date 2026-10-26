@@ -2,17 +2,17 @@ package x7;
 
 import java.util.Iterator;
 public final class ya extends ua {
-    public final transient ab f51670c;
+    public final transient ab f51673c;
     public final transient za d;
 
     public ya(ab abVar, za zaVar) {
-        this.f51670c = abVar;
+        this.f51673c = abVar;
         this.d = zaVar;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        if (this.f51670c.get(obj) != null) {
+        if (this.f51673c.get(obj) != null) {
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public final class ya extends ua {
 
     @Override
     public final int size() {
-        this.f51670c.getClass();
+        this.f51673c.getClass();
         return 1;
     }
 }

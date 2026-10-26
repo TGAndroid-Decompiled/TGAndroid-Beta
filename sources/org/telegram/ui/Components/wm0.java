@@ -47,35 +47,35 @@ public final class wm0 {
     public float X;
     public float Y;
     public long Z;
-    public vm0[] f34478a0;
-    public float f34480b0;
-    public boolean f34482c0;
+    public vm0[] f34481a0;
+    public float f34483b0;
+    public boolean f34485c0;
     public da0 h;
-    public boolean f34485i;
-    public boolean f34486j;
-    public Bitmap f34487k;
-    public int f34488l;
-    public int f34489m;
-    public int f34490n;
-    public int f34491o;
-    public boolean f34492p;
-    public boolean f34495s;
-    public r5 f34496t;
-    public r5 f34497u;
+    public boolean f34488i;
+    public boolean f34489j;
+    public Bitmap f34490k;
+    public int f34491l;
+    public int f34492m;
+    public int f34493n;
+    public int f34494o;
+    public boolean f34495p;
+    public boolean f34498s;
+    public r5 f34499t;
+    public r5 f34500u;
     public long v;
-    public long f34498w;
-    public int f34499x;
-    public int f34500y;
-    public int f34501z;
-    public final RectF f34477a = new RectF();
-    public final Paint f34479b = new Paint(1);
-    public final Paint f34481c = new Paint(3);
+    public long f34501w;
+    public int f34502x;
+    public int f34503y;
+    public int f34504z;
+    public final RectF f34480a = new RectF();
+    public final Paint f34482b = new Paint(1);
+    public final Paint f34484c = new Paint(3);
     public final Matrix d = new Matrix();
     public final float[] e = new float[8];
-    public final Path f34483f = new Path();
-    public final Paint f34484g = new Paint();
-    public int f34493q = 0;
-    public float f34494r = 1.0f;
+    public final Path f34486f = new Path();
+    public final Paint f34487g = new Paint();
+    public int f34496q = 0;
+    public float f34497r = 1.0f;
 
     public wm0(View view) {
         this.D = view;
@@ -133,35 +133,35 @@ public final class wm0 {
         }
         this.V = false;
         this.v = 0L;
-        this.f34498w = 0L;
+        this.f34501w = 0L;
         if (messageObject != null && messageObject.isSponsored()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f34495s = z10;
+        this.f34498s = z10;
         j5 j5Var2 = this.I;
         float f10 = 0.1f;
         if (messageObject == null) {
             this.R = true;
             this.S = i10;
             this.T = u6Var;
-            this.U = org.telegram.ui.ActionBar.f7.f22626b;
-            this.f34486j = false;
-            this.f34485i = false;
+            this.U = org.telegram.ui.ActionBar.f7.f22628b;
+            this.f34489j = false;
+            this.f34488i = false;
             int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Uc, u6Var);
             this.B = w02;
             this.A = w02;
-            this.f34501z = w02;
+            this.f34504z = w02;
             if (q5) {
                 f7 = 0.12f;
             } else {
                 f7 = 0.1f;
             }
-            this.f34499x = org.telegram.ui.ActionBar.y6.o1(f7, w02);
+            this.f34502x = org.telegram.ui.ActionBar.y6.o1(f7, w02);
             this.C = i();
             int w03 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Wc, u6Var);
-            this.f34500y = w03;
+            this.f34503y = w03;
             return j5Var2.a(w03, false);
         }
         if (i10 == 4 && (message4 = messageObject.messageOwner) != null && MessageObject.getMedia(message4) != null && (MessageObject.getMedia(messageObject.messageOwner) instanceof TLRPC.TL_messageMediaContact)) {
@@ -186,8 +186,8 @@ public final class wm0 {
                 i13 = 0;
             }
             n(messageObject, i13, u6Var);
-            this.f34499x = org.telegram.ui.ActionBar.y6.o1(0.1f, this.f34501z);
-            this.f34500y = this.f34501z;
+            this.f34502x = org.telegram.ui.ActionBar.y6.o1(0.1f, this.f34504z);
+            this.f34503y = this.f34504z;
         } else {
             j5Var = j5Var2;
             if (i10 != 0 && (messageObject.overrideLinkColor >= 0 || (messageObject.messageOwner != null && (((messageObject.isFromUser() || DialogObject.isEncryptedDialog(messageObject.getDialogId())) && user4 != null) || ((messageObject.isFromChannel() && chat != null) || (((message3 = messageObject.messageOwner) != null && (messageFwdHeader3 = message3.fwd_from) != null && messageFwdHeader3.from_id != null) || (messageObject.isSponsored() && (peerColor2 = messageObject.sponsoredColor) != null && peerColor2.color != -1))))))) {
@@ -297,8 +297,8 @@ public final class wm0 {
                     i14 = i11;
                 }
                 n(messageObject, i14, u6Var);
-                this.f34499x = org.telegram.ui.ActionBar.y6.o1(0.1f, this.f34501z);
-                this.f34500y = this.f34501z;
+                this.f34502x = org.telegram.ui.ActionBar.y6.o1(0.1f, this.f34504z);
+                this.f34503y = this.f34504z;
             } else if (i10 == 0 && (messageObject.overrideLinkColor >= 0 || ((message = messageObject.messageOwner) != null && messageObject.replyMessageObject != null && (messageReplyHeader = message.reply_to) != null && (((messageFwdHeader = messageReplyHeader.reply_from) == null || TextUtils.isEmpty(messageFwdHeader.from_name)) && (message2 = (messageObject2 = messageObject.replyMessageObject).messageOwner) != null && message2.from_id != null && (messageObject2.isFromUser() || DialogObject.isEncryptedDialog(messageObject.getDialogId()) || messageObject.replyMessageObject.isFromChannel()))))) {
                 int i15 = messageObject.overrideLinkColor;
                 if (i15 < 0) {
@@ -342,58 +342,58 @@ public final class wm0 {
                     }
                 }
                 n(messageObject.replyMessageObject, i15, u6Var);
-                this.f34499x = org.telegram.ui.ActionBar.y6.o1(0.1f, this.f34501z);
-                this.f34500y = this.f34501z;
+                this.f34502x = org.telegram.ui.ActionBar.y6.o1(0.1f, this.f34504z);
+                this.f34503y = this.f34504z;
             } else {
-                this.f34485i = false;
-                this.f34486j = false;
+                this.f34488i = false;
+                this.f34489j = false;
                 int w04 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Uc, u6Var);
                 this.B = w04;
                 this.A = w04;
-                this.f34501z = w04;
-                this.f34499x = org.telegram.ui.ActionBar.y6.o1(0.1f, w04);
-                this.f34500y = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Wc, u6Var);
+                this.f34504z = w04;
+                this.f34502x = org.telegram.ui.ActionBar.y6.o1(0.1f, w04);
+                this.f34503y = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Wc, u6Var);
             }
         }
         if (messageObject.shouldDrawWithoutBackground()) {
-            this.f34485i = false;
-            this.f34486j = false;
+            this.f34488i = false;
+            this.f34489j = false;
             this.B = -1;
             this.A = -1;
-            this.f34501z = -1;
-            this.f34499x = 0;
-            this.f34500y = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Xc, u6Var);
+            this.f34504z = -1;
+            this.f34502x = 0;
+            this.f34503y = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Xc, u6Var);
         } else if (messageObject.isOutOwner() || i10 == 2) {
             if (i10 == 2 && !messageObject.isOutOwner()) {
                 int w05 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.pk, u6Var);
                 this.B = w05;
                 this.A = w05;
-                this.f34501z = w05;
+                this.f34504z = w05;
             } else {
-                if (!this.f34485i && !this.f34486j) {
-                    i12 = org.telegram.ui.ActionBar.y6.f23301ab;
+                if (!this.f34488i && !this.f34489j) {
+                    i12 = org.telegram.ui.ActionBar.y6.f23303ab;
                 } else {
-                    i12 = org.telegram.ui.ActionBar.y6.f23320bb;
+                    i12 = org.telegram.ui.ActionBar.y6.f23322bb;
                 }
                 int w06 = org.telegram.ui.ActionBar.y6.w0(i12, u6Var);
                 this.B = w06;
                 this.A = w06;
-                this.f34501z = w06;
+                this.f34504z = w06;
             }
-            if (this.f34486j) {
+            if (this.f34489j) {
                 this.V = true;
-                this.f34501z = org.telegram.ui.ActionBar.y6.o1(0.2f, this.f34501z);
+                this.f34504z = org.telegram.ui.ActionBar.y6.o1(0.2f, this.f34504z);
                 this.A = org.telegram.ui.ActionBar.y6.o1(0.5f, this.A);
-            } else if (this.f34485i) {
+            } else if (this.f34488i) {
                 this.V = true;
-                this.f34501z = org.telegram.ui.ActionBar.y6.o1(0.35f, this.f34501z);
+                this.f34504z = org.telegram.ui.ActionBar.y6.o1(0.35f, this.f34504z);
             }
             int i16 = this.B;
             if (q5) {
                 f10 = 0.12f;
             }
-            this.f34499x = org.telegram.ui.ActionBar.y6.o1(f10, i16);
-            this.f34500y = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23340cb, u6Var);
+            this.f34502x = org.telegram.ui.ActionBar.y6.o1(f10, i16);
+            this.f34503y = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23342cb, u6Var);
         }
         if (i10 == 0 || i10 == 3 || i10 == 4) {
             long j11 = messageObject.overrideLinkEmoji;
@@ -401,32 +401,32 @@ public final class wm0 {
                 this.v = j11;
             }
         }
-        if (this.v != 0 && this.f34496t == null && (view = this.D) != null) {
-            this.f34496t = new r5(AndroidUtilities.dp(20.0f), 13, view, false);
+        if (this.v != 0 && this.f34499t == null && (view = this.D) != null) {
+            this.f34499t = new r5(AndroidUtilities.dp(20.0f), 13, view, false);
             if (!(view instanceof org.telegram.ui.Cells.s1) ? view.isAttachedToWindow() : ((org.telegram.ui.Cells.s1) view).M0) {
-                this.f34496t.a();
+                this.f34499t.a();
             }
         }
-        r5 r5Var = this.f34496t;
+        r5 r5Var = this.f34499t;
         if (r5Var != null) {
             z11 = true;
             if (r5Var.j(this.v, true)) {
-                this.f34482c0 = false;
+                this.f34485c0 = false;
             }
         } else {
             z11 = true;
         }
-        r5 r5Var2 = this.f34497u;
+        r5 r5Var2 = this.f34500u;
         if (r5Var2 != null) {
-            r5Var2.j(this.f34498w, z11);
+            r5Var2.j(this.f34501w, z11);
         }
         this.C = i();
-        return j5Var.a(this.f34500y, false);
+        return j5Var.a(this.f34503y, false);
     }
 
     public final void b() {
         wm0 wm0Var;
-        if (this.R && this.U != org.telegram.ui.ActionBar.f7.f22626b) {
+        if (this.R && this.U != org.telegram.ui.ActionBar.f7.f22628b) {
             try {
                 wm0Var = this;
             } catch (Exception e) {
@@ -473,67 +473,67 @@ public final class wm0 {
         float f10;
         b();
         if (!z11) {
-            int o12 = org.telegram.ui.ActionBar.y6.o1(f7, this.E.a(this.f34499x, false));
-            Paint paint = this.f34484g;
+            int o12 = org.telegram.ui.ActionBar.y6.o1(f7, this.E.a(this.f34502x, false));
+            Paint paint = this.f34487g;
             paint.setColor(o12);
             float[] fArr = this.e;
             if (a8.w0.a(fArr)) {
                 float f11 = fArr[0];
                 canvas.drawRoundRect(rectF, f11, f11, paint);
             } else {
-                Path path = this.f34483f;
+                Path path = this.f34486f;
                 path.rewind();
                 path.addRoundRect(rectF, fArr, Path.Direction.CW);
                 canvas.drawPath(path, paint);
             }
         }
-        r5 r5Var2 = this.f34496t;
+        r5 r5Var2 = this.f34499t;
         if (r5Var2 != null) {
-            if (!this.f34482c0) {
-                Drawable drawable = r5Var2.f32094f[0];
-                if ((drawable instanceof t5) && (f3Var = ((t5) drawable).f32849k) != null && f3Var.hasImageLoaded()) {
-                    this.f34482c0 = true;
+            if (!this.f34485c0) {
+                Drawable drawable = r5Var2.f32096f[0];
+                if ((drawable instanceof t5) && (f3Var = ((t5) drawable).f32852k) != null && f3Var.hasImageLoaded()) {
+                    this.f34485c0 = true;
                 } else {
                     z12 = false;
                     e = this.L.e(z12);
-                    if (e <= 0.0f && this.f34494r > 0.0f) {
-                        if (this.f34478a0 == null) {
+                    if (e <= 0.0f && this.f34497r > 0.0f) {
+                        if (this.f34481a0 == null) {
                             i10 = 0;
-                            this.f34478a0 = new vm0[]{new vm0(4.0f, -6.33f, 1.0f, 1.0f), new vm0(30.0f, 3.0f, 0.78f, 0.9f), new vm0(46.0f, -17.0f, 0.6f, 0.6f), new vm0(69.66f, -0.666f, 0.87f, 0.7f), new vm0(98.0f, -12.6f, 1.03f, 0.3f), new vm0(51.0f, 24.0f, 1.0f, 0.5f), new vm0(6.33f, 20.0f, 0.77f, 0.7f), new vm0(-19.0f, 12.0f, 0.8f, 0.6f, 0), new vm0(-22.0f, 36.0f, 0.7f, 0.5f, 0)};
+                            this.f34481a0 = new vm0[]{new vm0(4.0f, -6.33f, 1.0f, 1.0f), new vm0(30.0f, 3.0f, 0.78f, 0.9f), new vm0(46.0f, -17.0f, 0.6f, 0.6f), new vm0(69.66f, -0.666f, 0.87f, 0.7f), new vm0(98.0f, -12.6f, 1.03f, 0.3f), new vm0(51.0f, 24.0f, 1.0f, 0.5f), new vm0(6.33f, 20.0f, 0.77f, 0.7f), new vm0(-19.0f, 12.0f, 0.8f, 0.6f, 0), new vm0(-22.0f, 36.0f, 0.7f, 0.5f, 0)};
                         } else {
                             i10 = 0;
                         }
                         canvas.save();
                         canvas.clipRect(rectF);
-                        canvas.translate(0.0f, this.f34480b0);
+                        canvas.translate(0.0f, this.f34483b0);
                         float max = Math.max(rectF.right - AndroidUtilities.dp(15.0f), rectF.centerX());
                         if (z10) {
                             max -= AndroidUtilities.dp(12.0f);
                         }
                         float min = Math.min(rectF.centerY(), rectF.top + AndroidUtilities.dp(21.0f));
-                        r5 r5Var3 = this.f34497u;
+                        r5 r5Var3 = this.f34500u;
                         if (r5Var3 != null) {
                             r5Var3.v = (int) (f7 * 255.0f);
                         }
-                        this.f34496t.k(Integer.valueOf(this.C));
+                        this.f34499t.k(Integer.valueOf(this.C));
                         int i11 = i10;
                         while (true) {
-                            vm0[] vm0VarArr = this.f34478a0;
+                            vm0[] vm0VarArr = this.f34481a0;
                             if (i11 < vm0VarArr.length) {
-                                if (i11 != 0 || (r5Var = this.f34497u) == null || this.f34498w == 0) {
-                                    r5Var = this.f34496t;
+                                if (i11 != 0 || (r5Var = this.f34500u) == null || this.f34501w == 0) {
+                                    r5Var = this.f34499t;
                                 }
                                 vm0 vm0Var = vm0VarArr[i11];
                                 if (!vm0Var.e || z10) {
-                                    if (r5Var == this.f34497u) {
+                                    if (r5Var == this.f34500u) {
                                         f10 = 1.0f;
                                     } else {
                                         f10 = 0.3f;
                                     }
-                                    r5Var.v = (int) (f10 * 255.0f * vm0Var.d * this.f34494r);
-                                    float dp = max - AndroidUtilities.dp(vm0Var.f33686a);
-                                    float dp2 = AndroidUtilities.dp(vm0Var.f33687b) + min;
-                                    float dp3 = AndroidUtilities.dp(10.0f) * vm0Var.f33688c * e;
+                                    r5Var.v = (int) (f10 * 255.0f * vm0Var.d * this.f34497r);
+                                    float dp = max - AndroidUtilities.dp(vm0Var.f33689a);
+                                    float dp2 = AndroidUtilities.dp(vm0Var.f33690b) + min;
+                                    float dp3 = AndroidUtilities.dp(10.0f) * vm0Var.f33691c * e;
                                     r5Var.setBounds((int) (dp - dp3), (int) (dp2 - dp3), (int) (dp + dp3), (int) (dp2 + dp3));
                                     r5Var.draw(canvas);
                                 }
@@ -575,7 +575,7 @@ public final class wm0 {
         if (!this.W && ((da0Var = this.h) == null || !da0Var.d())) {
             da0 da0Var2 = this.h;
             if (da0Var2 != null) {
-                da0Var2.f27460b = -1L;
+                da0Var2.f27462b = -1L;
                 return;
             }
             return;
@@ -584,13 +584,13 @@ public final class wm0 {
             da0 da0Var3 = new da0();
             this.h = da0Var3;
             da0Var3.D = true;
-            da0Var3.f27475t = 3.5f;
-            da0Var3.f27476u = 0.5f;
+            da0Var3.f27477t = 3.5f;
+            da0Var3.f27478u = 0.5f;
         }
-        this.h.g(org.telegram.ui.ActionBar.y6.o1(0.1f, this.f34501z), org.telegram.ui.ActionBar.y6.o1(0.3f, this.f34501z), org.telegram.ui.ActionBar.y6.o1(0.3f, this.f34501z), org.telegram.ui.ActionBar.y6.o1(1.25f, this.f34501z));
+        this.h.g(org.telegram.ui.ActionBar.y6.o1(0.1f, this.f34504z), org.telegram.ui.ActionBar.y6.o1(0.3f, this.f34504z), org.telegram.ui.ActionBar.y6.o1(0.3f, this.f34504z), org.telegram.ui.ActionBar.y6.o1(1.25f, this.f34504z));
         this.h.e(rectF);
         this.h.j(fArr);
-        this.h.f27478x.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        this.h.f27480x.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.h.setAlpha((int) (f12 * 255.0f));
         this.h.draw(canvas);
         View view = this.D;
@@ -600,14 +600,14 @@ public final class wm0 {
     }
 
     public final int h() {
-        return this.f34499x;
+        return this.f34502x;
     }
 
     public final int i() {
         if (this.V) {
             return this.A;
         }
-        return this.f34501z;
+        return this.f34504z;
     }
 
     public final void j() {
@@ -619,16 +619,16 @@ public final class wm0 {
     }
 
     public final void k(float f7) {
-        this.f34480b0 = f7;
+        this.f34483b0 = f7;
     }
 
     public final void l() {
-        this.F.a(this.f34501z, true);
+        this.F.a(this.f34504z, true);
         this.G.a(this.A, true);
-        this.J.f(this.f34485i, true);
-        this.I.a(this.f34500y, true);
-        this.E.a(this.f34499x, true);
-        r5 r5Var = this.f34496t;
+        this.J.f(this.f34488i, true);
+        this.I.a(this.f34503y, true);
+        this.E.a(this.f34502x, true);
+        r5 r5Var = this.f34499t;
         if (r5Var != null) {
             r5Var.d.d(1.0f, true);
         }
@@ -666,20 +666,20 @@ public final class wm0 {
                 i11 = 0;
             }
             if (i11 == this.O) {
-                this.f34493q++;
+                this.f34496q++;
             }
             this.P = 0;
             this.Q = tL_peerColorCollectible.collectible_id;
             this.O = i11;
         }
         this.V = false;
-        this.f34501z = tL_peerColorCollectible.colors.get(0).intValue() | (-16777216);
+        this.f34504z = tL_peerColorCollectible.colors.get(0).intValue() | (-16777216);
         if (arrayList.size() >= 2) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f34485i = z10;
+        this.f34488i = z10;
         if (z10) {
             this.A = tL_peerColorCollectible.colors.get(1).intValue() | (-16777216);
         }
@@ -688,40 +688,40 @@ public final class wm0 {
         } else {
             z11 = false;
         }
-        this.f34486j = z11;
+        this.f34489j = z11;
         if (z11) {
             this.B = tL_peerColorCollectible.colors.get(2).intValue() | (-16777216);
         }
         int i12 = i10 | (-16777216);
-        this.f34500y = i12;
-        this.f34499x = org.telegram.ui.ActionBar.y6.o1(0.1f, i12);
+        this.f34503y = i12;
+        this.f34502x = org.telegram.ui.ActionBar.y6.o1(0.1f, i12);
         long j10 = tL_peerColorCollectible.background_emoji_id;
         this.v = j10;
-        this.f34498w = tL_peerColorCollectible.gift_emoji_id;
+        this.f34501w = tL_peerColorCollectible.gift_emoji_id;
         int i13 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         View view = this.D;
-        if (i13 != 0 && this.f34496t == null && view != null) {
-            this.f34496t = new r5(AndroidUtilities.dp(20.0f), 13, view, false);
+        if (i13 != 0 && this.f34499t == null && view != null) {
+            this.f34499t = new r5(AndroidUtilities.dp(20.0f), 13, view, false);
             if (!(view instanceof org.telegram.ui.Cells.s1) ? view.isAttachedToWindow() : ((org.telegram.ui.Cells.s1) view).M0) {
-                this.f34496t.a();
+                this.f34499t.a();
             }
         }
-        r5 r5Var = this.f34496t;
+        r5 r5Var = this.f34499t;
         if (r5Var != null && r5Var.j(this.v, true)) {
-            this.f34482c0 = false;
+            this.f34485c0 = false;
         }
-        this.C = this.f34500y;
-        if (this.f34498w != 0 && this.f34497u == null && view != null) {
-            this.f34497u = new r5(AndroidUtilities.dp(20.0f), 13, view, false);
+        this.C = this.f34503y;
+        if (this.f34501w != 0 && this.f34500u == null && view != null) {
+            this.f34500u = new r5(AndroidUtilities.dp(20.0f), 13, view, false);
             if (!(view instanceof org.telegram.ui.Cells.s1) ? view.isAttachedToWindow() : ((org.telegram.ui.Cells.s1) view).M0) {
-                this.f34497u.a();
+                this.f34500u.a();
             }
         }
-        r5 r5Var2 = this.f34497u;
+        r5 r5Var2 = this.f34500u;
         if (r5Var2 != null) {
-            r5Var2.j(this.f34498w, true);
+            r5Var2.j(this.f34501w, true);
         }
-        return this.I.a(this.f34500y, false);
+        return this.I.a(this.f34503y, false);
     }
 
     public final void n(MessageObject messageObject, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
@@ -743,19 +743,19 @@ public final class wm0 {
                 i13 = 0;
             }
             if (i13 == this.O) {
-                this.f34493q++;
+                this.f34496q++;
             }
             this.Q = 0L;
             this.P = i10;
             this.O = i13;
         }
         if (i10 < 7) {
-            int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23614r8[i10], u6Var);
+            int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23616r8[i10], u6Var);
             this.B = w02;
             this.A = w02;
-            this.f34501z = w02;
-            this.f34486j = false;
-            this.f34485i = false;
+            this.f34504z = w02;
+            this.f34489j = false;
+            this.f34488i = false;
             return;
         }
         if (messageObject != null) {
@@ -771,34 +771,34 @@ public final class wm0 {
         }
         if (peerColor == null) {
             if (messageObject != null && messageObject.isOutOwner()) {
-                i12 = org.telegram.ui.ActionBar.y6.f23301ab;
+                i12 = org.telegram.ui.ActionBar.y6.f23303ab;
             } else {
                 i12 = org.telegram.ui.ActionBar.y6.Uc;
             }
             int w03 = org.telegram.ui.ActionBar.y6.w0(i12, u6Var);
             this.B = w03;
             this.A = w03;
-            this.f34501z = w03;
-            this.f34486j = false;
-            this.f34485i = false;
+            this.f34504z = w03;
+            this.f34489j = false;
+            this.f34488i = false;
             return;
         }
-        this.f34501z = peerColor.getColor(0, u6Var);
+        this.f34504z = peerColor.getColor(0, u6Var);
         this.A = peerColor.getColor(1, u6Var);
         int color = peerColor.getColor(2, u6Var);
         this.B = color;
         int i14 = this.A;
-        int i15 = this.f34501z;
+        int i15 = this.f34504z;
         if (i14 != i15) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f34485i = z10;
+        this.f34488i = z10;
         if (color == i15) {
             z11 = false;
         }
-        this.f34486j = z11;
+        this.f34489j = z11;
         if (z11) {
             this.B = i14;
             this.A = color;
@@ -806,30 +806,30 @@ public final class wm0 {
     }
 
     public final void o(float f7) {
-        this.f34494r = f7;
+        this.f34497r = f7;
     }
 
     public final int p(org.telegram.ui.ActionBar.u6 u6Var) {
         View view;
         this.R = false;
-        int i10 = org.telegram.ui.ActionBar.y6.f23596q7;
-        this.f34500y = org.telegram.ui.ActionBar.y6.w0(i10, u6Var);
-        this.f34501z = org.telegram.ui.ActionBar.y6.w0(i10, u6Var);
-        this.f34485i = false;
-        this.f34486j = false;
-        this.f34499x = org.telegram.ui.ActionBar.y6.o1(0.1f, org.telegram.ui.ActionBar.y6.w0(i10, u6Var));
-        if (this.v != 0 && this.f34496t == null && (view = this.D) != null) {
-            this.f34496t = new r5(AndroidUtilities.dp(20.0f), 13, view, false);
+        int i10 = org.telegram.ui.ActionBar.y6.f23598q7;
+        this.f34503y = org.telegram.ui.ActionBar.y6.w0(i10, u6Var);
+        this.f34504z = org.telegram.ui.ActionBar.y6.w0(i10, u6Var);
+        this.f34488i = false;
+        this.f34489j = false;
+        this.f34502x = org.telegram.ui.ActionBar.y6.o1(0.1f, org.telegram.ui.ActionBar.y6.w0(i10, u6Var));
+        if (this.v != 0 && this.f34499t == null && (view = this.D) != null) {
+            this.f34499t = new r5(AndroidUtilities.dp(20.0f), 13, view, false);
             if (!(view instanceof org.telegram.ui.Cells.s1) ? view.isAttachedToWindow() : ((org.telegram.ui.Cells.s1) view).M0) {
-                this.f34496t.a();
+                this.f34499t.a();
             }
         }
-        r5 r5Var = this.f34496t;
+        r5 r5Var = this.f34499t;
         if (r5Var != null && r5Var.j(this.v, true)) {
-            this.f34482c0 = false;
+            this.f34485c0 = false;
         }
         this.C = i();
-        return this.I.a(this.f34500y, false);
+        return this.I.a(this.f34503y, false);
     }
 
     public final void q(boolean z10) {
@@ -841,8 +841,8 @@ public final class wm0 {
                 da0Var2.a();
             }
         } else if (z10 && !this.W && (da0Var = this.h) != null) {
-            da0Var.f27461c = -1L;
-            da0Var.f27460b = -1L;
+            da0Var.f27463c = -1L;
+            da0Var.f27462b = -1L;
         }
         this.W = z10;
     }
@@ -851,17 +851,17 @@ public final class wm0 {
         float f7;
         this.R = false;
         this.V = false;
-        this.f34486j = false;
-        this.f34485i = false;
+        this.f34489j = false;
+        this.f34488i = false;
         this.B = i10;
         this.A = i10;
-        this.f34501z = i10;
+        this.f34504z = i10;
         if (z10) {
             f7 = 0.12f;
         } else {
             f7 = 0.1f;
         }
-        this.f34499x = org.telegram.ui.ActionBar.y6.o1(f7, i10);
+        this.f34502x = org.telegram.ui.ActionBar.y6.o1(f7, i10);
         this.C = i10;
     }
 }

@@ -93,7 +93,7 @@ public final class h0 implements Runnable {
                 fi.d dVar = (fi.d) obj3;
                 dVar.setLoading(true);
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f22255id;
+                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f22257id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
                 int i14 = this.f4701b;
                 ConnectionsManager.getInstance(i14).sendRequest(tL_fulfillStarsSubscription, new d0(dVar, (org.telegram.ui.ActionBar.k3[]) obj, i14, this.f4702c, 1));
@@ -110,7 +110,7 @@ public final class h0 implements Runnable {
                     MessagesController.getInstance(i15).putChats(tL_stories_stories.chats, false);
                     while (true) {
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f22264id == i12) {
+                            if (tL_stories_stories.stories.get(i11).f22266id == i12) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;

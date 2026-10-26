@@ -6,11 +6,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class hr0 extends ig.b0 {
-    public final ir0 f29039n;
+    public final ir0 f29041n;
 
     public hr0(ir0 ir0Var, Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
         super(i10, context, u6Var, true, true);
-        this.f29039n = ir0Var;
+        this.f29041n = ir0Var;
     }
 
     @Override
@@ -22,13 +22,13 @@ public final class hr0 extends ig.b0 {
         boolean z10;
         String str;
         int i14;
-        org.telegram.ui.Cells.r4 r4Var = (org.telegram.ui.Cells.r4) e1Var.f47735a;
-        mr0 mr0Var = this.f29039n.K;
+        org.telegram.ui.Cells.r4 r4Var = (org.telegram.ui.Cells.r4) e1Var.f47738a;
+        mr0 mr0Var = this.f29041n.K;
         TLRPC.User user = null;
-        if (mr0Var.f30708i0 || mr0Var.f30709j0) {
-            int i15 = org.telegram.ui.ActionBar.y6.f23548ng;
-            int i16 = org.telegram.ui.ActionBar.y6.f23400fg;
-            org.telegram.ui.ActionBar.f7.V(r4Var.f24960b, i15, null);
+        if (mr0Var.f30710i0 || mr0Var.f30711j0) {
+            int i15 = org.telegram.ui.ActionBar.y6.f23550ng;
+            int i16 = org.telegram.ui.ActionBar.y6.f23402fg;
+            org.telegram.ui.ActionBar.f7.V(r4Var.f24962b, i15, null);
             r4Var.H = i16;
             r4Var.v.b(org.telegram.ui.ActionBar.y6.B5, i16, org.telegram.ui.ActionBar.y6.C5);
         }
@@ -76,7 +76,7 @@ public final class hr0 extends ig.b0 {
         if (mr0Var.V.h(j10) >= 0) {
             z11 = true;
         }
-        if (r4Var.f24966w) {
+        if (r4Var.f24968w) {
             r4Var.v.a(z11, z10);
         }
     }

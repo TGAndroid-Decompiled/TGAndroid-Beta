@@ -209,15 +209,15 @@ public final class lg implements OnFailureListener, c3.p, c3.q, l2.h, ap {
         r2Var.d = new ArrayList();
         r2Var.e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f600c;
-        r2Var.e = profileActivity.f36042n5;
+        r2Var.e = profileActivity.f36045n5;
         profileActivity.presentFragment((org.telegram.ui.ActionBar.r2) r2Var);
     }
 
     @Override
     public void n() {
         ProfileActivity profileActivity = (ProfileActivity) this.f600c;
-        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f599b, profileActivity.f35991g1);
-        profileActivity.getNotificationsController().muteDialog(this.f599b, profileActivity.f35991g1, z10);
+        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f599b, profileActivity.f35994g1);
+        profileActivity.getNotificationsController().muteDialog(this.f599b, profileActivity.f35994g1, z10);
         if (profileActivity.fragmentView != null) {
             org.telegram.ui.Components.wc.A(profileActivity, z10, null).j();
         }
@@ -232,8 +232,8 @@ public final class lg implements OnFailureListener, c3.p, c3.q, l2.h, ap {
         if (j10 != 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j10);
-            bundle.putLong("topic_id", profileActivity.f35991g1);
-            profileActivity.presentFragment(new h11(bundle, profileActivity.f36123z0));
+            bundle.putLong("topic_id", profileActivity.f35994g1);
+            profileActivity.presentFragment(new h11(bundle, profileActivity.f36126z0));
         }
     }
 
@@ -280,11 +280,11 @@ public final class lg implements OnFailureListener, c3.p, c3.q, l2.h, ap {
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.f1(profileActivity));
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j10 = this.f599b;
-        boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.t.j(j10, profileActivity.f35991g1, sb2), true);
+        boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.t.j(j10, profileActivity.f35994g1, sb2), true);
         boolean z11 = !z10 ? 1 : 0;
-        notificationsSettings.edit().putBoolean(org.telegram.messenger.t.j(j10, profileActivity.f35991g1, new StringBuilder("sound_enabled_")), z11).apply();
+        notificationsSettings.edit().putBoolean(org.telegram.messenger.t.j(j10, profileActivity.f35994g1, new StringBuilder("sound_enabled_")), z11).apply();
         if (org.telegram.ui.Components.wc.a(profileActivity)) {
-            org.telegram.ui.Components.wc.T(z10 ? 1 : 0, profileActivity, profileActivity.f36123z0).j();
+            org.telegram.ui.Components.wc.T(z10 ? 1 : 0, profileActivity, profileActivity.f36126z0).j();
         }
     }
 
@@ -329,19 +329,19 @@ public final class lg implements OnFailureListener, c3.p, c3.q, l2.h, ap {
     public void u(int i10) {
         ProfileActivity profileActivity = (ProfileActivity) this.f600c;
         if (i10 == 0) {
-            if (profileActivity.getMessagesController().isDialogMuted(this.f599b, profileActivity.f35991g1)) {
+            if (profileActivity.getMessagesController().isDialogMuted(this.f599b, profileActivity.f35994g1)) {
                 n();
             }
             if (org.telegram.ui.Components.wc.a(profileActivity)) {
-                org.telegram.ui.Components.wc.z(profileActivity, 4, i10, profileActivity.f36123z0).j();
+                org.telegram.ui.Components.wc.z(profileActivity, 4, i10, profileActivity.f36126z0).j();
                 return;
             }
             return;
         }
         int i11 = ProfileActivity.R6;
-        profileActivity.getNotificationsController().muteUntil(this.f599b, profileActivity.f35991g1, i10);
+        profileActivity.getNotificationsController().muteUntil(this.f599b, profileActivity.f35994g1, i10);
         if (org.telegram.ui.Components.wc.a(profileActivity)) {
-            org.telegram.ui.Components.wc.z(profileActivity, 5, i10, profileActivity.f36123z0).j();
+            org.telegram.ui.Components.wc.z(profileActivity, 5, i10, profileActivity.f36126z0).j();
         }
         profileActivity.m5();
         profileActivity.r5(true);

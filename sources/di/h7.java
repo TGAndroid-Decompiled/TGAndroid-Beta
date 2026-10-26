@@ -135,7 +135,7 @@ public final class h7 {
                 if (((MessageObject) arrayList.get(i10)).storyItem == null) {
                     str = str + "null";
                 } else {
-                    str = str + storyItem.f22264id + "@" + storyItem.dialogId;
+                    str = str + storyItem.f22266id + "@" + storyItem.dialogId;
                 }
             } catch (Exception unused) {
                 return "err";
@@ -181,7 +181,7 @@ public final class h7 {
                 if (i10 > 0) {
                     str = str + ", ";
                 }
-                str = str + ((TL_stories.StoryItem) list.get(i10)).f22264id + "@" + ((TL_stories.StoryItem) list.get(i10)).dialogId;
+                str = str + ((TL_stories.StoryItem) list.get(i10)).f22266id + "@" + ((TL_stories.StoryItem) list.get(i10)).dialogId;
             } catch (Exception unused) {
                 return "err";
             }
@@ -273,7 +273,7 @@ public final class h7 {
             if (peerStories.stories.get(i11).media instanceof TLRPC.TL_messageMediaVideoStream) {
                 return 3;
             }
-            if ((i10 == 0 || peerStories.stories.get(i11).f22264id == i10) && peerStories.stories.get(i11).f22264id > max) {
+            if ((i10 == 0 || peerStories.stories.get(i11).f22266id == i10) && peerStories.stories.get(i11).f22266id > max) {
                 if (peerStories.stories.get(i11).close_friends) {
                     return 2;
                 }
@@ -356,7 +356,7 @@ public final class h7 {
         }
         for (int i10 = 0; i10 < peerStories.stories.size(); i10++) {
             TL_stories.StoryItem storyItem = peerStories.stories.get(i10);
-            if (storyItem != null && storyItem.f22264id > peerStories.max_read_id) {
+            if (storyItem != null && storyItem.f22266id > peerStories.max_read_id) {
                 return true;
             }
         }
@@ -398,7 +398,7 @@ public final class h7 {
 
     public final boolean M(TLRPC.User user) {
         if (user != null) {
-            if (user.contact || user.f22174id == MessagesController.getInstance(this.f8630a).storiesChangelogUserId) {
+            if (user.contact || user.f22176id == MessagesController.getInstance(this.f8630a).storiesChangelogUserId) {
                 return true;
             }
             return false;
@@ -504,7 +504,7 @@ public final class h7 {
                         if (arrayList == null) {
                             arrayList = new ArrayList<>();
                         }
-                        arrayList.add(Integer.valueOf(peerStories.stories.get(i11).f22264id));
+                        arrayList.add(Integer.valueOf(peerStories.stories.get(i11).f22266id));
                     }
                     if (arrayList != null && arrayList.size() > 14) {
                         break;
@@ -513,7 +513,7 @@ public final class h7 {
                 if (arrayList != null) {
                     hashSet.add(Long.valueOf(j10));
                     TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-                    tL_stories_getStoriesByID.f22271id = arrayList;
+                    tL_stories_getStoriesByID.f22273id = arrayList;
                     int i12 = this.f8630a;
                     tL_stories_getStoriesByID.peer = MessagesController.getInstance(i12).getInputPeer(peerDialogId);
                     ConnectionsManager.getInstance(i12).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
@@ -551,7 +551,7 @@ public final class h7 {
                 storyItem.justUploaded = false;
             }
             int i10 = this.f8633f.get(peerDialogId);
-            int max = Math.max(peerStories.max_read_id, Math.max(i10, storyItem.f22264id));
+            int max = Math.max(peerStories.max_read_id, Math.max(i10, storyItem.f22266id));
             int i11 = this.f8630a;
             NotificationsController.getInstance(i11).processReadStories(peerDialogId, max);
             peerStories.max_read_id = max;
@@ -562,7 +562,7 @@ public final class h7 {
                 }
                 TL_stories.TL_stories_readStories tL_stories_readStories = new TL_stories.TL_stories_readStories();
                 tL_stories_readStories.peer = MessagesController.getInstance(i11).getInputPeer(peerDialogId);
-                tL_stories_readStories.max_id = storyItem.f22264id;
+                tL_stories_readStories.max_id = storyItem.f22266id;
                 ConnectionsManager.getInstance(i11).sendRequest(tL_stories_readStories, null);
                 NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesReadUpdated, new Object[0]);
                 return true;
@@ -611,7 +611,7 @@ public final class h7 {
                                 }
                             } else {
                                 org.telegram.ui.Components.t5 t5Var = new org.telegram.ui.Components.t5(1, i10, d.f4209g);
-                                t5Var.f32851m = true;
+                                t5Var.f32854m = true;
                                 t5Var.v();
                             }
                         }
@@ -627,7 +627,7 @@ public final class h7 {
         while (true) {
             if (i11 >= peerStories.stories.size()) {
                 break;
-            } else if (peerStories.stories.get(i11).f22264id > peerStories.max_read_id) {
+            } else if (peerStories.stories.get(i11).f22266id > peerStories.max_read_id) {
                 i10 = i11;
                 break;
             } else {
@@ -678,7 +678,7 @@ public final class h7 {
             while (i13 < peerStories.stories.size()) {
                 TL_stories.StoryItem storyItem = peerStories.stories.get(i13);
                 if ((storyItem instanceof TL_stories.TL_storyItemDeleted) || ((storyItem instanceof TL_stories.TL_storyItem) && currentTime > storyItem.expire_date && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream))) {
-                    NotificationsController.getInstance(i11).processDeleteStory(peerDialogId, storyItem.f22264id);
+                    NotificationsController.getInstance(i11).processDeleteStory(peerDialogId, storyItem.f22266id);
                     peerStories.stories.remove(i13);
                     i13--;
                 }
@@ -793,7 +793,7 @@ public final class h7 {
         while (i12 < size) {
             Object obj = arrayList.get(i12);
             i12++;
-            tL_updateAlbum.add_stories.add(Integer.valueOf(((TL_stories.StoryItem) obj).f22264id));
+            tL_updateAlbum.add_stories.add(Integer.valueOf(((TL_stories.StoryItem) obj).f22266id));
         }
         int size2 = arrayList.size();
         int i13 = 0;
@@ -836,13 +836,13 @@ public final class h7 {
         if (peerStories2 != null && (arrayList = peerStories2.stories) != null && !arrayList.isEmpty() && peerStories != null && (arrayList2 = peerStories.stories) != null && !arrayList2.isEmpty()) {
             for (int i10 = 0; i10 < peerStories.stories.size(); i10++) {
                 if (peerStories.stories.get(i10) instanceof TL_stories.TL_storyItemSkipped) {
-                    int i11 = peerStories.stories.get(i10).f22264id;
+                    int i11 = peerStories.stories.get(i10).f22266id;
                     int i12 = 0;
                     while (true) {
                         if (i12 >= peerStories2.stories.size()) {
                             break;
                         }
-                        if (peerStories2.stories.get(i12).f22264id == i11 && (peerStories2.stories.get(i12) instanceof TL_stories.TL_storyItem)) {
+                        if (peerStories2.stories.get(i12).f22266id == i11 && (peerStories2.stories.get(i12) instanceof TL_stories.TL_storyItem)) {
                             peerStories.stories.set(i10, peerStories2.stories.get(i12));
                             break;
                         }
@@ -875,7 +875,7 @@ public final class h7 {
         while (i13 < size) {
             Object obj = arrayList.get(i13);
             i13++;
-            tL_updateAlbum.delete_stories.add(Integer.valueOf(((TL_stories.StoryItem) obj).f22264id));
+            tL_updateAlbum.delete_stories.add(Integer.valueOf(((TL_stories.StoryItem) obj).f22266id));
         }
         int size2 = arrayList.size();
         int i14 = 0;
@@ -923,7 +923,7 @@ public final class h7 {
         TL_stories.PeerStories y3 = y(j10);
         if (y3 != null) {
             for (int i11 = 0; i11 < y3.stories.size(); i11++) {
-                if (y3.stories.get(i11).f22264id == i10 && !(y3.stories.get(i11) instanceof TL_stories.TL_storyItemSkipped)) {
+                if (y3.stories.get(i11).f22266id == i10 && !(y3.stories.get(i11) instanceof TL_stories.TL_storyItemSkipped)) {
                     callback.run(y3.stories.get(i11));
                     return;
                 }
@@ -936,7 +936,7 @@ public final class h7 {
             return;
         }
         TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-        tL_stories_getStoriesByID.f22271id.add(Integer.valueOf(i10));
+        tL_stories_getStoriesByID.f22273id.add(Integer.valueOf(i10));
         int i12 = this.f8630a;
         tL_stories_getStoriesByID.peer = MessagesController.getInstance(i12).getInputPeer(j10);
         ConnectionsManager.getInstance(i12).sendRequest(tL_stories_getStoriesByID, new q6(this, j11, callback));
@@ -1067,7 +1067,7 @@ public final class h7 {
             return;
         }
         TL_stories.TL_stories_sendReaction tL_stories_sendReaction = new TL_stories.TL_stories_sendReaction();
-        tL_stories_sendReaction.story_id = storyItem.f22264id;
+        tL_stories_sendReaction.story_id = storyItem.f22266id;
         int i10 = this.f8630a;
         tL_stories_sendReaction.peer = MessagesController.getInstance(i10).getInputPeer(j10);
         if (x0Var == null) {
@@ -1346,7 +1346,7 @@ public final class h7 {
             int i13 = 0;
             while (true) {
                 if (i13 < peerStories.stories.size()) {
-                    if (peerStories.stories.get(i13).f22264id == storyItem.f22264id) {
+                    if (peerStories.stories.get(i13).f22266id == storyItem.f22266id) {
                         z11 = true;
                         if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                             peerStories.stories.remove(i13);
@@ -1360,7 +1360,7 @@ public final class h7 {
                             if (storyItem.firstFramePath == null) {
                                 storyItem.firstFramePath = storyItem2.firstFramePath;
                             }
-                            org.telegram.messenger.t.o(storyItem.f22264id, new StringBuilder("StoriesController update story for full peer storyId="));
+                            org.telegram.messenger.t.o(storyItem.f22266id, new StringBuilder("StoriesController update story for full peer storyId="));
                         }
                     } else {
                         i13++;
@@ -1372,9 +1372,9 @@ public final class h7 {
             }
             if (!z11) {
                 if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    org.telegram.messenger.t.o(storyItem.f22264id, new StringBuilder("StoriesController story is not found, but already deleted storyId="));
+                    org.telegram.messenger.t.o(storyItem.f22266id, new StringBuilder("StoriesController story is not found, but already deleted storyId="));
                 } else if (z10) {
-                    org.telegram.messenger.t.o(storyItem.f22264id, new StringBuilder("StoriesController add new story for full peer storyId="));
+                    org.telegram.messenger.t.o(storyItem.f22266id, new StringBuilder("StoriesController add new story for full peer storyId="));
                     peerStories.stories.add(storyItem);
                     peerStories.checkedExpired = false;
                 }
@@ -1402,13 +1402,13 @@ public final class h7 {
             FileLog.d("StoriesController update stories from full peer " + j10);
             for (int i10 = 0; i10 < peerStories2.stories.size(); i10++) {
                 if (peerStories2.stories.get(i10) instanceof TL_stories.TL_storyItemSkipped) {
-                    int i11 = peerStories2.stories.get(i10).f22264id;
+                    int i11 = peerStories2.stories.get(i10).f22266id;
                     int i12 = 0;
                     while (true) {
                         if (i12 >= peerStories.stories.size()) {
                             break;
                         }
-                        if (peerStories.stories.get(i12).f22264id == i11 && (peerStories.stories.get(i12) instanceof TL_stories.TL_storyItem)) {
+                        if (peerStories.stories.get(i12).f22266id == i11 && (peerStories.stories.get(i12) instanceof TL_stories.TL_storyItem)) {
                             peerStories2.stories.set(i10, peerStories.stories.get(i12));
                             break;
                         }
@@ -1503,10 +1503,10 @@ public final class h7 {
             TL_stories.StoryItem storyItem = (TL_stories.StoryItem) arrayList.get(i10);
             if (!(storyItem instanceof TL_stories.TL_storyItemDeleted)) {
                 storyItem.pinned = z10;
-                togglepinned.f22278id.add(Integer.valueOf(storyItem.f22264id));
+                togglepinned.f22280id.add(Integer.valueOf(storyItem.f22266id));
                 if (y3 != null) {
                     for (int i11 = 0; i11 < y3.stories.size(); i11++) {
-                        if (y3.stories.get(i11).f22264id == storyItem.f22264id) {
+                        if (y3.stories.get(i11).f22266id == storyItem.f22266id) {
                             y3.stories.get(i11).pinned = z10;
                             this.f8637k.k(j10, storyItem);
                         }
@@ -1533,7 +1533,7 @@ public final class h7 {
         TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
         int i11 = this.f8630a;
         tL_stories_getStoriesByID.peer = MessagesController.getInstance(i11).getInputPeer(j10);
-        tL_stories_getStoriesByID.f22271id.add(Integer.valueOf(i10));
+        tL_stories_getStoriesByID.f22273id.add(Integer.valueOf(i10));
         ConnectionsManager.getInstance(i11).sendRequest(tL_stories_getStoriesByID, new bi.d0(this, i10, str, j10, 2));
     }
 
@@ -1543,7 +1543,7 @@ public final class h7 {
         if (storyItem == null) {
             str = "null";
         } else {
-            str = storyItem.f22264id + "@" + storyItem.dialogId;
+            str = storyItem.f22266id + "@" + storyItem.dialogId;
         }
         t10.append(str);
         FileLog.d(t10.toString());
@@ -1614,7 +1614,7 @@ public final class h7 {
                     while (true) {
                         if (i12 >= peerStories2.stories.size()) {
                             break;
-                        } else if (peerStories2.stories.get(i12).f22264id == storyItem.f22264id) {
+                        } else if (peerStories2.stories.get(i12).f22266id == storyItem.f22266id) {
                             peerStories2.stories.remove(i12);
                             if (peerStories2.stories.isEmpty()) {
                                 hVar.l(j10);
@@ -1624,7 +1624,7 @@ public final class h7 {
                         }
                     }
                 }
-                tL_stories_deleteStories.f22267id.add(Integer.valueOf(storyItem.f22264id));
+                tL_stories_deleteStories.f22269id.add(Integer.valueOf(storyItem.f22266id));
             }
         }
         if (j10 < 0 ? !((chatFull = MessagesController.getInstance(i10).getChatFull(-j10)) == null || (peerStories = chatFull.stories) == null) : !((userFull = MessagesController.getInstance(i10).getUserFull(j10)) == null || (peerStories = userFull.stories) == null)) {
@@ -1637,7 +1637,7 @@ public final class h7 {
                 while (true) {
                     if (i14 >= peerStories2.stories.size()) {
                         break;
-                    } else if (peerStories2.stories.get(i14).f22264id == storyItem2.f22264id) {
+                    } else if (peerStories2.stories.get(i14).f22266id == storyItem2.f22266id) {
                         peerStories2.stories.remove(i14);
                         break;
                     } else {
@@ -1648,7 +1648,7 @@ public final class h7 {
         }
         ConnectionsManager.getInstance(i10).sendRequest(tL_stories_deleteStories, new g6(this, 4));
         k0(j10, arrayList);
-        ArrayList<Integer> arrayList2 = tL_stories_deleteStories.f22267id;
+        ArrayList<Integer> arrayList2 = tL_stories_deleteStories.f22269id;
         u7 u7Var = this.f8637k;
         u7Var.f9235b.getStorageQueue().postRunnable(new a3.i0(u7Var, arrayList2, j10, 7));
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
@@ -1657,7 +1657,7 @@ public final class h7 {
     public final g7 t(long j10, TL_stories.StoryItem storyItem) {
         HashMap hashMap = (HashMap) this.e.f(j10);
         if (hashMap != null && !hashMap.isEmpty()) {
-            return (g7) hashMap.get(Integer.valueOf(storyItem.f22264id));
+            return (g7) hashMap.get(Integer.valueOf(storyItem.f22266id));
         }
         return null;
     }
@@ -1666,7 +1666,7 @@ public final class h7 {
         TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f8635i.f(j10);
         if (peerStories != null) {
             for (int i11 = 0; i11 < peerStories.stories.size(); i11++) {
-                if (peerStories.stories.get(i11).f22264id == i10) {
+                if (peerStories.stories.get(i11).f22266id == i10) {
                     return peerStories.stories.get(i11);
                 }
             }

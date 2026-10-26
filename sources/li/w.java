@@ -48,7 +48,7 @@ public final class w extends bb {
         super(context, null, true, false, u6Var);
         this.X = i10;
         this.Y = callback;
-        int i11 = y6.f23297a7;
+        int i11 = y6.f23299a7;
         setBackgroundColorKey(i11);
         fixNavigationBarKey(i11);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -118,7 +118,7 @@ public final class w extends bb {
         this.f17584c0 = previewView;
         previewView.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(12.0f));
         int dp = AndroidUtilities.dp(12.0f);
-        int i13 = y6.f23354d6;
+        int i13 = y6.f23356d6;
         ShapeDrawable c02 = y6.c0(dp, y6.w0(i13, u6Var));
         b7 N = f7.N(i13);
         previewView.setBackground(c02);
@@ -190,7 +190,7 @@ public final class w extends bb {
         ((ViewGroup.MarginLayoutParams) f7.getLayoutParams()).leftMargin += this.backgroundPaddingLeft;
         ((ViewGroup.MarginLayoutParams) f7.getLayoutParams()).rightMargin += this.backgroundPaddingLeft;
         s4.l lVar = new s4.l();
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         lVar.C = false;
         lVar.o(ds.h);
         lVar.n(350L);

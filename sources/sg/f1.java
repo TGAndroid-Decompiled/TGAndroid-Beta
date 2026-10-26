@@ -11,21 +11,21 @@ import org.telegram.ui.ActionBar.l5;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 public final class f1 implements u6 {
-    public final TextPaint f48200a;
-    public final TextPaint f48201b;
-    public final TextPaint f48202c;
+    public final TextPaint f48203a;
+    public final TextPaint f48204b;
+    public final TextPaint f48205c;
     public final Paint d;
     public final Paint e;
-    public final q5 f48203f;
+    public final q5 f48206f;
 
     public f1(q5 q5Var) {
-        this.f48203f = q5Var;
+        this.f48206f = q5Var;
         TextPaint textPaint = new TextPaint();
-        this.f48200a = textPaint;
+        this.f48203a = textPaint;
         TextPaint textPaint2 = new TextPaint();
-        this.f48201b = textPaint2;
+        this.f48204b = textPaint2;
         TextPaint textPaint3 = new TextPaint();
-        this.f48202c = textPaint3;
+        this.f48205c = textPaint3;
         new Paint(3);
         this.d = new Paint(3);
         Paint paint = new Paint(3);
@@ -39,7 +39,7 @@ public final class f1 implements u6 {
 
     @Override
     public final boolean a() {
-        return this.f48203f.B0;
+        return this.f48206f.B0;
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class f1 implements u6 {
 
     @Override
     public final ColorFilter c() {
-        return y6.f23687v3;
+        return y6.f23689v3;
     }
 
     @Override
@@ -90,15 +90,15 @@ public final class f1 implements u6 {
         }
         switch (c10) {
             case 0:
-                return this.f48201b;
+                return this.f48204b;
             case 1:
-                return this.f48202c;
+                return this.f48205c;
             case 2:
                 return this.e;
             case 3:
                 return this.d;
             case 4:
-                return this.f48200a;
+                return this.f48203a;
             default:
                 return y6.U0(str);
         }
@@ -116,12 +116,12 @@ public final class f1 implements u6 {
 
     @Override
     public final int g(int i10) {
-        return this.f48203f.C0.get(i10, y6.x0(null, i10, false));
+        return this.f48206f.C0.get(i10, y6.x0(null, i10, false));
     }
 
     @Override
     public final Drawable getDrawable(String str) {
-        q5 q5Var = this.f48203f;
+        q5 q5Var = this.f48206f;
         f1 f1Var = q5Var.D0;
         if (str.equals("drawableMsgIn")) {
             if (q5Var.E0 == null) {

@@ -12,32 +12,32 @@ import org.telegram.ui.Components.ds;
 import org.telegram.ui.Components.md;
 import org.telegram.ui.Components.sh0;
 public final class a1 extends AnimatorListenerAdapter {
-    public final int f22372a;
-    public final float f22373b;
-    public final Object f22374c;
+    public final int f22374a;
+    public final float f22375b;
+    public final Object f22376c;
 
     public a1(Object obj, float f7, int i10) {
-        this.f22372a = i10;
-        this.f22374c = obj;
-        this.f22373b = f7;
+        this.f22374a = i10;
+        this.f22376c = obj;
+        this.f22375b = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f22372a;
-        float f7 = this.f22373b;
-        Object obj = this.f22374c;
+        int i10 = this.f22374a;
+        float f7 = this.f22375b;
+        Object obj = this.f22376c;
         switch (i10) {
             case 0:
                 d1 d1Var = (d1) obj;
                 d1Var.T = null;
-                d1Var.f22520a = f7;
+                d1Var.f22522a = f7;
                 d1Var.invalidate();
                 return;
             case 1:
                 a4 a4Var = (a4) obj;
-                a4Var.f22385i = f7;
-                b4 b4Var = a4Var.f22381b;
+                a4Var.f22387i = f7;
+                b4 b4Var = a4Var.f22383b;
                 if (b4Var != null) {
                     b4Var.invalidate();
                     return;
@@ -60,7 +60,7 @@ public final class a1 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 ba baVar = (ba) obj;
-                baVar.f26798g = f7;
+                baVar.f26800g = f7;
                 baVar.invalidateSelf();
                 return;
             case 5:
@@ -80,12 +80,12 @@ public final class a1 extends AnimatorListenerAdapter {
             case 6:
                 sh0 sh0Var = (sh0) obj;
                 sh0Var.H.unlock();
-                sh0Var.f32557b = f7;
+                sh0Var.f32559b = f7;
                 if (f7 <= 0.0f) {
                     sh0Var.G = -1;
                 }
                 sh0Var.c(true);
-                sh0Var.f32559f = false;
+                sh0Var.f32561f = false;
                 if (sh0Var.O != null && Math.abs(f7 - 1.0f) < 0.01f) {
                     sh0Var.O.run();
                     return;
@@ -93,7 +93,7 @@ public final class a1 extends AnimatorListenerAdapter {
                 return;
             case 7:
                 org.telegram.ui.Wallet.y2 y2Var = (org.telegram.ui.Wallet.y2) obj;
-                org.telegram.ui.Wallet.w5 w5Var = y2Var.f37498r;
+                org.telegram.ui.Wallet.w5 w5Var = y2Var.f37501r;
                 w5Var.getClass();
                 w5Var.setLayerType(0, null);
                 if (f7 == 0.0f) {
@@ -107,7 +107,7 @@ public final class a1 extends AnimatorListenerAdapter {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(y2Var.Q, 1.0f);
                     y2Var.P = ofFloat;
                     ofFloat.setDuration(320L);
-                    y2Var.P.setInterpolator(ds.f27585g);
+                    y2Var.P.setInterpolator(ds.f27587g);
                     y2Var.P.addUpdateListener(new org.telegram.ui.Wallet.v2(y2Var, 1));
                     y2Var.P.start();
                     return;
@@ -119,7 +119,7 @@ public final class a1 extends AnimatorListenerAdapter {
                 if (m5Var.m0 == animator) {
                     m5Var.m0 = null;
                     m5Var.I0(f7);
-                    m5Var.f36949p0.o(false);
+                    m5Var.f36952p0.o(false);
                     return;
                 }
                 return;
@@ -128,11 +128,11 @@ public final class a1 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f22372a) {
+        switch (this.f22374a) {
             case 6:
-                sh0 sh0Var = (sh0) this.f22374c;
-                sh0Var.f32559f = true;
-                sh0Var.f32558c = this.f22373b;
+                sh0 sh0Var = (sh0) this.f22376c;
+                sh0Var.f32561f = true;
+                sh0Var.f32560c = this.f22375b;
                 return;
             default:
                 super.onAnimationStart(animator);

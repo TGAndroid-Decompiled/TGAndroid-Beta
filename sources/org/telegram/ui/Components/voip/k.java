@@ -12,38 +12,38 @@ import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.ds;
 import org.telegram.ui.Components.gb1;
 public final class k extends FrameLayout {
-    public final j f33875a;
-    public final TransitionSet f33876b;
-    public boolean f33877c;
+    public final j f33878a;
+    public final TransitionSet f33879b;
+    public boolean f33880c;
 
     public k(Activity activity) {
         super(activity);
-        this.f33877c = false;
+        this.f33880c = false;
         setWillNotDraw(false);
         j jVar = new j(activity);
-        this.f33875a = jVar;
+        this.f33878a = jVar;
         addView(jVar, gb1.i(52, 52, 5));
         TransitionSet transitionSet = new TransitionSet();
-        this.f33876b = transitionSet;
+        this.f33879b = transitionSet;
         transitionSet.setOrdering(0);
         transitionSet.addTransition(new org.telegram.ui.ActionBar.i(1));
         transitionSet.setDuration(500L);
-        transitionSet.setInterpolator((TimeInterpolator) ds.f27584f);
+        transitionSet.setInterpolator((TimeInterpolator) ds.f27586f);
     }
 
     public final void a(View.OnClickListener onClickListener, boolean z10) {
-        if (this.f33877c) {
+        if (this.f33880c) {
             return;
         }
-        this.f33877c = true;
+        this.f33880c = true;
         if (z10) {
-            TransitionManager.beginDelayedTransition(this, this.f33876b);
+            TransitionManager.beginDelayedTransition(this, this.f33879b);
         }
-        j jVar = this.f33875a;
+        j jVar = this.f33878a;
         jVar.v = 255;
-        jVar.f33865n = -1;
-        jVar.f33867s = 0;
-        jVar.f33866r = AndroidUtilities.dp(8.0f);
+        jVar.f33868n = -1;
+        jVar.f33870s = 0;
+        jVar.f33869r = AndroidUtilities.dp(8.0f);
         ViewGroup.LayoutParams layoutParams = jVar.getLayoutParams();
         layoutParams.width = -1;
         jVar.setLayoutParams(layoutParams);
@@ -51,6 +51,6 @@ public final class k extends FrameLayout {
     }
 
     public j getEndCloseView() {
-        return this.f33875a;
+        return this.f33878a;
     }
 }

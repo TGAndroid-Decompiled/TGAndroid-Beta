@@ -126,7 +126,7 @@ public final class y extends z implements p6, r9, k0, NotificationCenter.Notific
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23680uf));
+        hashSet.add(Integer.valueOf(y6.f23682uf));
     }
 
     @Override
@@ -345,9 +345,9 @@ public final class y extends z implements p6, r9, k0, NotificationCenter.Notific
         boolean z12;
         t tVar;
         int i10 = y6.ie;
-        int i11 = y6.f23470je;
-        int i12 = y6.f23677uc;
-        int i13 = y6.f23695vc;
+        int i11 = y6.f23472je;
+        int i12 = y6.f23679uc;
+        int i13 = y6.f23697vc;
         RadialProgress2 radialProgress2 = this.f17631w;
         radialProgress2.g(i10, i11, i12, i13);
         radialProgress2.d = y6.w0(y6.Bd, this.f17629r);
@@ -456,7 +456,7 @@ public final class y extends z implements p6, r9, k0, NotificationCenter.Notific
         super.onAttachedToWindow();
         this.T = true;
         this.f17631w.n(this);
-        this.f17632x.f29343s = this;
+        this.f17632x.f29345s = this;
         l(false);
         int i10 = this.f17628n;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingDidStart);
@@ -483,14 +483,14 @@ public final class y extends z implements p6, r9, k0, NotificationCenter.Notific
         int i10;
         if (getDisplayDocument() != null) {
             this.f17631w.draw(canvas);
-            int i11 = y6.f23678ud;
+            int i11 = y6.f23680ud;
             u6 u6Var = this.f17629r;
             int w02 = y6.w0(i11, u6Var);
-            int w03 = y6.w0(y6.f23696vd, u6Var);
-            int i12 = y6.f23735xd;
+            int w03 = y6.w0(y6.f23698vd, u6Var);
+            int i12 = y6.f23737xd;
             int w04 = y6.w0(i12, u6Var);
             int w05 = y6.w0(i12, u6Var);
-            int w06 = y6.w0(y6.f23716wd, u6Var);
+            int w06 = y6.w0(y6.f23718wd, u6Var);
             ip0 ip0Var = this.f17632x;
             ip0Var.h(w02, w03, w04, w05, w06);
             if (!j()) {
@@ -499,7 +499,7 @@ public final class y extends z implements p6, r9, k0, NotificationCenter.Notific
                 ip0Var.b(canvas);
                 canvas.restore();
             }
-            int w07 = y6.w0(y6.f23545nd, u6Var);
+            int w07 = y6.w0(y6.f23547nd, u6Var);
             TextPaint textPaint = this.v;
             textPaint.setColor(w07);
             if (this.M != null) {
@@ -519,7 +519,7 @@ public final class y extends z implements p6, r9, k0, NotificationCenter.Notific
             if (p3Var != null && (textSelectionHelper = p3Var.f17409a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
                 ((RecyclerView) getParent()).getClass();
                 int R = RecyclerView.R(this);
-                if (R >= 0 && R > textSelectionHelper.f25408p0 && R <= textSelectionHelper.f25411s0) {
+                if (R >= 0 && R > textSelectionHelper.f25410p0 && R <= textSelectionHelper.f25413s0) {
                     int i13 = 0;
                     if (this.H) {
                         i10 = 0;
@@ -646,7 +646,7 @@ public final class y extends z implements p6, r9, k0, NotificationCenter.Notific
                                 f2Var.d();
                             }
                             arrayList.remove(indexOf);
-                            v3Var.f32150g3.O(true);
+                            v3Var.f32152g3.O(true);
                             f2 f2Var2 = v3Var.R3;
                             if (f2Var2 != null) {
                                 f2Var2.h();
@@ -707,7 +707,7 @@ public final class y extends z implements p6, r9, k0, NotificationCenter.Notific
     @Override
     public final void updateColors() {
         RadialProgress2 radialProgress2;
-        int i10 = y6.f23680uf;
+        int i10 = y6.f23682uf;
         u6 u6Var = this.f17629r;
         this.f17630s.setColor(y6.w0(i10, u6Var));
         j0 j0Var = this.U;
@@ -719,7 +719,7 @@ public final class y extends z implements p6, r9, k0, NotificationCenter.Notific
                 radialProgress2.d = y6.w0(y6.Bd, u6Var);
             }
             if (getBackground() instanceof y1) {
-                ((y1) getBackground()).a(y6.w0(y6.f23354d6, u6Var));
+                ((y1) getBackground()).a(y6.w0(y6.f23356d6, u6Var));
             }
         } catch (Exception e) {
             FileLog.e(e);

@@ -25,7 +25,7 @@ public final class ez extends by0 {
         super.K1(i10);
         fz fzVar = this.I3;
         sz szVar = fzVar.G;
-        ez ezVar = fzVar.f28339r;
+        ez ezVar = fzVar.f28341r;
         boolean z11 = true;
         if (ezVar.getSelectedCategory() == null) {
             z10 = true;
@@ -44,7 +44,7 @@ public final class ez extends by0 {
             if (ezVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            dxVar.f31627o0 = z11;
+            dxVar.f31629o0 = z11;
             dxVar.invalidate();
         }
         fzVar.g(false);

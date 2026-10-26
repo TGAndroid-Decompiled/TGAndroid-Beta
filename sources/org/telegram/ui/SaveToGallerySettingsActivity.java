@@ -14,24 +14,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.messenger.UserConfig;
 public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.r2 {
-    public int f36140a;
+    public int f36143a;
     public int addExceptionRow;
-    public long f36141b;
-    public SaveToGallerySettingsHelper.DialogException f36142c;
+    public long f36144b;
+    public SaveToGallerySettingsHelper.DialogException f36145c;
     public boolean d;
     public int deleteAllExceptionsRow;
     public int e;
-    public int f36143f;
+    public int f36146f;
     public int h;
     public int maxVideoSizeRow;
-    public j31 f36144n;
-    public org.telegram.ui.Components.mm0 f36145r;
-    public final ArrayList f36146s;
+    public j31 f36147n;
+    public org.telegram.ui.Components.mm0 f36148r;
+    public final ArrayList f36149s;
     public LongSparseArray v;
 
     public SaveToGallerySettingsActivity(Bundle bundle) {
         super(bundle);
-        this.f36146s = new ArrayList();
+        this.f36149s = new ArrayList();
         this.v = new LongSparseArray();
     }
 
@@ -50,25 +50,25 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.r2 
     }
 
     public final SaveToGallerySettingsHelper.Settings Z() {
-        SaveToGallerySettingsHelper.DialogException dialogException = this.f36142c;
+        SaveToGallerySettingsHelper.DialogException dialogException = this.f36145c;
         if (dialogException != null) {
             return dialogException;
         }
-        return SaveToGallerySettingsHelper.getSettings(this.f36140a);
+        return SaveToGallerySettingsHelper.getSettings(this.f36143a);
     }
 
     public final void a0() {
         if (this.d) {
             return;
         }
-        if (this.f36142c != null) {
-            LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = getUserConfig().getSaveGalleryExceptions(this.f36140a);
-            SaveToGallerySettingsHelper.DialogException dialogException = this.f36142c;
+        if (this.f36145c != null) {
+            LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = getUserConfig().getSaveGalleryExceptions(this.f36143a);
+            SaveToGallerySettingsHelper.DialogException dialogException = this.f36145c;
             saveGalleryExceptions.put(dialogException.dialogId, dialogException);
-            getUserConfig().updateSaveGalleryExceptions(this.f36140a, saveGalleryExceptions);
+            getUserConfig().updateSaveGalleryExceptions(this.f36143a, saveGalleryExceptions);
             return;
         }
-        SaveToGallerySettingsHelper.saveSettings(this.f36140a);
+        SaveToGallerySettingsHelper.saveSettings(this.f36143a);
     }
 
     public final void b0() {
@@ -78,27 +78,27 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.r2 
         this.deleteAllExceptionsRow = -1;
         boolean z10 = this.isPaused;
         String str = null;
-        ArrayList arrayList2 = this.f36146s;
-        if (!z10 && this.f36144n != null) {
+        ArrayList arrayList2 = this.f36149s;
+        if (!z10 && this.f36147n != null) {
             arrayList = new ArrayList();
             arrayList.addAll(arrayList2);
         } else {
             arrayList = null;
         }
         arrayList2.clear();
-        if (this.f36142c != null) {
+        if (this.f36145c != null) {
             arrayList2.add(new k31(9));
             arrayList2.add(new k31(3));
         }
         arrayList2.add(new k31(5, LocaleController.getString(R.string.SaveToGallery)));
         this.e = arrayList2.size();
         arrayList2.add(new k31(6));
-        this.f36143f = arrayList2.size();
+        this.f36146f = arrayList2.size();
         arrayList2.add(new k31(6));
-        if (this.f36142c != null) {
+        if (this.f36145c != null) {
             str = LocaleController.getString(R.string.SaveToGalleryHintCurrent);
         } else {
-            int i10 = this.f36140a;
+            int i10 = this.f36143a;
             if (i10 == 1) {
                 str = LocaleController.getString(R.string.SaveToGalleryHintUser);
             } else if (i10 == 4) {
@@ -117,8 +117,8 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.r2 
         } else {
             this.h = -1;
         }
-        if (this.f36142c == null) {
-            this.v = getUserConfig().getSaveGalleryExceptions(this.f36140a);
+        if (this.f36145c == null) {
+            this.v = getUserConfig().getSaveGalleryExceptions(this.f36143a);
             this.addExceptionRow = arrayList2.size();
             arrayList2.add(new k31(1));
             int i11 = 0;
@@ -135,7 +135,7 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.r2 
             }
             arrayList2.add(new k31(10));
         }
-        j31 j31Var = this.f36144n;
+        j31 j31Var = this.f36147n;
         if (j31Var != null) {
             if (arrayList != null) {
                 j31Var.E(arrayList, arrayList2);
@@ -153,14 +153,14 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.r2 
         this.fragmentView = frameLayout;
         this.simpleActionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.j2(false));
         this.simpleActionBar.setActionBarMenuOnItemClick(new p11(this, 4));
-        if (this.f36142c != null) {
+        if (this.f36145c != null) {
             if (this.d) {
                 this.simpleActionBar.setTitle(LocaleController.getString(R.string.NotificationsNewException));
             } else {
                 this.simpleActionBar.setTitle(LocaleController.getString(R.string.SaveToGalleryException));
             }
         } else {
-            int i11 = this.f36140a;
+            int i11 = this.f36143a;
             if (i11 == 1) {
                 this.simpleActionBar.setTitle(LocaleController.getString(R.string.SaveToGalleryPrivate));
             } else if (i11 == 2) {
@@ -170,24 +170,24 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.r2 
             }
         }
         org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
-        this.f36145r = mm0Var;
+        this.f36148r = mm0Var;
         mm0Var.u1();
-        this.f36145r.setSectionsDrawBackground(true);
+        this.f36148r.setSectionsDrawBackground(true);
         s4.l lVar = new s4.l();
         lVar.n(400L);
         lVar.o(org.telegram.ui.Components.ds.h);
         lVar.C = false;
-        lVar.f47760m = false;
-        this.f36145r.setItemAnimator(lVar);
-        this.f36145r.setLayoutManager(new s4.c0());
-        org.telegram.ui.Components.mm0 mm0Var2 = this.f36145r;
+        lVar.f47763m = false;
+        this.f36148r.setItemAnimator(lVar);
+        this.f36148r.setLayoutManager(new s4.c0());
+        org.telegram.ui.Components.mm0 mm0Var2 = this.f36148r;
         j31 j31Var = new j31(this);
-        this.f36144n = j31Var;
+        this.f36147n = j31Var;
         mm0Var2.setAdapter(j31Var);
-        this.f36145r.setOnItemClickListener(new h31(this));
-        this.f36145r.setOnItemLongClickListener(new h31(this));
-        frameLayout.addView(this.f36145r);
-        if (this.f36142c != null) {
+        this.f36148r.setOnItemClickListener(new h31(this));
+        this.f36148r.setOnItemLongClickListener(new h31(this));
+        frameLayout.addView(this.f36148r);
+        if (this.f36145c != null) {
             FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
             frameLayout2.setBackground(org.telegram.ui.ActionBar.o6.f(new float[]{8.0f}, org.telegram.ui.ActionBar.y6.Oh));
             TextView textView = new TextView(getParentActivity());
@@ -211,7 +211,7 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.r2 
 
     @Override
     public final org.telegram.ui.Components.mm0 getListViewForSimpleGlass() {
-        return this.f36145r;
+        return this.f36148r;
     }
 
     @Override
@@ -221,22 +221,22 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.r2 
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f36140a = getArguments().getInt("type");
-        this.v = getUserConfig().getSaveGalleryExceptions(this.f36140a);
+        this.f36143a = getArguments().getInt("type");
+        this.v = getUserConfig().getSaveGalleryExceptions(this.f36143a);
         long j10 = getArguments().getLong("dialog_id");
-        this.f36141b = j10;
+        this.f36144b = j10;
         if (j10 != 0) {
-            SaveToGallerySettingsHelper.DialogException dialogException = UserConfig.getInstance(this.currentAccount).getSaveGalleryExceptions(this.f36140a).get(this.f36141b);
-            this.f36142c = dialogException;
+            SaveToGallerySettingsHelper.DialogException dialogException = UserConfig.getInstance(this.currentAccount).getSaveGalleryExceptions(this.f36143a).get(this.f36144b);
+            this.f36145c = dialogException;
             if (dialogException == null) {
                 this.d = true;
-                this.f36142c = new SaveToGallerySettingsHelper.DialogException();
-                SaveToGallerySettingsHelper.Settings settings = SaveToGallerySettingsHelper.getSettings(this.f36140a);
-                SaveToGallerySettingsHelper.DialogException dialogException2 = this.f36142c;
+                this.f36145c = new SaveToGallerySettingsHelper.DialogException();
+                SaveToGallerySettingsHelper.Settings settings = SaveToGallerySettingsHelper.getSettings(this.f36143a);
+                SaveToGallerySettingsHelper.DialogException dialogException2 = this.f36145c;
                 dialogException2.savePhoto = settings.savePhoto;
                 dialogException2.saveVideo = settings.saveVideo;
                 dialogException2.limitVideo = settings.limitVideo;
-                dialogException2.dialogId = this.f36141b;
+                dialogException2.dialogId = this.f36144b;
             }
         }
         return super.onFragmentCreate();

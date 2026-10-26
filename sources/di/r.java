@@ -164,14 +164,14 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         jVar.setClipChildren(false);
         edVar.h = new bi.u6(qwVar, 13);
         ag.c cVar = new ag.c(qwVar, 7);
-        edVar.f27808l = true;
-        edVar.f27806j = cVar;
+        edVar.f27810l = true;
+        edVar.f27808j = cVar;
         jVar.j(new ai.b(qwVar, 8));
         s4.l lVar = new s4.l();
         this.R = lVar;
         lVar.C = false;
         lVar.n(150L);
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         jVar.setItemAnimator(lVar);
         s4.c0 c0Var = new s4.c0(0, false);
         this.S = c0Var;
@@ -206,7 +206,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         addView(imageView, gb1.g(22.0f, 90));
         org.telegram.ui.Components.r5 r5Var = new org.telegram.ui.Components.r5(AndroidUtilities.dp(26.0f), null);
         this.f9072a0 = r5Var;
-        r5Var.f32091a = true;
+        r5Var.f32093a = true;
         r5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.W = imageView2;
@@ -228,7 +228,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         ?? lVar2 = new s4.l();
         this.d = lVar2;
         lVar2.C = false;
-        lVar2.f47760m = false;
+        lVar2.f47763m = false;
         jVar2.setItemAnimator(lVar2);
         jVar2.setAdapter(nVar2);
         jVar2.setClipChildren(false);
@@ -874,7 +874,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         }
         if (a8.d != null) {
             int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.xj, false);
-            int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23596q7, false);
+            int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23598q7, false);
             a8.d.d(i0.a.f(0.25f, x02, x03), x03, 0, 0);
         }
         int textColor = getTextColor();
@@ -889,7 +889,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         try {
             org.telegram.ui.Components.r5 r5Var = this.f9072a0;
             if (r5Var != null) {
-                r5Var.k(Integer.valueOf(f(org.telegram.ui.ActionBar.y6.f23774zh)));
+                r5Var.k(Integer.valueOf(f(org.telegram.ui.ActionBar.y6.f23776zh)));
             }
             ImageView imageView = this.W;
             if (imageView != null) {
@@ -955,8 +955,8 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
             edVar.getClass();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((int) jVar.getX(), (int) jVar.getY(), x9, y3);
-            edVar.f27805i = false;
-            edVar.f27802c = 0;
+            edVar.f27807i = false;
+            edVar.f27804c = 0;
             edVar.a(rectF);
             if (edVar.b(motionEvent)) {
                 return true;

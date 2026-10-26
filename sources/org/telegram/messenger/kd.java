@@ -50,13 +50,13 @@ public final class kd implements Runnable {
                 if (this.f20519b) {
                     actionBarLayout.h = true;
                     actionBarLayout.J = actionBarPopupWindow$ActionBarPopupWindowLayout;
-                    actionBarLayout.f22302a0 = false;
-                    actionBarLayout.f22341s.setScaleX(1.0f);
-                    actionBarLayout.f22341s.setScaleY(1.0f);
+                    actionBarLayout.f22304a0 = false;
+                    actionBarLayout.f22343s.setScaleX(1.0f);
+                    actionBarLayout.f22343s.setScaleY(1.0f);
                 } else {
-                    Drawable drawable = ActionBarLayout.f22298v1;
+                    Drawable drawable = ActionBarLayout.f22300v1;
                     actionBarLayout.V(r2Var, this.f20520c);
-                    actionBarLayout.f22341s.setTranslationX(0.0f);
+                    actionBarLayout.f22343s.setTranslationX(0.0f);
                 }
                 if (r2Var != null) {
                     r2Var.onTransitionAnimationEnd(false, false);

@@ -67,7 +67,7 @@ public final class x extends y {
     public final SpannableStringBuilder e(w wVar) {
         p0.b bVar;
         CharSequence charSequence;
-        String str = p0.b.f46470b;
+        String str = p0.b.f46473b;
         if (TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == 1) {
             bVar = p0.b.e;
         } else {

@@ -47,34 +47,34 @@ public abstract class i extends ScrollView implements p6 {
     public boolean H;
     public int I;
     public float J;
-    public final u6 f52873a;
-    public final c2 f52874b;
-    public final int f52875c;
+    public final u6 f52876a;
+    public final c2 f52877b;
+    public final int f52878c;
     public final j9 d;
     public final ArrayList e;
-    public x30 f52876f;
+    public x30 f52879f;
     public boolean h;
-    public Utilities.Callback f52877n;
-    public int f52878r;
-    public final h6 f52879s;
+    public Utilities.Callback f52880n;
+    public int f52881r;
+    public final h6 f52882s;
     public final LinearGradient v;
-    public final Paint f52880w;
-    public final Matrix f52881x;
-    public final h6 f52882y;
+    public final Paint f52883w;
+    public final Matrix f52884x;
+    public final h6 f52885y;
 
     public i(Context context, u6 u6Var) {
         super(context);
         int i10;
         this.e = new ArrayList();
         ds dsVar = ds.h;
-        this.f52879s = new h6(this, 0L, 300L, dsVar);
+        this.f52882s = new h6(this, 0L, 300L, dsVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
         this.v = linearGradient;
         Paint paint = new Paint(1);
-        this.f52880w = paint;
-        this.f52881x = new Matrix();
-        this.f52882y = new h6(this, 0L, 300L, dsVar);
+        this.f52883w = paint;
+        this.f52884x = new Matrix();
+        this.f52885y = new h6(this, 0L, 300L, dsVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
         this.E = linearGradient2;
         Paint paint2 = new Paint(1);
@@ -85,16 +85,16 @@ public abstract class i extends ScrollView implements p6 {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f52873a = u6Var;
+        this.f52876a = u6Var;
         setVerticalScrollBarEnabled(false);
-        int x02 = y6.x0(null, y6.f23354d6, false);
-        this.f52878r = x02;
+        int x02 = y6.x0(null, y6.f23356d6, false);
+        this.f52881r = x02;
         AndroidUtilities.setScrollViewEdgeEffectColor(this, x02);
         j9 j9Var = new j9(this, context);
         this.d = j9Var;
         addView(j9Var, gb1.g(-2.0f, -1));
         c2 c2Var = new c2(this, context, 11);
-        this.f52874b = c2Var;
+        this.f52877b = c2Var;
         if (Build.VERSION.SDK_INT >= 25) {
             c2Var.setRevealOnFocusHint(false);
         }
@@ -121,7 +121,7 @@ public abstract class i extends ScrollView implements p6 {
         c2Var.setGravity(i10 | 16);
         j9Var.addView(c2Var);
         c2Var.setHintText(LocaleController.getString(R.string.Search));
-        this.f52875c = (int) c2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
+        this.f52878c = (int) c2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
         c2Var.addTextChangedListener(new f(this));
     }
 
@@ -130,8 +130,8 @@ public abstract class i extends ScrollView implements p6 {
             return;
         }
         x30 x30Var = (x30) view;
-        if (x30Var.f34606y) {
-            this.f52876f = null;
+        if (x30Var.f34609y) {
+            this.f52879f = null;
             j9 j9Var = this.d;
             i iVar = (i) j9Var.f11069n;
             iVar.H = true;
@@ -159,12 +159,12 @@ public abstract class i extends ScrollView implements p6 {
             runnable.run();
             return;
         }
-        x30 x30Var2 = this.f52876f;
+        x30 x30Var2 = this.f52879f;
         if (x30Var2 != null) {
             x30Var2.a();
-            this.f52876f = null;
+            this.f52879f = null;
         }
-        this.f52876f = x30Var;
+        this.f52879f = x30Var;
         x30Var.b();
     }
 
@@ -231,7 +231,7 @@ public abstract class i extends ScrollView implements p6 {
                     messagesController = messagesController2;
                     tL_help_country = chat;
                     if (tL_help_country != null) {
-                        x30 x30Var2 = new x30(getContext(), tL_help_country, null, true, this.f52873a);
+                        x30 x30Var2 = new x30(getContext(), tL_help_country, null, true, this.f52876a);
                         x30Var2.setOnClickListener(new a51(this, hashSet, runnable, 3));
                         arrayList5.add(x30Var2);
                     }
@@ -297,14 +297,14 @@ public abstract class i extends ScrollView implements p6 {
                 j9Var.f11066b = null;
                 i10 = 0;
                 j9Var.f11067c = false;
-                iVar.f52874b.setAllowDrawCursor(true);
+                iVar.f52877b.setAllowDrawCursor(true);
             }
             for (int i18 = i10; i18 < arrayList5.size(); i18++) {
                 j9Var.addView((View) arrayList5.get(i18));
             }
             j9Var.requestLayout();
         }
-        this.f52874b.setOnKeyListener(new g(this, hashSet, runnable));
+        this.f52877b.setOnKeyListener(new g(this, hashSet, runnable));
     }
 
     @Override
@@ -314,15 +314,15 @@ public abstract class i extends ScrollView implements p6 {
         canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
-        float e = this.f52879s.e(canScrollVertically(-1));
-        Matrix matrix = this.f52881x;
+        float e = this.f52882s.e(canScrollVertically(-1));
+        Matrix matrix = this.f52884x;
         matrix.reset();
         matrix.postTranslate(0.0f, scrollY2);
         this.v.setLocalMatrix(matrix);
-        Paint paint = this.f52880w;
+        Paint paint = this.f52883w;
         paint.setAlpha((int) (e * 255.0f));
         canvas.drawRect(0.0f, scrollY2, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, paint);
-        float e10 = this.f52882y.e(canScrollVertically(1));
+        float e10 = this.f52885y.e(canScrollVertically(1));
         Matrix matrix2 = this.G;
         matrix2.reset();
         matrix2.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
@@ -335,7 +335,7 @@ public abstract class i extends ScrollView implements p6 {
     }
 
     public EditTextBoldCursor getEditText() {
-        return this.f52874b;
+        return this.f52877b;
     }
 
     @Override
@@ -364,22 +364,22 @@ public abstract class i extends ScrollView implements p6 {
     }
 
     public void setOnSearchTextChange(Utilities.Callback<String> callback) {
-        this.f52877n = callback;
+        this.f52880n = callback;
     }
 
     public void setText(CharSequence charSequence) {
         this.h = true;
-        this.f52874b.setText(charSequence);
+        this.f52877b.setText(charSequence);
         this.h = false;
     }
 
     @Override
     public final void updateColors() {
         try {
-            int x02 = y6.x0(null, y6.f23354d6, false);
-            int i10 = this.f52878r;
+            int x02 = y6.x0(null, y6.f23356d6, false);
+            int i10 = this.f52881r;
             if (i10 != 0 && x02 != i10) {
-                this.f52878r = x02;
+                this.f52881r = x02;
                 AndroidUtilities.setScrollViewEdgeEffectColor(this, x02);
             }
         } catch (Exception e) {

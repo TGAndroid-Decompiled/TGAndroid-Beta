@@ -5,19 +5,19 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import org.telegram.messenger.AndroidUtilities;
 public final class du extends ShapeDrawable {
-    public final int f27602a = 0;
-    public final EditTextBoldCursor f27603b;
+    public final int f27604a = 0;
+    public final EditTextBoldCursor f27605b;
 
     public du(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
         super(rectShape);
-        this.f27603b = editTextBoldCursor;
+        this.f27605b = editTextBoldCursor;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f27602a) {
+        switch (this.f27604a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = this.f27603b;
+                EditTextBoldCursor editTextBoldCursor = this.f27605b;
                 if (editTextBoldCursor.drawInMaim) {
                     editTextBoldCursor.cursorDrawn = true;
                     return;
@@ -27,7 +27,7 @@ public final class du extends ShapeDrawable {
                 }
             default:
                 super.draw(canvas);
-                this.f27603b.cursorDrawn = true;
+                this.f27605b.cursorDrawn = true;
                 return;
         }
     }
@@ -35,9 +35,9 @@ public final class du extends ShapeDrawable {
     @Override
     public int getIntrinsicHeight() {
         int i10;
-        switch (this.f27602a) {
+        switch (this.f27604a) {
             case 0:
-                i10 = this.f27603b.cursorSize;
+                i10 = this.f27605b.cursorSize;
                 return AndroidUtilities.dp(i10 + 20);
             default:
                 return super.getIntrinsicHeight();
@@ -47,9 +47,9 @@ public final class du extends ShapeDrawable {
     @Override
     public int getIntrinsicWidth() {
         float f7;
-        switch (this.f27602a) {
+        switch (this.f27604a) {
             case 0:
-                f7 = this.f27603b.cursorWidth;
+                f7 = this.f27605b.cursorWidth;
                 return AndroidUtilities.dp(f7);
             default:
                 return super.getIntrinsicWidth();
@@ -57,6 +57,6 @@ public final class du extends ShapeDrawable {
     }
 
     public du(EditTextBoldCursor editTextBoldCursor) {
-        this.f27603b = editTextBoldCursor;
+        this.f27605b = editTextBoldCursor;
     }
 }

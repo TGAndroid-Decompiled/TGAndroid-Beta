@@ -42,18 +42,18 @@ import org.telegram.ui.Components.yl;
 import org.telegram.ui.cv0;
 import org.telegram.ui.d3;
 public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0.r, OnFailureListener, ui.g, x3.g, z3.k {
-    public static b f48039b;
-    public final int f48040a;
+    public static b f48042b;
+    public final int f48043a;
 
     public b(int i10) {
-        this.f48040a = i10;
+        this.f48043a = i10;
     }
 
     public static Calendar R0() {
-        if (f48039b == null) {
-            f48039b = new b(29);
+        if (f48042b == null) {
+            f48042b = new b(29);
         }
-        f48039b.getClass();
+        f48042b.getClass();
         return Calendar.getInstance();
     }
 
@@ -195,7 +195,7 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
 
     @Override
     public Object U1() {
-        switch (this.f48040a) {
+        switch (this.f48043a) {
             case 9:
                 return new LinkedHashSet();
             default:
@@ -255,7 +255,7 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
 
     @Override
     public boolean d() {
-        switch (this.f48040a) {
+        switch (this.f48043a) {
             case 16:
                 return true;
             default:
@@ -265,7 +265,7 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
 
     @Override
     public Object d1(me meVar) {
-        switch (this.f48040a) {
+        switch (this.f48043a) {
             case 18:
                 return new h();
             case 19:
@@ -430,7 +430,7 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
     }
 
     public b() {
-        this.f48040a = 11;
+        this.f48043a = 11;
         if (Build.VERSION.SDK_INT >= 35) {
         }
     }

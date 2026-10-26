@@ -56,7 +56,7 @@ public final class e extends FrameLayout {
         linearLayout.setOrientation(1);
         s6 s6Var = new s6(activity, false, false, false);
         this.e = s6Var;
-        s6Var.f32442n = false;
+        s6Var.f32444n = false;
         s6Var.getDrawable().r(true, false);
         s6Var.setTypeface(AndroidUtilities.bold());
         s6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -66,11 +66,11 @@ public final class e extends FrameLayout {
         linearLayout.addView(s6Var, gb1.o(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         s6 s6Var2 = new s6(activity, false, false, false);
         this.f15682f = s6Var2;
-        s6Var2.f32442n = false;
+        s6Var2.f32444n = false;
         s6Var2.getDrawable().r(true, false);
         s6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         s6Var2.setText(LocaleController.getString(R.string.BizBotStatusManages));
-        f7.Z(s6Var2, y6.f23416ge, u6Var);
+        f7.Z(s6Var2, y6.f23418ge, u6Var);
         s6Var2.setEllipsizeByGradient(true);
         linearLayout.addView(s6Var2, gb1.r(-1, 17));
         addView(linearLayout, gb1.h(-2, -2.0f, 16, 52.0f, 0.0f, 49.0f, 0.0f));
@@ -105,12 +105,12 @@ public final class e extends FrameLayout {
         this.f15683n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_mini_customize);
-        int i12 = y6.f23446i6;
+        int i12 = y6.f23448i6;
         org.telegram.ui.Cells.y N2 = y6.N(y6.w0(i12, u6Var), 0, 0);
         b7 N3 = f7.N(i12);
         imageView.setBackground(N2);
         f7.k(imageView, N2, null, N3, u6Var);
-        f7.t(imageView, y6.f23362de, u6Var, PorterDuff.Mode.MULTIPLY);
+        f7.t(imageView, y6.f23364de, u6Var, PorterDuff.Mode.MULTIPLY);
         imageView.setOnClickListener(new bi.w0(this, unVar, u6Var, 10));
         addView(imageView, gb1.h(32, 32.0f, 21, 8.0f, 0.0f, 6.0f, 0.0f));
     }

@@ -256,13 +256,13 @@ public class SecretChatHelper extends BaseController {
         if (tL_error == null) {
             TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
             if (tLObject instanceof TLRPC.TL_messages_dhConfig) {
-                if (!Utilities.isGoodPrime(messages_dhconfig.f22182p, messages_dhconfig.f22181g)) {
+                if (!Utilities.isGoodPrime(messages_dhconfig.f22184p, messages_dhconfig.f22183g)) {
                     this.acceptingChats.remove(encryptedChat.f22035id);
                     declineSecretChat(encryptedChat.f22035id, false);
                     return;
                 }
-                getMessagesStorage().setSecretPBytes(messages_dhconfig.f22182p);
-                getMessagesStorage().setSecretG(messages_dhconfig.f22181g);
+                getMessagesStorage().setSecretPBytes(messages_dhconfig.f22184p);
+                getMessagesStorage().setSecretG(messages_dhconfig.f22183g);
                 getMessagesStorage().setLastSecretVersion(messages_dhconfig.version);
                 getMessagesStorage().saveSecretParams(getMessagesStorage().getLastSecretVersion(), getMessagesStorage().getSecretG(), getMessagesStorage().getSecretPBytes());
             }
@@ -813,8 +813,8 @@ public class SecretChatHelper extends BaseController {
                 FileLog.e(e);
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-            alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
-            alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.CreateEncryptedChatError);
+            alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.AppName);
+            alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.CreateEncryptedChatError);
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
             alertDialog$Builder.p().setCanceledOnTouchOutside(true);
         }
@@ -844,12 +844,12 @@ public class SecretChatHelper extends BaseController {
         if (tL_error == null) {
             TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
             if (tLObject instanceof TLRPC.TL_messages_dhConfig) {
-                if (!Utilities.isGoodPrime(messages_dhconfig.f22182p, messages_dhconfig.f22181g)) {
+                if (!Utilities.isGoodPrime(messages_dhconfig.f22184p, messages_dhconfig.f22183g)) {
                     AndroidUtilities.runOnUIThread(new aa(2, context, e2Var));
                     return;
                 }
-                getMessagesStorage().setSecretPBytes(messages_dhconfig.f22182p);
-                getMessagesStorage().setSecretG(messages_dhconfig.f22181g);
+                getMessagesStorage().setSecretPBytes(messages_dhconfig.f22184p);
+                getMessagesStorage().setSecretG(messages_dhconfig.f22183g);
                 getMessagesStorage().setLastSecretVersion(messages_dhconfig.version);
                 getMessagesStorage().saveSecretParams(getMessagesStorage().getLastSecretVersion(), getMessagesStorage().getSecretG(), getMessagesStorage().getSecretPBytes());
             }

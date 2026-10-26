@@ -8,35 +8,35 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class c8 extends s4.h0 {
-    public final int f38366c;
+    public final int f38369c;
     public final Object d;
 
     public c8(Object obj, int i10) {
-        this.f38366c = i10;
+        this.f38369c = i10;
         this.d = obj;
     }
 
     @Override
     public final int h() {
-        switch (this.f38366c) {
+        switch (this.f38369c) {
             case 0:
                 return ((n8) this.d).K;
             case 1:
-                return ((org.telegram.ui.Cells.t) this.d).f25420f3.size();
+                return ((org.telegram.ui.Cells.t) this.d).f25422f3.size();
             case 2:
-                return ((org.telegram.ui.Components.d9) this.d).f27431f3.size() + 1;
+                return ((org.telegram.ui.Components.d9) this.d).f27433f3.size() + 1;
             case 3:
                 return 1;
             case 4:
                 return 1;
             default:
-                return ((qp0) this.d).f42886f.size();
+                return ((qp0) this.d).f42889f.size();
         }
     }
 
     @Override
     public long i(int i10) {
-        switch (this.f38366c) {
+        switch (this.f38369c) {
             case 0:
                 n8 n8Var = (n8) this.d;
                 return ((n8Var.I - (i10 / 12)) * 100) + (n8Var.J - (i10 % 12));
@@ -45,18 +45,18 @@ public final class c8 extends s4.h0 {
                 return super.i(i10);
             case 2:
                 org.telegram.ui.Components.d9 d9Var = (org.telegram.ui.Components.d9) this.d;
-                if (i10 >= d9Var.f27431f3.size()) {
+                if (i10 >= d9Var.f27433f3.size()) {
                     return 1L;
                 }
-                return ((org.telegram.ui.Components.c9) d9Var.f27431f3.get(i10)).f27091a;
+                return ((org.telegram.ui.Components.c9) d9Var.f27433f3.get(i10)).f27093a;
         }
     }
 
     @Override
     public int j(int i10) {
-        switch (this.f38366c) {
+        switch (this.f38369c) {
             case 2:
-                if (i10 >= ((org.telegram.ui.Components.d9) this.d).f27431f3.size()) {
+                if (i10 >= ((org.telegram.ui.Components.d9) this.d).f27433f3.size()) {
                     return 1;
                 }
                 return 0;
@@ -72,20 +72,20 @@ public final class c8 extends s4.h0 {
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        switch (this.f38366c) {
+        switch (this.f38369c) {
             case 0:
                 return new s4.e1(new k8((n8) this.d, viewGroup.getContext()));
             case 1:
                 Context context = viewGroup.getContext();
                 ?? linearLayout = new LinearLayout(context);
                 Paint paint = new Paint(1);
-                linearLayout.f25008a = paint;
+                linearLayout.f25010a = paint;
                 Paint paint2 = new Paint(1);
-                linearLayout.f25009b = paint2;
+                linearLayout.f25011b = paint2;
                 linearLayout.setOrientation(1);
                 linearLayout.setWillNotDraw(false);
                 org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(context);
-                linearLayout.f25010c = qVar;
+                linearLayout.f25012c = qVar;
                 qVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
                 linearLayout.addView(qVar, org.telegram.ui.Components.gb1.u(58, 58, 1));
                 TextView textView = new TextView(context);
@@ -100,7 +100,7 @@ public final class c8 extends s4.h0 {
                 return new s4.e1(linearLayout);
             case 2:
                 org.telegram.ui.Components.d9 d9Var = (org.telegram.ui.Components.d9) this.d;
-                return new s4.e1(new org.telegram.ui.Components.e9(d9Var.f27436k3, d9Var.getContext()));
+                return new s4.e1(new org.telegram.ui.Components.e9(d9Var.f27438k3, d9Var.getContext()));
             case 3:
                 return new s4.e1(((org.telegram.ui.Components.cn) this.d).v);
             case 4:

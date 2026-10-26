@@ -164,7 +164,7 @@ public final class ga implements Utilities.Callback2 {
                         if (num.intValue() == 1) {
                             wc.l(null, profileActivity, z11).j();
                         } else if (num.intValue() == 2) {
-                            wc.l(DialogObject.getShortName(profileActivity.f35976e1), profileActivity, z11).j();
+                            wc.l(DialogObject.getShortName(profileActivity.f35979e1), profileActivity, z11).j();
                         } else if (tL_error != null) {
                             wc.e0(tL_error);
                         }
@@ -181,11 +181,11 @@ public final class ga implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.d0 d0Var = (org.telegram.ui.Wallet.d0) obj3;
                 TL_wallet.nftItems nftitems = (TL_wallet.nftItems) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = d0Var.f36440b;
-                ArrayList arrayList2 = d0Var.f36441c;
-                d0Var.f36447l = -1;
-                d0Var.f36445j = false;
-                d0Var.f36444i = false;
+                ArrayList arrayList = d0Var.f36443b;
+                ArrayList arrayList2 = d0Var.f36444c;
+                d0Var.f36450l = -1;
+                d0Var.f36448j = false;
+                d0Var.f36447i = false;
                 if (nftitems != null) {
                     if (z11) {
                         arrayList.clear();
@@ -211,9 +211,9 @@ public final class ga implements Utilities.Callback2 {
                         }
                     }
                     String str2 = nftitems.next_offset;
-                    d0Var.f36442f = str2;
+                    d0Var.f36445f = str2;
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    d0Var.f36443g = isEmpty;
+                    d0Var.f36446g = isEmpty;
                     d0Var.h = true;
                     if (isEmpty) {
                         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
@@ -226,7 +226,7 @@ public final class ga implements Utilities.Callback2 {
                     d0Var.h();
                 } else {
                     if (z11) {
-                        d0Var.f36443g = false;
+                        d0Var.f36446g = false;
                         d0Var.h = false;
                     }
                     if (tL_error2 == null) {
@@ -234,7 +234,7 @@ public final class ga implements Utilities.Callback2 {
                     } else {
                         str = tL_error2.text;
                     }
-                    d0Var.f36446k = str;
+                    d0Var.f36449k = str;
                 }
                 d0Var.g();
                 return;

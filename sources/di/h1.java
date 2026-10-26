@@ -423,7 +423,7 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
         tL_updateStory.peer = MessagesController.getInstance(i10).getPeer(this.f8605b);
         TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
         tL_updateStory.story = tL_storyItemDeleted;
-        tL_storyItemDeleted.f22264id = this.f8606c;
+        tL_storyItemDeleted.f22266id = this.f8606c;
         MessagesController.getInstance(i10).getStoriesController().Z(tL_updateStory);
         e();
     }

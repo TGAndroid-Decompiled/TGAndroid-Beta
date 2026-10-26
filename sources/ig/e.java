@@ -200,7 +200,7 @@ public abstract class e extends hm0 {
             ?? frameLayout = new FrameLayout(this.f14040s);
             frameLayout.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(64.0f)));
             TextView textView = new TextView(frameLayout.getContext());
-            frameLayout.f25582a = textView;
+            frameLayout.f25584a = textView;
             ic.a.o(22.0f, 1, textView);
             f7.V(textView, y6.B6, null);
             textView.setGravity(17);
@@ -304,8 +304,8 @@ public abstract class e extends hm0 {
         int i12;
         ArrayList<TLRPC.TL_contact> arrayList2;
         float f7;
-        int i13 = e1Var.f47738f;
-        View view = e1Var.f47735a;
+        int i13 = e1Var.f47741f;
+        View view = e1Var.f47738a;
         int i14 = 7;
         boolean z10 = this.E;
         int i15 = this.f14039r;
@@ -439,7 +439,7 @@ public abstract class e extends hm0 {
         }
         TLRPC.User user = MessagesController.getInstance(i15).getUser(Long.valueOf(arrayList2.get(i11).user_id));
         abVar.d(user, null, null, false);
-        if (this.f14042x.h(user.f22174id) < 0) {
+        if (this.f14042x.h(user.f22176id) < 0) {
             z11 = false;
         }
         abVar.c(z11, false);

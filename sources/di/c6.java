@@ -69,7 +69,7 @@ public final class c6 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f22366a.N0.run();
+                alertDialog$Builder.f22368a.N0.run();
                 dk0Var.run();
                 return;
             case 3:
@@ -77,12 +77,12 @@ public final class c6 implements View.OnClickListener {
                 ArrayList arrayList = (ArrayList) obj2;
                 TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) obj;
                 if (i11 < arrayList.size()) {
-                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) v50Var.f44607a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) v50Var.f44610a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
                     if (groupCallParticipant2 != null) {
                         groupCallParticipant = groupCallParticipant2;
                     }
                     v50Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
-                    v40 v40Var = v50Var.f44631f3;
+                    v40 v40Var = v50Var.f44634f3;
                     if (v40Var != null) {
                         v40Var.dismiss();
                         return;
@@ -127,7 +127,7 @@ public final class c6 implements View.OnClickListener {
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj2;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) obj;
                 MessagesController messagesController = af1Var.getMessagesController();
-                long j10 = -af1Var.f37731a;
+                long j10 = -af1Var.f37734a;
                 if (messagesController.isDialogMuted(j10, tL_forumTopic.f22079id)) {
                     af1Var.getNotificationsController().muteDialog(j10, tL_forumTopic.f22079id, false);
                     af1Var.finishPreviewFragment();

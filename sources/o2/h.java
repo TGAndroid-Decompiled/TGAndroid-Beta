@@ -10,7 +10,7 @@ public final class h {
         this.f18991a = kVar;
         this.f18992b = j10;
         this.f18993c = i10;
-        if ((kVar instanceof p2.h) && ((p2.h) kVar).f46544x) {
+        if ((kVar instanceof p2.h) && ((p2.h) kVar).f46547x) {
             z10 = true;
         } else {
             z10 = false;

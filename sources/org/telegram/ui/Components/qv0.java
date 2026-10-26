@@ -9,25 +9,25 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 public abstract class qv0 extends su0 {
-    public final HashSet f32037j3;
-    public final ArrayList f32038k3;
-    public final ArrayList f32039l3;
-    public final ArrayList f32040m3;
-    public TextPaint f32041n3;
-    public StaticLayout f32042o3;
-    public float f32043p3;
-    public float f32044q3;
-    public di.ga f32045r3;
-    public int f32046s3;
-    public final ArrayList f32047t3;
+    public final HashSet f32039k3;
+    public final ArrayList f32040l3;
+    public final ArrayList f32041m3;
+    public final ArrayList f32042n3;
+    public TextPaint f32043o3;
+    public StaticLayout f32044p3;
+    public float f32045q3;
+    public float f32046r3;
+    public di.ga f32047s3;
+    public int f32048t3;
+    public final ArrayList f32049u3;
 
     public qv0(Context context) {
         super(context, null);
-        this.f32037j3 = new HashSet();
-        this.f32038k3 = new ArrayList();
-        this.f32039l3 = new ArrayList();
-        this.f32040m3 = new ArrayList();
-        this.f32047t3 = new ArrayList();
+        this.f32039k3 = new HashSet();
+        this.f32040l3 = new ArrayList();
+        this.f32041m3 = new ArrayList();
+        this.f32042n3 = new ArrayList();
+        this.f32049u3 = new ArrayList();
     }
 
     public abstract boolean D1();

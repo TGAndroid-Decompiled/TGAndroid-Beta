@@ -12,22 +12,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class zd0 implements RequestDelegate {
-    public final int f46264a;
-    public final ge0 f46265b;
-    public final TLRPC.TL_auth_signIn f46266c;
+    public final int f46267a;
+    public final ge0 f46268b;
+    public final TLRPC.TL_auth_signIn f46269c;
 
     public zd0(ge0 ge0Var, TLRPC.TL_auth_signIn tL_auth_signIn, int i10) {
-        this.f46264a = i10;
-        this.f46265b = ge0Var;
-        this.f46266c = tL_auth_signIn;
+        this.f46267a = i10;
+        this.f46268b = ge0Var;
+        this.f46269c = tL_auth_signIn;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f46264a) {
+        switch (this.f46267a) {
             case 0:
-                final ge0 ge0Var = this.f46265b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f46266c;
+                final ge0 ge0Var = this.f46268b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f46269c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -35,9 +35,9 @@ public final class zd0 implements RequestDelegate {
                         switch (r5) {
                             case 0:
                                 ge0 ge0Var2 = ge0Var;
-                                int i11 = ge0Var2.f39624a;
-                                fi.c2 c2Var = ge0Var2.f39627c;
-                                gg0 gg0Var = ge0Var2.f39625a0;
+                                int i11 = ge0Var2.f39627a;
+                                fi.c2 c2Var = ge0Var2.f39630c;
+                                gg0 gg0Var = ge0Var2.f39628a0;
                                 gg0Var.p1(false, true);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 TLRPC.TL_auth_signIn tL_auth_signIn2 = tL_auth_signIn;
@@ -49,7 +49,7 @@ public final class zd0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            gg0Var.f39667p0 = tL_help_termsOfService;
+                                            gg0Var.f39670p0 = tL_help_termsOfService;
                                         }
                                         Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", ge0Var2.G);
@@ -100,7 +100,7 @@ public final class zd0 implements RequestDelegate {
                             default:
                                 ge0 ge0Var3 = ge0Var;
                                 ge0Var3.R = false;
-                                gg0 gg0Var2 = ge0Var3.f39625a0;
+                                gg0 gg0Var2 = ge0Var3.f39628a0;
                                 gg0Var2.A1(false, true);
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 == null) {
@@ -126,8 +126,8 @@ public final class zd0 implements RequestDelegate {
                 });
                 return;
             default:
-                final ge0 ge0Var2 = this.f46265b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f46266c;
+                final ge0 ge0Var2 = this.f46268b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f46269c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -135,9 +135,9 @@ public final class zd0 implements RequestDelegate {
                         switch (r5) {
                             case 0:
                                 ge0 ge0Var22 = ge0Var2;
-                                int i11 = ge0Var22.f39624a;
-                                fi.c2 c2Var = ge0Var22.f39627c;
-                                gg0 gg0Var = ge0Var22.f39625a0;
+                                int i11 = ge0Var22.f39627a;
+                                fi.c2 c2Var = ge0Var22.f39630c;
+                                gg0 gg0Var = ge0Var22.f39628a0;
                                 gg0Var.p1(false, true);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 TLRPC.TL_auth_signIn tL_auth_signIn22 = tL_auth_signIn2;
@@ -149,7 +149,7 @@ public final class zd0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            gg0Var.f39667p0 = tL_help_termsOfService;
+                                            gg0Var.f39670p0 = tL_help_termsOfService;
                                         }
                                         Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", ge0Var22.G);
@@ -200,7 +200,7 @@ public final class zd0 implements RequestDelegate {
                             default:
                                 ge0 ge0Var3 = ge0Var2;
                                 ge0Var3.R = false;
-                                gg0 gg0Var2 = ge0Var3.f39625a0;
+                                gg0 gg0Var2 = ge0Var3.f39628a0;
                                 gg0Var2.A1(false, true);
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 == null) {

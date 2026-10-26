@@ -37,7 +37,7 @@ public final class x5 extends FrameLayout {
         zh.d1 d1Var = new zh.d1(frameLayout2, null, false);
         this.f5677a = d1Var;
         frameLayout2.setBackground(d1Var);
-        d1Var.f52945s = AndroidUtilities.dp(18.0f);
+        d1Var.f52948s = AndroidUtilities.dp(18.0f);
         d1Var.v = false;
         frameLayout.addView(frameLayout2, gb1.i(-1, -1, 119));
         frameLayout2.setAlpha(0.0f);

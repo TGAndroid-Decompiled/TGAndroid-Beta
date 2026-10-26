@@ -40,8 +40,8 @@ import sb.j;
 import sb.m;
 import w7.j5;
 public final class f extends sb.e {
-    public static final l6.c[] f8322k = {j.f48056c};
-    public static final yb.a f8323l = yb.a.f52508a;
+    public static final l6.c[] f8322k = {j.f48059c};
+    public static final yb.a f8323l = yb.a.f52511a;
     public final Context d;
     public final cc.e e;
     public final kg f8324f;
@@ -76,7 +76,7 @@ public final class f extends sb.e {
             }
             try {
                 if (this.f8327j == null) {
-                    IBinder b10 = z6.e.c(this.d, z6.e.f52676b, "com.google.android.gms.mlkit_subject_segmentation").b("com.google.android.gms.mlkit.segmentation.subject.SubjectSegmenterCreator");
+                    IBinder b10 = z6.e.c(this.d, z6.e.f52679b, "com.google.android.gms.mlkit_subject_segmentation").b("com.google.android.gms.mlkit.segmentation.subject.SubjectSegmenterCreator");
                     int i10 = yg.f997a;
                     if (b10 == null) {
                         aVar = null;
@@ -136,7 +136,7 @@ public final class f extends sb.e {
             kgVar.f584i.put(rbVar, Long.valueOf(elapsedRealtime));
             ?? obj = new Object();
             obj.f17846c = ob.TYPE_THIN;
-            m.f48061a.execute(new fg(kgVar, new ng((r3) obj, 0), rbVar, kgVar.c(), 0));
+            m.f48064a.execute(new fg(kgVar, new ng((r3) obj, 0), rbVar, kgVar.c(), 0));
         }
     }
 
@@ -152,7 +152,7 @@ public final class f extends sb.e {
                     long elapsedRealtime = SystemClock.elapsedRealtime();
                     wg wgVar = this.f8327j;
                     l.h(wgVar);
-                    tg tgVar = new tg(aVar.e, aVar.f51705b, aVar.f51706c, SystemClock.elapsedRealtime(), j5.a(aVar.d));
+                    tg tgVar = new tg(aVar.e, aVar.f51708b, aVar.f51709c, SystemClock.elapsedRealtime(), j5.a(aVar.d));
                     int i10 = aVar.e;
                     try {
                         if (i10 != -1) {
@@ -169,7 +169,7 @@ public final class f extends sb.e {
                             l.h(null);
                             throw null;
                         }
-                        Bitmap bitmap = aVar.f51704a;
+                        Bitmap bitmap = aVar.f51707a;
                         l.h(bitmap);
                         bVar = new y6.b(bitmap);
                         try {
@@ -242,7 +242,7 @@ public final class f extends sb.e {
         h0Var.d = this.e.a();
         h0Var.f511b = qbVar;
         h0Var.f512c = Boolean.valueOf(z10);
-        m.f48061a.execute(new ig(this.f8324f, new r1(h0Var), elapsedRealtime));
+        m.f48064a.execute(new ig(this.f8324f, new r1(h0Var), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         long j11 = currentTimeMillis - elapsedRealtime;
         mg mgVar = this.f8325g;

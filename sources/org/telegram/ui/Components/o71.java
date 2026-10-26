@@ -11,7 +11,7 @@ public final class o71 extends vz {
 
     @Override
     public final int W0(s4.b1 b1Var) {
-        if (this.X.f32152i3) {
+        if (this.X.f32154i3) {
             return AndroidUtilities.displaySize.y;
         }
         return super.W0(b1Var);

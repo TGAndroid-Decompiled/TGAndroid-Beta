@@ -6,19 +6,19 @@ import android.text.style.URLSpan;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class u41 extends ClickableSpan {
-    public final URLSpan f33249a;
-    public final f51 f33250b;
+    public final URLSpan f33252a;
+    public final f51 f33253b;
 
     public u41(f51 f51Var, URLSpan uRLSpan) {
-        this.f33250b = f51Var;
-        this.f33249a = uRLSpan;
+        this.f33253b = f51Var;
+        this.f33252a = uRLSpan;
     }
 
     @Override
     public final void onClick(View view) {
-        f51 f51Var = this.f33250b;
+        f51 f51Var = this.f33253b;
         Utilities.CallbackReturn callbackReturn = f51Var.T;
-        URLSpan uRLSpan = this.f33249a;
+        URLSpan uRLSpan = this.f33252a;
         if (callbackReturn != null) {
             if (((Boolean) callbackReturn.run(uRLSpan)).booleanValue()) {
                 f51Var.dismiss();
@@ -35,10 +35,10 @@ public final class u41 extends ClickableSpan {
     @Override
     public final void updateDrawState(TextPaint textPaint) {
         int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
-        if (!(this.f33249a instanceof x61)) {
+        if (!(this.f33252a instanceof x61)) {
             textPaint.setUnderlineText(true);
         }
-        textPaint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23481k5, false));
+        textPaint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23483k5, false));
         textPaint.setAlpha(min);
     }
 }

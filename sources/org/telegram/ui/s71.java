@@ -5,18 +5,18 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class s71 implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
-    public final d81 f43376a;
+    public final d81 f43379a;
 
     public s71(d81 d81Var) {
-        this.f43376a = d81Var;
+        this.f43379a = d81Var;
     }
 
     @Override
     public r0.k1 P0(View view, r0.k1 k1Var) {
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         int i10 = defaultWindowInsets.d;
-        d81 d81Var = this.f43376a;
-        d81Var.f38760c0 = i10;
+        d81 d81Var = this.f43379a;
+        d81Var.f38763c0 = i10;
         int i11 = defaultWindowInsets.f13451b;
         if (d81Var.P != null) {
             int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i11;
@@ -26,8 +26,8 @@ public final class s71 implements Utilities.Callback5, Utilities.Callback5Return
                 d81Var.P.setLayoutParams(layoutParams);
             }
         }
-        oi.a.d(d81Var.f38759c, i11, defaultWindowInsets.d, AndroidUtilities.dp(12.0f), d81Var.f38761d0);
-        return r0.k1.f47114b;
+        oi.a.d(d81Var.f38762c, i11, defaultWindowInsets.d, AndroidUtilities.dp(12.0f), d81Var.f38764d0);
+        return r0.k1.f47117b;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class s71 implements Utilities.Callback5, Utilities.Callback5Return
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        return Boolean.valueOf(d81.V(this.f43376a, (org.telegram.ui.Components.t61) obj, (View) obj2));
+        return Boolean.valueOf(d81.V(this.f43379a, (org.telegram.ui.Components.t61) obj, (View) obj2));
     }
 
     @Override
@@ -44,6 +44,6 @@ public final class s71 implements Utilities.Callback5, Utilities.Callback5Return
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        d81.f0(this.f43376a, (org.telegram.ui.Components.t61) obj);
+        d81.f0(this.f43379a, (org.telegram.ui.Components.t61) obj);
     }
 }

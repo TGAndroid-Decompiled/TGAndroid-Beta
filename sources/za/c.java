@@ -88,13 +88,13 @@ import qf.d;
 import sg.d2;
 import z3.m;
 public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterface, u0, androidx.activity.result.b, OnCompleteListener, k, SuccessContinuation, o, wb, w, g6.a, n, m {
-    public static volatile c f52839c;
-    public final int f52840a;
-    public final Object f52841b;
+    public static volatile c f52842c;
+    public final int f52843a;
+    public final Object f52844b;
 
     public c(h6.r rVar, String[] strArr) {
-        this.f52840a = 25;
-        this.f52841b = strArr;
+        this.f52843a = 25;
+        this.f52844b = strArr;
     }
 
     public static p l(Looper looper, Object obj, String str) {
@@ -106,7 +106,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     @Override
     public void A(boolean z10) {
         d2 d2Var;
-        sb sbVar = ((gb) ((o6) this.f52841b)).C0;
+        sb sbVar = ((gb) ((o6) this.f52844b)).C0;
         ta taVar = sbVar.f11673v1;
         if (taVar != null) {
             d2 d2Var2 = null;
@@ -152,7 +152,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     @Override
     public void B(float f7, int i10) {
         ArrayList arrayList;
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var != null && (arrayList = w7Var.T) != null && i10 >= 0 && i10 < arrayList.size()) {
             ((w7) o6Var.d.T.get(i10)).V = f7;
@@ -161,7 +161,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void C(float f7) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var == null) {
             return;
@@ -173,7 +173,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void D(float f7) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var == null) {
             return;
@@ -186,7 +186,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     @Override
     public void E(float f7, int i10) {
         ArrayList arrayList;
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var != null && (arrayList = w7Var.T) != null && i10 >= 0 && i10 < arrayList.size()) {
             ((w7) o6Var.d.T.get(i10)).W = f7;
@@ -195,7 +195,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void F(float f7) {
-        w7 w7Var = ((o6) this.f52841b).d;
+        w7 w7Var = ((o6) this.f52844b).d;
         if (w7Var == null) {
             return;
         }
@@ -208,7 +208,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
         boolean z10;
         d2.b a2;
         boolean z11;
-        x xVar = (x) this.f52841b;
+        x xVar = (x) this.f52844b;
         xVar.L(i10 + i11, bArr);
         xVar.N(i10);
         ArrayList arrayList = new ArrayList();
@@ -271,12 +271,12 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void I() {
-        ((o6) this.f52841b).q(null);
+        ((o6) this.f52844b).q(null);
     }
 
     @Override
     public void J(float f7) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var == null) {
             return;
@@ -289,7 +289,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     @Override
     public void K(int i10, long j10) {
         ArrayList arrayList;
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var != null && (arrayList = w7Var.T) != null && i10 >= 0 && i10 < arrayList.size()) {
             ((w7) o6Var.d.T.get(i10)).X = j10;
@@ -298,7 +298,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void L(long j10) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var == null) {
             return;
@@ -313,7 +313,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     }
 
     public StringBuilder N() {
-        gf.a aVar = (gf.a) this.f52841b;
+        gf.a aVar = (gf.a) this.f52844b;
         if (aVar instanceof bf.p) {
             StringBuilder sb2 = ((bf.p) aVar).f3974b.f3960b;
             if (sb2.length() != 0) {
@@ -326,8 +326,8 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     public Set O() {
         Set unmodifiableSet;
-        synchronized (((HashSet) this.f52841b)) {
-            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f52841b);
+        synchronized (((HashSet) this.f52844b)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f52844b);
         }
         return unmodifiableSet;
     }
@@ -338,7 +338,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     }
 
     public Boolean R() {
-        Bundle bundle = (Bundle) this.f52841b;
+        Bundle bundle = (Bundle) this.f52844b;
         if (bundle.containsKey("firebase_sessions_enabled")) {
             return Boolean.valueOf(bundle.getBoolean("firebase_sessions_enabled"));
         }
@@ -351,7 +351,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         ArrayList arrayList4 = new ArrayList();
-        for (c3.j jVar : ((LinkedHashMap) this.f52841b).values()) {
+        for (c3.j jVar : ((LinkedHashMap) this.f52844b).values()) {
             arrayList.add(jVar.f6065b);
             arrayList2.add(jVar.f6066c);
             arrayList3.add(jVar.d);
@@ -379,12 +379,12 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     }
 
     public void T() {
-        ((t) this.f52841b).d.R();
+        ((t) this.f52844b).d.R();
     }
 
     @Override
     public Object U1() {
-        Type type = (Type) this.f52841b;
+        Type type = (Type) this.f52844b;
         if (type instanceof ParameterizedType) {
             Type type2 = ((ParameterizedType) type).getActualTypeArguments()[0];
             if (type2 instanceof Class) {
@@ -397,7 +397,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void a(o0 o0Var) {
-        z0 z0Var = (z0) this.f52841b;
+        z0 z0Var = (z0) this.f52844b;
         FrameLayout frameLayout = z0Var.f1994f;
         if (frameLayout != null) {
             frameLayout.removeView(o0Var);
@@ -413,8 +413,8 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void accept(Object obj, Object obj2) {
-        int i10 = this.f52840a;
-        Object obj3 = this.f52841b;
+        int i10 = this.f52843a;
+        Object obj3 = this.f52844b;
         switch (i10) {
             case 5:
                 e eVar = new e(1, (TaskCompletionSource) obj2);
@@ -450,7 +450,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     @Override
     public Object apply(Object obj) {
         Map.Entry entry = (Map.Entry) obj;
-        g1 g1Var = (g1) this.f52841b;
+        g1 g1Var = (g1) this.f52844b;
         g1Var.getClass();
         entry.getClass();
         return new e1(entry, g1Var);
@@ -458,7 +458,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void b(int i10) {
-        e0 e0Var = ((o6) this.f52841b).E;
+        e0 e0Var = ((o6) this.f52844b).E;
         if (e0Var != null) {
             ArrayList arrayList = e0Var.h;
             int size = arrayList.size();
@@ -478,7 +478,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void c(float f7) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var == null) {
             return;
@@ -491,7 +491,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     @Override
     public void d(Object obj) {
         Bundle extras;
-        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f52841b;
+        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f52844b;
         androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
         proxyBillingActivityV2.getClass();
         Intent intent = aVar.f2134b;
@@ -514,7 +514,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void e(float f7) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var == null) {
             return;
@@ -526,7 +526,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void f(String str) {
-        z0 z0Var = (z0) this.f52841b;
+        z0 z0Var = (z0) this.f52844b;
         if (z0Var.getParentActivity() != null) {
             d.r(z0Var.getParentActivity(), str);
         }
@@ -534,7 +534,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void g(l.k kVar, boolean z10) {
-        ((g.r) this.f52841b).g(kVar);
+        ((g.r) this.f52844b).g(kVar);
     }
 
     @Override
@@ -544,7 +544,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void h(long j10, boolean z10) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         if (!z10) {
             o6Var.m(j10);
             return;
@@ -563,7 +563,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     }
 
     public void i(c3.j jVar) {
-        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f52841b;
+        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f52844b;
         long[] jArr = jVar.e;
         if (jArr.length > 0 && !linkedHashMap.containsKey(Long.valueOf(jArr[0]))) {
             linkedHashMap.put(Long.valueOf(jVar.e[0]), jVar);
@@ -577,12 +577,12 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void k(Bitmap bitmap) {
-        ((g6.h) this.f52841b).e(bitmap, 3);
+        ((g6.h) this.f52844b).e(bitmap, 3);
     }
 
     @Override
     public void m() {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         o6Var.s(null, null, true);
         sb sbVar = ((gb) o6Var).C0;
         gb gbVar = sbVar.X0;
@@ -619,7 +619,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void n(float f7) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var == null) {
             return;
@@ -631,7 +631,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void o(boolean z10) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         if (o6Var.j()) {
             o6Var.E.getClass();
         }
@@ -640,7 +640,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void onComplete(Task task) {
-        e6.c.h((e6.c) ((e6.j) this.f52841b).f9821c, "joinApplication", task);
+        e6.c.h((e6.c) ((e6.j) this.f52844b).f9821c, "joinApplication", task);
     }
 
     @Override
@@ -651,7 +651,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     @Override
     public void p(int i10) {
         l6.a aVar;
-        com.google.android.gms.common.api.internal.w wVar = (com.google.android.gms.common.api.internal.w) this.f52841b;
+        com.google.android.gms.common.api.internal.w wVar = (com.google.android.gms.common.api.internal.w) this.f52844b;
         Lock lock = wVar.f6636o;
         lock.lock();
         try {
@@ -671,13 +671,13 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void q() {
-        ((j0) this.f52841b).d.invalidate();
+        ((j0) this.f52844b).d.invalidate();
     }
 
     @Override
     public void r(float f7, int i10) {
         ArrayList arrayList;
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var != null && (arrayList = w7Var.T) != null && i10 >= 0 && i10 < arrayList.size()) {
             ((w7) o6Var.d.T.get(i10)).P = f7;
@@ -686,7 +686,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void s(Bundle bundle) {
-        com.google.android.gms.common.api.internal.w wVar = (com.google.android.gms.common.api.internal.w) this.f52841b;
+        com.google.android.gms.common.api.internal.w wVar = (com.google.android.gms.common.api.internal.w) this.f52844b;
         wVar.f6636o.lock();
         try {
             Bundle bundle2 = wVar.f6632k;
@@ -704,7 +704,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public boolean t(l.k kVar) {
-        Window.Callback callback = ((g.r) this.f52841b).f12175f.getCallback();
+        Window.Callback callback = ((g.r) this.f52844b).f12175f.getCallback();
         if (callback != null) {
             callback.onMenuOpened(108, kVar);
             return true;
@@ -717,7 +717,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
         JSONObject jSONObject;
         FileWriter fileWriter;
         Void r13 = (Void) obj;
-        b0 b0Var = (b0) this.f52841b;
+        b0 b0Var = (b0) this.f52844b;
         d5.j jVar = (d5.j) b0Var.d;
         fa.c cVar = (fa.c) b0Var.f1033c;
         String str = jVar.f7988a;
@@ -797,7 +797,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void u(float f7) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var == null) {
             return;
@@ -808,7 +808,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void v(float f7, boolean z10) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var != null) {
             w7Var.Z = f7;
@@ -822,7 +822,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void w(l6.a aVar) {
-        com.google.android.gms.common.api.internal.w wVar = (com.google.android.gms.common.api.internal.w) this.f52841b;
+        com.google.android.gms.common.api.internal.w wVar = (com.google.android.gms.common.api.internal.w) this.f52844b;
         wVar.f6636o.lock();
         try {
             wVar.f6633l = aVar;
@@ -839,7 +839,7 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
 
     @Override
     public void z(long j10) {
-        o6 o6Var = (o6) this.f52841b;
+        o6 o6Var = (o6) this.f52844b;
         w7 w7Var = o6Var.d;
         if (w7Var == null) {
             return;
@@ -850,12 +850,12 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
     }
 
     public c(Object obj, int i10) {
-        this.f52840a = i10;
-        this.f52841b = obj;
+        this.f52843a = i10;
+        this.f52844b = obj;
     }
 
     public c(JSONArray jSONArray) {
-        this.f52840a = 13;
+        this.f52843a = 13;
         ArrayList arrayList = new ArrayList();
         if (jSONArray != null) {
             for (int i10 = 0; i10 < jSONArray.length(); i10++) {
@@ -865,33 +865,33 @@ public final class c implements n0, a0, r, a61, WebMessageListenerBoundaryInterf
                 }
             }
         }
-        this.f52841b = arrayList;
+        this.f52844b = arrayList;
     }
 
     public c(Context context) {
-        this.f52840a = 15;
+        this.f52843a = 15;
         kotlin.jvm.internal.i.e(context, "context");
         Bundle bundle = context.getPackageManager().getApplicationInfo(context.getPackageName(), 128).metaData;
-        this.f52841b = bundle == null ? Bundle.EMPTY : bundle;
+        this.f52844b = bundle == null ? Bundle.EMPTY : bundle;
     }
 
     public c(int i10) {
-        this.f52840a = i10;
+        this.f52843a = i10;
         switch (i10) {
             case 8:
-                this.f52841b = new LinkedHashMap();
+                this.f52844b = new LinkedHashMap();
                 return;
             case 10:
-                this.f52841b = Collections.newSetFromMap(new WeakHashMap());
+                this.f52844b = Collections.newSetFromMap(new WeakHashMap());
                 return;
             case 27:
-                this.f52841b = new x();
+                this.f52844b = new x();
                 return;
             case 28:
-                this.f52841b = new a4.l(25);
+                this.f52844b = new a4.l(25);
                 return;
             default:
-                this.f52841b = new HashSet();
+                this.f52844b = new HashSet();
                 return;
         }
     }

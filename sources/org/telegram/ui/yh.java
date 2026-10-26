@@ -13,7 +13,7 @@ public final class yh extends org.telegram.ui.Components.aw {
     @Override
     public final void dismiss() {
         super.dismiss();
-        un unVar = this.W.f46299p;
+        un unVar = this.W.f46302p;
         unVar.getClass();
         unVar.n8(false, true, 0.0f);
     }

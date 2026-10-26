@@ -14,7 +14,7 @@ public abstract class q {
     public static String a(Context context) {
         String packageName = context.getPackageName();
         try {
-            Context context2 = (Context) x6.b.a(context).f48715a;
+            Context context2 = (Context) x6.b.a(context).f48718a;
             return context2.getPackageManager().getApplicationLabel(context2.getPackageManager().getApplicationInfo(packageName, 0)).toString();
         } catch (PackageManager.NameNotFoundException | NullPointerException unused) {
             String str = context.getApplicationInfo().name;

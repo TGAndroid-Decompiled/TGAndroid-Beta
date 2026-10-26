@@ -15,32 +15,32 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.y6;
 public final class j extends View {
-    public org.telegram.ui.Cells.y f33861a;
-    public final Paint f33862b;
-    public final Paint f33863c;
+    public org.telegram.ui.Cells.y f33864a;
+    public final Paint f33865b;
+    public final Paint f33866c;
     public final Paint d;
     public final RectF e;
-    public final Drawable f33864f;
+    public final Drawable f33867f;
     public final String h;
-    public int f33865n;
-    public int f33866r;
-    public int f33867s;
+    public int f33868n;
+    public int f33869r;
+    public int f33870s;
     public int v;
 
     public j(Context context) {
         super(context);
-        this.f33862b = new Paint(1);
+        this.f33865b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f33863c = paint;
+        this.f33866c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.e = new RectF();
-        this.f33865n = -761748;
-        this.f33866r = AndroidUtilities.dp(26.0f);
-        this.f33867s = 255;
+        this.f33868n = -761748;
+        this.f33869r = AndroidUtilities.dp(26.0f);
+        this.f33870s = 255;
         this.v = 0;
         Drawable mutate = getContext().getDrawable(R.drawable.calls_decline).mutate();
-        this.f33864f = mutate;
+        this.f33867f = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
         paint.setTextSize(AndroidUtilities.dp(18.0f));
         paint.setTypeface(AndroidUtilities.bold());
@@ -68,7 +68,7 @@ public final class j extends View {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        org.telegram.ui.Cells.y yVar = this.f33861a;
+        org.telegram.ui.Cells.y yVar = this.f33864a;
         if (yVar != null) {
             yVar.setState(getDrawableState());
         }
@@ -77,7 +77,7 @@ public final class j extends View {
     @Override
     public final void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        org.telegram.ui.Cells.y yVar = this.f33861a;
+        org.telegram.ui.Cells.y yVar = this.f33864a;
         if (yVar != null) {
             yVar.jumpToCurrentState();
         }
@@ -87,37 +87,37 @@ public final class j extends View {
     public final void onDraw(Canvas canvas) {
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
-        int i10 = this.f33865n;
-        Paint paint = this.f33862b;
+        int i10 = this.f33868n;
+        Paint paint = this.f33865b;
         paint.setColor(i10);
         RectF rectF = this.e;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        float f7 = this.f33866r;
+        float f7 = this.f33869r;
         canvas.drawRoundRect(rectF, f7, f7, paint);
-        Drawable drawable = this.f33864f;
+        Drawable drawable = this.f33867f;
         drawable.setBounds((int) (width - (drawable.getIntrinsicWidth() / 2.0f)), (int) (height - (drawable.getIntrinsicHeight() / 2)), (int) ((drawable.getIntrinsicWidth() / 2) + width), (int) ((drawable.getIntrinsicHeight() / 2) + height));
-        drawable.setAlpha(this.f33867s);
+        drawable.setAlpha(this.f33870s);
         drawable.draw(canvas);
         int i11 = this.v;
-        Paint paint2 = this.f33863c;
+        Paint paint2 = this.f33866c;
         paint2.setAlpha(i11);
         Paint paint3 = this.d;
         paint3.setAlpha((this.v / 255) * 38);
         String str = this.h;
         canvas.drawText(str, width, AndroidUtilities.dp(6.0f) + height, paint2);
         canvas.drawText(str, width, height + AndroidUtilities.dp(6.0f), paint3);
-        if (this.f33861a == null) {
-            org.telegram.ui.Cells.y Z = y6.Z(y6.x0(null, y6.f23446i6, false), 8, 8);
-            this.f33861a = Z;
+        if (this.f33864a == null) {
+            org.telegram.ui.Cells.y Z = y6.Z(y6.x0(null, y6.f23448i6, false), 8, 8);
+            this.f33864a = Z;
             Z.setCallback(this);
         }
-        this.f33861a.setBounds(0, 0, getWidth(), getHeight());
-        this.f33861a.draw(canvas);
+        this.f33864a.setBounds(0, 0, getWidth(), getHeight());
+        this.f33864a.draw(canvas);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f33861a != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f33864a != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

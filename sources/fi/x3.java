@@ -19,7 +19,7 @@ public final class x3 implements ViewTreeObserver.OnGlobalLayoutListener {
                 return;
             default:
                 sf.d dVar = (sf.d) this.f11955b;
-                View view = dVar.f48131j;
+                View view = dVar.f48134j;
                 if (view != null) {
                     dVar.e(view);
                     return;

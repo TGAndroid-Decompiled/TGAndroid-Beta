@@ -20,21 +20,21 @@ import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.t5;
 import org.telegram.ui.mk;
 public final class x1 extends FrameLayout implements p6 {
-    public final ImageView f45449a;
-    public final TextView f45450b;
-    public final mk f45451c;
+    public final ImageView f45452a;
+    public final TextView f45453b;
+    public final mk f45454c;
     public t5 d;
     public String e;
-    public boolean f45452f;
+    public boolean f45455f;
     public ShapeDrawable h;
 
     public x1(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f45449a = imageView;
+        this.f45452a = imageView;
         addView(imageView, gb1.h(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f45450b = textView;
+        this.f45453b = textView;
         f7.V(textView, y6.G6, null);
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
@@ -42,8 +42,8 @@ public final class x1 extends FrameLayout implements p6 {
         textView.setEllipsize(truncateAt);
         addView(textView, gb1.h(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
         mk mkVar = new mk(this, context, 8);
-        this.f45451c = mkVar;
-        f7.V(mkVar, y6.f23746y6, null);
+        this.f45454c = mkVar;
+        f7.V(mkVar, y6.f23748y6, null);
         mkVar.setTextSize(1, 13.0f);
         mkVar.setMaxLines(1);
         mkVar.setEllipsize(truncateAt);
@@ -59,8 +59,8 @@ public final class x1 extends FrameLayout implements p6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f45452f) {
-            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), y6.f23476k0);
+        if (this.f45455f) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), y6.f23478k0);
         }
     }
 
@@ -75,7 +75,7 @@ public final class x1 extends FrameLayout implements p6 {
             ShapeDrawable shapeDrawable = this.h;
             if (shapeDrawable != null) {
                 y6.z1(y6.o1(0.1f, y6.x0(null, y6.G6, false)), shapeDrawable);
-                ImageView imageView = this.f45449a;
+                ImageView imageView = this.f45452a;
                 if (imageView != null) {
                     imageView.invalidate();
                 }

@@ -12,10 +12,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.af1;
 public final class wr0 implements g20, MessagesStorage.StringCallback, org.telegram.ui.ux {
-    public final aw0 f34523a;
+    public final aw0 f34526a;
 
     public wr0(aw0 aw0Var) {
-        this.f34523a = aw0Var;
+        this.f34526a = aw0Var;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class wr0 implements g20, MessagesStorage.StringCallback, org.teleg
     }
 
     public void a(boolean z10) {
-        aw0 aw0Var = this.f34523a;
+        aw0 aw0Var = this.f34526a;
         if (!z10) {
             aw0Var.requestLayout();
         }
@@ -38,16 +38,16 @@ public final class wr0 implements g20, MessagesStorage.StringCallback, org.teleg
 
     @Override
     public void run(String str) {
-        aw0.i(this.f34523a, str);
+        aw0.i(this.f34526a, str);
     }
 
     @Override
     public boolean v(org.telegram.ui.cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, af1 af1Var) {
         int i12;
         UndoView undoView;
-        aw0 aw0Var = this.f34523a;
-        SparseArray[] sparseArrayArr = aw0Var.f26639b1;
-        org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26702x1;
+        aw0 aw0Var = this.f34526a;
+        SparseArray[] sparseArrayArr = aw0Var.f26641b1;
+        org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26704x1;
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         boolean z12 = true;
         int i13 = 1;
@@ -73,11 +73,11 @@ public final class wr0 implements g20, MessagesStorage.StringCallback, org.teleg
             sparseArrayArr[i13].clear();
             i13--;
         }
-        aw0Var.f26643c1 = 0;
+        aw0Var.f26645c1 = 0;
         aw0Var.k1(false);
         lv0 lv0Var = aw0Var.T;
         if (lv0Var != null) {
-            lv0Var.f30296w.clear();
+            lv0Var.f30298w.clear();
         }
         if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != r2Var.getUserConfig().getClientUserId() && charSequence == null) {
             long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;

@@ -95,7 +95,7 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                j10 = user.f22174id;
+                j10 = user.f22176id;
                 boolean isBot = UserObject.isBot(user);
                 canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, oVar.I);
                 z10 = isBot;
@@ -191,7 +191,7 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
             if (obj instanceof TLRPC.Chat) {
                 oVar.presentFragment(un.ba(-((TLRPC.Chat) obj).f22027id));
             } else if (obj instanceof TLRPC.User) {
-                oVar.presentFragment(un.ba(((TLRPC.User) obj).f22174id));
+                oVar.presentFragment(un.ba(((TLRPC.User) obj).f22176id));
             }
         }
     }
@@ -318,12 +318,12 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
         this.actionBar.setActionBarMenuOnItemClick(new bh.m(this, 6));
         hh.c cVar = new hh.c();
         this.f14390a = cVar;
-        cVar.a(getThemedColor(y6.f23354d6));
+        cVar.a(getThemedColor(y6.f23356d6));
         this.actionBar.I(new ch.b(cVar), gh.c.p(this.resourceProvider), false);
         this.actionBar.Q0 = true;
         t1 t1Var = new t1(this, context);
         this.d = t1Var;
-        f7.i(y6.f23297a7, t1Var, null);
+        f7.i(y6.f23299a7, t1Var, null);
         this.E = new j9(this.I);
         n nVar = new n(context);
         this.f14396s = nVar;
@@ -381,16 +381,16 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
         this.e = r71Var;
         r71Var.setClipToPadding(false);
         r71 r71Var2 = this.e;
-        j71 j71Var = r71Var2.f32150g3;
-        j71Var.f29505r = false;
-        j71Var.f29506s = true;
+        j71 j71Var = r71Var2.f32152g3;
+        j71Var.f29507r = false;
+        j71Var.f29508s = true;
         r71Var2.u1();
         this.actionBar.setBackground(null);
         this.d.addView(this.e, gb1.g(-1.0f, -1));
         this.d.addView(this.actionBar, gb1.i(-1, -2, 48));
         t1 t1Var2 = this.d;
         j jVar = new j(this);
-        WeakHashMap weakHashMap = r0.i0.f47105a;
+        WeakHashMap weakHashMap = r0.i0.f47108a;
         r0.a0.i(t1Var2, jVar);
         t1 t1Var3 = this.d;
         this.fragmentView = t1Var3;
@@ -403,7 +403,7 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
             if (chatFull.f22028id == this.f14392c) {
                 this.J = chatFull;
-                this.e.f32150g3.O(true);
+                this.e.f32152g3.O(true);
             }
         }
     }
@@ -418,7 +418,7 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.F.f28421c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.F.f28423c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -471,8 +471,8 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
         this.J = getMessagesController().getChatFull(this.f14392c);
         g50 g50Var = new g50(3, true, true);
         this.F = g50Var;
-        g50Var.f28419a = this;
-        g50Var.f28420b = this;
+        g50Var.f28421a = this;
+        g50Var.f28422b = this;
         getNotificationCenter().addObserver(this, NotificationCenter.chatInfoDidLoad);
         return super.onFragmentCreate();
     }
@@ -510,7 +510,7 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
         try {
             hh.c cVar = this.f14390a;
             if (cVar != null) {
-                cVar.a(getThemedColor(y6.f23354d6));
+                cVar.a(getThemedColor(y6.f23356d6));
             }
             org.telegram.ui.ActionBar.k kVar = this.actionBar;
             if (kVar != null) {
@@ -525,7 +525,7 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
     public final void restoreSelfArgs(Bundle bundle) {
         g50 g50Var = this.F;
         if (g50Var != null) {
-            g50Var.f28422f = bundle.getString("path");
+            g50Var.f28424f = bundle.getString("path");
         }
     }
 
@@ -533,7 +533,7 @@ public final class o extends r2 implements f50, NotificationCenter.NotificationC
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         g50 g50Var = this.F;
-        if (g50Var != null && (str = g50Var.f28422f) != null) {
+        if (g50Var != null && (str = g50Var.f28424f) != null) {
             bundle.putString("path", str);
         }
         bh.r rVar = this.f14395r;

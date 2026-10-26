@@ -7,20 +7,20 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class wa extends vw0 {
-    public final boolean f34392l0;
+    public final boolean f34395l0;
     public final boolean m0;
-    public final bb f34393n0;
+    public final bb f34396n0;
 
     public wa(bb bbVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f34393n0 = bbVar;
-        this.f34392l0 = z10;
+        this.f34396n0 = bbVar;
+        this.f34395l0 = z10;
         this.m0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        bb bbVar = this.f34393n0;
+        bb bbVar = this.f34396n0;
         bbVar.I(canvas, this);
         super.dispatchDraw(canvas);
         bbVar.H(canvas, this);
@@ -31,7 +31,7 @@ public final class wa extends vw0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            bb bbVar = this.f34393n0;
+            bb bbVar = this.f34396n0;
             drawable = ((org.telegram.ui.ActionBar.k3) bbVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 bbVar.dismiss();
@@ -43,7 +43,7 @@ public final class wa extends vw0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         if (!this.m0) {
-            this.f34393n0.getClass();
+            this.f34396n0.getClass();
         }
         return super.drawChild(canvas, view, j10);
     }
@@ -61,10 +61,10 @@ public final class wa extends vw0 {
         int i13;
         ru ruVar;
         int size = View.MeasureSpec.getSize(i11);
-        bb bbVar = this.f34393n0;
+        bb bbVar = this.f34396n0;
         bbVar.h = size;
         bbVar.D(i10, i11);
-        if (this.f34392l0) {
+        if (this.f34395l0) {
             i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
         }
         if (bbVar.Q != null) {

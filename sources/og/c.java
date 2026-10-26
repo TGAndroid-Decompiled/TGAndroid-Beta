@@ -46,13 +46,13 @@ public final class c implements Runnable {
                 r2 R = LaunchActivity.R();
                 ?? k3Var = new k3(R.getParentActivity(), false);
                 if (R.getFragmentView() instanceof vw0) {
-                    k3Var.f41137b = (vw0) R.getFragmentView();
+                    k3Var.f41140b = (vw0) R.getFragmentView();
                 }
                 Activity parentActivity = R.getParentActivity();
                 LinearLayout f7 = t.f(parentActivity, 1);
                 TextView textView = new TextView(parentActivity);
-                textView.setText("Saturation " + (l5.f41136c * 5.0f));
-                int i17 = y6.f23537n5;
+                textView.setText("Saturation " + (l5.f41139c * 5.0f));
+                int i17 = y6.f23539n5;
                 f7.V(textView, i17, null);
                 vh.r(textView, 1, 16.0f, 1, 1);
                 textView.setSingleLine(true);

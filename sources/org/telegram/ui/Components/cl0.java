@@ -32,14 +32,14 @@ public final class cl0 extends y9 {
         switch (this.G) {
             case 0:
                 dl0 dl0Var = this.H;
-                cl0 cl0Var = dl0Var.f27549b;
+                cl0 cl0Var = dl0Var.f27551b;
                 super.dispatchDraw(canvas);
-                if (this.f34981a.getLottieAnimation() != null && !dl0Var.E) {
-                    this.f34981a.getLottieAnimation().start();
+                if (this.f34984a.getLottieAnimation() != null && !dl0Var.E) {
+                    this.f34984a.getLottieAnimation().start();
                 }
-                if (dl0Var.f27554s && !dl0Var.v && this.f34981a.getLottieAnimation() != null && this.f34981a.getLottieAnimation().A() && cl0Var.f34981a.getLottieAnimation() != null && cl0Var.f34981a.getLottieAnimation().u()) {
+                if (dl0Var.f27556s && !dl0Var.v && this.f34984a.getLottieAnimation() != null && this.f34984a.getLottieAnimation().A() && cl0Var.f34984a.getLottieAnimation() != null && cl0Var.f34984a.getLottieAnimation().u()) {
                     dl0Var.v = true;
-                    cl0Var.f34981a.getLottieAnimation().N(0, false, true);
+                    cl0Var.f34984a.getLottieAnimation().N(0, false, true);
                     cl0Var.setVisibility(0);
                     Runnable runnable = dl0Var.P.P0;
                     if (runnable != null) {
@@ -83,9 +83,9 @@ public final class cl0 extends y9 {
             case 2:
                 t5 t5Var = this.e;
                 if (t5Var != null) {
-                    imageReceiver = t5Var.f32849k;
+                    imageReceiver = t5Var.f32852k;
                 } else {
-                    imageReceiver = this.f34981a;
+                    imageReceiver = this.f34984a;
                 }
                 if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
                     imageReceiver.getLottieAnimation().start();

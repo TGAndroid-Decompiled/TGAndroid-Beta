@@ -31,7 +31,7 @@ public final class f3 implements z4 {
             ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f22033id;
         }
         v3Var.f17548h4.remove(tVar);
-        v3Var.f32150g3.O(false);
+        v3Var.f32152g3.O(false);
         v3Var.f17557p3.onContentChanged();
     }
 
@@ -59,7 +59,7 @@ public final class f3 implements z4 {
         v3 v3Var = this.d;
         v3Var.f17548h4.remove(tVar);
         v3Var.f17565t3.remove(this.f17232b);
-        v3Var.f32150g3.O(true);
+        v3Var.f32152g3.O(true);
         v3Var.f17557p3.onContentChanged();
     }
 

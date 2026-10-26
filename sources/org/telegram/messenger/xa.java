@@ -31,7 +31,7 @@ public final class xa implements Runnable {
                 ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$241(this.f21821c, this.d, this.e, this.f21822f);
                 return;
             default:
-                int i11 = ChatActivityEnterView.f25841r5;
+                int i11 = ChatActivityEnterView.f25843r5;
                 ((ChatActivityEnterView) notificationCenterDelegate).R0(this.d, this.f21822f, this.e, false, this.f21821c);
                 return;
         }

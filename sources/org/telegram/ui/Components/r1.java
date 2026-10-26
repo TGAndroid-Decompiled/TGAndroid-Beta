@@ -3,23 +3,23 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.widget.LinearLayout;
 public final class r1 implements View.OnClickListener {
-    public final int f32071a = 1;
-    public final LinearLayout f32072b;
-    public final int[] f32073c;
+    public final int f32073a = 1;
+    public final LinearLayout f32074b;
+    public final int[] f32075c;
 
     public r1(LinearLayout linearLayout, int[] iArr) {
-        this.f32072b = linearLayout;
-        this.f32073c = iArr;
+        this.f32074b = linearLayout;
+        this.f32075c = iArr;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         boolean z11;
-        switch (this.f32071a) {
+        switch (this.f32073a) {
             case 0:
-                this.f32073c[0] = ((Integer) view.getTag()).intValue();
-                LinearLayout linearLayout = this.f32072b;
+                this.f32075c[0] = ((Integer) view.getTag()).intValue();
+                LinearLayout linearLayout = this.f32074b;
                 int childCount = linearLayout.getChildCount();
                 for (int i10 = 0; i10 < childCount; i10++) {
                     View childAt = linearLayout.getChildAt(i10);
@@ -30,12 +30,12 @@ public final class r1 implements View.OnClickListener {
                         } else {
                             z10 = false;
                         }
-                        p6Var.f24765c.a(z10, true);
+                        p6Var.f24767c.a(z10, true);
                     }
                 }
                 return;
             default:
-                LinearLayout linearLayout2 = this.f32072b;
+                LinearLayout linearLayout2 = this.f32074b;
                 int childCount2 = linearLayout2.getChildCount();
                 for (int i11 = 0; i11 < childCount2; i11++) {
                     org.telegram.ui.Cells.p6 p6Var2 = (org.telegram.ui.Cells.p6) linearLayout2.getChildAt(i11);
@@ -44,15 +44,15 @@ public final class r1 implements View.OnClickListener {
                     } else {
                         z11 = false;
                     }
-                    p6Var2.f24765c.a(z11, true);
+                    p6Var2.f24767c.a(z11, true);
                 }
-                this.f32073c[0] = org.telegram.ui.Cells.c9.f23942f[((Integer) view.getTag()).intValue()];
+                this.f32075c[0] = org.telegram.ui.Cells.c9.f23944f[((Integer) view.getTag()).intValue()];
                 return;
         }
     }
 
     public r1(int[] iArr, LinearLayout linearLayout) {
-        this.f32073c = iArr;
-        this.f32072b = linearLayout;
+        this.f32075c = iArr;
+        this.f32074b = linearLayout;
     }
 }

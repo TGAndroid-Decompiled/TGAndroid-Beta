@@ -103,7 +103,7 @@ public final class o1 implements org.telegram.ui.ActionBar.b2, ux {
         } else {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
             String string = LocaleController.getString(R.string.AddBot);
-            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
             e2Var.R = string;
             if (chat == null) {
                 str = "";

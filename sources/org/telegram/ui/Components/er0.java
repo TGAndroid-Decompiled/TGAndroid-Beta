@@ -11,20 +11,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class er0 extends lm0 {
-    public final Context f27970c;
+    public final Context f27972c;
     public final ArrayList d = new ArrayList();
     public final a0.h e = new a0.h();
-    public final mr0 f27971f;
+    public final mr0 f27973f;
 
     public er0(mr0 mr0Var, Context context) {
-        this.f27971f = mr0Var;
-        this.f27970c = context;
+        this.f27973f = mr0Var;
+        this.f27972c = context;
         E();
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f != 1) {
+        if (e1Var.f47741f != 1) {
             return true;
         }
         return false;
@@ -41,10 +41,10 @@ public final class er0 extends lm0 {
         arrayList.clear();
         a0.h hVar = this.e;
         hVar.b();
-        mr0 mr0Var = this.f27971f;
+        mr0 mr0Var = this.f27973f;
         i10 = ((org.telegram.ui.ActionBar.k3) mr0Var).currentAccount;
         long j10 = UserConfig.getInstance(i10).clientUserId;
-        if (mr0Var.f30697a0) {
+        if (mr0Var.f30699a0) {
             TLRPC.Dialog dialog = new TLRPC.Dialog();
             dialog.f22031id = Long.MAX_VALUE;
             arrayList.add(dialog);
@@ -88,9 +88,9 @@ public final class er0 extends lm0 {
             }
         }
         arrayList.addAll(arrayList2);
-        org.telegram.ui.un unVar = mr0Var.f30706g0;
+        org.telegram.ui.un unVar = mr0Var.f30708g0;
         if (unVar != null) {
-            int i16 = unVar.f44176a;
+            int i16 = unVar.f44179a;
             if (i16 != 1) {
                 if (i16 == 2) {
                     while (!arrayList.isEmpty() && arrayList.size() < 80) {
@@ -133,15 +133,15 @@ public final class er0 extends lm0 {
         View cr0Var;
         org.telegram.ui.ActionBar.u6 u6Var;
         float f7;
-        mr0 mr0Var = this.f27971f;
-        Context context = this.f27970c;
+        mr0 mr0Var = this.f27973f;
+        Context context = this.f27972c;
         if (i10 == 0) {
             u6Var = ((org.telegram.ui.ActionBar.k3) mr0Var).resourcesProvider;
             cr0Var = new cr0(this, context, u6Var);
             cr0Var.setLayoutParams(new s4.q0(-1, AndroidUtilities.dp(100.0f)));
         } else {
             cr0Var = new View(context);
-            if (mr0Var.f30708i0 && mr0Var.f30715p0[1] != null) {
+            if (mr0Var.f30710i0 && mr0Var.f30717p0[1] != null) {
                 f7 = 109.0f;
             } else {
                 f7 = 56.0f;

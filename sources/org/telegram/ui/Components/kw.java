@@ -12,8 +12,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public abstract class kw extends tn0 {
-    public static final int[] f29986e0 = {R.drawable.msg_emoji_smiles, R.drawable.msg_emoji_cat, R.drawable.msg_emoji_food, R.drawable.msg_emoji_activities, R.drawable.msg_emoji_travel, R.drawable.msg_emoji_objects, R.drawable.msg_emoji_other, R.drawable.msg_emoji_flags};
-    public static final int[] f29987f0 = {R.raw.msg_emoji_smiles, R.raw.msg_emoji_cat, R.raw.msg_emoji_food, R.raw.msg_emoji_activities, R.raw.msg_emoji_travel, R.raw.msg_emoji_objects, R.raw.msg_emoji_other, R.raw.msg_emoji_flags};
+    public static final int[] f29988e0 = {R.drawable.msg_emoji_smiles, R.drawable.msg_emoji_cat, R.drawable.msg_emoji_food, R.drawable.msg_emoji_activities, R.drawable.msg_emoji_travel, R.drawable.msg_emoji_objects, R.drawable.msg_emoji_other, R.drawable.msg_emoji_flags};
+    public static final int[] f29989f0 = {R.raw.msg_emoji_smiles, R.raw.msg_emoji_cat, R.raw.msg_emoji_food, R.raw.msg_emoji_activities, R.raw.msg_emoji_travel, R.raw.msg_emoji_objects, R.raw.msg_emoji_other, R.raw.msg_emoji_flags};
     public final gw E;
     public final gw F;
     public final iw G;
@@ -33,18 +33,18 @@ public abstract class kw extends tn0 {
     public boolean U;
     public boolean V;
     public boolean W;
-    public boolean f29988a0;
-    public boolean f29989b0;
-    public boolean f29990c0;
-    public float f29991d0;
+    public boolean f29990a0;
+    public boolean f29991b0;
+    public boolean f29992c0;
+    public float f29993d0;
     public final int h;
-    public final boolean f29992n;
-    public boolean f29993r;
-    public h6 f29994s;
+    public final boolean f29994n;
+    public boolean f29995r;
+    public h6 f29996s;
     public final org.telegram.ui.ActionBar.u6 v;
-    public final boolean f29995w;
-    public final gw f29996x;
-    public final gw f29997y;
+    public final boolean f29997w;
+    public final gw f29998x;
+    public final gw f29999y;
 
     public kw(Context context, org.telegram.ui.ActionBar.u6 u6Var, boolean z10, boolean z11, boolean z12, boolean z13, int i10, Runnable runnable, int i11, boolean z14) {
         super(context);
@@ -52,8 +52,8 @@ public abstract class kw extends tn0 {
         this.h = R.drawable.msg_emoji_recent;
         int i12 = R.drawable.msg_emoji_gem;
         int i13 = R.drawable.smiles_tab_settings;
-        this.f29992n = !UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
-        this.f29993r = true;
+        this.f29994n = !UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
+        this.f29995r = true;
         this.H = new HashMap();
         this.K = 0.0f;
         this.L = 0.0f;
@@ -64,27 +64,27 @@ public abstract class kw extends tn0 {
         this.U = true;
         this.V = true;
         this.W = true;
-        this.f29988a0 = true;
-        this.f29989b0 = false;
-        this.f29990c0 = true;
-        this.f29991d0 = 11.0f;
-        this.f29995w = z13;
+        this.f29990a0 = true;
+        this.f29991b0 = false;
+        this.f29992c0 = true;
+        this.f29993d0 = 11.0f;
+        this.f29997w = z13;
         this.v = u6Var;
         this.R = runnable;
         this.T = i10;
         this.Q = i11;
         this.P = z14;
         cw cwVar = new cw(this, context, z13, z14);
-        this.f33111b = cwVar;
+        this.f33114b = cwVar;
         cwVar.setClipToPadding(false);
-        this.f33111b.setOrientation(0);
+        this.f33114b.setOrientation(0);
         setVerticalScrollBarEnabled(false);
         setHorizontalScrollBarEnabled(false);
-        addView(this.f33111b);
+        addView(this.f33114b);
         if (i10 == 4) {
-            LinearLayout linearLayout = this.f33111b;
+            LinearLayout linearLayout = this.f33114b;
             gw gwVar = new gw(this, context, R.drawable.msg_emoji_stickers, false);
-            this.f29996x = gwVar;
+            this.f29998x = gwVar;
             linearLayout.addView(gwVar);
             gwVar.setContentDescription(LocaleController.getString(R.string.AccDescrStickers));
         }
@@ -95,25 +95,25 @@ public abstract class kw extends tn0 {
             this.h = R.drawable.emoji_love;
         }
         if (z10) {
-            LinearLayout linearLayout2 = this.f33111b;
+            LinearLayout linearLayout2 = this.f33114b;
             gw gwVar2 = new gw(this, context, this.h, false);
-            this.f29997y = gwVar2;
+            this.f29999y = gwVar2;
             linearLayout2.addView(gwVar2);
             gwVar2.setContentDescription(LocaleController.getString(R.string.RecentlyUsed));
-            gwVar2.f28721a = Long.valueOf(-934918565);
+            gwVar2.f28723a = Long.valueOf(-934918565);
         }
         if (z11) {
-            LinearLayout linearLayout3 = this.f33111b;
+            LinearLayout linearLayout3 = this.f33114b;
             gw gwVar3 = new gw(this, context, i12, false);
             this.E = gwVar3;
             linearLayout3.addView(gwVar3);
             gwVar3.setContentDescription(LocaleController.getString(R.string.EmojiPackCollectibles));
             gwVar3.setAlpha(0.0f);
-            gwVar3.f28721a = Long.valueOf(98352451);
+            gwVar3.f28723a = Long.valueOf(98352451);
         }
         if (!z13) {
             for (int i14 = 0; i14 < 8; i14++) {
-                int i15 = f29986e0[i14];
+                int i15 = f29988e0[i14];
                 if (i14 == 0) {
                     z15 = true;
                 } else {
@@ -121,26 +121,26 @@ public abstract class kw extends tn0 {
                 }
                 gw gwVar4 = new gw(this, context, i15, z15);
                 gwVar4.setContentDescription(f(i14));
-                this.f33111b.addView(gwVar4);
+                this.f33114b.addView(gwVar4);
             }
             o();
             return;
         }
         if (z12) {
-            LinearLayout linearLayout4 = this.f33111b;
+            LinearLayout linearLayout4 = this.f33114b;
             iw iwVar = new iw(this, context);
             this.G = iwVar;
             linearLayout4.addView(iwVar);
             iwVar.h = 3552126;
         }
-        this.I = this.f33111b.getChildCount();
+        this.I = this.f33114b.getChildCount();
         if (runnable != null) {
-            LinearLayout linearLayout5 = this.f33111b;
+            LinearLayout linearLayout5 = this.f33114b;
             gw gwVar5 = new gw(this, context, i13, true);
             this.F = gwVar5;
             linearLayout5.addView(gwVar5);
             gwVar5.setContentDescription(LocaleController.getString(R.string.Settings));
-            gwVar5.f28721a = Long.valueOf(1434631203);
+            gwVar5.f28723a = Long.valueOf(1434631203);
             gwVar5.setAlpha(0.0f);
         }
         o();
@@ -174,7 +174,7 @@ public abstract class kw extends tn0 {
     }
 
     public boolean g(ey eyVar) {
-        return eyVar.f28008f;
+        return eyVar.f28010f;
     }
 
     public ColorFilter getEmojiColorFilter() {
@@ -189,12 +189,12 @@ public abstract class kw extends tn0 {
         int i11;
         boolean z13;
         boolean z14;
-        if (z10 && !this.f29990c0) {
+        if (z10 && !this.f29992c0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        gw gwVar = this.f29996x;
+        gw gwVar = this.f29998x;
         if (gwVar != null) {
             i10++;
         }
@@ -204,14 +204,14 @@ public abstract class kw extends tn0 {
         int i12 = this.M;
         int i13 = 0;
         int i14 = 0;
-        while (i13 < this.f33111b.getChildCount()) {
-            View childAt = this.f33111b.getChildAt(i13);
+        while (i13 < this.f33114b.getChildCount()) {
+            View childAt = this.f33114b.getChildAt(i13);
             if (childAt instanceof iw) {
                 iw iwVar = (iw) childAt;
                 int i15 = 0;
                 int i16 = i14;
-                while (i15 < iwVar.f33111b.getChildCount()) {
-                    View childAt2 = iwVar.f33111b.getChildAt(i15);
+                while (i15 < iwVar.f33114b.getChildCount()) {
+                    View childAt2 = iwVar.f33114b.getChildAt(i15);
                     if (childAt2 instanceof gw) {
                         gw gwVar2 = (gw) childAt2;
                         if (i10 == i16) {
@@ -263,47 +263,47 @@ public abstract class kw extends tn0 {
             } else {
                 this.L = 1.0f;
                 this.K = AndroidUtilities.lerp(f7, f10, 1.0f);
-                this.f33111b.invalidate();
+                this.f33114b.invalidate();
             }
             if (iwVar2 != null) {
-                if (this.M != 1 && !this.f29992n) {
+                if (this.M != 1 && !this.f29994n) {
                     z12 = false;
                 } else {
                     z12 = true;
                 }
-                if (z12 != iwVar2.f29386n) {
-                    iwVar2.f29386n = z12;
+                if (z12 != iwVar2.f29388n) {
+                    iwVar2.f29388n = z12;
                     if (!z12) {
                         iwVar2.a(0);
                     }
-                    ValueAnimator valueAnimator2 = iwVar2.f33112c;
+                    ValueAnimator valueAnimator2 = iwVar2.f33115c;
                     if (valueAnimator2 != null) {
                         valueAnimator2.cancel();
                     }
                     if (z11) {
-                        float f12 = iwVar2.f29387r;
+                        float f12 = iwVar2.f29389r;
                         if (!z12) {
                             f11 = 0.0f;
                         }
                         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f12, f11);
-                        iwVar2.f33112c = ofFloat2;
+                        iwVar2.f33115c = ofFloat2;
                         ofFloat2.addUpdateListener(new n6(iwVar2, 21));
-                        iwVar2.f33112c.setDuration(475L);
-                        iwVar2.f33112c.setInterpolator(ds.h);
-                        iwVar2.f33112c.start();
+                        iwVar2.f33115c.setDuration(475L);
+                        iwVar2.f33115c.setInterpolator(ds.h);
+                        iwVar2.f33115c.start();
                     } else {
                         if (!z12) {
                             f11 = 0.0f;
                         }
-                        iwVar2.f29387r = f11;
+                        iwVar2.f29389r = f11;
                         iwVar2.invalidate();
                         iwVar2.requestLayout();
                         iwVar2.c();
-                        iwVar2.f29388s.f33111b.invalidate();
+                        iwVar2.f29390s.f33114b.invalidate();
                     }
                 }
             }
-            View childAt3 = this.f33111b.getChildAt(this.M);
+            View childAt3 = this.f33114b.getChildAt(this.M);
             if (this.M >= 2) {
                 b(childAt3.getLeft(), childAt3.getRight());
             } else {
@@ -311,7 +311,7 @@ public abstract class kw extends tn0 {
             }
         }
         if (this.N != i10) {
-            if (iwVar2 != null && this.M == 1 && i10 >= 1 && i10 <= iwVar2.f33111b.getChildCount() + 1) {
+            if (iwVar2 != null && this.M == 1 && i10 >= 1 && i10 <= iwVar2.f33114b.getChildCount() + 1) {
                 int i18 = (i10 - 1) * 36;
                 iwVar2.b(AndroidUtilities.dp(i18 - 6), AndroidUtilities.dp(i18 + 24));
             }
@@ -336,9 +336,9 @@ public abstract class kw extends tn0 {
         int i10;
         gw gwVar = this.E;
         if (gwVar != null) {
-            boolean z11 = this.f29988a0;
-            if (z11 || this.f29989b0 != z10) {
-                this.f29989b0 = z10;
+            boolean z11 = this.f29990a0;
+            if (z11 || this.f29991b0 != z10) {
+                this.f29991b0 = z10;
                 float f7 = 0.0f;
                 if (z11) {
                     if (z10) {
@@ -359,14 +359,14 @@ public abstract class kw extends tn0 {
                     }
                     animate.alpha(f7).setDuration(200L).setInterpolator(ds.h).withEndAction(new bh.n(27, this, z10)).start();
                 }
-                this.f33111b.requestLayout();
-                this.f29988a0 = false;
+                this.f33114b.requestLayout();
+                this.f29990a0 = false;
             }
         }
     }
 
     public final void m(boolean z10) {
-        gw gwVar = this.f29997y;
+        gw gwVar = this.f29999y;
         if (gwVar == null) {
             return;
         }
@@ -378,34 +378,34 @@ public abstract class kw extends tn0 {
     }
 
     public final void n(boolean z10) {
-        this.f29993r = z10;
-        this.f33111b.invalidate();
+        this.f29995r = z10;
+        this.f33114b.invalidate();
     }
 
     public final void o() {
         int i10 = 0;
         final int i11 = 0;
-        while (i10 < this.f33111b.getChildCount()) {
-            View childAt = this.f33111b.getChildAt(i10);
+        while (i10 < this.f33114b.getChildCount()) {
+            View childAt = this.f33114b.getChildAt(i10);
             if (childAt instanceof iw) {
                 iw iwVar = (iw) childAt;
                 int i12 = 0;
-                while (i12 < iwVar.f33111b.getChildCount()) {
-                    iwVar.f33111b.getChildAt(i12).setOnClickListener(new View.OnClickListener(this) {
-                        public final kw f26971b;
+                while (i12 < iwVar.f33114b.getChildCount()) {
+                    iwVar.f33114b.getChildAt(i12).setOnClickListener(new View.OnClickListener(this) {
+                        public final kw f26973b;
 
                         {
-                            this.f26971b = this;
+                            this.f26973b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
                             switch (r3) {
                                 case 0:
-                                    this.f26971b.h(i11);
+                                    this.f26973b.h(i11);
                                     return;
                                 default:
-                                    this.f26971b.h(i11);
+                                    this.f26973b.h(i11);
                                     return;
                             }
                         }
@@ -416,20 +416,20 @@ public abstract class kw extends tn0 {
                 i11--;
             } else if (childAt != null) {
                 childAt.setOnClickListener(new View.OnClickListener(this) {
-                    public final kw f26971b;
+                    public final kw f26973b;
 
                     {
-                        this.f26971b = this;
+                        this.f26973b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r3) {
                             case 0:
-                                this.f26971b.h(i11);
+                                this.f26973b.h(i11);
                                 return;
                             default:
-                                this.f26971b.h(i11);
+                                this.f26973b.h(i11);
                                 return;
                         }
                     }
@@ -446,7 +446,7 @@ public abstract class kw extends tn0 {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        this.f33111b.setPadding(AndroidUtilities.dp(this.f29991d0), 0, AndroidUtilities.dp(11.0f), 0);
+        this.f33114b.setPadding(AndroidUtilities.dp(this.f29993d0), 0, AndroidUtilities.dp(11.0f), 0);
         super.onMeasure(i10, i11);
     }
 
@@ -459,7 +459,7 @@ public abstract class kw extends tn0 {
     }
 
     public void setPaddingLeft(float f7) {
-        this.f29991d0 = f7;
+        this.f29993d0 = f7;
     }
 
     public void e() {

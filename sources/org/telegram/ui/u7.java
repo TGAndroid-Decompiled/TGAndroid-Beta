@@ -8,11 +8,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class u7 extends k7 {
-    public final x7 f44029n;
+    public final x7 f44032n;
 
     public u7(x7 x7Var) {
         super(x7Var, 3);
-        this.f44029n = x7Var;
+        this.f44032n = x7Var;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class u7 extends k7 {
         boolean z10;
         boolean z11;
         float f7;
-        o7 o7Var = (o7) e1Var.f47735a;
-        org.telegram.ui.Cells.n7 n7Var = (org.telegram.ui.Cells.n7) o7Var.f42107b.getChildAt(0);
+        o7 o7Var = (o7) e1Var.f47738a;
+        org.telegram.ui.Cells.n7 n7Var = (org.telegram.ui.Cells.n7) o7Var.f42110b.getChildAt(0);
         ci.a aVar = ((q7) this.e.get(i10)).d;
         if (aVar == o7Var.getTag()) {
             z10 = true;
@@ -34,7 +34,7 @@ public final class u7 extends k7 {
             z11 = false;
         }
         o7Var.setTag(aVar);
-        x7 x7Var = this.f44029n;
+        x7 x7Var = this.f44032n;
         if (aVar.f6367f == null) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.out = true;
@@ -93,15 +93,15 @@ public final class u7 extends k7 {
             } else {
                 f7 = 0.0f;
             }
-            n7Var.f24551g0 = f7;
+            n7Var.f24553g0 = f7;
         }
-        if (n7Var.f24550f0 != z13) {
-            n7Var.f24550f0 = z13;
+        if (n7Var.f24552f0 != z13) {
+            n7Var.f24552f0 = z13;
             n7Var.invalidate();
         }
         o7Var.d = z11;
-        o7Var.f42108c.setText(AndroidUtilities.formatFileSize(aVar.f6366c));
-        o7Var.f42106a.a(this.f44029n.h.f6375j.contains(aVar), z10);
+        o7Var.f42111c.setText(AndroidUtilities.formatFileSize(aVar.f6366c));
+        o7Var.f42109a.a(this.f44032n.h.f6375j.contains(aVar), z10);
     }
 
     @Override
@@ -110,7 +110,7 @@ public final class u7 extends k7 {
         o7Var.e = 3;
         t7 t7Var = new t7(this, viewGroup.getContext(), o7Var);
         t7Var.setCheckForButtonPress(true);
-        o7Var.f42107b.addView(t7Var);
+        o7Var.f42110b.addView(t7Var);
         return new s4.e1(o7Var);
     }
 }

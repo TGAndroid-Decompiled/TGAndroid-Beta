@@ -11,14 +11,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class ku0 extends lm0 {
-    public final Context f29983c;
+    public final Context f29985c;
     public TLRPC.ChatFull d;
     public ArrayList e;
-    public final aw0 f29984f;
+    public final aw0 f29986f;
 
     public ku0(aw0 aw0Var, Context context) {
-        this.f29984f = aw0Var;
-        this.f29983c = context;
+        this.f29986f = aw0Var;
+        this.f29985c = context;
     }
 
     @Override
@@ -60,9 +60,9 @@ public final class ku0 extends lm0 {
         boolean z15;
         boolean z16;
         boolean z17;
-        aw0 aw0Var = this.f29984f;
-        org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26702x1;
-        View view = e1Var.f47735a;
+        aw0 aw0Var = this.f29986f;
+        org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26704x1;
+        View view = e1Var.f47738a;
         if (view instanceof org.telegram.ui.Cells.ab) {
             org.telegram.ui.Cells.ab abVar = (org.telegram.ui.Cells.ab) view;
             if (!this.e.isEmpty()) {
@@ -150,13 +150,13 @@ public final class ku0 extends lm0 {
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        aw0 aw0Var = this.f29984f;
+        aw0 aw0Var = this.f29986f;
         if (i10 == 20) {
-            nu0 U = aw0.U(7, aw0Var.l1, this.f29983c, aw0Var.H1);
+            nu0 U = aw0.U(7, aw0Var.l1, this.f29985c, aw0Var.H1);
             U.setLayoutParams(new s4.q0(-1, -1));
             return new s4.e1(U);
         }
-        org.telegram.ui.Cells.ab abVar = new org.telegram.ui.Cells.ab(9, 0, this.f29983c, aw0Var.H1, true, false);
+        org.telegram.ui.Cells.ab abVar = new org.telegram.ui.Cells.ab(9, 0, this.f29985c, aw0Var.H1, true, false);
         abVar.setLayoutParams(new s4.q0(-1, -2));
         return new s4.e1(abVar);
     }

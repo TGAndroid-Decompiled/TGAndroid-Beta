@@ -12,7 +12,7 @@ public final class r3 extends x61 {
 
     @Override
     public final void onClick(View view) {
-        this.e.f22366a.N0.run();
+        this.e.f22368a.N0.run();
         super.onClick(view);
     }
 }

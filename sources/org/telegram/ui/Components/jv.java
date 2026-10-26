@@ -16,10 +16,10 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jv implements org.telegram.ui.dt {
-    public final aw f29724a;
+    public final aw f29726a;
 
     public jv(aw awVar) {
-        this.f29724a = awVar;
+        this.f29726a = awVar;
     }
 
     @Override
@@ -29,8 +29,8 @@ public final class jv implements org.telegram.ui.dt {
 
     @Override
     public final void B(TLRPC.Document document) {
-        aw awVar = this.f29724a;
-        org.telegram.ui.ActionBar.r2 r2Var = awVar.f26624c;
+        aw awVar = this.f29726a;
+        org.telegram.ui.ActionBar.r2 r2Var = awVar.f26626c;
         if (r2Var instanceof org.telegram.ui.un) {
             ((org.telegram.ui.un) r2Var).lb(document);
         }
@@ -63,7 +63,7 @@ public final class jv implements org.telegram.ui.dt {
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
         valueOf.setSpan(new c6(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
         if (AndroidUtilities.addToClipboard(valueOf)) {
-            aw awVar = this.f29724a;
+            aw awVar = this.f29726a;
             viewGroup = ((org.telegram.ui.ActionBar.k3) awVar).containerView;
             u6Var = ((org.telegram.ui.ActionBar.k3) awVar).resourcesProvider;
             org.telegram.messenger.vh.m(R.string.EmojiCopied, new wc((FrameLayout) viewGroup, u6Var));
@@ -118,7 +118,7 @@ public final class jv implements org.telegram.ui.dt {
 
     @Override
     public final boolean c() {
-        org.telegram.ui.ActionBar.r2 r2Var = this.f29724a.f26624c;
+        org.telegram.ui.ActionBar.r2 r2Var = this.f29726a.f26626c;
         if (r2Var instanceof org.telegram.ui.un) {
             return ((org.telegram.ui.un) r2Var).c();
         }
@@ -162,11 +162,11 @@ public final class jv implements org.telegram.ui.dt {
 
     @Override
     public final boolean l(int i10) {
-        aw awVar = this.f29724a;
-        org.telegram.ui.ActionBar.r2 r2Var = awVar.f26624c;
+        aw awVar = this.f29726a;
+        org.telegram.ui.ActionBar.r2 r2Var = awVar.f26626c;
         if ((r2Var instanceof org.telegram.ui.un) && ((org.telegram.ui.un) r2Var).J6()) {
             if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-                if (((org.telegram.ui.un) awVar.f26624c).i() != null && UserObject.isUserSelf(((org.telegram.ui.un) awVar.f26624c).i())) {
+                if (((org.telegram.ui.un) awVar.f26626c).i() != null && UserObject.isUserSelf(((org.telegram.ui.un) awVar.f26626c).i())) {
                     return true;
                 }
                 return false;
@@ -204,7 +204,7 @@ public final class jv implements org.telegram.ui.dt {
         } else {
             obj = currentUser.emoji_status;
         }
-        aw awVar = this.f29724a;
+        aw awVar = this.f29726a;
         i10 = ((org.telegram.ui.ActionBar.k3) awVar).currentAccount;
         MessagesController.getInstance(i10).updateEmojiStatus(emojiStatus);
         so soVar = new so(11, this, obj);
@@ -217,12 +217,12 @@ public final class jv implements org.telegram.ui.dt {
         Context context = awVar.getContext();
         u6Var2 = ((org.telegram.ui.ActionBar.k3) awVar).resourcesProvider;
         ic icVar = new ic(context, u6Var2);
-        icVar.f29274b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
-        icVar.f29273a.setImageResource(R.drawable.msg_settings_premium);
+        icVar.f29276b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
+        icVar.f29275a.setImageResource(R.drawable.msg_settings_premium);
         Context context2 = awVar.getContext();
         u6Var3 = ((org.telegram.ui.ActionBar.k3) awVar).resourcesProvider;
         oc ocVar = new oc(context2, u6Var3, true);
-        ocVar.f31253b = soVar;
+        ocVar.f31255b = soVar;
         icVar.setButton(ocVar);
         viewGroup2 = ((org.telegram.ui.ActionBar.k3) awVar).containerView;
         qc.f((FrameLayout) viewGroup2, icVar, 1500).j();

@@ -22,37 +22,37 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_chatlists;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class sz implements Runnable {
-    public final int f43626a;
-    public final Object f43627b;
-    public final Object f43628c;
+    public final int f43629a;
+    public final Object f43630b;
+    public final Object f43631c;
 
     public sz(int i10, Object obj, Object obj2) {
-        this.f43626a = i10;
-        this.f43627b = obj;
-        this.f43628c = obj2;
+        this.f43629a = i10;
+        this.f43630b = obj;
+        this.f43631c = obj2;
     }
 
     @Override
     public final void run() {
         TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets;
-        int i10 = this.f43626a;
+        int i10 = this.f43629a;
         int i11 = 0;
-        Object obj = this.f43628c;
-        Object obj2 = this.f43627b;
+        Object obj = this.f43631c;
+        Object obj2 = this.f43630b;
         switch (i10) {
             case 0:
                 o00 o00Var = (o00) obj2;
-                lz lzVar = new lz(o00Var.f42056r, ((f00) obj).f39232m);
-                lzVar.f41408x = new oz(o00Var, 1);
-                lzVar.f41407w = new oz(o00Var, 2);
+                lz lzVar = new lz(o00Var.f42059r, ((f00) obj).f39235m);
+                lzVar.f41411x = new oz(o00Var, 1);
+                lzVar.f41410w = new oz(o00Var, 2);
                 o00Var.presentFragment(lzVar);
                 return;
             case 1:
                 o00 o00Var2 = (o00) obj2;
                 Runnable runnable = (Runnable) obj;
                 o00Var2.h = false;
-                o00Var2.f42057s = false;
-                o00Var2.f42056r.flags = o00Var2.f42060y;
+                o00Var2.f42060s = false;
+                o00Var2.f42059r.flags = o00Var2.f42063y;
                 o00Var2.k0(true);
                 o00Var2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogFiltersUpdated, new Object[0]);
                 if (runnable != null) {
@@ -78,7 +78,7 @@ public final class sz implements Runnable {
             case 3:
                 o00 o00Var4 = (o00) obj2;
                 org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) obj;
-                MessagesController.DialogFilter dialogFilter = o00Var4.f42056r;
+                MessagesController.DialogFilter dialogFilter = o00Var4.f42059r;
                 if (e2Var != null) {
                     try {
                         e2Var.dismiss();
@@ -97,8 +97,8 @@ public final class sz implements Runnable {
                 return;
             case 5:
                 FiltersSetupActivity filtersSetupActivity = (FiltersSetupActivity) obj2;
-                if (((TLRPC.TL_messages_toggleDialogFilterTags) obj).enabled && !filtersSetupActivity.f35513x) {
-                    filtersSetupActivity.f35513x = true;
+                if (((TLRPC.TL_messages_toggleDialogFilterTags) obj).enabled && !filtersSetupActivity.f35516x) {
+                    filtersSetupActivity.f35516x = true;
                     filtersSetupActivity.b0(new i10(filtersSetupActivity, 3));
                     return;
                 }
@@ -112,8 +112,8 @@ public final class sz implements Runnable {
                 ArrayList arrayList2 = (ArrayList) obj;
                 ArrayList arrayList3 = ((v50) obj2).Y1;
                 for (int i12 = 0; i12 < arrayList3.size(); i12++) {
-                    if (((org.telegram.ui.Components.voip.t) arrayList3.get(i12)).f34099w != null) {
-                        arrayList2.remove(((org.telegram.ui.Components.voip.t) arrayList3.get(i12)).f34099w);
+                    if (((org.telegram.ui.Components.voip.t) arrayList3.get(i12)).f34102w != null) {
+                        arrayList2.remove(((org.telegram.ui.Components.voip.t) arrayList3.get(i12)).f34102w);
                     }
                 }
                 while (i11 < arrayList2.size()) {
@@ -147,7 +147,7 @@ public final class sz implements Runnable {
                     return;
                 }
             case 10:
-                ((v50) ((y5) obj2).f45955b).U0.setNewColors((int[]) obj);
+                ((v50) ((y5) obj2).f45958b).U0.setNewColors((int[]) obj);
                 return;
             case 11:
                 f70.W((f70) obj2, (TLRPC.TL_error) obj);
@@ -155,17 +155,17 @@ public final class sz implements Runnable {
             case 12:
                 b70 b70Var = (b70) obj2;
                 String str = (String) obj;
-                c70 c70Var = b70Var.f37988a;
+                c70 c70Var = b70Var.f37991a;
                 c70Var.e = str;
                 TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
                 TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
                 tL_messages_getStickerSet.stickerset = tL_inputStickerSetShortName;
                 tL_inputStickerSetShortName.short_name = str;
-                c70Var.f38362c = c70Var.h.getConnectionsManager().sendRequest(tL_messages_getStickerSet, new j10(2, b70Var, str), 66);
+                c70Var.f38365c = c70Var.h.getConnectionsManager().sendRequest(tL_messages_getStickerSet, new j10(2, b70Var, str), 66);
                 return;
             case 13:
                 TLObject tLObject2 = (TLObject) obj;
-                c70 c70Var2 = ((b70) obj2).f37988a;
+                c70 c70Var2 = ((b70) obj2).f37991a;
                 if (tLObject2 != null) {
                     f70.b0(c70Var2.h, (TLRPC.TL_messages_stickerSet) tLObject2);
                     return;
@@ -177,17 +177,17 @@ public final class sz implements Runnable {
                 e70 e70Var = (e70) obj2;
                 String str2 = (String) obj;
                 e70Var.h = str2;
-                f70 f70Var = e70Var.f39012r;
+                f70 f70Var = e70Var.f39015r;
                 if (f70Var.N) {
                     TLRPC.TL_messages_searchEmojiStickerSets tL_messages_searchEmojiStickerSets = new TLRPC.TL_messages_searchEmojiStickerSets();
-                    tL_messages_searchEmojiStickerSets.f22137q = str2;
+                    tL_messages_searchEmojiStickerSets.f22139q = str2;
                     tL_messages_searchStickerSets = tL_messages_searchEmojiStickerSets;
                 } else {
                     TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets2 = new TLRPC.TL_messages_searchStickerSets();
-                    tL_messages_searchStickerSets2.f22139q = str2;
+                    tL_messages_searchStickerSets2.f22141q = str2;
                     tL_messages_searchStickerSets = tL_messages_searchStickerSets2;
                 }
-                e70Var.f39011n = f70Var.getConnectionsManager().sendRequest(tL_messages_searchStickerSets, new ea(e70Var, str2, str2, 14), 66);
+                e70Var.f39014n = f70Var.getConnectionsManager().sendRequest(tL_messages_searchStickerSets, new ea(e70Var, str2, str2, 14), 66);
                 return;
             case 15:
                 AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.m0(15, (x70) obj2, (CacheByChatsController.KeepMediaException) obj), 150L);
@@ -195,7 +195,7 @@ public final class sz implements Runnable {
             case 16:
                 LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) obj2;
                 languageSelectActivity.e = (ArrayList) obj;
-                languageSelectActivity.f35516c.l();
+                languageSelectActivity.f35519c.l();
                 return;
             case 17:
                 LanguageSelectActivity languageSelectActivity2 = (LanguageSelectActivity) obj2;
@@ -213,9 +213,9 @@ public final class sz implements Runnable {
                         arrayList4.add(localeInfo);
                     }
                 }
-                int size2 = languageSelectActivity2.f35517f.size();
+                int size2 = languageSelectActivity2.f35520f.size();
                 while (i11 < size2) {
-                    LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) languageSelectActivity2.f35517f.get(i11);
+                    LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) languageSelectActivity2.f35520f.get(i11);
                     if (localeInfo2.name.toLowerCase().startsWith(str3) || localeInfo2.nameEnglish.toLowerCase().startsWith(str3)) {
                         arrayList4.add(localeInfo2);
                     }
@@ -240,7 +240,7 @@ public final class sz implements Runnable {
                         bundle.putLong("chat_id", peer.channel_id);
                     }
                     un unVar = new un(bundle);
-                    unVar.f44438ua = resolvedbusinesschatlinks;
+                    unVar.f44441ua = resolvedbusinesschatlinks;
                     launchActivity.v0(unVar, false, true);
                     return;
                 }
@@ -266,8 +266,8 @@ public final class sz implements Runnable {
             case 21:
                 LaunchActivity launchActivity3 = (LaunchActivity) obj2;
                 String str4 = (String) obj;
-                if (!launchActivity3.f35550q0.getFragmentStack().isEmpty()) {
-                    launchActivity3.f35550q0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str4).getQueryParameter("ref")));
+                if (!launchActivity3.f35553q0.getFragmentStack().isEmpty()) {
+                    launchActivity3.f35553q0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str4).getQueryParameter("ref")));
                     return;
                 }
                 return;
@@ -278,15 +278,15 @@ public final class sz implements Runnable {
             case 23:
                 LaunchActivity launchActivity4 = (LaunchActivity) obj2;
                 Runnable runnable2 = (Runnable) obj;
-                launchActivity4.f35550q0.getView().setVisibility(4);
+                launchActivity4.f35553q0.getView().setVisibility(4);
                 if (AndroidUtilities.isTablet()) {
-                    ActionBarLayout actionBarLayout = launchActivity4.f35552r0;
-                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity4.f35552r0.getView().getVisibility() == 0) {
-                        launchActivity4.f35552r0.getView().setVisibility(4);
+                    ActionBarLayout actionBarLayout = launchActivity4.f35555r0;
+                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity4.f35555r0.getView().getVisibility() == 0) {
+                        launchActivity4.f35555r0.getView().setVisibility(4);
                     }
-                    ActionBarLayout actionBarLayout2 = launchActivity4.f35554s0;
+                    ActionBarLayout actionBarLayout2 = launchActivity4.f35557s0;
                     if (actionBarLayout2 != null && actionBarLayout2.getView() != null) {
-                        launchActivity4.f35554s0.getView().setVisibility(4);
+                        launchActivity4.f35557s0.getView().setVisibility(4);
                     }
                 }
                 if (runnable2 != null) {
@@ -336,12 +336,12 @@ public final class sz implements Runnable {
                 TLObject tLObject4 = (TLObject) obj;
                 lb0Var.c();
                 if (tLObject4 != null) {
-                    lb0Var.f41235a.l0((TL_account.Password) tLObject4);
+                    lb0Var.f41238a.l0((TL_account.Password) tLObject4);
                     return;
                 }
                 return;
             default:
-                ((FiltersSetupActivity) obj).Z(((lb0) obj2).f41235a.O());
+                ((FiltersSetupActivity) obj).Z(((lb0) obj2).f41238a.O());
                 return;
         }
     }

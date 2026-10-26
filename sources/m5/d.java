@@ -8,7 +8,7 @@ public final class d implements ka.d {
     public final void a(Object obj, Object obj2) {
         p5.e eVar = (p5.e) obj;
         ka.e eVar2 = (ka.e) obj2;
-        eVar2.a(f18320b, eVar.f46807a);
-        eVar2.a(f18321c, eVar.f46808b);
+        eVar2.a(f18320b, eVar.f46810a);
+        eVar2.a(f18321c, eVar.f46811b);
     }
 }

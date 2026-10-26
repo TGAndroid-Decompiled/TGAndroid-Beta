@@ -55,7 +55,7 @@ public final class r extends r2 implements oe.d {
             TLRPC.Chat chat = MessagesController.getInstance(rVar.currentAccount).getChat(Long.valueOf(-j10));
             TLRPC.User user = MessagesController.getInstance(rVar.currentAccount).getUser(Long.valueOf(j10));
             if (user != null) {
-                rVar.presentFragment(un.ba(user.f22174id));
+                rVar.presentFragment(un.ba(user.f22176id));
             } else if (!ChatObject.isPublic(chat) && !ChatObject.isInChat(chat)) {
                 new ki.b(rVar.getParentActivity(), chat, new u2(13, rVar, fVar)).show();
             } else {
@@ -107,13 +107,13 @@ public final class r extends r2 implements oe.d {
         this.actionBar.setTitle(LocaleController.getString(R.string.CommunityPendingRequests));
         FrameLayout frameLayout = new FrameLayout(context);
         this.f14407c = frameLayout;
-        int i10 = y6.f23297a7;
+        int i10 = y6.f23299a7;
         f7.i(i10, frameLayout, null);
         r71 r71Var = new r71(this, new e2(this, 4), new p(this), new p(this));
         this.d = r71Var;
         r71Var.setClipToPadding(false);
         r71 r71Var2 = this.d;
-        r71Var2.f32150g3.f29505r = false;
+        r71Var2.f32152g3.f29507r = false;
         r71Var2.u1();
         this.d.j(new ai.b(this, 14));
         this.actionBar.setAdaptiveBackground(this.d);
@@ -133,7 +133,7 @@ public final class r extends r2 implements oe.d {
         this.f14409n = dVar;
         dVar.e();
         fi.d dVar2 = this.f14409n;
-        int f7 = i0.a.f(0.125f, getThemedColor(y6.f23354d6), getThemedColor(y6.G6));
+        int f7 = i0.a.f(0.125f, getThemedColor(y6.f23356d6), getThemedColor(y6.G6));
         this.f14412w = f7;
         dVar2.setColor(f7);
         this.f14409n.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
@@ -198,7 +198,7 @@ public final class r extends r2 implements oe.d {
         W(0);
         FrameLayout frameLayout2 = this.f14407c;
         p pVar = new p(this);
-        WeakHashMap weakHashMap = r0.i0.f47105a;
+        WeakHashMap weakHashMap = r0.i0.f47108a;
         r0.a0.i(frameLayout2, pVar);
         setBulletinDelegate(new k8(4));
         FrameLayout frameLayout3 = this.f14407c;
@@ -239,7 +239,7 @@ public final class r extends r2 implements oe.d {
     public final void onThemeColorsChanged() {
         try {
             super.onThemeColorsChanged();
-            int f7 = i0.a.f(0.125f, getThemedColor(y6.f23354d6), getThemedColor(y6.G6));
+            int f7 = i0.a.f(0.125f, getThemedColor(y6.f23356d6), getThemedColor(y6.G6));
             fi.d dVar = this.f14409n;
             if (dVar != null && f7 != this.f14412w) {
                 this.f14412w = f7;

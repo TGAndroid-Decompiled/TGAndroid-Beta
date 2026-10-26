@@ -32,11 +32,11 @@ public final class cc0 extends mi.m {
 
     @Override
     public final void W() {
-        nc0 nc0Var = this.Y.f28917c0;
-        AndroidUtilities.cancelRunOnUIThread(nc0Var.f30963y);
-        nc0Var.f30963y.run();
+        nc0 nc0Var = this.Y.f28919c0;
+        AndroidUtilities.cancelRunOnUIThread(nc0Var.f30965y);
+        nc0Var.f30965y.run();
         if (this.W == -1) {
-            this.W = NotificationCenter.getInstance(nc0Var.f30961w).setAnimationInProgress(this.W, null, false);
+            this.W = NotificationCenter.getInstance(nc0Var.f30963w).setAnimationInProgress(this.W, null, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

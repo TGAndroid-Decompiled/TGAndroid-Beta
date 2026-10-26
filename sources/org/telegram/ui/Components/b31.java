@@ -16,24 +16,24 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import java.util.Arrays;
 public final class b31 extends ImageView {
-    public static final org.telegram.ui.Cells.b1 f26738w = new org.telegram.ui.Cells.b1(Float.class, "radius", 3);
-    public final Paint f26739a;
-    public final Matrix f26740b;
-    public RadialGradient f26741c;
+    public static final org.telegram.ui.Cells.b1 f26740w = new org.telegram.ui.Cells.b1(Float.class, "radius", 3);
+    public final Paint f26741a;
+    public final Matrix f26742b;
+    public RadialGradient f26743c;
     public boolean d;
     public float e;
-    public float f26742f;
+    public float f26744f;
     public float h;
-    public ak0 f26743n;
-    public ColorFilter f26744r;
-    public final int[] f26745s;
+    public ak0 f26745n;
+    public ColorFilter f26746r;
+    public final int[] f26747s;
     public final int[] v;
 
     public b31(Context context) {
         super(context);
-        this.f26739a = new Paint(1);
-        this.f26740b = new Matrix();
-        this.f26745s = new int[2];
+        this.f26741a = new Paint(1);
+        this.f26742b = new Matrix();
+        this.f26747s = new int[2];
         this.v = new int[2];
     }
 
@@ -67,13 +67,13 @@ public final class b31 extends ImageView {
     public final void b(float f7, float f10, boolean z10) {
         PorterDuff.Mode mode;
         this.e = f7;
-        this.f26742f = f10;
+        this.f26744f = f10;
         this.d = z10;
-        RadialGradient radialGradient = this.f26741c;
-        Paint paint = this.f26739a;
+        RadialGradient radialGradient = this.f26743c;
+        Paint paint = this.f26741a;
         if (radialGradient == null) {
             RadialGradient radialGradient2 = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{-16777216, -16777216, 0}, new float[]{0.0f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-            this.f26741c = radialGradient2;
+            this.f26743c = radialGradient2;
             paint.setShader(radialGradient2);
         }
         if (z10) {
@@ -87,29 +87,29 @@ public final class b31 extends ImageView {
     @Override
     public final void onDraw(Canvas canvas) {
         Drawable drawable;
-        if (this.f26741c == null) {
+        if (this.f26743c == null) {
             super.onDraw(canvas);
         } else if (this.h < 1.0f && !this.d) {
         } else {
             int saveLayer = canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null);
             super.onDraw(canvas);
-            ak0 ak0Var = this.f26743n;
+            ak0 ak0Var = this.f26745n;
             if (ak0Var != null) {
                 drawable = ak0Var.getDrawable();
             } else {
                 drawable = null;
             }
-            if (drawable != null && this.f26743n.isAttachedToWindow()) {
-                ak0 ak0Var2 = this.f26743n;
-                int[] iArr = this.f26745s;
+            if (drawable != null && this.f26745n.isAttachedToWindow()) {
+                ak0 ak0Var2 = this.f26745n;
+                int[] iArr = this.f26747s;
                 ak0Var2.getLocationInWindow(iArr);
                 int[] iArr2 = this.v;
                 getLocationInWindow(iArr2);
                 ColorFilter colorFilter = drawable.getColorFilter();
                 canvas.save();
-                canvas.translate(this.f26743n.getPaddingLeft() + (iArr[0] - iArr2[0]), this.f26743n.getPaddingTop() + (iArr[1] - iArr2[1]));
-                canvas.concat(this.f26743n.getImageMatrix());
-                drawable.setColorFilter(this.f26744r);
+                canvas.translate(this.f26745n.getPaddingLeft() + (iArr[0] - iArr2[0]), this.f26745n.getPaddingTop() + (iArr[1] - iArr2[1]));
+                canvas.concat(this.f26745n.getImageMatrix());
+                drawable.setColorFilter(this.f26746r);
                 drawable.draw(canvas);
                 drawable.setColorFilter(colorFilter);
                 canvas.restore();
@@ -120,11 +120,11 @@ public final class b31 extends ImageView {
             float f7 = this.h;
             if (f7 >= 1.0f) {
                 float f10 = f7 / 100.0f;
-                Matrix matrix = this.f26740b;
+                Matrix matrix = this.f26742b;
                 matrix.setScale(f10, f10);
-                matrix.postTranslate(this.e, this.f26742f);
-                this.f26741c.setLocalMatrix(matrix);
-                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f26739a);
+                matrix.postTranslate(this.e, this.f26744f);
+                this.f26743c.setLocalMatrix(matrix);
+                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f26741a);
             }
             canvas.restoreToCount(saveLayer);
         }

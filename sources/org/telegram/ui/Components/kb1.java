@@ -41,7 +41,7 @@ public abstract class kb1 {
                 renderNode.setRenderEffect(renderEffect);
                 Canvas canvas = (Canvas) e0Var.f9530c;
                 canvas.save();
-                Path path = nb1Var.f30943f;
+                Path path = nb1Var.f30945f;
                 nb1Var.j(jSONObject, "r", path);
                 canvas.clipPath(path);
                 float f10 = 1.0f / f7;
@@ -65,7 +65,7 @@ public abstract class kb1 {
         lb1Var.e = floor;
         renderNode.setPosition(lb1Var.d, floor, ((int) Math.ceil(rectF.right * f7)) + 1, ((int) Math.ceil(rectF.bottom * f7)) + 1);
         renderNode.setRenderEffect(c10);
-        lb1Var.f30156c = renderNode;
+        lb1Var.f30158c = renderNode;
         RecordingCanvas beginRecording = renderNode.beginRecording();
         beginRecording.translate(-lb1Var.d, -lb1Var.e);
         beginRecording.scale(f7, f7);
@@ -131,12 +131,12 @@ public abstract class kb1 {
     }
 
     public static void d(lb1 lb1Var, float f7) {
-        RenderNode c10 = org.telegram.messenger.d.c(lb1Var.f30156c);
+        RenderNode c10 = org.telegram.messenger.d.c(lb1Var.f30158c);
         c10.endRecording();
-        lb1Var.f30154a.save();
+        lb1Var.f30156a.save();
         float f10 = 1.0f / f7;
-        lb1Var.f30154a.scale(f10, f10);
-        lb1Var.f30154a.drawRenderNode(c10);
-        lb1Var.f30154a.restore();
+        lb1Var.f30156a.scale(f10, f10);
+        lb1Var.f30156a.drawRenderNode(c10);
+        lb1Var.f30156a.restore();
     }
 }

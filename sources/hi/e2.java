@@ -23,10 +23,10 @@ public final class e2 implements Utilities.Callback2 {
         vh.f fVar = (vh.f) this.f12957b;
         ArrayList arrayList = (ArrayList) obj;
         j71 j71Var = (j71) obj2;
-        ArrayList arrayList2 = fVar.f50310a0;
+        ArrayList arrayList2 = fVar.f50313a0;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             int dp = AndroidUtilities.dp(13.0f) + ((AndroidUtilities.displaySize.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.dp(68.0f));
-            int dp2 = AndroidUtilities.dp(88.0f) + fVar.f50321l0;
+            int dp2 = AndroidUtilities.dp(88.0f) + fVar.f50324l0;
             arrayList.add(t61.E(0, dp2));
             int i10 = dp - dp2;
             int size = arrayList2.size();
@@ -35,12 +35,12 @@ public final class e2 implements Utilities.Callback2 {
                 Object obj3 = arrayList2.get(i11);
                 i11++;
                 for (TLRPC.TL_help_country tL_help_country : (List) fVar.Z.get((String) obj3)) {
-                    if (TextUtils.isEmpty(fVar.f50312c0) || vg.z0.U(tL_help_country, AndroidUtilities.translitSafe(fVar.f50312c0).toLowerCase())) {
+                    if (TextUtils.isEmpty(fVar.f50315c0) || vg.z0.U(tL_help_country, AndroidUtilities.translitSafe(fVar.f50315c0).toLowerCase())) {
                         i10 -= AndroidUtilities.dp(44.0f);
-                        boolean containsKey = fVar.f50319j0.containsKey(tL_help_country.iso2);
-                        int i12 = vh.e.f50308a;
+                        boolean containsKey = fVar.f50322j0.containsKey(tL_help_country.iso2);
+                        int i12 = vh.e.f50311a;
                         t61 K = t61.K(vh.e.class);
-                        K.f32872l = tL_help_country.iso2;
+                        K.f32875l = tL_help_country.iso2;
                         K.G = tL_help_country;
                         K.e = containsKey;
                         arrayList.add(K);
@@ -62,7 +62,7 @@ public final class e2 implements Utilities.Callback2 {
         for (TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift : list) {
             GiftAuctionController.Auction auction = cVar.Y;
             org.telegram.ui.web.c cVar2 = new org.telegram.ui.web.c(12, cVar, tL_StarGiftAuctionAcquiredGift);
-            int i10 = zh.a.f52890a;
+            int i10 = zh.a.f52893a;
             t61 K = t61.K(zh.a.class);
             K.G = tL_StarGiftAuctionAcquiredGift;
             K.H = auction;

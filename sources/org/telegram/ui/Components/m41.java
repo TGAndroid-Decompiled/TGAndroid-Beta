@@ -10,26 +10,26 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class m41 extends View implements org.telegram.ui.ActionBar.p6 {
-    public int f30385a;
-    public float f30386b;
-    public final Paint f30387c;
+    public int f30387a;
+    public float f30388b;
+    public final Paint f30389c;
     public final Paint d;
     public Drawable e;
-    public boolean f30388f;
+    public boolean f30390f;
     public int h;
-    public final RectF f30389n;
+    public final RectF f30391n;
 
     public m41(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f30387c = paint;
+        this.f30389c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.f30388f = true;
+        this.f30390f = true;
         this.h = 0;
-        this.f30389n = new RectF();
+        this.f30391n = new RectF();
         int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.P9, false);
-        this.f30385a = x02;
+        this.f30387a = x02;
         paint.setColor(x02);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setStyle(Paint.Style.STROKE);
@@ -69,21 +69,21 @@ public final class m41 extends View implements org.telegram.ui.ActionBar.p6 {
         boolean z10;
         float f7;
         Canvas canvas2 = canvas;
-        if (this.f30388f) {
+        if (this.f30390f) {
             if (this.h == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z10) {
-                f7 = this.f30386b;
+                f7 = this.f30388b;
             } else {
                 f7 = 1.0f;
             }
             float dp = AndroidUtilities.dp((f7 * 26.0f) + 6.0f);
-            RectF rectF = this.f30389n;
+            RectF rectF = this.f30391n;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas2.drawRoundRect(rectF, dp, dp, this.f30387c);
+            canvas2.drawRoundRect(rectF, dp, dp, this.f30389c);
         }
         int i10 = this.h;
         Paint paint = this.d;
@@ -93,11 +93,11 @@ public final class m41 extends View implements org.telegram.ui.ActionBar.p6 {
                 float width = getWidth() - AndroidUtilities.dp(21.0f);
                 float height = getHeight() / 2.0f;
                 canvas2.save();
-                canvas2.translate((-AndroidUtilities.dp(2.0f)) * this.f30386b, 0.0f);
-                canvas2.rotate(this.f30386b * 90.0f, getWidth() / 2.0f, getHeight() / 2.0f);
-                canvas2.drawLine(dp2 + ((width - dp2) * this.f30386b), height, width, height, paint);
-                int dp3 = AndroidUtilities.dp((this.f30386b * (-1.0f)) + 9.0f);
-                int dp4 = AndroidUtilities.dp((this.f30386b * 7.0f) + 9.0f);
+                canvas2.translate((-AndroidUtilities.dp(2.0f)) * this.f30388b, 0.0f);
+                canvas2.rotate(this.f30388b * 90.0f, getWidth() / 2.0f, getHeight() / 2.0f);
+                canvas2.drawLine(dp2 + ((width - dp2) * this.f30388b), height, width, height, paint);
+                int dp3 = AndroidUtilities.dp((this.f30388b * (-1.0f)) + 9.0f);
+                int dp4 = AndroidUtilities.dp((this.f30388b * 7.0f) + 9.0f);
                 double d = width;
                 double d10 = dp3;
                 double d11 = height;
@@ -108,7 +108,7 @@ public final class m41 extends View implements org.telegram.ui.ActionBar.p6 {
                 canvas.restore();
             }
         } else {
-            float max = (Math.max(0.4f, this.f30386b) - 0.4f) / 0.6f;
+            float max = (Math.max(0.4f, this.f30388b) - 0.4f) / 0.6f;
             if (max != 0.0f) {
                 float C = (org.telegram.messenger.vh.C(21.0f, 2, getWidth()) * max) + AndroidUtilities.dp(21.0f);
                 float height2 = getHeight() / 2.0f;
@@ -133,7 +133,7 @@ public final class m41 extends View implements org.telegram.ui.ActionBar.p6 {
 
     @Override
     public void setBackgroundColor(int i10) {
-        this.f30387c.setColor(i10);
+        this.f30389c.setColor(i10);
         invalidate();
     }
 
@@ -143,11 +143,11 @@ public final class m41 extends View implements org.telegram.ui.ActionBar.p6 {
     }
 
     public void setDrawBackground(boolean z10) {
-        this.f30388f = z10;
+        this.f30390f = z10;
     }
 
     public void setProgress(float f7) {
-        this.f30386b = f7;
+        this.f30388b = f7;
         invalidate();
     }
 
@@ -163,12 +163,12 @@ public final class m41 extends View implements org.telegram.ui.ActionBar.p6 {
 
     @Override
     public final void updateColors() {
-        Paint paint = this.f30387c;
+        Paint paint = this.f30389c;
         try {
-            if (paint.getColor() == this.f30385a) {
-                this.f30385a = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.P9, false);
+            if (paint.getColor() == this.f30387a) {
+                this.f30387a = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.P9, false);
                 int color = paint.getColor();
-                int i10 = this.f30385a;
+                int i10 = this.f30387a;
                 if (color != i10) {
                     paint.setColor(i10);
                     invalidate();

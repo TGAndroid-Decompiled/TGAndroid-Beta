@@ -14,21 +14,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ds;
 import org.telegram.ui.Components.xj0;
 public final class x5 extends LinearLayout {
-    public final r5 f23245a;
-    public final boolean f23246b;
-    public final HashMap f23247c;
+    public final r5 f23247a;
+    public final boolean f23248b;
+    public final HashMap f23249c;
     public final ArrayList d;
     public final oe.j e;
-    public boolean f23248f;
+    public boolean f23250f;
 
     public x5(Context context, r5 r5Var, boolean z10) {
         super(context);
-        this.f23247c = new HashMap();
+        this.f23249c = new HashMap();
         this.d = new ArrayList();
         this.e = new oe.j(new v5(this), ds.h, 380L);
-        this.f23248f = true;
-        this.f23245a = r5Var;
-        this.f23246b = z10;
+        this.f23250f = true;
+        this.f23247a = r5Var;
+        this.f23248b = z10;
         setOrientation(0);
         setGravity(21);
     }
@@ -62,24 +62,24 @@ public final class x5 extends LinearLayout {
         boolean z10;
         LinearLayout.LayoutParams layoutParams;
         Context context = getContext();
-        r5 r5Var = this.f23245a;
-        boolean z11 = this.f23246b;
+        r5 r5Var = this.f23247a;
+        boolean z11 = this.f23248b;
         if (z11) {
-            i13 = r5Var.f23036g0;
+            i13 = r5Var.f23038g0;
         } else {
-            i13 = r5Var.f23035f0;
+            i13 = r5Var.f23037f0;
         }
         if (z11) {
-            i14 = r5Var.f23033e0;
+            i14 = r5Var.f23035e0;
         } else {
-            i14 = r5Var.f23032d0;
+            i14 = r5Var.f23034d0;
         }
         if (str != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        y5 y5Var = new y5(context, this, i13, i14, z10, r5Var.f23026a);
+        y5 y5Var = new y5(context, this, i13, i14, z10, r5Var.f23028a);
         y5Var.setTag(Integer.valueOf(i10));
         if (str != null) {
             y5Var.E.setText(str);
@@ -92,11 +92,11 @@ public final class x5 extends LinearLayout {
             layoutParams.leftMargin = dp;
         } else {
             if (drawable instanceof xj0) {
-                y5Var.f23202x.setAnimation((xj0) drawable);
+                y5Var.f23204x.setAnimation((xj0) drawable);
             } else if (drawable != null) {
-                y5Var.f23202x.setImageDrawable(drawable);
+                y5Var.f23204x.setImageDrawable(drawable);
             } else if (i11 != 0) {
-                y5Var.f23202x.setImageResource(i11);
+                y5Var.f23204x.setImageResource(i11);
             }
             layoutParams = new LinearLayout.LayoutParams(i12, -1);
             int i15 = -AndroidUtilities.dp(5.0f);
@@ -117,13 +117,13 @@ public final class x5 extends LinearLayout {
 
     public final void d() {
         int i10;
-        Iterator it = this.f23247c.values().iterator();
+        Iterator it = this.f23249c.values().iterator();
         while (true) {
             i10 = 0;
             if (!it.hasNext()) {
                 break;
             }
-            ((w5) it.next()).f23211b = false;
+            ((w5) it.next()).f23213b = false;
         }
         float width = getWidth() - getPaddingRight();
         oe.j jVar = this.e;
@@ -136,9 +136,9 @@ public final class x5 extends LinearLayout {
             i10++;
             oe.g gVar = (oe.g) obj;
             w5 w5Var = (w5) gVar.f19337a;
-            View view = w5Var.f23210a;
+            View view = w5Var.f23212a;
             RectF b10 = gVar.b();
-            w5Var.f23211b = true;
+            w5Var.f23213b = true;
             view.setTranslationX((((width - Math.max(f7, b10.right)) + b10.left) + ((LinearLayout.LayoutParams) view.getLayoutParams()).leftMargin) - view.getLeft());
             w5Var.c(gVar.c(), min);
         }
@@ -178,17 +178,17 @@ public final class x5 extends LinearLayout {
         int i10;
         int i11;
         int i12;
-        r5 r5Var = this.f23245a;
-        boolean z10 = this.f23246b;
+        r5 r5Var = this.f23247a;
+        boolean z10 = this.f23248b;
         if (z10) {
-            i10 = r5Var.f23033e0;
+            i10 = r5Var.f23035e0;
         } else {
-            i10 = r5Var.f23032d0;
+            i10 = r5Var.f23034d0;
         }
         if (z10) {
-            i11 = r5Var.f23036g0;
+            i11 = r5Var.f23038g0;
         } else {
-            i11 = r5Var.f23035f0;
+            i11 = r5Var.f23037f0;
         }
         int childCount = getChildCount();
         for (int i13 = 0; i13 < childCount; i13++) {
@@ -220,7 +220,7 @@ public final class x5 extends LinearLayout {
         int childCount = getChildCount();
         int i14 = 0;
         while (true) {
-            hashMap = this.f23247c;
+            hashMap = this.f23249c;
             if (i14 >= childCount) {
                 break;
             }
@@ -231,19 +231,19 @@ public final class x5 extends LinearLayout {
             }
             i14++;
         }
-        if (!this.f23248f && isLaidOut()) {
+        if (!this.f23250f && isLaidOut()) {
             z11 = true;
         } else {
             z11 = false;
         }
         this.e.q(arrayList, z11);
-        this.f23248f = false;
+        this.f23250f = false;
         d();
         int childCount2 = getChildCount();
         for (int i15 = 0; i15 < childCount2; i15++) {
             View childAt2 = getChildAt(i15);
             w5 w5Var2 = (w5) hashMap.get(childAt2);
-            if (w5Var2 != null && !w5Var2.f23211b && childAt2.getVisibility() != 8 && !g(childAt2)) {
+            if (w5Var2 != null && !w5Var2.f23213b && childAt2.getVisibility() != 8 && !g(childAt2)) {
                 if (childAt2 instanceof y5) {
                     ((y5) childAt2).X();
                 } else {
@@ -251,18 +251,18 @@ public final class x5 extends LinearLayout {
                 }
             }
         }
-        this.f23245a.invalidate();
+        this.f23247a.invalidate();
     }
 
     @Override
     public final void onViewAdded(View view) {
         super.onViewAdded(view);
-        this.f23247c.put(view, new w5(view));
+        this.f23249c.put(view, new w5(view));
     }
 
     @Override
     public final void onViewRemoved(View view) {
         super.onViewRemoved(view);
-        this.f23247c.remove(view);
+        this.f23249c.remove(view);
     }
 }

@@ -11,25 +11,25 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class a81 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
-    public final org.telegram.ui.ActionBar.u6 f37664a;
-    public final org.telegram.ui.Components.ic0 f37665b;
-    public final FrameLayout f37666c;
+    public final org.telegram.ui.ActionBar.u6 f37667a;
+    public final org.telegram.ui.Components.ic0 f37668b;
+    public final FrameLayout f37669c;
     public final ImageView d;
     public final TextView e;
-    public final TextView f37667f;
+    public final TextView f37670f;
     public final TextView h;
-    public boolean f37668n;
-    public boolean f37669r;
+    public boolean f37671n;
+    public boolean f37672r;
 
     public a81(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f37668n = true;
-        this.f37664a = u6Var;
+        this.f37671n = true;
+        this.f37667a = u6Var;
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f37666c = frameLayout;
+        this.f37669c = frameLayout;
         org.telegram.ui.Components.ic0 ic0Var = new org.telegram.ui.Components.ic0(1);
-        this.f37665b = ic0Var;
+        this.f37668b = ic0Var;
         frameLayout.setBackground(ic0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
@@ -40,7 +40,7 @@ public final class a81 extends LinearLayout implements org.telegram.ui.ActionBar
         this.e = textView;
         textView.setTextSize(1, 16.0f);
         TextView e = org.telegram.messenger.vh.e(d, textView, org.telegram.ui.Components.gb1.o(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
-        this.f37667f = e;
+        this.f37670f = e;
         e.setTextSize(1, 13.0f);
         TextView e10 = org.telegram.messenger.vh.e(d, e, org.telegram.ui.Components.gb1.o(0.0f, 4.0f, 0.0f, 0.0f, -1, -2), context);
         this.h = e10;
@@ -60,15 +60,15 @@ public final class a81 extends LinearLayout implements org.telegram.ui.ActionBar
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23746y6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23538n6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23748y6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23540n6));
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f37669r) {
+        if (this.f37672r) {
             f7 = 60.0f;
         } else {
             f7 = 50.0f;
@@ -92,15 +92,15 @@ public final class a81 extends LinearLayout implements org.telegram.ui.ActionBar
     public final void updateColors() {
         boolean z10;
         int i10 = org.telegram.ui.ActionBar.y6.G6;
-        org.telegram.ui.ActionBar.u6 u6Var = this.f37664a;
+        org.telegram.ui.ActionBar.u6 u6Var = this.f37667a;
         this.e.setTextColor(org.telegram.ui.ActionBar.y6.w0(i10, u6Var));
-        this.f37667f.setTextColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23746y6, u6Var));
-        this.h.setTextColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23538n6, u6Var));
-        if (this.f37668n && (u6Var == null ? org.telegram.ui.ActionBar.y6.I.q() : u6Var.a())) {
+        this.f37670f.setTextColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23748y6, u6Var));
+        this.h.setTextColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23540n6, u6Var));
+        if (this.f37671n && (u6Var == null ? org.telegram.ui.ActionBar.y6.I.q() : u6Var.a())) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f37665b.f29276b = z10;
+        this.f37668b.f29278b = z10;
     }
 }

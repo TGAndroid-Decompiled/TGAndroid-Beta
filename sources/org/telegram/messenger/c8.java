@@ -49,15 +49,15 @@ public final class c8 implements Runnable {
             case 2:
                 ArrayList arrayList = (ArrayList) obj2;
                 ArrayList arrayList2 = (ArrayList) obj;
-                un unVar = ((org.telegram.ui.hl) obj3).f40030b;
+                un unVar = ((org.telegram.ui.hl) obj3).f40033b;
                 if (this.f19764b) {
                     i10 = ((org.telegram.ui.ActionBar.r2) unVar).currentAccount;
-                    MessagesController.getNotificationsSettings(i10).edit().remove("pin_" + unVar.f44249f6).commit();
+                    MessagesController.getNotificationsSettings(i10).edit().remove("pin_" + unVar.f44252f6).commit();
                     unVar.Lc(0, true);
                     qcVar = null;
                 } else {
                     qcVar = null;
-                    unVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(unVar.f44249f6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i15), Boolean.valueOf(unVar.f44235e5));
+                    unVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(unVar.f44252f6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i15), Boolean.valueOf(unVar.f44238e5));
                 }
                 if (i14 == unVar.O3) {
                     unVar.M3 = qcVar;
@@ -68,7 +68,7 @@ public final class c8 implements Runnable {
                 org.telegram.ui.Components.qa qaVar = (org.telegram.ui.Components.qa) obj3;
                 Bitmap bitmap = (Bitmap) obj2;
                 String str = (String) obj;
-                Paint paint = qaVar.f31867c;
+                Paint paint = qaVar.f31869c;
                 int i16 = qaVar.d;
                 if (bitmap != null && !bitmap.isRecycled()) {
                     float width = bitmap.getWidth() / bitmap.getHeight();

@@ -47,7 +47,7 @@ public final class p6 implements Runnable {
                         Bitmap bitmap2 = s6Var.f11592g;
                         String str = s6Var.e;
                         q6 q6Var = null;
-                        if (bitmap2 != null && (nVar = (s8.n) s6Var.f11588a.get()) != null && nVar.f47979b.k()) {
+                        if (bitmap2 != null && (nVar = (s8.n) s6Var.f11588a.get()) != null && nVar.f47982b.k()) {
                             int width2 = bitmap2.getWidth();
                             int height2 = bitmap2.getHeight();
                             k6.c cVar = new k6.c(28);
@@ -60,7 +60,7 @@ public final class p6 implements Runnable {
                             SparseArray e12 = nVar.e1(cVar);
                             for (int i10 = 0; i10 < e12.size(); i10++) {
                                 s8.m mVar = (s8.m) e12.valueAt(i10);
-                                String str2 = mVar.f47970b;
+                                String str2 = mVar.f47973b;
                                 Point[] pointArr = mVar.e;
                                 if (str2 != null) {
                                     String trim = str2.trim();

@@ -5,45 +5,45 @@ import android.graphics.Point;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class q4 extends LinearLayout {
-    public boolean f31828a;
-    public final md0 f31829b;
-    public final md0 f31830c;
+    public boolean f31830a;
+    public final md0 f31831b;
+    public final md0 f31832c;
     public final md0 d;
 
     public q4(Context context, md0 md0Var, md0 md0Var2, md0 md0Var3) {
         super(context);
-        this.f31829b = md0Var;
-        this.f31830c = md0Var2;
+        this.f31831b = md0Var;
+        this.f31832c = md0Var2;
         this.d = md0Var3;
-        this.f31828a = false;
+        this.f31830a = false;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        this.f31828a = true;
+        this.f31830a = true;
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
             i12 = 3;
         } else {
             i12 = 5;
         }
-        md0 md0Var = this.f31829b;
+        md0 md0Var = this.f31831b;
         md0Var.setItemCount(i12);
-        md0 md0Var2 = this.f31830c;
+        md0 md0Var2 = this.f31832c;
         md0Var2.setItemCount(i12);
         md0 md0Var3 = this.d;
         md0Var3.setItemCount(i12);
         md0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
         md0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
         md0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-        this.f31828a = false;
+        this.f31830a = false;
         super.onMeasure(i10, i11);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f31828a) {
+        if (this.f31830a) {
             return;
         }
         super.requestLayout();

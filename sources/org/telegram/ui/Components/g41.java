@@ -3,24 +3,24 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 public final class g41 implements Runnable {
-    public final int f28415a;
-    public final MessageObject f28416b;
-    public final long f28417c;
+    public final int f28417a;
+    public final MessageObject f28418b;
+    public final long f28419c;
     public final String d;
 
     public g41(String str, MessageObject messageObject, long j10, int i10) {
-        this.f28415a = i10;
-        this.f28416b = messageObject;
-        this.f28417c = j10;
+        this.f28417a = i10;
+        this.f28418b = messageObject;
+        this.f28419c = j10;
         this.d = str;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f28415a;
+        int i10 = this.f28417a;
         String str = this.d;
-        long j10 = this.f28417c;
-        MessageObject messageObject = this.f28416b;
+        long j10 = this.f28419c;
+        MessageObject messageObject = this.f28418b;
         switch (i10) {
             case 0:
                 NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);

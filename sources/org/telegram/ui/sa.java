@@ -10,9 +10,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class sa extends FrameLayout {
-    public final org.telegram.ui.Components.z90 f43430a;
-    public final org.telegram.ui.Cells.w1 f43431b;
-    public Integer f43432c;
+    public final org.telegram.ui.Components.z90 f43433a;
+    public final org.telegram.ui.Cells.w1 f43434b;
+    public Integer f43435c;
     public ValueAnimator d;
     public final ta e;
 
@@ -24,7 +24,7 @@ public final class sa extends FrameLayout {
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(17.0f));
         setClipChildren(false);
         org.telegram.ui.Components.z90 z90Var = new org.telegram.ui.Components.z90(activity, null);
-        this.f43430a = z90Var;
+        this.f43433a = z90Var;
         z90Var.setTextSize(1, 15.0f);
         int i11 = org.telegram.ui.ActionBar.y6.F6;
         org.telegram.ui.ActionBar.f7.V(z90Var, i11, null);
@@ -41,7 +41,7 @@ public final class sa extends FrameLayout {
         z90Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         org.telegram.ui.Cells.w1 w1Var = new org.telegram.ui.Cells.w1(this, activity, 2);
         taVar.G = w1Var;
-        this.f43431b = w1Var;
+        this.f43434b = w1Var;
         w1Var.setTextSize(1, 15.0f);
         org.telegram.ui.ActionBar.f7.V(w1Var, i11, null);
         w1Var.setGravity(LocaleController.isRTL ? 5 : 3);
@@ -50,7 +50,7 @@ public final class sa extends FrameLayout {
         w1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         addView(z90Var, org.telegram.ui.Components.gb1.i(-1, -2, 48));
         addView(w1Var, org.telegram.ui.Components.gb1.i(-1, -2, 48));
-        if (taVar.f43712x != 0) {
+        if (taVar.f43715x != 0) {
             String string = LocaleController.getString(R.string.BotUsernameHelp);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf(42);
@@ -70,8 +70,8 @@ public final class sa extends FrameLayout {
         int intValue;
         int i10;
         float f7;
-        org.telegram.ui.Components.z90 z90Var = saVar.f43430a;
-        org.telegram.ui.Cells.w1 w1Var = saVar.f43431b;
+        org.telegram.ui.Components.z90 z90Var = saVar.f43433a;
+        org.telegram.ui.Cells.w1 w1Var = saVar.f43434b;
         if (w1Var.getVisibility() == 0) {
             w1Var.measure(View.MeasureSpec.makeMeasureSpec((saVar.getMeasuredWidth() - saVar.getPaddingLeft()) - saVar.getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
         }
@@ -79,7 +79,7 @@ public final class sa extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        Integer num = saVar.f43432c;
+        Integer num = saVar.f43435c;
         if (num == null) {
             intValue = saVar.getMeasuredHeight();
         } else {
@@ -108,8 +108,8 @@ public final class sa extends FrameLayout {
                 sa saVar2 = sa.this;
                 saVar2.getClass();
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                saVar2.f43430a.setTranslationY(AndroidUtilities.lerp(translationY, f10, floatValue));
-                saVar2.f43432c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
+                saVar2.f43433a.setTranslationY(AndroidUtilities.lerp(translationY, f10, floatValue));
+                saVar2.f43435c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
                 saVar2.requestLayout();
             }
         });
@@ -120,7 +120,7 @@ public final class sa extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        Integer num = this.f43432c;
+        Integer num = this.f43435c;
         if (num != null) {
             i11 = View.MeasureSpec.makeMeasureSpec(num.intValue(), 1073741824);
         }

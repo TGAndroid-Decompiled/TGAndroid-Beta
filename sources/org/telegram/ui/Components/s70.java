@@ -10,15 +10,15 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class s70 extends lm0 {
-    public final y70 f32446c;
+    public final y70 f32448c;
 
     public s70(y70 y70Var) {
-        this.f32446c = y70Var;
+        this.f32448c = y70Var;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        int i10 = e1Var.f47738f;
+        int i10 = e1Var.f47741f;
         if (i10 == 3 || i10 == 1) {
             return true;
         }
@@ -28,9 +28,9 @@ public final class s70 extends lm0 {
     public final TLObject E(int i10) {
         int i11;
         int i12;
-        y70 y70Var = this.f32446c;
+        y70 y70Var = this.f32448c;
         if (y70Var.m0 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) y70Var.f34953n0.get(i10 - y70Var.Y);
+            TLRPC.Dialog dialog = (TLRPC.Dialog) y70Var.f34956n0.get(i10 - y70Var.Y);
             if (DialogObject.isUserDialog(dialog.f22031id)) {
                 i12 = ((org.telegram.ui.ActionBar.k3) y70Var).currentAccount;
                 return MessagesController.getInstance(i12).getUser(Long.valueOf(dialog.f22031id));
@@ -38,17 +38,17 @@ public final class s70 extends lm0 {
             i11 = ((org.telegram.ui.ActionBar.k3) y70Var).currentAccount;
             return MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f22031id));
         }
-        return (TLObject) y70Var.f34945e0.get(i10 - y70Var.Y);
+        return (TLObject) y70Var.f34948e0.get(i10 - y70Var.Y);
     }
 
     @Override
     public final int h() {
-        return this.f32446c.f34943c0;
+        return this.f32448c.f34946c0;
     }
 
     @Override
     public final int j(int i10) {
-        y70 y70Var = this.f32446c;
+        y70 y70Var = this.f32448c;
         if (i10 == y70Var.X) {
             return 1;
         }
@@ -59,10 +59,10 @@ public final class s70 extends lm0 {
         if (i10 >= y70Var.Y && i10 < y70Var.Z) {
             return 3;
         }
-        if (i10 == y70Var.f34942b0) {
+        if (i10 == y70Var.f34945b0) {
             return 4;
         }
-        if (i10 == y70Var.f34941a0) {
+        if (i10 == y70Var.f34944a0) {
             return 5;
         }
         return 0;
@@ -74,21 +74,21 @@ public final class s70 extends lm0 {
         boolean z10;
         long j11;
         boolean z11;
-        int i11 = e1Var.f47738f;
-        View view = e1Var.f47735a;
+        int i11 = e1Var.f47741f;
+        View view = e1Var.f47738a;
         if (i11 != 2) {
             if (i11 == 3) {
                 org.telegram.ui.Cells.k4 k4Var = (org.telegram.ui.Cells.k4) view;
                 TLObject E = E(i10);
                 Object object = k4Var.getObject();
                 if (object instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) object).f22174id;
+                    j10 = ((TLRPC.User) object).f22176id;
                 } else if (object instanceof TLRPC.Chat) {
                     j10 = -((TLRPC.Chat) object).f22027id;
                 } else {
                     j10 = 0;
                 }
-                y70 y70Var = this.f32446c;
+                y70 y70Var = this.f32448c;
                 boolean z12 = false;
                 if (i10 != y70Var.Z) {
                     z10 = true;
@@ -97,7 +97,7 @@ public final class s70 extends lm0 {
                 }
                 k4Var.e(E, null, null, z10);
                 if (E instanceof TLRPC.User) {
-                    j11 = ((TLRPC.User) E).f22174id;
+                    j11 = ((TLRPC.User) E).f22176id;
                 } else if (E instanceof TLRPC.Chat) {
                     j11 = -((TLRPC.Chat) E).f22027id;
                 } else {
@@ -110,7 +110,7 @@ public final class s70 extends lm0 {
                         k4Var.setCheckBoxEnabled(false);
                         return;
                     }
-                    if (y70Var.f34946f0.h(j11) >= 0) {
+                    if (y70Var.f34949f0.h(j11) >= 0) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -135,13 +135,13 @@ public final class s70 extends lm0 {
         boolean z10;
         Context context = viewGroup.getContext();
         if (i10 != 2) {
-            y70 y70Var = this.f32446c;
+            y70 y70Var = this.f32448c;
             if (i10 != 3) {
                 if (i10 != 4) {
                     if (i10 != 5) {
                         org.telegram.ui.Cells.c5 c5Var2 = new org.telegram.ui.Cells.c5(context);
                         c5Var2.b(LocaleController.getString(R.string.VoipGroupCopyInviteLink), R.drawable.msg_link, 7, true);
-                        int i11 = org.telegram.ui.ActionBar.y6.f23537n5;
+                        int i11 = org.telegram.ui.ActionBar.y6.f23539n5;
                         c5Var2.a(i11, i11);
                         c5Var = c5Var2;
                     } else {

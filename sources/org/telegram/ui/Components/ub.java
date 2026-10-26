@@ -88,11 +88,6 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         }
     }
 
-    public static boolean access$102(ub ubVar, boolean z10) {
-        ubVar.pillStyle = z10;
-        return z10;
-    }
-
     public static boolean access$1600(ub ubVar, boolean z10) {
         ubVar.getClass();
         if (a() && ubVar.wideScreenWidth != -1) {
@@ -111,15 +106,11 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         return false;
     }
 
-    public static void access$200(ub ubVar) {
-        ubVar.b();
-    }
-
     public void setInOutOffset(float f7) {
         this.inOutOffset = f7;
         updatePosition();
         qc qcVar = this.bulletin;
-        if (qcVar != null && qcVar.f31888k) {
+        if (qcVar != null && qcVar.f31890k) {
             invalidate();
         }
     }
@@ -162,15 +153,15 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
     @Override
     public void dispatchDraw(Canvas canvas) {
         qc qcVar = this.bulletin;
-        if (qcVar != null && qcVar.f31888k) {
+        if (qcVar != null && qcVar.f31890k) {
             if (this.blurVisibilityDrawable == null) {
                 this.blurVisibilityDrawable = new wh.b(new s(this, 16));
             }
             wh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f51204c == null) {
+            if (bVar.f51207c == null) {
                 bVar.b(getMeasuredWidth(), getMeasuredHeight(), 6.0f, AndroidUtilities.dp(10.0f));
             }
-            this.blurVisibilityDrawable.f51207i = a8.ee.b((int) org.telegram.messenger.vh.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f51210i = a8.ee.b((int) org.telegram.messenger.vh.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -187,9 +178,9 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         if (this.bulletin != null && i10 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (obVar = this.delegate) != null) {
-                float h = obVar.h(this.bulletin.f31881a) - getY();
+                float h = obVar.h(this.bulletin.f31883a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f31881a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f31883a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -265,13 +256,13 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         qc qcVar;
         o1.j jVar;
         if (this.bulletin != null && (((obVar = this.delegate) == null || obVar.e()) && (jVar = (qcVar = this.bulletin).d) != null && jVar.f18963f)) {
-            f7 = qcVar.f31893p;
+            f7 = qcVar.f31895p;
         } else {
             ob obVar2 = this.delegate;
             if (obVar2 != null) {
                 qc qcVar2 = this.bulletin;
                 if (qcVar2 != null) {
-                    i10 = qcVar2.f31881a;
+                    i10 = qcVar2.f31883a;
                 } else {
                     i10 = 0;
                 }
@@ -301,7 +292,7 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         if (obVar != null) {
             qc qcVar = this.bulletin;
             if (qcVar != null) {
-                i10 = qcVar.f31881a;
+                i10 = qcVar.f31883a;
             } else {
                 i10 = 0;
             }
@@ -438,7 +429,7 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
             if (this.top) {
                 qc qcVar = this.bulletin;
                 if (qcVar != null) {
-                    i11 = qcVar.f31881a;
+                    i11 = qcVar.f31883a;
                 } else {
                     i11 = 0;
                 }

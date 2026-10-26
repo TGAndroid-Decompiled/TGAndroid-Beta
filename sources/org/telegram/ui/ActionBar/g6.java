@@ -40,7 +40,7 @@ public final class g6 extends l5 {
     public void m(int i10, int i11, int i12) {
         switch (this.T) {
             case 1:
-                if (!((tc1) this.U).f43749e2) {
+                if (!((tc1) this.U).f43752e2) {
                     super.m(i10, i11, i12);
                     return;
                 }
@@ -55,7 +55,7 @@ public final class g6 extends l5 {
     public void n(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
         switch (this.T) {
             case 1:
-                if (!((tc1) this.U).f43749e2) {
+                if (!((tc1) this.U).f43752e2) {
                     super.n(i10, i11, i12, i13, i14, i15, z10, z11);
                     return;
                 }

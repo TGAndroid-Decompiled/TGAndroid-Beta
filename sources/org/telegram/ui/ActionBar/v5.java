@@ -1,21 +1,21 @@
 package org.telegram.ui.ActionBar;
 public final class v5 implements oe.f, r0 {
-    public final x5 f23158a;
+    public final x5 f23160a;
 
     public v5(x5 x5Var) {
-        this.f23158a = x5Var;
+        this.f23160a = x5Var;
     }
 
     @Override
     public void P() {
-        x5 x5Var = this.f23158a;
+        x5 x5Var = this.f23160a;
         x5Var.d();
-        x5Var.f23245a.invalidate();
+        x5Var.f23247a.invalidate();
     }
 
     @Override
     public void g(int i10) {
-        j jVar = this.f23158a.f23245a.T;
+        j jVar = this.f23160a.f23247a.T;
         if (jVar != null) {
             jVar.b(i10);
         }

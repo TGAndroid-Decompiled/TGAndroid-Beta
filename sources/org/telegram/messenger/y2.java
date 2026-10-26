@@ -74,21 +74,21 @@ public final class y2 implements Runnable {
                 TL_stories.PrepaidGiveaway prepaidGiveaway = (TL_stories.PrepaidGiveaway) obj2;
                 TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) obj;
                 int l4 = vg.s.l(a0Var.m0);
-                int i13 = a0Var.f50124j0;
+                int i13 = a0Var.f50127j0;
                 int i14 = xg.u.v;
                 if (i13 == 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                a0Var.f50130q0.b(true);
-                ArrayList arrayList = a0Var.f50117c0;
-                ArrayList arrayList2 = a0Var.f50119e0;
-                TLRPC.Chat chat = a0Var.f50116b0;
-                boolean z11 = a0Var.f50137x0;
-                boolean z12 = a0Var.f50136w0;
+                a0Var.f50133q0.b(true);
+                ArrayList arrayList = a0Var.f50120c0;
+                ArrayList arrayList2 = a0Var.f50122e0;
+                TLRPC.Chat chat = a0Var.f50119b0;
+                boolean z11 = a0Var.f50140x0;
+                boolean z12 = a0Var.f50139w0;
                 int i15 = prepaidGiveaway.quantity;
-                String str = a0Var.f50135v0;
+                String str = a0Var.f50138v0;
                 vg.y yVar = new vg.y(a0Var, tL_prepaidStarsGiveaway, this.f21872b, this.f21873c, prepaidGiveaway);
                 vg.v vVar = new vg.v(a0Var, 6);
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -171,7 +171,7 @@ public final class y2 implements Runnable {
                     return;
                 }
                 TLRPC.TL_payments_launchPrepaidGiveaway tL_payments_launchPrepaidGiveaway = new TLRPC.TL_payments_launchPrepaidGiveaway();
-                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f22263id;
+                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f22265id;
                 tL_payments_launchPrepaidGiveaway.peer = messagesController.getInputPeer(-chat.f22027id);
                 tL_payments_launchPrepaidGiveaway.purpose = tL_inputStorePaymentStarsGiveaway;
                 connectionsManager.sendRequest(tL_payments_launchPrepaidGiveaway, new bi.h2(vVar, messagesController, yVar, 23));

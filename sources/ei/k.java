@@ -49,12 +49,12 @@ public final class k extends s4.t {
         switch (this.Q) {
             case 1:
                 gj gjVar = new gj(this, recyclerView.getContext());
-                gjVar.f47677a = i10;
+                gjVar.f47680a = i10;
                 w0(gjVar);
                 return;
             case 2:
                 lm lmVar = new lm(this, recyclerView.getContext());
-                lmVar.f47677a = i10;
+                lmVar.f47680a = i10;
                 w0(lmVar);
                 return;
             default:

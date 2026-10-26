@@ -118,7 +118,7 @@ public final class p0 implements f1 {
             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f17054b;
             if (!pageblockdetails.open) {
                 pageblockdetails.open = true;
-                v3Var.f32150g3.O(true);
+                v3Var.f32152g3.O(true);
             }
             int i10 = indexOf + 1;
             if (i10 < arrayList.size() && !((a) arrayList.get(i10)).f17058i && !v3.D3((a) arrayList.get(i10))) {

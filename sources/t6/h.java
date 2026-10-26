@@ -9,7 +9,7 @@ import com.google.android.gms.tasks.Tasks;
 import java.util.Arrays;
 import o6.l;
 public final class h extends j {
-    public static final com.google.android.gms.common.api.e f48718k = new com.google.android.gms.common.api.e("ModuleInstall.API", new b8.d(14), new Object());
+    public static final com.google.android.gms.common.api.e f48721k = new com.google.android.gms.common.api.e("ModuleInstall.API", new b8.d(14), new Object());
 
     public final Task f(n... nVarArr) {
         boolean z10;
@@ -23,7 +23,7 @@ public final class h extends j {
             l.i(nVar, "Requested API must not be null.");
         }
         a b10 = a.b(Arrays.asList(nVarArr), false);
-        if (b10.f48711a.isEmpty()) {
+        if (b10.f48714a.isEmpty()) {
             return Tasks.forResult(new s6.a(0, true));
         }
         u b11 = v.b();

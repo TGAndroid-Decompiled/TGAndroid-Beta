@@ -39,7 +39,7 @@ public final class i0 extends g0 {
         this.d = r71Var;
         r71Var.u1();
         r71 r71Var2 = this.d;
-        r71Var2.f32150g3.f29505r = false;
+        r71Var2.f32152g3.f29507r = false;
         r71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.d.j(new ai.b(this, 16));
@@ -53,12 +53,12 @@ public final class i0 extends g0 {
         u6Var3 = ((k3) j0Var).resourcesProvider;
         f7.m(kVar2, 5, i11, u6Var3);
         org.telegram.ui.ActionBar.k kVar3 = this.f14347a;
-        int i12 = y6.f23767z8;
+        int i12 = y6.f23769z8;
         u6Var4 = ((k3) j0Var).resourcesProvider;
         f7.m(kVar3, 3, i12, u6Var4);
         this.f14347a.setBackButtonImage(R.drawable.ic_ab_back);
         org.telegram.ui.ActionBar.k kVar4 = this.f14347a;
-        int i13 = y6.f23748y8;
+        int i13 = y6.f23750y8;
         u6Var5 = ((k3) j0Var).resourcesProvider;
         f7.m(kVar4, 1, i13, u6Var5);
         this.f14347a.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
@@ -70,7 +70,7 @@ public final class i0 extends g0 {
         u6Var6 = ((k3) j0Var).resourcesProvider;
         fi.d dVar = new fi.d(context, u6Var6, true);
         dVar.e();
-        int i14 = y6.f23354d6;
+        int i14 = y6.f23356d6;
         dVar.setColor(i0.a.f(0.125f, j0Var.getThemedColor(i14), j0Var.getThemedColor(i11)));
         dVar.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
         dVar.f();
@@ -81,12 +81,12 @@ public final class i0 extends g0 {
             a7 p10 = f7.p(dVar, true);
             p10.d = background;
             p10.e = null;
-            p10.f22420f = null;
+            p10.f22422f = null;
             if (background != null) {
                 z6 z6Var = new z6();
                 p10.e = z6Var;
                 z6Var.c(i14, i11, 3, 0.125f, u6Var8);
-                z6Var.f23801g = f7.u(background);
+                z6Var.f23803g = f7.u(background);
             }
         }
         dVar.setOnClickListener(new View.OnClickListener(this) {

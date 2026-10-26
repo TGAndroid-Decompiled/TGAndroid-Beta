@@ -6,28 +6,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public final class sa0 extends aw0 {
-    public final ta0 f32498r2;
+    public final ta0 f32500r2;
 
     public sa0(ta0 ta0Var, Context context, long j10, sv0 sv0Var, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i10, ta0 ta0Var2, ra0 ra0Var, org.telegram.ui.ActionBar.u6 u6Var, ch.b bVar) {
         super(context, j10, sv0Var, 0, null, chatFull, userFull, i10, 0, ta0Var2, ra0Var, 0, u6Var, bVar);
-        this.f32498r2 = ta0Var;
+        this.f32500r2 = ta0Var;
     }
 
     @Override
     public final boolean D0() {
-        return this.f32498r2.Z();
+        return this.f32500r2.Z();
     }
 
     @Override
     public final boolean G() {
-        return !this.f32498r2.Z();
+        return !this.f32500r2.Z();
     }
 
     @Override
     public final void K0(SparseArray sparseArray) {
         boolean z10;
         int size = sparseArray.size();
-        ta0 ta0Var = this.f32498r2;
+        ta0 ta0Var = this.f32500r2;
         ta0Var.v = sparseArray;
         fi.d dVar = ta0Var.N;
         if (dVar != null) {
@@ -46,21 +46,21 @@ public final class sa0 extends aw0 {
 
     @Override
     public final void R0(boolean z10) {
-        ta0 ta0Var = this.f32498r2;
+        ta0 ta0Var = this.f32500r2;
         AndroidUtilities.removeAdjustResize(ta0Var.getParentActivity(), ta0.W(ta0Var));
     }
 
     @Override
     public final void S0() {
         super.S0();
-        this.f32498r2.c0();
+        this.f32500r2.c0();
     }
 
     @Override
     public final void T0(float f7) {
         int i10;
-        ta0 ta0Var = this.f32498r2;
-        if (ta0Var.f32947a != 1) {
+        ta0 ta0Var = this.f32500r2;
+        if (ta0Var.f32950a != 1) {
             return;
         }
         if (Math.round(f7 - 8.0f) > 0) {
@@ -78,8 +78,8 @@ public final class sa0 extends aw0 {
 
     @Override
     public final boolean V() {
-        ta0 ta0Var = this.f32498r2;
-        if (!ta0Var.Z() && ta0Var.f32947a != 3) {
+        ta0 ta0Var = this.f32500r2;
+        if (!ta0Var.Z() && ta0Var.f32950a != 3) {
             return false;
         }
         return true;
@@ -87,24 +87,24 @@ public final class sa0 extends aw0 {
 
     @Override
     public final int getInitialTab() {
-        return this.f32498r2.S;
+        return this.f32500r2.S;
     }
 
     @Override
     public final String getStoriesHashtag() {
-        return this.f32498r2.h;
+        return this.f32500r2.h;
     }
 
     @Override
     public final String getStoriesHashtagUsername() {
-        return this.f32498r2.f32951n;
+        return this.f32500r2.f32954n;
     }
 
     @Override
     public final void k1(boolean z10) {
         if (this.E1 != z10) {
             super.k1(z10);
-            ta0 ta0Var = this.f32498r2;
+            ta0 ta0Var = this.f32500r2;
             if (ta0Var.Z()) {
                 if (z10) {
                     p1(null);
@@ -120,8 +120,8 @@ public final class sa0 extends aw0 {
 
     @Override
     public final boolean u0() {
-        ta0 ta0Var = this.f32498r2;
-        if (ta0Var.f32947a == 0 && ta0Var.e == ta0Var.getUserConfig().getClientUserId() && ta0Var.f32950f == 0) {
+        ta0 ta0Var = this.f32500r2;
+        if (ta0Var.f32950a == 0 && ta0Var.e == ta0Var.getUserConfig().getClientUserId() && ta0Var.f32953f == 0) {
             return true;
         }
         return false;
@@ -129,12 +129,12 @@ public final class sa0 extends aw0 {
 
     @Override
     public final boolean v0() {
-        return this.f32498r2.Z();
+        return this.f32500r2.Z();
     }
 
     @Override
     public final boolean x0() {
-        if (this.f32498r2.f32947a == 2) {
+        if (this.f32500r2.f32950a == 2) {
             return true;
         }
         return false;

@@ -4,11 +4,11 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 public final class c3 extends Drawable {
-    public final int f33755a = -15130842;
+    public final int f33758a = -15130842;
 
     @Override
     public final void draw(Canvas canvas) {
-        canvas.drawColor(this.f33755a);
+        canvas.drawColor(this.f33758a);
     }
 
     @Override

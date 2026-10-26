@@ -61,9 +61,9 @@ public final class h1 extends r2 implements NotificationCenter.NotificationCente
         String string2 = LocaleController.getString(R.string.BusinessHoursInfo);
         int i10 = R.raw.biz_clock;
         t61 t61Var = new t61(2);
-        t61Var.f32872l = string;
-        t61Var.f32875o = string2;
-        t61Var.f32871k = i10;
+        t61Var.f32875l = string;
+        t61Var.f32878o = string2;
+        t61Var.f32874k = i10;
         arrayList.add(t61Var);
         t61 i11 = t61.i(-1, LocaleController.getString(R.string.BusinessHoursShow));
         i11.L(h1Var.d);
@@ -82,8 +82,8 @@ public final class h1 extends r2 implements NotificationCenter.NotificationCente
                     String b02 = b0(h1Var.f15724f[i12]);
                     t61 t61Var2 = new t61(5);
                     t61Var2.d = i12;
-                    t61Var2.f32872l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    t61Var2.f32873m = b02;
+                    t61Var2.f32875l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    t61Var2.f32876m = b02;
                     t61Var2.L(!h1Var.f15724f[i12].isEmpty());
                     arrayList.add(t61Var2);
                     i12++;
@@ -267,7 +267,7 @@ public final class h1 extends r2 implements NotificationCenter.NotificationCente
                 if (E1 instanceof n5) {
                     ((n5) E1).setValue(b0(this.f15724f[i11]));
                 } else {
-                    this.f15721a.f32150g3.O(true);
+                    this.f15721a.f32152g3.O(true);
                 }
             }
         }
@@ -297,7 +297,7 @@ public final class h1 extends r2 implements NotificationCenter.NotificationCente
         this.f15721a = r71Var;
         r71Var.u1();
         r71 r71Var2 = this.f15721a;
-        r71Var2.f32150g3.f29505r = false;
+        r71Var2.f32152g3.f29507r = false;
         r71Var2.setSectionsDrawBackground(true);
         frameLayout.addView(this.f15721a, gb1.g(-1.0f, -1));
         f0();
@@ -315,14 +315,14 @@ public final class h1 extends r2 implements NotificationCenter.NotificationCente
                 this.f15725n = g2.b(this.currentAccount).c();
             }
             r71 r71Var = this.f15721a;
-            if (r71Var != null && (j71Var = r71Var.f32150g3) != null) {
+            if (r71Var != null && (j71Var = r71Var.f32152g3) != null) {
                 j71Var.O(true);
             }
         }
     }
 
     public final void e0() {
-        if (this.f15722b.f23137x.f19327f) {
+        if (this.f15722b.f23139x.f19327f) {
             return;
         }
         if (!c0()) {
@@ -410,7 +410,7 @@ public final class h1 extends r2 implements NotificationCenter.NotificationCente
             }
         }
         r71 r71Var = this.f15721a;
-        if (r71Var != null && (j71Var = r71Var.f32150g3) != null) {
+        if (r71Var != null && (j71Var = r71Var.f32152g3) != null) {
             j71Var.O(true);
         }
         Z(false);

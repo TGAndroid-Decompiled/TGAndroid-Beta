@@ -116,7 +116,7 @@ public final class f1 implements NotificationCenter.NotificationCenterDelegate {
                 int i10 = 0;
                 while (true) {
                     if (i10 < arrayList2.size()) {
-                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i10)).f22254id == tL_starGiftUnique.f22254id) {
+                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i10)).f22256id == tL_starGiftUnique.f22256id) {
                             break;
                         }
                         i10++;

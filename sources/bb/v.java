@@ -86,11 +86,11 @@ public final class v extends nd.i implements ud.p {
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", str2, null);
                     }
-                    y9.i iVar = jVar.f52430b;
+                    y9.i iVar = jVar.f52433b;
                     synchronized (iVar) {
-                        if (!Objects.equals(iVar.f52428c, str)) {
-                            y9.i.a(iVar.f52426a, iVar.f52427b, str);
-                            iVar.f52428c = str;
+                        if (!Objects.equals(iVar.f52431c, str)) {
+                            y9.i.a(iVar.f52429a, iVar.f52430b, str);
+                            iVar.f52431c = str;
                         }
                     }
                     Log.d("SessionLifecycleClient", "Notified " + cb.d.f6181a + " of new session " + str);

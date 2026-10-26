@@ -36,16 +36,16 @@ public final class a3 extends ti {
             case 2:
                 un unVar = (un) notificationCenterDelegate;
                 a3 a3Var2 = unVar.V1;
-                if (a3Var2 != null && (a3Var2.isShowing() || this.f33075x0)) {
+                if (a3Var2 != null && (a3Var2.isShowing() || this.f33078x0)) {
                     Activity parentActivity = unVar.getParentActivity();
                     i10 = ((org.telegram.ui.ActionBar.r2) unVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
                 super.dismissInternal();
                 unVar.da(false, true);
-                mm mmVar = unVar.f44292j1;
+                mm mmVar = unVar.f44295j1;
                 if (mmVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f47105a;
+                    WeakHashMap weakHashMap = r0.i0.f47108a;
                     r0.y.c(mmVar);
                     return;
                 }
@@ -89,7 +89,7 @@ public final class a3 extends ti {
                 return;
             default:
                 un unVar = (un) notificationCenterDelegate;
-                boolean z10 = this.f33075x0;
+                boolean z10 = this.f33078x0;
                 boolean M = this.B0.M();
                 if (!M) {
                     unVar.P3 = false;
@@ -118,9 +118,9 @@ public final class a3 extends ti {
                         AndroidUtilities.requestAdjustResize(parentActivity, i10);
                     }
                     unVar.da(false, false);
-                    mm mmVar = unVar.f44292j1;
+                    mm mmVar = unVar.f44295j1;
                     if (mmVar != null) {
-                        WeakHashMap weakHashMap = r0.i0.f47105a;
+                        WeakHashMap weakHashMap = r0.i0.f47108a;
                         r0.y.c(mmVar);
                         return;
                     }

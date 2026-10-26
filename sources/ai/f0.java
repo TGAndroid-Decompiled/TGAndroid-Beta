@@ -95,7 +95,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
 
     @Override
     public k80 a(li.g1 g1Var) {
-        li.q qVar = (li.q) ((rf.b) this.f1485b).f47333c;
+        li.q qVar = (li.q) ((rf.b) this.f1485b).f47336c;
         k80 k80Var = new k80(qVar, (u6) this.f1486c, g1Var, false, false, true);
         qVar.H = k80Var;
         return k80Var;
@@ -110,7 +110,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f1486c;
                 TL_stories.TL_stories_editStory tL_stories_editStory = new TL_stories.TL_stories_editStory();
                 tL_stories_editStory.peer = MessagesController.getInstance(q4Var.f9021r2).getInputPeer(storyItem.dialogId);
-                tL_stories_editStory.f22268id = storyItem.f22264id;
+                tL_stories_editStory.f22270id = storyItem.f22266id;
                 tL_stories_editStory.flags |= 4;
                 tL_stories_editStory.privacy_rules = l9Var.f11182b;
                 ConnectionsManager.getInstance(q4Var.f9021r2).sendRequest(tL_stories_editStory, new i2(q4Var, q0Var, storyItem, l9Var, 5));
@@ -168,7 +168,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
         s9.a aVar = (s9.a) this.f1486c;
         try {
             Trace.beginSection(str);
-            return aVar.f47983f.d1(meVar);
+            return aVar.f47986f.d1(meVar);
         } finally {
             Trace.endSection();
         }
@@ -209,7 +209,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
         n9 n9Var = g9Var.W;
         if (i10 >= 0 && i10 < arrayList2.size()) {
             u8 u8Var = (u8) arrayList2.get(i10);
-            int i21 = u8Var.f47037a;
+            int i21 = u8Var.f47040a;
             int i22 = 0;
             if (i21 == 3) {
                 if (u8Var.f11760n && n9Var.F) {
@@ -268,8 +268,8 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 Context context2 = g9Var.getContext();
                                 u6Var7 = ((k3) n9Var).resourcesProvider;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2, 0, u6Var7);
-                                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.GroupTooLarge);
-                                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
+                                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.GroupTooLarge);
+                                alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
                                 org.telegram.messenger.t.p(R.string.OK, alertDialog$Builder, null);
                             } else if (!hashMap.containsKey(Long.valueOf(j10))) {
                                 i17 = ((k3) n9Var).currentAccount;
@@ -318,7 +318,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 if (g9Var.f10920a == 0) {
                                     n9Var.N = 0;
                                 }
-                                long j11 = user.f22174id;
+                                long j11 = user.f22176id;
                                 HashSet hashSet = new HashSet(arrayList3);
                                 if (arrayList3.contains(Long.valueOf(j11))) {
                                     Iterator it = hashMap.entrySet().iterator();
@@ -383,7 +383,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 i16 = R.string.StoryEnabledScreenshots;
                             }
                             qc G = wcVar.G(i25, 4, LocaleController.getString(i16));
-                            G.f31887j = 5000;
+                            G.f31889j = 5000;
                             G.k(true);
                             return;
                         }
@@ -397,7 +397,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                             i15 = R.string.StoryDisabledScreenshots;
                         }
                         qc G2 = wcVar2.G(i26, 4, LocaleController.getString(i15));
-                        G2.f31887j = 5000;
+                        G2.f31889j = 5000;
                         G2.k(true);
                     } else if (i24 == 1) {
                         boolean d10 = v8Var.d();
@@ -414,7 +414,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 i14 = R.string.StoryEnableKeep;
                             }
                             qc G3 = wcVar3.G(i27, 4, LocaleController.getString(i14));
-                            G3.f31887j = 5000;
+                            G3.f31889j = 5000;
                             G3.k(true);
                         } else {
                             h3 h3Var4 = n9Var.container;
@@ -427,7 +427,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 i13 = R.string.StoryDisableKeep;
                             }
                             qc G4 = wcVar4.G(i28, 4, LocaleController.getString(i13));
-                            G4.f31887j = 5000;
+                            G4.f31889j = 5000;
                             G4.k(true);
                         }
                         g9Var.g(true);

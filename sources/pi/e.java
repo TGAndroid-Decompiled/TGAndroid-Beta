@@ -19,22 +19,22 @@ public final class e extends oi.e {
     public int J;
     public final RectF K;
     public final ri.a e;
-    public final oi.c f46882f;
+    public final oi.c f46885f;
     public final lf h;
-    public final lf f46883n;
-    public lf f46884r;
-    public boolean f46885s = true;
+    public final lf f46886n;
+    public lf f46887r;
+    public boolean f46888s = true;
     public boolean v = true;
-    public int f46886w = 1;
-    public f f46887x;
-    public f f46888y;
+    public int f46889w = 1;
+    public f f46890x;
+    public f f46891y;
 
     public e(ri.a aVar) {
         oi.c cVar;
         lf aVar2;
-        f fVar = f.f46889b;
-        this.f46887x = fVar;
-        this.f46888y = fVar;
+        f fVar = f.f46892b;
+        this.f46890x = fVar;
+        this.f46891y = fVar;
         this.E = fVar;
         this.H = 255;
         this.J = 255;
@@ -45,7 +45,7 @@ public final class e extends oi.e {
         } else {
             cVar = null;
         }
-        this.f46882f = cVar;
+        this.f46885f = cVar;
         if (aVar instanceof ri.b) {
             if (Build.VERSION.SDK_INT >= 29) {
                 aVar2 = new b(this);
@@ -53,18 +53,18 @@ public final class e extends oi.e {
                 aVar2 = new a(this, false);
             }
             this.h = aVar2;
-            this.f46883n = aVar2;
+            this.f46886n = aVar2;
         } else {
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 33) {
                 this.h = new d(this);
-                this.f46883n = new b(this);
+                this.f46886n = new b(this);
             } else if (i10 >= 31) {
                 this.h = new c(this);
-                this.f46883n = new b(this);
+                this.f46886n = new b(this);
             } else {
                 this.h = new a(this, true);
-                this.f46883n = new a(this, false);
+                this.f46886n = new a(this, false);
             }
         }
         g(this.f19460a);
@@ -81,7 +81,7 @@ public final class e extends oi.e {
         if (fVar == null) {
             i12 = -1;
         } else {
-            i12 = fVar.f46890a;
+            i12 = fVar.f46893a;
         }
         boolean z10 = false;
         float f11 = 0;
@@ -93,7 +93,7 @@ public final class e extends oi.e {
         }
         float f14 = 1.0f;
         float f15 = 1.0f / i11;
-        int i13 = eVar.f46886w;
+        int i13 = eVar.f46889w;
         if (i13 == 1 || i13 == 2) {
             z10 = true;
         }
@@ -110,7 +110,7 @@ public final class e extends oi.e {
         float max2 = (Math.max(max * f15, 0.001f) * f14) + f16;
         int[] iArr = new int[8];
         h0.a(h0.f1292i, i10, iArr);
-        int i14 = eVar.f46886w;
+        int i14 = eVar.f46889w;
         if (i14 != 1 && i14 != 4) {
             return new LinearGradient(max2, 0.0f, f16, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);
         }
@@ -121,13 +121,13 @@ public final class e extends oi.e {
     public final void a() {
         Rect bounds = getBounds();
         if (bounds.isEmpty()) {
-            this.f46884r.b();
+            this.f46887r.b();
             return;
         }
         RectF rectF = this.K;
         rectF.set(bounds);
         rectF.offset(this.f19462c, this.d);
-        this.f46884r.a(bounds, rectF);
+        this.f46887r.a(bounds, rectF);
     }
 
     @Override
@@ -137,12 +137,12 @@ public final class e extends oi.e {
 
     @Override
     public final boolean e() {
-        return this.f46884r.d();
+        return this.f46887r.d();
     }
 
     @Override
     public final void f(int i10) {
-        this.f46884r.e(i10 / 255.0f);
+        this.f46887r.e(i10 / 255.0f);
         invalidateSelf();
     }
 
@@ -150,23 +150,23 @@ public final class e extends oi.e {
     public final void g(r rVar) {
         lf lfVar;
         boolean z10 = rVar.f19504a;
-        lf lfVar2 = this.f46883n;
+        lf lfVar2 = this.f46886n;
         if (z10) {
             lfVar = this.h;
         } else {
             lfVar = lfVar2;
         }
-        lf lfVar3 = this.f46884r;
+        lf lfVar3 = this.f46887r;
         if (lfVar3 != lfVar) {
             if (lfVar3 != null) {
                 lfVar3.b();
             }
-            this.f46884r = lfVar;
+            this.f46887r = lfVar;
             lfVar.e(this.f19461b / 255.0f);
-            if (this.f46884r == lfVar2) {
+            if (this.f46887r == lfVar2) {
                 this.v = true;
             } else {
-                this.f46885s = true;
+                this.f46888s = true;
             }
             invalidateSelf();
         }
@@ -179,7 +179,7 @@ public final class e extends oi.e {
 
     @Override
     public final boolean j() {
-        lf lfVar = this.f46884r;
+        lf lfVar = this.f46887r;
         lfVar.getClass();
         return !(lfVar instanceof a);
     }
@@ -187,7 +187,7 @@ public final class e extends oi.e {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f46885s = true;
+        this.f46888s = true;
         this.v = true;
     }
 
@@ -198,7 +198,7 @@ public final class e extends oi.e {
             this.G = y6.o1(this.H / 255.0f, cVar.f12837b);
             this.I = y6.o1(this.J / 255.0f, this.F.f12837b);
         }
-        this.f46885s = true;
+        this.f46888s = true;
         this.v = true;
     }
 

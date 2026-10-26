@@ -17,11 +17,11 @@ import java.util.Arrays;
 import java.util.Locale;
 import org.telegram.ui.ji1;
 public final class h extends wd {
-    public static final ji1 f46938b = new ji1(6);
-    public final g f46939a;
+    public static final ji1 f46941b = new ji1(6);
+    public final g f46942a;
 
     public h(g gVar) {
-        this.f46939a = gVar;
+        this.f46942a = gVar;
     }
 
     public static a d(x xVar, int i10, int i11) {

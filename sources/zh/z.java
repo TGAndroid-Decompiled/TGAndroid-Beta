@@ -10,17 +10,17 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.u6;
 public final class z extends g1 {
-    public final RectF f53356w0;
-    public final RectF f53357x0;
-    public final Path f53358y0;
-    public final c0 f53359z0;
+    public final RectF f53359w0;
+    public final RectF f53360x0;
+    public final Path f53361y0;
+    public final c0 f53362z0;
 
     public z(c0 c0Var, Context context, int i10, u6 u6Var) {
         super(context, i10, u6Var);
-        this.f53359z0 = c0Var;
-        this.f53356w0 = new RectF();
-        this.f53357x0 = new RectF();
-        this.f53358y0 = new Path();
+        this.f53362z0 = c0Var;
+        this.f53359w0 = new RectF();
+        this.f53360x0 = new RectF();
+        this.f53361y0 = new Path();
     }
 
     @Override
@@ -30,16 +30,16 @@ public final class z extends g1 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        c0 c0Var = this.f53359z0;
-        x xVar = c0Var.f52911a0;
+        c0 c0Var = this.f53362z0;
+        x xVar = c0Var.f52914a0;
         boolean drawChild = super.drawChild(canvas, view, j10);
         FrameLayout frameLayout = this.d;
         if (view == frameLayout) {
             FrameLayout frameLayout2 = xVar.f4345b;
             w wVar = c0Var.Y;
-            RectF rectF = this.f53356w0;
+            RectF rectF = this.f53359w0;
             if (jh.k.c(frameLayout2, wVar, rectF)) {
-                RectF rectF2 = this.f53357x0;
+                RectF rectF2 = this.f53360x0;
                 if (!jh.k.c(frameLayout, this, rectF2)) {
                     return true;
                 }
@@ -47,7 +47,7 @@ public final class z extends g1 {
                 float centerY = rectF2.centerY() - AndroidUtilities.dp(40.0f);
                 if (!rectF.isEmpty()) {
                     canvas.save();
-                    canvas.clipPath(this.f53358y0);
+                    canvas.clipPath(this.f53361y0);
                     canvas.scale(0.6f, 0.6f, rectF2.centerX(), rectF2.centerY());
                     canvas.translate(rectF2.centerX() - (xVar.getWidth() / 2.0f), rectF2.centerY() - (xVar.getHeight() / 2.0f));
                     xVar.b(canvas, xVar.getWidth() / 2.0f, AndroidUtilities.dp(104.0f), xVar.getWidth(), xVar.getHeight());
@@ -69,9 +69,9 @@ public final class z extends g1 {
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        Path path = this.f53358y0;
+        Path path = this.f53361y0;
         path.rewind();
-        RectF rectF = this.f53356w0;
+        RectF rectF = this.f53359w0;
         rectF.set(0.0f, 0.0f, i10, i11);
         rectF.inset(AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f));
         path.addRoundRect(rectF, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), Path.Direction.CW);

@@ -82,7 +82,7 @@ public abstract class lu extends EditText {
         luVar.isSpoilersRevealed = false;
         luVar.invalidateSpoilers();
         if (!luVar.spoilers.isEmpty()) {
-            luVar.spoilers.get(0).f51870q = new ku(luVar, 3);
+            luVar.spoilers.get(0).f51873q = new ku(luVar, 3);
             float sqrt = (float) Math.sqrt(Math.pow(luVar.getHeight(), 2.0d) + Math.pow(luVar.getWidth(), 2.0d));
             for (xh.g gVar : luVar.spoilers) {
                 gVar.j(luVar.lastRippleX, luVar.lastRippleY, sqrt, true);
@@ -142,7 +142,7 @@ public abstract class lu extends EditText {
             this.postedSpoilerTimeout = false;
             removeCallbacks(this.spoilerTimeout);
             setSpoilersRevealed(true, false);
-            gVar.f51870q = new ku(this, 0);
+            gVar.f51873q = new ku(this, 0);
             float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
             for (xh.g gVar2 : this.spoilers) {
                 gVar2.j(f7, f10, sqrt, false);
@@ -170,7 +170,7 @@ public abstract class lu extends EditText {
                 i10++;
                 oj0 oj0Var2 = oj0Var;
                 jj0 jj0Var = oj0Var2.e.J;
-                if (oj0Var2.b() && oj0Var2.f31316g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
+                if (oj0Var2.b() && oj0Var2.f31318g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -199,7 +199,7 @@ public abstract class lu extends EditText {
             }
         }
         if (!z10) {
-            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f51899a.f15828b).onTouchEvent(motionEvent)) {
+            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f51902a.f15828b).onTouchEvent(motionEvent)) {
                 if (motionEvent.getActionMasked() == 1) {
                     MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                     super.dispatchTouchEvent(obtain);
@@ -248,11 +248,11 @@ public abstract class lu extends EditText {
             for (z11 z11Var : (z11[]) text.getSpans(0, text.length(), z11.class)) {
                 if (z11Var.c()) {
                     boolean z10 = this.isSpoilersRevealed;
-                    y11 y11Var = z11Var.f35178b;
+                    y11 y11Var = z11Var.f35181b;
                     if (z10) {
-                        y11Var.f34904a |= 512;
+                        y11Var.f34907a |= 512;
                     } else {
-                        y11Var.f34904a &= -513;
+                        y11Var.f34907a &= -513;
                     }
                 }
             }
@@ -316,7 +316,7 @@ public abstract class lu extends EditText {
         Layout layout = getLayout();
         if (layout != null && (layout.getText() instanceof Spannable)) {
             if (this.drawAnimatedEmojiDrawables && (y5Var2 = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList = y5Var2.f34925a;
+                ArrayList arrayList = y5Var2.f34928a;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     ((x5) arrayList.get(i10)).d.recordPositions = false;
                 }
@@ -332,7 +332,7 @@ public abstract class lu extends EditText {
             }
             xh.g.a(this, layout2, 0, measuredWidth, (Spanned) getText(), stack, list2, arrayList2);
             if (this.drawAnimatedEmojiDrawables && (y5Var = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList3 = y5Var.f34925a;
+                ArrayList arrayList3 = y5Var.f34928a;
                 for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                     ((x5) arrayList3.get(i12)).d.recordPositions = true;
                 }
@@ -385,7 +385,7 @@ public abstract class lu extends EditText {
                 this.wrappedCanvas = new Canvas();
             }
             fd0 fd0Var = this.wrappedCanvas;
-            fd0Var.f28165a = canvas;
+            fd0Var.f28167a = canvas;
             super.onDraw(fd0Var);
         } else {
             super.onDraw(canvas);
@@ -402,7 +402,7 @@ public abstract class lu extends EditText {
         canvas2.restore();
         if (!this.spoilers.isEmpty()) {
             xh.g gVar2 = this.spoilers.get(0);
-            if (gVar2.f51866m > 0.0f && gVar2.f51867n > 0.0f) {
+            if (gVar2.f51869m > 0.0f && gVar2.f51870n > 0.0f) {
                 canvas2.save();
                 canvas2.clipPath(this.path);
                 this.path.rewind();
@@ -414,7 +414,7 @@ public abstract class lu extends EditText {
                         this.wrappedCanvas = new Canvas();
                     }
                     fd0 fd0Var2 = this.wrappedCanvas;
-                    fd0Var2.f28165a = canvas2;
+                    fd0Var2.f28167a = canvas2;
                     super.onDraw(fd0Var2);
                 } else {
                     super.onDraw(canvas2);
@@ -431,7 +431,7 @@ public abstract class lu extends EditText {
                 int i12 = rect.top;
                 int i13 = bounds2.bottom;
                 if ((i12 <= i13 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i13 >= i12)) {
-                    if (gVar3.f51877y) {
+                    if (gVar3.f51880y) {
                         color = this.quoteColor;
                     } else {
                         color = getPaint().getColor();
@@ -514,11 +514,11 @@ public abstract class lu extends EditText {
         if (text != null) {
             for (z11 z11Var : (z11[]) text.getSpans(0, text.length(), z11.class)) {
                 if (z11Var.c()) {
-                    y11 y11Var = z11Var.f35178b;
+                    y11 y11Var = z11Var.f35181b;
                     if (z10) {
-                        y11Var.f34904a |= 512;
+                        y11Var.f34907a |= 512;
                     } else {
-                        y11Var.f34904a &= -513;
+                        y11Var.f34907a &= -513;
                     }
                 }
             }

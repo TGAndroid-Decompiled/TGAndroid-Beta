@@ -186,14 +186,14 @@ public final class b1 {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f12887c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f10, 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
             e2Var.T = replaceTags;
             a1 a1Var = new a1(this.f12885a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int i11 = y6.L5;
             int x02 = y6.x0(null, i11, false);
-            e2Var.f22557b0 = a1Var;
-            e2Var.f22560c0 = x02;
-            e2Var.f22562d0 = -1;
+            e2Var.f22559b0 = a1Var;
+            e2Var.f22562c0 = x02;
+            e2Var.f22564d0 = -1;
             alertDialog$Builder.n(i11, null);
             if (!a() && (f7 = f()) != null && (!f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || !f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionSettings), new androidx.car.app.utils.a(f10, zArr, rVar, 8));
@@ -328,7 +328,7 @@ public final class b1 {
                         int i11 = y6.L5;
                         alertDialog$Builder.m(i10, 72, y6.x0(null, i11, false), null);
                         alertDialog$Builder.n(i11, null);
-                        alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
+                        alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Enable), new nc(context, 1));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                         alertDialog$Builder.p();
@@ -382,14 +382,14 @@ public final class b1 {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f12887c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f(), 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
             e2Var.T = replaceTags;
             a1 a1Var = new a1(this.f12885a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int i11 = y6.L5;
             int x02 = y6.x0(null, i11, false);
-            e2Var.f22557b0 = a1Var;
-            e2Var.f22560c0 = x02;
-            e2Var.f22562d0 = -1;
+            e2Var.f22559b0 = a1Var;
+            e2Var.f22562c0 = x02;
+            e2Var.f22564d0 = -1;
             alertDialog$Builder.n(i11, null);
             Activity f10 = f();
             if (f10 == null || (f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {

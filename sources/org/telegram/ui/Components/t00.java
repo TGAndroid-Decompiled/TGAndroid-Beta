@@ -20,16 +20,16 @@ import android.widget.TextView;
 import java.io.Serializable;
 import org.telegram.messenger.AndroidUtilities;
 public final class t00 extends FrameLayout {
-    public final int f32802a = 1;
-    public boolean f32803b;
-    public final Object f32804c;
+    public final int f32805a = 1;
+    public boolean f32806b;
+    public final Object f32807c;
     public Serializable d;
     public final KeyEvent.Callback e;
 
     public t00(v00 v00Var, Activity activity) {
         super(activity);
         this.e = v00Var;
-        this.f32804c = new RectF();
+        this.f32807c = new RectF();
     }
 
     public void a(String str, boolean z10) {
@@ -42,7 +42,7 @@ public final class t00 extends FrameLayout {
         ((t80) this.e).G = true;
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(180L);
-        animatorSet.setInterpolator(ds.f27585g);
+        animatorSet.setInterpolator(ds.f27587g);
         Property property = View.ALPHA;
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textViewArr[0], property, 1.0f, 0.0f);
         TextView textView = textViewArr[0];
@@ -56,18 +56,18 @@ public final class t00 extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         float f7;
-        switch (this.f32802a) {
+        switch (this.f32805a) {
             case 2:
                 org.telegram.ui.Wallet.r5 r5Var = (org.telegram.ui.Wallet.r5) this.e;
-                org.telegram.ui.Wallet.n5 n5Var = r5Var.f37165b;
+                org.telegram.ui.Wallet.n5 n5Var = r5Var.f37168b;
                 if (n5Var != null) {
                     float[] fArr = (float[]) r5Var.h.f10864b;
-                    float[] fArr2 = n5Var.f37010k;
-                    float[] fArr3 = n5Var.f37011l;
-                    Paint paint = n5Var.f36996b;
+                    float[] fArr2 = n5Var.f37013k;
+                    float[] fArr3 = n5Var.f37014l;
+                    Paint paint = n5Var.f36999b;
                     Paint paint2 = n5Var.d;
-                    Path path = n5Var.f37015p;
-                    if (n5Var.f37016q != 0.0f && (Math.abs(Math.sin(Math.toRadians(n5Var.S))) >= 0.009999999776482582d || Math.abs(Math.sin(Math.toRadians(n5Var.T))) >= 0.009999999776482582d)) {
+                    Path path = n5Var.f37018p;
+                    if (n5Var.f37019q != 0.0f && (Math.abs(Math.sin(Math.toRadians(n5Var.S))) >= 0.009999999776482582d || Math.abs(Math.sin(Math.toRadians(n5Var.T))) >= 0.009999999776482582d)) {
                         int a2 = org.telegram.ui.Wallet.h7.a(fArr, -16216082);
                         int a10 = org.telegram.ui.Wallet.h7.a(fArr, -15291399);
                         paint.setShader(null);
@@ -84,8 +84,8 @@ public final class t00 extends FrameLayout {
                         paint2.setShader(null);
                         paint2.setAlpha(255);
                         float f10 = 0.6f;
-                        paint2.setStrokeWidth(n5Var.f37016q * 0.6f);
-                        int[] iArr = n5Var.f37014o;
+                        paint2.setStrokeWidth(n5Var.f37019q * 0.6f);
+                        int[] iArr = n5Var.f37017o;
                         int length = iArr.length;
                         int i12 = 0;
                         while (i12 < length) {
@@ -93,7 +93,7 @@ public final class t00 extends FrameLayout {
                             int i14 = i13 * 2;
                             int i15 = ((i13 + 1) % 76) * 2;
                             float f11 = f10;
-                            float[] fArr4 = n5Var.f37009j;
+                            float[] fArr4 = n5Var.f37012j;
                             float f12 = (fArr4[i14] + fArr4[i15]) * 0.5f;
                             int i16 = i14 + 1;
                             int i17 = i15 + 1;
@@ -103,7 +103,7 @@ public final class t00 extends FrameLayout {
                             float sqrt = 1.0f / ((float) Math.sqrt(b10.e(f13, f13, f12 * f12, 0.0144f)));
                             float f14 = f12 * sqrt;
                             float f15 = f13 * sqrt;
-                            if (n5Var.f37017r) {
+                            if (n5Var.f37020r) {
                                 f7 = -0.12f;
                             } else {
                                 f7 = 0.12f;
@@ -111,12 +111,12 @@ public final class t00 extends FrameLayout {
                             float f16 = f7 * sqrt;
                             float c10 = org.telegram.ui.Wallet.n5.c((n5Var.Y * f16) + (n5Var.X * f15) + (n5Var.W * f14));
                             float f17 = f14 * n5Var.Z;
-                            float f18 = n5Var.f36997b0 * f16;
+                            float f18 = n5Var.f37000b0 * f16;
                             int i19 = i12;
                             float[] fArr5 = fArr2;
                             float[] fArr6 = fArr3;
                             float C = c3.h0.C(c10, 0.38f, 0.36f, 1.5f);
-                            float pow = ((float) Math.pow(org.telegram.ui.Wallet.n5.c(f18 + (f15 * n5Var.f36995a0) + f17), 24.0d)) * 0.1f * 1.5f;
+                            float pow = ((float) Math.pow(org.telegram.ui.Wallet.n5.c(f18 + (f15 * n5Var.f36998a0) + f17), 24.0d)) * 0.1f * 1.5f;
                             int d = org.telegram.ui.Wallet.n5.d(C, 0.089999996f, pow, a2, a10);
                             paint.setColor(d);
                             paint2.setColor(d);
@@ -126,11 +126,11 @@ public final class t00 extends FrameLayout {
                             path.lineTo(fArr6[i15], fArr6[i17]);
                             path.lineTo(fArr6[i14], fArr6[i16]);
                             path.close();
-                            paint2.setStrokeWidth(n5Var.f37016q * f11);
+                            paint2.setStrokeWidth(n5Var.f37019q * f11);
                             canvas.drawPath(path, paint);
                             canvas.drawPath(path, paint2);
                             paint2.setColor(org.telegram.ui.Wallet.n5.d(C * 0.75f, 0.067499995f, pow * 0.75f, a2, a10));
-                            paint2.setStrokeWidth(n5Var.f37016q * 0.7f);
+                            paint2.setStrokeWidth(n5Var.f37019q * 0.7f);
                             canvas.drawLine(fArr6[i14], fArr6[i16], fArr6[i15], fArr6[i17], paint2);
                             i12 = i19 + 1;
                             length = i18;
@@ -141,9 +141,9 @@ public final class t00 extends FrameLayout {
                         }
                     }
                 }
-                if (this.f32803b) {
+                if (this.f32806b) {
                     int save = canvas.save();
-                    canvas.concat((Matrix) this.f32804c);
+                    canvas.concat((Matrix) this.f32807c);
                     super.dispatchDraw(canvas);
                     canvas.restoreToCount(save);
                     return;
@@ -162,15 +162,15 @@ public final class t00 extends FrameLayout {
         boolean z10;
         boolean z11;
         int min;
-        switch (this.f32802a) {
+        switch (this.f32805a) {
             case 0:
-                RectF rectF = (RectF) this.f32804c;
+                RectF rectF = (RectF) this.f32807c;
                 v00 v00Var = (v00) this.e;
                 getMeasuredHeight();
                 AndroidUtilities.dp(36.0f);
-                int H = ((v00Var.f33520n - v00.H(v00Var)) - AndroidUtilities.dp(8.0f)) + AndroidUtilities.statusBarHeight;
+                int H = ((v00Var.f33523n - v00.H(v00Var)) - AndroidUtilities.dp(8.0f)) + AndroidUtilities.statusBarHeight;
                 boolean z12 = false;
-                if (this.f32803b) {
+                if (this.f32806b) {
                     int m10 = v00.m(v00Var) + H;
                     int i11 = AndroidUtilities.statusBarHeight;
                     int i12 = i11 * 2;
@@ -194,13 +194,13 @@ public final class t00 extends FrameLayout {
                 v00.q(v00Var).setBounds(0, H, getMeasuredWidth(), getMeasuredHeight());
                 v00.r(v00Var).draw(canvas);
                 if (f7 != 1.0f) {
-                    org.telegram.ui.ActionBar.y6.f23646t0.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23425h5, false));
+                    org.telegram.ui.ActionBar.y6.f23648t0.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23427h5, false));
                     rectF.set(v00.s(v00Var), v00.t(v00Var) + H, getMeasuredWidth() - v00.u(v00Var), AndroidUtilities.dp(24.0f) + v00.w(v00Var) + H);
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) * f7, AndroidUtilities.dp(12.0f) * f7, org.telegram.ui.ActionBar.y6.f23646t0);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) * f7, AndroidUtilities.dp(12.0f) * f7, org.telegram.ui.ActionBar.y6.f23648t0);
                 }
                 if (i10 > 0) {
-                    org.telegram.ui.ActionBar.y6.f23646t0.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23425h5, false));
-                    canvas.drawRect(v00.x(v00Var), AndroidUtilities.statusBarHeight - i10, getMeasuredWidth() - v00.y(v00Var), AndroidUtilities.statusBarHeight, org.telegram.ui.ActionBar.y6.f23646t0);
+                    org.telegram.ui.ActionBar.y6.f23648t0.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23427h5, false));
+                    canvas.drawRect(v00.x(v00Var), AndroidUtilities.statusBarHeight - i10, getMeasuredWidth() - v00.y(v00Var), AndroidUtilities.statusBarHeight, org.telegram.ui.ActionBar.y6.f23648t0);
                 }
                 if (i10 > AndroidUtilities.statusBarHeight / 2) {
                     z10 = true;
@@ -209,12 +209,12 @@ public final class t00 extends FrameLayout {
                 }
                 Boolean bool = (Boolean) this.d;
                 if (bool == null || bool.booleanValue() != z10) {
-                    if (AndroidUtilities.computePerceivedBrightness(v00Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23425h5)) > 0.721f) {
+                    if (AndroidUtilities.computePerceivedBrightness(v00Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23427h5)) > 0.721f) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.y6.v(v00Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23634s8), 855638016)) > 0.721f) {
+                    if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.y6.v(v00Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23636s8), 855638016)) > 0.721f) {
                         z12 = true;
                     }
                     this.d = Boolean.valueOf(z10);
@@ -233,7 +233,7 @@ public final class t00 extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f32802a) {
+        switch (this.f32805a) {
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName("android.widget.Button");
@@ -247,10 +247,10 @@ public final class t00 extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32802a) {
+        switch (this.f32805a) {
             case 0:
                 v00 v00Var = (v00) this.e;
-                if (motionEvent.getAction() == 0 && v00Var.f33520n != 0 && motionEvent.getY() < v00Var.f33520n) {
+                if (motionEvent.getAction() == 0 && v00Var.f33523n != 0 && motionEvent.getY() < v00Var.f33523n) {
                     v00Var.dismiss();
                     return true;
                 }
@@ -262,7 +262,7 @@ public final class t00 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f32802a) {
+        switch (this.f32805a) {
             case 0:
                 super.onLayout(z10, i10, i11, i12, i13);
                 v00.G((v00) this.e);
@@ -277,15 +277,15 @@ public final class t00 extends FrameLayout {
     public void onMeasure(int i10, int i11) {
         int i12;
         float f7;
-        switch (this.f32802a) {
+        switch (this.f32805a) {
             case 0:
                 int size = View.MeasureSpec.getSize(i11);
                 v00 v00Var = (v00) this.e;
-                bi.r1 r1Var = v00Var.f33518c;
+                bi.r1 r1Var = v00Var.f33521c;
                 boolean z10 = true;
-                v00Var.f33521r = true;
+                v00Var.f33524r = true;
                 setPadding(v00.v(v00Var), AndroidUtilities.statusBarHeight, v00.B(v00Var), 0);
-                v00Var.f33521r = false;
+                v00Var.f33524r = false;
                 int D = v00.D(v00Var) + (v00Var.d.h() * AndroidUtilities.dp(48.0f)) + AndroidUtilities.dp(48.0f) + AndroidUtilities.statusBarHeight;
                 int i13 = size / 5;
                 if (D < i13 * 3.2d) {
@@ -300,18 +300,18 @@ public final class t00 extends FrameLayout {
                     i12 = v00.F(v00Var);
                 }
                 if (r1Var.getPaddingTop() != i12) {
-                    v00Var.f33521r = true;
+                    v00Var.f33524r = true;
                     r1Var.setPadding(AndroidUtilities.dp(10.0f), i12, AndroidUtilities.dp(10.0f), 0);
-                    v00Var.f33521r = false;
+                    v00Var.f33524r = false;
                 }
                 if (D < size) {
                     z10 = false;
                 }
-                this.f32803b = z10;
+                this.f32806b = z10;
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(D, size), 1073741824));
                 return;
             case 1:
-                if (this.f32803b) {
+                if (this.f32806b) {
                     f7 = 80.0f;
                 } else {
                     f7 = 50.0f;
@@ -326,12 +326,12 @@ public final class t00 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f32802a) {
+        switch (this.f32805a) {
             case 2:
                 super.onSizeChanged(i10, i11, i12, i13);
                 org.telegram.ui.Wallet.r5 r5Var = (org.telegram.ui.Wallet.r5) this.e;
-                r5Var.f37175i0 = -1;
-                r5Var.b(r5Var.f37168c0, r5Var.f37172f0);
+                r5Var.f37178i0 = -1;
+                r5Var.b(r5Var.f37171c0, r5Var.f37175f0);
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
@@ -341,7 +341,7 @@ public final class t00 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32802a) {
+        switch (this.f32805a) {
             case 0:
                 if (!((v00) this.e).isDismissed() && super.onTouchEvent(motionEvent)) {
                     return true;
@@ -354,9 +354,9 @@ public final class t00 extends FrameLayout {
 
     @Override
     public void requestLayout() {
-        switch (this.f32802a) {
+        switch (this.f32805a) {
             case 0:
-                if (!((v00) this.e).f33521r) {
+                if (!((v00) this.e).f33524r) {
                     super.requestLayout();
                     return;
                 }
@@ -371,10 +371,10 @@ public final class t00 extends FrameLayout {
         super(context);
         this.e = t80Var;
         this.d = new TextView[2];
-        this.f32803b = !z10;
+        this.f32806b = !z10;
         setBackground(null);
         View view = new View(context);
-        this.f32804c = view;
+        this.f32807c = view;
         if (!z10) {
             view.setBackground(org.telegram.ui.ActionBar.o6.f(new float[]{4.0f}, org.telegram.ui.ActionBar.y6.Oh));
         }
@@ -387,7 +387,7 @@ public final class t00 extends FrameLayout {
             ((TextView[]) this.d)[i10].setGravity(1);
             ((TextView[]) this.d)[i10].setEllipsize(TextUtils.TruncateAt.END);
             ((TextView[]) this.d)[i10].setGravity(17);
-            if (this.f32803b) {
+            if (this.f32806b) {
                 org.telegram.ui.ActionBar.f7.V(((TextView[]) this.d)[i10], org.telegram.ui.ActionBar.y6.Sh, null);
                 ((TextView[]) this.d)[i10].setTypeface(AndroidUtilities.bold());
             } else {
@@ -395,7 +395,7 @@ public final class t00 extends FrameLayout {
             }
             ((TextView[]) this.d)[i10].setImportantForAccessibility(2);
             ((TextView[]) this.d)[i10].setTextSize(1, 14.0f);
-            ((TextView[]) this.d)[i10].setPadding(0, 0, 0, this.f32803b ? 0 : AndroidUtilities.dp(13.0f));
+            ((TextView[]) this.d)[i10].setPadding(0, 0, 0, this.f32806b ? 0 : AndroidUtilities.dp(13.0f));
             addView(((TextView[]) this.d)[i10], gb1.h(-2, -2.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
             if (i10 == 1) {
                 ((TextView[]) this.d)[i10].setAlpha(0.0f);
@@ -406,7 +406,7 @@ public final class t00 extends FrameLayout {
     public t00(org.telegram.ui.Wallet.r5 r5Var, Context context) {
         super(context);
         this.e = r5Var;
-        this.f32804c = new Matrix();
+        this.f32807c = new Matrix();
         this.d = new float[8];
         setClipChildren(false);
         setClipToPadding(false);

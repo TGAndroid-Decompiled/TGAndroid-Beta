@@ -2,15 +2,15 @@ package x7;
 
 import java.util.AbstractMap;
 public final class wa extends ta {
-    public final xa f51658c;
+    public final xa f51661c;
 
     public wa(xa xaVar) {
-        this.f51658c = xaVar;
+        this.f51661c = xaVar;
     }
 
     @Override
     public final Object get(int i10) {
-        xa xaVar = this.f51658c;
+        xa xaVar = this.f51661c;
         w7.b0.a(i10, xaVar.e);
         Object[] objArr = xaVar.d;
         int i11 = i10 + i10;
@@ -23,6 +23,6 @@ public final class wa extends ta {
 
     @Override
     public final int size() {
-        return this.f51658c.e;
+        return this.f51661c.e;
     }
 }

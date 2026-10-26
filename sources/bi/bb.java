@@ -19,7 +19,7 @@ public final class bb implements View.OnClickListener {
             case 0:
                 if (this.f4387b.f5374f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f22926a = true;
+                    obj.f22928a = true;
                     R.showAsSheet(new dd(), obj);
                     return;
                 }
@@ -27,7 +27,7 @@ public final class bb implements View.OnClickListener {
             default:
                 if (this.f4387b.f5374f > 0 && (R2 = LaunchActivity.R()) != 0) {
                     ?? obj2 = new Object();
-                    obj2.f22926a = true;
+                    obj2.f22928a = true;
                     R2.showAsSheet(new dd(), obj2);
                     return;
                 }

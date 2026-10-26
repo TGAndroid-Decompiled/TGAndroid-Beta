@@ -46,7 +46,7 @@ public final class c implements ri {
         v vVar = this.f9981c;
         long j12 = vVar.d;
         ti tiVar = this.f9979a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f33030j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f33033j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();

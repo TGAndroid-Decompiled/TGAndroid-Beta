@@ -60,7 +60,7 @@ public final class h3 implements org.telegram.ui.web.g0 {
         m4.c cVar = new m4.c(9, false);
         cVar.f18009b = new f3(this, 0);
         qc W = new wc(m3Var.f13121q0, m3Var.F).W(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequestGranted, UserObject.getUserName(user))), null, cVar);
-        W.f31887j = 5000;
+        W.f31889j = 5000;
         W.k(true);
     }
 
@@ -263,7 +263,7 @@ public final class h3 implements org.telegram.ui.web.g0 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) obj.e);
-            spannableStringBuilder.setSpan(new c6(obj.f12905f, 1.4f, b0VarArr[0].f12879l.f32117a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new c6(obj.f12905f, 1.4f, b0VarArr[0].f12879l.f32119a.getFontMetricsInt()), 0, 1, 33);
             b0VarArr[0].f12879l.t(spannableStringBuilder, true, true);
         } else {
             b0VarArr[0].f12879l.t(obj.e, true, true);
@@ -354,7 +354,7 @@ public final class h3 implements org.telegram.ui.web.g0 {
             LocaleController.getString(R.string.UndoNoCaps);
             cVar.f18009b = new f3(this, 1);
             qc W = new wc(frameLayout, u6Var).W(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequestGranted, UserObject.getUserName(user))), null, cVar);
-            W.f31887j = 5000;
+            W.f31889j = 5000;
             W.k(true);
             return;
         }
@@ -363,7 +363,7 @@ public final class h3 implements org.telegram.ui.web.g0 {
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.BotLocationPermissionRequestDeniedAppSettings), new f3(this, 2)), true));
         qc Q = new wc(frameLayout, u6Var).Q(R.raw.error, spannableStringBuilder);
-        Q.f31887j = 5000;
+        Q.f31889j = 5000;
         Q.k(true);
     }
 

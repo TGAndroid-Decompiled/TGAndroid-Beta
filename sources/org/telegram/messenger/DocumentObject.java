@@ -20,7 +20,7 @@ public class DocumentObject {
             P0.getClass();
             org.telegram.ui.ActionBar.w6 w6Var = new org.telegram.ui.ActionBar.w6();
             org.telegram.ui.ActionBar.x6.i(w6Var, themeSettings);
-            w6Var.f23214b = P0;
+            w6Var.f23216b = P0;
             this.accent = w6Var;
             TLRPC.WallPaper wallPaper = this.themeSettings.wallpaper;
             if (wallPaper instanceof TLRPC.TL_wallPaper) {

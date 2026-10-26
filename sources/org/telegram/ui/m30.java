@@ -28,22 +28,22 @@ public final class m30 extends org.telegram.ui.Components.voip.l0 {
         t50 t50Var = v50Var.B1;
         r40 r40Var = v50Var.O;
         b50 b50Var = v50Var.Q;
-        org.telegram.ui.Components.c30 c30Var = v50Var.f44669p2;
+        org.telegram.ui.Components.c30 c30Var = v50Var.f44672p2;
         m30 m30Var = v50Var.a2;
-        i30 i30Var = v50Var.f44656m2;
-        v50Var.f44681s0 = z10;
+        i30 i30Var = v50Var.f44659m2;
+        v50Var.f44684s0 = z10;
         int i10 = 0;
         if (v50.G3) {
-            if (!z10 && m30Var.f33900b) {
-                v50Var.f44665o2.H(v50Var.f44661n2, false, true);
+            if (!z10 && m30Var.f33903b) {
+                v50Var.f44668o2.H(v50Var.f44664n2, false, true);
                 return;
             }
             return;
         }
         if (z10) {
-            v50Var.f44644j0[0].d(1, false);
+            v50Var.f44647j0[0].d(1, false);
             m30Var.K0[0].d(2, false);
-            if (!m30Var.f33900b) {
+            if (!m30Var.f33903b) {
                 b50Var.setVisibility(0);
                 r40Var.setVisibility(0);
                 if (t50Var != null) {
@@ -61,7 +61,7 @@ public final class m30 extends org.telegram.ui.Components.voip.l0 {
                 v50Var.O0(true);
             }
         } else {
-            if (!m30Var.f33900b) {
+            if (!m30Var.f33903b) {
                 i30Var.setVisibility(8);
                 c30Var.F(i30Var, false);
             } else {
@@ -79,7 +79,7 @@ public final class m30 extends org.telegram.ui.Components.voip.l0 {
                     childAt.setScaleY(1.0f);
                     childAt.setTranslationX(0.0f);
                     childAt.setTranslationY(0.0f);
-                    ((org.telegram.ui.Components.b30) childAt).setProgressToFullscreen(m30Var.f33902c);
+                    ((org.telegram.ui.Components.b30) childAt).setProgressToFullscreen(m30Var.f33905c);
                 }
             }
         }
@@ -88,7 +88,7 @@ public final class m30 extends org.telegram.ui.Components.voip.l0 {
             i10 = 8;
         }
         view.setVisibility(i10);
-        if (!v50Var.f44681s0) {
+        if (!v50Var.f44684s0) {
             v50Var.O0(true);
         }
     }
@@ -104,9 +104,9 @@ public final class m30 extends org.telegram.ui.Components.voip.l0 {
         if (m30Var == null) {
             f7 = 0.0f;
         } else {
-            f7 = m30Var.f33902c;
+            f7 = m30Var.f33905c;
         }
-        ((org.telegram.ui.ActionBar.k3) v50Var).navBarColor = AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23472jg, false), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.gg, false), Math.max(f10, f7), 1.0f);
+        ((org.telegram.ui.ActionBar.k3) v50Var).navBarColor = AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23474jg, false), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.gg, false), Math.max(f10, f7), 1.0f);
         viewGroup = ((org.telegram.ui.ActionBar.k3) v50Var).containerView;
         viewGroup.invalidate();
         v50Var.B1(v50Var.U1);

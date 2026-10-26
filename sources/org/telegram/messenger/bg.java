@@ -18,10 +18,10 @@ public final class bg implements Runnable {
     public final void run() {
         switch (this.f19715a) {
             case 0:
-                MessagesStorage.A1(this.f19716b, this.f19717c, this.d);
+                this.f19716b.lambda$loadTopics$53(this.f19717c, this.d);
                 return;
             default:
-                MessagesStorage.K1(this.f19716b, this.f19717c, this.d);
+                this.f19716b.lambda$setDialogsPinned$255(this.f19717c, this.d);
                 return;
         }
     }

@@ -270,7 +270,7 @@ public class TelegramMediaSession {
                     TLRPC.User user = arrayList4.get(i12);
                     i12++;
                     TLRPC.User user2 = user;
-                    hVar.k(user2, user2.f22174id);
+                    hVar.k(user2, user2.f22176id);
                 }
             }
             if (!arrayList3.isEmpty()) {

@@ -26,7 +26,7 @@ public final class g3 implements z4 {
         }
         v3 v3Var = this.f17261c;
         v3Var.f17548h4.remove(tVar);
-        v3Var.f32150g3.O(false);
+        v3Var.f32152g3.O(false);
         v3Var.f17557p3.onContentChanged();
     }
 
@@ -52,7 +52,7 @@ public final class g3 implements z4 {
         int indexOf = v3Var.f17565t3.indexOf(this.f17260b);
         if (indexOf >= 0) {
             v3Var.f17565t3.remove(indexOf);
-            v3Var.f32150g3.O(true);
+            v3Var.f32152g3.O(true);
         }
         v3Var.f17557p3.onContentChanged();
     }

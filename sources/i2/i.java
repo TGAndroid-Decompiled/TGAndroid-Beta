@@ -81,7 +81,7 @@ public final class i implements u0 {
         if (this.f13571p.isEmpty()) {
             y2.d dVar = this.f13561c;
             synchronized (dVar) {
-                if (dVar.f51930a) {
+                if (dVar.f51933a) {
                     dVar.d(0);
                 }
             }

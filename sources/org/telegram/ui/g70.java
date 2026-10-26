@@ -13,12 +13,12 @@ public final class g70 extends org.telegram.ui.Components.m71 {
         boolean z10;
         boolean z11;
         boolean z12;
-        org.telegram.ui.ActionBar.t5 t5Var = (org.telegram.ui.ActionBar.t5) wi.e.f51280k.a();
-        org.telegram.ui.ActionBar.s5 s5Var = (org.telegram.ui.ActionBar.s5) wi.e.f51281l.a();
+        org.telegram.ui.ActionBar.t5 t5Var = (org.telegram.ui.ActionBar.t5) wi.e.f51283k.a();
+        org.telegram.ui.ActionBar.s5 s5Var = (org.telegram.ui.ActionBar.s5) wi.e.f51284l.a();
         ic.a.p(R.string.HeaderDoneButtonColor, arrayList);
         org.telegram.ui.Components.t61 x9 = org.telegram.ui.Components.t61.x(11, LocaleController.getString(R.string.HeaderDoneButtonColorAccent));
         boolean z13 = false;
-        if (t5Var == org.telegram.ui.ActionBar.t5.f23101b) {
+        if (t5Var == org.telegram.ui.ActionBar.t5.f23103b) {
             z10 = true;
         } else {
             z10 = false;
@@ -26,7 +26,7 @@ public final class g70 extends org.telegram.ui.Components.m71 {
         x9.L(z10);
         arrayList.add(x9);
         org.telegram.ui.Components.t61 x10 = org.telegram.ui.Components.t61.x(10, LocaleController.getString(R.string.HeaderDoneButtonColorGlass));
-        if (t5Var == org.telegram.ui.ActionBar.t5.f23100a) {
+        if (t5Var == org.telegram.ui.ActionBar.t5.f23102a) {
             z11 = true;
         } else {
             z11 = false;
@@ -36,7 +36,7 @@ public final class g70 extends org.telegram.ui.Components.m71 {
         ic.a.z(R.string.HeaderDoneButtonColorInfo, arrayList);
         ic.a.p(R.string.HeaderDoneButtonShape, arrayList);
         org.telegram.ui.Components.t61 x11 = org.telegram.ui.Components.t61.x(20, LocaleController.getString(R.string.HeaderDoneButtonShapeIcon));
-        if (s5Var == org.telegram.ui.ActionBar.s5.f23083a) {
+        if (s5Var == org.telegram.ui.ActionBar.s5.f23085a) {
             z12 = true;
         } else {
             z12 = false;
@@ -44,7 +44,7 @@ public final class g70 extends org.telegram.ui.Components.m71 {
         x11.L(z12);
         arrayList.add(x11);
         org.telegram.ui.Components.t61 x12 = org.telegram.ui.Components.t61.x(21, LocaleController.getString(R.string.HeaderDoneButtonShapeText));
-        if (s5Var == org.telegram.ui.ActionBar.s5.f23084b) {
+        if (s5Var == org.telegram.ui.ActionBar.s5.f23086b) {
             z13 = true;
         }
         x12.L(z13);
@@ -76,23 +76,23 @@ public final class g70 extends org.telegram.ui.Components.m71 {
                 this.simpleActionBar.getDoneButton().a(this.e, true);
             } else {
                 if (i10 == 21) {
-                    s5Var = org.telegram.ui.ActionBar.s5.f23084b;
+                    s5Var = org.telegram.ui.ActionBar.s5.f23086b;
                 } else {
-                    s5Var = org.telegram.ui.ActionBar.s5.f23083a;
+                    s5Var = org.telegram.ui.ActionBar.s5.f23085a;
                 }
-                wi.e.f51281l.b(s5Var);
+                wi.e.f51284l.b(s5Var);
                 Z();
             }
         } else {
             if (i10 == 10) {
-                t5Var = org.telegram.ui.ActionBar.t5.f23100a;
+                t5Var = org.telegram.ui.ActionBar.t5.f23102a;
             } else {
-                t5Var = org.telegram.ui.ActionBar.t5.f23101b;
+                t5Var = org.telegram.ui.ActionBar.t5.f23103b;
             }
-            wi.e.f51280k.b(t5Var);
+            wi.e.f51283k.b(t5Var);
             Z();
         }
-        this.f30417a.f32150g3.O(true);
+        this.f30419a.f32152g3.O(true);
     }
 
     @Override
@@ -102,10 +102,10 @@ public final class g70 extends org.telegram.ui.Components.m71 {
 
     public final void Z() {
         org.telegram.ui.ActionBar.r5 r5Var = this.simpleActionBar;
-        org.telegram.ui.ActionBar.u5 u5Var = r5Var.f23042n;
+        org.telegram.ui.ActionBar.u5 u5Var = r5Var.f23044n;
         if (u5Var != null) {
             r5Var.removeView(u5Var);
-            r5Var.f23042n = null;
+            r5Var.f23044n = null;
             r5Var.c();
             r5Var.requestLayout();
         }
@@ -116,15 +116,15 @@ public final class g70 extends org.telegram.ui.Components.m71 {
     public final View createView(Context context) {
         setHasOwnBackground(true);
         this.fragmentView = super.createView(context);
-        this.f30417a.u1();
-        this.f30417a.setSectionsDrawBackground(true);
+        this.f30419a.u1();
+        this.f30419a.setSectionsDrawBackground(true);
         Z();
         return this.fragmentView;
     }
 
     @Override
     public final org.telegram.ui.Components.mm0 getListViewForSimpleGlass() {
-        return this.f30417a;
+        return this.f30419a;
     }
 
     @Override

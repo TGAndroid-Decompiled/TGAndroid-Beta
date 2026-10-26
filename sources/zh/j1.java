@@ -21,34 +21,34 @@ import org.telegram.ui.Components.ds;
 import org.telegram.ui.Components.h6;
 import org.telegram.ui.Components.q11;
 public class j1 extends cr {
-    public q11 f53067c;
+    public q11 f53070c;
     public q11 d;
     public final h6 e;
-    public final Path f53068f;
+    public final Path f53071f;
     public final Path h;
-    public final Paint f53069n;
-    public final Paint f53070r;
-    public final float f53071s;
+    public final Paint f53072n;
+    public final Paint f53073r;
+    public final float f53074s;
     public td v;
-    public boolean f53072w;
-    public int f53073x;
+    public boolean f53075w;
+    public int f53076x;
 
     public j1(View view) {
         super(view);
         this.e = new h6(new ti.g(this, 21), 320L, ds.h, 0);
         Path path = new Path();
-        this.f53068f = path;
+        this.f53071f = path;
         this.h = new Path();
         Paint paint = new Paint(1);
-        this.f53069n = paint;
+        this.f53072n = paint;
         Paint paint2 = new Paint(1);
-        this.f53070r = paint2;
-        this.f53073x = -1;
-        this.f53071s = 1.0f;
+        this.f53073r = paint2;
+        this.f53076x = -1;
+        this.f53074s = 1.0f;
         d(path, 1.0f, false);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        ((Paint) this.f27243b).setColor(-698031);
-        ((Paint) this.f27243b).setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
+        ((Paint) this.f27245b).setColor(-698031);
+        ((Paint) this.f27245b).setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
         paint2.setColor(0);
         paint2.setStyle(Paint.Style.STROKE);
         paint2.setStrokeJoin(Paint.Join.ROUND);
@@ -92,26 +92,26 @@ public class j1 extends cr {
         canvas.translate(f7, f7);
         float width = getBounds().width() / 2.0f;
         float f12 = 6.0f;
-        if (this.f53072w) {
+        if (this.f53075w) {
             f10 = -7.0f;
         } else {
             f10 = 6.0f;
         }
         float dp = width + AndroidUtilities.dp(f10);
         float height = getBounds().height() / 2.0f;
-        if (this.f53072w) {
+        if (this.f53075w) {
             f12 = 5.0f;
         }
         float dp2 = height - AndroidUtilities.dp(f12);
-        if (this.f53072w) {
+        if (this.f53075w) {
             f11 = -45.0f;
         } else {
             f11 = 45.0f;
         }
         canvas.rotate(f11, dp, dp2);
-        float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / q11Var.f31788c);
+        float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / q11Var.f31790c);
         canvas.scale(min, min, dp, dp2);
-        q11Var.c(dp - (q11Var.l() / 2.0f), dp2 + AndroidUtilities.dp(1.0f), 1.0f, this.f53073x, canvas);
+        q11Var.c(dp - (q11Var.l() / 2.0f), dp2 + AndroidUtilities.dp(1.0f), 1.0f, this.f53076x, canvas);
         canvas.restore();
     }
 
@@ -120,16 +120,16 @@ public class j1 extends cr {
         Canvas canvas2;
         canvas.save();
         canvas.translate(getBounds().right - AndroidUtilities.dp(48.0f), getBounds().top);
-        Paint paint = this.f53070r;
+        Paint paint = this.f53073r;
         int alpha = paint.getAlpha();
-        Path path = this.f53068f;
+        Path path = this.f53071f;
         if (alpha > 0) {
             paint.setStrokeWidth(AndroidUtilities.dp(1.33f) * 2);
             canvas.drawPath(path, paint);
         }
-        canvas.drawPath(path, (Paint) this.f27243b);
+        canvas.drawPath(path, (Paint) this.f27245b);
         td tdVar = this.v;
-        float f7 = this.f53071s;
+        float f7 = this.f53074s;
         if (tdVar != null) {
             float f10 = f7 * 48.0f;
             canvas2 = canvas;
@@ -140,26 +140,26 @@ public class j1 extends cr {
             Path path2 = this.h;
             path2.set(path);
             path2.toggleInverseFillType();
-            canvas2.drawPath(path2, this.f53069n);
+            canvas2.drawPath(path2, this.f53072n);
             canvas2.restore();
             invalidateSelf();
         } else {
             canvas2 = canvas;
         }
-        if (this.f53067c != null) {
+        if (this.f53070c != null) {
             h6 h6Var = this.e;
             float d = h6Var.d(1.0f, false);
-            if (!h6Var.f28812i) {
+            if (!h6Var.f28814i) {
                 this.d = null;
             }
             canvas2.save();
-            if (this.d != null && h6Var.f28812i) {
+            if (this.d != null && h6Var.f28814i) {
                 canvas2.clipPath(path);
                 float dp = AndroidUtilities.dp(f7 * 64.0f);
                 c(canvas2, this.d, dp * d);
-                c(canvas2, this.f53067c, (1.0f - d) * (-dp));
+                c(canvas2, this.f53070c, (1.0f - d) * (-dp));
             } else {
-                c(canvas2, this.f53067c, 0.0f);
+                c(canvas2, this.f53070c, 0.0f);
             }
             canvas2.restore();
         }
@@ -172,12 +172,12 @@ public class j1 extends cr {
         float f10;
         float f11;
         float f12;
-        Paint paint = (Paint) this.f27243b;
+        Paint paint = (Paint) this.f27245b;
         if (stargiftattributebackdrop == null) {
             paint.setShader(null);
             return;
         }
-        if (this.f53072w) {
+        if (this.f53075w) {
             z12 = !z10;
         } else {
             z12 = z10;
@@ -235,18 +235,18 @@ public class j1 extends cr {
         if (z10) {
             typeface = AndroidUtilities.bold();
         }
-        this.f53067c = new q11(charSequence, f7, typeface);
+        this.f53070c = new q11(charSequence, f7, typeface);
         invalidateSelf();
     }
 
     public final void g(int i10, String str) {
-        q11 q11Var = this.f53067c;
+        q11 q11Var = this.f53070c;
         if (q11Var == null) {
             f(i10, str, true);
         } else if (TextUtils.equals(q11Var.k(), str)) {
         } else {
-            this.d = this.f53067c;
-            this.f53067c = new q11(str, i10, AndroidUtilities.bold());
+            this.d = this.f53070c;
+            this.f53070c = new q11(str, i10, AndroidUtilities.bold());
             this.e.d(0.0f, true);
             invalidateSelf();
         }

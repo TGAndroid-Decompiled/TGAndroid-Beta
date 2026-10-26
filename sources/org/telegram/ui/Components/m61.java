@@ -3,14 +3,14 @@ package org.telegram.ui.Components;
 import android.view.MotionEvent;
 import org.telegram.tgnet.TLRPC;
 public abstract class m61 {
-    public String[] f30410a = new String[0];
+    public String[] f30412a = new String[0];
 
     public boolean a() {
         return false;
     }
 
     public String[] b() {
-        return this.f30410a;
+        return this.f30412a;
     }
 
     public boolean c() {
@@ -30,7 +30,7 @@ public abstract class m61 {
     public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
 
     public void i(String[] strArr) {
-        this.f30410a = strArr;
+        this.f30412a = strArr;
     }
 
     public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {

@@ -15,7 +15,7 @@ public final class c8 extends gq {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28675b * 2.0f) + this.f28674a);
+                return (int) ((this.f28677b * 2.0f) + this.f28676a);
         }
     }
 
@@ -25,7 +25,7 @@ public final class c8 extends gq {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28675b * 2.0f) + this.f28674a);
+                return (int) ((this.f28677b * 2.0f) + this.f28676a);
         }
     }
 

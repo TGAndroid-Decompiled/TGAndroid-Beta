@@ -87,9 +87,9 @@ public final class o4 extends z implements p6, r9, k0 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23584pe));
+        hashSet.add(Integer.valueOf(y6.f23586pe));
         hashSet.add(Integer.valueOf(y6.Gd));
-        hashSet.add(Integer.valueOf(y6.f23680uf));
+        hashSet.add(Integer.valueOf(y6.f23682uf));
         hashSet.add(Integer.valueOf(y6.G6));
     }
 
@@ -220,7 +220,7 @@ public final class o4 extends z implements p6, r9, k0 {
         if (m4Var != null && (textSelectionHelper = ((r3) m4Var).f17443a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f25408p0 && R <= textSelectionHelper.f25411s0) {
+            if (R >= 0 && R > textSelectionHelper.f25410p0 && R <= textSelectionHelper.f25413s0) {
                 canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f17395w);
             }
         }
@@ -246,8 +246,8 @@ public final class o4 extends z implements p6, r9, k0 {
         int paddingRight = getPaddingRight();
         int max = Math.max(0, (size - paddingLeft) - paddingRight);
         TL_iv.pageBlockMap map = getMap();
-        if (map != null && map.f22250w > 0 && map.h > 0) {
-            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f22250w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
+        if (map != null && map.f22252w > 0 && map.h > 0) {
+            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f22252w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
         } else {
             this.K = (AndroidUtilities.dp(200.0f) - getPaddingTop()) - getPaddingBottom();
         }
@@ -258,11 +258,11 @@ public final class o4 extends z implements p6, r9, k0 {
 
     @Override
     public final void updateColors() {
-        int i10 = y6.f23584pe;
+        int i10 = y6.f23586pe;
         u6 u6Var = this.f17393r;
         this.f17394s.setColor(y6.w0(i10, u6Var));
         this.v.setColor(y6.w0(y6.Gd, u6Var));
-        this.f17395w.setColor(y6.w0(y6.f23680uf, u6Var));
+        this.f17395w.setColor(y6.w0(y6.f23682uf, u6Var));
         int i11 = y6.G6;
         this.f17396x.setColor(y6.o1(0.5f, y6.w0(i11, u6Var)));
         this.E.setColorFilter(new PorterDuffColorFilter(y6.o1(0.5f, y6.w0(i11, u6Var)), PorterDuff.Mode.SRC_IN));

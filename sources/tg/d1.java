@@ -21,7 +21,7 @@ public final class d1 extends k3 {
         LinearLayout f7 = org.telegram.messenger.t.f(parentActivity, 1);
         TextView textView = new TextView(parentActivity);
         textView.setGravity(8388611);
-        int i10 = y6.f23462j5;
+        int i10 = y6.f23464j5;
         org.telegram.messenger.t.r(textView, i10, null, 1, 20.0f);
         f7.addView(textView, gb1.h(-1, -2.0f, 0, 21.0f, 16.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(parentActivity);
@@ -38,7 +38,7 @@ public final class d1 extends k3 {
         textView3.setOnClickListener(new bh.f(26));
         FrameLayout frameLayout = new FrameLayout(parentActivity);
         frameLayout.addView(textView3, gb1.h(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        f7.i(y6.f23425h5, frameLayout, this.resourcesProvider);
+        f7.i(y6.f23427h5, frameLayout, this.resourcesProvider);
         f7.addView(frameLayout, gb1.u(-1, 68, 80));
         org.telegram.messenger.t.n(R.string.SubscribeToPremiumOfficialAppNeeded, textView);
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SubscribeToPremiumOfficialAppNeededDescription)));

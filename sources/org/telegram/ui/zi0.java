@@ -16,15 +16,15 @@ public final class zi0 extends zg.i {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
         cj0 cj0Var = this.L;
-        cj0Var.f38483l0 = dp;
-        cj0Var.f38482k0.G();
+        cj0Var.f38486l0 = dp;
+        cj0Var.f38485k0.G();
         if (this.K != cj0Var.isKeyboardVisible()) {
             boolean isKeyboardVisible = cj0Var.isKeyboardVisible();
             this.K = isKeyboardVisible;
             if (isKeyboardVisible) {
                 org.telegram.ui.Components.mm0 mm0Var = cj0Var.d;
                 mi.n nVar = new mi.n(cj0Var.getContext(), 2, 0.6f);
-                nVar.f47677a = 1;
+                nVar.f47680a = 1;
                 nVar.f18556p = AndroidUtilities.dp(36.0f);
                 mm0Var.getLayoutManager().w0(nVar);
             }

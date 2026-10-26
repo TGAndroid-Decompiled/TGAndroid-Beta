@@ -77,7 +77,7 @@ public class DialogObject {
 
     public static long getDialogId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f22174id;
+            return ((TLRPC.User) tLObject).f22176id;
         }
         if (tLObject instanceof TLRPC.Chat) {
             return -((TLRPC.Chat) tLObject).f22027id;

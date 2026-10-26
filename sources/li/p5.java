@@ -82,7 +82,7 @@ public final class p5 extends z implements p6, r9 {
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(y6.G6));
-        hashSet.add(Integer.valueOf(y6.f23354d6));
+        hashSet.add(Integer.valueOf(y6.f23356d6));
     }
 
     @Override
@@ -746,7 +746,7 @@ public final class p5 extends z implements p6, r9 {
         r5Var.b();
         try {
             if (getBackground() instanceof y1) {
-                ((y1) getBackground()).a(y6.w0(y6.f23354d6, u6Var));
+                ((y1) getBackground()).a(y6.w0(y6.f23356d6, u6Var));
             }
         } catch (Exception e) {
             FileLog.e(e);

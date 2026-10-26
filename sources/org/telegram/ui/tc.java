@@ -16,7 +16,7 @@ public final class tc extends pp0 {
         uc ucVar = this.G;
         TextView textView = ucVar.d;
         if (textView != null) {
-            textView.setTextColor(ucVar.f44088b.h.getTextColor());
+            textView.setTextColor(ucVar.f44091b.h.getTextColor());
         }
     }
 }

@@ -20,29 +20,29 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ss0 implements dt {
-    public final String f43583a;
-    public final VideoEditedInfo f43584b;
-    public final MediaController.PhotoEntry f43585c;
+    public final String f43586a;
+    public final VideoEditedInfo f43587b;
+    public final MediaController.PhotoEntry f43588c;
     public final boolean d;
     public final int e;
-    public final int f43586f;
-    public final boolean f43587g;
+    public final int f43589f;
+    public final boolean f43590g;
     public final PhotoViewer h;
 
     public ss0(PhotoViewer photoViewer, String str, VideoEditedInfo videoEditedInfo, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11) {
         this.h = photoViewer;
-        this.f43583a = str;
-        this.f43584b = videoEditedInfo;
-        this.f43585c = photoEntry;
+        this.f43586a = str;
+        this.f43587b = videoEditedInfo;
+        this.f43588c = photoEntry;
         this.d = z10;
         this.e = i10;
-        this.f43586f = i11;
-        this.f43587g = z11;
+        this.f43589f = i11;
+        this.f43590g = z11;
     }
 
     @Override
     public final boolean A() {
-        if (this.h.f35820x7 != null) {
+        if (this.h.f35823x7 != null) {
             return true;
         }
         return false;
@@ -70,7 +70,7 @@ public final class ss0 implements dt {
 
     @Override
     public final boolean I() {
-        if (this.h.f35782t7 != null) {
+        if (this.h.f35785t7 != null) {
             return true;
         }
         return false;
@@ -84,17 +84,17 @@ public final class ss0 implements dt {
     @Override
     public final void N(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f35810w7 = true;
+        photoViewer.f35813w7 = true;
         R();
-        photoViewer.f35744p5.p(this.f43583a, this.f43584b, str, null, true, 0L, null, null, photoViewer.w1(), this.f43585c.thumbPath, null, null);
+        photoViewer.f35747p5.p(this.f43586a, this.f43587b, str, null, true, 0L, null, null, photoViewer.w1(), this.f43588c.thumbPath, null, null);
     }
 
     @Override
     public final void O(CharSequence charSequence, String str, org.telegram.ui.Components.oy oyVar) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f35810w7 = true;
+        photoViewer.f35813w7 = true;
         R();
-        photoViewer.f35744p5.p(this.f43583a, this.f43584b, str, charSequence, false, 0L, null, null, photoViewer.w1(), this.f43585c.thumbPath, oyVar, null);
+        photoViewer.f35747p5.p(this.f43586a, this.f43587b, str, charSequence, false, 0L, null, null, photoViewer.w1(), this.f43588c.thumbPath, oyVar, null);
     }
 
     @Override
@@ -110,7 +110,7 @@ public final class ss0 implements dt {
     public final void R() {
         ft o10 = ft.o();
         ImageReceiver imageReceiver = o10.A;
-        MediaController.PhotoEntry photoEntry = this.f43585c;
+        MediaController.PhotoEntry photoEntry = this.f43588c;
         if (photoEntry.thumbPath != null) {
             try {
                 new File(photoEntry.thumbPath).delete();
@@ -202,9 +202,9 @@ public final class ss0 implements dt {
     @Override
     public final void n(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f35810w7 = true;
+        photoViewer.f35813w7 = true;
         R();
-        photoViewer.f35744p5.p(this.f43583a, this.f43584b, str, null, false, 0L, null, null, photoViewer.w1(), this.f43585c.thumbPath, null, photoViewer.f35820x7);
+        photoViewer.f35747p5.p(this.f43586a, this.f43587b, str, null, false, 0L, null, null, photoViewer.w1(), this.f43588c.thumbPath, null, photoViewer.f35823x7);
     }
 
     @Override
@@ -215,9 +215,9 @@ public final class ss0 implements dt {
     @Override
     public final void v(TLRPC.StickerSet stickerSet, String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f35810w7 = true;
+        photoViewer.f35813w7 = true;
         R();
-        photoViewer.f35744p5.p(this.f43583a, this.f43584b, str, null, false, 0L, stickerSet, photoViewer.f35782t7, photoViewer.w1(), this.f43585c.thumbPath, null, null);
+        photoViewer.f35747p5.p(this.f43586a, this.f43587b, str, null, false, 0L, stickerSet, photoViewer.f35785t7, photoViewer.w1(), this.f43588c.thumbPath, null, null);
     }
 
     @Override
@@ -239,20 +239,20 @@ public final class ss0 implements dt {
         ou0 ou0Var = photoViewer.d;
         if (ou0Var != null) {
             boolean Q = ou0Var.Q();
-            MediaController.PhotoEntry photoEntry = this.f43585c;
+            MediaController.PhotoEntry photoEntry = this.f43588c;
             if (Q) {
                 if (photoViewer.l4 == null) {
                     return;
                 }
-                photoViewer.f35810w7 = true;
+                photoViewer.f35813w7 = true;
                 R();
-                photoViewer.f35744p5.p(this.f43583a, this.f43584b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.w1(), photoEntry.thumbPath, null, null);
+                photoViewer.f35747p5.p(this.f43586a, this.f43587b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.w1(), photoEntry.thumbPath, null, null);
                 return;
             }
-            photoViewer.f35810w7 = true;
+            photoViewer.f35813w7 = true;
             R();
-            photoEntry.imagePath = this.f43583a;
-            photoViewer.d.o(photoViewer.P4, this.f43584b, this.d, this.e, this.f43586f, this.f43587g);
+            photoEntry.imagePath = this.f43586a;
+            photoViewer.d.o(photoViewer.P4, this.f43587b, this.d, this.e, this.f43589f, this.f43590g);
             NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.TRUE);
         }
     }

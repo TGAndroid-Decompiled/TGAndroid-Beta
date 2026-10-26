@@ -53,7 +53,7 @@ public final class o0 extends FrameLayout implements p6 {
             int dp = AndroidUtilities.dp(16.0f);
             int dp2 = AndroidUtilities.dp(16.0f);
             M.e = dp;
-            M.f26593f = dp2;
+            M.f26595f = dp2;
             y6.y1(this.d, y6.w0(y6.Oh, u6Var), false);
             y6.y1(this.d, y6.w0(y6.Sh, u6Var), true);
             y9Var.setImageDrawable(this.d);
@@ -71,12 +71,12 @@ public final class o0 extends FrameLayout implements p6 {
             TLObject tLObject = p0Var.f14201f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f22174id == user.f22174id) {
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f22176id == user.f22176id) {
                     ar M3 = y6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp3 = AndroidUtilities.dp(16.0f);
                     int dp4 = AndroidUtilities.dp(16.0f);
                     M3.e = dp3;
-                    M3.f26593f = dp4;
+                    M3.f26595f = dp4;
                     y6.y1(M3, y6.w0(i11, u6Var), false);
                     y6.y1(M3, y6.w0(i12, u6Var), true);
                     y9Var.setImageDrawable(M3);
@@ -107,10 +107,10 @@ public final class o0 extends FrameLayout implements p6 {
         boolean z10 = getBackground() instanceof ShapeDrawable;
         u6 u6Var = this.f14191a;
         if (z10) {
-            y6.z1(y6.w0(y6.f23347ci, u6Var), getBackground());
+            y6.z1(y6.w0(y6.f23349ci, u6Var), getBackground());
             invalidate();
         } else {
-            setBackground(y6.c0(AndroidUtilities.dp(28.0f), y6.w0(y6.f23347ci, u6Var)));
+            setBackground(y6.c0(AndroidUtilities.dp(28.0f), y6.w0(y6.f23349ci, u6Var)));
         }
         TextView textView = this.f14193c;
         if (textView != null) {

@@ -117,7 +117,7 @@ public final class k4 implements Runnable {
                 if (tL_error != null) {
                     if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                         if ("SRP_ID_INVALID".equals(tL_error.text)) {
-                            ConnectionsManager.getInstance(keVar.f40904o0).sendRequest(new TL_account.getPassword(), new r9(keVar, twoStepVerificationActivity, z10, 3), 8);
+                            ConnectionsManager.getInstance(keVar.f40907o0).sendRequest(new TL_account.getPassword(), new r9(keVar, twoStepVerificationActivity, z10, 3), 8);
                             return;
                         }
                         if (twoStepVerificationActivity != null) {
@@ -132,14 +132,14 @@ public final class k4 implements Runnable {
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
                     String string = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
-                    org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+                    org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
                     e2Var.R = string;
                     LinearLayout linearLayout = new LinearLayout(activity);
                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                     linearLayout.setOrientation(1);
                     alertDialog$Builder.o(linearLayout);
                     TextView textView = new TextView(activity);
-                    int i19 = org.telegram.ui.ActionBar.y6.f23462j5;
+                    int i19 = org.telegram.ui.ActionBar.y6.f23464j5;
                     org.telegram.ui.ActionBar.f7.V(textView, i19, null);
                     textView.setTextSize(1, 16.0f);
                     if (LocaleController.isRTL) {
@@ -275,7 +275,7 @@ public final class k4 implements Runnable {
                         return;
                     }
                     try {
-                        AndroidUtilities.openForView(messageObject, unVar.getParentActivity(), unVar.f44385qa, false);
+                        AndroidUtilities.openForView(messageObject, unVar.getParentActivity(), unVar.f44388qa, false);
                         return;
                     } catch (Exception e) {
                         FileLog.e(e);
@@ -288,8 +288,8 @@ public final class k4 implements Runnable {
                 xo xoVar = (xo) obj5;
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
-                zo zoVar = xoVar.f45815a;
-                ap apVar = zoVar.f46338i3;
+                zo zoVar = xoVar.f45818a;
+                ap apVar = zoVar.f46341i3;
                 apVar.P.remove(((TLRPC.TL_channels_toggleUsername) obj4).username);
                 if (((TLObject) obj2) instanceof TLRPC.TL_boolTrue) {
                     zoVar.C1(tL_username, !z10, false);
@@ -313,7 +313,7 @@ public final class k4 implements Runnable {
                 int[] iArr2 = (int[]) obj4;
                 int[] iArr3 = (int[]) obj3;
                 int[] iArr4 = (int[]) obj2;
-                DispatchQueue dispatchQueue = org.telegram.ui.Wallet.w9.f37449a;
+                DispatchQueue dispatchQueue = org.telegram.ui.Wallet.w9.f37452a;
                 int i20 = 0;
                 while (true) {
                     int i21 = 287;
@@ -363,7 +363,7 @@ public final class k4 implements Runnable {
                                         }
                                     }
                                 }
-                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.w9.f37450b[i31];
+                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.w9.f37453b[i31];
                                 i30++;
                                 i18 = 0;
                                 i21 = 287;

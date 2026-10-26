@@ -364,7 +364,7 @@ public final class s1 extends bb {
         int i14 = this.backgroundPaddingLeft;
         mm0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
         this.d.u1();
-        int i15 = y6.f23297a7;
+        int i15 = y6.f23299a7;
         setBackgroundColor(getThemedColor(i15));
         fixNavigationBarKey(i15);
         this.Z.O(false);
@@ -379,7 +379,7 @@ public final class s1 extends bb {
         e2Var.r(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j10);
-        tL_messages_getPreparedInlineMessage.f22125id = str;
+        tL_messages_getPreparedInlineMessage.f22127id = str;
         ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new g1(i10, e2Var, context, j10, u6Var, tVar, t0Var));
     }
 
@@ -412,7 +412,7 @@ public final class s1 extends bb {
     public final void onThemeColorsChanged() {
         try {
             super.onThemeColorsChanged();
-            int themedColor = getThemedColor(y6.f23297a7);
+            int themedColor = getThemedColor(y6.f23299a7);
             if (themedColor != this.f13265e0) {
                 this.f13265e0 = themedColor;
                 setBackgroundColor(themedColor);

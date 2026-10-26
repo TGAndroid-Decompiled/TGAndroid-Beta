@@ -108,8 +108,8 @@ public final class z implements e2.o, MediaDataController.KeywordResultCallback,
             case 6:
                 un unVar = (un) this.f13805c;
                 boolean[] zArr = (boolean[]) this.d;
-                unVar.getMessagesController().pinMessage(unVar.e, unVar.f44242f, this.f13804b, false, !zArr[1], zArr[0]);
-                qc B = wc.B(unVar, true, null, null, unVar.f44385qa);
+                unVar.getMessagesController().pinMessage(unVar.e, unVar.f44245f, this.f13804b, false, !zArr[1], zArr[0]);
+                qc B = wc.B(unVar, true, null, null, unVar.f44388qa);
                 B.j();
                 ub ubVar = B.e;
                 ubVar.postDelayed(new dh(0, ubVar), 550L);
@@ -141,13 +141,13 @@ public final class z implements e2.o, MediaDataController.KeywordResultCallback,
                 return;
             case 11:
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                y40 y40Var = ((u40) this.f13805c).f44009n;
-                ChatObject.Call call = y40Var.f45951b.f44607a1;
+                y40 y40Var = ((u40) this.f13805c).f44012n;
+                ChatObject.Call call = y40Var.f45954b.f44610a1;
                 String obj3 = editTextBoldCursor.getText().toString();
                 int i12 = this.f13804b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor);
-                UndoView k12 = y40Var.f45951b.k1();
+                UndoView k12 = y40Var.f45954b.k1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -162,7 +162,7 @@ public final class z implements e2.o, MediaDataController.KeywordResultCallback,
             case 12:
                 LaunchActivity launchActivity = (LaunchActivity) this.f13805c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f35526d0;
+                ArrayList arrayList = launchActivity.f35529d0;
                 if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((r2) ic.a.g(1, arrayList))) {
                     pc0 pc0Var = new pc0(0);
                     pc0Var.E0 = new r(hashMap, this.f13804b, 12);
@@ -382,7 +382,7 @@ public final class z implements e2.o, MediaDataController.KeywordResultCallback,
             bundle.putBoolean("for_news", true);
             if (xj0Var.getMessagesController().checkCanOpenChat(bundle, xj0Var)) {
                 un unVar = new un(bundle);
-                unVar.f44289ib = messageObject;
+                unVar.f44292ib = messageObject;
                 xj0Var.presentFragment(unVar);
                 return;
             }
@@ -390,7 +390,7 @@ public final class z implements e2.o, MediaDataController.KeywordResultCallback,
         }
         int i10 = t61Var.d;
         if (i10 == -1) {
-            xj0Var.l0(this.f13804b, vj0Var.f44845n);
+            xj0Var.l0(this.f13804b, vj0Var.f44848n);
         } else if (i10 == -2) {
             xj0Var.k0();
         }

@@ -128,8 +128,8 @@ public final class i1 implements Runnable {
                 String str4 = (String) this.h;
                 TLRPC.User user = (TLRPC.User) this.f13029n;
                 String str5 = (String) this.f13030r;
-                ArrayList arrayList = launchActivity.f35530f0;
-                ArrayList arrayList2 = launchActivity.f35526d0;
+                ArrayList arrayList = launchActivity.f35533f0;
+                ArrayList arrayList2 = launchActivity.f35529d0;
                 ArrayList arrayList3 = launchActivity.E0;
                 TLObject tLObject3 = this.f13026b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
@@ -192,7 +192,7 @@ public final class i1 implements Runnable {
                                 b02 = wc.b0(r2Var);
                                 i10 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                unVar.ga(user.f22174id, str5, false);
+                                unVar.ga(user.f22176id, str5, false);
                                 return;
                             }
                         } else {

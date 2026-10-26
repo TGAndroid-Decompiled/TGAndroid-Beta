@@ -67,7 +67,7 @@ public final class x9 {
         kcVar.c(R.raw.stars_topup, new String[0]);
         ?? jcVar = new org.telegram.ui.Components.jc(t10, r2Var.getResourceProvider());
         this.f5695f = jcVar;
-        jcVar.f29601b = 3000L;
+        jcVar.f29603b = 3000L;
         int i10 = org.telegram.ui.ActionBar.y6.Gi;
         org.telegram.ui.ActionBar.u6 resourceProvider = r2Var.getResourceProvider();
         ag.w wVar = new ag.w(27);
@@ -76,14 +76,14 @@ public final class x9 {
         wVar2.d(Q, jcVar);
         org.telegram.ui.ActionBar.z6 x9 = org.telegram.ui.ActionBar.f7.x(101, jcVar);
         x9.c(i10, -1, 0, 0.0f, resourceProvider);
-        x9.f23807n = wVar;
-        x9.f23808o = wVar2;
-        x9.f23806m = false;
-        x9.f23801g = Q;
+        x9.f23809n = wVar;
+        x9.f23810o = wVar2;
+        x9.f23808m = false;
+        x9.f23803g = Q;
         org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(t10, r2Var.getResourceProvider(), true, false);
         this.e = ocVar;
         ocVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        ocVar.f31253b = new Runnable(this) {
+        ocVar.f31255b = new Runnable(this) {
             public final x9 f5619b;
 
             {
@@ -119,9 +119,9 @@ public final class x9 {
         kcVar.setButton(ocVar);
         org.telegram.ui.Components.qc b10 = org.telegram.ui.Components.wc.b0(r2Var).b(kcVar, -1);
         this.f5694c = b10;
-        b10.f31896s = false;
+        b10.f31898s = false;
         b10.k(true);
-        b10.f31899w = new Runnable(this) {
+        b10.f31901w = new Runnable(this) {
             public final x9 f5619b;
 
             {

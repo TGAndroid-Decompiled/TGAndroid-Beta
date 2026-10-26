@@ -6,16 +6,16 @@ import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class w61 extends MetricAffectingSpan {
-    public final CharSequence f34376a;
-    public final int f34377b;
-    public final int f34378c;
+    public final CharSequence f34379a;
+    public final int f34380b;
+    public final int f34381c;
     public final byte d;
     public final y11 e;
 
     public w61(CharSequence charSequence, int i10, int i11, byte b10, y11 y11Var) {
-        this.f34376a = charSequence;
-        this.f34377b = i10;
-        this.f34378c = i11;
+        this.f34379a = charSequence;
+        this.f34380b = i10;
+        this.f34381c = i11;
         this.d = b10;
         this.e = y11Var;
     }
@@ -27,9 +27,9 @@ public final class w61 extends MetricAffectingSpan {
         if (b10 == 2) {
             textPaint.setColor(-1);
         } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23396fc, false));
+            textPaint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23398fc, false));
         } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23378ec, false));
+            textPaint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23380ec, false));
         }
         y11 y11Var = this.e;
         if (y11Var != null) {

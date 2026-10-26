@@ -22,7 +22,7 @@ public final class e4 extends FrameLayout implements p6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23344cf));
+        hashSet.add(Integer.valueOf(y6.f23346cf));
         hashSet.add(Integer.valueOf(y6.Oh));
     }
 
@@ -80,7 +80,7 @@ public final class e4 extends FrameLayout implements p6 {
 
     public void setProgress(float f7) {
         this.f12959b = f7;
-        this.e = i0.a.f(f7, y6.x0(null, y6.f23344cf, false), this.f12960c);
+        this.e = i0.a.f(f7, y6.x0(null, y6.f23346cf, false), this.f12960c);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             getChildAt(i10).setAlpha(f7);
         }
@@ -94,7 +94,7 @@ public final class e4 extends FrameLayout implements p6 {
                 this.f12960c = y6.x0(null, y6.Oh, false);
             }
             if (this.e != 0) {
-                this.e = i0.a.f(this.f12959b, y6.x0(null, y6.f23344cf, false), this.f12960c);
+                this.e = i0.a.f(this.f12959b, y6.x0(null, y6.f23346cf, false), this.f12960c);
                 invalidate();
             }
         } catch (Exception e) {

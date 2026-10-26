@@ -38,7 +38,7 @@ public abstract class t1 extends lm0 {
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        int i10 = e1Var.f47738f;
+        int i10 = e1Var.f47741f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -156,7 +156,7 @@ public abstract class t1 extends lm0 {
                             c10 c10Var = new c10(context, null);
                             c10Var.setIsSingleCell(true);
                             c10Var.setViewType(29);
-                            f7.i(y6.f23354d6, c10Var, null);
+                            f7.i(y6.f23356d6, c10Var, null);
                             z3Var = c10Var;
                         }
                     } else {

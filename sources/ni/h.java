@@ -37,7 +37,7 @@ public final class h extends CharacterStyle {
         if (this.f18881c) {
             textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - this.f18880b));
         }
-        textPaint.setColor(y6.x0(null, y6.f23378ec, false));
+        textPaint.setColor(y6.x0(null, y6.f23380ec, false));
         textPaint.setTypeface(Typeface.MONOSPACE);
         textPaint.setUnderlineText(false);
     }

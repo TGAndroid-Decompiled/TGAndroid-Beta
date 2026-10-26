@@ -16,7 +16,7 @@ public final class iv0 extends org.telegram.ui.Cells.h6 {
         if (g6Var.isFocused() && g6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                un.r8(menu, this.F.d.f41680f.h, false, true, true, true);
+                un.r8(menu, this.F.d.f41683f.h, false, true, true, true);
             }
         }
     }

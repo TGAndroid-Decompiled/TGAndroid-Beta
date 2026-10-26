@@ -56,12 +56,12 @@ public final class a0 extends org.telegram.ui.ActionBar.r2 {
         int i10;
         j71 j71Var;
         ArrayList arrayList = a0Var.f12849b;
-        if (t61Var.f47037a == 4 && (i10 = t61Var.d) >= 0 && i10 < arrayList.size()) {
+        if (t61Var.f47040a == 4 && (i10 = t61Var.d) >= 0 && i10 < arrayList.size()) {
             x xVar = (x) arrayList.get(t61Var.d);
             xVar.f13352b = !xVar.f13352b;
             Activity parentActivity = a0Var.getParentActivity();
             int i11 = a0Var.currentAccount;
-            long j10 = xVar.f13351a.f22174id;
+            long j10 = xVar.f13351a.f22176id;
             boolean z10 = xVar.f13352b;
             WeakHashMap weakHashMap = y.f13364k;
             SharedPreferences sharedPreferences = parentActivity.getSharedPreferences("2botbiometry_" + i11, 0);
@@ -72,7 +72,7 @@ public final class a0 extends org.telegram.ui.ActionBar.r2 {
             }
             edit.apply();
             r71 r71Var = a0Var.f12848a;
-            if (r71Var != null && (j71Var = r71Var.f32150g3) != null) {
+            if (r71Var != null && (j71Var = r71Var.f32152g3) != null) {
                 j71Var.O(true);
             }
         }
@@ -85,7 +85,7 @@ public final class a0 extends org.telegram.ui.ActionBar.r2 {
         this.actionBar.setTitle(LocaleController.getString(R.string.PrivacyBiometryBots));
         this.actionBar.setActionBarMenuOnItemClick(new bh.m(this, 2));
         FrameLayout frameLayout = new FrameLayout(context);
-        f7.i(y6.f23297a7, frameLayout, this.resourceProvider);
+        f7.i(y6.f23299a7, frameLayout, this.resourceProvider);
         r71 r71Var = new r71(this, new ai.e(this, 27), new z(this), new z(this));
         this.f12848a = r71Var;
         frameLayout.addView(r71Var, gb1.i(-1, -1, 119));

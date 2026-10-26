@@ -51,7 +51,7 @@ public final class h extends FrameLayout {
         TextView e = vh.e(linearLayout, textView, gb1.x(-1, -2, 55, 0, 0, 0, 0), context);
         this.f13004f = e;
         e.setTextSize(1, 14.0f);
-        f7.V(e, y6.f23765z6, u6Var);
+        f7.V(e, y6.f23767z6, u6Var);
         linearLayout.addView(e, gb1.x(-1, -2, 55, 0, 3, 0, 0));
         ImageView imageView2 = new ImageView(context);
         f7.t(imageView2, y6.M6, u6Var, mode);

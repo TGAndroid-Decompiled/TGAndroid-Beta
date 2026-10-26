@@ -55,12 +55,12 @@ public final class p3 implements View.OnClickListener {
                             int i10;
                             TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                             mo moVar2 = mo.this;
-                            TLRPC.Chat chat = moVar2.f41623w0;
+                            TLRPC.Chat chat = moVar2.f41626w0;
                             int i11 = chat.level;
                             int i12 = tL_premium_boostsStatus.level;
                             if (i11 != i12) {
                                 chat.level = i12;
-                                moVar2.getMessagesController().putChat(moVar2.f41623w0, false);
+                                moVar2.getMessagesController().putChat(moVar2.f41626w0, false);
                             }
                             Switch checkBox = moVar2.M.getCheckBox();
                             if (tL_premium_boostsStatus.level < moVar2.getMessagesController().channelAutotranslationLevelMin) {
@@ -82,7 +82,7 @@ public final class p3 implements View.OnClickListener {
                             }
                             TLRPC.TL_channels_toggleAutotranslation tL_channels_toggleAutotranslation = new TLRPC.TL_channels_toggleAutotranslation();
                             moVar2.getMessagesController();
-                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(moVar2.f41623w0);
+                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(moVar2.f41626w0);
                             tL_channels_toggleAutotranslation.enabled = z11;
                             moVar2.M.setChecked(z11);
                             zArr2[0] = false;
@@ -122,14 +122,14 @@ public final class p3 implements View.OnClickListener {
                 Long l4 = po0Var.H0;
                 if (l4 != null && longValue == l4.longValue()) {
                     po0Var.m0 = true;
-                    po0Var.f42596f[0].setText("");
+                    po0Var.f42599f[0].setText("");
                     po0Var.m0 = false;
                     po0Var.H0 = 0L;
                     po0Var.M0();
                 } else {
-                    po0Var.f42596f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f5223b, false, true, true, po0Var.C0.invoice.currency));
+                    po0Var.f42599f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f5223b, false, true, true, po0Var.C0.invoice.currency));
                 }
-                EditTextBoldCursor editTextBoldCursor = po0Var.f42596f[0];
+                EditTextBoldCursor editTextBoldCursor = po0Var.f42599f[0];
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 return;
         }

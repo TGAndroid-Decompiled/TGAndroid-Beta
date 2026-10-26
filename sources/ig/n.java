@@ -125,28 +125,28 @@ public class n extends lm0 implements l2 {
     public static void E(View view, Drawable drawable) {
         if (drawable != null) {
             try {
-                f7.y(view, drawable, y6.f23316b7, null, PorterDuff.Mode.MULTIPLY);
+                f7.y(view, drawable, y6.f23318b7, null, PorterDuff.Mode.MULTIPLY);
             } catch (Exception e) {
                 FileLog.e(e);
                 return;
             }
         }
-        int i10 = y6.f23297a7;
+        int i10 = y6.f23299a7;
         g gVar = new g();
         gh.a aVar = new gh.a(29);
         int Q = f7.Q(i10, -1, 0, 0.0f, null);
         aVar.d(Q, view);
         z6 x9 = f7.x(101, view);
         x9.c(i10, -1, 0, 0.0f, null);
-        x9.f23807n = gVar;
-        x9.f23808o = aVar;
-        x9.f23806m = false;
-        x9.f23801g = Q;
+        x9.f23809n = gVar;
+        x9.f23810o = aVar;
+        x9.f23808m = false;
+        x9.f23803g = Q;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        int i10 = e1Var.f47738f;
+        int i10 = e1Var.f47741f;
         if (i10 != 1 && i10 != 5 && i10 != 3 && i10 != 8 && i10 != 7 && i10 != 10 && i10 != 11 && i10 != 13 && i10 != 15 && i10 != 16 && i10 != 18 && i10 != 19 && i10 != 20) {
             return true;
         }
@@ -251,22 +251,22 @@ public class n extends lm0 implements l2 {
         this.J = z10;
         for (int i10 = 0; i10 < mm0Var.getChildCount(); i10++) {
             if (mm0Var.getChildAt(i10) instanceof p2) {
-                ((p2) mm0Var.getChildAt(i10)).f24651f = z10;
+                ((p2) mm0Var.getChildAt(i10)).f24653f = z10;
             }
         }
         for (int i11 = 0; i11 < mm0Var.getCachedChildCount(); i11++) {
             if (mm0Var.P(i11) instanceof p2) {
-                ((p2) mm0Var.P(i11)).f24651f = z10;
+                ((p2) mm0Var.P(i11)).f24653f = z10;
             }
         }
         for (int i12 = 0; i12 < mm0Var.getHiddenChildCount(); i12++) {
             if (mm0Var.V(i12) instanceof p2) {
-                ((p2) mm0Var.V(i12)).f24651f = z10;
+                ((p2) mm0Var.V(i12)).f24653f = z10;
             }
         }
         for (int i13 = 0; i13 < mm0Var.getAttachedScrapChildCount(); i13++) {
             if (mm0Var.O(i13) instanceof p2) {
-                ((p2) mm0Var.O(i13)).f24651f = z10;
+                ((p2) mm0Var.O(i13)).f24653f = z10;
             }
         }
     }
@@ -404,7 +404,7 @@ public class n extends lm0 implements l2 {
 
     @Override
     public final int j(int i10) {
-        return ((l) this.M.get(i10)).f47037a;
+        return ((l) this.M.get(i10)).f47040a;
     }
 
     @Override
@@ -460,7 +460,7 @@ public class n extends lm0 implements l2 {
                     r22 = new m6(context, null);
                 }
                 if (this.h == 15) {
-                    f7.i(y6.f23354d6, r22, null);
+                    f7.i(y6.f23356d6, r22, null);
                     break;
                 }
                 break;
@@ -505,17 +505,17 @@ public class n extends lm0 implements l2 {
                 break;
             case 3:
                 r22 = new i4(context, 2);
-                f7.i(y6.f23297a7, r22, null);
+                f7.i(y6.f23299a7, r22, null);
                 View view = new View(context);
-                f7.a0(R.drawable.greydivider, y6.f23316b7, context, view, null);
+                f7.a0(R.drawable.greydivider, y6.f23318b7, context, view, null);
                 r22.addView(view, gb1.g(-1.0f, -1));
                 break;
             case 4:
                 r22 = new org.telegram.ui.Cells.z(context);
                 ImageReceiver imageReceiver = new ImageReceiver(r22);
                 r22.h = imageReceiver;
-                r22.f24811n = new j9((u6) null);
-                r22.f24814w = AndroidUtilities.dp(40.0f);
+                r22.f24813n = new j9((u6) null);
+                r22.f24816w = AndroidUtilities.dp(40.0f);
                 r22.F = AndroidUtilities.dp(10.0f);
                 r22.H = UserConfig.selectedAccount;
                 y6.S(context);
@@ -537,9 +537,9 @@ public class n extends lm0 implements l2 {
                 break;
             case 8:
                 r22 = new org.telegram.ui.Cells.f7(context, (d3) null);
-                Drawable X0 = y6.X0(context, R.drawable.greydivider, y6.f23316b7);
-                ar arVar = new ar(new ColorDrawable(y6.x0(null, y6.f23297a7, false)), X0);
-                arVar.f26597w = true;
+                Drawable X0 = y6.X0(context, R.drawable.greydivider, y6.f23318b7);
+                ar arVar = new ar(new ColorDrawable(y6.x0(null, y6.f23299a7, false)), X0);
+                arVar.f26599w = true;
                 r22.setBackgroundDrawable(arVar);
                 E(r22, X0);
                 break;
@@ -548,7 +548,7 @@ public class n extends lm0 implements l2 {
             default:
                 r22 = new v8(context);
                 if (this.h == 15) {
-                    f7.i(y6.f23354d6, r22, null);
+                    f7.i(y6.f23356d6, r22, null);
                     break;
                 }
                 break;
@@ -557,9 +557,9 @@ public class n extends lm0 implements l2 {
                 break;
             case 11:
                 r22 = new j(this, context);
-                Drawable X02 = y6.X0(context, R.drawable.greydivider, y6.f23316b7);
-                ar arVar2 = new ar(new ColorDrawable(y6.x0(null, y6.f23297a7, false)), X02);
-                arVar2.f26597w = true;
+                Drawable X02 = y6.X0(context, R.drawable.greydivider, y6.f23318b7);
+                ar arVar2 = new ar(new ColorDrawable(y6.x0(null, y6.f23299a7, false)), X02);
+                arVar2.f26599w = true;
                 r22.setBackgroundDrawable(arVar2);
                 E(r22, X02);
                 break;
@@ -572,9 +572,9 @@ public class n extends lm0 implements l2 {
                 break;
             case 15:
                 r22 = new LinearLayout(context);
-                r22.f25585b = new ArrayList();
+                r22.f25587b = new ArrayList();
                 r22.setOrientation(1);
-                f7.i(y6.f23297a7, r22, null);
+                f7.i(y6.f23299a7, r22, null);
                 break;
             case 16:
                 r22 = new i(this, context);
@@ -617,7 +617,7 @@ public class n extends lm0 implements l2 {
 
     @Override
     public final void y(s4.e1 e1Var) {
-        View view = e1Var.f47735a;
+        View view = e1Var.f47738a;
         if (view instanceof p2) {
             p2 p2Var = (p2) view;
             p2Var.S(this.H, false);

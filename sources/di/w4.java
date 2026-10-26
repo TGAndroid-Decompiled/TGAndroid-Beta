@@ -98,7 +98,7 @@ public abstract class w4 extends View {
             this.M = ofFloat;
             ofFloat.addUpdateListener(new u4(this, 0));
             this.M.addListener(new bh.b(this, 13));
-            this.M.setInterpolator(ds.f27584f);
+            this.M.setInterpolator(ds.f27586f);
             this.M.setDuration(200L);
             this.M.start();
         }

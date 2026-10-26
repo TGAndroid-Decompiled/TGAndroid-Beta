@@ -7,29 +7,29 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class nr0 extends Drawable {
-    public long f31066a = 0;
-    public final float[] f31067b = {0.0f, -0.5f};
-    public final Drawable f31068c;
+    public long f31068a = 0;
+    public final float[] f31069b = {0.0f, -0.5f};
+    public final Drawable f31070c;
     public final Drawable d;
     public final Drawable e;
-    public final int f31069f;
+    public final int f31071f;
 
     public nr0(Context context, int i10) {
-        this.f31069f = i10;
+        this.f31071f = i10;
         if (i10 == 4) {
-            this.f31068c = context.getResources().getDrawable(R.drawable.filled_extend_location).mutate();
+            this.f31070c = context.getResources().getDrawable(R.drawable.filled_extend_location).mutate();
             this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
             this.e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
         } else if (i10 == 5) {
-            this.f31068c = context.getResources().getDrawable(R.drawable.filled_stop_location).mutate();
+            this.f31070c = context.getResources().getDrawable(R.drawable.filled_stop_location).mutate();
             this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
             this.e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
         } else if (i10 == 1) {
-            this.f31068c = context.getResources().getDrawable(R.drawable.smallanimationpin).mutate();
+            this.f31070c = context.getResources().getDrawable(R.drawable.smallanimationpin).mutate();
             this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
             this.e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
         } else {
-            this.f31068c = context.getResources().getDrawable(R.drawable.animationpin).mutate();
+            this.f31070c = context.getResources().getDrawable(R.drawable.animationpin).mutate();
             this.d = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
             this.e = context.getResources().getDrawable(R.drawable.animationpinright).mutate();
         }
@@ -45,13 +45,13 @@ public final class nr0 extends Drawable {
         int w10;
         int i10;
         float y3;
-        Drawable drawable = this.f31068c;
+        Drawable drawable = this.f31070c;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         int i11 = 3;
         int i12 = 5;
         int i13 = 1;
-        int i14 = this.f31069f;
+        int i14 = this.f31071f;
         int i15 = 4;
         if (i14 != 4 && i14 != 5) {
             if (i14 == 3) {
@@ -73,7 +73,7 @@ public final class nr0 extends Drawable {
         drawable.draw(canvas);
         int i17 = 0;
         while (true) {
-            fArr = this.f31067b;
+            fArr = this.f31069b;
             if (i17 >= 2) {
                 break;
             }
@@ -145,8 +145,8 @@ public final class nr0 extends Drawable {
             i15 = 4;
         }
         long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f31066a;
-        this.f31066a = currentTimeMillis;
+        long j10 = currentTimeMillis - this.f31068a;
+        this.f31068a = currentTimeMillis;
         if (j10 > 16) {
             j10 = 16;
         }
@@ -165,7 +165,7 @@ public final class nr0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        int i10 = this.f31069f;
+        int i10 = this.f31071f;
         if (i10 != 4 && i10 != 5) {
             if (i10 == 3) {
                 return AndroidUtilities.dp(100.0f);
@@ -183,7 +183,7 @@ public final class nr0 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        int i10 = this.f31069f;
+        int i10 = this.f31071f;
         if (i10 != 4 && i10 != 5) {
             if (i10 == 3) {
                 return AndroidUtilities.dp(100.0f);
@@ -206,7 +206,7 @@ public final class nr0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f31068c.setColorFilter(colorFilter);
+        this.f31070c.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
         this.e.setColorFilter(colorFilter);
     }

@@ -10,22 +10,22 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class qb implements org.telegram.ui.Cells.s0 {
-    public final sb f42796a;
+    public final sb f42799a;
 
     public qb(sb sbVar) {
-        this.f42796a = sbVar;
+        this.f42799a = sbVar;
     }
 
     @Override
     public final boolean M0(org.telegram.ui.Cells.v0 v0Var, float f7, float f10) {
-        wb wbVar = this.f42796a.f43441n;
+        wb wbVar = this.f42799a.f43444n;
         int i10 = wb.Q0;
         return wbVar.Q0(v0Var, 0.0f, 0.0f);
     }
 
     @Override
     public final long a() {
-        return -this.f42796a.f43441n.f45065f.f22027id;
+        return -this.f42799a.f43444n.f45068f.f22027id;
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class qb implements org.telegram.ui.Cells.s0 {
 
     @Override
     public final void i0(long j10) {
-        wb wbVar = this.f42796a.f43441n;
+        wb wbVar = this.f42799a.f43444n;
         if (j10 < 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -j10);
@@ -58,11 +58,11 @@ public final class qb implements org.telegram.ui.Cells.s0 {
 
     @Override
     public final void k(org.telegram.ui.Cells.v0 v0Var) {
-        wb wbVar = this.f42796a.f43441n;
+        wb wbVar = this.f42799a.f43444n;
         MessageObject messageObject = v0Var.getMessageObject();
         if (messageObject.type == 22) {
             bd bdVar = new bd(a());
-            bdVar.f38047l0 = wbVar;
+            bdVar.f38050l0 = wbVar;
             wbVar.presentFragment(bdVar);
             return;
         }
@@ -77,24 +77,24 @@ public final class qb implements org.telegram.ui.Cells.s0 {
 
     @Override
     public final org.telegram.ui.ActionBar.r2 y() {
-        return this.f42796a.f43441n;
+        return this.f42799a.f43444n;
     }
 
     @Override
     public final void z(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         Object obj;
-        wb wbVar = this.f42796a.f43441n;
+        wb wbVar = this.f42799a.f43444n;
         if (wbVar.A0) {
             return;
         }
-        if (wbVar.f45090y0.containsKey(tL_chatInviteExported.link)) {
-            obj = wbVar.f45090y0.get(tL_chatInviteExported.link);
+        if (wbVar.f45093y0.containsKey(tL_chatInviteExported.link)) {
+            obj = wbVar.f45093y0.get(tL_chatInviteExported.link);
         } else {
             obj = null;
         }
         if (obj == null) {
             TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
-            tL_messages_getExportedChatInvite.peer = wbVar.getMessagesController().getInputPeer(-wbVar.f45065f.f22027id);
+            tL_messages_getExportedChatInvite.peer = wbVar.getMessagesController().getInputPeer(-wbVar.f45068f.f22027id);
             tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
             wbVar.A0 = true;
             final boolean[] zArr = new boolean[1];
@@ -102,14 +102,14 @@ public final class qb implements org.telegram.ui.Cells.s0 {
             e2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    qb.this.f42796a.f43441n.A0 = false;
+                    qb.this.f42799a.f43444n.A0 = false;
                     zArr[0] = true;
                 }
             });
             e2Var.r(300L);
             wbVar.getConnectionsManager().bindRequestToGuid(wbVar.getConnectionsManager().sendRequest(tL_messages_getExportedChatInvite, new bi.i2(this, tL_chatInviteExported, zArr, e2Var, 9)), wb.A0(wbVar));
         } else if (obj instanceof TLRPC.TL_messages_exportedChatInvite) {
-            wb.B0(wbVar, (TLRPC.TL_messages_exportedChatInvite) obj, wbVar.f45091z0);
+            wb.B0(wbVar, (TLRPC.TL_messages_exportedChatInvite) obj, wbVar.f45094z0);
         } else {
             org.telegram.messenger.t.q(R.string.LinkHashExpired, org.telegram.ui.Components.wc.b0(wbVar), R.raw.linkbroken, 36);
         }

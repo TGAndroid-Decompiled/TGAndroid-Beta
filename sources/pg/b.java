@@ -3,26 +3,26 @@ package pg;
 import org.telegram.ui.af1;
 import org.telegram.ui.un;
 public final class b implements Runnable {
-    public final int f46847a;
-    public final un f46848b;
+    public final int f46850a;
+    public final un f46851b;
 
     public b(un unVar, int i10) {
-        this.f46847a = i10;
-        this.f46848b = unVar;
+        this.f46850a = i10;
+        this.f46851b = unVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f46847a) {
+        switch (this.f46850a) {
             case 0:
-                un unVar = this.f46848b;
+                un unVar = this.f46851b;
                 if (unVar.getParentLayout() != null) {
                     af1.I0(unVar);
                     return;
                 }
                 return;
             default:
-                this.f46848b.kc();
+                this.f46851b.kc();
                 return;
         }
     }

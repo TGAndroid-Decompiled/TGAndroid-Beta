@@ -50,10 +50,10 @@ public final class h9 extends AnimatorListenerAdapter {
                 if (v9Var.d != null && (t10 = y9Var.t()) != null && (bk0Var = t10.f8973d1.d) != null) {
                     bk0 bk0Var2 = v9Var.d;
                     bk0Var2.getClass();
-                    bk0Var2.f26878c = bk0Var.f26878c;
-                    bk0Var2.f26879f = bk0Var.f26879f;
-                    bk0Var2.f26877b = bk0Var.f26877b;
-                    bk0Var2.f26876a = System.currentTimeMillis();
+                    bk0Var2.f26880c = bk0Var.f26880c;
+                    bk0Var2.f26881f = bk0Var.f26881f;
+                    bk0Var2.f26879b = bk0Var.f26879b;
+                    bk0Var2.f26878a = System.currentTimeMillis();
                     bk0Var2.c();
                 }
                 p4 p4Var = y9Var.G0;

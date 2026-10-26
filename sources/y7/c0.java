@@ -2,21 +2,21 @@ package y7;
 
 import java.util.Map;
 public final class c0 implements ka.d {
-    public static final c0 f52086b = new c0(0);
-    public static final c0 f52087c = new c0(1);
-    public final int f52088a;
+    public static final c0 f52089b = new c0(0);
+    public static final c0 f52090c = new c0(1);
+    public final int f52091a;
 
     public c0(int i10) {
-        this.f52088a = i10;
+        this.f52091a = i10;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f52088a) {
+        switch (this.f52091a) {
             case 0:
                 Map.Entry entry = (Map.Entry) obj;
                 ka.e eVar = (ka.e) obj2;
-                eVar.a(d0.f52107g, entry.getKey());
+                eVar.a(d0.f52110g, entry.getKey());
                 eVar.a(d0.h, entry.getValue());
                 return;
             default:

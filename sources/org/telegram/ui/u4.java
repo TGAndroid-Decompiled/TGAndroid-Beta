@@ -29,33 +29,33 @@ public abstract class u4 extends View implements org.telegram.ui.Components.ii0 
     public float R;
     public int S;
     public String T;
-    public final RectF f43999a;
-    public int f44000b;
-    public final Rect f44001c;
+    public final RectF f44002a;
+    public int f44003b;
+    public final Rect f44004c;
     public final Rect d;
     public final RectF e;
-    public final GradientDrawable f44002f;
+    public final GradientDrawable f44005f;
     public final GradientDrawable h;
-    public final float[] f44003n;
-    public final Paint f44004r;
-    public final Paint f44005s;
+    public final float[] f44006n;
+    public final Paint f44007r;
+    public final Paint f44008s;
     public final Paint v;
-    public final Path f44006w;
-    public final RectF f44007x;
-    public final GradientDrawable[] f44008y;
+    public final Path f44009w;
+    public final RectF f44010x;
+    public final GradientDrawable[] f44011y;
 
     public u4(Context context) {
         super(context);
         GradientDrawable.Orientation orientation;
-        this.f43999a = new RectF();
-        this.f44000b = 1;
-        this.f44001c = new Rect();
+        this.f44002a = new RectF();
+        this.f44003b = 1;
+        this.f44004c = new Rect();
         this.d = new Rect();
         this.e = new RectF();
-        this.f44003n = new float[]{0.0f, 1.0f};
-        this.f44006w = new Path();
-        this.f44007x = new RectF();
-        this.f44008y = new GradientDrawable[2];
+        this.f44006n = new float[]{0.0f, 1.0f};
+        this.f44009w = new Path();
+        this.f44010x = new RectF();
+        this.f44011y = new GradientDrawable[2];
         this.E = new boolean[2];
         this.F = new float[2];
         this.G = 0.0f;
@@ -64,13 +64,13 @@ public abstract class u4 extends View implements org.telegram.ui.Components.ii0 
         this.O = 1;
         this.S = -1;
         Paint paint = new Paint(1);
-        this.f44005s = paint;
+        this.f44008s = paint;
         paint.setColor(1442840575);
         Paint paint2 = new Paint(1);
         this.v = paint2;
         paint2.setColor(-1);
         GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{1107296256, 0});
-        this.f44002f = gradientDrawable;
+        this.f44005f = gradientDrawable;
         gradientDrawable.setShape(0);
         GradientDrawable gradientDrawable2 = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{1107296256, 0});
         this.h = gradientDrawable2;
@@ -81,16 +81,16 @@ public abstract class u4 extends View implements org.telegram.ui.Components.ii0 
             } else {
                 orientation = GradientDrawable.Orientation.RIGHT_LEFT;
             }
-            this.f44008y[i10] = new GradientDrawable(orientation, new int[]{838860800, 0});
-            this.f44008y[i10].setShape(0);
+            this.f44011y[i10] = new GradientDrawable(orientation, new int[]{838860800, 0});
+            this.f44011y[i10].setShape(0);
         }
         Paint paint3 = new Paint(1);
-        this.f44004r = paint3;
+        this.f44007r = paint3;
         paint3.setColor(-16777216);
         paint3.setAlpha(66);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(org.telegram.ui.Components.ds.f27587j);
+        ofFloat.setInterpolator(org.telegram.ui.Components.ds.f27589j);
         ofFloat.addUpdateListener(new b3(this, 1));
         ofFloat.addListener(new kg.e(this, 6));
         TextPaint textPaint = new TextPaint(1);
@@ -138,9 +138,9 @@ public abstract class u4 extends View implements org.telegram.ui.Components.ii0 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        Path path = this.f44006w;
+        Path path = this.f44009w;
         path.reset();
-        RectF rectF = this.f44007x;
+        RectF rectF = this.f44010x;
         rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
         path.addRoundRect(rectF, new float[]{AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
     }
@@ -148,13 +148,13 @@ public abstract class u4 extends View implements org.telegram.ui.Components.ii0 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        Rect rect = this.f44001c;
+        Rect rect = this.f44004c;
         rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
         Rect rect2 = this.d;
         rect2.set(0, (int) (i11 - (AndroidUtilities.dp(72.0f) * 0.5f)), i10, i11);
-        this.f44002f.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
+        this.f44005f.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
         this.h.setBounds(0, (i11 - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
-        GradientDrawable[] gradientDrawableArr = this.f44008y;
+        GradientDrawable[] gradientDrawableArr = this.f44011y;
         int i14 = i10 / 5;
         gradientDrawableArr[0].setBounds(0, 0, i14, i11);
         gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);

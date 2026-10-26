@@ -9,39 +9,39 @@ import java.util.Arrays;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 public final class op0 {
-    public final int f31348a;
-    public long f31349b;
-    public final Object f31350c;
+    public final int f31350a;
+    public long f31351b;
+    public final Object f31352c;
     public final Object d;
     public Object e;
-    public Object f31351f;
-    public Object f31352g;
+    public Object f31353f;
+    public Object f31354g;
 
     public op0(a8.h0 h0Var) {
         int i10;
-        this.f31350c = h0Var;
+        this.f31352c = h0Var;
         synchronized (h0Var) {
-            i10 = ((i2.i) h0Var.d).f13561c.f51931b;
+            i10 = ((i2.i) h0Var.d).f13561c.f51934b;
         }
-        this.f31348a = i10;
+        this.f31350a = i10;
         this.d = new e2.x(32);
         u2.z0 z0Var = new u2.z0(0L, i10);
         this.e = z0Var;
-        this.f31351f = z0Var;
-        this.f31352g = z0Var;
+        this.f31353f = z0Var;
+        this.f31354g = z0Var;
     }
 
     public static u2.z0 d(u2.z0 z0Var, long j10, ByteBuffer byteBuffer, int i10) {
-        while (j10 >= z0Var.f49490b) {
+        while (j10 >= z0Var.f49493b) {
             z0Var = (u2.z0) z0Var.d;
         }
         while (i10 > 0) {
-            int min = Math.min(i10, (int) (z0Var.f49490b - j10));
-            y2.a aVar = (y2.a) z0Var.f49491c;
-            byteBuffer.put(aVar.f51925a, ((int) (j10 - z0Var.f49489a)) + aVar.f51926b, min);
+            int min = Math.min(i10, (int) (z0Var.f49493b - j10));
+            y2.a aVar = (y2.a) z0Var.f49494c;
+            byteBuffer.put(aVar.f51928a, ((int) (j10 - z0Var.f49492a)) + aVar.f51929b, min);
             i10 -= min;
             j10 += min;
-            if (j10 == z0Var.f49490b) {
+            if (j10 == z0Var.f49493b) {
                 z0Var = (u2.z0) z0Var.d;
             }
         }
@@ -49,17 +49,17 @@ public final class op0 {
     }
 
     public static u2.z0 e(u2.z0 z0Var, long j10, byte[] bArr, int i10) {
-        while (j10 >= z0Var.f49490b) {
+        while (j10 >= z0Var.f49493b) {
             z0Var = (u2.z0) z0Var.d;
         }
         int i11 = i10;
         while (i11 > 0) {
-            int min = Math.min(i11, (int) (z0Var.f49490b - j10));
-            y2.a aVar = (y2.a) z0Var.f49491c;
-            System.arraycopy(aVar.f51925a, ((int) (j10 - z0Var.f49489a)) + aVar.f51926b, bArr, i10 - i11, min);
+            int min = Math.min(i11, (int) (z0Var.f49493b - j10));
+            y2.a aVar = (y2.a) z0Var.f49494c;
+            System.arraycopy(aVar.f51928a, ((int) (j10 - z0Var.f49492a)) + aVar.f51929b, bArr, i10 - i11, min);
             i11 -= min;
             j10 += min;
-            if (j10 == z0Var.f49490b) {
+            if (j10 == z0Var.f49493b) {
                 z0Var = (u2.z0) z0Var.d;
             }
         }
@@ -174,24 +174,24 @@ public final class op0 {
     }
 
     public void a(u2.z0 z0Var) {
-        if (((y2.a) z0Var.f49491c) == null) {
+        if (((y2.a) z0Var.f49494c) == null) {
             return;
         }
-        a8.h0 h0Var = (a8.h0) this.f31350c;
+        a8.h0 h0Var = (a8.h0) this.f31352c;
         synchronized (h0Var) {
             ((i2.i) h0Var.d).f13561c.b(z0Var);
             u2.z0 z0Var2 = z0Var;
             while (z0Var2 != null) {
-                y2.a aVar = (y2.a) z0Var2.f49491c;
+                y2.a aVar = (y2.a) z0Var2.f49494c;
                 aVar.getClass();
                 h0Var.t(aVar);
                 z0Var2 = (u2.z0) z0Var2.d;
-                if (z0Var2 == null || ((y2.a) z0Var2.f49491c) == null) {
+                if (z0Var2 == null || ((y2.a) z0Var2.f49494c) == null) {
                     z0Var2 = null;
                 }
             }
         }
-        z0Var.f49491c = null;
+        z0Var.f49494c = null;
         z0Var.d = null;
     }
 
@@ -200,31 +200,31 @@ public final class op0 {
         if (j10 != -1) {
             while (true) {
                 z0Var = (u2.z0) this.e;
-                if (j10 < z0Var.f49490b) {
+                if (j10 < z0Var.f49493b) {
                     break;
                 }
-                a8.h0 h0Var = (a8.h0) this.f31350c;
-                y2.a aVar = (y2.a) z0Var.f49491c;
+                a8.h0 h0Var = (a8.h0) this.f31352c;
+                y2.a aVar = (y2.a) z0Var.f49494c;
                 synchronized (h0Var) {
                     ((i2.i) h0Var.d).f13561c.c(aVar);
                     h0Var.t(aVar);
                 }
                 u2.z0 z0Var2 = (u2.z0) this.e;
-                z0Var2.f49491c = null;
+                z0Var2.f49494c = null;
                 z0Var2.d = null;
                 this.e = (u2.z0) z0Var2.d;
             }
-            if (((u2.z0) this.f31351f).f49489a < z0Var.f49489a) {
-                this.f31351f = z0Var;
+            if (((u2.z0) this.f31353f).f49492a < z0Var.f49492a) {
+                this.f31353f = z0Var;
             }
         }
     }
 
     public int c(int i10) {
         y2.a a2;
-        u2.z0 z0Var = (u2.z0) this.f31352g;
-        if (((y2.a) z0Var.f49491c) == null) {
-            a8.h0 h0Var = (a8.h0) this.f31350c;
+        u2.z0 z0Var = (u2.z0) this.f31354g;
+        if (((y2.a) z0Var.f49494c) == null) {
+            a8.h0 h0Var = (a8.h0) this.f31352c;
             synchronized (h0Var) {
                 a2 = ((i2.i) h0Var.d).f13561c.a();
                 ((HashMap) h0Var.f511b).put(a2, (j2.j) h0Var.f512c);
@@ -233,20 +233,20 @@ public final class op0 {
                     hVar.a();
                 }
             }
-            u2.z0 z0Var2 = new u2.z0(((u2.z0) this.f31352g).f49490b, this.f31348a);
-            z0Var.f49491c = a2;
+            u2.z0 z0Var2 = new u2.z0(((u2.z0) this.f31354g).f49493b, this.f31350a);
+            z0Var.f49494c = a2;
             z0Var.d = z0Var2;
         }
-        return Math.min(i10, (int) (((u2.z0) this.f31352g).f49490b - this.f31349b));
+        return Math.min(i10, (int) (((u2.z0) this.f31354g).f49493b - this.f31351b));
     }
 
     public op0(mp0 mp0Var) {
         this.d = new ArrayList(50);
         this.e = new ArrayList(50);
         Paint paint = new Paint(1);
-        this.f31351f = paint;
-        this.f31348a = 250;
-        this.f31350c = mp0Var;
+        this.f31353f = paint;
+        this.f31350a = 250;
+        this.f31352c = mp0Var;
         paint.setStrokeWidth(AndroidUtilities.dp(1.33f));
     }
 }

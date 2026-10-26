@@ -27,7 +27,7 @@ public final class h1 {
         new Matrix();
         this.f4712l = new RectF();
         this.f4713m = new org.telegram.ui.Components.xc(i1Var);
-        this.f4704a = tL_starGiftUnique.f22254id;
+        this.f4704a = tL_starGiftUnique.f22256id;
         TLRPC.Document document = tL_starGiftUnique.getDocument();
         this.f4705b = document;
         if (document == null) {

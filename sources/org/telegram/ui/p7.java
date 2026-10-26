@@ -10,20 +10,20 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class p7 extends k7 {
-    public final ArrayList f42377n;
-    public final x7 f42378r;
+    public final ArrayList f42380n;
+    public final x7 f42381r;
 
     public p7(x7 x7Var) {
         super(x7Var, 2);
-        this.f42378r = x7Var;
-        this.f42377n = new ArrayList();
+        this.f42381r = x7Var;
+        this.f42380n = new ArrayList();
     }
 
     @Override
     public final void F() {
         boolean z10;
         super.F();
-        ArrayList arrayList = this.f42377n;
+        ArrayList arrayList = this.f42380n;
         arrayList.clear();
         int i10 = 0;
         while (true) {
@@ -49,9 +49,9 @@ public final class p7 extends k7 {
         boolean z11;
         String name;
         float f7;
-        View view = e1Var.f47735a;
+        View view = e1Var.f47738a;
         o7 o7Var = (o7) view;
-        org.telegram.ui.Cells.o7 o7Var2 = (org.telegram.ui.Cells.o7) o7Var.f42107b.getChildAt(0);
+        org.telegram.ui.Cells.o7 o7Var2 = (org.telegram.ui.Cells.o7) o7Var.f42110b.getChildAt(0);
         ArrayList arrayList = this.e;
         ci.a aVar = ((q7) arrayList.get(i10)).d;
         if (aVar == view.getTag()) {
@@ -84,15 +84,15 @@ public final class p7 extends k7 {
         }
         imageView.setRoundRadius(AndroidUtilities.dp(f7));
         o7Var.d = z11;
-        o7Var.f42108c.setText(AndroidUtilities.formatFileSize(aVar.f6366c));
-        o7Var.f42106a.a(this.f42378r.h.f6375j.contains(aVar), z10);
+        o7Var.f42111c.setText(AndroidUtilities.formatFileSize(aVar.f6366c));
+        o7Var.f42109a.a(this.f42381r.h.f6375j.contains(aVar), z10);
     }
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         o7 o7Var = new o7(this, viewGroup.getContext(), 0);
         o7Var.e = 2;
-        o7Var.f42107b.addView(new org.telegram.ui.Cells.o7(viewGroup.getContext(), 3, null));
+        o7Var.f42110b.addView(new org.telegram.ui.Cells.o7(viewGroup.getContext(), 3, null));
         return new s4.e1(o7Var);
     }
 }

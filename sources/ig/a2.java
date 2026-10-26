@@ -122,32 +122,32 @@ public class a2 {
                         obj = ((h0) obj).f14064a;
                     }
                     if (obj instanceof ar0) {
-                        obj = ((ar0) obj).f26600b;
+                        obj = ((ar0) obj).f26602b;
                     }
                     boolean z10 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;
                     ArrayList arrayList4 = this.e;
                     if (z10) {
                         TLRPC.User user = (TLRPC.User) obj;
-                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f22174id);
+                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f22176id);
                         if (user2 != null) {
                             arrayList4.remove(user2);
                             arrayList3.remove(user2);
-                            hVar.l(user2.f22174id);
+                            hVar.l(user2.f22176id);
                         }
-                        long j10 = user.f22174id;
+                        long j10 = user.f22176id;
                         a0.h hVar2 = this.h;
                         TLObject tLObject = (TLObject) hVar2.f(j10);
                         if (tLObject != null) {
                             this.f13992g.remove(tLObject);
-                            hVar2.l(user.f22174id);
+                            hVar2.l(user.f22176id);
                         }
-                        long j11 = user.f22174id;
+                        long j11 = user.f22176id;
                         a0.h hVar3 = this.f13993i;
                         Object f7 = hVar3.f(j11);
                         if (f7 != null) {
                             this.f13994j.remove(f7);
-                            hVar3.l(user.f22174id);
+                            hVar3.l(user.f22176id);
                         }
                     } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f22027id)) != null) {
                         arrayList4.remove(chat);
@@ -177,7 +177,7 @@ public class a2 {
                 if (user != null) {
                     this.e.remove(user);
                     this.d.remove(user);
-                    hVar.l(user.f22174id);
+                    hVar.l(user.f22176id);
                 }
             }
         }

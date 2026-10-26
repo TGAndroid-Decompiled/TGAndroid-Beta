@@ -4,16 +4,16 @@ import a8.fg;
 import org.telegram.messenger.AndroidUtilities;
 import org.webrtc.RendererCommon;
 public final class h1 implements RendererCommon.RendererEvents {
-    public final i1 f33828a;
+    public final i1 f33831a;
 
     public h1(i1 i1Var) {
-        this.f33828a = i1Var;
+        this.f33831a = i1Var;
     }
 
     @Override
     public final void onFirstFrameRendered() {
-        i1 i1Var = this.f33828a;
-        i1Var.f33851x = true;
+        i1 i1Var = this.f33831a;
+        i1Var.f33854x = true;
         fg fgVar = i1Var.Y;
         if (fgVar != null) {
             fgVar.run();
@@ -25,7 +25,7 @@ public final class h1 implements RendererCommon.RendererEvents {
     @Override
     public final void onFrameResolutionChanged(int i10, int i11, int i12) {
         int i13 = (i12 / 90) % 2;
-        i1 i1Var = this.f33828a;
+        i1 i1Var = this.f33831a;
         if (i13 == 0) {
             i1Var.U = Float.valueOf(i11 / i10);
         } else {

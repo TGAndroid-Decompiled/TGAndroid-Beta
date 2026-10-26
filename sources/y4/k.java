@@ -2,29 +2,29 @@ package y4;
 
 import a8.rc;
 public abstract class k extends j {
-    public i0.d[] f52008a;
-    public String f52009b;
-    public int f52010c;
+    public i0.d[] f52011a;
+    public String f52012b;
+    public int f52013c;
 
     public k() {
-        this.f52008a = null;
-        this.f52010c = 0;
+        this.f52011a = null;
+        this.f52013c = 0;
     }
 
     public i0.d[] getPathData() {
-        return this.f52008a;
+        return this.f52011a;
     }
 
     public String getPathName() {
-        return this.f52009b;
+        return this.f52012b;
     }
 
     public void setPathData(i0.d[] dVarArr) {
-        if (!rc.a(this.f52008a, dVarArr)) {
-            this.f52008a = rc.e(dVarArr);
+        if (!rc.a(this.f52011a, dVarArr)) {
+            this.f52011a = rc.e(dVarArr);
             return;
         }
-        i0.d[] dVarArr2 = this.f52008a;
+        i0.d[] dVarArr2 = this.f52011a;
         for (int i10 = 0; i10 < dVarArr.length; i10++) {
             dVarArr2[i10].f13454a = dVarArr[i10].f13454a;
             int i11 = 0;
@@ -39,9 +39,9 @@ public abstract class k extends j {
     }
 
     public k(k kVar) {
-        this.f52008a = null;
-        this.f52010c = 0;
-        this.f52009b = kVar.f52009b;
-        this.f52008a = rc.e(kVar.f52008a);
+        this.f52011a = null;
+        this.f52013c = 0;
+        this.f52012b = kVar.f52012b;
+        this.f52011a = rc.e(kVar.f52011a);
     }
 }

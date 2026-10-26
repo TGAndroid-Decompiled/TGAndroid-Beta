@@ -42,7 +42,7 @@ public final class w0 implements Runnable {
                         tL_channelLocation.geo_point = tL_geoPoint;
                         tL_geoPoint.lat = address.getLatitude();
                         tL_channelLocation.geo_point._long = address.getLongitude();
-                        pc0Var.f42459z0 = tL_channelLocation;
+                        pc0Var.f42462z0 = tL_channelLocation;
                     }
                 } catch (Exception e) {
                     FileLog.e(e);

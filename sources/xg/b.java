@@ -16,14 +16,14 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.ar;
 public final class b extends FrameLayout {
-    public final b6 f51754a;
-    public final ImageView f51755b;
+    public final b6 f51757a;
+    public final ImageView f51758b;
 
     public b(Context context, u6 u6Var) {
         super(context);
         int i10;
         b6 b6Var = new b6(context);
-        this.f51754a = b6Var;
+        this.f51757a = b6Var;
         b6Var.setTextSize(16);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -36,7 +36,7 @@ public final class b extends FrameLayout {
         b6Var.setTag(Integer.valueOf(i11));
         addView(b6Var);
         ImageView imageView = new ImageView(context);
-        this.f51755b = imageView;
+        this.f51758b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
         b6Var.k(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
@@ -45,9 +45,9 @@ public final class b extends FrameLayout {
         int i12 = y6.N6;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         f7.y(this, drawable, i12, u6Var, mode);
-        f7.y(this, drawable2, y6.f23483k7, u6Var, mode);
+        f7.y(this, drawable2, y6.f23485k7, u6Var, mode);
         imageView.setImageDrawable(new ar(drawable, drawable2));
-        f7.i(y6.f23425h5, this, u6Var);
+        f7.i(y6.f23427h5, this, u6Var);
     }
 
     @Override
@@ -55,11 +55,11 @@ public final class b extends FrameLayout {
         int dp;
         int measuredWidth;
         int i14 = i12 - i10;
-        b6 b6Var = this.f51754a;
+        b6 b6Var = this.f51757a;
         int textHeight = ((i13 - i11) - b6Var.getTextHeight()) / 2;
         boolean z11 = LocaleController.isRTL;
         float f7 = 23.0f;
-        ImageView imageView = this.f51755b;
+        ImageView imageView = this.f51758b;
         if (z11) {
             int measuredWidth2 = getMeasuredWidth() - b6Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
@@ -84,8 +84,8 @@ public final class b extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f51754a.measure(vh.x(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f51755b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        this.f51757a.measure(vh.x(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f51758b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

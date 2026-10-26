@@ -12,7 +12,7 @@ public final class kx0 extends bb {
         super(context, null, true, false, null);
         fixNavigationBar();
         this.E = true;
-        this.f26814y = true;
+        this.f26816y = true;
         K();
         mm0 mm0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
@@ -38,7 +38,7 @@ public final class kx0 extends bb {
     public final lm0 v(mm0 mm0Var) {
         ct ctVar = new ct(mm0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
         this.X = ctVar;
-        ctVar.f29505r = false;
+        ctVar.f29507r = false;
         return ctVar;
     }
 

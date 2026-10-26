@@ -48,7 +48,7 @@ public final class b6 extends FrameLayout {
         this.h = u5Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.f8432s = mutate;
-        org.telegram.ui.ActionBar.f7.y(this, mutate, org.telegram.ui.ActionBar.y6.f23425h5, bVar, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.f7.y(this, mutate, org.telegram.ui.ActionBar.y6.f23427h5, bVar, PorterDuff.Mode.MULTIPLY);
         z5 z5Var = new z5(this, context);
         this.e = z5Var;
         v5 v5Var = new v5(this, context);
@@ -196,7 +196,7 @@ public final class b6 extends FrameLayout {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
             ofFloat.addUpdateListener(new ai.g0(this, 21));
-            ofFloat.setInterpolator(org.telegram.ui.ActionBar.q1.f22961w);
+            ofFloat.setInterpolator(org.telegram.ui.ActionBar.q1.f22963w);
             ofFloat.setDuration(250L);
             ofFloat.start();
         }
@@ -205,7 +205,7 @@ public final class b6 extends FrameLayout {
             currentPage.f9196r.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
             FrameLayout frameLayout = currentPage.f9193c;
             if (frameLayout.getTranslationY() != 0.0f) {
-                currentPage.d.A((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.q1.f22961w);
+                currentPage.d.A((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.q1.f22963w);
             }
         }
     }
@@ -236,7 +236,7 @@ public final class b6 extends FrameLayout {
                         v9Var.f9271c = null;
                     }
                     o9 o9Var = y9Var.f9445n0;
-                    int i13 = messageObject.storyItem.f22264id;
+                    int i13 = messageObject.storyItem.f22266id;
                     y9 y9Var2 = o9Var.N0;
                     int i14 = 0;
                     while (true) {

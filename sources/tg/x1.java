@@ -19,14 +19,14 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Components.cy0;
 public class x1 extends View implements p6 {
-    public w1 f49116a;
-    public final cy0 f49117b;
-    public int f49118c;
+    public w1 f49119a;
+    public final cy0 f49120b;
+    public int f49121c;
     public ig.o d;
     public boolean e;
-    public Paint f49119f;
+    public Paint f49122f;
     public LinearGradient h;
-    public Matrix f49120n;
+    public Matrix f49123n;
 
     public x1(Context context) {
         super(context);
@@ -38,23 +38,23 @@ public class x1 extends View implements p6 {
         } else {
             i10 = 50;
         }
-        this.f49117b = new cy0(this, 14);
+        this.f49120b = new cy0(this, 14);
         this.e = true;
-        this.f49116a = new w1(i10);
+        this.f49119a = new w1(i10);
         a();
     }
 
     public void a() {
-        w1 w1Var = this.f49116a;
+        w1 w1Var = this.f49119a;
         w1Var.O = 100;
         w1Var.M = true;
         w1Var.G = true;
         w1Var.K = true;
         w1Var.H = true;
-        w1Var.f49101r = 4;
-        w1Var.f49105w = 0.98f;
+        w1Var.f49104r = 4;
+        w1Var.f49108w = 0.98f;
         w1Var.v = 0.98f;
-        w1Var.f49104u = 0.98f;
+        w1Var.f49107u = 0.98f;
         w1Var.c();
     }
 
@@ -81,12 +81,12 @@ public class x1 extends View implements p6 {
 
     public final void c() {
         Paint paint = new Paint(1);
-        this.f49119f = paint;
+        this.f49122f = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.h = linearGradient;
-        this.f49119f.setShader(linearGradient);
-        this.f49120n = new Matrix();
+        this.f49122f.setShader(linearGradient);
+        this.f49123n = new Matrix();
     }
 
     public int getStarsRectWidth() {
@@ -120,28 +120,28 @@ public class x1 extends View implements p6 {
         Canvas canvas2;
         super.onDraw(canvas);
         if (this.e) {
-            if (this.f49119f != null) {
+            if (this.f49122f != null) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
                 canvas2 = canvas;
             } else {
                 canvas2 = canvas;
             }
-            this.f49116a.d(canvas2);
-            if (this.f49119f != null) {
+            this.f49119a.d(canvas2);
+            if (this.f49122f != null) {
                 canvas2.save();
-                this.f49120n.reset();
-                this.f49120n.postTranslate(0.0f, (getHeight() + 1) - AndroidUtilities.dp(12.0f));
-                this.h.setLocalMatrix(this.f49120n);
-                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.f49119f);
-                this.f49120n.reset();
-                this.f49120n.postRotate(180.0f);
-                this.f49120n.postTranslate(0.0f, AndroidUtilities.dp(12.0f));
-                this.h.setLocalMatrix(this.f49120n);
-                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.f49119f);
+                this.f49123n.reset();
+                this.f49123n.postTranslate(0.0f, (getHeight() + 1) - AndroidUtilities.dp(12.0f));
+                this.h.setLocalMatrix(this.f49123n);
+                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.f49122f);
+                this.f49123n.reset();
+                this.f49123n.postRotate(180.0f);
+                this.f49123n.postTranslate(0.0f, AndroidUtilities.dp(12.0f));
+                this.h.setLocalMatrix(this.f49123n);
+                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.f49122f);
                 canvas2.restore();
                 canvas2.restore();
             }
-            if (!this.f49116a.f49091g) {
+            if (!this.f49119a.f49094g) {
                 invalidate();
             }
         }
@@ -151,35 +151,35 @@ public class x1 extends View implements p6 {
     public void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
-        this.f49116a.f49087a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
-        this.f49116a.f49087a.offset((getMeasuredWidth() - this.f49116a.f49087a.width()) / 2.0f, (getMeasuredHeight() - this.f49116a.f49087a.height()) / 2.0f);
-        this.f49116a.f49088b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
-        if (this.f49118c != measuredHeight) {
-            this.f49118c = measuredHeight;
-            this.f49116a.f();
+        this.f49119a.f49090a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
+        this.f49119a.f49090a.offset((getMeasuredWidth() - this.f49119a.f49090a.width()) / 2.0f, (getMeasuredHeight() - this.f49119a.f49090a.height()) / 2.0f);
+        this.f49119a.f49091b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
+        if (this.f49121c != measuredHeight) {
+            this.f49121c = measuredHeight;
+            this.f49119a.f();
         }
     }
 
     public void setPaused(boolean z10) {
-        w1 w1Var = this.f49116a;
-        if (z10 == w1Var.f49091g) {
+        w1 w1Var = this.f49119a;
+        if (z10 == w1Var.f49094g) {
             return;
         }
-        w1Var.f49091g = z10;
+        w1Var.f49094g = z10;
         if (z10) {
             w1Var.R = System.currentTimeMillis();
             return;
         }
-        for (int i10 = 0; i10 < this.f49116a.f49097n.size(); i10++) {
-            v1 v1Var = (v1) this.f49116a.f49097n.get(i10);
-            v1Var.f49066a = (System.currentTimeMillis() - this.f49116a.R) + v1Var.f49066a;
+        for (int i10 = 0; i10 < this.f49119a.f49100n.size(); i10++) {
+            v1 v1Var = (v1) this.f49119a.f49100n.get(i10);
+            v1Var.f49069a = (System.currentTimeMillis() - this.f49119a.R) + v1Var.f49069a;
         }
         invalidate();
     }
 
     @Override
     public final void updateColors() {
-        cy0 cy0Var = this.f49117b;
+        cy0 cy0Var = this.f49120b;
         removeCallbacks(cy0Var);
         postDelayed(cy0Var, 150L);
     }

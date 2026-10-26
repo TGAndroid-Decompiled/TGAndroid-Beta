@@ -168,7 +168,7 @@ public final class r0 implements Runnable {
                 sbVar.K1 = (w7) sbVar.H1.get(i13);
                 sbVar.N(0, 1);
                 sbVar.M(0, 1);
-                sbVar.f11617d1.f11107b.f32150g3.O(false);
+                sbVar.f11617d1.f11107b.f32152g3.O(false);
                 sbVar.f11614c1.setText(sbVar.K1.C0);
                 return;
             case 11:
@@ -201,7 +201,7 @@ public final class r0 implements Runnable {
                 }
             case 15:
                 String str = e2.n0.f9692a;
-                e2.c cVar = ((i2.d0) ((k2.v) ((rf.b) obj).f47333c)).f13509a.C;
+                e2.c cVar = ((i2.d0) ((k2.v) ((rf.b) obj).f47336c)).f13509a.C;
                 i2.w wVar = new i2.w(i13, 2);
                 cVar.getClass();
                 if (Looper.myLooper() == ((e2.i0) cVar.f9639c).f9672a.getLooper()) {
@@ -238,74 +238,74 @@ public final class r0 implements Runnable {
                 MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f22027id, 0, true);
                 return;
             case 19:
-                ((t4) ((org.telegram.ui.f) obj).f39221b).W(i13, true);
+                ((t4) ((org.telegram.ui.f) obj).f39224b).W(i13, true);
                 return;
             case 20:
                 s1 s1Var = (s1) obj;
-                int i15 = s1Var.f25318v7;
+                int i15 = s1Var.f25320v7;
                 if (i13 == i15) {
-                    org.telegram.ui.Cells.d0 d0Var2 = (org.telegram.ui.Cells.d0) s1Var.f25218o7.get(i15);
+                    org.telegram.ui.Cells.d0 d0Var2 = (org.telegram.ui.Cells.d0) s1Var.f25220o7.get(i15);
                     if (d0Var2 != null) {
-                        org.telegram.ui.Cells.y yVar = d0Var2.f23975s;
+                        org.telegram.ui.Cells.y yVar = d0Var2.f23977s;
                         if (yVar != null) {
                             yVar.setState(StateSet.NOTHING);
                         }
                         d0Var2.b(false);
-                        if (!s1Var.f25363y7.scheduled) {
-                            if (d0Var2.f23966j != null) {
+                        if (!s1Var.f25365y7.scheduled) {
+                            if (d0Var2.f23968j != null) {
                                 s1Var.j();
-                            } else if (d0Var2.f23965i != null) {
+                            } else if (d0Var2.f23967i != null) {
                                 s1Var.j();
                                 j1 j1Var = s1Var.Jc;
                                 if (j1Var != null) {
-                                    j1Var.q1(s1Var, d0Var2.f23965i);
+                                    j1Var.q1(s1Var, d0Var2.f23967i);
                                 }
                             }
                         }
                     }
-                    s1Var.f25318v7 = -1;
+                    s1Var.f25320v7 = -1;
                     s1Var.a3();
                     return;
                 }
                 return;
             case 21:
-                ge geVar = ((fe) obj).f39348f;
+                ge geVar = ((fe) obj).f39351f;
                 geVar.getClass();
                 geVar.c(i13);
                 return;
             case 22:
-                un unVar = ((ri) obj).f43169g;
+                un unVar = ((ri) obj).f43172g;
                 if (unVar.Sb == i13) {
                     unVar.Va();
                     return;
                 }
                 return;
             case 23:
-                un unVar2 = ((si) obj).f43522g;
+                un unVar2 = ((si) obj).f43525g;
                 if (unVar2.Sb == i13) {
                     unVar2.Va();
                     return;
                 }
                 return;
             case 24:
-                ((aj) obj).f37813a.j(this.f1375b, 0, true, 0, true, 0);
+                ((aj) obj).f37816a.j(this.f1375b, 0, true, 0, true, 0);
                 return;
             case 25:
-                un unVar3 = ((ri) obj).f43169g;
+                un unVar3 = ((ri) obj).f43172g;
                 if (unVar3.Sb == i13) {
                     unVar3.Va();
                     return;
                 }
                 return;
             case 26:
-                un unVar4 = ((si) obj).f43522g;
+                un unVar4 = ((si) obj).f43525g;
                 if (unVar4.Sb == i13) {
                     unVar4.Va();
                     return;
                 }
                 return;
             case 27:
-                un unVar5 = ((si) obj).f43522g;
+                un unVar5 = ((si) obj).f43525g;
                 if (unVar5.Sb == i13) {
                     unVar5.Va();
                     return;
@@ -313,10 +313,10 @@ public final class r0 implements Runnable {
                 return;
             case 28:
                 un unVar6 = ((mm) obj).B0;
-                unVar6.f44493z0.h1(i13, unVar6.K4);
+                unVar6.f44496z0.h1(i13, unVar6.K4);
                 return;
             default:
-                i11 = ((r2) ((fn) obj).f39420a).currentAccount;
+                i11 = ((r2) ((fn) obj).f39423a).currentAccount;
                 ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
                 return;
         }

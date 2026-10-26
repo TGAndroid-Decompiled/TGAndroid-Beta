@@ -5,13 +5,13 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class xc extends org.telegram.ui.Components.lm0 {
-    public final int f45719c;
+    public final int f45722c;
     public final org.telegram.ui.ActionBar.u6 d;
     public final zc e;
 
     public xc(zc zcVar, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
         this.e = zcVar;
-        this.f45719c = i10;
+        this.f45722c = i10;
         this.d = u6Var;
     }
 
@@ -22,7 +22,7 @@ public final class xc extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final int h() {
-        return this.e.f46251c.size();
+        return this.e.f46254c.size();
     }
 
     @Override
@@ -32,21 +32,21 @@ public final class xc extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        return new s4.e1(new org.telegram.ui.Components.d31(this.f45719c, 3, viewGroup.getContext(), this.d));
+        return new s4.e1(new org.telegram.ui.Components.d31(this.f45722c, 3, viewGroup.getContext(), this.d));
     }
 
     @Override
     public final void y(s4.e1 e1Var) {
         TLRPC.WallPaper wallPaper;
         zc zcVar = this.e;
-        ArrayList arrayList = zcVar.f46251c;
+        ArrayList arrayList = zcVar.f46254c;
         int b10 = e1Var.b();
-        View view = e1Var.f47735a;
+        View view = e1Var.f47738a;
         if (b10 >= 0 && b10 < arrayList.size()) {
             org.telegram.ui.Components.xp xpVar = (org.telegram.ui.Components.xp) arrayList.get(b10);
             org.telegram.ui.Components.d31 d31Var = (org.telegram.ui.Components.d31) view;
             d31Var.g(xpVar.d, false);
-            if (xpVar.f34790a.f22681b) {
+            if (xpVar.f34793a.f22683b) {
                 wallPaper = null;
             } else {
                 wallPaper = zcVar.v;

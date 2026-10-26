@@ -10,9 +10,9 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class ju extends View implements org.telegram.ui.ActionBar.p6 {
-    public Path f40745a;
-    public Paint f40746b;
-    public boolean f40747c;
+    public Path f40748a;
+    public Paint f40749b;
+    public boolean f40750c;
 
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
@@ -23,19 +23,19 @@ public final class ju extends View implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawPath(this.f40745a, this.f40746b);
+        canvas.drawPath(this.f40748a, this.f40749b);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(13.0f), 1073741824));
-        setTop(this.f40747c);
+        setTop(this.f40750c);
     }
 
     public void setTop(boolean z10) {
-        Path path = this.f40745a;
+        Path path = this.f40748a;
         path.rewind();
-        this.f40747c = z10;
+        this.f40750c = z10;
         if (z10) {
             float dp = AndroidUtilities.dp(14.0f);
             RectF rectF = AndroidUtilities.rectTmp;
@@ -52,7 +52,7 @@ public final class ju extends View implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void updateColors() {
         try {
-            this.f40746b.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23354d6, false));
+            this.f40749b.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23356d6, false));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

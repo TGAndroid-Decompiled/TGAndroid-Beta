@@ -52,11 +52,11 @@ public final class w implements g0, bm0 {
         if (lxVar != null) {
             Long l4 = (Long) view.getTag();
             long longValue = l4.longValue();
-            cy cyVar = lxVar.f41384a;
+            cy cyVar = lxVar.f41387a;
             if (cyVar.getParentActivity() != null && (user = cyVar.getMessagesController().getUser(l4)) != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cyVar.getParentActivity());
                 String string = LocaleController.getString(R.string.ChatHintsDeleteAlertTitle);
-                e2 e2Var = alertDialog$Builder.f22366a;
+                e2 e2Var = alertDialog$Builder.f22368a;
                 e2Var.R = string;
                 e2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("ChatHintsDeleteAlert", R.string.ChatHintsDeleteAlert, ContactsController.formatName(user.first_name, user.last_name)));
                 alertDialog$Builder.k(LocaleController.getString(R.string.StickersRemove), new di.d1(lxVar, longValue, 9));
@@ -64,7 +64,7 @@ public final class w implements g0, bm0 {
                 cyVar.showDialog(e2Var);
                 TextView textView = (TextView) e2Var.d(-1);
                 if (textView != null) {
-                    f7.V(textView, y6.f23596q7, cyVar.getResourceProvider());
+                    f7.V(textView, y6.f23598q7, cyVar.getResourceProvider());
                 }
             }
         }

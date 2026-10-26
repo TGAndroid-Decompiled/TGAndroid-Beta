@@ -2,20 +2,20 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessagesStorage;
 public final class ks implements MessagesStorage.IntCallback {
-    public final int f41062a;
-    public final ContactsActivity f41063b;
+    public final int f41065a;
+    public final ContactsActivity f41066b;
 
     public ks(ContactsActivity contactsActivity, int i10) {
-        this.f41062a = i10;
-        this.f41063b = contactsActivity;
+        this.f41065a = i10;
+        this.f41066b = contactsActivity;
     }
 
     @Override
     public final void run(int i10) {
         boolean z10;
-        switch (this.f41062a) {
+        switch (this.f41065a) {
             case 0:
-                ContactsActivity contactsActivity = this.f41063b;
+                ContactsActivity contactsActivity = this.f41066b;
                 contactsActivity.getClass();
                 if (i10 != 0) {
                     z10 = true;
@@ -29,7 +29,7 @@ public final class ks implements MessagesStorage.IntCallback {
                 }
                 return;
             default:
-                ContactsActivity.W(this.f41063b, i10);
+                ContactsActivity.W(this.f41066b, i10);
                 return;
         }
     }

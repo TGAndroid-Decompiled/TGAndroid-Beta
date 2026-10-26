@@ -74,7 +74,7 @@ public final class o0 extends nb {
             if (i10 == 1) {
                 oc ocVar = new oc(getContext(), u6Var, true);
                 ocVar.e(LocaleController.getString(R.string.BotFileDownloadCancel));
-                ocVar.f31253b = new Runnable(this) {
+                ocVar.f31255b = new Runnable(this) {
                     public final o0 f13077b;
 
                     {
@@ -89,7 +89,7 @@ public final class o0 extends nb {
                                 o0 o0Var = this.f13077b;
                                 qc bulletin = o0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f31887j = 2750;
+                                    bulletin.f31889j = 2750;
                                     bulletin.i(true);
                                 }
                                 p0 p0Var = o0Var.f13169f;
@@ -121,7 +121,7 @@ public final class o0 extends nb {
             } else if (i10 == 2) {
                 oc ocVar2 = new oc(getContext(), u6Var, true);
                 ocVar2.e(LocaleController.getString(R.string.BotFileDownloadOpen));
-                ocVar2.f31253b = new Runnable(this) {
+                ocVar2.f31255b = new Runnable(this) {
                     public final o0 f13077b;
 
                     {
@@ -136,7 +136,7 @@ public final class o0 extends nb {
                                 o0 o0Var = this.f13077b;
                                 qc bulletin = o0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f31887j = 2750;
+                                    bulletin.f31889j = 2750;
                                     bulletin.i(true);
                                 }
                                 p0 p0Var = o0Var.f13169f;
@@ -236,7 +236,7 @@ public final class o0 extends nb {
                 qc bulletin2 = getBulletin();
                 if (bulletin2 != null) {
                     bulletin2.i(false);
-                    bulletin2.f31887j = 5000;
+                    bulletin2.f31889j = 5000;
                     bulletin2.i(true);
                 }
             }

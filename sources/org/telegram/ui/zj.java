@@ -23,7 +23,7 @@ public final class zj extends org.telegram.ui.Components.gb0 {
     @Override
     public final boolean a() {
         un unVar = this.W;
-        if (unVar.R.getVisibility() == 0 && !unVar.f44496z3) {
+        if (unVar.R.getVisibility() == 0 && !unVar.f44499z3) {
             return false;
         }
         return true;
@@ -85,7 +85,7 @@ public final class zj extends org.telegram.ui.Components.gb0 {
             if (weVar != null) {
                 if (z10) {
                     weVar.e = true;
-                    weVar.f32281b = System.currentTimeMillis();
+                    weVar.f32283b = System.currentTimeMillis();
                     weVar.invalidateSelf();
                     return;
                 }
@@ -97,14 +97,14 @@ public final class zj extends org.telegram.ui.Components.gb0 {
     @Override
     public final void m() {
         un unVar = this.W;
-        if (unVar.f44319l5 && ((getAdapter().R == null || unVar.f44331m5 || unVar.f44345n5) && unVar.h != null && getAdapter().R != null)) {
+        if (unVar.f44322l5 && ((getAdapter().R == null || unVar.f44334m5 || unVar.f44348n5) && unVar.h != null && getAdapter().R != null)) {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!globalMainSettings.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar.getParentActivity(), 0, unVar.f44385qa);
-                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar.getParentActivity(), 0, unVar.f44388qa);
+                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                unVar.showDialog(alertDialog$Builder.f22366a);
+                unVar.showDialog(alertDialog$Builder.f22368a);
                 globalMainSettings.edit().putBoolean("secretbot", true).commit();
             }
         }
@@ -116,7 +116,7 @@ public final class zj extends org.telegram.ui.Components.gb0 {
         boolean z11;
         if (this.V != z10) {
             un unVar = this.W;
-            org.telegram.ui.Components.tz0 tz0Var = unVar.f44367p1;
+            org.telegram.ui.Components.tz0 tz0Var = unVar.f44370p1;
             if (!unVar.isInPreviewMode() && z10) {
                 z11 = true;
             } else {

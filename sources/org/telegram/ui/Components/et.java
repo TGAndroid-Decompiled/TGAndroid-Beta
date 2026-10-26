@@ -17,11 +17,11 @@ public abstract class et extends j71 {
     public final ArrayList X;
     public boolean Y;
     public boolean Z;
-    public boolean f27977a0;
-    public int f27978b0;
-    public int f27979c0;
-    public String f27980d0;
-    public final bq f27981e0;
+    public boolean f27979a0;
+    public int f27980b0;
+    public int f27981c0;
+    public String f27982d0;
+    public final bq f27983e0;
 
     public et(mm0 mm0Var, Context context, int i10, int i11) {
         super(mm0Var, context, i10, 0, false, null, null);
@@ -31,7 +31,7 @@ public abstract class et extends j71 {
         this.U = new ArrayList();
         this.X = new ArrayList();
         yo0 yo0Var = (yo0) this;
-        this.f27981e0 = new bq(yo0Var, 7);
+        this.f27983e0 = new bq(yo0Var, 7);
         this.v = new d(yo0Var, 9);
         this.P = i10;
         this.Q = i11;

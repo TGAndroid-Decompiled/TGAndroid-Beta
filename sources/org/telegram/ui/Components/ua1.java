@@ -16,38 +16,38 @@ import android.graphics.SweepGradient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class ua1 {
-    public static final PorterDuff.Mode[] f33323r = {null, PorterDuff.Mode.SRC_IN, PorterDuff.Mode.SRC_OUT, PorterDuff.Mode.SRC_ATOP, PorterDuff.Mode.DST_OVER, PorterDuff.Mode.DST_IN, PorterDuff.Mode.DST_OUT, PorterDuff.Mode.DST_ATOP, PorterDuff.Mode.ADD, PorterDuff.Mode.SRC, PorterDuff.Mode.XOR, PorterDuff.Mode.MULTIPLY, PorterDuff.Mode.SCREEN, PorterDuff.Mode.OVERLAY, PorterDuff.Mode.DARKEN, PorterDuff.Mode.LIGHTEN};
-    public final Paint f33324a = new Paint(3);
-    public final Paint f33325b = new Paint();
-    public final Paint f33326c;
+    public static final PorterDuff.Mode[] f33326r = {null, PorterDuff.Mode.SRC_IN, PorterDuff.Mode.SRC_OUT, PorterDuff.Mode.SRC_ATOP, PorterDuff.Mode.DST_OVER, PorterDuff.Mode.DST_IN, PorterDuff.Mode.DST_OUT, PorterDuff.Mode.DST_ATOP, PorterDuff.Mode.ADD, PorterDuff.Mode.SRC, PorterDuff.Mode.XOR, PorterDuff.Mode.MULTIPLY, PorterDuff.Mode.SCREEN, PorterDuff.Mode.OVERLAY, PorterDuff.Mode.DARKEN, PorterDuff.Mode.LIGHTEN};
+    public final Paint f33327a = new Paint(3);
+    public final Paint f33328b = new Paint();
+    public final Paint f33329c;
     public final Path d;
     public final Path e;
-    public final Matrix f33327f;
-    public final Matrix f33328g;
+    public final Matrix f33330f;
+    public final Matrix f33331g;
     public final float[] h;
-    public final float[] f33329i;
-    public final RectF f33330j;
-    public final Rect f33331k;
-    public final int f33332l;
-    public Bitmap f33333m;
-    public Bitmap f33334n;
-    public Canvas f33335o;
-    public int f33336p;
-    public int f33337q;
+    public final float[] f33332i;
+    public final RectF f33333j;
+    public final Rect f33334k;
+    public final int f33335l;
+    public Bitmap f33336m;
+    public Bitmap f33337n;
+    public Canvas f33338o;
+    public int f33339p;
+    public int f33340q;
 
     public ua1(int i10) {
         Paint paint = new Paint();
-        this.f33326c = paint;
+        this.f33329c = paint;
         this.d = new Path();
         this.e = new Path();
-        this.f33327f = new Matrix();
-        this.f33328g = new Matrix();
+        this.f33330f = new Matrix();
+        this.f33331g = new Matrix();
         this.h = new float[9];
-        this.f33329i = new float[8];
-        this.f33330j = new RectF();
-        this.f33331k = new Rect();
-        this.f33337q = -1;
-        this.f33332l = i10;
+        this.f33332i = new float[8];
+        this.f33333j = new RectF();
+        this.f33334k = new Rect();
+        this.f33340q = -1;
+        this.f33335l = i10;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
@@ -67,7 +67,7 @@ public final class ua1 {
         if (optInt != 0 && length != 0) {
             int[] l4 = nb1.l(optJSONArray);
             float[] m10 = nb1.m(optJSONArray);
-            float[] fArr = this.f33329i;
+            float[] fArr = this.f33332i;
             nb1.c(jSONObject.optJSONArray("pa"), fArr, 6, new float[0]);
             paint.setColor(-16777216);
             if (optInt == 1) {

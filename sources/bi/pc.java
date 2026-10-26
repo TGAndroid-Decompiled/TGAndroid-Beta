@@ -34,7 +34,7 @@ public final class pc extends FrameLayout {
         this.f5246a = u6Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
         this.f5247b = mutate;
-        org.telegram.ui.ActionBar.f7.y(this, mutate, org.telegram.ui.ActionBar.y6.f23425h5, u6Var, PorterDuff.Mode.SRC_IN);
+        org.telegram.ui.ActionBar.f7.y(this, mutate, org.telegram.ui.ActionBar.y6.f23427h5, u6Var, PorterDuff.Mode.SRC_IN);
         this.f5248c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         TextView textView = new TextView(context);
@@ -45,7 +45,7 @@ public final class pc extends FrameLayout {
         org.telegram.ui.Components.s6 s6Var = new org.telegram.ui.Components.s6(context, false, false, false);
         this.e = s6Var;
         s6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        org.telegram.ui.ActionBar.f7.Z(s6Var, org.telegram.ui.ActionBar.y6.f23765z6, u6Var);
+        org.telegram.ui.ActionBar.f7.Z(s6Var, org.telegram.ui.ActionBar.y6.f23767z6, u6Var);
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {
@@ -109,7 +109,7 @@ public final class pc extends FrameLayout {
                 paint = null;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.y6.f23476k0;
+                paint = org.telegram.ui.ActionBar.y6.f23478k0;
             }
             Paint paint2 = paint;
             if (!LocaleController.isRTL) {

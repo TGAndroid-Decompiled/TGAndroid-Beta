@@ -38,10 +38,10 @@ public final class g0 extends tg.m1 {
             aVar.setOnClickListener(new ig.d0(this, 23));
             xg.a aVar2 = this.Q0;
             aVar2.e = true;
-            fi.d dVar = aVar2.f51748a;
+            fi.d dVar = aVar2.f51751a;
             dVar.setEnabled(true);
             dVar.i(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            f7.i(y6.f23425h5, aVar2.f51749b, aVar2.f51750c);
+            f7.i(y6.f23427h5, aVar2.f51752b, aVar2.f51753c);
             this.containerView.addView(this.Q0, gb1.h(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         fixNavigationBar();
@@ -53,17 +53,17 @@ public final class g0 extends tg.m1 {
     }
 
     public static void j0(g0 g0Var) {
-        tg.m1 m1Var = new tg.m1(g0Var.f26809n, UserConfig.selectedAccount, null, null, null, g0Var.resourcesProvider);
+        tg.m1 m1Var = new tg.m1(g0Var.f26811n, UserConfig.selectedAccount, null, null, null, g0Var.resourcesProvider);
         m1Var.J0 = true;
         m1Var.K0 = true;
-        m1Var.f48932c0 = true;
-        g0Var.f26809n.showDialog(m1Var);
+        m1Var.f48935c0 = true;
+        g0Var.f26811n.showDialog(m1Var);
     }
 
     public static void k0(g0 g0Var) {
         cy cyVar = new cy(vh.c(3, "onlySelect", "dialogsType", true));
         cyVar.C2 = new zg1(23, g0Var, "https://t.me/giftcode/" + g0Var.R0);
-        g0Var.f26809n.presentFragment(cyVar);
+        g0Var.f26811n.presentFragment(cyVar);
         g0Var.dismiss();
     }
 
@@ -104,16 +104,16 @@ public final class g0 extends tg.m1 {
 
     @Override
     public final void h0() {
-        int i10 = this.f48935f0;
-        this.f48936g0 = i10;
-        this.f48937h0 = i10 + 1;
+        int i10 = this.f48938f0;
+        this.f48939g0 = i10;
+        this.f48940h0 = i10 + 1;
         int i11 = i10 + 2;
-        this.f48935f0 = i11;
-        this.f48938i0 = i11;
-        this.f48939j0 = i11;
+        this.f48938f0 = i11;
+        this.f48941i0 = i11;
+        this.f48942j0 = i11;
         int size = this.X.size() + i11;
-        this.f48940k0 = size;
-        this.f48935f0 = size + 1;
-        this.f48941l0 = size;
+        this.f48943k0 = size;
+        this.f48938f0 = size + 1;
+        this.f48944l0 = size;
     }
 }

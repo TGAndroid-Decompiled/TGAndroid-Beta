@@ -137,7 +137,7 @@ public final class f0 extends z implements p6 {
         addView(textView, gb1.i(-2, 38, 17));
         int i11 = y6.Oh;
         int w02 = y6.w0(i11, u6Var);
-        int v = y6.v(y6.w0(y6.f23354d6, u6Var), y6.o1(0.1f, w02));
+        int v = y6.v(y6.w0(y6.f23356d6, u6Var), y6.o1(0.1f, w02));
         f7.V(textView, i11, u6Var);
         textView.setBackground(y6.a0(v, y6.o1(0.16f, w02), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(19.0f)));
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_add).mutate();
@@ -163,7 +163,7 @@ public final class f0 extends z implements p6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23354d6));
+        hashSet.add(Integer.valueOf(y6.f23356d6));
     }
 
     public final void h() {
@@ -316,7 +316,7 @@ public final class f0 extends z implements p6 {
         int i10 = y6.Oh;
         u6 u6Var = this.f17221r;
         int w02 = y6.w0(i10, u6Var);
-        int i11 = y6.f23354d6;
+        int i11 = y6.f23356d6;
         int w03 = y6.w0(i11, u6Var);
         if (w02 != this.F || w03 != this.G) {
             this.F = w02;

@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.text.TextUtils;
 import android.view.View;
 public final class of implements zl0 {
-    public final ChatActivityEnterView f31281a;
+    public final ChatActivityEnterView f31283a;
 
     public of(ChatActivityEnterView chatActivityEnterView) {
-        this.f31281a = chatActivityEnterView;
+        this.f31283a = chatActivityEnterView;
     }
 
     @Override
@@ -14,7 +14,7 @@ public final class of implements zl0 {
         if (view instanceof hi.g0) {
             String command = ((hi.g0) view).getCommand();
             if (!TextUtils.isEmpty(command)) {
-                ChatActivityEnterView chatActivityEnterView = this.f31281a;
+                ChatActivityEnterView chatActivityEnterView = this.f31283a;
                 if (chatActivityEnterView.c()) {
                     g5.L(chatActivityEnterView.O2, chatActivityEnterView.Q2, new p1(9, this, command), chatActivityEnterView.W3);
                     return;

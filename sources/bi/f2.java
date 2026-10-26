@@ -92,7 +92,7 @@ public final class f2 implements Runnable {
                 h7 h7Var = (h7) this.f4595b;
                 if (!((ca) this.f4596c).e) {
                     org.telegram.ui.Components.qc R = h7Var.getBulletinFactory().R(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    R.f31898u = true;
+                    R.f31900u = true;
                     R.j();
                     return;
                 }
@@ -160,7 +160,7 @@ public final class f2 implements Runnable {
                     if (aaVar != null) {
                         aaVar.b();
                     }
-                    TLRPC.ChatFull chatFull = unVar.f44322l8;
+                    TLRPC.ChatFull chatFull = unVar.f44325l8;
                     Context context = m7Var.getContext();
                     int currentAccount = unVar.getCurrentAccount();
                     long a2 = unVar.a();
@@ -307,7 +307,7 @@ public final class f2 implements Runnable {
                     k3Var.fixNavigationBar();
                     LinearLayout d = vh.d(context2, 1);
                     TextView g7 = org.telegram.messenger.t.g(context2, 1, 20.0f);
-                    org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.f23462j5, bVar);
+                    org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.f23464j5, bVar);
                     g7.setTypeface(AndroidUtilities.bold());
                     g7.setText(LocaleController.getString(R.string.DeleteSingleMessagesTitle));
                     d.addView(g7, gb1.o(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
@@ -318,7 +318,7 @@ public final class f2 implements Runnable {
                     zp checkBoxRound = y1Var.getCheckBoxRound();
                     int i17 = org.telegram.ui.ActionBar.y6.V6;
                     int i18 = org.telegram.ui.ActionBar.y6.g7;
-                    int i19 = org.telegram.ui.ActionBar.y6.f23483k7;
+                    int i19 = org.telegram.ui.ActionBar.y6.f23485k7;
                     checkBoxRound.b(i17, i18, i19);
                     y1Var.e(LocaleController.getString(R.string.DeleteReportSpam), null, false, true, false);
                     y1Var.setOnClickListener(new View.OnClickListener() {
@@ -340,7 +340,7 @@ public final class f2 implements Runnable {
                             }
                         }
                     });
-                    int i20 = org.telegram.ui.ActionBar.y6.f23446i6;
+                    int i20 = org.telegram.ui.ActionBar.y6.f23448i6;
                     org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.y6.g0(bVar.g(i20), 2, -1);
                     org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i20);
                     y1Var.setBackground(g02);
@@ -461,7 +461,7 @@ public final class f2 implements Runnable {
                 w7Var.f11927t = storyItem.media;
                 int i22 = w7Var.f11888a;
                 w7Var.f11921q = MessagesController.getInstance(i22).getPeer(storyItem.dialogId);
-                w7Var.f11923r = storyItem.f22264id;
+                w7Var.f11923r = storyItem.f22266id;
                 w7Var.f11925s = storyItem.caption;
                 w7Var.L = h;
                 w7Var.M = false;

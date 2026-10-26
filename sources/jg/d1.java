@@ -56,7 +56,7 @@ public final class d1 extends r2 implements NotificationCenter.NotificationCente
         if (this.f15667b != null) {
             this.f15667b.a(W(), z10);
             r71 r71Var = this.f15666a;
-            if (r71Var != null && r71Var.f32150g3 != null) {
+            if (r71Var != null && r71Var.f32152g3 != null) {
                 boolean z12 = this.F;
                 if (this.v != null && (this.f15673w != null || !TextUtils.isEmpty(this.f15674x))) {
                     z11 = true;
@@ -64,7 +64,7 @@ public final class d1 extends r2 implements NotificationCenter.NotificationCente
                     z11 = false;
                 }
                 if (z12 != z11) {
-                    this.f15666a.f32150g3.O(true);
+                    this.f15666a.f32152g3.O(true);
                 }
             }
         }
@@ -139,7 +139,7 @@ public final class d1 extends r2 implements NotificationCenter.NotificationCente
     public final void X() {
         boolean z10;
         String trim;
-        if (this.f15667b.f23137x.f19327f) {
+        if (this.f15667b.f23139x.f19327f) {
             return;
         }
         if (this.f15673w == null && TextUtils.isEmpty(this.f15674x)) {
@@ -232,7 +232,7 @@ public final class d1 extends r2 implements NotificationCenter.NotificationCente
         }
         Z();
         r71 r71Var = this.f15666a;
-        if (r71Var != null && (j71Var = r71Var.f32150g3) != null) {
+        if (r71Var != null && (j71Var = r71Var.f32152g3) != null) {
             j71Var.O(true);
         }
         this.f15672s = true;
@@ -300,7 +300,7 @@ public final class d1 extends r2 implements NotificationCenter.NotificationCente
         this.d = frameLayout2;
         frameLayout2.addView(this.e, gb1.h(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.d;
-        int i12 = y6.f23354d6;
+        int i12 = y6.f23356d6;
         f7.i(i12, frameLayout3, getResourceProvider());
         a1 a1Var4 = this.e;
         if (a1Var4 != null) {
@@ -330,7 +330,7 @@ public final class d1 extends r2 implements NotificationCenter.NotificationCente
         r71Var.u1();
         this.f15666a.setSectionsDrawBackground(true);
         r71 r71Var2 = this.f15666a;
-        r71Var2.f32150g3.f29505r = false;
+        r71Var2.f32152g3.f29507r = false;
         frameLayout.addView(r71Var2, gb1.g(-1.0f, -1));
         Y();
         this.fragmentView = frameLayout;
@@ -370,11 +370,11 @@ public final class d1 extends r2 implements NotificationCenter.NotificationCente
         if (W() && !z11) {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.BusinessLocationUnsavedChanges);
+                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.BusinessLocationUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new y0(this, 1));
                 alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new y0(this, 2));
-                showDialog(alertDialog$Builder.f22366a);
+                showDialog(alertDialog$Builder.f22368a);
             }
             return false;
         }

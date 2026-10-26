@@ -19,18 +19,18 @@ public class ChatsWidgetConfigActivity extends ExternalActionActivity {
         if (this.E != 0) {
             org.telegram.messenger.vh.c(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
             ly lyVar = new ly(0, this.E);
-            lyVar.f41398y = new y0(this, 27);
+            lyVar.f41401y = new y0(this, 27);
             if (AndroidUtilities.isTablet()) {
                 if (this.d.getFragmentStack().isEmpty()) {
                     this.d.c(-1, lyVar);
                 }
-            } else if (this.f35499c.getFragmentStack().isEmpty()) {
-                this.f35499c.c(-1, lyVar);
+            } else if (this.f35502c.getFragmentStack().isEmpty()) {
+                this.f35502c.c(-1, lyVar);
             }
             if (!AndroidUtilities.isTablet()) {
                 this.e.setVisibility(8);
             }
-            this.f35499c.e0();
+            this.f35502c.e0();
             if (AndroidUtilities.isTablet()) {
                 this.d.e0();
             }

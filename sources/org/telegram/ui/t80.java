@@ -12,22 +12,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class t80 implements ux {
-    public final int f43696a = 0;
-    public final LaunchActivity f43697b;
-    public final TLRPC.User f43698c;
+    public final int f43699a = 0;
+    public final LaunchActivity f43700b;
+    public final TLRPC.User f43701c;
     public final String d;
     public final int e;
 
     public t80(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f43697b = launchActivity;
+        this.f43700b = launchActivity;
         this.d = str;
         this.e = i10;
-        this.f43698c = user;
+        this.f43701c = user;
     }
 
     @Override
     public final boolean C() {
-        switch (this.f43696a) {
+        switch (this.f43699a) {
             case 0:
                 return false;
             default:
@@ -37,7 +37,7 @@ public final class t80 implements ux {
 
     @Override
     public final boolean K(cy cyVar) {
-        switch (this.f43696a) {
+        switch (this.f43699a) {
             case 0:
                 return false;
             default:
@@ -47,11 +47,11 @@ public final class t80 implements ux {
 
     @Override
     public final boolean v(cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, af1 af1Var) {
-        int i12 = this.f43696a;
+        int i12 = this.f43699a;
         int i13 = this.e;
         String str = this.d;
-        TLRPC.User user = this.f43698c;
-        LaunchActivity launchActivity = this.f43697b;
+        TLRPC.User user = this.f43701c;
+        LaunchActivity launchActivity = this.f43700b;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.D1;
@@ -99,8 +99,8 @@ public final class t80 implements ux {
     }
 
     public t80(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f43697b = launchActivity;
-        this.f43698c = user;
+        this.f43700b = launchActivity;
+        this.f43701c = user;
         this.d = str;
         this.e = i10;
     }

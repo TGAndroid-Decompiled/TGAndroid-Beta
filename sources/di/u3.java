@@ -60,7 +60,7 @@ public final class u3 extends p8 {
                     org.telegram.ui.ActionBar.u6 u6Var = this.f9229y0;
                     qc h = new wc(q3Var, u6Var).h(document, 2, new bi.v3(this, this.f9228x0, u6Var, 1));
                     if (h != null) {
-                        h.f31881a = 1;
+                        h.f31883a = 1;
                         h.k(true);
                     }
                 }
@@ -107,7 +107,7 @@ public final class u3 extends p8 {
             M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof z61);
         } else if (characterStyle instanceof w61) {
             w61 w61Var = (w61) characterStyle;
-            AndroidUtilities.addToClipboard(w61Var.f34376a.subSequence(w61Var.f34377b, w61Var.f34378c).toString());
+            AndroidUtilities.addToClipboard(w61Var.f34379a.subSequence(w61Var.f34380b, w61Var.f34381c).toString());
             vh.m(R.string.TextCopied, new wc(q4Var.R0, this.f9229y0));
         } else if (characterStyle instanceof ClickableSpan) {
             ((ClickableSpan) characterStyle).onClick(view);
@@ -161,7 +161,7 @@ public final class u3 extends p8 {
         k3Var.items = charSequenceArr;
         k3Var.onClickListener = onClickListener;
         k3Var.setOnHideListener(new cb(u6Var, 3));
-        k3Var.fixNavigationBar(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23425h5, u6Var2));
+        k3Var.fixNavigationBar(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23427h5, u6Var2));
         ((p9) q4Var.F1).h(k3Var);
     }
 
@@ -176,7 +176,7 @@ public final class u3 extends p8 {
         final org.telegram.ui.ActionBar.u6 u6Var = this.f9229y0;
         if (document != null) {
             k80 F = k80.F(y9Var.v, u6Var, q4Var.f9050z0);
-            F.f29848i = 3;
+            F.f29850i = 3;
             F.a0(-AndroidUtilities.dp(8.0f), 0.0f);
             F.l(R.drawable.msg_saved, LocaleController.getString(R.string.StoryAudioAddToSavedMessages), new Runnable(this) {
                 public final u3 f9115b;
@@ -278,7 +278,7 @@ public final class u3 extends p8 {
             MessagesController.getInstance(q4Var.f9021r2).getStoriesController().d0(k8Var.f8729b.longValue(), k8Var.f8730c.intValue(), new y2(this, k8Var, y9Var, u6Var, 1));
         } else {
             qc R = new wc(q4Var.R0, u6Var).R(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
-            R.f31881a = 3;
+            R.f31883a = 3;
             R.k(true);
         }
     }
@@ -308,7 +308,7 @@ public final class u3 extends p8 {
             }
             return;
         }
-        if ((characterStyle instanceof z61) && (y11Var = ((z61) characterStyle).f35230a) != null && (y11Var.f34904a & 1024) != 0) {
+        if ((characterStyle instanceof z61) && (y11Var = ((z61) characterStyle).f35233a) != null && (y11Var.f34907a & 1024) != 0) {
             z11 = true;
         } else {
             z11 = false;

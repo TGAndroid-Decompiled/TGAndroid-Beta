@@ -60,7 +60,7 @@ public final class rd extends AnimatorListenerAdapter {
             }
         }
         LaunchActivity launchActivity = LaunchActivity.I1;
-        if (launchActivity != null && (oa0Var = launchActivity.f35564x0) != null) {
+        if (launchActivity != null && (oa0Var = launchActivity.f35567x0) != null) {
             oa0Var.c(true);
         }
     }

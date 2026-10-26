@@ -26,7 +26,7 @@ public final class o0 extends s61 {
         TLRPC.User user = communityPeerDialog.user;
         if (user != null) {
             t61 K = t61.K(o0.class);
-            long j11 = user.f22174id;
+            long j11 = user.f22176id;
             K.B = j11;
             K.d = (int) (j11 ^ (j11 >>> 32));
             K.G = user;
@@ -71,7 +71,7 @@ public final class o0 extends s61 {
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
             p2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, user);
-            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f22174id);
+            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f22176id);
             if (dialog2 != null) {
                 z11 = false;
             }
@@ -82,7 +82,7 @@ public final class o0 extends s61 {
                 return;
             }
             p2Var.setCustomMessageWithoutRebuild(LocaleController.getString(R.string.Bot));
-            p2Var.V(user.f22174id, null, 0, false, false);
+            p2Var.V(user.f22176id, null, 0, false, false);
         }
     }
 

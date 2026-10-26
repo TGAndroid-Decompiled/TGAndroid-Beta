@@ -7,25 +7,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class uf implements org.telegram.ui.Components.ok0 {
-    public final int f44117a;
-    public final un f44118b;
-    public final boolean f44119c;
+    public final int f44120a;
+    public final un f44121b;
+    public final boolean f44122c;
     public final MessageObject d;
 
     public uf(un unVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f44117a = i10;
-        this.f44118b = unVar;
-        this.f44119c = z10;
+        this.f44120a = i10;
+        this.f44121b = unVar;
+        this.f44122c = z10;
         this.d = messageObject;
     }
 
     @Override
     public final void f(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f44117a) {
+        switch (this.f44120a) {
             case 0:
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final un unVar = this.f44118b;
-                    if (j10 != unVar.getUserConfig().getClientUserId() && this.f44119c) {
+                    final un unVar = this.f44121b;
+                    if (j10 != unVar.getUserConfig().getClientUserId() && this.f44122c) {
                         final ArrayList arrayList = new ArrayList(1);
                         arrayList.add(this.d);
                         TLObject userOrChat = unVar.getMessagesController().getUserOrChat(j10);
@@ -51,7 +51,7 @@ public final class uf implements org.telegram.ui.Components.ok0 {
                                         } else {
                                             unVar2.getClass();
                                         }
-                                        int i10 = unVar2.f44221d4;
+                                        int i10 = unVar2.f44224d4;
                                         ag.c cVar = new ag.c(24);
                                         new org.telegram.ui.Components.rs(unVar2, unVar2.e, arrayList, arrayList2, channelParticipantArr2, unVar2.X6, (int) unVar2.b(), i10, true, cVar).show();
                                         return;
@@ -65,7 +65,7 @@ public final class uf implements org.telegram.ui.Components.ok0 {
                                         } else {
                                             unVar3.getClass();
                                         }
-                                        int i11 = unVar3.f44221d4;
+                                        int i11 = unVar3.f44224d4;
                                         ag.c cVar2 = new ag.c(24);
                                         new org.telegram.ui.Components.rs(unVar3, unVar3.e, arrayList, arrayList2, channelParticipantArr3, unVar3.X6, (int) unVar3.b(), i11, true, cVar2).show();
                                         return;
@@ -79,9 +79,9 @@ public final class uf implements org.telegram.ui.Components.ok0 {
                 }
                 return;
             default:
-                final un unVar2 = this.f44118b;
+                final un unVar2 = this.f44121b;
                 unVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != unVar2.getUserConfig().getClientUserId() && this.f44119c) {
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != unVar2.getUserConfig().getClientUserId() && this.f44122c) {
                     final ArrayList arrayList3 = new ArrayList(1);
                     arrayList3.add(this.d);
                     TLObject userOrChat2 = unVar2.getMessagesController().getUserOrChat(j10);
@@ -107,7 +107,7 @@ public final class uf implements org.telegram.ui.Components.ok0 {
                                     } else {
                                         unVar22.getClass();
                                     }
-                                    int i10 = unVar22.f44221d4;
+                                    int i10 = unVar22.f44224d4;
                                     ag.c cVar = new ag.c(24);
                                     new org.telegram.ui.Components.rs(unVar22, unVar22.e, arrayList3, arrayList4, channelParticipantArr22, unVar22.X6, (int) unVar22.b(), i10, true, cVar).show();
                                     return;
@@ -121,7 +121,7 @@ public final class uf implements org.telegram.ui.Components.ok0 {
                                     } else {
                                         unVar3.getClass();
                                     }
-                                    int i11 = unVar3.f44221d4;
+                                    int i11 = unVar3.f44224d4;
                                     ag.c cVar2 = new ag.c(24);
                                     new org.telegram.ui.Components.rs(unVar3, unVar3.e, arrayList3, arrayList4, channelParticipantArr3, unVar3.X6, (int) unVar3.b(), i11, true, cVar2).show();
                                     return;

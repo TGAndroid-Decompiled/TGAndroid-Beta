@@ -58,14 +58,14 @@ public final class o2 implements Runnable {
                 String str2 = (String) this.f5166n;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
                 TLObject tLObject = (TLObject) this.e;
-                kVar.f52625w = false;
-                kVar.f52628z = true;
+                kVar.f52628w = false;
+                kVar.f52631z = true;
                 if (this.f5163b) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
                 }
-                yh.k.k(kVar.f52620q, false, false);
-                if (TextUtils.equals(str2, kVar.f52623t) && tL_error == null) {
-                    kVar.f52628z = true;
+                yh.k.k(kVar.f52623q, false, false);
+                if (TextUtils.equals(str2, kVar.f52626t) && tL_error == null) {
+                    kVar.f52631z = true;
                     kVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.f5164c, false);
                     return;
                 }

@@ -44,7 +44,7 @@ public final class ae extends View implements org.telegram.ui.ActionBar.p6 {
         this.f4295c = z10;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23425h5, beVar.f4399b));
+        paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23427h5, beVar.f4399b));
     }
 
     @Override
@@ -262,7 +262,7 @@ public final class ae extends View implements org.telegram.ui.ActionBar.p6 {
                     mutate.setColorFilter(new PorterDuffColorFilter(i18, mode));
                     Drawable mutate2 = aeVar.getContext().getResources().getDrawable(R.drawable.filled_stream_crown_outline).mutate();
                     zdVar.f5884t = mutate2;
-                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23425h5, beVar.f4399b), mode));
+                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23427h5, beVar.f4399b), mode));
                 }
             }
             if (udVar3.f5532b) {

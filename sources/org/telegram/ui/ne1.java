@@ -50,19 +50,19 @@ public final class ne1 extends s4.l {
     @Override
     public final void z(s4.e1 e1Var) {
         af1 af1Var = this.H;
-        View view = af1Var.f37739c1;
-        if (view == e1Var.f47735a) {
+        View view = af1Var.f37742c1;
+        if (view == e1Var.f47738a) {
             view.setTranslationX(0.0f);
             ee1 ee1Var = af1Var.O;
             if (ee1Var != null) {
                 ee1Var.F.clear();
             }
-            View view2 = af1Var.f37739c1;
+            View view2 = af1Var.f37742c1;
             if (view2 instanceof xe1) {
                 xe1 xe1Var = (xe1) view2;
-                xe1Var.setTopicIcon(xe1Var.f45748c5);
+                xe1Var.setTopicIcon(xe1Var.f45751c5);
             }
-            af1Var.f37739c1 = null;
+            af1Var.f37742c1 = null;
         }
     }
 }

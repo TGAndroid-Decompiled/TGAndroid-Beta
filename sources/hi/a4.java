@@ -43,7 +43,7 @@ public final class a4 extends FrameLayout {
         View view = new View(context);
         this.d = view;
         int dp = AndroidUtilities.dp(11.0f);
-        int i11 = y6.f23354d6;
+        int i11 = y6.f23356d6;
         Drawable K = y6.K(dp, y6.w0(i11, u6Var));
         b7 N = f7.N(i11);
         view.setBackground(K);
@@ -82,7 +82,7 @@ public final class a4 extends FrameLayout {
         e.setSingleLine(true);
         e.setEllipsize(truncateAt);
         e.setTextSize(1, 14.0f);
-        f7.V(e, y6.f23765z6, u6Var);
+        f7.V(e, y6.f23767z6, u6Var);
         linearLayout.addView(e, gb1.x(-1, -2, 55, 6, 1, 24, 0));
         ImageView imageView2 = new ImageView(context);
         this.f12866r = imageView2;
@@ -96,7 +96,7 @@ public final class a4 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.f12867s) {
-            canvas.drawRect(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth(), getHeight(), y6.f23476k0);
+            canvas.drawRect(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth(), getHeight(), y6.f23478k0);
         }
     }
 

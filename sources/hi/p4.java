@@ -67,7 +67,7 @@ public final class p4 implements Utilities.Callback {
                 zh.r2 r2Var2 = (zh.r2) this.f13208c;
                 int i11 = this.f13207b;
                 ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.ActionBar.r2 r2Var3 = r2Var2.f53227a;
+                org.telegram.ui.ActionBar.r2 r2Var3 = r2Var2.f53230a;
                 q9 q9Var = r2Var2.e;
                 q9Var.a(i11, arrayList);
                 ((zh.m2) this.d).f(true);
@@ -77,13 +77,13 @@ public final class p4 implements Utilities.Callback {
                 if (c10 != null) {
                     if (arrayList.size() > 1) {
                         qc S = wc.b0(r2Var3).S(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), c10.title)));
-                        S.f31896s = false;
+                        S.f31898s = false;
                         S.j();
                         return;
                     } else if (arrayList.size() == 1) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
                         qc S2 = wc.b0(r2Var3).S(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, h7.X1(savedStarGift.gift), c10.title)));
-                        S2.f31896s = false;
+                        S2.f31898s = false;
                         S2.j();
                         return;
                     } else {

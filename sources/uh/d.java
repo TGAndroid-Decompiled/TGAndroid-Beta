@@ -13,7 +13,7 @@ import org.telegram.ui.Components.r6;
 public final class d extends c {
     public final r6 d;
     public final bk0 e;
-    public final oe.b f49912f;
+    public final oe.b f49915f;
     public float h;
 
     public d(s1 s1Var, u6 u6Var) {
@@ -23,33 +23,33 @@ public final class d extends c {
         bk0Var.d(null, true, false);
         bk0Var.v = 650.0f;
         bk0Var.e(0.69f, false);
-        bk0Var.f26888p.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        this.f49912f = new oe.b(s1Var, ds.h, 260L);
+        bk0Var.f26890p.setStrokeWidth(AndroidUtilities.dp(1.5f));
+        this.f49915f = new oe.b(s1Var, ds.h, 260L);
         r6 r6Var = new r6(true, false, false);
         this.d = r6Var;
         r6Var.x(AndroidUtilities.bold());
         r6Var.w(AndroidUtilities.dp(13.0f));
-        r6Var.f32119b = 17;
-        int w02 = y6.w0(y6.f23446i6, u6Var);
-        if (this.f49910b != w02) {
-            y6.E1(this.f49909a, w02, false);
-            this.f49910b = w02;
+        r6Var.f32121b = 17;
+        int w02 = y6.w0(y6.f23448i6, u6Var);
+        if (this.f49913b != w02) {
+            y6.E1(this.f49912a, w02, false);
+            this.f49913b = w02;
         }
     }
 
     @Override
     public final void a(int i10) {
-        this.f49909a.setAlpha(i10);
+        this.f49912a.setAlpha(i10);
         this.d.B = i10;
     }
 
     public final float b() {
-        return this.f49912f.e;
+        return this.f49915f.e;
     }
 
     public final void c(int i10) {
         this.d.u(i10);
-        this.e.f26887o = i10;
+        this.e.f26889o = i10;
     }
 
     public final void d(float f7) {
@@ -63,7 +63,7 @@ public final class d extends c {
 
     @Override
     public final void draw(Canvas canvas) {
-        float f7 = this.f49912f.e;
+        float f7 = this.f49915f.e;
         if (f7 < 1.0f) {
             v.b(canvas, this.d, 1.0f - f7);
         }

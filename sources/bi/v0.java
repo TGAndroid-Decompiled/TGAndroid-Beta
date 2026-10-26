@@ -94,7 +94,7 @@ public final class v0 implements Utilities.Callback2 {
                     if (!(webPage2 instanceof TLRPC.TL_webPageEmpty)) {
                         if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                             if (webPage2 instanceof TLRPC.TL_webPagePending) {
-                                long j10 = webPage2.f22180id;
+                                long j10 = webPage2.f22182id;
                                 int i16 = this.f5536b;
                                 hi.l1 l1Var = new hi.l1(j10, notificationCenterDelegateArr, i16, j1Var);
                                 notificationCenterDelegateArr[0] = l1Var;
@@ -219,9 +219,9 @@ public final class v0 implements Utilities.Callback2 {
                 Context context2 = (Context) obj3;
                 ArrayList arrayList4 = (ArrayList) obj;
                 j71 j71Var = (j71) obj2;
-                ArrayList arrayList5 = xj0Var.f45782c;
+                ArrayList arrayList5 = xj0Var.f45785c;
                 if (i13 != 2 || !TextUtils.isEmpty(xj0Var.N)) {
-                    ArrayList arrayList6 = vj0Var.f44835a;
+                    ArrayList arrayList6 = vj0Var.f44838a;
                     int size = arrayList6.size();
                     int i20 = 0;
                     while (i20 < size) {
@@ -229,8 +229,8 @@ public final class v0 implements Utilities.Callback2 {
                         i20++;
                         if (obj6 instanceof MessageObject) {
                             MessageObject messageObject = (MessageObject) obj6;
-                            ArrayList arrayList7 = (ArrayList) vj0Var.f44837c.get(messageObject);
-                            int i21 = org.telegram.ui.Cells.v3.f25581a;
+                            ArrayList arrayList7 = (ArrayList) vj0Var.f44840c.get(messageObject);
+                            int i21 = org.telegram.ui.Cells.v3.f25583a;
                             t61 K = t61.K(org.telegram.ui.Cells.v3.class);
                             K.G = messageObject;
                             if (arrayList7 == null) {
@@ -245,17 +245,17 @@ public final class v0 implements Utilities.Callback2 {
                         } else if (!arrayList5.isEmpty()) {
                             HashSet hashSet = xj0Var.d;
                             org.telegram.ui.t3 t3Var = new org.telegram.ui.t3(xj0Var, 14);
-                            int i22 = org.telegram.ui.Cells.r3.f24958a;
+                            int i22 = org.telegram.ui.Cells.r3.f24960a;
                             t61 K2 = t61.K(org.telegram.ui.Cells.r3.class);
                             K2.G = new org.telegram.ui.Cells.s3(arrayList5, hashSet, t3Var);
                             arrayList4.add(K2);
-                        } else if (xj0Var.f45785r) {
+                        } else if (xj0Var.f45788r) {
                             arrayList4.add(t61.e(-2, LocaleController.getString(R.string.Retry)));
                         }
                     }
-                    if ((i13 == 2 || !vj0Var.f44844m) && (vj0Var.h || !vj0Var.f44840i)) {
+                    if ((i13 == 2 || !vj0Var.f44847m) && (vj0Var.h || !vj0Var.f44843i)) {
                         while (true) {
-                            if (vj0Var.f44835a.isEmpty()) {
+                            if (vj0Var.f44838a.isEmpty()) {
                                 i11 = 3;
                             } else {
                                 i11 = 1;
@@ -265,48 +265,48 @@ public final class v0 implements Utilities.Callback2 {
                                 i14++;
                             }
                         }
-                    } else if (vj0Var.f44842k) {
-                        if (vj0Var.f44838f == null) {
+                    } else if (vj0Var.f44845k) {
+                        if (vj0Var.f44841f == null) {
                             if (i13 == 2) {
                                 f03 = xj0Var.g0(context2);
                             } else {
-                                f03 = xj0Var.f0(context2, vj0Var.f44839g);
+                                f03 = xj0Var.f0(context2, vj0Var.f44842g);
                             }
-                            vj0Var.f44838f = f03;
+                            vj0Var.f44841f = f03;
                         }
-                        ViewGroup viewGroup = vj0Var.f44838f;
+                        ViewGroup viewGroup = vj0Var.f44841f;
                         t61 t61Var = new t61(-3);
-                        t61Var.f32866c = viewGroup;
-                        t61Var.f32885z = 0;
-                        t61Var.f32884y = 1;
+                        t61Var.f32869c = viewGroup;
+                        t61Var.f32888z = 0;
+                        t61Var.f32887y = 1;
                         arrayList4.add(t61Var);
-                    } else if (!vj0Var.h && vj0Var.f44840i && (arrayList4.isEmpty() || (vj0Var.f44841j && i13 != 2))) {
-                        if (vj0Var.f44838f == null) {
+                    } else if (!vj0Var.h && vj0Var.f44843i && (arrayList4.isEmpty() || (vj0Var.f44844j && i13 != 2))) {
+                        if (vj0Var.f44841f == null) {
                             if (i13 == 2) {
                                 f02 = xj0Var.g0(context2);
                             } else {
-                                f02 = xj0Var.f0(context2, vj0Var.f44839g);
+                                f02 = xj0Var.f0(context2, vj0Var.f44842g);
                             }
-                            vj0Var.f44838f = f02;
+                            vj0Var.f44841f = f02;
                         }
                         if (arrayList4.isEmpty()) {
-                            ViewGroup viewGroup2 = vj0Var.f44838f;
+                            ViewGroup viewGroup2 = vj0Var.f44841f;
                             t61 t61Var2 = new t61(-3);
-                            t61Var2.f32866c = viewGroup2;
-                            t61Var2.f32885z = 0;
-                            t61Var2.f32884y = 1;
+                            t61Var2.f32869c = viewGroup2;
+                            t61Var2.f32888z = 0;
+                            t61Var2.f32887y = 1;
                             arrayList4.add(t61Var2);
                         } else {
-                            ((t61) ic.a.g(1, arrayList4)).f32870j = true;
-                            ViewGroup viewGroup3 = vj0Var.f44838f;
+                            ((t61) ic.a.g(1, arrayList4)).f32873j = true;
+                            ViewGroup viewGroup3 = vj0Var.f44841f;
                             t61 t61Var3 = new t61(-1);
-                            t61Var3.f32866c = viewGroup3;
-                            t61Var3.f32885z = -2;
+                            t61Var3.f32869c = viewGroup3;
+                            t61Var3.f32888z = -2;
                             arrayList4.add(t61Var3);
                         }
                     }
                     if (!arrayList4.isEmpty()) {
-                        ((t61) ic.a.g(1, arrayList4)).f32870j = true;
+                        ((t61) ic.a.g(1, arrayList4)).f32873j = true;
                         return;
                     }
                     return;
@@ -322,7 +322,7 @@ public final class v0 implements Utilities.Callback2 {
                     if ("EMPTY".equalsIgnoreCase(str3)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context3);
                         String string = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
-                        org.telegram.ui.ActionBar.e2 e2Var3 = alertDialog$Builder.f22366a;
+                        org.telegram.ui.ActionBar.e2 e2Var3 = alertDialog$Builder.f22368a;
                         e2Var3.R = string;
                         e2Var3.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);

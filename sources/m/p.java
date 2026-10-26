@@ -145,7 +145,7 @@ public final class p {
                 androidx.lifecycle.j.class.getDeclaredConstructor(null);
                 t4.a aVar2 = (t4.a) this.f17806b;
                 if (aVar2 != null) {
-                    aVar2.f48692a.add(androidx.lifecycle.j.class.getName());
+                    aVar2.f48695a.add(androidx.lifecycle.j.class.getName());
                     return;
                 }
                 return;

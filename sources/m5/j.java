@@ -37,7 +37,7 @@ public final class j implements r2.k {
             return jVar.c();
         }
         if (obj instanceof v0.n) {
-            for (v0.p pVar : ((v0.n) obj).f49976a) {
+            for (v0.p pVar : ((v0.n) obj).f49979a) {
             }
         }
         Context ctx = jVar.f18336a;

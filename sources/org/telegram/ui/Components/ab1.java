@@ -14,7 +14,7 @@ public final class ab1 extends cb1 {
 
     @Override
     public final Canvas a() {
-        return this.e.beginRecording(this.f27110c - this.f27108a, this.d - this.f27109b);
+        return this.e.beginRecording(this.f27112c - this.f27110a, this.d - this.f27111b);
     }
 
     @Override

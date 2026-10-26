@@ -5,16 +5,16 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 public final class e61 extends do0 {
-    public final p61 f27749f;
+    public final p61 f27751f;
 
     public e61(p61 p61Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context, 14.0f, u6Var);
-        this.f27749f = p61Var;
+        this.f27751f = p61Var;
     }
 
     @Override
     public final void a(String str) {
-        ig.d2 d2Var = this.f27749f.v;
+        ig.d2 d2Var = this.f27751f.v;
         ig.b2 b2Var = d2Var.S;
         int i10 = d2Var.f14031c;
         if (d2Var.N != 0) {

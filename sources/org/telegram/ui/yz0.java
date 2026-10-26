@@ -4,18 +4,18 @@ import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class yz0 implements View.OnClickListener {
-    public final int f46130a;
-    public final j01 f46131b;
+    public final int f46133a;
+    public final j01 f46134b;
 
     public yz0(j01 j01Var, int i10) {
-        this.f46130a = i10;
-        this.f46131b = j01Var;
+        this.f46133a = i10;
+        this.f46134b = j01Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f46130a;
-        j01 j01Var = this.f46131b;
+        int i10 = this.f46133a;
+        j01 j01Var = this.f46134b;
         switch (i10) {
             case 0:
                 ProfileActivity profileActivity = j01Var.e;
@@ -24,7 +24,7 @@ public final class yz0 implements View.OnClickListener {
                 return;
             case 1:
                 ProfileActivity profileActivity2 = j01Var.e;
-                TLRPC.User user = profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.f35976e1));
+                TLRPC.User user = profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.f35979e1));
                 MessagesController messagesController = profileActivity2.getMessagesController();
                 ProfileActivity profileActivity3 = j01Var.e;
                 messagesController.openApp(profileActivity3, user, null, profileActivity3.getClassGuid(), null);
@@ -38,9 +38,9 @@ public final class yz0 implements View.OnClickListener {
                 profileActivity4.N4();
                 view.requestLayout();
                 profileActivity4.d.m(profileActivity4.O3);
-                int i12 = profileActivity4.f35959b6;
+                int i12 = profileActivity4.f35962b6;
                 if (i12 >= 0) {
-                    profileActivity4.f35960c.h1(i12, profileActivity4.f35967c6 - profileActivity4.f35945a.getPaddingTop());
+                    profileActivity4.f35963c.h1(i12, profileActivity4.f35970c6 - profileActivity4.f35948a.getPaddingTop());
                     return;
                 }
                 return;

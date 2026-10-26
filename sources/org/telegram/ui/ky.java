@@ -19,22 +19,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ky extends FrameLayout {
-    public org.telegram.ui.Components.w9 f41080a;
-    public org.telegram.ui.Components.w9 f41081b;
-    public Drawable f41082c;
+    public org.telegram.ui.Components.w9 f41083a;
+    public org.telegram.ui.Components.w9 f41084b;
+    public Drawable f41085c;
     public Drawable d;
     public final Drawable e;
-    public Paint f41083f;
+    public Paint f41086f;
     public RectF h;
-    public final ViewGroup[] f41084n;
-    public final ly f41085r;
+    public final ViewGroup[] f41087n;
+    public final ly f41088r;
 
     public ky(ly lyVar, Context context) {
         super(context);
-        this.f41085r = lyVar;
-        this.f41083f = new Paint(1);
+        this.f41088r = lyVar;
+        this.f41086f = new Paint(1);
         this.h = new RectF();
-        this.f41084n = new ViewGroup[2];
+        this.f41087n = new ViewGroup[2];
         int i10 = 0;
         setWillNotDraw(false);
         setPadding(0, AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f));
@@ -48,26 +48,26 @@ public final class ky extends FrameLayout {
         linearLayout.setBackgroundResource(R.drawable.widget_bg);
         d.addView(linearLayout, org.telegram.ui.Components.gb1.x(-2, -2, 17, 10, 0, 10, 0));
         lyVar.d = new ImageView(context);
-        int i11 = lyVar.f41396w;
+        int i11 = lyVar.f41399w;
         if (i11 == 0) {
             while (i10 < 2) {
-                this.f41084n[i10] = (ViewGroup) lyVar.getParentActivity().getLayoutInflater().inflate(R.layout.shortcut_widget_item, (ViewGroup) null);
-                linearLayout.addView(this.f41084n[i10], org.telegram.ui.Components.gb1.r(-1, -2));
+                this.f41087n[i10] = (ViewGroup) lyVar.getParentActivity().getLayoutInflater().inflate(R.layout.shortcut_widget_item, (ViewGroup) null);
+                linearLayout.addView(this.f41087n[i10], org.telegram.ui.Components.gb1.r(-1, -2));
                 i10++;
             }
             linearLayout.addView(lyVar.d, org.telegram.ui.Components.gb1.u(218, 160, 17));
             lyVar.d.setImageResource(R.drawable.chats_widget_preview);
         } else if (i11 == 1) {
             while (i10 < 2) {
-                this.f41084n[i10] = (ViewGroup) lyVar.getParentActivity().getLayoutInflater().inflate(R.layout.contacts_widget_item, (ViewGroup) null);
-                linearLayout.addView(this.f41084n[i10], org.telegram.ui.Components.gb1.r(160, -2));
+                this.f41087n[i10] = (ViewGroup) lyVar.getParentActivity().getLayoutInflater().inflate(R.layout.contacts_widget_item, (ViewGroup) null);
+                linearLayout.addView(this.f41087n[i10], org.telegram.ui.Components.gb1.r(160, -2));
                 i10++;
             }
             linearLayout.addView(lyVar.d, org.telegram.ui.Components.gb1.u(160, 160, 17));
             lyVar.d.setImageResource(R.drawable.contacts_widget_preview);
         }
         a();
-        this.e = org.telegram.ui.ActionBar.y6.X0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.y6.f23316b7);
+        this.e = org.telegram.ui.ActionBar.y6.X0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.y6.f23318b7);
     }
 
     public final void a() {
@@ -82,15 +82,15 @@ public final class ky extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.ui.Components.w9 w9Var = this.f41080a;
+        org.telegram.ui.Components.w9 w9Var = this.f41083a;
         if (w9Var != null) {
             w9Var.dispose();
-            this.f41080a = null;
+            this.f41083a = null;
         }
-        org.telegram.ui.Components.w9 w9Var2 = this.f41081b;
+        org.telegram.ui.Components.w9 w9Var2 = this.f41084b;
         if (w9Var2 != null) {
             w9Var2.dispose();
-            this.f41081b = null;
+            this.f41084b = null;
         }
     }
 
@@ -98,26 +98,26 @@ public final class ky extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         Drawable drawable;
         Drawable t02 = org.telegram.ui.ActionBar.y6.t0();
-        if (t02 != this.f41082c && t02 != null) {
+        if (t02 != this.f41085c && t02 != null) {
             if (org.telegram.ui.ActionBar.y6.g1()) {
-                this.d = this.f41082c;
-                this.f41081b = this.f41080a;
+                this.d = this.f41085c;
+                this.f41084b = this.f41083a;
             } else {
-                org.telegram.ui.Components.w9 w9Var = this.f41080a;
+                org.telegram.ui.Components.w9 w9Var = this.f41083a;
                 if (w9Var != null) {
                     w9Var.dispose();
-                    this.f41080a = null;
+                    this.f41083a = null;
                 }
             }
-            this.f41082c = t02;
+            this.f41085c = t02;
         }
-        ly lyVar = this.f41085r;
+        ly lyVar = this.f41088r;
         float themeAnimationValue = ly.X(lyVar).getThemeAnimationValue();
         for (int i10 = 0; i10 < 2; i10++) {
             if (i10 == 0) {
                 drawable = this.d;
             } else {
-                drawable = this.f41082c;
+                drawable = this.f41085c;
             }
             if (drawable != null) {
                 if (i10 == 1 && this.d != null && ly.Y(lyVar) != null) {
@@ -149,16 +149,16 @@ public final class ky extends FrameLayout {
                 } else {
                     drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
                     if (drawable instanceof org.telegram.ui.Components.x9) {
-                        this.f41080a = ((org.telegram.ui.Components.x9) drawable).c(canvas, this);
+                        this.f41083a = ((org.telegram.ui.Components.x9) drawable).c(canvas, this);
                     } else {
                         drawable.draw(canvas);
                     }
                 }
                 if (i10 == 0 && this.d != null && themeAnimationValue >= 1.0f) {
-                    org.telegram.ui.Components.w9 w9Var2 = this.f41081b;
+                    org.telegram.ui.Components.w9 w9Var2 = this.f41084b;
                     if (w9Var2 != null) {
                         w9Var2.dispose();
-                        this.f41081b = null;
+                        this.f41084b = null;
                     }
                     this.d = null;
                     invalidate();

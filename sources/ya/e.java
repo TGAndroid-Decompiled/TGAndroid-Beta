@@ -1,8 +1,8 @@
 package ya;
 public final class e {
-    public final d f52507a;
+    public final d f52510a;
 
     public e(d dVar) {
-        this.f52507a = dVar;
+        this.f52510a = dVar;
     }
 }

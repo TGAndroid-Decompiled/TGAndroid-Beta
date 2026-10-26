@@ -392,7 +392,7 @@ public final class u implements Runnable {
                 ((d5.x) this.f16494b).accept(this.f16495c);
                 return;
             case 22:
-                un unVar = ((jm) this.f16495c).f40685c;
+                un unVar = ((jm) this.f16495c).f40688c;
                 if (this == unVar.V5) {
                     unVar.hb((CharSequence) this.f16494b, false);
                     unVar.V5 = null;
@@ -404,7 +404,7 @@ public final class u implements Runnable {
                 boolean z22 = z8Var.d.h;
                 z8Var.setChecked(!z22);
                 kr krVar = ((gr) this.f16495c).d;
-                TLRPC.TL_chatBannedRights tL_chatBannedRights = krVar.f41056y;
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = krVar.f41059y;
                 tL_chatBannedRights.send_media = z22;
                 tL_chatBannedRights.send_gifs = z22;
                 tL_chatBannedRights.send_inline = z22;
@@ -419,7 +419,7 @@ public final class u implements Runnable {
                 tL_chatBannedRights.embed_links = z22;
                 tL_chatBannedRights.send_polls = z22;
                 tL_chatBannedRights.send_reactions = z22;
-                AndroidUtilities.updateVisibleRows(krVar.f41007c);
+                AndroidUtilities.updateVisibleRows(krVar.f41010c);
                 er x02 = krVar.x0();
                 krVar.C0();
                 krVar.B0(x02);
@@ -439,10 +439,10 @@ public final class u implements Runnable {
                         ArrayList arrayList2 = zVar.F;
                         int size2 = arrayList2.size();
                         for (int i16 = 0; i16 < size2; i16++) {
-                            if (((s4.v) arrayList2.get(i16)).f47844w) {
+                            if (((s4.v) arrayList2.get(i16)).f47847w) {
                             }
                         }
-                        zVar.f47866x.q(e1Var);
+                        zVar.f47869x.q(e1Var);
                         return;
                     }
                     zVar.H.post(this);
@@ -454,9 +454,9 @@ public final class u implements Runnable {
                 while (!((Set) this.f16495c).isEmpty()) {
                     try {
                         sb.l lVar = (sb.l) referenceQueue.remove();
-                        if (lVar.f48059a.remove(lVar)) {
+                        if (lVar.f48062a.remove(lVar)) {
                             lVar.clear();
-                            lVar.f48060b.getClass();
+                            lVar.f48063b.getClass();
                         }
                     } catch (InterruptedException unused) {
                     }
@@ -478,17 +478,17 @@ public final class u implements Runnable {
             case 28:
                 sb.i iVar5 = (sb.i) this.f16494b;
                 TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f16495c;
-                int decrementAndGet = iVar5.f48052b.decrementAndGet();
+                int decrementAndGet = iVar5.f48055b.decrementAndGet();
                 if (decrementAndGet < 0) {
                     z19 = false;
                 }
                 o6.l.k(z19);
                 if (decrementAndGet == 0) {
                     iVar5.c();
-                    iVar5.f48053c.set(false);
+                    iVar5.f48056c.set(false);
                 }
-                u7.n.f49606a.clear();
-                u7.r.f49610a.clear();
+                u7.n.f49609a.clear();
+                u7.r.f49613a.clear();
                 taskCompletionSource2.setResult(null);
                 return;
             default:
@@ -519,9 +519,9 @@ public final class u implements Runnable {
             case 0:
                 h0 h0Var = new h0(u.class.getSimpleName(), 16);
                 rf.b bVar = new rf.b(17, false);
-                ((rf.b) h0Var.d).f47333c = bVar;
+                ((rf.b) h0Var.d).f47336c = bVar;
                 h0Var.d = bVar;
-                bVar.f47332b = (t) this.f16495c;
+                bVar.f47335b = (t) this.f16495c;
                 return h0Var.toString();
             default:
                 return super.toString();

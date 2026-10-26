@@ -4,7 +4,7 @@ public final class d01 extends h01 {
 
     @Override
     public final int a(q01 q01Var, j01 j01Var, gb1 gb1Var, int i10, boolean z10) {
-        return Math.max(0, this.f28754a - gb1Var.F(j01Var, i10));
+        return Math.max(0, this.f28756a - gb1Var.F(j01Var, i10));
     }
 
     @Override

@@ -22,7 +22,7 @@ public final class w5 implements a5.i {
                 return;
             case 1:
                 wd0 wd0Var = (wd0) this.f9309b;
-                a5.i iVar = wd0Var.f34417c;
+                a5.i iVar = wd0Var.f34420c;
                 if (iVar != null) {
                     iVar.a(i10);
                 }
@@ -81,11 +81,11 @@ public final class w5 implements a5.i {
             case 1:
                 wd0 wd0Var = (wd0) this.f9309b;
                 wd0Var.h = i10;
-                wd0Var.f34419n = f7;
+                wd0Var.f34422n = f7;
                 if (wd0Var.d.getChildAt(i10) != null) {
                     wd0.a(wd0Var, i10, (int) (wd0Var.d.getChildAt(i10).getWidth() * f7));
                     wd0Var.invalidate();
-                    a5.i iVar = wd0Var.f34417c;
+                    a5.i iVar = wd0Var.f34420c;
                     if (iVar != null) {
                         iVar.b(f7, i10, i11);
                         return;
@@ -95,8 +95,8 @@ public final class w5 implements a5.i {
                 return;
             default:
                 ei0 ei0Var = (ei0) this.f9309b;
-                if (!ei0Var.f27871a && Math.abs(i10 - ei0Var.f27878w) == 1) {
-                    int i15 = ei0Var.f27878w;
+                if (!ei0Var.f27873a && Math.abs(i10 - ei0Var.f27880w) == 1) {
+                    int i15 = ei0Var.f27880w;
                     if (i10 > i15) {
                         ei0.a(ei0Var, 0, 1, 1);
                     } else if (i10 < i15) {
@@ -104,10 +104,10 @@ public final class w5 implements a5.i {
                         ei0.a(ei0Var, 2, 0, -1);
                     }
                 }
-                int i16 = ei0Var.f27878w;
-                int i17 = ei0Var.f27879x;
-                ei0Var.f27878w = i10;
-                ei0Var.f27879x = i11;
+                int i16 = ei0Var.f27880w;
+                int i17 = ei0Var.f27881x;
+                ei0Var.f27880w = i10;
+                ei0Var.f27881x = i11;
                 if (i16 != i10 || i17 != i11) {
                     ei0Var.H = true;
                     ei0Var.postInvalidateOnAnimation();
@@ -132,7 +132,7 @@ public final class w5 implements a5.i {
                 if (i10 == 0) {
                     wd0.a(wd0Var, wd0Var.e.getCurrentItem(), 0);
                 }
-                a5.i iVar = wd0Var.f34417c;
+                a5.i iVar = wd0Var.f34420c;
                 if (iVar != null) {
                     iVar.c(i10);
                     return;

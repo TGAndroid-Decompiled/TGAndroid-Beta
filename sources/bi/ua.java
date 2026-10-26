@@ -109,7 +109,7 @@ public final class ua implements Utilities.Callback {
                 aw awVar = (aw) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                org.telegram.ui.ActionBar.r2 r2Var2 = awVar.f26624c;
+                org.telegram.ui.ActionBar.r2 r2Var2 = awVar.f26626c;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
@@ -159,19 +159,19 @@ public final class ua implements Utilities.Callback {
                 MessageObject messageObject = (MessageObject) obj2;
                 String str2 = (String) obj;
                 if (i11 == photoViewer.Q4) {
-                    photoViewer.f35735o5 = str2;
-                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f35735o5)) {
-                        if (photoViewer.f35726n5) {
-                            photoViewer.f35730o0.S(20);
-                            photoViewer.f35730o0.t(19);
+                    photoViewer.f35738o5 = str2;
+                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f35738o5)) {
+                        if (photoViewer.f35729n5) {
+                            photoViewer.f35733o0.S(20);
+                            photoViewer.f35733o0.t(19);
                             return;
                         }
-                        photoViewer.f35730o0.S(19);
-                        photoViewer.f35730o0.t(20);
+                        photoViewer.f35733o0.S(19);
+                        photoViewer.f35733o0.t(20);
                         return;
                     }
-                    photoViewer.f35730o0.t(19);
-                    photoViewer.f35730o0.t(20);
+                    photoViewer.f35733o0.t(19);
+                    photoViewer.f35733o0.t(20);
                     return;
                 }
                 return;

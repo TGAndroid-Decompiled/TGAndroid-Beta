@@ -147,7 +147,7 @@ public final class w6 extends View implements p2 {
         this.T = new PointF(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
         this.U = new PointF(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
         this.V = new PointF(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
-        this.f11864h0 = new org.telegram.ui.Components.h6(this, 0L, 200L, ds.f27584f);
+        this.f11864h0 = new org.telegram.ui.Components.h6(this, 0L, 200L, ds.f27586f);
         this.m0 = new org.telegram.ui.Components.h6(this, 0L, 350L, dsVar);
         this.f11870n0 = -1.0f;
         this.f11871o0 = true;
@@ -157,7 +157,7 @@ public final class w6 extends View implements p2 {
         this.f11878t0 = new org.telegram.ui.Components.h6(this, 0L, 350L, dsVar);
         this.B0 = new org.telegram.ui.Components.h6(this, 0L, 350L, dsVar);
         this.C0 = new org.telegram.ui.Components.h6(this, 0L, 650L, dsVar);
-        this.D0 = new org.telegram.ui.Components.h6(this, 0L, 160L, ds.f27586i);
+        this.D0 = new org.telegram.ui.Components.h6(this, 0L, 160L, ds.f27588i);
         this.E0 = new org.telegram.ui.Components.h6(this, 0L, 750L, dsVar);
         this.F0 = new org.telegram.ui.Components.h6(this, 0L, 650L, dsVar);
         this.G0 = new org.telegram.ui.Components.h6(this, 0L, 320L, dsVar);
@@ -216,11 +216,11 @@ public final class w6 extends View implements p2 {
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         ar arVar = new ar(org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
         this.f11857c = arVar;
-        arVar.f26597w = false;
+        arVar.f26599w = false;
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
         arVar.e = dp;
-        arVar.f26593f = dp2;
+        arVar.f26595f = dp2;
         Drawable mutate2 = activity.getResources().getDrawable(R.drawable.msg_photo_switch2).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -277,7 +277,7 @@ public final class w6 extends View implements p2 {
         } else {
             j10 = 310;
         }
-        this.N.f28811g = j10;
+        this.N.f28813g = j10;
         this.M += f7;
         invalidate();
     }
@@ -442,7 +442,7 @@ public final class w6 extends View implements p2 {
         t6 t6Var2 = this.L0;
         if (action == 0) {
             this.f11882w0 = true;
-            if (xcVar2.f34687i || xcVar3.f34687i) {
+            if (xcVar2.f34690i || xcVar3.f34690i) {
                 z14 = true;
             }
             this.f11884x0 = z14;
@@ -451,7 +451,7 @@ public final class w6 extends View implements p2 {
             if (Math.abs(clamp - this.f11865i0) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(t6Var2, ViewConfiguration.getLongPressTimeout());
             }
-            if (xcVar3.f34687i) {
+            if (xcVar3.f34690i) {
                 AndroidUtilities.runOnUIThread(t6Var, ViewConfiguration.getLongPressTimeout());
             }
         } else if (action == 2) {
@@ -479,10 +479,10 @@ public final class w6 extends View implements p2 {
                 AndroidUtilities.cancelRunOnUIThread(t6Var2);
                 AndroidUtilities.cancelRunOnUIThread(t6Var);
                 boolean z15 = this.f11875r0;
-                if (!z15 && xcVar.f34687i) {
+                if (!z15 && xcVar.f34690i) {
                     ((ma) this.f11853a).c();
                 } else if (z15 && this.f11887z0) {
-                    if (xcVar.f34687i) {
+                    if (xcVar.f34690i) {
                         this.f11887z0 = false;
                         this.G0.d(1.0f, true);
                         t3 t3Var = ((ma) this.f11853a).f11270a.T0;
@@ -494,7 +494,7 @@ public final class w6 extends View implements p2 {
                         this.f11879u0 = true;
                         ((ma) this.f11853a).e(false);
                     }
-                } else if (xcVar2.f34687i) {
+                } else if (xcVar2.f34690i) {
                     if (b()) {
                         ((ma) this.f11853a).a();
                     } else if (!this.f11871o0 && !this.f11875r0 && !this.f11887z0) {
@@ -514,7 +514,7 @@ public final class w6 extends View implements p2 {
                     }
                 }
                 this.f11887z0 = false;
-                if (xcVar3.f34687i) {
+                if (xcVar3.f34690i) {
                     d(180.0f);
                     ((ma) this.f11853a).b();
                 }

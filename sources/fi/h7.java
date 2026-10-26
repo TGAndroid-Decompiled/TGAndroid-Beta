@@ -43,7 +43,7 @@ public final class h7 implements Utilities.Callback2 {
                     if (TextUtils.isEmpty(o7Var.f11412r0) && !o7Var.f11403h0) {
                         j71Var.V();
                         t61 c10 = t61.c(1, R.drawable.msg2_folder, LocaleController.getString(R.string.StoryMusicSelectFromFiles));
-                        c10.f32877q = true;
+                        c10.f32880q = true;
                         arrayList.add(c10);
                         j71Var.U();
                         dp += AndroidUtilities.dp(50.0f);
@@ -78,10 +78,10 @@ public final class h7 implements Utilities.Callback2 {
                     if (TextUtils.isEmpty(o7Var.f11412r0)) {
                         String string3 = LocaleController.getString(R.string.NoAudioFound);
                         String string4 = LocaleController.getString(R.string.NoAudioFilesInfo);
-                        int i12 = dj.f27529a;
+                        int i12 = dj.f27531a;
                         t61 K = t61.K(dj.class);
-                        K.f32872l = string3;
-                        K.f32873m = string4;
+                        K.f32875l = string3;
+                        K.f32876m = string4;
                         arrayList.add(K);
                     } else {
                         String string5 = LocaleController.getString(R.string.NoAudioFound);
@@ -91,10 +91,10 @@ public final class h7 implements Utilities.Callback2 {
                             i11 = R.string.NoAudioFoundInfo;
                         }
                         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i11, o7Var.f11412r0));
-                        int i13 = dj.f27529a;
+                        int i13 = dj.f27531a;
                         t61 K2 = t61.K(dj.class);
-                        K2.f32872l = string5;
-                        K2.f32873m = replaceTags;
+                        K2.f32875l = string5;
+                        K2.f32876m = replaceTags;
                         arrayList.add(K2);
                     }
                 }

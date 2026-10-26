@@ -93,8 +93,8 @@ public final class y1 extends s4.h0 {
         TLRPC.StickerSet stickerSet;
         z1 z1Var = this.N;
         l2 l2Var = z1Var.f12055s;
-        int i11 = e1Var.f47738f;
-        View view = e1Var.f47735a;
+        int i11 = e1Var.f47741f;
+        View view = e1Var.f47738a;
         if (i11 == 0) {
             view.setTag(34);
             view.setLayoutParams(new s4.q0(-1, (int) l2Var.f11159n));
@@ -148,7 +148,7 @@ public final class y1 extends s4.h0 {
                     int i15 = org.telegram.ui.ActionBar.y6.Me;
                     org.telegram.ui.ActionBar.b7 L = org.telegram.ui.ActionBar.f7.L(0.12f, i15);
                     u6Var = ((org.telegram.ui.ActionBar.k3) l2Var).resourcesProvider;
-                    org.telegram.ui.ActionBar.f7.l(m1Var, c02, L.f22483a, -1, 2, L.d, u6Var, PorterDuff.Mode.SRC_IN);
+                    org.telegram.ui.ActionBar.f7.l(m1Var, c02, L.f22485a, -1, 2, L.d, u6Var, PorterDuff.Mode.SRC_IN);
                     Drawable mutate = z1Var.getResources().getDrawable(R.drawable.filled_add_sticker).mutate();
                     u6Var2 = ((org.telegram.ui.ActionBar.k3) l2Var).resourcesProvider;
                     org.telegram.ui.ActionBar.f7.y(m1Var, mutate, i15, u6Var2, PorterDuff.Mode.MULTIPLY);
@@ -156,12 +156,12 @@ public final class y1 extends s4.h0 {
                     int dp = AndroidUtilities.dp(56.0f);
                     int dp2 = AndroidUtilities.dp(56.0f);
                     arVar.h = dp;
-                    arVar.f26594n = dp2;
+                    arVar.f26596n = dp2;
                     int dp3 = AndroidUtilities.dp(24.0f);
                     int dp4 = AndroidUtilities.dp(24.0f);
                     arVar.e = dp3;
-                    arVar.f26593f = dp4;
-                    arVar.f26595r = true;
+                    arVar.f26595f = dp4;
+                    arVar.f26597r = true;
                     m1Var.f11236a = arVar;
                 }
                 m1Var.setDrawable(m1Var.f11236a);

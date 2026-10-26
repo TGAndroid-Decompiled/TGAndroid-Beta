@@ -35,8 +35,8 @@ public final class p extends s4.h0 {
         int i11;
         x0 x0Var = this.f1616c;
         u uVar = (u) x0Var.f1974n.get(x0Var.f(i10));
-        int i12 = e1Var.f47738f;
-        View view = e1Var.f47735a;
+        int i12 = e1Var.f47741f;
+        View view = e1Var.f47738a;
         int i13 = 1;
         int i14 = 0;
         if (i12 == 0) {

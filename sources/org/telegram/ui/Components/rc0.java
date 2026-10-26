@@ -27,20 +27,20 @@ import org.telegram.tgnet.tl.TL_account;
 public final class rc0 extends FrameLayout {
     public boolean E;
     public float F;
-    public final int f32210a;
-    public final int f32211b;
-    public final org.telegram.ui.ActionBar.u6 f32212c;
+    public final int f32212a;
+    public final int f32213b;
+    public final org.telegram.ui.ActionBar.u6 f32214c;
     public final LinearLayout d;
     public final TextView e;
-    public final TextView f32213f;
+    public final TextView f32215f;
     public final TextView h;
-    public final long f32214n;
-    public final int f32215r;
-    public final int f32216s;
+    public final long f32216n;
+    public final int f32217r;
+    public final int f32218s;
     public final int v;
-    public final int f32217w;
-    public final Runnable f32218x;
-    public final int f32219y;
+    public final int f32219w;
+    public final Runnable f32220x;
+    public final int f32221y;
 
     public rc0(Context context, int i10, MessageObject messageObject, Runnable runnable, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
@@ -51,21 +51,21 @@ public final class rc0 extends FrameLayout {
         TLRPC.MessageFwdHeader messageFwdHeader;
         this.E = false;
         this.F = -1.0f;
-        this.f32211b = i10;
+        this.f32213b = i10;
         int i15 = messageObject.currentAccount;
-        this.f32210a = i15;
-        this.f32212c = u6Var;
-        this.f32218x = runnable;
-        this.f32219y = ConnectionsManager.getInstance(i15).getCurrentTime() - messageObject.messageOwner.date;
-        this.f32214n = messageObject.getDialogId();
-        this.f32215r = messageObject.getId();
+        this.f32212a = i15;
+        this.f32214c = u6Var;
+        this.f32220x = runnable;
+        this.f32221y = ConnectionsManager.getInstance(i15).getCurrentTime() - messageObject.messageOwner.date;
+        this.f32216n = messageObject.getDialogId();
+        this.f32217r = messageObject.getId();
         TLRPC.Message message = messageObject.messageOwner;
         if (message == null) {
             i11 = 0;
         } else {
             i11 = message.date;
         }
-        this.f32216s = i11;
+        this.f32218s = i11;
         if (message == null) {
             i12 = 0;
         } else {
@@ -77,7 +77,7 @@ public final class rc0 extends FrameLayout {
         } else {
             i13 = 0;
         }
-        this.f32217w = i13;
+        this.f32219w = i13;
         ImageView imageView = new ImageView(context);
         addView(imageView, gb1.h(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
         if (i10 == 1) {
@@ -100,7 +100,7 @@ public final class rc0 extends FrameLayout {
         this.h = textView;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("loading text ");
         spannableStringBuilder.setSpan(new ea0(textView, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(2.0f), u6Var), 0, spannableStringBuilder.length() - 1, 17);
-        int i16 = org.telegram.ui.ActionBar.y6.f23462j5;
+        int i16 = org.telegram.ui.ActionBar.y6.f23464j5;
         org.telegram.ui.ActionBar.f7.W(textView, org.telegram.ui.ActionBar.f7.L(0.7f, i16), u6Var);
         textView.setText(spannableStringBuilder);
         textView.setTextSize(1, 13.0f);
@@ -115,9 +115,9 @@ public final class rc0 extends FrameLayout {
         org.telegram.ui.ActionBar.f7.V(textView2, i16, u6Var);
         textView2.setTextSize(1, 14.0f);
         TextView e = org.telegram.messenger.vh.e(linearLayout, textView2, gb1.x(-2, -2, 19, 0, -1, 0, 0), context);
-        this.f32213f = e;
+        this.f32215f = e;
         int dp = AndroidUtilities.dp(20.0f);
-        int i17 = org.telegram.ui.ActionBar.y6.f23355d7;
+        int i17 = org.telegram.ui.ActionBar.y6.f23357d7;
         ShapeDrawable c02 = org.telegram.ui.ActionBar.y6.c0(dp, org.telegram.ui.ActionBar.y6.o1(0.75f, org.telegram.ui.ActionBar.y6.w0(i17, u6Var)));
         org.telegram.ui.ActionBar.b7 L = org.telegram.ui.ActionBar.f7.L(0.75f, i17);
         e.setBackground(c02);
@@ -139,7 +139,7 @@ public final class rc0 extends FrameLayout {
         int i16;
         int i17;
         final org.telegram.ui.s6 s6Var = new org.telegram.ui.s6(1, context, u6Var, false);
-        s6Var.fixNavigationBar(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23425h5, u6Var));
+        s6Var.fixNavigationBar(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23427h5, u6Var));
         boolean premiumFeaturesBlocked = MessagesController.getInstance(i10).premiumFeaturesBlocked();
         LinearLayout d = org.telegram.messenger.vh.d(context, 1);
         d.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
@@ -163,7 +163,7 @@ public final class rc0 extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
-        int i19 = org.telegram.ui.ActionBar.y6.f23462j5;
+        int i19 = org.telegram.ui.ActionBar.y6.f23464j5;
         org.telegram.ui.ActionBar.f7.V(textView, i19, u6Var);
         textView.setTextSize(1, 20.0f);
         if (z10) {
@@ -234,7 +234,7 @@ public final class rc0 extends FrameLayout {
             qc0 qc0Var = new qc0(context, u6Var);
             qc0Var.setGravity(17);
             qc0Var.setAlignment(Layout.Alignment.ALIGN_CENTER);
-            org.telegram.ui.ActionBar.f7.Y(qc0Var, org.telegram.ui.ActionBar.y6.f23765z6, u6Var);
+            org.telegram.ui.ActionBar.f7.Y(qc0Var, org.telegram.ui.ActionBar.y6.f23767z6, u6Var);
             qc0Var.l(" " + LocaleController.getString(R.string.PremiumOr) + " ", false);
             qc0Var.setTextSize(14);
             d.addView(qc0Var, gb1.x(270, -2, 1, 12, 17, 12, 17));
@@ -278,17 +278,17 @@ public final class rc0 extends FrameLayout {
     public final void a() {
         String formatPmEditedDate;
         TextView textView = this.e;
-        int i10 = this.f32210a;
-        TextView textView2 = this.f32213f;
+        int i10 = this.f32212a;
+        TextView textView2 = this.f32215f;
         TextView textView3 = this.h;
         LinearLayout linearLayout = this.d;
-        int i11 = this.f32211b;
+        int i11 = this.f32213b;
         if (i11 == 1) {
             linearLayout.setAlpha(1.0f);
             textView3.setAlpha(0.0f);
             textView2.setVisibility(8);
             if (AppGlobalConfig.getInstance(i10).messagePrimaryEditedDate.get()) {
-                formatPmEditedDate = LocaleController.formatPmSentDate(this.f32216s);
+                formatPmEditedDate = LocaleController.formatPmSentDate(this.f32218s);
             } else {
                 formatPmEditedDate = LocaleController.formatPmEditedDate(this.v);
             }
@@ -297,15 +297,15 @@ public final class rc0 extends FrameLayout {
             linearLayout.setAlpha(1.0f);
             textView3.setAlpha(0.0f);
             textView2.setVisibility(8);
-            textView.setText(LocaleController.formatPmFwdDate(this.f32217w));
+            textView.setText(LocaleController.formatPmFwdDate(this.f32219w));
         } else {
             setOnClickListener(null);
             linearLayout.setAlpha(0.0f);
             textView3.setAlpha(1.0f);
             textView2.setVisibility(0);
             TLRPC.TL_messages_getOutboxReadDate tL_messages_getOutboxReadDate = new TLRPC.TL_messages_getOutboxReadDate();
-            tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i10).getInputPeer(this.f32214n);
-            tL_messages_getOutboxReadDate.msg_id = this.f32215r;
+            tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i10).getInputPeer(this.f32216n);
+            tL_messages_getOutboxReadDate.msg_id = this.f32217r;
             ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getOutboxReadDate, new b2(this, 8));
         }
     }
@@ -314,7 +314,7 @@ public final class rc0 extends FrameLayout {
     public final void onDetachedFromWindow() {
         ub ubVar;
         super.onDetachedFromWindow();
-        qc qcVar = qc.f31880x;
+        qc qcVar = qc.f31882x;
         if (qcVar != null && (ubVar = qcVar.e) != null && ubVar.getParent() != null && (qcVar.e.getParent().getParent() instanceof kb)) {
             qcVar.b();
         }
@@ -328,7 +328,7 @@ public final class rc0 extends FrameLayout {
         int mode = View.MeasureSpec.getMode(i10);
         if (this.F < 0.0f) {
             this.F = 0.0f;
-            int i12 = this.f32211b;
+            int i12 = this.f32213b;
             TextView textView = this.e;
             if (i12 == 0) {
                 long currentTimeMillis = System.currentTimeMillis();
@@ -336,11 +336,11 @@ public final class rc0 extends FrameLayout {
                 this.F = max;
                 float max2 = Math.max(max, textView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)) + AndroidUtilities.dp(48.0f));
                 this.F = max2;
-                float max3 = Math.max(max2, textView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.f32213f.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
+                float max3 = Math.max(max2, textView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.f32215f.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
                 this.F = max3;
                 float max4 = Math.max(max3, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + ((float) AndroidUtilities.dp(48.0f)));
                 this.F = max4;
-                int i13 = this.f32219y;
+                int i13 = this.f32221y;
                 if (i13 > 86400) {
                     f7 = 48.0f;
                     this.F = Math.max(max4, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + AndroidUtilities.dp(48.0f));

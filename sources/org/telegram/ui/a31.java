@@ -24,7 +24,7 @@ public final class a31 extends org.telegram.ui.Components.bb {
     public final LinearLayout X;
     public final org.telegram.ui.Components.zq Y;
     public final org.telegram.ui.Components.z90 Z;
-    public org.telegram.ui.Components.j71 f37636a0;
+    public org.telegram.ui.Components.j71 f37639a0;
 
     public a31(Context context, boolean z10, org.telegram.ui.ActionBar.u6 u6Var, Utilities.Callback callback) {
         super(context, null, false, false, u6Var);
@@ -62,8 +62,8 @@ public final class a31 extends org.telegram.ui.Components.bb {
             imageView2.setImageDrawable(context.getDrawable(R.drawable.ic_ab_other));
             imageView2.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
             imageView2.setScaleType(scaleType);
-            org.telegram.ui.ActionBar.f7.t(imageView2, org.telegram.ui.ActionBar.y6.f23612r5, null, PorterDuff.Mode.SRC_ATOP);
-            int i18 = org.telegram.ui.ActionBar.y6.f23446i6;
+            org.telegram.ui.ActionBar.f7.t(imageView2, org.telegram.ui.ActionBar.y6.f23614r5, null, PorterDuff.Mode.SRC_ATOP);
+            int i18 = org.telegram.ui.ActionBar.y6.f23448i6;
             org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.x0(null, i18, false), 1, -1);
             org.telegram.ui.ActionBar.b7 N2 = org.telegram.ui.ActionBar.f7.N(i18);
             imageView2.setBackground(g02);
@@ -122,17 +122,17 @@ public final class a31 extends org.telegram.ui.Components.bb {
         String formatString = LocaleController.formatString(i14, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).channelRestrictSponsoredLevelMin));
         int i22 = org.telegram.ui.ActionBar.y6.gc;
         linearLayout.addView(new di.i4(this, context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i22, 0, new Runnable(this) {
-            public final a31 f46159b;
+            public final a31 f46162b;
 
             {
-                this.f46159b = this;
+                this.f46162b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        a31 a31Var = this.f46159b;
+                        a31 a31Var = this.f46162b;
                         a31Var.getClass();
                         org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
                         if (U != null) {
@@ -142,7 +142,7 @@ public final class a31 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        a31 a31Var2 = this.f46159b;
+                        a31 a31Var2 = this.f46162b;
                         a31Var2.dismiss();
                         qf.d.r(a31Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -150,7 +150,7 @@ public final class a31 extends org.telegram.ui.Components.bb {
             }
         })), org.telegram.ui.Components.gb1.t(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23355d7, view, u6Var2);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d7, view, u6Var2);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);
@@ -174,17 +174,17 @@ public final class a31 extends org.telegram.ui.Components.bb {
         }
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i16));
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i22, 0, new Runnable(this) {
-            public final a31 f46159b;
+            public final a31 f46162b;
 
             {
-                this.f46159b = this;
+                this.f46162b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        a31 a31Var = this.f46159b;
+                        a31 a31Var = this.f46162b;
                         a31Var.getClass();
                         org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
                         if (U != null) {
@@ -194,7 +194,7 @@ public final class a31 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        a31 a31Var2 = this.f46159b;
+                        a31 a31Var2 = this.f46162b;
                         a31Var2.dismiss();
                         qf.d.r(a31Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -234,7 +234,7 @@ public final class a31 extends org.telegram.ui.Components.bb {
         org.telegram.ui.ActionBar.f7.k(textView3, e10, N3, f7, u6Var2);
         textView3.setOnClickListener(new t21(this, 1));
         linearLayout.addView(textView3, org.telegram.ui.Components.gb1.x(-1, 48, 0, 14, 22, 14, 14));
-        this.f37636a0.O(false);
+        this.f37639a0.O(false);
     }
 
     public static a31 T(Context context, org.telegram.ui.ActionBar.r2 r2Var, boolean z10, org.telegram.ui.ActionBar.u6 u6Var, li.s2 s2Var) {
@@ -273,7 +273,7 @@ public final class a31 extends org.telegram.ui.Components.bb {
     @Override
     public final org.telegram.ui.Components.lm0 v(org.telegram.ui.Components.mm0 mm0Var) {
         org.telegram.ui.Components.j71 j71Var = new org.telegram.ui.Components.j71(mm0Var, getContext(), this.currentAccount, 0, true, new e5(this, 20), this.resourcesProvider);
-        this.f37636a0 = j71Var;
+        this.f37639a0 = j71Var;
         return j71Var;
     }
 

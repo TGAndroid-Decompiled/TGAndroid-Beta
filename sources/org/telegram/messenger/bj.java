@@ -34,9 +34,9 @@ public final class bj implements Runnable {
             case 1:
                 un unVar = (un) this.e;
                 fl0 fl0Var = (fl0) this.f19722f;
-                org.telegram.ui.ActionBar.o1 o1Var = unVar.f44213c9;
+                org.telegram.ui.ActionBar.o1 o1Var = unVar.f44216c9;
                 if (o1Var != null && unVar.fragmentView != null && !o1Var.isShowing() && AndroidUtilities.isActivityRunning(unVar.getParentActivity())) {
-                    unVar.f44213c9.showAtLocation(unVar.f44468x0, 51, this.f19720b, this.f19721c);
+                    unVar.f44216c9.showAtLocation(unVar.f44471x0, 51, this.f19720b, this.f19721c);
                     if (this.d && fl0Var != null) {
                         fl0Var.r(true);
                     }
@@ -61,7 +61,7 @@ public final class bj implements Runnable {
                 }
                 if (f7 != null && R != null) {
                     org.telegram.ui.Components.wc b02 = org.telegram.ui.Components.wc.b0(R);
-                    int i11 = acVar.f26461a.h;
+                    int i11 = acVar.f26463a.h;
                     if (this.d) {
                         vVar = new i2.v(this.f19720b, this.f19721c, R, 7);
                     } else {
@@ -107,7 +107,7 @@ public final class bj implements Runnable {
                     notificationsSettingsActivity.getNotificationsController().deleteNotificationChannelGlobal(i12);
                 }
                 n5Var.e.b(0, !z10, true);
-                notificationsSettingsActivity.f35582c.m(this.f19721c);
+                notificationsSettingsActivity.f35585c.m(this.f19721c);
                 return;
         }
     }

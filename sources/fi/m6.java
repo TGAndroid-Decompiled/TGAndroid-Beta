@@ -132,11 +132,11 @@ public final class m6 implements Runnable {
                 o6 o6Var4 = this.f11255b;
                 h81 h81Var = o6Var4.f11377n;
                 if (h81Var != null) {
-                    e00 e00Var = h81Var.f28860b;
+                    e00 e00Var = h81Var.f28862b;
                     if (e00Var != null) {
                         e00Var.postRunnable(new b00(e00Var, 0));
                     }
-                    h81Var.f28859a = null;
+                    h81Var.f28861a = null;
                     o6Var4.removeView(o6Var4.f11377n);
                     o6Var4.f11377n = null;
                     return;

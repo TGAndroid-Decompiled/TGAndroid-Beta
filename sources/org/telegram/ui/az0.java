@@ -57,9 +57,9 @@ public final class az0 extends org.telegram.ui.Components.u90 implements oe.d {
     public final void setTextColor(int i10) {
         int o12;
         super.setTextColor(i10);
-        v01 v01Var = this.R0.f36057p6;
-        if (v01Var != null && v01Var.f44561c != (o12 = org.telegram.ui.ActionBar.y6.o1(1.4f, org.telegram.ui.ActionBar.y6.b(-0.02f, 0.15f, i10)))) {
-            v01Var.f44561c = o12;
+        v01 v01Var = this.R0.f36060p6;
+        if (v01Var != null && v01Var.f44564c != (o12 = org.telegram.ui.ActionBar.y6.o1(1.4f, org.telegram.ui.ActionBar.y6.b(-0.02f, 0.15f, i10)))) {
+            v01Var.f44564c = o12;
             v01Var.invalidateSelf();
         }
     }

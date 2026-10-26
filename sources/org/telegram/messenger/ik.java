@@ -34,7 +34,7 @@ public final class ik implements qf1, org.telegram.ui.Components.e5, LanguageDet
         TLRPC.Document document = (TLRPC.Document) this.f20373c;
         String str = (String) this.d;
         MessageObject.SendAnimationData sendAnimationData = (MessageObject.SendAnimationData) this.f20374f;
-        int i12 = ChatActivityEnterView.f25841r5;
+        int i12 = ChatActivityEnterView.f25843r5;
         chatActivityEnterView.a(document, str, this.e, sendAnimationData, this.f20371a, z10, i10, i11);
     }
 

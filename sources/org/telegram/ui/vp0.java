@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class vp0 extends org.telegram.ui.Components.vw0 {
-    public int f44877l0;
+    public int f44880l0;
     public boolean m0;
-    public final aq0 f44878n0;
+    public final aq0 f44881n0;
 
     public vp0(aq0 aq0Var, Context context) {
         super(context, null);
-        this.f44878n0 = aq0Var;
+        this.f44881n0 = aq0Var;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class vp0 extends org.telegram.ui.Components.vw0 {
         setMeasuredDimension(size, size2);
         int dp = AndroidUtilities.dp(20.0f);
         int i13 = 0;
-        aq0 aq0Var = this.f44878n0;
+        aq0 aq0Var = this.f44881n0;
         if (dp >= 0) {
             if (!AndroidUtilities.isInMultiwindow) {
                 size2 -= aq0Var.M.getEmojiPadding();

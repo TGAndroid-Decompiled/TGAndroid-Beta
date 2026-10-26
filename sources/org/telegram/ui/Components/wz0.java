@@ -6,15 +6,15 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.R;
 public final class wz0 extends Drawable {
-    public boolean f34566a;
-    public final h6 f34567b;
-    public final Drawable f34568c;
+    public boolean f34569a;
+    public final h6 f34570b;
+    public final Drawable f34571c;
     public final Drawable d;
     public int e = 255;
 
     public wz0(org.telegram.ui.Cells.s1 s1Var) {
-        this.f34567b = new h6(s1Var, 420L, ds.h);
-        this.f34568c = s1Var.getContext().getResources().getDrawable(R.drawable.summary_arrow);
+        this.f34570b = new h6(s1Var, 420L, ds.h);
+        this.f34571c = s1Var.getContext().getResources().getDrawable(R.drawable.summary_arrow);
         this.d = s1Var.getContext().getResources().getDrawable(R.drawable.summary_stars);
     }
 
@@ -25,7 +25,7 @@ public final class wz0 extends Drawable {
         drawable.setBounds(bounds);
         drawable.setAlpha(this.e);
         drawable.draw(canvas);
-        float e = this.f34567b.e(this.f34566a);
+        float e = this.f34570b.e(this.f34569a);
         float centerX = getBounds().centerX();
         float centerY = getBounds().centerY();
         float width = getBounds().width();
@@ -45,7 +45,7 @@ public final class wz0 extends Drawable {
             canvas.translate((-width) * f11 * 0.4f, f11 * width * 0.4f);
         }
         Rect bounds2 = getBounds();
-        Drawable drawable2 = this.f34568c;
+        Drawable drawable2 = this.f34571c;
         drawable2.setBounds(bounds2);
         drawable2.setAlpha(this.e);
         drawable2.draw(canvas);
@@ -70,12 +70,12 @@ public final class wz0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f34568c.getIntrinsicHeight();
+        return this.f34571c.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f34568c.getIntrinsicWidth();
+        return this.f34571c.getIntrinsicWidth();
     }
 
     @Override
@@ -90,7 +90,7 @@ public final class wz0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34568c.setColorFilter(colorFilter);
+        this.f34571c.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
     }
 }

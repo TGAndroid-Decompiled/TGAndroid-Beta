@@ -17,7 +17,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public abstract class b {
-    public static boolean f37924a;
+    public static boolean f37927a;
 
     public static boolean a(int i10, TLRPC.User user) {
         String publicUsername;
@@ -40,7 +40,7 @@ public abstract class b {
 
     public static void b(int i10) {
         org.telegram.ui.ActionBar.u6 u6Var;
-        if (!f37924a && UserConfig.selectedAccount == i10) {
+        if (!f37927a && UserConfig.selectedAccount == i10) {
             Context context = LaunchActivity.I1;
             if (context == null) {
                 context = ApplicationLoader.applicationContext;
@@ -59,7 +59,7 @@ public abstract class b {
     }
 
     public static void c(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
-        if (f37924a) {
+        if (f37927a) {
             return;
         }
         org.telegram.ui.ActionBar.k3 i11 = org.telegram.messenger.vh.i(1, context, u6Var, false);
@@ -98,7 +98,7 @@ public abstract class b {
         org.telegram.ui.ActionBar.k3[] k3VarArr = {i11};
         i11.useBackgroundTopPadding = false;
         i11.fixNavigationBar();
-        f37924a = true;
+        f37927a = true;
         k3VarArr[0].show();
         k3VarArr[0].setOnDismissListener(new fi.e1(1));
     }

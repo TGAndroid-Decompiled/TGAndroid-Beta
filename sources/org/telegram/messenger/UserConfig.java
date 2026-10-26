@@ -421,7 +421,7 @@ public class UserConfig extends BaseController {
             try {
                 TLRPC.User user = this.currentUser;
                 if (user != null) {
-                    j10 = user.f22174id;
+                    j10 = user.f22176id;
                 } else {
                     j10 = 0;
                 }
@@ -664,7 +664,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC.User user2 = this.currentUser;
             this.currentUser = user;
-            this.clientUserId = user.f22174id;
+            this.clientUserId = user.f22176id;
             checkPremiumSelf(user2, user);
         }
     }

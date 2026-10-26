@@ -229,7 +229,7 @@ public final class t8 extends FrameLayout {
             case 0:
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.f11716f;
-                paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23355d7, (org.telegram.ui.ActionBar.u6) this.f11714b));
+                paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23357d7, (org.telegram.ui.ActionBar.u6) this.f11714b));
                 canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -305,7 +305,7 @@ public final class t8 extends FrameLayout {
         this.d = textView;
         vh.j(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23462j5, u6Var);
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23464j5, u6Var);
         boolean z10 = LocaleController.isRTL;
         addView(textView, gb1.h(-1, -2.0f, 23, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
@@ -315,7 +315,7 @@ public final class t8 extends FrameLayout {
         imageView.setImageDrawable(j2Var);
         j2Var.a(-1);
         j2Var.b(-1);
-        j2Var.f22736k = 220.0f;
+        j2Var.f22738k = 220.0f;
         addView(imageView, gb1.h(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new ai.s(this, 24));
     }

@@ -4,30 +4,30 @@ import android.text.Editable;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class xp0 implements qq0 {
-    public final HashMap f45829a;
-    public final ArrayList f45830b;
-    public final aq0 f45831c;
+    public final HashMap f45832a;
+    public final ArrayList f45833b;
+    public final aq0 f45834c;
 
     public xp0(aq0 aq0Var, HashMap hashMap, ArrayList arrayList) {
-        this.f45831c = aq0Var;
-        this.f45829a = hashMap;
-        this.f45830b = arrayList;
+        this.f45834c = aq0Var;
+        this.f45832a = hashMap;
+        this.f45833b = arrayList;
     }
 
     @Override
     public final void b(Editable editable) {
-        aq0 aq0Var = this.f45831c;
+        aq0 aq0Var = this.f45834c;
         org.telegram.ui.Components.ru ruVar = aq0Var.M;
-        aq0Var.f37872a = editable;
+        aq0Var.f37875a = editable;
         ruVar.setText(editable);
     }
 
     @Override
     public final void d(int i10, boolean z10, boolean z11) {
-        aq0 aq0Var = this.f45831c;
+        aq0 aq0Var = this.f45834c;
         aq0Var.removeSelfFromStack();
         if (!z10) {
-            aq0Var.W(this.f45829a, this.f45830b, z11, i10);
+            aq0Var.W(this.f45832a, this.f45833b, z11, i10);
         }
     }
 

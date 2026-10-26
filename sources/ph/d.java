@@ -17,22 +17,22 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.gb1;
 public final class d extends FrameLayout implements p6 {
-    public final u6 f46858a;
-    public final ImageView f46859b;
-    public final TextView f46860c;
+    public final u6 f46861a;
+    public final ImageView f46862b;
+    public final TextView f46863c;
     public int d;
     public boolean e;
 
     public d(Context context, u6 u6Var) {
         super(context);
-        this.f46858a = u6Var;
+        this.f46861a = u6Var;
         ImageView imageView = new ImageView(context);
-        this.f46859b = imageView;
+        this.f46862b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_arrow_back);
         addView(imageView, gb1.h(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f46860c = textView;
+        this.f46863c = textView;
         textView.setText(LocaleController.getString(R.string.EmojiSearchBackToSearch));
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -43,7 +43,7 @@ public final class d extends FrameLayout implements p6 {
     }
 
     public final int a(float f7) {
-        return i0.a.o(y6.w0(y6.Wk, this.f46858a), (int) (f7 * 255.0f));
+        return i0.a.o(y6.w0(y6.Wk, this.f46861a), (int) (f7 * 255.0f));
     }
 
     @Override
@@ -52,12 +52,12 @@ public final class d extends FrameLayout implements p6 {
     }
 
     public void setOnBackClickListener(View.OnClickListener onClickListener) {
-        this.f46859b.setOnClickListener(onClickListener);
+        this.f46862b.setOnClickListener(onClickListener);
     }
 
     @Override
     public final void updateColors() {
-        this.f46860c.setTextColor(a(0.6f));
+        this.f46863c.setTextColor(a(0.6f));
         int a2 = a(1.0f);
         if (this.e && a2 == this.d) {
             return;
@@ -65,7 +65,7 @@ public final class d extends FrameLayout implements p6 {
         this.e = true;
         this.d = a2;
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(a(0.6f), PorterDuff.Mode.MULTIPLY);
-        ImageView imageView = this.f46859b;
+        ImageView imageView = this.f46862b;
         imageView.setColorFilter(porterDuffColorFilter);
         if (imageView.getBackground() != null) {
             y6.E1(imageView.getBackground(), a(0.1f), true);

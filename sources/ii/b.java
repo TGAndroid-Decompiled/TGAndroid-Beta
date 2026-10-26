@@ -30,7 +30,7 @@ public final class b implements Utilities.Callback2 {
                 f fVar = this.f14327b;
                 arrayList.add(t61.l(0, fVar.h));
                 t61 c10 = t61.c(1, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityCreateCommunity));
-                c10.f32877q = true;
+                c10.f32880q = true;
                 arrayList.add(c10);
                 arrayList.add(t61.E(2, AndroidUtilities.dp(14.0f)));
                 ArrayList arrayList2 = fVar.f14342n;
@@ -58,7 +58,7 @@ public final class b implements Utilities.Callback2 {
                         } else {
                             string = LocaleController.getString(R.string.Loading);
                         }
-                        w10.f32873m = string;
+                        w10.f32876m = string;
                         arrayList.add(w10);
                     }
                     return;

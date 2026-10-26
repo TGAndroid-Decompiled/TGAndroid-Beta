@@ -3,15 +3,15 @@ package org.telegram.ui.Wallet;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class m8 implements TextWatcher {
-    public final v3 f36969a;
+    public final v3 f36972a;
 
     public m8(v3 v3Var) {
-        this.f36969a = v3Var;
+        this.f36972a = v3Var;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        this.f36969a.run(charSequence.toString());
+        this.f36972a.run(charSequence.toString());
     }
 
     @Override

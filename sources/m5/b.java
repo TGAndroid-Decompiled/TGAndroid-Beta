@@ -5,6 +5,6 @@ public final class b implements ka.d {
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((ka.e) obj2).a(f18315b, ((p5.b) obj).f46797a);
+        ((ka.e) obj2).a(f18315b, ((p5.b) obj).f46800a);
     }
 }

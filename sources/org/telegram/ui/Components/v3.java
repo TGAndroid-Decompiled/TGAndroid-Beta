@@ -5,40 +5,40 @@ import android.graphics.Point;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class v3 extends LinearLayout {
-    public boolean f33555a;
-    public final s3 f33556b;
-    public final u3 f33557c;
+    public boolean f33558a;
+    public final s3 f33559b;
+    public final u3 f33560c;
 
     public v3(Context context, s3 s3Var, u3 u3Var) {
         super(context);
-        this.f33556b = s3Var;
-        this.f33557c = u3Var;
-        this.f33555a = false;
+        this.f33559b = s3Var;
+        this.f33560c = u3Var;
+        this.f33558a = false;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        this.f33555a = true;
+        this.f33558a = true;
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
             i12 = 3;
         } else {
             i12 = 5;
         }
-        s3 s3Var = this.f33556b;
+        s3 s3Var = this.f33559b;
         s3Var.setItemCount(i12);
-        u3 u3Var = this.f33557c;
+        u3 u3Var = this.f33560c;
         u3Var.setItemCount(i12);
         s3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
         u3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-        this.f33555a = false;
+        this.f33558a = false;
         super.onMeasure(i10, i11);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f33555a) {
+        if (this.f33558a) {
             return;
         }
         super.requestLayout();

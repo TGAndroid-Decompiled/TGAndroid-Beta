@@ -2,7 +2,7 @@ package x7;
 
 import org.telegram.ui.Components.b10;
 public final class o2 implements ka.d {
-    public static final o2 f51596a = new Object();
+    public static final o2 f51599a = new Object();
 
     static {
         b10.s(b10.n(d.class, new a(1)));

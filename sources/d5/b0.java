@@ -171,7 +171,7 @@ public final class b0 extends c {
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 rf.b bVar = this.h;
                 bVar.getClass();
-                bVar.b0(c10, (p3) bVar.f47332b);
+                bVar.b0(c10, (p3) bVar.f47335b);
             } else {
                 int i11 = 1;
                 if (this.D == 1) {

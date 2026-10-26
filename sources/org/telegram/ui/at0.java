@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.OrientationEventListener;
 public final class at0 extends OrientationEventListener {
-    public final PhotoViewer f37895a;
+    public final PhotoViewer f37898a;
 
     public at0(Context context, PhotoViewer photoViewer) {
         super(context);
-        this.f37895a = photoViewer;
+        this.f37898a = photoViewer;
     }
 
     @Override
@@ -16,8 +16,8 @@ public final class at0 extends OrientationEventListener {
         ft0 ft0Var;
         Activity activity;
         int i11;
-        PhotoViewer photoViewer = this.f37895a;
-        if (photoViewer.W3 != null && (ft0Var = photoViewer.f35825y2) != null && ft0Var.getVisibility() == 0 && (activity = photoViewer.f35822y) != null && (i11 = photoViewer.Y3) != 0) {
+        PhotoViewer photoViewer = this.f37898a;
+        if (photoViewer.W3 != null && (ft0Var = photoViewer.f35828y2) != null && ft0Var.getVisibility() == 0 && (activity = photoViewer.f35825y) != null && (i11 = photoViewer.Y3) != 0) {
             if (i11 == 1) {
                 if (i10 >= 240 && i10 <= 300) {
                     photoViewer.Z3 = true;

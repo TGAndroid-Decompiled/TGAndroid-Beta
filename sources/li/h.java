@@ -25,42 +25,42 @@ public final class h implements Runnable {
                 this.f17270b.s();
                 return;
             case 3:
-                f80 f80Var = this.f17270b.f29856m;
+                f80 f80Var = this.f17270b.f29858m;
                 if (f80Var != null) {
                     AndroidUtilities.hideKeyboard(f80Var.getContentView());
                     return;
                 }
                 return;
             case 4:
-                f80 f80Var2 = this.f17270b.f29856m;
+                f80 f80Var2 = this.f17270b.f29858m;
                 if (f80Var2 != null) {
                     AndroidUtilities.hideKeyboard(f80Var2.getContentView());
                     return;
                 }
                 return;
             case 5:
-                f80 f80Var3 = this.f17270b.f29856m;
+                f80 f80Var3 = this.f17270b.f29858m;
                 if (f80Var3 != null) {
                     AndroidUtilities.hideKeyboard(f80Var3.getContentView());
                     return;
                 }
                 return;
             case 6:
-                f80 f80Var4 = this.f17270b.f29856m;
+                f80 f80Var4 = this.f17270b.f29858m;
                 if (f80Var4 != null) {
                     AndroidUtilities.hideKeyboard(f80Var4.getContentView());
                     return;
                 }
                 return;
             case 7:
-                f80 f80Var5 = this.f17270b.f29856m;
+                f80 f80Var5 = this.f17270b.f29858m;
                 if (f80Var5 != null) {
                     AndroidUtilities.hideKeyboard(f80Var5.getContentView());
                     return;
                 }
                 return;
             default:
-                f80 f80Var6 = this.f17270b.f29856m;
+                f80 f80Var6 = this.f17270b.f29858m;
                 if (f80Var6 != null) {
                     AndroidUtilities.hideKeyboard(f80Var6.getContentView());
                     return;

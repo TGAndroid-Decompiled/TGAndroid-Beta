@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.wc;
 public final class z7 implements Utilities.Callback2 {
-    public final int f37564a;
-    public final h8 f37565b;
-    public final qf.c f37566c;
+    public final int f37567a;
+    public final h8 f37568b;
+    public final qf.c f37569c;
     public final l0 d;
 
     public z7(h8 h8Var, qf.c cVar, l0 l0Var, int i10) {
-        this.f37564a = i10;
-        this.f37565b = h8Var;
-        this.f37566c = cVar;
+        this.f37567a = i10;
+        this.f37568b = h8Var;
+        this.f37569c = cVar;
         this.d = l0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f37564a) {
+        switch (this.f37567a) {
             case 0:
                 i0 i0Var = (i0) obj;
                 String str = (String) obj2;
-                this.f37566c.c(false);
-                h8 h8Var = this.f37565b;
+                this.f37569c.c(false);
+                h8 h8Var = this.f37568b;
                 if (i0Var == null) {
                     wc b02 = wc.b0(h8Var);
                     if (str == null) {
@@ -34,20 +34,20 @@ public final class z7 implements Utilities.Callback2 {
                 }
                 p8 p8Var = new p8();
                 p8Var.h = true;
-                ArrayList arrayList = p8Var.f37103a;
+                ArrayList arrayList = p8Var.f37106a;
                 arrayList.clear();
                 if (!i0Var.e()) {
                     arrayList.addAll(i0Var.g());
                 }
                 p8Var.W();
-                p8Var.f37106f = new q6(4, h8Var, this.d);
+                p8Var.f37109f = new q6(4, h8Var, this.d);
                 h8Var.presentFragment(p8Var);
                 return;
             default:
                 g0 g0Var = (g0) obj;
                 String str2 = (String) obj2;
-                this.f37566c.c(false);
-                h8 h8Var2 = this.f37565b;
+                this.f37569c.c(false);
+                h8 h8Var2 = this.f37568b;
                 if (g0Var == null) {
                     wc b03 = wc.b0(h8Var2);
                     if (str2 == null) {
@@ -55,20 +55,20 @@ public final class z7 implements Utilities.Callback2 {
                     }
                     b03.f0(str2, false);
                     return;
-                } else if (h8Var2.f36637f) {
+                } else if (h8Var2.f36640f) {
                     g0Var.close();
                     return;
                 } else {
                     h8Var2.e.add(g0Var);
                     p8 p8Var2 = new p8();
-                    i0 i0Var2 = g0Var.f36582b;
-                    ArrayList arrayList2 = p8Var2.f37103a;
+                    i0 i0Var2 = g0Var.f36585b;
+                    ArrayList arrayList2 = p8Var2.f37106a;
                     arrayList2.clear();
                     if (!i0Var2.e()) {
                         arrayList2.addAll(i0Var2.g());
                     }
                     p8Var2.W();
-                    p8Var2.f37106f = new h(h8Var2, this.d, g0Var, 19);
+                    p8Var2.f37109f = new h(h8Var2, this.d, g0Var, 19);
                     h8Var2.presentFragment(p8Var2);
                     return;
                 }

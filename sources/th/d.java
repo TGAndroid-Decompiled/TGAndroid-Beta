@@ -5,8 +5,8 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 public final class d extends sh.e {
-    public final MediaController.PhotoEntry f49152b;
-    public final SendMessagesHelper.SendingMediaInfo f49153c;
+    public final MediaController.PhotoEntry f49155b;
+    public final SendMessagesHelper.SendingMediaInfo f49156c;
 
     public d(org.telegram.messenger.SendMessagesHelper.SendingMediaInfo r10) {
         throw new UnsupportedOperationException("Method not decompiled: th.d.<init>(org.telegram.messenger.SendMessagesHelper$SendingMediaInfo):void");
@@ -14,7 +14,7 @@ public final class d extends sh.e {
 
     @Override
     public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f48628a;
+        ImageReceiver imageReceiver = this.f48631a;
         imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
         imageReceiver.draw(canvas);
     }

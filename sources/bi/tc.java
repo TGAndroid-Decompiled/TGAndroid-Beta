@@ -133,9 +133,9 @@ public final class tc extends org.telegram.ui.Components.bb implements Notificat
                             int i19 = ic.f4848a;
                             t61 K = t61.K(ic.class);
                             K.d = -1;
-                            K.f32872l = string;
-                            K.f32867f = !this.f5488f0;
-                            K.f32877q = true;
+                            K.f32875l = string;
+                            K.f32870f = !this.f5488f0;
+                            K.f32880q = true;
                             arrayList.add(K);
                         }
                     } else {
@@ -153,9 +153,9 @@ public final class tc extends org.telegram.ui.Components.bb implements Notificat
                         int i20 = ic.f4848a;
                         t61 K2 = t61.K(ic.class);
                         K2.d = -1;
-                        K2.f32872l = string2;
-                        K2.f32867f = !this.f5488f0;
-                        K2.f32877q = true;
+                        K2.f32875l = string2;
+                        K2.f32870f = !this.f5488f0;
+                        K2.f32880q = true;
                         arrayList.add(K2);
                     }
                 } else {

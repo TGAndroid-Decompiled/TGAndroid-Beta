@@ -313,7 +313,7 @@ public final class o8 implements Runnable {
                     MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f22027id, user, 0, str2, cyVar, true, new zr0(launchActivity, i11, chat, cyVar, 8), null);
                     return;
                 }
-                gq gqVar = new gq(user.f22174id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);
+                gq gqVar = new gq(user.f22176id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);
                 gqVar.X0 = new ha0(cyVar, i11);
                 ((ActionBarLayout) launchActivity.O()).S(gqVar, false);
                 return;

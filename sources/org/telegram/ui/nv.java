@@ -9,12 +9,12 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class nv implements View.OnLongClickListener {
-    public final int f42004a;
-    public final cy f42005b;
+    public final int f42007a;
+    public final cy f42008b;
 
     public nv(cy cyVar, int i10) {
-        this.f42004a = i10;
-        this.f42005b = cyVar;
+        this.f42007a = i10;
+        this.f42008b = cyVar;
     }
 
     @Override
@@ -23,9 +23,9 @@ public final class nv implements View.OnLongClickListener {
         boolean z11;
         int i10;
         int i11;
-        switch (this.f42004a) {
+        switch (this.f42007a) {
             case 0:
-                cy cyVar = this.f42005b;
+                cy cyVar = this.f42008b;
                 ArrayList arrayList = cyVar.I2;
                 if (cyVar.getParentActivity() == null) {
                     return false;
@@ -89,14 +89,14 @@ public final class nv implements View.OnLongClickListener {
                 H.Z();
                 return true;
             case 1:
-                cy cyVar2 = this.f42005b;
+                cy cyVar2 = this.f42008b;
                 cyVar2.z4(cyVar2.I2, 104, true, true, null);
                 return true;
             case 2:
-                this.f42005b.x4(view);
+                this.f42008b.x4(view);
                 return true;
             default:
-                cy cyVar3 = this.f42005b;
+                cy cyVar3 = this.f42008b;
                 cyVar3.getContactsController().loadGlobalPrivacySetting();
                 cyVar3.S4();
                 return true;

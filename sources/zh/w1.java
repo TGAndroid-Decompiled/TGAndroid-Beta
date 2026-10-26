@@ -17,19 +17,19 @@ import org.telegram.ui.Components.c6;
 import org.telegram.ui.Components.m91;
 import org.telegram.ui.Components.vs0;
 public final class w1 extends m91 {
-    public final int f53308a;
-    public final u6 f53309b;
-    public final vs0 f53310c;
+    public final int f53311a;
+    public final u6 f53312b;
+    public final vs0 f53313c;
 
     public w1(vs0 vs0Var, int i10, u6 u6Var) {
-        this.f53310c = vs0Var;
-        this.f53308a = i10;
-        this.f53309b = u6Var;
+        this.f53313c = vs0Var;
+        this.f53311a = i10;
+        this.f53312b = u6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        vs0 vs0Var = this.f53310c;
+        vs0 vs0Var = this.f53313c;
         r1 r1Var = vs0Var.Q;
         q9 q9Var = vs0Var.e;
         ArrayList arrayList2 = new ArrayList();
@@ -77,7 +77,7 @@ public final class w1 extends m91 {
             if (currentPage.d) {
                 i10 = q9Var.f(currentPage.e.d) + 1;
             }
-            vs0Var.f53231n.e(0.0f, i10, i10);
+            vs0Var.f53234n.e(0.0f, i10, i10);
         }
         AndroidUtilities.cancelRunOnUIThread(r1Var);
         AndroidUtilities.runOnUIThread(r1Var, 1000L);
@@ -87,7 +87,7 @@ public final class w1 extends m91 {
     public final void b(View view, int i10, int i11) {
         t9 t9Var;
         boolean z10;
-        vs0 vs0Var = this.f53310c;
+        vs0 vs0Var = this.f53313c;
         q9 q9Var = vs0Var.e;
         m2 m2Var = (m2) view;
         int i12 = 0;
@@ -113,9 +113,9 @@ public final class w1 extends m91 {
             t9Var.b();
         }
         m2Var.f(false);
-        LinearLayout linearLayout = m2Var.f53149y;
+        LinearLayout linearLayout = m2Var.f53152y;
         if (linearLayout != null) {
-            if (!m2Var.f53140a.e.h()) {
+            if (!m2Var.f53143a.e.h()) {
                 i12 = 8;
             }
             linearLayout.setVisibility(i12);
@@ -137,20 +137,20 @@ public final class w1 extends m91 {
         if (i10 == -1) {
             return null;
         }
-        int i11 = this.f53308a;
-        u6 u6Var = this.f53309b;
-        vs0 vs0Var = this.f53310c;
+        int i11 = this.f53311a;
+        u6 u6Var = this.f53312b;
+        vs0 vs0Var = this.f53313c;
         m2 m2Var = new m2(vs0Var, i11, u6Var);
         oi.q qVar = vs0Var.N;
         if (qVar != null) {
-            qVar.b(m2Var.f53143f);
+            qVar.b(m2Var.f53146f);
         }
         return m2Var;
     }
 
     @Override
     public final int e() {
-        return this.f53310c.e.d().size() + 1;
+        return this.f53313c.e.d().size() + 1;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class w1 extends m91 {
         if (i10 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f53310c.e.d().get(i10 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f53313c.e.d().get(i10 - 1)).collection_id;
     }
 
     @Override
@@ -166,7 +166,7 @@ public final class w1 extends m91 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.Gift2CollectionAll);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f53310c.e.d().get(i10 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f53313c.e.d().get(i10 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }

@@ -44,7 +44,7 @@ public final class z3 extends s61 {
         if (obj instanceof TL_payments.connectedBotStarRef) {
             a4 a4Var = (a4) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z11 = t61Var.f32878r;
+            boolean z11 = t61Var.f32881r;
             u6 u6Var = a4Var.f12862b;
             View view2 = a4Var.e;
             ImageView imageView = a4Var.f12864f;
@@ -59,13 +59,13 @@ public final class z3 extends s61 {
                 spannableStringBuilder.append((CharSequence) " d");
                 m00 m00Var = new m00();
                 int i15 = y6.uj;
-                m00Var.f41418f = y6.w0(i15, null);
-                m00Var.f41420r = i15;
-                m00Var.f41421s = null;
-                m00Var.f41419n = true;
+                m00Var.f41421f = y6.w0(i15, null);
+                m00Var.f41423r = i15;
+                m00Var.f41424s = null;
+                m00Var.f41422n = true;
                 m00Var.v = k.F0(connectedbotstarref.commission_permille);
-                if (m00Var.f41417c != null) {
-                    m00Var.f41417c = null;
+                if (m00Var.f41420c != null) {
+                    m00Var.f41420c = null;
                     m00Var.a();
                 }
                 spannableStringBuilder.setSpan(m00Var, 1, 2, 33);
@@ -126,7 +126,7 @@ public final class z3 extends s61 {
         } else if (obj instanceof TL_payments.starRefProgram) {
             a4 a4Var2 = (a4) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z12 = t61Var.f32878r;
+            boolean z12 = t61Var.f32881r;
             TLRPC.User user2 = MessagesController.getInstance(a4Var2.f12861a).getUser(Long.valueOf(starrefprogram.bot_id));
             j9 j9Var2 = new j9((u6) null);
             j9Var2.r(user2);
@@ -137,13 +137,13 @@ public final class z3 extends s61 {
                 spannableStringBuilder2.append((CharSequence) " d");
                 m00 m00Var2 = new m00();
                 int i17 = y6.uj;
-                m00Var2.f41418f = y6.w0(i17, null);
-                m00Var2.f41420r = i17;
-                m00Var2.f41421s = null;
-                m00Var2.f41419n = true;
+                m00Var2.f41421f = y6.w0(i17, null);
+                m00Var2.f41423r = i17;
+                m00Var2.f41424s = null;
+                m00Var2.f41422n = true;
                 m00Var2.v = k.F0(starrefprogram.commission_permille);
-                if (m00Var2.f41417c != null) {
-                    m00Var2.f41417c = null;
+                if (m00Var2.f41420c != null) {
+                    m00Var2.f41420c = null;
                     m00Var2.a();
                 }
                 spannableStringBuilder2.setSpan(m00Var2, 1, 2, 33);

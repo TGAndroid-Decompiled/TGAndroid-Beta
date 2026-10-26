@@ -60,7 +60,7 @@ public final class a {
             this.f19422f = dVar.d(1);
             return;
         }
-        this.f19422f = ri.b.f47626a;
+        this.f19422f = ri.b.f47629a;
         this.e = null;
         this.d = null;
         ch.b bVar2 = new ch.b(cVar);
@@ -84,14 +84,14 @@ public final class a {
         pi.f fVar = new pi.f(AndroidUtilities.dp(32.0f));
         pi.f fVar2 = new pi.f(AndroidUtilities.dp(56.0f));
         pi.f fVar3 = new pi.f(AndroidUtilities.dp(48.0f));
-        if (eVar.f46886w != 1) {
-            eVar.f46886w = 1;
-            eVar.f46885s = true;
+        if (eVar.f46889w != 1) {
+            eVar.f46889w = 1;
+            eVar.f46888s = true;
             eVar.v = true;
             eVar.invalidateSelf();
         }
         eVar.F = this.f19420b;
-        eVar.f46885s = true;
+        eVar.f46888s = true;
         eVar.updateColors();
         eVar.invalidateSelf();
         eVar.H = 160;
@@ -99,13 +99,13 @@ public final class a {
         if (cVar != null) {
             eVar.G = y6.o1(160 / 255.0f, cVar.f12837b);
         }
-        eVar.f46885s = true;
+        eVar.f46888s = true;
         eVar.invalidateSelf();
-        eVar.f46887x = fVar;
-        eVar.f46885s = true;
+        eVar.f46890x = fVar;
+        eVar.f46888s = true;
         eVar.invalidateSelf();
-        eVar.f46888y = fVar2;
-        eVar.f46885s = true;
+        eVar.f46891y = fVar2;
+        eVar.f46888s = true;
         eVar.invalidateSelf();
         eVar.J = 210;
         hh.c cVar2 = eVar.F;
@@ -126,14 +126,14 @@ public final class a {
         pi.f fVar = new pi.f(AndroidUtilities.dp(28.0f));
         pi.f fVar2 = new pi.f(AndroidUtilities.dp(40.0f));
         pi.f fVar3 = new pi.f(AndroidUtilities.dp(30.0f));
-        if (eVar.f46886w != 4) {
-            eVar.f46886w = 4;
-            eVar.f46885s = true;
+        if (eVar.f46889w != 4) {
+            eVar.f46889w = 4;
+            eVar.f46888s = true;
             eVar.v = true;
             eVar.invalidateSelf();
         }
         eVar.F = this.f19420b;
-        eVar.f46885s = true;
+        eVar.f46888s = true;
         eVar.updateColors();
         eVar.invalidateSelf();
         eVar.H = 160;
@@ -141,13 +141,13 @@ public final class a {
         if (cVar != null) {
             eVar.G = y6.o1(160 / 255.0f, cVar.f12837b);
         }
-        eVar.f46885s = true;
+        eVar.f46888s = true;
         eVar.invalidateSelf();
-        eVar.f46887x = fVar;
-        eVar.f46885s = true;
+        eVar.f46890x = fVar;
+        eVar.f46888s = true;
         eVar.invalidateSelf();
-        eVar.f46888y = fVar2;
-        eVar.f46885s = true;
+        eVar.f46891y = fVar2;
+        eVar.f46888s = true;
         eVar.invalidateSelf();
         eVar.J = 210;
         hh.c cVar2 = eVar.F;

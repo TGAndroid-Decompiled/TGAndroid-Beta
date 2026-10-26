@@ -62,14 +62,14 @@ public final class v0 implements Runnable {
         long j10 = goVar.V;
         final org.telegram.ui.Components.p1 p1Var = new org.telegram.ui.Components.p1(16, goVar, (View) this.f18269b);
         k5 k5Var = new k5(8);
-        int i10 = y6.f23462j5;
+        int i10 = y6.f23464j5;
         if (u6Var != null) {
             x02 = u6Var.e(i10);
         } else {
             x02 = y6.x0(null, i10, false);
         }
         int i11 = x02;
-        int i12 = y6.f23425h5;
+        int i12 = y6.f23427h5;
         if (u6Var != null) {
             x03 = u6Var.e(i12);
         } else {
@@ -100,7 +100,7 @@ public final class v0 implements Runnable {
         } else {
             y6.x0(null, i17, false);
         }
-        int i18 = y6.f23446i6;
+        int i18 = y6.f23448i6;
         if (u6Var != null) {
             u6Var.e(i18);
         } else {
@@ -123,7 +123,7 @@ public final class v0 implements Runnable {
         } else {
             y6.x0(null, y6.Qh, false);
         }
-        Pattern pattern = g5.f28418a;
+        Pattern pattern = g5.f28420a;
         if (context == null) {
             return;
         }
@@ -238,13 +238,13 @@ public final class v0 implements Runnable {
                     calendar2.set(14, 0);
                 }
                 p1Var.G((int) (calendar2.getTimeInMillis() / 1000), 0, true);
-                runnable = e3Var.f22599a.dismissRunnable;
+                runnable = e3Var.f22601a.dismissRunnable;
                 runnable.run();
             }
         });
         y3Var.addView(textView2, gb1.x(-1, -2, 83, 14, 0, 14, 16));
         e3Var.b(frameLayout);
-        k3 k3Var = e3Var.f22599a;
+        k3 k3Var = e3Var.f22601a;
         k3Var.show();
         k3Var.setOnDismissListener(new j2(0, k5Var, zArr));
         k3Var.setBackgroundColor(i13);
@@ -256,13 +256,13 @@ public final class v0 implements Runnable {
         TLRPC.TL_messages_getStickers tL_messages_getStickers = (TLRPC.TL_messages_getStickers) this.d;
         TLObject tLObject = (TLObject) this.f18269b;
         Runnable runnable = (Runnable) this.e;
-        ArrayList arrayList = lzVar.f30332s;
-        nz nzVar = lzVar.f30333w;
-        if (nzVar.M != lzVar.f30327b) {
+        ArrayList arrayList = lzVar.f30334s;
+        nz nzVar = lzVar.f30335w;
+        if (nzVar.M != lzVar.f30329b) {
             return;
         }
         nzVar.L = 0;
-        if (tL_messages_getStickers.emoticon.equals(lzVar.f30326a)) {
+        if (tL_messages_getStickers.emoticon.equals(lzVar.f30328a)) {
             if (!(tLObject instanceof TLRPC.TL_messages_stickers)) {
                 runnable.run();
                 return;
@@ -277,7 +277,7 @@ public final class v0 implements Runnable {
                 }
             }
             if (size != arrayList.size()) {
-                lzVar.f30329f.put(arrayList, nzVar.N);
+                lzVar.f30331f.put(arrayList, nzVar.N);
                 if (size == 0) {
                     lzVar.h.add(arrayList);
                 }

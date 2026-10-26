@@ -7,21 +7,21 @@ import android.os.Parcelable;
 import q7.m;
 public final class b extends p6.a {
     public static final Parcelable.Creator<b> CREATOR = new m(2);
-    public final String f47312a;
-    public final String f47313b;
-    public final String f47314c;
+    public final String f47315a;
+    public final String f47316b;
+    public final String f47317c;
     public final String d;
     public final a e;
-    public final String f47315f;
+    public final String f47318f;
     public final Bundle h;
 
     public b(String str, String str2, String str3, String str4, a aVar, String str5, Bundle bundle) {
-        this.f47312a = str;
-        this.f47313b = str2;
-        this.f47314c = str3;
+        this.f47315a = str;
+        this.f47316b = str2;
+        this.f47317c = str3;
         this.d = str4;
         this.e = aVar;
-        this.f47315f = str5;
+        this.f47318f = str5;
         if (bundle != null) {
             this.h = bundle;
         } else {
@@ -39,11 +39,11 @@ public final class b extends p6.a {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ActionImpl { { actionType: '");
-        sb2.append(this.f47312a);
+        sb2.append(this.f47315a);
         sb2.append("' } { objectName: '");
-        sb2.append(this.f47313b);
+        sb2.append(this.f47316b);
         sb2.append("' } { objectUrl: '");
-        sb2.append(this.f47314c);
+        sb2.append(this.f47317c);
         sb2.append("' } ");
         String str = this.d;
         if (str != null) {
@@ -57,7 +57,7 @@ public final class b extends p6.a {
             sb2.append(aVar.toString());
             sb2.append("' } ");
         }
-        String str2 = this.f47315f;
+        String str2 = this.f47318f;
         if (str2 != null) {
             sb2.append("{ actionStatus: '");
             sb2.append(str2);
@@ -76,12 +76,12 @@ public final class b extends p6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        df.l(parcel, 1, this.f47312a);
-        df.l(parcel, 2, this.f47313b);
-        df.l(parcel, 3, this.f47314c);
+        df.l(parcel, 1, this.f47315a);
+        df.l(parcel, 2, this.f47316b);
+        df.l(parcel, 3, this.f47317c);
         df.l(parcel, 4, this.d);
         df.k(parcel, 5, this.e, i10);
-        df.l(parcel, 6, this.f47315f);
+        df.l(parcel, 6, this.f47318f);
         df.b(parcel, 7, this.h);
         df.r(parcel, q5);
     }

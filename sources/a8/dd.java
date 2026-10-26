@@ -71,13 +71,13 @@ public abstract class dd {
         if (context3 == null) {
             context.getApplicationContext();
             try {
-                context2 = z6.e.c(context, z6.e.f52676b, "com.google.android.gms.maps_dynamite").f52685a;
+                context2 = z6.e.c(context, z6.e.f52679b, "com.google.android.gms.maps_dynamite").f52688a;
             } catch (Exception e) {
                 try {
                     if (!"com.google.android.gms.maps_dynamite".equals("com.google.android.gms.maps_dynamite")) {
                         try {
                             Log.d("dd", "Attempting to load maps_dynamite again.");
-                            context2 = z6.e.c(context, z6.e.f52676b, "com.google.android.gms.maps_dynamite").f52685a;
+                            context2 = z6.e.c(context, z6.e.f52679b, "com.google.android.gms.maps_dynamite").f52688a;
                         } catch (Exception e10) {
                             Log.e("dd", "Failed to load maps module, use pre-Chimera", e10);
                             int i10 = l6.g.e;

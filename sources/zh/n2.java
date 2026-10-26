@@ -14,7 +14,7 @@ import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.xb;
 import org.telegram.ui.Components.z90;
 public final class n2 extends s61 {
-    public static final int f53159a = 0;
+    public static final int f53162a = 0;
 
     static {
         s61.setup(new s61());
@@ -24,7 +24,7 @@ public final class n2 extends s61 {
     public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
         u6 u6Var;
         z90 z90Var = (z90) view;
-        z90Var.setGravity(t61Var.f32885z);
+        z90Var.setGravity(t61Var.f32888z);
         Object obj = t61Var.H;
         Typeface typeface = null;
         if (obj instanceof Integer) {
@@ -41,13 +41,13 @@ public final class n2 extends s61 {
             z90Var.setTextColor((int) t61Var.B);
         }
         z90Var.setTextSize(1, t61Var.A);
-        if (t61Var.f32877q) {
+        if (t61Var.f32880q) {
             typeface = AndroidUtilities.bold();
         }
         z90Var.setTypeface(typeface);
-        int i10 = t61Var.f32869i;
-        z90Var.setPadding(i10, 0, i10, t61Var.f32871k);
-        z90Var.setText(t61Var.f32872l);
+        int i10 = t61Var.f32872i;
+        z90Var.setPadding(i10, 0, i10, t61Var.f32874k);
+        z90Var.setText(t61Var.f32875l);
     }
 
     @Override

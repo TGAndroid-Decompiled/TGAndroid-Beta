@@ -6,32 +6,32 @@ import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 public final class n8 {
-    public float f30907f;
-    public boolean f30908g;
+    public float f30909f;
+    public boolean f30910g;
     public final Paint h;
-    public org.telegram.ui.Cells.s1 f30909i;
-    public int f30916p;
-    public int f30917q;
-    public float f30918r;
-    public final int[] f30905b = new int[3];
-    public final float[] f30906c = new float[8];
+    public org.telegram.ui.Cells.s1 f30911i;
+    public int f30918p;
+    public int f30919q;
+    public float f30920r;
+    public final int[] f30907b = new int[3];
+    public final float[] f30908c = new float[8];
     public final float[] d = new float[8];
     public final float[] e = new float[8];
-    public final Random f30910j = new Random();
-    public final float f30911k = AndroidUtilities.dp(6.0f) * 0.33f;
-    public final float f30912l = AndroidUtilities.dp(12.0f) * 0.36f;
-    public final float f30913m = 120.0f;
-    public final int f30914n = 61;
-    public final float[] f30915o = new float[6];
-    public final fq[] f30904a = new fq[2];
+    public final Random f30912j = new Random();
+    public final float f30913k = AndroidUtilities.dp(6.0f) * 0.33f;
+    public final float f30914l = AndroidUtilities.dp(12.0f) * 0.36f;
+    public final float f30915m = 120.0f;
+    public final int f30916n = 61;
+    public final float[] f30917o = new float[6];
+    public final fq[] f30906a = new fq[2];
 
     public n8() {
         for (int i10 = 0; i10 < 2; i10++) {
-            fq[] fqVarArr = this.f30904a;
+            fq[] fqVarArr = this.f30906a;
             fq fqVar = new fq();
             fqVarArr[i10] = fqVar;
-            fqVar.f28288g = AndroidUtilities.dp(24.0f);
-            fqVar.f28291k = 1.0f;
+            fqVar.f28290g = AndroidUtilities.dp(24.0f);
+            fqVar.f28293k = 1.0f;
         }
         this.h = new Paint(1);
     }
@@ -42,7 +42,7 @@ public final class n8 {
         }
         Paint paint = this.h;
         paint.setColor(i10);
-        paint.setAlpha((int) (this.f30914n * f11));
+        paint.setAlpha((int) (this.f30916n * f11));
         b(canvas, f7, f10);
     }
 
@@ -58,7 +58,7 @@ public final class n8 {
                 if (i11 >= 8) {
                     break;
                 }
-                float[] fArr2 = this.f30906c;
+                float[] fArr2 = this.f30908c;
                 float f12 = fArr2[i11];
                 float f13 = fArr[i11];
                 if (f12 != f13) {
@@ -69,24 +69,24 @@ public final class n8 {
                     if ((f15 > 0.0f && f14 > fArr2[i11]) || (f15 < 0.0f && f14 < fArr2[i11])) {
                         fArr[i11] = fArr2[i11];
                     }
-                    this.f30909i.invalidate();
+                    this.f30911i.invalidate();
                 }
                 i11++;
             }
             char c10 = 1;
-            if (this.f30908g) {
-                float f16 = this.f30907f + 0.02f;
-                this.f30907f = f16;
+            if (this.f30910g) {
+                float f16 = this.f30909f + 0.02f;
+                this.f30909f = f16;
                 if (f16 > 1.0f) {
-                    this.f30908g = false;
-                    this.f30907f = 1.0f;
+                    this.f30910g = false;
+                    this.f30909f = 1.0f;
                 }
             } else {
-                float f17 = this.f30907f - 0.02f;
-                this.f30907f = f17;
+                float f17 = this.f30909f - 0.02f;
+                this.f30909f = f17;
                 if (f17 < 0.0f) {
-                    this.f30908g = true;
-                    this.f30907f = 0.0f;
+                    this.f30910g = true;
+                    this.f30909f = 0.0f;
                 }
             }
             float f18 = fArr[7];
@@ -96,18 +96,18 @@ public final class n8 {
             }
             int i12 = 0;
             while (true) {
-                f11 = this.f30912l;
-                iArr = this.f30905b;
+                f11 = this.f30914l;
+                iArr = this.f30907b;
                 if (i12 >= 3) {
                     break;
                 }
                 iArr[i12] = (int) (fArr[i12] * f11);
                 i12++;
             }
-            fq[] fqVarArr = this.f30904a;
+            fq[] fqVarArr = this.f30906a;
             fq fqVar = fqVarArr[0];
-            while (i10 < fqVar.f28287f) {
-                float[] fArr4 = fqVar.f28290j;
+            while (i10 < fqVar.f28289f) {
+                float[] fArr4 = fqVar.f28292j;
                 fArr4[i10] = iArr[i10 / 2];
                 fArr4[i10 + 1] = 0.0f;
                 i10 += 2;
@@ -118,31 +118,31 @@ public final class n8 {
                 iArr[i13] = (int) (fArr[i13 + 3] * f11);
             }
             fq fqVar2 = fqVarArr[c11];
-            for (int i14 = 0; i14 < fqVar2.f28287f; i14 += 2) {
-                float[] fArr5 = fqVar2.f28290j;
+            for (int i14 = 0; i14 < fqVar2.f28289f; i14 += 2) {
+                float[] fArr5 = fqVar2.f28292j;
                 fArr5[i14] = iArr[i14 / 2];
                 fArr5[i14 + 1] = 0.0f;
             }
-            float dp = (this.f30911k * f18) + (AndroidUtilities.dp(4.0f) * f19) + AndroidUtilities.dp(22.0f);
+            float dp = (this.f30913k * f18) + (AndroidUtilities.dp(4.0f) * f19) + AndroidUtilities.dp(22.0f);
             if (dp > AndroidUtilities.dp(26.0f)) {
                 dp = AndroidUtilities.dp(26.0f);
             }
             fq fqVar3 = fqVarArr[0];
-            fqVarArr[c11].f28288g = dp;
-            fqVar3.f28288g = dp;
+            fqVarArr[c11].f28290g = dp;
+            fqVar3.f28290g = dp;
             canvas.save();
-            float f20 = (float) (this.f30918r + 0.6d);
-            this.f30918r = f20;
+            float f20 = (float) (this.f30920r + 0.6d);
+            this.f30920r = f20;
             canvas.rotate(f20, f7, f10);
             canvas.save();
-            float f21 = (this.f30907f * 0.04f) + 1.0f;
+            float f21 = (this.f30909f * 0.04f) + 1.0f;
             canvas.scale(f21, f21, f7, f10);
             fq fqVar4 = fqVarArr[0];
             Paint paint = this.h;
             fqVar4.a(f7, f10, canvas, paint);
             canvas.restore();
             canvas.rotate(60.0f, f7, f10);
-            float z10 = c3.h0.z(1.0f, this.f30907f, 0.04f, 1.0f);
+            float z10 = c3.h0.z(1.0f, this.f30909f, 0.04f, 1.0f);
             canvas.scale(z10, z10, f7, f10);
             fqVarArr[c11].a(f7, f10, canvas, paint);
             canvas.restore();
@@ -153,7 +153,7 @@ public final class n8 {
         if (!LiteMode.isEnabled(32)) {
             return;
         }
-        int i10 = this.f30914n;
+        int i10 = this.f30916n;
         Paint paint = this.h;
         if (z10) {
             paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Nb, u6Var));
@@ -166,7 +166,7 @@ public final class n8 {
     }
 
     public final void d(org.telegram.ui.Cells.s1 s1Var) {
-        this.f30909i = s1Var;
+        this.f30911i = s1Var;
     }
 
     public final void e(boolean z10, boolean z11, float[] fArr) {
@@ -177,7 +177,7 @@ public final class n8 {
         if (LiteMode.isEnabled(32)) {
             float[] fArr3 = this.d;
             float f11 = 0.0f;
-            float[] fArr4 = this.f30906c;
+            float[] fArr4 = this.f30908c;
             int i10 = 0;
             if (!z10 && !z11) {
                 while (i10 < 8) {
@@ -197,31 +197,31 @@ public final class n8 {
             } else {
                 f7 = fArr[6];
             }
-            float[] fArr5 = this.f30915o;
+            float[] fArr5 = this.f30917o;
             if (fArr != null && f7 > 0.4d) {
-                int i11 = this.f30917q;
+                int i11 = this.f30919q;
                 fArr5[i11] = f7;
                 int i12 = i11 + 1;
-                this.f30917q = i12;
+                this.f30919q = i12;
                 if (i12 > 5) {
-                    this.f30917q = 0;
+                    this.f30919q = 0;
                 }
-                this.f30916p++;
+                this.f30918p++;
             } else {
-                this.f30916p = 0;
+                this.f30918p = 0;
             }
             if (z12) {
                 for (int i13 = 0; i13 < 6; i13++) {
-                    fArr[i13] = (this.f30910j.nextInt() % 500) / 1000.0f;
+                    fArr[i13] = (this.f30912j.nextInt() % 500) / 1000.0f;
                 }
             }
-            float f12 = this.f30913m;
+            float f12 = this.f30915m;
             if (z12) {
                 f10 = 2.0f * f12;
             } else {
                 f10 = f12;
             }
-            if (this.f30916p > 6) {
+            if (this.f30918p > 6) {
                 float f13 = 0.0f;
                 for (int i14 = 0; i14 < 6; i14++) {
                     f13 += fArr5[i14];
@@ -241,7 +241,7 @@ public final class n8 {
                 } else {
                     fArr4[i10] = fArr[i10];
                 }
-                if (this.f30909i == null) {
+                if (this.f30911i == null) {
                     fArr3[i10] = fArr4[i10];
                 } else if (i10 == 6) {
                     fArr2[i10] = (fArr4[i10] - fArr3[i10]) / (80.0f + f12);

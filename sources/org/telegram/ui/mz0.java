@@ -5,24 +5,24 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 public final class mz0 extends AnimatorListenerAdapter {
-    public final int f41725a;
-    public final ProfileActivity f41726b;
+    public final int f41728a;
+    public final ProfileActivity f41729b;
 
     public mz0(ProfileActivity profileActivity, int i10) {
-        this.f41725a = i10;
-        this.f41726b = profileActivity;
+        this.f41728a = i10;
+        this.f41729b = profileActivity;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f41725a) {
+        switch (this.f41728a) {
             case 0:
-                this.f41726b.I5 = null;
+                this.f41729b.I5 = null;
                 return;
             case 3:
-                ProfileActivity profileActivity = this.f41726b;
+                ProfileActivity profileActivity = this.f41729b;
                 profileActivity.O1 = false;
-                profileActivity.f35945a.O0 = true;
+                profileActivity.f35948a.O0 = true;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -32,8 +32,8 @@ public final class mz0 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f41725a;
-        ProfileActivity profileActivity = this.f41726b;
+        int i10 = this.f41728a;
+        ProfileActivity profileActivity = this.f41729b;
         switch (i10) {
             case 0:
                 if (profileActivity.I5 != null) {
@@ -51,7 +51,7 @@ public final class mz0 extends AnimatorListenerAdapter {
                     } else {
                         AnimatorSet animatorSet = new AnimatorSet();
                         profileActivity.J5 = animatorSet;
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(profileActivity, profileActivity.f36056p5, 1.0f));
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(profileActivity, profileActivity.f36059p5, 1.0f));
                         profileActivity.J5.setDuration(100L);
                         profileActivity.J5.addListener(new i50(this, 22));
                         profileActivity.J5.start();
@@ -74,20 +74,20 @@ public final class mz0 extends AnimatorListenerAdapter {
                 return;
             case 3:
                 profileActivity.O1 = false;
-                profileActivity.f35945a.O0 = true;
-                profileActivity.f36013j2.removeListener(this);
-                profileActivity.f35969d1.setBackgroundColor(-16777216);
+                profileActivity.f35948a.O0 = true;
+                profileActivity.f36016j2.removeListener(this);
+                profileActivity.f35972d1.setBackgroundColor(-16777216);
                 profileActivity.X.setVisibility(8);
-                profileActivity.f36037n0.setVisibility(0);
-                profileActivity.f36037n0.setAlpha(1.0f);
+                profileActivity.f36040n0.setVisibility(0);
+                profileActivity.f36040n0.setAlpha(1.0f);
                 return;
             case 4:
-                profileActivity.f36013j2.removeListener(this);
-                profileActivity.f36037n0.setVisibility(8);
-                profileActivity.f36037n0.setAlpha(1.0f);
+                profileActivity.f36016j2.removeListener(this);
+                profileActivity.f36040n0.setVisibility(8);
+                profileActivity.f36040n0.setAlpha(1.0f);
                 return;
             default:
-                profileActivity.f36101w0 = null;
+                profileActivity.f36104w0 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
         }
@@ -95,12 +95,12 @@ public final class mz0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f41725a) {
+        switch (this.f41728a) {
             case 3:
-                ProfileActivity profileActivity = this.f41726b;
+                ProfileActivity profileActivity = this.f41729b;
                 ProfileActivity.z3(profileActivity, false);
-                profileActivity.f36037n0.setAnimatedFileMaybe(profileActivity.f35975e0.getImageReceiver().getAnimation());
-                profileActivity.f36037n0.L();
+                profileActivity.f36040n0.setAnimatedFileMaybe(profileActivity.f35978e0.getImageReceiver().getAnimation());
+                profileActivity.f36040n0.L();
                 return;
             default:
                 super.onAnimationStart(animator);

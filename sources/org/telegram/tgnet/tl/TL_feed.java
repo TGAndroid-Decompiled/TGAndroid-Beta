@@ -50,7 +50,7 @@ public class TL_feed {
     public static class FeedPosition extends TLObject {
         public static final int constructor = 1348066419;
         public int date;
-        public int f22243id;
+        public int f22245id;
         public TLRPC.Peer peer;
 
         public static FeedPosition TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
@@ -67,7 +67,7 @@ public class TL_feed {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.date = inputSerializedData.readInt32(z10);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-            this.f22243id = inputSerializedData.readInt32(z10);
+            this.f22245id = inputSerializedData.readInt32(z10);
         }
 
         @Override
@@ -75,7 +75,7 @@ public class TL_feed {
             outputSerializedData.writeInt32(1348066419);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f22243id);
+            outputSerializedData.writeInt32(this.f22245id);
         }
     }
 
@@ -135,7 +135,7 @@ public class TL_feed {
         public String emoji;
         public long emoji_document_id;
         public int flags;
-        public int f22244id;
+        public int f22246id;
         public String title;
 
         public static InterestCategory TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
@@ -151,7 +151,7 @@ public class TL_feed {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.flags = inputSerializedData.readInt32(z10);
-            this.f22244id = inputSerializedData.readInt32(z10);
+            this.f22246id = inputSerializedData.readInt32(z10);
             this.title = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.emoji = inputSerializedData.readString(z10);
@@ -180,7 +180,7 @@ public class TL_feed {
             int flag2 = TLObject.setFlag(flag, 2, z11);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
-            outputSerializedData.writeInt32(this.f22244id);
+            outputSerializedData.writeInt32(this.f22246id);
             outputSerializedData.writeString(this.title);
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.emoji);

@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class ko extends gu0 {
-    public final mo f40990a;
+    public final mo f40993a;
 
     public ko(mo moVar) {
-        this.f40990a = moVar;
+        this.f40993a = moVar;
     }
 
     @Override
@@ -15,12 +15,12 @@ public final class ko extends gu0 {
 
     @Override
     public final void G() {
-        this.f40990a.e.getImageReceiver().setVisible(true, true);
+        this.f40993a.e.getImageReceiver().setVisible(true, true);
     }
 
     @Override
     public final boolean N() {
-        mo moVar = this.f40990a;
+        mo moVar = this.f40993a;
         long j10 = moVar.B0;
         if (j10 == 0) {
             return true;
@@ -28,14 +28,14 @@ public final class ko extends gu0 {
         TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
         tL_photos_updateProfilePhoto.bot = moVar.getMessagesController().getInputUser(j10);
         tL_photos_updateProfilePhoto.flags |= 2;
-        tL_photos_updateProfilePhoto.f22159id = new TLRPC.TL_inputPhotoEmpty();
+        tL_photos_updateProfilePhoto.f22161id = new TLRPC.TL_inputPhotoEmpty();
         moVar.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new l(this, 2));
         return false;
     }
 
     @Override
     public final void f(String str, String str2, boolean z10) {
-        this.f40990a.f41617s.p(str, str2, z10);
+        this.f40993a.f41620s.p(str, str2, z10);
     }
 
     @Override

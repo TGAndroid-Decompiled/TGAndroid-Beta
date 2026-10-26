@@ -41,7 +41,7 @@ public final class e0 extends g0 {
         this.d = r71Var;
         r71Var.u1();
         r71 r71Var2 = this.d;
-        r71Var2.f32150g3.f29505r = false;
+        r71Var2.f32152g3.f29507r = false;
         r71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         AndroidUtilities.removeFromParent(this.f14348b);
@@ -57,12 +57,12 @@ public final class e0 extends g0 {
         u6Var3 = ((k3) j0Var).resourcesProvider;
         f7.m(kVar2, 5, i11, u6Var3);
         org.telegram.ui.ActionBar.k kVar3 = this.f14347a;
-        int i12 = y6.f23767z8;
+        int i12 = y6.f23769z8;
         u6Var4 = ((k3) j0Var).resourcesProvider;
         f7.m(kVar3, 3, i12, u6Var4);
         this.f14347a.setBackButtonImage(R.drawable.ic_ab_back);
         org.telegram.ui.ActionBar.k kVar4 = this.f14347a;
-        int i13 = y6.f23748y8;
+        int i13 = y6.f23750y8;
         u6Var5 = ((k3) j0Var).resourcesProvider;
         f7.m(kVar4, 1, i13, u6Var5);
         this.f14347a.setTitle(DialogObject.getName(j0Var.f14360f));

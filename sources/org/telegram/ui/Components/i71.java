@@ -4,10 +4,10 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 public final class i71 implements org.telegram.ui.ActionBar.u6 {
-    public final j71 f29205a;
+    public final j71 f29207a;
 
     public i71(j71 j71Var) {
-        this.f29205a = j71Var;
+        this.f29207a = j71Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class i71 implements org.telegram.ui.ActionBar.u6 {
 
     @Override
     public final ColorFilter c() {
-        return org.telegram.ui.ActionBar.y6.f23687v3;
+        return org.telegram.ui.ActionBar.y6.f23689v3;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class i71 implements org.telegram.ui.ActionBar.u6 {
 
     @Override
     public final int g(int i10) {
-        return this.f29205a.I(i10);
+        return this.f29207a.I(i10);
     }
 
     @Override

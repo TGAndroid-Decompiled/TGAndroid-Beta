@@ -68,7 +68,7 @@ public final class r3 implements o5.b {
                 li.m0 m0Var = (li.m0) obj;
                 li.l0 l0Var = new li.l0(d6Var.getContext(), m0Var, u6Var);
                 l0Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                l0Var.setBackground(y6.Z(y6.w0(y6.f23446i6, u6Var), 0, 0));
+                l0Var.setBackground(y6.Z(y6.w0(y6.f23448i6, u6Var), 0, 0));
                 l0Var.setOnClickListener(new bi.w0(this, d6Var, m0Var, 13));
                 ((LinearLayout) this.d).addView(l0Var, gb1.r(-1, 48));
             }
@@ -169,14 +169,14 @@ public final class r3 implements o5.b {
         b(d6Var, a2);
         k80 a10 = ((li.n0) this.f17844a).a(d6Var.getEditText());
         a10.Q = true;
-        a10.f29866s = 0;
-        a10.f29867t = false;
+        a10.f29868s = 0;
+        a10.f29869t = false;
         a10.r((LinearLayout) this.d, gb1.r(220, -2));
         a10.X = AndroidUtilities.dp(240.0f);
-        a10.f29848i = 3;
+        a10.f29850i = 3;
         a10.a0(-AndroidUtilities.dp(12.0f), 0.0f);
-        a10.f29861p = new k2.c(this, 6);
-        a10.f29841d0 = true;
+        a10.f29863p = new k2.c(this, 6);
+        a10.f29843d0 = true;
         if (a10.D()) {
             a10.C();
         }

@@ -9,32 +9,32 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.wc;
 public final class d8 implements Utilities.Callback {
-    public final int f36484a;
-    public final h8 f36485b;
-    public final qf.c f36486c;
+    public final int f36487a;
+    public final h8 f36488b;
+    public final qf.c f36489c;
 
     public d8(h8 h8Var, qf.c cVar, int i10) {
-        this.f36484a = i10;
-        this.f36485b = h8Var;
-        this.f36486c = cVar;
+        this.f36487a = i10;
+        this.f36488b = h8Var;
+        this.f36489c = cVar;
     }
 
     @Override
     public final void run(Object obj) {
         String str = (String) obj;
-        switch (this.f36484a) {
+        switch (this.f36487a) {
             case 0:
-                h8 h8Var = this.f36485b;
+                h8 h8Var = this.f36488b;
                 h8Var.getClass();
-                this.f36486c.b();
+                this.f36489c.b();
                 if (!TextUtils.isEmpty(str)) {
                     wc.b0(h8Var).f0(str, false);
                     return;
                 }
                 return;
             case 1:
-                this.f36486c.c(false);
-                h8 h8Var2 = this.f36485b;
+                this.f36489c.c(false);
+                h8 h8Var2 = this.f36488b;
                 org.telegram.ui.ActionBar.j5 parentLayout = h8Var2.getParentLayout();
                 if (parentLayout != null) {
                     ArrayList arrayList = new ArrayList(parentLayout.getFragmentStack());
@@ -54,13 +54,13 @@ public final class d8 implements Utilities.Callback {
                     return;
                 }
                 qc M = wc.b0(h8Var2).M(LocaleController.getString(R.string.WalletBackupDisabled), LocaleController.getString(R.string.WalletBackupDisabledInfo), R.raw.contact_check);
-                M.f31887j = 5000;
+                M.f31889j = 5000;
                 M.j();
                 return;
             default:
-                h8 h8Var3 = this.f36485b;
+                h8 h8Var3 = this.f36488b;
                 h8Var3.getClass();
-                this.f36486c.b();
+                this.f36489c.b();
                 if (str != null) {
                     wc.b0(h8Var3).f0(str, false);
                     return;

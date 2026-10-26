@@ -111,7 +111,7 @@ public final class d {
                 if (oVar == null) {
                     oVar = new o(new j());
                 }
-                return new f8.b(context, looper, commonSettings, kVar, lVar, oVar.f51118a);
+                return new f8.b(context, looper, commonSettings, kVar, lVar, oVar.f51121a);
             case 16:
                 return new j7.g(context, looper, commonSettings, (x5.b) obj, kVar, lVar);
             case 17:

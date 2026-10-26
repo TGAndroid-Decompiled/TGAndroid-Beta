@@ -27,7 +27,7 @@ public final class w1 extends z90 {
     public int a() {
         switch (this.L) {
             case 4:
-                return ((UndoView) this.M).f26346a;
+                return ((UndoView) this.M).f26348a;
             default:
                 return super.a();
         }
@@ -83,7 +83,7 @@ public final class w1 extends z90 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new p10(org.telegram.ui.ActionBar.y6.f23579p7, ((org.telegram.ui.sa) this.M).e.getResourceProvider()), 0, indexOf, 33);
+                        charSequence.setSpan(new p10(org.telegram.ui.ActionBar.y6.f23581p7, ((org.telegram.ui.sa) this.M).e.getResourceProvider()), 0, indexOf, 33);
                     }
                     q61[] q61VarArr = (q61[]) charSequence.getSpans(0, charSequence.length(), q61.class);
                     for (int i10 = 0; i10 < q61VarArr.length; i10++) {
@@ -100,12 +100,12 @@ public final class w1 extends z90 {
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new p10(org.telegram.ui.ActionBar.y6.f23579p7, ndVar.getResourceProvider()), 0, indexOf2, 33);
+                        charSequence.setSpan(new p10(org.telegram.ui.ActionBar.y6.f23581p7, ndVar.getResourceProvider()), 0, indexOf2, 33);
                     }
                     q61[] q61VarArr2 = (q61[]) charSequence.getSpans(0, charSequence.length(), q61.class);
-                    EditTextBoldCursor editTextBoldCursor = ndVar.f41869x;
+                    EditTextBoldCursor editTextBoldCursor = ndVar.f41872x;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = ndVar.f41869x.getText().toString();
+                        str = ndVar.f41872x.getText().toString();
                     } else {
                         str = "";
                     }

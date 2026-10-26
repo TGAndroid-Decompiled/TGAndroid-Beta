@@ -25,7 +25,7 @@ public class ha {
         if (y3 != null && y3.stories != null) {
             int i10 = 0;
             while (i10 < y3.stories.size()) {
-                i10 = c3.h0.i(y3.stories.get(i10).f22264id, i10, 1, arrayList);
+                i10 = c3.h0.i(y3.stories.get(i10).f22266id, i10, 1, arrayList);
             }
         }
     }
@@ -58,8 +58,8 @@ public class ha {
         }
         if (this.d == 0) {
             TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews = new TL_stories.TL_stories_getStoriesViews();
-            a(tL_stories_getStoriesViews.f22272id);
-            if (!tL_stories_getStoriesViews.f22272id.isEmpty()) {
+            a(tL_stories_getStoriesViews.f22274id);
+            if (!tL_stories_getStoriesViews.f22274id.isEmpty()) {
                 int i10 = this.f8659b;
                 tL_stories_getStoriesViews.peer = MessagesController.getInstance(i10).getInputPeer(this.f8660c);
                 this.d = ConnectionsManager.getInstance(i10).sendRequest(tL_stories_getStoriesViews, new bi.j(12, this, tL_stories_getStoriesViews));
@@ -78,7 +78,7 @@ public class ha {
             if (y3 != null && !y3.stories.isEmpty()) {
                 for (int i10 = 0; i10 < tL_stories_storyViews.views.size(); i10++) {
                     for (int i11 = 0; i11 < y3.stories.size(); i11++) {
-                        if (y3.stories.get(i11).f22264id == ((Integer) arrayList.get(i10)).intValue()) {
+                        if (y3.stories.get(i11).f22266id == ((Integer) arrayList.get(i10)).intValue()) {
                             y3.stories.get(i11).views = tL_stories_storyViews.views.get(i10);
                         }
                     }

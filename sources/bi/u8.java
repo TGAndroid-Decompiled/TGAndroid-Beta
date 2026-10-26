@@ -56,24 +56,24 @@ public final class u8 implements Runnable {
                 eVar.q(p10, 1033, new ig.g(p10, i12, i13, this.f5524c));
                 return;
             case 2:
-                ((lg0) this.d).f30206a.f30573b.A3(this.f5523b, this.f5524c);
+                ((lg0) this.d).f30208a.f30575b.A3(this.f5523b, this.f5524c);
                 return;
             case 3:
                 eo0 eo0Var = (eo0) this.d;
-                eo0Var.f27920o = null;
+                eo0Var.f27922o = null;
                 eo0Var.c(this.f5523b, this.f5524c, true);
                 return;
             case 4:
-                aw0 aw0Var = ((vt0) this.d).f34257a;
-                org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26702x1;
+                aw0 aw0Var = ((vt0) this.d).f34260a;
+                org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26704x1;
                 if (r2Var != null) {
                     boolean z10 = this.f5524c;
                     int i14 = this.f5523b;
                     if (z10) {
                         TLRPC.TL_channels_setMainProfileTab tL_channels_setMainProfileTab = new TLRPC.TL_channels_setMainProfileTab();
                         tL_channels_setMainProfileTab.tab = aw0.l0(i14, true);
-                        tL_channels_setMainProfileTab.channel = r2Var.getMessagesController().getInputChannel(aw0Var.f26653f1.f22028id);
-                        TLRPC.ChatFull chatFull = aw0Var.f26653f1;
+                        tL_channels_setMainProfileTab.channel = r2Var.getMessagesController().getInputChannel(aw0Var.f26655f1.f22028id);
+                        TLRPC.ChatFull chatFull = aw0Var.f26655f1;
                         chatFull.flags2 |= 4194304;
                         chatFull.main_tab = tL_channels_setMainProfileTab.tab;
                         tL_account_setMainProfileTab = tL_channels_setMainProfileTab;
@@ -81,12 +81,12 @@ public final class u8 implements Runnable {
                         TLRPC.TL_account_setMainProfileTab tL_account_setMainProfileTab2 = new TLRPC.TL_account_setMainProfileTab();
                         TLRPC.ProfileTab l02 = aw0.l0(i14, true);
                         tL_account_setMainProfileTab2.tab = l02;
-                        TLRPC.UserFull userFull = aw0Var.f26656g1;
+                        TLRPC.UserFull userFull = aw0Var.f26658g1;
                         tL_account_setMainProfileTab = tL_account_setMainProfileTab2;
                         if (userFull != null) {
                             userFull.flags2 |= 1048576;
                             userFull.main_tab = l02;
-                            r2Var.getMessagesStorage().updateUserInfo(aw0Var.f26656g1, true);
+                            r2Var.getMessagesStorage().updateUserInfo(aw0Var.f26658g1, true);
                             tL_account_setMainProfileTab = tL_account_setMainProfileTab2;
                         }
                     }
@@ -96,18 +96,18 @@ public final class u8 implements Runnable {
                 }
                 return;
             case 5:
-                db1 db1Var = (db1) fb1.f28143a.get((String) this.d);
-                if (db1Var != null && db1Var.f27490i != null) {
-                    boolean contains = fb1.f28147g.contains(db1Var);
+                db1 db1Var = (db1) fb1.f28145a.get((String) this.d);
+                if (db1Var != null && db1Var.f27492i != null) {
+                    boolean contains = fb1.f28149g.contains(db1Var);
                     int i15 = this.f5523b;
                     if (contains) {
-                        db1Var.f27501t = i15;
-                        db1Var.f27490i.l(i15);
+                        db1Var.f27503t = i15;
+                        db1Var.f27492i.l(i15);
                         return;
                     }
-                    db1Var.f27501t = i15;
-                    db1Var.f27502u = this.f5524c;
-                    ArrayList arrayList = fb1.f28146f;
+                    db1Var.f27503t = i15;
+                    db1Var.f27504u = this.f5524c;
+                    ArrayList arrayList = fb1.f28148f;
                     arrayList.remove(db1Var);
                     arrayList.add(db1Var);
                     fb1.j();
@@ -129,7 +129,7 @@ public final class u8 implements Runnable {
                     formatPluralString = LocaleController.formatPluralString("FolderLinkRemovedChats", i16, new Object[0]);
                 }
                 org.telegram.ui.Components.qc M = b02.M(formatPluralString, LocaleController.getString(R.string.FolderLinkChatlistUpdate), i10);
-                M.f31887j = 5000;
+                M.f31889j = 5000;
                 M.j();
                 return;
         }

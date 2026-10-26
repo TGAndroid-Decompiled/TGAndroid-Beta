@@ -49,7 +49,7 @@ public final class y9 implements CameraView.CameraViewDelegate, r0.n, org.telegr
         sbVar.f11606a0 = defaultWindowInsets.f13452c;
         sbVar.f11609b0 = defaultWindowInsets.d;
         sbVar.f11645n.requestLayout();
-        return r0.k1.f47114b;
+        return r0.k1.f47117b;
     }
 
     @Override

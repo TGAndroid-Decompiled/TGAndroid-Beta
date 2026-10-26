@@ -10,7 +10,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_account;
 public final class pl0 extends org.telegram.ui.Components.s61 {
-    public static final int f42569a = 0;
+    public static final int f42572a = 0;
 
     static {
         org.telegram.ui.Components.s61.setup(new org.telegram.ui.Components.s61());
@@ -21,18 +21,18 @@ public final class pl0 extends org.telegram.ui.Components.s61 {
         ql0 ql0Var = (ql0) view;
         TL_account.Passkey passkey = (TL_account.Passkey) t61Var.G;
         View.OnClickListener onClickListener = t61Var.D;
-        TextView textView = ql0Var.f42867n;
+        TextView textView = ql0Var.f42870n;
         TextView textView2 = ql0Var.h;
         org.telegram.ui.ActionBar.u6 u6Var = ql0Var.d;
         FrameLayout frameLayout = ql0Var.e;
-        org.telegram.ui.Components.y9 y9Var = ql0Var.f42866f;
-        ql0Var.v = passkey.f22229id;
+        org.telegram.ui.Components.y9 y9Var = ql0Var.f42869f;
+        ql0Var.v = passkey.f22231id;
         long j10 = passkey.software_emoji_id;
         if (j10 != 0) {
-            y9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.t5.n(ql0Var.f42865c, j10, null, 3));
+            y9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.t5.n(ql0Var.f42868c, j10, null, 3));
             frameLayout.setBackground(null);
             y9Var.setColorFilter(null);
-            ql0Var.f42863a = false;
+            ql0Var.f42866a = false;
             y9Var.setScaleX(1.0f);
             y9Var.setScaleY(1.0f);
         } else {
@@ -56,8 +56,8 @@ public final class pl0 extends org.telegram.ui.Components.s61 {
         } else {
             textView.setText(LocaleController.formatString(R.string.PasskeyCreatedOn, LocaleController.formatDateTime(passkey.date, false)));
         }
-        ql0Var.f42868r.setOnClickListener(onClickListener);
-        ql0Var.f42869s = z10;
+        ql0Var.f42871r.setOnClickListener(onClickListener);
+        ql0Var.f42872s = z10;
         ql0Var.setWillNotDraw(!z10);
     }
 

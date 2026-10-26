@@ -120,7 +120,7 @@ public final class y8 implements Runnable {
                 String str4 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
                 gg0 gg0Var = of0Var.v;
-                fi.d dVar = of0Var.f42174b;
+                fi.d dVar = of0Var.f42177b;
                 FileLog.d("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
                     dVar.i(LocaleController.formatString(R.string.SMSFeePurchaseTitle, lVar.f7989a), false, true);

@@ -34,7 +34,7 @@ public final class ad extends FrameLayout implements NotificationCenter.Notifica
         int i12 = NotificationCenter.starTransactionsLoaded;
         r71 r71Var = this.f4289a;
         if (i10 == i12) {
-            r71Var.f32150g3.O(true);
+            r71Var.f32152g3.O(true);
             if (r71Var.canScrollVertically(1)) {
                 for (int i13 = 0; i13 < r71Var.getChildCount(); i13++) {
                     if (!(r71Var.getChildAt(i13) instanceof c10)) {
@@ -44,7 +44,7 @@ public final class ad extends FrameLayout implements NotificationCenter.Notifica
             }
             this.h.run();
         } else if (i10 == NotificationCenter.botStarsTransactionsLoaded && ((Long) objArr[0]).longValue() == this.f4292f) {
-            r71Var.f32150g3.O(true);
+            r71Var.f32152g3.O(true);
         }
     }
 
@@ -58,7 +58,7 @@ public final class ad extends FrameLayout implements NotificationCenter.Notifica
         } else {
             NotificationCenter.getInstance(i11).addObserver(this, NotificationCenter.starTransactionsLoaded);
         }
-        this.f4289a.f32150g3.O(false);
+        this.f4289a.f32152g3.O(false);
     }
 
     @Override

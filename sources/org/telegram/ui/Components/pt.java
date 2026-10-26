@@ -24,31 +24,31 @@ public final class pt extends org.telegram.ui.ActionBar.k3 {
             final ?? k3Var = new org.telegram.ui.ActionBar.k3(activity, false);
             k3Var.setApplyBottomPadding(false);
             k3Var.setApplyTopPadding(false);
-            int i10 = org.telegram.ui.ActionBar.y6.f23354d6;
+            int i10 = org.telegram.ui.ActionBar.y6.f23356d6;
             k3Var.fixNavigationBarKey(i10);
             LinearLayout linearLayout = new LinearLayout(activity);
             linearLayout.setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(activity);
             frameLayout.addView(linearLayout);
             ImageView imageView = new ImageView(activity);
-            imageView.setBackground(org.telegram.ui.ActionBar.y6.g0(k3Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23446i6), 1, -1));
+            imageView.setBackground(org.telegram.ui.ActionBar.y6.g0(k3Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23448i6), 1, -1));
             org.telegram.ui.ActionBar.f7.t(imageView, org.telegram.ui.ActionBar.y6.Ji, k3Var.resourcesProvider, PorterDuff.Mode.SRC_ATOP);
             imageView.setImageResource(R.drawable.ic_layer_close);
             imageView.setOnClickListener(new View.OnClickListener(k3Var) {
-                public final pt f31376b;
+                public final pt f31378b;
 
                 {
-                    this.f31376b = k3Var;
+                    this.f31378b = k3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f31376b.dismiss();
+                            this.f31378b.dismiss();
                             return;
                         default:
-                            pt.m(this.f31376b);
+                            pt.m(this.f31378b);
                             return;
                     }
                 }
@@ -62,7 +62,7 @@ public final class pt extends org.telegram.ui.ActionBar.k3 {
             linearLayout.addView(fy0Var, gb1.x(110, 110, 1, 0, 26, 0, 0));
             TextView textView = new TextView(activity);
             textView.setGravity(1);
-            int i11 = org.telegram.ui.ActionBar.y6.f23462j5;
+            int i11 = org.telegram.ui.ActionBar.y6.f23464j5;
             org.telegram.ui.ActionBar.f7.V(textView, i11, null);
             textView.setTextSize(1, 20.0f);
             textView.setText(LocaleController.getString(R.string.DownloadedFiles));
@@ -114,20 +114,20 @@ public final class pt extends org.telegram.ui.ActionBar.k3 {
             k3Var.setCustomView(nestedScrollView);
             textView3.setOnClickListener(new ga(12, k3Var, r2Var));
             textView4.setOnClickListener(new View.OnClickListener(k3Var) {
-                public final pt f31376b;
+                public final pt f31378b;
 
                 {
-                    this.f31376b = k3Var;
+                    this.f31378b = k3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f31376b.dismiss();
+                            this.f31378b.dismiss();
                             return;
                         default:
-                            pt.m(this.f31376b);
+                            pt.m(this.f31378b);
                             return;
                     }
                 }

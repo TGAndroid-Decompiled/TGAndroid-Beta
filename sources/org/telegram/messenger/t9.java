@@ -47,11 +47,11 @@ public final class t9 implements Runnable {
                 long j12 = this.d;
                 if (messagesController.isDialogMuted(j11, j12)) {
                     g1Var.j(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute, null);
-                    i10 = org.telegram.ui.ActionBar.y6.f23729x6;
+                    i10 = org.telegram.ui.ActionBar.y6.f23731x6;
                     g1Var2.setVisibility(8);
                 } else {
                     g1Var.j(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute, null);
-                    int i15 = org.telegram.ui.ActionBar.y6.f23596q7;
+                    int i15 = org.telegram.ui.ActionBar.y6.f23598q7;
                     g1Var2.setVisibility(0);
                     if (MessagesController.getInstance(i14).isDialogNotificationsSoundEnabled(j11, j12)) {
                         g1Var2.j(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off, null);

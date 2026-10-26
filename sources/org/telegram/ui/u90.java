@@ -25,17 +25,17 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 public final class u90 implements Runnable {
-    public final int f44071a;
+    public final int f44074a;
 
     public u90(int i10) {
-        this.f44071a = i10;
+        this.f44074a = i10;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Components.wc b02;
         int i10 = 0;
-        switch (this.f44071a) {
+        switch (this.f44074a) {
             case 0:
                 Pattern pattern = LaunchActivity.D1;
                 ApplicationLoader.mainInterfacePausedStageQueue = false;
@@ -62,13 +62,13 @@ public final class u90 implements Runnable {
                 org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
                 if (U != null && (b02 = org.telegram.ui.Components.wc.b0(U)) != null) {
                     org.telegram.ui.Components.qc M = b02.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                    M.f31887j = 5000;
+                    M.f31889j = 5000;
                     M.j();
                     return;
                 }
                 return;
             case 8:
-                int i11 = n81.f41803d0;
+                int i11 = n81.f41806d0;
                 return;
             case 9:
                 org.telegram.ui.ActionBar.y6.N = false;
@@ -84,13 +84,13 @@ public final class u90 implements Runnable {
                 org.telegram.ui.ActionBar.r2 U2 = LaunchActivity.U();
                 if (U2 != null) {
                     org.telegram.ui.Components.qc M2 = org.telegram.ui.Components.wc.b0(U2).M(LocaleController.getString(R.string.WalletBackupDisabled), LocaleController.getString(R.string.WalletBackupDisabledInfo), R.raw.contact_check);
-                    M2.f31887j = 5000;
+                    M2.f31889j = 5000;
                     M2.j();
                     return;
                 }
                 return;
             case 12:
-                CopyOnWriteArrayList copyOnWriteArrayList = org.telegram.ui.Wallet.p0.f37073i;
+                CopyOnWriteArrayList copyOnWriteArrayList = org.telegram.ui.Wallet.p0.f37076i;
                 Iterator it = copyOnWriteArrayList.iterator();
                 while (it.hasNext()) {
                     WeakReference weakReference = (WeakReference) it.next();
@@ -103,10 +103,10 @@ public final class u90 implements Runnable {
                 }
                 return;
             case 13:
-                boolean z10 = org.telegram.ui.Wallet.n5.f36988j0;
+                boolean z10 = org.telegram.ui.Wallet.n5.f36991j0;
                 return;
             case 14:
-                int[][] iArr = WallpapersListActivity.f37579g0;
+                int[][] iArr = WallpapersListActivity.f37582g0;
                 PhotoViewer.u1().H0(false, false);
                 return;
             case 15:
@@ -124,7 +124,7 @@ public final class u90 implements Runnable {
                             ?? tLObject = new TLObject();
                             tLObject.readParams(serializedData, true);
                             arrayList.add(tLObject);
-                            longSparseArray.put(tLObject.f45196a, tLObject);
+                            longSparseArray.put(tLObject.f45199a, tLObject);
                         }
                     }
                 } catch (Exception e) {
@@ -138,10 +138,10 @@ public final class u90 implements Runnable {
                     if (!file2.exists()) {
                         file2.createNewFile();
                     }
-                    long size = org.telegram.ui.web.c1.f45207c.size();
+                    long size = org.telegram.ui.web.c1.f45210c.size();
                     SerializedData serializedData2 = new SerializedData(true);
                     serializedData2.writeInt64(size);
-                    ArrayList arrayList2 = org.telegram.ui.web.c1.f45207c;
+                    ArrayList arrayList2 = org.telegram.ui.web.c1.f45210c;
                     int size2 = arrayList2.size();
                     int i12 = 0;
                     while (i12 < size2) {
@@ -151,7 +151,7 @@ public final class u90 implements Runnable {
                     }
                     SerializedData serializedData3 = new SerializedData(serializedData2.length());
                     serializedData3.writeInt64(size);
-                    ArrayList arrayList3 = org.telegram.ui.web.c1.f45207c;
+                    ArrayList arrayList3 = org.telegram.ui.web.c1.f45210c;
                     int size3 = arrayList3.size();
                     while (i10 < size3) {
                         Object obj2 = arrayList3.get(i10);
@@ -206,7 +206,7 @@ public final class u90 implements Runnable {
                 org.telegram.ui.ActionBar.r2 R = LaunchActivity.R();
                 if (R != 0) {
                     ?? obj3 = new Object();
-                    obj3.f22926a = true;
+                    obj3.f22928a = true;
                     R.showAsSheet(new PremiumPreviewFragment(0, "gifts"), obj3);
                     return;
                 }
@@ -215,7 +215,7 @@ public final class u90 implements Runnable {
     }
 
     public u90(Object obj, int i10) {
-        this.f44071a = i10;
+        this.f44074a = i10;
     }
 
     private final void a() {

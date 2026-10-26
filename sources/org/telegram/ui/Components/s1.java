@@ -13,28 +13,28 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class s1 implements org.telegram.ui.ActionBar.b2, ResultCallback {
-    public final long f32398a;
-    public final int f32399b;
-    public final View f32400c;
+    public final long f32400a;
+    public final int f32401b;
+    public final View f32402c;
     public final Object d;
 
     public s1(EditText editText, long j10, int i10, EditText editText2) {
-        this.f32400c = editText;
-        this.f32398a = j10;
-        this.f32399b = i10;
+        this.f32402c = editText;
+        this.f32400a = j10;
+        this.f32401b = i10;
         this.d = editText2;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        EditText editText = (EditText) this.f32400c;
+        EditText editText = (EditText) this.f32402c;
         EditText editText2 = (EditText) this.d;
         if (editText.getText() == null) {
             return;
         }
-        long j10 = this.f32398a;
+        long j10 = this.f32400a;
         int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        int i12 = this.f32399b;
+        int i12 = this.f32401b;
         if (i11 > 0) {
             TLRPC.User user = MessagesController.getInstance(i12).getUser(Long.valueOf(j10));
             String obj = editText.getText().toString();
@@ -87,14 +87,14 @@ public final class s1 implements org.telegram.ui.ActionBar.b2, ResultCallback {
     @Override
     public void onComplete(Object obj) {
         int i10;
-        d31 d31Var = (d31) this.f32400c;
+        d31 d31Var = (d31) this.f32402c;
         xp xpVar = (xp) this.d;
         Pair pair = (Pair) obj;
-        if (pair != null && ((Long) pair.first).longValue() == this.f32398a) {
-            Drawable drawable = xpVar.f34791b;
+        if (pair != null && ((Long) pair.first).longValue() == this.f32400a) {
+            Drawable drawable = xpVar.f34794b;
             if (drawable instanceof uc0) {
                 uc0 uc0Var = (uc0) drawable;
-                if (this.f32399b >= 0) {
+                if (this.f32401b >= 0) {
                     i10 = 100;
                 } else {
                     i10 = -100;
@@ -112,10 +112,10 @@ public final class s1 implements org.telegram.ui.ActionBar.b2, ResultCallback {
     }
 
     public s1(d31 d31Var, long j10, xp xpVar, int i10) {
-        this.f32400c = d31Var;
-        this.f32398a = j10;
+        this.f32402c = d31Var;
+        this.f32400a = j10;
         this.d = xpVar;
-        this.f32399b = i10;
+        this.f32401b = i10;
     }
 
     @Override

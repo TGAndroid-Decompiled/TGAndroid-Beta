@@ -70,7 +70,7 @@ public final class rj extends s4.u {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f47825n - this.T.E9) - C());
+            return (int) ((this.f47828n - this.T.E9) - C());
         }
         return super.K();
     }
@@ -86,8 +86,8 @@ public final class rj extends s4.u {
         fm fmVar;
         int i10;
         un unVar = this.T;
-        int i11 = unVar.f44325lb;
-        if (i11 != 0 && unVar.f44337mb != Integer.MIN_VALUE && (ojVar = unVar.f44468x0) != null && (fmVar = unVar.A0) != null && !fmVar.N && !ojVar.V1) {
+        int i11 = unVar.f44328lb;
+        if (i11 != 0 && unVar.f44340mb != Integer.MIN_VALUE && (ojVar = unVar.f44471x0) != null && (fmVar = unVar.A0) != null && !fmVar.N && !ojVar.V1) {
             MessageObject messageObject = (MessageObject) unVar.A6[0].get(i11);
             if (messageObject != null) {
                 i10 = unVar.G6.indexOf(messageObject);
@@ -95,12 +95,12 @@ public final class rj extends s4.u {
                 i10 = -1;
             }
             if (i10 >= 0) {
-                this.f47714y = unVar.A0.J + i10;
-                this.A = unVar.f44337mb - unVar.f44468x0.getPaddingTop();
-                this.f47715z = false;
+                this.f47717y = unVar.A0.J + i10;
+                this.A = unVar.f44340mb - unVar.f44471x0.getPaddingTop();
+                this.f47718z = false;
                 s4.b0 b0Var = this.B;
                 if (b0Var != null) {
-                    b0Var.f47688a = -1;
+                    b0Var.f47691a = -1;
                 }
             }
         }
@@ -157,7 +157,7 @@ public final class rj extends s4.u {
     public final void v0(RecyclerView recyclerView, s4.b1 b1Var, int i10) {
         this.T.Ea = false;
         mi.n nVar = new mi.n(recyclerView.getContext(), 0);
-        nVar.f47677a = i10;
+        nVar.f47680a = i10;
         w0(nVar);
     }
 

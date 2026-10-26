@@ -90,7 +90,7 @@ public final class k8 {
         float e = this.h.e(this.f8731f);
         Paint paint = this.f8744t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f7, Math.max(this.f8738n.f31788c, this.f8739o.f31788c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
+        int min = (int) Math.min(f7, Math.max(this.f8738n.f31790c, this.f8739o.f31790c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
         this.f8747x = min;
         int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(22.0f), e);
         float f11 = min;
@@ -126,10 +126,10 @@ public final class k8 {
         }
         q11 q11Var = this.f8738n;
         float f13 = dp;
-        q11Var.f31798p = f13;
+        q11Var.f31800p = f13;
         q11Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
         q11 q11Var2 = this.f8739o;
-        q11Var2.f31798p = f13;
+        q11Var2.f31800p = f13;
         q11Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
         canvas.restore();
     }

@@ -116,7 +116,7 @@ public final class h1 extends u91 {
         switch (this.V) {
             case 2:
                 if (getCurrentPosition() == 1) {
-                    ((ii.j0) this.W).v.d.f32150g3.O(false);
+                    ((ii.j0) this.W).v.d.f32152g3.O(false);
                     return;
                 }
                 return;
@@ -133,7 +133,7 @@ public final class h1 extends u91 {
                 xj0.a0((xj0) this.W);
                 return;
             case 7:
-                if ((getCurrentView() instanceof u21) && (s21Var = ((u21) getCurrentView()).f43985n) != null) {
+                if ((getCurrentView() instanceof u21) && (s21Var = ((u21) getCurrentView()).f43988n) != null) {
                     AndroidUtilities.hideKeyboard(s21Var);
                     return;
                 }
@@ -166,12 +166,12 @@ public final class h1 extends u91 {
                 return;
             case 3:
                 un unVar = (un) this.W;
-                unVar.f44292j1.getClass();
-                unVar.f44292j1.getClass();
+                unVar.f44295j1.getClass();
+                unVar.f44295j1.getClass();
                 unVar.s7();
                 return;
             case 4:
-                wj0 wj0Var = ((xj0) this.W).f45787w;
+                wj0 wj0Var = ((xj0) this.W).f45790w;
                 if (wj0Var != null) {
                     wj0Var.invalidate();
                     return;
@@ -208,8 +208,8 @@ public final class h1 extends u91 {
             default:
                 org.telegram.ui.Wallet.m5 m5Var = (org.telegram.ui.Wallet.m5) this.W;
                 m5Var.V0();
-                org.telegram.ui.Wallet.t7 t7Var = m5Var.f36943j0;
-                if (t7Var != null && t7Var.f37291h1) {
+                org.telegram.ui.Wallet.t7 t7Var = m5Var.f36946j0;
+                if (t7Var != null && t7Var.f37294h1) {
                     t7Var.f0();
                     return;
                 }
@@ -223,12 +223,12 @@ public final class h1 extends u91 {
         switch (this.V) {
             case 10:
                 org.telegram.ui.Wallet.m5 m5Var = (org.telegram.ui.Wallet.m5) this.W;
-                m5Var.f36937e0 = i10;
-                if (i10 != 1 && (n8Var = m5Var.f36942i0) != null) {
+                m5Var.f36940e0 = i10;
+                if (i10 != 1 && (n8Var = m5Var.f36945i0) != null) {
                     n8Var.b(false);
                 }
                 if (i10 == 1) {
-                    m5Var.f36949p0.post(new org.telegram.ui.Wallet.o3(m5Var, 13));
+                    m5Var.f36952p0.post(new org.telegram.ui.Wallet.o3(m5Var, 13));
                     return;
                 }
                 return;

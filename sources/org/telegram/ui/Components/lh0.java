@@ -15,9 +15,9 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public abstract class lh0 extends FrameLayout {
-    public final b6 f30209a;
-    public final TextView f30210b;
-    public final org.telegram.ui.Cells.v1 f30211c;
+    public final b6 f30211a;
+    public final TextView f30212b;
+    public final org.telegram.ui.Cells.v1 f30213c;
     public final nh0 d;
 
     public lh0(nh0 nh0Var, Context context) {
@@ -29,9 +29,9 @@ public abstract class lh0 extends FrameLayout {
         int i14;
         int i15;
         this.d = nh0Var;
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23445i5, this, null);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23447i5, this, null);
         b6 b6Var = new b6(getContext());
-        this.f30209a = b6Var;
+        this.f30211a = b6Var;
         b6Var.setTextSize(1, 14.0f);
         b6Var.setTypeface(AndroidUtilities.bold());
         int i16 = org.telegram.ui.ActionBar.y6.f7;
@@ -45,7 +45,7 @@ public abstract class lh0 extends FrameLayout {
         }
         b6Var.setGravity(i10 | 16);
         TextView textView = new TextView(getContext());
-        this.f30210b = textView;
+        this.f30212b = textView;
         textView.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.f7.V(textView, i16, null);
         if (LocaleController.isRTL) {
@@ -55,7 +55,7 @@ public abstract class lh0 extends FrameLayout {
         }
         textView.setGravity(i11 | 16);
         org.telegram.ui.Cells.v1 v1Var = new org.telegram.ui.Cells.v1(this, getContext(), 1);
-        this.f30211c = v1Var;
+        this.f30213c = v1Var;
         v1Var.setTextSize(AndroidUtilities.dp(14.0f));
         org.telegram.ui.ActionBar.f7.Z(v1Var, i16, null);
         if (LocaleController.isRTL) {
@@ -89,7 +89,7 @@ public abstract class lh0 extends FrameLayout {
 
     public final void a(String str, ArrayList arrayList, int i10, int i11, int i12, boolean z10) {
         SpannableStringBuilder spannableStringBuilder;
-        b6 b6Var = this.f30209a;
+        b6 b6Var = this.f30211a;
         if (arrayList != null) {
             NotificationCenter.listenEmojiLoading(b6Var);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str);
@@ -107,10 +107,10 @@ public abstract class lh0 extends FrameLayout {
             spannableStringBuilder = new SpannableStringBuilder(ic.a.j(i10, " – ", "%"));
         }
         spannableStringBuilder.setSpan(new q61(AndroidUtilities.bold()), 3, format.length() + 3, 33);
-        this.f30210b.setText(spannableStringBuilder);
-        org.telegram.ui.Cells.v1 v1Var = this.f30211c;
+        this.f30212b.setText(spannableStringBuilder);
+        org.telegram.ui.Cells.v1 v1Var = this.f30213c;
         if (i12 == 0) {
-            if (this.d.f30977r.quiz) {
+            if (this.d.f30979r.quiz) {
                 v1Var.c(LocaleController.formatPluralString("Answer", i11, new Object[0]), z10, true);
             } else {
                 v1Var.c(LocaleController.formatPluralString("Vote", i11, new Object[0]), z10, true);
@@ -126,8 +126,8 @@ public abstract class lh0 extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         boolean z11 = LocaleController.isRTL;
-        b6 b6Var = this.f30209a;
-        TextView textView = this.f30210b;
+        b6 b6Var = this.f30211a;
+        TextView textView = this.f30212b;
         if (z11) {
             int left = b6Var.getLeft() - textView.getMeasuredWidth();
             textView.layout(left, textView.getTop(), textView.getMeasuredWidth() + left, textView.getBottom());
@@ -140,12 +140,12 @@ public abstract class lh0 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824);
-        TextView textView = this.f30210b;
+        TextView textView = this.f30212b;
         measureChildWithMargins(textView, i10, 0, makeMeasureSpec, 0);
-        org.telegram.ui.Cells.v1 v1Var = this.f30211c;
+        org.telegram.ui.Cells.v1 v1Var = this.f30213c;
         measureChildWithMargins(v1Var, i10, 0, makeMeasureSpec, 0);
         int measuredWidth = v1Var.getMeasuredWidth() + textView.getMeasuredWidth();
-        measureChildWithMargins(this.f30209a, i10, AndroidUtilities.dp(32.0f) + measuredWidth, makeMeasureSpec, 0);
+        measureChildWithMargins(this.f30211a, i10, AndroidUtilities.dp(32.0f) + measuredWidth, makeMeasureSpec, 0);
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(32.0f));
     }
 }

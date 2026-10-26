@@ -6,15 +6,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.m91;
 public final class r extends m91 {
-    public final mc f47525a;
+    public final mc f47528a;
 
     public r(mc mcVar) {
-        this.f47525a = mcVar;
+        this.f47528a = mcVar;
     }
 
     @Override
     public final View d(int i10) {
-        mc mcVar = this.f47525a;
+        mc mcVar = this.f47528a;
         if (i10 != 1) {
             if (i10 != 2) {
                 return (u) mcVar.f5111b;

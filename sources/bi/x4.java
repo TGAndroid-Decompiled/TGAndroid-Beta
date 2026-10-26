@@ -71,18 +71,18 @@ public final class x4 extends AnimatorListenerAdapter {
                 ti tiVar = (ti) this.d;
                 tiVar.B0.setAlpha(0.0f);
                 tiVar.B0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f5675b);
-                ei eiVar = tiVar.f33014e0;
+                ei eiVar = tiVar.f33017e0;
                 li liVar = tiVar.B0;
                 Float valueOf = Float.valueOf(1.0f);
                 eiVar.getClass();
                 eiVar.a(liVar, valueOf);
-                tiVar.f33002a1.setAlpha(0.0f);
+                tiVar.f33005a1.setAlpha(0.0f);
                 o1.j jVar = new o1.j(tiVar.C0, o1.h.f18953n, 0.0f);
                 jVar.f18969u.a(0.75f);
                 jVar.f18969u.b(500.0f);
                 jVar.b(new org.telegram.ui.Components.n7(this, 3));
                 jVar.a(new hi.k4(3, this, (gh) this.f5676c));
-                tiVar.f33072w1 = jVar;
+                tiVar.f33075w1 = jVar;
                 jVar.h();
                 return;
             default:

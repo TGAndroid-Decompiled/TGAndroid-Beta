@@ -175,7 +175,7 @@ public final class x1 implements ux, org.telegram.ui.ActionBar.b2, ni.n {
         FrameLayout frameLayout = new FrameLayout(parentActivity);
         int dp = AndroidUtilities.dp(28.0f);
         int dp2 = AndroidUtilities.dp(28.0f);
-        int i16 = y6.f23347ci;
+        int i16 = y6.f23349ci;
         ShapeDrawable d02 = y6.d0(dp, dp2, y6.x0(null, i16, false));
         b7 N = f7.N(i16);
         frameLayout.setBackground(d02);
@@ -187,12 +187,12 @@ public final class x1 implements ux, org.telegram.ui.ActionBar.b2, ni.n {
         y9Var.f(user2, j9Var);
         frameLayout.addView(y9Var, gb1.i(28, 28, 51));
         y9 y9Var2 = new y9(parentActivity);
-        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(y6.x0(null, y6.f23768z9, false), PorterDuff.Mode.SRC_IN));
+        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(y6.x0(null, y6.f23770z9, false), PorterDuff.Mode.SRC_IN));
         int i17 = 3;
         y9Var2.setAnimatedEmojiDrawable(t5.n(i14, botVerifierSettings.icon, null, 3));
         frameLayout.addView(y9Var2, gb1.h(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         b6 b6Var = new b6(parentActivity);
-        f7.Y(b6Var, y6.f23462j5, null);
+        f7.Y(b6Var, y6.f23464j5, null);
         b6Var.setTextSize(13);
         b6Var.setEllipsizeByGradient(true);
         b6Var.l(str2, false);
@@ -237,8 +237,8 @@ public final class x1 implements ux, org.telegram.ui.ActionBar.b2, ni.n {
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        f7.D(editTextBoldCursor, y6.f23680uf, null);
-        f7.m(editTextBoldCursor, 36, y6.f23698vf, null);
+        f7.D(editTextBoldCursor, y6.f23682uf, null);
+        f7.m(editTextBoldCursor, 36, y6.f23700vf, null);
         if (LocaleController.isRTL) {
             i17 = 5;
         }

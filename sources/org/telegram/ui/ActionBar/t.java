@@ -4,16 +4,16 @@ import a8.ee;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ds;
 public final class t implements Runnable {
-    public final boolean f23088a;
-    public final boolean f23089b;
-    public final boolean f23090c;
+    public final boolean f23090a;
+    public final boolean f23091b;
+    public final boolean f23092c;
     public final ActionBarLayout d;
 
     public t(ActionBarLayout actionBarLayout, boolean z10, boolean z11, boolean z12) {
         this.d = actionBarLayout;
-        this.f23088a = z10;
-        this.f23089b = z11;
-        this.f23090c = z12;
+        this.f23090a = z10;
+        this.f23091b = z11;
+        this.f23092c = z12;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class t implements Runnable {
         }
         Integer num2 = null;
         actionBarLayout.J0 = null;
-        boolean z10 = this.f23088a;
+        boolean z10 = this.f23090a;
         if (z10) {
             actionBarLayout.B0 = System.currentTimeMillis();
         }
@@ -39,8 +39,8 @@ public final class t implements Runnable {
             j10 = 18;
         }
         actionBarLayout.L0 = nanoTime;
-        boolean z11 = this.f23090c;
-        boolean z12 = this.f23089b;
+        boolean z11 = this.f23092c;
+        boolean z12 = this.f23091b;
         if (z12 && z11) {
             f7 = 190.0f;
         } else {
@@ -101,25 +101,25 @@ public final class t implements Runnable {
         }
         if (z11) {
             float a2 = ee.a(interpolation, 0.0f, 1.0f);
-            actionBarLayout.f22341s.setAlpha(a2);
+            actionBarLayout.f22343s.setAlpha(a2);
             if (z12) {
                 float f12 = (0.3f * interpolation) + 0.7f;
-                actionBarLayout.f22341s.setScaleX(f12);
-                actionBarLayout.f22341s.setScaleY(f12);
+                actionBarLayout.f22343s.setScaleX(f12);
+                actionBarLayout.f22343s.setScaleY(f12);
                 if (actionBarLayout.J != null) {
                     float f13 = 1.0f - interpolation;
-                    actionBarLayout.f22341s.setTranslationY(AndroidUtilities.dp(40.0f) * f13);
+                    actionBarLayout.f22343s.setTranslationY(AndroidUtilities.dp(40.0f) * f13);
                     actionBarLayout.J.setTranslationY((-AndroidUtilities.dp(70.0f)) * f13);
                     float f14 = (interpolation * 0.05f) + 0.95f;
                     actionBarLayout.J.setScaleX(f14);
                     actionBarLayout.J.setScaleY(f14);
                 }
-                actionBarLayout.f22338r.setAlpha((int) (46.0f * a2));
-                y6.f23626s0.setAlpha((int) (a2 * 255.0f));
-                actionBarLayout.f22341s.invalidate();
+                actionBarLayout.f22340r.setAlpha((int) (46.0f * a2));
+                y6.f23628s0.setAlpha((int) (a2 * 255.0f));
+                actionBarLayout.f22343s.invalidate();
                 actionBarLayout.invalidate();
             } else {
-                actionBarLayout.f22341s.setTranslationX((1.0f - interpolation) * AndroidUtilities.dp(48.0f));
+                actionBarLayout.f22343s.setTranslationX((1.0f - interpolation) * AndroidUtilities.dp(48.0f));
             }
         } else {
             float f15 = 1.0f - interpolation;
@@ -129,11 +129,11 @@ public final class t implements Runnable {
                 float f16 = (f15 * 0.1f) + 0.9f;
                 actionBarLayout.v.setScaleX(f16);
                 actionBarLayout.v.setScaleY(f16);
-                actionBarLayout.f22338r.setAlpha((int) (46.0f * a10));
+                actionBarLayout.f22340r.setAlpha((int) (46.0f * a10));
                 if (actionBarLayout.J == null) {
-                    y6.f23626s0.setAlpha((int) (a10 * 255.0f));
+                    y6.f23628s0.setAlpha((int) (a10 * 255.0f));
                 }
-                actionBarLayout.f22341s.invalidate();
+                actionBarLayout.f22343s.invalidate();
                 actionBarLayout.invalidate();
             } else {
                 actionBarLayout.v.setTranslationX(AndroidUtilities.dp(48.0f) * interpolation);

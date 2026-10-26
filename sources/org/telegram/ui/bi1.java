@@ -8,38 +8,38 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class bi1 {
-    public String f38100a;
-    public final int f38101b;
-    public final int f38102c;
+    public String f38103a;
+    public final int f38104b;
+    public final int f38105c;
     public final int d;
     public final int e;
-    public int f38103f;
-    public TLRPC.TL_wallPaper f38104g;
+    public int f38106f;
+    public TLRPC.TL_wallPaper f38107g;
     public float h;
-    public final File f38105i;
-    public final boolean f38106j;
-    public final boolean f38107k;
-    public TLRPC.WallPaper f38108l;
-    public Bitmap f38109m;
+    public final File f38108i;
+    public final boolean f38109j;
+    public final boolean f38110k;
+    public TLRPC.WallPaper f38111l;
+    public Bitmap f38112m;
 
     public bi1(int i10, int i11, String str, int i12) {
-        this.f38100a = str;
-        this.f38101b = i10 | (-16777216);
+        this.f38103a = str;
+        this.f38104b = i10 | (-16777216);
         int i13 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f38102c = i13;
-        this.f38103f = i13 == 0 ? 0 : i12;
+        this.f38105c = i13;
+        this.f38106f = i13 == 0 ? 0 : i12;
         this.h = 1.0f;
     }
 
     public final String a() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(String.valueOf(this.f38101b));
-        sb2.append(this.f38102c);
+        sb2.append(String.valueOf(this.f38104b));
+        sb2.append(this.f38105c);
         sb2.append(this.d);
         sb2.append(this.e);
-        sb2.append(this.f38103f);
+        sb2.append(this.f38106f);
         sb2.append(this.h);
-        String str = this.f38100a;
+        String str = this.f38103a;
         if (str == null) {
             str = "";
         }
@@ -51,13 +51,13 @@ public final class bi1 {
         String str;
         String str2;
         String str3 = null;
-        int i10 = this.f38102c;
+        int i10 = this.f38105c;
         if (i10 != 0) {
             str = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i10 >> 16)) & 255), Integer.valueOf(((byte) (i10 >> 8)) & 255), Byte.valueOf((byte) (i10 & 255))).toLowerCase();
         } else {
             str = null;
         }
-        int i11 = this.f38101b;
+        int i11 = this.f38104b;
         String lowerCase = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i11 >> 16)) & 255), Integer.valueOf(((byte) (i11 >> 8)) & 255), Byte.valueOf((byte) (i11 & 255))).toLowerCase();
         int i12 = this.d;
         if (i12 != 0) {
@@ -83,19 +83,19 @@ public final class bi1 {
             }
         } else if (str != null) {
             String D = a1.g.D(lowerCase, "-", str);
-            if (this.f38104g != null) {
+            if (this.f38107g != null) {
                 StringBuilder l4 = org.telegram.ui.Components.b10.l(D, "&rotation=");
-                l4.append(AndroidUtilities.getWallpaperRotation(this.f38103f, true));
+                l4.append(AndroidUtilities.getWallpaperRotation(this.f38106f, true));
                 lowerCase = l4.toString();
             } else {
                 StringBuilder l10 = org.telegram.ui.Components.b10.l(D, "?rotation=");
-                l10.append(AndroidUtilities.getWallpaperRotation(this.f38103f, true));
+                l10.append(AndroidUtilities.getWallpaperRotation(this.f38106f, true));
                 lowerCase = l10.toString();
             }
         }
-        if (this.f38104g != null) {
-            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f38104g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
-            if (this.f38106j) {
+        if (this.f38107g != null) {
+            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f38107g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
+            if (this.f38109j) {
                 return org.telegram.ui.Components.b10.u(str4, "&mode=motion");
             }
             return str4;
@@ -104,25 +104,25 @@ public final class bi1 {
     }
 
     public bi1(String str, int i10, int i11, int i12, int i13) {
-        this.f38100a = str;
-        this.f38101b = i10 | (-16777216);
-        this.f38102c = i11 == 0 ? 0 : i11 | (-16777216);
+        this.f38103a = str;
+        this.f38104b = i10 | (-16777216);
+        this.f38105c = i11 == 0 ? 0 : i11 | (-16777216);
         this.d = i12 == 0 ? 0 : i12 | (-16777216);
         this.e = i13 != 0 ? i13 | (-16777216) : 0;
         this.h = 1.0f;
-        this.f38107k = true;
+        this.f38110k = true;
     }
 
     public bi1(String str, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, File file) {
-        this.f38100a = str;
-        this.f38101b = i10 | (-16777216);
+        this.f38103a = str;
+        this.f38104b = i10 | (-16777216);
         int i15 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f38102c = i15;
+        this.f38105c = i15;
         this.d = i12 == 0 ? 0 : i12 | (-16777216);
         this.e = i13 != 0 ? i13 | (-16777216) : 0;
-        this.f38103f = i15 == 0 ? 45 : i14;
+        this.f38106f = i15 == 0 ? 45 : i14;
         this.h = f7;
-        this.f38105i = file;
-        this.f38106j = z10;
+        this.f38108i = file;
+        this.f38109j = z10;
     }
 }

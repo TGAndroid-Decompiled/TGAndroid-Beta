@@ -6,19 +6,19 @@ import android.net.Uri;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 public final class ue0 implements org.telegram.ui.ActionBar.b2 {
-    public final int f33381a;
-    public final Activity f33382b;
+    public final int f33384a;
+    public final Activity f33385b;
 
     public ue0(Activity activity, int i10) {
-        this.f33381a = i10;
-        this.f33382b = activity;
+        this.f33384a = i10;
+        this.f33385b = activity;
     }
 
     @Override
     public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f33381a) {
+        switch (this.f33384a) {
             case 0:
-                Activity activity = this.f33382b;
+                Activity activity = this.f33385b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -29,7 +29,7 @@ public final class ue0 implements org.telegram.ui.ActionBar.b2 {
                     return;
                 }
             default:
-                Activity activity2 = this.f33382b;
+                Activity activity2 = this.f33385b;
                 try {
                     Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));

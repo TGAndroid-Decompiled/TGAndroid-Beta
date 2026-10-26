@@ -7,10 +7,10 @@ import android.view.WindowInsets;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 public final class ji1 implements org.telegram.ui.ActionBar.b2, q3.g, androidx.car.app.utils.c, g2.g, rg.h0 {
-    public final int f40674a;
+    public final int f40677a;
 
     public ji1(int i10) {
-        this.f40674a = i10;
+        this.f40677a = i10;
     }
 
     public static AudioRecordingConfiguration a(Object obj) {
@@ -27,7 +27,7 @@ public final class ji1 implements org.telegram.ui.ActionBar.b2, q3.g, androidx.c
 
     @Override
     public Typeface b() {
-        switch (this.f40674a) {
+        switch (this.f40677a) {
             case 14:
                 return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
             case 15:
@@ -60,7 +60,7 @@ public final class ji1 implements org.telegram.ui.ActionBar.b2, q3.g, androidx.c
 
     @Override
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f40674a) {
+        switch (this.f40677a) {
             case 0:
                 e2Var.dismiss();
                 return;

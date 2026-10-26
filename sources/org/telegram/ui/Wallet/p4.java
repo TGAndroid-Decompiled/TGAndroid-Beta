@@ -5,23 +5,23 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.zc1;
 public final class p4 implements TextWatcher {
-    public final String[] f37093a;
-    public final zc1 f37094b;
-    public final Runnable[] f37095c;
+    public final String[] f37096a;
+    public final zc1 f37097b;
+    public final Runnable[] f37098c;
     public final org.telegram.messenger.d6 d;
 
     public p4(String[] strArr, zc1 zc1Var, Runnable[] runnableArr, org.telegram.messenger.d6 d6Var) {
-        this.f37093a = strArr;
-        this.f37094b = zc1Var;
-        this.f37095c = runnableArr;
+        this.f37096a = strArr;
+        this.f37097b = zc1Var;
+        this.f37098c = runnableArr;
         this.d = d6Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f37093a[0] = editable.toString();
-        this.f37094b.run();
-        Runnable[] runnableArr = this.f37095c;
+        this.f37096a[0] = editable.toString();
+        this.f37097b.run();
+        Runnable[] runnableArr = this.f37098c;
         Runnable runnable = runnableArr[0];
         if (runnable != null) {
             runnable.run();

@@ -184,20 +184,20 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                 ih.d.b(mm0Var, canvas, rectF, mm0Var, o7Var2.getContainerView(), 255);
             }
         };
-        int i10 = org.telegram.ui.ActionBar.y6.f23297a7;
+        int i10 = org.telegram.ui.ActionBar.y6.f23299a7;
         si siVar = new si(context, i10, u6Var);
         this.f11406k0 = siVar;
         siVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f11405j0 = frameLayout;
         m20 m20Var = new m20(context, u6Var);
-        m20Var.f30365r.setOnFocusChangeListener(new l7(this));
-        m20Var.f30367w = true;
+        m20Var.f30367r.setOnFocusChangeListener(new l7(this));
+        m20Var.f30369w = true;
         m20Var.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         m20Var.updateColors();
         m20Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        m20Var.f30365r.addTextChangedListener(new m7(this));
-        m20Var.f30365r.setHint(LocaleController.getString(R.string.Search));
+        m20Var.f30367r.addTextChangedListener(new m7(this));
+        m20Var.f30367r.setHint(LocaleController.getString(R.string.Search));
         frameLayout.addView(siVar, gb1.k());
         frameLayout.addView(m20Var, gb1.h(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
         m20Var.setupBlurredBackground(this.f11408n0.c(m20Var, gh.c.o(u6Var), false));
@@ -209,7 +209,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
         mm0Var.setPadding(i11, 0, i11, 0);
         this.d.u1();
         s4.l lVar = new s4.l();
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         lVar.C = false;
         lVar.o(dsVar);
         lVar.n(350L);
@@ -561,7 +561,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                     Object obj2 = arrayList3.get(i12);
                     i12++;
                     bi.dc dcVar = new bi.dc(this, 1);
-                    int i14 = org.telegram.ui.Cells.m7.f24482a;
+                    int i14 = org.telegram.ui.Cells.m7.f24484a;
                     t61 K = t61.K(org.telegram.ui.Cells.m7.class);
                     K.G = (MessageObject) obj2;
                     K.H = dcVar;
@@ -576,7 +576,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                 }
                 if (z12 && !z11) {
                     t61 c10 = t61.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
-                    c10.f32877q = true;
+                    c10.f32880q = true;
                     arrayList.add(c10);
                     i11 += AndroidUtilities.dp(50.0f);
                 }
@@ -679,7 +679,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                     str3 = str4;
                 }
                 this.f11417w0 = str3;
-                tL_messages_searchGlobal.f22138q = str3;
+                tL_messages_searchGlobal.f22140q = str3;
                 tL_messages_searchGlobal.limit = 20;
                 if (arrayList.size() > 0) {
                     MessageObject messageObject = (MessageObject) ic.a.g(1, arrayList);
@@ -771,7 +771,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             super.onThemeColorsChanged();
             hh.c cVar = this.m0;
             if (cVar != null) {
-                cVar.a(getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+                cVar.a(getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -782,7 +782,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
     public final lm0 v(mm0 mm0Var) {
         j71 j71Var = new j71(mm0Var, getContext(), this.currentAccount, 0, false, new h7(this, 0), this.resourcesProvider);
         this.f11410p0 = j71Var;
-        j71Var.f29505r = false;
+        j71Var.f29507r = false;
         return j71Var;
     }
 

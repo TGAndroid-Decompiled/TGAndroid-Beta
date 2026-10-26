@@ -176,17 +176,17 @@ public final class k implements e0, u {
                         yb.p(z10);
                         p2.m b10 = iVar.f18998g.b(jVar.f19014x, false);
                         b10.getClass();
-                        i0 i0Var2 = b10.f46571r;
-                        int i11 = (int) (jVar.f50025s - b10.f46564k);
+                        i0 i0Var2 = b10.f46574r;
+                        int i11 = (int) (jVar.f50028s - b10.f46567k);
                         if (i11 < 0) {
                             j10 = 0;
                         } else {
                             if (i11 < i0Var2.size()) {
-                                i0Var = ((p2.j) i0Var2.get(i11)).f46549x;
+                                i0Var = ((p2.j) i0Var2.get(i11)).f46552x;
                             } else {
-                                i0Var = b10.f46572s;
+                                i0Var = b10.f46575s;
                             }
-                            j10 = ((p2.h) i0Var.get(i10)).f46552c;
+                            j10 = ((p2.h) i0Var.get(i10)).f46555c;
                         }
                         jVar.f19011a0 = j10;
                     }
@@ -237,7 +237,7 @@ public final class k implements e0, u {
                 p2.w wVar3 = wVarArr[i12];
                 p2.c cVar = (p2.c) dVar2.d.get(uri);
                 if (cVar != null) {
-                    wVar = cVar.f46493a;
+                    wVar = cVar.f46496a;
                 } else {
                     wVar = null;
                 }
@@ -262,7 +262,7 @@ public final class k implements e0, u {
                                         p2.w wVar4 = wVarArr[i14];
                                         p2.c cVar2 = (p2.c) dVar2.d.get(uri);
                                         if (cVar2 != null) {
-                                            wVar2 = cVar2.f46493a;
+                                            wVar2 = cVar2.f46496a;
                                         } else {
                                             wVar2 = null;
                                         }
@@ -393,7 +393,7 @@ public final class k implements e0, u {
         p2.d dVar = this.f19017b;
         dVar.getClass();
         dVar.e.add(this);
-        p2.p pVar = dVar.f46502s;
+        p2.p pVar = dVar.f46505s;
         pVar.getClass();
         Map map3 = Collections.EMPTY_MAP;
         i0 c10 = dVar.c(0);
@@ -415,14 +415,14 @@ public final class k implements e0, u {
             map = map3;
             i0Var = c12;
         } else {
-            x xVar = pVar.f46589j;
-            List list2 = pVar.f46590k;
+            x xVar = pVar.f46592j;
+            List list2 = pVar.f46593k;
             int size = c10.size();
             int[] iArr = new int[size];
             int i13 = 0;
             int i14 = 0;
             for (int i15 = 0; i15 < c10.size(); i15++) {
-                x xVar2 = ((p2.w) c10.get(i15)).f46634a.f46631a;
+                x xVar2 = ((p2.w) c10.get(i15)).f46637a.f46634a;
                 int i16 = xVar2.A;
                 String str2 = xVar2.f3578k;
                 if (i16 > 0 || n0.w(2, str2) != null) {
@@ -471,7 +471,7 @@ public final class k implements e0, u {
                 if (!z13 || iArr[i21] != 1) {
                     p2.w wVar = (p2.w) c10.get(i21);
                     wVarArr[i20] = wVar;
-                    xVarArr[i20] = wVar.f46634a.f46631a;
+                    xVarArr[i20] = wVar.f46637a.f46634a;
                     iArr2[i20] = i21;
                     i20++;
                 }
@@ -576,7 +576,7 @@ public final class k implements e0, u {
         HashSet hashSet3 = new HashSet();
         int i27 = 0;
         while (i27 < c11.size()) {
-            String str4 = ((p2.w) c11.get(i27)).f46634a.f46633c;
+            String str4 = ((p2.w) c11.get(i27)).f46637a.f46636c;
             str4.getClass();
             if (!hashSet3.add(str4)) {
                 hashSet2 = hashSet3;
@@ -591,9 +591,9 @@ public final class k implements e0, u {
                 arrayList8.clear();
                 boolean z18 = true;
                 for (int i28 = 0; i28 < c11.size(); i28++) {
-                    if (str4.equals(((p2.w) c11.get(i28)).f46634a.f46633c)) {
+                    if (str4.equals(((p2.w) c11.get(i28)).f46637a.f46636c)) {
                         p2.w wVar4 = (p2.w) c11.get(i28);
-                        x xVar4 = wVar4.f46634a.f46631a;
+                        x xVar4 = wVar4.f46637a.f46634a;
                         arrayList8.add(Integer.valueOf(i28));
                         arrayList6.add(wVar4);
                         arrayList7.add(xVar4);
@@ -641,7 +641,7 @@ public final class k implements e0, u {
         int i29 = 0;
         while (i29 < i0Var.size()) {
             i0 i0Var3 = i0Var;
-            String str6 = ((p2.w) i0Var3.get(i29)).f46634a.f46633c;
+            String str6 = ((p2.w) i0Var3.get(i29)).f46637a.f46636c;
             str6.getClass();
             if (!hashSet4.add(str6)) {
                 hashSet = hashSet4;
@@ -652,11 +652,11 @@ public final class k implements e0, u {
                 arrayList10.clear();
                 arrayList11.clear();
                 for (int i30 = 0; i30 < i0Var3.size(); i30++) {
-                    if (str6.equals(((p2.w) i0Var3.get(i30)).f46634a.f46633c)) {
+                    if (str6.equals(((p2.w) i0Var3.get(i30)).f46637a.f46636c)) {
                         p2.w wVar6 = (p2.w) i0Var3.get(i30);
                         arrayList11.add(Integer.valueOf(i30));
                         arrayList9.add(wVar6);
-                        arrayList10.add(wVar6.f46634a.f46631a);
+                        arrayList10.add(wVar6.f46637a.f46634a);
                     }
                 }
                 String concat2 = "subtitle:".concat(str6);
@@ -756,13 +756,13 @@ public final class k implements e0, u {
                     mVar = null;
                 }
                 if (mVar != null) {
-                    i0 i0Var = mVar.f46571r;
+                    i0 i0Var = mVar.f46574r;
                     if (!i0Var.isEmpty()) {
                         long j12 = mVar.h - dVar.I;
                         long j13 = j10 - j12;
                         int d = n0.d(i0Var, Long.valueOf(j13), true);
                         long j14 = ((p2.j) i0Var.get(d)).e;
-                        if (mVar.f46595c && d != i0Var.size() - 1) {
+                        if (mVar.f46598c && d != i0Var.size() - 1) {
                             j11 = ((p2.j) i0Var.get(d + 1)).e;
                         } else {
                             j11 = j14;

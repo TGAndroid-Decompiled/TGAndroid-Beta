@@ -44,7 +44,7 @@ public final class e extends FrameLayout implements p6 {
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(y6.G6));
-        hashSet.add(Integer.valueOf(y6.f23765z6));
+        hashSet.add(Integer.valueOf(y6.f23767z6));
     }
 
     @Override
@@ -73,6 +73,6 @@ public final class e extends FrameLayout implements p6 {
         int i10 = y6.G6;
         u6 u6Var = this.f14334b;
         this.f14335c.setTextColor(y6.w0(i10, u6Var));
-        this.d.setTextColor(y6.w0(y6.f23765z6, u6Var));
+        this.d.setTextColor(y6.w0(y6.f23767z6, u6Var));
     }
 }

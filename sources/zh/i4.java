@@ -10,14 +10,14 @@ import org.telegram.messenger.ak;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.k80;
 public final class i4 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.w0 f53044a;
-    public final long f53045b;
-    public final l4 f53046c;
+    public final org.telegram.ui.ActionBar.w0 f53047a;
+    public final long f53048b;
+    public final l4 f53049c;
 
     public i4(l4 l4Var, org.telegram.ui.ActionBar.w0 w0Var, long j10) {
-        this.f53046c = l4Var;
-        this.f53044a = w0Var;
-        this.f53045b = j10;
+        this.f53049c = l4Var;
+        this.f53047a = w0Var;
+        this.f53048b = j10;
     }
 
     @Override
@@ -28,20 +28,20 @@ public final class i4 extends org.telegram.ui.ActionBar.j {
         boolean canUserDoAction;
         org.telegram.ui.ActionBar.g1 g1Var;
         org.telegram.ui.ActionBar.g1 g1Var2;
-        l4 l4Var = this.f53046c;
+        l4 l4Var = this.f53049c;
         t9 t9Var = l4Var.Y;
         if (i10 == 1) {
-            k80 k80Var = l4Var.f53102d0;
+            k80 k80Var = l4Var.f53105d0;
             if (k80Var != null) {
                 k80Var.u();
             }
             org.telegram.ui.ActionBar.h3 h3Var = l4Var.container;
             u6Var = ((org.telegram.ui.ActionBar.k3) l4Var).resourcesProvider;
-            k80 F = k80.F(h3Var, u6Var, this.f53044a);
-            l4Var.f53102d0 = F;
+            k80 F = k80.F(h3Var, u6Var, this.f53047a);
+            l4Var.f53105d0 = F;
             i11 = ((org.telegram.ui.ActionBar.k3) l4Var).currentAccount;
             long clientUserId = UserConfig.getInstance(i11).getClientUserId();
-            long j10 = this.f53045b;
+            long j10 = this.f53048b;
             if (j10 == clientUserId) {
                 canUserDoAction = true;
             } else if (j10 < 0) {
@@ -86,7 +86,7 @@ public final class i4 extends org.telegram.ui.ActionBar.j {
             }
             F.Y = true;
             F.J = false;
-            F.f29866s = 0;
+            F.f29868s = 0;
             F.Z();
         } else if (i10 == -1) {
             l4Var.dismiss();

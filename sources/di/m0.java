@@ -19,7 +19,7 @@ public final class m0 extends Drawable {
         this.f8772b = context.getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
         q11 q11Var = new q11(ic.a.i(i10, ""), 8.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
         this.f8773c = q11Var;
-        q11Var.f31786a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        q11Var.f31788a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class m0 extends Drawable {
         drawable.setBounds(bounds);
         drawable.draw(canvas);
         int centerY = bounds.centerY();
-        this.f8773c.c(bounds.centerX() - (this.f8773c.f31788c / 2.0f), AndroidUtilities.dp(0.15f) + centerY, drawable.getAlpha() / 255.0f, -1, canvas);
+        this.f8773c.c(bounds.centerX() - (this.f8773c.f31790c / 2.0f), AndroidUtilities.dp(0.15f) + centerY, drawable.getAlpha() / 255.0f, -1, canvas);
         canvas.restore();
     }
 

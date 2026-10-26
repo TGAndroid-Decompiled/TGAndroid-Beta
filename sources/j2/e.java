@@ -154,7 +154,7 @@ public final class e implements e1, k0, k {
         }
         long j10 = 0;
         if (g0Var2 != null && g0Var2.b()) {
-            if (z10 && this.h.m0() == g0Var2.f49295b && this.h.N() == g0Var2.f49296c) {
+            if (z10 && this.h.m0() == g0Var2.f49298b && this.h.N() == g0Var2.f49299c) {
                 j10 = this.h.M0();
             }
         } else if (z10) {
@@ -174,7 +174,7 @@ public final class e implements e1, k0, k {
             p1Var = (p1) ((x1) this.d.f1152c).get(g0Var);
         }
         if (g0Var != null && p1Var != null) {
-            return m(p1Var, p1Var.g(g0Var.f49294a, this.f15198b).f3280c, g0Var);
+            return m(p1Var, p1Var.g(g0Var.f49297a, this.f15198b).f3280c, g0Var);
         }
         int n02 = this.h.n0();
         p1 y02 = this.h.y0();

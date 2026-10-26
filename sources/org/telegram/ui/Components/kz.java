@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
 public final class kz implements Utilities.Callback {
-    public final int f30002a;
-    public final lz f30003b;
+    public final int f30004a;
+    public final lz f30005b;
 
     public kz(lz lzVar, int i10) {
-        this.f30002a = i10;
-        this.f30003b = lzVar;
+        this.f30004a = i10;
+        this.f30005b = lzVar;
     }
 
     @Override

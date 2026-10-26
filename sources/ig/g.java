@@ -12,7 +12,7 @@ public final class g implements c7, e2.o {
     public int e(View view) {
         Drawable background = view.getBackground();
         if (background instanceof ar) {
-            Drawable drawable = ((ar) background).f26590a;
+            Drawable drawable = ((ar) background).f26592a;
             if (drawable instanceof ColorDrawable) {
                 return ((ColorDrawable) drawable).getColor();
             }

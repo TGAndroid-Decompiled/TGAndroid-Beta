@@ -85,8 +85,8 @@ public final class f0 extends hm0 {
 
     @Override
     public final void W(int i10, int i11, s4.e1 e1Var) {
-        if (e1Var.f47738f == 0) {
-            y1 y1Var = (y1) e1Var.f47735a;
+        if (e1Var.f47741f == 0) {
+            y1 y1Var = (y1) e1Var.f47738a;
             Object O = O(i10, i11);
             boolean z10 = true;
             if (i10 == 1 && i11 == M(i10) - 1) {
@@ -123,7 +123,7 @@ public final class f0 extends hm0 {
                 y1Var.setTag(-33024);
             }
         } else {
-            y1Var = new y1(context, this.f15700w.f30212a, false);
+            y1Var = new y1(context, this.f15700w.f30214a, false);
         }
         return new s4.e1(y1Var);
     }

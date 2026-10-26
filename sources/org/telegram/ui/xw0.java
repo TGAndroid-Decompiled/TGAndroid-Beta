@@ -6,22 +6,22 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.tgnet.TLRPC;
 public final class xw0 {
-    public final TLRPC.TL_premiumSubscriptionOption f45888a;
-    public int f45889b;
-    public long f45890c;
+    public final TLRPC.TL_premiumSubscriptionOption f45891a;
+    public int f45892b;
+    public long f45893c;
     public long d;
     public long e;
-    public d5.o f45891f;
-    public d5.n f45892g;
+    public d5.o f45894f;
+    public d5.n f45895g;
     public int h;
 
     public xw0(TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption) {
-        this.f45888a = tL_premiumSubscriptionOption;
+        this.f45891a = tL_premiumSubscriptionOption;
     }
 
     public final void a() {
-        d5.o oVar = this.f45891f;
-        if (oVar != null && this.f45892g == null) {
+        d5.o oVar = this.f45894f;
+        if (oVar != null && this.f45895g == null) {
             ArrayList arrayList = oVar.h;
             int size = arrayList.size();
             int i10 = 0;
@@ -29,17 +29,17 @@ public final class xw0 {
                 Object obj = arrayList.get(i10);
                 i10++;
                 d5.n nVar = (d5.n) obj;
-                String str = ((d5.m) ((ArrayList) nVar.f7998b.f52841b).get(0)).d;
-                int i11 = this.f45888a.months;
+                String str = ((d5.m) ((ArrayList) nVar.f7998b.f52844b).get(0)).d;
+                int i11 = this.f45891a.months;
                 if (i11 == 12) {
                     if (str.equals("P1Y")) {
-                        this.f45892g = nVar;
+                        this.f45895g = nVar;
                         return;
                     }
                 } else {
                     Locale locale = Locale.ROOT;
                     if (str.equals("P" + i11 + "M")) {
-                        this.f45892g = nVar;
+                        this.f45895g = nVar;
                         return;
                     }
                 }
@@ -49,15 +49,15 @@ public final class xw0 {
 
     public final String b() {
         boolean useInvoiceBilling = BuildVars.useInvoiceBilling();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f45888a;
+        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f45891a;
         if (!useInvoiceBilling && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f45891f != null) {
+            if (this.f45894f != null) {
                 a();
-                d5.n nVar = this.f45892g;
+                d5.n nVar = this.f45895g;
                 if (nVar == null) {
                     return "";
                 }
-                return ((d5.m) ((ArrayList) nVar.f7998b.f52841b).get(0)).f7996c;
+                return ((d5.m) ((ArrayList) nVar.f7998b.f52844b).get(0)).f7996c;
             }
             return "";
         }
@@ -65,24 +65,24 @@ public final class xw0 {
     }
 
     public final int c() {
-        if (this.f45889b == 0) {
+        if (this.f45892b == 0) {
             if (h() == 0) {
                 return 0;
             }
             if (this.e != 0) {
                 int i10 = (int) ((1.0d - (i() / this.e)) * 100.0d);
-                this.f45889b = i10;
+                this.f45892b = i10;
                 if (i10 == 0) {
-                    this.f45889b = -1;
+                    this.f45892b = -1;
                 }
             }
         }
-        return this.f45889b;
+        return this.f45892b;
     }
 
     public final String d() {
-        if (!BuildVars.useInvoiceBilling() && this.f45888a.store_product != null) {
-            if (this.f45891f == null) {
+        if (!BuildVars.useInvoiceBilling() && this.f45891a.store_product != null) {
+            if (this.f45894f == null) {
                 return "";
             }
             return BillingController.getInstance().formatCurrency(g(), b(), 6);
@@ -91,8 +91,8 @@ public final class xw0 {
     }
 
     public final String e() {
-        if (!BuildVars.useInvoiceBilling() && this.f45888a.store_product != null) {
-            if (this.f45891f == null) {
+        if (!BuildVars.useInvoiceBilling() && this.f45891a.store_product != null) {
+            if (this.f45894f == null) {
                 return "";
             }
             return BillingController.getInstance().formatCurrency(h(), b(), 6);
@@ -101,8 +101,8 @@ public final class xw0 {
     }
 
     public final String f() {
-        if (!BuildVars.useInvoiceBilling() && this.f45888a.store_product != null) {
-            if (this.f45891f == null) {
+        if (!BuildVars.useInvoiceBilling() && this.f45891a.store_product != null) {
+            if (this.f45894f == null) {
                 return "";
             }
             return BillingController.getInstance().formatCurrency(i(), b(), 6);
@@ -112,15 +112,15 @@ public final class xw0 {
 
     public final long g() {
         boolean useInvoiceBilling = BuildVars.useInvoiceBilling();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f45888a;
+        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f45891a;
         if (!useInvoiceBilling && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f45891f != null) {
+            if (this.f45894f != null) {
                 a();
-                d5.n nVar = this.f45892g;
+                d5.n nVar = this.f45895g;
                 if (nVar == null) {
                     return 0L;
                 }
-                return ((d5.m) ((ArrayList) nVar.f7998b.f52841b).get(0)).f7995b;
+                return ((d5.m) ((ArrayList) nVar.f7998b.f52844b).get(0)).f7995b;
             }
             return 0L;
         }
@@ -128,20 +128,20 @@ public final class xw0 {
     }
 
     public final long h() {
-        if (this.f45890c == 0) {
+        if (this.f45893c == 0) {
             long g7 = g();
             if (g7 != 0) {
-                this.f45890c = g7 / this.f45888a.months;
+                this.f45893c = g7 / this.f45891a.months;
             }
         }
-        return this.f45890c;
+        return this.f45893c;
     }
 
     public final long i() {
         if (this.d == 0) {
             long g7 = g();
             if (g7 != 0) {
-                this.d = (long) ((g7 / this.f45888a.months) * 12.0d);
+                this.d = (long) ((g7 / this.f45891a.months) * 12.0d);
             }
         }
         return this.d;

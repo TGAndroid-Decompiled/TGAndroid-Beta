@@ -131,7 +131,7 @@ public final class m0 {
         getconnectedstarrefbot.peer = MessagesController.getInstance(i11).getInputPeer(j10);
         getconnectedstarrefbot.bot = MessagesController.getInstance(i11).getInputUser(j11);
         int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(getconnectedstarrefbot, new e0(this, e2Var, j11, callback, 0));
-        e2Var.f22573i0 = true;
+        e2Var.f22575i0 = true;
         e2Var.setOnCancelListener(new f0(this, sendRequest, 0));
         e2Var.r(200L);
     }
@@ -262,12 +262,12 @@ public final class m0 {
     public final void q(TL_update.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer);
         if (peerDialogId < 0) {
-            ke keVar = ke.f40888t1;
-            if (keVar != null && keVar.f40906p0 == DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer)) {
-                ke keVar2 = ke.f40888t1;
+            ke keVar = ke.f40891t1;
+            if (keVar != null && keVar.f40909p0 == DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer)) {
+                ke keVar2 = ke.f40891t1;
                 TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus = tL_updateStarsRevenueStatus.status;
                 keVar2.L(tL_starsRevenueStatus.current_balance instanceof TL_stars.TL_starsTonAmount, tL_starsRevenueStatus);
-                ke.f40888t1.J();
+                ke.f40891t1.J();
                 return;
             }
             return;

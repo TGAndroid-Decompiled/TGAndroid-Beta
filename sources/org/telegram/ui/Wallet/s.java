@@ -16,29 +16,29 @@ import org.telegram.ui.Components.ny0;
 import org.telegram.ui.Components.vs0;
 import org.telegram.ui.Components.wc;
 public final class s implements Utilities.Callback {
-    public final int f37204a;
-    public final Object f37205b;
-    public final Object f37206c;
+    public final int f37207a;
+    public final Object f37208b;
+    public final Object f37209c;
 
     public s(int i10, Object obj, Object obj2) {
-        this.f37204a = i10;
-        this.f37205b = obj;
-        this.f37206c = obj2;
+        this.f37207a = i10;
+        this.f37208b = obj;
+        this.f37209c = obj2;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f37204a) {
+        switch (this.f37207a) {
             case 0:
-                ((i0) this.f37205b).close();
-                ((x7) this.f37206c).run((String) obj);
+                ((i0) this.f37208b).close();
+                ((x7) this.f37209c).run((String) obj);
                 return;
             case 1:
-                ((l0) this.f37205b).f36817q.put((TL_wallet.walletTransaction) obj, (bi.f4) this.f37206c);
+                ((l0) this.f37208b).f36820q.put((TL_wallet.walletTransaction) obj, (bi.f4) this.f37209c);
                 return;
             case 2:
-                g0 g0Var = (g0) this.f37205b;
-                z7 z7Var = (z7) this.f37206c;
+                g0 g0Var = (g0) this.f37208b;
+                z7 z7Var = (z7) this.f37209c;
                 String str = (String) obj;
                 if (str != null) {
                     g0Var.close();
@@ -50,32 +50,32 @@ public final class s implements Utilities.Callback {
                 z7Var.run(g0Var, null);
                 return;
             case 3:
-                ((e2) this.f37205b).h = false;
-                ((kh) this.f37206c).run(null, (String) obj);
+                ((e2) this.f37208b).h = false;
+                ((kh) this.f37209c).run(null, (String) obj);
                 return;
             case 4:
-                ((i0) this.f37205b).close();
-                ((o) this.f37206c).run((String) obj);
+                ((i0) this.f37208b).close();
+                ((o) this.f37209c).run((String) obj);
                 return;
             case 5:
-                ((i0) this.f37205b).close();
-                ((o) this.f37206c).run((String) obj);
+                ((i0) this.f37208b).close();
+                ((o) this.f37209c).run((String) obj);
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new h((z1) this.f37205b, (k) this.f37206c, (String) obj, 7));
+                AndroidUtilities.runOnUIThread(new h((z1) this.f37208b, (k) this.f37209c, (String) obj, 7));
                 return;
             case 7:
-                ((i0) this.f37205b).close();
-                ((s) this.f37206c).run((String) obj);
+                ((i0) this.f37208b).close();
+                ((s) this.f37209c).run((String) obj);
                 return;
             case 8:
-                m5 m5Var = (m5) this.f37205b;
-                l0 l0Var = (l0) this.f37206c;
+                m5 m5Var = (m5) this.f37208b;
+                l0 l0Var = (l0) this.f37209c;
                 String str2 = (String) obj;
                 m5Var.C0.setLoading(false);
                 if ("NO_LOCAL_BACKUP".equalsIgnoreCase(str2)) {
                     w7 w7Var = new w7();
-                    w7Var.f37445s = l0Var.x();
+                    w7Var.f37448s = l0Var.x();
                     m5Var.presentFragment(w7Var);
                     return;
                 } else if (str2 != null) {
@@ -86,8 +86,8 @@ public final class s implements Utilities.Callback {
                     return;
                 }
             case 9:
-                w7 w7Var2 = (w7) this.f37205b;
-                l0 l0Var2 = (l0) this.f37206c;
+                w7 w7Var2 = (w7) this.f37208b;
+                l0 l0Var2 = (l0) this.f37209c;
                 String str3 = (String) obj;
                 w7Var2.d.setLoading(false);
                 if (str3 != null) {
@@ -98,8 +98,8 @@ public final class s implements Utilities.Callback {
                 l0Var2.J();
                 return;
             case 10:
-                h8 h8Var = (h8) this.f37205b;
-                h hVar = (h) this.f37206c;
+                h8 h8Var = (h8) this.f37208b;
+                h hVar = (h) this.f37209c;
                 String str4 = (String) obj;
                 if (str4 != null) {
                     wc.b0(h8Var).f0(str4, false);
@@ -109,8 +109,8 @@ public final class s implements Utilities.Callback {
                     return;
                 }
             case 11:
-                h8 h8Var2 = (h8) this.f37205b;
-                org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) this.f37206c;
+                h8 h8Var2 = (h8) this.f37208b;
+                org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) this.f37209c;
                 String str5 = (String) obj;
                 if (str5 != null) {
                     wc.b0(h8Var2).f0(str5, false);
@@ -123,14 +123,14 @@ public final class s implements Utilities.Callback {
                 }
                 return;
             case 12:
-                ((h8) this.f37205b).f30417a.f32150g3.O(true);
-                ((Utilities.Callback) this.f37206c).run((String) obj);
+                ((h8) this.f37208b).f30419a.f32152g3.O(true);
+                ((Utilities.Callback) this.f37209c).run((String) obj);
                 return;
             case 13:
-                r9 r9Var = (r9) this.f37205b;
+                r9 r9Var = (r9) this.f37208b;
                 String str6 = (String) obj;
-                ((Utilities.Callback) this.f37206c).run(str6);
-                if (str6 == null && !r9Var.f37199r) {
+                ((Utilities.Callback) this.f37209c).run(str6);
+                if (str6 == null && !r9Var.f37202r) {
                     if (r9Var.getParentLayout() != null) {
                         for (org.telegram.ui.ActionBar.r2 r2Var2 : r9Var.getParentLayout().getFragmentStack()) {
                             if (r2Var2 instanceof m5) {
@@ -143,29 +143,29 @@ public final class s implements Utilities.Callback {
                 }
                 return;
             case 14:
-                ca.Z((ca) this.f37205b, (TL_wallet.tonConnectSession) this.f37206c, (Utilities.Callback) obj);
+                ca.Z((ca) this.f37208b, (TL_wallet.tonConnectSession) this.f37209c, (Utilities.Callback) obj);
                 return;
             case 15:
-                org.telegram.ui.web.y1 y1Var = (org.telegram.ui.web.y1) this.f37205b;
+                org.telegram.ui.web.y1 y1Var = (org.telegram.ui.web.y1) this.f37208b;
                 org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj;
                 y1Var.getClass();
-                ((org.telegram.ui.web.f1[]) this.f37206c)[0].finishFragment();
-                Utilities.Callback callback = y1Var.f45459f;
+                ((org.telegram.ui.web.f1[]) this.f37209c)[0].finishFragment();
+                Utilities.Callback callback = y1Var.f45462f;
                 if (callback != null) {
                     y1Var.finishFragment();
                     callback.run(b1Var);
                     return;
                 }
-                qf.d.r(y1Var.getParentActivity(), b1Var.f45198c);
+                qf.d.r(y1Var.getParentActivity(), b1Var.f45201c);
                 return;
             case 16:
-                org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) this.f37205b;
+                org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) this.f37208b;
                 h2Var.getClass();
-                AndroidUtilities.runOnUIThread(new ny0(h2Var, (org.telegram.ui.web.g2) this.f37206c, (Bitmap) obj, 11));
+                AndroidUtilities.runOnUIThread(new ny0(h2Var, (org.telegram.ui.web.g2) this.f37209c, (Bitmap) obj, 11));
                 return;
             case 17:
-                zh.p1 p1Var = (zh.p1) this.f37205b;
-                Utilities.Callback callback2 = (Utilities.Callback) this.f37206c;
+                zh.p1 p1Var = (zh.p1) this.f37208b;
+                Utilities.Callback callback2 = (Utilities.Callback) this.f37209c;
                 Boolean bool = (Boolean) obj;
                 p1Var.getClass();
                 if (callback2 != null) {
@@ -177,16 +177,16 @@ public final class s implements Utilities.Callback {
                 p1Var.dismiss();
                 return;
             case 18:
-                bi.t9 t9Var = (bi.t9) this.f37205b;
-                bi.a0 a0Var = (bi.a0) this.f37206c;
+                bi.t9 t9Var = (bi.t9) this.f37208b;
+                bi.a0 a0Var = (bi.a0) this.f37209c;
                 if (((Object[]) obj)[1] == t9Var) {
                     a0Var.run();
                     return;
                 }
                 return;
             case 19:
-                vs0 vs0Var = (vs0) this.f37205b;
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f37206c;
+                vs0 vs0Var = (vs0) this.f37208b;
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f37209c;
                 String str7 = (String) obj;
                 bi.q9 q9Var = vs0Var.e;
                 int i10 = tL_starGiftCollection.collection_id;
@@ -202,11 +202,11 @@ public final class s implements Utilities.Callback {
                 vs0Var.f(true);
                 return;
             default:
-                zh.y4 y4Var = (zh.y4) this.f37205b;
-                TLRPC.User user = (TLRPC.User) this.f37206c;
+                zh.y4 y4Var = (zh.y4) this.f37208b;
+                TLRPC.User user = (TLRPC.User) this.f37209c;
                 Void r10 = (Void) obj;
                 long j10 = y4Var.Z;
-                Runnable runnable = y4Var.f53338g0;
+                Runnable runnable = y4Var.f53341g0;
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -219,8 +219,8 @@ public final class s implements Utilities.Callback {
     }
 
     public s(l0 l0Var, g0 g0Var, z7 z7Var) {
-        this.f37204a = 2;
-        this.f37205b = g0Var;
-        this.f37206c = z7Var;
+        this.f37207a = 2;
+        this.f37208b = g0Var;
+        this.f37209c = z7Var;
     }
 }

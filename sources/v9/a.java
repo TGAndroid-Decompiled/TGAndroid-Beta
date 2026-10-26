@@ -8,25 +8,25 @@ import org.telegram.ui.Components.b10;
 import org.telegram.ui.Components.voip.j1;
 import s9.p;
 public final class a {
-    public static final b f50094c = new Object();
-    public final p f50095a;
-    public final AtomicReference f50096b = new AtomicReference(null);
+    public static final b f50097c = new Object();
+    public final p f50098a;
+    public final AtomicReference f50099b = new AtomicReference(null);
 
     public a(p pVar) {
-        this.f50095a = pVar;
+        this.f50098a = pVar;
         pVar.a(new j1(this, 23));
     }
 
     public final b a(String str) {
-        a aVar = (a) this.f50096b.get();
+        a aVar = (a) this.f50099b.get();
         if (aVar == null) {
-            return f50094c;
+            return f50097c;
         }
         return aVar.a(str);
     }
 
     public final boolean b() {
-        a aVar = (a) this.f50096b.get();
+        a aVar = (a) this.f50099b.get();
         if (aVar != null && aVar.b()) {
             return true;
         }
@@ -34,7 +34,7 @@ public final class a {
     }
 
     public final boolean c(String str) {
-        a aVar = (a) this.f50096b.get();
+        a aVar = (a) this.f50099b.get();
         if (aVar != null && aVar.c(str)) {
             return true;
         }
@@ -46,6 +46,6 @@ public final class a {
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", j11, null);
         }
-        this.f50095a.a(new i(str, j10, d1Var, 11));
+        this.f50098a.a(new i(str, j10, d1Var, 11));
     }
 }

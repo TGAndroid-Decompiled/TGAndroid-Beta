@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class cy0 implements Runnable {
-    public final int f27281a;
-    public final Object f27282b;
+    public final int f27283a;
+    public final Object f27284b;
 
     public cy0(Object obj, int i10) {
-        this.f27281a = i10;
-        this.f27282b = obj;
+        this.f27283a = i10;
+        this.f27284b = obj;
     }
 
     private final void a() {

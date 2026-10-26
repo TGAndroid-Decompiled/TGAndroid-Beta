@@ -23,13 +23,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class n81 extends org.telegram.ui.Components.bb {
-    public static final int f41803d0 = 0;
+    public static final int f41806d0 = 0;
     public final bi.c X;
     public final LinearLayout Y;
     public final LinearLayout Z;
-    public boolean f41804a0;
-    public boolean f41805b0;
-    public org.telegram.ui.Components.j71 f41806c0;
+    public boolean f41807a0;
+    public boolean f41808b0;
+    public org.telegram.ui.Components.j71 f41809c0;
 
     public n81(final Context context, final int i10, final org.telegram.ui.ActionBar.u6 u6Var, final li.s2 s2Var) {
         super(1, context, u6Var, true);
@@ -61,7 +61,7 @@ public final class n81 extends org.telegram.ui.Components.bb {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.dice6);
         linearLayout.addView(imageView, org.telegram.ui.Components.gb1.x(80, 80, 1, 0, 0, 0, 8));
-        int i13 = org.telegram.ui.ActionBar.y6.f23462j5;
+        int i13 = org.telegram.ui.ActionBar.y6.f23464j5;
         TextView L = org.telegram.ui.Components.gb1.L(context, 20.0f, i13, true, null);
         L.setGravity(17);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.StakeDiceTitle));
@@ -103,7 +103,7 @@ public final class n81 extends org.telegram.ui.Components.bb {
             tableRow2.addView((View) dVar.run((Object) 6, (Object) Float.valueOf(tL_emojiGameDiceInfo.params.get(5).intValue() / 1000.0f)), new TableRow.LayoutParams(0, -1, 1.0f));
             tableRow2.addView((View) dVar.run((Object) 7, (Object) Float.valueOf(tL_emojiGameDiceInfo.params.get(6).intValue() / 1000.0f)), new TableRow.LayoutParams(0, -1, 2.0f));
         }
-        TextView L4 = org.telegram.ui.Components.gb1.L(context, 14.0f, org.telegram.ui.ActionBar.y6.f23746y6, false, null);
+        TextView L4 = org.telegram.ui.Components.gb1.L(context, 14.0f, org.telegram.ui.ActionBar.y6.f23748y6, false, null);
         L4.setGravity(17);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("🎲");
         org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(R.drawable.dice6, 0);
@@ -134,8 +134,8 @@ public final class n81 extends org.telegram.ui.Components.bb {
         editTextBoldCursor.setInputType(8194);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        org.telegram.ui.ActionBar.f7.D(editTextBoldCursor, org.telegram.ui.ActionBar.y6.f23680uf, u6Var);
-        org.telegram.ui.ActionBar.f7.m(editTextBoldCursor, 36, org.telegram.ui.ActionBar.y6.f23698vf, u6Var);
+        org.telegram.ui.ActionBar.f7.D(editTextBoldCursor, org.telegram.ui.ActionBar.y6.f23682uf, u6Var);
+        org.telegram.ui.ActionBar.f7.m(editTextBoldCursor, 36, org.telegram.ui.ActionBar.y6.f23700vf, u6Var);
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
@@ -263,19 +263,19 @@ public final class n81 extends org.telegram.ui.Components.bb {
         org.telegram.ui.Components.mm0 mm0Var = this.d;
         int i24 = this.backgroundPaddingLeft;
         mm0Var.setPadding(i24, 0, i24, AndroidUtilities.dp(68.0f));
-        this.f41806c0.O(false);
+        this.f41809c0.O(false);
     }
 
     public final void P() {
         boolean z10;
         float f7;
-        if (this.f41804a0 && !isDismissed() && !isKeyboardVisible()) {
+        if (this.f41807a0 && !isDismissed() && !isKeyboardVisible()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f41805b0 != z10) {
-            this.f41805b0 = z10;
+        if (this.f41808b0 != z10) {
+            this.f41808b0 = z10;
             bi.c cVar = this.X;
             if (cVar != null) {
                 cVar.setEnabled(z10);
@@ -319,21 +319,21 @@ public final class n81 extends org.telegram.ui.Components.bb {
     @Override
     public final void onDismissAnimationStart() {
         super.onDismissAnimationStart();
-        this.f41804a0 = false;
+        this.f41807a0 = false;
         P();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f41804a0 = true;
+        this.f41807a0 = true;
         P();
     }
 
     @Override
     public final org.telegram.ui.Components.lm0 v(org.telegram.ui.Components.mm0 mm0Var) {
         org.telegram.ui.Components.j71 j71Var = new org.telegram.ui.Components.j71(mm0Var, getContext(), this.currentAccount, 0, false, new e5(this, 27), this.resourcesProvider);
-        this.f41806c0 = j71Var;
+        this.f41809c0 = j71Var;
         return j71Var;
     }
 

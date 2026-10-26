@@ -27,7 +27,7 @@ public final class x1 extends ImageView implements p6 {
     public x1(Context context, int i10, u6 u6Var) {
         super(context);
         this.e = 20;
-        this.f17614f = y6.f23354d6;
+        this.f17614f = y6.f23356d6;
         this.f17615n = true;
         this.f17617s = true;
         this.f17612b = i10;
@@ -49,7 +49,7 @@ public final class x1 extends ImageView implements p6 {
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(y6.Oh));
         hashSet.add(Integer.valueOf(y6.G6));
-        hashSet.add(Integer.valueOf(y6.f23446i6));
+        hashSet.add(Integer.valueOf(y6.f23448i6));
         hashSet.add(Integer.valueOf(this.f17614f));
     }
 
@@ -141,7 +141,7 @@ public final class x1 extends ImageView implements p6 {
             setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
             return;
         }
-        setBackground(y6.a0(y6.w0(this.f17614f, u6Var), y6.w0(y6.f23446i6, u6Var), AndroidUtilities.dp(this.e), AndroidUtilities.dp(this.e)));
+        setBackground(y6.a0(y6.w0(this.f17614f, u6Var), y6.w0(y6.f23448i6, u6Var), AndroidUtilities.dp(this.e), AndroidUtilities.dp(this.e)));
         setColorFilter(new PorterDuffColorFilter(y6.w0(y6.G6, u6Var), PorterDuff.Mode.SRC_IN));
     }
 }

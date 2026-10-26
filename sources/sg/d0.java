@@ -15,13 +15,13 @@ public final class d0 extends rg.c1 {
 
     @Override
     public final void g(rg.m mVar) {
-        int indexOf = rg.m.f47462a.indexOf(mVar);
+        int indexOf = rg.m.f47465a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1 || this.E != null) {
             indexOf = i10;
         }
         nt0 nt0Var = this.F;
-        nt0Var.f48339i1.b(indexOf);
+        nt0Var.f48342i1.b(indexOf);
         nt0Var.i(mVar);
     }
 }

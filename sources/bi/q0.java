@@ -31,8 +31,8 @@ public final class q0 extends org.telegram.ui.Components.bb {
         ec ecVar = new ec(context, 70, 0);
         frameLayout.addView(ecVar, gb1.g(-1.0f, -1));
         ug.n nVar = new ug.n(context, 1, 2);
-        ug.g gVar = nVar.f49813b;
-        gVar.f49797z = org.telegram.ui.ActionBar.y6.fk;
+        ug.g gVar = nVar.f49816b;
+        gVar.f49800z = org.telegram.ui.ActionBar.y6.fk;
         gVar.A = org.telegram.ui.ActionBar.y6.gk;
         gVar.b();
         nVar.setStarParticlesView(ecVar);
@@ -41,7 +41,7 @@ public final class q0 extends org.telegram.ui.Components.bb {
         linearLayout.addView(frameLayout, gb1.g(150.0f, -1));
         TextView textView = new TextView(context);
         ic.a.o(20.0f, 1, textView);
-        int i11 = org.telegram.ui.ActionBar.y6.f23462j5;
+        int i11 = org.telegram.ui.ActionBar.y6.f23464j5;
         org.telegram.ui.ActionBar.f7.V(textView, i11, this.resourcesProvider);
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.ExplainStarsTitle));
@@ -58,7 +58,7 @@ public final class q0 extends org.telegram.ui.Components.bb {
         frameLayout2.addView(dVar, gb1.h(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         int i12 = this.backgroundPaddingLeft;
         frameLayout2.setPadding(i12, 0, i12, 0);
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23425h5, frameLayout2, null);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23427h5, frameLayout2, null);
         this.containerView.addView(frameLayout2, gb1.i(-1, -2, 87));
         this.X.O(false);
     }

@@ -16,34 +16,34 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final org.telegram.ui.ActionBar.u6 f34556a;
-    public int f34557b;
-    public final View f34558c;
+    public final org.telegram.ui.ActionBar.u6 f34559a;
+    public int f34560b;
+    public final View f34561c;
     public final FrameLayout d;
     public final w4.c e;
-    public final h2 f34559f;
+    public final h2 f34562f;
     public final int h;
-    public float f34560n;
-    public float f34561r;
-    public float f34562s;
+    public float f34563n;
+    public float f34564r;
+    public float f34565s;
     public boolean v;
-    public boolean f34563w;
-    public boolean f34564x;
-    public int f34565y;
+    public boolean f34566w;
+    public boolean f34567x;
+    public int f34568y;
 
     public wz(Context context, r71 r71Var, org.telegram.ui.ActionBar.u6 u6Var, h2 h2Var) {
         super(context);
         int i10;
         boolean z10;
-        this.f34565y = -1;
-        this.f34558c = r71Var;
-        this.f34559f = h2Var;
+        this.f34568y = -1;
+        this.f34561c = r71Var;
+        this.f34562f = h2Var;
         this.h = ViewConfiguration.get(context).getScaledTouchSlop();
         addView(r71Var, gb1.g(-1.0f, -1));
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
         int dp = AndroidUtilities.dp(20.0f);
-        int i11 = org.telegram.ui.ActionBar.y6.f23354d6;
+        int i11 = org.telegram.ui.ActionBar.y6.f23356d6;
         ShapeDrawable c02 = org.telegram.ui.ActionBar.y6.c0(dp, org.telegram.ui.ActionBar.y6.w0(i11, u6Var));
         org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i11);
         frameLayout.setBackground(c02);
@@ -53,24 +53,24 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
         addView(frameLayout, gb1.i(40, 40, 49));
         w4.c cVar = new w4.c(context);
         this.e = cVar;
-        float f7 = cVar.f50796c.getDisplayMetrics().density;
+        float f7 = cVar.f50799c.getDisplayMetrics().density;
         float f10 = 2.5f * f7;
-        w4.b bVar2 = cVar.f50794a;
+        w4.b bVar2 = cVar.f50797a;
         bVar2.h = f10;
-        bVar2.f50775b.setStrokeWidth(f10);
-        bVar2.f50787q = 7.5f * f7;
+        bVar2.f50778b.setStrokeWidth(f10);
+        bVar2.f50790q = 7.5f * f7;
         bVar2.a(0);
-        bVar2.f50788r = (int) (10.0f * f7);
-        bVar2.f50789s = (int) (5.0f * f7);
+        bVar2.f50791r = (int) (10.0f * f7);
+        bVar2.f50792s = (int) (5.0f * f7);
         cVar.invalidateSelf();
         float dp2 = AndroidUtilities.dp(2.25f);
         bVar2.h = dp2;
-        bVar2.f50775b.setStrokeWidth(dp2);
+        bVar2.f50778b.setStrokeWidth(dp2);
         cVar.invalidateSelf();
-        this.f34556a = u6Var;
+        this.f34559a = u6Var;
         int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, u6Var);
-        this.f34557b = w02;
-        bVar2.f50779i = new int[]{w02};
+        this.f34560b = w02;
+        bVar2.f50782i = new int[]{w02};
         bVar2.a(0);
         bVar2.a(0);
         cVar.invalidateSelf();
@@ -84,7 +84,7 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
         int i12 = 0;
         while (true) {
             if (i12 < e.size()) {
-                if (TextUtils.equals(string, ((AccessibilityNodeInfo.AccessibilityAction) ((s0.c) e.get(i12)).f47646a).getLabel())) {
+                if (TextUtils.equals(string, ((AccessibilityNodeInfo.AccessibilityAction) ((s0.c) e.get(i12)).f47649a).getLabel())) {
                     i10 = ((s0.c) e.get(i12)).a();
                     break;
                 }
@@ -120,7 +120,7 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
             View.AccessibilityDelegate d = r0.i0.d(r71Var);
             if (d != null) {
                 if (d instanceof r0.a) {
-                    bVar = ((r0.a) d).f47069a;
+                    bVar = ((r0.a) d).f47072a;
                 } else {
                     bVar = new r0.b(d);
                 }
@@ -147,12 +147,12 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
 
     public final void a(boolean z10) {
         this.v = false;
-        this.f34563w = false;
-        this.f34565y = -1;
+        this.f34566w = false;
+        this.f34568y = -1;
         getParent().requestDisallowInterceptTouchEvent(false);
         if (z10) {
             setRefreshing(true);
-            this.f34559f.run();
+            this.f34562f.run();
             return;
         }
         setRefreshing(false);
@@ -164,14 +164,14 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
         frameLayout.setTranslationY(-AndroidUtilities.dp(48.0f));
         frameLayout.setAlpha(0.0f);
         this.e.stop();
-        this.f34562s = 0.0f;
-        this.f34558c.setTranslationY(0.0f);
+        this.f34565s = 0.0f;
+        this.f34561c.setTranslationY(0.0f);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f34564x) {
+        if (this.f34567x) {
             w4.c cVar = this.e;
             if (!cVar.d.isRunning()) {
                 cVar.start();
@@ -183,11 +183,11 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
     public final void onDetachedFromWindow() {
         this.e.stop();
         this.d.animate().cancel();
-        this.f34558c.animate().cancel();
+        this.f34561c.animate().cancel();
         this.v = false;
-        this.f34563w = false;
-        this.f34565y = -1;
-        if (!this.f34564x) {
+        this.f34566w = false;
+        this.f34568y = -1;
+        if (!this.f34567x) {
             b();
         }
         super.onDetachedFromWindow();
@@ -200,10 +200,10 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f34563w) {
+        if (!this.f34566w) {
             return super.onTouchEvent(motionEvent);
         }
-        int findPointerIndex = motionEvent.findPointerIndex(this.f34565y);
+        int findPointerIndex = motionEvent.findPointerIndex(this.f34568y);
         int actionMasked = motionEvent.getActionMasked();
         boolean z10 = false;
         if (actionMasked != 1) {
@@ -217,36 +217,36 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
                 a(false);
                 return true;
             } else {
-                this.f34562s = Math.min(AndroidUtilities.dp(112.0f), Math.max(0.0f, ((motionEvent.getY(findPointerIndex) - this.f34561r) - this.h) * 0.5f));
+                this.f34565s = Math.min(AndroidUtilities.dp(112.0f), Math.max(0.0f, ((motionEvent.getY(findPointerIndex) - this.f34564r) - this.h) * 0.5f));
                 FrameLayout frameLayout = this.d;
                 frameLayout.animate().cancel();
                 frameLayout.setVisibility(0);
-                frameLayout.setAlpha(Math.min(1.0f, this.f34562s / AndroidUtilities.dp(48.0f)));
-                frameLayout.setTranslationY((this.f34562s - AndroidUtilities.dp(40.0f)) / 2.0f);
-                View view = this.f34558c;
+                frameLayout.setAlpha(Math.min(1.0f, this.f34565s / AndroidUtilities.dp(48.0f)));
+                frameLayout.setTranslationY((this.f34565s - AndroidUtilities.dp(40.0f)) / 2.0f);
+                View view = this.f34561c;
                 view.animate().cancel();
-                view.setTranslationY(this.f34562s);
-                float max = (Math.max(Math.min(1.0f, this.f34562s / AndroidUtilities.dp(72.0f)) - 0.4f, 0.0f) * 5.0f) / 3.0f;
+                view.setTranslationY(this.f34565s);
+                float max = (Math.max(Math.min(1.0f, this.f34565s / AndroidUtilities.dp(72.0f)) - 0.4f, 0.0f) * 5.0f) / 3.0f;
                 w4.c cVar = this.e;
-                w4.b bVar = cVar.f50794a;
-                w4.b bVar2 = cVar.f50794a;
-                if (!bVar.f50784n) {
-                    bVar.f50784n = true;
+                w4.b bVar = cVar.f50797a;
+                w4.b bVar2 = cVar.f50797a;
+                if (!bVar.f50787n) {
+                    bVar.f50787n = true;
                 }
                 cVar.invalidateSelf();
-                if (max != bVar2.f50786p) {
-                    bVar2.f50786p = max;
+                if (max != bVar2.f50789p) {
+                    bVar2.f50789p = max;
                 }
                 cVar.invalidateSelf();
                 bVar2.e = 0.0f;
-                bVar2.f50777f = 0.8f * max;
+                bVar2.f50780f = 0.8f * max;
                 cVar.invalidateSelf();
-                bVar2.f50778g = org.telegram.ui.d3.e(max, 0.4f, -0.25f, 0.5f, Math.max(0.0f, this.f34562s - AndroidUtilities.dp(72.0f)) / AndroidUtilities.dp(80.0f));
+                bVar2.f50781g = org.telegram.ui.d3.e(max, 0.4f, -0.25f, 0.5f, Math.max(0.0f, this.f34565s - AndroidUtilities.dp(72.0f)) / AndroidUtilities.dp(80.0f));
                 cVar.invalidateSelf();
                 return true;
             }
         }
-        if (this.f34562s >= AndroidUtilities.dp(72.0f)) {
+        if (this.f34565s >= AndroidUtilities.dp(72.0f)) {
             z10 = true;
         }
         a(z10);
@@ -254,11 +254,11 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
     }
 
     public void setRefreshing(boolean z10) {
-        boolean z11 = this.f34564x;
-        this.f34564x = z10;
+        boolean z11 = this.f34567x;
+        this.f34567x = z10;
         FrameLayout frameLayout = this.d;
         frameLayout.animate().cancel();
-        View view = this.f34558c;
+        View view = this.f34561c;
         view.animate().cancel();
         if (z10) {
             frameLayout.setVisibility(0);
@@ -278,11 +278,11 @@ public final class wz extends FrameLayout implements org.telegram.ui.ActionBar.p
         w4.c cVar = this.e;
         if (cVar != null) {
             try {
-                int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f34556a);
-                if (w02 != this.f34557b) {
-                    this.f34557b = w02;
-                    w4.b bVar = cVar.f50794a;
-                    bVar.f50779i = new int[]{w02};
+                int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f34559a);
+                if (w02 != this.f34560b) {
+                    this.f34560b = w02;
+                    w4.b bVar = cVar.f50797a;
+                    bVar.f50782i = new int[]{w02};
                     bVar.a(0);
                     bVar.a(0);
                     cVar.invalidateSelf();

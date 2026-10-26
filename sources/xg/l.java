@@ -14,15 +14,15 @@ import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.ju;
 public final class l extends LinearLayout {
-    public final ju f51786a;
-    public final TextView f51787b;
-    public k f51788c;
+    public final ju f51789a;
+    public final TextView f51790b;
+    public k f51791c;
 
     public l(Context context, u6 u6Var) {
         super(context);
         setOrientation(0);
         ju juVar = new ju(context, u6Var);
-        this.f51786a = juVar;
+        this.f51789a = juVar;
         juVar.setLines(1);
         juVar.setSingleLine(true);
         InputFilter[] inputFilterArr = {new j(this)};
@@ -30,21 +30,21 @@ public final class l extends LinearLayout {
         juVar.setFilters(inputFilterArr);
         juVar.setTextSize(1, 16.0f);
         f7.V(juVar, y6.Ud, u6Var);
-        f7.H(juVar, y6.f23432hc, u6Var);
-        f7.D(juVar, y6.f23680uf, u6Var);
+        f7.H(juVar, y6.f23434hc, u6Var);
+        f7.D(juVar, y6.f23682uf, u6Var);
         int i10 = y6.Vd;
         f7.m(juVar, 34, i10, u6Var);
         f7.E(juVar, i10, u6Var);
         f7.m(juVar, 30, y6.Wd, u6Var);
-        f7.m(juVar, 36, y6.f23698vf, u6Var);
+        f7.m(juVar, 36, y6.f23700vf, u6Var);
         juVar.setBackground(null);
         juVar.setHint(LocaleController.getString(R.string.BoostingGiveawayEnterYourPrize));
         juVar.addTextChangedListener(new bi.u(this, 22));
         juVar.setImeOptions(6);
         TextView textView = new TextView(context);
-        this.f51787b = textView;
+        this.f51790b = textView;
         textView.setTextSize(1, 16.0f);
-        f7.V(textView, y6.f23462j5, u6Var);
+        f7.V(textView, y6.f23464j5, u6Var);
         if (LocaleController.isRTL) {
             LinearLayout.LayoutParams x9 = gb1.x(-1, -2, 16, 20, 0, 36, 0);
             x9.weight = 1.0f;
@@ -62,10 +62,10 @@ public final class l extends LinearLayout {
     }
 
     public void setAfterTextChangedListener(k kVar) {
-        this.f51788c = kVar;
+        this.f51791c = kVar;
     }
 
     public void setCount(int i10) {
-        this.f51787b.setText(String.valueOf(i10));
+        this.f51790b.setText(String.valueOf(i10));
     }
 }

@@ -112,7 +112,7 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         }
         marginLayoutParams.topMargin = i10;
         if (y9Var.f9422c) {
-            a2 = k1Var.f47115a.f(2).d;
+            a2 = k1Var.f47118a.f(2).d;
         } else {
             a2 = k1Var.a();
         }
@@ -127,7 +127,7 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         if (n9Var != null) {
             n9Var.requestLayout();
         }
-        return k1.f47114b;
+        return k1.f47117b;
     }
 
     @Override
@@ -330,7 +330,7 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         o8 o8Var;
         n8 n8Var = (n8) this.f35b;
         if (!n8Var.v.f8891x) {
-            gVar.f51870q = new m8(n8Var, 2);
+            gVar.f51873q = new m8(n8Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(o8Var.getHeight(), 2.0d) + Math.pow(o8Var.getWidth(), 2.0d));
             ArrayList arrayList = n8Var.f8842i;
             int size = arrayList.size();

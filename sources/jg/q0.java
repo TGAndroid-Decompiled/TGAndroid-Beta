@@ -98,9 +98,9 @@ public final class q0 implements Runnable {
                 TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) obj2;
                 TLRPC.User user2 = (TLRPC.User) tLObject;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) obj;
-                int i12 = kVar.f52614k;
+                int i12 = kVar.f52617k;
                 ArrayList arrayList3 = kVar.e;
-                r2 r2Var2 = kVar.f52611g;
+                r2 r2Var2 = kVar.f52614g;
                 if (r2Var2 != null && r2Var2.getParentActivity() != null) {
                     if (tL_error == null) {
                         TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject2;
@@ -117,11 +117,11 @@ public final class q0 implements Runnable {
                                 }
                             }
                         }
-                        yh.f fVar = kVar.f52610f;
-                        yh.k kVar2 = fVar.f52591c;
+                        yh.f fVar = kVar.f52613f;
+                        yh.k kVar2 = fVar.f52594c;
                         int i14 = 0;
                         while (true) {
-                            arrayList = kVar2.f52609c;
+                            arrayList = kVar2.f52612c;
                             if (i14 < arrayList.size()) {
                                 user = user2;
                                 if (((TLRPC.TL_chatInviteImporter) arrayList.get(i14)).user_id != tL_chatInviteImporter.user_id) {
@@ -135,21 +135,21 @@ public final class q0 implements Runnable {
                         }
                         if (i14 >= 0) {
                             arrayList.remove(i14);
-                            fVar.u((!fVar.f52591c.B ? 1 : 0) + i14);
+                            fVar.u((!fVar.f52594c.B ? 1 : 0) + i14);
                             if (arrayList.isEmpty()) {
                                 fVar.u(1);
                             }
                         }
-                        kVar.f(kVar.f52623t, false, true);
+                        kVar.f(kVar.f52626t, false, true);
                         if (z10) {
                             cc ccVar = new cc(r2Var2.getParentActivity(), r2Var2.getResourceProvider());
                             int dp = AndroidUtilities.dp(15.0f);
-                            y9 y9Var = ccVar.f27111a;
+                            y9 y9Var = ccVar.f27113a;
                             y9Var.setRoundRadius(dp);
                             TLRPC.User user3 = user;
                             y9Var.f(user3, new j9(0, user3));
                             String firstName = UserObject.getFirstName(user3);
-                            if (kVar.f52607a) {
+                            if (kVar.f52610a) {
                                 formatString = LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, firstName);
                             } else {
                                 formatString = LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, firstName);
@@ -157,7 +157,7 @@ public final class q0 implements Runnable {
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
                             int indexOf = formatString.indexOf(firstName);
                             spannableStringBuilder.setSpan(new q61(AndroidUtilities.bold()), indexOf, firstName.length() + indexOf, 18);
-                            ccVar.f27112b.setText(spannableStringBuilder);
+                            ccVar.f27114b.setText(spannableStringBuilder);
                             if (arrayList3.isEmpty()) {
                                 qc.g(r2Var2, ccVar, 2750).j();
                             } else {
@@ -165,7 +165,7 @@ public final class q0 implements Runnable {
                             }
                         }
                         org.telegram.ui.ActionBar.z l4 = r2Var2.getActionBar().l();
-                        if (TextUtils.isEmpty(kVar.f52623t) && kVar.f52615l) {
+                        if (TextUtils.isEmpty(kVar.f52626t) && kVar.f52618l) {
                             org.telegram.ui.ActionBar.w0 j10 = l4.j(0);
                             if (arrayList3.isEmpty()) {
                                 i10 = 8;

@@ -61,7 +61,7 @@ public final class j0 {
         y6.w0(i10, u6Var);
         f7.W(g1Var, f7.L(0.5f, i10), u6Var);
         b7 L = f7.L(0.35f, i10);
-        f7.o(g1Var, 1, L.f22483a, -1, 2, L.d, u6Var);
+        f7.o(g1Var, 1, L.f22485a, -1, 2, L.d, u6Var);
     }
 
     public final void b() {

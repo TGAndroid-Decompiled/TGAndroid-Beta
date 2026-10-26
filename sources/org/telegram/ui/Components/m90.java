@@ -8,11 +8,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class m90 extends mr0 {
-    public final r90 f30460a1;
+    public final r90 f30462a1;
 
     public m90(r90 r90Var, Context context, String str, String str2, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context, null, str, false, str2, false, u6Var);
-        this.f30460a1 = r90Var;
+        this.f30462a1 = r90Var;
     }
 
     @Override
@@ -31,6 +31,6 @@ public final class m90 extends mr0 {
         } else {
             formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i10, new Object[0]));
         }
-        this.f30460a1.e(R.raw.forward, AndroidUtilities.replaceTags(formatString));
+        this.f30462a1.e(R.raw.forward, AndroidUtilities.replaceTags(formatString));
     }
 }

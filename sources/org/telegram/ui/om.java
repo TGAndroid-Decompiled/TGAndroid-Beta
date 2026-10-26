@@ -11,24 +11,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class om implements ku0 {
-    public final TL_iv.RichMessage f42244a;
-    public final ArrayList f42245b;
-    public final MessageObject f42246c;
+    public final TL_iv.RichMessage f42247a;
+    public final ArrayList f42248b;
+    public final MessageObject f42249c;
 
     public om(TL_iv.RichMessage richMessage, ArrayList arrayList, MessageObject messageObject) {
-        this.f42244a = richMessage;
-        this.f42245b = arrayList;
-        this.f42246c = messageObject;
+        this.f42247a = richMessage;
+        this.f42248b = arrayList;
+        this.f42249c = messageObject;
     }
 
     @Override
     public final boolean a(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f42245b;
+            ArrayList arrayList = this.f42248b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    TLRPC.Document b10 = f4.b(this.f42244a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    TLRPC.Document b10 = f4.b(this.f42247a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
                     if (b10 != null) {
                         return MessageObject.isVideoDocument(b10);
                     }
@@ -46,11 +46,11 @@ public final class om implements ku0 {
         TLRPC.Document b10;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         if (i10 >= 0) {
-            ArrayList arrayList = this.f42245b;
+            ArrayList arrayList = this.f42248b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f42244a;
+                TL_iv.RichMessage richMessage = this.f42247a;
                 if (z10) {
                     TLRPC.Photo f7 = f4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                     if (f7 != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(f7.sizes, AndroidUtilities.getPhotoSize())) != null) {
@@ -80,11 +80,11 @@ public final class om implements ku0 {
     @Override
     public final TLObject d(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f42245b;
+            ArrayList arrayList = this.f42248b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f42244a;
+                TL_iv.RichMessage richMessage = this.f42247a;
                 if (z10) {
                     return f4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 }
@@ -139,27 +139,27 @@ public final class om implements ku0 {
 
     @Override
     public final Object g() {
-        MessageObject messageObject = this.f42246c;
+        MessageObject messageObject = this.f42249c;
         if (messageObject != null) {
             return messageObject;
         }
-        return this.f42244a;
+        return this.f42247a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i10) {
-        return (TL_iv.PageBlock) this.f42245b.get(i10);
+        return (TL_iv.PageBlock) this.f42248b.get(i10);
     }
 
     @Override
     public final List getAll() {
-        return this.f42245b;
+        return this.f42248b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
         RichMessageLayout richMessageLayout;
-        MessageObject messageObject = this.f42246c;
+        MessageObject messageObject = this.f42249c;
         if (messageObject != null && (richMessageLayout = messageObject.richLayout) != null) {
             richMessageLayout.setSlideshowPage(pageBlock);
         }
@@ -172,6 +172,6 @@ public final class om implements ku0 {
 
     @Override
     public final int j() {
-        return this.f42245b.size();
+        return this.f42248b.size();
     }
 }

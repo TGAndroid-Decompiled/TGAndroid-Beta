@@ -41,26 +41,26 @@ public final class o2 implements org.telegram.ui.ActionBar.b2, ResultCallback {
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
             Bitmap bitmap = ((fg.a) pair.second).f10468b;
-            org.telegram.ui.ActionBar.h4 h4Var2 = snVar.f43542f;
-            if (h4Var2 != null && longValue == h4Var2.h(snVar.f43552q ? 1 : 0) && bitmap != null) {
-                ValueAnimator valueAnimator = snVar.f43544i;
+            org.telegram.ui.ActionBar.h4 h4Var2 = snVar.f43545f;
+            if (h4Var2 != null && longValue == h4Var2.h(snVar.f43555q ? 1 : 0) && bitmap != null) {
+                ValueAnimator valueAnimator = snVar.f43547i;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
                 int i10 = h4Var.j(this.f20823a ? 1 : 0).settings.intensity;
                 List list = ((fg.a) pair.second).f10469c;
                 uc0Var.R = list;
-                long j10 = snVar.F.f44228db;
+                long j10 = snVar.F.f44231db;
                 if (list != null) {
                     uc0Var.S = new Random(j10).nextInt(uc0Var.R.size());
                 }
                 uc0Var.s(bitmap, i10);
                 uc0Var.t(this.f20824b);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                snVar.f43544i = ofFloat;
+                snVar.f43547i = ofFloat;
                 ofFloat.addUpdateListener(new on(uc0Var, 2));
-                snVar.f43544i.setDuration(250L);
-                snVar.f43544i.start();
+                snVar.f43547i.setDuration(250L);
+                snVar.f43547i.start();
             }
         }
     }

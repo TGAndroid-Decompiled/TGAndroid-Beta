@@ -60,7 +60,7 @@ public final class r0 extends mm0 implements p6 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(AndroidUtilities.dp(28.0f));
-        f7.m(this, 20, y6.f23446i6, u6Var);
+        f7.m(this, 20, y6.f23448i6, u6Var);
     }
 
     public static void C1(int i10, int i11, ArrayList arrayList) {
@@ -313,7 +313,7 @@ public final class r0 extends mm0 implements p6 {
                 Object obj = arrayList.get(i10);
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
-                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f22174id == user.f22174id) {
+                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f22176id == user.f22176id) {
                         formatName = LocaleController.getString(R.string.SavedMessages);
                     } else {
                         formatName = ContactsController.formatName(user.first_name, user.last_name, 10);
@@ -355,7 +355,7 @@ public final class r0 extends mm0 implements p6 {
 
     public ArrayList<h7> getThemeDescriptions() {
         ArrayList<h7> arrayList = new ArrayList<>();
-        arrayList.add(new h7(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23374e7));
+        arrayList.add(new h7(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23376e7));
         arrayList.add(new h7(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f7));
         return arrayList;
     }
@@ -364,7 +364,7 @@ public final class r0 extends mm0 implements p6 {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f14223i3) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), y6.f23476k0);
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), y6.f23478k0);
         }
     }
 

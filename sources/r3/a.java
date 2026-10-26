@@ -6,9 +6,9 @@ import e2.n0;
 import j$.util.Objects;
 import java.util.Locale;
 public final class a {
-    public final long f47269a;
-    public final long f47270b;
-    public final int f47271c;
+    public final long f47272a;
+    public final long f47273b;
+    public final int f47274c;
 
     public a(long j10, long j11, int i10) {
         boolean z10;
@@ -18,9 +18,9 @@ public final class a {
             z10 = false;
         }
         yb.g(z10);
-        this.f47269a = j10;
-        this.f47270b = j11;
-        this.f47271c = i10;
+        this.f47272a = j10;
+        this.f47273b = j11;
+        this.f47274c = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -29,7 +29,7 @@ public final class a {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f47269a == aVar.f47269a && this.f47270b == aVar.f47270b && this.f47271c == aVar.f47271c) {
+            if (this.f47272a == aVar.f47272a && this.f47273b == aVar.f47273b && this.f47274c == aVar.f47274c) {
                 return true;
             }
         }
@@ -37,16 +37,16 @@ public final class a {
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f47269a), Long.valueOf(this.f47270b), Integer.valueOf(this.f47271c));
+        return Objects.hash(Long.valueOf(this.f47272a), Long.valueOf(this.f47273b), Integer.valueOf(this.f47274c));
     }
 
     public final String toString() {
         String str = n0.f9692a;
         Locale locale = Locale.US;
-        StringBuilder t10 = g.t(this.f47269a, "Segment: startTimeMs=", ", endTimeMs=");
-        t10.append(this.f47270b);
+        StringBuilder t10 = g.t(this.f47272a, "Segment: startTimeMs=", ", endTimeMs=");
+        t10.append(this.f47273b);
         t10.append(", speedDivisor=");
-        t10.append(this.f47271c);
+        t10.append(this.f47274c);
         return t10.toString();
     }
 }

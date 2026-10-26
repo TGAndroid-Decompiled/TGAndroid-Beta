@@ -42,7 +42,7 @@ public final class f extends sb.e {
         this.f3845f = bVar2;
         this.f3846g = caVar;
         ?? obj = new Object();
-        obj.f50866a = Float.valueOf(bVar.f52845a);
+        obj.f50869a = Float.valueOf(bVar.f52848a);
         this.e = new f8(obj);
         this.h = new mg(sb.g.c().b(), 1);
     }
@@ -55,12 +55,12 @@ public final class f extends sb.e {
         obj.f1152c = k7.TYPE_THIN;
         w1 w1Var = new w1(28, (byte) 0);
         w1Var.f18293b = this.e;
-        y7.l lVar = n.f52238b;
+        y7.l lVar = n.f52241b;
         Object[] objArr = {l7.NO_ERROR};
         e5.a(1, objArr);
         w1Var.f18294c = new r(1, objArr);
         obj.d = new e8(w1Var);
-        m.f48061a.execute(new fg(caVar, new ng((m0) obj, 0), m7.ON_DEVICE_IMAGE_LABEL_LOAD, caVar.b(), 8));
+        m.f48064a.execute(new fg(caVar, new ng((m0) obj, 0), m7.ON_DEVICE_IMAGE_LABEL_LOAD, caVar.b(), 8));
     }
 
     @Override
@@ -70,7 +70,7 @@ public final class f extends sb.e {
         ca caVar = this.f3846g;
         ?? obj = new Object();
         obj.f1152c = k7.TYPE_THIN;
-        m.f48061a.execute(new fg(caVar, new ng((m0) obj, 0), m7.ON_DEVICE_IMAGE_LABEL_CLOSE, caVar.b(), 8));
+        m.f48064a.execute(new fg(caVar, new ng((m0) obj, 0), m7.ON_DEVICE_IMAGE_LABEL_CLOSE, caVar.b(), 8));
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class f extends sb.e {
         caVar.getClass();
         long elapsedRealtime2 = SystemClock.elapsedRealtime();
         if (caVar.c(m7Var, elapsedRealtime2)) {
-            caVar.f52102i.put(m7Var, Long.valueOf(elapsedRealtime2));
+            caVar.f52105i.put(m7Var, Long.valueOf(elapsedRealtime2));
             ?? obj = new Object();
             obj.f1152c = k7.TYPE_THIN;
             s4.d dVar = new s4.d(17, false);
@@ -116,10 +116,10 @@ public final class f extends sb.e {
             Boolean bool = Boolean.TRUE;
             obj2.d = bool;
             obj2.e = bool;
-            dVar.f47717b = new e7(obj2);
+            dVar.f47720b = new e7(obj2);
             int i11 = aVar.e;
             if (i11 == -1) {
-                Bitmap bitmap = aVar.f51704a;
+                Bitmap bitmap = aVar.f51707a;
                 l.h(bitmap);
                 i10 = bitmap.getAllocationByteCount();
             } else if (i11 != 17 && i11 != 842094169) {
@@ -158,18 +158,18 @@ public final class f extends sb.e {
             cVar.f18009b = b7Var;
             cVar.f18010c = Integer.valueOf(i10 & Integer.MAX_VALUE);
             dVar.d = new c7(cVar);
-            dVar.f47718c = this.e;
+            dVar.f47721c = this.e;
             obj.e = new d8(dVar);
-            m.f48061a.execute(new fg(caVar, new ng((m0) obj, 0), m7Var, caVar.b(), 8));
+            m.f48064a.execute(new fg(caVar, new ng((m0) obj, 0), m7Var, caVar.b(), 8));
         }
         s4.d dVar2 = new s4.d(16, false);
         dVar2.d = this.e;
-        dVar2.f47717b = l7Var;
-        dVar2.f47718c = Boolean.valueOf(this.d);
-        m.f48061a.execute(new ig(this.f3846g, new q0(dVar2), elapsedRealtime));
+        dVar2.f47720b = l7Var;
+        dVar2.f47721c = Boolean.valueOf(this.d);
+        m.f48064a.execute(new ig(this.f3846g, new q0(dVar2), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         mg mgVar = this.h;
-        int i12 = l7Var.f52211a;
+        int i12 = l7Var.f52214a;
         long j11 = currentTimeMillis - elapsedRealtime;
         synchronized (mgVar) {
             long elapsedRealtime3 = SystemClock.elapsedRealtime();

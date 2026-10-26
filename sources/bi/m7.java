@@ -64,7 +64,7 @@ public final class m7 extends View {
         r6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
         r6Var.M = AndroidUtilities.displaySize.x;
         r6Var.u(-1);
-        r6Var.f32119b = 17;
+        r6Var.f32121b = 17;
         this.H = new k7(this, 0);
         this.f5095x = new f2(9, this, unVar);
     }

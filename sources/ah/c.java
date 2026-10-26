@@ -40,7 +40,7 @@ public final class c extends ab {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, y6.f23476k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, y6.f23478k0);
         }
     }
 
@@ -71,6 +71,6 @@ public final class c extends ab {
             aVar2.e = aVar2.f1403a.measureText(valueOf2);
             aVar2.invalidateSelf();
         }
-        this.f23872b.i(this.f1413b0);
+        this.f23874b.i(this.f1413b0);
     }
 }

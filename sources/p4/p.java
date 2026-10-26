@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import li.h5;
 public abstract class p extends q {
-    public final Object f46729a = new Object();
-    public Executor f46730b;
-    public h5 f46731c;
+    public final Object f46732a = new Object();
+    public Executor f46733b;
+    public h5 f46734c;
     public m d;
     public ArrayList e;
 
@@ -22,12 +22,12 @@ public abstract class p extends q {
 
     public final void l(m mVar, ArrayList arrayList) {
         if (mVar != null) {
-            synchronized (this.f46729a) {
+            synchronized (this.f46732a) {
                 try {
                     try {
-                        Executor executor = this.f46730b;
+                        Executor executor = this.f46733b;
                         if (executor != null) {
-                            executor.execute(new fg(this, this.f46731c, mVar, arrayList, false, 4));
+                            executor.execute(new fg(this, this.f46734c, mVar, arrayList, false, 4));
                         } else {
                             this.d = mVar;
                             this.e = new ArrayList(arrayList);

@@ -10,9 +10,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.gb1;
 public final class y5 extends FrameLayout {
-    public final TextView f25756a;
-    public final LinearLayout f25757b;
-    public View.OnClickListener f25758c;
+    public final TextView f25758a;
+    public final LinearLayout f25759b;
+    public View.OnClickListener f25760c;
     public int d;
     public final int[] e;
 
@@ -20,7 +20,7 @@ public final class y5 extends FrameLayout {
         super(context);
         this.e = new int[]{0, -45747, -753630, -13056, -8269183, -9321002, -16747844, -10080879};
         TextView textView = new TextView(context);
-        this.f25756a = textView;
+        this.f25758a = textView;
         textView.setGravity(5);
         textView.setTextColor(-1);
         textView.setTextSize(1, 12.0f);
@@ -29,28 +29,28 @@ public final class y5 extends FrameLayout {
         textView.setEllipsize(TextUtils.TruncateAt.END);
         addView(textView, gb1.h(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f25757b = linearLayout;
+        this.f25759b = linearLayout;
         linearLayout.setOrientation(0);
         for (int i10 = 0; i10 < this.e.length; i10++) {
             RadioButton radioButton = new RadioButton(context);
             radioButton.setSize(AndroidUtilities.dp(20.0f));
             radioButton.setTag(Integer.valueOf(i10));
-            this.f25757b.addView(radioButton, gb1.p(1.0f / this.e.length, 0, -1));
+            this.f25759b.addView(radioButton, gb1.p(1.0f / this.e.length, 0, -1));
             radioButton.setOnClickListener(new a(this, 8));
         }
-        addView(this.f25757b, gb1.h(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
+        addView(this.f25759b, gb1.h(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
     }
 
     public final void a(int i10, String str) {
         this.d = i10;
-        this.f25756a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
+        this.f25758a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
         b(false);
     }
 
     public final void b(boolean z10) {
         boolean z11;
         int i10;
-        LinearLayout linearLayout = this.f25757b;
+        LinearLayout linearLayout = this.f25759b;
         int childCount = linearLayout.getChildCount();
         for (int i11 = 0; i11 < childCount; i11++) {
             View childAt = linearLayout.getChildAt(i11);
@@ -89,6 +89,6 @@ public final class y5 extends FrameLayout {
 
     @Override
     public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f25758c = onClickListener;
+        this.f25760c = onClickListener;
     }
 }

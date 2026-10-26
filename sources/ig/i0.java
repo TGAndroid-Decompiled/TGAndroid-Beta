@@ -158,7 +158,7 @@ public abstract class i0 extends lm0 {
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        int i10 = e1Var.f47738f;
+        int i10 = e1Var.f47741f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -223,20 +223,20 @@ public abstract class i0 extends lm0 {
             if (((TLRPC.User) obj).bot) {
                 return cyVar.A2;
             }
-            return cyVar.f38692z2;
+            return cyVar.f38695z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return cyVar.f38689y2;
+                return cyVar.f38692y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (cyVar.f38671v2 || cyVar.f38677w2) {
+                if (cyVar.f38674v2 || cyVar.f38680w2) {
                     return true;
                 }
                 return false;
-            } else if (cyVar.f38671v2 || cyVar.f38683x2) {
+            } else if (cyVar.f38674v2 || cyVar.f38686x2) {
                 return true;
             } else {
                 return false;
@@ -338,7 +338,7 @@ public abstract class i0 extends lm0 {
                 boolean z10 = tLObject instanceof TLRPC.User;
                 int i14 = this.f14094s0;
                 if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f22174id));
+                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f22176id));
                     if (user != null) {
                         return user;
                     }
@@ -499,7 +499,7 @@ public abstract class i0 extends lm0 {
 
     public final boolean L() {
         if (!this.N && !MediaDataController.getInstance(this.f14094s0).hints.isEmpty()) {
-            if (this.f14081h0 != 14 || this.f14092r0.f38692z2) {
+            if (this.f14081h0 != 14 || this.f14092r0.f38695z2) {
                 return true;
             }
             return false;
@@ -695,7 +695,7 @@ public abstract class i0 extends lm0 {
                     long a2 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f22136q = str;
+                    tL_messages_search.f22138q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -760,7 +760,7 @@ public abstract class i0 extends lm0 {
                     }
                     tL_messages_searchGlobal.users_only = z12;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f22138q = str;
+                    tL_messages_searchGlobal.f22140q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
@@ -927,7 +927,7 @@ public abstract class i0 extends lm0 {
                 if (i11 == 3) {
                     z11 = true;
                 }
-                m6Var.f24462l0 = z11;
+                m6Var.f24464l0 = z11;
                 za1Var = m6Var;
                 textView = za1Var;
                 break;
@@ -957,7 +957,7 @@ public abstract class i0 extends lm0 {
                 break;
             case 6:
                 za1 za1Var2 = new za1(context, 2, null);
-                f7.m(za1Var2, 20, y6.f23446i6, null);
+                f7.m(za1Var2, 20, y6.f23448i6, null);
                 za1Var2.setTag(9);
                 za1Var2.setItemAnimator(null);
                 za1Var2.setLayoutAnimation(null);

@@ -31,7 +31,7 @@ public final class u7 {
         TLRPC.WebPage webPage;
         TLRPC.Message message = messageObject.messageOwner;
         TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
-        if ((messageReplyHeader instanceof TLRPC.TL_messageReplyStoryHeader) && messageReplyHeader.story_id == storyItem.f22264id) {
+        if ((messageReplyHeader instanceof TLRPC.TL_messageReplyStoryHeader) && messageReplyHeader.story_id == storyItem.f22266id) {
             message.replyStory = c(i10, j10, storyItem);
         }
         int i11 = messageObject.type;
@@ -52,7 +52,7 @@ public final class u7 {
                 TLRPC.WebPageAttribute webPageAttribute = messageObject.messageOwner.media.webpage.attributes.get(i12);
                 if (webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) {
                     TLRPC.TL_webPageAttributeStory tL_webPageAttributeStory = (TLRPC.TL_webPageAttributeStory) webPageAttribute;
-                    if (tL_webPageAttributeStory.f22170id == storyItem.f22264id) {
+                    if (tL_webPageAttributeStory.f22172id == storyItem.f22266id) {
                         webPageAttribute.flags |= 1;
                         tL_webPageAttributeStory.storyItem = c(i10, j10, storyItem);
                     }
@@ -73,7 +73,7 @@ public final class u7 {
         }
         if (!storyItem.pinned && z10 && j10 != 0 && j10 != UserConfig.getInstance(i10).clientUserId) {
             TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
-            tL_storyItemDeleted.f22264id = storyItem.f22264id;
+            tL_storyItemDeleted.f22266id = storyItem.f22266id;
             return tL_storyItemDeleted;
         }
         return storyItem;
@@ -88,7 +88,7 @@ public final class u7 {
                 for (int i11 = 0; i11 < messageObject.messageOwner.media.webpage.attributes.size(); i11++) {
                     TLRPC.WebPageAttribute webPageAttribute = messageObject.messageOwner.media.webpage.attributes.get(i11);
                     if (webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) {
-                        return ((TLRPC.TL_webPageAttributeStory) webPageAttribute).f22170id;
+                        return ((TLRPC.TL_webPageAttributeStory) webPageAttribute).f22172id;
                     }
                 }
             }
@@ -148,10 +148,10 @@ public final class u7 {
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
                 tL_stories_getStoriesByID.peer = MessagesController.getInstance(i11).getInputPeer(j11);
                 for (int i15 = 0; i15 < arrayList3.size(); i15++) {
-                    tL_stories_getStoriesByID.f22271id.add(Integer.valueOf(e((MessageObject) arrayList3.get(i15))));
+                    tL_stories_getStoriesByID.f22273id.add(Integer.valueOf(e((MessageObject) arrayList3.get(i15))));
                 }
                 StringBuilder t10 = a1.g.t(j11, "fillMessagesWithStories: getStoriesByID did=", " ids=");
-                t10.append(TextUtils.join(",", tL_stories_getStoriesByID.f22271id));
+                t10.append(TextUtils.join(",", tL_stories_getStoriesByID.f22273id));
                 int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_stories_getStoriesByID, new t7(u7Var, Timer.start(timer2, t10.toString()), arrayList3, j11, z10, timer2, iArr, runnable));
                 if (i10 != 0) {
                     ConnectionsManager.getInstance(i11).bindRequestToGuid(sendRequest, i10);
@@ -207,7 +207,7 @@ public final class u7 {
                         FileLog.e("try write deleted story");
                     } else {
                         executeFast.bindLong(1, j10);
-                        executeFast.bindLong(2, storyItem.f22264id);
+                        executeFast.bindLong(2, storyItem.f22266id);
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
                         storyItem.serializeToStream(nativeByteBuffer);
                         executeFast.bindByteBuffer(3, nativeByteBuffer);
@@ -241,7 +241,7 @@ public final class u7 {
                 return;
             }
             executeFast.bindLong(1, j10);
-            executeFast.bindLong(2, storyItem.f22264id);
+            executeFast.bindLong(2, storyItem.f22266id);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
             storyItem.serializeToStream(nativeByteBuffer);
             executeFast.bindByteBuffer(3, nativeByteBuffer);
@@ -359,7 +359,7 @@ public final class u7 {
                 SQLitePreparedStatement executeFast = this.f9235b.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
                 executeFast.requery();
                 executeFast.bindLong(1, j10);
-                executeFast.bindLong(2, storyItem.f22264id);
+                executeFast.bindLong(2, storyItem.f22266id);
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
                 storyItem.serializeToStream(nativeByteBuffer);
                 executeFast.bindByteBuffer(3, nativeByteBuffer);

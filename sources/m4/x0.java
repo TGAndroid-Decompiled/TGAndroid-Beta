@@ -1,7 +1,6 @@
 package m4;
 
 import a8.qd;
-import android.graphics.BlendMode;
 import android.graphics.RectF;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,10 +52,6 @@ public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, yw0, Utilities.
         }
     }
 
-    public static BlendMode e() {
-        return BlendMode.SOFT_LIGHT;
-    }
-
     @Override
     public void accept(Object obj) {
         n1 n1Var = (n1) obj;
@@ -84,7 +79,7 @@ public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, yw0, Utilities.
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.e();
-        return f9.i0.u(f9.o.x(qVar.Y.f49413b, new s0.b(20)));
+        return f9.i0.u(f9.o.x(qVar.Y.f49416b, new s0.b(20)));
     }
 
     @Override
@@ -129,7 +124,7 @@ public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, yw0, Utilities.
 
     @Override
     public RecyclerView i(View view) {
-        return ((ee) view).f39088a;
+        return ((ee) view).f39091a;
     }
 
     @Override

@@ -17,20 +17,20 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
     public int E;
     public int F;
     public final gg0 G;
-    public final org.telegram.ui.Components.ak0 f43478a;
-    public final TextView f43479b;
-    public final TextView f43480c;
+    public final org.telegram.ui.Components.ak0 f43481a;
+    public final TextView f43482b;
+    public final TextView f43483c;
     public final TextView d;
     public final TextView e;
-    public final TextView f43481f;
+    public final TextView f43484f;
     public y5 h;
-    public Bundle f43482n;
-    public String f43483r;
-    public String f43484s;
+    public Bundle f43485n;
+    public String f43486r;
+    public String f43487s;
     public String v;
-    public int f43485w;
-    public int f43486x;
-    public Boolean f43487y;
+    public int f43488w;
+    public int f43489x;
+    public Boolean f43490y;
 
     public se0(gg0 gg0Var, Context context) {
         super(context);
@@ -42,7 +42,7 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
         linearLayout.setGravity(17);
         FrameLayout frameLayout = new FrameLayout(context);
         ?? imageView = new ImageView(context);
-        this.f43478a = imageView;
+        this.f43481a = imageView;
         imageView.setAutoRepeat(true);
         imageView.f(R.raw.sandclock, 120, 120, null);
         frameLayout.addView((View) imageView, org.telegram.ui.Components.gb1.i(120, 120, 1));
@@ -55,21 +55,21 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
         frameLayout.setVisibility(i10);
         linearLayout.addView(frameLayout, org.telegram.ui.Components.gb1.i(-1, -2, 1));
         TextView textView = new TextView(context);
-        this.f43479b = textView;
+        this.f43482b = textView;
         ic.a.o(18.0f, 1, textView);
         textView.setText(LocaleController.getString(R.string.ResetAccount));
         textView.setGravity(17);
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         linearLayout.addView(textView, org.telegram.ui.Components.gb1.h(-1, -2.0f, 1, 32.0f, 16.0f, 32.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f43480c = textView2;
+        this.f43483c = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
         textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         linearLayout.addView(textView2, org.telegram.ui.Components.gb1.x(-2, -2, 1, 12, 8, 12, 0));
         addView(linearLayout, org.telegram.ui.Components.gb1.p(1.0f, -1, 0));
         TextView textView3 = new TextView(context);
-        this.f43481f = textView3;
+        this.f43484f = textView3;
         textView3.setGravity(1);
         textView3.setText(LocaleController.getString("ResetAccountStatus", R.string.ResetAccountStatus));
         textView3.setTextSize(1, 14.0f);
@@ -105,7 +105,7 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
         this.G.p1(true, true);
         AndroidUtilities.cancelRunOnUIThread(this.h);
         this.h = null;
-        this.f43482n = null;
+        this.f43485n = null;
         return true;
     }
 
@@ -117,7 +117,7 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
     @Override
     public final void k(Bundle bundle) {
         Bundle bundle2 = bundle.getBundle("resetview_params");
-        this.f43482n = bundle2;
+        this.f43485n = bundle2;
         if (bundle2 != null) {
             m(bundle2, true);
         }
@@ -125,7 +125,7 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
 
     @Override
     public final void l(Bundle bundle) {
-        Bundle bundle2 = this.f43482n;
+        Bundle bundle2 = this.f43485n;
         if (bundle2 != null) {
             bundle.putBundle("resetview_params", bundle2);
         }
@@ -136,15 +136,15 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
         if (bundle == null) {
             return;
         }
-        this.f43482n = bundle;
-        this.f43483r = bundle.getString("phoneFormated");
-        this.f43484s = bundle.getString("phoneHash");
+        this.f43485n = bundle;
+        this.f43486r = bundle.getString("phoneFormated");
+        this.f43487s = bundle.getString("phoneHash");
         this.v = bundle.getString("code");
-        this.f43485w = bundle.getInt("startTime");
-        this.f43486x = bundle.getInt("waitTime");
+        this.f43488w = bundle.getInt("startTime");
+        this.f43489x = bundle.getInt("waitTime");
         int i10 = R.string.ResetAccountInfo;
         kf.b c10 = kf.b.c();
-        this.f43480c.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ResetAccountInfo", i10, LocaleController.addNbsp(c10.b("+" + this.f43483r)))));
+        this.f43483c.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ResetAccountInfo", i10, LocaleController.addNbsp(c10.b("+" + this.f43486r)))));
         n();
         y5 y5Var = new y5(this, 10);
         this.h = y5Var;
@@ -156,9 +156,9 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
         boolean z10;
         int i11;
         int i12;
-        int i13 = this.f43486x;
+        int i13 = this.f43489x;
         i10 = ((org.telegram.ui.ActionBar.r2) this.G).currentAccount;
-        int currentTime = i13 - (ConnectionsManager.getInstance(i10).getCurrentTime() - this.f43485w);
+        int currentTime = i13 - (ConnectionsManager.getInstance(i10).getCurrentTime() - this.f43488w);
         int i14 = 0;
         int max = Math.max(0, currentTime);
         int i15 = max / 86400;
@@ -177,11 +177,11 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
         } else {
             z10 = false;
         }
-        Boolean bool = this.f43487y;
+        Boolean bool = this.f43490y;
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
-        org.telegram.ui.Components.ak0 ak0Var = this.f43478a;
+        org.telegram.ui.Components.ak0 ak0Var = this.f43481a;
         if (!z10) {
             ak0Var.setAutoRepeat(true);
             if (!ak0Var.b()) {
@@ -201,20 +201,20 @@ public final class se0 extends org.telegram.ui.Components.ax0 {
         } else {
             i12 = 0;
         }
-        this.f43481f.setVisibility(i12);
+        this.f43484f.setVisibility(i12);
         if (!z10) {
             i14 = 4;
         }
         this.d.setVisibility(i14);
-        this.f43487y = Boolean.valueOf(z10);
+        this.f43490y = Boolean.valueOf(z10);
     }
 
     @Override
     public final void updateColors() {
         int i10 = org.telegram.ui.ActionBar.y6.G6;
-        this.f43479b.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
-        this.f43480c.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
-        this.f43481f.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
+        this.f43482b.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
+        this.f43483c.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
+        this.f43484f.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
         this.e.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
         int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Wh, false);
         int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Q9, false);

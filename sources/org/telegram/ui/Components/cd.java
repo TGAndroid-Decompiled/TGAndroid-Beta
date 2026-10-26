@@ -22,10 +22,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
     public static final int[] W;
-    public static final int[] f27114a0;
-    public static long f27115b0;
-    public static Long f27116c0;
-    public static Long f27117d0;
+    public static final int[] f27116a0;
+    public static long f27117b0;
+    public static Long f27118c0;
+    public static Long f27119d0;
     public RectF E;
     public final Path F;
     public final Paint G;
@@ -44,20 +44,20 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
     public int T;
     public int[] U;
     public float[] V;
-    public final RectF f27118a;
-    public final RectF f27119b;
-    public final RectF f27120c;
+    public final RectF f27120a;
+    public final RectF f27121b;
+    public final RectF f27122c;
     public final int d;
     public final boolean e;
-    public final int[] f27121f;
+    public final int[] f27123f;
     public boolean h;
-    public final h6 f27122n;
-    public boolean f27123r;
-    public final h6 f27124s;
+    public final h6 f27124n;
+    public boolean f27125r;
+    public final h6 f27126s;
     public final ad[] v;
-    public final float[] f27125w;
-    public final RectF f27126x;
-    public final Paint f27127y;
+    public final float[] f27127w;
+    public final RectF f27128x;
+    public final Paint f27129y;
 
     static {
         int i10 = org.telegram.ui.ActionBar.y6.lj;
@@ -77,24 +77,24 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
         int i23 = R.raw.cache_stickers;
         int i24 = R.raw.cache_profile_photos;
         int i25 = R.raw.cache_other;
-        f27114a0 = new int[]{i19, i20, i21, i22, i20, i22, i23, i24, i25, i25, i21};
-        f27115b0 = -1L;
+        f27116a0 = new int[]{i19, i20, i21, i22, i20, i22, i23, i24, i25, i25, i21};
+        f27117b0 = -1L;
     }
 
     public cd(Context context, int i10, int[] iArr, int i11, int[] iArr2) {
         super(context);
-        this.f27118a = new RectF();
-        this.f27119b = new RectF();
-        this.f27120c = new RectF();
+        this.f27120a = new RectF();
+        this.f27121b = new RectF();
+        this.f27122c = new RectF();
         this.h = true;
         ds dsVar = ds.h;
-        this.f27122n = new h6(this, 750L, dsVar);
-        this.f27123r = false;
-        this.f27124s = new h6(this, 650L, dsVar);
-        this.f27125w = new float[2];
-        this.f27126x = new RectF();
+        this.f27124n = new h6(this, 750L, dsVar);
+        this.f27125r = false;
+        this.f27126s = new h6(this, 650L, dsVar);
+        this.f27127w = new float[2];
+        this.f27128x = new RectF();
         Paint paint = new Paint(1);
-        this.f27127y = paint;
+        this.f27129y = paint;
         this.F = new Path();
         Paint paint2 = new Paint(1);
         this.G = paint2;
@@ -111,13 +111,13 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
         this.R = true;
         this.T = -1;
         setLayerType(2, null);
-        this.f27121f = iArr2;
+        this.f27123f = iArr2;
         this.d = i11;
         this.e = i11 == 0;
         this.v = new ad[i10];
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
-        paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23446i6, false));
+        paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23448i6, false));
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(200.0f), new int[]{7263574, -9513642, -12469647, 4307569}, new float[]{0.0f, 0.07f, 0.93f, 1.0f}, tileMode);
@@ -136,24 +136,24 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
         r6Var.u(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.G6, false));
         r6Var.x(AndroidUtilities.bold());
         r6Var.w(AndroidUtilities.dp(32.0f));
-        r6Var.f32119b = 17;
+        r6Var.f32121b = 17;
         r6Var2.n(0.6f, 450L, dsVar);
         r6Var2.A = 0.6f;
-        r6Var2.u(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23746y6, false));
+        r6Var2.u(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23748y6, false));
         r6Var2.w(AndroidUtilities.dp(12.0f));
-        r6Var2.f32119b = 17;
+        r6Var2.f32121b = 17;
         r6Var3.n(0.2f, 450L, dsVar);
         r6Var3.A = 0.6f;
-        r6Var3.f32117a.setShader(linearGradient2);
+        r6Var3.f32119a.setShader(linearGradient2);
         r6Var3.x(AndroidUtilities.bold());
         r6Var3.w(AndroidUtilities.dp(32.0f));
-        r6Var3.f32119b = 17;
+        r6Var3.f32121b = 17;
         r6Var4.n(0.6f, 450L, dsVar);
         r6Var4.A = 0.6f;
-        r6Var4.f32117a.setShader(linearGradient2);
+        r6Var4.f32119a.setShader(linearGradient2);
         r6Var4.x(AndroidUtilities.bold());
         r6Var4.w(AndroidUtilities.dp(12.0f));
-        r6Var4.f32119b = 17;
+        r6Var4.f32121b = 17;
         int i12 = 0;
         while (true) {
             ad[] adVarArr = this.v;
@@ -166,9 +166,9 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
                 RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(86.0f), new int[]{v10, v}, new float[]{0.3f, 1.0f}, Shader.TileMode.CLAMP);
                 adVar.v = radialGradient;
                 Matrix matrix = new Matrix();
-                adVar.f26484w = matrix;
+                adVar.f26486w = matrix;
                 radialGradient.setLocalMatrix(matrix);
-                adVar.f26479q.setShader(adVar.v);
+                adVar.f26481q.setShader(adVar.v);
                 i12++;
             } else {
                 return;
@@ -227,13 +227,13 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
             ad[] adVarArr = this.v;
             if (i10 < adVarArr.length) {
                 ad adVar = adVarArr[i10];
-                if (adVar.f26467b == null) {
+                if (adVar.f26469b == null) {
                     boolean z10 = this.e;
-                    int[] iArr = this.f27121f;
+                    int[] iArr = this.f27123f;
                     if (z10) {
-                        adVar.f26467b = SvgHelper.getBitmap(iArr[i10], AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), -1);
+                        adVar.f26469b = SvgHelper.getBitmap(iArr[i10], AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), -1);
                     } else {
-                        adVar.f26467b = BitmapFactory.decodeResource(getContext().getResources(), iArr[i10]);
+                        adVar.f26469b = BitmapFactory.decodeResource(getContext().getResources(), iArr[i10]);
                     }
                 }
                 i10++;
@@ -257,10 +257,10 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
         while (true) {
             ad[] adVarArr = this.v;
             if (i10 < adVarArr.length) {
-                Bitmap bitmap = adVarArr[i10].f26467b;
+                Bitmap bitmap = adVarArr[i10].f26469b;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    adVarArr[i10].f26467b = null;
+                    adVarArr[i10].f26469b = null;
                 }
                 i10++;
             } else {
@@ -274,7 +274,7 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
         int size = View.MeasureSpec.getSize(i10);
         int dp = AndroidUtilities.dp(c());
         int dp2 = AndroidUtilities.dp(172.0f);
-        RectF rectF = this.f27118a;
+        RectF rectF = this.f27120a;
         rectF.set((size - dp2) / 2.0f, (dp - dp2) / 2.0f, (size + dp2) / 2.0f, (dp2 + dp) / 2.0f);
         Matrix matrix = this.K;
         matrix.reset();
@@ -286,9 +286,9 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
         this.J.setLocalMatrix(matrix2);
         tg.w1 w1Var = this.Q;
         if (w1Var != null) {
-            w1Var.f49087a.set(0.0f, 0.0f, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(140.0f));
-            this.Q.f49087a.offset((getMeasuredWidth() - this.Q.f49087a.width()) / 2.0f, (getMeasuredHeight() - this.Q.f49087a.height()) / 2.0f);
-            this.Q.f49088b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            w1Var.f49090a.set(0.0f, 0.0f, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(140.0f));
+            this.Q.f49090a.offset((getMeasuredWidth() - this.Q.f49090a.width()) / 2.0f, (getMeasuredHeight() - this.Q.f49090a.height()) / 2.0f);
+            this.Q.f49091b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             this.Q.f();
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
@@ -316,7 +316,7 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
                 } else {
                     z10 = false;
                 }
-                adVar.f26476n = z10;
+                adVar.f26478n = z10;
                 i11++;
             } else {
                 this.T = i10;
@@ -329,7 +329,7 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void updateColors() {
         try {
-            this.f27127y.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23446i6, false));
+            this.f27129y.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23448i6, false));
             try {
                 r6 r6Var = this.M;
                 if (r6Var != null) {
@@ -337,7 +337,7 @@ public abstract class cd extends View implements org.telegram.ui.ActionBar.p6 {
                 }
                 r6 r6Var2 = this.N;
                 if (r6Var2 != null) {
-                    r6Var2.u(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23746y6, false));
+                    r6Var2.u(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23748y6, false));
                 }
             } catch (Exception e) {
                 FileLog.e(e);

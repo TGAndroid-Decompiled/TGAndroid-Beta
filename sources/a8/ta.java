@@ -243,7 +243,7 @@ public class ta implements Iterator {
                 if (z15) {
                     Collection collection3 = (Collection) entry2.getValue();
                     this.f938b.remove();
-                    ((y7.a) this.d).f52067c.d -= collection3.size();
+                    ((y7.a) this.d).f52070c.d -= collection3.size();
                     collection3.clear();
                     this.f939c = null;
                     return;

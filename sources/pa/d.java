@@ -139,7 +139,7 @@ public final class d implements n0, q, dg.a, s9.e, fa.b, ga.a, n, w, kp0, j1, t,
 
     @Override
     public y2.n G() {
-        return new s(p.f46585n, null);
+        return new s(p.f46588n, null);
     }
 
     @Override
@@ -249,9 +249,9 @@ public final class d implements n0, q, dg.a, s9.e, fa.b, ga.a, n, w, kp0, j1, t,
     public List a(ComponentRegistrar componentRegistrar) {
         ArrayList arrayList = new ArrayList();
         for (s9.a aVar : componentRegistrar.getComponents()) {
-            String str = aVar.f47980a;
+            String str = aVar.f47983a;
             if (str != null) {
-                aVar = new s9.a(str, aVar.f47981b, aVar.f47982c, aVar.d, aVar.e, new f0(13, str, aVar), aVar.f47984g);
+                aVar = new s9.a(str, aVar.f47984b, aVar.f47985c, aVar.d, aVar.e, new f0(13, str, aVar), aVar.f47987g);
             }
             arrayList.add(aVar);
         }
@@ -294,8 +294,8 @@ public final class d implements n0, q, dg.a, s9.e, fa.b, ga.a, n, w, kp0, j1, t,
     public Object d1(me meVar) {
         sb.a aVar = new sb.a();
         androidx.emoji2.text.n nVar = new androidx.emoji2.text.n(7);
-        ReferenceQueue referenceQueue = aVar.f48037a;
-        Set set = aVar.f48038b;
+        ReferenceQueue referenceQueue = aVar.f48040a;
+        Set set = aVar.f48041b;
         set.add(new l(aVar, referenceQueue, set, nVar));
         Thread thread = new Thread(new u(26, referenceQueue, set), "MlKitCleaner");
         thread.setDaemon(true);

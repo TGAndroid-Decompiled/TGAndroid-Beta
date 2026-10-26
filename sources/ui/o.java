@@ -30,32 +30,32 @@ public final class o {
     public l D;
     public final d E;
     public final d F;
-    public final Context f49946a;
-    public final File f49947b;
-    public final long f49948c;
+    public final Context f49949a;
+    public final File f49950b;
+    public final long f49951c;
     public final h d;
     public final boolean e;
-    public final f f49949f;
-    public final k f49950g;
+    public final f f49952f;
+    public final k f49953g;
     public final b h;
-    public org.telegram.utils.recorder.audio.d f49957o;
-    public long f49958p;
-    public long f49959q;
-    public long f49960r;
-    public long f49961s;
-    public long f49962t;
+    public org.telegram.utils.recorder.audio.d f49960o;
+    public long f49961p;
+    public long f49962q;
+    public long f49963r;
+    public long f49964s;
+    public long f49965t;
     public boolean v;
-    public boolean f49964w;
-    public boolean f49965x;
-    public boolean f49966y;
-    public boolean f49967z;
-    public final Handler f49951i = new Handler(Looper.getMainLooper());
-    public final ExecutorService f49952j = Executors.newSingleThreadExecutor(new l0(7));
-    public final ExecutorService f49953k = Executors.newSingleThreadExecutor(new l0(8));
-    public final Object f49954l = new Object();
-    public final ArrayList f49955m = new ArrayList();
-    public m f49956n = m.f49938a;
-    public long f49963u = 1;
+    public boolean f49967w;
+    public boolean f49968x;
+    public boolean f49969y;
+    public boolean f49970z;
+    public final Handler f49954i = new Handler(Looper.getMainLooper());
+    public final ExecutorService f49955j = Executors.newSingleThreadExecutor(new l0(7));
+    public final ExecutorService f49956k = Executors.newSingleThreadExecutor(new l0(8));
+    public final Object f49957l = new Object();
+    public final ArrayList f49958m = new ArrayList();
+    public m f49959n = m.f49941a;
+    public long f49966u = 1;
     public final z G = new z(this, 2);
 
     public o(p4 p4Var) {
@@ -63,22 +63,22 @@ public final class o {
         Context context = (Context) p4Var.f8901b;
         Context applicationContext = context.getApplicationContext();
         context = applicationContext != null ? applicationContext : context;
-        this.f49946a = context;
+        this.f49949a = context;
         File file = (File) p4Var.f8902c;
-        this.f49947b = file == null ? context.getCacheDir() : file;
-        this.f49948c = 700L;
+        this.f49950b = file == null ? context.getCacheDir() : file;
+        this.f49951c = 700L;
         h hVar = (h) p4Var.d;
         this.d = hVar;
         this.e = p4Var.f8900a;
-        this.f49949f = (f) p4Var.e;
-        this.f49950g = (k) p4Var.f8903f;
+        this.f49952f = (f) p4Var.e;
+        this.f49953g = (k) p4Var.f8903f;
         b bVar = new b((g) p4Var.f8904g);
         this.h = bVar;
         this.E = new Runnable(this) {
-            public final o f49922b;
+            public final o f49925b;
 
             {
-                this.f49922b = this;
+                this.f49925b = this;
             }
 
             @Override
@@ -86,27 +86,27 @@ public final class o {
                 j0 j0Var;
                 switch (r2) {
                     case 0:
-                        o oVar = this.f49922b;
-                        if (oVar.f49956n == m.f49940c && !oVar.f49965x) {
-                            oVar.f49965x = true;
+                        o oVar = this.f49925b;
+                        if (oVar.f49959n == m.f49943c && !oVar.f49968x) {
+                            oVar.f49968x = true;
                             b bVar2 = oVar.h;
                             bVar2.b("maximum duration reached: durationMs=" + oVar.j());
-                            oVar.f49949f.onMaximumDurationReached();
+                            oVar.f49952f.onMaximumDurationReached();
                             oVar.m();
                             return;
                         }
                         return;
                     default:
-                        o oVar2 = this.f49922b;
-                        if (oVar2.f49956n == m.e && (j0Var = oVar2.B) != null && oVar2.v) {
+                        o oVar2 = this.f49925b;
+                        if (oVar2.f49959n == m.e && (j0Var = oVar2.B) != null && oVar2.v) {
                             long M0 = j0Var.M0();
-                            long j10 = oVar2.f49961s;
-                            if (M0 < j10 || M0 >= oVar2.f49962t) {
+                            long j10 = oVar2.f49964s;
+                            if (M0 < j10 || M0 >= oVar2.f49965t) {
                                 oVar2.B.Z0(5, j10);
-                                M0 = oVar2.f49961s;
+                                M0 = oVar2.f49964s;
                             }
-                            oVar2.f49949f.onPreviewProgress(M0, oVar2.j());
-                            oVar2.f49951i.postDelayed(oVar2.F, 32L);
+                            oVar2.f49952f.onPreviewProgress(M0, oVar2.j());
+                            oVar2.f49954i.postDelayed(oVar2.F, 32L);
                             return;
                         }
                         return;
@@ -114,10 +114,10 @@ public final class o {
             }
         };
         this.F = new Runnable(this) {
-            public final o f49922b;
+            public final o f49925b;
 
             {
-                this.f49922b = this;
+                this.f49925b = this;
             }
 
             @Override
@@ -125,27 +125,27 @@ public final class o {
                 j0 j0Var;
                 switch (r2) {
                     case 0:
-                        o oVar = this.f49922b;
-                        if (oVar.f49956n == m.f49940c && !oVar.f49965x) {
-                            oVar.f49965x = true;
+                        o oVar = this.f49925b;
+                        if (oVar.f49959n == m.f49943c && !oVar.f49968x) {
+                            oVar.f49968x = true;
                             b bVar2 = oVar.h;
                             bVar2.b("maximum duration reached: durationMs=" + oVar.j());
-                            oVar.f49949f.onMaximumDurationReached();
+                            oVar.f49952f.onMaximumDurationReached();
                             oVar.m();
                             return;
                         }
                         return;
                     default:
-                        o oVar2 = this.f49922b;
-                        if (oVar2.f49956n == m.e && (j0Var = oVar2.B) != null && oVar2.v) {
+                        o oVar2 = this.f49925b;
+                        if (oVar2.f49959n == m.e && (j0Var = oVar2.B) != null && oVar2.v) {
                             long M0 = j0Var.M0();
-                            long j10 = oVar2.f49961s;
-                            if (M0 < j10 || M0 >= oVar2.f49962t) {
+                            long j10 = oVar2.f49964s;
+                            if (M0 < j10 || M0 >= oVar2.f49965t) {
                                 oVar2.B.Z0(5, j10);
-                                M0 = oVar2.f49961s;
+                                M0 = oVar2.f49964s;
                             }
-                            oVar2.f49949f.onPreviewProgress(M0, oVar2.j());
-                            oVar2.f49951i.postDelayed(oVar2.F, 32L);
+                            oVar2.f49952f.onPreviewProgress(M0, oVar2.j());
+                            oVar2.f49954i.postDelayed(oVar2.F, 32L);
                             return;
                         }
                         return;
@@ -170,13 +170,13 @@ public final class o {
         if (j10 <= 0) {
             return;
         }
-        synchronized (this.f49954l) {
+        synchronized (this.f49957l) {
             try {
                 if (iVar.d && !iVar.e) {
-                    long j11 = iVar.f49931c;
+                    long j11 = iVar.f49934c;
                     if (j10 > j11) {
-                        iVar.f49931c = j10;
-                        this.f49953k.execute(new c(this, iVar, j11, j10 - j11, 1));
+                        iVar.f49934c = j10;
+                        this.f49956k.execute(new c(this, iVar, j11, j10 - j11, 1));
                     }
                 }
             } finally {
@@ -186,18 +186,18 @@ public final class o {
 
     public final void b() {
         p();
-        m mVar = this.f49956n;
-        m mVar2 = m.f49944s;
-        if (mVar != mVar2 && mVar != m.f49942n) {
-            this.h.b("cancel requested: state=" + this.f49956n);
+        m mVar = this.f49959n;
+        m mVar2 = m.f49947s;
+        if (mVar != mVar2 && mVar != m.f49945n) {
+            this.h.b("cancel requested: state=" + this.f49959n);
             d dVar = this.E;
-            Handler handler = this.f49951i;
+            Handler handler = this.f49954i;
             handler.removeCallbacks(dVar);
             handler.removeCallbacks(this.F);
             o();
-            k(j.f49933b);
+            k(j.f49936b);
             r(mVar2);
-            org.telegram.utils.recorder.audio.d dVar2 = this.f49957o;
+            org.telegram.utils.recorder.audio.d dVar2 = this.f49960o;
             if (dVar2 != null) {
                 dVar2.d();
                 return;
@@ -209,19 +209,19 @@ public final class o {
 
     public final void c() {
         File file;
-        if (this.f49966y) {
+        if (this.f49969y) {
             return;
         }
-        this.f49966y = true;
+        this.f49969y = true;
         l lVar = this.D;
         if (lVar == null) {
             file = null;
         } else {
-            file = lVar.f49935a;
+            file = lVar.f49938a;
         }
         u uVar = new u(17, this, file);
         try {
-            this.f49952j.execute(uVar);
+            this.f49955j.execute(uVar);
         } catch (RejectedExecutionException unused) {
             uVar.run();
         }
@@ -229,12 +229,12 @@ public final class o {
 
     public final i d() {
         File f7 = f();
-        long j10 = this.f49963u;
-        this.f49963u = 1 + j10;
+        long j10 = this.f49966u;
+        this.f49966u = 1 + j10;
         i iVar = new i(j10, f7);
-        synchronized (this.f49954l) {
+        synchronized (this.f49957l) {
             this.A = iVar;
-            this.f49953k.execute(new ny0(this, iVar, f7, 17));
+            this.f49956k.execute(new ny0(this, iVar, f7, 17));
         }
         b bVar = this.h;
         StringBuilder t10 = a1.g.t(j10, "output generation started: id=", ", file=");
@@ -244,36 +244,36 @@ public final class o {
     }
 
     public final n e() {
-        return new n(this.f49956n);
+        return new n(this.f49959n);
     }
 
     public final File f() {
-        File file = this.f49947b;
+        File file = this.f49950b;
         File file2 = new File(file, "audio_recording_voice_" + System.currentTimeMillis() + "_" + I.getAndIncrement() + ".ogg");
-        synchronized (this.f49955m) {
-            this.f49955m.add(file2);
+        synchronized (this.f49958m) {
+            this.f49958m.add(file2);
         }
         return file2;
     }
 
     public final void g(Exception exc) {
-        m mVar = this.f49956n;
-        m mVar2 = m.f49943r;
-        if (mVar != mVar2 && mVar != m.f49944s && mVar != m.f49942n) {
+        m mVar = this.f49959n;
+        m mVar2 = m.f49946r;
+        if (mVar != mVar2 && mVar != m.f49947s && mVar != m.f49945n) {
             b bVar = this.h;
-            bVar.a("fatal error in state=" + this.f49956n, exc);
-            Handler handler = this.f49951i;
+            bVar.a("fatal error in state=" + this.f49959n, exc);
+            Handler handler = this.f49954i;
             handler.removeCallbacks(this.E);
             handler.removeCallbacks(this.F);
             o();
-            k(j.f49934c);
+            k(j.f49937c);
             r(mVar2);
             i iVar = this.A;
             if (iVar != null) {
-                this.f49953k.execute(new ny0(this, iVar, exc, 18));
+                this.f49956k.execute(new ny0(this, iVar, exc, 18));
             }
-            this.f49949f.onError(exc);
-            org.telegram.utils.recorder.audio.d dVar = this.f49957o;
+            this.f49952f.onError(exc);
+            org.telegram.utils.recorder.audio.d dVar = this.f49960o;
             if (dVar != null) {
                 dVar.d();
             } else {
@@ -287,18 +287,18 @@ public final class o {
     public final void h() {
         m mVar = m.h;
         p();
-        m mVar2 = this.f49956n;
-        m mVar3 = m.f49940c;
+        m mVar2 = this.f49959n;
+        m mVar3 = m.f49943c;
         if (mVar2 != mVar3 && mVar2 != m.e) {
             return;
         }
         b bVar = this.h;
-        bVar.b("finish requested: state=" + this.f49956n + ", durationMs=" + j() + ", trim=" + this.f49961s + ".." + this.f49962t);
-        if (this.f49956n == mVar3) {
-            this.f49964w = true;
-            this.f49951i.removeCallbacks(this.E);
+        bVar.b("finish requested: state=" + this.f49959n + ", durationMs=" + j() + ", trim=" + this.f49964s + ".." + this.f49965t);
+        if (this.f49959n == mVar3) {
+            this.f49967w = true;
+            this.f49954i.removeCallbacks(this.E);
             r(mVar);
-            this.f49957o.d();
+            this.f49960o.d();
             return;
         }
         o();
@@ -308,16 +308,16 @@ public final class o {
             g(new IllegalStateException("Output generation is missing"));
             return;
         }
-        long q5 = q(this.f49959q);
-        final long j10 = this.f49961s;
-        if (j10 == 0 && this.f49962t == q5) {
+        long q5 = q(this.f49962q);
+        final long j10 = this.f49964s;
+        if (j10 == 0 && this.f49965t == q5) {
             i();
             return;
         }
-        final long j11 = this.f49962t;
-        k(j.f49932a);
+        final long j11 = this.f49965t;
+        k(j.f49935a);
         final i d = d();
-        this.f49952j.execute(new Runnable() {
+        this.f49955j.execute(new Runnable() {
             @Override
             public final void run() {
                 String str;
@@ -326,16 +326,16 @@ public final class o {
                 long j12 = j10;
                 long j13 = j11;
                 o oVar = o.this;
-                Handler handler = oVar.f49951i;
+                Handler handler = oVar.f49954i;
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 try {
-                    String absolutePath = iVar2.f49930b.getAbsolutePath();
-                    File file = iVar3.f49930b;
+                    String absolutePath = iVar2.f49933b.getAbsolutePath();
+                    File file = iVar3.f49933b;
                     String absolutePath2 = file.getAbsolutePath();
                     try {
                         if (AudioRecorderNative.b(absolutePath, absolutePath2, j12, j13)) {
                             ui.b bVar2 = oVar.h;
-                            bVar2.b("final trim completed: source=" + iVar2.f49930b.getName() + ", output=" + file.getName() + ", trim=" + j12 + ".." + j13 + ", bytes=" + file.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
+                            bVar2.b("final trim completed: source=" + iVar2.f49933b.getName() + ", output=" + file.getName() + ", trim=" + j12 + ".." + j13 + ", bytes=" + file.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
                             oVar.a(iVar3, file.length());
                             handler.post(new io(oVar, j13, j12, 2));
                             return;
@@ -355,7 +355,7 @@ public final class o {
     }
 
     public final void i() {
-        if (this.f49956n != m.h) {
+        if (this.f49959n != m.h) {
             return;
         }
         i iVar = this.A;
@@ -364,56 +364,56 @@ public final class o {
             return;
         }
         long j10 = j();
-        if (j10 < this.f49948c) {
+        if (j10 < this.f49951c) {
             b bVar = this.h;
             bVar.b("recording rejected as too short: durationMs=" + j10);
-            this.f49949f.onRecordingTooShort(j10);
-            k(j.f49933b);
-            r(m.f49944s);
+            this.f49952f.onRecordingTooShort(j10);
+            k(j.f49936b);
+            r(m.f49947s);
             c();
             s();
             l("too_short");
             return;
         }
-        this.f49952j.execute(new org.telegram.utils.recorder.audio.b(j10, iVar, this));
+        this.f49955j.execute(new org.telegram.utils.recorder.audio.b(j10, iVar, this));
     }
 
     public final long j() {
         p();
-        return q(this.f49959q + this.f49960r);
+        return q(this.f49962q + this.f49963r);
     }
 
     public final void k(j jVar) {
-        synchronized (this.f49954l) {
+        synchronized (this.f49957l) {
             i iVar = this.A;
             if (iVar != null && iVar.d && !iVar.e) {
                 iVar.d = false;
-                this.f49953k.execute(new ny0(this, iVar, jVar, 19));
+                this.f49956k.execute(new ny0(this, iVar, jVar, 19));
                 b bVar = this.h;
-                bVar.b("output generation invalidated: id=" + iVar.f49929a + ", reason=" + jVar);
+                bVar.b("output generation invalidated: id=" + iVar.f49932a + ", reason=" + jVar);
             }
         }
     }
 
     public final void l(String str) {
-        if (this.f49967z) {
+        if (this.f49970z) {
             return;
         }
-        this.f49967z = true;
+        this.f49970z = true;
         StringBuilder v = a1.g.v("session summary: terminal=", str, ", durationMs=");
-        v.append(q(this.f49959q + this.f49960r));
+        v.append(q(this.f49962q + this.f49963r));
         v.append(", generations=");
-        v.append(this.f49963u - 1);
+        v.append(this.f49966u - 1);
         this.h.b(v.toString());
     }
 
     public final boolean m() {
         p();
-        if (this.f49956n == m.f49940c && this.f49957o != null) {
+        if (this.f49959n == m.f49943c && this.f49960o != null) {
             this.h.b("pause requested: durationMs=" + j());
-            this.f49951i.removeCallbacks(this.E);
+            this.f49954i.removeCallbacks(this.E);
             r(m.d);
-            this.f49957o.d();
+            this.f49960o.d();
             return true;
         }
         return false;
@@ -421,12 +421,12 @@ public final class o {
 
     public final void n() {
         p();
-        m mVar = this.f49956n;
-        m mVar2 = m.f49944s;
+        m mVar = this.f49959n;
+        m mVar2 = m.f49947s;
         if (mVar == mVar2) {
             return;
         }
-        if (mVar != m.f49942n) {
+        if (mVar != m.f49945n) {
             b();
             return;
         }
@@ -437,7 +437,7 @@ public final class o {
     }
 
     public final void o() {
-        this.f49951i.removeCallbacks(this.F);
+        this.f49954i.removeCallbacks(this.F);
         this.v = false;
         j0 j0Var = this.B;
         if (j0Var != null) {
@@ -448,70 +448,70 @@ public final class o {
     }
 
     public final void r(m mVar) {
-        m mVar2 = this.f49956n;
+        m mVar2 = this.f49959n;
         if (mVar2 == mVar) {
             return;
         }
-        this.f49956n = mVar;
-        this.h.b("state: " + mVar2 + " -> " + mVar + ", durationMs=" + q(this.f49959q + this.f49960r));
-        this.f49949f.onStateChanged(e());
+        this.f49959n = mVar;
+        this.h.b("state: " + mVar2 + " -> " + mVar + ", durationMs=" + q(this.f49962q + this.f49963r));
+        this.f49952f.onStateChanged(e());
     }
 
     public final void s() {
-        this.f49952j.shutdown();
-        this.f49953k.shutdown();
+        this.f49955j.shutdown();
+        this.f49956k.shutdown();
     }
 
     public final void t(long j10, long j11, File file) {
-        long j12 = this.f49958p + 1;
-        this.f49958p = j12;
+        long j12 = this.f49961p + 1;
+        this.f49961p = j12;
         i iVar = this.A;
         if (iVar == null) {
             g(new IllegalStateException("Output generation is missing"));
             return;
         }
-        final org.telegram.utils.recorder.audio.d dVar = new org.telegram.utils.recorder.audio.d(iVar.f49930b, file, j10, j11, this.d, this.h, new dc.e(j12, iVar, this));
-        this.f49957o = dVar;
-        this.f49960r = 0L;
-        dVar.f46411k.post(new Runnable() {
+        final org.telegram.utils.recorder.audio.d dVar = new org.telegram.utils.recorder.audio.d(iVar.f49933b, file, j10, j11, this.d, this.h, new dc.e(j12, iVar, this));
+        this.f49960o = dVar;
+        this.f49963r = 0L;
+        dVar.f46414k.post(new Runnable() {
             @Override
             public final void run() {
                 String str;
                 d dVar2 = d.this;
-                File file2 = dVar2.f46405b;
-                ui.b bVar = dVar2.f46407f;
+                File file2 = dVar2.f46408b;
+                ui.b bVar = dVar2.f46410f;
                 try {
                     long elapsedRealtime = SystemClock.elapsedRealtime();
-                    AudioRecorderNative a2 = AudioRecorderNative.a(dVar2.f46404a, dVar2.f46406c, dVar2.d, dVar2.f46405b);
-                    dVar2.f46420t = a2;
+                    AudioRecorderNative a2 = AudioRecorderNative.a(dVar2.f46407a, dVar2.f46409c, dVar2.d, dVar2.f46408b);
+                    dVar2.f46423t = a2;
                     if (a2 != null) {
-                        if (dVar2.e == h.f49927b) {
+                        if (dVar2.e == h.f49930b) {
                             AudioNoiseSuppressor a10 = AudioNoiseSuppressor.a();
-                            dVar2.f46421u = a10;
+                            dVar2.f46424u = a10;
                             if (a10 == null) {
                                 bVar.b("RNNoise unavailable; recording unprocessed PCM");
                             } else {
                                 bVar.b("RNNoise started: sampleRate=48000, captureFrameSamples=960");
                             }
                         }
-                        long d = dVar2.f46420t.d();
+                        long d = dVar2.f46423t.d();
                         StringBuilder sb2 = new StringBuilder("Opus encoder started: prefix=");
                         if (file2 == null) {
                             str = "none";
                         } else {
-                            str = file2.getName() + " " + dVar2.f46406c + ".." + dVar2.d;
+                            str = file2.getName() + " " + dVar2.f46409c + ".." + dVar2.d;
                         }
                         sb2.append(str);
                         sb2.append(", initialBytes=");
                         sb2.append(d);
                         sb2.append(", queuedChunks=");
-                        sb2.append(dVar2.f46413m.get());
+                        sb2.append(dVar2.f46416m.get());
                         sb2.append(", elapsedMs=");
                         sb2.append(SystemClock.elapsedRealtime() - elapsedRealtime);
                         bVar.b(sb2.toString());
-                        dVar2.f46423x = SystemClock.elapsedRealtime();
+                        dVar2.f46426x = SystemClock.elapsedRealtime();
                         if (d > 0) {
-                            dc.e eVar = dVar2.f46408g;
+                            dc.e eVar = dVar2.f46411g;
                             ((o) eVar.f8321c).a((i) eVar.f8320b, d);
                             return;
                         }
@@ -520,13 +520,13 @@ public final class o {
                     throw new IllegalStateException("Unable to initialize native Opus recorder");
                 } catch (Throwable th2) {
                     if (dVar2.v == null) {
-                        dVar2.f46407f.a("encoding failed", th2);
+                        dVar2.f46410f.a("encoding failed", th2);
                         dVar2.v = d.a(th2);
-                        dVar2.f46414n = true;
+                        dVar2.f46417n = true;
                     }
                 }
             }
         });
-        dVar.f46409i.post(new a(dVar, 0));
+        dVar.f46412i.post(new a(dVar, 0));
     }
 }

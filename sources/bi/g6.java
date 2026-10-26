@@ -81,7 +81,7 @@ public final class g6 {
         } else {
             this.f4666i = null;
             TextView textView = new TextView(context);
-            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23746y6, u6Var);
+            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23748y6, u6Var);
             textView.setTextSize(1, 14.0f);
             vh.k(R.string.Gift2BuyPriceOnlyTON, textView, 17);
             d.addView(textView, gb1.x(-2, -2, 17, 24, 4, 24, 4));
@@ -89,7 +89,7 @@ public final class g6 {
         d.addView(new b6(context, tL_starGiftUnique, chat), gb1.x(-1, -2, 48, 0, -4, 0, 0));
         TextView textView2 = new TextView(context);
         this.f4667j = textView2;
-        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23462j5, u6Var);
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23464j5, u6Var);
         textView2.setTextSize(1, 16.0f);
         d.addView(textView2, gb1.x(-1, -2, 48, 24, 4, 24, 4));
         if (z10) {
@@ -106,7 +106,7 @@ public final class g6 {
         alertDialog$Builder.o(f6Var);
         alertDialog$Builder.k("_", new e6(this, i10, context, u6Var, callback2, 0));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        this.h = alertDialog$Builder.f22366a;
+        this.h = alertDialog$Builder.f22368a;
     }
 
     public final void a(boolean z10) {
@@ -218,8 +218,8 @@ public final class g6 {
         e2Var.Z0 = true;
         e2Var.show();
         this.f4669l = (TextView) e2Var.d(-1);
-        this.f4668k = e2Var.f22558b1;
-        FrameLayout frameLayout = e2Var.f22555a1;
+        this.f4668k = e2Var.f22560b1;
+        FrameLayout frameLayout = e2Var.f22557a1;
         this.f4670m = frameLayout;
         if (frameLayout != null && this.f4664f) {
             fi.v3 v3Var = new fi.v3(this.f4662b, 3);

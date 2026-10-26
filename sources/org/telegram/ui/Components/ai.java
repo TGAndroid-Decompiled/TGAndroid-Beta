@@ -9,14 +9,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 public final class ai implements TextWatcher {
-    public boolean f26507a;
-    public boolean f26508b;
-    public final org.telegram.ui.ActionBar.r2 f26509c;
+    public boolean f26509a;
+    public boolean f26510b;
+    public final org.telegram.ui.ActionBar.r2 f26511c;
     public final ti d;
 
     public ai(ti tiVar, org.telegram.ui.ActionBar.r2 r2Var) {
         this.d = tiVar;
-        this.f26509c = r2Var;
+        this.f26511c = r2Var;
     }
 
     @Override
@@ -28,24 +28,24 @@ public final class ai implements TextWatcher {
         org.telegram.ui.ActionBar.u6 u6Var;
         org.telegram.ui.ActionBar.u6 u6Var2;
         ti tiVar = this.d;
-        s6 s6Var = tiVar.f33057s;
+        s6 s6Var = tiVar.f33060s;
         yh yhVar = tiVar.S0;
         int i11 = tiVar.M1;
         s6 s6Var2 = tiVar.v;
-        if (this.f26508b != TextUtils.isEmpty(editable)) {
+        if (this.f26510b != TextUtils.isEmpty(editable)) {
             li liVar = tiVar.B0;
             if (liVar != null) {
                 liVar.D(liVar.getSelectedItemsCount());
             }
-            this.f26508b = !this.f26508b;
+            this.f26510b = !this.f26510b;
         }
         boolean z13 = false;
-        if (this.f26507a) {
+        if (this.f26509a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, yhVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f26507a = false;
+            this.f26509a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         tiVar.L = codePointCount;
@@ -78,12 +78,12 @@ public final class ai implements TextWatcher {
             s6Var2.animate().setListener(null).cancel();
             s6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                int i13 = org.telegram.ui.ActionBar.y6.f23579p7;
+                int i13 = org.telegram.ui.ActionBar.y6.f23581p7;
                 u6Var2 = ((org.telegram.ui.ActionBar.k3) tiVar).resourcesProvider;
                 org.telegram.ui.ActionBar.f7.Z(s6Var2, i13, u6Var2);
                 z11 = false;
             } else {
-                int i14 = org.telegram.ui.ActionBar.y6.f23746y6;
+                int i14 = org.telegram.ui.ActionBar.y6.f23748y6;
                 u6Var = ((org.telegram.ui.ActionBar.k3) tiVar).resourcesProvider;
                 org.telegram.ui.ActionBar.f7.Z(s6Var2, i14, u6Var);
                 z11 = true;
@@ -99,11 +99,11 @@ public final class ai implements TextWatcher {
             tiVar.X0 = z11;
             tiVar.L0.invalidate();
         }
-        if (!tiVar.f33037l2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && tiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && tiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
-            tiVar.f33037l2 = true;
-            tiVar.V1(this.f26509c);
+        if (!tiVar.f33040l2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && tiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && tiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            tiVar.f33040l2 = true;
+            tiVar.V1(this.f26511c);
         }
-        if (tiVar.f33008c0) {
+        if (tiVar.f33011c0) {
             if (yhVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(yhVar.getText().toString().trim())) {
                 z13 = true;
             }
@@ -115,7 +115,7 @@ public final class ai implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         if (i12 - i11 >= 1) {
-            this.f26507a = true;
+            this.f26509a = true;
         }
         ti tiVar = this.d;
         if (tiVar.H2 == null) {

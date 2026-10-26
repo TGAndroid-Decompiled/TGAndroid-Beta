@@ -31,16 +31,16 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class of0 extends org.telegram.ui.Components.ax0 {
-    public final ImageView f42173a;
-    public final fi.d f42174b;
-    public final bi.p0[] f42175c;
+    public final ImageView f42176a;
+    public final fi.d f42177b;
+    public final bi.p0[] f42178c;
     public Bundle d;
     public String e;
-    public boolean f42176f;
+    public boolean f42179f;
     public String h;
-    public String f42177n;
-    public long f42178r;
-    public int f42179s;
+    public String f42180n;
+    public long f42181r;
+    public int f42182s;
     public final gg0 v;
 
     public of0(gg0 gg0Var, Context context) {
@@ -50,8 +50,8 @@ public final class of0 extends org.telegram.ui.Components.ax0 {
         org.telegram.ui.ActionBar.u6 u6Var3;
         org.telegram.ui.ActionBar.u6 u6Var4;
         this.v = gg0Var;
-        this.f42175c = r3;
-        this.f42179s = -1;
+        this.f42178c = r3;
+        this.f42182s = -1;
         setOrientation(1);
         setClipChildren(false);
         setClipToPadding(false);
@@ -63,13 +63,13 @@ public final class of0 extends org.telegram.ui.Components.ax0 {
         hi.e eVar = new hi.e(context, 3);
         frameLayout.addView(eVar, org.telegram.ui.Components.gb1.i(-1, 200, 119));
         ImageView imageView = new ImageView(context);
-        this.f42173a = imageView;
+        this.f42176a = imageView;
         imageView.setImageResource(R.drawable.ic_ab_other);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         int i10 = org.telegram.ui.ActionBar.y6.G6;
         u6Var = ((org.telegram.ui.ActionBar.r2) gg0Var).resourceProvider;
         org.telegram.ui.ActionBar.f7.t(imageView, i10, u6Var, PorterDuff.Mode.SRC_IN);
-        int i11 = org.telegram.ui.ActionBar.y6.f23446i6;
+        int i11 = org.telegram.ui.ActionBar.y6.f23448i6;
         org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.x0(null, i11, false), 1, -1);
         org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i11);
         imageView.setBackground(g02);
@@ -80,10 +80,10 @@ public final class of0 extends org.telegram.ui.Components.ax0 {
         Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         int i12 = org.telegram.ui.ActionBar.y6.Mj;
-        canvas.drawColor(i0.a.f(0.5f, org.telegram.ui.ActionBar.y6.x0(null, i12, false), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23425h5, false)));
+        canvas.drawColor(i0.a.f(0.5f, org.telegram.ui.ActionBar.y6.x0(null, i12, false), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23427h5, false)));
         qdVar.setBackgroundBitmap(createBitmap);
-        ug.g gVar = qdVar.f49813b;
-        gVar.f49797z = i12;
+        ug.g gVar = qdVar.f49816b;
+        gVar.f49800z = i12;
         gVar.A = org.telegram.ui.ActionBar.y6.Lj;
         gVar.b();
         frameLayout.addView(qdVar, org.telegram.ui.Components.gb1.i(160, 160, 1));
@@ -109,7 +109,7 @@ public final class of0 extends org.telegram.ui.Components.ax0 {
         addView(p0VarArr[2], org.telegram.ui.Components.gb1.x(-1, -2, 55, 0, 0, 0, 6));
         addView(new Space(context), org.telegram.ui.Components.gb1.s(0, 0, 1.0f, 119));
         fi.d f7 = org.telegram.messenger.vh.f(24, context, null, true);
-        this.f42174b = f7;
+        this.f42177b = f7;
         f7.setLoading(true);
         addView(f7, org.telegram.ui.Components.gb1.x(-1, 48, 7, 0, 16, 0, 16));
     }
@@ -267,13 +267,13 @@ public final class of0 extends org.telegram.ui.Components.ax0 {
     @Override
     public final void g() {
         int i10;
-        if (this.f42179s >= 0) {
+        if (this.f42182s >= 0) {
             i10 = ((org.telegram.ui.ActionBar.r2) this.v).currentAccount;
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f42179s, true);
-            this.f42179s = -1;
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f42182s, true);
+            this.f42182s = -1;
         }
-        this.f42176f = false;
-        this.f42174b.setLoading(false);
+        this.f42179f = false;
+        this.f42177b.setLoading(false);
     }
 
     @Override
@@ -338,7 +338,7 @@ public final class of0 extends org.telegram.ui.Components.ax0 {
             i10 = bundle.getInt("premium_days");
         }
         boolean isEmpty = TextUtils.isEmpty(countryName);
-        bi.p0[] p0VarArr = this.f42175c;
+        bi.p0[] p0VarArr = this.f42178c;
         if (isEmpty) {
             p0VarArr[0].f5219c.setText(LocaleController.getString(R.string.SMSFee1Text));
             i11 = 0;
@@ -353,8 +353,8 @@ public final class of0 extends org.telegram.ui.Components.ax0 {
             formatPluralStringComma = LocaleController.formatPluralStringComma("SMSFee3TextDays", i10);
         }
         p0Var.setSubtitle(formatPluralStringComma);
-        this.f42173a.setOnClickListener(new di.c4(this, string5, string6, string3, 14));
-        fi.d dVar = this.f42174b;
+        this.f42176a.setOnClickListener(new di.c4(this, string5, string6, string3, 14));
+        fi.d dVar = this.f42177b;
         dVar.setEnabled(true);
         dVar.setOnClickListener(null);
         if (BuildVars.useInvoiceBilling()) {
@@ -401,14 +401,14 @@ public final class of0 extends org.telegram.ui.Components.ax0 {
 
     public final void o() {
         int i10;
-        if (!this.f42176f) {
+        if (!this.f42179f) {
             return;
         }
         TLRPC.TL_checkPaidAuth tL_checkPaidAuth = new TLRPC.TL_checkPaidAuth();
-        tL_checkPaidAuth.form_id = this.f42178r;
+        tL_checkPaidAuth.form_id = this.f42181r;
         tL_checkPaidAuth.phone_number = this.h;
-        tL_checkPaidAuth.phone_code_hash = this.f42177n;
+        tL_checkPaidAuth.phone_code_hash = this.f42180n;
         i10 = ((org.telegram.ui.ActionBar.r2) this.v).currentAccount;
-        this.f42179s = ConnectionsManager.getInstance(i10).sendRequest(tL_checkPaidAuth, new l(this, 15), 1096);
+        this.f42182s = ConnectionsManager.getInstance(i10).sendRequest(tL_checkPaidAuth, new l(this, 15), 1096);
     }
 }

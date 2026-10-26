@@ -4,15 +4,15 @@ import android.os.AsyncTask;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.BuildVars;
 public final class la1 extends AsyncTask {
-    public final String f30148a;
-    public final CountDownLatch f30149b = new CountDownLatch(1);
-    public final String[] f30150c = new String[2];
+    public final String f30150a;
+    public final CountDownLatch f30151b = new CountDownLatch(1);
+    public final String[] f30152c = new String[2];
     public String d;
     public final ma1 e;
 
     public la1(ma1 ma1Var, String str) {
         this.e = ma1Var;
-        this.f30148a = str;
+        this.f30150a = str;
     }
 
     @Override
@@ -32,18 +32,18 @@ public final class la1 extends AsyncTask {
                 sb2.append(" ");
                 ic.a.w(strArr[0], sb2);
             }
-            ma1Var.f30504w = true;
-            ma1Var.f30505x = strArr[0];
+            ma1Var.f30506w = true;
+            ma1Var.f30507x = strArr[0];
             String str2 = strArr[1];
-            ma1Var.f30506y = str2;
+            ma1Var.f30508y = str2;
             if (str2.equals("hls")) {
                 ma1Var.H = true;
             }
-            if (ma1Var.f30503s) {
+            if (ma1Var.f30505s) {
                 ma1Var.i();
             }
             ma1Var.j(false, true);
-            ma1Var.f30495f0.d(true, true);
+            ma1Var.f30497f0.d(true, true);
         } else if (!isCancelled()) {
             ma1Var.h();
         }

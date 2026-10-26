@@ -22,25 +22,25 @@ import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.h6;
 import org.telegram.ui.Components.s6;
 public final class w extends FrameLayout {
-    public final RadioButton f51812a;
-    public final Drawable f51813b;
-    public final Drawable f51814c;
+    public final RadioButton f51815a;
+    public final Drawable f51816b;
+    public final Drawable f51817c;
     public final s6 d;
     public final s6 e;
-    public final TextView f51815f;
+    public final TextView f51818f;
     public final SpannableString h;
-    public final SpannableString f51816n;
-    public TL_stars.TL_starsGiveawayOption f51817r;
-    public int f51818s;
+    public final SpannableString f51819n;
+    public TL_stars.TL_starsGiveawayOption f51820r;
+    public int f51821s;
     public final h6 v;
 
     public w(Context context, u6 u6Var) {
         super(context);
         this.v = new h6(this, 0L, 500L, ds.h);
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
-        this.f51813b = mutate;
-        f7.y(this, mutate, y6.f23425h5, u6Var, PorterDuff.Mode.SRC_IN);
-        this.f51814c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        this.f51816b = mutate;
+        f7.y(this, mutate, y6.f23427h5, u6Var, PorterDuff.Mode.SRC_IN);
+        this.f51817c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         s6 s6Var = new s6(context, false, false, false);
         this.d = s6Var;
@@ -53,34 +53,34 @@ public final class w extends FrameLayout {
         spannableString.setSpan(new ea0(AndroidUtilities.dp(90.0f), s6Var), 0, 1, 33);
         s6 s6Var2 = new s6(context, false, true, true);
         this.e = s6Var2;
-        int i10 = y6.f23765z6;
+        int i10 = y6.f23767z6;
         f7.Z(s6Var2, i10, u6Var);
         s6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         addView(s6Var2, gb1.h(-1, 14.0f, 51, 64.0f, 31.0f, 80.0f, 0.0f));
         SpannableString spannableString2 = new SpannableString("x");
-        this.f51816n = spannableString2;
+        this.f51819n = spannableString2;
         spannableString2.setSpan(new ea0(AndroidUtilities.dp(70.0f), s6Var2), 0, 1, 33);
         TextView textView = new TextView(context);
-        this.f51815f = textView;
+        this.f51818f = textView;
         f7.V(textView, i10, u6Var);
         textView.setTextSize(1, 16.0f);
         textView.setGravity(5);
         addView(textView, gb1.h(-2, -2.0f, 21, 0.0f, 0.0f, 19.0f, 0.0f));
         RadioButton radioButton = new RadioButton(context);
-        this.f51812a = radioButton;
+        this.f51815a = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        f7.P(radioButton, y6.f23464j7, y6.E5, u6Var);
+        f7.P(radioButton, y6.f23466j7, y6.E5, u6Var);
         addView(radioButton, gb1.h(20, 20.0f, 19, 22.0f, 0.0f, 0.0f, 0.0f));
     }
 
     public TL_stars.TL_starsGiveawayOption getOption() {
-        return this.f51817r;
+        return this.f51820r;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float d = this.v.d(this.f51818s, false);
+        float d = this.v.d(this.f51821s, false);
         float dp = AndroidUtilities.dp(24.0f);
         float dp2 = AndroidUtilities.dp(24.0f);
         float dp3 = AndroidUtilities.dp(2.5f);
@@ -93,12 +93,12 @@ public final class w extends FrameLayout {
             int i11 = (int) dp5;
             int i12 = (int) (f7 + dp);
             int i13 = (int) (dp5 + dp2);
-            Drawable drawable = this.f51813b;
+            Drawable drawable = this.f51816b;
             drawable.setBounds(i10, i11, i12, i13);
             int i14 = (int) (clamp * 255.0f);
             drawable.setAlpha(i14);
             drawable.draw(canvas);
-            Drawable drawable2 = this.f51814c;
+            Drawable drawable2 = this.f51817c;
             drawable2.setBounds(i10, i11, i12, i13);
             drawable2.setAlpha(i14);
             drawable2.draw(canvas);

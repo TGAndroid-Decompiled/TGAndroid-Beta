@@ -7,16 +7,16 @@ import android.view.View;
 import android.view.ViewParent;
 import org.telegram.messenger.AndroidUtilities;
 public final class za1 extends org.telegram.ui.Components.mm0 {
-    public final int f46240f3;
+    public final int f46243f3;
 
     public za1(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context, u6Var);
-        this.f46240f3 = i10;
+        this.f46243f3 = i10;
     }
 
     @Override
     public Integer W0(int i10) {
-        switch (this.f46240f3) {
+        switch (this.f46243f3) {
             case 1:
                 return 0;
             case 3:
@@ -32,7 +32,7 @@ public final class za1 extends org.telegram.ui.Components.mm0 {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f46240f3) {
+        switch (this.f46243f3) {
             case 0:
                 if (getParent() != null && getParent().getParent() != null) {
                     getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
@@ -70,7 +70,7 @@ public final class za1 extends org.telegram.ui.Components.mm0 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f46240f3) {
+        switch (this.f46243f3) {
             case 7:
                 int size = View.MeasureSpec.getSize(i11);
                 int h = (getAdapter().h() * AndroidUtilities.dp(50.0f)) + AndroidUtilities.dp(4.0f);
@@ -95,7 +95,7 @@ public final class za1 extends org.telegram.ui.Components.mm0 {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f46240f3) {
+        switch (this.f46243f3) {
             case 12:
                 if (motionEvent.getAction() == 0) {
                     getParent().requestDisallowInterceptTouchEvent(true);
@@ -108,7 +108,7 @@ public final class za1 extends org.telegram.ui.Components.mm0 {
 
     @Override
     public void r0(View view, View view2) {
-        switch (this.f46240f3) {
+        switch (this.f46243f3) {
             case 5:
                 if (view instanceof org.telegram.ui.Cells.h6) {
                     super.r0(view, view2);
@@ -129,7 +129,7 @@ public final class za1 extends org.telegram.ui.Components.mm0 {
 
     @Override
     public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.f46240f3) {
+        switch (this.f46243f3) {
             case 5:
                 rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
                 return super.requestChildRectangleOnScreen(view, rect, z10);
@@ -143,7 +143,7 @@ public final class za1 extends org.telegram.ui.Components.mm0 {
 
     @Override
     public boolean requestFocus(int i10, Rect rect) {
-        switch (this.f46240f3) {
+        switch (this.f46243f3) {
             case 9:
                 return false;
             default:
@@ -153,6 +153,6 @@ public final class za1 extends org.telegram.ui.Components.mm0 {
 
     public za1(Context context) {
         super(context, null);
-        this.f46240f3 = 12;
+        this.f46243f3 = 12;
     }
 }

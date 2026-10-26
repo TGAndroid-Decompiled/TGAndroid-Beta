@@ -16,13 +16,13 @@ public final class u1 extends lm0 {
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
-        p1 p1Var = (p1) e1Var.f47735a;
+        p1 p1Var = (p1) e1Var.f47738a;
         rg.j0 j0Var = (rg.j0) rg.j0.c().get(i10);
         p1Var.getClass();
         p1Var.setTypeface(j0Var.d());
-        String str = j0Var.f47439c;
+        String str = j0Var.f47442c;
         if (str == null) {
-            str = LocaleController.getString(j0Var.f47438b);
+            str = LocaleController.getString(j0Var.f47441b);
         }
         p1Var.setText(str);
     }

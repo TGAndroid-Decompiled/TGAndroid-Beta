@@ -16,8 +16,8 @@ public final class t41 extends r51 {
     public final void dispatchDraw(Canvas canvas) {
         float y3;
         c61 c61Var = this.G;
-        o41 o41Var = c61Var.f38294g0;
-        t41 t41Var = c61Var.f38292f0;
+        o41 o41Var = c61Var.f38297g0;
+        t41 t41Var = c61Var.f38295f0;
         c51 c51Var = c61Var.U;
         if (c51Var != null) {
             int measuredWidth = getMeasuredWidth();

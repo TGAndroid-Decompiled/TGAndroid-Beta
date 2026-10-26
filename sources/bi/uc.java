@@ -32,12 +32,12 @@ public final class uc extends org.telegram.ui.Components.bb implements Notificat
         mm0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new ai.k(this, 4));
         s4.l lVar = new s4.l();
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         lVar.C = false;
         lVar.o(ds.h);
         lVar.n(350L);
         this.d.setItemAnimator(lVar);
-        int i11 = org.telegram.ui.ActionBar.y6.f23354d6;
+        int i11 = org.telegram.ui.ActionBar.y6.f23356d6;
         setBackgroundColorKey(i11);
         fixNavigationBarKey(i11);
         this.e.setTitle(LocaleController.getString(R.string.StarsBuy));
@@ -52,7 +52,7 @@ public final class uc extends org.telegram.ui.Components.bb implements Notificat
         z90Var.setGravity(17);
         z90Var.setMaxWidth(fi.v3.a(z90Var.getText(), z90Var.getPaint()));
         frameLayout.addView(z90Var, gb1.i(-2, -1, 17));
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23425h5, frameLayout, u6Var);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23427h5, frameLayout, u6Var);
         this.containerView.addView(new z00(getContext()), gb1.g(-1.0f, -1));
         j71 j71Var = this.Y;
         if (j71Var != null) {
@@ -91,7 +91,7 @@ public final class uc extends org.telegram.ui.Components.bb implements Notificat
                     org.telegram.ui.Components.wc.b0(U).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) t61Var.B, new Object[0])), R.raw.stars_topup).j();
                     LaunchActivity launchActivity = LaunchActivity.I1;
                     if (launchActivity != null) {
-                        launchActivity.f35564x0.c(true);
+                        launchActivity.f35567x0.c(true);
                     }
                 } else if (str != null) {
                     ic.a.s(R.string.UnknownErrorCode, new Object[]{str}, org.telegram.ui.Components.wc.b0(U), R.raw.error, 36);
@@ -127,9 +127,9 @@ public final class uc extends org.telegram.ui.Components.bb implements Notificat
                 int i14 = ic.f4848a;
                 t61 K = t61.K(ic.class);
                 K.d = -1;
-                K.f32872l = string;
-                K.f32867f = !this.Z;
-                K.f32877q = true;
+                K.f32875l = string;
+                K.f32870f = !this.Z;
+                K.f32880q = true;
                 arrayList.add(K);
             }
         } else {
@@ -177,7 +177,7 @@ public final class uc extends org.telegram.ui.Components.bb implements Notificat
     public final lm0 v(mm0 mm0Var) {
         j71 j71Var = new j71(this.d, getContext(), this.currentAccount, 0, true, new ai.e(this, 12), this.resourcesProvider);
         this.Y = j71Var;
-        j71Var.f29505r = false;
+        j71Var.f29507r = false;
         return j71Var;
     }
 

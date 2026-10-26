@@ -37,7 +37,7 @@ public final class vv0 extends di.ha {
             for (int i11 = 0; i11 < dt0Var.getChildCount(); i11++) {
                 View childAt = dt0Var.getChildAt(i11);
                 if ((childAt instanceof org.telegram.ui.Cells.w7) && (messageObject = ((org.telegram.ui.Cells.w7) childAt).getMessageObject()) != null && messageObject.isStory()) {
-                    arrayList.add(Integer.valueOf(messageObject.storyItem.f22264id));
+                    arrayList.add(Integer.valueOf(messageObject.storyItem.f22266id));
                 }
             }
         }
@@ -46,7 +46,7 @@ public final class vv0 extends di.ha {
     @Override
     public final boolean d(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
         TL_stories.StoryItem storyItem;
-        di.z6 z6Var = this.h.f34830s;
+        di.z6 z6Var = this.h.f34833s;
         ArrayList<TL_stories.StoryViews> arrayList2 = tL_stories_storyViews.views;
         z6Var.getClass();
         if (arrayList != null && arrayList2 != null) {

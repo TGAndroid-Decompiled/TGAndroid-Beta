@@ -41,7 +41,7 @@ public class b0 extends lm0 {
     public void v(s4.e1 e1Var, int i10) {
         TLRPC.Chat chat;
         String str;
-        r4 r4Var = (r4) e1Var.f47735a;
+        r4 r4Var = (r4) e1Var.f47738a;
         int i11 = this.d;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
         new TLRPC.TL_dialog();
@@ -86,8 +86,8 @@ public class b0 extends lm0 {
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         boolean z10 = this.e;
         r4 r4Var = new r4(this.f14004c, this.h, z10);
-        if (this.f14005f && !r4Var.f24967x) {
-            r4Var.f24967x = true;
+        if (this.f14005f && !r4Var.f24969x) {
+            r4Var.f24969x = true;
             NotificationCenter.getInstance(r4Var.h).listen(r4Var, NotificationCenter.userIsPremiumBlockedUpadted, new h2(r4Var, 1));
         }
         r4Var.setLayoutParams(new s4.q0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));

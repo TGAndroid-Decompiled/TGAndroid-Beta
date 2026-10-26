@@ -30,15 +30,15 @@ public final class nu extends sz {
         ru ruVar = this.W2;
         if (ruVar.b()) {
             int i15 = i13 - i11;
-            if (!this.U2 && ruVar.f32331x) {
+            if (!this.U2 && ruVar.f32333x) {
                 this.V2 = true;
             }
             if (this.V2 && (i14 = this.T2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.vh.q(animate().translationY(0.0f), org.telegram.ui.ActionBar.q1.f22961w, 250L);
+                org.telegram.messenger.vh.q(animate().translationY(0.0f), org.telegram.ui.ActionBar.q1.f22963w, 250L);
                 this.V2 = false;
             }
-            this.U2 = ruVar.f32331x;
+            this.U2 = ruVar.f32333x;
             this.T2 = i15;
         }
     }

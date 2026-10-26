@@ -58,7 +58,7 @@ public final class t8 extends View implements org.telegram.ui.ActionBar.p6 {
         this.f9207a = u6Var;
         setMinimumWidth(AndroidUtilities.dp(196.0f));
         setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-        int i11 = org.telegram.ui.ActionBar.y6.f23446i6;
+        int i11 = org.telegram.ui.ActionBar.y6.f23448i6;
         org.telegram.ui.Cells.y Z = org.telegram.ui.ActionBar.y6.Z(org.telegram.ui.ActionBar.y6.w0(i11, u6Var), 0, 8);
         org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i11);
         setBackground(Z);
@@ -76,7 +76,7 @@ public final class t8 extends View implements org.telegram.ui.ActionBar.p6 {
         da0Var.f(org.telegram.ui.ActionBar.y6.o1(0.2f, -1), org.telegram.ui.ActionBar.y6.o1(0.05f, -1));
         Path path = new Path();
         this.f9211n = path;
-        da0Var.f27479y = path;
+        da0Var.f27481y = path;
         da0Var.k(4.0f);
         boolean[] zArr = {true};
         this.f9215x = obj;
@@ -223,7 +223,7 @@ public final class t8 extends View implements org.telegram.ui.ActionBar.p6 {
             return;
         }
         SpannableString spannableString = new SpannableString("x " + tL_messages_stickerSet.set.title);
-        spannableString.setSpan(new p10(org.telegram.ui.ActionBar.y6.gc, this.h.f27459a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new p10(org.telegram.ui.ActionBar.y6.gc, this.h.f27461a), 0, spannableString.length(), 33);
         spannableString.setSpan(new q61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
         ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
         int i10 = 0;
@@ -417,7 +417,7 @@ public final class t8 extends View implements org.telegram.ui.ActionBar.p6 {
         CharSequence charSequence;
         String string;
         SpannableString spannableString = new SpannableString("x " + stickerSetCovered.set.title);
-        spannableString.setSpan(new p10(org.telegram.ui.ActionBar.y6.gc, this.h.f27459a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new p10(org.telegram.ui.ActionBar.y6.gc, this.h.f27461a), 0, spannableString.length(), 33);
         spannableString.setSpan(new q61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
         TLRPC.Document document = stickerSetCovered.cover;
         if (document == null && (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered)) {
@@ -452,11 +452,11 @@ public final class t8 extends View implements org.telegram.ui.ActionBar.p6 {
         boolean z10 = this.v;
         da0 da0Var = this.h;
         if (z10 && this.f9214w) {
-            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickersEmoji", i10, new Object[0]), 0, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.gc, da0Var.f27459a), null));
+            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickersEmoji", i10, new Object[0]), 0, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.gc, da0Var.f27461a), null));
         } else if (z10) {
-            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsEmoji", i10, new Object[0]), 0, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.gc, da0Var.f27459a), null));
+            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsEmoji", i10, new Object[0]), 0, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.gc, da0Var.f27461a), null));
         } else {
-            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickers", i10, new Object[0]), 0, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.gc, da0Var.f27459a), null));
+            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickers", i10, new Object[0]), 0, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.gc, da0Var.f27461a), null));
         }
     }
 

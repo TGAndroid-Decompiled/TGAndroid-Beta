@@ -241,7 +241,7 @@ public class FilesMigrationService extends Service {
             f7.addView(fy0Var, gb1.x(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
-            int i10 = org.telegram.ui.ActionBar.y6.f23462j5;
+            int i10 = org.telegram.ui.ActionBar.y6.f23464j5;
             t.r(textView, i10, null, 1, 20.0f);
             textView.setText(LocaleController.getString(R.string.MigrateOldFolderTitle));
             f7.addView(textView, gb1.h(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));

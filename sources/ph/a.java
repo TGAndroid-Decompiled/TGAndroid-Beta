@@ -10,7 +10,7 @@ import org.telegram.ui.yx;
 public abstract class a extends r71 {
     public a(Context context, int i10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, u6 u6Var) {
         super(context, i10, -1, false, callback2, callback5, null, u6Var, -1, 0);
-        this.f30666y2 = true;
+        this.f30668y2 = true;
         setOverScrollMode(2);
     }
 

@@ -6,16 +6,16 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class dn implements dt {
-    public final TLRPC.TL_messageMediaPoll f38908a;
-    public final TLRPC.PollAnswer f38909b;
-    public final org.telegram.ui.Cells.s1 f38910c;
+    public final TLRPC.TL_messageMediaPoll f38911a;
+    public final TLRPC.PollAnswer f38912b;
+    public final org.telegram.ui.Cells.s1 f38913c;
     public final fn d;
 
     public dn(fn fnVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.s1 s1Var) {
         this.d = fnVar;
-        this.f38908a = tL_messageMediaPoll;
-        this.f38909b = pollAnswer;
-        this.f38910c = s1Var;
+        this.f38911a = tL_messageMediaPoll;
+        this.f38912b = pollAnswer;
+        this.f38913c = s1Var;
     }
 
     @Override
@@ -51,23 +51,23 @@ public final class dn implements dt {
     @Override
     public final void J() {
         ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f38909b);
-        SendMessagesHelper sendMessagesHelper = this.d.f39420a.getSendMessagesHelper();
-        org.telegram.ui.Cells.s1 s1Var = this.f38910c;
+        arrayList.add(this.f38912b);
+        SendMessagesHelper sendMessagesHelper = this.d.f39423a.getSendMessagesHelper();
+        org.telegram.ui.Cells.s1 s1Var = this.f38913c;
         sendMessagesHelper.sendVote(s1Var.getMessageObject(), arrayList, null);
         s1Var.R0(true);
     }
 
     @Override
     public final void L(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        un unVar = this.d.f39420a;
+        un unVar = this.d.f39423a;
         if (inputStickerSet != null && unVar.getParentActivity() != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
             tL_inputStickerSetID.f22047id = inputStickerSet.f22047id;
-            org.telegram.ui.Components.cz0 cz0Var = new org.telegram.ui.Components.cz0(unVar.getParentActivity(), unVar, tL_inputStickerSetID, null, unVar.Y, unVar.f44385qa);
+            org.telegram.ui.Components.cz0 cz0Var = new org.telegram.ui.Components.cz0(unVar.getParentActivity(), unVar, tL_inputStickerSetID, null, unVar.Y, unVar.f44388qa);
             cz0Var.setCalcMandatoryInsets(unVar.F9());
-            cz0Var.f27297i0 = z10;
+            cz0Var.f27299i0 = z10;
             unVar.showDialog(cz0Var);
         }
     }
@@ -89,7 +89,7 @@ public final class dn implements dt {
 
     @Override
     public final long a() {
-        return this.d.f39420a.f44249f6;
+        return this.d.f39423a.f44252f6;
     }
 
     @Override
@@ -99,7 +99,7 @@ public final class dn implements dt {
 
     @Override
     public final boolean c() {
-        if (this.d.f39420a.f44221d4 == 1) {
+        if (this.d.f39423a.f44224d4 == 1) {
             return true;
         }
         return false;
@@ -107,7 +107,7 @@ public final class dn implements dt {
 
     @Override
     public final TLRPC.TL_messageMediaPoll d() {
-        return this.f38908a;
+        return this.f38911a;
     }
 
     @Override
@@ -122,7 +122,7 @@ public final class dn implements dt {
 
     @Override
     public final TLRPC.PollAnswer g() {
-        return this.f38909b;
+        return this.f38912b;
     }
 
     @Override
@@ -152,8 +152,8 @@ public final class dn implements dt {
 
     @Override
     public final void r() {
-        SendMessagesHelper sendMessagesHelper = this.d.f39420a.getSendMessagesHelper();
-        org.telegram.ui.Cells.s1 s1Var = this.f38910c;
+        SendMessagesHelper sendMessagesHelper = this.d.f39423a.getSendMessagesHelper();
+        org.telegram.ui.Cells.s1 s1Var = this.f38913c;
         sendMessagesHelper.sendVote(s1Var.getMessageObject(), null, null);
         s1Var.R0(true);
     }
@@ -165,7 +165,7 @@ public final class dn implements dt {
 
     @Override
     public final MessageObject z() {
-        return this.f38910c.getMessageObject();
+        return this.f38913c.getMessageObject();
     }
 
     @Override

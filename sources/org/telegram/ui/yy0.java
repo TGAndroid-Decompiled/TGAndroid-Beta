@@ -15,7 +15,7 @@ public final class yy0 extends wz0 {
         di.f3 f3Var;
         super.dispatchDraw(canvas);
         org.telegram.ui.Components.t5 t5Var = this.e;
-        if (t5Var != null && (f3Var = t5Var.f32849k) != null) {
+        if (t5Var != null && (f3Var = t5Var.f32852k) != null) {
             f3Var.startAnimation();
         }
     }

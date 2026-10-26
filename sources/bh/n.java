@@ -109,7 +109,7 @@ public final class n implements Runnable {
                     }
                 }
                 h7Var2.U0 = -1;
-                qc qcVar = qc.f31880x;
+                qc qcVar = qc.f31882x;
                 if (qcVar != null) {
                     qcVar.c(0L, false);
                     return;
@@ -193,7 +193,7 @@ public final class n implements Runnable {
                 return;
             case 12:
                 String str = e2.n0.f9692a;
-                i2.j0 j0Var = ((i2.d0) ((k2.v) ((rf.b) obj).f47333c)).f13509a;
+                i2.j0 j0Var = ((i2.d0) ((k2.v) ((rf.b) obj).f47336c)).f13509a;
                 if (j0Var.f13588d0 != z11) {
                     j0Var.f13588d0 = z11;
                     j0Var.f13603m.e(23, new i2.y(1, z11));
@@ -240,7 +240,7 @@ public final class n implements Runnable {
                 qf.d.r(context, LocaleController.getString(i11));
                 return;
             case 24:
-                tz0 tz0Var = ((jm) obj).f40685c.f44367p1;
+                tz0 tz0Var = ((jm) obj).f40688c.f44370p1;
                 if (tz0Var != null && z11) {
                     tz0Var.setVisibility(8);
                     return;
@@ -248,8 +248,8 @@ public final class n implements Runnable {
                 return;
             case 25:
                 mo moVar = (mo) obj;
-                moVar.f41623w0.autotranslation = z11;
-                moVar.getMessagesController().putChat(moVar.f41623w0, false);
+                moVar.f41626w0.autotranslation = z11;
+                moVar.getMessagesController().putChat(moVar.f41626w0, false);
                 return;
             case 26:
                 yp ypVar = (yp) obj;
@@ -259,26 +259,26 @@ public final class n implements Runnable {
                     if (ypVar.L != null) {
                         ypVar.O = true;
                         if (!ypVar.A()) {
-                            wallPaper = ypVar.f35103n.f43543g;
+                            wallPaper = ypVar.f35106n.f43546g;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        h4 h4Var = ypVar.L.f34790a;
-                        if (h4Var.f22680a) {
-                            ypVar.f35103n.q(null, wallPaper2, false, Boolean.valueOf(z11), false);
+                        h4 h4Var = ypVar.L.f34793a;
+                        if (h4Var.f22682a) {
+                            ypVar.f35106n.q(null, wallPaper2, false, Boolean.valueOf(z11), false);
                         } else {
-                            ypVar.f35103n.q(h4Var, wallPaper2, false, Boolean.valueOf(z11), false);
+                            ypVar.f35106n.q(h4Var, wallPaper2, false, Boolean.valueOf(z11), false);
                         }
                     }
                     if (AndroidUtilities.isTablet() && (t10 = yp.t(z11)) != null && t10 != y6.I) {
-                        if (z11 == ypVar.f35105s) {
+                        if (z11 == ypVar.f35108s) {
                             z10 = false;
                         }
-                        ypVar.f35100i0 = z10;
+                        ypVar.f35103i0 = z10;
                         ypVar.J(t10);
                     }
                     if (wpVar.d != null) {
                         while (i13 < wpVar.d.size()) {
-                            ((xp) wpVar.d.get(i13)).f34792c = z11 ? 1 : 0;
+                            ((xp) wpVar.d.get(i13)).f34795c = z11 ? 1 : 0;
                             i13++;
                         }
                         wpVar.l();
@@ -296,12 +296,12 @@ public final class n implements Runnable {
                 return;
             case 28:
                 n10 n10Var = (n10) obj;
-                n10Var.S(n10Var.f30821y0, z11);
+                n10Var.S(n10Var.f30823y0, z11);
                 return;
             default:
                 m40 m40Var = (m40) obj;
                 if (!z11) {
-                    m40Var.f30380r.setVisibility(8);
+                    m40Var.f30382r.setVisibility(8);
                     return;
                 } else {
                     m40Var.getClass();

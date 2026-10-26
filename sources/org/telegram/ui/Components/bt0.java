@@ -34,27 +34,27 @@ public final class bt0 extends vz {
         int i12;
         s4.h0 adapter = this.Y.h.getAdapter();
         aw0 aw0Var = this.Z;
-        pv0[] pv0VarArr = aw0Var.f26696v1;
-        if (adapter == aw0Var.Q && !pv0VarArr[5].f31704a.isEmpty()) {
-            document = ((MessageObject) pv0VarArr[5].f31704a.get(i10)).getDocument();
+        pv0[] pv0VarArr = aw0Var.f26698v1;
+        if (adapter == aw0Var.Q && !pv0VarArr[5].f31706a.isEmpty()) {
+            document = ((MessageObject) pv0VarArr[5].f31706a.get(i10)).getDocument();
         } else {
             document = null;
         }
         qw0 qw0Var = this.X;
-        qw0Var.f32053b = 100.0f;
-        qw0Var.f32052a = 100.0f;
+        qw0Var.f32055b = 100.0f;
+        qw0Var.f32054a = 100.0f;
         if (document != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
             if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f22052w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-                qw0Var.f32052a = i11;
-                qw0Var.f32053b = i12;
+                qw0Var.f32054a = i11;
+                qw0Var.f32055b = i12;
             }
             ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    qw0Var.f32052a = documentAttribute.f22034w;
-                    qw0Var.f32053b = documentAttribute.h;
+                    qw0Var.f32054a = documentAttribute.f22034w;
+                    qw0Var.f32055b = documentAttribute.h;
                     break;
                 }
             }
@@ -66,7 +66,7 @@ public final class bt0 extends vz {
     public final void U(rf.e eVar, s4.b1 b1Var, View view, s0.d dVar) {
         ke.c cVar;
         super.U(eVar, b1Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47650a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47653a;
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
             cVar = new ke.c(collectionItemInfo);

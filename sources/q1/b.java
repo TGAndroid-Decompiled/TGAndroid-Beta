@@ -11,15 +11,15 @@ import com.google.firebase.messaging.q;
 import java.nio.ByteBuffer;
 import u7.s;
 public final class b extends InputConnectionWrapper {
-    public final EditText f46896a;
-    public final s f46897b;
+    public final EditText f46899a;
+    public final s f46900b;
 
     public b(EditText editText, InputConnection inputConnection, EditorInfo editorInfo) {
         super(inputConnection, false);
         int i10;
         s sVar = new s(19);
-        this.f46896a = editText;
-        this.f46897b = sVar;
+        this.f46899a = editText;
+        this.f46900b = sVar;
         if (l.f2555j != null) {
             l a2 = l.a();
             if (a2.b() != 1 || editorInfo == null) {
@@ -34,7 +34,7 @@ public final class b extends InputConnectionWrapper {
             p1.b bVar = (p1.b) ((q) fVar.f2547c).f7757a;
             int a10 = bVar.a(4);
             if (a10 != 0) {
-                i10 = ((ByteBuffer) bVar.d).getInt(a10 + bVar.f46480a);
+                i10 = ((ByteBuffer) bVar.d).getInt(a10 + bVar.f46483a);
             } else {
                 i10 = 0;
             }
@@ -45,8 +45,8 @@ public final class b extends InputConnectionWrapper {
 
     @Override
     public final boolean deleteSurroundingText(int i10, int i11) {
-        Editable editableText = this.f46896a.getEditableText();
-        this.f46897b.getClass();
+        Editable editableText = this.f46899a.getEditableText();
+        this.f46900b.getClass();
         if (!s.N0(this, editableText, i10, i11, false) && !super.deleteSurroundingText(i10, i11)) {
             return false;
         }
@@ -55,8 +55,8 @@ public final class b extends InputConnectionWrapper {
 
     @Override
     public final boolean deleteSurroundingTextInCodePoints(int i10, int i11) {
-        Editable editableText = this.f46896a.getEditableText();
-        this.f46897b.getClass();
+        Editable editableText = this.f46899a.getEditableText();
+        this.f46900b.getClass();
         if (s.N0(this, editableText, i10, i11, true) || super.deleteSurroundingTextInCodePoints(i10, i11)) {
             return true;
         }

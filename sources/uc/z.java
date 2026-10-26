@@ -3,18 +3,18 @@ package uc;
 import java.util.ArrayList;
 import org.telegram.ui.Wallet.y0;
 public abstract class z extends Thread {
-    public final u f49706a;
+    public final u f49709a;
 
     public z(String str, u uVar, int i10) {
         super(str);
-        this.f49706a = uVar;
+        this.f49709a = uVar;
     }
 
     public abstract void a();
 
     @Override
     public final void run() {
-        c2.b bVar = this.f49706a.d;
+        c2.b bVar = this.f49709a.d;
         int i10 = 0;
         if (bVar != null) {
             ArrayList arrayList = (ArrayList) bVar.n();

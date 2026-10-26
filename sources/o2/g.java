@@ -16,7 +16,7 @@ public final class g extends x2.c {
         if (!a(this.f18990g, elapsedRealtime)) {
             return;
         }
-        for (int i10 = this.f51305b - 1; i10 >= 0; i10--) {
+        for (int i10 = this.f51308b - 1; i10 >= 0; i10--) {
             if (!a(i10, elapsedRealtime)) {
                 this.f18990g = i10;
                 return;

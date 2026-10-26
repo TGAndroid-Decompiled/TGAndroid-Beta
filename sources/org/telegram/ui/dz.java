@@ -9,13 +9,13 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class dz extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public Paint f38952a;
-    public float[] f38953b;
-    public Path f38954c;
+    public Paint f38955a;
+    public float[] f38956b;
+    public Path f38957c;
     public float d;
 
     public final void a(float f7, float f10) {
-        float[] fArr = this.f38953b;
+        float[] fArr = this.f38956b;
         fArr[7] = f7;
         fArr[6] = f7;
         fArr[1] = f7;
@@ -30,15 +30,15 @@ public final class dz extends FrameLayout implements org.telegram.ui.ActionBar.p
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float measuredWidth = getMeasuredWidth() / 2.0f;
-        Path path = this.f38954c;
+        Path path = this.f38957c;
         path.rewind();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.d), getMeasuredHeight());
         a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.d));
-        float[] fArr = this.f38953b;
+        float[] fArr = this.f38956b;
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF, fArr, direction);
-        Paint paint = this.f38952a;
+        Paint paint = this.f38955a;
         canvas.drawPath(path, paint);
         path.rewind();
         rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.d), 0.0f, getMeasuredWidth(), getMeasuredHeight());
@@ -50,7 +50,7 @@ public final class dz extends FrameLayout implements org.telegram.ui.ActionBar.p
     @Override
     public final void updateColors() {
         try {
-            this.f38952a.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false));
+            this.f38955a.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

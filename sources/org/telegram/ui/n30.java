@@ -15,7 +15,7 @@ public final class n30 extends u4 {
     public final void c() {
         v50 v50Var = this.U;
         AccountInstance accountInstance = v50Var.d;
-        o30 o30Var = v50Var.f44609b;
+        o30 o30Var = v50Var.f44612b;
         long dialogId = o30Var.getDialogId();
         if (dialogId > 0) {
             TLRPC.User user = accountInstance.getMessagesController().getUser(Long.valueOf(dialogId));

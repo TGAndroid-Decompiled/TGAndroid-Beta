@@ -224,7 +224,7 @@ public final class z implements e2.d, r2.u, c3.f0 {
                     if (i11 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = uc.k.f49659a;
+                        SecureRandom secureRandom = uc.k.f49662a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -276,7 +276,7 @@ public final class z implements e2.d, r2.u, c3.f0 {
                                             uc.s sVar = new uc.s(socketFactory, new uc.a(str2, i10), i11, null, null);
                                             sVar.d = 1;
                                             sVar.e = 250;
-                                            sVar.f49674f = true;
+                                            sVar.f49677f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }

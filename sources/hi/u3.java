@@ -106,7 +106,7 @@ public final class u3 implements View.OnClickListener {
                                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                                 org.telegram.ui.ActionBar.k3 k3Var3 = k3Var2;
                                 if (updates != null) {
-                                    long j13 = user2.f22174id;
+                                    long j13 = user2.f22176id;
                                     TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank2 = tL_messages_editChatParticipantRank;
                                     String str = tL_messages_editChatParticipantRank2.rank;
                                     MessagesController messagesController2 = MessagesController.this;
@@ -138,8 +138,8 @@ public final class u3 implements View.OnClickListener {
                         });
                         return;
                     }
-                    float f7 = -i11Var.f29149y;
-                    i11Var.f29149y = f7;
+                    float f7 = -i11Var.f29151y;
+                    i11Var.f29151y = f7;
                     AndroidUtilities.shakeViewSpring(textView, f7);
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
                     return;

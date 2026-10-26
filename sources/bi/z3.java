@@ -58,7 +58,7 @@ public final class z3 implements qf1, Continuation, org.telegram.ui.ActionBar.b2
         LaunchActivity launchActivity = (LaunchActivity) this.f5823c;
         int[] iArr = (int[]) this.d;
         Pattern pattern = LaunchActivity.D1;
-        TLRPC.UserFull userFull = MessagesController.getInstance(launchActivity.O).getUserFull(user.f22174id);
+        TLRPC.UserFull userFull = MessagesController.getInstance(launchActivity.O).getUserFull(user.f22176id);
         if (userFull != null && userFull.video_calls_available) {
             z10 = true;
         } else {
@@ -93,7 +93,7 @@ public final class z3 implements qf1, Continuation, org.telegram.ui.ActionBar.b2
                 } else {
                     arrayList = b0Var.f15635j;
                 }
-                arrayList.remove(Long.valueOf(t61Var.f32883x));
+                arrayList.remove(Long.valueOf(t61Var.f32886x));
                 b0Var.e.run();
                 return;
             case 3:
@@ -105,30 +105,30 @@ public final class z3 implements qf1, Continuation, org.telegram.ui.ActionBar.b2
                     TLRPC.TL_messages_deletePhoneCallHistory tL_messages_deletePhoneCallHistory = new TLRPC.TL_messages_deletePhoneCallHistory();
                     tL_messages_deletePhoneCallHistory.revoke = z13;
                     o9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new fi.m3(3, o9Var, z13));
-                    o9Var.f42129w.clear();
-                    o9Var.f42130x = false;
+                    o9Var.f42132w.clear();
+                    o9Var.f42133x = false;
                     o9Var.E = true;
                     o9Var.v.setVisibility(8);
-                    o9Var.f42124c.f32150g3.O(true);
+                    o9Var.f42127c.f32152g3.O(true);
                 } else {
                     o9Var.getMessagesController().deleteMessages(new ArrayList<>(o9Var.G), null, null, 0L, 0, zArr[0], 0);
                 }
                 o9Var.f0(false);
                 return;
             case 4:
-                ((org.telegram.ui.ia) this.f5823c).f40195a.k0((TLRPC.TL_username) this.d, this.f5822b, true);
+                ((org.telegram.ui.ia) this.f5823c).f40198a.k0((TLRPC.TL_username) this.d, this.f5822b, true);
                 return;
             case 5:
                 boolean z14 = this.f5822b;
-                zo zoVar = ((xo) this.f5823c).f45815a;
+                zo zoVar = ((xo) this.f5823c).f45818a;
                 zoVar.C1((TLRPC.TL_username) this.d, z14, true);
-                zoVar.f46338i3.X();
+                zoVar.f46341i3.X();
                 return;
             case 6:
                 org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) this.f5823c;
                 TLRPC.User user = (TLRPC.User) this.d;
                 boolean z15 = this.f5822b;
-                TLRPC.UserFull userFull = r2Var.getMessagesController().getUserFull(user.f22174id);
+                TLRPC.UserFull userFull = r2Var.getMessagesController().getUserFull(user.f22176id);
                 if (userFull != null && userFull.video_calls_available) {
                     z10 = true;
                 } else {
@@ -148,9 +148,9 @@ public final class z3 implements qf1, Continuation, org.telegram.ui.ActionBar.b2
                 o00 o00Var = (o00) this.f5823c;
                 f00 f00Var = (f00) this.d;
                 boolean z17 = this.f5822b;
-                int i11 = f00Var.f39229j;
+                int i11 = f00Var.f39232j;
                 if (i11 > 0) {
-                    o00Var.f42060y &= ~i11;
+                    o00Var.f42063y &= ~i11;
                 } else {
                     if (z17) {
                         arrayList2 = o00Var.F;
@@ -194,10 +194,10 @@ public final class z3 implements qf1, Continuation, org.telegram.ui.ActionBar.b2
                     return;
                 } catch (Exception unused) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(r2Var2.getParentActivity());
-                    alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
-                    alertDialog$Builder.f22366a.T = LocaleController.getString("NoMailInstalled", R.string.NoMailInstalled);
+                    alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
+                    alertDialog$Builder.f22368a.T = LocaleController.getString("NoMailInstalled", R.string.NoMailInstalled);
                     alertDialog$Builder.k(LocaleController.getString("OK", R.string.OK), null);
-                    r2Var2.showDialog(alertDialog$Builder.f22366a);
+                    r2Var2.showDialog(alertDialog$Builder.f22368a);
                     return;
                 }
         }

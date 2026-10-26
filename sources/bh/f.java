@@ -84,17 +84,17 @@ public final class f implements View.OnClickListener {
                 }
                 return;
             case 11:
-                int i16 = yq.f35110f0;
+                int i16 = yq.f35113f0;
                 return;
             case 12:
-                int i17 = hs.f29040w;
+                int i17 = hs.f29042w;
                 return;
             case 13:
                 float[] fArr = FragmentContextView.W0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 14:
-                ch0 ch0Var = ch0.f27157p0;
+                ch0 ch0Var = ch0.f27159p0;
                 dv dvVar = ch0Var.U;
                 if (dvVar != null) {
                     dvVar.G();
@@ -127,7 +127,7 @@ public final class f implements View.OnClickListener {
                 n1.e0(0, null);
                 return;
             case 19:
-                ArrayList arrayList = ExternalActionActivity.f35495x;
+                ArrayList arrayList = ExternalActionActivity.f35498x;
                 return;
             case 20:
                 return;
@@ -163,10 +163,10 @@ public final class f implements View.OnClickListener {
                 int i20 = zh.m.A0;
                 return;
             case 28:
-                yc[] ycVarArr = zh.v.f53280p0;
+                yc[] ycVarArr = zh.v.f53283p0;
                 return;
             default:
-                int i21 = zh.c0.f52910g0;
+                int i21 = zh.c0.f52913g0;
                 return;
         }
     }

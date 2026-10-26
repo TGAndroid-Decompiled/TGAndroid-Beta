@@ -70,7 +70,7 @@ public final class j3 implements Runnable {
                 BirthdayController.a((BirthdayController) this.f20389b, (TLObject) this.f20390c);
                 return;
             case 13:
-                ((ChatMessagesMetadataController) this.f20389b).lambda$loadStoriesForMessages$0((ArrayList) this.f20390c);
+                ChatMessagesMetadataController.a((ChatMessagesMetadataController) this.f20389b, (ArrayList) this.f20390c);
                 return;
             case 14:
                 ChatThemeController.lambda$getWallpaperBitmap$7((File) this.f20389b, (ResultCallback) this.f20390c);

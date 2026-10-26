@@ -61,7 +61,7 @@ public final class u5 implements View.OnClickListener {
                         Collections.sort(arrayList);
                         TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f17054b;
                         k80 P = v3Var2.f17557p3.P(view);
-                        P.W(y6.c0(AndroidUtilities.dp(3.0f), y6.w0(y6.f23354d6, v3Var2.f17555o3)));
+                        P.W(y6.c0(AndroidUtilities.dp(3.0f), y6.w0(y6.f23356d6, v3Var2.f17555o3)));
                         P.Z = true;
                         P.X = AndroidUtilities.dp(350.0f);
                         P.i(new m2(v3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));

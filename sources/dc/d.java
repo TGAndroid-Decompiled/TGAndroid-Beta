@@ -74,13 +74,13 @@ public final class d implements jg {
                 l0Var.c(j10);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) l0Var.f47116a.get()) != null) {
+            if (interpolator != null && (view = (View) l0Var.f47119a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
             if (((m0) this.e) != null) {
                 l0Var.d((i) this.f8318f);
             }
-            View view2 = (View) l0Var.f47116a.get();
+            View view2 = (View) l0Var.f47119a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
@@ -107,7 +107,7 @@ public final class d implements jg {
         f.f8323l.getClass();
         int i12 = aVar.e;
         if (i12 == -1) {
-            Bitmap bitmap = aVar.f51704a;
+            Bitmap bitmap = aVar.f51707a;
             l.h(bitmap);
             i10 = bitmap.getAllocationByteCount();
         } else if (i12 != 17 && i12 != 842094169) {

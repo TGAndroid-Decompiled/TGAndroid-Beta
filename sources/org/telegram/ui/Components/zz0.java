@@ -23,42 +23,42 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
     public int I;
     public int J;
     public mp0 K;
-    public int f35442a;
-    public final Paint f35443b;
-    public final Paint f35444c;
+    public int f35445a;
+    public final Paint f35446b;
+    public final Paint f35447c;
     public final Paint d;
     public final Paint e;
-    public final RectF f35445f;
+    public final RectF f35448f;
     public final yz0 h;
-    public final String[] f35446n;
-    public final int[] f35447r;
-    public final xj0[] f35448s;
+    public final String[] f35449n;
+    public final int[] f35450r;
+    public final xj0[] f35451s;
     public final xj0[] v;
-    public final int[] f35449w;
-    public final int[] f35450x;
-    public int f35451y;
+    public final int[] f35452w;
+    public final int[] f35453x;
+    public int f35454y;
 
     public zz0(Context context, int i10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f35443b = paint;
-        this.f35444c = new Paint(1);
+        this.f35446b = paint;
+        this.f35447c = new Paint(1);
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.e = paint3;
-        this.f35445f = new RectF();
-        this.f35446n = r7;
-        this.f35447r = r8;
-        this.f35448s = new xj0[6];
+        this.f35448f = new RectF();
+        this.f35449n = r7;
+        this.f35450r = r8;
+        this.f35451s = new xj0[6];
         this.v = new xj0[6];
-        this.f35449w = new int[6];
-        this.f35450x = new int[6];
+        this.f35452w = new int[6];
+        this.f35453x = new int[6];
         this.E = new ak0[2];
         this.G = 1.0f;
         String[] strArr = {LocaleController.getString(R.string.SwipeSettingsPin), LocaleController.getString(R.string.SwipeSettingsRead), LocaleController.getString(R.string.SwipeSettingsArchive), LocaleController.getString(R.string.SwipeSettingsMute), LocaleController.getString(R.string.SwipeSettingsDelete), LocaleController.getString(R.string.SwipeSettingsFolders)};
-        int i11 = org.telegram.ui.ActionBar.y6.f23338c9;
-        int[] iArr = {i11, i11, i11, i11, org.telegram.ui.ActionBar.y6.Y5, org.telegram.ui.ActionBar.y6.f23357d9};
+        int i11 = org.telegram.ui.ActionBar.y6.f23340c9;
+        int[] iArr = {i11, i11, i11, i11, org.telegram.ui.ActionBar.y6.Y5, org.telegram.ui.ActionBar.y6.f23359d9};
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
@@ -71,7 +71,7 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
         paint3.setStrokeWidth(AndroidUtilities.dp(2.0f));
         yz0 yz0Var = new yz0(this, context);
         this.h = yz0Var;
-        this.f35442a = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23462j5, false);
+        this.f35445a = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23464j5, false);
         yz0Var.setMinValue(0);
         yz0Var.setDrawDividers(false);
         boolean isEmpty = MessagesController.getInstance(i10).dialogFilters.isEmpty();
@@ -84,7 +84,7 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
         yz0Var.setValue(SharedConfig.getChatSwipeAction(i10));
         addView(yz0Var, gb1.h(132, -1.0f, 5, 21.0f, 0.0f, 21.0f, 0.0f));
         setWillNotDraw(false);
-        this.f35451y = 0;
+        this.f35454y = 0;
         for (int i12 = 0; i12 < 2; i12++) {
             this.E[i12] = new ImageView(context);
             addView(this.E[i12], gb1.h(28, 28.0f, 21, 0.0f, 0.0f, 184.0f, 0.0f));
@@ -102,7 +102,7 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public final xj0 a(int i10) {
         int i11;
-        xj0[] xj0VarArr = this.f35448s;
+        xj0[] xj0VarArr = this.f35451s;
         if (xj0VarArr[i10] == null) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -135,7 +135,7 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
         int value;
         if (this.K == null && this.J != (value = this.h.getValue())) {
             this.J = value;
-            int i10 = (this.f35451y + 1) % 2;
+            int i10 = (this.f35454y + 1) % 2;
             xj0 a2 = a(value);
             ak0[] ak0VarArr = this.E;
             if (a2 != null) {
@@ -147,9 +147,9 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
             } else {
                 ak0VarArr[i10].a();
             }
-            AndroidUtilities.updateViewVisibilityAnimated(ak0VarArr[this.f35451y], false, 0.5f, true);
+            AndroidUtilities.updateViewVisibilityAnimated(ak0VarArr[this.f35454y], false, 0.5f, true);
             AndroidUtilities.updateViewVisibilityAnimated(ak0VarArr[i10], true, 0.5f, true);
-            this.f35451y = i10;
+            this.f35454y = i10;
             mp0 mp0Var = new mp0(this, 18);
             this.K = mp0Var;
             AndroidUtilities.runOnUIThread(mp0Var, 150L);
@@ -157,16 +157,16 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
     }
 
     public final void c(int i10) {
-        xj0[] xj0VarArr = this.f35448s;
+        xj0[] xj0VarArr = this.f35451s;
         if (xj0VarArr[i10] != null) {
-            int f7 = i0.a.f(0.9f, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23354d6, false), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23338c9, false));
-            int i11 = org.telegram.ui.ActionBar.y6.f23376e9;
+            int f7 = i0.a.f(0.9f, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23356d6, false), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23340c9, false));
+            int i11 = org.telegram.ui.ActionBar.y6.f23378e9;
             int x02 = org.telegram.ui.ActionBar.y6.x0(null, i11, false);
             xj0 xj0Var = xj0VarArr[i10];
             xj0[] xj0VarArr2 = this.v;
             xj0 xj0Var2 = xj0VarArr2[i10];
-            int[] iArr = this.f35450x;
-            int[] iArr2 = this.f35449w;
+            int[] iArr = this.f35453x;
+            int[] iArr2 = this.f35452w;
             if (xj0Var != xj0Var2 || x02 != iArr2[i10] || f7 != iArr[i10]) {
                 xj0VarArr2[i10] = xj0Var;
                 iArr2[i10] = x02;
@@ -193,7 +193,7 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
         if (accessibilityEvent.getEventType() == 1) {
             yz0 yz0Var = this.h;
             int value = yz0Var.getValue() + 1;
-            setContentDescription(this.f35446n[(value > yz0Var.getMaxValue() || value < 0) ? 0 : 0]);
+            setContentDescription(this.f35449n[(value > yz0Var.getMaxValue() || value < 0) ? 0 : 0]);
             yz0Var.a(true);
         }
     }
@@ -202,7 +202,7 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setContentDescription(this.f35446n[this.h.getValue()]);
+        accessibilityNodeInfo.setContentDescription(this.f35449n[this.h.getValue()]);
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, null));
     }
 
@@ -215,8 +215,8 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
     public void setBackgroundColor(int i10) {
         super.setBackgroundColor(i10);
         updateColors();
-        int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23462j5, false);
-        this.f35442a = x02;
+        int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23464j5, false);
+        this.f35445a = x02;
         yz0 yz0Var = this.h;
         yz0Var.setTextColor(x02);
         yz0Var.invalidate();
@@ -224,7 +224,7 @@ public final class zz0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void updateColors() {
-        for (int i10 = 0; i10 < this.f35448s.length; i10++) {
+        for (int i10 = 0; i10 < this.f35451s.length; i10++) {
             c(i10);
         }
     }

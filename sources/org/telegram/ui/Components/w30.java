@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public abstract class w30 extends org.telegram.ui.ActionBar.k3 {
-    public a5.m f34349b;
-    public t30 f34350c;
+    public a5.m f34352b;
+    public t30 f34353c;
     public LinearLayout d;
     public TextView[] e;
-    public float f34351f;
+    public float f34354f;
     public int h;
 
     public static void m(org.telegram.ui.u40 u40Var) {
@@ -24,7 +24,7 @@ public abstract class w30 extends org.telegram.ui.ActionBar.k3 {
         float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
         float measuredWidth2 = (u40Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
         if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * u40Var.f34351f;
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * u40Var.f34354f;
         }
         for (int i11 = 0; i11 < textViewArr.length; i11++) {
             int i12 = u40Var.h;
@@ -32,11 +32,11 @@ public abstract class w30 extends org.telegram.ui.ActionBar.k3 {
             float f10 = 0.7f;
             if (i11 >= i12 && i11 <= i12 + 1) {
                 if (i11 == i12) {
-                    float f11 = u40Var.f34351f;
+                    float f11 = u40Var.f34354f;
                     f10 = 1.0f - (0.3f * f11);
                     f7 = 1.0f - (f11 * 0.1f);
                 } else {
-                    float f12 = u40Var.f34351f;
+                    float f12 = u40Var.f34354f;
                     f10 = 0.7f + (0.3f * f12);
                     f7 = 0.9f + (f12 * 0.1f);
                 }
@@ -46,6 +46,6 @@ public abstract class w30 extends org.telegram.ui.ActionBar.k3 {
             textViewArr[i11].setScaleY(f7);
         }
         u40Var.d.setTranslationX(measuredWidth2);
-        u40Var.f34350c.invalidate();
+        u40Var.f34353c.invalidate();
     }
 }

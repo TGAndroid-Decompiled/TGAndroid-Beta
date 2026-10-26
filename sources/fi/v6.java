@@ -99,7 +99,7 @@ public final class v6 extends j1.b {
     public final void l(int i10, s0.d dVar) {
         String string;
         String string2;
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47650a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47653a;
         dVar.i("android.widget.Button");
         boolean z10 = false;
         Rect rect = this.f11821o;

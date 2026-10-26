@@ -18,7 +18,7 @@ public final class a extends i {
 
     @Override
     public final d c0(int i10) {
-        return new d(AccessibilityNodeInfo.obtain(this.f15177b.j(i10).f47650a));
+        return new d(AccessibilityNodeInfo.obtain(this.f15177b.j(i10).f47653a));
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class a extends i {
             }
             return false;
         }
-        WeakHashMap weakHashMap = i0.f47105a;
+        WeakHashMap weakHashMap = i0.f47108a;
         return view.performAccessibilityAction(i11, bundle);
     }
 }

@@ -19,7 +19,7 @@ import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.z90;
 import org.telegram.ui.xa1;
 public final class n1 extends s61 {
-    public static final int f53158a = 0;
+    public static final int f53161a = 0;
 
     static {
         s61.setup(new s61());
@@ -31,16 +31,16 @@ public final class n1 extends s61 {
         o1 o1Var = (o1) view;
         int i10 = t61Var.d;
         ArrayList arrayList = (ArrayList) t61Var.G;
-        int i11 = t61Var.f32885z;
+        int i11 = t61Var.f32888z;
         Utilities.Callback callback = (Utilities.Callback) t61Var.H;
-        xa1 xa1Var = o1Var.f53168a;
+        xa1 xa1Var = o1Var.f53171a;
         ArrayList arrayList2 = o1Var.d;
-        if (o1Var.f53173r == i10) {
+        if (o1Var.f53176r == i10) {
             z11 = true;
         } else {
             z11 = false;
         }
-        o1Var.f53173r = i10;
+        o1Var.f53176r = i10;
         if (arrayList2.size() != arrayList.size()) {
             int i12 = 0;
             int i13 = 0;
@@ -66,7 +66,7 @@ public final class n1 extends s61 {
                 z90Var.setGravity(17);
                 z90Var.setText((CharSequence) arrayList.get(i13));
                 z90Var.setTypeface(AndroidUtilities.bold());
-                f7.W(z90Var, f7.q(y6.f23315b6, y6.f23335c6), null);
+                f7.W(z90Var, f7.q(y6.f23317b6, y6.f23337c6), null);
                 z90Var.setTextSize(1, 14.0f);
                 z90Var.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 z90Var.setEllipsize(TextUtils.TruncateAt.END);
@@ -78,9 +78,9 @@ public final class n1 extends s61 {
                 i13++;
             }
         }
-        o1Var.f53169b = i11;
+        o1Var.f53172b = i11;
         if (!z11) {
-            o1Var.f53170c.d(i11, true);
+            o1Var.f53173c.d(i11, true);
         }
         xa1Var.invalidate();
         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
@@ -90,7 +90,7 @@ public final class n1 extends s61 {
 
     @Override
     public final boolean contentsEquals(t61 t61Var, t61 t61Var2) {
-        if (t61Var.f32885z == t61Var2.f32885z && t61Var.H == t61Var2.H && equals(t61Var, t61Var2)) {
+        if (t61Var.f32888z == t61Var2.f32888z && t61Var.H == t61Var2.H && equals(t61Var, t61Var2)) {
             return true;
         }
         return false;

@@ -11,22 +11,22 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 public final class wg1 implements Runnable {
-    public final int f45486a;
-    public final int f45487b;
-    public final Object f45488c;
+    public final int f45489a;
+    public final int f45490b;
+    public final Object f45491c;
 
     public wg1(int i10, wb0 wb0Var) {
-        this.f45486a = 2;
-        this.f45487b = i10;
-        this.f45488c = wb0Var;
+        this.f45489a = 2;
+        this.f45490b = i10;
+        this.f45491c = wb0Var;
     }
 
     @Override
     public final void run() {
         CharSequence text;
-        int i10 = this.f45486a;
-        final int i11 = this.f45487b;
-        Object obj = this.f45488c;
+        int i10 = this.f45489a;
+        final int i11 = this.f45490b;
+        Object obj = this.f45491c;
         switch (i10) {
             case 0:
                 ph1 ph1Var = (ph1) obj;
@@ -88,8 +88,8 @@ public final class wg1 implements Runnable {
                 return;
             case 4:
                 org.telegram.ui.Wallet.l6 l6Var = (org.telegram.ui.Wallet.l6) obj;
-                if (l6Var.f36860r && !l6Var.f36863x && i11 == l6Var.f36857k0) {
-                    l6Var.postDelayed(l6Var.f36858l0, 500L);
+                if (l6Var.f36863r && !l6Var.f36866x && i11 == l6Var.f36860k0) {
+                    l6Var.postDelayed(l6Var.f36861l0, 500L);
                     return;
                 }
                 return;
@@ -113,9 +113,9 @@ public final class wg1 implements Runnable {
                 }
             case 6:
                 org.telegram.ui.Wallet.r9 r9Var = (org.telegram.ui.Wallet.r9) obj;
-                if (!r9Var.f37199r && i11 == r9Var.J) {
+                if (!r9Var.f37202r && i11 == r9Var.J) {
                     r9Var.L = false;
-                    r9Var.f30417a.f32150g3.O(true);
+                    r9Var.f30419a.f32152g3.O(true);
                     return;
                 }
                 return;
@@ -157,16 +157,16 @@ public final class wg1 implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 jVar.P = duration;
-                duration.setInterpolator(org.telegram.ui.Components.ds.f27584f);
+                duration.setInterpolator(org.telegram.ui.Components.ds.f27586f);
                 jVar.P.addUpdateListener(new sg.f(jVar, 5));
                 jVar.P.addListener(new sg.g(jVar, 2));
                 jVar.P.start();
                 return;
             case 10:
                 nt0 nt0Var = (nt0) obj;
-                rg.q1 q1Var = nt0Var.f48366z1;
+                rg.q1 q1Var = nt0Var.f48369z1;
                 nt0Var.r0(q1Var, null);
-                rg.s0.e(i11).j(q1Var.f47524c);
+                rg.s0.e(i11).j(q1Var.f47527c);
                 return;
             case 11:
                 sg.p2 p2Var = (sg.p2) obj;
@@ -190,8 +190,8 @@ public final class wg1 implements Runnable {
     }
 
     public wg1(Object obj, int i10, int i11) {
-        this.f45486a = i11;
-        this.f45488c = obj;
-        this.f45487b = i10;
+        this.f45489a = i11;
+        this.f45491c = obj;
+        this.f45490b = i10;
     }
 }

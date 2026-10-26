@@ -44,12 +44,12 @@ public final class i8 implements o1.g {
             default:
                 sg.n0 n0Var = (sg.n0) this.f8688b;
                 float f13 = f7 / 1000.0f;
-                n0Var.f48352s1 = f13;
-                sg.v1 v1Var2 = n0Var.f48341k1;
+                n0Var.f48355s1 = f13;
+                sg.v1 v1Var2 = n0Var.f48344k1;
                 v1Var2.setAlpha(f13);
                 v1Var2.invalidate();
                 n0Var.S0.invalidate();
-                n0Var.f48340j1.getTypefaceCell().setAlpha(1.0f - n0Var.f48352s1);
+                n0Var.f48343j1.getTypefaceCell().setAlpha(1.0f - n0Var.f48355s1);
                 return;
         }
     }

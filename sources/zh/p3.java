@@ -9,7 +9,7 @@ import org.telegram.ui.ActionBar.y6;
 public final class p3 extends org.telegram.ui.ActionBar.g1 {
     public final int V;
     public long W;
-    public n3 f53210a0;
+    public n3 f53213a0;
 
     public p3(Context context, int i10, u6 u6Var) {
         super(0, context, u6Var, false, false);
@@ -17,12 +17,12 @@ public final class p3 extends org.telegram.ui.ActionBar.g1 {
         setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         c(y6.E8, y6.F8);
         setIconColor(-1);
-        this.f22636c.setTranslationX(AndroidUtilities.dp(2.0f));
-        this.f22636c.setScaleX(1.2f);
-        this.f22636c.setScaleY(1.2f);
+        this.f22638c.setTranslationX(AndroidUtilities.dp(2.0f));
+        this.f22638c.setScaleX(1.2f);
+        this.f22638c.setScaleY(1.2f);
         a(2);
         setBackground(null);
-        this.f22636c.addOnAttachStateChangeListener(new i6(this, 15));
+        this.f22638c.addOnAttachStateChangeListener(new i6(this, 15));
     }
 
     @Override

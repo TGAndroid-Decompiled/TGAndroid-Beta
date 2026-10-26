@@ -9,20 +9,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ds;
 import org.telegram.ui.Components.gb1;
 public abstract class m extends FrameLayout implements oe.k {
-    public final u6 f22855a;
-    public final c2.b f22856b;
-    public final oe.l f22857c;
+    public final u6 f22857a;
+    public final c2.b f22858b;
+    public final oe.l f22859c;
 
     public m(Context context, u6 u6Var, c2.b bVar) {
         super(context);
-        this.f22857c = new oe.l(this, ds.h, 350L);
-        this.f22855a = u6Var;
-        this.f22856b = bVar;
+        this.f22859c = new oe.l(this, ds.h, 350L);
+        this.f22857a = u6Var;
+        this.f22858b = bVar;
     }
 
     public void b(oe.l lVar) {
         float f7;
-        Iterator it = this.f22857c.iterator();
+        Iterator it = this.f22859c.iterator();
         while (it.hasNext()) {
             oe.g gVar = (oe.g) it.next();
             float c10 = gVar.c();
@@ -45,13 +45,13 @@ public abstract class m extends FrameLayout implements oe.k {
         boolean z11;
         SpannableString spannableString;
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        oe.l lVar = this.f22857c;
+        oe.l lVar = this.f22859c;
         if (isEmpty) {
             lVar.f19350a.q(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
-        c2.b bVar = this.f22856b;
+        c2.b bVar = this.f22858b;
         if (indexOf >= 0) {
             SpannableString valueOf = SpannableString.valueOf(charSequence);
             bVar.A(valueOf, indexOf);
@@ -63,7 +63,7 @@ public abstract class m extends FrameLayout implements oe.k {
         }
         l lVar2 = new l(this, getContext());
         int i10 = y6.gl;
-        u6 u6Var = this.f22855a;
+        u6 u6Var = this.f22857a;
         f7.V(lVar2, i10, u6Var);
         f7.H(lVar2, i10, u6Var);
         lVar2.setTextSize(1, 14.0f);
@@ -77,18 +77,18 @@ public abstract class m extends FrameLayout implements oe.k {
     }
 
     public final void d() {
-        Iterator it = this.f22857c.iterator();
+        Iterator it = this.f22859c.iterator();
         while (it.hasNext()) {
             oe.g gVar = (oe.g) it.next();
             int i10 = y6.gl;
-            u6 u6Var = this.f22855a;
+            u6 u6Var = this.f22857a;
             ((l) gVar.f19337a).setTextColor(y6.w0(i10, u6Var));
             ((l) gVar.f19337a).setLinkTextColor(y6.w0(i10, u6Var));
         }
     }
 
     public float getTotalVisibility() {
-        return this.f22857c.f19350a.d.f19343c.f19351a;
+        return this.f22859c.f19350a.d.f19343c.f19351a;
     }
 
     @Override

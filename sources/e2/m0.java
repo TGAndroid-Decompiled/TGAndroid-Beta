@@ -258,7 +258,7 @@ public final class m0 implements Runnable {
                     ArrayList i17 = n9Var.i1();
                     for (int i18 = 0; i18 < i17.size(); i18++) {
                         TLRPC.User user = (TLRPC.User) i17.get(i18);
-                        if (user != null && (contains = g9Var.f10922c.contains(Long.valueOf(user.f22174id))) != user.close_friend) {
+                        if (user != null && (contains = g9Var.f10922c.contains(Long.valueOf(user.f22176id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i11 = user.flags2 | 4;
@@ -282,7 +282,7 @@ public final class m0 implements Runnable {
                 ((w7) this.f9689c).O0 = (File) this.d;
                 ia iaVar = ((sb) this.f9688b).f11617d1;
                 if (iaVar != null) {
-                    iaVar.f11107b.f32150g3.O(false);
+                    iaVar.f11107b.f32152g3.O(false);
                     return;
                 }
                 return;
@@ -317,7 +317,7 @@ public final class m0 implements Runnable {
                 ArrayList arrayList5 = new ArrayList();
                 for (int i19 = 0; i19 < arrayList4.size(); i19++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList4.get(i19);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f22174id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f22176id));
                     if (bool != null && bool.booleanValue()) {
                         z10 = false;
                     } else {
@@ -459,13 +459,13 @@ public final class m0 implements Runnable {
             case 23:
                 b2 b2Var = (b2) this.f9688b;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) this.d;
-                String str5 = ((TLRPC.TL_messages_searchStickerSets) this.f9689c).f22139q;
+                String str5 = ((TLRPC.TL_messages_searchStickerSets) this.f9689c).f22141q;
                 d2 d2Var = b2Var.f14008a;
                 String str6 = d2Var.R;
                 d61 d61Var = d2Var.e;
                 if (str5.equals(str6)) {
                     b2Var.a();
-                    d61Var.f27411b.h.getProgressDrawable().e = false;
+                    d61Var.f27413b.h.getProgressDrawable().e = false;
                     d2Var.N = 0;
                     d61Var.b(true);
                     d2Var.E.addAll(tL_messages_foundStickerSets.sets);

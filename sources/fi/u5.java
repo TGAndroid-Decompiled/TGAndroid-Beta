@@ -12,7 +12,7 @@ public final class u5 extends rg.c1 {
 
     @Override
     public final void g(rg.m mVar) {
-        int indexOf = rg.m.f47462a.indexOf(mVar);
+        int indexOf = rg.m.f47465a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1) {
             indexOf = i10;

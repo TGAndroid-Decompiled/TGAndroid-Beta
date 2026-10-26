@@ -12,20 +12,20 @@ public final class ay extends FrameLayout {
     public final bw I;
     public final bw J;
     public final cy K;
-    public wx f37910a;
-    public a8.ng f37911b;
-    public cw f37912c;
+    public wx f37913a;
+    public a8.ng f37914b;
+    public cw f37915c;
     public gw d;
     public s4.z e;
-    public zx f37913f;
+    public zx f37916f;
     public int h;
-    public fw f37914n;
-    public org.telegram.ui.Components.pl0 f37915r;
-    public int f37916s;
+    public fw f37917n;
+    public org.telegram.ui.Components.pl0 f37918r;
+    public int f37919s;
     public int v;
-    public org.telegram.ui.Components.c10 f37917w;
-    public aw f37918x;
-    public org.telegram.ui.Components.ql0 f37919y;
+    public org.telegram.ui.Components.c10 f37920w;
+    public aw f37921x;
+    public org.telegram.ui.Components.ql0 f37922y;
 
     public ay(Context context, cy cyVar) {
         super(context);
@@ -35,7 +35,7 @@ public final class ay extends FrameLayout {
     }
 
     public static void a(ay ayVar, cw cwVar) {
-        ayVar.f37912c = cwVar;
+        ayVar.f37915c = cwVar;
     }
 
     public static s4.z b(ay ayVar) {
@@ -55,31 +55,31 @@ public final class ay extends FrameLayout {
     }
 
     public static void f(ay ayVar, org.telegram.ui.Components.c10 c10Var) {
-        ayVar.f37917w = c10Var;
+        ayVar.f37920w = c10Var;
     }
 
     public static zx g(ay ayVar) {
-        return ayVar.f37913f;
+        return ayVar.f37916f;
     }
 
     public static void h(ay ayVar, zx zxVar) {
-        ayVar.f37913f = zxVar;
+        ayVar.f37916f = zxVar;
     }
 
     public static void i(ay ayVar, aw awVar) {
-        ayVar.f37918x = awVar;
+        ayVar.f37921x = awVar;
     }
 
     public static void j(ay ayVar, org.telegram.ui.Components.ql0 ql0Var) {
-        ayVar.f37919y = ql0Var;
+        ayVar.f37922y = ql0Var;
     }
 
     public static void k(ay ayVar, org.telegram.ui.Components.pl0 pl0Var) {
-        ayVar.f37915r = pl0Var;
+        ayVar.f37918r = pl0Var;
     }
 
     public static void l(ay ayVar, int i10) {
-        ayVar.f37916s = i10;
+        ayVar.f37919s = i10;
     }
 
     public static ig.n m(ay ayVar) {
@@ -91,17 +91,17 @@ public final class ay extends FrameLayout {
     }
 
     public static void o(ay ayVar, fw fwVar) {
-        ayVar.f37914n = fwVar;
+        ayVar.f37917n = fwVar;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        ((FrameLayout.LayoutParams) this.f37910a.getLayoutParams()).bottomMargin = 0;
+        ((FrameLayout.LayoutParams) this.f37913a.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i10, i11);
     }
 
     public final boolean p() {
-        int i10 = this.f37916s;
+        int i10 = this.f37919s;
         if (i10 != 0 && i10 != 7 && i10 != 8) {
             return false;
         }
@@ -115,13 +115,13 @@ public final class ay extends FrameLayout {
             bw bwVar = this.J;
             if (z10) {
                 AndroidUtilities.cancelRunOnUIThread(bwVar);
-                this.f37910a.setItemAnimator(this.f37918x);
+                this.f37913a.setItemAnimator(this.f37921x);
                 bwVar.run();
             } else if (this.H) {
             } else {
                 this.H = true;
-                if (!this.f37918x.k()) {
-                    this.f37910a.setItemAnimator(null);
+                if (!this.f37921x.k()) {
+                    this.f37913a.setItemAnimator(null);
                 }
                 AndroidUtilities.runOnUIThread(bwVar, 36L);
             }
@@ -135,8 +135,8 @@ public final class ay extends FrameLayout {
         if (getTranslationX() != f7) {
             super.setTranslationX(f7);
             cy cyVar = this.K;
-            if (cyVar.f38602h3 && (ayVar = cyVar.f38583e0[0]) == this) {
-                cyVar.f38690z0.g(Math.abs(ayVar.getTranslationX()) / cyVar.f38583e0[0].getMeasuredWidth(), cyVar.f38583e0[1].h);
+            if (cyVar.f38605h3 && (ayVar = cyVar.f38586e0[0]) == this) {
+                cyVar.f38693z0.g(Math.abs(ayVar.getTranslationX()) / cyVar.f38586e0[0].getMeasuredWidth(), cyVar.f38586e0[1].h);
             }
             qVar = ((org.telegram.ui.ActionBar.r2) cyVar).glassEngine;
             qVar.g();

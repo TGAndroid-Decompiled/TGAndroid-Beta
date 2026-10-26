@@ -110,7 +110,7 @@ public final class j0 extends b2.h implements q {
     public static long m1(k1 k1Var) {
         b2.o1 o1Var = new b2.o1();
         b2.m1 m1Var = new b2.m1();
-        k1Var.f13638a.g(k1Var.f13639b.f49294a, m1Var);
+        k1Var.f13638a.g(k1Var.f13639b.f49297a, m1Var);
         long j10 = k1Var.f13640c;
         if (j10 == -9223372036854775807L) {
             return k1Var.f13638a.m(m1Var.f3280c, o1Var, 0L).f3333l;
@@ -137,7 +137,7 @@ public final class j0 extends b2.h implements q {
             return i10;
         }
         k1 k1Var = this.f13609p0;
-        return k1Var.f13638a.b(k1Var.f13639b.f49294a);
+        return k1Var.f13638a.b(k1Var.f13639b.f49297a);
     }
 
     @Override
@@ -354,7 +354,7 @@ public final class j0 extends b2.h implements q {
             pair = new Pair(Boolean.FALSE, -1);
         } else if (p1Var2.p() != p1Var.p()) {
             pair = new Pair(Boolean.TRUE, 3);
-        } else if (!p1Var.m(p1Var.g(g0Var.f49294a, m1Var).f3280c, o1Var, 0L).f3325a.equals(p1Var2.m(p1Var2.g(g0Var2.f49294a, m1Var).f3280c, o1Var, 0L).f3325a)) {
+        } else if (!p1Var.m(p1Var.g(g0Var.f49297a, m1Var).f3280c, o1Var, 0L).f3325a.equals(p1Var2.m(p1Var2.g(g0Var2.f49297a, m1Var).f3280c, o1Var, 0L).f3325a)) {
             if (z10 && i11 == 0) {
                 i13 = 1;
             } else if (z10 && i11 == 1) {
@@ -375,7 +375,7 @@ public final class j0 extends b2.h implements q {
         boolean booleanValue = ((Boolean) pair.first).booleanValue();
         int intValue = ((Integer) pair.second).intValue();
         if (booleanValue) {
-            p0Var = !k1Var.f13638a.p() ? k1Var.f13638a.m(k1Var.f13638a.g(k1Var.f13639b.f49294a, this.f13606o).f3280c, (b2.o1) this.f3212a, 0L).f3327c : null;
+            p0Var = !k1Var.f13638a.p() ? k1Var.f13638a.m(k1Var.f13638a.g(k1Var.f13639b.f49297a, this.f13606o).f3280c, (b2.o1) this.f3212a, 0L).f3327c : null;
             this.f13607o0 = b2.s0.L;
         } else {
             p0Var = null;
@@ -420,7 +420,7 @@ public final class j0 extends b2.h implements q {
                 p0Var2 = null;
                 obj2 = null;
             } else {
-                Object obj5 = k1Var2.f13639b.f49294a;
+                Object obj5 = k1Var2.f13639b.f49297a;
                 k1Var2.f13638a.g(obj5, m1Var2);
                 int i18 = m1Var2.f3280c;
                 int b10 = k1Var2.f13638a.b(obj5);
@@ -436,7 +436,7 @@ public final class j0 extends b2.h implements q {
             if (i11 == 0) {
                 if (k1Var2.f13639b.b()) {
                     u2.g0 g0Var3 = k1Var2.f13639b;
-                    j13 = m1Var2.a(g0Var3.f49295b, g0Var3.f49296c);
+                    j13 = m1Var2.a(g0Var3.f49298b, g0Var3.f49299c);
                     m12 = m1(k1Var2);
                 } else if (k1Var2.f13639b.e != -1) {
                     j13 = m1(this.f13609p0);
@@ -459,7 +459,7 @@ public final class j0 extends b2.h implements q {
             long h02 = e2.n0.h0(j13);
             long h03 = e2.n0.h0(m12);
             u2.g0 g0Var4 = k1Var2.f13639b;
-            b2.f1 f1Var = new b2.f1(obj, i14, p0Var2, obj2, i15, h02, h03, g0Var4.f49295b, g0Var4.f49296c);
+            b2.f1 f1Var = new b2.f1(obj, i14, p0Var2, obj2, i15, h02, h03, g0Var4.f49298b, g0Var4.f49299c);
             b2.o1 o1Var2 = (b2.o1) this.f3212a;
             int n02 = n0();
             int A = A();
@@ -469,7 +469,7 @@ public final class j0 extends b2.h implements q {
                 obj4 = null;
             } else {
                 k1 k1Var3 = this.f13609p0;
-                Object obj6 = k1Var3.f13639b.f49294a;
+                Object obj6 = k1Var3.f13639b.f49297a;
                 k1Var3.f13638a.g(obj6, this.f13606o);
                 A = this.f13609p0.f13638a.b(obj6);
                 Object obj7 = this.f13609p0.f13638a.m(n02, o1Var2, 0L).f3325a;
@@ -481,7 +481,7 @@ public final class j0 extends b2.h implements q {
             long h04 = e2.n0.h0(j10);
             long h05 = this.f13609p0.f13639b.b() ? e2.n0.h0(m1(this.f13609p0)) : h04;
             u2.g0 g0Var5 = this.f13609p0.f13639b;
-            this.f13603m.c(11, new z(i11, f1Var, new b2.f1(obj3, n02, p0Var3, obj4, i19, h04, h05, g0Var5.f49295b, g0Var5.f49296c), 0));
+            this.f13603m.c(11, new z(i11, f1Var, new b2.f1(obj3, n02, p0Var3, obj4, i19, h04, h05, g0Var5.f49298b, g0Var5.f49299c), 0));
         } else {
             z12 = booleanValue;
             z13 = equals2;
@@ -584,7 +584,7 @@ public final class j0 extends b2.h implements q {
             x2.t tVar = this.f13595i;
             Object obj8 = uVar2.e;
             tVar.getClass();
-            tVar.f51357c = (x2.s) obj8;
+            tVar.f51360c = (x2.s) obj8;
             this.f13603m.c(2, new e2.o() {
                 @Override
                 public final void invoke(Object obj82) {
@@ -1000,13 +1000,13 @@ public final class j0 extends b2.h implements q {
         long j11 = k1Var.f13651q;
         if (this.f13609p0.f13645k.b()) {
             k1 k1Var2 = this.f13609p0;
-            k1Var2.f13638a.g(k1Var2.f13645k.f49294a, this.f13606o).d(this.f13609p0.f13645k.f49295b);
+            k1Var2.f13638a.g(k1Var2.f13645k.f49297a, this.f13606o).d(this.f13609p0.f13645k.f49298b);
         } else {
             j10 = j11;
         }
         k1 k1Var3 = this.f13609p0;
         b2.p1 p1Var = k1Var3.f13638a;
-        Object obj = k1Var3.f13645k.f49294a;
+        Object obj = k1Var3.f13645k.f49297a;
         b2.m1 m1Var = this.f13606o;
         p1Var.g(obj, m1Var);
         return e2.n0.h0(j10 + m1Var.e);
@@ -1098,7 +1098,7 @@ public final class j0 extends b2.h implements q {
     public final int N() {
         F1();
         if (n()) {
-            return this.f13609p0.f13639b.f49296c;
+            return this.f13609p0.f13639b.f49299c;
         }
         return -1;
     }
@@ -1145,7 +1145,7 @@ public final class j0 extends b2.h implements q {
         int min = Math.min(i11, size);
         if (min - i10 == list.size()) {
             for (int i12 = i10; i12 < min; i12++) {
-                if (((f0) arrayList.get(i12)).f13531b.f49431k.a((b2.p0) list.get(i12 - i10))) {
+                if (((f0) arrayList.get(i12)).f13531b.f49434k.a((b2.p0) list.get(i12 - i10))) {
                 }
             }
             this.J++;
@@ -1178,7 +1178,7 @@ public final class j0 extends b2.h implements q {
             return;
         }
         k1 r12 = r1(e1(this.f13609p0, min, g12), i10, min);
-        D1(r12, 0, !r12.f13639b.f49294a.equals(this.f13609p0.f13639b.f49294a), 4, j1(r12), -1, false);
+        D1(r12, 0, !r12.f13639b.f49297a.equals(this.f13609p0.f13639b.f49297a), 4, j1(r12), -1, false);
     }
 
     @Override
@@ -1201,7 +1201,7 @@ public final class j0 extends b2.h implements q {
         int min = Math.min(i11, size);
         if (i10 < size && i10 != min) {
             k1 r12 = r1(this.f13609p0, i10, min);
-            D1(r12, 0, !r12.f13639b.f49294a.equals(this.f13609p0.f13639b.f49294a), 4, j1(r12), -1, false);
+            D1(r12, 0, !r12.f13639b.f49297a.equals(this.f13609p0.f13639b.f49297a), 4, j1(r12), -1, false);
         }
     }
 
@@ -1298,12 +1298,12 @@ public final class j0 extends b2.h implements q {
         this.f13597j.f9672a.removeCallbacksAndMessages(null);
         y2.c cVar = this.f13618u;
         j2.e eVar = this.f13614s;
-        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) ((y2.f) cVar).f51943c.f47813a;
+        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) ((y2.f) cVar).f51946c.f47816a;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             y2.b bVar = (y2.b) it.next();
-            if (bVar.f51928b == eVar) {
-                bVar.f51929c = true;
+            if (bVar.f51931b == eVar) {
+                bVar.f51932c = true;
                 copyOnWriteArrayList.remove(bVar);
             }
         }
@@ -1686,10 +1686,10 @@ public final class j0 extends b2.h implements q {
             k1 k1Var = this.f13609p0;
             u2.g0 g0Var = k1Var.f13639b;
             b2.p1 p1Var = k1Var.f13638a;
-            Object obj = g0Var.f49294a;
+            Object obj = g0Var.f49297a;
             b2.m1 m1Var = this.f13606o;
             p1Var.g(obj, m1Var);
-            return e2.n0.h0(m1Var.a(g0Var.f49295b, g0Var.f49296c));
+            return e2.n0.h0(m1Var.a(g0Var.f49298b, g0Var.f49299c));
         }
         return z();
     }
@@ -1727,7 +1727,7 @@ public final class j0 extends b2.h implements q {
         long j10 = k1Var.f13640c;
         b2.p1 p1Var = k1Var.f13638a;
         if (g0Var.b()) {
-            Object obj = k1Var.f13639b.f49294a;
+            Object obj = k1Var.f13639b.f49297a;
             b2.m1 m1Var = this.f13606o;
             p1Var.g(obj, m1Var);
             if (j10 == -9223372036854775807L) {
@@ -1770,7 +1770,7 @@ public final class j0 extends b2.h implements q {
             return j10;
         }
         b2.p1 p1Var = k1Var.f13638a;
-        Object obj = k1Var.f13639b.f49294a;
+        Object obj = k1Var.f13639b.f49297a;
         b2.m1 m1Var = this.f13606o;
         p1Var.g(obj, m1Var);
         return j10 + m1Var.e;
@@ -1786,7 +1786,7 @@ public final class j0 extends b2.h implements q {
         if (k1Var.f13638a.p()) {
             return this.f13611q0;
         }
-        return k1Var.f13638a.g(k1Var.f13639b.f49294a, this.f13606o).f3280c;
+        return k1Var.f13638a.g(k1Var.f13639b.f49297a, this.f13606o).f3280c;
     }
 
     @Override
@@ -1837,7 +1837,7 @@ public final class j0 extends b2.h implements q {
     public final int m0() {
         F1();
         if (n()) {
-            return this.f13609p0.f13639b.f49295b;
+            return this.f13609p0.f13639b.f49298b;
         }
         return -1;
     }
@@ -1882,7 +1882,7 @@ public final class j0 extends b2.h implements q {
             c10.f13651q = c10.f13653s;
             return c10;
         }
-        Object obj = j11.f13639b.f49294a;
+        Object obj = j11.f13639b.f49297a;
         String str = e2.n0.f9692a;
         boolean equals = obj.equals(pair.first);
         if (!equals) {
@@ -1923,13 +1923,13 @@ public final class j0 extends b2.h implements q {
             c11.f13651q = longValue;
             return c11;
         } else if (i10 == 0) {
-            int b10 = p1Var.b(j11.f13645k.f49294a);
-            if (b10 != -1 && p1Var.f(b10, this.f13606o, false).f3280c == p1Var.g(g0Var.f49294a, this.f13606o).f3280c) {
+            int b10 = p1Var.b(j11.f13645k.f49297a);
+            if (b10 != -1 && p1Var.f(b10, this.f13606o, false).f3280c == p1Var.g(g0Var.f49297a, this.f13606o).f3280c) {
                 return j11;
             }
-            p1Var.g(g0Var.f49294a, this.f13606o);
+            p1Var.g(g0Var.f49297a, this.f13606o);
             if (g0Var.b()) {
-                j10 = this.f13606o.a(g0Var.f49295b, g0Var.f49296c);
+                j10 = this.f13606o.a(g0Var.f49298b, g0Var.f49299c);
             } else {
                 j10 = this.f13606o.d;
             }
@@ -2033,7 +2033,7 @@ public final class j0 extends b2.h implements q {
         k1 o12 = o1(k1Var, p1Var2, l1(p1Var, p1Var2, k12, i12));
         int i14 = o12.e;
         if (i14 != 1 && i14 != 4 && k12 >= i10 && k12 < i11) {
-            if (s0.U((b2.o1) this.f3212a, this.f13606o, this.H, this.I, k1Var.f13639b.f49294a, p1Var, p1Var2) == -1) {
+            if (s0.U((b2.o1) this.f3212a, this.f13606o, this.H, this.I, k1Var.f13639b.f49297a, p1Var, p1Var2) == -1) {
                 o12 = n1(o12, 4);
             }
         }

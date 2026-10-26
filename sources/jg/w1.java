@@ -69,7 +69,7 @@ public final class w1 extends FrameLayout implements p6 {
         this.d = textView2;
         textView2.setLines(2);
         textView2.setEllipsize(truncateAt);
-        f7.V(textView2, y6.f23765z6, u6Var);
+        f7.V(textView2, y6.f23767z6, u6Var);
         textView2.setTextSize(1, 15.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -85,7 +85,7 @@ public final class w1 extends FrameLayout implements p6 {
         addView(textView2, gb1.h(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
         zp zpVar = new zp(getContext(), 21, u6Var);
         this.e = zpVar;
-        zpVar.b(-1, y6.f23354d6, y6.f23483k7);
+        zpVar.b(-1, y6.f23356d6, y6.f23485k7);
         zpVar.setDrawUnchecked(false);
         zpVar.setDrawBackgroundAsArc(3);
         addView(zpVar, gb1.m(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -109,7 +109,7 @@ public final class w1 extends FrameLayout implements p6 {
         if (this.f15887s) {
             Paint V0 = y6.V0("paintDivider", this.f15885n);
             if (V0 == null) {
-                V0 = y6.f23476k0;
+                V0 = y6.f23478k0;
             }
             Paint paint = V0;
             float f11 = 78.0f;
@@ -139,7 +139,7 @@ public final class w1 extends FrameLayout implements p6 {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(y6.o1(0.85f, y6.w0(y6.f23765z6, this.f15885n)));
+        paint.setColor(y6.o1(0.85f, y6.w0(y6.f23767z6, this.f15885n)));
         Path path = this.f15884f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;
@@ -161,7 +161,7 @@ public final class w1 extends FrameLayout implements p6 {
     @Override
     public final void updateColors() {
         try {
-            this.h.setColor(y6.o1(0.85f, y6.w0(y6.f23765z6, this.f15885n)));
+            this.h.setColor(y6.o1(0.85f, y6.w0(y6.f23767z6, this.f15885n)));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

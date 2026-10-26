@@ -21,7 +21,7 @@ public final class cw extends s4.c0 {
     @Override
     public final int R0() {
         ay ayVar = this.L;
-        if (ayVar.f37916s == 0 && this.M.h4() && ayVar.v == 2) {
+        if (ayVar.f37919s == 0 && this.M.h4() && ayVar.v == 2) {
             return 1;
         }
         return 0;
@@ -38,7 +38,7 @@ public final class cw extends s4.c0 {
                 cy cyVar = this.M;
                 sb2.append(cyVar.S1);
                 sb2.append(" lastUpdateAction=");
-                sb2.append(cyVar.f38693z3);
+                sb2.append(cyVar.f38696z3);
                 throw new RuntimeException(sb2.toString());
             }
         }
@@ -65,13 +65,13 @@ public final class cw extends s4.c0 {
             this.K.cancel();
         }
         ay ayVar = this.L;
-        if (ayVar.f37910a.getScrollState() != 1) {
+        if (ayVar.f37913a.getScrollState() != 1) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.T, 0.0f);
             this.K = ofFloat;
             ofFloat.addUpdateListener(new bh.b0(22, this, ayVar));
             this.K.addListener(new org.telegram.ui.Components.h31(this, 24));
             this.K.setDuration(200L);
-            this.K.setInterpolator(org.telegram.ui.Components.ds.f27584f);
+            this.K.setInterpolator(org.telegram.ui.Components.ds.f27586f);
             this.K.start();
         }
     }
@@ -79,7 +79,7 @@ public final class cw extends s4.c0 {
     @Override
     public final void h1(int i10, int i11) {
         if (this.I) {
-            i11 -= this.L.f37910a.getPaddingTop();
+            i11 -= this.L.f37913a.getPaddingTop();
         }
         super.h1(i10, i11);
     }
@@ -96,7 +96,7 @@ public final class cw extends s4.c0 {
             return;
         }
         mi.n nVar = new mi.n(recyclerView.getContext(), 0);
-        nVar.f47677a = i10;
+        nVar.f47680a = i10;
         w0(nVar);
     }
 }

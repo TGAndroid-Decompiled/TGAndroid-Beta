@@ -5,10 +5,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class pu0 implements ig.z1, org.telegram.ui.Cells.e5 {
-    public final ru0 f31703a;
+    public final ru0 f31705a;
 
     public pu0(ru0 ru0Var) {
-        this.f31703a = ru0Var;
+        this.f31705a = ru0Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class pu0 implements ig.z1, org.telegram.ui.Cells.e5 {
     @Override
     public boolean b(org.telegram.ui.Cells.f5 f5Var, boolean z10) {
         int intValue = ((Integer) f5Var.getTag()).intValue();
-        ru0 ru0Var = this.f31703a;
+        ru0 ru0Var = this.f31705a;
         TLObject E = ru0Var.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
@@ -28,22 +28,22 @@ public final class pu0 implements ig.z1, org.telegram.ui.Cells.e5 {
             tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
             tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
             tL_chatChannelParticipant.date = channelParticipant.date;
-            return ru0Var.f32337s.F1.h(tL_chatChannelParticipant, true, !z10, f5Var);
+            return ru0Var.f32339s.F1.h(tL_chatChannelParticipant, true, !z10, f5Var);
         }
         return false;
     }
 
     @Override
     public void f(int i10) {
-        ru0 ru0Var = this.f31703a;
+        ru0 ru0Var = this.f31705a;
         ru0Var.l();
         if (i10 == 1) {
-            int i11 = ru0Var.f32336r - 1;
-            ru0Var.f32336r = i11;
+            int i11 = ru0Var.f32338r - 1;
+            ru0Var.f32338r = i11;
             if (i11 == 0) {
                 int i12 = 0;
                 while (true) {
-                    aw0 aw0Var = ru0Var.f32337s;
+                    aw0 aw0Var = ru0Var.f32339s;
                     tu0[] tu0VarArr = aw0Var.m0;
                     if (i12 < tu0VarArr.length) {
                         tu0 tu0Var = tu0VarArr[i12];

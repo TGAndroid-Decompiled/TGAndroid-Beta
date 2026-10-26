@@ -97,7 +97,7 @@ public final class m0 implements Runnable {
                     } else if (closestPhotoSizeWithSize2 != null && fileLocationArr2[0] != null) {
                         FileLoader.getInstance(unVar.getCurrentAccount()).getPathToAttach(fileLocationArr2[0], true).renameTo(FileLoader.getInstance(unVar.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, true));
                     }
-                    unVar.getMessagesController().getDialogPhotos(user.f22174id).addPhotoAtStart(tL_photos_photo.photo);
+                    unVar.getMessagesController().getDialogPhotos(user.f22176id).addPhotoAtStart(tL_photos_photo.photo);
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(user);
                     unVar.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);

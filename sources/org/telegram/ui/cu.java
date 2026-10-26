@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.text.TextUtils;
 public final class cu extends qg.a {
-    public final int f38523c;
+    public final int f38526c;
     public final int d;
     public final int e;
-    public final CharSequence f38524f;
-    public final CharSequence f38525g;
+    public final CharSequence f38527f;
+    public final CharSequence f38528g;
     public final int h;
 
     public cu(int i10, String str) {
         super(i10, false);
-        this.f38524f = str;
+        this.f38527f = str;
     }
 
     public static cu b(CharSequence charSequence, String str) {
@@ -23,18 +23,18 @@ public final class cu extends qg.a {
             return false;
         }
         cu cuVar = (cu) obj;
-        CharSequence charSequence = cuVar.f38524f;
-        int i10 = cuVar.f47037a;
-        int i11 = this.f47037a;
+        CharSequence charSequence = cuVar.f38527f;
+        int i10 = cuVar.f47040a;
+        int i11 = this.f47040a;
         if (i10 != i11) {
             return false;
         }
-        CharSequence charSequence2 = this.f38524f;
+        CharSequence charSequence2 = this.f38527f;
         if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
             if (i11 != 2) {
                 return true;
             }
-            if (cuVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || cuVar.d != this.d || cuVar.e != this.e || cuVar.f38523c != this.f38523c) {
+            if (cuVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || cuVar.d != this.d || cuVar.e != this.e || cuVar.f38526c != this.f38526c) {
                 return false;
             }
             return true;
@@ -45,10 +45,10 @@ public final class cu extends qg.a {
     public cu(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
         super(2, false);
         this.h = i10;
-        this.f38523c = i11;
+        this.f38526c = i11;
         this.d = i12;
         this.e = i13;
-        this.f38524f = charSequence;
-        this.f38525g = charSequence2;
+        this.f38527f = charSequence;
+        this.f38528g = charSequence2;
     }
 }

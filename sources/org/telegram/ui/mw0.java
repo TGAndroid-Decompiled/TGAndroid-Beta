@@ -10,6 +10,6 @@ public final class mw0 extends t51 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f35889v0 = null;
+        this.e.f35892v0 = null;
     }
 }

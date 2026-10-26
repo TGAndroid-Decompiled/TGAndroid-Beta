@@ -22,7 +22,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.LaunchActivity;
 public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
-    public static final ds f30531x0 = new ds(0.0f, 0.5f, 0.5f, 1.0f);
+    public static final ds f30533x0 = new ds(0.0f, 0.5f, 0.5f, 1.0f);
     public boolean E;
     public int F;
     public boolean G;
@@ -42,43 +42,43 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
     public final un0 U;
     public int V;
     public hd0 W;
-    public boolean f30532a;
-    public float f30533a0;
-    public int f30534b;
-    public long f30535b0;
-    public int f30536c;
-    public float f30537c0;
+    public boolean f30534a;
+    public float f30535a0;
+    public int f30536b;
+    public long f30537b0;
+    public int f30538c;
+    public float f30539c0;
     public int d;
-    public VelocityTracker f30538d0;
+    public VelocityTracker f30540d0;
     public final TextView e;
-    public final int f30539e0;
-    public final int f30540f;
-    public final int f30541f0;
-    public final int f30542g0;
+    public final int f30541e0;
+    public final int f30542f;
+    public final int f30543f0;
+    public final int f30544g0;
     public final int h;
-    public boolean f30543h0;
-    public boolean f30544i0;
-    public final Paint f30545j0;
-    public final int f30546k0;
-    public int f30547l0;
+    public boolean f30545h0;
+    public boolean f30546i0;
+    public final Paint f30547j0;
+    public final int f30548k0;
+    public int f30549l0;
     public int m0;
-    public final int f30548n;
-    public int f30549n0;
-    public boolean f30550o0;
-    public boolean f30551p0;
-    public final ld0 f30552q0;
-    public int f30553r;
-    public int f30554r0;
-    public final boolean f30555s;
-    public final org.telegram.ui.ActionBar.u6 f30556s0;
-    public boolean f30557t0;
-    public Utilities.CallbackReturn f30558u0;
+    public final int f30550n;
+    public int f30551n0;
+    public boolean f30552o0;
+    public boolean f30553p0;
+    public final ld0 f30554q0;
+    public int f30555r;
+    public int f30556r0;
+    public final boolean f30557s;
+    public final org.telegram.ui.ActionBar.u6 f30558s0;
+    public boolean f30559t0;
+    public Utilities.CallbackReturn f30560u0;
     public final int v;
-    public Integer f30559v0;
-    public int f30560w;
-    public int f30561w0;
-    public String[] f30562x;
-    public int f30563y;
+    public Integer f30561v0;
+    public int f30562w;
+    public int f30563w0;
+    public String[] f30564x;
+    public int f30565y;
 
     public md0(LaunchActivity launchActivity) {
         this(launchActivity, null);
@@ -147,9 +147,9 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         if (((String) sparseArray.get(i10)) != null) {
             return;
         }
-        int i11 = this.f30563y;
+        int i11 = this.f30565y;
         if (i10 >= i11 && i10 <= this.F) {
-            String[] strArr = this.f30562x;
+            String[] strArr = this.f30564x;
             if (strArr != null) {
                 str = strArr[i10 - i11];
             } else {
@@ -188,27 +188,27 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void computeScroll() {
         un0 un0Var = this.T;
-        if (un0Var.f33462q) {
+        if (un0Var.f33465q) {
             un0Var = this.U;
-            if (un0Var.f33462q) {
+            if (un0Var.f33465q) {
                 return;
             }
         }
         un0Var.b();
-        int i10 = un0Var.f33456k;
+        int i10 = un0Var.f33459k;
         if (this.V == 0) {
-            this.V = un0Var.f33451c;
+            this.V = un0Var.f33454c;
         }
         scrollBy(0, i10 - this.V);
         this.V = i10;
-        if (un0Var.f33462q) {
+        if (un0Var.f33465q) {
             if (un0Var == this.T) {
                 if (!c()) {
                     n();
                 }
                 i(0);
                 return;
-            } else if (this.f30547l0 != 1) {
+            } else if (this.f30549l0 != 1) {
                 n();
                 return;
             } else {
@@ -230,7 +230,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
 
     @Override
     public final int computeVerticalScrollRange() {
-        return ((this.F - this.f30563y) + 1) * this.Q;
+        return ((this.F - this.f30565y) + 1) * this.Q;
     }
 
     public CharSequence d(int i10) {
@@ -267,10 +267,10 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         int i14;
         int i15;
         int i16;
-        if (this.G && i10 > (i14 = this.F) && (i16 = i14 - (i15 = this.f30563y)) != 0) {
+        if (this.G && i10 > (i14 = this.F) && (i16 = i14 - (i15 = this.f30565y)) != 0) {
             return (((i10 - i14) % i16) + i15) - 1;
         }
-        if (this.E && i10 < (i11 = this.f30563y) && (i13 = (i12 = this.F) - i11) != 0) {
+        if (this.E && i10 < (i11 = this.f30565y) && (i13 = (i12 = this.F) - i11) != 0) {
             return (i12 - ((i11 - i10) % i13)) + 1;
         }
         return i10;
@@ -281,8 +281,8 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         int[] iArr = this.O;
         int value = getValue();
         for (int i10 = 0; i10 < this.O.length; i10++) {
-            int i11 = (i10 - this.f30536c) + value;
-            if (this.f30543h0) {
+            int i11 = (i10 - this.f30538c) + value;
+            if (this.f30545h0) {
                 i11 = e(i11);
             }
             iArr[i10] = i11;
@@ -296,11 +296,11 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
     }
 
     public String[] getDisplayedValues() {
-        return this.f30562x;
+        return this.f30564x;
     }
 
     public int getItemsCount() {
-        return this.f30534b;
+        return this.f30536b;
     }
 
     public int getMaxValue() {
@@ -308,7 +308,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
     }
 
     public int getMinValue() {
-        return this.f30563y;
+        return this.f30565y;
     }
 
     @Override
@@ -326,12 +326,12 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
     }
 
     public boolean getWrapSelectorWheel() {
-        return this.f30543h0;
+        return this.f30545h0;
     }
 
     public final boolean h(un0 un0Var) {
-        un0Var.f33462q = true;
-        int i10 = un0Var.e - un0Var.f33456k;
+        un0Var.f33465q = true;
+        int i10 = un0Var.e - un0Var.f33459k;
         int i11 = this.R - ((this.S + i10) % this.Q);
         if (i11 == 0) {
             return false;
@@ -351,8 +351,8 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
 
     public final void i(int i10) {
         String str;
-        if (this.f30547l0 != i10) {
-            this.f30547l0 = i10;
+        if (this.f30549l0 != i10) {
+            this.f30549l0 = i10;
             jd0 jd0Var = this.K;
             if (jd0Var != null) {
                 jd0Var.m(i10);
@@ -360,7 +360,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
             if (i10 == 0) {
                 AccessibilityManager accessibilityManager = (AccessibilityManager) getContext().getSystemService("accessibility");
                 if (accessibilityManager.isTouchExplorationEnabled()) {
-                    String[] strArr = this.f30562x;
+                    String[] strArr = this.f30564x;
                     if (strArr == null) {
                         int i11 = this.H;
                         id0 id0Var = this.L;
@@ -370,7 +370,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
                             str = String.format(Locale.getDefault(), "%d", Integer.valueOf(i11));
                         }
                     } else {
-                        str = strArr[this.H - this.f30563y];
+                        str = strArr[this.H - this.f30565y];
                     }
                     AccessibilityEvent obtain = AccessibilityEvent.obtain();
                     obtain.setEventType(16384);
@@ -386,7 +386,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         if (hd0Var != null) {
             removeCallbacks(hd0Var);
         }
-        this.f30552q0.a();
+        this.f30554q0.a();
     }
 
     public final void l(int i10, boolean z10) {
@@ -394,10 +394,10 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         jd0 jd0Var;
         kd0 kd0Var;
         if (this.H != i10) {
-            if (this.f30543h0) {
+            if (this.f30545h0) {
                 min = e(i10);
             } else {
-                min = Math.min(Math.max(i10, this.f30563y), this.F);
+                min = Math.min(Math.max(i10, this.f30565y), this.F);
             }
             int i11 = this.H;
             this.I = min;
@@ -411,7 +411,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
             }
             f();
             invalidate();
-            if (this.f30547l0 == 0 && (jd0Var = this.K) != null) {
+            if (this.f30549l0 == 0 && (jd0Var = this.K) != null) {
                 jd0Var.m(0);
             }
         }
@@ -419,8 +419,8 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
 
     public final void m() {
         int i10;
-        if (this.f30555s) {
-            String[] strArr = this.f30562x;
+        if (this.f30557s) {
+            String[] strArr = this.f30564x;
             Paint paint = this.P;
             int i11 = 0;
             if (strArr == null) {
@@ -449,12 +449,12 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
             }
             TextView textView = this.e;
             int paddingRight = textView.getPaddingRight() + textView.getPaddingLeft() + i10;
-            if (this.f30553r != paddingRight) {
-                int i15 = this.f30548n;
+            if (this.f30555r != paddingRight) {
+                int i15 = this.f30550n;
                 if (paddingRight > i15) {
-                    this.f30553r = paddingRight;
+                    this.f30555r = paddingRight;
                 } else {
-                    this.f30553r = i15;
+                    this.f30555r = i15;
                 }
                 invalidate();
             }
@@ -463,7 +463,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
 
     public final void n() {
         String str;
-        String[] strArr = this.f30562x;
+        String[] strArr = this.f30564x;
         if (strArr == null) {
             int i10 = this.H;
             id0 id0Var = this.L;
@@ -473,7 +473,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
                 str = String.format(Locale.getDefault(), "%d", Integer.valueOf(i10));
             }
         } else {
-            str = strArr[this.H - this.f30563y];
+            str = strArr[this.H - this.f30565y];
         }
         if (!TextUtils.isEmpty(str)) {
             TextView textView = this.e;
@@ -497,7 +497,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         float measuredHeight;
         boolean z10;
         int i12;
-        int i13 = this.f30561w0;
+        int i13 = this.f30563w0;
         if (i13 == 5) {
             this.P.setTextAlign(Paint.Align.RIGHT);
             width = getWidth();
@@ -513,8 +513,8 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         int[] iArr = this.O;
         for (int i14 = 0; i14 < iArr.length; i14++) {
             String str = (String) this.N.get(iArr[i14]);
-            if (str != null && (i14 != this.f30536c || this.e.getVisibility() != 0)) {
-                if (this.f30534b > 3) {
+            if (str != null && (i14 != this.f30538c || this.e.getVisibility() != 0)) {
+                if (this.f30536b > 3) {
                     float measuredHeight2 = getMeasuredHeight() * 0.5f;
                     float textSize = f10 - (this.P.getTextSize() / 2.0f);
                     if (textSize < getMeasuredHeight() / 2.0f) {
@@ -524,7 +524,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
                         measuredHeight = (getMeasuredHeight() - textSize) / measuredHeight2;
                         z10 = false;
                     }
-                    float interpolation = f30531x0.getInterpolation(Utilities.clamp(measuredHeight, 1.0f, 0.0f));
+                    float interpolation = f30533x0.getInterpolation(Utilities.clamp(measuredHeight, 1.0f, 0.0f));
                     float textSize2 = this.P.getTextSize() * (1.0f - interpolation);
                     if (!z10) {
                         textSize2 = -textSize2;
@@ -549,9 +549,9 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
             }
             f10 += this.Q;
         }
-        if (this.f30557t0) {
-            canvas.drawRect(0.0f, this.m0, getRight(), this.f30546k0 + i10, this.f30545j0);
-            canvas.drawRect(0.0f, i11 - this.f30546k0, getRight(), this.f30549n0, this.f30545j0);
+        if (this.f30559t0) {
+            canvas.drawRect(0.0f, this.m0, getRight(), this.f30548k0 + i10, this.f30547j0);
+            canvas.drawRect(0.0f, i11 - this.f30548k0, getRight(), this.f30551n0, this.f30547j0);
         }
     }
 
@@ -563,40 +563,40 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         j();
         this.e.setVisibility(4);
         float y3 = motionEvent.getY();
-        this.f30533a0 = y3;
-        this.f30537c0 = y3;
-        this.f30535b0 = motionEvent.getEventTime();
-        float f7 = this.f30533a0;
+        this.f30535a0 = y3;
+        this.f30539c0 = y3;
+        this.f30537b0 = motionEvent.getEventTime();
+        float f7 = this.f30535a0;
         if (f7 < this.m0) {
-            if (this.f30547l0 == 0) {
-                ld0 ld0Var = this.f30552q0;
+            if (this.f30549l0 == 0) {
+                ld0 ld0Var = this.f30554q0;
                 ld0Var.a();
-                ld0Var.f30178c = 1;
-                ld0Var.f30177b = 2;
+                ld0Var.f30180c = 1;
+                ld0Var.f30179b = 2;
                 ((md0) ld0Var.d).postDelayed(ld0Var, ViewConfiguration.getTapTimeout());
             }
-        } else if (f7 > this.f30549n0 && this.f30547l0 == 0) {
-            ld0 ld0Var2 = this.f30552q0;
+        } else if (f7 > this.f30551n0 && this.f30549l0 == 0) {
+            ld0 ld0Var2 = this.f30554q0;
             ld0Var2.a();
-            ld0Var2.f30178c = 1;
-            ld0Var2.f30177b = 1;
+            ld0Var2.f30180c = 1;
+            ld0Var2.f30179b = 1;
             ((md0) ld0Var2.d).postDelayed(ld0Var2, ViewConfiguration.getTapTimeout());
         }
         getParent().requestDisallowInterceptTouchEvent(true);
         un0 un0Var = this.T;
-        if (!un0Var.f33462q) {
-            un0Var.f33462q = true;
-            this.U.f33462q = true;
+        if (!un0Var.f33465q) {
+            un0Var.f33465q = true;
+            this.U.f33465q = true;
             i(0);
             return true;
         }
         un0 un0Var2 = this.U;
-        if (!un0Var2.f33462q) {
-            un0Var.f33462q = true;
-            un0Var2.f33462q = true;
+        if (!un0Var2.f33465q) {
+            un0Var.f33465q = true;
+            un0Var2.f33465q = true;
             return true;
         }
-        float f10 = this.f30533a0;
+        float f10 = this.f30535a0;
         if (f10 < this.m0) {
             long longPressTimeout = ViewConfiguration.getLongPressTimeout();
             Runnable runnable = this.W;
@@ -606,11 +606,11 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
                 removeCallbacks(runnable);
             }
             hd0 hd0Var = this.W;
-            hd0Var.f28947a = false;
+            hd0Var.f28949a = false;
             postDelayed(hd0Var, longPressTimeout);
             return true;
         }
-        if (f10 > this.f30549n0) {
+        if (f10 > this.f30551n0) {
             long longPressTimeout2 = ViewConfiguration.getLongPressTimeout();
             Runnable runnable2 = this.W;
             if (runnable2 == null) {
@@ -619,7 +619,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
                 removeCallbacks(runnable2);
             }
             hd0 hd0Var2 = this.W;
-            hd0Var2.f28947a = true;
+            hd0Var2.f28949a = true;
             postDelayed(hd0Var2, longPressTimeout2);
         }
         return true;
@@ -640,23 +640,23 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
             int length = iArr.length;
             int i16 = this.v;
             int bottom = (int) (((((getBottom() - getTop()) + i16) - (length * i16)) / iArr.length) + 0.5f);
-            this.f30560w = bottom;
+            this.f30562w = bottom;
             this.Q = bottom + i16;
-            int top = (this.e.getTop() + this.e.getBaseline()) - (this.Q * this.f30536c);
+            int top = (this.e.getTop() + this.e.getBaseline()) - (this.Q * this.f30538c);
             this.R = top;
             this.S = top;
             n();
             setVerticalFadingEdgeEnabled(true);
             setFadingEdgeLength(((getBottom() - getTop()) - i16) / 2);
-            this.m0 = ((getHeight() - i16) - this.f30560w) / 2;
-            this.f30549n0 = ((getHeight() + i16) + this.f30560w) / 2;
+            this.m0 = ((getHeight() - i16) - this.f30562w) / 2;
+            this.f30551n0 = ((getHeight() + i16) + this.f30562w) / 2;
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(g(i10, this.f30553r), g(i11, this.h));
-        setMeasuredDimension(k(this.f30548n, getMeasuredWidth(), i10), k(this.f30540f, getMeasuredHeight(), i11));
+        super.onMeasure(g(i10, this.f30555r), g(i11, this.h));
+        setMeasuredDimension(k(this.f30550n, getMeasuredWidth(), i10), k(this.f30542f, getMeasuredHeight(), i11));
     }
 
     @Override
@@ -664,37 +664,37 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         if (!isEnabled()) {
             return false;
         }
-        if (this.f30538d0 == null) {
-            this.f30538d0 = VelocityTracker.obtain();
+        if (this.f30540d0 == null) {
+            this.f30540d0 = VelocityTracker.obtain();
         }
-        this.f30538d0.addMovement(motionEvent);
+        this.f30540d0.addMovement(motionEvent);
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked != 1) {
             if (actionMasked != 2) {
                 return true;
             }
             float y3 = motionEvent.getY();
-            if (this.f30547l0 != 1) {
-                if (((int) Math.abs(y3 - this.f30533a0)) > this.f30539e0) {
+            if (this.f30549l0 != 1) {
+                if (((int) Math.abs(y3 - this.f30535a0)) > this.f30541e0) {
                     j();
                     i(1);
                 }
             } else {
-                scrollBy(0, (int) (y3 - this.f30537c0));
+                scrollBy(0, (int) (y3 - this.f30539c0));
                 invalidate();
             }
-            this.f30537c0 = y3;
+            this.f30539c0 = y3;
             return true;
         }
         hd0 hd0Var = this.W;
         if (hd0Var != null) {
             removeCallbacks(hd0Var);
         }
-        this.f30552q0.a();
-        VelocityTracker velocityTracker = this.f30538d0;
-        velocityTracker.computeCurrentVelocity(1000, this.f30542g0);
+        this.f30554q0.a();
+        VelocityTracker velocityTracker = this.f30540d0;
+        velocityTracker.computeCurrentVelocity(1000, this.f30544g0);
         int yVelocity = (int) velocityTracker.getYVelocity();
-        if (Math.abs(yVelocity) > this.f30541f0) {
+        if (Math.abs(yVelocity) > this.f30543f0) {
             this.V = 0;
             if (yVelocity > 0) {
                 this.T.c(0, 0, 0, yVelocity, 0, 0, 0, Integer.MAX_VALUE);
@@ -705,23 +705,23 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
             i(2);
         } else {
             int y10 = (int) motionEvent.getY();
-            int abs = (int) Math.abs(y10 - this.f30533a0);
-            long eventTime = motionEvent.getEventTime() - this.f30535b0;
-            if (abs <= this.f30539e0 && eventTime < ViewConfiguration.getTapTimeout()) {
-                int i10 = (y10 / this.Q) - this.f30536c;
+            int abs = (int) Math.abs(y10 - this.f30535a0);
+            long eventTime = motionEvent.getEventTime() - this.f30537b0;
+            if (abs <= this.f30541e0 && eventTime < ViewConfiguration.getTapTimeout()) {
+                int i10 = (y10 / this.Q) - this.f30538c;
                 if (i10 > 0) {
                     a(true);
-                    ld0 ld0Var = this.f30552q0;
+                    ld0 ld0Var = this.f30554q0;
                     ld0Var.a();
-                    ld0Var.f30178c = 2;
-                    ld0Var.f30177b = 1;
+                    ld0Var.f30180c = 2;
+                    ld0Var.f30179b = 1;
                     ((md0) ld0Var.d).post(ld0Var);
                 } else if (i10 < 0) {
                     a(false);
-                    ld0 ld0Var2 = this.f30552q0;
+                    ld0 ld0Var2 = this.f30554q0;
                     ld0Var2.a();
-                    ld0Var2.f30178c = 2;
-                    ld0Var2.f30177b = 2;
+                    ld0Var2.f30180c = 2;
+                    ld0Var2.f30179b = 2;
                     ((md0) ld0Var2.d).post(ld0Var2);
                 }
             } else {
@@ -729,16 +729,16 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
             }
             i(0);
         }
-        this.f30538d0.recycle();
-        this.f30538d0 = null;
+        this.f30540d0.recycle();
+        this.f30540d0 = null;
         return true;
     }
 
     @Override
     public final void scrollBy(int i10, int i11) {
         int[] iArr = this.O;
-        boolean z10 = this.f30543h0;
-        if (!z10 && i11 > 0 && iArr[this.f30536c] <= this.f30563y) {
+        boolean z10 = this.f30545h0;
+        if (!z10 && i11 > 0 && iArr[this.f30538c] <= this.f30565y) {
             int i12 = this.S + i11;
             int i13 = this.R;
             if (i12 > i13) {
@@ -746,7 +746,7 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
                 return;
             }
         }
-        if (!z10 && i11 < 0 && iArr[this.f30536c] >= this.F) {
+        if (!z10 && i11 < 0 && iArr[this.f30538c] >= this.F) {
             int i14 = this.S + i11;
             int i15 = this.R;
             if (i14 < i15) {
@@ -757,18 +757,18 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         this.S += i11;
         while (true) {
             int i16 = this.S;
-            if (i16 - this.R <= this.f30560w) {
+            if (i16 - this.R <= this.f30562w) {
                 break;
             }
             this.S = i16 - this.Q;
             System.arraycopy(iArr, 0, iArr, 1, iArr.length - 1);
             int i17 = iArr[1] - 1;
-            if (this.f30543h0 && i17 < this.f30563y) {
+            if (this.f30545h0 && i17 < this.f30565y) {
                 i17 = this.F;
             }
             iArr[0] = i17;
             b(i17);
-            if (!this.f30543h0 && iArr[this.f30536c] <= this.f30563y) {
+            if (!this.f30545h0 && iArr[this.f30538c] <= this.f30565y) {
                 int i18 = this.S;
                 int i19 = this.R;
                 if (i18 > i19) {
@@ -778,16 +778,16 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
         }
         while (true) {
             int i20 = this.S;
-            if (i20 - this.R < (-this.f30560w)) {
+            if (i20 - this.R < (-this.f30562w)) {
                 this.S = i20 + this.Q;
                 System.arraycopy(iArr, 1, iArr, 0, iArr.length - 1);
                 int i21 = iArr[iArr.length - 2] + 1;
-                if (this.f30543h0 && i21 > this.F) {
-                    i21 = this.f30563y;
+                if (this.f30545h0 && i21 > this.F) {
+                    i21 = this.f30565y;
                 }
                 iArr[iArr.length - 1] = i21;
                 b(i21);
-                if (!this.f30543h0 && iArr[this.f30536c] >= this.F) {
+                if (!this.f30545h0 && iArr[this.f30538c] >= this.F) {
                     int i22 = this.S;
                     int i23 = this.R;
                     if (i22 < i23) {
@@ -795,33 +795,33 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
                     }
                 }
             } else {
-                l(iArr[this.f30536c], true);
+                l(iArr[this.f30538c], true);
                 return;
             }
         }
     }
 
     public void setAllItemsCount(int i10) {
-        this.f30559v0 = Integer.valueOf(i10);
-        setWrapSelectorWheel(this.f30544i0);
+        this.f30561v0 = Integer.valueOf(i10);
+        setWrapSelectorWheel(this.f30546i0);
     }
 
     public void setContentDescriptionCallback(Utilities.CallbackReturn<Integer, CharSequence> callbackReturn) {
-        this.f30558u0 = callbackReturn;
+        this.f30560u0 = callbackReturn;
     }
 
     public void setDisplayedValues(String[] strArr) {
-        if (this.f30562x == strArr) {
+        if (this.f30564x == strArr) {
             return;
         }
-        this.f30562x = strArr;
+        this.f30564x = strArr;
         n();
         f();
         m();
     }
 
     public void setDrawDividers(boolean z10) {
-        this.f30557t0 = z10;
+        this.f30559t0 = z10;
         invalidate();
     }
 
@@ -842,16 +842,16 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
 
     @Override
     public void setGravity(int i10) {
-        this.f30561w0 = i10;
+        this.f30563w0 = i10;
         super.setGravity(i10);
     }
 
     public void setItemCount(int i10) {
-        if (this.f30534b == i10) {
+        if (this.f30536b == i10) {
             return;
         }
-        this.f30534b = i10;
-        this.f30536c = i10 / 2;
+        this.f30536b = i10;
+        this.f30538c = i10 / 2;
         this.O = new int[i10];
         f();
     }
@@ -870,12 +870,12 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
                         this.H = i10;
                     }
                 }
-                setWrapSelectorWheel(this.f30544i0);
+                setWrapSelectorWheel(this.f30546i0);
                 f();
                 n();
                 m();
                 invalidate();
-                if (this.f30547l0 == 0 && (jd0Var = this.K) != null) {
+                if (this.f30549l0 == 0 && (jd0Var = this.K) != null) {
                     jd0Var.m(0);
                     return;
                 }
@@ -888,9 +888,9 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
     public void setMinValue(int i10) {
         jd0 jd0Var;
         this.E = true;
-        if (this.f30563y != i10) {
+        if (this.f30565y != i10) {
             if (i10 >= 0) {
-                this.f30563y = i10;
+                this.f30565y = i10;
                 if (i10 > this.H) {
                     int i11 = this.I;
                     if (i10 <= i11) {
@@ -899,12 +899,12 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
                         this.H = i10;
                     }
                 }
-                setWrapSelectorWheel(this.f30544i0);
+                setWrapSelectorWheel(this.f30546i0);
                 f();
                 n();
                 m();
                 invalidate();
-                if (this.f30547l0 == 0 && (jd0Var = this.K) != null) {
+                if (this.f30549l0 == 0 && (jd0Var = this.K) != null) {
                     jd0Var.m(0);
                     return;
                 }
@@ -927,8 +927,8 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
     }
 
     public void setSelectorColor(int i10) {
-        this.f30532a = true;
-        this.f30545j0.setColor(i10);
+        this.f30534a = true;
+        this.f30547j0.setColor(i10);
     }
 
     public void setTextColor(int i10) {
@@ -954,8 +954,8 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
     public final void updateColors() {
         Paint paint;
         try {
-            if (!this.f30532a && (paint = this.f30545j0) != null) {
-                paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f30556s0));
+            if (!this.f30534a && (paint = this.f30547j0) != null) {
+                paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f30558s0));
                 invalidate();
             }
         } catch (Exception e) {
@@ -969,49 +969,49 @@ public class md0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
 
     public md0(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f30534b = 3;
-        this.f30536c = 1;
+        this.f30536b = 3;
+        this.f30538c = 1;
         this.M = 300L;
         this.N = new SparseArray();
-        this.O = new int[this.f30534b];
+        this.O = new int[this.f30536b];
         this.R = Integer.MIN_VALUE;
-        this.f30547l0 = 0;
-        this.f30554r0 = -1;
-        this.f30557t0 = true;
-        this.f30556s0 = u6Var;
+        this.f30549l0 = 0;
+        this.f30556r0 = -1;
+        this.f30559t0 = true;
+        this.f30558s0 = u6Var;
         int dp = AndroidUtilities.dp(i10);
         this.v = dp;
         Paint paint = new Paint();
-        this.f30545j0 = paint;
+        this.f30547j0 = paint;
         paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, u6Var));
-        this.f30546k0 = (int) TypedValue.applyDimension(1, 2.0f, getResources().getDisplayMetrics());
+        this.f30548k0 = (int) TypedValue.applyDimension(1, 2.0f, getResources().getDisplayMetrics());
         TypedValue.applyDimension(1, 48.0f, getResources().getDisplayMetrics());
-        this.f30540f = -1;
+        this.f30542f = -1;
         int applyDimension = (int) TypedValue.applyDimension(1, 180.0f, getResources().getDisplayMetrics());
         this.h = applyDimension;
-        int i11 = this.f30540f;
+        int i11 = this.f30542f;
         if (i11 != -1 && applyDimension != -1 && i11 > applyDimension) {
             throw new IllegalArgumentException("minHeight > maxHeight");
         }
-        this.f30548n = (int) TypedValue.applyDimension(1, 64.0f, getResources().getDisplayMetrics());
-        this.f30553r = -1;
-        this.f30555s = true;
-        this.f30552q0 = new ld0(this);
+        this.f30550n = (int) TypedValue.applyDimension(1, 64.0f, getResources().getDisplayMetrics());
+        this.f30555r = -1;
+        this.f30557s = true;
+        this.f30554q0 = new ld0(this);
         setWillNotDraw(false);
         TextView textView = new TextView(getContext());
         this.e = textView;
         textView.setGravity(17);
         this.e.setSingleLine(true);
-        org.telegram.ui.ActionBar.f7.V(this.e, org.telegram.ui.ActionBar.y6.f23462j5, u6Var);
+        org.telegram.ui.ActionBar.f7.V(this.e, org.telegram.ui.ActionBar.y6.f23464j5, u6Var);
         this.e.setBackgroundResource(0);
         float f7 = dp;
         this.e.setTextSize(0, f7);
         this.e.setVisibility(4);
         addView(this.e, new LinearLayout.LayoutParams(-1, -2));
         ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
-        this.f30539e0 = viewConfiguration.getScaledTouchSlop();
-        this.f30541f0 = viewConfiguration.getScaledMinimumFlingVelocity();
-        this.f30542g0 = viewConfiguration.getScaledMaximumFlingVelocity() / 8;
+        this.f30541e0 = viewConfiguration.getScaledTouchSlop();
+        this.f30543f0 = viewConfiguration.getScaledMinimumFlingVelocity();
+        this.f30544g0 = viewConfiguration.getScaledMaximumFlingVelocity() / 8;
         Paint paint2 = new Paint();
         paint2.setAntiAlias(true);
         paint2.setTextAlign(Paint.Align.CENTER);

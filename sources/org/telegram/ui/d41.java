@@ -6,28 +6,28 @@ import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class d41 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38730a;
-    public final c61 f38731b;
+    public final int f38733a;
+    public final c61 f38734b;
 
     public d41(c61 c61Var, int i10) {
-        this.f38730a = i10;
-        this.f38731b = c61Var;
+        this.f38733a = i10;
+        this.f38734b = c61Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38730a) {
+        switch (this.f38733a) {
             case 0:
-                c61 c61Var = this.f38731b;
+                c61 c61Var = this.f38734b;
                 c61Var.getClass();
                 c61Var.E(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                this.f38731b.m();
+                this.f38734b.m();
                 return;
             case 2:
-                c61 c61Var2 = this.f38731b;
-                View view = c61Var2.f38321t0;
+                c61 c61Var2 = this.f38734b;
+                View view = c61Var2.f38324t0;
                 if (view != null) {
                     view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 }
@@ -36,22 +36,22 @@ public final class d41 implements ValueAnimator.AnimatorUpdateListener {
                 if (view2 != null) {
                     view2.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
                 }
-                org.telegram.ui.Components.vn vnVar = c61Var2.f38307n0;
+                org.telegram.ui.Components.vn vnVar = c61Var2.f38310n0;
                 if (vnVar != null) {
                     vnVar.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
                     return;
                 }
                 return;
             default:
-                c61 c61Var3 = this.f38731b;
-                w41 w41Var = c61Var3.f38279a0;
+                c61 c61Var3 = this.f38734b;
+                w41 w41Var = c61Var3.f38282a0;
                 float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 c61Var3.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(8.0f));
                 View view3 = c61Var3.m0;
                 if (view3 != null) {
                     view3.setAlpha(floatValue);
                 }
-                org.telegram.ui.Components.vn vnVar2 = c61Var3.f38307n0;
+                org.telegram.ui.Components.vn vnVar2 = c61Var3.f38310n0;
                 if (vnVar2 != null) {
                     vnVar2.setAlpha(floatValue * floatValue);
                 }

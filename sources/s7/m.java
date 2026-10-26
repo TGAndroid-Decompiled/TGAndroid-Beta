@@ -10,16 +10,16 @@ import com.google.android.gms.location.LocationRequest;
 import java.util.ArrayList;
 import java.util.List;
 public final class m implements Parcelable.Creator {
-    public final int f47912a;
+    public final int f47915a;
 
     public m(int i10) {
-        this.f47912a = i10;
+        this.f47915a = i10;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
         Status status = null;
-        switch (this.f47912a) {
+        switch (this.f47915a) {
             case 0:
                 int z10 = bf.z(parcel);
                 int i10 = 0;
@@ -150,7 +150,7 @@ public final class m implements Parcelable.Creator {
                 return new o(i11, nVar, iBinder3, iBinder4, pendingIntent2, iBinder5, str5);
             case 3:
                 int z17 = bf.z(parcel);
-                r rVar = t.f47923b;
+                r rVar = t.f47926b;
                 int i12 = 0;
                 int i13 = 0;
                 int i14 = 0;
@@ -210,7 +210,7 @@ public final class m implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f47912a) {
+        switch (this.f47915a) {
             case 0:
                 return new l[i10];
             case 1:

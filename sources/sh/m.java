@@ -12,7 +12,7 @@ import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.t61;
 import org.telegram.ui.qh0;
 public final class m extends s61 {
-    public static final int f48656a = 0;
+    public static final int f48659a = 0;
 
     static {
         s61.setup(new s61());
@@ -21,7 +21,7 @@ public final class m extends s61 {
     @Override
     public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
         qh0 qh0Var = (qh0) view;
-        qh0Var.a((TLObject) t61Var.G, true, t61Var.f32885z);
+        qh0Var.a((TLObject) t61Var.G, true, t61Var.f32888z);
         qh0Var.setOnClickListener(t61Var.D);
     }
 

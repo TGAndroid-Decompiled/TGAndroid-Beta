@@ -15,7 +15,7 @@ import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.t61;
 public final class f8 extends s61 {
-    public static final int f36573a = 0;
+    public static final int f36576a = 0;
 
     static {
         s61.setup(new s61());
@@ -26,12 +26,12 @@ public final class f8 extends s61 {
         float f7;
         float f10;
         g8 g8Var = (g8) view;
-        String charSequence = t61Var.f32872l.toString();
+        String charSequence = t61Var.f32875l.toString();
         long j10 = t61Var.B;
-        int i10 = t61Var.f32885z;
-        boolean z11 = t61Var.f32877q;
-        TextView textView = g8Var.f36605c;
-        TextView textView2 = g8Var.f36604b;
+        int i10 = t61Var.f32888z;
+        boolean z11 = t61Var.f32880q;
+        TextView textView = g8Var.f36608c;
+        TextView textView2 = g8Var.f36607b;
         textView2.setText(w7.Y(charSequence));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (j10 < 0) {

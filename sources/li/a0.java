@@ -90,7 +90,7 @@ public final class a0 implements da {
             default:
                 an0 an0Var = (an0) this.f17072c;
                 i10 = ((RichMessageLayout.RichBlock) an0Var).layoutX;
-                return (i10 - an0Var.f26585y) + ((bc1) this.f17071b).f26823b;
+                return (i10 - an0Var.f26587y) + ((bc1) this.f17071b).f26825b;
         }
     }
 
@@ -102,7 +102,7 @@ public final class a0 implements da {
                 return 0;
             default:
                 i10 = ((RichMessageLayout.RichBlock) ((an0) this.f17072c)).layoutY;
-                return i10 + ((bc1) this.f17071b).f26824c;
+                return i10 + ((bc1) this.f17071b).f26826c;
         }
     }
 

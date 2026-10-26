@@ -9,27 +9,27 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.mr0;
 public final class l0 extends Drawable {
-    public final int f24371a;
-    public final Paint f24372b;
-    public final Object f24373c;
+    public final int f24373a;
+    public final Paint f24374b;
+    public final Object f24375c;
     public final Object d;
 
     public l0(s1 s1Var, int[] iArr, Paint paint) {
-        this.f24371a = 0;
-        this.f24373c = s1Var;
+        this.f24373a = 0;
+        this.f24375c = s1Var;
         this.d = iArr;
-        this.f24372b = paint;
+        this.f24374b = paint;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f24371a) {
+        switch (this.f24373a) {
             case 0:
-                s1 s1Var = (s1) this.f24373c;
-                int v = org.telegram.ui.ActionBar.y6.v(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23616ra, s1Var.Id), org.telegram.ui.ActionBar.y6.o1(0.5f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23746y6, s1Var.Id)));
+                s1 s1Var = (s1) this.f24375c;
+                int v = org.telegram.ui.ActionBar.y6.v(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23618ra, s1Var.Id), org.telegram.ui.ActionBar.y6.o1(0.5f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23748y6, s1Var.Id)));
                 int[] iArr = (int[]) this.d;
                 int i10 = iArr[0];
-                Paint paint = this.f24372b;
+                Paint paint = this.f24374b;
                 if (v != i10) {
                     int alpha = paint.getAlpha();
                     iArr[0] = v;
@@ -42,11 +42,11 @@ public final class l0 extends Drawable {
                 Rect bounds = getBounds();
                 float dp = AndroidUtilities.dp(25.0f);
                 mr0 mr0Var = (mr0) this.d;
-                float min = Math.min(bounds.top, mr0Var.f30712n - mr0Var.f30698b.getY());
-                int themedColor = mr0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23425h5);
-                Paint paint2 = this.f24372b;
+                float min = Math.min(bounds.top, mr0Var.f30714n - mr0Var.f30700b.getY());
+                int themedColor = mr0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23427h5);
+                Paint paint2 = this.f24374b;
                 paint2.setColor(themedColor);
-                Path path = (Path) this.f24373c;
+                Path path = (Path) this.f24375c;
                 path.rewind();
                 path.addRoundRect(bounds.left, min, bounds.right, bounds.bottom + dp, dp, dp, Path.Direction.CW);
                 canvas.save();
@@ -59,7 +59,7 @@ public final class l0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f24371a) {
+        switch (this.f24373a) {
             case 0:
                 return -2;
             default:
@@ -69,9 +69,9 @@ public final class l0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f24371a) {
+        switch (this.f24373a) {
             case 0:
-                this.f24372b.setAlpha(org.telegram.ui.ActionBar.y6.o1(i10 / 255.0f, ((int[]) this.d)[0]));
+                this.f24374b.setAlpha(org.telegram.ui.ActionBar.y6.o1(i10 / 255.0f, ((int[]) this.d)[0]));
                 return;
             default:
                 return;
@@ -80,9 +80,9 @@ public final class l0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f24371a) {
+        switch (this.f24373a) {
             case 0:
-                this.f24372b.setColorFilter(colorFilter);
+                this.f24374b.setColorFilter(colorFilter);
                 return;
             default:
                 return;
@@ -90,10 +90,10 @@ public final class l0 extends Drawable {
     }
 
     public l0(mr0 mr0Var) {
-        this.f24371a = 1;
+        this.f24373a = 1;
         this.d = mr0Var;
-        this.f24372b = new Paint(1);
-        this.f24373c = new Path();
+        this.f24374b = new Paint(1);
+        this.f24375c = new Path();
     }
 
     private final void a(int i10) {

@@ -10,19 +10,19 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class oc extends mb implements org.telegram.ui.ActionBar.p6 {
-    public final org.telegram.ui.ActionBar.u6 f31252a;
-    public Runnable f31253b;
-    public Runnable f31254c;
+    public final org.telegram.ui.ActionBar.u6 f31254a;
+    public Runnable f31255b;
+    public Runnable f31256c;
     public qc d;
     public final TextView e;
-    public boolean f31255f;
+    public boolean f31257f;
     public final Drawable h;
-    public final Drawable f31256n;
+    public final Drawable f31258n;
 
     public oc(Context context, org.telegram.ui.ActionBar.u6 u6Var, boolean z10, boolean z11) {
         super(context);
         int x02;
-        this.f31252a = u6Var;
+        this.f31254a = u6Var;
         int i10 = org.telegram.ui.ActionBar.y6.Gi;
         if (u6Var != null) {
             x02 = u6Var.g(i10);
@@ -48,7 +48,7 @@ public final class oc extends mb implements org.telegram.ui.ActionBar.p6 {
             org.telegram.ui.ActionBar.f7.t(imageView, i10, u6Var, PorterDuff.Mode.MULTIPLY);
             if (!z10) {
                 imageView.setBackground(org.telegram.ui.ActionBar.y6.g0((x02 & 16777215) | 419430400, 1, -1));
-                this.f31256n = imageView.getBackground();
+                this.f31258n = imageView.getBackground();
             }
             gb1.U(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
             addView(imageView, gb1.l(56.0f, 48.0f, 16));
@@ -64,8 +64,8 @@ public final class oc extends mb implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void d() {
         this.d = null;
-        Runnable runnable = this.f31254c;
-        if (runnable != null && !this.f31255f) {
+        Runnable runnable = this.f31256c;
+        if (runnable != null && !this.f31257f) {
             runnable.run();
         }
     }
@@ -79,8 +79,8 @@ public final class oc extends mb implements org.telegram.ui.ActionBar.p6 {
 
     public final void f() {
         if (this.d != null) {
-            this.f31255f = true;
-            Runnable runnable = this.f31253b;
+            this.f31257f = true;
+            Runnable runnable = this.f31255b;
             if (runnable != null) {
                 runnable.run();
             }
@@ -97,7 +97,7 @@ public final class oc extends mb implements org.telegram.ui.ActionBar.p6 {
         Drawable drawable;
         try {
             int i10 = org.telegram.ui.ActionBar.y6.Gi;
-            org.telegram.ui.ActionBar.u6 u6Var = this.f31252a;
+            org.telegram.ui.ActionBar.u6 u6Var = this.f31254a;
             if (u6Var != null) {
                 x02 = u6Var.g(i10);
             } else {
@@ -108,7 +108,7 @@ public final class oc extends mb implements org.telegram.ui.ActionBar.p6 {
             if (textView != null && (drawable = this.h) != null && textView.getBackground() == drawable) {
                 org.telegram.ui.ActionBar.y6.E1(drawable, i11, true);
             }
-            Drawable drawable2 = this.f31256n;
+            Drawable drawable2 = this.f31258n;
             if (drawable2 != null) {
                 org.telegram.ui.ActionBar.y6.E1(drawable2, i11, true);
             }

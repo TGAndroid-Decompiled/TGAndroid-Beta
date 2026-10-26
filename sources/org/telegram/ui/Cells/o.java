@@ -14,21 +14,21 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class o extends View {
-    public final int f24567a;
-    public final int f24568b;
-    public final int f24569c;
+    public final int f24569a;
+    public final int f24570b;
+    public final int f24571c;
     public int d;
     public final ArrayList e;
-    public float f24570f;
+    public float f24572f;
     public float h;
-    public Integer f24571n;
+    public Integer f24573n;
 
     public o(Context context) {
         super(context);
         this.e = new ArrayList();
-        this.f24567a = 20;
-        this.f24568b = 60;
-        this.f24569c = 60;
+        this.f24569a = 20;
+        this.f24570b = 60;
+        this.f24571c = 60;
     }
 
     public final void a(bh.x0 x0Var) {
@@ -61,7 +61,7 @@ public final class o extends View {
             imageReceiver.setUniqKeyPrefix(Integer.toString(i10));
             ImageLocation forDocument = ImageLocation.getForDocument(tL_availableReaction2.around_animation);
             StringBuilder sb2 = new StringBuilder();
-            int i11 = this.f24568b;
+            int i11 = this.f24570b;
             sb2.append(i11);
             sb2.append("_");
             sb2.append(i11);
@@ -78,8 +78,8 @@ public final class o extends View {
         } else {
             m10 = org.telegram.ui.Components.t5.m(2, UserConfig.selectedAccount, document);
         }
-        if (this.f24571n != null) {
-            m10.setColorFilter(new PorterDuffColorFilter(this.f24571n.intValue(), PorterDuff.Mode.MULTIPLY));
+        if (this.f24573n != null) {
+            m10.setColorFilter(new PorterDuffColorFilter(this.f24573n.intValue(), PorterDuff.Mode.MULTIPLY));
         }
         bh.e a2 = bh.e.a(m10, false, !m10.c());
         a2.f(this);
@@ -90,14 +90,14 @@ public final class o extends View {
     public final void b(float f7, float f10) {
         setTranslationX(f7 - (getMeasuredWidth() / 2.0f));
         float measuredHeight = f10 - (getMeasuredHeight() / 2.0f);
-        this.f24570f = measuredHeight;
+        this.f24572f = measuredHeight;
         setTranslationY(measuredHeight + this.h);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int dp = AndroidUtilities.dp(this.f24569c);
-        int dp2 = AndroidUtilities.dp(this.f24568b);
+        int dp = AndroidUtilities.dp(this.f24571c);
+        int dp2 = AndroidUtilities.dp(this.f24570b);
         int i10 = 0;
         while (true) {
             ArrayList arrayList = this.e;
@@ -146,15 +146,15 @@ public final class o extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int i12 = this.f24567a;
-        int i13 = this.f24568b;
+        int i12 = this.f24569a;
+        int i13 = this.f24570b;
         int max = Math.max(i12, i13);
-        int i14 = this.f24569c;
+        int i14 = this.f24571c;
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(Math.max(i14, max)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(Math.max(i14, Math.max(i12, i13))), 1073741824));
     }
 
     public void setColor(int i10) {
-        this.f24571n = Integer.valueOf(i10);
+        this.f24573n = Integer.valueOf(i10);
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY);
         PorterDuffColorFilter porterDuffColorFilter2 = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
         int i11 = 0;

@@ -92,7 +92,7 @@ public final class u extends FrameLayout {
         gb1.b(imageView);
         imageView.setImageResource(R.drawable.msg_close);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        f7.t(imageView, y6.f23362de, u6Var, PorterDuff.Mode.SRC_IN);
+        f7.t(imageView, y6.f23364de, u6Var, PorterDuff.Mode.SRC_IN);
         imageView.setOnClickListener(new bh.f(5));
         imageView.setVisibility(8);
         f7.addView(imageView, gb1.x(32, 32, 53, 10, 3, 0, 2));

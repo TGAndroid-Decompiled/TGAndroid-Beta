@@ -1,29 +1,29 @@
 package org.telegram.ui.ActionBar;
 public final class g0 implements Runnable {
-    public final int f22631a;
-    public final w0 f22632b;
-    public final int f22633c;
+    public final int f22633a;
+    public final w0 f22634b;
+    public final int f22635c;
 
     public g0(w0 w0Var, int i10, int i11) {
-        this.f22631a = i11;
-        this.f22632b = w0Var;
-        this.f22633c = i10;
+        this.f22633a = i11;
+        this.f22634b = w0Var;
+        this.f22635c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f22631a) {
+        switch (this.f22633a) {
             case 0:
-                w0 w0Var = this.f22632b;
-                if (w0Var.f23174b.getSwipeBack() != null) {
-                    w0Var.f23174b.getSwipeBack().e(this.f22633c);
+                w0 w0Var = this.f22634b;
+                if (w0Var.f23176b.getSwipeBack() != null) {
+                    w0Var.f23176b.getSwipeBack().e(this.f22635c);
                     return;
                 }
                 return;
             default:
-                w0 w0Var2 = this.f22632b;
-                if (w0Var2.f23174b.getSwipeBack() != null) {
-                    w0Var2.f23174b.getSwipeBack().e(this.f22633c);
+                w0 w0Var2 = this.f22634b;
+                if (w0Var2.f23176b.getSwipeBack() != null) {
+                    w0Var2.f23176b.getSwipeBack().e(this.f22635c);
                     return;
                 }
                 return;

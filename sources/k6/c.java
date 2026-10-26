@@ -283,7 +283,7 @@ public class c implements OnCompleteListener, o5.b, el0, qq0 {
 
     public void F(rf.g gVar) {
         if (((rf.d) this.f16406b) != null) {
-            for (int i10 = 0; i10 < gVar.f47353a.size(); i10++) {
+            for (int i10 = 0; i10 < gVar.f47356a.size(); i10++) {
                 rf.d dVar = (rf.d) this.f16406b;
                 dVar.h.remove(gVar.a(i10).d);
                 dVar.h();
@@ -310,16 +310,16 @@ public class c implements OnCompleteListener, o5.b, el0, qq0 {
         }
         rf.a aVar2 = (rf.a) this.d;
         if (aVar2 != null) {
-            f6.h hVar = aVar2.f47326a;
+            f6.h hVar = aVar2.f47329a;
             o6.l.e("Must be called from the main thread.");
             hVar.f10219i.remove(aVar2);
         }
         if (aVar != null) {
-            aVar.f47326a.p(aVar);
+            aVar.f47329a.p(aVar);
             rf.g gVar3 = (rf.g) this.f16407c;
             if (gVar3 != null) {
                 aVar.d = gVar3;
-                aVar.f47330g = 0;
+                aVar.f47333g = 0;
                 aVar.h = 0;
                 aVar.p();
             }
@@ -367,7 +367,7 @@ public class c implements OnCompleteListener, o5.b, el0, qq0 {
             nk nkVar = (nk) this.d;
             HashMap hashMap = (HashMap) this.f16406b;
             ArrayList arrayList = (ArrayList) this.f16407c;
-            ti tiVar = nkVar.f30213b;
+            ti tiVar = nkVar.f30215b;
             if (!hashMap.isEmpty() && nkVar.Q != null && !nkVar.K) {
                 nkVar.K = true;
                 ArrayList arrayList2 = new ArrayList();
@@ -418,7 +418,7 @@ public class c implements OnCompleteListener, o5.b, el0, qq0 {
         if (((rf.d) this.f16406b) == null) {
             this.f16406b = new rf.d();
         }
-        for (int i10 = 0; i10 < gVar.f47353a.size(); i10++) {
+        for (int i10 = 0; i10 < gVar.f47356a.size(); i10++) {
             rf.d dVar = (rf.d) this.f16406b;
             rf.f a2 = gVar.a(i10);
             dVar.h.put(a2.d, a2);
@@ -481,7 +481,7 @@ public class c implements OnCompleteListener, o5.b, el0, qq0 {
     public void n() {
         android.support.v4.media.session.b0 b0Var = (android.support.v4.media.session.b0) this.f16406b;
         if (b0Var != null) {
-            int i10 = ((p4.e) this.d).f46665n.d;
+            int i10 = ((p4.e) this.d).f46668n.d;
             v vVar = b0Var.f2051a;
             vVar.getClass();
             AudioAttributes.Builder builder = new AudioAttributes.Builder();

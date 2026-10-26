@@ -5,57 +5,57 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 public final class m1 implements e0, y2.g {
-    public final g2.m f49355a;
-    public final g2.g f49356b;
-    public final g2.c0 f49357c;
+    public final g2.m f49358a;
+    public final g2.g f49359b;
+    public final g2.c0 f49360c;
     public final u7.s d;
     public final ng e;
-    public final r1 f49358f;
+    public final r1 f49361f;
     public final ArrayList h = new ArrayList();
-    public final long f49359n;
-    public final y2.l f49360r;
-    public final b2.x f49361s;
+    public final long f49362n;
+    public final y2.l f49363r;
+    public final b2.x f49364s;
     public final boolean v;
-    public boolean f49362w;
-    public byte[] f49363x;
-    public int f49364y;
+    public boolean f49365w;
+    public byte[] f49366x;
+    public int f49367y;
 
     public m1(g2.m mVar, g2.g gVar, g2.c0 c0Var, b2.x xVar, long j10, u7.s sVar, ng ngVar, boolean z10, z2.a aVar) {
         y2.l lVar;
-        this.f49355a = mVar;
-        this.f49356b = gVar;
-        this.f49357c = c0Var;
-        this.f49361s = xVar;
-        this.f49359n = j10;
+        this.f49358a = mVar;
+        this.f49359b = gVar;
+        this.f49360c = c0Var;
+        this.f49364s = xVar;
+        this.f49362n = j10;
         this.d = sVar;
         this.e = ngVar;
         this.v = z10;
-        this.f49358f = new r1(new b2.q1("", xVar));
+        this.f49361f = new r1(new b2.q1("", xVar));
         if (aVar != null) {
             lVar = new y2.l(aVar);
         } else {
             lVar = new y2.l("SingleSampleMediaPeriod");
         }
-        this.f49360r = lVar;
+        this.f49363r = lVar;
     }
 
     @Override
     public final void B(y2.i iVar, long j10, long j11) {
         l1 l1Var = (l1) iVar;
-        this.f49364y = (int) l1Var.f49344b.f12230b;
-        byte[] bArr = l1Var.f49345c;
+        this.f49367y = (int) l1Var.f49347b.f12230b;
+        byte[] bArr = l1Var.f49348c;
         bArr.getClass();
-        this.f49363x = bArr;
-        this.f49362w = true;
-        g2.b0 b0Var = l1Var.f49344b;
-        u uVar = new u(l1Var.f49343a, b0Var.f12231c, b0Var.d, j10, j11, this.f49364y);
+        this.f49366x = bArr;
+        this.f49365w = true;
+        g2.b0 b0Var = l1Var.f49347b;
+        u uVar = new u(l1Var.f49346a, b0Var.f12231c, b0Var.d, j10, j11, this.f49367y);
         this.d.getClass();
-        this.e.q(uVar, 1, -1, this.f49361s, 0, null, 0L, this.f49359n);
+        this.e.q(uVar, 1, -1, this.f49364s, 0, null, 0L, this.f49362n);
     }
 
     @Override
     public final long b() {
-        if (!this.f49362w && !this.f49360r.c()) {
+        if (!this.f49365w && !this.f49363r.c()) {
             return 0L;
         }
         return Long.MIN_VALUE;
@@ -63,7 +63,7 @@ public final class m1 implements e0, y2.g {
 
     @Override
     public final boolean c() {
-        return this.f49360r.c();
+        return this.f49363r.c();
     }
 
     @Override
@@ -73,8 +73,8 @@ public final class m1 implements e0, y2.g {
             ArrayList arrayList = this.h;
             if (i10 < arrayList.size()) {
                 k1 k1Var = (k1) arrayList.get(i10);
-                if (k1Var.f49336a == 2) {
-                    k1Var.f49336a = 1;
+                if (k1Var.f49339a == 2) {
+                    k1Var.f49339a = 1;
                 }
                 i10++;
             } else {
@@ -96,23 +96,23 @@ public final class m1 implements e0, y2.g {
     @Override
     public final void l0(y2.i iVar, long j10, long j11, boolean z10) {
         l1 l1Var = (l1) iVar;
-        g2.b0 b0Var = l1Var.f49344b;
-        u uVar = new u(l1Var.f49343a, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
+        g2.b0 b0Var = l1Var.f49347b;
+        u uVar = new u(l1Var.f49346a, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
         this.d.getClass();
-        this.e.p(uVar, 1, -1, null, 0, null, 0L, this.f49359n);
+        this.e.p(uVar, 1, -1, null, 0, null, 0L, this.f49362n);
     }
 
     @Override
     public final boolean m(i2.w0 w0Var) {
-        if (!this.f49362w) {
-            y2.l lVar = this.f49360r;
+        if (!this.f49365w) {
+            y2.l lVar = this.f49363r;
             if (!lVar.c() && !lVar.b()) {
-                g2.h createDataSource = this.f49356b.createDataSource();
-                g2.c0 c0Var = this.f49357c;
+                g2.h createDataSource = this.f49359b.createDataSource();
+                g2.c0 c0Var = this.f49360c;
                 if (c0Var != null) {
                     createDataSource.addTransferListener(c0Var);
                 }
-                l1 l1Var = new l1(createDataSource, this.f49355a);
+                l1 l1Var = new l1(createDataSource, this.f49358a);
                 this.d.getClass();
                 lVar.f(l1Var, this, 3);
                 return true;
@@ -143,12 +143,12 @@ public final class m1 implements e0, y2.g {
 
     @Override
     public final r1 p() {
-        return this.f49358f;
+        return this.f49361f;
     }
 
     @Override
     public final long q() {
-        if (this.f49362w) {
+        if (this.f49365w) {
             return Long.MIN_VALUE;
         }
         return 0L;
@@ -161,8 +161,8 @@ public final class m1 implements e0, y2.g {
         IOException iOException2;
         k4.d dVar;
         l1 l1Var = (l1) iVar;
-        g2.b0 b0Var = l1Var.f49344b;
-        u uVar = new u(l1Var.f49343a, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
+        g2.b0 b0Var = l1Var.f49347b;
+        u uVar = new u(l1Var.f49346a, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
         String str = e2.n0.f9692a;
         this.d.getClass();
         for (Throwable th2 = iOException; th2 != null; th2 = th2.getCause()) {
@@ -181,17 +181,17 @@ public final class m1 implements e0, y2.g {
         if (this.v && z10) {
             iOException2 = iOException;
             e2.a.m("SingleSampleMediaPeriod", "Loading failed, treating as end-of-stream.", iOException2);
-            this.f49362w = true;
+            this.f49365w = true;
             dVar = y2.l.e;
         } else {
             iOException2 = iOException;
             if (i11 != 0) {
                 dVar = new k4.d(0, min, false);
             } else {
-                dVar = y2.l.f51960f;
+                dVar = y2.l.f51963f;
             }
         }
-        this.e.r(uVar, 1, -1, this.f49361s, 0, null, 0L, this.f49359n, iOException2, !dVar.a());
+        this.e.r(uVar, 1, -1, this.f49364s, 0, null, 0L, this.f49362n, iOException2, !dVar.a());
         return dVar;
     }
 
@@ -199,13 +199,13 @@ public final class m1 implements e0, y2.g {
     public final void z(y2.i iVar, long j10, long j11, int i10) {
         u uVar;
         l1 l1Var = (l1) iVar;
-        g2.b0 b0Var = l1Var.f49344b;
+        g2.b0 b0Var = l1Var.f49347b;
         if (i10 == 0) {
-            uVar = new u(l1Var.f49343a, j10);
+            uVar = new u(l1Var.f49346a, j10);
         } else {
-            uVar = new u(l1Var.f49343a, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
+            uVar = new u(l1Var.f49346a, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
         }
-        this.e.u(uVar, 1, -1, this.f49361s, 0, null, 0L, this.f49359n, i10);
+        this.e.u(uVar, 1, -1, this.f49364s, 0, null, 0L, this.f49362n, i10);
     }
 
     @Override

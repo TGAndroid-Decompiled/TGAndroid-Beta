@@ -21,7 +21,7 @@ public final class u extends bb {
         this.Y = str;
         N();
         this.v = 0.6f;
-        this.f26814y = true;
+        this.f26816y = true;
         this.E = true;
         fixNavigationBar();
         K();
@@ -35,7 +35,7 @@ public final class u extends bb {
     public final lm0 v(mm0 mm0Var) {
         j71 j71Var = new j71(mm0Var, getContext(), this.X, 0, false, new ai.e(this, 14), this.resourcesProvider);
         this.Z = j71Var;
-        j71Var.f29505r = false;
+        j71Var.f29507r = false;
         return j71Var;
     }
 

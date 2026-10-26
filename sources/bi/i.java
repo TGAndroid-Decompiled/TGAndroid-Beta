@@ -47,7 +47,7 @@ public final class i implements qf1, org.telegram.ui.ActionBar.b2, ChatObject.Ca
         boolean z10;
         String str = (String) this.f4806c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((p5.c) this.d).f46803a;
+        int i10 = ((p5.c) this.d).f46806a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -150,7 +150,7 @@ public final class i implements qf1, org.telegram.ui.ActionBar.b2, ChatObject.Ca
             case 4:
             default:
                 v50 v50Var = (v50) this.f4806c;
-                v50Var.d.getMessagesController().addUserToChat(v50Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.r2) v50Var.f44640i0.O().getFragmentStack().get(v50Var.f44640i0.O().getFragmentStack().size() - 1), new r3(v50Var, this.f4805b, 28));
+                v50Var.d.getMessagesController().addUserToChat(v50Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.r2) v50Var.f44643i0.O().getFragmentStack().get(v50Var.f44643i0.O().getFragmentStack().size() - 1), new r3(v50Var, this.f4805b, 28));
                 return;
             case 5:
                 zr.Q((zr) this.f4806c, (fi.d) this.d, this.f4805b);

@@ -18,13 +18,13 @@ public final class t81 extends org.telegram.ui.Components.u91 {
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked == 0) {
             w91 w91Var = this.W;
-            if (w91Var.f45030j0 != null) {
+            if (w91Var.f45033j0 != null) {
                 View currentView = getCurrentView();
-                ke keVar = w91Var.f45030j0;
+                ke keVar = w91Var.f45033j0;
                 if (currentView == keVar) {
-                    boolean G = keVar.G(motionEvent.getX() - w91Var.f45030j0.getX(), motionEvent.getY() - w91Var.f45030j0.getY());
+                    boolean G = keVar.G(motionEvent.getX() - w91Var.f45033j0.getX(), motionEvent.getY() - w91Var.f45033j0.getY());
                     keVar.Q0 = G;
-                    if (G && keVar.f40890a1.f39617b.canScrollHorizontally(-1)) {
+                    if (G && keVar.f40893a1.f39620b.canScrollHorizontally(-1)) {
                         z10 = true;
                         this.V = z10;
                     }
@@ -67,14 +67,14 @@ public final class t81 extends org.telegram.ui.Components.u91 {
     @Override
     public final void u() {
         w91 w91Var = this.W;
-        w91Var.l0(w91Var.f45028h0.getCurrentPosition(), true);
+        w91Var.l0(w91Var.f45031h0.getCurrentPosition(), true);
         w91Var.m0(0.0f, false);
     }
 
     @Override
     public final void w(boolean z10) {
         w91 w91Var = this.W;
-        float positionAnimated = w91Var.f45028h0.getPositionAnimated();
+        float positionAnimated = w91Var.f45031h0.getPositionAnimated();
         w91Var.m0(positionAnimated, !z10);
         if (!z10) {
             w91Var.l0(Math.round(positionAnimated), true);

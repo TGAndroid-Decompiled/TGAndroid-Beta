@@ -1064,8 +1064,8 @@ public final class me implements z3.d, el0, oe.d, o5.b, s9.b {
         byte[] bArr2 = (byte[]) this.f614a;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = ii1.f40248b;
-        BigInteger bigInteger3 = ii1.f40247a;
+        BigInteger bigInteger2 = ii1.f40251b;
+        BigInteger bigInteger3 = ii1.f40250a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {

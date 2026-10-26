@@ -74,7 +74,7 @@ public final class m0 {
     public static n0 a(n0 n0Var, z9.e eVar, r3 r3Var) {
         String str;
         m0 a2 = n0Var.a();
-        String y3 = ((z9.c) eVar.f52818b).y();
+        String y3 = ((z9.c) eVar.f52821b).y();
         if (y3 != null) {
             a2.e = new x0(y3);
         } else if (Log.isLoggable("FirebaseCrashlytics", 2)) {
@@ -113,16 +113,16 @@ public final class m0 {
             z9.b bVar = (z9.b) lVar;
             String str = bVar.e;
             if (str != null) {
-                String str2 = bVar.f52810b;
+                String str2 = bVar.f52813b;
                 if (str2 != null) {
                     obj.f7758b = new z0(str2, str);
-                    String str3 = bVar.f52811c;
+                    String str3 = bVar.f52814c;
                     if (str3 != null) {
                         obj.f7757a = str3;
                         String str4 = bVar.d;
                         if (str4 != null) {
                             obj.f7759c = str4;
-                            obj.d = Long.valueOf(bVar.f52812f);
+                            obj.d = Long.valueOf(bVar.f52815f);
                             arrayList.add(obj.e());
                         } else {
                             throw new NullPointerException("Null parameterValue");
@@ -251,12 +251,12 @@ public final class m0 {
     }
 
     public static boolean s(u2.g0 g0Var, Object obj, boolean z10, int i10, int i11, int i12) {
-        Object obj2 = g0Var.f49294a;
-        int i13 = g0Var.f49295b;
+        Object obj2 = g0Var.f49297a;
+        int i13 = g0Var.f49298b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z10 || i13 != i10 || g0Var.f49296c != i11) {
+        if (!z10 || i13 != i10 || g0Var.f49299c != i11) {
             if (z10 || i13 != -1 || g0Var.e != i12) {
                 return false;
             }
@@ -383,7 +383,7 @@ public final class m0 {
         sf.d dVar = (sf.d) this.e;
         sf.d dVar2 = null;
         for (sf.d dVar3 : ((HashMap) this.f1150a).values()) {
-            if (dVar3.f48134m || dVar3.f48126b.f49719a != 0) {
+            if (dVar3.f48137m || dVar3.f48129b.f49722a != 0) {
                 if (dVar2 == null || dVar3.d > dVar2.d) {
                     dVar2 = dVar3;
                 }
@@ -393,7 +393,7 @@ public final class m0 {
             this.e = dVar2;
             StringBuilder sb2 = new StringBuilder("onMaxPrioritySourceChanged ");
             if (dVar2 != null) {
-                str = dVar2.f48127c;
+                str = dVar2.f48130c;
             } else {
                 str = null;
             }
@@ -407,12 +407,12 @@ public final class m0 {
                     AndroidUtilities.resetPictureInPictureParams(launchActivity);
                 }
             }
-            if (dVar != null && dVar.f48128f) {
+            if (dVar != null && dVar.f48131f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (dVar2 != null && dVar2.f48128f) {
+            if (dVar2 != null && dVar2.f48131f) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -430,7 +430,7 @@ public final class m0 {
                     this.f1153f = null;
                 }
                 if (dVar2 != null) {
-                    m4.s sVar = new m4.s((LaunchActivity) this.d, dVar2.f48133l);
+                    m4.s sVar = new m4.s((LaunchActivity) this.d, dVar2.f48136l);
                     sVar.f18220c = "pip-media-session";
                     yb.p(!sVar.f18227m);
                     sVar.f18227m = true;
@@ -476,15 +476,15 @@ public final class m0 {
                 }
             }
             if (dVar != null) {
-                uf.e eVar = dVar.f48126b;
-                eVar.f49729n = false;
+                uf.e eVar = dVar.f48129b;
+                eVar.f49732n = false;
                 eVar.h();
-                sf.d dVar6 = eVar.f49725j;
-                ((sf.b) dVar6.f48125a.f1151b).f48103a.remove(eVar);
-                ((sf.b) dVar6.f48125a.f1151b).f48104b.remove(eVar);
-                m0 m0Var = dVar6.f48125a;
-                String str2 = dVar6.f48127c;
-                HashMap hashMap = ((sf.b) m0Var.f1151b).f48105c;
+                sf.d dVar6 = eVar.f49728j;
+                ((sf.b) dVar6.f48128a.f1151b).f48106a.remove(eVar);
+                ((sf.b) dVar6.f48128a.f1151b).f48107b.remove(eVar);
+                m0 m0Var = dVar6.f48128a;
+                String str2 = dVar6.f48130c;
+                HashMap hashMap = ((sf.b) m0Var.f1151b).f48108c;
                 ArrayList arrayList = (ArrayList) hashMap.get(str2);
                 if (arrayList != null) {
                     arrayList.remove((Object) null);
@@ -497,19 +497,19 @@ public final class m0 {
                 m4.y yVar2 = (m4.y) this.f1153f;
                 if (yVar2 != null) {
                     b2.g1 g1Var = yVar2.f18301a.f18057t.f18169a;
-                    i2.j0 j0Var = dVar2.f48133l;
+                    i2.j0 j0Var = dVar2.f48136l;
                     if (g1Var != j0Var) {
                         yVar2.a(j0Var);
                     }
                 }
                 ((sf.a) this.f1152c).bringToFront();
-                uf.e eVar2 = dVar2.f48126b;
-                sf.d dVar7 = eVar2.f49725j;
-                ((sf.b) dVar7.f48125a.f1151b).f48103a.add(eVar2);
-                ((sf.b) dVar7.f48125a.f1151b).f48104b.add(eVar2);
-                m0 m0Var2 = dVar7.f48125a;
-                String str3 = dVar7.f48127c;
-                HashMap hashMap2 = ((sf.b) m0Var2.f1151b).f48105c;
+                uf.e eVar2 = dVar2.f48129b;
+                sf.d dVar7 = eVar2.f49728j;
+                ((sf.b) dVar7.f48128a.f1151b).f48106a.add(eVar2);
+                ((sf.b) dVar7.f48128a.f1151b).f48107b.add(eVar2);
+                m0 m0Var2 = dVar7.f48128a;
+                String str3 = dVar7.f48130c;
+                HashMap hashMap2 = ((sf.b) m0Var2.f1151b).f48108c;
                 ArrayList arrayList2 = (ArrayList) hashMap2.get(str3);
                 if (arrayList2 == null) {
                     arrayList2 = new ArrayList();
@@ -534,7 +534,7 @@ public final class m0 {
 
     public void d(ng ngVar, u2.g0 g0Var, b2.p1 p1Var) {
         if (g0Var != null) {
-            if (p1Var.b(g0Var.f49294a) != -1) {
+            if (p1Var.b(g0Var.f49297a) != -1) {
                 ngVar.w(g0Var, p1Var);
                 return;
             }
@@ -667,7 +667,7 @@ public final class m0 {
             m4.y yVar = (m4.y) this.f1153f;
             if (yVar != null) {
                 b2.g1 g1Var = yVar.f18301a.f18057t.f18169a;
-                i2.j0 j0Var = dVar.f48133l;
+                i2.j0 j0Var = dVar.f48136l;
                 if (g1Var != j0Var) {
                     yVar.a(j0Var);
                 }
@@ -749,7 +749,7 @@ public final class m0 {
         boolean z11;
         boolean equals = str2.equals("crash");
         y9.q qVar = (y9.q) this.f1150a;
-        Context context = qVar.f52469a;
+        Context context = qVar.f52472a;
         int i10 = context.getResources().getConfiguration().orientation;
         rf.b bVar2 = qVar.d;
         Stack stack = new Stack();
@@ -765,7 +765,7 @@ public final class m0 {
         ?? obj = new Object();
         obj.f1151b = str2;
         obj.f1150a = Long.valueOf(j10);
-        v1 b10 = v9.c.f50098a.b(context);
+        v1 b10 = v9.c.f50101a.b(context);
         int i11 = ((v0) b10).f1215c;
         if (i11 > 0) {
             if (i11 != 100) {
@@ -907,18 +907,18 @@ public final class m0 {
         while (i12 < size2) {
             int i13 = i12 + 1;
             y9.b bVar = (y9.b) arrayList.get(i12);
-            if (str == null || str.equals(bVar.f52413b)) {
+            if (str == null || str.equals(bVar.f52416b)) {
                 ea.a aVar2 = (ea.a) this.f1152c;
-                if (bVar.f52412a.f1017f == null) {
+                if (bVar.f52415a.f1017f == null) {
                     try {
                         str2 = (String) y9.x.a(((sa.c) ((y9.v) this.f1153f).d).d());
                     } catch (Exception e11) {
                         Log.w("FirebaseCrashlytics", "Failed to retrieve Firebase Installation ID.", e11);
                         str2 = null;
                     }
-                    ff a2 = bVar.f52412a.a();
+                    ff a2 = bVar.f52415a.a();
                     a2.e = str2;
-                    bVar = new y9.b(a2.a(), bVar.f52413b, bVar.f52414c);
+                    bVar = new y9.b(a2.a(), bVar.f52416b, bVar.f52417c);
                 }
                 if (str != null) {
                     z10 = true;
@@ -930,21 +930,21 @@ public final class m0 {
                     try {
                         taskCompletionSource = new TaskCompletionSource();
                         if (z10) {
-                            ((AtomicInteger) cVar.f9870i.f52434a).getAndIncrement();
+                            ((AtomicInteger) cVar.f9870i.f52437a).getAndIncrement();
                             if (cVar.f9868f.size() < cVar.e) {
-                                v9.b bVar2 = v9.b.f50097a;
-                                bVar2.b("Enqueueing report: " + bVar.f52413b);
+                                v9.b bVar2 = v9.b.f50100a;
+                                bVar2.b("Enqueueing report: " + bVar.f52416b);
                                 bVar2.b("Queue size: " + cVar.f9868f.size());
                                 cVar.f9869g.execute(new com.google.android.gms.common.api.internal.q1(cVar, bVar, taskCompletionSource, 5));
-                                bVar2.b("Closing task for report: " + bVar.f52413b);
+                                bVar2.b("Closing task for report: " + bVar.f52416b);
                                 taskCompletionSource.trySetResult(bVar);
                             } else {
                                 cVar.a();
-                                String str3 = "Dropping report due to queue being full: " + bVar.f52413b;
+                                String str3 = "Dropping report due to queue being full: " + bVar.f52416b;
                                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                     Log.d("FirebaseCrashlytics", str3, null);
                                 }
-                                ((AtomicInteger) cVar.f9870i.f52435b).getAndIncrement();
+                                ((AtomicInteger) cVar.f9870i.f52438b).getAndIncrement();
                                 taskCompletionSource.trySetResult(bVar);
                             }
                         } else {

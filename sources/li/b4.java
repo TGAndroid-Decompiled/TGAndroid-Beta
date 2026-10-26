@@ -22,13 +22,13 @@ public final class b4 implements w2.a {
         if (arrayList.isEmpty()) {
             return Long.MIN_VALUE;
         }
-        if (j10 < ((z3.a) arrayList.get(0)).f52640b) {
-            return ((z3.a) arrayList.get(0)).f52640b;
+        if (j10 < ((z3.a) arrayList.get(0)).f52643b) {
+            return ((z3.a) arrayList.get(0)).f52643b;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
             z3.a aVar = (z3.a) arrayList.get(i10);
-            long j11 = aVar.f52640b;
-            long j12 = aVar.f52640b;
+            long j11 = aVar.f52643b;
+            long j12 = aVar.f52643b;
             if (j10 < j11) {
                 long j13 = ((z3.a) arrayList.get(i10 - 1)).d;
                 if (j13 != -9223372036854775807L && j13 > j10 && j13 < j12) {
@@ -57,7 +57,7 @@ public final class b4 implements w2.a {
             f9.g0 g0Var2 = f9.i0.f10287b;
             return f9.s1.e;
         }
-        return aVar.f52639a;
+        return aVar.f52642a;
     }
 
     @Override
@@ -73,11 +73,11 @@ public final class b4 implements w2.a {
     @Override
     public long d(long j10) {
         ArrayList arrayList = this.f17155a;
-        if (arrayList.isEmpty() || j10 < ((z3.a) arrayList.get(0)).f52640b) {
+        if (arrayList.isEmpty() || j10 < ((z3.a) arrayList.get(0)).f52643b) {
             return -9223372036854775807L;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            long j11 = ((z3.a) arrayList.get(i10)).f52640b;
+            long j11 = ((z3.a) arrayList.get(i10)).f52643b;
             int i11 = (j10 > j11 ? 1 : (j10 == j11 ? 0 : -1));
             if (i11 == 0) {
                 return j11;
@@ -88,7 +88,7 @@ public final class b4 implements w2.a {
                 if (j12 != -9223372036854775807L && j12 <= j10) {
                     return j12;
                 }
-                return aVar.f52640b;
+                return aVar.f52643b;
             }
         }
         z3.a aVar2 = (z3.a) f9.o.m(arrayList);
@@ -96,7 +96,7 @@ public final class b4 implements w2.a {
         if (j13 != -9223372036854775807L && j10 >= j13) {
             return j13;
         }
-        return aVar2.f52640b;
+        return aVar2.f52643b;
     }
 
     @Override
@@ -115,7 +115,7 @@ public final class b4 implements w2.a {
 
     public p4.r f() {
         if (this.f17155a == null) {
-            return p4.r.f46745c;
+            return p4.r.f46748c;
         }
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("controlCategories", this.f17155a);
@@ -141,7 +141,7 @@ public final class b4 implements w2.a {
     public int i(long j10) {
         ArrayList arrayList = this.f17155a;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (j10 < ((z3.a) arrayList.get(i10)).f52640b) {
+            if (j10 < ((z3.a) arrayList.get(i10)).f52643b) {
                 return i10;
             }
         }

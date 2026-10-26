@@ -12,12 +12,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.PhotoViewer;
 public final class hv implements View.OnClickListener {
-    public final int f40090a;
-    public final cy f40091b;
+    public final int f40093a;
+    public final cy f40094b;
 
     public hv(cy cyVar, int i10) {
-        this.f40090a = i10;
-        this.f40091b = cyVar;
+        this.f40093a = i10;
+        this.f40094b = cyVar;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class hv implements View.OnClickListener {
         CharSequence charSequence;
         qw qwVar;
         qw qwVar2;
-        switch (this.f40090a) {
+        switch (this.f40093a) {
             case 0:
-                cy cyVar = this.f40091b;
+                cy cyVar = this.f40094b;
                 if (cyVar.i4() && (arrayList = cyVar.D2) != null && !arrayList.isEmpty() && cyVar.getParentActivity() != null) {
                     int i10 = 0;
                     MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) cyVar.D2.get(0);
@@ -46,14 +46,14 @@ public final class hv implements View.OnClickListener {
                         ((MediaController.PhotoEntry) obj).caption = charSequence;
                     }
                     PhotoViewer.u1().M2(null, cyVar, cyVar.getResourceProvider());
-                    PhotoViewer.u1().f35746p7 = true;
-                    PhotoViewer.u1().f35754q7 = charSequence;
+                    PhotoViewer.u1().f35749p7 = true;
+                    PhotoViewer.u1().f35757q7 = charSequence;
                     ArrayList arrayList3 = new ArrayList(cyVar.D2);
                     boolean[] zArr = new boolean[cyVar.D2.size()];
                     Arrays.fill(zArr, true);
                     PhotoViewer.u1().i2(arrayList3, 0, 0, false, new ex(cyVar, zArr), null);
                     PhotoViewer u12 = PhotoViewer.u1();
-                    u12.f35657f4 = true;
+                    u12.f35660f4 = true;
                     CheckBox checkBox = u12.N0;
                     if (checkBox != null) {
                         checkBox.setVisibility(8);
@@ -67,13 +67,13 @@ public final class hv implements View.OnClickListener {
                 }
                 return;
             case 1:
-                cy cyVar2 = this.f40091b;
+                cy cyVar2 = this.f40094b;
                 cyVar2.W4(true, false, true, false);
                 cyVar2.Y.b(true);
                 AndroidUtilities.runOnUIThread(new cv(cyVar2, 23), 100L);
                 return;
             case 2:
-                cy cyVar3 = this.f40091b;
+                cy cyVar3 = this.f40094b;
                 if (cyVar3.G0 && (qwVar = cyVar3.E0) != null && !qwVar.g()) {
                     cyVar3.F4(true, true);
                     return;
@@ -82,7 +82,7 @@ public final class hv implements View.OnClickListener {
                     return;
                 }
             case 3:
-                cy cyVar4 = this.f40091b;
+                cy cyVar4 = this.f40094b;
                 if (cyVar4.G0 && (qwVar2 = cyVar4.E0) != null && !qwVar2.g()) {
                     cyVar4.F4(true, true);
                     return;
@@ -91,14 +91,14 @@ public final class hv implements View.OnClickListener {
                     return;
                 }
             case 4:
-                cy cyVar5 = this.f40091b;
+                cy cyVar5 = this.f40094b;
                 cyVar5.getClass();
                 Bundle bundle = new Bundle();
                 bundle.putLong("community_id", cyVar5.Y2);
                 cyVar5.presentFragment(new ii.r(bundle));
                 return;
             case 5:
-                cy cyVar6 = this.f40091b;
+                cy cyVar6 = this.f40094b;
                 ArrayList arrayList4 = cyVar6.I2;
                 if (cyVar6.C2 != null && !arrayList4.isEmpty()) {
                     cyVar6.M2 = false;
@@ -111,92 +111,92 @@ public final class hv implements View.OnClickListener {
                 }
                 return;
             case 6:
-                this.f40091b.finishPreviewFragment();
+                this.f40094b.finishPreviewFragment();
                 return;
             case 7:
-                this.f40091b.j4(true);
+                this.f40094b.j4(true);
                 return;
             case 8:
-                cy cyVar7 = this.f40091b;
-                cyVar7.f38690z0.setIsEditing(false);
+                cy cyVar7 = this.f40094b;
+                cyVar7.f38693z0.setIsEditing(false);
                 cyVar7.Q4(false);
                 return;
             case 9:
-                cy cyVar8 = this.f40091b;
+                cy cyVar8 = this.f40094b;
                 cyVar8.getClass();
                 cyVar8.showDialog(new tg.y0((org.telegram.ui.ActionBar.r2) cyVar8, 2, true));
                 return;
             case 10:
-                cy cyVar9 = this.f40091b;
+                cy cyVar9 = this.f40094b;
                 cyVar9.getContactsController().loadGlobalPrivacySetting();
                 cyVar9.S4();
                 return;
             case 11:
-                this.f40091b.x4(view);
+                this.f40094b.x4(view);
                 return;
             case 12:
-                cy.r0(this.f40091b);
+                cy.r0(this.f40094b);
                 return;
             case 13:
-                cy.H0(this.f40091b);
+                cy.H0(this.f40094b);
                 return;
             case 14:
-                cy.u0(this.f40091b);
+                cy.u0(this.f40094b);
                 return;
             case 15:
-                cy cyVar10 = this.f40091b;
-                cyVar10.showDialog(org.telegram.ui.Components.g5.l(cyVar10.getParentActivity(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new fv(cyVar10, 1), new cv(cyVar10, 17), false, false, cyVar10.getResourceProvider()).f22599a);
+                cy cyVar10 = this.f40094b;
+                cyVar10.showDialog(org.telegram.ui.Components.g5.l(cyVar10.getParentActivity(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new fv(cyVar10, 1), new cv(cyVar10, 17), false, false, cyVar10.getResourceProvider()).f22601a);
                 return;
             case 16:
-                cy.B0(this.f40091b);
+                cy.B0(this.f40094b);
                 return;
             case 17:
-                cy.y0(this.f40091b);
+                cy.y0(this.f40094b);
                 return;
             case 18:
                 PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment.f35875j0 = true;
-                cy cyVar11 = this.f40091b;
+                premiumPreviewFragment.f35878j0 = true;
+                cy cyVar11 = this.f40094b;
                 cyVar11.presentFragment(premiumPreviewFragment);
                 AndroidUtilities.runOnUIThread(new cv(cyVar11, 21), 250L);
                 return;
             case 19:
-                cy.a0(this.f40091b);
+                cy.a0(this.f40094b);
                 return;
             case 20:
                 PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment2.f35875j0 = true;
-                cy cyVar12 = this.f40091b;
+                premiumPreviewFragment2.f35878j0 = true;
+                cy cyVar12 = this.f40094b;
                 cyVar12.presentFragment(premiumPreviewFragment2);
                 AndroidUtilities.runOnUIThread(new cv(cyVar12, 15), 250L);
                 return;
             case 21:
                 c7 c7Var = new c7();
-                cy cyVar13 = this.f40091b;
+                cy cyVar13 = this.f40094b;
                 cyVar13.presentFragment(c7Var);
                 AndroidUtilities.runOnUIThread(new sv(cyVar13, 12), 250L);
                 return;
             case 22:
-                cy.C0(this.f40091b);
+                cy.C0(this.f40094b);
                 return;
             case 23:
-                cy.Z(this.f40091b);
+                cy.Z(this.f40094b);
                 return;
             case 24:
-                cy.x0(this.f40091b);
+                cy.x0(this.f40094b);
                 return;
             case 25:
-                cy.k0(this.f40091b);
+                cy.k0(this.f40094b);
                 return;
             case 26:
-                cy cyVar14 = this.f40091b;
+                cy cyVar14 = this.f40094b;
                 qf.d.r(cyVar14.getParentActivity(), cyVar14.getMessagesController().premiumManageSubscriptionUrl);
                 return;
             case 27:
-                cy.j0(this.f40091b);
+                cy.j0(this.f40094b);
                 return;
             default:
-                cy.Y(this.f40091b);
+                cy.Y(this.f40094b);
                 return;
         }
     }

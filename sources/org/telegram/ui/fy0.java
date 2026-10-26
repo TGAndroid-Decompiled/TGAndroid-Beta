@@ -17,14 +17,14 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_fragment;
 public final class fy0 implements Runnable {
-    public final int f39490a;
-    public final Object f39491b;
-    public final Object f39492c;
+    public final int f39493a;
+    public final Object f39494b;
+    public final Object f39495c;
 
     public fy0(int i10, Object obj, Object obj2) {
-        this.f39490a = i10;
-        this.f39491b = obj;
-        this.f39492c = obj2;
+        this.f39493a = i10;
+        this.f39494b = obj;
+        this.f39495c = obj2;
     }
 
     @Override
@@ -40,11 +40,11 @@ public final class fy0 implements Runnable {
         SpannableStringBuilder spannableStringBuilder;
         String str4;
         org.telegram.ui.Components.vl0 vl0Var;
-        int i12 = this.f39490a;
+        int i12 = this.f39493a;
         long j10 = 0;
         boolean z10 = true;
-        Object obj = this.f39492c;
-        Object obj2 = this.f39491b;
+        Object obj = this.f39495c;
+        Object obj2 = this.f39494b;
         switch (i12) {
             case 0:
                 ProfileActivity profileActivity = (ProfileActivity) obj2;
@@ -56,14 +56,14 @@ public final class fy0 implements Runnable {
             case 1:
                 ProfileActivity profileActivity2 = (ProfileActivity) obj2;
                 int i14 = ProfileActivity.R6;
-                profileActivity2.E2 = profileActivity2.getMessagesStorage().getChat(profileActivity2.f35984f1);
+                profileActivity2.E2 = profileActivity2.getMessagesStorage().getChat(profileActivity2.f35987f1);
                 ((CountDownLatch) obj).countDown();
                 return;
             case 2:
                 ProfileActivity profileActivity3 = (ProfileActivity) obj2;
                 int i15 = ProfileActivity.R6;
                 profileActivity3.getClass();
-                ((org.telegram.ui.Cells.v8) ((View) obj)).setChecked(profileActivity3.f36074s2.g());
+                ((org.telegram.ui.Cells.v8) ((View) obj)).setChecked(profileActivity3.f36077s2.g());
                 return;
             case 3:
                 ProfileActivity profileActivity4 = (ProfileActivity) obj2;
@@ -82,9 +82,9 @@ public final class fy0 implements Runnable {
             case 5:
                 uy0 uy0Var = (uy0) obj2;
                 a0.h hVar = (a0.h) obj;
-                ProfileActivity profileActivity6 = uy0Var.f44549a1.f44924c;
+                ProfileActivity profileActivity6 = uy0Var.f44552a1.f44927c;
                 Activity parentActivity = profileActivity6.getParentActivity();
-                tz0 tz0Var = profileActivity6.f36077s5;
+                tz0 tz0Var = profileActivity6.f36080s5;
                 int m10 = hVar.m();
                 if (hVar.m() == 1) {
                     j10 = ((TLRPC.Dialog) hVar.n(0)).f22031id;
@@ -94,9 +94,9 @@ public final class fy0 implements Runnable {
             case 6:
                 iz0 iz0Var = (iz0) obj2;
                 a0.h hVar2 = (a0.h) obj;
-                ProfileActivity profileActivity7 = iz0Var.f40372a1;
+                ProfileActivity profileActivity7 = iz0Var.f40375a1;
                 Activity parentActivity2 = profileActivity7.getParentActivity();
-                tz0 tz0Var2 = profileActivity7.f36077s5;
+                tz0 tz0Var2 = profileActivity7.f36080s5;
                 int m11 = hVar2.m();
                 if (hVar2.m() == 1) {
                     j10 = ((TLRPC.Dialog) hVar2.n(0)).f22031id;
@@ -130,12 +130,12 @@ public final class fy0 implements Runnable {
                 }
                 int i19 = 0;
                 while (true) {
-                    t01[] t01VarArr = u01Var.f43960c;
+                    t01[] t01VarArr = u01Var.f43963c;
                     boolean z11 = z10;
                     if (i19 < t01VarArr.length) {
                         t01 t01Var = t01VarArr[i19];
                         if (t01Var != null) {
-                            String str6 = t01Var.f43637a;
+                            String str6 = t01Var.f43640a;
                             String str7 = " " + str6.toLowerCase();
                             int i20 = 0;
                             SpannableStringBuilder spannableStringBuilder2 = null;
@@ -159,7 +159,7 @@ public final class fy0 implements Runnable {
                                         str2 = str7;
                                         strArr = strArr2;
                                         str3 = str5;
-                                        spannableStringBuilder.setSpan(new ForegroundColorSpan(r2Var2.getThemedColor(org.telegram.ui.ActionBar.y6.f23595q6)), indexOf, str9.length() + indexOf, 33);
+                                        spannableStringBuilder.setSpan(new ForegroundColorSpan(r2Var2.getThemedColor(org.telegram.ui.ActionBar.y6.f23597q6)), indexOf, str9.length() + indexOf, 33);
                                     } else {
                                         i19 = i11 + 1;
                                         z10 = z11;
@@ -174,7 +174,7 @@ public final class fy0 implements Runnable {
                                     spannableStringBuilder = spannableStringBuilder2;
                                 }
                                 if (spannableStringBuilder != null && i20 == split.length - 1) {
-                                    if (t01Var.f43640f == 502) {
+                                    if (t01Var.f43643f == 502) {
                                         int i21 = 0;
                                         while (true) {
                                             if (i21 < 4) {
@@ -230,7 +230,7 @@ public final class fy0 implements Runnable {
                                                     spannableStringBuilder3 = new SpannableStringBuilder(faqSearchResult.title);
                                                 }
                                                 arrayList = arrayList2;
-                                                spannableStringBuilder3.setSpan(new ForegroundColorSpan(r2Var2.getThemedColor(org.telegram.ui.ActionBar.y6.f23595q6)), indexOf2, str12.length() + indexOf2, 33);
+                                                spannableStringBuilder3.setSpan(new ForegroundColorSpan(r2Var2.getThemedColor(org.telegram.ui.ActionBar.y6.f23597q6)), indexOf2, str12.length() + indexOf2, 33);
                                             }
                                         } else {
                                             i10 = size;
@@ -261,35 +261,35 @@ public final class fy0 implements Runnable {
                 u01 u01Var2 = (u01) obj2;
                 ArrayList<MessagesController.FaqSearchResult> arrayList6 = (ArrayList) obj;
                 u01Var2.d.addAll(arrayList6);
-                int i24 = u01Var2.f43961f;
+                int i24 = u01Var2.f43964f;
                 MessagesController.getInstance(i24).faqSearchArray = arrayList6;
                 MessagesController.getInstance(i24).faqWebPage = u01Var2.E;
-                if (!u01Var2.f43965w) {
+                if (!u01Var2.f43968w) {
                     u01Var2.l();
                     return;
                 }
                 return;
             case 11:
                 y01 y01Var = (y01) obj2;
-                y01Var.f45919f.add((a11) obj);
+                y01Var.f45922f.add((a11) obj);
                 y01Var.a();
                 return;
             case 12:
                 u21 u21Var = (u21) ((View[]) obj2)[0];
-                u21Var.f43982b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
-                u21Var.f43983c = null;
+                u21Var.f43985b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
+                u21Var.f43986c = null;
                 u21Var.d = null;
-                u21Var.f43984f.f32150g3.O(false);
+                u21Var.f43987f.f32152g3.O(false);
                 return;
             case 13:
                 ((u21) ((View[]) obj2)[0]).b((TLRPC.TL_reportResultAddComment) obj);
                 return;
             case 14:
                 u21 u21Var2 = (u21) ((View[]) obj2)[0];
-                u21Var2.f43982b = null;
-                u21Var2.f43983c = (TLRPC.TL_reportResultChooseOption) obj;
+                u21Var2.f43985b = null;
+                u21Var2.f43986c = (TLRPC.TL_reportResultChooseOption) obj;
                 u21Var2.d = null;
-                u21Var2.f43984f.f32150g3.O(false);
+                u21Var2.f43987f.f32152g3.O(false);
                 return;
             case 15:
                 ((org.telegram.messenger.video.a) obj2).run();
@@ -301,7 +301,7 @@ public final class fy0 implements Runnable {
                 return;
             case 17:
                 ((SecretMediaViewer) obj2).M = false;
-                ((qu0) obj).f42916a.setVisible(false, true);
+                ((qu0) obj).f42919a.setVisible(false, true);
                 return;
             case 18:
                 ((SecretMediaViewer) ((m4.w1) obj2).f18294c).h((File) obj);
@@ -326,9 +326,9 @@ public final class fy0 implements Runnable {
             case 22:
                 w71 w71Var = (w71) obj2;
                 a0.h hVar3 = (a0.h) obj;
-                d81 d81Var = w71Var.f45000a1;
+                d81 d81Var = w71Var.f45003a1;
                 Activity parentActivity3 = d81Var.getParentActivity();
-                a9 a9Var = d81Var.f38757b;
+                a9 a9Var = d81Var.f38760b;
                 int m12 = hVar3.m();
                 if (hVar3.m() == 1) {
                     j10 = ((TLRPC.Dialog) hVar3.n(0)).f22031id;
@@ -355,16 +355,16 @@ public final class fy0 implements Runnable {
                 ThemeActivity themeActivity2 = (ThemeActivity) obj2;
                 String str13 = (String) obj;
                 themeActivity2.getClass();
-                org.telegram.ui.ActionBar.y6.f23702w = str13;
+                org.telegram.ui.ActionBar.y6.f23704w = str13;
                 if (str13 == null) {
-                    org.telegram.ui.ActionBar.y6.f23702w = String.format("(%.06f, %.06f)", Double.valueOf(org.telegram.ui.ActionBar.y6.f23722x), Double.valueOf(org.telegram.ui.ActionBar.y6.f23740y));
+                    org.telegram.ui.ActionBar.y6.f23704w = String.format("(%.06f, %.06f)", Double.valueOf(org.telegram.ui.ActionBar.y6.f23724x), Double.valueOf(org.telegram.ui.ActionBar.y6.f23742y));
                 }
                 org.telegram.ui.ActionBar.y6.t1();
-                org.telegram.ui.Components.mm0 mm0Var = themeActivity2.f36262b;
+                org.telegram.ui.Components.mm0 mm0Var = themeActivity2.f36265b;
                 if (mm0Var != null && (vl0Var = (org.telegram.ui.Components.vl0) mm0Var.K(themeActivity2.Y)) != null) {
-                    View view2 = vl0Var.f47735a;
+                    View view2 = vl0Var.f47738a;
                     if (view2 instanceof org.telegram.ui.Cells.ga) {
-                        ((org.telegram.ui.Cells.ga) view2).c(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), org.telegram.ui.ActionBar.y6.f23702w, false, false);
+                        ((org.telegram.ui.Cells.ga) view2).c(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), org.telegram.ui.ActionBar.y6.f23704w, false, false);
                         return;
                     }
                     return;
@@ -373,7 +373,7 @@ public final class fy0 implements Runnable {
             case 27:
                 tc1 tc1Var = (tc1) obj2;
                 SharedPreferences sharedPreferences = (SharedPreferences) obj;
-                if (tc1Var.f43771n == 3) {
+                if (tc1Var.f43774n == 3) {
                     sharedPreferences.edit().putBoolean("bganimationhint", true).commit();
                     tc1Var.B0.f(tc1Var.L0[0], true);
                     return;
@@ -389,8 +389,8 @@ public final class fy0 implements Runnable {
     }
 
     public fy0(org.telegram.ui.Components.mr0 mr0Var, a0.h hVar, int i10, int i11) {
-        this.f39490a = i11;
-        this.f39491b = mr0Var;
-        this.f39492c = hVar;
+        this.f39493a = i11;
+        this.f39494b = mr0Var;
+        this.f39495c = hVar;
     }
 }

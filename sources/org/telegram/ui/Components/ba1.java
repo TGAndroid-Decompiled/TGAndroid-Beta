@@ -6,15 +6,15 @@ import android.os.Build;
 import java.io.File;
 import org.telegram.ui.WallpapersListActivity;
 public final class ba1 {
-    public String f26803a;
-    public final Activity f26804b;
-    public final org.telegram.ui.ActionBar.r2 f26805c;
+    public String f26805a;
+    public final Activity f26806b;
+    public final org.telegram.ui.ActionBar.r2 f26807c;
     public final aa1 d;
     public File e;
 
     public ba1(Activity activity, WallpapersListActivity wallpapersListActivity, aa1 aa1Var) {
-        this.f26804b = activity;
-        this.f26805c = wallpapersListActivity;
+        this.f26806b = activity;
+        this.f26807c = wallpapersListActivity;
         this.d = aa1Var;
     }
 
@@ -23,7 +23,7 @@ public final class ba1 {
     }
 
     public final void b() {
-        org.telegram.ui.ActionBar.r2 r2Var = this.f26805c;
+        org.telegram.ui.ActionBar.r2 r2Var = this.f26807c;
         if (r2Var != null) {
             Activity parentActivity = r2Var.getParentActivity();
             if (parentActivity != null) {
@@ -38,13 +38,13 @@ public final class ba1 {
                 }
             }
             org.telegram.ui.aq0 aq0Var = new org.telegram.ui.aq0(2, false, false, null);
-            aq0Var.f37880x = false;
+            aq0Var.f37883x = false;
             aq0Var.V = new z91(this);
             r2Var.presentFragment(aq0Var);
             return;
         }
         Intent intent = new Intent("android.intent.action.PICK");
         intent.setType("image/*");
-        this.f26804b.startActivityForResult(intent, 11);
+        this.f26806b.startActivityForResult(intent, 11);
     }
 }

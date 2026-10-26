@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class hq implements a5.i {
-    public int f29034a;
-    public final ni0 f29035b;
+    public int f29036a;
+    public final ni0 f29037b;
 
     public hq(ni0 ni0Var) {
-        this.f29035b = ni0Var;
+        this.f29037b = ni0Var;
     }
 
     @Override
     public final void b(float f7, int i10, int i11) {
-        if (i10 == this.f29035b.getCurrentItem() && f7 == 0.0f && this.f29034a == 1) {
+        if (i10 == this.f29037b.getCurrentItem() && f7 == 0.0f && this.f29036a == 1) {
             d();
         }
     }
@@ -19,14 +19,14 @@ public final class hq implements a5.i {
         if (i10 == 0) {
             d();
         }
-        this.f29034a = i10;
+        this.f29036a = i10;
     }
 
     public final void d() {
-        ni0 ni0Var = this.f29035b;
-        if (ni0Var.f29690w0 != null) {
+        ni0 ni0Var = this.f29037b;
+        if (ni0Var.f29692w0 != null) {
             int currentItem = ni0Var.getCurrentItem();
-            int k10 = ni0Var.f29690w0.k(currentItem) + ni0Var.f29690w0.j();
+            int k10 = ni0Var.f29692w0.k(currentItem) + ni0Var.f29692w0.j();
             if (currentItem != k10) {
                 ni0Var.x(k10, false);
             }

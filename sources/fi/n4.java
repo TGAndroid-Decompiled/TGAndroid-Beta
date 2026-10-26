@@ -23,7 +23,7 @@ public final class n4 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 e6 e6Var = (e6) this.f11301c;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e6Var.f10807p1.f47522a = i0.a.f(floatValue, ((Integer) this.d).intValue(), this.f11300b);
+                e6Var.f10807p1.f47525a = i0.a.f(floatValue, ((Integer) this.d).intValue(), this.f11300b);
                 a6 a6Var = e6Var.I0;
                 if (a6Var != null) {
                     a6Var.invalidate();
@@ -37,7 +37,7 @@ public final class n4 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 sg.n0 n0Var = (sg.n0) this.f11301c;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n0Var.f48366z1.f47522a = i0.a.f(floatValue2, ((Integer) this.d).intValue(), this.f11300b);
+                n0Var.f48369z1.f47525a = i0.a.f(floatValue2, ((Integer) this.d).intValue(), this.f11300b);
                 sg.l0 l0Var = n0Var.R0;
                 if (l0Var != null) {
                     l0Var.invalidate();

@@ -76,7 +76,7 @@ public final class h0 extends FrameLayout implements p6 {
         if (i0Var.f4067y != 1 && (fl0Var == null || fl0Var.getDelegate() == null || !fl0Var.getDelegate().o())) {
             return;
         }
-        i0Var.f4056m.f38292f0.invalidate();
+        i0Var.f4056m.f38295f0.invalidate();
     }
 
     @Override

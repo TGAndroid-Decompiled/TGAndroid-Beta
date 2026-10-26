@@ -13,7 +13,7 @@ import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.xj0;
 import org.telegram.ui.Components.y9;
 public final class k3 extends LinearLayout {
-    public final TextView f53088a;
+    public final TextView f53091a;
 
     public k3(Context context, u6 u6Var) {
         super(context);
@@ -22,7 +22,7 @@ public final class k3 extends LinearLayout {
         y9Var.setImageDrawable(new xj0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
         addView(y9Var, gb1.x(64, 64, 17, 0, 32, 0, 0));
         TextView textView = new TextView(context);
-        this.f53088a = textView;
+        this.f53091a = textView;
         f7.V(textView, y6.A6, u6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
@@ -39,6 +39,6 @@ public final class k3 extends LinearLayout {
     }
 
     public void set(CharSequence charSequence) {
-        this.f53088a.setText(charSequence);
+        this.f53091a.setText(charSequence);
     }
 }

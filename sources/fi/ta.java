@@ -32,7 +32,7 @@ public final class ta extends e6 {
         sbVar.f11673v1.L0(false);
         sbVar.f11614c1.clearAnimation();
         ViewPropertyAnimator duration = sbVar.f11614c1.animate().alpha(0.0f).setDuration(180L);
-        ds dsVar = ds.f27585g;
+        ds dsVar = ds.f27587g;
         duration.setInterpolator(dsVar).start();
         if (sbVar.f11626g0 != 2) {
             sbVar.Y0.clearAnimation();
@@ -48,12 +48,12 @@ public final class ta extends e6 {
             sbVar.f11653p1.setVisibility(0);
             sbVar.f11653p1.setAlpha(0.0f);
             sbVar.f11653p1.clearAnimation();
-            sbVar.f11653p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(ds.f27585g).start();
+            sbVar.f11653p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(ds.f27587g).start();
             return;
         }
         sbVar.f11653p1.a(false, z11);
         sbVar.f11653p1.clearAnimation();
-        ViewPropertyAnimator interpolator = sbVar.f11653p1.animate().alpha(0.0f).withEndAction(new di.s8(this, 29)).setDuration(180L).setInterpolator(ds.f27585g);
+        ViewPropertyAnimator interpolator = sbVar.f11653p1.animate().alpha(0.0f).withEndAction(new di.s8(this, 29)).setDuration(180L).setInterpolator(ds.f27587g);
         if (z11) {
             j10 = 500;
         } else {
@@ -93,7 +93,7 @@ public final class ta extends e6 {
             f7 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f7).setDuration(180L);
-        ds dsVar = ds.f27585g;
+        ds dsVar = ds.f27587g;
         duration.setInterpolator(dsVar).start();
         sbVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = sbVar.Y0.animate();

@@ -274,14 +274,14 @@ public final class g1 extends ju implements p6 {
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
                     for (z11 z11Var : (z11[]) spanned.getSpans(0, spanned.length(), z11.class)) {
-                        int i12 = z11Var.f35178b.f34904a;
+                        int i12 = z11Var.f35181b.f34907a;
                         if ((65536 & i12) != 0) {
                             int spanStart = spanned.getSpanStart(z11Var);
                             int spanEnd = spanned.getSpanEnd(z11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (s90Var == null) {
                                     s90Var = new s90(0);
-                                    s90Var.f32484n = false;
+                                    s90Var.f32486n = false;
                                 }
                                 s90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
@@ -301,13 +301,13 @@ public final class g1 extends ju implements p6 {
                                 } else {
                                     i11 = 0;
                                 }
-                                s90Var.f32485o = i11;
+                                s90Var.f32487o = i11;
                                 layout.getSelectionPath(spanStart, spanEnd, s90Var);
                             }
                         }
                     }
                     if (s90Var != null) {
-                        s90Var.f32484n = true;
+                        s90Var.f32486n = true;
                     }
                     this.F = s90Var;
                 }
@@ -702,7 +702,7 @@ public final class g1 extends ju implements p6 {
                 setLinkTextColor(w04);
             }
             setCursorColor(y6.w0(y6.G6, u6Var));
-            setHandlesColor(y6.w0(y6.f23500l6, u6Var));
+            setHandlesColor(y6.w0(y6.f23502l6, u6Var));
             boolean g12 = y6.g1();
             a5.d dVar = this.R;
             if (!g12) {

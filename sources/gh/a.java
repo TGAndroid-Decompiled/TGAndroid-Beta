@@ -167,7 +167,7 @@ public final class a implements d, nw0, ow0, GenericProvider, k, o, s9.d, d7 {
     public void d(int i10, View view) {
         Drawable background = view.getBackground();
         if (background instanceof ar) {
-            Drawable drawable = ((ar) background).f26590a;
+            Drawable drawable = ((ar) background).f26592a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(i10);
                 view.invalidate();
@@ -217,7 +217,7 @@ public final class a implements d, nw0, ow0, GenericProvider, k, o, s9.d, d7 {
             case 3:
                 return y6.o1(0.075f, -16777216);
             case 4:
-                return y6.o1(0.88f, y6.w0(y6.f23354d6, u6Var));
+                return y6.o1(0.88f, y6.w0(y6.f23356d6, u6Var));
             case 5:
                 int x02 = y6.x0(null, y6.G8, false);
                 if (z10) {
@@ -232,25 +232,25 @@ public final class a implements d, nw0, ow0, GenericProvider, k, o, s9.d, d7 {
                 } else {
                     f11 = 0.76f;
                 }
-                return c.n(f11, y6.w0(y6.f23354d6, u6Var), y6.w0(y6.Yk, u6Var));
+                return c.n(f11, y6.w0(y6.f23356d6, u6Var), y6.w0(y6.Yk, u6Var));
             case 7:
                 if (LiteMode.isEnabled(262144)) {
                     f12 = 0.85f;
                 } else {
                     f12 = 0.76f;
                 }
-                return y6.o1(f12, y6.w0(y6.f23354d6, u6Var));
+                return y6.o1(f12, y6.w0(y6.f23356d6, u6Var));
             case 8:
                 if (LiteMode.isEnabled(262144)) {
                     f13 = 0.85f;
                 } else {
                     f13 = 0.8f;
                 }
-                return c.n(f13, y6.w0(y6.f23297a7, u6Var), y6.w0(y6.f23354d6, u6Var));
+                return c.n(f13, y6.w0(y6.f23299a7, u6Var), y6.w0(y6.f23356d6, u6Var));
             case 9:
-                return y6.o1(0.78f, y6.w0(y6.f23425h5, u6Var));
+                return y6.o1(0.78f, y6.w0(y6.f23427h5, u6Var));
             case 10:
-                return y6.o1(0.7f, y6.w0(y6.f23354d6, u6Var));
+                return y6.o1(0.7f, y6.w0(y6.f23356d6, u6Var));
             default:
                 LiteMode.isEnabled(262144);
                 return 0;

@@ -12,17 +12,17 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class h51 extends FrameLayout {
-    public final TextView f39902a;
-    public final org.telegram.ui.Components.ak0 f39903b;
-    public final ImageView f39904c;
+    public final TextView f39905a;
+    public final org.telegram.ui.Components.ak0 f39906b;
+    public final ImageView f39907c;
     public float d;
     public ValueAnimator e;
-    public final c61 f39905f;
+    public final c61 f39908f;
 
     public h51(c61 c61Var, Context context, boolean z10) {
         super(context);
         int i10;
-        this.f39905f = c61Var;
+        this.f39908f = c61Var;
         LinearLayout d = org.telegram.messenger.vh.d(context, 0);
         if (z10) {
             i10 = 3;
@@ -31,14 +31,14 @@ public final class h51 extends FrameLayout {
         }
         addView(d, org.telegram.ui.Components.gb1.i(-2, -2, i10));
         ?? imageView = new ImageView(context);
-        this.f39903b = imageView;
+        this.f39906b = imageView;
         imageView.f(R.raw.unlock_icon, 20, 20, null);
         int i11 = org.telegram.ui.ActionBar.y6.Te;
         org.telegram.ui.ActionBar.u6 u6Var = c61Var.Z0;
         org.telegram.ui.ActionBar.f7.t(imageView, i11, u6Var, PorterDuff.Mode.SRC_ATOP);
         d.addView((View) imageView, org.telegram.ui.Components.gb1.r(20, 20));
         TextView textView = new TextView(context);
-        this.f39902a = textView;
+        this.f39905a = textView;
         org.telegram.ui.ActionBar.f7.V(textView, i11, u6Var);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 14.0f);
@@ -48,7 +48,7 @@ public final class h51 extends FrameLayout {
         textView.setSingleLine(true);
         d.addView(textView, org.telegram.ui.Components.gb1.u(-2, -2, 17));
         ImageView imageView2 = new ImageView(context);
-        this.f39904c = imageView2;
+        this.f39907c = imageView2;
         imageView2.setImageResource(R.drawable.msg_close);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         org.telegram.ui.ActionBar.f7.t(imageView2, org.telegram.ui.ActionBar.y6.Ve, u6Var, PorterDuff.Mode.MULTIPLY);
@@ -56,7 +56,7 @@ public final class h51 extends FrameLayout {
     }
 
     public final void a(String str, boolean z10) {
-        this.f39902a.setText(str);
+        this.f39905a.setText(str);
         b(z10);
     }
 
@@ -74,9 +74,9 @@ public final class h51 extends FrameLayout {
         }
         this.d = f7;
         float dp = (1.0f - this.d) * AndroidUtilities.dp(-8.0f);
-        org.telegram.ui.Components.ak0 ak0Var = this.f39903b;
+        org.telegram.ui.Components.ak0 ak0Var = this.f39906b;
         ak0Var.setTranslationX(dp);
-        this.f39902a.setTranslationX((1.0f - this.d) * AndroidUtilities.dp(-8.0f));
+        this.f39905a.setTranslationX((1.0f - this.d) * AndroidUtilities.dp(-8.0f));
         ak0Var.setAlpha(this.d);
     }
 

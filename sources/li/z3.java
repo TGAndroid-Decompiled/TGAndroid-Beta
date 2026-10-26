@@ -56,7 +56,7 @@ public final class z3 extends HorizontalScrollView {
                 h70 h70Var = (h70) this.f17665b;
                 if (h70Var.d != null) {
                     h70Var.d = null;
-                    h70Var.f39919f = null;
+                    h70Var.f39922f = null;
                     return;
                 }
                 return;

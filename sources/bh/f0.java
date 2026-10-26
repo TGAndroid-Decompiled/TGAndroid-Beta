@@ -77,14 +77,14 @@ public final class f0 extends AnimatorListenerAdapter {
                 return;
             case 26:
                 eb ebVar = (eb) this.f4029c;
-                AnimatorSet animatorSet3 = ebVar.f24045f;
+                AnimatorSet animatorSet3 = ebVar.f24047f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    ebVar.f24045f = null;
+                    ebVar.f24047f = null;
                     return;
                 }
                 return;
             case 28:
-                ((nd) this.f4029c).f41860r = null;
+                ((nd) this.f4029c).f41863r = null;
                 return;
             case 29:
                 un unVar = (un) this.f4029c;
@@ -457,9 +457,9 @@ public final class f0 extends AnimatorListenerAdapter {
                     f24 = 0.0f;
                 }
                 j4Var.Z0 = f24;
-                j4Var.f40442q0.setTranslationY(((1.0f - f24) * AndroidUtilities.dp(51.0f)) + j4Var.f40441p0);
+                j4Var.f40445q0.setTranslationY(((1.0f - f24) * AndroidUtilities.dp(51.0f)) + j4Var.f40444p0);
                 if (!z20) {
-                    j4Var.f40442q0.setVisibility(8);
+                    j4Var.f40445q0.setVisibility(8);
                     return;
                 }
                 return;
@@ -475,13 +475,13 @@ public final class f0 extends AnimatorListenerAdapter {
                         }
                         v4 v4Var = (v4) bVar.d;
                         v4Var.E = true;
-                        c5 c5Var = v4Var.f39259y;
+                        c5 c5Var = v4Var.f39262y;
                         if (c5Var != null) {
-                            if (c5Var.f38265g) {
-                                c5Var.f38265g = false;
-                                c5Var.f38262b.removeObserver(c5Var.f38261a, c5Var.e);
+                            if (c5Var.f38268g) {
+                                c5Var.f38268g = false;
+                                c5Var.f38265b.removeObserver(c5Var.f38264a, c5Var.e);
                             }
-                            v4Var.f39259y = null;
+                            v4Var.f39262y = null;
                         }
                         bVar.d = null;
                         ((ViewGroup) bVar.f5930b).requestDisallowInterceptTouchEvent(false);
@@ -496,12 +496,12 @@ public final class f0 extends AnimatorListenerAdapter {
                 s1 s1Var = (s1) this.f4029c;
                 org.telegram.ui.Cells.r1 r1Var2 = s1Var.Zc;
                 int g7 = r1Var2.g();
-                int i18 = s1Var.f25124hd;
+                int i18 = s1Var.f25126hd;
                 if (i18 != g7) {
                     s1Var.t1(i18, g7, this.f4028b);
                     return;
                 }
-                s1Var.f25166kd = false;
+                s1Var.f25168kd = false;
                 r1Var2.a2 = i18;
                 return;
             case 23:
@@ -544,9 +544,9 @@ public final class f0 extends AnimatorListenerAdapter {
                 return;
             case 26:
                 eb ebVar = (eb) this.f4029c;
-                AnimatorSet animatorSet3 = ebVar.f24045f;
+                AnimatorSet animatorSet3 = ebVar.f24047f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    ebVar.f24045f = null;
+                    ebVar.f24047f = null;
                     if (!this.f4028b) {
                         ebVar.setBackgroundColor(0);
                         return;
@@ -565,13 +565,13 @@ public final class f0 extends AnimatorListenerAdapter {
                 return;
             case 28:
                 nd ndVar = (nd) this.f4029c;
-                if (ndVar.f41860r != null && (kdVar = ndVar.f41855n) != null) {
+                if (ndVar.f41863r != null && (kdVar = ndVar.f41858n) != null) {
                     if (this.f4028b) {
                         kdVar.setVisibility(4);
                     } else {
-                        ndVar.f41862s.setVisibility(4);
+                        ndVar.f41865s.setVisibility(4);
                     }
-                    ndVar.f41860r = null;
+                    ndVar.f41863r = null;
                     return;
                 }
                 return;

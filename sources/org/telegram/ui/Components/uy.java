@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class uy extends s61 {
-    public static final int f33505a = 0;
+    public static final int f33508a = 0;
 
     static {
         s61.setup(new s61());
@@ -32,7 +32,7 @@ public final class uy extends s61 {
         } else if (obj instanceof TLRPC.StickerSetCovered) {
             TLRPC.Document document = ((jy) t61Var.H).e;
             cVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            cVar.f46857c.d(document, null, null, null, false, false);
+            cVar.f46860c.d(document, null, null, null, false, false);
         }
         cVar.a(t61Var.e, false);
     }

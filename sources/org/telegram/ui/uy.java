@@ -7,12 +7,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class uy extends org.telegram.ui.ActionBar.r2 {
-    public long f44545a;
-    public TLRPC.Chat f44546b;
-    public boolean f44547c;
+    public long f44548a;
+    public TLRPC.Chat f44549b;
+    public boolean f44550c;
     public boolean d;
     public ry e;
-    public bi.m5 f44548f;
+    public bi.m5 f44551f;
 
     public final void V() {
         if (this.d && getParentLayout() != null) {
@@ -55,7 +55,7 @@ public final class uy extends org.telegram.ui.ActionBar.r2 {
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f44546b = getMessagesController().getChat(Long.valueOf(-this.f44545a));
+        this.f44549b = getMessagesController().getChat(Long.valueOf(-this.f44548a));
         return super.onFragmentCreate();
     }
 

@@ -16,7 +16,7 @@ public final class qj extends mi.m {
     public final void F() {
         un unVar = this.X;
         if (unVar.T9 == -1) {
-            unVar.T9 = unVar.getNotificationCenter().setAnimationInProgress(unVar.T9, un.f44173hd, false);
+            unVar.T9 = unVar.getNotificationCenter().setAnimationInProgress(unVar.T9, un.f44176hd, false);
         }
     }
 
@@ -36,7 +36,7 @@ public final class qj extends mi.m {
     @Override
     public final void W() {
         un unVar = this.X;
-        unVar.T9 = unVar.getNotificationCenter().setAnimationInProgress(unVar.T9, un.f44173hd, false);
+        unVar.T9 = unVar.getNotificationCenter().setAnimationInProgress(unVar.T9, un.f44176hd, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);

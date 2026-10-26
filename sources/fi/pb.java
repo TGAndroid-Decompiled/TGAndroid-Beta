@@ -18,7 +18,7 @@ public final class pb extends w20 {
         sb sbVar = this.f11452a.f11568t0;
         if (sbVar.f11623f0 == 0 && (vaVar = sbVar.B0) != null && !sbVar.S1 && vaVar.isInited() && !sbVar.P1 && !sbVar.O0.f11884x0) {
             g7 g7Var = sbVar.D0;
-            if ((g7Var == null || (!g7Var.f10916x.f34687i && !g7Var.L)) && !sbVar.I() && sbVar.f11654p2 == null) {
+            if ((g7Var == null || (!g7Var.f10916x.f34690i && !g7Var.L)) && !sbVar.I() && sbVar.f11654p2 == null) {
                 return true;
             }
             return false;
@@ -74,7 +74,7 @@ public final class pb extends w20 {
         rb rbVar = this.f11452a;
         sb sbVar = rbVar.f11568t0;
         ValueAnimator valueAnimator = sbVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((g7Var = sbVar.D0) != null && (g7Var.f10916x.f34687i || g7Var.L)) || sbVar.O0.f11884x0 || (((vaVar = sbVar.B0) != null && vaVar.f10600s) || rbVar.f11564p0 || (((fc1Var = sbVar.V0) != null && (fc1Var.F || fc1Var.G)) || sbVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((g7Var = sbVar.D0) != null && (g7Var.f10916x.f34690i || g7Var.L)) || sbVar.O0.f11884x0 || (((vaVar = sbVar.B0) != null && vaVar.f10600s) || rbVar.f11564p0 || (((fc1Var = sbVar.V0) != null && (fc1Var.F || fc1Var.G)) || sbVar.H())))) {
             return false;
         }
         boolean z12 = true;

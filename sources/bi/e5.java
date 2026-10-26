@@ -8,6 +8,7 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.m91;
+import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.wz;
 import org.telegram.ui.o41;
 import org.telegram.ui.sg1;
@@ -64,9 +65,9 @@ public final class e5 extends m91 {
                 return;
             case 1:
                 xj0 xj0Var = (xj0) obj;
-                vj0[] vj0VarArr = xj0Var.f45781b;
-                vj0VarArr[i10].d.f32150g3.O(false);
-                if (!vj0VarArr[i10].f44840i) {
+                vj0[] vj0VarArr = xj0Var.f45784b;
+                vj0VarArr[i10].d.f32152g3.O(false);
+                if (!vj0VarArr[i10].f44843i) {
                     xj0Var.l0(i10, false);
                     return;
                 }
@@ -80,10 +81,10 @@ public final class e5 extends m91 {
                 return;
             case 5:
                 ug1 ug1Var = (ug1) obj;
-                SparseArray sparseArray = ug1Var.f44130a;
+                SparseArray sparseArray = ug1Var.f44133a;
                 sg1 sg1Var = (sg1) sparseArray.get(i10);
                 if (sg1Var != null) {
-                    r2Var = sg1Var.f43502a;
+                    r2Var = sg1Var.f43505a;
                 } else {
                     org.telegram.ui.ActionBar.r2 W = ug1Var.W(i10);
                     sg1 sg1Var2 = new sg1(W);
@@ -91,28 +92,28 @@ public final class e5 extends m91 {
                     r2Var = W;
                     sg1Var = sg1Var2;
                 }
-                if (!sg1Var.f43503b) {
+                if (!sg1Var.f43506b) {
                     r2Var.onFragmentCreate();
-                    sg1Var.f43503b = true;
+                    sg1Var.f43506b = true;
                 }
                 r2Var.setParentLayout(ug1Var.getParentLayout());
                 if (r2Var.getFragmentView() == null) {
                     r2Var.performCreateView((Context) this.f4552b);
-                    r2Var.setTitleOverlayText(ug1Var.f44134n, ug1Var.f44135r, ug1Var.f44136s);
+                    r2Var.setTitleOverlayText(ug1Var.f44137n, ug1Var.f44138r, ug1Var.f44139s);
                 }
                 FrameLayout frameLayout2 = (FrameLayout) view;
                 frameLayout2.removeAllViews();
                 View fragmentView = r2Var.getFragmentView();
                 AndroidUtilities.removeFromParent(fragmentView);
                 if (!r2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, fragmentView, null);
+                    org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, fragmentView, null);
                 }
                 frameLayout2.addView(fragmentView, gb1.g(-1.0f, -1));
                 if (r2Var.getActionBar() != null && r2Var.getActionBar().K) {
                     AndroidUtilities.removeFromParent(r2Var.getActionBar());
                     frameLayout2.addView(r2Var.getActionBar());
                 }
-                WeakHashMap weakHashMap = r0.i0.f47105a;
+                WeakHashMap weakHashMap = r0.i0.f47108a;
                 r0.y.c(frameLayout2);
                 ug1Var.checkSystemBarColors();
                 ug1Var.V();
@@ -125,6 +126,7 @@ public final class e5 extends m91 {
     @Override
     public final View d(int i10) {
         j5 j5Var;
+        org.telegram.ui.ActionBar.u6 u6Var;
         switch (this.f4551a) {
             case 0:
                 h7 h7Var = (h7) this.f4553c;
@@ -158,10 +160,12 @@ public final class e5 extends m91 {
                 return frameLayout2;
             case 1:
                 xj0 xj0Var = (xj0) this.f4553c;
-                vj0 vj0Var = xj0Var.f45781b[i10];
+                vj0 vj0Var = xj0Var.f45784b[i10];
                 Context context = (Context) this.f4552b;
                 vj0Var.d = xj0Var.h0(context, i10);
-                wz wzVar = new wz(context, vj0Var.d, xj0.b0(xj0Var), new org.telegram.ui.Components.h2(this, i10, 21));
+                r71 r71Var = vj0Var.d;
+                u6Var = ((org.telegram.ui.ActionBar.r2) xj0Var).resourceProvider;
+                wz wzVar = new wz(context, r71Var, u6Var, new org.telegram.ui.Components.h2(this, i10, 21));
                 vj0Var.e = wzVar;
                 return wzVar;
             case 2:

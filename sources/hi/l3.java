@@ -41,10 +41,10 @@ public final class l3 extends vw0 implements org.telegram.ui.ActionBar.z3 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23354d6));
-        hashSet.add(Integer.valueOf(y6.f23297a7));
+        hashSet.add(Integer.valueOf(y6.f23356d6));
+        hashSet.add(Integer.valueOf(y6.f23299a7));
         hashSet.add(Integer.valueOf(y6.G6));
-        hashSet.add(Integer.valueOf(y6.f23673u8));
+        hashSet.add(Integer.valueOf(y6.f23675u8));
         hashSet.add(Integer.valueOf(y6.G8));
         hashSet.add(Integer.valueOf(y6.E8));
         hashSet.add(Integer.valueOf(y6.F8));
@@ -247,7 +247,7 @@ public final class l3 extends vw0 implements org.telegram.ui.ActionBar.z3 {
                     canvas2 = canvas;
                 }
                 if (!m3Var.W) {
-                    int w02 = y6.w0(y6.f23354d6, m3Var.F);
+                    int w02 = y6.w0(y6.f23356d6, m3Var.F);
                     paint2.setColor(w02);
                     m3Var.f13133y.setFlickerViewColor(w02);
                     org.telegram.ui.c3 c3Var = m3Var.Y0;
@@ -324,7 +324,7 @@ public final class l3 extends vw0 implements org.telegram.ui.ActionBar.z3 {
                     if (!m3Var.V) {
                         int i10 = m3Var.f13128v0;
                         if (i10 < 0) {
-                            i10 = y6.f23354d6;
+                            i10 = y6.f23356d6;
                         }
                         int w03 = y6.w0(i10, u6Var);
                         int i11 = m3Var.R;
@@ -335,7 +335,7 @@ public final class l3 extends vw0 implements org.telegram.ui.ActionBar.z3 {
                             }
                         }
                     }
-                    if (m3Var.I0 && m3Var.m0 != null && (w02 = y6.w0(y6.f23297a7, u6Var)) != m3Var.S) {
+                    if (m3Var.I0 && m3Var.m0 != null && (w02 = y6.w0(y6.f23299a7, u6Var)) != m3Var.S) {
                         m3Var.z(w02, false);
                         m3Var.I0 = true;
                     }
@@ -346,7 +346,7 @@ public final class l3 extends vw0 implements org.telegram.ui.ActionBar.z3 {
                     }
                     int color = paint.getColor();
                     if (!m3Var.V) {
-                        color = (((((((((((color * 31) + y6.w0(y6.G6, u6Var)) * 31) + y6.w0(y6.f23673u8, u6Var)) * 31) + y6.w0(y6.G8, u6Var)) * 31) + y6.w0(y6.E8, u6Var)) * 31) + y6.w0(y6.F8, u6Var)) * 31) + y6.w0(y6.I5, u6Var);
+                        color = (((((((((((color * 31) + y6.w0(y6.G6, u6Var)) * 31) + y6.w0(y6.f23675u8, u6Var)) * 31) + y6.w0(y6.G8, u6Var)) * 31) + y6.w0(y6.E8, u6Var)) * 31) + y6.w0(y6.F8, u6Var)) * 31) + y6.w0(y6.I5, u6Var);
                     }
                     if (!m3Var.J0 || color != m3Var.K0) {
                         m3Var.J0 = true;

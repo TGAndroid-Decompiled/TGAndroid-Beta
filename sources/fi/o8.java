@@ -14,7 +14,7 @@ public final class o8 extends lm0 {
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f == 2) {
+        if (e1Var.f47741f == 2) {
             return true;
         }
         return false;

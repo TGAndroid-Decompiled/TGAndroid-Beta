@@ -17,7 +17,7 @@ public final class t3 extends View implements p2 {
         r6Var.u(-1);
         r6Var.w(AndroidUtilities.dp(14.0f));
         r6Var.s(AndroidUtilities.dp(1.4f), AndroidUtilities.dp(0.4f), 1275068416);
-        r6Var.f32119b = 1;
+        r6Var.f32121b = 1;
         r6Var.setCallback(this);
         r6Var.M = AndroidUtilities.displaySize.x;
     }

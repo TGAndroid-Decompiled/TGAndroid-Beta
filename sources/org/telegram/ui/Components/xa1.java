@@ -2,21 +2,21 @@ package org.telegram.ui.Components;
 
 import android.os.SystemClock;
 public final class xa1 {
-    public final yb1 f34679a;
-    public final ya1 f34680b;
-    public final c3.s f34681c = new Object();
+    public final yb1 f34682a;
+    public final ya1 f34683b;
+    public final c3.s f34684c = new Object();
     public boolean d;
     public final za1 e;
 
     public xa1(za1 za1Var, yb1 yb1Var, ya1 ya1Var) {
         this.e = za1Var;
-        this.f34679a = yb1Var;
-        this.f34680b = ya1Var;
+        this.f34682a = yb1Var;
+        this.f34683b = ya1Var;
     }
 
     public final void a(float f7, float f10, int i10) {
         if (i10 != -1 && (i10 & 32) != 0) {
-            this.e.g(new wa1(this.f34679a, 3, f7, f10));
+            this.e.g(new wa1(this.f34682a, 3, f7, f10));
             this.d = true;
         }
     }
@@ -27,12 +27,12 @@ public final class xa1 {
         boolean z11;
         boolean z12;
         this.d = false;
-        this.f34680b.f34995b = null;
-        this.e.g(new wa1(this.f34679a, 0, f7, f10));
-        ya1 ya1Var = this.f34680b;
+        this.f34683b.f34998b = null;
+        this.e.g(new wa1(this.f34682a, 0, f7, f10));
+        ya1 ya1Var = this.f34683b;
         long uptimeMillis = SystemClock.uptimeMillis() + 150;
         synchronized (ya1Var.d) {
-            while (ya1Var.f34995b == null) {
+            while (ya1Var.f34998b == null) {
                 try {
                     long uptimeMillis2 = uptimeMillis - SystemClock.uptimeMillis();
                     if (uptimeMillis2 <= 0) {
@@ -43,9 +43,9 @@ public final class xa1 {
                     throw th2;
                 }
             }
-            zArr = ya1Var.f34995b;
+            zArr = ya1Var.f34998b;
         }
-        c3.s sVar = this.f34681c;
+        c3.s sVar = this.f34684c;
         double uptimeMillis3 = SystemClock.uptimeMillis();
         double d = f7;
         double d10 = f10;
@@ -81,7 +81,7 @@ public final class xa1 {
         while (true) {
             boolean z11 = this.d;
             double d = -1.0d;
-            c3.s sVar = this.f34681c;
+            c3.s sVar = this.f34684c;
             if (!z11) {
                 long j12 = sVar.f6092a;
                 if (j12 != 0) {
@@ -123,7 +123,7 @@ public final class xa1 {
         double uptimeMillis = SystemClock.uptimeMillis();
         double d = f7;
         double d10 = f10;
-        long j10 = this.f34681c.f6092a;
+        long j10 = this.f34684c.f6092a;
         if (j10 == 0) {
             arbiterUp = -1;
         } else {
@@ -134,6 +134,6 @@ public final class xa1 {
         } else {
             i10 = 2;
         }
-        this.e.g(new wa1(this.f34679a, i10, f7, f10));
+        this.e.g(new wa1(this.f34682a, i10, f7, f10));
     }
 }

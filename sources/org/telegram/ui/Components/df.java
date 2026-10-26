@@ -1,14 +1,14 @@
 package org.telegram.ui.Components;
 public final class df implements g91, e5 {
-    public final ChatActivityEnterView f27516a;
+    public final ChatActivityEnterView f27518a;
 
     public df(ChatActivityEnterView chatActivityEnterView) {
-        this.f27516a = chatActivityEnterView;
+        this.f27518a = chatActivityEnterView;
     }
 
     @Override
     public void G(int i10, int i11, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f27516a;
+        ChatActivityEnterView chatActivityEnterView = this.f27518a;
         boolean R0 = chatActivityEnterView.R0(i10, z10, i11, true, 0L);
         mf mfVar = chatActivityEnterView.L0;
         if (mfVar != null) {

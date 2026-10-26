@@ -43,7 +43,7 @@ public final class g implements View.OnLongClickListener {
             case 0:
                 b bVar = ((h) this.f17044c).f17050n;
                 if (bVar != null) {
-                    un unVar = ((pe) bVar).f42479b;
+                    un unVar = ((pe) bVar).f42482b;
                     int i10 = this.f17043b;
                     if (i10 == 2) {
                         kfVar = new kf(unVar, 9);
@@ -57,7 +57,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     Activity parentActivity = unVar.getParentActivity();
                     j5 parentLayout = unVar.getParentLayout();
-                    mm mmVar = unVar.f44292j1;
+                    mm mmVar = unVar.f44295j1;
                     u6 resourceProvider = unVar.getResourceProvider();
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(parentActivity, null);
                     actionBarPopupWindow$ActionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
@@ -75,7 +75,7 @@ public final class g implements View.OnLongClickListener {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(g1Var);
                     o1 o1Var = new o1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                     o1Var.e = true;
-                    o1Var.f22907c = 220;
+                    o1Var.f22909c = 220;
                     o1Var.setOutsideTouchable(true);
                     o1Var.setClippingEnabled(true);
                     o1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -94,9 +94,9 @@ public final class g implements View.OnLongClickListener {
                         measuredHeight += view2.getY() + view2.getPaddingTop();
                     }
                     o1Var.showAtLocation(mmVar, 51, (int) width, (int) measuredHeight);
-                    unVar.f44213c9 = o1Var;
-                    unVar.m8(unVar.f44442v1, false);
-                    unVar.f44213c9.setOnDismissListener(new e0(unVar, 1));
+                    unVar.f44216c9 = o1Var;
+                    unVar.m8(unVar.f44445v1, false);
+                    unVar.f44216c9.setOnDismissListener(new e0(unVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {
@@ -106,7 +106,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f17044c;
-                if (!scrollSlidingTextTabStrip.f26299n0 && (sn0Var = scrollSlidingTextTabStrip.f26284b) != null && sn0Var.h1(this.f17043b, view)) {
+                if (!scrollSlidingTextTabStrip.f26301n0 && (sn0Var = scrollSlidingTextTabStrip.f26286b) != null && sn0Var.h1(this.f17043b, view)) {
                     return true;
                 }
                 return false;

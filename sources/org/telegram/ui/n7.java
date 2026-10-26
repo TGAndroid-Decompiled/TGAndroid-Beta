@@ -11,13 +11,13 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class n7 extends j7 {
-    public final ArrayList f41762f;
+    public final ArrayList f41765f;
     public final x7 h;
 
     public n7(x7 x7Var) {
         super(0);
         this.h = x7Var;
-        this.f41762f = new ArrayList();
+        this.f41765f = new ArrayList();
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class n7 extends j7 {
 
     @Override
     public final void F() {
-        ArrayList arrayList = this.f41762f;
+        ArrayList arrayList = this.f41765f;
         arrayList.clear();
         ArrayList arrayList2 = this.e;
         arrayList.addAll(arrayList2);
@@ -36,7 +36,7 @@ public final class n7 extends j7 {
         if (x7Var.h != null) {
             for (int i10 = 0; i10 < x7Var.h.f6370b.size(); i10++) {
                 ?? aVar = new qg.a(1, true);
-                aVar.f42752c = (w6) x7Var.h.f6370b.get(i10);
+                aVar.f42755c = (w6) x7Var.h.f6370b.get(i10);
                 arrayList2.add(aVar);
             }
         }
@@ -49,26 +49,26 @@ public final class n7 extends j7 {
         String dialogPhotoTitle;
         float f7;
         boolean z11;
-        if (e1Var.f47738f == 1) {
-            b7 b7Var = (b7) e1Var.f47735a;
+        if (e1Var.f47741f == 1) {
+            b7 b7Var = (b7) e1Var.f47738a;
             ArrayList arrayList = this.e;
-            w6 w6Var = ((q7) arrayList.get(i10)).f42752c;
+            w6 w6Var = ((q7) arrayList.get(i10)).f42755c;
             x7 x7Var = this.h;
-            TLObject userOrChat = x7Var.e.getMessagesController().getUserOrChat(w6Var.f44983a);
-            w6 w6Var2 = b7Var.f37983a;
-            if (w6Var2 != null && w6Var2.f44983a == w6Var.f44983a) {
+            TLObject userOrChat = x7Var.e.getMessagesController().getUserOrChat(w6Var.f44986a);
+            w6 w6Var2 = b7Var.f37986a;
+            if (w6Var2 != null && w6Var2.f44986a == w6Var.f44986a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (w6Var.f44983a == Long.MAX_VALUE) {
+            if (w6Var.f44986a == Long.MAX_VALUE) {
                 dialogPhotoTitle = LocaleController.getString(R.string.CacheOtherChats);
                 b7Var.getImageView().getAvatarDrawable().g(14);
                 b7Var.getImageView().f(null, b7Var.getImageView().getAvatarDrawable());
             } else {
                 dialogPhotoTitle = DialogObject.setDialogPhotoTitle(b7Var.getImageView(), userOrChat);
             }
-            b7Var.f37983a = w6Var;
+            b7Var.f37986a = w6Var;
             org.telegram.ui.Components.y9 imageView = b7Var.getImageView();
             if ((userOrChat instanceof TLRPC.Chat) && ((TLRPC.Chat) userOrChat).forum) {
                 f7 = 12.0f;
@@ -76,14 +76,14 @@ public final class n7 extends j7 {
                 f7 = 19.0f;
             }
             imageView.setRoundRadius(AndroidUtilities.dp(f7));
-            String formatFileSize = AndroidUtilities.formatFileSize(w6Var.f44985c);
+            String formatFileSize = AndroidUtilities.formatFileSize(w6Var.f44988c);
             if (i10 < arrayList.size() - 1) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             org.telegram.ui.Components.s6 s6Var = b7Var.d;
-            TextView textView = b7Var.f37985c;
+            TextView textView = b7Var.f37988c;
             textView.setText(Emoji.replaceEmoji(dialogPhotoTitle, textView.getPaint().getFontMetricsInt(), false));
             if (formatFileSize != null) {
                 s6Var.c(formatFileSize, false, true);
@@ -91,28 +91,28 @@ public final class n7 extends j7 {
             } else {
                 s6Var.setVisibility(4);
             }
-            b7Var.f37986f = z11;
+            b7Var.f37989f = z11;
             b7Var.setWillNotDraw(!z11);
             b7Var.requestLayout();
-            boolean contains = x7Var.h.f6377l.contains(Long.valueOf(w6Var.f44983a));
-            org.telegram.ui.Components.zp zpVar = b7Var.f37987n;
+            boolean contains = x7Var.h.f6377l.contains(Long.valueOf(w6Var.f44986a));
+            org.telegram.ui.Components.zp zpVar = b7Var.f37990n;
             if (zpVar == null && !contains) {
                 return;
             }
             if (zpVar == null) {
-                org.telegram.ui.Components.zp zpVar2 = new org.telegram.ui.Components.zp(b7Var.getContext(), 21, b7Var.f37984b);
-                b7Var.f37987n = zpVar2;
-                zpVar2.b(-1, org.telegram.ui.ActionBar.y6.f23354d6, org.telegram.ui.ActionBar.y6.f23483k7);
-                b7Var.f37987n.setDrawUnchecked(false);
+                org.telegram.ui.Components.zp zpVar2 = new org.telegram.ui.Components.zp(b7Var.getContext(), 21, b7Var.f37987b);
+                b7Var.f37990n = zpVar2;
+                zpVar2.b(-1, org.telegram.ui.ActionBar.y6.f23356d6, org.telegram.ui.ActionBar.y6.f23485k7);
+                b7Var.f37990n.setDrawUnchecked(false);
                 int i11 = 3;
-                b7Var.f37987n.setDrawBackgroundAsArc(3);
-                org.telegram.ui.Components.zp zpVar3 = b7Var.f37987n;
+                b7Var.f37990n.setDrawBackgroundAsArc(3);
+                org.telegram.ui.Components.zp zpVar3 = b7Var.f37990n;
                 if (LocaleController.isRTL) {
                     i11 = 5;
                 }
                 b7Var.addView(zpVar3, org.telegram.ui.Components.gb1.h(24, 24.0f, i11 | 48, 38.0f, 25.0f, 38.0f, 0.0f));
             }
-            b7Var.f37987n.a(contains, z10);
+            b7Var.f37990n.a(contains, z10);
         }
     }
 

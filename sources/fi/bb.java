@@ -32,9 +32,9 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 bd bdVar = (bd) this.f10580c;
-                bdVar.f38049n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bdVar.f38052n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bdVar.m0.invalidate();
-                if (!this.f10579b && bdVar.f38049n0 > 0.5f) {
+                if (!this.f10579b && bdVar.f38052n0 > 0.5f) {
                     this.f10579b = true;
                     return;
                 }
@@ -50,9 +50,9 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 tc1 tc1Var = (tc1) this.f10580c;
-                tc1Var.f43765j2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                tc1Var.f43762i2.invalidate();
-                if (!this.f10579b && tc1Var.f43765j2 > 0.5f) {
+                tc1Var.f43768j2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                tc1Var.f43765i2.invalidate();
+                if (!this.f10579b && tc1Var.f43768j2 > 0.5f) {
                     this.f10579b = true;
                     return;
                 }

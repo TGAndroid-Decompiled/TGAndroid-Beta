@@ -5,28 +5,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class ge1 implements org.telegram.ui.Components.ap {
-    public final TLRPC.TL_forumTopic f39635a;
-    public final af1 f39636b;
+    public final TLRPC.TL_forumTopic f39638a;
+    public final af1 f39639b;
 
     public ge1(af1 af1Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f39636b = af1Var;
-        this.f39635a = tL_forumTopic;
+        this.f39639b = af1Var;
+        this.f39638a = tL_forumTopic;
     }
 
     @Override
     public final void dismiss() {
-        this.f39636b.finishPreviewFragment();
+        this.f39639b.finishPreviewFragment();
     }
 
     @Override
     public final void n() {
         int i10;
         int i11;
-        af1 af1Var = this.f39636b;
+        af1 af1Var = this.f39639b;
         af1Var.finishPreviewFragment();
         MessagesController messagesController = af1Var.getMessagesController();
-        long j10 = af1Var.f37731a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f39635a;
+        long j10 = af1Var.f37734a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39638a;
         boolean isDialogMuted = messagesController.isDialogMuted(-j10, tL_forumTopic.f22079id);
         af1Var.getNotificationsController().muteDialog(-j10, tL_forumTopic.f22079id, !isDialogMuted);
         if (org.telegram.ui.Components.wc.a(af1Var)) {
@@ -46,19 +46,19 @@ public final class ge1 implements org.telegram.ui.Components.ap {
 
     @Override
     public final void o() {
-        this.f39636b.finishPreviewFragment();
-        AndroidUtilities.runOnUIThread(new zc1(2, this, this.f39635a), 500L);
+        this.f39639b.finishPreviewFragment();
+        AndroidUtilities.runOnUIThread(new zc1(2, this, this.f39638a), 500L);
     }
 
     @Override
     public final void r() {
         int i10;
-        af1 af1Var = this.f39636b;
+        af1 af1Var = this.f39639b;
         i10 = ((org.telegram.ui.ActionBar.r2) af1Var).currentAccount;
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
-        long j10 = af1Var.f37731a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f39635a;
+        long j10 = af1Var.f37734a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39638a;
         boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.t.j(-j10, tL_forumTopic.f22079id, sb2), true);
         boolean z11 = !z10 ? 1 : 0;
         notificationsSettings.edit().putBoolean(org.telegram.messenger.t.j(-j10, tL_forumTopic.f22079id, new StringBuilder("sound_enabled_")), z11).apply();
@@ -70,10 +70,10 @@ public final class ge1 implements org.telegram.ui.Components.ap {
 
     @Override
     public final void u(int i10) {
-        af1 af1Var = this.f39636b;
-        long j10 = af1Var.f37731a;
+        af1 af1Var = this.f39639b;
+        long j10 = af1Var.f37734a;
         af1Var.finishPreviewFragment();
-        TLRPC.TL_forumTopic tL_forumTopic = this.f39635a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39638a;
         if (i10 == 0) {
             if (af1Var.getMessagesController().isDialogMuted(-j10, tL_forumTopic.f22079id)) {
                 af1Var.getNotificationsController().muteDialog(-j10, tL_forumTopic.f22079id, false);

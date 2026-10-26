@@ -9,7 +9,7 @@ import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.t61;
 public final class l3 extends s61 {
-    public static final int f24376a = 0;
+    public static final int f24378a = 0;
 
     static {
         s61.setup(new s61());
@@ -18,8 +18,8 @@ public final class l3 extends s61 {
     @Override
     public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
         m3 m3Var = (m3) view;
-        m3Var.a((TLRPC.StickerSetCovered) t61Var.G, z10, t61Var.f32880t, false);
-        m3Var.f24436f.a(t61Var.f32880t, false);
+        m3Var.a((TLRPC.StickerSetCovered) t61Var.G, z10, t61Var.f32883t, false);
+        m3Var.f24438f.a(t61Var.f32883t, false);
         m3Var.setAddOnClickListener(t61Var.D);
     }
 

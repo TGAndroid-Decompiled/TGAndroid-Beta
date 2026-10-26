@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_stars;
 public final class yo0 extends org.telegram.ui.Components.s61 {
-    public static final int f46086a = 0;
+    public static final int f46089a = 0;
 
     static {
         org.telegram.ui.Components.s61.setup(new org.telegram.ui.Components.s61());
@@ -16,18 +16,18 @@ public final class yo0 extends org.telegram.ui.Components.s61 {
         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) t61Var.G;
         zh.h1 h1Var = zo0Var.h;
         zh.d1 d1Var = zo0Var.e;
-        zo0Var.f46339a = savedStarGift.gift.f22254id;
+        zo0Var.f46342a = savedStarGift.gift.f22256id;
         zo0Var.setPadding(0, 0, 0, 0);
         zo0Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
-        zo0Var.f46340b = (TL_stars.starGiftAttributeBackdrop) bi.ca.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        zo0Var.f46341c = (TL_stars.starGiftAttributePattern) bi.ca.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
-        d1Var.d(zo0Var.f46340b);
-        d1Var.e(zo0Var.f46341c);
+        zo0Var.f46343b = (TL_stars.starGiftAttributeBackdrop) bi.ca.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        zo0Var.f46344c = (TL_stars.starGiftAttributePattern) bi.ca.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
+        d1Var.d(zo0Var.f46343b);
+        d1Var.e(zo0Var.f46344c);
         if (h1Var != null) {
-            h1Var.setBackdrop(zo0Var.f46340b);
+            h1Var.setBackdrop(zo0Var.f46343b);
             String i10 = org.telegram.messenger.t.i(savedStarGift.gift.num, ',', new StringBuilder("#"));
-            h1Var.f53021b = i10;
-            h1Var.f53020a.f(9, i10, false);
+            h1Var.f53024b = i10;
+            h1Var.f53023a.f(9, i10, false);
         }
         zo0Var.b(t61Var.e, false);
     }

@@ -15,10 +15,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ci1;
 public final class qp implements ri {
-    public final yp f31974a;
+    public final yp f31976a;
 
     public qp(yp ypVar) {
-        this.f31974a = ypVar;
+        this.f31976a = ypVar;
     }
 
     @Override
@@ -34,8 +34,8 @@ public final class qp implements ri {
     @Override
     public final void T(Object obj) {
         np npVar = new np(obj, null, true, 3);
-        yp ypVar = this.f31974a;
-        npVar.W1 = ypVar.f35095e0;
+        yp ypVar = this.f31976a;
+        npVar.W1 = ypVar.f35098e0;
         npVar.d1(ypVar.v.a());
         npVar.J1 = new pp(this, 1);
         yp.q(ypVar, npVar);
@@ -43,9 +43,9 @@ public final class qp implements ri {
 
     @Override
     public final void p0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        yp ypVar = this.f31974a;
+        yp ypVar = this.f31976a;
         try {
-            HashMap<Object, Object> selectedPhotos = ypVar.X.f33030j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = ypVar.X.f33033j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -59,10 +59,10 @@ public final class qp implements ri {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     np npVar = new np(new ci1(file, file, ""), loadBitmap, false, 2);
-                    npVar.W1 = ypVar.f35095e0;
+                    npVar.W1 = ypVar.f35098e0;
                     npVar.G1 = false;
                     npVar.F1 = false;
-                    npVar.f43775o1 = 0.2f;
+                    npVar.f43778o1 = 0.2f;
                     npVar.d1(ypVar.v.a());
                     npVar.J1 = new pp(this, 0);
                     yp.q(ypVar, npVar);

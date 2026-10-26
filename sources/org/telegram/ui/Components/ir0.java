@@ -20,25 +20,25 @@ public final class ir0 extends lm0 {
     public hr0 H;
     public int J;
     public final mr0 K;
-    public final Context f29362c;
+    public final Context f29364c;
     public final gr0 e;
-    public fr0 f29363f;
+    public fr0 f29365f;
     public fr0 h;
-    public String f29364n;
-    public int f29365r;
-    public int f29366s;
+    public String f29366n;
+    public int f29367r;
+    public int f29368s;
     public int v;
     public ArrayList d = new ArrayList();
-    public int f29367w = -1;
-    public int f29368x = -1;
-    public int f29369y = -1;
+    public int f29369w = -1;
+    public int f29370x = -1;
+    public int f29371y = -1;
     public int E = -1;
     public int F = -1;
     public boolean I = false;
 
     public ir0(mr0 mr0Var, Context context) {
         this.K = mr0Var;
-        this.f29362c = context;
+        this.f29364c = context;
         ?? a2Var = new ig.a2(false);
         this.e = a2Var;
         a2Var.f13988a = new li.e3(this, 11);
@@ -46,7 +46,7 @@ public final class ir0 extends lm0 {
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        int i10 = e1Var.f47738f;
+        int i10 = e1Var.f47741f;
         if (i10 != 1 && i10 != 4) {
             return true;
         }
@@ -54,13 +54,13 @@ public final class ir0 extends lm0 {
     }
 
     public final void E(String str) {
-        if (str != null && str.equals(this.f29364n)) {
+        if (str != null && str.equals(this.f29366n)) {
             return;
         }
-        this.f29364n = str;
-        if (this.f29363f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f29363f);
-            this.f29363f = null;
+        this.f29366n = str;
+        if (this.f29365f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f29365f);
+            this.f29365f = null;
         }
         fr0 fr0Var = this.h;
         if (fr0Var != null) {
@@ -74,16 +74,16 @@ public final class ir0 extends lm0 {
         this.K.M0(true);
         if (TextUtils.isEmpty(str)) {
             mr0.C0(this.K);
-            this.f29365r = -1;
+            this.f29367r = -1;
             this.I = false;
         } else {
             this.I = true;
-            int i10 = this.f29365r + 1;
-            this.f29365r = i10;
+            int i10 = this.f29367r + 1;
+            this.f29367r = i10;
             this.K.R.e(true, true);
             DispatchQueue2 dispatchQueue2 = Utilities.searchQueue;
             fr0 fr0Var2 = new fr0(this, str, i10, 0);
-            this.f29363f = fr0Var2;
+            this.f29365f = fr0Var2;
             dispatchQueue2.postRunnable(fr0Var2, 300L);
         }
         this.K.M0(false);
@@ -92,21 +92,21 @@ public final class ir0 extends lm0 {
     @Override
     public final int h() {
         this.G = 0;
-        this.f29367w = -1;
-        this.f29368x = -1;
+        this.f29369w = -1;
+        this.f29370x = -1;
         this.E = -1;
         this.F = -1;
-        if (TextUtils.isEmpty(this.f29364n)) {
+        if (TextUtils.isEmpty(this.f29366n)) {
             int i10 = this.G;
-            this.f29369y = i10;
+            this.f29371y = i10;
             this.G = i10 + 2;
-            this.f29367w = i10 + 1;
+            this.f29369w = i10 + 1;
             mr0 mr0Var = this.K;
             if (mr0Var.F0.size() > 0) {
                 int i11 = this.G;
                 int i12 = i11 + 1;
                 this.G = i12;
-                this.f29368x = i11;
+                this.f29370x = i11;
                 this.E = i12;
                 this.G = mr0Var.F0.size() + i12;
             }
@@ -120,11 +120,11 @@ public final class ir0 extends lm0 {
         int i15 = this.G;
         int i16 = i15 + 1;
         this.G = i16;
-        this.f29369y = i15;
+        this.f29371y = i15;
         int size = this.e.d.size() + this.d.size() + i16;
         this.G = size;
         if (size == 1) {
-            this.f29369y = -1;
+            this.f29371y = -1;
             this.G = 0;
             this.J = 0;
             return 0;
@@ -141,16 +141,16 @@ public final class ir0 extends lm0 {
         if (i10 == this.F) {
             return 4;
         }
-        if (i10 == this.f29369y) {
+        if (i10 == this.f29371y) {
             return 1;
         }
-        if (i10 == this.f29367w) {
+        if (i10 == this.f29369w) {
             return 2;
         }
-        if (i10 == this.f29368x) {
+        if (i10 == this.f29370x) {
             return 3;
         }
-        if (TextUtils.isEmpty(this.f29364n)) {
+        if (TextUtils.isEmpty(this.f29366n)) {
             return 0;
         }
         return 5;
@@ -176,8 +176,8 @@ public final class ir0 extends lm0 {
         org.telegram.ui.ActionBar.u6 u6Var2;
         mr0 mr0Var = this.K;
         a0.h hVar = mr0Var.V;
-        int i12 = e1Var.f47738f;
-        View view = e1Var.f47735a;
+        int i12 = e1Var.f47741f;
+        View view = e1Var.f47738a;
         if (i12 != 0 && i12 != 5) {
             if (i12 == 2) {
                 ((mm0) view).getAdapter().l();
@@ -185,7 +185,7 @@ public final class ir0 extends lm0 {
             }
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(this.f29364n);
+        boolean isEmpty = TextUtils.isEmpty(this.f29366n);
         String str4 = null;
         gr0 gr0Var = this.e;
         TLRPC.TL_encryptedChat tL_encryptedChat = null;
@@ -196,7 +196,7 @@ public final class ir0 extends lm0 {
                 TLObject tLObject3 = ((ig.h0) mr0Var.F0.get(i10 - i13)).f14064a;
                 if (tLObject3 instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) tLObject3;
-                    j12 = user.f22174id;
+                    j12 = user.f22176id;
                     str4 = ContactsController.formatName(user.first_name, user.last_name);
                 } else if (tLObject3 instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) tLObject3;
@@ -207,14 +207,14 @@ public final class ir0 extends lm0 {
                     i11 = ((org.telegram.ui.ActionBar.k3) mr0Var).currentAccount;
                     TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(tL_encryptedChat.user_id));
                     if (user2 != null) {
-                        j12 = user2.f22174id;
+                        j12 = user2.f22176id;
                         str4 = ContactsController.formatName(user2.first_name, user2.last_name);
                     }
                 }
                 String str5 = gr0Var.f13990c;
                 if (!TextUtils.isEmpty(str5) && str4 != null && (indexOfIgnoreCase2 = AndroidUtilities.indexOfIgnoreCase(str4.toString(), str5)) != -1) {
                     ?? spannableStringBuilder = new SpannableStringBuilder(str4);
-                    int i14 = org.telegram.ui.ActionBar.y6.f23595q6;
+                    int i14 = org.telegram.ui.ActionBar.y6.f23597q6;
                     u6Var2 = ((org.telegram.ui.ActionBar.k3) mr0Var).resourcesProvider;
                     spannableStringBuilder.setSpan(new p10(i14, u6Var2), indexOfIgnoreCase2, str5.length() + indexOfIgnoreCase2, 33);
                     tLObject2 = tLObject3;
@@ -255,7 +255,7 @@ public final class ir0 extends lm0 {
         int i15 = i10 - 1;
         if (i15 < this.d.size()) {
             ar0 ar0Var = (ar0) this.d.get(i15);
-            j11 = ar0Var.f26599a.f22031id;
+            j11 = ar0Var.f26601a.f22031id;
             str2 = ar0Var.d;
             tLObject = null;
         } else {
@@ -263,7 +263,7 @@ public final class ir0 extends lm0 {
             TLObject tLObject4 = (TLObject) gr0Var.d.get(i15);
             if (tLObject4 instanceof TLRPC.User) {
                 TLRPC.User user3 = (TLRPC.User) tLObject4;
-                j10 = user3.f22174id;
+                j10 = user3.f22176id;
                 str = ContactsController.formatName(user3.first_name, user3.last_name);
             } else {
                 TLRPC.Chat chat2 = (TLRPC.Chat) tLObject4;
@@ -273,7 +273,7 @@ public final class ir0 extends lm0 {
             String str7 = gr0Var.f13990c;
             if (!TextUtils.isEmpty(str7) && str != null && (indexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(str.toString(), str7)) != -1) {
                 ?? spannableStringBuilder2 = new SpannableStringBuilder(str);
-                int i16 = org.telegram.ui.ActionBar.y6.f23595q6;
+                int i16 = org.telegram.ui.ActionBar.y6.f23597q6;
                 u6Var = ((org.telegram.ui.ActionBar.k3) mr0Var).resourcesProvider;
                 spannableStringBuilder2.setSpan(new p10(i16, u6Var), indexOfIgnoreCase, str7.length() + indexOfIgnoreCase, 33);
                 tLObject = tLObject4;
@@ -318,13 +318,13 @@ public final class ir0 extends lm0 {
         org.telegram.ui.ActionBar.u6 u6Var5;
         org.telegram.ui.ActionBar.u6 u6Var6;
         float f7;
-        Context context = this.f29362c;
+        Context context = this.f29364c;
         mr0 mr0Var = this.K;
         if (i10 == 0) {
             u6Var = ((org.telegram.ui.ActionBar.k3) mr0Var).resourcesProvider;
             org.telegram.ui.Cells.m6 m6Var = new org.telegram.ui.Cells.m6(context, u6Var);
             m6Var.E0 = true;
-            m6Var.f24462l0 = true;
+            m6Var.f24464l0 = true;
             z3Var = m6Var;
         } else if (i10 == 2) {
             u6Var2 = ((org.telegram.ui.ActionBar.k3) mr0Var).resourcesProvider;
@@ -345,7 +345,7 @@ public final class ir0 extends lm0 {
             u6Var4 = ((org.telegram.ui.ActionBar.k3) mr0Var).resourcesProvider;
             org.telegram.ui.Cells.z3 z3Var2 = new org.telegram.ui.Cells.z3(context, u6Var4);
             z3Var2.setTextColor(org.telegram.ui.ActionBar.y6.f7);
-            int i12 = org.telegram.ui.ActionBar.y6.f23374e7;
+            int i12 = org.telegram.ui.ActionBar.y6.f23376e7;
             u6Var5 = ((org.telegram.ui.ActionBar.k3) mr0Var).resourcesProvider;
             org.telegram.ui.ActionBar.f7.i(i12, z3Var2, u6Var5);
             z3Var2.setText(LocaleController.getString(R.string.Recent));
@@ -358,7 +358,7 @@ public final class ir0 extends lm0 {
                 z3Var = k7Var;
             } else {
                 View view = new View(context);
-                if (mr0Var.f30708i0 && mr0Var.f30715p0[1] != null) {
+                if (mr0Var.f30710i0 && mr0Var.f30717p0[1] != null) {
                     f7 = 109.0f;
                 } else {
                     f7 = 56.0f;

@@ -6,35 +6,35 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class l9 implements View.OnClickListener {
-    public final int f36869a;
-    public final r9 f36870b;
+    public final int f36872a;
+    public final r9 f36873b;
 
     public l9(r9 r9Var, int i10) {
-        this.f36869a = i10;
-        this.f36870b = r9Var;
+        this.f36872a = i10;
+        this.f36873b = r9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f36869a) {
+        switch (this.f36872a) {
             case 0:
-                r9 r9Var = this.f36870b;
-                if (r9Var.f37202x != null) {
+                r9 r9Var = this.f36873b;
+                if (r9Var.f37205x != null) {
                     AndroidUtilities.hideKeyboard(r9Var.N);
-                    r9Var.i0(r9Var.f37202x, null);
+                    r9Var.i0(r9Var.f37205x, null);
                     return;
                 }
                 return;
             case 1:
-                r9 r9Var2 = this.f36870b;
-                if (r9Var2.f37202x != null) {
+                r9 r9Var2 = this.f36873b;
+                if (r9Var2.f37205x != null) {
                     AndroidUtilities.hideKeyboard(r9Var2.N);
-                    r9Var2.i0(r9Var2.f37202x, null);
+                    r9Var2.i0(r9Var2.f37205x, null);
                     return;
                 }
                 return;
             case 2:
-                r9 r9Var3 = this.f36870b;
+                r9 r9Var3 = this.f36873b;
                 ClipboardManager clipboardManager = (ClipboardManager) r9Var3.getParentActivity().getSystemService("clipboard");
                 if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
                     ClipData primaryClip = clipboardManager.getPrimaryClip();
@@ -58,7 +58,7 @@ public final class l9 implements View.OnClickListener {
                 r9Var3.l0(true);
                 return;
             default:
-                this.f36870b.e0();
+                this.f36873b.e0();
                 return;
         }
     }

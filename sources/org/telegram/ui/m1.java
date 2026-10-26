@@ -6,20 +6,20 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class m1 extends View {
-    public final RectF f41427a;
+    public final RectF f41430a;
 
     public m1(Context context) {
         super(context);
-        this.f41427a = new RectF();
+        this.f41430a = new RectF();
         setImportantForAccessibility(2);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int measuredWidth = getMeasuredWidth() / 3;
-        RectF rectF = this.f41427a;
+        RectF rectF = this.f41430a;
         rectF.set(measuredWidth, AndroidUtilities.dp(8.0f), measuredWidth * 2, AndroidUtilities.dp(10.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), j4.f40417s1);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), j4.f40420s1);
     }
 
     @Override

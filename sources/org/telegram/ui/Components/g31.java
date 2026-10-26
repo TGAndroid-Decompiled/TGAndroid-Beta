@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class g31 {
-    public long f28397a;
-    public boolean f28398b;
-    public final ArrayList f28399c;
+    public long f28399a;
+    public boolean f28400b;
+    public final ArrayList f28401c;
     public final ArrayList d;
     public final int e;
-    public boolean f28400f;
-    public float f28401g;
+    public boolean f28402f;
+    public float f28403g;
     public float h;
 
     public g31() {
@@ -23,13 +23,13 @@ public final class g31 {
 
     public final void a(float f7, float f10, Canvas canvas, Paint paint, RectF rectF) {
         f31 f31Var;
-        ArrayList arrayList = this.f28399c;
+        ArrayList arrayList = this.f28401c;
         int size = arrayList.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
             f31 f31Var2 = (f31) arrayList.get(i11);
-            paint.setAlpha((int) (f31Var2.f28054f * 255.0f * f10));
-            canvas.drawPoint(f31Var2.f28051a, f31Var2.f28052b, paint);
+            paint.setAlpha((int) (f31Var2.f28056f * 255.0f * f10));
+            canvas.drawPoint(f31Var2.f28053a, f31Var2.f28054b, paint);
         }
         double d = (f7 - 90.0f) * 0.017453292519943295d;
         double sin = Math.sin(d);
@@ -48,29 +48,29 @@ public final class g31 {
             } else {
                 f31Var = new Object();
             }
-            if (this.f28398b && this.f28400f) {
+            if (this.f28400b && this.f28402f) {
                 float f11 = (i12 + 1) / clamp;
-                f31Var.f28051a = AndroidUtilities.lerp(this.f28401g, centerX, f11);
-                f31Var.f28052b = AndroidUtilities.lerp(this.h, centerY, f11);
+                f31Var.f28053a = AndroidUtilities.lerp(this.f28403g, centerX, f11);
+                f31Var.f28054b = AndroidUtilities.lerp(this.h, centerY, f11);
             } else {
-                f31Var.f28051a = centerX;
-                f31Var.f28052b = centerY;
+                f31Var.f28053a = centerX;
+                f31Var.f28054b = centerY;
             }
             double d11 = sin;
             double nextInt = (Utilities.random.nextInt(140) - 70) * 0.017453292519943295d;
             if (nextInt < 0.0d) {
                 nextInt += 6.283185307179586d;
             }
-            f31Var.f28053c = (float) ((Math.cos(nextInt) * d11) - (Math.sin(nextInt) * d10));
+            f31Var.f28055c = (float) ((Math.cos(nextInt) * d11) - (Math.sin(nextInt) * d10));
             f31 f31Var3 = f31Var;
             f31Var3.d = (float) org.telegram.messenger.t.a(nextInt, d10, Math.sin(nextInt) * d11);
-            f31Var3.f28054f = 1.0f;
+            f31Var3.f28056f = 1.0f;
             f31Var3.h = 0.0f;
-            if (this.f28398b) {
-                f31Var3.f28055g = Utilities.random.nextInt(200) + 600;
+            if (this.f28400b) {
+                f31Var3.f28057g = Utilities.random.nextInt(200) + 600;
                 f31Var3.e = (Utilities.random.nextFloat() * 20.0f) + 30.0f;
             } else {
-                f31Var3.f28055g = Utilities.random.nextInt(100) + 400;
+                f31Var3.f28057g = Utilities.random.nextInt(100) + 400;
                 f31Var3.e = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
             }
             arrayList.add(f31Var3);
@@ -79,17 +79,17 @@ public final class g31 {
             i10 = 0;
             z10 = true;
         }
-        this.f28400f = z10;
-        this.f28401g = centerX;
+        this.f28402f = z10;
+        this.f28403g = centerX;
         this.h = centerY;
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long min = Math.min(20L, elapsedRealtime - this.f28397a);
+        long min = Math.min(20L, elapsedRealtime - this.f28399a);
         int size2 = arrayList.size();
         int i13 = 0;
         while (i13 < size2) {
             f31 f31Var4 = (f31) arrayList.get(i13);
             float f12 = f31Var4.h;
-            float f13 = f31Var4.f28055g;
+            float f13 = f31Var4.f28057g;
             if (f12 >= f13) {
                 if (arrayList2.size() < this.e) {
                     arrayList2.add(f31Var4);
@@ -98,22 +98,22 @@ public final class g31 {
                 i13--;
                 size2--;
             } else {
-                f31Var4.f28054f = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f12 / f13);
-                float f14 = f31Var4.f28051a;
-                float f15 = f31Var4.f28053c;
+                f31Var4.f28056f = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f12 / f13);
+                float f14 = f31Var4.f28053a;
+                float f15 = f31Var4.f28055c;
                 float f16 = f31Var4.e;
                 float f17 = (float) min;
-                f31Var4.f28051a = a1.g.C(f15 * f16, f17, 200.0f, f14);
-                f31Var4.f28052b = (((f31Var4.d * f16) * f17) / 200.0f) + f31Var4.f28052b;
+                f31Var4.f28053a = a1.g.C(f15 * f16, f17, 200.0f, f14);
+                f31Var4.f28054b = (((f31Var4.d * f16) * f17) / 200.0f) + f31Var4.f28054b;
                 f31Var4.h += f17;
             }
             i13++;
         }
-        this.f28397a = elapsedRealtime;
+        this.f28399a = elapsedRealtime;
     }
 
     public g31(int i10) {
-        this.f28399c = new ArrayList();
+        this.f28401c = new ArrayList();
         this.d = new ArrayList();
         this.e = i10;
         for (int i11 = 0; i11 < i10; i11++) {

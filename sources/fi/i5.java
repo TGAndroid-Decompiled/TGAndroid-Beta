@@ -15,12 +15,12 @@ public final class i5 implements sg.x1 {
         switch (this.f10994a) {
             case 0:
                 sg.x2 x2Var = this.f10995b;
-                x2Var.f48569z0 = true;
+                x2Var.f48572z0 = true;
                 x2Var.setBaseFontSize((int) (this.f10996c * f7));
                 return;
             default:
                 sg.x2 x2Var2 = this.f10995b;
-                x2Var2.f48569z0 = true;
+                x2Var2.f48572z0 = true;
                 x2Var2.setBaseFontSize((int) (this.f10996c * f7));
                 return;
         }

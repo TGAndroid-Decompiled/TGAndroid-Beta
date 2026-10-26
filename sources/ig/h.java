@@ -19,7 +19,7 @@ public final class h extends s4.p {
     public final boolean a(int i10, int i11) {
         switch (this.f14062b) {
             case 0:
-                if (((l) ((n) this.d).N.get(i10)).f47037a == ((l) this.f14063c.get(i11)).f47037a) {
+                if (((l) ((n) this.d).N.get(i10)).f47040a == ((l) this.f14063c.get(i11)).f47040a) {
                     return true;
                 }
                 return false;
@@ -32,7 +32,7 @@ public final class h extends s4.p {
             default:
                 qg.a aVar = (qg.a) this.f14063c.get(i10);
                 qg.a aVar2 = (qg.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f47037a != aVar2.f47037a) {
+                if (aVar.f47040a != aVar2.f47040a) {
                     return false;
                 }
                 return aVar.a(aVar2);
@@ -50,23 +50,23 @@ public final class h extends s4.p {
                 l lVar = (l) ((n) this.d).N.get(i10);
                 l lVar2 = (l) this.f14063c.get(i11);
                 TLRPC.Dialog dialog = lVar.f14150c;
-                int i12 = lVar.f47037a;
-                int i13 = lVar2.f47037a;
+                int i12 = lVar.f47040a;
+                int i13 = lVar2.f47040a;
                 TLRPC.Dialog dialog2 = lVar2.f14150c;
                 if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : lVar.f14154j == lVar2.f14154j : (tL_contact = lVar.e) != null && (tL_contact2 = lVar2.e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = lVar.d) != null && lVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f22031id == dialog2.f22031id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f22031id == dialog2.f22031id && lVar.h == lVar2.h && lVar.f14151f == lVar2.f14151f && lVar.f14152g == lVar2.f14152g))) {
                     return false;
                 }
                 return true;
             case 1:
-                return ((Integer) this.f14063c.get(i10)).equals(((zx) this.d).f35426n.get(i11));
+                return ((Integer) this.f14063c.get(i10)).equals(((zx) this.d).f35429n.get(i11));
             case 2:
-                return Objects.equals(this.f14063c.get(i10), ((hm0) this.d).f29014n.get(i11));
+                return Objects.equals(this.f14063c.get(i10), ((hm0) this.d).f29016n.get(i11));
             case 3:
-                return ((Long) this.f14063c.get(i10)).equals(((c61) this.d).f38325v0.get(i11));
+                return ((Long) this.f14063c.get(i10)).equals(((c61) this.d).f38328v0.get(i11));
             default:
                 qg.a aVar = (qg.a) this.f14063c.get(i10);
                 qg.a aVar2 = (qg.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f47037a != aVar2.f47037a) {
+                if (aVar.f47040a != aVar2.f47040a) {
                     return false;
                 }
                 return aVar.equals(aVar2);
@@ -79,11 +79,11 @@ public final class h extends s4.p {
             case 0:
                 return this.f14063c.size();
             case 1:
-                return ((zx) this.d).f35426n.size();
+                return ((zx) this.d).f35429n.size();
             case 2:
-                return ((hm0) this.d).f29014n.size();
+                return ((hm0) this.d).f29016n.size();
             case 3:
-                return ((c61) this.d).f38325v0.size();
+                return ((c61) this.d).f38328v0.size();
             default:
                 return ((ArrayList) this.d).size();
         }

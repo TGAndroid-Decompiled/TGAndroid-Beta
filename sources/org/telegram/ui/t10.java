@@ -36,7 +36,7 @@ public abstract class t10 {
         org.telegram.ui.Components.zr0 zr0Var;
         int i13;
         org.telegram.ui.ActionBar.k3 k3Var = new org.telegram.ui.ActionBar.k3(1, (Context) activity, u6Var, false);
-        k3Var.fixNavigationBarKey(org.telegram.ui.ActionBar.y6.f23425h5);
+        k3Var.fixNavigationBarKey(org.telegram.ui.ActionBar.y6.f23427h5);
         LinearLayout linearLayout = new LinearLayout(activity);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
@@ -122,16 +122,16 @@ public abstract class t10 {
         org.telegram.ui.Components.z90 z90Var = new org.telegram.ui.Components.z90(activity, null);
         z90Var.setTypeface(AndroidUtilities.bold());
         z90Var.setGravity(17);
-        int i18 = org.telegram.ui.ActionBar.y6.f23462j5;
+        int i18 = org.telegram.ui.ActionBar.y6.f23464j5;
         org.telegram.ui.ActionBar.f7.V(z90Var, i18, u6Var);
-        org.telegram.ui.ActionBar.f7.H(z90Var, org.telegram.ui.ActionBar.y6.f23558o6, u6Var);
+        org.telegram.ui.ActionBar.f7.H(z90Var, org.telegram.ui.ActionBar.y6.f23560o6, u6Var);
         z90Var.setTextSize(1, 16.0f);
         z90Var.setText(replaceSingleTag);
         linearLayout.addView(z90Var, org.telegram.ui.Components.gb1.x(-1, -2, 1, 42, 0, 42, 0));
         FrameLayout frameLayout2 = new FrameLayout(activity);
         int dp2 = AndroidUtilities.dp(28.0f);
         int dp3 = AndroidUtilities.dp(28.0f);
-        int i19 = org.telegram.ui.ActionBar.y6.f23347ci;
+        int i19 = org.telegram.ui.ActionBar.y6.f23349ci;
         ShapeDrawable d02 = org.telegram.ui.ActionBar.y6.d0(dp2, dp3, org.telegram.ui.ActionBar.y6.w0(i19, u6Var));
         org.telegram.ui.ActionBar.b7 N2 = org.telegram.ui.ActionBar.f7.N(i19);
         frameLayout2.setBackground(d02);

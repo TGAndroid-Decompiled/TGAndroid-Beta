@@ -204,8 +204,8 @@ public final class v1 {
                 da0Var2.D = true;
             } else if (da0Var.c() || ((da0) this.h).d()) {
                 da0 da0Var3 = (da0) this.h;
-                da0Var3.f27460b = -1L;
-                da0Var3.f27461c = -1L;
+                da0Var3.f27462b = -1L;
+                da0Var3.f27463c = -1L;
             }
         } else {
             da0 da0Var4 = (da0) this.h;
@@ -217,7 +217,7 @@ public final class v1 {
         da0 da0Var5 = (da0) this.h;
         if (da0Var5 != null && !da0Var5.c()) {
             da0 da0Var6 = (da0) this.h;
-            da0Var6.f27479y = path;
+            da0Var6.f27481y = path;
             da0Var6.g(y6.o1(0.7f, this.f1957c), y6.o1(1.3f, this.f1957c), y6.o1(1.5f, this.f1957c), y6.o1(2.0f, this.f1957c));
             ((da0) this.h).setBounds(rect);
             canvas.save();

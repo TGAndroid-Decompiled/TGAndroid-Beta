@@ -16,33 +16,33 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ty extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
-    public final org.telegram.ui.ActionBar.u6 f43931a;
-    public final FrameLayout f43932b;
-    public final org.telegram.ui.Components.y9 f43933c;
+    public final org.telegram.ui.ActionBar.u6 f43934a;
+    public final FrameLayout f43935b;
+    public final org.telegram.ui.Components.y9 f43936c;
     public final FrameLayout d;
     public final FrameLayout e;
-    public final org.telegram.ui.Components.y9 f43934f;
+    public final org.telegram.ui.Components.y9 f43937f;
     public final FrameLayout h;
-    public ValueAnimator f43935n;
-    public float f43936r;
-    public int f43937s;
+    public ValueAnimator f43938n;
+    public float f43939r;
+    public int f43940s;
     public int v;
 
     public ty(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f43931a = u6Var;
+        this.f43934a = u6Var;
         setOrientation(0);
         setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f43932b = frameLayout;
+        this.f43935b = frameLayout;
         org.telegram.ui.Components.gb1.c(frameLayout, 0.05f, 1.25f);
         addView(frameLayout, org.telegram.ui.Components.gb1.s(-1, 226, 1.0f, 119));
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f43933c = y9Var;
+        this.f43936c = y9Var;
         y9Var.setImageDrawable(new org.telegram.ui.Components.xj0(R.raw.topics_tabs, AndroidUtilities.dp(160.0f), AndroidUtilities.dp(160.0f)));
         frameLayout.addView(y9Var, org.telegram.ui.Components.gb1.h(160, 160.0f, 49, 0.0f, 12.33f, 0.0f, 0.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        int i10 = org.telegram.ui.ActionBar.y6.f23765z6;
+        int i10 = org.telegram.ui.ActionBar.y6.f23767z6;
         TextView L = org.telegram.ui.Components.gb1.L(context, 14.0f, i10, true, null);
         L.setPadding(d3.h(12.0f, R.string.TopicsLayoutTabs, L), 0, AndroidUtilities.dp(12.0f), 0);
         frameLayout2.addView(L, org.telegram.ui.Components.gb1.i(-2, -2, 17));
@@ -56,7 +56,7 @@ public final class ty extends LinearLayout implements org.telegram.ui.ActionBar.
         frameLayout3.setBackground(c02);
         org.telegram.ui.ActionBar.f7.k(frameLayout3, c02, N, null, u6Var);
         frameLayout2.addView(frameLayout3, org.telegram.ui.Components.gb1.i(-2, 26, 17));
-        int i12 = org.telegram.ui.ActionBar.y6.f23410g6;
+        int i12 = org.telegram.ui.ActionBar.y6.f23412g6;
         TextView L2 = org.telegram.ui.Components.gb1.L(context, 14.0f, i12, true, null);
         L2.setText(LocaleController.getString(R.string.TopicsLayoutTabs));
         frameLayout3.addView(L2, org.telegram.ui.Components.gb1.i(-2, -2, 17));
@@ -66,7 +66,7 @@ public final class ty extends LinearLayout implements org.telegram.ui.ActionBar.
         org.telegram.ui.Components.gb1.c(frameLayout4, 0.05f, 1.25f);
         addView(frameLayout4, org.telegram.ui.Components.gb1.s(-1, 226, 1.0f, 119));
         org.telegram.ui.Components.y9 y9Var2 = new org.telegram.ui.Components.y9(context);
-        this.f43934f = y9Var2;
+        this.f43937f = y9Var2;
         y9Var2.setImageDrawable(new org.telegram.ui.Components.xj0(R.raw.topics_list, AndroidUtilities.dp(160.0f), AndroidUtilities.dp(160.0f)));
         frameLayout4.addView(y9Var2, org.telegram.ui.Components.gb1.h(160, 160.0f, 49, 0.0f, 12.33f, 0.0f, 0.0f));
         FrameLayout frameLayout5 = new FrameLayout(context);
@@ -103,13 +103,13 @@ public final class ty extends LinearLayout implements org.telegram.ui.ActionBar.
         float f20;
         float f21;
         float f22;
-        ValueAnimator valueAnimator = this.f43935n;
+        ValueAnimator valueAnimator = this.f43938n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f43935n = null;
+            this.f43938n = null;
         }
-        org.telegram.ui.Components.y9 y9Var = this.f43934f;
-        org.telegram.ui.Components.y9 y9Var2 = this.f43933c;
+        org.telegram.ui.Components.y9 y9Var = this.f43937f;
+        org.telegram.ui.Components.y9 y9Var2 = this.f43936c;
         FrameLayout frameLayout = this.h;
         FrameLayout frameLayout2 = this.d;
         float f23 = 1.0f;
@@ -154,17 +154,17 @@ public final class ty extends LinearLayout implements org.telegram.ui.ActionBar.
                 f22 = 1.0f;
             }
             scaleY2.alpha(f22).setInterpolator(dsVar).setDuration(320L).start();
-            float f24 = this.f43936r;
+            float f24 = this.f43939r;
             if (!z10) {
                 f23 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f24, f23);
-            this.f43935n = ofFloat;
+            this.f43938n = ofFloat;
             ofFloat.addUpdateListener(new b3(this, 10));
-            this.f43935n.addListener(new jo(28, this, z10));
-            this.f43935n.setInterpolator(dsVar);
-            this.f43935n.setDuration(320L);
-            this.f43935n.start();
+            this.f43938n.addListener(new jo(28, this, z10));
+            this.f43938n.setInterpolator(dsVar);
+            this.f43938n.setDuration(320L);
+            this.f43938n.start();
         } else {
             frameLayout2.animate().cancel();
             frameLayout.animate().cancel();
@@ -209,16 +209,16 @@ public final class ty extends LinearLayout implements org.telegram.ui.ActionBar.
             } else {
                 f15 = 0.0f;
             }
-            this.f43936r = f15;
+            this.f43939r = f15;
             int i10 = org.telegram.ui.ActionBar.y6.C6;
-            org.telegram.ui.ActionBar.u6 u6Var = this.f43931a;
+            org.telegram.ui.ActionBar.u6 u6Var = this.f43934a;
             int w02 = org.telegram.ui.ActionBar.y6.w0(i10, u6Var);
             int i11 = org.telegram.ui.ActionBar.y6.Oh;
-            int f25 = i0.a.f(this.f43936r, w02, org.telegram.ui.ActionBar.y6.w0(i11, u6Var));
+            int f25 = i0.a.f(this.f43939r, w02, org.telegram.ui.ActionBar.y6.w0(i11, u6Var));
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
             y9Var2.setColorFilter(new PorterDuffColorFilter(f25, mode));
             y9Var2.invalidate();
-            y9Var.setColorFilter(new PorterDuffColorFilter(i0.a.f(1.0f - this.f43936r, org.telegram.ui.ActionBar.y6.w0(i10, u6Var), org.telegram.ui.ActionBar.y6.w0(i11, u6Var)), mode));
+            y9Var.setColorFilter(new PorterDuffColorFilter(i0.a.f(1.0f - this.f43939r, org.telegram.ui.ActionBar.y6.w0(i10, u6Var), org.telegram.ui.ActionBar.y6.w0(i11, u6Var)), mode));
             y9Var.invalidate();
         }
         if (z10) {
@@ -253,17 +253,17 @@ public final class ty extends LinearLayout implements org.telegram.ui.ActionBar.
     public final void updateColors() {
         org.telegram.ui.Components.y9 y9Var;
         org.telegram.ui.Components.y9 y9Var2;
-        org.telegram.ui.ActionBar.u6 u6Var = this.f43931a;
+        org.telegram.ui.ActionBar.u6 u6Var = this.f43934a;
         try {
-            ValueAnimator valueAnimator = this.f43935n;
-            if ((valueAnimator == null || !valueAnimator.isRunning()) && (y9Var = this.f43933c) != null && (y9Var2 = this.f43934f) != null) {
+            ValueAnimator valueAnimator = this.f43938n;
+            if ((valueAnimator == null || !valueAnimator.isRunning()) && (y9Var = this.f43936c) != null && (y9Var2 = this.f43937f) != null) {
                 int i10 = org.telegram.ui.ActionBar.y6.C6;
                 int w02 = org.telegram.ui.ActionBar.y6.w0(i10, u6Var);
                 int i11 = org.telegram.ui.ActionBar.y6.Oh;
-                int f7 = i0.a.f(this.f43936r, w02, org.telegram.ui.ActionBar.y6.w0(i11, u6Var));
-                int f10 = i0.a.f(1.0f - this.f43936r, org.telegram.ui.ActionBar.y6.w0(i10, u6Var), org.telegram.ui.ActionBar.y6.w0(i11, u6Var));
-                if (f7 != this.f43937s) {
-                    this.f43937s = f7;
+                int f7 = i0.a.f(this.f43939r, w02, org.telegram.ui.ActionBar.y6.w0(i11, u6Var));
+                int f10 = i0.a.f(1.0f - this.f43939r, org.telegram.ui.ActionBar.y6.w0(i10, u6Var), org.telegram.ui.ActionBar.y6.w0(i11, u6Var));
+                if (f7 != this.f43940s) {
+                    this.f43940s = f7;
                     y9Var.setColorFilter(new PorterDuffColorFilter(f7, PorterDuff.Mode.SRC_IN));
                     y9Var.invalidate();
                 }

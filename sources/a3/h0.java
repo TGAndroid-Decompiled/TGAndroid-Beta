@@ -62,7 +62,7 @@ public final class h0 implements Runnable {
                 long j12 = this.f120b;
                 long j13 = this.f121c;
                 String str4 = e2.n0.f9692a;
-                j2.e eVar2 = ((i2.d0) ((k2.v) ((rf.b) this.d).f47333c)).f13509a.f13614s;
+                j2.e eVar2 = ((i2.d0) ((k2.v) ((rf.b) this.d).f47336c)).f13509a.f13614s;
                 j2.a p11 = eVar2.p();
                 eVar2.q(p11, 1008, new ig.g(p11, str3, j13, j12, 7));
                 return;
@@ -105,7 +105,7 @@ public final class h0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j14, j15));
                     cyVar.C2.v(cyVar, arrayList, null, false, cyVar.J2, cyVar.K2, cyVar.L2, af1Var);
-                    if (cyVar.f38606i2) {
+                    if (cyVar.f38609i2) {
                         cyVar.C2 = null;
                         return;
                     }
@@ -125,7 +125,7 @@ public final class h0 implements Runnable {
                 t10.append(" TL_forumTopic ");
                 t10.append(findTopic);
                 FileLog.d(t10.toString());
-                if (launchActivity.f35550q0 != null) {
+                if (launchActivity.f35553q0 != null) {
                     pg.d.a(unVar, MessagesStorage.TopicKey.of(-j16, j17));
                     ((ActionBarLayout) launchActivity.O()).R(unVar);
                     return;
@@ -136,9 +136,9 @@ public final class h0 implements Runnable {
                 vi.o0 o0Var = (vi.o0) this.e;
                 long j18 = this.f120b;
                 long j19 = this.f121c;
-                synchronized (s0Var.f50584g) {
+                synchronized (s0Var.f50587g) {
                     if (!o0Var.d && !o0Var.e) {
-                        ((l11) s0Var.e).a(o0Var.f50519a, o0Var.f50520b, j18, j19);
+                        ((l11) s0Var.e).a(o0Var.f50522a, o0Var.f50523b, j18, j19);
                         return;
                     }
                     return;

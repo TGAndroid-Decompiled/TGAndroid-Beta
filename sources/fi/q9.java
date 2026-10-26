@@ -170,14 +170,14 @@ public final class q9 implements Utilities.Callback {
                 sb sbVar4 = this.f11503b;
                 di.b bVar = sbVar4.f11605a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.kb kbVar = new org.telegram.ui.Components.lb(sbVar4.f11608b, new k8(1)).f30151a;
+                org.telegram.ui.Components.kb kbVar = new org.telegram.ui.Components.lb(sbVar4.f11608b, new k8(1)).f30153a;
                 WindowManager.LayoutParams layout = kbVar.getLayout();
                 if (layout != null) {
                     layout.height = -2;
                     layout.width = sbVar4.f11658r.getWidth();
                     layout.y = (int) (sbVar4.f11658r.getY() + AndroidUtilities.dp(56.0f));
-                    org.telegram.ui.Components.lb lbVar = kbVar.f29893a;
-                    lbVar.getWindow().setAttributes(lbVar.f30152b);
+                    org.telegram.ui.Components.lb lbVar = kbVar.f29895a;
+                    lbVar.getWindow().setAttributes(lbVar.f30154b);
                 }
                 kbVar.setTouchable(true);
                 new wc(kbVar, bVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.y6.gc, 0, new p9(sbVar4, 27), bVar)).k(true);
@@ -205,8 +205,8 @@ public final class q9 implements Utilities.Callback {
                     f7 = 1.0f;
                 }
                 vh.p(animate, f7, 120L);
-                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f31880x;
-                if (qcVar != null && qcVar.f31881a == 2) {
+                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f31882x;
+                if (qcVar != null && qcVar.f31883a == 2) {
                     qcVar.l();
                     return;
                 }
@@ -415,8 +415,8 @@ public final class q9 implements Utilities.Callback {
                     }
                     iaVar2.setTranslationY(i16 - contentHeight);
                 }
-                org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f31880x;
-                if (qcVar2 != null && qcVar2.f31881a == 2) {
+                org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f31882x;
+                if (qcVar2 != null && qcVar2.f31883a == 2) {
                     qcVar2.l();
                 }
                 if (sbVar12.f11614c1.f11210p0 && (iaVar = sbVar12.f11617d1) != null) {

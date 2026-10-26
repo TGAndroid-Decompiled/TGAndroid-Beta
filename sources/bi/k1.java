@@ -49,7 +49,7 @@ public final class k1 extends org.telegram.ui.ActionBar.k3 {
         bg.b bVar2 = bg.b.f3980a;
         this.v = bg.a.g(appGlobalConfig.starsStarGiftResaleAmountMin.get(), bVar2);
         this.f4939w = bg.a.g(appGlobalConfig.starsStarGiftResaleAmountMax.get(), bVar2);
-        fixNavigationBarKey(org.telegram.ui.ActionBar.y6.f23425h5);
+        fixNavigationBarKey(org.telegram.ui.ActionBar.y6.f23427h5);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         LinearLayout d = vh.d(context, 0);
@@ -105,7 +105,7 @@ public final class k1 extends org.telegram.ui.ActionBar.k3 {
         rd0Var.addView(imageView2, gb1.h(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.s6 s6Var2 = new org.telegram.ui.Components.s6(context, false, false, false);
         this.h = s6Var2;
-        int i12 = org.telegram.ui.ActionBar.y6.f23746y6;
+        int i12 = org.telegram.ui.ActionBar.y6.f23748y6;
         org.telegram.ui.ActionBar.f7.Z(s6Var2, i12, null);
         s6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         s6Var2.setGravity(5);
@@ -117,7 +117,7 @@ public final class k1 extends org.telegram.ui.ActionBar.k3 {
         linearLayout2.addView(textView, gb1.x(-1, -2, 55, 33, 4, 33, 0));
         org.telegram.ui.Cells.b9 b9Var = new org.telegram.ui.Cells.b9(context);
         this.f4936n = b9Var;
-        b9Var.f23909c.setLayoutParams(gb1.h(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 22.0f, 22.0f, 0.0f));
+        b9Var.f23911c.setLayoutParams(gb1.h(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 22.0f, 22.0f, 0.0f));
         b9Var.b(LocaleController.getString(R.string.ResellGiftPriceOnlyTON), LocaleController.getString(R.string.ResellGiftPriceHintOnlyTON), true, false);
         b9Var.setOnClickListener(new ai.s(this, 5));
         linearLayout2.addView(b9Var, gb1.x(-1, -2, 55, 0, 16, 0, 16));
@@ -239,7 +239,7 @@ public final class k1 extends org.telegram.ui.ActionBar.k3 {
                 editTextBoldCursor.setInputType(8194);
                 editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(m().a()).length() + 3)});
             }
-            zp zpVar = this.f4936n.f23909c;
+            zp zpVar = this.f4936n.f23911c;
             if (this.E.f3978a == bVar) {
                 z17 = true;
             } else {

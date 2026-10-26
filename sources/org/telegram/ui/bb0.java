@@ -28,7 +28,7 @@ public final class bb0 extends org.telegram.ui.Cells.g3 {
         boolean isEmpty = TextUtils.isEmpty(editable);
         db0 db0Var = this.F;
         if (isEmpty) {
-            db0Var.f38818s.setText("");
+            db0Var.f38821s.setText("");
             return;
         }
         try {
@@ -39,7 +39,7 @@ public final class bb0 extends org.telegram.ui.Cells.g3 {
                 setText(Long.toString(parseLong));
                 this.E = false;
             }
-            TextView textView = db0Var.f38818s;
+            TextView textView = db0Var.f38821s;
             if (db0Var.getConnectionsManager().isTestBackend()) {
                 i10 = R.string.RequireMonthlyFeePriceTest5Minutes;
             } else {

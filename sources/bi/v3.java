@@ -93,7 +93,7 @@ public final class v3 implements Utilities.Callback {
                 }
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
                 tL_stories_getStoriesByID.peer = MessagesController.getInstance(q4Var.f9021r2).getInputPeer(storyItem.dialogId);
-                tL_stories_getStoriesByID.f22271id.add(Integer.valueOf(storyItem.f22264id));
+                tL_stories_getStoriesByID.f22273id.add(Integer.valueOf(storyItem.f22266id));
                 ConnectionsManager.getInstance(q4Var.f9021r2).sendRequest(tL_stories_getStoriesByID, new h2(h4Var, storyItem, callback, 5));
                 return;
             case 3:
@@ -142,8 +142,8 @@ public final class v3 implements Utilities.Callback {
                     org.telegram.ui.Components.g5.K(unVar.getParentActivity(), unVar.a(), new androidx.car.app.utils.a(goVar, tL_messageMediaToDo, l10, 28));
                     return;
                 }
-                goVar.f28630j0.e(tL_messageMediaToDo, null, null, null, true, 0, l10.longValue());
-                goVar.f30213b.dismiss(true);
+                goVar.f28632j0.e(tL_messageMediaToDo, null, null, null, true, 0, l10.longValue());
+                goVar.f30215b.dismiss(true);
                 return;
             case 8:
                 ry ryVar = (ry) obj4;
@@ -158,7 +158,7 @@ public final class v3 implements Utilities.Callback {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(ryVar.f32344a.F.f32716c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
+                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(ryVar.f32346a.F.f32719c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
                         if (stickerSet != null) {
                             arrayList = stickerSet.documents;
                         } else {
@@ -217,14 +217,14 @@ public final class v3 implements Utilities.Callback {
                 j0Var.getClass();
                 ((ca0) obj3).setLoading(false);
                 if (tL_premium_boostsStatus != null) {
-                    j0Var.f48882b0.boosts++;
-                    if (j0Var.f48888h0 == 32 && (x12 = j0Var.x1()) != null) {
+                    j0Var.f48885b0.boosts++;
+                    if (j0Var.f48891h0 == 32 && (x12 = j0Var.x1()) != null) {
                         x12.boosts_applied++;
                     }
                     j0Var.D1();
-                    j0Var.J1(tL_premium_boostsStatus, j0Var.f48885e0);
-                    ChannelBoostsController.CanApplyBoost canApplyBoost = j0Var.f48883c0;
-                    if (j0Var.f48882b0.next_level_boosts <= 0) {
+                    j0Var.J1(tL_premium_boostsStatus, j0Var.f48888e0);
+                    ChannelBoostsController.CanApplyBoost canApplyBoost = j0Var.f48886c0;
+                    if (j0Var.f48885b0.next_level_boosts <= 0) {
                         z10 = true;
                     }
                     canApplyBoost.isMaxLvl = z10;
@@ -238,7 +238,7 @@ public final class v3 implements Utilities.Callback {
                 zh.m mVar = (zh.m) obj4;
                 mVar.getClass();
                 ((boolean[]) obj3)[0] = false;
-                new zh.c(mVar.getContext(), (org.telegram.ui.ActionBar.u6) obj2, mVar.f53120l0, (List) obj).show();
+                new zh.c(mVar.getContext(), (org.telegram.ui.ActionBar.u6) obj2, mVar.f53123l0, (List) obj).show();
                 return;
             default:
                 zh.v vVar = (zh.v) obj4;

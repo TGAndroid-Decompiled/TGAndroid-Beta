@@ -84,7 +84,7 @@ public final class x0 extends r2.r implements i2.x0 {
     }
 
     public final int E0(r2.o oVar, b2.x xVar) {
-        if ("OMX.google.raw.decoder".equals(oVar.f47221a) && Build.VERSION.SDK_INT == 23 && !e2.n0.P(this.Z0)) {
+        if ("OMX.google.raw.decoder".equals(oVar.f47224a) && Build.VERSION.SDK_INT == 23 && !e2.n0.P(this.Z0)) {
             return -1;
         }
         return xVar.f3587t;
@@ -114,7 +114,7 @@ public final class x0 extends r2.r implements i2.x0 {
             i11 |= 64;
         }
         int i12 = i11;
-        String str = oVar.f47221a;
+        String str = oVar.f47224a;
         if (i12 != 0) {
             i10 = 0;
         } else {
@@ -158,7 +158,7 @@ public final class x0 extends r2.r implements i2.x0 {
             }
             g7 = r2.w.g(iVar, xVar, z10, false);
         }
-        HashMap hashMap = r2.w.f47266a;
+        HashMap hashMap = r2.w.f47269a;
         ArrayList arrayList = new ArrayList(g7);
         Collections.sort(arrayList, new p5(new zg1(9, this.Z0, xVar), 4));
         return arrayList;
@@ -202,7 +202,7 @@ public final class x0 extends r2.r implements i2.x0 {
     public final void U(h2.h hVar) {
         b2.x xVar;
         r0 r0Var;
-        if (Build.VERSION.SDK_INT >= 29 && (xVar = hVar.f12568a) != null && Objects.equals(xVar.f3586s, "audio/opus") && this.f47261y0) {
+        if (Build.VERSION.SDK_INT >= 29 && (xVar = hVar.f12568a) != null && Objects.equals(xVar.f3586s, "audio/opus") && this.f47264y0) {
             ByteBuffer byteBuffer = hVar.f12571f;
             byteBuffer.getClass();
             b2.x xVar2 = hVar.f12568a;
@@ -231,7 +231,7 @@ public final class x0 extends r2.r implements i2.x0 {
     public final void a0(Exception exc) {
         e2.a.d("MediaCodecAudioRenderer", "Audio codec error", exc);
         rf.b bVar = this.f16312a1;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new r(bVar, exc, 0));
         }
@@ -247,7 +247,7 @@ public final class x0 extends r2.r implements i2.x0 {
     @Override
     public final void b0(long j10, long j11, String str) {
         rf.b bVar = this.f16312a1;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new a3.h0(bVar, str, j10, j11, 3));
         }
@@ -316,7 +316,7 @@ public final class x0 extends r2.r implements i2.x0 {
                         }
                         obj.getClass();
                         this.f16324n1 = ((Integer) obj).intValue();
-                        r2.l lVar = this.f47241d0;
+                        r2.l lVar = this.f47244d0;
                         if (lVar != null && Build.VERSION.SDK_INT >= 35) {
                             Bundle bundle = new Bundle();
                             bundle.putInt("importance", Math.max(0, -this.f16324n1));
@@ -367,7 +367,7 @@ public final class x0 extends r2.r implements i2.x0 {
     @Override
     public final void c0(i2.d dVar) {
         rf.b bVar = this.f16312a1;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new u2(28, bVar, dVar));
         }
@@ -376,7 +376,7 @@ public final class x0 extends r2.r implements i2.x0 {
     @Override
     public final void d0(String str) {
         rf.b bVar = this.f16312a1;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new u2(27, bVar, str));
         }
@@ -389,7 +389,7 @@ public final class x0 extends r2.r implements i2.x0 {
         this.f16318g1 = xVar;
         i2.f e02 = super.e0(sVar);
         rf.b bVar = this.f16312a1;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new f1(bVar, xVar, e02, 2));
         }
@@ -409,7 +409,7 @@ public final class x0 extends r2.r implements i2.x0 {
         int[] iArr = null;
         if (xVar2 != null) {
             xVar = xVar2;
-        } else if (this.f47241d0 != null) {
+        } else if (this.f47244d0 != null) {
             mediaFormat.getClass();
             String str = xVar.f3586s;
             int i11 = xVar.K;
@@ -470,7 +470,7 @@ public final class x0 extends r2.r implements i2.x0 {
             int i14 = Build.VERSION.SDK_INT;
             a0 a0Var = this.f16313b1;
             if (i14 >= 29) {
-                if (this.f47261y0) {
+                if (this.f47264y0) {
                     q1 q1Var = this.d;
                     q1Var.getClass();
                     if (q1Var.f13714a != 0) {
@@ -567,7 +567,7 @@ public final class x0 extends r2.r implements i2.x0 {
             return false;
         } catch (x e) {
             b2.x xVar2 = this.f16318g1;
-            if (this.f47261y0) {
+            if (this.f47264y0) {
                 q1 q1Var = this.d;
                 q1Var.getClass();
                 if (q1Var.f13714a != 0) {
@@ -578,7 +578,7 @@ public final class x0 extends r2.r implements i2.x0 {
             i14 = 5001;
             throw d(e, xVar2, e.f16310a, i14);
         } catch (z e10) {
-            if (this.f47261y0) {
+            if (this.f47264y0) {
                 q1 q1Var2 = this.d;
                 q1Var2.getClass();
                 if (q1Var2.f13714a != 0) {
@@ -623,7 +623,7 @@ public final class x0 extends r2.r implements i2.x0 {
         ?? obj = new Object();
         this.O0 = obj;
         rf.b bVar = this.f16312a1;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new s(bVar, obj, 1));
         }
@@ -660,12 +660,12 @@ public final class x0 extends r2.r implements i2.x0 {
         int i10;
         try {
             ((u0) this.f16313b1).t();
-            long j10 = this.P0.f47237f;
+            long j10 = this.P0.f47240f;
             if (j10 != -9223372036854775807L) {
                 this.f16326p1 = j10;
             }
         } catch (z e) {
-            if (this.f47261y0) {
+            if (this.f47264y0) {
                 i10 = 5003;
             } else {
                 i10 = 5002;
@@ -701,7 +701,7 @@ public final class x0 extends r2.r implements i2.x0 {
         this.f16323m1 = false;
         this.f16326p1 = -9223372036854775807L;
         try {
-            this.f47261y0 = false;
+            this.f47264y0 = false;
             p0();
             n0();
             ic.a.B(this.X, null);

@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class fe0 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f28173a;
-    public final int f28174b;
-    public final Runnable f28175c;
+    public final int f28175a;
+    public final int f28176b;
+    public final Runnable f28177c;
     public final le0 d;
 
     public fe0(le0 le0Var, int i10, int i11, Runnable runnable) {
         this.d = le0Var;
-        this.f28173a = i10;
-        this.f28174b = i11;
-        this.f28175c = runnable;
+        this.f28175a = i10;
+        this.f28176b = i11;
+        this.f28177c = runnable;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class fe0 implements ViewTreeObserver.OnGlobalLayoutListener {
         le0 le0Var = this.d;
         di.i4 i4Var2 = le0Var.e;
         ArrayList arrayList = le0Var.W;
-        int[] iArr2 = le0Var.f30194h0;
+        int[] iArr2 = le0Var.f30196h0;
         ak0 ak0Var = le0Var.M;
         le0Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);
         if (!le0Var.P && le0Var.isAttachedToWindow()) {
@@ -57,10 +57,10 @@ public final class fe0 implements ViewTreeObserver.OnGlobalLayoutListener {
             Point point = AndroidUtilities.displaySize;
             int i10 = point.x;
             int i11 = point.y + AndroidUtilities.statusBarHeight;
-            int i12 = this.f28173a;
+            int i12 = this.f28175a;
             int i13 = i10 - i12;
             int i14 = i13 * i13;
-            int i15 = this.f28174b;
+            int i15 = this.f28176b;
             int i16 = i11 - i15;
             int i17 = i16 * i16;
             int i18 = i12 * i12;
@@ -79,7 +79,7 @@ public final class fe0 implements ViewTreeObserver.OnGlobalLayoutListener {
                 childAt.getLocationInWindow(iArr2);
                 int measuredWidth = i12 - ((childAt.getMeasuredWidth() / 2) + iArr2[0]);
                 int measuredHeight = i15 - ((childAt.getMeasuredHeight() / 2) + iArr2[i19]);
-                obj.f28953b = ((float) Math.sqrt((measuredHeight * measuredHeight) + (measuredWidth * measuredWidth))) - AndroidUtilities.dp(40.0f);
+                obj.f28955b = ((float) Math.sqrt((measuredHeight * measuredHeight) + (measuredWidth * measuredWidth))) - AndroidUtilities.dp(40.0f);
                 if (i21 != -1) {
                     animatorSet = new AnimatorSet();
                     Property property = View.SCALE_X;
@@ -100,7 +100,7 @@ public final class fe0 implements ViewTreeObserver.OnGlobalLayoutListener {
                     animatorSet = null;
                 }
                 AnimatorSet animatorSet3 = new AnimatorSet();
-                obj.f28952a = animatorSet3;
+                obj.f28954a = animatorSet3;
                 Property property2 = View.SCALE_X;
                 if (i21 == -1) {
                     f11 = 0.9f;
@@ -124,15 +124,15 @@ public final class fe0 implements ViewTreeObserver.OnGlobalLayoutListener {
                     f14 = 1.0f;
                 }
                 animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property3, f13, f14), ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f));
-                obj.f28952a.addListener(new i10(animatorSet, 9));
-                AnimatorSet animatorSet4 = obj.f28952a;
+                obj.f28954a.addListener(new i10(animatorSet, 9));
+                AnimatorSet animatorSet4 = obj.f28954a;
                 if (i21 == -1) {
                     j10 = 232;
                 } else {
                     j10 = 200;
                 }
                 animatorSet4.setDuration(j10);
-                obj.f28952a.setInterpolator(new DecelerateInterpolator());
+                obj.f28954a.setInterpolator(new DecelerateInterpolator());
                 arrayList.add(obj);
                 i21++;
                 i4Var2 = i4Var;
@@ -154,8 +154,8 @@ public final class fe0 implements ViewTreeObserver.OnGlobalLayoutListener {
                         ArrayList arrayList3 = le0Var2.W;
                         if (i22 < arrayList3.size()) {
                             he0 he0Var = (he0) arrayList3.get(i22);
-                            if (he0Var.f28953b <= animatedFraction) {
-                                he0Var.f28952a.start();
+                            if (he0Var.f28955b <= animatedFraction) {
+                                he0Var.f28954a.start();
                                 arrayList3.remove(i22);
                                 i22--;
                             }
@@ -169,7 +169,7 @@ public final class fe0 implements ViewTreeObserver.OnGlobalLayoutListener {
             ds dsVar = ds.h;
             animatorSet2.setInterpolator(dsVar);
             animatorSet2.setDuration(500L);
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(le0Var.f30184a0, 1.0f);
+            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(le0Var.f30186a0, 1.0f);
             ofFloat3.addUpdateListener(new e80(this, 3));
             ofFloat3.addListener(new ee0(this, 0));
             ofFloat3.setDuration(420L);
@@ -194,7 +194,7 @@ public final class fe0 implements ViewTreeObserver.OnGlobalLayoutListener {
                 dp = AndroidUtilities.dp(29.0f);
             }
             animatorSet5.playTogether(ObjectAnimator.ofFloat(ak0Var, View.TRANSLATION_X, i12 - AndroidUtilities.dp(29.0f), f7 - dp), ObjectAnimator.ofFloat(ak0Var, View.TRANSLATION_Y, i15 - AndroidUtilities.dp(29.0f), le0Var.L), ObjectAnimator.ofFloat(ak0Var, View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(ak0Var, View.SCALE_Y, 0.5f, 1.0f));
-            animatorSet5.setInterpolator(ds.f27585g);
+            animatorSet5.setInterpolator(ds.f27587g);
             animatorSet5.start();
         }
     }

@@ -12,40 +12,40 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class zj0 extends View implements org.telegram.ui.ActionBar.p6 {
-    public final Paint f46302a;
-    public final Paint f46303b;
-    public final org.telegram.ui.Components.h6 f46304c;
+    public final Paint f46305a;
+    public final Paint f46306b;
+    public final org.telegram.ui.Components.h6 f46307c;
     public final org.telegram.ui.Components.r6 d;
     public int e;
-    public float f46305f;
+    public float f46308f;
     public ValueAnimator h;
 
     public zj0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f46302a = paint;
+        this.f46305a = paint;
         Paint paint2 = new Paint(1);
-        this.f46303b = paint2;
+        this.f46306b = paint2;
         org.telegram.ui.Components.ds dsVar = org.telegram.ui.Components.ds.h;
-        this.f46304c = new org.telegram.ui.Components.h6(this, 0L, 320L, dsVar);
+        this.f46307c = new org.telegram.ui.Components.h6(this, 0L, 320L, dsVar);
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(false, true, true);
         this.d = r6Var;
-        this.f46305f = 1.0f;
+        this.f46308f = 1.0f;
         paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false));
-        paint2.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23425h5, false));
+        paint2.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23427h5, false));
         paint2.setStyle(Paint.Style.STROKE);
         paint2.setStrokeWidth(AndroidUtilities.dp(4.0f));
         r6Var.setCallback(this);
         r6Var.n(0.35f, 200L, dsVar);
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = r6Var.f32117a;
+        TextPaint textPaint = r6Var.f32119a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dp(0.24f));
         textPaint.setStrokeJoin(Paint.Join.ROUND);
         r6Var.w(AndroidUtilities.dp(13.3f));
         r6Var.u(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Sh, false));
         r6Var.M = AndroidUtilities.dp(64.0f);
-        r6Var.f32119b = 1;
+        r6Var.f32121b = 1;
     }
 
     public final boolean a(int i10) {
@@ -87,9 +87,9 @@ public final class zj0 extends View implements org.telegram.ui.ActionBar.p6 {
         } else {
             f7 = 0.0f;
         }
-        float d = this.f46304c.d(f7, false);
+        float d = this.f46307c.d(f7, false);
         canvas.save();
-        float f10 = this.f46305f;
+        float f10 = this.f46308f;
         canvas.scale(f10 * d, f10 * d, getWidth() / 2.0f, getHeight() / 2.0f);
         org.telegram.ui.Components.r6 r6Var = this.d;
         float dpf2 = AndroidUtilities.dpf2(12.66f) + r6Var.c();
@@ -97,10 +97,10 @@ public final class zj0 extends View implements org.telegram.ui.ActionBar.p6 {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getWidth() - dpf2) / 2.0f, (getHeight() - dpf22) / 2.0f, (getWidth() + dpf2) / 2.0f, (getHeight() + dpf22) / 2.0f);
         int i10 = (int) (d * 255.0f);
-        Paint paint = this.f46303b;
+        Paint paint = this.f46306b;
         paint.setAlpha(i10);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint);
-        Paint paint2 = this.f46302a;
+        Paint paint2 = this.f46305a;
         paint2.setAlpha(i10);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint2);
         canvas.save();
@@ -114,8 +114,8 @@ public final class zj0 extends View implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void updateColors() {
         try {
-            this.f46302a.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false));
-            this.f46303b.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23425h5, false));
+            this.f46305a.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false));
+            this.f46306b.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23427h5, false));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

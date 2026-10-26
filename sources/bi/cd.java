@@ -53,12 +53,12 @@ public final class cd extends LinearLayout implements NotificationCenter.Notific
         }
         View n10 = u91Var.n(i12, true);
         View view = new View(context);
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23355d7, view, u6Var);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d7, view, u6Var);
         if (lw0Var == null) {
             this.d = null;
             addView(n10, gb1.r(-1, 48));
             addView(view, new LinearLayout.LayoutParams(gb1.I(-1.0f), gb1.I(1.0f / AndroidUtilities.density)));
-            setBackgroundColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23425h5, u6Var));
+            setBackgroundColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23427h5, u6Var));
         } else {
             setClipChildren(false);
             setClipToPadding(false);
@@ -84,7 +84,7 @@ public final class cd extends LinearLayout implements NotificationCenter.Notific
         ArrayList arrayList2 = bdVar.f4398i;
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            i11 |= 1 << ((t61) arrayList.get(i12)).f32885z;
+            i11 |= 1 << ((t61) arrayList.get(i12)).f32888z;
         }
         View currentView = u91Var.getCurrentView();
         if (currentView instanceof ad) {
@@ -95,14 +95,14 @@ public final class cd extends LinearLayout implements NotificationCenter.Notific
         bdVar.i();
         int i13 = 0;
         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
-            i13 |= 1 << ((t61) arrayList2.get(i14)).f32885z;
+            i13 |= 1 << ((t61) arrayList2.get(i14)).f32888z;
         }
         if (i11 != i13) {
             u91Var.onTouchEvent(null);
             int i15 = 0;
             while (true) {
                 if (i15 < arrayList2.size()) {
-                    if (((t61) arrayList2.get(i15)).f32885z == i10) {
+                    if (((t61) arrayList2.get(i15)).f32888z == i10) {
                         break;
                     }
                     i15++;

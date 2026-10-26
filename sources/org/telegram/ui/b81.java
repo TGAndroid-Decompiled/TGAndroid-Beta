@@ -11,11 +11,11 @@ public final class b81 extends org.telegram.ui.Components.s61 {
 
     public static org.telegram.ui.Components.t61 a(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
         org.telegram.ui.Components.t61 K = org.telegram.ui.Components.t61.K(b81.class);
-        K.f32872l = str;
-        K.f32873m = charSequence;
-        K.f32874n = str2;
+        K.f32875l = str;
+        K.f32876m = charSequence;
+        K.f32877n = str2;
         K.D = onClickListener;
-        K.f32875o = charSequence2;
+        K.f32878o = charSequence2;
         K.E = onClickListener2;
         return K;
     }
@@ -23,17 +23,17 @@ public final class b81 extends org.telegram.ui.Components.s61 {
     @Override
     public final void bindView(View view, org.telegram.ui.Components.t61 t61Var, boolean z10, org.telegram.ui.Components.j71 j71Var, org.telegram.ui.Components.r71 r71Var) {
         c81 c81Var = (c81) view;
-        CharSequence charSequence = t61Var.f32872l;
-        CharSequence charSequence2 = t61Var.f32873m;
-        CharSequence charSequence3 = t61Var.f32874n;
+        CharSequence charSequence = t61Var.f32875l;
+        CharSequence charSequence2 = t61Var.f32876m;
+        CharSequence charSequence3 = t61Var.f32877n;
         View.OnClickListener onClickListener = t61Var.D;
-        CharSequence charSequence4 = t61Var.f32875o;
+        CharSequence charSequence4 = t61Var.f32878o;
         View.OnClickListener onClickListener2 = t61Var.E;
         fi.d dVar = c81Var.e;
-        org.telegram.ui.Components.z90 z90Var = c81Var.f38370b;
+        org.telegram.ui.Components.z90 z90Var = c81Var.f38373b;
         int i10 = 0;
         z90Var.setText(Emoji.replaceEmoji(charSequence, z90Var.getPaint().getFontMetricsInt(), false));
-        org.telegram.ui.Components.z90 z90Var2 = c81Var.f38371c;
+        org.telegram.ui.Components.z90 z90Var2 = c81Var.f38374c;
         z90Var2.setText(Emoji.replaceEmoji(charSequence2, z90Var2.getPaint().getFontMetricsInt(), false));
         fi.d dVar2 = c81Var.d;
         if (TextUtils.isEmpty(charSequence3)) {

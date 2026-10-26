@@ -30,7 +30,7 @@ public final class t1 extends vw0 {
     public final void dispatchDraw(Canvas canvas) {
         b2 b2Var = this.f17491o0;
         Rect rect = b2Var.f17147w;
-        int o12 = y6.o1(b2Var.I, b2Var.getThemedColor(y6.f23354d6));
+        int o12 = y6.o1(b2Var.I, b2Var.getThemedColor(y6.f23356d6));
         Paint paint = this.m0;
         paint.setColor(o12);
         if (b2Var.E && b2Var.f17149x != null) {

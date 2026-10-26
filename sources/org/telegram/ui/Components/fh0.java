@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import java.util.Arrays;
 import java.util.Comparator;
 public final class fh0 implements Comparator {
-    public final nh0 f28190a;
+    public final nh0 f28192a;
 
     public fh0(nh0 nh0Var) {
-        this.f28190a = nh0Var;
+        this.f28192a = nh0Var;
     }
 
     public final int a(mh0 mh0Var) {
-        nh0 nh0Var = this.f28190a;
-        int size = nh0Var.f30977r.answers.size();
+        nh0 nh0Var = this.f28192a;
+        int size = nh0Var.f30979r.answers.size();
         for (int i10 = 0; i10 < size; i10++) {
-            if (Arrays.equals(nh0Var.f30977r.answers.get(i10).option, mh0Var.d)) {
+            if (Arrays.equals(nh0Var.f30979r.answers.get(i10).option, mh0Var.d)) {
                 return i10;
             }
         }

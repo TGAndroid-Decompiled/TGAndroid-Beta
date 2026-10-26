@@ -8,12 +8,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.z90;
 import org.telegram.ui.q80;
 public final class k implements Utilities.Callback {
-    public final int f36756a;
-    public final Object f36757b;
+    public final int f36759a;
+    public final Object f36760b;
 
     public k(Object obj, int i10) {
-        this.f36756a = i10;
-        this.f36757b = obj;
+        this.f36759a = i10;
+        this.f36760b = obj;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class k implements Utilities.Callback {
         String str;
         int i10;
         CharSequence formatSpannable;
-        int i11 = this.f36756a;
+        int i11 = this.f36759a;
         boolean z10 = false;
-        Object obj2 = this.f36757b;
+        Object obj2 = this.f36760b;
         switch (i11) {
             case 0:
                 bi.t8 t8Var = (bi.t8) obj2;
@@ -63,12 +63,12 @@ public final class k implements Utilities.Callback {
                 } else {
                     i10 = 24;
                 }
-                if (w7Var.f37439a != i10) {
-                    w7Var.f37439a = i10;
+                if (w7Var.f37442a != i10) {
+                    w7Var.f37442a = i10;
                     w7Var.X(w7Var.getParentActivity());
                     w7Var.Z();
                     z90 z90Var = w7Var.h;
-                    if (w7Var.f37445s != null) {
+                    if (w7Var.f37448s != null) {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i10));
                     } else {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i10));

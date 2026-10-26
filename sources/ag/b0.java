@@ -20,7 +20,7 @@ public final class b0 extends BaseController {
         int i11;
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
         tL_message.out = ephemeralMessage.out;
-        tL_message.f22048id = MessageObject.ephemeralMessageIdPack(ephemeralMessage.f22238id);
+        tL_message.f22048id = MessageObject.ephemeralMessageIdPack(ephemeralMessage.f22240id);
         TLRPC.Peer peer = ephemeralMessage.from_id;
         if (peer != null) {
             tL_message.from_id = peer;
@@ -101,7 +101,7 @@ public final class b0 extends BaseController {
         tL_ephemeralMessage.out = message.out;
         tL_ephemeralMessage.invert_media = message.invert_media;
         tL_ephemeralMessage.noforwards = message.noforwards;
-        tL_ephemeralMessage.f22238id = MessageObject.ephemeralMessageIdUnpack(message.f22048id);
+        tL_ephemeralMessage.f22240id = MessageObject.ephemeralMessageIdUnpack(message.f22048id);
         tL_ephemeralMessage.from_id = message.from_id;
         tL_ephemeralMessage.peer_id = message.peer_id;
         tL_ephemeralMessage.receiver_id = message.ephemeralReceiverBotId;

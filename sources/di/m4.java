@@ -78,7 +78,7 @@ public final class m4 extends FrameLayout {
             } else {
                 if (this.f8780n) {
                     this.f8780n = false;
-                    if (this.d.f26879f < 0.2f) {
+                    if (this.d.f26881f < 0.2f) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -98,7 +98,7 @@ public final class m4 extends FrameLayout {
                 this.d = bk0Var2;
                 bk0Var2.d(null, true, false);
             }
-            this.d.f26889q = 0;
+            this.d.f26891q = 0;
             ImageReceiver imageReceiver = k4Var.getImageReceiver();
             float d = ic.a.d(1.0f, this.h, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f));
             this.d.f((int) (rectF.left - d), (int) (rectF.top - d), (int) (rectF.right + d), (int) (rectF.bottom + d));
@@ -109,7 +109,7 @@ public final class m4 extends FrameLayout {
                 clamp = Utilities.clamp(f10, 1.0f, 0.0f);
             }
             bk0Var3.e(clamp, true);
-            if (this.f8781r && z11 && this.d.f26879f >= 0.9f) {
+            if (this.f8781r && z11 && this.d.f26881f >= 0.9f) {
                 this.h = Utilities.clamp(this.h - ((1000.0f / AndroidUtilities.screenRefreshRate) / 300.0f), 1.0f, 0.0f);
             }
             if (z10) {
@@ -117,7 +117,7 @@ public final class m4 extends FrameLayout {
                     Paint t10 = a8.t(imageReceiver, false);
                     t10.setAlpha((int) (this.h * 255.0f));
                     bk0 bk0Var4 = this.d;
-                    bk0Var4.f26892t = t10;
+                    bk0Var4.f26894t = t10;
                     bk0Var4.a(canvas);
                 }
                 if (this.f8779f == null) {
@@ -130,7 +130,7 @@ public final class m4 extends FrameLayout {
                 }
                 this.f8779f.setAlpha((int) (255.0f * f7 * this.h));
                 bk0 bk0Var5 = this.d;
-                bk0Var5.f26892t = this.f8779f;
+                bk0Var5.f26894t = this.f8779f;
                 bk0Var5.a(canvas);
             }
         }

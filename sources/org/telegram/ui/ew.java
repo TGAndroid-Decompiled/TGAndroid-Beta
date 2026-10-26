@@ -7,49 +7,49 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class ew extends s4.u0 {
-    public boolean f39185a;
-    public final ay f39186b;
-    public final tx f39187c;
+    public boolean f39188a;
+    public final ay f39189b;
+    public final tx f39190c;
     public final cy d;
 
     public ew(cy cyVar, ay ayVar, tx txVar) {
         this.d = cyVar;
-        this.f39186b = ayVar;
-        this.f39187c = txVar;
+        this.f39189b = ayVar;
+        this.f39190c = txVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         cy cyVar = this.d;
         if (i10 == 1) {
-            this.f39185a = true;
-            cyVar.f38586e3 = true;
-            a8.ng ngVar = cyVar.f38583e0[0].f37911b;
+            this.f39188a = true;
+            cyVar.f38589e3 = true;
+            a8.ng ngVar = cyVar.f38586e0[0].f37914b;
             ValueAnimator valueAnimator = (ValueAnimator) ngVar.f640c;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
                 ((ValueAnimator) ngVar.f640c).cancel();
                 ngVar.f640c = null;
             }
-            if (cyVar.X.f30365r.getText().length() == 0 && cyVar.X.f30365r.hasFocus()) {
-                AndroidUtilities.hideKeyboard(cyVar.X.f30365r);
-                cyVar.X.f30365r.clearFocus();
+            if (cyVar.X.f30367r.getText().length() == 0 && cyVar.X.f30367r.hasFocus()) {
+                AndroidUtilities.hideKeyboard(cyVar.X.f30367r);
+                cyVar.X.f30367r.clearFocus();
             }
         } else {
-            cyVar.f38586e3 = false;
+            cyVar.f38589e3 = false;
         }
         if (i10 == 0) {
-            this.f39185a = false;
-            cyVar.f38585e2 = false;
-            boolean z10 = cyVar.f38568b1;
-            ay ayVar = this.f39186b;
+            this.f39188a = false;
+            cyVar.f38588e2 = false;
+            boolean z10 = cyVar.f38571b1;
+            ay ayVar = this.f39189b;
             if (z10) {
-                cyVar.f38568b1 = false;
-                if (cyVar.f38579d1) {
-                    wx wxVar = ayVar.f37910a;
+                cyVar.f38571b1 = false;
+                if (cyVar.f38582d1) {
+                    wx wxVar = ayVar.f37913a;
                     int i11 = wx.C3;
                     wxVar.G1();
-                    cyVar.f38579d1 = false;
+                    cyVar.f38582d1 = false;
                 }
                 ayVar.d.l();
             }
@@ -68,24 +68,24 @@ public final class ew extends s4.u0 {
         int i13;
         boolean z10;
         Object[] objArr;
-        this.f39187c.V();
-        ay ayVar = this.f39186b;
-        aw awVar = ayVar.f37918x;
+        this.f39190c.V();
+        ay ayVar = this.f39189b;
+        aw awVar = ayVar.f37921x;
         int i14 = -i11;
-        ArrayList arrayList = awVar.f30747x;
-        ArrayList arrayList2 = awVar.f30739o;
+        ArrayList arrayList = awVar.f30749x;
+        ArrayList arrayList2 = awVar.f30741o;
         boolean z11 = false;
         if (!arrayList2.isEmpty()) {
             int size = arrayList2.size();
             for (int i15 = 0; i15 < size; i15++) {
-                View view = ((s4.e1) arrayList2.get(i15)).f47735a;
+                View view = ((s4.e1) arrayList2.get(i15)).f47738a;
                 view.setTranslationY(view.getTranslationY() + i14);
             }
         }
         if (!arrayList.isEmpty()) {
             int size2 = arrayList.size();
             for (int i16 = 0; i16 < size2; i16++) {
-                View view2 = ((s4.e1) arrayList.get(i16)).f47735a;
+                View view2 = ((s4.e1) arrayList.get(i16)).f47738a;
                 view2.setTranslationY(view2.getTranslationY() + i14);
             }
         }
@@ -109,11 +109,11 @@ public final class ew extends s4.u0 {
         if (view3 != null) {
             view3.invalidate();
         }
-        if (cyVar.R0 != 10 && this.f39185a && recyclerView.getChildCount() > 0 && i18 != -1) {
+        if (cyVar.R0 != 10 && this.f39188a && recyclerView.getChildCount() > 0 && i18 != -1) {
             s4.e1 K = recyclerView.K(i18);
             if (!cyVar.h4() || (K != null && K.b() >= 0)) {
                 if (K != null) {
-                    i13 = K.f47735a.getTop();
+                    i13 = K.f47738a.getTop();
                 } else {
                     i13 = 0;
                 }
@@ -128,7 +128,7 @@ public final class ew extends s4.u0 {
                     }
                     if (Math.abs(i22) <= 1) {
                         objArr = null;
-                        if (objArr != null && cyVar.a2 && (z10 || cyVar.f38586e3)) {
+                        if (objArr != null && cyVar.a2 && (z10 || cyVar.f38589e3)) {
                             cyVar.k4(z10);
                         }
                         cyVar.Y1 = i18;
@@ -149,12 +149,12 @@ public final class ew extends s4.u0 {
                 cyVar.a2 = true;
             }
         }
-        if (!cyVar.K && recyclerView == cyVar.f38583e0[0].f37910a && !cyVar.f38611j2) {
+        if (!cyVar.K && recyclerView == cyVar.f38586e0[0].f37913a && !cyVar.f38614j2) {
             kVar = ((org.telegram.ui.ActionBar.r2) cyVar).actionBar;
             if (kVar != null) {
                 kVar2 = ((org.telegram.ui.ActionBar.r2) cyVar).actionBar;
-                if (!kVar2.q() && !cyVar.f38585e2 && !cyVar.G3.c()) {
-                    if (i11 > 0 && cyVar.h4() && cyVar.f38583e0[0].f37916s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
+                if (!kVar2.q() && !cyVar.f38588e2 && !cyVar.G3.c()) {
+                    if (i11 > 0 && cyVar.h4() && cyVar.f38586e0[0].f37919s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
                         int top = (childAt.getTop() - recyclerView.getPaddingTop()) + childAt.getMeasuredHeight();
                         if (top + i11 > 0) {
                             if (top < 0) {
@@ -173,7 +173,7 @@ public final class ew extends s4.u0 {
             }
         }
         tw twVar = cyVar.G3;
-        if (twVar != null && twVar.c() && (wxVar = ayVar.f37910a) != null) {
+        if (twVar != null && twVar.c() && (wxVar = ayVar.f37913a) != null) {
             wxVar.invalidate();
         }
         qw qwVar = cyVar.E0;
@@ -181,14 +181,14 @@ public final class ew extends s4.u0 {
             cyVar.E0.getPremiumHint().e(true);
         }
         ?? h42 = cyVar.h4();
-        View childAt2 = ayVar.f37910a.getChildAt(h42 == true ? 1 : 0);
+        View childAt2 = ayVar.f37913a.getChildAt(h42 == true ? 1 : 0);
         if (childAt2 != null) {
             i12 = childAt2.getTop();
         } else {
             i12 = 0;
         }
-        cyVar.e.a((i18 > h42 || (i12 - cyVar.N) + AndroidUtilities.dp(5.0f) < ayVar.f37910a.getPaddingTop()) ? true : true, true);
-        if (i11 != 0 && (fVar = cyVar.f38618k4) != null && Build.VERSION.SDK_INT >= 31) {
+        cyVar.e.a((i18 > h42 || (i12 - cyVar.N) + AndroidUtilities.dp(5.0f) < ayVar.f37913a.getPaddingTop()) ? true : true, true);
+        if (i11 != 0 && (fVar = cyVar.f38621k4) != null && Build.VERSION.SDK_INT >= 31) {
             fVar.f(i10, i11);
         }
     }

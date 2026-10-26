@@ -70,8 +70,8 @@ public final class j implements dh.a {
                 RectF rectF3 = this.f6360a;
                 if (k.c(childAt, viewGroup2, rectF3) && rectF3.intersect(rectF)) {
                     i60 i60Var = this.d;
-                    int i11 = i60Var.f40153a;
-                    Object obj = i60Var.f40154b;
+                    int i11 = i60Var.f40156a;
+                    Object obj = i60Var.f40157b;
                     switch (i11) {
                         case 0:
                             ((mm0) obj).drawChild(canvas, childAt, uptimeMillis);
@@ -81,7 +81,7 @@ public final class j implements dh.a {
                             if (childAt == profileActivity.N) {
                                 break;
                             } else {
-                                profileActivity.f35945a.drawChild(canvas, childAt, uptimeMillis);
+                                profileActivity.f35948a.drawChild(canvas, childAt, uptimeMillis);
                                 continue;
                             }
                         default:

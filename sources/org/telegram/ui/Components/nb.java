@@ -60,7 +60,7 @@ public abstract class nb extends ub {
     public void setTimer() {
         jc jcVar = new jc(getContext(), this.resourcesProvider);
         this.timerView = jcVar;
-        jcVar.f29601b = 5000L;
+        jcVar.f29603b = 5000L;
         addView(jcVar, gb1.m(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

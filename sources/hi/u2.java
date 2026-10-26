@@ -67,7 +67,7 @@ public final class u2 implements Runnable {
             case 0:
                 m3 m3Var = (m3) this.f13315b;
                 qc R = new wc(m3Var.f13121q0, m3Var.F).R(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f13316c));
-                R.f31887j = 5000;
+                R.f31889j = 5000;
                 R.k(true);
                 return;
             case 1:
@@ -84,7 +84,7 @@ public final class u2 implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f13316c;
                 if (!o4Var.T) {
                     if (tL_error != null) {
-                        o4Var.f30213b.dismiss();
+                        o4Var.f30215b.dismiss();
                         return;
                     } else {
                         AndroidUtilities.runOnUIThread(o4Var.U, 60000L);
@@ -94,8 +94,8 @@ public final class u2 implements Runnable {
                 return;
             case 4:
                 o4 o4Var2 = (o4) this.f13315b;
-                qc R2 = new wc(o4Var2.f30213b.getContainer(), o4Var2.f30212a).R(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f13316c));
-                R2.f31887j = 5000;
+                qc R2 = new wc(o4Var2.f30215b.getContainer(), o4Var2.f30214a).R(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f13316c));
+                R2.f31889j = 5000;
                 R2.k(true);
                 return;
             case 5:
@@ -148,7 +148,7 @@ public final class u2 implements Runnable {
                                 i2.k1 k1Var = (i2.k1) p0Var.f13700f;
                                 u2.g0 g0Var = k1Var.f13639b;
                                 long j12 = k1Var.d;
-                                Object obj = g0Var.f49294a;
+                                Object obj = g0Var.f49297a;
                                 b2.m1 m1Var = j0Var.f13606o;
                                 p1Var.g(obj, m1Var);
                                 j11 = j12 + m1Var.e;
@@ -286,10 +286,10 @@ public final class u2 implements Runnable {
             case 13:
                 ii.r rVar = (ii.r) this.f13315b;
                 rVar.getClass();
-                rVar.presentFragment(un.ba(((ji.f) this.f13316c).f15981b.f22174id));
+                rVar.presentFragment(un.ba(((ji.f) this.f13316c).f15981b.f22176id));
                 return;
             case 14:
-                ((ii.j0) this.f13315b).f14363s.presentFragment(un.ba(((ji.f) this.f13316c).f15981b.f22174id));
+                ((ii.j0) this.f13315b).f14363s.presentFragment(un.ba(((ji.f) this.f13316c).f15981b.f22176id));
                 return;
             case 15:
                 ((j2.h) this.f13315b).d.reportTrackChangeEvent((TrackChangeEvent) this.f13316c);
@@ -444,13 +444,13 @@ public final class u2 implements Runnable {
                 return;
             case 27:
                 String str2 = e2.n0.f9692a;
-                j2.e eVar = ((i2.d0) ((k2.v) ((rf.b) this.f13315b).f47333c)).f13509a.f13614s;
+                j2.e eVar = ((i2.d0) ((k2.v) ((rf.b) this.f13315b).f47336c)).f13509a.f13614s;
                 j2.a p10 = eVar.p();
                 eVar.q(p10, 1012, new j2.d(p10, (String) this.f13316c, 14));
                 return;
             case 28:
                 String str3 = e2.n0.f9692a;
-                rf.b.D(((i2.d0) ((k2.v) ((rf.b) this.f13315b).f47333c)).f13509a.F, (i2.d) this.f13316c);
+                rf.b.D(((i2.d0) ((k2.v) ((rf.b) this.f13315b).f47336c)).f13509a.F, (i2.d) this.f13316c);
                 return;
             default:
                 k2.f0.a((k2.f0) this.f13315b, (AudioRouting) this.f13316c);

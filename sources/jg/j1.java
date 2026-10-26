@@ -113,11 +113,11 @@ public final class j1 extends r2 {
             if (this.f15743n != null) {
                 for (int i11 = 0; i11 < this.f15743n.getChildCount(); i11++) {
                     View childAt = this.f15743n.getChildAt(i11);
-                    if ((childAt instanceof a9) && ((a9) childAt).f23861b == -1) {
+                    if ((childAt instanceof a9) && ((a9) childAt).f23863b == -1) {
                         if (this.f15744r) {
-                            i10 = y6.f23391f6;
+                            i10 = y6.f23393f6;
                         } else {
-                            i10 = y6.f23373e6;
+                            i10 = y6.f23375e6;
                         }
                         f7.i(i10, childAt, null);
                     }

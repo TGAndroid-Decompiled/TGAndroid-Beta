@@ -2,30 +2,30 @@ package w4;
 
 import android.animation.Animator;
 public final class a implements Animator.AnimatorListener {
-    public final b f50772a;
-    public final c f50773b;
+    public final b f50775a;
+    public final c f50776b;
 
     public a(c cVar, b bVar) {
-        this.f50773b = cVar;
-        this.f50772a = bVar;
+        this.f50776b = cVar;
+        this.f50775a = bVar;
     }
 
     @Override
     public final void onAnimationRepeat(Animator animator) {
-        c cVar = this.f50773b;
-        b bVar = this.f50772a;
+        c cVar = this.f50776b;
+        b bVar = this.f50775a;
         cVar.a(1.0f, bVar, true);
-        bVar.f50781k = bVar.e;
-        bVar.f50782l = bVar.f50777f;
-        bVar.f50783m = bVar.f50778g;
-        bVar.a((bVar.f50780j + 1) % bVar.f50779i.length);
-        if (cVar.f50797f) {
-            cVar.f50797f = false;
+        bVar.f50784k = bVar.e;
+        bVar.f50785l = bVar.f50780f;
+        bVar.f50786m = bVar.f50781g;
+        bVar.a((bVar.f50783j + 1) % bVar.f50782i.length);
+        if (cVar.f50800f) {
+            cVar.f50800f = false;
             animator.cancel();
             animator.setDuration(1332L);
             animator.start();
-            if (bVar.f50784n) {
-                bVar.f50784n = false;
+            if (bVar.f50787n) {
+                bVar.f50787n = false;
                 return;
             }
             return;
@@ -35,7 +35,7 @@ public final class a implements Animator.AnimatorListener {
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        this.f50773b.e = 0.0f;
+        this.f50776b.e = 0.0f;
     }
 
     @Override

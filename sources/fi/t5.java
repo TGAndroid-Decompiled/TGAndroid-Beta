@@ -99,8 +99,8 @@ public final class t5 implements ty {
     public final void n() {
         e6 e6Var = this.f11708a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e6Var.getContext(), 0, e6Var.f10819v1);
-        alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new e1.c(this, 10));
         ic.a.r(R.string.Cancel, alertDialog$Builder, null);
     }

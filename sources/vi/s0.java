@@ -42,34 +42,34 @@ public final class s0 {
     public volatile File R;
     public i2.j0 S;
     public final e2.z V;
-    public final Context f50580a;
-    public final TextureView f50581b;
-    public final File f50582c;
+    public final Context f50583a;
+    public final TextureView f50584b;
+    public final File f50585c;
     public final e3 d;
     public final p0 e;
-    public final tv f50583f;
-    public final j f50588l;
-    public final n f50589m;
-    public final q0 f50590n;
-    public final long f50591o;
-    public l0 f50592p;
-    public l0 f50593q;
-    public m0 f50594r;
-    public n0 f50595s;
-    public boolean f50597u;
+    public final tv f50586f;
+    public final j f50591l;
+    public final n f50592m;
+    public final q0 f50593n;
+    public final long f50594o;
+    public l0 f50595p;
+    public l0 f50596q;
+    public m0 f50597r;
+    public n0 f50598s;
+    public boolean f50600u;
     public boolean v;
-    public boolean f50598w;
-    public boolean f50599x;
-    public boolean f50600y;
-    public boolean f50601z;
-    public final Object f50584g = new Object();
+    public boolean f50601w;
+    public boolean f50602x;
+    public boolean f50603y;
+    public boolean f50604z;
+    public final Object f50587g = new Object();
     public final Matrix h = new Matrix();
-    public final Handler f50585i = new Handler(Looper.getMainLooper());
-    public final ExecutorService f50586j = Executors.newSingleThreadExecutor(new e2.l0(9));
-    public final ExecutorService f50587k = Executors.newSingleThreadExecutor(new e2.l0(10));
+    public final Handler f50588i = new Handler(Looper.getMainLooper());
+    public final ExecutorService f50589j = Executors.newSingleThreadExecutor(new e2.l0(9));
+    public final ExecutorService f50590k = Executors.newSingleThreadExecutor(new e2.l0(10));
     public int W = 1;
     public int X = 1;
-    public float f50596t = 1.0f;
+    public float f50599t = 1.0f;
     public long I = 1;
     public final h0 T = new h0(this, 0);
     public final cy0 U = new cy0(this, 18);
@@ -79,31 +79,31 @@ public final class s0 {
         e3 e3Var = new e3(this, 22);
         this.V = new e2.z(this, 3);
         t();
-        Context context2 = j0Var.f50467a;
+        Context context2 = j0Var.f50470a;
         Context applicationContext = context2.getApplicationContext();
         if (applicationContext == null) {
             context = context2;
         } else {
             context = applicationContext;
         }
-        this.f50580a = context;
-        TextureView textureView = j0Var.f50468b;
-        this.f50581b = textureView;
-        File file = j0Var.f50469c;
-        this.f50582c = file == null ? context.getCacheDir() : file;
-        this.f50592p = j0Var.d;
+        this.f50583a = context;
+        TextureView textureView = j0Var.f50471b;
+        this.f50584b = textureView;
+        File file = j0Var.f50472c;
+        this.f50585c = file == null ? context.getCacheDir() : file;
+        this.f50595p = j0Var.d;
         q0 q0Var = j0Var.e;
-        this.f50590n = q0Var;
+        this.f50593n = q0Var;
         int i10 = j0Var.h;
-        m0 m0Var = j0Var.f50470f;
-        n0 n0Var = j0Var.f50471g;
-        this.f50591o = 60000L;
-        boolean z10 = j0Var.f50472i;
-        this.d = j0Var.f50473j;
-        this.e = j0Var.f50474k;
-        this.f50583f = j0Var.f50475l;
+        m0 m0Var = j0Var.f50473f;
+        n0 n0Var = j0Var.f50474g;
+        this.f50594o = 60000L;
+        boolean z10 = j0Var.f50475i;
+        this.d = j0Var.f50476j;
+        this.e = j0Var.f50477k;
+        this.f50586f = j0Var.f50478l;
         n nVar = new n();
-        this.f50589m = nVar;
+        this.f50592m = nVar;
         StringBuilder sb2 = new StringBuilder("session created: device=");
         sb2.append(Build.MANUFACTURER);
         sb2.append(" ");
@@ -111,19 +111,19 @@ public final class s0 {
         sb2.append(", sdk=");
         sb2.append(Build.VERSION.SDK_INT);
         sb2.append(", output=");
-        sb2.append(q0Var.f50530a);
+        sb2.append(q0Var.f50533a);
         sb2.append("x");
-        c3.h0.q(sb2, q0Var.f50530a, ", bitrate=", i10, ", cameraMode=");
+        c3.h0.q(sb2, q0Var.f50533a, ", bitrate=", i10, ", cameraMode=");
         sb2.append(m0Var);
         sb2.append(", fps=");
-        sb2.append(n0Var.f50516a);
+        sb2.append(n0Var.f50519a);
         sb2.append(", composition=");
         sb2.append(z10);
         sb2.append(", facing=");
-        sb2.append(this.f50592p);
+        sb2.append(this.f50595p);
         sb2.append(", maxDurationMs=60000");
         nVar.b(sb2.toString());
-        this.f50588l = new j(context, textureView, q0Var, i10, m0Var, n0Var, z10, nVar, e3Var);
+        this.f50591l = new j(context, textureView, q0Var, i10, m0Var, n0Var, z10, nVar, e3Var);
     }
 
     public static long f(long j10) {
@@ -141,12 +141,12 @@ public final class s0 {
         t();
         int i10 = this.W;
         if (i10 != 10 && i10 != 8) {
-            this.f50589m.b("cancel requested: state=".concat(b10.x(i10)));
+            this.f50592m.b("cancel requested: state=".concat(b10.x(i10)));
             if (b(3)) {
                 e();
                 r();
                 v(10);
-                if (!this.B && !this.f50588l.Y()) {
+                if (!this.B && !this.f50591l.Y()) {
                     i();
                     return;
                 }
@@ -157,7 +157,7 @@ public final class s0 {
     }
 
     public final boolean b(int i10) {
-        synchronized (this.f50584g) {
+        synchronized (this.f50587g) {
             try {
                 o0 o0Var = this.P;
                 if (o0Var != null && o0Var.e) {
@@ -166,9 +166,9 @@ public final class s0 {
                 this.D = true;
                 if (o0Var != null && !o0Var.d) {
                     o0Var.d = true;
-                    n nVar = this.f50589m;
-                    nVar.b("output generation invalidated: id=" + o0Var.f50519a + ", reason=" + b10.w(i10) + ", availableSize=" + o0Var.f50521c);
-                    this.f50587k.execute(new g0(this, o0Var, i10, 2));
+                    n nVar = this.f50592m;
+                    nVar.b("output generation invalidated: id=" + o0Var.f50522a + ", reason=" + b10.w(i10) + ", availableSize=" + o0Var.f50524c);
+                    this.f50590k.execute(new g0(this, o0Var, i10, 2));
                 }
                 return true;
             } catch (Throwable th2) {
@@ -178,22 +178,22 @@ public final class s0 {
     }
 
     public final void c(boolean z10) {
-        synchronized (this.f50584g) {
+        synchronized (this.f50587g) {
             g();
             File d = d("round_video_");
             long j10 = this.I;
             this.I = 1 + j10;
             o0 o0Var = new o0(j10, d);
             this.P = o0Var;
-            this.Q = new v(d, this.f50590n.f50530a, z10, this.f50589m, new zg1(24, this, o0Var));
-            n nVar = this.f50589m;
+            this.Q = new v(d, this.f50593n.f50533a, z10, this.f50592m, new zg1(24, this, o0Var));
+            n nVar = this.f50592m;
             nVar.b("output generation started: id=" + j10 + ", includeAudio=" + z10 + ", file=" + d.getName());
-            this.f50587k.execute(new ny0(this, o0Var, d, 26));
+            this.f50590k.execute(new ny0(this, o0Var, d, 26));
         }
     }
 
     public final File d(String str) {
-        File file = this.f50582c;
+        File file = this.f50585c;
         if (file.exists()) {
             if (!file.isDirectory()) {
                 throw new IOException("Round-video output path is not a directory: " + file);
@@ -205,8 +205,8 @@ public final class s0 {
     }
 
     public final void e() {
-        this.f50597u = false;
-        j jVar = this.f50588l;
+        this.f50600u = false;
+        j jVar = this.f50591l;
         jVar.U(0.0f);
         jVar.T(false);
         u(false);
@@ -222,14 +222,14 @@ public final class s0 {
     public final void h(Exception exc) {
         int i10 = this.W;
         if (i10 != 9 && i10 != 10) {
-            this.f50589m.a("fatal error in state=".concat(b10.x(i10)), exc);
+            this.f50592m.a("fatal error in state=".concat(b10.x(i10)), exc);
             if (b(4)) {
                 e();
                 r();
-                this.f50585i.removeCallbacks(this.T);
+                this.f50588i.removeCallbacks(this.T);
                 o0 o0Var = this.P;
                 if (o0Var != null) {
-                    this.f50587k.execute(new g0(this, o0Var, exc));
+                    this.f50590k.execute(new g0(this, o0Var, exc));
                 }
                 v(9);
                 m("error");
@@ -242,13 +242,13 @@ public final class s0 {
                 }
                 n60Var.T = null;
                 MediaController.getInstance().requestRecordAudioFocus(false);
-                if (n60Var.f30853f0) {
+                if (n60Var.f30855f0) {
                     n60Var.u(6);
                 } else {
-                    NotificationCenter.getInstance(n60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(n60Var.f30860n));
+                    NotificationCenter.getInstance(n60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(n60Var.f30862n));
                 }
                 n60Var.w(false, false);
-                if (!this.B && !this.f50588l.Y()) {
+                if (!this.B && !this.f50591l.Y()) {
                     i();
                     return;
                 }
@@ -265,12 +265,12 @@ public final class s0 {
         this.C = true;
         m("cancelled");
         h0 h0Var = new h0(this, 1);
-        ExecutorService executorService = this.f50586j;
+        ExecutorService executorService = this.f50589j;
         executorService.execute(h0Var);
-        this.f50588l.M();
-        this.f50585i.removeCallbacksAndMessages(null);
+        this.f50591l.M();
+        this.f50588i.removeCallbacksAndMessages(null);
         executorService.shutdown();
-        this.f50587k.shutdown();
+        this.f50590k.shutdown();
     }
 
     public final long j() {
@@ -278,17 +278,17 @@ public final class s0 {
         if (this.W != 3) {
             return this.E;
         }
-        return Math.min(this.f50591o, (SystemClock.elapsedRealtime() + this.E) - this.F);
+        return Math.min(this.f50594o, (SystemClock.elapsedRealtime() + this.E) - this.F);
     }
 
     public final void k(o0 o0Var, int i10) {
-        synchronized (this.f50584g) {
+        synchronized (this.f50587g) {
             try {
                 if (!o0Var.d && !o0Var.e) {
                     o0Var.d = true;
-                    n nVar = this.f50589m;
-                    nVar.b("output generation invalidated: id=" + o0Var.f50519a + ", reason=" + b10.w(i10) + ", availableSize=" + o0Var.f50521c);
-                    this.f50587k.execute(new g0(this, o0Var, i10, 0));
+                    n nVar = this.f50592m;
+                    nVar.b("output generation invalidated: id=" + o0Var.f50522a + ", reason=" + b10.w(i10) + ", availableSize=" + o0Var.f50524c);
+                    this.f50590k.execute(new g0(this, o0Var, i10, 0));
                 }
             } finally {
             }
@@ -300,7 +300,7 @@ public final class s0 {
         if (j10 <= 0) {
             j10 = this.E;
         }
-        if (j10 <= this.f50591o && this.G <= 0 && this.H + 10 >= j10) {
+        if (j10 <= this.f50594o && this.G <= 0 && this.H + 10 >= j10) {
             return false;
         }
         return true;
@@ -313,7 +313,7 @@ public final class s0 {
         }
         this.O = true;
         o0 o0Var = this.P;
-        n nVar = this.f50589m;
+        n nVar = this.f50592m;
         StringBuilder v = a1.g.v("session summary: terminal=", str, ", state=");
         v.append(b10.x(this.W));
         v.append(", durationMs=");
@@ -325,33 +325,33 @@ public final class s0 {
         v.append(", cameraSwitches=");
         v.append(this.N);
         v.append(", facing=");
-        v.append(this.f50593q);
+        v.append(this.f50596q);
         v.append(", cameraMode=");
-        v.append(this.f50594r);
+        v.append(this.f50597r);
         v.append(", generation=");
         long j11 = 0;
         if (o0Var == null) {
             j10 = 0;
         } else {
-            j10 = o0Var.f50519a;
+            j10 = o0Var.f50522a;
         }
         v.append(j10);
         v.append(", availableSize=");
         if (o0Var != null) {
-            j11 = o0Var.f50521c;
+            j11 = o0Var.f50524c;
         }
         v.append(j11);
         nVar.b(v.toString());
     }
 
     public final void n() {
-        l0 l0Var = this.f50592p;
-        l0 l0Var2 = this.f50593q;
-        k0 k0Var = new k0(l0Var, l0Var2, this.X, this.f50596t);
+        l0 l0Var = this.f50595p;
+        l0 l0Var2 = this.f50596q;
+        k0 k0Var = new k0(l0Var, l0Var2, this.X, this.f50599t);
         n60 n60Var = (n60) this.d.f17210b;
         n60Var.S = k0Var;
         if (l0Var2 != null) {
-            wi.e.f51279j.b(l0Var2);
+            wi.e.f51282j.b(l0Var2);
         }
         n60Var.y();
     }
@@ -361,9 +361,9 @@ public final class s0 {
         int i11 = this.W;
         long j10 = this.E;
         long j11 = this.F;
-        boolean z10 = this.f50598w;
-        boolean z11 = this.f50597u;
-        long j12 = this.f50591o;
+        boolean z10 = this.f50601w;
+        boolean z11 = this.f50600u;
+        long j12 = this.f50594o;
         r0 r0Var = new r0(i11, j10, j11, j12, z10, z11);
         n60 n60Var = (n60) this.d.f17210b;
         r0 r0Var2 = n60Var.R;
@@ -371,13 +371,13 @@ public final class s0 {
         if (r0Var2 == null) {
             i10 = 0;
         } else {
-            i10 = r0Var2.f50531a;
+            i10 = r0Var2.f50534a;
         }
         n60Var.R = r0Var;
         if (i10 == 3 && i11 != 3) {
             n60Var.v(true);
         }
-        n60Var.f30870u0 = Math.max(n60Var.f30870u0, j10);
+        n60Var.f30872u0 = Math.max(n60Var.f30872u0, j10);
         if (i11 == 3) {
             if (!n60Var.C0) {
                 n60Var.C0 = true;
@@ -386,16 +386,16 @@ public final class s0 {
             n60.m(n60Var);
             n60.n(n60Var, true);
             n60Var.A();
-            if (!n60Var.f30853f0) {
-                n60Var.f30853f0 = true;
-                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(n60Var.f30860n), Boolean.FALSE);
-            } else if (n60Var.f30854g0) {
-                n60Var.f30854g0 = false;
+            if (!n60Var.f30855f0) {
+                n60Var.f30855f0 = true;
+                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(n60Var.f30862n), Boolean.FALSE);
+            } else if (n60Var.f30856g0) {
+                n60Var.f30856g0 = false;
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordResumed, new Object[0]);
             }
         } else {
             n60.n(n60Var, false);
-            n60Var.f30872w.setProgress(((float) j10) / ((float) j12));
+            n60Var.f30874w.setProgress(((float) j10) / ((float) j12));
         }
         if (i11 == 8 || i11 == 9 || i11 == 10) {
             n60Var.q();
@@ -414,11 +414,11 @@ public final class s0 {
         }
         this.E = j();
         this.L++;
-        this.f50589m.b("pause requested: durationMs=" + this.E);
+        this.f50592m.b("pause requested: durationMs=" + this.E);
         e();
-        this.f50585i.removeCallbacks(this.T);
+        this.f50588i.removeCallbacks(this.T);
         v(4);
-        boolean Y = this.f50588l.Y();
+        boolean Y = this.f50591l.Y();
         this.B = Y;
         if (!Y) {
             h(new IllegalStateException("Unable to stop the camera segment"));
@@ -440,8 +440,8 @@ public final class s0 {
     }
 
     public final void r() {
-        this.f50585i.removeCallbacks(this.U);
-        this.f50599x = false;
+        this.f50588i.removeCallbacks(this.U);
+        this.f50602x = false;
         i2.j0 j0Var = this.S;
         if (j0Var == null) {
             return;
@@ -449,7 +449,7 @@ public final class s0 {
         j0Var.C(this.V);
         i2.j0 j0Var2 = this.S;
         j0Var2.F1();
-        TextureView textureView = this.f50581b;
+        TextureView textureView = this.f50584b;
         if (textureView != null && textureView == j0Var2.X) {
             j0Var2.F1();
             j0Var2.s1();
@@ -462,7 +462,7 @@ public final class s0 {
 
     public final void s(File file, long j10, long j11, boolean z10, int i10) {
         long nanoTime = System.nanoTime();
-        n nVar = this.f50589m;
+        n nVar = this.f50592m;
         StringBuilder t10 = a1.g.t(j10, "final range remux started: range=", "..");
         t10.append(j11);
         t10.append(", includeAudio=");
@@ -476,27 +476,27 @@ public final class s0 {
         g();
         a3.z a2 = w7.x.a(file, this.Q, j10, j11, z10);
         this.Q.g();
-        long e = w7.x.e(this.Q.f50611a) / 1000;
-        n nVar2 = this.f50589m;
+        long e = w7.x.e(this.Q.f50614a) / 1000;
+        n nVar2 = this.f50592m;
         StringBuilder t11 = a1.g.t(e, "final range remux completed: durationMs=", ", requestedDurationMs=");
         t11.append(a2.f207b);
         t11.append(", actualStartMs=");
         t11.append(a2.f206a);
         t11.append(", size=");
-        t11.append(this.Q.f50611a.length());
+        t11.append(this.Q.f50614a.length());
         t11.append(", elapsedMs=");
         t11.append(f(nanoTime));
         nVar2.b(t11.toString());
         g();
-        this.f50587k.execute(new f0(this, this.P, this.Q.f50611a, e, z10));
+        this.f50590k.execute(new f0(this, this.P, this.Q.f50614a, e, z10));
     }
 
     public final void u(boolean z10) {
         if (this.v != z10) {
             this.v = z10;
-            tv tvVar = this.f50583f;
+            tv tvVar = this.f50586f;
             if (tvVar != null) {
-                n60.j((n60) tvVar.f33164b, z10);
+                n60.j((n60) tvVar.f33167b, z10);
             }
         }
     }
@@ -504,23 +504,23 @@ public final class s0 {
     public final void v(int i10) {
         int i11 = this.W;
         this.W = i10;
-        this.f50589m.b("state: " + b10.x(i11) + " -> " + b10.x(i10) + ", durationMs=" + j());
+        this.f50592m.b("state: " + b10.x(i11) + " -> " + b10.x(i10) + ", durationMs=" + j());
         o();
     }
 
     public final void w(float f7) {
         t();
-        if (this.W == 3 && !this.f50598w) {
-            this.f50588l.U(Math.max(0.0f, Math.min(1.0f, f7)));
+        if (this.W == 3 && !this.f50601w) {
+            this.f50591l.U(Math.max(0.0f, Math.min(1.0f, f7)));
         }
     }
 
     public final void x(boolean z10) {
-        if (this.f50599x == z10) {
+        if (this.f50602x == z10) {
             return;
         }
-        this.f50599x = z10;
-        Handler handler = this.f50585i;
+        this.f50602x = z10;
+        Handler handler = this.f50588i;
         cy0 cy0Var = this.U;
         handler.removeCallbacks(cy0Var);
         if (z10) {

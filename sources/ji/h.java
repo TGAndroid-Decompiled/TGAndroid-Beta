@@ -52,7 +52,7 @@ public final class h extends FrameLayout implements p6 {
     public h(Context context, int i10, u6 u6Var) {
         super(context);
         ch.b bVar;
-        this.f15993y = f7.f22626b;
+        this.f15993y = f7.f22628b;
         this.f15984a = u6Var;
         this.f15985b = i10;
         if (Build.VERSION.SDK_INT >= 31) {
@@ -258,7 +258,7 @@ public final class h extends FrameLayout implements p6 {
         dVar2.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         dVar2.f();
         dVar2.e();
-        int i12 = y6.f23765z6;
+        int i12 = y6.f23767z6;
         dVar2.setColor(y6.o1(0.14f, y6.w0(i12, u6Var)));
         dVar2.setTextColor(y6.x0(null, y6.G6, false));
         if (dVar2.getBackground() != null) {
@@ -399,7 +399,7 @@ public final class h extends FrameLayout implements p6 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int i10 = this.f15993y;
-        int i11 = f7.f22626b;
+        int i11 = f7.f22628b;
         if (i10 != i11) {
             this.f15993y = i11;
             try {
@@ -413,7 +413,7 @@ public final class h extends FrameLayout implements p6 {
         }
         if (this.f15992x) {
             canvas2 = canvas;
-            canvas2.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, y6.f23476k0);
+            canvas2.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, y6.f23478k0);
         } else {
             canvas2 = canvas;
         }
@@ -431,7 +431,7 @@ public final class h extends FrameLayout implements p6 {
             int dp2 = (dp * 2) + AndroidUtilities.dp(52.0f);
             RecordingCanvas a2 = dVar.a(dp2, dp2);
             a2.translate(-left, -top);
-            a2.drawColor(y6.w0(y6.f23354d6, this.f15984a));
+            a2.drawColor(y6.w0(y6.f23356d6, this.f15984a));
             a2.save();
             float f7 = dp2 / 2.0f;
             a2.scale(1.125f, 1.125f, f7, f7);
@@ -455,7 +455,7 @@ public final class h extends FrameLayout implements p6 {
         int i10 = y6.G6;
         u6 u6Var = this.f15984a;
         this.f15987f.setTextColor(y6.w0(i10, u6Var));
-        int i11 = y6.f23765z6;
+        int i11 = y6.f23767z6;
         this.h.setTextColor(y6.w0(i11, u6Var));
         this.f15988n.setTextColor(y6.w0(i11, u6Var));
     }

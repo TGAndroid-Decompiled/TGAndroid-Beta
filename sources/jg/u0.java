@@ -36,24 +36,24 @@ public final class u0 implements org.telegram.ui.ActionBar.b2, Utilities.Callbac
         v0 v0Var = this.f15862b;
         if (!v0Var.f15868c.h(t61Var)) {
             int i10 = t61Var.d;
-            if (i10 != 2 && t61Var.f47037a != 17) {
+            if (i10 != 2 && t61Var.f47040a != 17) {
                 if (i10 == 1) {
                     v0Var.f15871r = !v0Var.f15871r;
-                    v0Var.f15867b.f32150g3.O(true);
+                    v0Var.f15867b.f32152g3.O(true);
                     v0Var.W(true);
                     return;
                 } else if (i10 == 3) {
                     b0 b0Var = v0Var.f15868c;
                     v0Var.f15872s = true;
                     b0Var.h = true;
-                    v0Var.f15867b.f32150g3.O(true);
+                    v0Var.f15867b.f32152g3.O(true);
                     v0Var.W(true);
                     return;
                 } else if (i10 == 4) {
                     b0 b0Var2 = v0Var.f15868c;
                     v0Var.f15872s = false;
                     b0Var2.h = false;
-                    v0Var.f15867b.f32150g3.O(true);
+                    v0Var.f15867b.f32152g3.O(true);
                     v0Var.W(true);
                     return;
                 } else {

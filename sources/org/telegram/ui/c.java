@@ -5,19 +5,19 @@ import android.net.Uri;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 public final class c implements org.telegram.ui.ActionBar.b2 {
-    public final int f38187a;
-    public final g f38188b;
+    public final int f38190a;
+    public final g f38191b;
 
     public c(g gVar, int i10) {
-        this.f38187a = i10;
-        this.f38188b = gVar;
+        this.f38190a = i10;
+        this.f38191b = gVar;
     }
 
     @Override
     public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f38187a) {
+        switch (this.f38190a) {
             case 0:
-                g gVar = this.f38188b;
+                g gVar = this.f38191b;
                 gVar.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -29,7 +29,7 @@ public final class c implements org.telegram.ui.ActionBar.b2 {
                     return;
                 }
             default:
-                g gVar2 = this.f38188b;
+                g gVar2 = this.f38191b;
                 gVar2.getClass();
                 gg0 gg0Var = new gg0();
                 gg0Var.F = 2;

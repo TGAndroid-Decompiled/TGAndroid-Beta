@@ -84,7 +84,7 @@ public abstract class r extends m {
         this.f11508a1 = new q(ibVar, ibVar);
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(false, true, true);
         this.f11509b1 = r6Var;
-        ds dsVar = ds.f27584f;
+        ds dsVar = ds.f27586f;
         r6Var.n(0.16f, 50L, dsVar);
         r6Var.w(AndroidUtilities.dp(15.0f));
         r6Var.x(AndroidUtilities.bold());
@@ -100,11 +100,11 @@ public abstract class r extends m {
         this.f11516i1 = faVar2;
         paint.setColor(-1);
         paint2.setColor(-15033089);
-        faVar.f28109a = AndroidUtilities.dp(47.0f);
-        faVar.f28110b = AndroidUtilities.dp(55.0f);
+        faVar.f28111a = AndroidUtilities.dp(47.0f);
+        faVar.f28112b = AndroidUtilities.dp(55.0f);
         faVar.b();
-        faVar2.f28109a = AndroidUtilities.dp(47.0f);
-        faVar2.f28110b = AndroidUtilities.dp(55.0f);
+        faVar2.f28111a = AndroidUtilities.dp(47.0f);
+        faVar2.f28112b = AndroidUtilities.dp(55.0f);
         faVar2.b();
         this.f11517j1 = getContext().getResources().getDrawable(R.drawable.input_video_pressed).mutate();
         this.l1 = new org.telegram.ui.Components.h6(new n(ibVar, 0), 200L, dsVar, 0);
@@ -173,13 +173,13 @@ public abstract class r extends m {
     public final void B() {
         if (this.Z0) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.f11191a);
-            alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.StoryRemoveRoundTitle);
-            alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.StoryRemoveRoundMessage);
+            alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.StoryRemoveRoundTitle);
+            alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.StoryRemoveRoundMessage);
             alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new e1.c(this, 5));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             TextView textView = (TextView) alertDialog$Builder.p().d(-1);
             if (textView != null) {
-                org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23596q7, this.f11191a);
+                org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23598q7, this.f11191a);
             }
         }
     }
@@ -322,7 +322,7 @@ public abstract class r extends m {
                     this.f11532z1.setStrokeJoin(Paint.Join.ROUND);
                 }
                 this.f11532z1.setStrokeWidth(AndroidUtilities.dp(1.33f));
-                this.f11530x1.f31798p = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - r6Var.c());
+                this.f11530x1.f31800p = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - r6Var.c());
                 float d = ic.a.d(1.0f, this.f11510c1, AndroidUtilities.dp(6.0f) * sin, (rectF.centerX() - ((this.f11530x1.l() + AndroidUtilities.dp(11.33f)) / 2.0f)) - (AndroidUtilities.lerp(this.f11510c1, 1.0f, e10) * (rectF.width() / 6.0f)));
                 if (paint != null) {
                     i11 = -1;
@@ -344,7 +344,7 @@ public abstract class r extends m {
                 if (this.A1 == null) {
                     this.A1 = new q11(LocaleController.getString(R.string.CancelRound), f12, AndroidUtilities.bold());
                 }
-                this.A1.f31798p = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - r6Var.c());
+                this.A1.f31800p = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - r6Var.c());
                 float width = ((rectF.width() / 4.0f) * f13) + (rectF.centerX() - (this.A1.l() / 2.0f));
                 if (paint != null) {
                     i10 = -1;
@@ -395,27 +395,27 @@ public abstract class r extends m {
         Paint paint = this.f11514g1;
         if (isEnabled) {
             org.telegram.ui.Components.fa faVar = this.f11515h1;
-            faVar.f28109a = AndroidUtilities.dp(47.0f);
+            faVar.f28111a = AndroidUtilities.dp(47.0f);
             Paint paint2 = faVar.d;
             f10 = 0.0f;
-            faVar.f28110b = (AndroidUtilities.dp(15.0f) * 0.6f) + AndroidUtilities.dp(47.0f);
+            faVar.f28112b = (AndroidUtilities.dp(15.0f) * 0.6f) + AndroidUtilities.dp(47.0f);
             f11 = e10;
             org.telegram.ui.Components.fa faVar2 = this.f11516i1;
-            faVar2.f28109a = AndroidUtilities.dp(50.0f);
+            faVar2.f28111a = AndroidUtilities.dp(50.0f);
             Paint paint3 = faVar2.d;
             f12 = f18;
-            faVar2.f28110b = (AndroidUtilities.dp(12.0f) * 0.6f) + AndroidUtilities.dp(50.0f);
+            faVar2.f28112b = (AndroidUtilities.dp(12.0f) * 0.6f) + AndroidUtilities.dp(50.0f);
             faVar2.e(d, 1.01f);
             faVar.e(d, 1.02f);
             paint3.setColor(org.telegram.ui.ActionBar.y6.o1(0.15f * f7, paint.getColor()));
             canvas.save();
-            float f20 = f19 / faVar2.f28109a;
+            float f20 = f19 / faVar2.f28111a;
             canvas.scale(f20, f20, lerp, dp);
             faVar2.a(lerp, dp, canvas, paint3);
             canvas.restore();
             paint2.setColor(org.telegram.ui.ActionBar.y6.o1(0.3f * f7, paint.getColor()));
             canvas.save();
-            float f21 = f19 / faVar.f28109a;
+            float f21 = f19 / faVar.f28111a;
             canvas.scale(f21, f21, lerp, dp);
             faVar.a(lerp, dp, canvas, paint2);
             canvas.restore();
@@ -478,8 +478,8 @@ public abstract class r extends m {
             canvas.drawRoundRect(rectF2, AndroidUtilities.dp(5.33f), AndroidUtilities.dp(5.33f), this.f11513f1);
         }
         canvas.restore();
-        float f24 = h6Var.f28809c;
-        float f25 = h6Var2.f28809c;
+        float f24 = h6Var.f28811c;
+        float f25 = h6Var2.f28811c;
         if (this.f11510c1 < 0.4f) {
             z10 = true;
         } else {
@@ -554,19 +554,19 @@ public abstract class r extends m {
             int visibility = imageView.getVisibility();
             org.telegram.ui.Components.h6 h6Var3 = this.M0;
             ImageView imageView2 = this.T0;
-            if (visibility == 4 || imageView2.getVisibility() == 4 || h6Var3.f28809c > 0.0f) {
+            if (visibility == 4 || imageView2.getVisibility() == 4 || h6Var3.f28811c > 0.0f) {
                 canvas.saveLayerAlpha(rectF, (int) ((1.0f - this.f11209o0) * 255.0f), 31);
                 Path path3 = this.f11520n1;
                 path3.rewind();
                 path3.addRoundRect(rectF, AndroidUtilities.dp(21.0f), AndroidUtilities.dp(21.0f), direction);
                 canvas.clipPath(path3);
-                if (imageView.getVisibility() == 4 || h6Var3.f28809c > 0.0f) {
+                if (imageView.getVisibility() == 4 || h6Var3.f28811c > 0.0f) {
                     canvas.save();
                     canvas.translate((AndroidUtilities.dp(180.0f) * f12) + imageView.getX(), imageView.getY());
                     imageView.draw(canvas);
                     canvas.restore();
                 }
-                if (imageView2.getVisibility() == 4 || h6Var3.f28809c > 0.0f) {
+                if (imageView2.getVisibility() == 4 || h6Var3.f28811c > 0.0f) {
                     canvas.save();
                     canvas.translate((AndroidUtilities.dp(180.0f) * f12) + imageView2.getX(), imageView2.getY());
                     imageView2.draw(canvas);

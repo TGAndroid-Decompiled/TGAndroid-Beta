@@ -128,19 +128,19 @@ public abstract class y50 {
             linearLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
             linearLayout.setClipToPadding(false);
             linearLayout.setOrientation(0);
-            int i14 = org.telegram.ui.ActionBar.y6.f23446i6;
+            int i14 = org.telegram.ui.ActionBar.y6.f23448i6;
             org.telegram.ui.Cells.y Z = org.telegram.ui.ActionBar.y6.Z(bVar.g(i14), 20, 20);
             org.telegram.ui.ActionBar.b7 N2 = org.telegram.ui.ActionBar.f7.N(i14);
             linearLayout.setBackground(Z);
             org.telegram.ui.ActionBar.f7.k(linearLayout, Z, null, N2, bVar);
             org.telegram.ui.Components.zp zpVar = new org.telegram.ui.Components.zp(context, 24, bVar);
-            zpVar.b(org.telegram.ui.ActionBar.y6.f23427h7, org.telegram.ui.ActionBar.y6.f23464j7, org.telegram.ui.ActionBar.y6.f23483k7);
+            zpVar.b(org.telegram.ui.ActionBar.y6.f23429h7, org.telegram.ui.ActionBar.y6.f23466j7, org.telegram.ui.ActionBar.y6.f23485k7);
             zpVar.setDrawUnchecked(true);
             zpVar.a(MessagesController.getGlobalMainSettings().getBoolean("callmiconstart", true), false);
             zpVar.setDrawBackgroundAsArc(10);
             linearLayout.addView(zpVar, org.telegram.ui.Components.gb1.x(26, 26, 16, 0, 0, 0, 0));
             TextView textView = new TextView(context);
-            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23462j5, bVar);
+            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23464j5, bVar);
             textView.setTextSize(1, 14.0f);
             textView.setText(LocaleController.getString(R.string.GroupCallLinkMicrophone));
             linearLayout.addView(textView, org.telegram.ui.Components.gb1.x(-2, -2, 16, 9, 0, 0, 0));
@@ -190,7 +190,7 @@ public abstract class y50 {
         getgroupcall.limit = 10;
         int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(getgroupcall, new ag.p0(e2Var, cVar, i10, activity, tL_inputGroupCallSlug, 11));
         if (cVar != null) {
-            cVar.f47031b = new org.telegram.messenger.u6(i10, sendRequest, 4);
+            cVar.f47034b = new org.telegram.messenger.u6(i10, sendRequest, 4);
             cVar.d();
         }
     }

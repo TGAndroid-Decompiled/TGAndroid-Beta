@@ -56,10 +56,10 @@ public final class v0 extends r2 implements NotificationCenter.NotificationCente
         String string = LocaleController.getString(R.string.BusinessGreet);
         String string2 = LocaleController.getString(R.string.BusinessGreetInfo);
         t61 t61Var = new t61(2);
-        t61Var.f32872l = string;
-        t61Var.f32875o = string2;
-        t61Var.f32873m = "RestrictedEmoji";
-        t61Var.f32874n = "👋";
+        t61Var.f32875l = string;
+        t61Var.f32878o = string2;
+        t61Var.f32876m = "RestrictedEmoji";
+        t61Var.f32877n = "👋";
         arrayList.add(t61Var);
         t61 i10 = t61.i(1, LocaleController.getString(R.string.BusinessGreetSend));
         i10.L(v0Var.f15871r);
@@ -73,7 +73,7 @@ public final class v0 extends r2 implements NotificationCenter.NotificationCente
                 arrayList.add(t61Var2);
             } else {
                 t61 c10 = t61.c(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessGreetCreate));
-                c10.f32877q = true;
+                c10.f32880q = true;
                 arrayList.add(c10);
             }
             arrayList.add(t61.C(null));
@@ -104,8 +104,8 @@ public final class v0 extends r2 implements NotificationCenter.NotificationCente
             String[] strArr = v0Var.e;
             ig.o oVar = new ig.o(v0Var, 5);
             t61 t61Var3 = new t61(14);
-            t61Var3.f32876p = strArr;
-            t61Var3.f32885z = i11;
+            t61Var3.f32879p = strArr;
+            t61Var3.f32888z = i11;
             t61Var3.C = oVar;
             t61Var3.B = -1L;
             arrayList.add(t61Var3);
@@ -139,7 +139,7 @@ public final class v0 extends r2 implements NotificationCenter.NotificationCente
     }
 
     public final void Y() {
-        if (!this.f15866a.f23137x.f19327f) {
+        if (!this.f15866a.f23139x.f19327f) {
             if (!X()) {
                 finishFragment();
                 return;
@@ -226,7 +226,7 @@ public final class v0 extends r2 implements NotificationCenter.NotificationCente
             b0Var.j(tL_businessRecipients);
         }
         r71 r71Var = this.f15867b;
-        if (r71Var != null && (j71Var = r71Var.f32150g3) != null) {
+        if (r71Var != null && (j71Var = r71Var.f32152g3) != null) {
             j71Var.O(true);
         }
         W(true);
@@ -258,7 +258,7 @@ public final class v0 extends r2 implements NotificationCenter.NotificationCente
         r71Var.u1();
         this.f15867b.setSectionsDrawBackground(true);
         r71 r71Var2 = this.f15867b;
-        r71Var2.f32150g3.f29505r = false;
+        r71Var2.f32152g3.f29507r = false;
         frameLayout.addView(r71Var2, gb1.g(-1.0f, -1));
         Z();
         this.fragmentView = frameLayout;
@@ -270,7 +270,7 @@ public final class v0 extends r2 implements NotificationCenter.NotificationCente
         j71 j71Var;
         if (i10 == NotificationCenter.quickRepliesUpdated) {
             r71 r71Var = this.f15867b;
-            if (r71Var != null && (j71Var = r71Var.f32150g3) != null) {
+            if (r71Var != null && (j71Var = r71Var.f32152g3) != null) {
                 j71Var.O(true);
             }
             W(true);
@@ -298,11 +298,11 @@ public final class v0 extends r2 implements NotificationCenter.NotificationCente
                     return false;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.BusinessGreetUnsavedChanges);
+                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.BusinessGreetUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new u0(this, 0));
                 alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new u0(this, 1));
-                showDialog(alertDialog$Builder.f22366a);
+                showDialog(alertDialog$Builder.f22368a);
             }
             return false;
         }

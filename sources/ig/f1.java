@@ -29,7 +29,7 @@ public final class f1 {
                 break;
             default:
                 sz szVar = (sz) this.h;
-                if (szVar.f32769t1 != null && szVar.getVisibility() == 0 && szVar.K0) {
+                if (szVar.f32772t1 != null && szVar.getVisibility() == 0 && szVar.K0) {
                     N = true;
                     break;
                 } else {

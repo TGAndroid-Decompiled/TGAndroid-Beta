@@ -149,10 +149,10 @@ public final class d2 extends lm0 {
             z15 = false;
         }
         if (z14 || z15) {
-            if (z14 && q3Var2.f24822r) {
+            if (z14 && q3Var2.f24824r) {
                 longSparseArray.remove(stickerSetCovered.set.f22054id);
                 z14 = false;
-            } else if (z15 && !q3Var2.f24822r) {
+            } else if (z15 && !q3Var2.f24824r) {
                 longSparseArray2.remove(stickerSetCovered.set.f22054id);
             }
         }
@@ -372,8 +372,8 @@ public final class d2 extends lm0 {
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         int i11;
-        int i12 = e1Var.f47738f;
-        View view = e1Var.f47735a;
+        int i12 = e1Var.f47741f;
+        View view = e1Var.f47738a;
         SparseArray sparseArray = this.f14035s;
         if (i12 != 0) {
             if (i12 != 1) {
@@ -421,8 +421,8 @@ public final class d2 extends lm0 {
 
     @Override
     public final void w(s4.e1 e1Var, int i10, List list) {
-        if (list.contains(0) && e1Var.f47738f == 3) {
-            E((q3) e1Var.f47735a, i10, true);
+        if (list.contains(0) && e1Var.f47741f == 3) {
+            E((q3) e1Var.f47738a, i10, true);
         } else {
             v(e1Var, i10);
         }

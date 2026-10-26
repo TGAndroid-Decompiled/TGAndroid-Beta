@@ -4,15 +4,15 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class u2 implements TextView.OnEditorActionListener {
-    public final int f33205a;
+    public final int f33208a;
 
     public u2(int i10) {
-        this.f33205a = i10;
+        this.f33208a = i10;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f33205a) {
+        switch (this.f33208a) {
             case 0:
                 AndroidUtilities.hideKeyboard(textView);
                 return false;

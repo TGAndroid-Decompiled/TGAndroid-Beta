@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ak implements dt {
-    public final un f37815a;
+    public final un f37818a;
 
     public ak(un unVar) {
-        this.f37815a = unVar;
+        this.f37818a = unVar;
     }
 
     @Override
@@ -44,14 +44,14 @@ public final class ak implements dt {
     @Override
     public final void L(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            un unVar = this.f37815a;
+            un unVar = this.f37818a;
             if (unVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
                 tL_inputStickerSetID.f22047id = inputStickerSet.f22047id;
-                org.telegram.ui.Components.cz0 cz0Var = new org.telegram.ui.Components.cz0(unVar.getParentActivity(), unVar, tL_inputStickerSetID, null, unVar.Y, unVar.f44385qa);
+                org.telegram.ui.Components.cz0 cz0Var = new org.telegram.ui.Components.cz0(unVar.getParentActivity(), unVar, tL_inputStickerSetID, null, unVar.Y, unVar.f44388qa);
                 cz0Var.setCalcMandatoryInsets(unVar.F9());
-                cz0Var.f27297i0 = z10;
+                cz0Var.f27299i0 = z10;
                 unVar.showDialog(cz0Var);
             }
         }
@@ -74,17 +74,17 @@ public final class ak implements dt {
 
     @Override
     public final long a() {
-        return this.f37815a.f44249f6;
+        return this.f37818a.f44252f6;
     }
 
     @Override
     public final boolean b() {
-        return this.f37815a.I6();
+        return this.f37818a.I6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f37815a.f44221d4 == 1) {
+        if (this.f37818a.f44224d4 == 1) {
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public final class ak implements dt {
 
     @Override
     public final void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f37815a.Y.a(document, str, obj, null, true, z10, i10, i11);
+        this.f37818a.Y.a(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override

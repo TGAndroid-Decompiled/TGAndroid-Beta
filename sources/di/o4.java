@@ -93,7 +93,7 @@ public final class o4 {
             if (q4Var.D1.f8874f) {
                 return String.format(Locale.US, "https://t.me/%1$s/s/live", UserObject.getPublicUsername(user));
             }
-            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(q4Var.D1.f8871a.f22264id));
+            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(q4Var.D1.f8871a.f22266id));
         }
         TLRPC.Chat chat = MessagesController.getInstance(q4Var.f9021r2).getChat(Long.valueOf(-q4Var.f9016q1));
         if (ChatObject.getPublicUsername(chat) == null) {
@@ -102,7 +102,7 @@ public final class o4 {
         if (q4Var.D1.f8874f) {
             return String.format(Locale.US, "https://t.me/%1$s/s/live", ChatObject.getPublicUsername(chat));
         }
-        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(q4Var.D1.f8871a.f22264id));
+        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(q4Var.D1.f8871a.f22266id));
     }
 
     public final String f() {

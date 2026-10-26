@@ -104,7 +104,7 @@ public final class u4 extends z implements p6, r9, k0 {
         this.T = -1;
         this.U = new org.telegram.ui.Components.h6(this, 0L, 320L, ds.h);
         this.f17525j0 = new ArrayList();
-        this.f17526k0 = f7.f22626b;
+        this.f17526k0 = f7.f22628b;
         this.f17527l0 = new Path();
         this.f17528n = u6Var;
         setWillNotDraw(false);
@@ -138,7 +138,7 @@ public final class u4 extends z implements p6, r9, k0 {
             return null;
         }
         xh.f fVar = this.M;
-        if (fVar != null && fVar.f51852i) {
+        if (fVar != null && fVar.f51855i) {
             this.M = null;
         }
         if (this.M == null) {
@@ -189,7 +189,7 @@ public final class u4 extends z implements p6, r9, k0 {
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(y6.Gd));
-        hashSet.add(Integer.valueOf(y6.f23680uf));
+        hashSet.add(Integer.valueOf(y6.f23682uf));
     }
 
     @Override
@@ -207,15 +207,15 @@ public final class u4 extends z implements p6, r9, k0 {
         ArrayList arrayList = this.f17525j0;
         u6 u6Var = this.f17528n;
         int i10 = this.f17526k0;
-        int i11 = f7.f22626b;
+        int i11 = f7.f22628b;
         if (i10 != i11) {
             this.f17526k0 = i11;
             try {
-                int w02 = y6.w0(y6.f23354d6, u6Var);
+                int w02 = y6.w0(y6.f23356d6, u6Var);
                 if (getBackground() instanceof y1) {
                     ((y1) getBackground()).a(w02);
                 }
-                int v = y6.v(w02, y6.w0(y6.f23446i6, u6Var));
+                int v = y6.v(w02, y6.w0(y6.f23448i6, u6Var));
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     Drawable drawable = (Drawable) arrayList.get(i12);
                     if (drawable instanceof RippleDrawable) {
@@ -281,8 +281,8 @@ public final class u4 extends z implements p6, r9, k0 {
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
             u6 u6Var = this.f17528n;
             f7.t(imageView, i10, u6Var, mode);
-            int i11 = y6.f23354d6;
-            org.telegram.ui.Cells.y a02 = y6.a0(y6.w0(i11, u6Var), y6.v(y6.w0(i11, u6Var), y6.w0(y6.f23446i6, u6Var)), 20, 20);
+            int i11 = y6.f23356d6;
+            org.telegram.ui.Cells.y a02 = y6.a0(y6.w0(i11, u6Var), y6.v(y6.w0(i11, u6Var), y6.w0(y6.f23448i6, u6Var)), 20, 20);
             this.f17525j0.add(a02);
             imageView.setBackground(new a2(a02));
         }
@@ -678,7 +678,7 @@ public final class u4 extends z implements p6, r9, k0 {
         int paddingTop = getPaddingTop();
         i(canvas);
         org.telegram.ui.Components.h6 h6Var = this.U;
-        float f12 = h6Var.f28809c;
+        float f12 = h6Var.f28811c;
         ArrayList arrayList = this.f17533y;
         if (arrayList.size() >= 2 && f12 > 0.001f) {
             if (m0 == null) {
@@ -718,7 +718,7 @@ public final class u4 extends z implements p6, r9, k0 {
         if (o3Var != null && (textSelectionHelper = o3Var.f17391a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f25408p0 && R <= textSelectionHelper.f25411s0) {
+            if (R >= 0 && R > textSelectionHelper.f25410p0 && R <= textSelectionHelper.f25413s0) {
                 canvas.drawRect(getPaddingLeft(), paddingTop, getWidth() - getPaddingRight(), paddingTop + this.P, this.f17530s);
             }
         }
@@ -752,7 +752,7 @@ public final class u4 extends z implements p6, r9, k0 {
                 h(canvas, imageView2);
             }
         }
-        if (h6Var.f28812i) {
+        if (h6Var.f28814i) {
             requestLayout();
         }
     }
@@ -846,7 +846,7 @@ public final class u4 extends z implements p6, r9, k0 {
             z10 = false;
         }
         int i11 = -1;
-        if (k() && !this.U.f28812i) {
+        if (k() && !this.U.f28814i) {
             ArrayList arrayList = this.f17533y;
             if (arrayList.size() >= 2) {
                 if (actionMasked == 0) {
@@ -999,7 +999,7 @@ public final class u4 extends z implements p6, r9, k0 {
         int i10 = y6.Gd;
         u6 u6Var = this.f17528n;
         this.f17529r.setColor(y6.w0(i10, u6Var));
-        this.f17530s.setColor(y6.w0(y6.f23680uf, u6Var));
+        this.f17530s.setColor(y6.w0(y6.f23682uf, u6Var));
         j0 j0Var = this.v;
         if (j0Var != null) {
             j0Var.a();

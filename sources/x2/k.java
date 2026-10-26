@@ -8,15 +8,15 @@ import f9.n1;
 import f9.w;
 public final class k extends m implements Comparable {
     public final int e;
-    public final boolean f51326f;
+    public final boolean f51329f;
     public final boolean h;
-    public final boolean f51327n;
-    public final int f51328r;
-    public final int f51329s;
+    public final boolean f51330n;
+    public final int f51331r;
+    public final int f51332s;
     public final int v;
-    public final int f51330w;
-    public final int f51331x;
-    public final boolean f51332y;
+    public final int f51333w;
+    public final int f51334x;
+    public final boolean f51335y;
 
     public k(int i10, q1 q1Var, int i11, j jVar, int i12, String str, String str2) {
         super(i10, q1Var, i11);
@@ -30,7 +30,7 @@ public final class k extends m implements Comparable {
         boolean z13;
         boolean z14;
         int i15 = 0;
-        this.f51326f = h0.e(i12, false);
+        this.f51329f = h0.e(i12, false);
         int i16 = this.d.e;
         int i17 = jVar.C;
         i0 i0Var2 = jVar.f3508y;
@@ -46,7 +46,7 @@ public final class k extends m implements Comparable {
         } else {
             z11 = false;
         }
-        this.f51327n = z11;
+        this.f51330n = z11;
         if (str2 != null) {
             i0Var = i0.y(str2);
         } else if (i0Var2.isEmpty()) {
@@ -68,15 +68,15 @@ public final class k extends m implements Comparable {
                 break;
             }
         }
-        this.f51328r = i19;
-        this.f51329s = i13;
+        this.f51331r = i19;
+        this.f51332s = i13;
         if (str2 != null) {
             i14 = 1088;
         } else {
             i14 = jVar.A;
         }
         int i20 = this.d.f3574f;
-        f9.q1 q1Var2 = o.f51343l;
+        f9.q1 q1Var2 = o.f51346l;
         if (i20 != 0 && i20 == i14) {
             bitCount = Integer.MAX_VALUE;
         } else {
@@ -89,17 +89,17 @@ public final class k extends m implements Comparable {
         } else {
             z12 = false;
         }
-        this.f51332y = z12;
+        this.f51335y = z12;
         int c10 = o.c(xVar, jVar.f3509z);
-        this.f51330w = c10;
+        this.f51333w = c10;
         if (o.l(str) == null) {
             z13 = true;
         } else {
             z13 = false;
         }
         int i21 = o.i(this.d, str, z13);
-        this.f51331x = i21;
-        if (i13 <= 0 && ((!i0Var2.isEmpty() || bitCount <= 0) && ((!i0Var2.isEmpty() || c10 == Integer.MAX_VALUE) && !this.h && ((!this.f51327n || i21 <= 0) && !jVar.f3507x)))) {
+        this.f51334x = i21;
+        if (i13 <= 0 && ((!i0Var2.isEmpty() || bitCount <= 0) && ((!i0Var2.isEmpty() || c10 == Integer.MAX_VALUE) && !this.h && ((!this.f51330n || i21 <= 0) && !jVar.f3507x)))) {
             z14 = false;
         } else {
             z14 = true;
@@ -123,26 +123,26 @@ public final class k extends m implements Comparable {
 
     @Override
     public final int compareTo(k kVar) {
-        w c10 = w.f10352a.c(this.f51326f, kVar.f51326f);
-        Integer valueOf = Integer.valueOf(this.f51328r);
-        Integer valueOf2 = Integer.valueOf(kVar.f51328r);
+        w c10 = w.f10352a.c(this.f51329f, kVar.f51329f);
+        Integer valueOf = Integer.valueOf(this.f51331r);
+        Integer valueOf2 = Integer.valueOf(kVar.f51331r);
         n1 n1Var = n1.f10307b;
         n1 n1Var2 = n1.f10308c;
         w b10 = c10.b(valueOf, valueOf2, n1Var2);
-        int i10 = kVar.f51329s;
-        int i11 = this.f51329s;
+        int i10 = kVar.f51332s;
+        int i11 = this.f51332s;
         w a2 = b10.a(i11, i10);
         int i12 = kVar.v;
         int i13 = this.v;
-        w c11 = a2.a(i13, i12).b(Integer.valueOf(this.f51330w), Integer.valueOf(kVar.f51330w), n1Var2).c(this.h, kVar.h);
-        Boolean valueOf3 = Boolean.valueOf(this.f51327n);
-        Boolean valueOf4 = Boolean.valueOf(kVar.f51327n);
+        w c11 = a2.a(i13, i12).b(Integer.valueOf(this.f51333w), Integer.valueOf(kVar.f51333w), n1Var2).c(this.h, kVar.h);
+        Boolean valueOf3 = Boolean.valueOf(this.f51330n);
+        Boolean valueOf4 = Boolean.valueOf(kVar.f51330n);
         if (i11 != 0) {
             n1Var = n1Var2;
         }
-        w a10 = c11.b(valueOf3, valueOf4, n1Var).a(this.f51331x, kVar.f51331x);
+        w a10 = c11.b(valueOf3, valueOf4, n1Var).a(this.f51334x, kVar.f51334x);
         if (i13 == 0) {
-            a10 = a10.d(this.f51332y, kVar.f51332y);
+            a10 = a10.d(this.f51335y, kVar.f51335y);
         }
         return a10.e();
     }

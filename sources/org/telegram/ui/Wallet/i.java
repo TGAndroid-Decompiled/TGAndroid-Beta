@@ -6,36 +6,36 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.zc1;
 public final class i implements Utilities.Callback2 {
-    public final int f36658a;
-    public final l0 f36659b;
+    public final int f36661a;
+    public final l0 f36662b;
 
     public i(l0 l0Var, int i10) {
-        this.f36658a = i10;
-        this.f36659b = l0Var;
+        this.f36661a = i10;
+        this.f36662b = l0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         String str;
         String str2;
-        switch (this.f36658a) {
+        switch (this.f36661a) {
             case 0:
-                l0 l0Var = this.f36659b;
+                l0 l0Var = this.f36662b;
                 TL_wallet.existingBalance existingbalance = (TL_wallet.existingBalance) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 l0Var.C = -1;
                 if (existingbalance != null) {
-                    l0Var.f36809i = Boolean.valueOf(existingbalance.has_balance);
-                    l0Var.f36810j = existingbalance.url;
+                    l0Var.f36812i = Boolean.valueOf(existingbalance.has_balance);
+                    l0Var.f36813j = existingbalance.url;
                 }
-                Boolean bool = l0Var.f36809i;
-                if (bool != null && bool.booleanValue() && !TextUtils.isEmpty(l0Var.f36810j)) {
+                Boolean bool = l0Var.f36812i;
+                if (bool != null && bool.booleanValue() && !TextUtils.isEmpty(l0Var.f36813j)) {
                     l0Var.J();
                     return;
                 }
                 return;
             case 1:
-                l0 l0Var2 = this.f36659b;
+                l0 l0Var2 = this.f36662b;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 l0Var2.A = -1;
@@ -53,13 +53,13 @@ public final class i implements Utilities.Callback2 {
                 long currentTimeMillis = System.currentTimeMillis();
                 if (walletState instanceof TL_wallet.TL_walletState) {
                     TL_wallet.WalletState walletState2 = l0Var2.e;
-                    if ((walletState2 instanceof TL_wallet.TL_walletState) && l0Var2.f36812l) {
+                    if ((walletState2 instanceof TL_wallet.TL_walletState) && l0Var2.f36815l) {
                         TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) walletState2;
                         TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) walletState;
-                        if (currentTimeMillis - l0Var2.f36811k < 30000) {
+                        if (currentTimeMillis - l0Var2.f36814k < 30000) {
                             tL_walletState2.balance = tL_walletState.balance;
                         } else {
-                            l0Var2.f36812l = false;
+                            l0Var2.f36815l = false;
                         }
                         l0Var2.e = walletState;
                         l0Var2.L();
@@ -67,13 +67,13 @@ public final class i implements Utilities.Callback2 {
                         return;
                     }
                 }
-                l0Var2.f36812l = false;
+                l0Var2.f36815l = false;
                 l0Var2.e = walletState;
                 l0Var2.L();
                 l0Var2.J();
                 return;
             default:
-                l0 l0Var3 = this.f36659b;
+                l0 l0Var3 = this.f36662b;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 l0Var3.B = -1;

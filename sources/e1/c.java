@@ -393,7 +393,7 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
                         qVar.U(false);
                         qVar.f13221o0.i(LocaleController.formatString(R.string.AgentConnectProvider, agentprovider.title), false, true);
                         qVar.V();
-                        qVar.f13214g0.f32150g3.O(false);
+                        qVar.f13214g0.f32152g3.O(false);
                         qVar.f13212e0.b(1, true);
                         AndroidUtilities.runOnUIThread(new m(qVar, 1), 250L);
                         return;

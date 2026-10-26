@@ -36,7 +36,7 @@ public final class g extends lm0 {
     public final boolean D(e1 e1Var) {
         switch (this.f19402c) {
             case 0:
-                if (j.d(3)[e1Var.f47738f] == 1) {
+                if (j.d(3)[e1Var.f47741f] == 1) {
                     return true;
                 }
                 return false;
@@ -59,7 +59,7 @@ public final class g extends lm0 {
     public long i(int i10) {
         switch (this.f19402c) {
             case 1:
-                return ((q91) ((t91) this.e).h.get(i10)).f31862a;
+                return ((q91) ((t91) this.e).h.get(i10)).f31864a;
             default:
                 return super.i(i10);
         }
@@ -81,7 +81,7 @@ public final class g extends lm0 {
         s91 s91Var;
         switch (this.f19402c) {
             case 0:
-                View view = e1Var.f47735a;
+                View view = e1Var.f47738a;
                 a aVar = (a) ((i) this.e).E.get(i10);
                 int i11 = aVar.f19388b;
                 u6 u6Var = aVar.f19390f;
@@ -107,18 +107,18 @@ public final class g extends lm0 {
                     return;
                 }
                 y1 y1Var = (y1) view;
-                y1Var.setTextColor(y6.x0(null, y6.f23462j5, false));
+                y1Var.setTextColor(y6.x0(null, y6.f23464j5, false));
                 y1Var.a(0, charSequence);
                 return;
             default:
-                r91 r91Var = (r91) e1Var.f47735a;
+                r91 r91Var = (r91) e1Var.f47738a;
                 t91 t91Var = (t91) this.e;
                 q91 q91Var = (q91) t91Var.h.get(i10);
-                r91Var.f32178a = q91Var;
-                r91Var.setContentDescription(q91Var.f31863b);
+                r91Var.f32180a = q91Var;
+                r91Var.setContentDescription(q91Var.f31865b);
                 r91Var.setAlpha(1.0f);
                 r91Var.requestLayout();
-                if (t91Var.m0 && (s91Var = t91Var.f32945y) != null && ((jg.i) s91Var).b0(i10)) {
+                if (t91Var.m0 && (s91Var = t91Var.f32948y) != null && ((jg.i) s91Var).b0(i10)) {
                     z10 = true;
                 } else {
                     z10 = false;

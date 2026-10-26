@@ -40,11 +40,11 @@ public final class z1 extends v1 {
         n1Var.setOnItemClickListener(new ai.k(this, 9));
         n1Var.setOnScrollListener(new ai.b(this, 10));
         s4.l lVar = new s4.l();
-        lVar.f47800c = 220L;
+        lVar.f47803c = 220L;
         lVar.e = 220L;
-        lVar.f47801f = 160L;
-        lVar.f47802g = 160L;
-        lVar.f47803i = ds.f27585g;
+        lVar.f47804f = 160L;
+        lVar.f47805g = 160L;
+        lVar.f47806i = ds.f27587g;
         n1Var.setItemAnimator(lVar);
         addView(n1Var, gb1.g(-1.0f, -1));
         u6Var = ((org.telegram.ui.ActionBar.k3) l2Var).resourcesProvider;
@@ -95,7 +95,7 @@ public final class z1 extends v1 {
                 e2Var.K1(l2Var.f11157c);
                 f2Var.h.I1();
                 if (f2Var.h.getSelectedCategory() != null) {
-                    y1Var.H = f2Var.h.getSelectedCategory().f34842a;
+                    y1Var.H = f2Var.h.getSelectedCategory().f34845a;
                     di.s8 s8Var = y1Var.M;
                     AndroidUtilities.cancelRunOnUIThread(s8Var);
                     AndroidUtilities.runOnUIThread(s8Var);

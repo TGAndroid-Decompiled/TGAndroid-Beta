@@ -20,7 +20,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public class r6 extends Drawable {
-    public static final LinearInterpolator f32116c0 = new LinearInterpolator();
+    public static final LinearInterpolator f32118c0 = new LinearInterpolator();
     public float A;
     public int B;
     public final Rect C;
@@ -47,34 +47,34 @@ public class r6 extends Drawable {
     public int X;
     public ValueAnimator Y;
     public int Z;
-    public final TextPaint f32117a;
-    public ColorFilter f32118a0;
-    public int f32119b;
-    public Runnable f32120b0;
-    public boolean f32121c;
+    public final TextPaint f32119a;
+    public ColorFilter f32120a0;
+    public int f32121b;
+    public Runnable f32122b0;
+    public boolean f32123c;
     public float d;
     public float e;
-    public float f32122f;
-    public float f32123g;
+    public float f32124f;
+    public float f32125g;
     public o6[] h;
-    public CharSequence f32124i;
-    public float f32125j;
-    public float f32126k;
-    public float f32127l;
-    public float f32128m;
-    public o6[] f32129n;
-    public CharSequence f32130o;
-    public int f32131p;
-    public float f32132q;
-    public float f32133r;
-    public boolean f32134s;
-    public ValueAnimator f32135t;
-    public CharSequence f32136u;
+    public CharSequence f32126i;
+    public float f32127j;
+    public float f32128k;
+    public float f32129l;
+    public float f32130m;
+    public o6[] f32131n;
+    public CharSequence f32132o;
+    public int f32133p;
+    public float f32134q;
+    public float f32135r;
+    public boolean f32136s;
+    public ValueAnimator f32137t;
+    public CharSequence f32138u;
     public boolean v;
-    public long f32137w;
-    public TimeInterpolator f32138x;
-    public float f32139y;
-    public float f32140z;
+    public long f32139w;
+    public TimeInterpolator f32140x;
+    public float f32141y;
+    public float f32142z;
 
     public r6(boolean z10, boolean z11, boolean z12) {
         this(z10, z11, z12, false, false);
@@ -85,34 +85,34 @@ public class r6 extends Drawable {
     }
 
     public final void a() {
-        ValueAnimator valueAnimator = this.f32135t;
+        ValueAnimator valueAnimator = this.f32137t;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
     }
 
     public final void b() {
-        if (this.f32129n != null) {
+        if (this.f32131n != null) {
             int i10 = 0;
             while (true) {
-                o6[] o6VarArr = this.f32129n;
+                o6[] o6VarArr = this.f32131n;
                 if (i10 >= o6VarArr.length) {
                     break;
                 }
                 o6 o6Var = o6VarArr[i10];
-                r6 r6Var = o6Var.f31164i;
+                r6 r6Var = o6Var.f31166i;
                 if (r6Var.getCallback() instanceof View) {
-                    c6.release((View) r6Var.getCallback(), o6Var.f31159a);
+                    c6.release((View) r6Var.getCallback(), o6Var.f31161a);
                 }
                 i10++;
             }
         }
-        this.f32129n = null;
+        this.f32131n = null;
     }
 
     public final float c() {
-        if (this.h != null && this.f32129n != null) {
-            return AndroidUtilities.lerp(this.f32125j, this.d, this.f32133r);
+        if (this.h != null && this.f32131n != null) {
+            return AndroidUtilities.lerp(this.f32127j, this.d, this.f32135r);
         }
         return this.d;
     }
@@ -127,21 +127,21 @@ public class r6 extends Drawable {
     }
 
     public final float e() {
-        return Math.max(this.d, this.f32125j);
+        return Math.max(this.d, this.f32127j);
     }
 
     public final void f(o6 o6Var) {
-        this.f32122f = Math.max(this.f32122f, o6Var.f31163g);
-        float max = Math.max(this.f32123g, o6Var.h);
-        this.f32123g = max;
-        this.e = this.f32122f + max;
+        this.f32124f = Math.max(this.f32124f, o6Var.f31165g);
+        float max = Math.max(this.f32125g, o6Var.h);
+        this.f32125g = max;
+        this.e = this.f32124f + max;
     }
 
     public final void g(o6 o6Var) {
-        this.f32127l = Math.max(this.f32127l, o6Var.f31163g);
-        float max = Math.max(this.f32128m, o6Var.h);
-        this.f32128m = max;
-        this.f32126k = this.f32127l + max;
+        this.f32129l = Math.max(this.f32129l, o6Var.f31165g);
+        float max = Math.max(this.f32130m, o6Var.h);
+        this.f32130m = max;
+        this.f32128k = this.f32129l + max;
     }
 
     @Override
@@ -155,7 +155,7 @@ public class r6 extends Drawable {
     }
 
     public final boolean h() {
-        ValueAnimator valueAnimator = this.f32135t;
+        ValueAnimator valueAnimator = this.f32137t;
         if (valueAnimator != null && valueAnimator.isRunning()) {
             return true;
         }
@@ -164,7 +164,7 @@ public class r6 extends Drawable {
 
     public final float i() {
         float f7;
-        CharSequence charSequence = this.f32130o;
+        CharSequence charSequence = this.f32132o;
         float f10 = 0.0f;
         float f11 = 1.0f;
         if (charSequence != null && charSequence.length() > 0) {
@@ -172,12 +172,12 @@ public class r6 extends Drawable {
         } else {
             f7 = 0.0f;
         }
-        CharSequence charSequence2 = this.f32124i;
+        CharSequence charSequence2 = this.f32126i;
         if (charSequence2 != null && charSequence2.length() > 0) {
             f10 = 1.0f;
         }
-        if (this.f32130o != null) {
-            f11 = this.f32133r;
+        if (this.f32132o != null) {
+            f11 = this.f32135r;
         }
         return AndroidUtilities.lerp(f7, f10, f11);
     }
@@ -187,7 +187,7 @@ public class r6 extends Drawable {
             Point point = AndroidUtilities.displaySize;
             i10 = Math.min(point.x, point.y);
         }
-        return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.f32117a, i10).setMaxLines(1).setLineSpacing(0.0f, 1.0f).setAlignment(Layout.Alignment.ALIGN_NORMAL).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i10).setIncludePad(this.S).build();
+        return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.f32119a, i10).setMaxLines(1).setLineSpacing(0.0f, 1.0f).setAlignment(Layout.Alignment.ALIGN_NORMAL).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i10).setIncludePad(this.S).build();
     }
 
     public final void k(p6 p6Var, CharSequence charSequence, int i10, int i11) {
@@ -204,10 +204,10 @@ public class r6 extends Drawable {
     }
 
     public final void m(float f7, long j10, float f10, TimeInterpolator timeInterpolator) {
-        this.f32140z = f7;
-        this.f32137w = j10;
-        this.f32139y = f10;
-        this.f32138x = timeInterpolator;
+        this.f32142z = f7;
+        this.f32139w = j10;
+        this.f32141y = f10;
+        this.f32140x = timeInterpolator;
     }
 
     public final void n(float f7, long j10, TimeInterpolator timeInterpolator) {
@@ -245,7 +245,7 @@ public class r6 extends Drawable {
         this.V = f7;
         this.W = f10;
         this.X = i10;
-        this.f32117a.setShadowLayer(f7, 0.0f, f10, i10);
+        this.f32119a.setShadowLayer(f7, 0.0f, f10, i10);
     }
 
     @Override
@@ -261,7 +261,7 @@ public class r6 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f32117a.setColorFilter(colorFilter);
+        this.f32119a.setColorFilter(colorFilter);
     }
 
     public final void t(java.lang.CharSequence r21, boolean r22, boolean r23) {
@@ -269,7 +269,7 @@ public class r6 extends Drawable {
     }
 
     public final void u(int i10) {
-        this.f32117a.setColor(i10);
+        this.f32119a.setColor(i10);
         this.B = Color.alpha(i10);
     }
 
@@ -283,7 +283,7 @@ public class r6 extends Drawable {
             u(i10);
             return;
         }
-        int color = this.f32117a.getColor();
+        int color = this.f32119a.getColor();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.Y = ofFloat;
         ofFloat.addUpdateListener(new fi.t4(this, color, i10, 2));
@@ -294,7 +294,7 @@ public class r6 extends Drawable {
     }
 
     public final void w(float f7) {
-        TextPaint textPaint = this.f32117a;
+        TextPaint textPaint = this.f32119a;
         float textSize = textPaint.getTextSize();
         textPaint.setTextSize(f7);
         if (Math.abs(textSize - f7) > 0.5f) {
@@ -305,8 +305,8 @@ public class r6 extends Drawable {
             int i11 = 0;
             if (this.h != null) {
                 this.d = 0.0f;
-                this.f32123g = 0.0f;
-                this.f32122f = 0.0f;
+                this.f32125g = 0.0f;
+                this.f32124f = 0.0f;
                 this.e = 0.0f;
                 int i12 = 0;
                 while (true) {
@@ -314,34 +314,34 @@ public class r6 extends Drawable {
                     if (i12 >= o6VarArr.length) {
                         break;
                     }
-                    StaticLayout j10 = j(i10 - ((int) Math.ceil(Math.min(this.d, this.f32125j))), o6VarArr[i12].f31160b.getText());
+                    StaticLayout j10 = j(i10 - ((int) Math.ceil(Math.min(this.d, this.f32127j))), o6VarArr[i12].f31162b.getText());
                     o6[] o6VarArr2 = this.h;
                     o6 o6Var = o6VarArr2[i12];
-                    o6VarArr2[i12] = new o6(this, j10, o6Var.f31161c, o6Var.d);
+                    o6VarArr2[i12] = new o6(this, j10, o6Var.f31163c, o6Var.d);
                     float f10 = this.d;
                     o6 o6Var2 = this.h[i12];
-                    this.d = f10 + o6Var2.f31162f;
+                    this.d = f10 + o6Var2.f31164f;
                     f(o6Var2);
                     i12++;
                 }
             }
-            if (this.f32129n != null) {
-                this.f32125j = 0.0f;
-                this.f32128m = 0.0f;
-                this.f32127l = 0.0f;
-                this.f32126k = 0.0f;
+            if (this.f32131n != null) {
+                this.f32127j = 0.0f;
+                this.f32130m = 0.0f;
+                this.f32129l = 0.0f;
+                this.f32128k = 0.0f;
                 while (true) {
-                    o6[] o6VarArr3 = this.f32129n;
+                    o6[] o6VarArr3 = this.f32131n;
                     if (i11 >= o6VarArr3.length) {
                         break;
                     }
-                    StaticLayout j11 = j(i10 - ((int) Math.ceil(Math.min(this.d, this.f32125j))), o6VarArr3[i11].f31160b.getText());
-                    o6[] o6VarArr4 = this.f32129n;
+                    StaticLayout j11 = j(i10 - ((int) Math.ceil(Math.min(this.d, this.f32127j))), o6VarArr3[i11].f31162b.getText());
+                    o6[] o6VarArr4 = this.f32131n;
                     o6 o6Var3 = o6VarArr4[i11];
-                    o6VarArr4[i11] = new o6(this, j11, o6Var3.f31161c, o6Var3.d);
-                    float f11 = this.f32125j;
-                    o6 o6Var4 = this.f32129n[i11];
-                    this.f32125j = f11 + o6Var4.f31162f;
+                    o6VarArr4[i11] = new o6(this, j11, o6Var3.f31163c, o6Var3.d);
+                    float f11 = this.f32127j;
+                    o6 o6Var4 = this.f32131n[i11];
+                    this.f32127j = f11 + o6Var4.f31164f;
                     g(o6Var4);
                     i11++;
                 }
@@ -351,21 +351,21 @@ public class r6 extends Drawable {
     }
 
     public final void x(Typeface typeface) {
-        this.f32117a.setTypeface(typeface);
+        this.f32119a.setTypeface(typeface);
     }
 
     public r6(boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        this.f32117a = new TextPaint(1);
-        this.f32119b = 0;
-        this.f32121c = false;
-        this.f32131p = 0;
-        this.f32132q = 0.0f;
-        this.f32133r = 0.0f;
-        this.f32134s = true;
-        this.f32137w = 320L;
-        this.f32138x = ds.h;
-        this.f32139y = -1.0f;
-        this.f32140z = 0.3f;
+        this.f32119a = new TextPaint(1);
+        this.f32121b = 0;
+        this.f32123c = false;
+        this.f32133p = 0;
+        this.f32134q = 0.0f;
+        this.f32135r = 0.0f;
+        this.f32136s = true;
+        this.f32139w = 320L;
+        this.f32140x = ds.h;
+        this.f32141y = -1.0f;
+        this.f32142z = 0.3f;
         this.A = 0.0f;
         this.B = 255;
         this.C = new Rect();

@@ -9,28 +9,28 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.xj0;
 public class z extends LinearLayout {
-    public boolean f23775a;
-    public final k f23776b;
-    public boolean f23777c;
+    public boolean f23777a;
+    public final k f23778b;
+    public boolean f23779c;
     public boolean d;
     public ArrayList e;
-    public Runnable f23778f;
+    public Runnable f23780f;
 
     public z(Context context, k kVar) {
         super(context);
-        this.f23775a = true;
+        this.f23777a = true;
         setOrientation(0);
-        this.f23776b = kVar;
+        this.f23778b = kVar;
     }
 
     public final w0 a(int i10, int i11) {
         int i12;
-        boolean z10 = this.f23777c;
-        k kVar = this.f23776b;
+        boolean z10 = this.f23779c;
+        k kVar = this.f23778b;
         if (z10) {
-            i12 = kVar.f22778q0;
+            i12 = kVar.f22780q0;
         } else {
-            i12 = kVar.f22776p0;
+            i12 = kVar.f22778p0;
         }
         return b(i10, i11, null, i12, null, AndroidUtilities.dp(48.0f), null, null);
     }
@@ -45,36 +45,36 @@ public class z extends LinearLayout {
 
     public final w0 c(int i10, int i11, u6 u6Var) {
         int i12;
-        boolean z10 = this.f23777c;
-        k kVar = this.f23776b;
+        boolean z10 = this.f23779c;
+        k kVar = this.f23778b;
         if (z10) {
-            i12 = kVar.f22778q0;
+            i12 = kVar.f22780q0;
         } else {
-            i12 = kVar.f22776p0;
+            i12 = kVar.f22778p0;
         }
         return b(i10, i11, null, i12, null, AndroidUtilities.dp(48.0f), null, u6Var);
     }
 
     public final w0 d(int i10, Drawable drawable) {
         int i11;
-        boolean z10 = this.f23777c;
-        k kVar = this.f23776b;
+        boolean z10 = this.f23779c;
+        k kVar = this.f23778b;
         if (z10) {
-            i11 = kVar.f22778q0;
+            i11 = kVar.f22780q0;
         } else {
-            i11 = kVar.f22776p0;
+            i11 = kVar.f22778p0;
         }
         return b(i10, 0, null, i11, drawable, AndroidUtilities.dp(48.0f), null, null);
     }
 
     public final w0 e(int i10, String str) {
         int i11;
-        boolean z10 = this.f23777c;
-        k kVar = this.f23776b;
+        boolean z10 = this.f23779c;
+        k kVar = this.f23778b;
         if (z10) {
-            i11 = kVar.f22778q0;
+            i11 = kVar.f22780q0;
         } else {
-            i11 = kVar.f22776p0;
+            i11 = kVar.f22778p0;
         }
         return b(i10, 0, str, i11, null, 0, str, null);
     }
@@ -84,12 +84,12 @@ public class z extends LinearLayout {
         boolean z10;
         int i16;
         Context context = getContext();
-        boolean z11 = this.f23777c;
-        k kVar = this.f23776b;
+        boolean z11 = this.f23779c;
+        k kVar = this.f23778b;
         if (z11) {
-            i15 = kVar.f22784s0;
+            i15 = kVar.f22786s0;
         } else {
-            i15 = kVar.f22781r0;
+            i15 = kVar.f22783r0;
         }
         int i17 = i15;
         if (charSequence != null) {
@@ -114,12 +114,12 @@ public class z extends LinearLayout {
         } else {
             if (drawable != null) {
                 if (drawable instanceof xj0) {
-                    w0Var.f23202x.setAnimation((xj0) drawable);
+                    w0Var.f23204x.setAnimation((xj0) drawable);
                 } else {
-                    w0Var.f23202x.setImageDrawable(drawable);
+                    w0Var.f23204x.setImageDrawable(drawable);
                 }
             } else if (i12 != 0) {
-                w0Var.f23202x.setImageResource(i12);
+                w0Var.f23204x.setImageResource(i12);
             }
             addView(w0Var, i10, new LinearLayout.LayoutParams(i14, -1));
         }
@@ -132,12 +132,12 @@ public class z extends LinearLayout {
 
     public final w0 g(int i10, int i11, int i12) {
         int i13;
-        boolean z10 = this.f23777c;
-        k kVar = this.f23776b;
+        boolean z10 = this.f23779c;
+        k kVar = this.f23778b;
         if (z10) {
-            i13 = kVar.f22778q0;
+            i13 = kVar.f22780q0;
         } else {
-            i13 = kVar.f22776p0;
+            i13 = kVar.f22778p0;
         }
         return b(i10, i11, null, i13, null, i12, null, null);
     }
@@ -219,12 +219,12 @@ public class z extends LinearLayout {
 
     public final w0 h(int i10, int i11, String str, int i12) {
         int i13;
-        boolean z10 = this.f23777c;
-        k kVar = this.f23776b;
+        boolean z10 = this.f23779c;
+        k kVar = this.f23778b;
         if (z10) {
-            i13 = kVar.f22778q0;
+            i13 = kVar.f22780q0;
         } else {
-            i13 = kVar.f22776p0;
+            i13 = kVar.f22778p0;
         }
         return b(i10, i11, null, i13, null, i12, str, null);
     }
@@ -238,7 +238,7 @@ public class z extends LinearLayout {
                 if (w0Var.u() && w0Var.v()) {
                     s0 s0Var = w0Var.H;
                     if (s0Var == null || s0Var.b()) {
-                        this.f23776b.t(false);
+                        this.f23778b.t(false);
                         w0Var.T(z10);
                         return;
                     }
@@ -274,32 +274,32 @@ public class z extends LinearLayout {
         }
         this.e.add(Integer.valueOf(i10));
         ?? obj = new Object();
-        obj.f23274i = 1.0f;
-        obj.f23277l = 8;
-        obj.f23269a = this;
-        obj.f23270b = i10;
-        obj.f23271c = i11;
+        obj.f23276i = 1.0f;
+        obj.f23279l = 8;
+        obj.f23271a = this;
+        obj.f23272b = i10;
+        obj.f23273c = i11;
         obj.e = i12;
-        obj.f23272f = drawable;
-        obj.f23273g = i13;
+        obj.f23274f = drawable;
+        obj.f23275g = i13;
         obj.h = u6Var;
         return obj;
     }
 
     public final y m(Drawable drawable, u6 u6Var) {
         int i10;
-        boolean z10 = this.f23777c;
-        k kVar = this.f23776b;
+        boolean z10 = this.f23779c;
+        k kVar = this.f23778b;
         if (z10) {
-            i10 = kVar.f22778q0;
+            i10 = kVar.f22780q0;
         } else {
-            i10 = kVar.f22776p0;
+            i10 = kVar.f22778p0;
         }
         return l(14, 0, i10, drawable, AndroidUtilities.dp(48.0f), u6Var);
     }
 
     public final void n(int i10) {
-        j jVar = this.f23776b.f22788u0;
+        j jVar = this.f23778b.f22790u0;
         if (jVar != null) {
             jVar.b(i10);
         }
@@ -322,11 +322,11 @@ public class z extends LinearLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        Runnable runnable = this.f23778f;
+        Runnable runnable = this.f23780f;
         if (runnable != null) {
             runnable.run();
         }
-        k kVar = this.f23776b;
+        k kVar = this.f23778b;
         if (kVar != null) {
             kVar.f();
         }
@@ -374,12 +374,12 @@ public class z extends LinearLayout {
         for (int i11 = 0; i11 < childCount; i11++) {
             View childAt = getChildAt(i11);
             if (childAt instanceof w0) {
-                boolean z10 = this.f23777c;
-                k kVar = this.f23776b;
+                boolean z10 = this.f23779c;
+                k kVar = this.f23778b;
                 if (z10) {
-                    i10 = kVar.f22778q0;
+                    i10 = kVar.f22780q0;
                 } else {
-                    i10 = kVar.f22776p0;
+                    i10 = kVar.f22778p0;
                 }
                 childAt.setBackgroundDrawable(y6.g0(i10, 1, -1));
             }
@@ -393,12 +393,12 @@ public class z extends LinearLayout {
             View childAt = getChildAt(i11);
             if (childAt instanceof w0) {
                 w0 w0Var = (w0) childAt;
-                boolean z10 = this.f23777c;
-                k kVar = this.f23776b;
+                boolean z10 = this.f23779c;
+                k kVar = this.f23778b;
                 if (z10) {
-                    i10 = kVar.f22784s0;
+                    i10 = kVar.f22786s0;
                 } else {
-                    i10 = kVar.f22781r0;
+                    i10 = kVar.f22783r0;
                 }
                 w0Var.setIconColor(i10);
             }
@@ -421,10 +421,10 @@ public class z extends LinearLayout {
             if (childAt instanceof w0) {
                 w0 w0Var = (w0) childAt;
                 if (w0Var.u()) {
-                    ArrayList arrayList = w0Var.f23182g0;
+                    ArrayList arrayList = w0Var.f23184g0;
                     arrayList.add(p0Var);
                     if (w0Var.F.getTag() != null) {
-                        w0Var.f23183h0 = arrayList.size() - 1;
+                        w0Var.f23185h0 = arrayList.size() - 1;
                     }
                     w0Var.D();
                     return;
@@ -438,7 +438,7 @@ public class z extends LinearLayout {
     }
 
     public void setOnLayoutListener(Runnable runnable) {
-        this.f23778f = runnable;
+        this.f23780f = runnable;
     }
 
     public void setPopupItemsSelectorColor(int i10) {

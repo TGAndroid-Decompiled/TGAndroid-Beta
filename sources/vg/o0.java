@@ -16,27 +16,27 @@ import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.y9;
 public final class o0 extends FrameLayout implements p6 {
-    public final y9 f50234a;
-    public final p0 f50235b;
-    public final Paint f50236c;
+    public final y9 f50237a;
+    public final p0 f50238b;
+    public final Paint f50239c;
     public TLRPC.Chat d;
     public final j9 e;
 
     public o0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f50236c = paint;
+        this.f50239c = paint;
         this.e = new j9((u6) null);
         y9 y9Var = new y9(getContext());
-        this.f50234a = y9Var;
+        this.f50237a = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(30.0f));
         ?? view = new View(context);
         Paint paint2 = new Paint(1);
-        view.f50240a = paint2;
-        view.f50241b = view.getContext().getDrawable(R.drawable.mini_boost_remove);
-        int i10 = y6.f23425h5;
+        view.f50243a = paint2;
+        view.f50244b = view.getContext().getDrawable(R.drawable.mini_boost_remove);
+        int i10 = y6.f23427h5;
         paint2.setColor(y6.x0(null, i10, false));
-        this.f50235b = view;
+        this.f50238b = view;
         view.setAlpha(0.0f);
         addView(y9Var, gb1.h(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
         addView((View) view, gb1.h(28, 28.0f, 85, 0.0f, 0.0f, 0.0f, 3.0f));
@@ -45,13 +45,13 @@ public final class o0 extends FrameLayout implements p6 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f50236c);
+        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f50239c);
         super.dispatchDraw(canvas);
     }
 
     @Override
     public final void updateColors() {
-        this.f50236c.setColor(y6.x0(null, y6.f23425h5, false));
+        this.f50239c.setColor(y6.x0(null, y6.f23427h5, false));
         invalidate();
     }
 

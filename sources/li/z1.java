@@ -21,7 +21,7 @@ public final class z1 extends Drawable {
 
     public z1(Context context, int i10) {
         Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.d = y6.f23354d6;
+        this.d = y6.f23356d6;
         this.f17662g = true;
         this.f17658a = context;
         this.f17659b = mutate;

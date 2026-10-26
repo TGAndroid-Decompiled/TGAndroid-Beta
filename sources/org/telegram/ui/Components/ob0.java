@@ -16,13 +16,13 @@ public final class ob0 extends u91 {
         boolean z10;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.V.f30957f.e;
+            View[] viewArr = this.V.f30959f.e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
                     hc0 hc0Var = (hc0) view;
-                    if (hc0Var.f28912a == 0) {
-                        z10 = hc0Var.e.f24098i;
+                    if (hc0Var.f28914a == 0) {
+                        z10 = hc0Var.e.f24100i;
                         break;
                     }
                 }
@@ -49,7 +49,7 @@ public final class ob0 extends u91 {
     @Override
     public final void w(boolean z10) {
         nc0 nc0Var = this.V;
-        nc0Var.e.setSelectedTab(nc0Var.f30957f.getPositionAnimated());
+        nc0Var.e.setSelectedTab(nc0Var.f30959f.getPositionAnimated());
         View[] viewArr = this.e;
         View view = viewArr[0];
         if (view instanceof hc0) {

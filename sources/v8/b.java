@@ -6,23 +6,23 @@ import android.os.Parcelable;
 import q7.m;
 public final class b extends p6.a {
     public static final Parcelable.Creator<b> CREATOR = new m(24);
-    public int f50089a;
-    public int f50090b;
-    public int f50091c;
+    public int f50092a;
+    public int f50093b;
+    public int f50094c;
     public boolean d;
     public boolean e;
-    public float f50092f;
+    public float f50095f;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        int i11 = this.f50089a;
+        int i11 = this.f50092a;
         df.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        int i12 = this.f50090b;
+        int i12 = this.f50093b;
         df.s(parcel, 3, 4);
         parcel.writeInt(i12);
-        int i13 = this.f50091c;
+        int i13 = this.f50094c;
         df.s(parcel, 4, 4);
         parcel.writeInt(i13);
         boolean z10 = this.d;
@@ -31,7 +31,7 @@ public final class b extends p6.a {
         boolean z11 = this.e;
         df.s(parcel, 6, 4);
         parcel.writeInt(z11 ? 1 : 0);
-        float f7 = this.f50092f;
+        float f7 = this.f50095f;
         df.s(parcel, 7, 4);
         parcel.writeFloat(f7);
         df.r(parcel, q5);

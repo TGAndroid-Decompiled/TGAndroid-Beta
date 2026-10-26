@@ -18,7 +18,7 @@ public final class q41 extends s4.t {
             case 0:
                 try {
                     fi.k1 k1Var = new fi.k1(this, recyclerView.getContext(), 3);
-                    k1Var.f47677a = i10;
+                    k1Var.f47680a = i10;
                     w0(k1Var);
                     return;
                 } catch (Exception e) {
@@ -28,7 +28,7 @@ public final class q41 extends s4.t {
             default:
                 try {
                     fi.k1 k1Var2 = new fi.k1(this, recyclerView.getContext(), 5);
-                    k1Var2.f47677a = i10;
+                    k1Var2.f47680a = i10;
                     w0(k1Var2);
                     return;
                 } catch (Exception e10) {

@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public abstract class v80 extends org.telegram.ui.ActionBar.k3 {
-    public boolean f33596b;
+    public boolean f33599b;
 
     public v80(Context context, TLRPC.Chat chat) {
         super(context, true);
@@ -28,11 +28,11 @@ public abstract class v80 extends org.telegram.ui.ActionBar.k3 {
         y9Var.f(chat, new j9(chat));
         TextView textView = new TextView(context);
         org.telegram.messenger.vh.j(18.0f, 1, textView);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23462j5, null);
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23464j5, null);
         textView.setGravity(1);
         TextView e = org.telegram.messenger.vh.e(linearLayout, textView, gb1.x(-2, -2, 49, 17, 24, 17, 0), context);
         e.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.f7.V(e, org.telegram.ui.ActionBar.y6.f23612r5, null);
+        org.telegram.ui.ActionBar.f7.V(e, org.telegram.ui.ActionBar.y6.f23614r5, null);
         e.setGravity(1);
         linearLayout.addView(e, gb1.x(-2, -2, 49, 30, 8, 30, 0));
         ChatObject.Call groupCall = AccountInstance.getInstance(this.currentAccount).getMessagesController().getGroupCall(chat.f22027id, false);
@@ -54,11 +54,11 @@ public abstract class v80 extends org.telegram.ui.ActionBar.k3 {
         }
         ?? frameLayout = new FrameLayout(context);
         View view = new View(context);
-        frameLayout.f33288a = view;
+        frameLayout.f33291a = view;
         view.setBackground(org.telegram.ui.ActionBar.o6.f(new float[]{4.0f}, org.telegram.ui.ActionBar.y6.Oh));
         frameLayout.addView(view, gb1.h(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView2 = new TextView(context);
-        frameLayout.f33289b = textView2;
+        frameLayout.f33292b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);
@@ -79,7 +79,7 @@ public abstract class v80 extends org.telegram.ui.ActionBar.k3 {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        if (this.f33596b) {
+        if (this.f33599b) {
             m();
         }
     }

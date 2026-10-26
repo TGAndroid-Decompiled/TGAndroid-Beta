@@ -7,11 +7,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.un;
 public final class y extends un {
-    public final n0 f48570kd;
+    public final n0 f48573kd;
 
     public y(n0 n0Var) {
         super(null);
-        this.f48570kd = n0Var;
+        this.f48573kd = n0Var;
     }
 
     @Override
@@ -26,12 +26,12 @@ public final class y extends un {
 
     @Override
     public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.f48570kd.getContext());
+        return AndroidUtilities.findActivity(this.f48573kd.getContext());
     }
 
     @Override
     public final u6 getResourceProvider() {
-        return this.f48570kd.F1;
+        return this.f48573kd.F1;
     }
 
     @Override

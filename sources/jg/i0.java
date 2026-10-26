@@ -43,15 +43,15 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
         this.f15727n = new oe.b(0, this, ds.h, 380L, false);
         this.f15730w = new HashSet();
         this.f15732y = new g0(this, context);
-        si siVar = new si(context, y6.f23354d6, u6Var);
+        si siVar = new si(context, y6.f23356d6, u6Var);
         siVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f15728r = frameLayout;
-        pi piVar = new pi(context, u6Var, this.f30213b);
+        pi piVar = new pi(context, u6Var, this.f30215b);
         this.F = piVar;
         piVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         c0 c0Var = new c0(this);
-        fi.c2 c2Var = piVar.f30365r;
+        fi.c2 c2Var = piVar.f30367r;
         c2Var.addTextChangedListener(c0Var);
         c2Var.setHint(LocaleController.getString(R.string.BusinessRepliesSearch));
         frameLayout.addView(siVar, gb1.k());
@@ -68,7 +68,7 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
         setBlur3Capture(r1Var);
         this.d = r1Var;
         this.h = true;
-        this.f30215f = true;
+        this.f30217f = true;
         NotificationCenter.getGlobalInstance().listen(r1Var, NotificationCenter.emojiLoaded, new ig.o(this, 3));
         r1Var.setClipToPadding(false);
         getContext();
@@ -113,8 +113,8 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
     @Override
     public final void B(int i10, int i11) {
         int i12;
-        ti tiVar = this.f30213b;
-        if (tiVar.f33065u1.Q() > AndroidUtilities.dp(20.0f)) {
+        ti tiVar = this.f30215b;
+        if (tiVar.f33068u1.Q() > AndroidUtilities.dp(20.0f)) {
             i12 = AndroidUtilities.dp(8.0f);
             tiVar.setAllowNestedScroll(false);
         } else {
@@ -176,8 +176,8 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
         hashSet.add(Integer.valueOf(y6.O7));
         hashSet.add(Integer.valueOf(y6.J7));
         hashSet.add(Integer.valueOf(y6.q5));
-        hashSet.add(Integer.valueOf(y6.f23355d7));
-        hashSet.add(Integer.valueOf(y6.f23446i6));
+        hashSet.add(Integer.valueOf(y6.f23357d7));
+        hashSet.add(Integer.valueOf(y6.f23448i6));
     }
 
     @Override
@@ -224,8 +224,8 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
     @Override
     public ArrayList<h7> getThemeDescriptions() {
         ArrayList<h7> arrayList = new ArrayList<>();
-        arrayList.add(new h7(this.E, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23336c7));
-        arrayList.add(new h7(this.E, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23426h6));
+        arrayList.add(new h7(this.E, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23338c7));
+        arrayList.add(new h7(this.E, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23428h6));
         int i10 = y6.q5;
         arrayList.add(new h7(this.f15729s, 0, new Class[]{h0.class}, new String[]{"nameTextView"}, (Drawable[]) null, (g7) null, i10));
         return arrayList;
@@ -240,13 +240,13 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30213b.getSheetContainer().invalidate();
+        this.f30215b.getSheetContainer().invalidate();
     }
 
     public void setupBlurredSearchField(ch.b bVar) {
         pi piVar = this.F;
         if (piVar != null) {
-            piVar.setupBlurredBackground(bVar.c(piVar, gh.c.a(this.f30212a), false));
+            piVar.setupBlurredBackground(bVar.c(piVar, gh.c.a(this.f30214a), false));
         }
     }
 

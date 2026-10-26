@@ -7,23 +7,23 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class ei extends mh0 {
-    public final un f39110f;
+    public final un f39113f;
 
     public ei(un unVar, Context context, int i10, MessageObject messageObject) {
         super(context);
-        this.f39110f = unVar;
-        this.f41561a = null;
+        this.f39113f = unVar;
+        this.f41564a = null;
         if (!messageObject.isRoundVideo()) {
             messageObject.isVoice();
         }
         org.telegram.ui.Components.c10 c10Var = new org.telegram.ui.Components.c10(context, null);
-        this.f41563c = c10Var;
-        c10Var.e(org.telegram.ui.ActionBar.y6.G8, org.telegram.ui.ActionBar.y6.f23446i6, -1);
+        this.f41566c = c10Var;
+        c10Var.e(org.telegram.ui.ActionBar.y6.G8, org.telegram.ui.ActionBar.y6.f23448i6, -1);
         c10Var.setViewType(13);
         c10Var.setIsSingleCell(false);
         addView(c10Var, org.telegram.ui.Components.gb1.g(-1.0f, -2));
         org.telegram.ui.Components.z90 z90Var = new org.telegram.ui.Components.z90(context, null);
-        this.f41562b = z90Var;
+        this.f41565b = z90Var;
         z90Var.setTextSize(1, 14.0f);
         z90Var.setGravity(19);
         org.telegram.ui.ActionBar.f7.V(z90Var, org.telegram.ui.ActionBar.y6.E8, null);

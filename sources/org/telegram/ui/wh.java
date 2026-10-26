@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class wh extends AnimatorListenerAdapter {
-    public final tn f45489a;
-    public final boolean f45490b;
-    public final org.telegram.ui.ActionBar.b6 f45491c;
+    public final tn f45492a;
+    public final boolean f45493b;
+    public final org.telegram.ui.ActionBar.b6 f45494c;
     public final boolean d;
     public final jn e;
-    public final boolean f45492f;
+    public final boolean f45495f;
     public final un h;
 
     public wh(un unVar, tn tnVar, boolean z10, org.telegram.ui.ActionBar.b6 b6Var, boolean z11, jn jnVar, boolean z12) {
         this.h = unVar;
-        this.f45489a = tnVar;
-        this.f45490b = z10;
-        this.f45491c = b6Var;
+        this.f45492a = tnVar;
+        this.f45493b = z10;
+        this.f45494c = b6Var;
         this.d = z11;
         this.e = jnVar;
-        this.f45492f = z12;
+        this.f45495f = z12;
     }
 
     @Override
@@ -35,13 +35,13 @@ public final class wh extends AnimatorListenerAdapter {
         unVar.P2[0].setTranslationX(0.0f);
         unVar.P2[1].setTranslationX(0.0f);
         unVar.R2.setTranslationX(unVar.S2 + 0.0f);
-        tn tnVar = this.f45489a;
+        tn tnVar = this.f45492a;
         tnVar.setTranslationY(0.0f);
-        boolean z10 = this.f45490b;
+        boolean z10 = this.f45493b;
         if (!z10) {
             tnVar.setTranslationY(0.0f);
         }
-        org.telegram.ui.ActionBar.b6 b6Var = this.f45491c;
+        org.telegram.ui.ActionBar.b6 b6Var = this.f45494c;
         if (!z10) {
             b6Var.setTranslationY(0.0f);
         }
@@ -75,7 +75,7 @@ public final class wh extends AnimatorListenerAdapter {
             tnVarArr[0] = tnVar;
             tnVar2.setVisibility(4);
         }
-        if (this.f45492f) {
+        if (this.f45495f) {
             unVar.N2[1].setImageBitmap(null);
             unVar.N2[1].setVisibility(4);
         }

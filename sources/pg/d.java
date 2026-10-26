@@ -43,7 +43,7 @@ import org.telegram.ui.af1;
 import org.telegram.ui.un;
 import org.telegram.ui.web.h1;
 public abstract class d {
-    public static final int f46852a = 0;
+    public static final int f46855a = 0;
 
     static {
         new SparseArray();
@@ -70,10 +70,10 @@ public abstract class d {
                 if (ChatObject.canManageMonoForum(UserConfig.selectedAccount, chat)) {
                     int i10 = findTopic.read_inbox_max_id;
                     int i11 = findTopic.read_outbox_max_id;
-                    unVar.f44458w4 = i10;
-                    unVar.f44472x4 = i11;
-                    unVar.f44484y4 = Math.max(1, i10);
-                    unVar.f44370p4 = DialogObject.getPeerDialogId(findTopic.from_id);
+                    unVar.f44461w4 = i10;
+                    unVar.f44475x4 = i11;
+                    unVar.f44487y4 = Math.max(1, i10);
+                    unVar.f44373p4 = DialogObject.getPeerDialogId(findTopic.from_id);
                     unVar.Mc();
                     unVar.dd(false);
                     unVar.uc(false);
@@ -109,8 +109,8 @@ public abstract class d {
         } else {
             i11 = R.drawable.msg_filled_general;
         }
-        drawable.f46849a = resources.getDrawable(i11).mutate();
-        drawable.f46850b = f7;
+        drawable.f46852a = resources.getDrawable(i11).mutate();
+        drawable.f46853b = f7;
         drawable.a(i10);
         return drawable;
     }
@@ -127,7 +127,7 @@ public abstract class d {
         }
         h90Var.a(str2);
         ar arVar = new ar(aVar, h90Var, 0, 0);
-        arVar.f26597w = true;
+        arVar.f26599w = true;
         return arVar;
     }
 
@@ -260,12 +260,12 @@ public abstract class d {
                 spannableStringBuilder.append((CharSequence) " ");
                 ar e = e(tL_forumTopic);
                 if (drawableArr != null) {
-                    drawableArr[0] = e.f26590a;
+                    drawableArr[0] = e.f26592a;
                 }
                 e.setBounds(0, 0, (int) (e.getIntrinsicWidth() * 0.65f), (int) (e.getIntrinsicHeight() * 0.65f));
-                Drawable drawable = e.f26591b;
+                Drawable drawable = e.f26593b;
                 if (drawable instanceof h90) {
-                    ((h90) drawable).f28876i = 0.7f;
+                    ((h90) drawable).f28878i = 0.7f;
                 }
                 if (paint != null) {
                     zq zqVar = new zq(0, e);
@@ -362,7 +362,7 @@ public abstract class d {
             if (tL_forumTopic.f22079id == 1) {
                 y9Var.setAnimatedEmojiDrawable(null);
                 Context context = y9Var.getContext();
-                int i11 = y6.f23692v8;
+                int i11 = y6.f23694v8;
                 c c10 = c(context, 0.75f, y6.w0(i11, u6Var), z11);
                 y9Var.setImageDrawable(c10);
                 if (c10 != null) {
@@ -407,7 +407,7 @@ public abstract class d {
         }
         if (lastFragment instanceof af1) {
             af1 af1Var = (af1) lastFragment;
-            long j11 = af1Var.f37731a;
+            long j11 = af1Var.f37734a;
             if ((-(-j11)) == j10 && !af1Var.getMessagesController().getChat(Long.valueOf(j10)).forum) {
                 if (af1Var.getParentLayout() != null && ((ActionBarLayout) af1Var.getParentLayout()).i()) {
                     AndroidUtilities.runOnUIThread(new h1(af1Var, 7), 500L);

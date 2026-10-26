@@ -116,13 +116,13 @@ public final class a implements Choreographer.FrameCallback {
                 }
                 return;
             default:
-                e21 e21Var = ((g21) this.f18942b).f28391a;
+                e21 e21Var = ((g21) this.f18942b).f28393a;
                 if (e21Var != null) {
                     Handler handler = e21Var.getHandler();
-                    if (handler != null && e21Var.f27690b.get()) {
+                    if (handler != null && e21Var.f27692b.get()) {
                         handler.sendMessage(handler.obtainMessage(0));
                     }
-                    if (((g21) this.f18942b).f28391a.S) {
+                    if (((g21) this.f18942b).f28393a.S) {
                         Choreographer.getInstance().postFrameCallback(this);
                         return;
                     }

@@ -4,32 +4,32 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 public final class e9 extends ReplacementSpan {
-    public final String f36530a;
-    public final String f36531b;
-    public final boolean f36532c;
+    public final String f36533a;
+    public final String f36534b;
+    public final boolean f36535c;
     public float d;
     public int e;
-    public int f36533f;
+    public int f36536f;
     public g9 h;
-    public g9 f36534n;
-    public final h9 f36535r;
+    public g9 f36537n;
+    public final h9 f36538r;
 
     public e9(h9 h9Var, String str, boolean z10, boolean z11) {
         String str2;
-        this.f36535r = h9Var;
-        this.f36530a = str;
+        this.f36538r = h9Var;
+        this.f36533a = str;
         if (z10) {
             str2 = h9Var.P;
         } else {
             str2 = "";
         }
-        this.f36531b = str2;
-        this.f36532c = z11;
+        this.f36534b = str2;
+        this.f36535c = z11;
     }
 
     public final int a() {
         int i10 = this.e;
-        return Math.round((h9.S.getInterpolation(this.f36535r.I) * (this.f36533f - i10)) + i10);
+        return Math.round((h9.S.getInterpolation(this.f36538r.I) * (this.f36536f - i10)) + i10);
     }
 
     @Override
@@ -38,22 +38,22 @@ public final class e9 extends ReplacementSpan {
         Paint paint2;
         int i15;
         float textSize = paint.getTextSize();
-        if (this.f36532c) {
+        if (this.f36535c) {
             paint.setTextSize((28.0f * textSize) / 44.0f);
         }
         float f10 = f7 - this.d;
-        g9 g9Var = this.f36534n;
+        g9 g9Var = this.f36537n;
         if (g9Var != null) {
             paint2 = paint;
             i15 = i13;
             canvas2 = canvas;
-            g9Var.b(canvas2, paint2, this.f36531b, f10, i15);
+            g9Var.b(canvas2, paint2, this.f36534b, f10, i15);
         } else {
             canvas2 = canvas;
             paint2 = paint;
             i15 = i13;
         }
-        this.h.b(canvas2, paint2, this.f36530a, f10, i15);
+        this.h.b(canvas2, paint2, this.f36533a, f10, i15);
         paint2.setTextSize(textSize);
     }
 

@@ -192,7 +192,7 @@ public final class u6 implements Runnable {
                 return;
             case 20:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f5518b;
-                int i12 = ProfileStoriesView.f36229s0;
+                int i12 = ProfileStoriesView.f36232s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;

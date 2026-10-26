@@ -29,7 +29,7 @@ public final class bk extends FragmentContextView {
             case 0:
                 un unVar = this.Y0;
                 org.telegram.ui.Components.ch chVar = unVar.Y0;
-                FrameLayout frameLayout = unVar.f44328m2;
+                FrameLayout frameLayout = unVar.f44331m2;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
@@ -40,7 +40,7 @@ public final class bk extends FragmentContextView {
             default:
                 un unVar2 = this.Y0;
                 org.telegram.ui.Components.ch chVar2 = unVar2.Y0;
-                FrameLayout frameLayout2 = unVar2.f44305k2;
+                FrameLayout frameLayout2 = unVar2.f44308k2;
                 if (i10 == 0) {
                     z11 = true;
                 } else {

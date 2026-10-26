@@ -19,21 +19,21 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.WidgetConformanceActivity;
 public final class za1 {
-    public final Context f35279a;
-    public final File f35280b;
-    public final int f35281c;
+    public final Context f35282a;
+    public final File f35283b;
+    public final int f35284c;
     public final boolean d;
     public final String e;
-    public final org.telegram.ui.hl0 f35282f;
-    public final Handler f35283g = new Handler(Looper.getMainLooper());
+    public final org.telegram.ui.hl0 f35285f;
+    public final Handler f35286g = new Handler(Looper.getMainLooper());
 
     public za1(WidgetConformanceActivity widgetConformanceActivity, int i10, boolean z10, String str, org.telegram.ui.hl0 hl0Var) {
-        this.f35279a = widgetConformanceActivity.getApplicationContext();
-        this.f35280b = new File(widgetConformanceActivity.getExternalFilesDir(null), "conformance");
-        this.f35281c = i10;
+        this.f35282a = widgetConformanceActivity.getApplicationContext();
+        this.f35283b = new File(widgetConformanceActivity.getExternalFilesDir(null), "conformance");
+        this.f35284c = i10;
         this.d = z10;
         this.e = str;
-        this.f35282f = hl0Var;
+        this.f35285f = hl0Var;
     }
 
     public static JSONArray b(JSONArray jSONArray, ya1 ya1Var, yb1 yb1Var) {
@@ -50,9 +50,9 @@ public final class za1 {
             if (optJSONObject != null) {
                 String optString = optJSONObject.optString("method");
                 String optString2 = optJSONObject.optString("arg", null);
-                synchronized (ya1Var.f34996c) {
+                synchronized (ya1Var.f34999c) {
                     try {
-                        ArrayList arrayList = ya1Var.f34996c;
+                        ArrayList arrayList = ya1Var.f34999c;
                         int size = arrayList.size();
                         i10 = 0;
                         int i12 = 0;
@@ -117,10 +117,10 @@ public final class za1 {
     public static float[] f(ya1 ya1Var, String str) {
         JSONObject optJSONObject;
         JSONArray optJSONArray;
-        if (ya1Var.f34994a == null) {
+        if (ya1Var.f34997a == null) {
             optJSONObject = null;
         } else {
-            optJSONObject = ya1Var.f34994a.optJSONObject("targets");
+            optJSONObject = ya1Var.f34997a.optJSONObject("targets");
         }
         if (optJSONObject == null) {
             optJSONArray = null;
@@ -221,8 +221,8 @@ public final class za1 {
                     c10 = c11;
                     i10 = i12;
                 } else {
-                    xa1Var.e.g(new wa1(xa1Var.f34679a, i12, z10, z11));
-                    c3.s sVar = xa1Var.f34681c;
+                    xa1Var.e.g(new wa1(xa1Var.f34682a, i12, z10, z11));
+                    c3.s sVar = xa1Var.f34684c;
                     double uptimeMillis = SystemClock.uptimeMillis();
                     double d = z10;
                     c10 = c11;
@@ -262,8 +262,8 @@ public final class za1 {
     public final void d() {
         String str;
         String str2;
-        Handler handler = this.f35283g;
-        File file = this.f35280b;
+        Handler handler = this.f35286g;
+        File file = this.f35283b;
         JSONObject jSONObject = new JSONObject();
         JSONArray jSONArray = new JSONArray();
         try {
@@ -302,7 +302,7 @@ public final class za1 {
                         }
                     }
                 }
-                JSONObject put = jSONObject.put("width", this.f35281c);
+                JSONObject put = jSONObject.put("width", this.f35284c);
                 if (this.d) {
                     str = "dark";
                 } else {
@@ -347,7 +347,7 @@ public final class za1 {
         long j10;
         Object obj;
         JSONObject put = new JSONObject().put("id", jSONObject.optString("id"));
-        String c10 = c(new File(this.f35280b, jSONObject.optString("file")));
+        String c10 = c(new File(this.f35283b, jSONObject.optString("file")));
         ya1 ya1Var = new ya1();
         boolean z12 = this.d;
         JSONArray optJSONArray = jSONObject.optJSONArray("themes");
@@ -372,12 +372,12 @@ public final class za1 {
             str = "dark";
         }
         put.put("theme", str);
-        yb1 yb1Var = new yb1(this.f35279a, c10, zb1.d(z12), 1, "en-US", null);
+        yb1 yb1Var = new yb1(this.f35282a, c10, zb1.d(z12), 1, "en-US", null);
         yb1Var.I = new b3(ya1Var, 14);
         xa1 xa1Var = new xa1(this, yb1Var, ya1Var);
         g(new c71(9, yb1Var, ya1Var));
         try {
-            yb1Var.f(Math.round(this.f35281c * AndroidUtilities.density));
+            yb1Var.f(Math.round(this.f35284c * AndroidUtilities.density));
             JSONArray jSONArray2 = new JSONArray();
             HashSet hashSet = new HashSet();
             long j11 = 0;
@@ -409,7 +409,7 @@ public final class za1 {
                 } catch (Throwable th2) {
                     th = th2;
                     yb1Var.I = null;
-                    c3.s sVar = xa1Var.f34681c;
+                    c3.s sVar = xa1Var.f34684c;
                     long j12 = sVar.f6092a;
                     if (j12 != 0) {
                         WidgetSandboxNative.arbiterDestroy(j12);
@@ -421,7 +421,7 @@ public final class za1 {
             }
             long j13 = j11;
             ya1Var.h(new ai.d0(10), 25000L);
-            JSONObject jSONObject2 = ya1Var.f34994a;
+            JSONObject jSONObject2 = ya1Var.f34997a;
             JSONArray jSONArray3 = new JSONArray();
             JSONArray jSONArray4 = new JSONArray();
             if (jSONObject2 != null && "done".equals(jSONObject2.optString("status"))) {
@@ -529,7 +529,7 @@ public final class za1 {
             }
             put.put("summary", sb2.toString());
             yb1Var.I = null;
-            c3.s sVar2 = xa1Var.f34681c;
+            c3.s sVar2 = xa1Var.f34684c;
             long j14 = sVar2.f6092a;
             if (j14 != j13) {
                 WidgetSandboxNative.arbiterDestroy(j14);
@@ -544,7 +544,7 @@ public final class za1 {
 
     public final void g(Runnable runnable) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.f35283g.post(new oa1(runnable, countDownLatch, 1));
+        this.f35286g.post(new oa1(runnable, countDownLatch, 1));
         countDownLatch.await(5L, TimeUnit.SECONDS);
     }
 }

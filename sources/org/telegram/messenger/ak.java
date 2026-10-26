@@ -86,7 +86,7 @@ public final class ak implements Runnable {
                 org.telegram.ui.ActionBar.g1 g1Var12 = (org.telegram.ui.ActionBar.g1) this.h;
                 org.telegram.ui.ActionBar.g1 g1Var13 = (org.telegram.ui.ActionBar.g1) this.f19662n;
                 org.telegram.ui.ActionBar.g1 g1Var14 = (org.telegram.ui.ActionBar.g1) this.f19664s;
-                bi.t9 t9Var2 = ((zh.i4) this.f19659b).f53046c.Y;
+                bi.t9 t9Var2 = ((zh.i4) this.f19659b).f53049c.Y;
                 if (t9Var2.e) {
                     i12 = R.string.Gift2FilterSortByValue;
                 } else {

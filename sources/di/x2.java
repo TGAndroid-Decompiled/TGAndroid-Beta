@@ -40,7 +40,7 @@ public final class x2 implements Utilities.Callback {
                 q4 q4Var = ((z2) this.d).f9482a;
                 TLRPC.User user = q4Var.S2.getAdapter().f14137w0;
                 if (user != null) {
-                    j10 = user.f22174id;
+                    j10 = user.f22176id;
                 } else {
                     j10 = 0;
                 }

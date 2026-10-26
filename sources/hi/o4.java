@@ -69,19 +69,19 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
             userName = Emoji.replaceEmoji(userName, textPaint.getFontMetricsInt(), false);
         } catch (Exception unused) {
         }
-        ti tiVar = this.f30213b;
-        tiVar.f33002a1.setTitle(userName);
+        ti tiVar = this.f30215b;
+        tiVar.f33005a1.setTitle(userName);
         this.J.setSwipeOffsetY(0.0f);
         if (e3Var.getWebView() != null) {
             e3Var.getWebView().scrollTo(0, 0);
         }
-        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f33018f0;
+        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f33021f0;
         if (r2Var != null) {
             e3Var.setParentActivity(r2Var.getParentActivity());
         }
         this.K.setVisibility(0);
         if (!e3Var.R) {
-            AndroidUtilities.updateImageViewImageAnimated(tiVar.f33002a1.getBackButton(), R.drawable.ic_close_white);
+            AndroidUtilities.updateImageViewImageAnimated(tiVar.f33005a1.getBackButton(), R.drawable.ic_close_white);
         }
     }
 
@@ -110,24 +110,24 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
                 str = null;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-            alertDialog$Builder.f22366a.R = str;
-            alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
+            alertDialog$Builder.f22368a.R = str;
+            alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
             alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewCloseAnyway), new h4(this));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
             e2Var.show();
-            f7.V((TextView) e2Var.d(-1), y6.f23596q7, this.f30212a);
+            f7.V((TextView) e2Var.d(-1), y6.f23598q7, this.f30214a);
             return false;
         }
-        this.f30213b.dismiss();
+        this.f30215b.dismiss();
         return true;
     }
 
     public final void O() {
-        ti tiVar = this.f30213b;
-        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f33018f0;
-        if ((r2Var instanceof un) && ((un) r2Var).f44292j1.Q() > AndroidUtilities.dp(20.0f)) {
-            AndroidUtilities.hideKeyboard(tiVar.f33018f0.getFragmentView());
+        ti tiVar = this.f30215b;
+        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f33021f0;
+        if ((r2Var instanceof un) && ((un) r2Var).f44295j1.Q() > AndroidUtilities.dp(20.0f)) {
+            AndroidUtilities.hideKeyboard(tiVar.f33021f0.getFragmentView());
             AndroidUtilities.runOnUIThread(new f4(this, 1), 250L);
             return;
         }
@@ -143,10 +143,10 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
             if (this.f13184x == ((Long) objArr[0]).longValue()) {
                 e3Var.h();
                 this.H = true;
-                this.f30213b.dismiss();
+                this.f30215b.dismiss();
             }
         } else if (i10 == NotificationCenter.didSetNewTheme) {
-            e3Var.f45167n.b(y6.w0(y6.f23425h5, this.f30212a), 153);
+            e3Var.f45170n.b(y6.w0(y6.f23427h5, this.f30214a), 153);
         }
     }
 
@@ -217,9 +217,9 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
     public final void o() {
         NotificationCenter.getInstance(this.F).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        org.telegram.ui.ActionBar.z l4 = this.f30213b.f33002a1.l();
+        org.telegram.ui.ActionBar.z l4 = this.f30215b.f33005a1.l();
         org.telegram.ui.ActionBar.w0 w0Var = this.K;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = w0Var.f23174b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = w0Var.f23176b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }
@@ -254,7 +254,7 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
 
     @Override
     public final void s() {
-        ti tiVar = this.f30213b;
+        ti tiVar = this.f30215b;
         tiVar.setFocusable(false);
         tiVar.getWindow().setSoftInputMode(48);
     }
@@ -289,7 +289,7 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30213b.getSheetContainer().invalidate();
+        this.f30215b.getSheetContainer().invalidate();
     }
 
     @Override
@@ -298,11 +298,11 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
         this.P = false;
         e3 e3Var = this.f13180n;
         boolean z10 = e3Var.R;
-        ti tiVar = this.f30213b;
+        ti tiVar = this.f30215b;
         if (!z10) {
-            AndroidUtilities.updateImageViewImageAnimated(tiVar.f33002a1.getBackButton(), R.drawable.ic_ab_back);
+            AndroidUtilities.updateImageViewImageAnimated(tiVar.f33005a1.getBackButton(), R.drawable.ic_ab_back);
         }
-        tiVar.f33002a1.setBackground(null);
+        tiVar.f33005a1.setBackground(null);
         if (e3Var.T) {
             e3Var.h();
             this.H = true;
@@ -321,11 +321,11 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
             return;
         }
         int i11 = R.id.menu_open_bot;
-        ti tiVar = this.f30213b;
+        ti tiVar = this.f30215b;
         if (i10 == i11) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", this.v);
-            tiVar.f33018f0.presentFragment(new un(bundle));
+            tiVar.f33021f0.presentFragment(new un(bundle));
             tiVar.dismiss();
             return;
         }
@@ -364,9 +364,9 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
         } else if (i10 == R.id.menu_report_bot) {
             int i13 = this.F;
             Context context = getContext();
-            wc wcVar = new wc(lb.a(getContext()), this.f30212a);
+            wc wcVar = new wc(lb.a(getContext()), this.f30214a);
             long j10 = this.v;
-            int i14 = v21.f44574w;
+            int i14 = v21.f44577w;
             v21.N(i13, context, j10, false, false, new ArrayList(), wcVar, null, new byte[0], null, null);
         }
     }
@@ -393,7 +393,7 @@ public final class o4 extends li implements NotificationCenter.NotificationCente
             } else {
                 z11 = false;
             }
-            int Q = this.f30213b.f33065u1.Q() + i10;
+            int Q = this.f30215b.f33068u1.Q() + i10;
             setMeasuredDimension(getMeasuredWidth(), i10);
             this.O = true;
             d3Var.setSwipeOffsetAnimationDisallowed(true);

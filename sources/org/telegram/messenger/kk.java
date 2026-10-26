@@ -97,7 +97,7 @@ public final class kk implements Utilities.Callback {
                     return;
                 }
                 MediaDataController mediaDataController = MediaDataController.getInstance(i12);
-                String[] strArr = c61.f38275b2;
+                String[] strArr = c61.f38278b2;
                 bi.p7 p7Var = new bi.p7(c61Var, linkedHashSet, hashMap, arrayList3, runnable);
                 if (c61Var.W == 3) {
                     z11 = true;

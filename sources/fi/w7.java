@@ -306,7 +306,7 @@ public final class w7 {
     public static w7 n(File file, TL_stories.StoryItem storyItem) {
         w7 w7Var = new w7();
         w7Var.f11903g = true;
-        w7Var.f11901f = storyItem.f22264id;
+        w7Var.f11901f = storyItem.f22266id;
         w7Var.L = file;
         w7Var.M = false;
         w7Var.f11911k0 = 720;
@@ -404,9 +404,9 @@ public final class w7 {
         arrayList.addAll(arrayList3);
         w7Var.I0 = storyItem.expire_date - storyItem.date;
         try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.y6.f23554o2.getFontMetricsInt(), true);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.y6.f23556o2.getFontMetricsInt(), true);
             MessageObject.addEntitiesToText(replaceEmoji, storyItem.entities, true, false, true, false);
-            w7Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.y6.f23554o2.getFontMetricsInt());
+            w7Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.y6.f23556o2.getFontMetricsInt());
         } catch (Exception unused) {
         }
         w7Var.A();
@@ -498,7 +498,7 @@ public final class w7 {
                 if (MessageObject.isAnimatedStickerDocument(document, true)) {
                     RLottieNative a2 = RLottieNative.a(str, null, null, null, 0, null);
                     if (a2 != null) {
-                        int i10 = a2.f26238a[0];
+                        int i10 = a2.f26240a[0];
                         a2.d();
                         j10 = i10;
                     } else {

@@ -15,13 +15,13 @@ public final class tw0 extends tg.r1 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f49025r;
+        TextView textView = this.f49028r;
         if (textView.getVisibility() == 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
             uw0 uw0Var = this.N;
-            uw0Var.d.f44914n.f35879n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f49024n.h, uw0Var.d.f44914n.O);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), uw0Var.d.f44914n.f35879n0.f48794f);
+            uw0Var.d.f44917n.f35882n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f49027n.h, uw0Var.d.f44917n.O);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), uw0Var.d.f44917n.f35882n0.f48797f);
         }
         super.dispatchDraw(canvas);
     }

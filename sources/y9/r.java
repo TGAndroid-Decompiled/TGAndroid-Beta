@@ -6,16 +6,16 @@ import java.lang.Thread;
 import java.util.concurrent.atomic.AtomicBoolean;
 import li.h5;
 public final class r implements Thread.UncaughtExceptionHandler {
-    public final h5 f52472a;
-    public final b0 f52473b;
-    public final Thread.UncaughtExceptionHandler f52474c;
+    public final h5 f52475a;
+    public final b0 f52476b;
+    public final Thread.UncaughtExceptionHandler f52477c;
     public final v9.a d;
     public final AtomicBoolean e = new AtomicBoolean(false);
 
     public r(h5 h5Var, b0 b0Var, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, v9.a aVar) {
-        this.f52472a = h5Var;
-        this.f52473b = b0Var;
-        this.f52474c = uncaughtExceptionHandler;
+        this.f52475a = h5Var;
+        this.f52476b = b0Var;
+        this.f52477c = uncaughtExceptionHandler;
         this.d = aVar;
     }
 

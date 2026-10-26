@@ -22,7 +22,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class lp0 extends FrameLayout {
-    public static final int f41310q0 = 0;
+    public static final int f41313q0 = 0;
     public final qp0 E;
     public View F;
     public boolean G;
@@ -42,46 +42,46 @@ public final class lp0 extends FrameLayout {
     public int U;
     public int V;
     public int W;
-    public final pp0 f41311a;
-    public int f41312a0;
-    public final cp0 f41313b;
-    public int f41314b0;
-    public final s4.t f41315c;
-    public int f41316c0;
+    public final pp0 f41314a;
+    public int f41315a0;
+    public final cp0 f41316b;
+    public int f41317b0;
+    public final s4.t f41318c;
+    public int f41319c0;
     public final ep0 d;
-    public int f41317d0;
+    public int f41320d0;
     public final m4.c e;
-    public int f41318e0;
-    public op0 f41319f;
-    public int f41320f0;
-    public int f41321g0;
+    public int f41321e0;
+    public op0 f41322f;
+    public int f41323f0;
+    public int f41324g0;
     public int h;
-    public int f41322h0;
-    public int f41323i0;
-    public int f41324j0;
-    public int f41325k0;
-    public final ArrayList f41326l0;
+    public int f41325h0;
+    public int f41326i0;
+    public int f41327j0;
+    public int f41328k0;
+    public final ArrayList f41329l0;
     public final int m0;
-    public long f41327n;
-    public int f41328n0;
-    public ip0 f41329o0;
-    public final rp0 f41330p0;
-    public TLRPC.TL_emojiStatusCollectible f41331r;
-    public TLRPC.TL_peerColorCollectible f41332s;
+    public long f41330n;
+    public int f41331n0;
+    public ip0 f41332o0;
+    public final rp0 f41333p0;
+    public TLRPC.TL_emojiStatusCollectible f41334r;
+    public TLRPC.TL_peerColorCollectible f41335s;
     public final gp0 v;
-    public final View f41333w;
-    public final View f41334x;
-    public kp0 f41335y;
+    public final View f41336w;
+    public final View f41337x;
+    public kp0 f41338y;
 
     public lp0(rp0 rp0Var, Context context, int i10) {
         super(context);
         int i11;
-        this.f41330p0 = rp0Var;
+        this.f41333p0 = rp0Var;
         this.e = new m4.c(12, false);
         this.h = -1;
-        this.f41327n = 0L;
-        this.f41331r = null;
-        this.f41332s = null;
+        this.f41330n = 0L;
+        this.f41334r = null;
+        this.f41335s = null;
         this.K = null;
         this.L = new ArrayList();
         this.M = new HashMap();
@@ -92,30 +92,30 @@ public final class lp0 extends FrameLayout {
         this.U = -1;
         this.V = -1;
         this.W = -1;
-        this.f41312a0 = -1;
-        this.f41314b0 = -1;
-        this.f41316c0 = -1;
-        this.f41317d0 = -1;
-        this.f41318e0 = -1;
-        this.f41320f0 = 0;
-        this.f41321g0 = -1;
-        this.f41322h0 = -1;
-        this.f41323i0 = -1;
-        this.f41324j0 = -1;
-        this.f41326l0 = new ArrayList();
+        this.f41315a0 = -1;
+        this.f41317b0 = -1;
+        this.f41319c0 = -1;
+        this.f41320d0 = -1;
+        this.f41321e0 = -1;
+        this.f41323f0 = 0;
+        this.f41324g0 = -1;
+        this.f41325h0 = -1;
+        this.f41326i0 = -1;
+        this.f41327j0 = -1;
+        this.f41329l0 = new ArrayList();
         this.m0 = i10;
         d();
         Context context2 = getContext();
         org.telegram.ui.ActionBar.u6 resourceProvider = rp0Var.getResourceProvider();
         ch.b bVar = rp0Var.G;
         cp0 cp0Var = new cp0(this, context2, resourceProvider, i10);
-        this.f41313b = cp0Var;
+        this.f41316b = cp0Var;
         cp0Var.setClipToPadding(false);
         cp0Var.setSections(true);
-        ((s4.l) cp0Var.getItemAnimator()).f47760m = false;
+        ((s4.l) cp0Var.getItemAnimator()).f47763m = false;
         getContext();
         s4.t tVar = new s4.t(3);
-        this.f41315c = tVar;
+        this.f41318c = tVar;
         tVar.O = new ai.l(this, 8);
         cp0Var.i(new fi.p1(this, 7));
         cp0Var.setLayoutManager(tVar);
@@ -127,7 +127,7 @@ public final class lp0 extends FrameLayout {
         addView(cp0Var, org.telegram.ui.Components.gb1.g(-1.0f, -1));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("l");
         spannableStringBuilder.setSpan(new org.telegram.ui.Components.zq(R.drawable.msg_mini_lock2, 0), 0, 1, 33);
-        if (rp0Var.f43222a) {
+        if (rp0Var.f43225a) {
             i11 = R.string.ChannelColorApply;
         } else {
             i11 = R.string.UserColorApply;
@@ -141,21 +141,21 @@ public final class lp0 extends FrameLayout {
         lVar.n(350L);
         lVar.o(org.telegram.ui.Components.ds.h);
         lVar.C = false;
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         cp0Var.setItemAnimator(lVar);
         View view = new View(getContext());
-        this.f41333w = view;
+        this.f41336w = view;
         ch.c cVar = new ch.c(bVar.c(view, null, false));
         cVar.b(-AndroidUtilities.dp(24.0f), true);
         cVar.G = 220;
         view.setBackground(cVar);
         addView(view, org.telegram.ui.Components.gb1.i(-1, 72, 55));
         if (i10 == 0) {
-            this.f41311a = new pp0(rp0.g0(rp0Var), 0L, getContext(), rp0.h0(rp0Var));
+            this.f41314a = new pp0(rp0.g0(rp0Var), 0L, getContext(), rp0.h0(rp0Var));
             j(false);
         } else {
             View view2 = new View(getContext());
-            this.f41334x = view2;
+            this.f41337x = view2;
             ch.c cVar2 = new ch.c(bVar.c(view2, null, false));
             cVar2.b(-AndroidUtilities.dp(16.0f), false);
             view2.setBackground(cVar2);
@@ -163,7 +163,7 @@ public final class lp0 extends FrameLayout {
             ?? kaVar = new org.telegram.ui.Cells.ka(getContext(), rp0.i0(rp0Var), 3, 0L, rp0.j0(rp0Var));
             this.v = kaVar;
             kaVar.setImportantForAccessibility(4);
-            kaVar.f24362r = rp0Var;
+            kaVar.f24364r = rp0Var;
             kaVar.setClipToOutline(true);
             ag.v0 v0Var = ag.z0.f1400a;
             kaVar.setOutlineProvider(new ag.x0(0, AndroidUtilities.dp(16.0f)));
@@ -185,7 +185,7 @@ public final class lp0 extends FrameLayout {
         qp0Var.F = new bp0(this, 0);
         qp0Var.setVisibility(4);
         addView(qp0Var, org.telegram.ui.Components.gb1.h(-1, 36.0f, 55, 12.0f, 0.0f, 12.0f, 0.0f));
-        pp0 pp0Var = this.f41311a;
+        pp0 pp0Var = this.f41314a;
         if (pp0Var != null) {
             addView(pp0Var, org.telegram.ui.Components.gb1.i(-1, -2, 55));
         }
@@ -196,14 +196,14 @@ public final class lp0 extends FrameLayout {
 
     public static void a(lp0 lp0Var) {
         int i10;
-        cp0 cp0Var = lp0Var.f41313b;
+        cp0 cp0Var = lp0Var.f41316b;
         boolean z10 = lp0Var.H;
         if (z10) {
             cp0Var.C0();
         }
         lp0Var.e();
-        if (z10 && (i10 = lp0Var.f41322h0) >= 0) {
-            lp0Var.f41315c.h1(i10, lp0Var.f41330p0.f43229f);
+        if (z10 && (i10 = lp0Var.f41325h0) >= 0) {
+            lp0Var.f41318c.h1(i10, lp0Var.f41333p0.f43232f);
             cp0Var.post(new bp0(lp0Var, 1));
         }
     }
@@ -213,7 +213,7 @@ public final class lp0 extends FrameLayout {
     }
 
     public final boolean c() {
-        cp0 cp0Var = this.f41313b;
+        cp0 cp0Var = this.f41316b;
         if (cp0Var != null) {
             for (int i10 = 0; i10 < cp0Var.getChildCount(); i10++) {
                 if (cp0Var.getChildAt(i10) instanceof org.telegram.ui.Components.c10) {
@@ -227,41 +227,41 @@ public final class lp0 extends FrameLayout {
     public final void d() {
         TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible;
         int i10 = this.m0;
-        rp0 rp0Var = this.f41330p0;
+        rp0 rp0Var = this.f41333p0;
         TLRPC.TL_peerColorCollectible tL_peerColorCollectible = null;
         if (i10 == 0) {
             TLRPC.User currentUser = rp0Var.getUserConfig().getCurrentUser();
             this.h = UserObject.getProfileColorId(currentUser);
-            this.f41327n = UserObject.getProfileEmojiId(currentUser);
+            this.f41330n = UserObject.getProfileEmojiId(currentUser);
             if (currentUser != null) {
                 TLRPC.EmojiStatus emojiStatus = currentUser.emoji_status;
                 if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
                     tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-                    this.f41331r = tL_emojiStatusCollectible;
-                    this.f41332s = null;
+                    this.f41334r = tL_emojiStatusCollectible;
+                    this.f41335s = null;
                 }
             }
             tL_emojiStatusCollectible = null;
-            this.f41331r = tL_emojiStatusCollectible;
-            this.f41332s = null;
+            this.f41334r = tL_emojiStatusCollectible;
+            this.f41335s = null;
         } else {
             TLRPC.User currentUser2 = rp0Var.getUserConfig().getCurrentUser();
             this.h = UserObject.getColorId(currentUser2);
-            this.f41327n = UserObject.getEmojiId(currentUser2);
-            this.f41331r = null;
+            this.f41330n = UserObject.getEmojiId(currentUser2);
+            this.f41334r = null;
             if (currentUser2 != null) {
                 TLRPC.PeerColor peerColor = currentUser2.color;
                 if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
                     tL_peerColorCollectible = (TLRPC.TL_peerColorCollectible) peerColor;
                 }
             }
-            this.f41332s = tL_peerColorCollectible;
+            this.f41335s = tL_peerColorCollectible;
         }
-        if (this.f41331r == null && this.f41332s == null) {
+        if (this.f41334r == null && this.f41335s == null) {
             return;
         }
         this.h = -1;
-        this.f41327n = 0L;
+        this.f41330n = 0L;
     }
 
     @Override
@@ -280,7 +280,7 @@ public final class lp0 extends FrameLayout {
     public final void f(boolean z10) {
         Object obj;
         TL_stars.TL_starGiftUnique tL_starGiftUnique = this.I;
-        rp0 rp0Var = this.f41330p0;
+        rp0 rp0Var = this.f41333p0;
         m4.c cVar = this.e;
         if (tL_starGiftUnique != null) {
             bg.a resellAmount = tL_starGiftUnique.getResellAmount(bg.b.f3980a);
@@ -292,9 +292,9 @@ public final class lp0 extends FrameLayout {
                 cVar.f18010c = null;
             }
         } else {
-            if (!rp0Var.getUserConfig().isPremium() && !rp0Var.f43222a) {
+            if (!rp0Var.getUserConfig().isPremium() && !rp0Var.f43225a) {
                 obj = this.N;
-            } else if (this.f41331r != null) {
+            } else if (this.f41334r != null) {
                 obj = this.P;
             } else {
                 obj = this.O;
@@ -310,7 +310,7 @@ public final class lp0 extends FrameLayout {
     }
 
     public final void g() {
-        fi.d dVar = this.f41330p0.Q;
+        fi.d dVar = this.f41333p0.Q;
         if (dVar != null) {
             dVar.updateColors();
         }
@@ -319,7 +319,7 @@ public final class lp0 extends FrameLayout {
             gp0Var.invalidate();
         }
         j(true);
-        AndroidUtilities.forEachViews((RecyclerView) this.f41313b, (Utilities.Callback<View>) new t3(this, 15));
+        AndroidUtilities.forEachViews((RecyclerView) this.f41316b, (Utilities.Callback<View>) new t3(this, 15));
         qp0 qp0Var = this.E;
         if (qp0Var != null) {
             l(qp0Var);
@@ -329,14 +329,14 @@ public final class lp0 extends FrameLayout {
     public final void h() {
         int i10;
         boolean z10;
-        int i11 = this.f41330p0.f43229f;
+        int i11 = this.f41333p0.f43232f;
         float f7 = 0.0f;
-        View view = this.f41333w;
+        View view = this.f41336w;
         qp0 qp0Var = this.E;
-        if (qp0Var != null && (i10 = this.f41322h0) >= 0) {
-            s4.t tVar = this.f41315c;
+        if (qp0Var != null && (i10 = this.f41325h0) >= 0) {
+            s4.t tVar = this.f41318c;
             this.F = tVar.m(i10);
-            cp0 cp0Var = this.f41313b;
+            cp0 cp0Var = this.f41316b;
             int paddingTop = cp0Var.getPaddingTop() + i11;
             int L0 = tVar.L0();
             View view2 = this.F;
@@ -350,7 +350,7 @@ public final class lp0 extends FrameLayout {
                 this.G = !z10;
                 qp0Var.setVisibility(0);
                 qp0Var.setTranslationY((Math.max(this.F.getTop(), paddingTop) + cp0Var.getTop()) - qp0Var.getTop());
-            } else if (L0 != -1 && L0 > this.f41322h0) {
+            } else if (L0 != -1 && L0 > this.f41325h0) {
                 this.H = true;
                 this.G = false;
                 qp0Var.setVisibility(0);
@@ -398,12 +398,12 @@ public final class lp0 extends FrameLayout {
                 org.telegram.ui.Cells.s1 s1Var = cells[i10];
                 if (s1Var != null && (messageObject = s1Var.getMessageObject()) != null) {
                     messageObject.notime = true;
-                    op0 op0Var = this.f41319f;
+                    op0 op0Var = this.f41322f;
                     if (op0Var != null) {
                         messageObject.overrideLinkColor = op0Var.getColorId();
                     }
-                    messageObject.overrideLinkEmoji = this.f41327n;
-                    messageObject.overrideLinkPeerColor = this.f41332s;
+                    messageObject.overrideLinkEmoji = this.f41330n;
+                    messageObject.overrideLinkPeerColor = this.f41335s;
                     cells[i10].setAvatar(messageObject);
                     cells[i10].invalidate();
                 }
@@ -419,17 +419,17 @@ public final class lp0 extends FrameLayout {
         int i10;
         rp0 rp0Var;
         uo0 uo0Var;
-        op0 op0Var = this.f41319f;
+        op0 op0Var = this.f41322f;
         if (op0Var != null) {
             op0Var.a(this.h, z10);
         }
-        pp0 pp0Var = this.f41311a;
+        pp0 pp0Var = this.f41314a;
         if (pp0Var != null) {
-            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = this.f41331r;
+            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = this.f41334r;
             if (tL_emojiStatusCollectible != null) {
                 pp0Var.e(tL_emojiStatusCollectible.document_id, true, z10);
-                pp0Var.c(MessagesController.PeerColor.fromCollectible(this.f41331r), z10);
-                pp0Var.d(this.f41331r.pattern_document_id, true, z10);
+                pp0Var.c(MessagesController.PeerColor.fromCollectible(this.f41334r), z10);
+                pp0Var.d(this.f41334r.pattern_document_id, true, z10);
             } else {
                 if (DialogObject.isEmojiStatusCollectible(0L)) {
                     pp0Var.e(0L, false, z10);
@@ -437,12 +437,12 @@ public final class lp0 extends FrameLayout {
                     pp0Var.e(DialogObject.getEmojiStatusDocumentId(0L), DialogObject.isEmojiStatusCollectible(0L), z10);
                 }
                 pp0Var.b(this.h, z10);
-                pp0Var.d(this.f41327n, false, z10);
+                pp0Var.d(this.f41330n, false, z10);
             }
         }
         int i11 = this.m0;
-        if (i11 == 0 && (uo0Var = (rp0Var = this.f41330p0).e) != null) {
-            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible2 = this.f41331r;
+        if (i11 == 0 && (uo0Var = (rp0Var = this.f41333p0).e) != null) {
+            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible2 = this.f41334r;
             if (tL_emojiStatusCollectible2 != null) {
                 uo0Var.c(MessagesController.PeerColor.fromCollectible(tL_emojiStatusCollectible2), z10);
             } else {
@@ -461,13 +461,13 @@ public final class lp0 extends FrameLayout {
         }
         int i13 = 0;
         while (true) {
-            cp0 cp0Var = this.f41313b;
+            cp0 cp0Var = this.f41316b;
             if (i13 < cp0Var.getChildCount()) {
                 View childAt = cp0Var.getChildAt(i13);
                 if (childAt instanceof zo0) {
                     zo0 zo0Var = (zo0) childAt;
-                    TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible3 = this.f41331r;
-                    if ((tL_emojiStatusCollectible3 != null && tL_emojiStatusCollectible3.collectible_id == zo0Var.getGiftId()) || ((tL_peerColorCollectible2 = this.f41332s) != null && tL_peerColorCollectible2.collectible_id == zo0Var.getGiftId())) {
+                    TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible3 = this.f41334r;
+                    if ((tL_emojiStatusCollectible3 != null && tL_emojiStatusCollectible3.collectible_id == zo0Var.getGiftId()) || ((tL_peerColorCollectible2 = this.f41335s) != null && tL_peerColorCollectible2.collectible_id == zo0Var.getGiftId())) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -475,8 +475,8 @@ public final class lp0 extends FrameLayout {
                     zo0Var.b(z12, true);
                 } else if (childAt instanceof zh.g1) {
                     zh.g1 g1Var = (zh.g1) childAt;
-                    TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible4 = this.f41331r;
-                    if ((tL_emojiStatusCollectible4 != null && tL_emojiStatusCollectible4.collectible_id == g1Var.getGiftId()) || ((tL_peerColorCollectible = this.f41332s) != null && tL_peerColorCollectible.collectible_id == g1Var.getGiftId())) {
+                    TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible4 = this.f41334r;
+                    if ((tL_emojiStatusCollectible4 != null && tL_emojiStatusCollectible4.collectible_id == g1Var.getGiftId()) || ((tL_peerColorCollectible = this.f41335s) != null && tL_peerColorCollectible.collectible_id == g1Var.getGiftId())) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -492,43 +492,43 @@ public final class lp0 extends FrameLayout {
 
     public final void k() {
         bi.t9 t9Var;
-        rp0 rp0Var = this.f41330p0;
-        bi.t9 t9Var2 = rp0Var.f43224b;
+        rp0 rp0Var = this.f41333p0;
+        bi.t9 t9Var2 = rp0Var.f43227b;
         this.V = -1;
         this.W = -1;
-        this.f41312a0 = -1;
-        this.f41314b0 = -1;
-        this.f41317d0 = -1;
-        this.f41318e0 = -1;
-        this.f41316c0 = -1;
-        this.f41321g0 = -1;
-        this.f41322h0 = -1;
-        this.f41323i0 = -1;
-        this.f41324j0 = -1;
-        this.f41320f0 = 0;
-        ArrayList arrayList = this.f41326l0;
+        this.f41315a0 = -1;
+        this.f41317b0 = -1;
+        this.f41320d0 = -1;
+        this.f41321e0 = -1;
+        this.f41319c0 = -1;
+        this.f41324g0 = -1;
+        this.f41325h0 = -1;
+        this.f41326i0 = -1;
+        this.f41327j0 = -1;
+        this.f41323f0 = 0;
+        ArrayList arrayList = this.f41329l0;
         arrayList.clear();
         this.Q = 0;
         this.S = 1;
         int i10 = 3;
-        this.f41325k0 = 3;
+        this.f41328k0 = 3;
         this.R = 2;
         int i11 = this.m0;
-        if (i11 == 0 && (this.h >= 0 || this.f41331r != null || this.f41332s != null)) {
+        if (i11 == 0 && (this.h >= 0 || this.f41334r != null || this.f41335s != null)) {
             this.V = 3;
-            this.f41325k0 = 5;
+            this.f41328k0 = 5;
             this.W = 4;
         }
         if (i11 == 1) {
-            t9Var = rp0Var.f43226c;
+            t9Var = rp0Var.f43229c;
         } else {
             t9Var = t9Var2;
         }
         if ((i11 == 0 || i11 == 1) && t9Var != null) {
             ArrayList arrayList2 = t9Var.f5471l;
-            int i12 = this.f41325k0;
-            this.f41325k0 = i12 + 1;
-            this.f41322h0 = i12;
+            int i12 = this.f41328k0;
+            this.f41328k0 = i12 + 1;
+            this.f41325h0 = i12;
             if (this.K == null) {
                 for (int i13 = 0; i13 < arrayList2.size(); i13++) {
                     TL_stars.StarGift starGift = ((TL_stars.SavedStarGift) arrayList2.get(i13)).gift;
@@ -536,22 +536,22 @@ public final class lp0 extends FrameLayout {
                         arrayList.add((TL_stars.TL_starGiftUnique) starGift);
                     }
                 }
-                int i14 = this.f41325k0;
-                this.f41314b0 = i14;
-                this.f41325k0 = arrayList.size() + i14;
-                int size = arrayList.size() + this.f41320f0;
-                this.f41320f0 = size;
-                int i15 = this.f41325k0;
-                this.f41316c0 = i15;
+                int i14 = this.f41328k0;
+                this.f41317b0 = i14;
+                this.f41328k0 = arrayList.size() + i14;
+                int size = arrayList.size() + this.f41323f0;
+                this.f41323f0 = size;
+                int i15 = this.f41328k0;
+                this.f41319c0 = i15;
                 if (!t9Var2.f5468i && t9Var2.f5469j) {
                     if (arrayList.isEmpty()) {
-                        int i16 = this.f41325k0;
-                        this.f41324j0 = i16;
-                        this.f41325k0 = i16 + 2;
-                        this.f41323i0 = i16 + 1;
+                        int i16 = this.f41328k0;
+                        this.f41327j0 = i16;
+                        this.f41328k0 = i16 + 2;
+                        this.f41326i0 = i16 + 1;
                     }
                 } else {
-                    this.f41317d0 = i15;
+                    this.f41320d0 = i15;
                     int i17 = 3 - (size % 3);
                     if (size <= 0) {
                         i10 = 9;
@@ -559,9 +559,9 @@ public final class lp0 extends FrameLayout {
                         i10 = i17;
                     }
                     int i18 = i15 + i10;
-                    this.f41325k0 = i18;
-                    this.f41320f0 = size + i10;
-                    this.f41318e0 = i18;
+                    this.f41328k0 = i18;
+                    this.f41323f0 = size + i10;
+                    this.f41321e0 = i18;
                 }
                 if (c()) {
                     t9Var.b();
@@ -574,16 +574,16 @@ public final class lp0 extends FrameLayout {
                         arrayList.add(tL_starGiftUnique);
                     }
                 }
-                int i20 = this.f41325k0;
-                this.f41314b0 = i20;
-                this.f41325k0 = arrayList.size() + i20;
-                int size2 = arrayList.size() + this.f41320f0;
-                this.f41320f0 = size2;
-                int i21 = this.f41325k0;
-                this.f41316c0 = i21;
+                int i20 = this.f41328k0;
+                this.f41317b0 = i20;
+                this.f41328k0 = arrayList.size() + i20;
+                int size2 = arrayList.size() + this.f41323f0;
+                this.f41323f0 = size2;
+                int i21 = this.f41328k0;
+                this.f41319c0 = i21;
                 zh.u3 u3Var = this.J;
-                if (u3Var.f53278t || !u3Var.f53279u) {
-                    this.f41317d0 = i21;
+                if (u3Var.f53281t || !u3Var.f53282u) {
+                    this.f41320d0 = i21;
                     int i22 = 3 - (size2 % 3);
                     if (size2 <= 0) {
                         i10 = 9;
@@ -591,20 +591,20 @@ public final class lp0 extends FrameLayout {
                         i10 = i22;
                     }
                     int i23 = i21 + i10;
-                    this.f41325k0 = i23;
-                    this.f41320f0 = size2 + i10;
-                    this.f41318e0 = i23;
+                    this.f41328k0 = i23;
+                    this.f41323f0 = size2 + i10;
+                    this.f41321e0 = i23;
                 }
                 if (c()) {
                     this.J.g(false);
                 }
             }
-            int i24 = this.f41325k0;
-            this.f41325k0 = i24 + 1;
-            this.f41321g0 = i24;
+            int i24 = this.f41328k0;
+            this.f41328k0 = i24 + 1;
+            this.f41324g0 = i24;
         }
-        int i25 = this.f41325k0;
-        this.f41325k0 = i25 + 1;
+        int i25 = this.f41328k0;
+        this.f41328k0 = i25 + 1;
         this.U = i25;
         qp0 qp0Var = this.E;
         if (qp0Var != null) {
@@ -614,17 +614,17 @@ public final class lp0 extends FrameLayout {
 
     public final void l(qp0 qp0Var) {
         int i10;
-        int i11 = org.telegram.ui.ActionBar.y6.f23354d6;
-        rp0 rp0Var = this.f41330p0;
+        int i11 = org.telegram.ui.ActionBar.y6.f23356d6;
+        rp0 rp0Var = this.f41333p0;
         int themedColor = rp0Var.getThemedColor(i11);
-        rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23297a7);
-        int themedColor2 = rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23765z6);
+        rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23299a7);
+        int themedColor2 = rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23767z6);
         int themedColor3 = rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.G6);
         qp0Var.v.setColor(themedColor);
-        qp0Var.f42891x = org.telegram.ui.ActionBar.y6.o1(0.06f, themedColor3);
-        qp0Var.f42892y = themedColor2;
+        qp0Var.f42894x = org.telegram.ui.ActionBar.y6.o1(0.06f, themedColor3);
+        qp0Var.f42895y = themedColor2;
         qp0Var.E = themedColor3;
-        k10 k10Var = qp0Var.f42883a;
+        k10 k10Var = qp0Var.f42886a;
         for (int i12 = 0; i12 < k10Var.getChildCount(); i12++) {
             View childAt = k10Var.getChildAt(i12);
             int R = RecyclerView.R(childAt);
@@ -633,7 +633,7 @@ public final class lp0 extends FrameLayout {
                 if (R == qp0Var.d) {
                     i10 = qp0Var.E;
                 } else {
-                    i10 = qp0Var.f42892y;
+                    i10 = qp0Var.f42895y;
                 }
                 textView.setTextColor(i10);
                 childAt.invalidate();
@@ -646,22 +646,22 @@ public final class lp0 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12 = this.m0;
-        View view = this.f41333w;
-        cp0 cp0Var = this.f41313b;
+        View view = this.f41336w;
+        cp0 cp0Var = this.f41316b;
         if (i12 == 1) {
             super.onMeasure(i10, i11);
             gp0 gp0Var = this.v;
-            this.f41328n0 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + gp0Var.getMeasuredHeight() + AndroidUtilities.statusBarHeight;
+            this.f41331n0 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + gp0Var.getMeasuredHeight() + AndroidUtilities.statusBarHeight;
             ((ViewGroup.MarginLayoutParams) gp0Var.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
-            ((ViewGroup.MarginLayoutParams) cp0Var.getLayoutParams()).topMargin = this.f41328n0 - AndroidUtilities.dp(16.0f);
-            ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = this.f41328n0 - AndroidUtilities.dp(64.0f);
-            ((ViewGroup.MarginLayoutParams) this.f41334x.getLayoutParams()).topMargin = this.f41328n0 - AndroidUtilities.dp(16.0f);
+            ((ViewGroup.MarginLayoutParams) cp0Var.getLayoutParams()).topMargin = this.f41331n0 - AndroidUtilities.dp(16.0f);
+            ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = this.f41331n0 - AndroidUtilities.dp(64.0f);
+            ((ViewGroup.MarginLayoutParams) this.f41337x.getLayoutParams()).topMargin = this.f41331n0 - AndroidUtilities.dp(16.0f);
             cp0Var.setPadding(cp0Var.getPaddingLeft(), AndroidUtilities.dp(16.0f), cp0Var.getPaddingRight(), cp0Var.getPaddingBottom());
         } else {
-            this.f41328n0 = AndroidUtilities.dp(230.0f) + AndroidUtilities.statusBarHeight;
-            ((ViewGroup.MarginLayoutParams) cp0Var.getLayoutParams()).topMargin = this.f41328n0;
-            ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = this.f41328n0 - AndroidUtilities.dp(64.0f);
-            ((ViewGroup.MarginLayoutParams) this.f41311a.getLayoutParams()).height = this.f41328n0;
+            this.f41331n0 = AndroidUtilities.dp(230.0f) + AndroidUtilities.statusBarHeight;
+            ((ViewGroup.MarginLayoutParams) cp0Var.getLayoutParams()).topMargin = this.f41331n0;
+            ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = this.f41331n0 - AndroidUtilities.dp(64.0f);
+            ((ViewGroup.MarginLayoutParams) this.f41314a.getLayoutParams()).height = this.f41331n0;
         }
         super.onMeasure(i10, i11);
     }

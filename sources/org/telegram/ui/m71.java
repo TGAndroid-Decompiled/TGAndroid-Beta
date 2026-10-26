@@ -5,21 +5,21 @@ import org.telegram.messenger.MrzRecognizer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class m71 implements x9 {
-    public TLObject f41482a = null;
-    public TLRPC.TL_error f41483b = null;
-    public final SessionsActivity f41484c;
+    public TLObject f41485a = null;
+    public TLRPC.TL_error f41486b = null;
+    public final SessionsActivity f41487c;
 
     public m71(SessionsActivity sessionsActivity) {
-        this.f41484c = sessionsActivity;
+        this.f41487c = sessionsActivity;
     }
 
     @Override
     public final void H(String str) {
-        TLObject tLObject = this.f41482a;
+        TLObject tLObject = this.f41485a;
         if (tLObject instanceof TLRPC.TL_authorization) {
             TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
             boolean z10 = tL_authorization.password_pending;
-            SessionsActivity sessionsActivity = this.f41484c;
+            SessionsActivity sessionsActivity = this.f41487c;
             if (z10) {
                 sessionsActivity.e.add(0, tL_authorization);
                 sessionsActivity.U = 4;
@@ -28,9 +28,9 @@ public final class m71 implements x9 {
                 sessionsActivity.d.add(0, tL_authorization);
             }
             sessionsActivity.n0();
-            sessionsActivity.f36208a.l();
-            sessionsActivity.f36213r.m(0L, this.f41482a, 11);
-        } else if (this.f41483b != null) {
+            sessionsActivity.f36211a.l();
+            sessionsActivity.f36216r.m(0L, this.f41485a, 11);
+        } else if (this.f41486b != null) {
             AndroidUtilities.runOnUIThread(new k71(this, 0));
         }
     }
@@ -42,8 +42,8 @@ public final class m71 implements x9 {
 
     @Override
     public final boolean d1(String str, p9 p9Var) {
-        this.f41482a = null;
-        this.f41483b = null;
+        this.f41485a = null;
+        this.f41486b = null;
         AndroidUtilities.runOnUIThread(new h71(this, str, p9Var, 2), 750L);
         return true;
     }

@@ -16,60 +16,60 @@ public final class l implements c3.o {
     public long[][] D;
     public int E;
     public l3.b F;
-    public final z3.k f50710a;
-    public final int f50711b;
-    public final boolean f50712c;
+    public final z3.k f50713a;
+    public final int f50714b;
+    public final boolean f50715c;
     public final x d;
     public final x e;
-    public final x f50713f;
-    public final x f50714g;
+    public final x f50716f;
+    public final x f50717g;
     public final ArrayDeque h;
-    public final o f50715i;
-    public final ArrayList f50716j;
-    public s1 f50717k;
-    public int f50718l;
-    public int f50719m;
-    public long f50720n;
-    public int f50721o;
-    public x f50722p;
-    public int f50723q;
-    public int f50724r;
-    public int f50725s;
-    public int f50726t;
-    public boolean f50727u;
+    public final o f50718i;
+    public final ArrayList f50719j;
+    public s1 f50720k;
+    public int f50721l;
+    public int f50722m;
+    public long f50723n;
+    public int f50724o;
+    public x f50725p;
+    public int f50726q;
+    public int f50727r;
+    public int f50728s;
+    public int f50729t;
+    public boolean f50730u;
     public boolean v;
-    public boolean f50728w;
-    public long f50729x;
-    public boolean f50730y;
-    public boolean f50731z;
+    public boolean f50731w;
+    public long f50732x;
+    public boolean f50733y;
+    public boolean f50734z;
 
     public l(z3.k kVar, int i10) {
         boolean z10;
         int i11;
-        this.f50710a = kVar;
-        this.f50711b = i10;
+        this.f50713a = kVar;
+        this.f50714b = i10;
         if ((i10 & 256) != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f50712c = z10;
+        this.f50715c = z10;
         g0 g0Var = i0.f10287b;
-        this.f50717k = s1.e;
+        this.f50720k = s1.e;
         if ((i10 & 4) != 0) {
             i11 = 3;
         } else {
             i11 = 0;
         }
-        this.f50718l = i11;
-        this.f50715i = new o();
-        this.f50716j = new ArrayList();
-        this.f50714g = new x(16);
+        this.f50721l = i11;
+        this.f50718i = new o();
+        this.f50719j = new ArrayList();
+        this.f50717g = new x(16);
         this.h = new ArrayDeque();
         this.d = new x(f2.q.f10111a);
         this.e = new x(6);
-        this.f50713f = new x();
-        this.f50723q = -1;
+        this.f50716f = new x();
+        this.f50726q = -1;
         this.B = c3.q.f6091i;
         this.C = new k[0];
     }
@@ -78,7 +78,7 @@ public final class l implements c3.o {
     public final boolean a(c3.p pVar) {
         boolean z10;
         s1 s1Var;
-        if ((this.f50711b & 2) != 0) {
+        if ((this.f50714b & 2) != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -90,7 +90,7 @@ public final class l implements c3.o {
             g0 g0Var = i0.f10287b;
             s1Var = s1.e;
         }
-        this.f50717k = s1Var;
+        this.f50720k = s1Var;
         if (m10 == null) {
             return true;
         }
@@ -99,8 +99,8 @@ public final class l implements c3.o {
 
     @Override
     public final void c(c3.q qVar) {
-        if ((this.f50711b & 16) == 0) {
-            qVar = new c2.b(qVar, this.f50710a);
+        if ((this.f50714b & 16) == 0) {
+            qVar = new c2.b(qVar, this.f50713a);
         }
         this.B = qVar;
     }
@@ -109,27 +109,27 @@ public final class l implements c3.o {
     public final void d(long j10, long j11) {
         k[] kVarArr;
         this.h.clear();
-        this.f50721o = 0;
-        this.f50723q = -1;
-        this.f50724r = 0;
-        this.f50725s = 0;
-        this.f50726t = 0;
-        this.f50727u = false;
-        this.f50731z = false;
+        this.f50724o = 0;
+        this.f50726q = -1;
+        this.f50727r = 0;
+        this.f50728s = 0;
+        this.f50729t = 0;
+        this.f50730u = false;
+        this.f50734z = false;
         if (j10 == 0) {
-            if (this.f50718l != 3) {
-                this.f50718l = 0;
-                this.f50721o = 0;
+            if (this.f50721l != 3) {
+                this.f50721l = 0;
+                this.f50724o = 0;
                 return;
             }
-            o oVar = this.f50715i;
-            oVar.f50735a.clear();
-            oVar.f50736b = 0;
-            this.f50716j.clear();
+            o oVar = this.f50718i;
+            oVar.f50738a.clear();
+            oVar.f50739b = 0;
+            this.f50719j.clear();
             return;
         }
         for (k kVar : this.C) {
-            t tVar = kVar.f50707b;
+            t tVar = kVar.f50710b;
             int a2 = tVar.a(j11);
             if (a2 == -1) {
                 a2 = tVar.b(j11);
@@ -145,7 +145,7 @@ public final class l implements c3.o {
 
     @Override
     public final List e() {
-        return this.f50717k;
+        return this.f50720k;
     }
 
     @Override

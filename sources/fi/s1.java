@@ -44,7 +44,7 @@ public final class s1 extends lm0 {
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f == 2) {
+        if (e1Var.f47741f == 2) {
             return true;
         }
         return false;
@@ -198,8 +198,8 @@ public final class s1 extends lm0 {
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
-        int i11 = e1Var.f47738f;
-        View view = e1Var.f47735a;
+        int i11 = e1Var.f47741f;
+        View view = e1Var.f47738a;
         if (i11 == 0) {
             view.setTag(34);
             view.setLayoutParams(new s4.q0(-1, (int) this.f11578s.f11746r.f11159n));
@@ -236,10 +236,10 @@ public final class s1 extends lm0 {
         } else {
             org.telegram.ui.Cells.d2 d2Var2 = new org.telegram.ui.Cells.d2(u1Var.getContext());
             d2Var2.getPhotoImage().setLayerNum(7);
-            if (d2Var2.f23985c0 == null) {
+            if (d2Var2.f23987c0 == null) {
                 xc xcVar = new xc(d2Var2, 1.0f, 3.0f);
                 xcVar.e = 120L;
-                d2Var2.f23985c0 = xcVar;
+                d2Var2.f23987c0 = xcVar;
             }
             d2Var2.setIsKeyboard(true);
             d2Var2.setCanPreviewGif(true);

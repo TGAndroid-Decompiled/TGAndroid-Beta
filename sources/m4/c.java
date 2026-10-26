@@ -97,8 +97,8 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
                     printWriter.println((Object) null);
                     printWriter.print(str2);
                     printWriter.print("mLoader=");
-                    printWriter.println(aVar.f50645l);
-                    b6.d dVar = aVar.f50645l;
+                    printWriter.println(aVar.f50648l);
+                    b6.d dVar = aVar.f50648l;
                     String str3 = str2 + "  ";
                     dVar.getClass();
                     printWriter.print(str3);
@@ -138,11 +138,11 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
                         dVar.h.getClass();
                         printWriter.println(false);
                     }
-                    if (aVar.f50647n != null) {
+                    if (aVar.f50650n != null) {
                         printWriter.print(str2);
                         printWriter.print("mCallbacks=");
-                        printWriter.println(aVar.f50647n);
-                        b2.u uVar = aVar.f50647n;
+                        printWriter.println(aVar.f50650n);
+                        b2.u uVar = aVar.f50650n;
                         uVar.getClass();
                         printWriter.print(str2 + "  ");
                         printWriter.print("mDeliveredData=");
@@ -150,7 +150,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
                     }
                     printWriter.print(str2);
                     printWriter.print("mData=");
-                    b6.d dVar2 = aVar.f50645l;
+                    b6.d dVar2 = aVar.f50648l;
                     Object obj2 = aVar.e;
                     if (obj2 != androidx.lifecycle.z.f2830k) {
                         obj = obj2;
@@ -231,9 +231,9 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     @Override
     public void E(int i10, float f7, float f10, oe.e eVar) {
         rh.i iVar = (rh.i) this.f18010c;
-        iVar.f47618c.a(f7);
+        iVar.f47621c.a(f7);
         iVar.d.a(f7);
-        iVar.f47617b.a(f7);
+        iVar.f47620b.a(f7);
         ((Runnable) this.f18009b).run();
     }
 
@@ -248,7 +248,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public boolean G1(long j10) {
-        return ((i11) this.f18010c).f29146s;
+        return ((i11) this.f18010c).f29148s;
     }
 
     @Override
@@ -353,9 +353,9 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public void U(float f7, boolean z10) {
-        l5.f41136c = f7;
+        l5.f41139c = f7;
         ((TextView) this.f18009b).setText("Saturation " + (f7 * 5.0f));
-        vw0 vw0Var = ((l5) this.f18010c).f41137b;
+        vw0 vw0Var = ((l5) this.f18010c).f41140b;
         vw0Var.M();
         vw0Var.L();
     }
@@ -383,13 +383,13 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     public void Y(ta.a aVar) {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("Fid", aVar.f48755a);
-            jSONObject.put("Status", m1.j.c(aVar.f48756b));
-            jSONObject.put("AuthToken", aVar.f48757c);
+            jSONObject.put("Fid", aVar.f48758a);
+            jSONObject.put("Status", m1.j.c(aVar.f48759b));
+            jSONObject.put("AuthToken", aVar.f48760c);
             jSONObject.put("RefreshToken", aVar.d);
-            jSONObject.put("TokenCreationEpochInSecs", aVar.f48758f);
+            jSONObject.put("TokenCreationEpochInSecs", aVar.f48761f);
             jSONObject.put("ExpiresInSecs", aVar.e);
-            jSONObject.put("FisError", aVar.f48759g);
+            jSONObject.put("FisError", aVar.f48762g);
             m9.h hVar = (m9.h) this.f18010c;
             hVar.a();
             File createTempFile = File.createTempFile("PersistedInstallation", "tmp", hVar.f18380a.getFilesDir());
@@ -410,8 +410,8 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
             k1Var = s4.k1.a();
             fVar.put(e1Var, k1Var);
         }
-        k1Var.f47783c = v0Var;
-        k1Var.f47781a |= 8;
+        k1Var.f47786c = v0Var;
+        k1Var.f47784a |= 8;
     }
 
     @Override
@@ -455,13 +455,13 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
         cy cyVar = (cy) this.f18010c;
         if (view instanceof p2) {
             p2 p2Var = (p2) view;
-            if (p2Var.f24692n2) {
+            if (p2Var.f24694n2) {
                 cyVar.V4(p2Var.getDialogId(), view);
                 return true;
             }
         }
-        qx qxVar = cyVar.f38690z0;
-        if (qxVar != null && qxVar.getVisibility() == 0 && cyVar.f38690z0.f32375n) {
+        qx qxVar = cyVar.f38693z0;
+        if (qxVar != null && qxVar.getVisibility() == 0 && cyVar.f38693z0.f32377n) {
             return false;
         }
         return cyVar.w4(view, i10, f7, ((ay) this.f18009b).d);
@@ -581,22 +581,22 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
         a0.f fVar = (a0.f) this.f18009b;
         int c10 = fVar.c(e1Var);
         if (c10 >= 0 && (k1Var = (s4.k1) fVar.h(c10)) != null) {
-            int i11 = k1Var.f47781a;
+            int i11 = k1Var.f47784a;
             if ((i11 & i10) != 0) {
                 int i12 = i11 & (~i10);
-                k1Var.f47781a = i12;
+                k1Var.f47784a = i12;
                 if (i10 == 4) {
-                    v0Var = k1Var.f47782b;
+                    v0Var = k1Var.f47785b;
                 } else if (i10 == 8) {
-                    v0Var = k1Var.f47783c;
+                    v0Var = k1Var.f47786c;
                 } else {
                     throw new IllegalArgumentException("Must provide flag PRE or POST");
                 }
                 if ((i12 & 12) == 0) {
                     fVar.f(c10);
-                    k1Var.f47781a = 0;
-                    k1Var.f47782b = null;
-                    k1Var.f47783c = null;
+                    k1Var.f47784a = 0;
+                    k1Var.f47785b = null;
+                    k1Var.f47786c = null;
                     s4.k1.d.r(k1Var);
                 }
                 return v0Var;
@@ -625,7 +625,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
         String str = e2.n0.f9692a;
         k10.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new n2.a(u2.u.f49432g.getAndIncrement(), true, SystemClock.elapsedRealtime(), k10)).sendToTarget();
+        fVar.obtainMessage(1, new n2.a(u2.u.f49435g.getAndIncrement(), true, SystemClock.elapsedRealtime(), k10)).sendToTarget();
     }
 
     @Override
@@ -669,10 +669,10 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        y9.l lVar = (y9.l) fVar.f49583c;
-        y9.n.b((y9.n) ((y9.l) fVar.f49583c).f52435b);
-        ((y9.n) lVar.f52435b).f52448m.v((Executor) this.f18009b, null);
-        ((y9.n) lVar.f52435b).f52452q.trySetResult(null);
+        y9.l lVar = (y9.l) fVar.f49586c;
+        y9.n.b((y9.n) ((y9.l) fVar.f49586c).f52438b);
+        ((y9.n) lVar.f52438b).f52451m.v((Executor) this.f18009b, null);
+        ((y9.n) lVar.f52438b).f52455q.trySetResult(null);
         return Tasks.forResult(null);
     }
 
@@ -700,7 +700,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
         if (trim.length() > 16) {
             trim = trim.substring(0, 16);
         }
-        if (!((i11) this.f18010c).f29146s && TextUtils.isEmpty(trim)) {
+        if (!((i11) this.f18010c).f29148s && TextUtils.isEmpty(trim)) {
             return null;
         }
         return trim;
@@ -757,13 +757,13 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
         Paint paint = (Paint) this.f18009b;
         PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f18010c;
         tg.a1 a1Var = premiumPreviewFragment.m0;
-        if (premiumPreviewFragment.f35873h0) {
-            paint.setColor(premiumPreviewFragment.getThemedColor(y6.f23297a7));
+        if (premiumPreviewFragment.f35876h0) {
+            paint.setColor(premiumPreviewFragment.getThemedColor(y6.f23299a7));
             canvas.drawRect(f7, f10, f11, f12, paint);
             return;
         }
-        a1Var.d(0, (-premiumPreviewFragment.f35868d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f35865b0, 0, premiumPreviewFragment.f35868d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f35868d0.getMeasuredHeight());
-        canvas.drawRect(f7, f10, f11, f12, a1Var.f48794f);
+        a1Var.d(0, (-premiumPreviewFragment.f35871d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f35868b0, 0, premiumPreviewFragment.f35871d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f35871d0.getMeasuredHeight());
+        canvas.drawRect(f7, f10, f11, f12, a1Var.f48797f);
     }
 
     @Override
@@ -776,7 +776,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
         if (k1Var == null) {
             return;
         }
-        k1Var.f47781a &= -2;
+        k1Var.f47784a &= -2;
     }
 
     @Override
@@ -811,9 +811,9 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
         s4.k1 k1Var = (s4.k1) fVar.get(e1Var);
         if (k1Var != null) {
             fVar.remove(e1Var);
-            k1Var.f47781a = 0;
-            k1Var.f47782b = null;
-            k1Var.f47783c = null;
+            k1Var.f47784a = 0;
+            k1Var.f47785b = null;
+            k1Var.f47786c = null;
             s4.k1.d.r(k1Var);
         }
     }
@@ -857,7 +857,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     public c(androidx.lifecycle.t tVar, androidx.lifecycle.t0 t0Var) {
         this.f18008a = 24;
         this.f18009b = tVar;
-        this.f18010c = (w1.b) new a8.h0(t0Var, w1.b.f50648f).m(w1.b.class);
+        this.f18010c = (w1.b) new a8.h0(t0Var, w1.b.f50651f).m(w1.b.class);
     }
 
     public c(m9.h hVar) {
@@ -871,22 +871,22 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
         q1.i iVar = new q1.i(editText);
         this.f18010c = iVar;
         editText.addTextChangedListener(iVar);
-        if (q1.a.f46894b == null) {
-            synchronized (q1.a.f46893a) {
+        if (q1.a.f46897b == null) {
+            synchronized (q1.a.f46896a) {
                 try {
-                    if (q1.a.f46894b == null) {
+                    if (q1.a.f46897b == null) {
                         ?? factory = new Editable.Factory();
                         try {
-                            q1.a.f46895c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
+                            q1.a.f46898c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
                         } catch (Throwable unused) {
                         }
-                        q1.a.f46894b = factory;
+                        q1.a.f46897b = factory;
                     }
                 } finally {
                 }
             }
         }
-        editText.setEditableFactory(q1.a.f46894b);
+        editText.setEditableFactory(q1.a.f46897b);
     }
 
     @Override

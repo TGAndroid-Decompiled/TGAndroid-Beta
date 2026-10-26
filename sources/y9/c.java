@@ -1,12 +1,12 @@
 package y9;
 public final class c {
-    public final String f52415a;
-    public final String f52416b;
+    public final String f52418a;
+    public final String f52419b;
 
     public c(String str, String str2) {
         if (str != null) {
-            this.f52415a = str;
-            this.f52416b = str2;
+            this.f52418a = str;
+            this.f52419b = str2;
             return;
         }
         throw new NullPointerException("Null crashlyticsInstallId");
@@ -19,8 +19,8 @@ public final class c {
         }
         if (obj instanceof c) {
             c cVar = (c) obj;
-            String str2 = cVar.f52416b;
-            if (this.f52415a.equals(cVar.f52415a) && ((str = this.f52416b) != null ? str.equals(str2) : str2 == null)) {
+            String str2 = cVar.f52419b;
+            if (this.f52418a.equals(cVar.f52418a) && ((str = this.f52419b) != null ? str.equals(str2) : str2 == null)) {
                 return true;
             }
         }
@@ -29,8 +29,8 @@ public final class c {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f52415a.hashCode() ^ 1000003) * 1000003;
-        String str = this.f52416b;
+        int hashCode2 = (this.f52418a.hashCode() ^ 1000003) * 1000003;
+        String str = this.f52419b;
         if (str == null) {
             hashCode = 0;
         } else {
@@ -41,8 +41,8 @@ public final class c {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("InstallIds{crashlyticsInstallId=");
-        sb2.append(this.f52415a);
+        sb2.append(this.f52418a);
         sb2.append(", firebaseInstallationId=");
-        return a1.g.s(sb2, this.f52416b, "}");
+        return a1.g.s(sb2, this.f52419b, "}");
     }
 }

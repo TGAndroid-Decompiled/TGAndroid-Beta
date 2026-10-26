@@ -110,7 +110,7 @@ public final class g1 implements u2.k0, n2.k {
             while (true) {
                 if (i11 < i1Var.f13578c.size()) {
                     if (((u2.g0) i1Var.f13578c.get(i11)).d == g0Var.d) {
-                        Object obj = g0Var.f49294a;
+                        Object obj = g0Var.f49297a;
                         Object obj2 = i1Var.f13577b;
                         int i12 = a.f13472g;
                         g0Var2 = g0Var.a(Pair.create(obj2, obj));

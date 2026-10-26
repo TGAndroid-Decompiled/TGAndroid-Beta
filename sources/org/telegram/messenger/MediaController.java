@@ -436,20 +436,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     MediaController.this.stopRecording(2, false, 0, false, 0L);
                 }
                 dv dvVar = dv.S;
-                if (dvVar != null && (ma1Var2 = dvVar.f27606c) != null && ma1Var2.f30504w) {
-                    ma1Var2.f30486a.B();
+                if (dvVar != null && (ma1Var2 = dvVar.f27608c) != null && ma1Var2.f30506w) {
+                    ma1Var2.f30488a.B();
                     ma1Var2.n();
-                    ma1Var2.f30495f0.d(true, true);
+                    ma1Var2.f30497f0.d(true, true);
                 }
                 MediaController.this.callInProgress = true;
             } else if (i10 == 0) {
                 MediaController.this.callInProgress = false;
             } else if (i10 == 2) {
                 dv dvVar2 = dv.S;
-                if (dvVar2 != null && (ma1Var = dvVar2.f27606c) != null && ma1Var.f30504w) {
-                    ma1Var.f30486a.B();
+                if (dvVar2 != null && (ma1Var = dvVar2.f27608c) != null && ma1Var.f30506w) {
+                    ma1Var.f30488a.B();
                     ma1Var.n();
-                    ma1Var.f30495f0.d(true, true);
+                    ma1Var.f30497f0.d(true, true);
                 }
                 MediaController.this.callInProgress = true;
             }
@@ -600,10 +600,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             }
                         }
                         if (MediaController.this.pipRoundVideoView != null) {
-                            if (MediaController.this.pipRoundVideoView.f26196c.getSurfaceTexture() != surfaceTexture) {
-                                MediaController.this.pipRoundVideoView.f26196c.setSurfaceTexture(surfaceTexture);
+                            if (MediaController.this.pipRoundVideoView.f26198c.getSurfaceTexture() != surfaceTexture) {
+                                MediaController.this.pipRoundVideoView.f26198c.setSurfaceTexture(surfaceTexture);
                             }
-                            MediaController.this.videoPlayer.V(MediaController.this.pipRoundVideoView.f26196c);
+                            MediaController.this.videoPlayer.V(MediaController.this.pipRoundVideoView.f26198c);
                         }
                     }
                     MediaController.this.pipSwitchingState = 0;
@@ -780,10 +780,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             }
                         }
                         if (MediaController.this.pipRoundVideoView != null) {
-                            if (MediaController.this.pipRoundVideoView.f26196c.getSurfaceTexture() != surfaceTexture) {
-                                MediaController.this.pipRoundVideoView.f26196c.setSurfaceTexture(surfaceTexture);
+                            if (MediaController.this.pipRoundVideoView.f26198c.getSurfaceTexture() != surfaceTexture) {
+                                MediaController.this.pipRoundVideoView.f26198c.setSurfaceTexture(surfaceTexture);
                             }
-                            MediaController.this.videoPlayer.V(MediaController.this.pipRoundVideoView.f26196c);
+                            MediaController.this.videoPlayer.V(MediaController.this.pipRoundVideoView.f26198c);
                         }
                     }
                     MediaController.this.pipSwitchingState = 0;
@@ -1714,7 +1714,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 return;
             }
             TLRPC.TL_messages_reportMusicListen tL_messages_reportMusicListen = new TLRPC.TL_messages_reportMusicListen();
-            tL_messages_reportMusicListen.f22132id = this.audio;
+            tL_messages_reportMusicListen.f22134id = this.audio;
             tL_messages_reportMusicListen.listened_duration = (int) Math.round(getTotalListened() / 1000.0d);
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_reportMusicListen, null);
             this.rangeStart = -9223372036854775807L;
@@ -2252,9 +2252,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.blurType = inputSerializedData.readInt32(z10);
             this.sharpenValue = inputSerializedData.readFloat(z10);
             ag0 ag0Var = this.curvesToolValue;
-            ag0Var.f26497a.c(inputSerializedData, z10);
-            ag0Var.f26498b.c(inputSerializedData, z10);
-            ag0Var.f26499c.c(inputSerializedData, z10);
+            ag0Var.f26499a.c(inputSerializedData, z10);
+            ag0Var.f26500b.c(inputSerializedData, z10);
+            ag0Var.f26501c.c(inputSerializedData, z10);
             ag0Var.d.c(inputSerializedData, z10);
             this.blurExcludeSize = inputSerializedData.readFloat(z10);
             if (inputSerializedData.readInt32(z10) == 1450380236) {
@@ -2287,9 +2287,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             outputSerializedData.writeInt32(this.blurType);
             outputSerializedData.writeFloat(this.sharpenValue);
             ag0 ag0Var = this.curvesToolValue;
-            ag0Var.f26497a.d(outputSerializedData);
-            ag0Var.f26498b.d(outputSerializedData);
-            ag0Var.f26499c.d(outputSerializedData);
+            ag0Var.f26499a.d(outputSerializedData);
+            ag0Var.f26500b.d(outputSerializedData);
+            ag0Var.f26501c.d(outputSerializedData);
             ag0Var.d.d(outputSerializedData);
             outputSerializedData.writeFloat(this.blurExcludeSize);
             if (this.blurExcludePoint == null) {
@@ -2769,11 +2769,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         byte[] bArr;
         TLRPC.TL_document tL_document;
         int i10;
-        File file = lVar.f49935a;
+        File file = lVar.f49938a;
         this.recordingAudioFile = file;
-        long j10 = lVar.f49936b;
+        long j10 = lVar.f49939b;
         this.recordTimeCount = j10;
-        byte[] bArr2 = lVar.f49937c;
+        byte[] bArr2 = lVar.f49940c;
         String str = null;
         if (bArr2 == null) {
             bArr = null;
@@ -4558,7 +4558,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             int currentAccount = this.raiseChat.getCurrentAccount();
             long a2 = this.raiseChat.a();
             un unVar = this.raiseChat;
-            MessageObject messageObject = unVar.f44295j4;
+            MessageObject messageObject = unVar.f44298j4;
             int classGuid = unVar.getClassGuid();
             un unVar2 = this.raiseChat;
             MessageSuggestionParams messageSuggestionParams = null;
@@ -4575,7 +4575,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             un unVar4 = this.raiseChat;
             if (unVar4 != null) {
-                messageSuggestionParams = unVar4.f44407s5;
+                messageSuggestionParams = unVar4.f44410s5;
             }
             startRecording(currentAccount, a2, null, messageObject, null, classGuid, false, sendMessageChatArguments, j10, messageSuggestionParams);
         } else {
@@ -4586,7 +4586,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private boolean releaseAudioRecorderV2ForNewRecording() {
         ui.l lVar = this.audioRecorderV2PendingResult;
         if (lVar != null) {
-            File file = lVar.f49935a;
+            File file = lVar.f49938a;
             AutoDeleteMediaTask.unlockFile(file);
             file.delete();
             resetAudioRecorderV2State();
@@ -4906,9 +4906,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     private boolean shouldUseAudioRecorderV2(int i10) {
-        wi.a aVar = wi.e.f51274b;
+        wi.a aVar = wi.e.f51277b;
         aVar.a();
-        if (aVar.f51266c) {
+        if (aVar.f51269c) {
             aVar.a();
             return aVar.d;
         } else if (!MessagesController.getInstance(i10).config.audioRecorderV2Disabled.get()) {
@@ -6177,7 +6177,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
                 PipRoundVideoView pipRoundVideoView3 = this.pipRoundVideoView;
                 if (pipRoundVideoView3 != null) {
-                    this.videoPlayer.V(pipRoundVideoView3.f26196c);
+                    this.videoPlayer.V(pipRoundVideoView3.f26198c);
                 }
             }
         }
@@ -6432,7 +6432,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             int currentAccount = this.raiseChat.getCurrentAccount();
             long a2 = this.raiseChat.a();
             un unVar = this.raiseChat;
-            MessageObject messageObject = unVar.f44295j4;
+            MessageObject messageObject = unVar.f44298j4;
             int classGuid = unVar.getClassGuid();
             un unVar2 = this.raiseChat;
             MessageSuggestionParams messageSuggestionParams = null;
@@ -6449,7 +6449,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             un unVar4 = this.raiseChat;
             if (unVar4 != null) {
-                messageSuggestionParams = unVar4.f44407s5;
+                messageSuggestionParams = unVar4.f44410s5;
             }
             startRecording(currentAccount, a2, null, messageObject, null, classGuid, false, sendMessageChatArguments, j10, messageSuggestionParams);
             this.ignoreOnPause = true;
@@ -6787,7 +6787,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             PipRoundVideoView pipRoundVideoView2 = this.pipRoundVideoView;
             if (pipRoundVideoView2 != null) {
-                this.videoPlayer.V(pipRoundVideoView2.f26196c);
+                this.videoPlayer.V(pipRoundVideoView2.f26198c);
             } else {
                 this.videoPlayer.V(this.currentTextureView);
             }

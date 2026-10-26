@@ -593,7 +593,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                 }
                 if (viewGroup != null) {
                     a4.l lVar = new a4.l(this, 20);
-                    WeakHashMap weakHashMap = i0.f47105a;
+                    WeakHashMap weakHashMap = i0.f47108a;
                     r0.a0.i(viewGroup, lVar);
                     if (this.f12188s == null) {
                         this.K = (TextView) viewGroup.findViewById(2131296714);
@@ -659,7 +659,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                     ContentFrameLayout contentFrameLayout2 = (ContentFrameLayout) this.J.findViewById(16908290);
                     View decorView = this.f12175f.getDecorView();
                     contentFrameLayout2.h.set(decorView.getPaddingLeft(), decorView.getPaddingTop(), decorView.getPaddingRight(), decorView.getPaddingBottom());
-                    WeakHashMap weakHashMap2 = i0.f47105a;
+                    WeakHashMap weakHashMap2 = i0.f47108a;
                     if (contentFrameLayout2.isLaidOut()) {
                         contentFrameLayout2.requestLayout();
                     }
@@ -782,7 +782,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
         this.f12179i0 = (1 << i10) | this.f12179i0;
         if (!this.f12178h0) {
             View decorView = this.f12175f.getDecorView();
-            WeakHashMap weakHashMap = i0.f47105a;
+            WeakHashMap weakHashMap = i0.f47108a;
             decorView.postOnAnimation(this.f12180j0);
             this.f12178h0 = true;
         }

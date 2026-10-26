@@ -130,7 +130,7 @@ public final class s0 extends FrameLayout implements p6, r9 {
         u6 u6Var = this.f17460a;
         int w02 = y6.w0(i10, u6Var);
         AnimatedArrowDrawable animatedArrowDrawable = this.f17462c;
-        animatedArrowDrawable.f25825a.setColor(w02);
+        animatedArrowDrawable.f25827a.setColor(w02);
         animatedArrowDrawable.invalidateSelf();
         this.e.setColor(y6.w0(y6.Fk, u6Var));
     }

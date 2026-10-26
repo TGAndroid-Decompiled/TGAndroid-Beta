@@ -31,35 +31,35 @@ public abstract class x0 extends FrameLayout {
     public float H;
     public final ArrayList I;
     public final Rect J;
-    public final int f48550a;
-    public final rg.t1 f48551b;
-    public final DispatchQueue f48552c;
+    public final int f48553a;
+    public final rg.t1 f48554b;
+    public final DispatchQueue f48555c;
     public final MediaController.CropState d;
     public final rg.c1 e;
-    public final Bitmap f48553f;
+    public final Bitmap f48556f;
     public final int h;
-    public final boolean f48554n;
-    public final FrameLayout f48555r;
-    public final TextView f48556s;
+    public final boolean f48557n;
+    public final FrameLayout f48558r;
+    public final TextView f48559s;
     public final TextView v;
-    public final y1 f48557w;
-    public qw0 f48558x;
-    public boolean f48559y;
+    public final y1 f48560w;
+    public qw0 f48561x;
+    public boolean f48562y;
 
     public x0(Context context, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, MediaController.CropState cropState) {
         super(context);
         x1 iVar = new jg.i(this);
         this.I = new ArrayList();
         this.J = new Rect();
-        this.f48550a = i10;
-        this.f48554n = context instanceof BubbleActivity;
+        this.f48553a = i10;
+        this.f48557n = context instanceof BubbleActivity;
         rg.t1 t1Var = new rg.t1();
-        this.f48551b = t1Var;
-        t1Var.f47559a = new Object();
+        this.f48554b = t1Var;
+        t1Var.f47562a = new Object();
         DispatchQueue dispatchQueue = new DispatchQueue("MaskPaint");
-        this.f48552c = dispatchQueue;
+        this.f48555c = dispatchQueue;
         this.d = cropState;
-        this.f48553f = bitmap;
+        this.f48556f = bitmap;
         this.h = i11;
         rg.q0 q0Var = new rg.q0(getPaintingSize(), bitmap2, i11, null);
         q0Var.G = true;
@@ -75,7 +75,7 @@ public abstract class x0 extends FrameLayout {
         c1Var.setColor(-65536);
         addView(c1Var, gb1.i(-1, -1, 51));
         y1 y1Var = new y1(context);
-        this.f48557w = y1Var;
+        this.f48560w = y1Var;
         y1Var.b(0.05f, 1.0f);
         y1Var.setBrushWeight(iVar.get());
         y1Var.setRenderView(c1Var);
@@ -84,12 +84,12 @@ public abstract class x0 extends FrameLayout {
         y1Var.setAlpha(0.0f);
         addView(y1Var, gb1.g(-1.0f, -1));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f48555r = frameLayout;
+        this.f48558r = frameLayout;
         frameLayout.setAlpha(0.0f);
         frameLayout.setVisibility(8);
         addView(frameLayout, gb1.i(-1, 44, 80));
         TextView textView = new TextView(context);
-        this.f48556s = textView;
+        this.f48559s = textView;
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setBackground(y6.g0(y6.o1(0.15f, -1), 3, -1));
@@ -115,21 +115,21 @@ public abstract class x0 extends FrameLayout {
     private qw0 getPaintingSize() {
         float f7;
         float f10;
-        qw0 qw0Var = this.f48558x;
+        qw0 qw0Var = this.f48561x;
         if (qw0Var != null) {
             return qw0Var;
         }
-        Bitmap bitmap = this.f48553f;
+        Bitmap bitmap = this.f48556f;
         qw0 qw0Var2 = new qw0(bitmap.getWidth(), bitmap.getHeight());
         float f11 = 1280;
-        qw0Var2.f32052a = f11;
+        qw0Var2.f32054a = f11;
         float floor = (float) Math.floor((f11 * f10) / f7);
-        qw0Var2.f32053b = floor;
+        qw0Var2.f32055b = floor;
         if (floor > f11) {
-            qw0Var2.f32053b = f11;
-            qw0Var2.f32052a = (float) Math.floor((f11 * f7) / f10);
+            qw0Var2.f32055b = f11;
+            qw0Var2.f32054a = (float) Math.floor((f11 * f7) / f10);
         }
-        this.f48558x = qw0Var2;
+        this.f48561x = qw0Var2;
         return qw0Var2;
     }
 
@@ -203,7 +203,7 @@ public abstract class x0 extends FrameLayout {
         int i10 = 0;
         if (view == this.e && (cropState = this.d) != null) {
             canvas.save();
-            if (!this.f48554n) {
+            if (!this.f48557n) {
                 i10 = AndroidUtilities.statusBarHeight;
             }
             int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10;
@@ -268,14 +268,14 @@ public abstract class x0 extends FrameLayout {
         super.onLayout(z10, i10, i11, i12, i13);
         int i14 = i12 - i10;
         int i15 = i13 - i11;
-        if (!this.f48554n) {
+        if (!this.f48557n) {
             int i16 = AndroidUtilities.REPLACING_TAG_TYPE_LINK;
         }
         rg.c1 c1Var = this.e;
         int ceil = (int) Math.ceil((i14 - c1Var.getMeasuredWidth()) / 2.0f);
         int measuredHeight = (i15 - c1Var.getMeasuredHeight()) / 2;
         c1Var.layout(ceil, measuredHeight, c1Var.getMeasuredWidth() + ceil, c1Var.getMeasuredHeight() + measuredHeight);
-        FrameLayout frameLayout = this.f48555r;
+        FrameLayout frameLayout = this.f48558r;
         frameLayout.layout(0, i15 - frameLayout.getMeasuredHeight(), frameLayout.getMeasuredWidth(), i15);
     }
 
@@ -288,7 +288,7 @@ public abstract class x0 extends FrameLayout {
         int size2 = View.MeasureSpec.getSize(i11);
         setMeasuredDimension(size, size2);
         int i12 = AndroidUtilities.displaySize.y;
-        Bitmap bitmap = this.f48553f;
+        Bitmap bitmap = this.f48556f;
         if (bitmap != null) {
             f10 = bitmap.getWidth();
             f7 = bitmap.getHeight();
@@ -305,8 +305,8 @@ public abstract class x0 extends FrameLayout {
         }
         this.e.measure(View.MeasureSpec.makeMeasureSpec((int) f11, 1073741824), View.MeasureSpec.makeMeasureSpec((int) floor, 1073741824));
         this.H = 1.0f;
-        measureChild(this.f48557w, i10, i11);
-        measureChild(this.f48555r, i10, i11);
+        measureChild(this.f48560w, i10, i11);
+        measureChild(this.f48558r, i10, i11);
         this.G = false;
         if (Build.VERSION.SDK_INT >= 29) {
             ArrayList arrayList = this.I;
@@ -329,10 +329,10 @@ public abstract class x0 extends FrameLayout {
 
     public void setEraser(boolean z10) {
         ?? r22;
-        if (this.f48559y == z10) {
+        if (this.f48562y == z10) {
             return;
         }
-        this.f48559y = z10;
+        this.f48562y = z10;
         if (z10) {
             r22 = new Object();
         } else {

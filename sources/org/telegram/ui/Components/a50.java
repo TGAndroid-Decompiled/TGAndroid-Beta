@@ -6,29 +6,29 @@ import java.util.HashMap;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 public final class a50 implements org.telegram.ui.qq0 {
-    public boolean f26409a;
-    public final HashMap f26410b;
-    public final ArrayList f26411c;
+    public boolean f26411a;
+    public final HashMap f26412b;
+    public final ArrayList f26413c;
     public final g50 d;
 
     public a50(g50 g50Var, HashMap hashMap, ArrayList arrayList) {
         this.d = g50Var;
-        this.f26410b = hashMap;
-        this.f26411c = arrayList;
+        this.f26412b = hashMap;
+        this.f26413c = arrayList;
     }
 
     @Override
     public final void d(int i10, boolean z10, boolean z11) {
         String str;
-        HashMap hashMap = this.f26410b;
+        HashMap hashMap = this.f26412b;
         if (!hashMap.isEmpty()) {
             g50 g50Var = this.d;
-            if (g50Var.f28420b != null && !this.f26409a && !z10) {
-                this.f26409a = true;
+            if (g50Var.f28422b != null && !this.f26411a && !z10) {
+                this.f26411a = true;
                 ArrayList arrayList = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f26411c;
+                    ArrayList arrayList2 = this.f26413c;
                     if (i11 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i11));
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -66,7 +66,7 @@ public final class a50 implements org.telegram.ui.qq0 {
 
     @Override
     public final boolean e() {
-        return this.d.f28420b.e();
+        return this.d.f28422b.e();
     }
 
     @Override

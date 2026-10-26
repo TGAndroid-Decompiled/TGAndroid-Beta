@@ -74,7 +74,7 @@ public final class q extends View {
             float width2 = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
             t5 t5Var = this.f1629b;
-            if (t5Var == null || (f3Var = t5Var.f32849k) == null || !f3Var.hasBitmapImage()) {
+            if (t5Var == null || (f3Var = t5Var.f32852k) == null || !f3Var.hasBitmapImage()) {
                 canvas.drawCircle(width2, height, 0.42f * width, this.f1630c);
             }
             t5 t5Var2 = this.f1629b;

@@ -60,19 +60,19 @@ public final class r9 extends m71 {
     public ShapeDrawable X;
     public int Y;
     public fi.d Z;
-    public int f37193a0;
-    public int f37194b0;
-    public int f37195c0;
-    public ai.o0 f37196d0;
+    public int f37196a0;
+    public int f37197b0;
+    public int f37198c0;
+    public ai.o0 f37199d0;
     public TL_wallet.nftItem e;
-    public String f37197f;
+    public String f37200f;
     public boolean h;
-    public m f37198n;
-    public boolean f37199r;
-    public ig.a2 f37201w;
-    public String f37202x;
-    public String f37203y;
-    public final ArrayList f37200s = new ArrayList();
+    public m f37201n;
+    public boolean f37202r;
+    public ig.a2 f37204w;
+    public String f37205x;
+    public String f37206y;
+    public final ArrayList f37203s = new ArrayList();
     public final ArrayList v = new ArrayList();
     public final h3 I = new h3(this, 1);
     public boolean Q = true;
@@ -86,15 +86,15 @@ public final class r9 extends m71 {
     };
 
     public static void Z(r9 r9Var, l0 l0Var, TLRPC.User user, String str, TL_wallet.walletTransaction wallettransaction, String str2) {
-        r9Var.f37198n = null;
-        if (r9Var.f37199r) {
+        r9Var.f37201n = null;
+        if (r9Var.f37202r) {
             return;
         }
         r9Var.Z.setLoading(false);
-        if (wallettransaction != null && l0.a(r9Var.f37197f, l0Var.s())) {
+        if (wallettransaction != null && l0.a(r9Var.f37200f, l0Var.s())) {
             if (user != null) {
                 TL_wallet.walletTransactionPeerUser wallettransactionpeeruser = new TL_wallet.walletTransactionPeerUser();
-                wallettransactionpeeruser.user_id = user.f22174id;
+                wallettransactionpeeruser.user_id = user.f22176id;
                 wallettransactionpeeruser.address = str;
                 wallettransaction.peer = wallettransactionpeeruser;
             }
@@ -164,7 +164,7 @@ public final class r9 extends m71 {
     }
 
     public static boolean d0(TLRPC.User user) {
-        if (user != null && !user.bot && !user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f22174id)) {
+        if (user != null && !user.bot && !user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f22176id)) {
             return true;
         }
         return false;
@@ -226,18 +226,18 @@ public final class r9 extends m71 {
             ic.a.p(R.string.WalletRecipient, arrayList);
             p5 p5Var = this.M;
             t61 t61Var = new t61(-1);
-            t61Var.f32866c = p5Var;
-            t61Var.f32885z = 50;
+            t61Var.f32869c = p5Var;
+            t61Var.f32888z = 50;
             arrayList.add(t61Var);
             j71Var.U();
             String trim = this.N.getText().toString().trim();
             String lowerCase = trim.toLowerCase(Locale.ROOT);
             float f16 = 12.0f;
             int i13 = 0;
-            if (this.f37202x != null) {
+            if (this.f37205x != null) {
                 if (this.G == null) {
                     FrameLayout frameLayout = new FrameLayout(getParentActivity());
-                    frameLayout.setBackground(org.telegram.ui.ActionBar.y6.g0(getThemedColor(org.telegram.ui.ActionBar.y6.f23446i6), 2, -1));
+                    frameLayout.setBackground(org.telegram.ui.ActionBar.y6.g0(getThemedColor(org.telegram.ui.ActionBar.y6.f23448i6), 2, -1));
                     boolean z10 = LocaleController.isRTL;
                     if (z10) {
                         i12 = 5;
@@ -282,7 +282,7 @@ public final class r9 extends m71 {
                     TextView textView2 = new TextView(getParentActivity());
                     this.H = textView2;
                     textView2.setTextSize(1, 14.0f);
-                    org.telegram.ui.ActionBar.f7.V(this.H, org.telegram.ui.ActionBar.y6.f23746y6, getResourceProvider());
+                    org.telegram.ui.ActionBar.f7.V(this.H, org.telegram.ui.ActionBar.y6.f23748y6, getResourceProvider());
                     this.H.setSingleLine();
                     this.H.setEllipsize(TextUtils.TruncateAt.MIDDLE);
                     this.H.setGravity(i12);
@@ -302,18 +302,18 @@ public final class r9 extends m71 {
                     this.G = frameLayout;
                 }
                 TextView textView4 = this.F;
-                String str = this.f37203y;
+                String str = this.f37206y;
                 if (str == null) {
                     str = LocaleController.getString(R.string.WalletGramWalletAddress);
                 }
                 textView4.setText(str);
-                this.H.setText(this.f37202x);
+                this.H.setText(this.f37205x);
                 arrayList.add(t61.D(AndroidUtilities.dp(12.0f)));
                 j71Var.V();
                 FrameLayout frameLayout2 = this.G;
                 t61 t61Var2 = new t61(-1);
-                t61Var2.f32866c = frameLayout2;
-                t61Var2.f32885z = 60;
+                t61Var2.f32869c = frameLayout2;
+                t61Var2.f32888z = 60;
                 arrayList.add(t61Var2);
                 j71Var.U();
                 return;
@@ -329,20 +329,20 @@ public final class r9 extends m71 {
                     i15++;
                     float f17 = f16;
                     TLRPC.User user = getMessagesController().getUser(Long.valueOf(tL_topPeer.peer.user_id));
-                    if (d0(user) && hashSet.add(Long.valueOf(user.f22174id))) {
+                    if (d0(user) && hashSet.add(Long.valueOf(user.f22176id))) {
                         arrayList2.add(user);
                     }
                     f16 = f17;
                 }
                 f7 = f16;
-                ArrayList arrayList4 = this.f37200s;
+                ArrayList arrayList4 = this.f37203s;
                 int size2 = arrayList4.size();
                 int i16 = 0;
                 while (i16 < size2) {
                     Object obj = arrayList4.get(i16);
                     i16++;
                     TLRPC.User user2 = (TLRPC.User) obj;
-                    if (hashSet.add(Long.valueOf(user2.f22174id))) {
+                    if (hashSet.add(Long.valueOf(user2.f22176id))) {
                         arrayList2.add(user2);
                     }
                 }
@@ -366,13 +366,13 @@ public final class r9 extends m71 {
                 }
                 t61 w10 = t61.w(user3);
                 if (!TextUtils.isEmpty(lowerCase)) {
-                    w10.f32872l = AndroidUtilities.generateSearchName(user3.first_name, user3.last_name, trim);
+                    w10.f32875l = AndroidUtilities.generateSearchName(user3.first_name, user3.last_name, trim);
                     String publicUsername = UserObject.getPublicUsername(user3);
                     if (!TextUtils.isEmpty(publicUsername)) {
-                        w10.f32873m = AndroidUtilities.generateSearchName(b10.j("@", publicUsername), null, "@".concat(trim));
+                        w10.f32876m = AndroidUtilities.generateSearchName(b10.j("@", publicUsername), null, "@".concat(trim));
                     }
                     i11 = i13;
-                    w10.F = new o(user3, w10.f32872l, w10.f32873m, 8);
+                    w10.F = new o(user3, w10.f32875l, w10.f32876m, 8);
                 } else {
                     i11 = i13;
                 }
@@ -386,7 +386,7 @@ public final class r9 extends m71 {
                     arrayList.add(t61.D(AndroidUtilities.dp(f7)));
                     j71Var.V();
                 }
-                if (this.f37203y != null) {
+                if (this.f37206y != null) {
                     i10 = 1;
                 } else {
                     i10 = 3;
@@ -404,10 +404,10 @@ public final class r9 extends m71 {
                 Object[] objArr = new Object[1];
                 objArr[i19] = lowerCase;
                 String formatString = LocaleController.formatString(i21, objArr);
-                int i22 = dj.f27529a;
+                int i22 = dj.f27531a;
                 t61 K2 = t61.K(dj.class);
-                K2.f32872l = string;
-                K2.f32873m = formatString;
+                K2.f32875l = string;
+                K2.f32876m = formatString;
                 arrayList.add(K2);
             }
         }
@@ -430,7 +430,7 @@ public final class r9 extends m71 {
         if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
             int i10 = this.currentAccount;
-            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new qa(i10, user.f22174id, 2));
+            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new qa(i10, user.f22176id, 2));
             AndroidUtilities.hideKeyboard(this.N);
             i0(null, user);
         }
@@ -444,12 +444,12 @@ public final class r9 extends m71 {
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f30417a);
-        this.f30417a.u1();
-        this.f30417a.setPadding(0, 0, 0, AndroidUtilities.dp(68.0f));
-        this.f30417a.setClipToPadding(false);
-        l71 l71Var = this.f30417a;
-        l71Var.f32150g3.f29505r = false;
+        this.actionBar.setAdaptiveBackground(this.f30419a);
+        this.f30419a.u1();
+        this.f30419a.setPadding(0, 0, 0, AndroidUtilities.dp(68.0f));
+        this.f30419a.setClipToPadding(false);
+        l71 l71Var = this.f30419a;
+        l71Var.f32152g3.f29507r = false;
         l71Var.j(new ml(this, 21));
         p5 p5Var = new p5(this, context, 1);
         this.T = (ClipboardManager) context.getSystemService("clipboard");
@@ -458,7 +458,7 @@ public final class r9 extends m71 {
         org.telegram.ui.ActionBar.f7.V(c2Var, org.telegram.ui.ActionBar.y6.G6, getResourceProvider());
         fi.c2 c2Var2 = this.N;
         org.telegram.ui.ActionBar.b7 L = org.telegram.ui.ActionBar.f7.L(0.72f, org.telegram.ui.ActionBar.y6.H6);
-        org.telegram.ui.ActionBar.f7.o(c2Var2, 1, L.f22483a, -1, 2, L.d, getResourceProvider());
+        org.telegram.ui.ActionBar.f7.o(c2Var2, 1, L.f22485a, -1, 2, L.d, getResourceProvider());
         boolean z10 = true;
         this.N.setTextSize(1, 16.0f);
         this.N.setHint(LocaleController.getString(R.string.WalletAddressOrName));
@@ -475,7 +475,7 @@ public final class r9 extends m71 {
         this.O = textView;
         textView.setText(LocaleController.getString(R.string.WalletPaste));
         TextView textView2 = this.O;
-        int i10 = org.telegram.ui.ActionBar.y6.f23538n6;
+        int i10 = org.telegram.ui.ActionBar.y6.f23540n6;
         org.telegram.ui.ActionBar.f7.V(textView2, i10, getResourceProvider());
         this.O.setTextSize(1, 14.0f);
         this.O.setTypeface(AndroidUtilities.bold());
@@ -501,11 +501,11 @@ public final class r9 extends m71 {
         g0(false);
         this.M = p5Var;
         ig.a2 a2Var = new ig.a2(true);
-        this.f37201w = a2Var;
+        this.f37204w = a2Var;
         a2Var.f13988a = new jg.s0(this, 23);
         getNotificationCenter().addObserver(this.I, NotificationCenter.reloadHints);
         MediaDataController.getInstance(this.currentAccount).loadHints(true);
-        this.f37200s.clear();
+        this.f37203s.clear();
         int i11 = this.currentAccount;
         MessagesStorage.getInstance(i11).getStorageQueue().postRunnable(new i2.v(i11, 0, new o9(this), 2));
         if (!TextUtils.isEmpty(null)) {
@@ -516,7 +516,7 @@ public final class r9 extends m71 {
         FrameLayout frameLayout = new FrameLayout(context);
         this.V = frameLayout;
         frameLayout.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f));
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.f23297a7);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.f23299a7);
         this.V.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.y6.o1(0.0f, themedColor), themedColor, themedColor}));
         fi.d dVar = new fi.d(context, getResourceProvider(), true);
         dVar.setRoundRadius(24);
@@ -526,7 +526,7 @@ public final class r9 extends m71 {
         this.Z.setOnClickListener(new l9(this, 1));
         fi.d dVar2 = this.Z;
         if (dVar2 != null) {
-            if (this.f37202x == null) {
+            if (this.f37205x == null) {
                 z10 = false;
             }
             dVar2.setEnabled(z10);
@@ -534,17 +534,17 @@ public final class r9 extends m71 {
         this.V.addView(this.Z, gb1.i(-1, 48, 119));
         ((FrameLayout) this.fragmentView).addView(this.V, gb1.i(-1, 68, 87));
         k0();
-        this.f30417a.f32150g3.O(false);
+        this.f30419a.f32152g3.O(false);
         return this.fragmentView;
     }
 
     public final void e0() {
-        if (getParentActivity() != null && this.f37196d0 == null && this.P != null) {
+        if (getParentActivity() != null && this.f37199d0 == null && this.P != null) {
             AndroidUtilities.hideKeyboard(this.N);
             if (getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
                 getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 44);
             } else {
-                this.f37196d0 = ai.o0.k(this, this.P, new ai.d0(15), new m9(this, 0), new n9(this, 0));
+                this.f37199d0 = ai.o0.k(this, this.P, new ai.d0(15), new m9(this, 0), new n9(this, 0));
             }
         }
     }
@@ -554,7 +554,7 @@ public final class r9 extends m71 {
         String publicUsername;
         ArrayList arrayList = this.v;
         arrayList.clear();
-        if (!TextUtils.isEmpty(str) && this.f37202x == null && this.f37203y == null) {
+        if (!TextUtils.isEmpty(str) && this.f37205x == null && this.f37206y == null) {
             String lowerCase = str.toLowerCase(Locale.ROOT);
             HashSet hashSet = new HashSet();
             ArrayList<TLRPC.Dialog> arrayList2 = getMessagesController().dialogsUsersOnly;
@@ -568,13 +568,13 @@ public final class r9 extends m71 {
                 if (dialog2 != null && dialog2.f22031id > 0) {
                     TLRPC.User user = getMessagesController().getUser(Long.valueOf(dialog2.f22031id));
                     if (d0(user) && (((userName = UserObject.getUserName(user)) != null && userName.toLowerCase(Locale.ROOT).contains(lowerCase)) || ((publicUsername = UserObject.getPublicUsername(user)) != null && publicUsername.toLowerCase(Locale.ROOT).contains(lowerCase)))) {
-                        if (hashSet.add(Long.valueOf(user.f22174id))) {
+                        if (hashSet.add(Long.valueOf(user.f22176id))) {
                             arrayList.add(user);
                         }
                     }
                 }
             }
-            ArrayList arrayList3 = this.f37201w.e;
+            ArrayList arrayList3 = this.f37204w.e;
             int size2 = arrayList3.size();
             while (i10 < size2) {
                 Object obj = arrayList3.get(i10);
@@ -582,26 +582,26 @@ public final class r9 extends m71 {
                 TLObject tLObject = (TLObject) obj;
                 if (tLObject instanceof TLRPC.User) {
                     TLRPC.User user2 = (TLRPC.User) tLObject;
-                    if (d0(user2) && hashSet.add(Long.valueOf(user2.f22174id))) {
+                    if (d0(user2) && hashSet.add(Long.valueOf(user2.f22176id))) {
                         arrayList.add(user2);
                     }
                 }
             }
-            l71 l71Var = this.f30417a;
+            l71 l71Var = this.f30419a;
             if (l71Var != null) {
-                l71Var.f32150g3.O(true);
+                l71Var.f32152g3.O(true);
                 return;
             }
             return;
         }
-        l71 l71Var2 = this.f30417a;
+        l71 l71Var2 = this.f30419a;
         if (l71Var2 != null) {
-            l71Var2.f32150g3.O(true);
+            l71Var2.f32152g3.O(true);
         }
     }
 
     public final void g0(boolean z10) {
-        if (!this.f37199r && this.N != null && this.P != null) {
+        if (!this.f37202r && this.N != null && this.P != null) {
             ClipboardManager clipboardManager = this.T;
             if (clipboardManager != null) {
                 this.S = clipboardManager.hasPrimaryClip();
@@ -620,8 +620,8 @@ public final class r9 extends m71 {
                 i9Var = new i9(user);
             } else {
                 i9 i9Var2 = new i9(str);
-                if (TextUtils.equals(str, this.f37202x)) {
-                    str2 = this.f37203y;
+                if (TextUtils.equals(str, this.f37205x)) {
+                    str2 = this.f37206y;
                 } else {
                     str2 = null;
                 }
@@ -650,26 +650,26 @@ public final class r9 extends m71 {
 
     public final void j0(TL_wallet.nftItem nftitem) {
         this.e = nftitem;
-        this.f37197f = l0.w(this.currentAccount).s();
+        this.f37200f = l0.w(this.currentAccount).s();
     }
 
     public final void k0() {
-        int max = Math.max(0, this.f37194b0 - this.f37193a0);
-        l71 l71Var = this.f30417a;
+        int max = Math.max(0, this.f37197b0 - this.f37196a0);
+        l71 l71Var = this.f30419a;
         if (l71Var != null) {
-            l71Var.setPadding(0, 0, 0, AndroidUtilities.dp(68.0f) + this.f37193a0 + max);
-            this.f30417a.setClipToPadding(false);
+            l71Var.setPadding(0, 0, 0, AndroidUtilities.dp(68.0f) + this.f37196a0 + max);
+            this.f30419a.setClipToPadding(false);
         }
         FrameLayout frameLayout = this.V;
         if (frameLayout != null) {
-            frameLayout.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f) + this.f37193a0);
+            frameLayout.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f) + this.f37196a0);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.V.getLayoutParams();
-            layoutParams.height = AndroidUtilities.dp(68.0f) + this.f37193a0;
+            layoutParams.height = AndroidUtilities.dp(68.0f) + this.f37196a0;
             this.V.setLayoutParams(layoutParams);
-            if (this.f37195c0 != max) {
+            if (this.f37198c0 != max) {
                 this.V.animate().cancel();
                 this.V.animate().translationY(-max).setDuration(320L).setInterpolator(ds.h).start();
-                this.f37195c0 = max;
+                this.f37198c0 = max;
             }
         }
     }
@@ -713,7 +713,7 @@ public final class r9 extends m71 {
 
     @Override
     public final boolean onBackPressed(boolean z10) {
-        ai.o0 o0Var = this.f37196d0;
+        ai.o0 o0Var = this.f37199d0;
         if (o0Var != null) {
             if (z10) {
                 o0Var.e();
@@ -726,12 +726,12 @@ public final class r9 extends m71 {
 
     @Override
     public final void onFragmentDestroy() {
-        this.f37199r = true;
-        ai.o0 o0Var = this.f37196d0;
+        this.f37202r = true;
+        ai.o0 o0Var = this.f37199d0;
         if (o0Var != null) {
             o0Var.g();
-            AndroidUtilities.removeFromParent(this.f37196d0);
-            this.f37196d0 = null;
+            AndroidUtilities.removeFromParent(this.f37199d0);
+            this.f37199d0 = null;
         }
         ClipboardManager clipboardManager = this.T;
         if (clipboardManager != null) {
@@ -757,7 +757,7 @@ public final class r9 extends m71 {
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
         }
-        m mVar = this.f37198n;
+        m mVar = this.f37201n;
         if (mVar != null) {
             mVar.run();
         }
@@ -766,13 +766,13 @@ public final class r9 extends m71 {
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f37193a0 = i13;
+        this.f37196a0 = i13;
         k0();
     }
 
     @Override
     public final r0.k1 onInsetsInternal(View view, r0.k1 k1Var) {
-        this.f37194b0 = k1Var.f47115a.f(8).d;
+        this.f37197b0 = k1Var.f47118a.f(8).d;
         return super.onInsetsInternal(view, k1Var);
     }
 
@@ -782,11 +782,11 @@ public final class r9 extends m71 {
         if (clipboardManager != null) {
             clipboardManager.removePrimaryClipChangedListener(this.U);
         }
-        ai.o0 o0Var = this.f37196d0;
+        ai.o0 o0Var = this.f37199d0;
         if (o0Var != null) {
             o0Var.g();
-            AndroidUtilities.removeFromParent(this.f37196d0);
-            this.f37196d0 = null;
+            AndroidUtilities.removeFromParent(this.f37199d0);
+            this.f37199d0 = null;
         }
         super.onPause();
     }
@@ -800,7 +800,7 @@ public final class r9 extends m71 {
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.f22366a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint));
+            alertDialog$Builder.f22368a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint));
             alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new o9(this));
             alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
             int i11 = R.raw.permission_request_camera;
@@ -829,7 +829,7 @@ public final class r9 extends m71 {
         super.onThemeColorsChanged();
         try {
             FrameLayout frameLayout = this.V;
-            if (frameLayout != null && (frameLayout.getBackground() instanceof GradientDrawable) && (themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.f23297a7)) != this.Y) {
+            if (frameLayout != null && (frameLayout.getBackground() instanceof GradientDrawable) && (themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.f23299a7)) != this.Y) {
                 this.Y = themedColor;
                 ((GradientDrawable) this.V.getBackground()).setColors(new int[]{org.telegram.ui.ActionBar.y6.o1(0.0f, themedColor), themedColor, themedColor});
             }

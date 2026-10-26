@@ -14,50 +14,50 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class qr extends Drawable {
-    public final org.telegram.ui.ActionBar.u6 f42895a;
-    public final Paint f42896b = new Paint(1);
-    public final Paint f42897c;
+    public final org.telegram.ui.ActionBar.u6 f42898a;
+    public final Paint f42899b = new Paint(1);
+    public final Paint f42900c;
     public final Drawable d;
     public final RectF e;
-    public final org.telegram.ui.Components.r6 f42898f;
-    public final org.telegram.ui.Components.r6 f42899g;
+    public final org.telegram.ui.Components.r6 f42901f;
+    public final org.telegram.ui.Components.r6 f42902g;
     public final Paint h;
-    public final Path f42900i;
-    public final Drawable f42901j;
-    public int f42902k;
-    public boolean f42903l;
-    public final org.telegram.ui.Components.h6 f42904m;
+    public final Path f42903i;
+    public final Drawable f42904j;
+    public int f42905k;
+    public boolean f42906l;
+    public final org.telegram.ui.Components.h6 f42907m;
 
     public qr(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
         Paint paint = new Paint(1);
-        this.f42897c = paint;
+        this.f42900c = paint;
         this.e = new RectF();
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(false, false, false);
-        this.f42898f = r6Var;
+        this.f42901f = r6Var;
         org.telegram.ui.Components.r6 r6Var2 = new org.telegram.ui.Components.r6(false, false, false);
-        this.f42899g = r6Var2;
+        this.f42902g = r6Var2;
         Paint paint2 = new Paint(1);
         this.h = paint2;
         Path path = new Path();
-        this.f42900i = path;
-        this.f42904m = new org.telegram.ui.Components.h6(new ui(this, 13), 320L, org.telegram.ui.Components.ds.h, 0);
+        this.f42903i = path;
+        this.f42907m = new org.telegram.ui.Components.h6(new ui(this, 13), 320L, org.telegram.ui.Components.ds.h, 0);
         pr prVar = new pr(0, this);
-        this.f42895a = u6Var;
+        this.f42898a = u6Var;
         this.d = context.getResources().getDrawable(i10).mutate();
-        this.f42901j = context.getResources().getDrawable(R.drawable.mini_casting_fill).mutate();
+        this.f42904j = context.getResources().getDrawable(R.drawable.mini_casting_fill).mutate();
         paint.setColor(-1);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         r6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         r6Var.u(-16777216);
         r6Var.w(AndroidUtilities.dp(7.0f));
         r6Var.setCallback(prVar);
-        r6Var.f32119b = 17;
+        r6Var.f32121b = 17;
         r6Var.M = AndroidUtilities.displaySize.x;
         r6Var2.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         r6Var2.u(-16777216);
         r6Var2.w(AndroidUtilities.dp(7.0f));
         r6Var2.setCallback(prVar);
-        r6Var2.f32119b = 17;
+        r6Var2.f32121b = 17;
         r6Var2.M = AndroidUtilities.displaySize.x;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(AndroidUtilities.dp(0.66f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.33f));
@@ -66,10 +66,10 @@ public final class qr extends Drawable {
     }
 
     public final void a(boolean z10) {
-        if (this.f42903l == z10) {
+        if (this.f42906l == z10) {
             return;
         }
-        this.f42903l = z10;
+        this.f42906l = z10;
         invalidateSelf();
     }
 
@@ -81,10 +81,10 @@ public final class qr extends Drawable {
         float f11;
         int i10;
         float f12;
-        float e = this.f42904m.e(this.f42903l);
-        org.telegram.ui.Components.r6 r6Var = this.f42898f;
+        float e = this.f42907m.e(this.f42906l);
+        org.telegram.ui.Components.r6 r6Var = this.f42901f;
         float c10 = r6Var.c() + (r6Var.i() * AndroidUtilities.dp(5.0f));
-        org.telegram.ui.Components.r6 r6Var2 = this.f42899g;
+        org.telegram.ui.Components.r6 r6Var2 = this.f42902g;
         float c11 = r6Var2.c() + (r6Var2.i() * AndroidUtilities.dp(5.0f));
         int saveCount = canvas.getSaveCount();
         Rect bounds = getBounds();
@@ -104,13 +104,13 @@ public final class qr extends Drawable {
         canvas2.rotate(-0.0f, bounds.centerX(), bounds.centerY());
         drawable.draw(canvas2);
         canvas2.restore();
-        Paint paint = this.f42896b;
+        Paint paint = this.f42899b;
         paint.setColor(-1);
         float width = (bounds.width() * 0.98f) + bounds.left;
         float height = (bounds.height() * 0.18f) + bounds.top;
         float height2 = (bounds.height() * 0.78f) + bounds.top;
         float dp = AndroidUtilities.dp(10.0f);
-        Paint paint2 = this.f42897c;
+        Paint paint2 = this.f42900c;
         RectF rectF = this.e;
         if (i11 > 0) {
             f7 = dp;
@@ -147,11 +147,11 @@ public final class qr extends Drawable {
         }
         if (e > 0.0f) {
             canvas2.save();
-            int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f42895a);
-            int i13 = this.f42902k;
-            Drawable drawable2 = this.f42901j;
+            int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f42898a);
+            int i13 = this.f42905k;
+            Drawable drawable2 = this.f42904j;
             if (i13 != w02) {
-                this.f42902k = w02;
+                this.f42905k = w02;
                 drawable2.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
             }
             f12 = 255.0f;
@@ -162,7 +162,7 @@ public final class qr extends Drawable {
             if (e > 0.5f) {
                 canvas2.save();
                 canvas2.translate(drawable2.getBounds().left, drawable2.getBounds().top);
-                canvas2.drawPath(this.f42900i, this.h);
+                canvas2.drawPath(this.f42903i, this.h);
                 canvas2.restore();
             }
             drawable2.draw(canvas2);

@@ -50,7 +50,7 @@ public final class x extends b7 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        z zVar = this.G0.f52913c0;
+        z zVar = this.G0.f52916c0;
         if (zVar != null) {
             zVar.invalidate();
         }
@@ -58,7 +58,7 @@ public final class x extends b7 {
 
     @Override
     public final void k(int i10) {
-        this.G0.f52913c0.setRibbonColor(i10);
+        this.G0.f52916c0.setRibbonColor(i10);
     }
 
     @Override

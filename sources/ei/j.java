@@ -35,7 +35,7 @@ public final class j extends n0 {
                     } else {
                         z10 = false;
                     }
-                    w7Var.f25633a0 = z10;
+                    w7Var.f25635a0 = z10;
                     int i11 = R % i10;
                     if (i11 == 0) {
                         z11 = true;
@@ -71,7 +71,7 @@ public final class j extends n0 {
                     } else {
                         z12 = false;
                     }
-                    w7Var2.f25633a0 = z12;
+                    w7Var2.f25635a0 = z12;
                     int i13 = R2 % i12;
                     if (i13 == 0) {
                         z13 = true;

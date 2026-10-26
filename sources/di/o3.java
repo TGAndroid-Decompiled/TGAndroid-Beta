@@ -92,10 +92,10 @@ public final class o3 extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.d).f22364x.remove((AnimatorSet) this.f8869b);
+                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.d).f22366x.remove((AnimatorSet) this.f8869b);
                 View view = (View) this.f8870c;
                 if (view instanceof org.telegram.ui.ActionBar.g1) {
-                    ak0 ak0Var = ((org.telegram.ui.ActionBar.g1) view).f22636c;
+                    ak0 ak0Var = ((org.telegram.ui.ActionBar.g1) view).f22638c;
                     if (ak0Var.getAnimatedDrawable() != null) {
                         ak0Var.getAnimatedDrawable().start();
                         return;
@@ -107,19 +107,19 @@ public final class o3 extends AnimatorListenerAdapter {
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.d;
                 ViewGroup viewGroup = (ViewGroup) this.f8869b;
                 if (viewGroup != null) {
-                    chatActivityEnterView.f25915m1.removeView(chatActivityEnterView.f25869e1);
-                    viewGroup.addView(chatActivityEnterView.f25869e1, (ViewGroup.LayoutParams) this.f8870c);
+                    chatActivityEnterView.f25917m1.removeView(chatActivityEnterView.f25871e1);
+                    viewGroup.addView(chatActivityEnterView.f25871e1, (ViewGroup.LayoutParams) this.f8870c);
                 }
-                chatActivityEnterView.f25869e1.setAlpha(1.0f);
-                chatActivityEnterView.f25888h1.setAlpha(1.0f);
+                chatActivityEnterView.f25871e1.setAlpha(1.0f);
+                chatActivityEnterView.f25890h1.setAlpha(1.0f);
                 chatActivityEnterView.h = 0.0f;
-                chatActivityEnterView.f25920n = 0.0f;
+                chatActivityEnterView.f25922n = 0.0f;
                 chatActivityEnterView.C1();
-                hi.i0 i0Var = chatActivityEnterView.f25911l0;
+                hi.i0 i0Var = chatActivityEnterView.f25913l0;
                 if (i0Var != null) {
                     i0Var.setAlpha(0.0f);
-                    chatActivityEnterView.f25911l0.setScaleX(0.0f);
-                    chatActivityEnterView.f25911l0.setScaleY(0.0f);
+                    chatActivityEnterView.f25913l0.setScaleX(0.0f);
+                    chatActivityEnterView.f25913l0.setScaleY(0.0f);
                 }
                 if (chatActivityEnterView.O1 != null && chatActivityEnterView.P && !chatActivityEnterView.O && MessagesController.getGlobalMainSettings().getInt("voiceoncehint", 0) < 3) {
                     chatActivityEnterView.O1.b();
@@ -145,11 +145,11 @@ public final class o3 extends AnimatorListenerAdapter {
                     int L0 = tVar.L0();
                     mm0Var.setTranslationY(0.0f);
                     if (mm0Var == szVar.D0) {
-                        mm0Var.setPadding(0, AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(44.0f) + szVar.f32759q2);
-                    } else if (mm0Var == szVar.f32731h0) {
-                        mm0Var.setPadding(0, szVar.f32712b1, 0, AndroidUtilities.dp(44.0f) + szVar.f32759q2);
+                        mm0Var.setPadding(0, AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(44.0f) + szVar.f32762q2);
+                    } else if (mm0Var == szVar.f32734h0) {
+                        mm0Var.setPadding(0, szVar.f32715b1, 0, AndroidUtilities.dp(44.0f) + szVar.f32762q2);
                     } else if (mm0Var == szVar.P) {
-                        mm0Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(44.0f) + szVar.f32759q2);
+                        mm0Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(44.0f) + szVar.f32762q2);
                     }
                     if (L0 != -1) {
                         tVar.h1(L0, 0);
@@ -167,7 +167,7 @@ public final class o3 extends AnimatorListenerAdapter {
                     ((p50) this.f8870c).run();
                 }
                 o60Var.h.setRotationY(0.0f);
-                o60Var.f31196r0.setRotationY(0.0f);
+                o60Var.f31198r0.setRotationY(0.0f);
                 o60Var.O0 = false;
                 o60Var.invalidate();
                 return;
@@ -178,8 +178,8 @@ public final class o3 extends AnimatorListenerAdapter {
                 AndroidUtilities.removeFromParent(i80Var);
                 ViewTreeObserver viewTreeObserver = ((ViewGroup) this.f8870c).getViewTreeObserver();
                 k80 k80Var = (k80) this.d;
-                View view2 = k80Var.f29843f;
-                viewTreeObserver.removeOnPreDrawListener(k80Var.f29871y);
+                View view2 = k80Var.f29845f;
+                viewTreeObserver.removeOnPreDrawListener(k80Var.f29873y);
                 if (k80Var.P) {
                     view2.setVisibility(0);
                     if (view2 instanceof zh.g1) {
@@ -195,16 +195,16 @@ public final class o3 extends AnimatorListenerAdapter {
             case 8:
                 LaunchActivity launchActivity = (LaunchActivity) this.d;
                 launchActivity.G0 = null;
-                launchActivity.f35568z0.invalidate();
-                launchActivity.f35546o0.invalidate();
-                launchActivity.f35546o0.setImageDrawable(null);
-                b31 b31Var = launchActivity.f35546o0;
-                b31Var.f26741c = null;
-                b31Var.f26739a.setShader(null);
-                b31Var.f26743n = null;
-                b31Var.f26744r = null;
-                launchActivity.f35546o0.setVisibility(8);
-                launchActivity.f35548p0.setVisibility(8);
+                launchActivity.f35571z0.invalidate();
+                launchActivity.f35549o0.invalidate();
+                launchActivity.f35549o0.setImageDrawable(null);
+                b31 b31Var = launchActivity.f35549o0;
+                b31Var.f26743c = null;
+                b31Var.f26741a.setShader(null);
+                b31Var.f26745n = null;
+                b31Var.f26746r = null;
+                launchActivity.f35549o0.setVisibility(8);
+                launchActivity.f35551p0.setVisibility(8);
                 ak0 ak0Var2 = (ak0) this.f8869b;
                 if (ak0Var2 != null) {
                     ak0Var2.setImageDrawable((xj0) this.f8870c);
@@ -213,11 +213,11 @@ public final class o3 extends AnimatorListenerAdapter {
                 if (ak0Var2 != null) {
                     ak0Var2.setVisibility(0);
                 }
-                cy.f38559y4 = false;
+                cy.f38562y4 = false;
                 return;
             default:
                 c61 c61Var = (c61) this.d;
-                c61Var.f38320s1 = null;
+                c61Var.f38323s1 = null;
                 c61Var.invalidate();
                 boolean[] zArr3 = (boolean[]) this.f8869b;
                 if (!zArr3[0]) {

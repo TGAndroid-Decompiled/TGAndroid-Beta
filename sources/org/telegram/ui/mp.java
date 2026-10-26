@@ -10,15 +10,15 @@ import org.telegram.messenger.DispatchQueue2;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class mp extends org.telegram.ui.Components.lm0 {
-    public final Context f41630c;
+    public final Context f41633c;
     public ArrayList d = new ArrayList();
     public ArrayList e = new ArrayList();
-    public lp f41631f;
+    public lp f41634f;
     public final np h;
 
     public mp(np npVar, Context context) {
         this.h = npVar;
-        this.f41630c = context;
+        this.f41633c = context;
     }
 
     public static void E(mp mpVar, ArrayList arrayList, ArrayList arrayList2) {
@@ -28,7 +28,7 @@ public final class mp extends org.telegram.ui.Components.lm0 {
         }
         mpVar.d = arrayList;
         mpVar.e = arrayList2;
-        if (npVar.f41959b.getAdapter() == npVar.e) {
+        if (npVar.f41962b.getAdapter() == npVar.e) {
             npVar.d.c();
         }
         super.l();
@@ -36,7 +36,7 @@ public final class mp extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final void A(s4.e1 e1Var) {
-        View view = e1Var.f47735a;
+        View view = e1Var.f47738a;
         if (view instanceof org.telegram.ui.Cells.f5) {
             ((org.telegram.ui.Cells.f5) view).a();
         }
@@ -44,16 +44,16 @@ public final class mp extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f != 1) {
+        if (e1Var.f47741f != 1) {
             return true;
         }
         return false;
     }
 
     public final void F(String str) {
-        if (this.f41631f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f41631f);
-            this.f41631f = null;
+        if (this.f41634f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f41634f);
+            this.f41634f = null;
         }
         if (TextUtils.isEmpty(str)) {
             this.d.clear();
@@ -63,7 +63,7 @@ public final class mp extends org.telegram.ui.Components.lm0 {
         }
         DispatchQueue2 dispatchQueue2 = Utilities.searchQueue;
         lp lpVar = new lp(this, str, 0);
-        this.f41631f = lpVar;
+        this.f41634f = lpVar;
         dispatchQueue2.postRunnable(lpVar, 300L);
     }
 
@@ -89,15 +89,15 @@ public final class mp extends org.telegram.ui.Components.lm0 {
                 charSequence = null;
             }
         }
-        org.telegram.ui.Cells.f5 f5Var = (org.telegram.ui.Cells.f5) e1Var.f47735a;
+        org.telegram.ui.Cells.f5 f5Var = (org.telegram.ui.Cells.f5) e1Var.f47738a;
         f5Var.setTag(Integer.valueOf(i10));
         f5Var.c(chat, charSequence, charSequence2, false);
     }
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.f5 f5Var = new org.telegram.ui.Cells.f5(6, 2, this.f41630c, null, false);
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, f5Var, null);
+        org.telegram.ui.Cells.f5 f5Var = new org.telegram.ui.Cells.f5(6, 2, this.f41633c, null, false);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, f5Var, null);
         return new s4.e1(f5Var);
     }
 }

@@ -74,22 +74,22 @@ public final class k0 extends AnimatorListenerAdapter {
                     ((org.telegram.ui.Cells.s1) view2).getTransitionParams().h = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (mVar.f47793y.remove(e1Var2)) {
+                if (mVar.f47796y.remove(e1Var2)) {
                     mVar.u(e1Var2);
                     mVar.G();
                     return;
                 }
                 return;
             case 2:
-                ((s4.e1) this.f14147b).f47735a.setAlpha(1.0f);
+                ((s4.e1) this.f14147b).f47738a.setAlpha(1.0f);
                 ((AnimatorSet) this.f14148c).removeAllListeners();
                 mt mtVar = (mt) this.e;
                 kt ktVar = (kt) this.d;
-                mtVar.d(ktVar.f29975a);
-                mtVar.f30748y.remove(ktVar.f29975a);
+                mtVar.d(ktVar.f29977a);
+                mtVar.f30750y.remove(ktVar.f29977a);
                 mtVar.A();
-                mtVar.d(ktVar.f29976b);
-                mtVar.f30748y.remove(ktVar.f29976b);
+                mtVar.d(ktVar.f29978b);
+                mtVar.f30750y.remove(ktVar.f29978b);
                 mtVar.A();
                 return;
             case 3:
@@ -103,7 +103,7 @@ public final class k0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 q2 q2Var = (q2) this.e;
-                TextView[] textViewArr = q2Var.f34029a;
+                TextView[] textViewArr = q2Var.f34032a;
                 View view4 = (View) this.f14148c;
                 view4.setVisibility(8);
                 view4.setAlpha(1.0f);
@@ -120,7 +120,7 @@ public final class k0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                q2Var.f34032f = false;
+                q2Var.f34035f = false;
                 CharSequence charSequence = q2Var.e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
@@ -148,8 +148,8 @@ public final class k0 extends AnimatorListenerAdapter {
                     runnable2.run();
                     return;
                 }
-                profileActivity.f35975e0.setProgressToExpand(0.0f);
-                profileActivity.f35945a.setLayerType(0, null);
+                profileActivity.f35978e0.setProgressToExpand(0.0f);
+                profileActivity.f35948a.setLayerType(0, null);
                 if (profileActivity.P0 != null) {
                     kVar = ((r2) profileActivity).actionBar;
                     org.telegram.ui.ActionBar.z l4 = kVar.l();
@@ -163,15 +163,15 @@ public final class k0 extends AnimatorListenerAdapter {
                 runnable2.run();
                 if (profileActivity.J1 == 2) {
                     profileActivity.J1 = 1;
-                    profileActivity.f35975e0.setForegroundAlpha(1.0f);
+                    profileActivity.f35978e0.setForegroundAlpha(1.0f);
                     profileActivity.X.setVisibility(8);
-                    profileActivity.f36037n0.setAlpha(1.0f);
-                    profileActivity.f36037n0.L();
-                    profileActivity.f36037n0.setVisibility(0);
+                    profileActivity.f36040n0.setAlpha(1.0f);
+                    profileActivity.f36040n0.L();
+                    profileActivity.f36040n0.setVisibility(0);
                 }
-                profileActivity.f35966c5 = null;
+                profileActivity.f35969c5 = null;
                 profileActivity.Y.invalidate();
-                profileActivity.f36034m5 = null;
+                profileActivity.f36037m5 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
         }
@@ -188,9 +188,9 @@ public final class k0 extends AnimatorListenerAdapter {
             case 2:
                 mt mtVar = (mt) this.e;
                 kt ktVar = (kt) this.d;
-                s4.e1 e1Var = ktVar.f29975a;
+                s4.e1 e1Var = ktVar.f29977a;
                 mtVar.getClass();
-                s4.e1 e1Var2 = ktVar.f29976b;
+                s4.e1 e1Var2 = ktVar.f29978b;
                 mtVar.getClass();
                 return;
             default:

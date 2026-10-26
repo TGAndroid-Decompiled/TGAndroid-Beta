@@ -47,12 +47,12 @@ import org.telegram.ui.cv0;
 import org.telegram.ui.d3;
 import vi.y;
 public class s implements s0, c3.g, j5.e, dg.a, eg.a, ga.a, hb.n, com.google.android.gms.common.api.internal.r, fh.a, n2.q, o6.k, j1, s9.d, r2.k, o5.b, v5.a, z6.d {
-    public static s f49611b;
-    public static s f49612c;
-    public final int f49613a;
+    public static s f49614b;
+    public static s f49615c;
+    public final int f49616a;
 
     public s(int i10) {
-        this.f49613a = i10;
+        this.f49616a = i10;
     }
 
     public static long H0(z zVar) {
@@ -73,7 +73,7 @@ public class s implements s0, c3.g, j5.e, dg.a, eg.a, ga.a, hb.n, com.google.and
     }
 
     public static MediaCodec x0(m0 m0Var) {
-        String str = ((r2.o) m0Var.f1150a).f47221a;
+        String str = ((r2.o) m0Var.f1150a).f47224a;
         Trace.beginSection("createCodec:" + str);
         MediaCodec createByCodecName = MediaCodec.createByCodecName(str);
         Trace.endSection();
@@ -105,7 +105,7 @@ public class s implements s0, c3.g, j5.e, dg.a, eg.a, ga.a, hb.n, com.google.and
 
     @Override
     public p0 B(Class cls, v1.b bVar) {
-        switch (this.f49613a) {
+        switch (this.f49616a) {
             case 2:
                 return a(cls);
             default:
@@ -231,7 +231,7 @@ public class s implements s0, c3.g, j5.e, dg.a, eg.a, ga.a, hb.n, com.google.and
 
     @Override
     public Object U1() {
-        switch (this.f49613a) {
+        switch (this.f49616a) {
             case 9:
                 return new ArrayList();
             default:
@@ -266,7 +266,7 @@ public class s implements s0, c3.g, j5.e, dg.a, eg.a, ga.a, hb.n, com.google.and
 
     @Override
     public p0 a(Class cls) {
-        switch (this.f49613a) {
+        switch (this.f49616a) {
             case 2:
                 return new l0(true);
             default:
@@ -329,7 +329,7 @@ public class s implements s0, c3.g, j5.e, dg.a, eg.a, ga.a, hb.n, com.google.and
 
     @Override
     public Object d1(me meVar) {
-        switch (this.f49613a) {
+        switch (this.f49616a) {
             case 18:
                 return new sb.d(meVar.d(sb.h.class));
             default:
@@ -362,7 +362,7 @@ public class s implements s0, c3.g, j5.e, dg.a, eg.a, ga.a, hb.n, com.google.and
             if (set != null) {
                 hashMap.put(j5.d.f15515c, new s5.b(1000L, 86400000L, set));
                 if (set != null) {
-                    Set unmodifiableSet = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(s5.c.f47879b)));
+                    Set unmodifiableSet = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(s5.c.f47882b)));
                     if (unmodifiableSet != null) {
                         hashMap.put(j5.d.f15514b, new s5.b(86400000L, 86400000L, unmodifiableSet));
                         if (hashMap.keySet().size() >= j5.d.values().length) {
@@ -548,7 +548,7 @@ public class s implements s0, c3.g, j5.e, dg.a, eg.a, ga.a, hb.n, com.google.and
     }
 
     public s(Object obj, int i10) {
-        this.f49613a = i10;
+        this.f49616a = i10;
     }
 
     @Override

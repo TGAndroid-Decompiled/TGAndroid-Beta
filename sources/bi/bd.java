@@ -48,7 +48,7 @@ public final class bd extends m91 {
             r71 r71Var = adVar.f4289a;
             r71Var.setClipToPadding(false);
             r71Var.v1(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
-            r71Var.f32150g3.f29505r = false;
+            r71Var.f32152g3.f29507r = false;
             r71Var.setCaptureSectionsDecoratorAllowed(true);
             r71Var.setOverScrollMode(0);
             oi.q qVar = this.h;
@@ -84,7 +84,7 @@ public final class bd extends m91 {
         if (i10 >= 0) {
             ArrayList arrayList = this.f4398i;
             if (i10 < arrayList.size()) {
-                return ((t61) arrayList.get(i10)).f32885z;
+                return ((t61) arrayList.get(i10)).f32888z;
             }
             return 0;
         }

@@ -127,14 +127,14 @@ public final class r5 extends ViewGroup {
     }
 
     public final void b() {
-        int i10 = y6.f23604qh;
+        int i10 = y6.f23606qh;
         u6 u6Var = this.f17447b;
         this.f17450n.setColor(y6.w0(i10, u6Var));
         int w02 = y6.w0(y6.M6, u6Var);
         int red = Color.red(w02);
         int green = Color.green(w02);
         int blue = Color.blue(w02);
-        this.f17451r.setColor(y6.w0(y6.f23587ph, u6Var));
+        this.f17451r.setColor(y6.w0(y6.f23589ph, u6Var));
         this.f17452s.setColor(Color.argb(20, red, green, blue));
         this.H = 255;
         int i11 = y6.Oh;

@@ -39,9 +39,9 @@ public final class f extends l {
             groupCallMessage = (GroupCallMessage) eVar.f18863c.get(b10);
         }
         if (groupCallMessage != null && (x0Var = groupCallMessage.visibleReaction) != null) {
-            View view = e1Var.f47735a;
+            View view = e1Var.f47738a;
             if ((view instanceof c) && (gVar = hVar.X0) != null) {
-                v50 v50Var = ((s30) gVar).f43347a;
+                v50 v50Var = ((s30) gVar).f43350a;
                 Context context = v50Var.getContext();
                 fl0 fl0Var = v50Var.K;
                 i10 = ((k3) v50Var).currentAccount;

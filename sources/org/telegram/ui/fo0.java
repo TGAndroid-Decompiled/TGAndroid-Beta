@@ -4,12 +4,12 @@ import android.os.AsyncTask;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class fo0 extends AsyncTask {
-    public final xc.a f39426a;
-    public final po0 f39427b;
+    public final xc.a f39429a;
+    public final po0 f39430b;
 
     public fo0(po0 po0Var, xc.a aVar) {
-        this.f39427b = po0Var;
-        this.f39426a = aVar;
+        this.f39430b = po0Var;
+        this.f39429a = aVar;
     }
 
     @Override
@@ -20,14 +20,14 @@ public final class fo0 extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         String str = (String) obj;
-        po0 po0Var = this.f39427b;
+        po0 po0Var = this.f39430b;
         if (po0Var.Q0) {
             return;
         }
         if (str == null) {
             org.telegram.ui.Components.g5.v0(po0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
         } else {
-            po0Var.f42618w0 = str;
+            po0Var.f42621w0 = str;
             po0Var.u0();
         }
         po0Var.I0(true, false);

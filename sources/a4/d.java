@@ -82,7 +82,7 @@ public final class d implements Comparator {
             case 13:
                 return ((Integer) ((Pair) obj).first).intValue() - ((Integer) ((Pair) obj2).first).intValue();
             case 14:
-                int i16 = ProfileStoriesView.f36229s0;
+                int i16 = ProfileStoriesView.f36232s0;
                 return (int) (((s4) obj2).f9150i - ((s4) obj).f9150i);
             case 15:
                 return (int) (((Long) obj2).longValue() - ((Long) obj).longValue());
@@ -141,8 +141,8 @@ public final class d implements Comparator {
                 }
                 return compare;
             case 27:
-                i10 = ((e1) obj2).f47735a.getTop();
-                i11 = ((e1) obj).f47735a.getTop();
+                i10 = ((e1) obj2).f47738a.getTop();
+                i11 = ((e1) obj).f47738a.getTop();
                 break;
             case 28:
                 byte[] bArr = (byte[]) obj;

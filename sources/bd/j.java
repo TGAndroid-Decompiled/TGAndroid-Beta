@@ -54,10 +54,10 @@ public final class j implements Runnable {
                     Object obj = arrayList.get(i10);
                     i10++;
                     s4.k kVar2 = (s4.k) obj;
-                    mVar.T(kVar2.f47778a, kVar2, this.f3886b);
+                    mVar.T(kVar2.f47781a, kVar2, this.f3886b);
                 }
                 arrayList.clear();
-                mVar.f47790u.remove(arrayList);
+                mVar.f47793u.remove(arrayList);
                 return;
             default:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;

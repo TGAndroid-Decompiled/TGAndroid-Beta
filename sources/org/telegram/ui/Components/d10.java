@@ -39,7 +39,7 @@ public abstract class d10 extends jp0 {
     public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
         super.e(view, accessibilityNodeInfo);
         if (this.d) {
-            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.f47645j.f47646a);
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.f47648j.f47649a);
             accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
         }
     }
@@ -49,7 +49,7 @@ public abstract class d10 extends jp0 {
         if (super.g(view, i10, bundle)) {
             return true;
         }
-        if (i10 == s0.c.f47645j.a()) {
+        if (i10 == s0.c.f47648j.a()) {
             l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
             return true;
         }

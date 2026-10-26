@@ -41,7 +41,7 @@ public final class j extends FrameLayout {
         textView.setTextSize(1, 14.0f);
         TextView e = vh.e(linearLayout, textView, gb1.x(-1, -2, 55, 0, 0, 0, 1), context);
         this.f13039c = e;
-        f7.V(e, y6.f23765z6, u6Var);
+        f7.V(e, y6.f23767z6, u6Var);
         e.setTextSize(1, 14.0f);
         linearLayout.addView(e, gb1.x(-1, -2, 55, 0, 0, 0, 0));
     }

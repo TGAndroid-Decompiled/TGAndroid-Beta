@@ -2,7 +2,7 @@ package u7;
 
 import a8.qg;
 public abstract class q {
-    public static qg f49609a;
+    public static qg f49612a;
 
     public static final Class a(yd.c cVar) {
         kotlin.jvm.internal.i.e(cVar, "<this>");
@@ -64,10 +64,10 @@ public abstract class q {
         p pVar;
         synchronized (q.class) {
             try {
-                if (f49609a == null) {
-                    f49609a = new qg(1);
+                if (f49612a == null) {
+                    f49612a = new qg(1);
                 }
-                pVar = (p) f49609a.R0(oVar);
+                pVar = (p) f49612a.R0(oVar);
             } catch (Throwable th2) {
                 throw th2;
             }

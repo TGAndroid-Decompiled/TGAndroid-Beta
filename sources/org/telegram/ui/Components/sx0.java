@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class sx0 extends lm0 {
-    public int f32698c;
+    public int f32701c;
     public final by0 d;
 
     public sx0(by0 by0Var) {
@@ -16,7 +16,7 @@ public final class sx0 extends lm0 {
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f == 1) {
+        if (e1Var.f47741f == 1) {
             return true;
         }
         return false;
@@ -26,19 +26,19 @@ public final class sx0 extends lm0 {
     public final int h() {
         int length;
         by0 by0Var = this.d;
-        xx0[] xx0VarArr = by0Var.f26979g3;
+        xx0[] xx0VarArr = by0Var.f26981g3;
         if (xx0VarArr == null) {
             length = 0;
         } else {
             length = xx0VarArr.length;
         }
         int i10 = length + 1;
-        if (i10 != this.f32698c) {
-            bi.cc ccVar = by0Var.f26992t3;
+        if (i10 != this.f32701c) {
+            bi.cc ccVar = by0Var.f26994t3;
             if (ccVar != null) {
                 ccVar.requestLayout();
             }
-            this.f32698c = i10;
+            this.f32701c = i10;
         }
         return i10;
     }
@@ -56,18 +56,18 @@ public final class sx0 extends lm0 {
         by0 by0Var;
         xx0[] xx0VarArr;
         boolean z10 = true;
-        if (e1Var.f47738f == 1 && (xx0VarArr = (by0Var = this.d).f26979g3) != null) {
+        if (e1Var.f47741f == 1 && (xx0VarArr = (by0Var = this.d).f26981g3) != null) {
             int i11 = i10 - 1;
             xx0 xx0Var = xx0VarArr[i11];
-            final wx0 wx0Var = (wx0) e1Var.f47735a;
-            if (by0Var.f26993u3 != i11) {
+            final wx0 wx0Var = (wx0) e1Var.f47738a;
+            if (by0Var.f26995u3 != i11) {
                 z10 = false;
             }
             wx0Var.getClass();
             if (!TextUtils.isEmpty(xx0Var.d)) {
                 wx0Var.setContentDescription(xx0Var.d);
-            } else if (!TextUtils.isEmpty(xx0Var.f34842a)) {
-                wx0Var.setContentDescription(xx0Var.f34842a);
+            } else if (!TextUtils.isEmpty(xx0Var.f34845a)) {
+                wx0Var.setContentDescription(xx0Var.f34845a);
             } else {
                 wx0Var.setContentDescription(null);
             }
@@ -79,9 +79,9 @@ public final class sx0 extends lm0 {
             wx0Var.setImageResource(0);
             wx0Var.a();
             final boolean G1 = wx0Var.H.G1();
-            wx0Var.f34545w = false;
-            wx0Var.f34547y = 1.0f;
-            t5.h(UserConfig.selectedAccount).b(xx0Var.f34844c, new q5() {
+            wx0Var.f34548w = false;
+            wx0Var.f34550y = 1.0f;
+            t5.h(UserConfig.selectedAccount).b(xx0Var.f34847c, new q5() {
                 @Override
                 public final void a(TLRPC.Document document) {
                     wx0 wx0Var2 = wx0.this;
@@ -92,9 +92,9 @@ public final class sx0 extends lm0 {
             });
             AndroidUtilities.runOnUIThread(new mp0(wx0Var, 15), 60L);
             wx0Var.l(z10, false);
-            wx0Var.setAlpha(by0Var.f26995w3);
-            wx0Var.setScaleX(by0Var.f26995w3);
-            wx0Var.setScaleY(by0Var.f26995w3);
+            wx0Var.setAlpha(by0Var.f26997w3);
+            wx0Var.setScaleX(by0Var.f26997w3);
+            wx0Var.setScaleY(by0Var.f26997w3);
             wx0Var.j();
         }
     }
@@ -105,7 +105,7 @@ public final class sx0 extends lm0 {
         by0 by0Var = this.d;
         if (i10 == 0) {
             bi.cc ccVar = new bi.cc(this, by0Var.getContext(), 26);
-            by0Var.f26992t3 = ccVar;
+            by0Var.f26994t3 = ccVar;
             wx0Var = ccVar;
         } else {
             wx0Var = new wx0(by0Var, by0Var.getContext());
@@ -116,9 +116,9 @@ public final class sx0 extends lm0 {
     @Override
     public final void y(s4.e1 e1Var) {
         boolean z10 = true;
-        if (e1Var.f47738f == 1) {
-            wx0 wx0Var = (wx0) e1Var.f47735a;
-            if (this.d.f26993u3 != e1Var.b() - 1) {
+        if (e1Var.f47741f == 1) {
+            wx0 wx0Var = (wx0) e1Var.f47738a;
+            if (this.d.f26995u3 != e1Var.b() - 1) {
                 z10 = false;
             }
             wx0Var.l(z10, false);

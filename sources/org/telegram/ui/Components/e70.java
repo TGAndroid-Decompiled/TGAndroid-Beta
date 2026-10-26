@@ -13,11 +13,11 @@ public final class e70 extends r90 {
     @Override
     public final void e(int i10, SpannableStringBuilder spannableStringBuilder) {
         org.telegram.ui.ActionBar.u6 u6Var;
-        n70 n70Var = this.M.f29204c;
+        n70 n70Var = this.M.f29206c;
         org.telegram.ui.ActionBar.h3 h3Var = n70Var.container;
         u6Var = ((org.telegram.ui.ActionBar.k3) n70Var).resourcesProvider;
         qc R = new wc(h3Var, u6Var).R(i10, 36, spannableStringBuilder);
-        R.f31896s = false;
+        R.f31898s = false;
         R.k(true);
     }
 }

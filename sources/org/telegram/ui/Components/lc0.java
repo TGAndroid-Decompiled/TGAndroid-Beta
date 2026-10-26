@@ -14,31 +14,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 public final class lc0 extends View implements org.telegram.ui.ActionBar.p6 {
-    public final ArrayList f30163a;
-    public float f30164b;
-    public final org.telegram.ui.ActionBar.u6 f30165c;
+    public final ArrayList f30165a;
+    public float f30166b;
+    public final org.telegram.ui.ActionBar.u6 f30167c;
     public final Paint d;
     public int e;
-    public int f30166f;
+    public int f30168f;
     public Drawable h;
-    public float f30167n;
-    public float f30168r;
-    public final RectF f30169s;
+    public float f30169n;
+    public float f30170r;
+    public final RectF f30171s;
     public Utilities.Callback v;
 
     public lc0(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f30163a = new ArrayList();
+        this.f30165a = new ArrayList();
         this.d = new Paint(1);
-        this.f30167n = AndroidUtilities.dp(14.0f);
-        this.f30168r = AndroidUtilities.dp(0.0f);
-        this.f30169s = new RectF();
-        this.f30165c = u6Var;
+        this.f30169n = AndroidUtilities.dp(14.0f);
+        this.f30170r = AndroidUtilities.dp(0.0f);
+        this.f30171s = new RectF();
+        this.f30167c = u6Var;
         b();
     }
 
     public final void a(int i10, String str) {
-        this.f30163a.add(new kc0(i10, str));
+        this.f30165a.add(new kc0(i10, str));
     }
 
     @Override
@@ -52,28 +52,28 @@ public final class lc0 extends View implements org.telegram.ui.ActionBar.p6 {
         Paint paint = this.d;
         if (q5) {
             this.e = -1862270977;
-            this.f30166f = -1325400065;
+            this.f30168f = -1325400065;
             paint.setColor(285212671);
             return;
         }
         int i10 = org.telegram.ui.ActionBar.y6.Nd;
-        org.telegram.ui.ActionBar.u6 u6Var = this.f30165c;
+        org.telegram.ui.ActionBar.u6 u6Var = this.f30167c;
         int w02 = org.telegram.ui.ActionBar.y6.w0(i10, u6Var);
-        if ((u6Var instanceof org.telegram.ui.sn) && (((org.telegram.ui.sn) u6Var).l() instanceof uc0) && (iArr = ((uc0) ((org.telegram.ui.sn) u6Var).l()).f33350a) != null) {
+        if ((u6Var instanceof org.telegram.ui.sn) && (((org.telegram.ui.sn) u6Var).l() instanceof uc0) && (iArr = ((uc0) ((org.telegram.ui.sn) u6Var).l()).f33353a) != null) {
             w02 = AndroidUtilities.getAverageColor(AndroidUtilities.getAverageColor(iArr[0], iArr[1]), AndroidUtilities.getAverageColor(iArr[2], iArr[3]));
         }
         this.e = org.telegram.ui.ActionBar.y6.c(-1606201797, w02);
-        this.f30166f = org.telegram.ui.ActionBar.y6.c(-448573893, w02);
+        this.f30168f = org.telegram.ui.ActionBar.y6.c(-448573893, w02);
         paint.setColor(org.telegram.ui.ActionBar.y6.c(814980216, w02));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z10;
-        ArrayList arrayList = this.f30163a;
+        ArrayList arrayList = this.f30165a;
         boolean z11 = true;
         if (arrayList.size() > 1) {
-            float f7 = this.f30164b;
+            float f7 = this.f30166b;
             double d = f7;
             int floor = (int) Math.floor(d);
             if (floor >= 0 && floor < arrayList.size()) {
@@ -83,13 +83,13 @@ public final class lc0 extends View implements org.telegram.ui.ActionBar.p6 {
             }
             int ceil = (int) Math.ceil(d);
             z11 = (ceil < 0 || ceil >= arrayList.size()) ? false : false;
-            RectF rectF = this.f30169s;
+            RectF rectF = this.f30171s;
             if (z10 && z11) {
-                AndroidUtilities.lerp(((kc0) arrayList.get(floor)).f29901c, ((kc0) arrayList.get(ceil)).f29901c, f7 - floor, rectF);
+                AndroidUtilities.lerp(((kc0) arrayList.get(floor)).f29903c, ((kc0) arrayList.get(ceil)).f29903c, f7 - floor, rectF);
             } else if (z10) {
-                rectF.set(((kc0) arrayList.get(floor)).f29901c);
+                rectF.set(((kc0) arrayList.get(floor)).f29903c);
             } else if (z11) {
-                rectF.set(((kc0) arrayList.get(ceil)).f29901c);
+                rectF.set(((kc0) arrayList.get(ceil)).f29903c);
             }
             Drawable drawable = this.h;
             if (drawable != null) {
@@ -100,7 +100,7 @@ public final class lc0 extends View implements org.telegram.ui.ActionBar.p6 {
             }
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 kc0 kc0Var = (kc0) arrayList.get(i10);
-                kc0Var.f29900b.c(kc0Var.f29901c.left + this.f30167n, getMeasuredHeight() / 2.0f, 1.0f, i0.a.f(1.0f - Math.abs(f7 - i10), this.e, this.f30166f), canvas);
+                kc0Var.f29902b.c(kc0Var.f29903c.left + this.f30169n, getMeasuredHeight() / 2.0f, 1.0f, i0.a.f(1.0f - Math.abs(f7 - i10), this.e, this.f30168f), canvas);
             }
         }
     }
@@ -109,7 +109,7 @@ public final class lc0 extends View implements org.telegram.ui.ActionBar.p6 {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int i10;
         Utilities.Callback callback;
-        ArrayList arrayList = this.f30163a;
+        ArrayList arrayList = this.f30165a;
         if (arrayList.size() > 1) {
             float x9 = motionEvent.getX();
             float y3 = motionEvent.getY();
@@ -117,7 +117,7 @@ public final class lc0 extends View implements org.telegram.ui.ActionBar.p6 {
             while (true) {
                 if (i11 < arrayList.size()) {
                     if (((kc0) arrayList.get(i11)).d.contains(x9, y3)) {
-                        i10 = ((kc0) arrayList.get(i11)).f29899a;
+                        i10 = ((kc0) arrayList.get(i11)).f29901a;
                         break;
                     }
                     i11++;
@@ -145,19 +145,19 @@ public final class lc0 extends View implements org.telegram.ui.ActionBar.p6 {
     public final void onMeasure(int i10, int i11) {
         ArrayList arrayList;
         super.onMeasure(i10, i11);
-        this.f30167n = AndroidUtilities.dp(14.0f);
+        this.f30169n = AndroidUtilities.dp(14.0f);
         float f7 = 0.0f;
-        this.f30168r = AndroidUtilities.dp(0.0f);
+        this.f30170r = AndroidUtilities.dp(0.0f);
         int i12 = 0;
         while (true) {
-            arrayList = this.f30163a;
+            arrayList = this.f30165a;
             if (i12 >= arrayList.size()) {
                 break;
             }
             if (i12 > 0) {
-                f7 += this.f30168r;
+                f7 += this.f30170r;
             }
-            f7 += ((kc0) arrayList.get(i12)).f29900b.l() + this.f30167n + this.f30167n;
+            f7 += ((kc0) arrayList.get(i12)).f29902b.l() + this.f30169n + this.f30169n;
             i12++;
         }
         int measuredWidth = getMeasuredWidth();
@@ -168,11 +168,11 @@ public final class lc0 extends View implements org.telegram.ui.ActionBar.p6 {
         float f11 = (f10 - f7) / 2.0f;
         float f12 = f11;
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            float l4 = ((kc0) arrayList.get(i13)).f29900b.l() + this.f30167n + this.f30167n;
-            ((kc0) arrayList.get(i13)).f29901c.set(f12, dp, f12 + l4, dp2);
-            ((kc0) arrayList.get(i13)).d.set(((kc0) arrayList.get(i13)).f29901c);
-            ((kc0) arrayList.get(i13)).d.inset((-this.f30168r) / 2.0f, -dp);
-            f12 += l4 + this.f30168r;
+            float l4 = ((kc0) arrayList.get(i13)).f29902b.l() + this.f30169n + this.f30169n;
+            ((kc0) arrayList.get(i13)).f29903c.set(f12, dp, f12 + l4, dp2);
+            ((kc0) arrayList.get(i13)).d.set(((kc0) arrayList.get(i13)).f29903c);
+            ((kc0) arrayList.get(i13)).d.inset((-this.f30170r) / 2.0f, -dp);
+            f12 += l4 + this.f30170r;
         }
         Drawable drawable = this.h;
         if (drawable != null) {
@@ -193,7 +193,7 @@ public final class lc0 extends View implements org.telegram.ui.ActionBar.p6 {
     }
 
     public void setSelectedTab(float f7) {
-        this.f30164b = f7;
+        this.f30166b = f7;
         invalidate();
     }
 

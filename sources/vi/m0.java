@@ -1,17 +1,17 @@
 package vi;
 public final class m0 {
-    public static final m0 f50508a;
-    public static final m0 f50509b;
-    public static final m0 f50510c;
+    public static final m0 f50511a;
+    public static final m0 f50512b;
+    public static final m0 f50513c;
     public static final m0[] d;
 
     static {
         ?? r02 = new Enum("HIGH", 0);
-        f50508a = r02;
+        f50511a = r02;
         ?? r12 = new Enum("MEDIUM", 1);
-        f50509b = r12;
+        f50512b = r12;
         ?? r32 = new Enum("LOW", 2);
-        f50510c = r32;
+        f50513c = r32;
         d = new m0[]{r02, r12, r32};
     }
 

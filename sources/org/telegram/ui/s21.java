@@ -15,9 +15,9 @@ public final class s21 extends org.telegram.ui.Cells.g3 {
     public final void b(Editable editable) {
         boolean z10;
         u21 u21Var = this.E;
-        fi.d dVar = u21Var.f43987s;
+        fi.d dVar = u21Var.f43990s;
         if (dVar != null) {
-            if (!u21Var.d.optional && TextUtils.isEmpty(u21Var.f43985n.getText())) {
+            if (!u21Var.d.optional && TextUtils.isEmpty(u21Var.f43988n.getText())) {
                 z10 = false;
             } else {
                 z10 = true;

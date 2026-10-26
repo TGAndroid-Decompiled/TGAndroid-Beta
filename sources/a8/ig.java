@@ -52,20 +52,20 @@ public final class ig implements Runnable {
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 if (kgVar.d(rbVar, elapsedRealtime)) {
                     kgVar.f584i.put(rbVar, Long.valueOf(elapsedRealtime));
-                    sb.m.f48061a.execute(new a5.d(kgVar));
+                    sb.m.f48064a.execute(new a5.d(kgVar));
                     return;
                 }
                 return;
             default:
                 y7.ca caVar = (y7.ca) this.f553c;
                 y7.q0 q0Var = (y7.q0) this.d;
-                HashMap hashMap2 = caVar.f52103j;
+                HashMap hashMap2 = caVar.f52106j;
                 y7.m7 m7Var = y7.m7.AGGREGATED_ON_DEVICE_IMAGE_LABEL_DETECTION;
                 if (!hashMap2.containsKey(m7Var)) {
                     y7.i iVar = new y7.i();
                     ?? obj2 = new Object();
                     if (iVar.isEmpty()) {
-                        obj2.f52121c = iVar;
+                        obj2.f52124c = iVar;
                         hashMap2.put(m7Var, obj2);
                     } else {
                         throw new IllegalArgumentException();
@@ -73,7 +73,7 @@ public final class ig implements Runnable {
                 }
                 y7.e eVar = (y7.e) hashMap2.get(m7Var);
                 Long valueOf2 = Long.valueOf(this.f552b);
-                y7.i iVar2 = eVar.f52121c;
+                y7.i iVar2 = eVar.f52124c;
                 Collection collection2 = (Collection) iVar2.get(q0Var);
                 if (collection2 == null) {
                     ArrayList arrayList2 = new ArrayList(3);
@@ -88,8 +88,8 @@ public final class ig implements Runnable {
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
                 if (caVar.c(m7Var, elapsedRealtime2)) {
-                    caVar.f52102i.put(m7Var, Long.valueOf(elapsedRealtime2));
-                    sb.m.f48061a.execute(new cy0(caVar, 20));
+                    caVar.f52105i.put(m7Var, Long.valueOf(elapsedRealtime2));
+                    sb.m.f48064a.execute(new cy0(caVar, 20));
                     return;
                 }
                 return;

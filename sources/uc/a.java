@@ -1,18 +1,18 @@
 package uc;
 public final class a {
-    public final String f49639a;
-    public final int f49640b;
-    public transient String f49641c;
+    public final String f49642a;
+    public final int f49643b;
+    public transient String f49644c;
 
     public a(String str, int i10) {
-        this.f49639a = str;
-        this.f49640b = i10;
+        this.f49642a = str;
+        this.f49643b = i10;
     }
 
     public final String toString() {
-        if (this.f49641c == null) {
-            this.f49641c = String.format("%s:%d", this.f49639a, Integer.valueOf(this.f49640b));
+        if (this.f49644c == null) {
+            this.f49644c = String.format("%s:%d", this.f49642a, Integer.valueOf(this.f49643b));
         }
-        return this.f49641c;
+        return this.f49644c;
     }
 }

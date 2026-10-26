@@ -51,7 +51,7 @@ public abstract class d0 extends FrameLayout {
         setWillNotDraw(false);
         paint2.setColor(y6.o1(0.1f, -16777216));
         ng ngVar2 = this.e;
-        int w02 = y6.w0(y6.f23354d6, u6Var);
+        int w02 = y6.w0(y6.f23356d6, u6Var);
         ngVar2.f639b = w02;
         paint.setColor(w02);
         b0[] b0VarArr = {new b0(this), new b0(this)};
@@ -63,7 +63,7 @@ public abstract class d0 extends FrameLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) c0Var.e);
-            spannableStringBuilder.setSpan(new c6(c0Var.f12905f, 1.4f, r6Var.f32117a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new c6(c0Var.f12905f, 1.4f, r6Var.f32119a.getFontMetricsInt()), 0, 1, 33);
             r6Var.t(spannableStringBuilder, z10, true);
             return;
         }
@@ -122,7 +122,7 @@ public abstract class d0 extends FrameLayout {
         String str2 = ((c0) this.e.d).f12907i;
         b0[] b0VarArr = this.f12935f;
         int i14 = 1;
-        if (b0VarArr[1].f12872b.f28809c < b0VarArr[0].f12872b.f28809c) {
+        if (b0VarArr[1].f12872b.f28811c < b0VarArr[0].f12872b.f28811c) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -161,7 +161,7 @@ public abstract class d0 extends FrameLayout {
             RectF rectF = b0Var.f12871a;
             float e = h6Var.e(c0Var.f12902a);
             if (!c0Var.f12902a) {
-                d = h6Var4.f28809c;
+                d = h6Var4.f28811c;
                 r6Var = r6Var2;
             } else {
                 ng ngVar2 = this.e;
@@ -179,7 +179,7 @@ public abstract class d0 extends FrameLayout {
                 d = h6Var4.d(f7, false);
             }
             if (!c0Var.f12902a) {
-                d10 = h6Var3.f28809c;
+                d10 = h6Var3.f28811c;
             } else {
                 ng ngVar3 = this.e;
                 if (((c0) ngVar3.d).f12902a && ((c0) ngVar3.f640c).f12902a) {
@@ -195,7 +195,7 @@ public abstract class d0 extends FrameLayout {
                 d10 = h6Var3.d(f10, false);
             }
             if (!c0Var.f12902a) {
-                d11 = h6Var2.f28809c;
+                d11 = h6Var2.f28811c;
             } else {
                 ng ngVar4 = this.e;
                 if (((c0) ngVar4.d).f12902a && ((c0) ngVar4.f640c).f12902a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
@@ -229,7 +229,7 @@ public abstract class d0 extends FrameLayout {
                 if (r6Var3.Z != o12) {
                     r6Var3.Z = o12;
                     str = str2;
-                    r6Var3.f32118a0 = new PorterDuffColorFilter(o12, PorterDuff.Mode.SRC_IN);
+                    r6Var3.f32120a0 = new PorterDuffColorFilter(o12, PorterDuff.Mode.SRC_IN);
                 } else {
                     str = str2;
                 }
@@ -289,7 +289,7 @@ public abstract class d0 extends FrameLayout {
     }
 
     public float getAnimatedTotalHeight() {
-        return this.f12934c.f28809c;
+        return this.f12934c.f28811c;
     }
 
     public int getTotalHeight() {

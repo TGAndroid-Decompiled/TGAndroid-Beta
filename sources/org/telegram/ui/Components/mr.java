@@ -23,36 +23,36 @@ public final class mr implements Runnable {
     public final org.telegram.ui.ActionBar.u6 H;
     public final org.telegram.ui.Cells.i9 I;
     public final Context J;
-    public final boolean[] f30687a;
-    public final int[] f30688b;
-    public final org.telegram.ui.Cells.g3 f30689c;
+    public final boolean[] f30689a;
+    public final int[] f30690b;
+    public final org.telegram.ui.Cells.g3 f30691c;
     public final TreeSet d;
     public final String[] e;
-    public final lr f30690f;
+    public final lr f30692f;
     public final org.telegram.ui.Cells.g3 h;
-    public final int[] f30691n;
-    public final ai.h1 f30692r;
-    public final fi.d f30693s;
+    public final int[] f30693n;
+    public final ai.h1 f30694r;
+    public final fi.d f30695s;
     public final boolean v;
-    public final int f30694w;
-    public final TLRPC.User f30695x;
-    public final boolean[] f30696y;
+    public final int f30696w;
+    public final TLRPC.User f30697x;
+    public final boolean[] f30698y;
 
     public mr(boolean[] zArr, int[] iArr, org.telegram.ui.Cells.g3 g3Var, TreeSet treeSet, String[] strArr, lr lrVar, org.telegram.ui.Cells.g3 g3Var2, int[] iArr2, ai.h1 h1Var, fi.d dVar, boolean z10, int i10, TLRPC.User user, boolean[] zArr2, Utilities.Callback callback, org.telegram.ui.ActionBar.k3 k3Var, h2 h2Var, org.telegram.ui.ActionBar.u6 u6Var, org.telegram.ui.Cells.i9 i9Var, Context context) {
-        this.f30687a = zArr;
-        this.f30688b = iArr;
-        this.f30689c = g3Var;
+        this.f30689a = zArr;
+        this.f30690b = iArr;
+        this.f30691c = g3Var;
         this.d = treeSet;
         this.e = strArr;
-        this.f30690f = lrVar;
+        this.f30692f = lrVar;
         this.h = g3Var2;
-        this.f30691n = iArr2;
-        this.f30692r = h1Var;
-        this.f30693s = dVar;
+        this.f30693n = iArr2;
+        this.f30694r = h1Var;
+        this.f30695s = dVar;
         this.v = z10;
-        this.f30694w = i10;
-        this.f30695x = user;
-        this.f30696y = zArr2;
+        this.f30696w = i10;
+        this.f30697x = user;
+        this.f30698y = zArr2;
         this.E = callback;
         this.F = k3Var;
         this.G = h2Var;
@@ -65,11 +65,11 @@ public final class mr implements Runnable {
     public final void run() {
         final org.telegram.ui.Cells.g3 g3Var = this.h;
         org.telegram.ui.Cells.e3 e3Var = g3Var.d;
-        final boolean[] zArr = this.f30687a;
+        final boolean[] zArr = this.f30689a;
         if (!zArr[0]) {
-            final int[] iArr = this.f30688b;
+            final int[] iArr = this.f30690b;
             if (iArr[0] < 0) {
-                final org.telegram.ui.Cells.g3 g3Var2 = this.f30689c;
+                final org.telegram.ui.Cells.g3 g3Var2 = this.f30691c;
                 String charSequence = g3Var2.getText().toString();
                 StringBuilder u10 = a1.g.u(charSequence);
                 String str = "bot";
@@ -79,20 +79,20 @@ public final class mr implements Runnable {
                 String sb2 = u10.toString();
                 final String[] strArr = this.e;
                 if (!TextUtils.equals(strArr[0], sb2)) {
-                    this.f30690f.run();
+                    this.f30692f.run();
                     return;
                 }
                 String trim = e3Var.getText().toString().trim();
                 boolean isEmpty = TextUtils.isEmpty(trim);
-                final int[] iArr2 = this.f30691n;
+                final int[] iArr2 = this.f30693n;
                 if (isEmpty) {
                     int i10 = -iArr2[0];
                     iArr2[0] = i10;
                     AndroidUtilities.shakeViewSpring(g3Var, i10);
                     return;
                 }
-                this.f30692r.run();
-                final fi.d dVar = this.f30693s;
+                this.f30694r.run();
+                final fi.d dVar = this.f30695s;
                 dVar.setLoading(true);
                 dVar.setEnabled(false);
                 e3Var.setEnabled(false);
@@ -101,13 +101,13 @@ public final class mr implements Runnable {
                 createbot.via_deeplink = this.v;
                 createbot.username = strArr[0];
                 createbot.name = trim;
-                final int i11 = this.f30694w;
+                final int i11 = this.f30696w;
                 MessagesController messagesController = MessagesController.getInstance(i11);
-                final TLRPC.User user = this.f30695x;
+                final TLRPC.User user = this.f30697x;
                 createbot.manager_id = messagesController.getInputUser(user);
                 ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
                 ?? obj = new Object();
-                final boolean[] zArr2 = this.f30696y;
+                final boolean[] zArr2 = this.f30698y;
                 final Utilities.Callback callback = this.E;
                 final org.telegram.ui.ActionBar.k3 k3Var = this.F;
                 final h2 h2Var = this.G;
@@ -150,7 +150,7 @@ public final class mr implements Runnable {
                                     dVar2.setEnabled(false);
                                     org.telegram.ui.Cells.i9 i9Var2 = i9Var;
                                     i9Var2.setText(d);
-                                    org.telegram.ui.ActionBar.f7.V(i9Var2.getTextView(), org.telegram.ui.ActionBar.y6.f23596q7, u6Var2);
+                                    org.telegram.ui.ActionBar.f7.V(i9Var2.getTextView(), org.telegram.ui.ActionBar.y6.f23598q7, u6Var2);
                                     int[] iArr3 = iArr2;
                                     int i13 = -iArr3[0];
                                     iArr3[0] = i13;
@@ -176,7 +176,7 @@ public final class mr implements Runnable {
                                         replaceSingleLink.setSpan(new org.telegram.ui.Cells.i(u6Var2, soVar, 6), charSequenceIndexOf, charSequenceIndexOf + 10, 33);
                                     }
                                     qc M = wcVar.M(string, replaceSingleLink, i14);
-                                    M.f31887j = 8000;
+                                    M.f31889j = 8000;
                                     M.j();
                                 } else {
                                     String str4 = tL_error.text;

@@ -159,13 +159,13 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
         }, new b());
         this.e = h0Var;
         r1Var.setAdapter(h0Var);
-        h0Var.f29505r = false;
+        h0Var.f29507r = false;
         r1Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f));
         r1Var.setClipToPadding(false);
         addView(r1Var, gb1.h(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
         r1Var.setOnItemClickListener(new g0(m2Var, viewGroup, y9Var, 0));
         i0 i0Var = new i0(m2Var);
-        i0Var.f47760m = false;
+        i0Var.f47763m = false;
         i0Var.C = false;
         ds dsVar = ds.h;
         i0Var.o(dsVar);
@@ -229,13 +229,13 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
         }, null);
         this.f9351n = j71Var;
         za1Var.setAdapter(j71Var);
-        j71Var.f29505r = false;
+        j71Var.f29507r = false;
         za1Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         za1Var.setClipToPadding(false);
         addView(za1Var, gb1.h(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
         za1Var.setOnItemClickListener(new a1.c(m2Var, 23));
         s4.l lVar = new s4.l();
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         lVar.C = false;
         lVar.o(dsVar);
         lVar.n(350L);
@@ -248,7 +248,7 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
         x0Var.R = l4.longValue();
         qc M = new wc(x0Var.f9342b, new b()).M(x0Var.getStarsToastTitle(), x0Var.getStarsToastSubtitle(), R.raw.stars_topup);
         boolean z10 = false;
-        M.f31896s = false;
+        M.f31898s = false;
         M.k(true);
         long j10 = 0;
         x0Var.R = 0L;
@@ -837,7 +837,7 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
                         i14++;
                         TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
                         if (sendgroupcallmessage.random_id == tL_updateMessageID.random_id) {
-                            int i15 = tL_updateMessageID.f22283id;
+                            int i15 = tL_updateMessageID.f22285id;
                             ArrayList arrayList = x0Var.f9352r;
                             int size2 = arrayList.size();
                             int i16 = 0;
@@ -942,35 +942,35 @@ public abstract class x0 extends FrameLayout implements NotificationCenter.Notif
         int[] iArr;
         qc qcVar = this.W;
         b0 b0Var = this.f9346d0;
-        if (qcVar == null || !qcVar.f31890m) {
+        if (qcVar == null || !qcVar.f31892m) {
             b bVar = new b();
             kc kcVar = new kc(getContext(), bVar);
             this.f9341a0 = kcVar;
             kcVar.c(R.raw.stars_topup, new String[0]);
-            this.f9341a0.f29897b.setText(getStarsToastTitle());
+            this.f9341a0.f29899b.setText(getStarsToastTitle());
             oc ocVar = new oc(getContext(), bVar, true, false);
             this.f9343b0 = ocVar;
             ocVar.e(LocaleController.getString(R.string.StarsSentUndo));
-            this.f9343b0.f31253b = new a0((m2) this, 0);
+            this.f9343b0.f31255b = new a0((m2) this, 0);
             jc jcVar = new jc(getContext(), bVar);
             this.f9345c0 = jcVar;
-            jcVar.f29601b = 5000L;
+            jcVar.f29603b = 5000L;
             jcVar.setColor(bVar.g(org.telegram.ui.ActionBar.y6.Gi));
             this.f9343b0.addView(this.f9345c0, gb1.h(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
             this.f9343b0.e.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
             this.f9341a0.setButton(this.f9343b0);
             qc f7 = qc.f(this.f9342b, this.f9341a0, -1);
             this.W = f7;
-            f7.f31896s = false;
+            f7.f31898s = false;
             f7.k(true);
-            this.W.f31899w = b0Var;
+            this.W.f31901w = b0Var;
         }
         this.R++;
         h(getDefaultPeerId());
         i(getTotalMyStars(), (int) this.R, getDefaultPeerId());
-        this.f9341a0.f29897b.setText(getStarsToastTitle());
-        this.f9341a0.f29898c.setText(getStarsToastSubtitle());
-        this.f9345c0.f29601b = 5000L;
+        this.f9341a0.f29899b.setText(getStarsToastTitle());
+        this.f9341a0.f29900c.setText(getStarsToastSubtitle());
+        this.f9345c0.f29603b = 5000L;
         AndroidUtilities.cancelRunOnUIThread(b0Var);
         AndroidUtilities.runOnUIThread(b0Var, 5000L);
         long j10 = this.R;

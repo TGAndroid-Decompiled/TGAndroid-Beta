@@ -5,38 +5,38 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class cx0 implements Runnable {
-    public final int f27274a;
-    public final TLRPC.Document f27275b;
-    public final int f27276c;
+    public final int f27276a;
+    public final TLRPC.Document f27277b;
+    public final int f27278c;
     public final MessageObject d;
     public final org.telegram.ui.Cells.s1 e;
-    public final TLRPC.TL_messages_stickerSet f27277f;
+    public final TLRPC.TL_messages_stickerSet f27279f;
 
     public cx0(TLRPC.Document document, int i10, MessageObject messageObject, org.telegram.ui.Cells.s1 s1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i11) {
-        this.f27274a = i11;
-        this.f27275b = document;
-        this.f27276c = i10;
+        this.f27276a = i11;
+        this.f27277b = document;
+        this.f27278c = i10;
         this.d = messageObject;
         this.e = s1Var;
-        this.f27277f = tL_messages_stickerSet;
+        this.f27279f = tL_messages_stickerSet;
     }
 
     @Override
     public final void run() {
-        switch (this.f27274a) {
+        switch (this.f27276a) {
             case 0:
-                TLRPC.Document document = this.f27275b;
+                TLRPC.Document document = this.f27277b;
                 String attachFileName = FileLoader.getAttachFileName(document);
-                int i10 = this.f27276c;
+                int i10 = this.f27278c;
                 DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, this.d, this.e);
-                FileLoader.getInstance(i10).loadFile(document, this.f27277f, 1, 1);
+                FileLoader.getInstance(i10).loadFile(document, this.f27279f, 1, 1);
                 return;
             default:
-                TLRPC.Document document2 = this.f27275b;
+                TLRPC.Document document2 = this.f27277b;
                 String attachFileName2 = FileLoader.getAttachFileName(document2);
-                int i11 = this.f27276c;
+                int i11 = this.f27278c;
                 DownloadController.getInstance(i11).addLoadingFileObserver(attachFileName2, this.d, this.e);
-                FileLoader.getInstance(i11).loadFile(document2, this.f27277f, 1, 1);
+                FileLoader.getInstance(i11).loadFile(document2, this.f27279f, 1, 1);
                 return;
         }
     }

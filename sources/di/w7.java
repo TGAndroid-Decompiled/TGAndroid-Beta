@@ -100,7 +100,7 @@ public class w7 {
                     if (xcVar == null) {
                         this.H = new xc(view, 1.5f, 5.0f);
                     } else {
-                        xcVar.f34682a = view;
+                        xcVar.f34685a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -124,7 +124,7 @@ public class w7 {
             if (Math.abs(this.O - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.P - motionEvent.getY()) > AndroidUtilities.touchSlop) {
                 xc xcVar2 = this.H;
                 if (xcVar2 != null) {
-                    xcVar2.f34682a = view;
+                    xcVar2.f34685a = view;
                     xcVar2.c(false);
                 }
                 b4 b4Var3 = this.Q;
@@ -137,7 +137,7 @@ public class w7 {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             xc xcVar3 = this.H;
             if (xcVar3 != null) {
-                xcVar3.f34682a = view;
+                xcVar3.f34685a = view;
                 xcVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f9331x)) {

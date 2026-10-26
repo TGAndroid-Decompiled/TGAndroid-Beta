@@ -5,23 +5,23 @@ import java.util.ArrayList;
 import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
 public final class ya1 implements xb1 {
-    public volatile JSONObject f34994a;
-    public volatile boolean[] f34995b;
-    public final ArrayList f34996c = new ArrayList();
+    public volatile JSONObject f34997a;
+    public volatile boolean[] f34998b;
+    public final ArrayList f34999c = new ArrayList();
     public final Object d = new Object();
 
     @Override
     public final void b(boolean z10, boolean z11, boolean z12) {
         synchronized (this.d) {
-            this.f34995b = new boolean[]{z10, z11, z12};
+            this.f34998b = new boolean[]{z10, z11, z12};
             this.d.notifyAll();
         }
     }
 
     @Override
     public final void e(JSONObject jSONObject) {
-        synchronized (this.f34996c) {
-            this.f34996c.add(jSONObject);
+        synchronized (this.f34999c) {
+            this.f34999c.add(jSONObject);
         }
     }
 
@@ -30,7 +30,7 @@ public final class ya1 implements xb1 {
         synchronized (this.d) {
             while (true) {
                 try {
-                    if (this.f34994a != null && ((Boolean) callbackReturn.run(this.f34994a)).booleanValue()) {
+                    if (this.f34997a != null && ((Boolean) callbackReturn.run(this.f34997a)).booleanValue()) {
                         return;
                     }
                     long uptimeMillis2 = uptimeMillis - SystemClock.uptimeMillis();

@@ -2,9 +2,9 @@ package vi;
 
 import li.e3;
 public final class c {
-    public final e3 f50339a;
+    public final e3 f50342a;
 
     public c(e3 e3Var) {
-        this.f50339a = e3Var;
+        this.f50342a = e3Var;
     }
 }

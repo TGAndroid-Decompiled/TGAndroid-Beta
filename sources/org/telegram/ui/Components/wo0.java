@@ -19,13 +19,13 @@ public final class wo0 extends ig.i0 {
         int i10 = this.B0;
         super.l();
         org.telegram.ui.jx jxVar = this.K0;
-        if (!jxVar.K0 && (r1Var = jxVar.f27931a0) != null) {
+        if (!jxVar.K0 && (r1Var = jxVar.f27933a0) != null) {
             r1Var.v0(0);
             jxVar.K0 = true;
         }
         if (h() != 0 || i10 == 0 || this.D0 > 0) {
             return;
         }
-        jxVar.f27932b0.e(false, false);
+        jxVar.f27934b0.e(false, false);
     }
 }

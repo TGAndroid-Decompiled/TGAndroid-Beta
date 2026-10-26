@@ -15,15 +15,15 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
 public final class kz extends org.telegram.ui.Components.lm0 {
-    public final lz f41088c;
+    public final lz f41091c;
 
     public kz(lz lzVar) {
-        this.f41088c = lzVar;
+        this.f41091c = lzVar;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f == 4) {
+        if (e1Var.f47741f == 4) {
             return true;
         }
         return false;
@@ -31,7 +31,7 @@ public final class kz extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final int h() {
-        return this.f41088c.G;
+        return this.f41091c.G;
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class kz extends org.telegram.ui.Components.lm0 {
         if (i10 == 0) {
             return 0;
         }
-        lz lzVar = this.f41088c;
+        lz lzVar = this.f41091c;
         if (i10 != lzVar.N && i10 != lzVar.J) {
             if (i10 == lzVar.H) {
                 return 3;
@@ -62,11 +62,11 @@ public final class kz extends org.telegram.ui.Components.lm0 {
         TLRPC.Chat chat;
         String str3;
         float f7;
-        lz lzVar = this.f41088c;
-        ArrayList arrayList = lzVar.f41403f;
+        lz lzVar = this.f41091c;
+        ArrayList arrayList = lzVar.f41406f;
         TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = lzVar.d;
-        int i11 = e1Var.f47738f;
-        View view = e1Var.f47735a;
+        int i11 = e1Var.f47741f;
+        View view = e1Var.f47738a;
         if (i11 == 0) {
             lzVar.P = (bz) view;
             lzVar.h0();
@@ -94,11 +94,11 @@ public final class kz extends org.telegram.ui.Components.lm0 {
                     str3 = tL_exportedChatlistInvite.url;
                 }
                 bi.md mdVar = ezVar.h;
-                org.telegram.ui.ActionBar.b6 b6Var = ezVar.f39210c;
-                TextView textView = ezVar.f39212n;
+                org.telegram.ui.ActionBar.b6 b6Var = ezVar.f39213c;
+                TextView textView = ezVar.f39215n;
                 ImageView imageView = ezVar.d;
-                bi.md mdVar2 = ezVar.f39211f;
-                ezVar.f39214s = str3;
+                bi.md mdVar2 = ezVar.f39214f;
+                ezVar.f39217s = str3;
                 if (str3 != null) {
                     if (str3.startsWith("http://")) {
                         str3 = str3.substring(7);
@@ -113,10 +113,10 @@ public final class kz extends org.telegram.ui.Components.lm0 {
                     i12 = 0;
                 }
                 if (f10 != i12) {
-                    ValueAnimator valueAnimator = ezVar.f39215w;
+                    ValueAnimator valueAnimator = ezVar.f39218w;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        ezVar.f39215w = null;
+                        ezVar.f39218w = null;
                     }
                     if (str3 != null) {
                         f7 = 1.0f;
@@ -132,7 +132,7 @@ public final class kz extends org.telegram.ui.Components.lm0 {
                     imageView.setAlpha(ezVar.v);
                     textView.setAlpha(1.0f - ezVar.v);
                     b6Var.setAlpha(ezVar.v);
-                    ezVar.f39209b.setAlpha(1.0f - ezVar.v);
+                    ezVar.f39212b.setAlpha(1.0f - ezVar.v);
                     if (str3 == null) {
                         textView.setVisibility(0);
                         imageView.setVisibility(8);
@@ -228,7 +228,7 @@ public final class kz extends org.telegram.ui.Components.lm0 {
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         View k10Var;
         View view;
-        lz lzVar = this.f41088c;
+        lz lzVar = this.f41091c;
         View view2 = null;
         if (i10 == 0) {
             Activity parentActivity = lzVar.getParentActivity();
@@ -241,7 +241,7 @@ public final class kz extends org.telegram.ui.Components.lm0 {
             imageView.setImportantForAccessibility(2);
             frameLayout.addView(imageView, org.telegram.ui.Components.gb1.h(90, 90.0f, 49, 0.0f, 14.0f, 0.0f, 0.0f));
             xh.n nVar = new xh.n(parentActivity);
-            frameLayout.f38184a = nVar;
+            frameLayout.f38187a = nVar;
             org.telegram.ui.ActionBar.f7.V(nVar, org.telegram.ui.ActionBar.y6.B6, null);
             nVar.setTextSize(1, 14.0f);
             nVar.setGravity(17);
@@ -255,14 +255,14 @@ public final class kz extends org.telegram.ui.Components.lm0 {
                 if (i10 == 3) {
                     k10Var = new jz(this, lzVar.getParentActivity(), lzVar);
                     k10Var.setLayoutParams(new s4.q0(-1, -2));
-                    org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, k10Var, null);
+                    org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, k10Var, null);
                 } else if (i10 == 4) {
                     View k4Var = new org.telegram.ui.Cells.k4(lzVar.getParentActivity(), 1, 0, false);
-                    org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, k4Var, null);
+                    org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, k4Var, null);
                     view = k4Var;
                 } else if (i10 == 5) {
                     k10Var = new org.telegram.ui.Components.k10(lzVar.getParentActivity());
-                    org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, k10Var, null);
+                    org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, k10Var, null);
                 }
                 view2 = k10Var;
             }

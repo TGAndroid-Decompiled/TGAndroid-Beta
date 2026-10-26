@@ -42,7 +42,7 @@ public final class ca implements Runnable {
                 boolean z10 = this.f10620c;
                 long j10 = this.f10619b;
                 if (!z10) {
-                    di.h1.W = new di.h1(sbVar.f11608b, sbVar.f11612c, storyItem, j10, storyItem.f22264id, z10, inputGroupCall, true, this.d);
+                    di.h1.W = new di.h1(sbVar.f11608b, sbVar.f11612c, storyItem, j10, storyItem.f22266id, z10, inputGroupCall, true, this.d);
                 }
                 nb nbVar = sbVar.F;
                 if (nbVar != null) {
@@ -77,7 +77,7 @@ public final class ca implements Runnable {
                 } else {
                     cyVar.getMessagesController().deleteDialog(j11, 0, z11);
                     if (user != null && user.bot && this.d) {
-                        cyVar.getMessagesController().blockPeer(user.f22174id);
+                        cyVar.getMessagesController().blockPeer(user.f22176id);
                     }
                 }
                 cyVar.getMessagesController().checkIfFolderEmpty(cyVar.W2);

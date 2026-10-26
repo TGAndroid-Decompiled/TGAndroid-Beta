@@ -6,21 +6,21 @@ import android.graphics.Color;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class vh extends View {
-    public final int f33666a;
-    public final ti f33667b;
+    public final int f33669a;
+    public final ti f33670b;
 
     public vh(ti tiVar, Context context, int i10) {
         super(context);
-        this.f33666a = i10;
-        this.f33667b = tiVar;
+        this.f33669a = i10;
+        this.f33670b = tiVar;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f33666a) {
+        switch (this.f33669a) {
             case 0:
                 super.draw(canvas);
-                this.f33667b.f33004b0.draw(canvas);
+                this.f33670b.f33007b0.draw(canvas);
                 return;
             default:
                 super.draw(canvas);
@@ -30,16 +30,16 @@ public final class vh extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f33666a) {
+        switch (this.f33669a) {
             case 1:
-                ti tiVar = this.f33667b;
+                ti tiVar = this.f33670b;
                 String format = String.format("%d", Integer.valueOf(Math.max(1, tiVar.B0.getSelectedItemsCount())));
                 int ceil = (int) Math.ceil(tiVar.M0.measureText(format));
                 int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
                 int themedColor = tiVar.getThemedColor(org.telegram.ui.ActionBar.y6.C5);
                 tiVar.M0.setColor(i0.a.o(themedColor, (int) (((tiVar.Y0 * 0.42d) + 0.58d) * Color.alpha(themedColor))));
-                tiVar.O0.setColor(tiVar.getThemedColor(org.telegram.ui.ActionBar.y6.f23425h5));
+                tiVar.O0.setColor(tiVar.getThemedColor(org.telegram.ui.ActionBar.y6.f23427h5));
                 int i10 = max / 2;
                 int i11 = measuredWidth - i10;
                 int i12 = i10 + measuredWidth;
@@ -58,10 +58,10 @@ public final class vh extends View {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f33666a) {
+        switch (this.f33669a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
-                this.f33667b.f33004b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
+                this.f33670b.f33007b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);

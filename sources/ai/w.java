@@ -128,12 +128,12 @@ public final class w implements View.OnClickListener {
                         if (L0 < i17) {
                             i15 = 0;
                         }
-                        pl0Var.f31595b = i15;
+                        pl0Var.f31597b = i15;
                         pl0Var.c(i17, 0, false, false);
                         return;
                     }
                     s4.d0 d0Var = new s4.d0(x0Var.getContext());
-                    d0Var.f47677a = ((u) arrayList.get(i16)).d;
+                    d0Var.f47680a = ((u) arrayList.get(i16)).d;
                     tVar.w0(d0Var);
                     return;
                 }
@@ -184,7 +184,7 @@ public final class w implements View.OnClickListener {
                 ((b2) obj).P.e4(i16);
                 return;
             case 8:
-                ((s3) obj).f25388c.run(Integer.valueOf(i16));
+                ((s3) obj).f25390c.run(Integer.valueOf(i16));
                 return;
             case 9:
                 ((un) obj).P9(i16);
@@ -194,13 +194,13 @@ public final class w implements View.OnClickListener {
                 if (i16 != 0) {
                     if (i16 != 1) {
                         if (i16 == 2) {
-                            g0Var.f28352f0 = !g0Var.f28352f0;
+                            g0Var.f28354f0 = !g0Var.f28354f0;
                         }
                     } else {
-                        g0Var.f28351e0 = !g0Var.f28351e0;
+                        g0Var.f28353e0 = !g0Var.f28353e0;
                     }
                 } else {
-                    g0Var.f28350d0 = !g0Var.f28350d0;
+                    g0Var.f28352d0 = !g0Var.f28352d0;
                 }
                 g0Var.X.O(true);
                 g0Var.s();
@@ -213,15 +213,15 @@ public final class w implements View.OnClickListener {
                 return;
             case 12:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                boolean z16 = ChatAttachAlertPhotoLayout.f26013q1;
-                chatAttachAlertPhotoLayout.f30213b.f33002a1.getActionBarMenuOnItemClick().b(i16);
-                chatAttachAlertPhotoLayout.f26057w.U(null, null);
+                boolean z16 = ChatAttachAlertPhotoLayout.f26015q1;
+                chatAttachAlertPhotoLayout.f30215b.f33005a1.getActionBarMenuOnItemClick().b(i16);
+                chatAttachAlertPhotoLayout.f26059w.U(null, null);
                 return;
             case 13:
-                ((u40) obj).f34349b.x(i16, true);
+                ((u40) obj).f34352b.x(i16, true);
                 return;
             case 14:
-                u40 u40Var = ((v30) obj).f33558c;
+                u40 u40Var = ((v30) obj).f33561c;
                 u40Var.n(i16);
                 u40Var.dismiss();
                 return;
@@ -231,8 +231,8 @@ public final class w implements View.OnClickListener {
             case 16:
                 wd0 wd0Var = (wd0) obj;
                 if (wd0Var.e.getAdapter() instanceof ud0) {
-                    sz szVar = ((ky) ((ud0) wd0Var.e.getAdapter())).f29999c;
-                    if ((i16 == 1 || i16 == 2) && szVar.f32779w1) {
+                    sz szVar = ((ky) ((ud0) wd0Var.e.getAdapter())).f30001c;
+                    if ((i16 == 1 || i16 == 2) && szVar.f32782w1) {
                         if (i16 == 1) {
                             z10 = true;
                         } else {
@@ -240,7 +240,7 @@ public final class w implements View.OnClickListener {
                         }
                         szVar.P(true, false, z10);
                         return;
-                    } else if (i16 == 0 && szVar.f32775v1) {
+                    } else if (i16 == 0 && szVar.f32778v1) {
                         szVar.P(true, true, false);
                         return;
                     }
@@ -249,14 +249,14 @@ public final class w implements View.OnClickListener {
                 return;
             case 17:
                 s4 s4Var = (s4) obj;
-                EditTextBoldCursor editTextBoldCursor = s4Var.f35080c;
+                EditTextBoldCursor editTextBoldCursor = s4Var.f35083c;
                 AndroidUtilities.hideKeyboard(editTextBoldCursor);
                 s4Var.d.run(Integer.valueOf(i16), editTextBoldCursor.getText().toString());
                 s4Var.dismiss();
                 return;
             case 18:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) obj;
-                scrollSlidingTextTabStrip.g(view, i16, scrollSlidingTextTabStrip.f26282a.indexOfChild(view));
+                scrollSlidingTextTabStrip.g(view, i16, scrollSlidingTextTabStrip.f26284a.indexOfChild(view));
                 return;
             case 19:
                 final aw0 aw0Var = (aw0) obj;
@@ -264,8 +264,8 @@ public final class w implements View.OnClickListener {
                 lv0 lv0Var = aw0Var.T;
                 u6 u6Var = aw0Var.H1;
                 long j10 = aw0Var.l1;
-                SparseArray[] sparseArrayArr = aw0Var.f26639b1;
-                r2 r2Var = aw0Var.f26702x1;
+                SparseArray[] sparseArrayArr = aw0Var.f26641b1;
+                r2 r2Var = aw0Var.f26704x1;
                 if (i16 == 101) {
                     if (!aw0.w0(aw0Var.getSelectedTab()) && aw0Var.getSelectedTab() != 13) {
                         if (aw0Var.getSelectedTab() == 11) {
@@ -273,7 +273,7 @@ public final class w implements View.OnClickListener {
                             final ArrayList arrayList2 = new ArrayList();
                             for (int i19 = 0; i19 < savedMessagesController.allDialogs.size(); i19++) {
                                 long j11 = savedMessagesController.allDialogs.get(i19).dialogId;
-                                if (lv0Var.f30296w.contains(Long.valueOf(j11))) {
+                                if (lv0Var.f30298w.contains(Long.valueOf(j11))) {
                                     arrayList2.add(Long.valueOf(j11));
                                 }
                             }
@@ -322,7 +322,7 @@ public final class w implements View.OnClickListener {
                             } else {
                                 formatPluralString = LocaleController.formatPluralString("ClearHistoryTitleMultiple", arrayList2.size(), new Object[0]);
                             }
-                            e2 e2Var = alertDialog$Builder.f22366a;
+                            e2 e2Var = alertDialog$Builder.f22368a;
                             e2Var.R = formatPluralString;
                             if (arrayList2.size() == 1) {
                                 if (z12) {
@@ -341,7 +341,7 @@ public final class w implements View.OnClickListener {
                                     switch (r3) {
                                         case 0:
                                             aw0 aw0Var2 = aw0Var;
-                                            org.telegram.ui.ActionBar.r2 r2Var2 = aw0Var2.f26702x1;
+                                            org.telegram.ui.ActionBar.r2 r2Var2 = aw0Var2.f26704x1;
                                             di.h7 storiesController = r2Var2.getMessagesController().getStoriesController();
                                             long j12 = aw0Var2.l1;
                                             ArrayList arrayList3 = arrayList2;
@@ -356,7 +356,7 @@ public final class w implements View.OnClickListener {
                                             while (true) {
                                                 ArrayList arrayList4 = arrayList2;
                                                 if (i22 < arrayList4.size()) {
-                                                    aw0Var3.f26702x1.getMessagesController().deleteSavedDialog(((Long) arrayList4.get(i22)).longValue());
+                                                    aw0Var3.f26704x1.getMessagesController().deleteSavedDialog(((Long) arrayList4.get(i22)).longValue());
                                                     i22++;
                                                 } else {
                                                     aw0Var3.S(true);
@@ -370,7 +370,7 @@ public final class w implements View.OnClickListener {
                             r2Var.showDialog(e2Var);
                             TextView textView = (TextView) e2Var.d(-1);
                             if (textView != null) {
-                                f7.V(textView, y6.f23596q7, null);
+                                f7.V(textView, y6.f23598q7, null);
                                 return;
                             }
                             return;
@@ -388,7 +388,7 @@ public final class w implements View.OnClickListener {
                             user = null;
                             encryptedChat = null;
                         }
-                        g5.y(r2Var, user, chat, encryptedChat, null, aw0Var.f26649e1, null, aw0Var.f26639b1, null, 0, 0, null, new vr0(aw0Var, 12), null, aw0Var.H1);
+                        g5.y(r2Var, user, chat, encryptedChat, null, aw0Var.f26651e1, null, aw0Var.f26641b1, null, 0, 0, null, new vr0(aw0Var, 12), null, aw0Var.H1);
                         return;
                     } else if (sparseArrayArr[0] != null) {
                         if (aw0Var.y0() && us0Var != null && us0Var.getCurrentList() != null) {
@@ -408,7 +408,7 @@ public final class w implements View.OnClickListener {
                                     i11 = R.string.DeleteBotPreviewTitle;
                                 }
                                 String string2 = LocaleController.getString(i11);
-                                e2 e2Var2 = alertDialog$Builder2.f22366a;
+                                e2 e2Var2 = alertDialog$Builder2.f22368a;
                                 e2Var2.R = string2;
                                 e2Var2.T = LocaleController.formatPluralString("DeleteBotPreviewsSubtitle", arrayList3.size(), new Object[0]);
                                 alertDialog$Builder2.k(LocaleController.getString(R.string.Delete), new qy(aw0Var, currentList, arrayList3, 3));
@@ -434,7 +434,7 @@ public final class w implements View.OnClickListener {
                                 i10 = R.string.DeleteStoryTitle;
                             }
                             String string3 = LocaleController.getString(i10);
-                            e2 e2Var3 = alertDialog$Builder3.f22366a;
+                            e2 e2Var3 = alertDialog$Builder3.f22368a;
                             e2Var3.R = string3;
                             e2Var3.T = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList4.size(), new Object[0]);
                             alertDialog$Builder3.k(LocaleController.getString(R.string.Delete), new org.telegram.ui.ActionBar.b2() {
@@ -443,7 +443,7 @@ public final class w implements View.OnClickListener {
                                     switch (r3) {
                                         case 0:
                                             aw0 aw0Var2 = aw0Var;
-                                            org.telegram.ui.ActionBar.r2 r2Var2 = aw0Var2.f26702x1;
+                                            org.telegram.ui.ActionBar.r2 r2Var2 = aw0Var2.f26704x1;
                                             di.h7 storiesController = r2Var2.getMessagesController().getStoriesController();
                                             long j12 = aw0Var2.l1;
                                             ArrayList arrayList32 = arrayList4;
@@ -458,7 +458,7 @@ public final class w implements View.OnClickListener {
                                             while (true) {
                                                 ArrayList arrayList42 = arrayList4;
                                                 if (i222 < arrayList42.size()) {
-                                                    aw0Var3.f26702x1.getMessagesController().deleteSavedDialog(((Long) arrayList42.get(i222)).longValue());
+                                                    aw0Var3.f26704x1.getMessagesController().deleteSavedDialog(((Long) arrayList42.get(i222)).longValue());
                                                     i222++;
                                                 } else {
                                                     aw0Var3.S(true);
@@ -478,7 +478,7 @@ public final class w implements View.OnClickListener {
                         return;
                     }
                 } else if (i16 == 100) {
-                    if (aw0Var.f26656g1 != null && r2Var.getMessagesController().isUserNoForwards(aw0Var.f26656g1)) {
+                    if (aw0Var.f26658g1 != null && r2Var.getMessagesController().isUserNoForwards(aw0Var.f26658g1)) {
                         t40 t40Var = aw0Var.G1;
                         if (t40Var != null) {
                             t40Var.setText(LocaleController.getString(R.string.ForwardsRestrictedInfoUser));
@@ -487,8 +487,8 @@ public final class w implements View.OnClickListener {
                         }
                         return;
                     }
-                    if (aw0Var.f26653f1 != null) {
-                        TLRPC.Chat chat3 = r2Var.getMessagesController().getChat(Long.valueOf(aw0Var.f26653f1.f22028id));
+                    if (aw0Var.f26655f1 != null) {
+                        TLRPC.Chat chat3 = r2Var.getMessagesController().getChat(Long.valueOf(aw0Var.f26655f1.f22028id));
                         if (r2Var.getMessagesController().isChatNoForwards(chat3)) {
                             t40 t40Var2 = aw0Var.G1;
                             if (t40Var2 != null) {
@@ -556,8 +556,8 @@ public final class w implements View.OnClickListener {
                     return;
                 } else if (i16 == 103 || i16 == 104) {
                     if (aw0Var.getClosestTab() == 8) {
-                        hu0 hu0Var = aw0Var.f26648e0;
-                        if (hu0Var != null && hu0Var.f34830s != null) {
+                        hu0 hu0Var = aw0Var.f26650e0;
+                        if (hu0Var != null && hu0Var.f34833s != null) {
                             ArrayList arrayList5 = new ArrayList();
                             for (int i23 = 0; i23 < sparseArrayArr[0].size(); i23++) {
                                 arrayList5.add(Integer.valueOf(((MessageObject) sparseArrayArr[0].valueAt(i23)).getId()));
@@ -575,7 +575,7 @@ public final class w implements View.OnClickListener {
                     ArrayList<Long> arrayList6 = new ArrayList<>();
                     for (int i24 = 0; i24 < savedMessagesController2.allDialogs.size(); i24++) {
                         long j13 = savedMessagesController2.allDialogs.get(i24).dialogId;
-                        if (lv0Var.f30296w.contains(Long.valueOf(j13))) {
+                        if (lv0Var.f30298w.contains(Long.valueOf(j13))) {
                             arrayList6.add(Long.valueOf(j13));
                         }
                     }
@@ -593,7 +593,7 @@ public final class w implements View.OnClickListener {
                             if (i25 < tu0VarArr.length) {
                                 tu0 tu0Var = tu0VarArr[i25];
                                 if (tu0Var.E == 11) {
-                                    tu0Var.f33160w.h1(0, 0);
+                                    tu0Var.f33163w.h1(0, 0);
                                 } else {
                                     i25++;
                                 }
@@ -607,7 +607,7 @@ public final class w implements View.OnClickListener {
                 }
             case 20:
                 y71 y71Var = (y71) obj;
-                int i26 = y71Var.f34967b.f26246i.f31505q;
+                int i26 = y71Var.f34970b.f26248i.f31507q;
                 if (i26 == 2) {
                     ApplicationLoader.applicationLoaderInstance.downloadUpdate();
                     y71Var.updateAppUpdateViews(i16, true);
@@ -625,7 +625,7 @@ public final class w implements View.OnClickListener {
                     return;
                 }
             case 21:
-                ((org.telegram.ui.Components.voip.v0) obj).f34138b.x(i16, true);
+                ((org.telegram.ui.Components.voip.v0) obj).f34141b.x(i16, true);
                 return;
             case 22:
                 ih1 ih1Var = (ih1) obj;
@@ -640,17 +640,17 @@ public final class w implements View.OnClickListener {
             case 24:
                 b80 b80Var = (b80) obj;
                 b80Var.Q.dismiss();
-                int i27 = b80Var.f37995c0;
+                int i27 = b80Var.f37998c0;
                 if (i27 >= 0) {
-                    b80Var.f37996d0.setKeepMedia(i27, i16);
-                    y70 y70Var = b80Var.f37997e0;
+                    b80Var.f37999d0.setKeepMedia(i27, i16);
+                    y70 y70Var = b80Var.f38000e0;
                     if (y70Var != null) {
                         y70Var.a(i16);
                         return;
                     }
                     return;
                 }
-                y70 y70Var2 = b80Var.f37997e0;
+                y70 y70Var2 = b80Var.f38000e0;
                 if (y70Var2 != null) {
                     y70Var2.a(i16);
                     return;
@@ -658,9 +658,9 @@ public final class w implements View.OnClickListener {
                 return;
             case 25:
                 pg0 pg0Var = (pg0) obj;
-                ValueAnimator valueAnimator = pg0Var.f44132c.S;
+                ValueAnimator valueAnimator = pg0Var.f44135c.S;
                 if (valueAnimator == null || !valueAnimator.isRunning()) {
-                    tg1 tg1Var = pg0Var.f44132c;
+                    tg1 tg1Var = pg0Var.f44135c;
                     if (!tg1Var.H) {
                         if (tg1Var.getCurrentPosition() == i16) {
                             r2 X = pg0Var.X();
@@ -671,7 +671,7 @@ public final class w implements View.OnClickListener {
                             return;
                         }
                         pg0Var.j0(i16, true);
-                        pg0Var.f44132c.E(i16);
+                        pg0Var.f44135c.E(i16);
                         return;
                     }
                     return;
@@ -685,21 +685,21 @@ public final class w implements View.OnClickListener {
                 hm0 hm0Var = in0Var.D1;
                 in0Var.S0 = i16;
                 if (i16 == 1) {
-                    in0Var.f40289i0 = in0Var.f40285g0;
+                    in0Var.f40292i0 = in0Var.f40288g0;
                 } else if (i16 == 4) {
-                    in0Var.f40289i0 = in0Var.f40287h0;
+                    in0Var.f40292i0 = in0Var.f40290h0;
                 } else if (i16 == 2) {
-                    in0Var.f40289i0 = in0Var.f40280e0;
+                    in0Var.f40292i0 = in0Var.f40283e0;
                 } else if (i16 == 3) {
-                    in0Var.f40289i0 = in0Var.f40283f0;
+                    in0Var.f40292i0 = in0Var.f40286f0;
                 } else {
-                    in0Var.f40289i0 = in0Var.f40278d0;
+                    in0Var.f40292i0 = in0Var.f40281d0;
                 }
                 SecureDocument secureDocument = (SecureDocument) view.getTag();
                 PhotoViewer.u1().M2(null, in0Var, null);
                 if (i16 == 1) {
                     ArrayList arrayList7 = new ArrayList();
-                    arrayList7.add(in0Var.f40292j1);
+                    arrayList7.add(in0Var.f40295j1);
                     PhotoViewer.u1().e2(arrayList7, 0, hm0Var);
                     return;
                 } else if (i16 == 2) {
@@ -709,17 +709,17 @@ public final class w implements View.OnClickListener {
                     return;
                 } else if (i16 == 3) {
                     ArrayList arrayList9 = new ArrayList();
-                    arrayList9.add(in0Var.f40296m1);
+                    arrayList9.add(in0Var.f40299m1);
                     PhotoViewer.u1().e2(arrayList9, 0, hm0Var);
                     return;
                 } else if (i16 == 0) {
                     PhotoViewer u12 = PhotoViewer.u1();
-                    ArrayList arrayList10 = in0Var.f40290i1;
+                    ArrayList arrayList10 = in0Var.f40293i1;
                     u12.e2(arrayList10, arrayList10.indexOf(secureDocument), hm0Var);
                     return;
                 } else {
                     PhotoViewer u13 = PhotoViewer.u1();
-                    ArrayList arrayList11 = in0Var.f40294k1;
+                    ArrayList arrayList11 = in0Var.f40297k1;
                     u13.e2(arrayList11, arrayList11.indexOf(secureDocument), hm0Var);
                     return;
                 }
@@ -733,7 +733,7 @@ public final class w implements View.OnClickListener {
                     g5.K(aq0Var.getParentActivity(), aq0Var.F.a(), new sp0(aq0Var, 2));
                     return;
                 }
-                aq0Var.W(aq0Var.f37873b, aq0Var.f37874c, true, 0);
+                aq0Var.W(aq0Var.f37876b, aq0Var.f37877c, true, 0);
                 aq0Var.finishFragment();
                 return;
             default:

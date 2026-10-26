@@ -4,33 +4,33 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class g extends AnimatorListenerAdapter {
-    public final int f48206a;
-    public final j f48207b;
+    public final int f48209a;
+    public final j f48210b;
 
     public g(j jVar, int i10) {
-        this.f48206a = i10;
-        this.f48207b = jVar;
+        this.f48209a = i10;
+        this.f48210b = jVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f48206a) {
+        switch (this.f48209a) {
             case 0:
-                j jVar = this.f48207b;
-                if (animator == jVar.f48241a0) {
-                    jVar.f48241a0 = null;
+                j jVar = this.f48210b;
+                if (animator == jVar.f48244a0) {
+                    jVar.f48244a0 = null;
                     return;
                 }
                 return;
             case 1:
-                j jVar2 = this.f48207b;
-                if (animator == jVar2.f48243b0) {
-                    jVar2.f48243b0 = null;
+                j jVar2 = this.f48210b;
+                if (animator == jVar2.f48246b0) {
+                    jVar2.f48246b0 = null;
                     return;
                 }
                 return;
             case 2:
-                j jVar3 = this.f48207b;
+                j jVar3 = this.f48210b;
                 if (animator == jVar3.P) {
                     jVar3.P = null;
                     jVar3.O = 0.0f;
@@ -38,15 +38,15 @@ public final class g extends AnimatorListenerAdapter {
                 }
                 return;
             case 3:
-                j jVar4 = this.f48207b;
+                j jVar4 = this.f48210b;
                 if (animator == jVar4.Q) {
                     jVar4.Q = null;
                     return;
                 }
                 return;
             default:
-                j jVar5 = this.f48207b;
-                if (!jVar5.f48255l0) {
+                j jVar5 = this.f48210b;
+                if (!jVar5.f48258l0) {
                     AndroidUtilities.removeFromParent(jVar5.H);
                     jVar5.H = null;
                     return;

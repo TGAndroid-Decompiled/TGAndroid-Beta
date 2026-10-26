@@ -52,81 +52,81 @@ public abstract class fa {
     public aa X;
     public org.telegram.ui.ActionBar.m4 Y;
     public boolean Z;
-    public int f24085a;
-    public final v9 f24086a0;
-    public int f24087b;
-    public int f24088b0;
-    public int f24089c;
-    public final OvershootInterpolator f24090c0;
+    public int f24087a;
+    public final v9 f24088a0;
+    public int f24089b;
+    public int f24090b0;
+    public int f24091c;
+    public final OvershootInterpolator f24092c0;
     public int d;
-    public int f24091d0;
+    public int f24093d0;
     public boolean e;
-    public final m9 f24092e0;
-    public float f24093f;
-    public final n9 f24094f0;
-    public float f24095g;
-    public org.telegram.ui.ActionBar.u6 f24096g0;
+    public final m9 f24094e0;
+    public float f24095f;
+    public final n9 f24096f0;
+    public float f24097g;
+    public org.telegram.ui.ActionBar.u6 f24098g0;
     public final int[] h = new int[2];
-    public boolean f24097h0;
-    public boolean f24098i;
-    public boolean f24099i0;
-    public boolean f24100j;
-    public boolean f24101j0;
-    public boolean f24102k;
-    public org.telegram.ui.s f24103k0;
-    public final int f24104l;
-    public ValueAnimator f24105l0;
-    public final int f24106m;
+    public boolean f24099h0;
+    public boolean f24100i;
+    public boolean f24101i0;
+    public boolean f24102j;
+    public boolean f24103j0;
+    public boolean f24104k;
+    public org.telegram.ui.s f24105k0;
+    public final int f24106l;
+    public ValueAnimator f24107l0;
+    public final int f24108m;
     public final g m0;
-    public final float f24107n;
-    public final m9 f24108n0;
-    public final Paint f24109o;
-    public final z9 f24110o0;
-    public final Paint f24111p;
-    public final fr f24112q;
-    public final Path f24113r;
-    public int f24114s;
-    public int f24115t;
-    public int f24116u;
+    public final float f24109n;
+    public final m9 f24110n0;
+    public final Paint f24111o;
+    public final z9 f24112o0;
+    public final Paint f24113p;
+    public final fr f24114q;
+    public final Path f24115r;
+    public int f24116s;
+    public int f24117t;
+    public int f24118u;
     public int v;
-    public int f24117w;
-    public int f24118x;
-    public boolean f24119y;
-    public boolean f24120z;
+    public int f24119w;
+    public int f24120x;
+    public boolean f24121y;
+    public boolean f24122z;
 
     public fa() {
-        new Path().f25725a = 0.0f;
+        new Path().f25727a = 0.0f;
         Paint paint = new Paint(1);
-        this.f24109o = paint;
-        this.f24111p = new Paint(1);
+        this.f24111o = paint;
+        this.f24113p = new Paint(1);
         fr frVar = new fr();
-        this.f24112q = frVar;
-        this.f24113r = new Path();
-        new Path().f25670a = frVar;
-        this.f24116u = -1;
+        this.f24114q = frVar;
+        this.f24115r = new Path();
+        new Path().f25672a = frVar;
+        this.f24118u = -1;
         this.v = -1;
         this.A = new q9(this, new p9(this));
         this.B = new Rect();
         this.S = new RectF();
         this.T = new RectF();
-        this.f24086a0 = new Object();
-        this.f24090c0 = new OvershootInterpolator();
-        this.f24092e0 = new m9(this, 0);
-        this.f24094f0 = new n9(this);
-        this.f24097h0 = true;
-        this.f24103k0 = null;
+        this.f24088a0 = new Object();
+        this.f24092c0 = new OvershootInterpolator();
+        this.f24094e0 = new m9(this, 0);
+        this.f24096f0 = new n9(this);
+        this.f24099h0 = true;
+        this.f24105k0 = null;
         new ArrayList();
         this.m0 = new g(this, 7);
-        this.f24108n0 = new m9(this, 1);
+        this.f24110n0 = new m9(this, 1);
         ?? path = new Path();
-        path.f25813a = 0.0f;
-        path.f25814b = new ArrayList(1);
-        path.f25815c = 0;
-        this.f24110o0 = path;
-        this.f24104l = ViewConfiguration.getLongPressTimeout();
-        this.f24106m = ViewConfiguration.get(ApplicationLoader.applicationContext).getScaledTouchSlop();
+        path.f25815a = 0.0f;
+        path.f25816b = new ArrayList(1);
+        path.f25817c = 0;
+        this.f24112o0 = path;
+        this.f24106l = ViewConfiguration.getLongPressTimeout();
+        this.f24108m = ViewConfiguration.get(ApplicationLoader.applicationContext).getScaledTouchSlop();
         float dp = AndroidUtilities.dp(6.0f);
-        this.f24107n = dp;
+        this.f24109n = dp;
         paint.setPathEffect(new CornerPathEffect(dp));
         frVar.d = 1.0f;
     }
@@ -135,27 +135,27 @@ public abstract class fa {
         int i11;
         int lineRight;
         int lineLeft;
-        v9 v9Var = faVar.f24086a0;
-        if (Build.VERSION.SDK_INT >= 28 && faVar.W != null && !faVar.f24102k && faVar.f24098i && faVar.C != null) {
-            if (faVar.f24100j) {
-                i11 = faVar.f24116u;
+        v9 v9Var = faVar.f24088a0;
+        if (Build.VERSION.SDK_INT >= 28 && faVar.W != null && !faVar.f24104k && faVar.f24100i && faVar.C != null) {
+            if (faVar.f24102j) {
+                i11 = faVar.f24118u;
             } else {
                 i11 = faVar.v;
             }
             faVar.i(i11, v9Var, false);
-            Layout layout = v9Var.f25602b;
+            Layout layout = v9Var.f25604b;
             if (layout != null) {
-                int lineForOffset = layout.getLineForOffset(Utilities.clamp(i11 - v9Var.f25601a, layout.getText().length(), 0));
+                int lineForOffset = layout.getLineForOffset(Utilities.clamp(i11 - v9Var.f25603a, layout.getText().length(), 0));
                 int lineBottom = layout.getLineBottom(lineForOffset) - layout.getLineTop(lineForOffset);
                 int[] l4 = faVar.l();
-                int lineTop = (int) (((((layout.getLineTop(lineForOffset) + faVar.f24087b) + l4[1]) - lineBottom) - AndroidUtilities.dp(8.0f)) + v9Var.f25603c);
+                int lineTop = (int) (((((layout.getLineTop(lineForOffset) + faVar.f24089b) + l4[1]) - lineBottom) - AndroidUtilities.dp(8.0f)) + v9Var.f25605c);
                 aa aaVar = faVar.W;
                 if (aaVar instanceof org.telegram.ui.t2) {
                     lineLeft = l4[0];
                     lineRight = ((View) aaVar).getMeasuredWidth() + lineLeft;
                 } else {
-                    float f7 = l4[0] + faVar.f24085a + v9Var.d;
-                    lineRight = (int) (layout.getLineRight(lineForOffset) + l4[0] + faVar.f24085a + v9Var.d);
+                    float f7 = l4[0] + faVar.f24087a + v9Var.d;
+                    lineRight = (int) (layout.getLineRight(lineForOffset) + l4[0] + faVar.f24087a + v9Var.d);
                     lineLeft = (int) (layout.getLineLeft(lineForOffset) + f7);
                 }
                 if (i10 < lineLeft) {
@@ -216,37 +216,37 @@ public abstract class fa {
     public void A(int i10, int i11, boolean z10, float f7, float f10, aa aaVar) {
         int i12;
         int i13;
-        if (this.f24100j) {
-            this.f24116u = i11;
+        if (this.f24102j) {
+            this.f24118u = i11;
             if (!z10 && i11 > (i13 = this.v)) {
                 this.v = i11;
-                this.f24116u = i13;
-                this.f24100j = false;
+                this.f24118u = i13;
+                this.f24102j = false;
             }
-            this.f24119y = true;
+            this.f24121y = true;
             return;
         }
         this.v = i11;
-        if (!z10 && (i12 = this.f24116u) > i11) {
+        if (!z10 && (i12 = this.f24118u) > i11) {
             this.v = i12;
-            this.f24116u = i11;
-            this.f24100j = true;
+            this.f24118u = i11;
+            this.f24102j = true;
         }
-        this.f24119y = true;
+        this.f24121y = true;
     }
 
     public final int[] B(int i10) {
-        v9 v9Var = this.f24086a0;
+        v9 v9Var = this.f24088a0;
         i(i10, v9Var, false);
-        Layout layout = v9Var.f25602b;
-        int i11 = i10 - v9Var.f25601a;
+        Layout layout = v9Var.f25604b;
+        int i11 = i10 - v9Var.f25603a;
         int[] iArr = this.h;
         if (layout != null && i11 >= 0 && i11 <= layout.getText().length()) {
             int lineForOffset = layout.getLineForOffset(i11);
             iArr[0] = (int) (layout.getPrimaryHorizontal(i11) + v9Var.d);
             int lineBottom = layout.getLineBottom(lineForOffset);
             iArr[1] = lineBottom;
-            iArr[1] = (int) (lineBottom + v9Var.f25603c);
+            iArr[1] = (int) (lineBottom + v9Var.f25605c);
         }
         return iArr;
     }
@@ -273,7 +273,7 @@ public abstract class fa {
     public final boolean M(MotionEvent motionEvent) {
         fa faVar;
         int action = motionEvent.getAction();
-        n9 n9Var = this.f24094f0;
+        n9 n9Var = this.f24096f0;
         if (action != 0) {
             if (action != 1) {
                 if (action != 2) {
@@ -281,30 +281,30 @@ public abstract class fa {
                         return false;
                     }
                 } else {
-                    int y3 = this.f24115t - ((int) motionEvent.getY());
-                    int x9 = this.f24114s - ((int) motionEvent.getX());
+                    int y3 = this.f24117t - ((int) motionEvent.getY());
+                    int x9 = this.f24116s - ((int) motionEvent.getX());
                     int i10 = (x9 * x9) + (y3 * y3);
-                    int i11 = this.f24106m;
+                    int i11 = this.f24108m;
                     if (i10 > i11 * i11) {
                         AndroidUtilities.cancelRunOnUIThread(n9Var);
-                        this.f24120z = false;
+                        this.f24122z = false;
                     }
-                    return this.f24120z;
+                    return this.f24122z;
                 }
             }
             AndroidUtilities.cancelRunOnUIThread(n9Var);
-            this.f24120z = false;
+            this.f24122z = false;
             return false;
         }
-        this.f24114s = (int) motionEvent.getX();
-        this.f24115t = (int) motionEvent.getY();
-        this.f24120z = false;
+        this.f24116s = (int) motionEvent.getX();
+        this.f24117t = (int) motionEvent.getY();
+        this.f24122z = false;
         Rect rect = this.B;
         rect.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f));
-        if (rect.contains(this.f24114s, this.f24115t) && this.X != null) {
+        if (rect.contains(this.f24116s, this.f24117t) && this.X != null) {
             rect.inset(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-            int i12 = this.f24114s;
-            int i13 = this.f24115t;
+            int i12 = this.f24116s;
+            int i13 = this.f24117t;
             int i14 = rect.right;
             if (i12 > i14) {
                 i12 = i14 - 1;
@@ -323,31 +323,31 @@ public abstract class fa {
                 i13 = i18 - 1;
             }
             faVar = this;
-            int k10 = faVar.k(i16, i13, this.f24089c, this.d, this.X, true);
+            int k10 = faVar.k(i16, i13, this.f24091c, this.d, this.X, true);
             CharSequence s10 = s(faVar.X, true);
             if (k10 >= s10.length()) {
-                v9 v9Var = faVar.f24086a0;
+                v9 v9Var = faVar.f24088a0;
                 i(k10, v9Var, true);
-                Layout layout = v9Var.f25602b;
+                Layout layout = v9Var.f25604b;
                 if (layout == null) {
-                    faVar.f24120z = false;
+                    faVar.f24122z = false;
                     return false;
                 }
                 int lineCount = layout.getLineCount() - 1;
-                float f7 = i16 - faVar.f24089c;
-                if (f7 < v9Var.f25602b.getLineRight(lineCount) + AndroidUtilities.dp(4.0f) && f7 > v9Var.f25602b.getLineLeft(lineCount)) {
+                float f7 = i16 - faVar.f24091c;
+                if (f7 < v9Var.f25604b.getLineRight(lineCount) + AndroidUtilities.dp(4.0f) && f7 > v9Var.f25604b.getLineLeft(lineCount)) {
                     k10 = s10.length() - 1;
                 }
             }
             if (k10 >= 0 && k10 < s10.length() && s10.charAt(k10) != '\n') {
                 AndroidUtilities.cancelRunOnUIThread(n9Var);
-                AndroidUtilities.runOnUIThread(n9Var, faVar.f24104l);
-                faVar.f24120z = true;
+                AndroidUtilities.runOnUIThread(n9Var, faVar.f24106l);
+                faVar.f24122z = true;
             }
         } else {
             faVar = this;
         }
-        return faVar.f24120z;
+        return faVar.f24122z;
     }
 
     public boolean P(int i10, int i11) {
@@ -359,7 +359,7 @@ public abstract class fa {
     }
 
     public final void R() {
-        this.f24099i0 = true;
+        this.f24101i0 = true;
     }
 
     public final void S(ViewGroup viewGroup) {
@@ -370,35 +370,35 @@ public abstract class fa {
     }
 
     public final void T() {
-        if (this.C != null && !this.f24098i && x() && d()) {
+        if (this.C != null && !this.f24100i && x() && d()) {
             if (!this.P) {
                 org.telegram.ui.ActionBar.m4 m4Var = this.Y;
                 q9 q9Var = this.A;
                 if (m4Var == null) {
                     org.telegram.ui.ActionBar.m4 m4Var2 = new org.telegram.ui.ActionBar.m4(this.C.getContext(), q9Var, this.C, new org.telegram.ui.ActionBar.c5(this.C.getContext(), this.C, 1, q(), null));
                     this.Y = m4Var2;
-                    q9Var.onCreateActionMode(m4Var2, m4Var2.f22866c);
+                    q9Var.onCreateActionMode(m4Var2, m4Var2.f22868c);
                 }
                 org.telegram.ui.ActionBar.m4 m4Var3 = this.Y;
-                q9Var.onPrepareActionMode(m4Var3, m4Var3.f22866c);
+                q9Var.onPrepareActionMode(m4Var3, m4Var3.f22868c);
                 this.Y.hide(1L);
             }
-            AndroidUtilities.cancelRunOnUIThread(this.f24108n0);
+            AndroidUtilities.cancelRunOnUIThread(this.f24110n0);
             this.P = true;
         }
     }
 
     public final void U() {
         if (this.V != 1.0f && this.C != null) {
-            ValueAnimator valueAnimator = this.f24105l0;
+            ValueAnimator valueAnimator = this.f24107l0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.V, 1.0f);
-            this.f24105l0 = ofFloat;
+            this.f24107l0 = ofFloat;
             ofFloat.addUpdateListener(new r(this, 8));
-            this.f24105l0.setDuration(Math.abs(1.0f - this.V) * 250.0f);
-            this.f24105l0.start();
+            this.f24107l0.setDuration(Math.abs(1.0f - this.V) * 250.0f);
+            this.f24107l0.start();
         }
     }
 
@@ -415,7 +415,7 @@ public abstract class fa {
     }
 
     public boolean c(int i10) {
-        if (i10 != this.f24116u && i10 != this.v) {
+        if (i10 != this.f24118u && i10 != this.v) {
             return true;
         }
         return false;
@@ -434,15 +434,15 @@ public abstract class fa {
 
     public void f(boolean z10) {
         E(z10);
-        this.f24116u = -1;
+        this.f24118u = -1;
         this.v = -1;
         v();
         u();
         w();
         this.W = null;
-        this.f24117w = 0;
-        AndroidUtilities.cancelRunOnUIThread(this.f24094f0);
-        this.f24120z = false;
+        this.f24119w = 0;
+        AndroidUtilities.cancelRunOnUIThread(this.f24096f0);
+        this.f24122z = false;
         ea eaVar = this.C;
         if (eaVar != null) {
             eaVar.setVisibility(8);
@@ -453,13 +453,13 @@ public abstract class fa {
         if (yeVar != null) {
             yeVar.a(false);
         }
-        this.f24114s = -1;
-        this.f24115t = -1;
-        this.f24089c = -1;
+        this.f24116s = -1;
+        this.f24117t = -1;
+        this.f24091c = -1;
         this.d = -1;
-        this.f24093f = 0.0f;
-        this.f24095g = 0.0f;
-        this.f24098i = false;
+        this.f24095f = 0.0f;
+        this.f24097g = 0.0f;
+        this.f24100i = false;
     }
 
     public final void g(Layout layout, int i10, int i11, int i12, boolean z10, boolean z11, float f7) {
@@ -471,25 +471,25 @@ public abstract class fa {
         float f13;
         float f14;
         int lineTop;
-        z9 z9Var = this.f24110o0;
+        z9 z9Var = this.f24112o0;
         z9Var.reset();
         layout.getSelectionPath(i11, i12, z9Var);
-        if (z9Var.f25813a < layout.getLineBottom(i10)) {
+        if (z9Var.f25815a < layout.getLineBottom(i10)) {
             f11 = layout.getLineTop(i10);
-            f10 = (layout.getLineBottom(i10) - lineTop) / (z9Var.f25813a - f11);
+            f10 = (layout.getLineBottom(i10) - lineTop) / (z9Var.f25815a - f11);
         } else {
             f10 = 1.0f;
             f11 = 0.0f;
         }
         int i14 = 0;
         while (true) {
-            i13 = z9Var.f25815c;
-            frVar = this.f24112q;
-            f12 = this.f24107n;
+            i13 = z9Var.f25817c;
+            frVar = this.f24114q;
+            f12 = this.f24109n;
             if (i14 >= i13) {
                 break;
             }
-            RectF rectF = (RectF) z9Var.f25814b.get(i14);
+            RectF rectF = (RectF) z9Var.f25816b.get(i14);
             float max = Math.max(f7, rectF.left);
             if (z10) {
                 f13 = f12 / 2.0f;
@@ -574,13 +574,13 @@ public abstract class fa {
     }
 
     public org.telegram.ui.ActionBar.u6 q() {
-        return this.f24096g0;
+        return this.f24098g0;
     }
 
     public CharSequence r() {
         CharSequence s10 = s(this.W, false);
         if (s10 != null) {
-            return s10.subSequence(this.f24116u, this.v);
+            return s10.subSequence(this.f24118u, this.v);
         }
         return null;
     }
@@ -588,14 +588,14 @@ public abstract class fa {
     public abstract CharSequence s(aa aaVar, boolean z10);
 
     public int t(int i10) {
-        return org.telegram.ui.ActionBar.y6.w0(i10, this.f24096g0);
+        return org.telegram.ui.ActionBar.y6.w0(i10, this.f24098g0);
     }
 
     public final void u() {
         org.telegram.ui.ActionBar.m4 m4Var;
         if (this.Y != null && this.P) {
             this.P = false;
-            this.f24108n0.run();
+            this.f24110n0.run();
         }
         this.P = false;
         if (!x() && (m4Var = this.Y) != null) {
@@ -624,14 +624,14 @@ public abstract class fa {
     }
 
     public final boolean x() {
-        if (this.f24116u >= 0 && this.v >= 0) {
+        if (this.f24118u >= 0 && this.v >= 0) {
             return true;
         }
         return false;
     }
 
     public boolean z(MessageObject messageObject) {
-        if (messageObject == null || this.f24117w != messageObject.getId()) {
+        if (messageObject == null || this.f24119w != messageObject.getId()) {
             return false;
         }
         return true;

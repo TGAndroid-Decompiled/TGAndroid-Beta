@@ -10,20 +10,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 public final class gx0 {
-    public final e0.e0 f28735a;
-    public final Paint f28736b;
-    public final Paint f28737c;
+    public final e0.e0 f28737a;
+    public final Paint f28738b;
+    public final Paint f28739c;
     public final Paint d;
-    public int f28739g;
+    public int f28741g;
     public final int h;
-    public final int f28740i;
-    public Bitmap f28741j;
-    public long f28742k;
-    public int f28745n;
+    public final int f28742i;
+    public Bitmap f28743j;
+    public long f28744k;
+    public int f28747n;
     public final Paint e = new Paint();
-    public final int f28738f = org.telegram.ui.ActionBar.y6.A8;
-    public final ArrayList f28743l = new ArrayList();
-    public final ArrayList f28744m = new ArrayList();
+    public final int f28740f = org.telegram.ui.ActionBar.y6.A8;
+    public final ArrayList f28745l = new ArrayList();
+    public final ArrayList f28746m = new ArrayList();
 
     public gx0(int i10) {
         int i11;
@@ -33,9 +33,9 @@ public final class gx0 {
         } else {
             i11 = 300;
         }
-        this.f28740i = i11;
+        this.f28742i = i11;
         Paint paint = new Paint(1);
-        this.f28737c = paint;
+        this.f28739c = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
         Paint.Cap cap = Paint.Cap.ROUND;
         paint.setStrokeCap(cap);
@@ -47,15 +47,15 @@ public final class gx0 {
         paint2.setStrokeCap(cap);
         paint2.setStyle(style);
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f28735a = new e0.e0(i11);
-            this.f28736b = aa.a(a(true));
+            this.f28737a = new e0.e0(i11);
+            this.f28738b = aa.a(a(true));
         } else {
-            this.f28735a = null;
-            this.f28736b = null;
+            this.f28737a = null;
+            this.f28738b = null;
         }
         c();
         for (int i12 = 0; i12 < 20; i12++) {
-            this.f28744m.add(new fx0(this));
+            this.f28746m.add(new fx0(this));
         }
     }
 
@@ -127,49 +127,49 @@ public final class gx0 {
         fx0 fx0Var;
         if (view != null && canvas != null && LiteMode.isEnabled(32)) {
             c();
-            int i12 = this.f28740i;
-            e0.e0 e0Var = this.f28735a;
+            int i12 = this.f28742i;
+            e0.e0 e0Var = this.f28737a;
             int i13 = 0;
-            ArrayList arrayList = this.f28743l;
+            ArrayList arrayList = this.f28745l;
             if (e0Var != null) {
                 int min = Math.min(i12, arrayList.size());
                 int dp = AndroidUtilities.dp(10.0f);
                 for (int i14 = 0; i14 < min; i14++) {
                     fx0 fx0Var2 = (fx0) arrayList.get(i14);
-                    float f7 = fx0Var2.f28323a;
-                    float f10 = fx0Var2.f28324b;
-                    int i15 = fx0Var2.f28329j;
+                    float f7 = fx0Var2.f28325a;
+                    float f10 = fx0Var2.f28326b;
+                    int i15 = fx0Var2.f28331j;
                     float f11 = dp / 2.0f;
                     if (i15 != 0) {
-                        f11 *= fx0Var2.f28328i;
+                        f11 *= fx0Var2.f28330i;
                     }
                     float f12 = i15 == 0 ? dp : 0.0f;
-                    e0Var.f(i14, i0.a.o(this.f28745n, (int) (fx0Var2.f28326f * 255.0f)));
+                    e0Var.f(i14, i0.a.o(this.f28747n, (int) (fx0Var2.f28328f * 255.0f)));
                     e0.e0.c((float[]) e0Var.f9530c, i14, f7 - f11, f10 - f11, f7 + f11, f10 + f11);
                     float f13 = dp;
                     e0.e0.c((float[]) e0Var.d, i14, f12, 0.0f, f12 + f13, f13);
                 }
-                aa.b(canvas, e0Var, min, this.f28736b);
+                aa.b(canvas, e0Var, min, this.f28738b);
             } else {
                 int size = arrayList.size();
                 for (int i16 = 0; i16 < size; i16++) {
                     fx0 fx0Var3 = (fx0) arrayList.get(i16);
-                    gx0 gx0Var = fx0Var3.f28330k;
-                    if (fx0Var3.f28329j != 0) {
-                        Bitmap bitmap = gx0Var.f28741j;
+                    gx0 gx0Var = fx0Var3.f28332k;
+                    if (fx0Var3.f28331j != 0) {
+                        Bitmap bitmap = gx0Var.f28743j;
                         Paint paint = gx0Var.e;
                         if (bitmap == null) {
-                            gx0Var.f28741j = a(false);
+                            gx0Var.f28743j = a(false);
                         }
-                        paint.setAlpha((int) (fx0Var3.f28326f * 255.0f));
+                        paint.setAlpha((int) (fx0Var3.f28328f * 255.0f));
                         canvas.save();
-                        float f14 = fx0Var3.f28328i;
-                        canvas.scale(f14, f14, fx0Var3.f28323a, fx0Var3.f28324b);
-                        canvas.drawBitmap(gx0Var.f28741j, fx0Var3.f28323a, fx0Var3.f28324b, paint);
+                        float f14 = fx0Var3.f28330i;
+                        canvas.scale(f14, f14, fx0Var3.f28325a, fx0Var3.f28326b);
+                        canvas.drawBitmap(gx0Var.f28743j, fx0Var3.f28325a, fx0Var3.f28326b, paint);
                         canvas.restore();
                     } else {
-                        gx0Var.f28737c.setAlpha((int) (fx0Var3.f28326f * 255.0f));
-                        canvas.drawPoint(fx0Var3.f28323a, fx0Var3.f28324b, gx0Var.f28737c);
+                        gx0Var.f28739c.setAlpha((int) (fx0Var3.f28328f * 255.0f));
+                        canvas.drawPoint(fx0Var3.f28325a, fx0Var3.f28326b, gx0Var.f28739c);
                     }
                 }
             }
@@ -181,7 +181,7 @@ public final class gx0 {
             }
             int size2 = arrayList.size();
             int i18 = 40;
-            ArrayList arrayList2 = this.f28744m;
+            ArrayList arrayList2 = this.f28746m;
             if (size2 < i12) {
                 int i19 = 0;
                 while (i19 < i10) {
@@ -203,18 +203,18 @@ public final class gx0 {
                         } else {
                             fx0Var = new fx0(this);
                         }
-                        fx0Var.f28323a = nextFloat2;
-                        fx0Var.f28324b = nextFloat;
-                        fx0Var.f28325c = cos;
+                        fx0Var.f28325a = nextFloat2;
+                        fx0Var.f28326b = nextFloat;
+                        fx0Var.f28327c = cos;
                         fx0Var.d = sin;
-                        fx0Var.f28326f = 0.0f;
+                        fx0Var.f28328f = 0.0f;
                         fx0Var.h = 0.0f;
-                        fx0Var.f28328i = Utilities.random.nextFloat() * 1.2f;
-                        fx0Var.f28329j = Utilities.random.nextInt(2);
+                        fx0Var.f28330i = Utilities.random.nextFloat() * 1.2f;
+                        fx0Var.f28331j = Utilities.random.nextInt(2);
                         if (i17 == 0) {
-                            fx0Var.f28327g = Utilities.random.nextInt(100) + 2000;
+                            fx0Var.f28329g = Utilities.random.nextInt(100) + 2000;
                         } else {
-                            fx0Var.f28327g = Utilities.random.nextInt(2000) + 3000;
+                            fx0Var.f28329g = Utilities.random.nextInt(2000) + 3000;
                         }
                         fx0Var.e = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
                         arrayList.add(fx0Var);
@@ -226,12 +226,12 @@ public final class gx0 {
                 }
             }
             long currentTimeMillis = System.currentTimeMillis();
-            long min2 = Math.min(17L, currentTimeMillis - this.f28742k);
+            long min2 = Math.min(17L, currentTimeMillis - this.f28744k);
             int size3 = arrayList.size();
             while (i13 < size3) {
                 fx0 fx0Var4 = (fx0) arrayList.get(i13);
                 float f15 = fx0Var4.h;
-                float f16 = fx0Var4.f28327g;
+                float f16 = fx0Var4.f28329g;
                 if (f15 >= f16) {
                     if (arrayList2.size() < i18) {
                         arrayList2.add(fx0Var4);
@@ -242,42 +242,42 @@ public final class gx0 {
                 } else {
                     if (i17 == 0) {
                         if (f15 < 200.0f) {
-                            fx0Var4.f28326f = AndroidUtilities.accelerateInterpolator.getInterpolation(f15 / 200.0f);
+                            fx0Var4.f28328f = AndroidUtilities.accelerateInterpolator.getInterpolation(f15 / 200.0f);
                         } else {
-                            fx0Var4.f28326f = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation((f15 - 200.0f) / (f16 - 200.0f));
+                            fx0Var4.f28328f = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation((f15 - 200.0f) / (f16 - 200.0f));
                         }
                     } else if (f15 < 200.0f) {
-                        fx0Var4.f28326f = AndroidUtilities.accelerateInterpolator.getInterpolation(f15 / 200.0f);
+                        fx0Var4.f28328f = AndroidUtilities.accelerateInterpolator.getInterpolation(f15 / 200.0f);
                     } else {
                         float f17 = f16 - f15;
                         if (f17 < 2000.0f) {
-                            fx0Var4.f28326f = AndroidUtilities.decelerateInterpolator.getInterpolation(f17 / 2000.0f);
+                            fx0Var4.f28328f = AndroidUtilities.decelerateInterpolator.getInterpolation(f17 / 2000.0f);
                         }
                     }
-                    float f18 = fx0Var4.f28323a;
-                    float f19 = fx0Var4.f28325c;
+                    float f18 = fx0Var4.f28325a;
+                    float f19 = fx0Var4.f28327c;
                     float f20 = fx0Var4.e;
                     float f21 = (float) min2;
-                    fx0Var4.f28323a = a1.g.C(f19 * f20, f21, 500.0f, f18);
-                    fx0Var4.f28324b = (((fx0Var4.d * f20) * f21) / 500.0f) + fx0Var4.f28324b;
+                    fx0Var4.f28325a = a1.g.C(f19 * f20, f21, 500.0f, f18);
+                    fx0Var4.f28326b = (((fx0Var4.d * f20) * f21) / 500.0f) + fx0Var4.f28326b;
                     fx0Var4.h += f21;
                 }
                 i13++;
                 i18 = 40;
             }
-            this.f28742k = currentTimeMillis;
+            this.f28744k = currentTimeMillis;
             view.invalidate();
         }
     }
 
     public final void c() {
-        int i10 = this.f28739g;
+        int i10 = this.f28741g;
         if (i10 == 0) {
-            i10 = org.telegram.ui.ActionBar.y6.x0(null, this.f28738f, false) & (-1644826);
+            i10 = org.telegram.ui.ActionBar.y6.x0(null, this.f28740f, false) & (-1644826);
         }
-        if (this.f28745n != i10) {
-            this.f28745n = i10;
-            this.f28737c.setColor(i10);
+        if (this.f28747n != i10) {
+            this.f28747n = i10;
+            this.f28739c.setColor(i10);
             this.d.setColor(i10);
         }
     }

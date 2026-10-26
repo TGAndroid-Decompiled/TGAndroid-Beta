@@ -11,10 +11,6 @@ public final class u0 implements Drawable.Callback {
     public final int f4159a;
     public Object f4160b;
 
-    public u0() {
-        this.f4159a = 3;
-    }
-
     @Override
     public final void invalidateDrawable(Drawable drawable) {
         switch (this.f4159a) {
@@ -45,7 +41,7 @@ public final class u0 implements Drawable.Callback {
                 ((qq) this.f4160b).invalidateSelf();
                 return;
             case 6:
-                ((qp0) this.f4160b).f31976b.run();
+                ((qp0) this.f4160b).f31978b.run();
                 return;
             case 7:
                 ((dd) this.f4160b).invalidateSelf();
@@ -57,10 +53,10 @@ public final class u0 implements Drawable.Callback {
                 ((y4.d) this.f4160b).invalidateSelf();
                 return;
             case 10:
-                ((yg.a) this.f4160b).f52531c.invalidate();
+                ((yg.a) this.f4160b).f52534c.invalidate();
                 return;
             default:
-                ((yg.c) this.f4160b).f52556c.invalidate();
+                ((yg.c) this.f4160b).f52559c.invalidate();
                 return;
         }
     }
@@ -103,10 +99,10 @@ public final class u0 implements Drawable.Callback {
                 ((y4.d) this.f4160b).scheduleSelf(runnable, j10);
                 return;
             case 10:
-                ((yg.a) this.f4160b).f52531c.invalidate();
+                ((yg.a) this.f4160b).f52534c.invalidate();
                 return;
             default:
-                ((yg.c) this.f4160b).f52556c.invalidate();
+                ((yg.c) this.f4160b).f52559c.invalidate();
                 return;
         }
     }
@@ -149,10 +145,10 @@ public final class u0 implements Drawable.Callback {
                 ((y4.d) this.f4160b).unscheduleSelf(runnable);
                 return;
             case 10:
-                ((yg.a) this.f4160b).f52531c.invalidate();
+                ((yg.a) this.f4160b).f52534c.invalidate();
                 return;
             default:
-                ((yg.c) this.f4160b).f52556c.invalidate();
+                ((yg.c) this.f4160b).f52559c.invalidate();
                 return;
         }
     }

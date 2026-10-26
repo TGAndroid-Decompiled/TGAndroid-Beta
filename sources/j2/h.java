@@ -77,7 +77,7 @@ public final class h implements b {
 
     @Override
     public final void b(c0 c0Var) {
-        this.M = c0Var.f49254a;
+        this.M = c0Var.f49257a;
     }
 
     @Override
@@ -98,13 +98,13 @@ public final class h implements b {
     public final void d(a aVar, c0 c0Var) {
         g0 g0Var = aVar.d;
         if (g0Var != null) {
-            x xVar = c0Var.f49256c;
+            x xVar = c0Var.f49259c;
             xVar.getClass();
             int i10 = c0Var.d;
             p1 p1Var = aVar.f15187b;
             g0Var.getClass();
             ng ngVar = new ng(xVar, i10, this.f15216c.d(p1Var, g0Var));
-            int i11 = c0Var.f49255b;
+            int i11 = c0Var.f49258b;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -233,7 +233,7 @@ public final class h implements b {
     public final void r(p1 p1Var, g0 g0Var) {
         int b10;
         PlaybackMetrics.Builder builder = this.v;
-        if (g0Var == null || (b10 = p1Var.b(g0Var.f49294a)) == -1) {
+        if (g0Var == null || (b10 = p1Var.b(g0Var.f49297a)) == -1) {
             return;
         }
         m1 m1Var = this.h;

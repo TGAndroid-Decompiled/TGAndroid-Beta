@@ -2,7 +2,7 @@ package v9;
 
 import android.util.Log;
 public final class b {
-    public static final b f50097a = new Object();
+    public static final b f50100a = new Object();
 
     public boolean a(int i10) {
         if (4 > i10 && !Log.isLoggable("FirebaseCrashlytics", i10)) {

@@ -28,10 +28,10 @@ public final class gc extends View {
         r6Var.u(-1);
         r6Var.x(AndroidUtilities.bold());
         r6Var.setCallback(this);
-        r6Var.f32119b = 1;
+        r6Var.f32121b = 1;
         StringBuilder sb2 = new StringBuilder(8);
         sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, r6Var.f32124i)) {
+        if (!TextUtils.equals(sb2, r6Var.f32126i)) {
             r6Var.a();
             r6Var.t(sb2, false, true);
         }

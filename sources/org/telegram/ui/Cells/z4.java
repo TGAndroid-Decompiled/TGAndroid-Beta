@@ -10,16 +10,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.gb1;
 public final class z4 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final org.telegram.ui.ActionBar.u6 f25783a;
-    public final FrameLayout f25784b;
-    public int f25785c;
+    public final org.telegram.ui.ActionBar.u6 f25785a;
+    public final FrameLayout f25786b;
+    public int f25787c;
     public boolean d;
 
     public z4(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f25783a = u6Var;
+        this.f25785a = u6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f25784b = frameLayout;
+        this.f25786b = frameLayout;
         frameLayout.setBackground(org.telegram.ui.ActionBar.o6.e(new float[]{8.0f}, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, u6Var)));
         addView(frameLayout, gb1.h(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
         org.telegram.ui.ActionBar.b6 b6Var = new org.telegram.ui.ActionBar.b6(context);
@@ -43,21 +43,21 @@ public final class z4 extends FrameLayout implements org.telegram.ui.ActionBar.p
     }
 
     public void setOnButtonClick(View.OnClickListener onClickListener) {
-        this.f25784b.setOnClickListener(onClickListener);
+        this.f25786b.setOnClickListener(onClickListener);
     }
 
     @Override
     public final void updateColors() {
         try {
-            int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f25783a);
-            FrameLayout frameLayout = this.f25784b;
+            int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f25785a);
+            FrameLayout frameLayout = this.f25786b;
             if (frameLayout != null) {
-                if (w02 == this.f25785c) {
+                if (w02 == this.f25787c) {
                     if (this.d != org.telegram.ui.ActionBar.y6.I.q()) {
                     }
                 }
                 this.d = org.telegram.ui.ActionBar.y6.I.q();
-                this.f25785c = w02;
+                this.f25787c = w02;
                 org.telegram.ui.ActionBar.y6.E1(frameLayout.getBackground(), w02, false);
                 org.telegram.ui.ActionBar.y6.E1(frameLayout.getBackground(), org.telegram.ui.ActionBar.o6.b(w02), true);
                 frameLayout.invalidate();

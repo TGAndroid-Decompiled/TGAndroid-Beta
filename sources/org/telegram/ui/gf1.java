@@ -10,18 +10,18 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class gf1 extends org.telegram.ui.ActionBar.r2 {
-    public ef1 f39641a;
-    public org.telegram.ui.Components.mm0 f39642b;
-    public long f39643c;
+    public ef1 f39644a;
+    public org.telegram.ui.Components.mm0 f39645b;
+    public long f39646c;
     public ArrayList d;
     public HashSet e;
 
     public static void V(gf1 gf1Var, int i10) {
-        gf1Var.getNotificationsController().getNotificationsSettingsFacade().clearPreference(gf1Var.f39643c, i10);
+        gf1Var.getNotificationsController().getNotificationsSettingsFacade().clearPreference(gf1Var.f39646c, i10);
         TL_account.updateNotifySettings updatenotifysettings = new TL_account.updateNotifySettings();
         updatenotifysettings.settings = new TLRPC.TL_inputPeerNotifySettings();
         TLRPC.TL_inputNotifyForumTopic tL_inputNotifyForumTopic = new TLRPC.TL_inputNotifyForumTopic();
-        tL_inputNotifyForumTopic.peer = gf1Var.getMessagesController().getInputPeer(gf1Var.f39643c);
+        tL_inputNotifyForumTopic.peer = gf1Var.getMessagesController().getInputPeer(gf1Var.f39646c);
         tL_inputNotifyForumTopic.top_msg_id = i10;
         updatenotifysettings.peer = tL_inputNotifyForumTopic;
         gf1Var.getConnectionsManager().sendRequest(updatenotifysettings, new di.d6(8));
@@ -30,7 +30,7 @@ public final class gf1 extends org.telegram.ui.ActionBar.r2 {
     public final void W() {
         ArrayList arrayList;
         ArrayList arrayList2 = this.d;
-        if (!this.isPaused && this.f39641a != null) {
+        if (!this.isPaused && this.f39644a != null) {
             arrayList = new ArrayList();
             arrayList.addAll(arrayList2);
         } else {
@@ -38,7 +38,7 @@ public final class gf1 extends org.telegram.ui.ActionBar.r2 {
         }
         arrayList2.clear();
         arrayList2.add(new ff1(1, null));
-        ArrayList<TLRPC.TL_forumTopic> topics = getMessagesController().getTopicsController().getTopics(-this.f39643c);
+        ArrayList<TLRPC.TL_forumTopic> topics = getMessagesController().getTopicsController().getTopics(-this.f39646c);
         int i10 = 0;
         if (topics != null) {
             int i11 = 0;
@@ -56,7 +56,7 @@ public final class gf1 extends org.telegram.ui.ActionBar.r2 {
             arrayList2.add(new ff1(4, null));
         }
         arrayList2.add(new ff1(3, null));
-        ef1 ef1Var = this.f39641a;
+        ef1 ef1Var = this.f39644a;
         if (ef1Var != null) {
             ef1Var.E(arrayList, arrayList2);
         }
@@ -71,26 +71,26 @@ public final class gf1 extends org.telegram.ui.ActionBar.r2 {
         this.simpleActionBar.setActionBarMenuOnItemClick(new p11(this, 12));
         this.simpleActionBar.setTitle(LocaleController.getString(R.string.NotificationsExceptions));
         org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
-        this.f39642b = mm0Var;
+        this.f39645b = mm0Var;
         mm0Var.u1();
-        this.f39642b.setSectionsDrawBackground(true);
+        this.f39645b.setSectionsDrawBackground(true);
         s4.l lVar = new s4.l();
         lVar.C = false;
-        lVar.f47760m = false;
-        this.f39642b.setItemAnimator(lVar);
-        this.f39642b.setLayoutManager(new s4.c0());
-        org.telegram.ui.Components.mm0 mm0Var2 = this.f39642b;
+        lVar.f47763m = false;
+        this.f39645b.setItemAnimator(lVar);
+        this.f39645b.setLayoutManager(new s4.c0());
+        org.telegram.ui.Components.mm0 mm0Var2 = this.f39645b;
         ef1 ef1Var = new ef1(this);
-        this.f39641a = ef1Var;
+        this.f39644a = ef1Var;
         mm0Var2.setAdapter(ef1Var);
-        this.f39642b.setOnItemClickListener(new df1(this));
-        frameLayout.addView(this.f39642b);
+        this.f39645b.setOnItemClickListener(new df1(this));
+        frameLayout.addView(this.f39645b);
         return this.fragmentView;
     }
 
     @Override
     public final org.telegram.ui.Components.mm0 getListViewForSimpleGlass() {
-        return this.f39642b;
+        return this.f39645b;
     }
 
     @Override
@@ -100,7 +100,7 @@ public final class gf1 extends org.telegram.ui.ActionBar.r2 {
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f39643c = this.arguments.getLong("dialog_id");
+        this.f39646c = this.arguments.getLong("dialog_id");
         W();
         return super.onFragmentCreate();
     }

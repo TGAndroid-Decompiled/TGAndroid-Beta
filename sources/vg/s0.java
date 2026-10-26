@@ -26,9 +26,9 @@ public final class s0 extends bb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final d0 f50252a0;
-    public r0 f50253b0;
-    public l0 f50254c0;
+    public final d0 f50255a0;
+    public r0 f50256b0;
+    public l0 f50257c0;
 
     public s0(r2 r2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(r2Var, false);
@@ -52,9 +52,9 @@ public final class s0 extends bb {
         scVar.setClickable(true);
         scVar.setOrientation(1);
         scVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        f7.i(y6.f23425h5, scVar, this.resourcesProvider);
+        f7.i(y6.f23427h5, scVar, this.resourcesProvider);
         d0 d0Var = new d0(getContext(), this.resourcesProvider);
-        this.f50252a0 = d0Var;
+        this.f50255a0 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new org.telegram.ui.web.c(5, this, chat));
@@ -87,12 +87,12 @@ public final class s0 extends bb {
             }
             lVar.c(arrayList.contains(lVar.getBoost()), true);
             s0Var.S(true);
-            s0Var.f50253b0.a(arrayList, chat);
+            s0Var.f50256b0.a(arrayList, chat);
         }
     }
 
     public final void S(boolean z10) {
-        d0 d0Var = this.f50252a0;
+        d0 d0Var = this.f50255a0;
         boolean z11 = false;
         d0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -111,18 +111,18 @@ public final class s0 extends bb {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f50254c0 = new l0(this);
+        this.f50257c0 = new l0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f50254c0.cancel();
+        this.f50257c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f50254c0.start();
+        this.f50257c0.start();
     }
 
     @Override

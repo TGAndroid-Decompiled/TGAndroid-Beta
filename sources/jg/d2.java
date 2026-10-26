@@ -105,7 +105,7 @@ public final class d2 extends LinearLayout implements p6 {
         md mdVar;
         TextView textView = this.f15676a;
         if (textView != null && (mdVar = this.f15677b) != null) {
-            int i10 = y6.f23451ic;
+            int i10 = y6.f23453ic;
             u6 u6Var = this.d;
             textView.setTextColor(y6.w0(i10, u6Var));
             mdVar.setTextColor(y6.w0(i10, u6Var));

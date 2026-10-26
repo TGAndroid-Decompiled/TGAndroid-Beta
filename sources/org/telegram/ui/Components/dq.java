@@ -8,12 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class dq extends FrameLayout {
-    public TextView[] f27576a;
-    public ak0[] f27577b;
-    public ImageView f27578c;
+    public TextView[] f27578a;
+    public ak0[] f27579b;
+    public ImageView f27580c;
     public AnimatorSet d;
     public bq e;
-    public float f27579f;
+    public float f27581f;
 
     public final void a() {
         if (getTag() == null) {
@@ -39,6 +39,6 @@ public final class dq extends FrameLayout {
     }
 
     public float getBaseTranslationY() {
-        return this.f27579f;
+        return this.f27581f;
     }
 }

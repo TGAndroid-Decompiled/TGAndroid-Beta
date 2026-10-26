@@ -4,10 +4,10 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class w40 extends s4.p {
-    public final v50 f44971b;
+    public final v50 f44974b;
 
     public w40(v50 v50Var) {
-        this.f44971b = v50Var;
+        this.f44974b = v50Var;
     }
 
     @Override
@@ -22,11 +22,11 @@ public final class w40 extends s4.p {
         int i14;
         int i15;
         int i16;
-        v50 v50Var = this.f44971b;
+        v50 v50Var = this.f44974b;
         p50 p50Var = v50Var.P;
-        int i17 = p50Var.f42357w;
+        int i17 = p50Var.f42360w;
         if (i17 >= 0) {
-            int i18 = v50Var.f44639h3;
+            int i18 = v50Var.f44642h3;
             if (i10 == i18 && i11 == i17) {
                 return true;
             }
@@ -34,9 +34,9 @@ public final class w40 extends s4.p {
                 return false;
             }
         }
-        int i19 = p50Var.f42358x;
+        int i19 = p50Var.f42361x;
         if (i19 >= 0) {
-            int i20 = v50Var.f44692u3;
+            int i20 = v50Var.f44695u3;
             if (i10 == i20 && i11 == i19) {
                 return true;
             }
@@ -44,9 +44,9 @@ public final class w40 extends s4.p {
                 return false;
             }
         }
-        int i21 = p50Var.f42359y;
+        int i21 = p50Var.f42362y;
         if (i21 >= 0) {
-            int i22 = v50Var.f44696v3;
+            int i22 = v50Var.f44699v3;
             if (i10 == i22 && i11 == i21) {
                 return true;
             }
@@ -56,7 +56,7 @@ public final class w40 extends s4.p {
         }
         int i23 = p50Var.K;
         if (i23 >= 0) {
-            int i24 = v50Var.f44635g3;
+            int i24 = v50Var.f44638g3;
             if (i10 == i24 && i11 == i23) {
                 return true;
             }
@@ -66,7 +66,7 @@ public final class w40 extends s4.p {
         }
         int i25 = p50Var.J;
         if (i25 >= 0) {
-            int i26 = v50Var.f44688t3;
+            int i26 = v50Var.f44691t3;
             if (i10 == i26 && i11 == i25) {
                 return true;
             }
@@ -75,7 +75,7 @@ public final class w40 extends s4.p {
             }
         }
         int i27 = p50Var.I;
-        if (i27 >= 0 && i27 == i11 && i10 == v50Var.f44684s3) {
+        if (i27 >= 0 && i27 == i11 && i10 == v50Var.f44687s3) {
             return true;
         }
         int i28 = v50Var.I0;
@@ -83,23 +83,23 @@ public final class w40 extends s4.p {
             return true;
         }
         if (i10 != i28 - 1 && i11 != p50Var.F - 1) {
-            if (i11 >= p50Var.G && i11 < p50Var.H && i10 >= (i16 = v50Var.f44674q3) && i10 < v50Var.f44679r3) {
-                return ((ChatObject.VideoParticipant) v50Var.E0.get(i10 - i16)).equals((ChatObject.VideoParticipant) v50Var.f44671q0.get(i11 - v50Var.P.G));
+            if (i11 >= p50Var.G && i11 < p50Var.H && i10 >= (i16 = v50Var.f44677q3) && i10 < v50Var.f44682r3) {
+                return ((ChatObject.VideoParticipant) v50Var.E0.get(i10 - i16)).equals((ChatObject.VideoParticipant) v50Var.f44674q0.get(i11 - v50Var.P.G));
             }
-            if (i11 >= p50Var.d && i11 < p50Var.e && i10 >= (i15 = v50Var.f44643i3) && i10 < v50Var.f44647j3) {
+            if (i11 >= p50Var.d && i11 < p50Var.e && i10 >= (i15 = v50Var.f44646i3) && i10 < v50Var.f44650j3) {
                 TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) v50Var.D0.get(i10 - i15);
-                if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(v50Var.f44607a1.visibleParticipants.get(i11 - v50Var.P.d).peer) || (i10 != i11 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
+                if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(v50Var.f44610a1.visibleParticipants.get(i11 - v50Var.P.d).peer) || (i10 != i11 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
                     return false;
                 }
                 return true;
-            } else if (i11 >= p50Var.f42353f && i11 < p50Var.h && i10 >= (i14 = v50Var.f44651k3) && i10 < v50Var.f44654l3) {
-                return ((Long) v50Var.F0.get(i10 - i14)).equals(v50Var.f44607a1.invitedUsers.get(i11 - v50Var.P.f42353f));
+            } else if (i11 >= p50Var.f42356f && i11 < p50Var.h && i10 >= (i14 = v50Var.f44654k3) && i10 < v50Var.f44657l3) {
+                return ((Long) v50Var.F0.get(i10 - i14)).equals(v50Var.f44610a1.invitedUsers.get(i11 - v50Var.P.f42356f));
             } else {
-                if (i11 >= p50Var.f42354n && i11 < p50Var.f42355r && i10 >= (i13 = v50Var.f44657m3) && i10 < v50Var.f44662n3) {
-                    return ((Long) v50Var.G0.get(i10 - i13)).equals(v50Var.f44607a1.shadyJoinParticipants.get(i11 - v50Var.P.f42354n));
+                if (i11 >= p50Var.f42357n && i11 < p50Var.f42358r && i10 >= (i13 = v50Var.f44660m3) && i10 < v50Var.f44665n3) {
+                    return ((Long) v50Var.G0.get(i10 - i13)).equals(v50Var.f44610a1.shadyJoinParticipants.get(i11 - v50Var.P.f42357n));
                 }
-                if (i11 >= p50Var.f42356s && i11 < p50Var.v && i10 >= (i12 = v50Var.f44666o3) && i10 < v50Var.f44670p3) {
-                    return ((Long) v50Var.H0.get(i10 - i12)).equals(v50Var.f44607a1.shadyLeftParticipants.get(i11 - v50Var.P.f42356s));
+                if (i11 >= p50Var.f42359s && i11 < p50Var.v && i10 >= (i12 = v50Var.f44669o3) && i10 < v50Var.f44673p3) {
+                    return ((Long) v50Var.H0.get(i10 - i12)).equals(v50Var.f44610a1.shadyLeftParticipants.get(i11 - v50Var.P.f42359s));
                 }
             }
         }
@@ -108,11 +108,11 @@ public final class w40 extends s4.p {
 
     @Override
     public final int d() {
-        return this.f44971b.P.F;
+        return this.f44974b.P.F;
     }
 
     @Override
     public final int e() {
-        return this.f44971b.I0;
+        return this.f44974b.I0;
     }
 }

@@ -18,40 +18,40 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class fk0 extends FrameLayout {
-    public final c10 f28215a;
-    public final TextView f28216b;
-    public final m9 f28217c;
+    public final c10 f28217a;
+    public final TextView f28218b;
+    public final m9 f28219c;
     public final ImageView d;
     public final y9 e;
-    public final int f28218f;
+    public final int f28220f;
     public boolean h;
-    public final ArrayList f28219n;
-    public final ArrayList f28220r;
-    public final MessageObject f28221s;
+    public final ArrayList f28221n;
+    public final ArrayList f28222r;
+    public final MessageObject f28223s;
     public int v;
-    public q0.a f28222w;
+    public q0.a f28224w;
 
     public fk0(Context context, int i10, MessageObject messageObject) {
         super(context);
-        this.f28219n = new ArrayList();
-        this.f28220r = new ArrayList();
-        this.f28218f = i10;
-        this.f28221s = messageObject;
+        this.f28221n = new ArrayList();
+        this.f28222r = new ArrayList();
+        this.f28220f = i10;
+        this.f28223s = messageObject;
         c10 c10Var = new c10(context, null);
-        this.f28215a = c10Var;
-        c10Var.e(org.telegram.ui.ActionBar.y6.G8, org.telegram.ui.ActionBar.y6.f23446i6, -1);
+        this.f28217a = c10Var;
+        c10Var.e(org.telegram.ui.ActionBar.y6.G8, org.telegram.ui.ActionBar.y6.f23448i6, -1);
         c10Var.setViewType(13);
         c10Var.setIsSingleCell(false);
         addView(c10Var, gb1.g(-1.0f, -2));
         TextView textView = new TextView(context);
-        this.f28216b = textView;
+        this.f28218b = textView;
         org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.E8, null);
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         addView(textView, gb1.m(-2.0f, -2.0f, 8388627, 40.0f, 0.0f, 62.0f, 0.0f));
         m9 m9Var = new m9(context, false);
-        this.f28217c = m9Var;
+        this.f28219c = m9Var;
         m9Var.setStyle(11);
         m9Var.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
         addView(m9Var, gb1.m(56.0f, -1.0f, 8388629, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -71,12 +71,12 @@ public final class fk0 extends FrameLayout {
     }
 
     public final void a() {
-        int i10 = this.f28218f;
+        int i10 = this.f28220f;
         MessagesController messagesController = MessagesController.getInstance(i10);
         TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
-        MessageObject messageObject = this.f28221s;
+        MessageObject messageObject = this.f28223s;
         tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(messageObject.getDialogId());
-        tL_messages_getMessageReactionsList.f22120id = messageObject.getId();
+        tL_messages_getMessageReactionsList.f22122id = messageObject.getId();
         tL_messages_getMessageReactionsList.limit = 3;
         tL_messages_getMessageReactionsList.reaction = null;
         tL_messages_getMessageReactionsList.offset = null;
@@ -84,16 +84,16 @@ public final class fk0 extends FrameLayout {
     }
 
     public List<ek0> getSeenUsers() {
-        return this.f28219n;
+        return this.f28221n;
     }
 
     @Override
     public final void onAttachedToWindow() {
         long j10;
         super.onAttachedToWindow();
-        int i10 = this.f28218f;
+        int i10 = this.f28220f;
         MessagesController messagesController = MessagesController.getInstance(i10);
-        MessageObject messageObject = this.f28221s;
+        MessageObject messageObject = this.f28223s;
         TLRPC.Chat chat = messagesController.getChat(Long.valueOf(messageObject.getChatId()));
         TLRPC.ChatFull chatFull = messagesController.getChatFull(messageObject.getChatId());
         if (chat != null && messageObject.isOutOwner() && messageObject.isSent() && !messageObject.isEditing() && !messageObject.isSending() && !messageObject.isSendError() && !messageObject.isContentUnread() && !messageObject.isUnread() && ConnectionsManager.getInstance(i10).getCurrentTime() - messageObject.messageOwner.date < 604800 && ((ChatObject.isMegagroup(chat) || !ChatObject.isChannel(chat)) && chatFull != null && chatFull.participants_count <= MessagesController.getInstance(i10).chatReadMarkSizeThreshold && !(messageObject.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
@@ -118,7 +118,7 @@ public final class fk0 extends FrameLayout {
         if (i12 > 0) {
             i10 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
         }
-        c10 c10Var = this.f28215a;
+        c10 c10Var = this.f28217a;
         if (c10Var.getVisibility() == 0) {
             this.h = true;
             c10Var.setVisibility(8);
@@ -141,6 +141,6 @@ public final class fk0 extends FrameLayout {
     }
 
     public void setSeenCallback(q0.a aVar) {
-        this.f28222w = aVar;
+        this.f28224w = aVar;
     }
 }

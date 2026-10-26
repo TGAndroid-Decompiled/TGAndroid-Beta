@@ -34,7 +34,7 @@ public final class s1 implements Runnable {
                 cy cyVar = (cy) this.e;
                 Activity activity = (Activity) this.f21192f;
                 if (cyVar.getParentActivity() != null) {
-                    cyVar.f38661t2 = false;
+                    cyVar.f38664t2 = false;
                     boolean z10 = this.f21190b;
                     boolean z11 = this.f21191c;
                     boolean z12 = this.d;
@@ -44,7 +44,7 @@ public final class s1 implements Runnable {
                             xe0.e(new String[]{"android.permission.POST_NOTIFICATIONS"}, new on(1, new oy(10, cyVar, activity)));
                             return;
                         } else if (z11 && cyVar.U1 && cyVar.getUserConfig().syncContacts && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
-                            org.telegram.ui.ActionBar.e2 e2Var = org.telegram.ui.Components.g5.v(activity, new kv(cyVar, 0)).f22366a;
+                            org.telegram.ui.ActionBar.e2 e2Var = org.telegram.ui.Components.g5.v(activity, new kv(cyVar, 0)).f22368a;
                             cyVar.T1 = e2Var;
                             cyVar.showDialog(e2Var);
                             return;

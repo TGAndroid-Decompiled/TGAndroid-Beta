@@ -25,7 +25,7 @@ public final class f3 extends ImageReceiver {
         Object obj = this.f8551b;
         switch (i10) {
             case 3:
-                View view = ((xn) obj).f45808b;
+                View view = ((xn) obj).f45811b;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -41,7 +41,7 @@ public final class f3 extends ImageReceiver {
                 return;
             case 6:
                 super.invalidate();
-                org.telegram.ui.Wallet.t7 t7Var = ((org.telegram.ui.Wallet.s7) obj).f37227d0;
+                org.telegram.ui.Wallet.t7 t7Var = ((org.telegram.ui.Wallet.s7) obj).f37230d0;
                 int i11 = org.telegram.ui.Wallet.t7.G1;
                 t7Var.f0();
                 return;
@@ -64,7 +64,7 @@ public final class f3 extends ImageReceiver {
                 return imageBitmapByKey;
             case 1:
                 if (drawable != null && i10 != 1) {
-                    vh.q(((jg.d1) ((k4) obj).H).h.animate().alpha(1.0f).translationY(0.0f), ds.f27588k, 250L);
+                    vh.q(((jg.d1) ((k4) obj).H).h.animate().alpha(1.0f).translationY(0.0f), ds.f27590k, 250L);
                 }
                 return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             case 2:
@@ -76,8 +76,8 @@ public final class f3 extends ImageReceiver {
                 org.telegram.ui.Components.t5 t5Var = (org.telegram.ui.Components.t5) obj;
                 t5Var.k();
                 boolean imageBitmapByKey2 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (t5Var.f32851m && hasImageLoaded()) {
-                    t5Var.f32851m = false;
+                if (t5Var.f32854m && hasImageLoaded()) {
+                    t5Var.f32854m = false;
                     AndroidUtilities.runOnUIThread(new pg(t5Var, 5));
                 }
                 return imageBitmapByKey2;
@@ -106,9 +106,9 @@ public final class f3 extends ImageReceiver {
                 int dp = AndroidUtilities.dp(6.0f);
                 iArr2[3] = dp;
                 iArr2[2] = dp;
-                sh.g gVar = s1Var.f25031b6;
+                sh.g gVar = s1Var.f25033b6;
                 if (gVar != null) {
-                    gVar.f48632b.setRoundRadius(s1Var.R0);
+                    gVar.f48635b.setRoundRadius(s1Var.R0);
                     return;
                 }
                 return;

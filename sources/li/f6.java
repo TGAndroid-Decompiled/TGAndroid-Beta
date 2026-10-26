@@ -42,7 +42,7 @@ public abstract class f6 {
                 a(spannableStringBuilder, textdiff.old_text, i10, pageBlock, z10);
                 if (spannableStringBuilder.length() > length) {
                     ?? obj = new Object();
-                    obj.f34904a = 8192;
+                    obj.f34907a = 8192;
                     spannableStringBuilder.setSpan(new z11(obj, 0), length, spannableStringBuilder.length(), 33);
                     return;
                 }
@@ -52,7 +52,7 @@ public abstract class f6 {
             if (j11) {
                 if (spannableStringBuilder.length() > length) {
                     ?? obj2 = new Object();
-                    obj2.f34904a = 4096;
+                    obj2.f34907a = 4096;
                     spannableStringBuilder.setSpan(new z11(obj2, 0), length, spannableStringBuilder.length(), 33);
                 }
             } else if (spannableStringBuilder.length() > length) {
@@ -94,7 +94,7 @@ public abstract class f6 {
                 tL_messageEntityFormattedDate.date = textdate.date;
                 tL_messageEntityFormattedDate.applyFlags();
                 ?? obj3 = new Object();
-                obj3.f34904a |= 128;
+                obj3.f34907a |= 128;
                 spannableStringBuilder.setSpan(new s10(charSequence2, obj3, tL_messageEntityFormattedDate), length4, spannableStringBuilder.length(), 33);
             }
         } else if (richText instanceof TL_iv.textMath) {
@@ -174,7 +174,7 @@ public abstract class f6 {
         z11[] z11VarArr = (z11[]) spanned.getSpans(i10, i11, z11.class);
         int i12 = 0;
         for (z11 z11Var : z11VarArr) {
-            int i13 = z11Var.f35178b.f34904a;
+            int i13 = z11Var.f35181b.f34907a;
             if ((i13 & 512) != 0) {
                 i13 |= 256;
             }
@@ -297,7 +297,7 @@ public abstract class f6 {
 
     public static z61 k(String str) {
         ?? obj = new Object();
-        obj.f34904a = 1024;
+        obj.f34907a = 1024;
         return new z61(str, obj);
     }
 
@@ -385,7 +385,7 @@ public abstract class f6 {
             for (z11 z11Var : (z11[]) spannable.getSpans(max, max2, z11.class)) {
                 int spanStart = spannable.getSpanStart(z11Var);
                 int spanEnd = spannable.getSpanEnd(z11Var);
-                int i14 = z11Var.f35178b.f34904a;
+                int i14 = z11Var.f35181b.f34907a;
                 spannable.removeSpan(z11Var);
                 c(spannable, spanStart, max, i14, pageBlock);
                 c(spannable, max2, spanEnd, i14, pageBlock);
@@ -413,7 +413,7 @@ public abstract class f6 {
     public static z11 p(int i10, TL_iv.PageBlock pageBlock) {
         boolean z10;
         ?? obj = new Object();
-        obj.f34904a = i10;
+        obj.f34907a = i10;
         if (!(pageBlock instanceof TL_iv.pageBlockTitle) && !(pageBlock instanceof TL_iv.pageBlockSubheader) && !(pageBlock instanceof TL_iv.pageBlockHeader) && !(pageBlock instanceof TL_iv.pageBlockHeading1) && !(pageBlock instanceof TL_iv.pageBlockHeading2) && !(pageBlock instanceof TL_iv.pageBlockHeading3) && !(pageBlock instanceof TL_iv.pageBlockHeading4) && !(pageBlock instanceof TL_iv.pageBlockHeading5) && !(pageBlock instanceof TL_iv.pageBlockHeading6)) {
             z10 = false;
         } else {
@@ -529,7 +529,7 @@ public abstract class f6 {
         }
         s10 s10Var = e6Var.f17215c;
         if (s10Var != null) {
-            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = s10Var.f32402b;
+            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = s10Var.f32404b;
             TL_iv.textDate textdate = new TL_iv.textDate();
             textdate.text = richText10;
             textdate.flags = tL_messageEntityFormattedDate.flags;

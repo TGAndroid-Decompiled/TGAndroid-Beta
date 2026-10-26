@@ -61,7 +61,7 @@ public final class y1 extends FrameLayout {
         this.f15903c = nVar;
         nVar.setLines(2);
         nVar.setEllipsize(TextUtils.TruncateAt.END);
-        f7.V(nVar, y6.f23765z6, u6Var);
+        f7.V(nVar, y6.f23767z6, u6Var);
         nVar.setTextSize(1, 14.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -88,7 +88,7 @@ public final class y1 extends FrameLayout {
         }
         zp zpVar = new zp(getContext(), 21, u6Var);
         this.d = zpVar;
-        zpVar.b(-1, y6.f23354d6, y6.f23483k7);
+        zpVar.b(-1, y6.f23356d6, y6.f23485k7);
         zpVar.setDrawUnchecked(false);
         zpVar.setDrawBackgroundAsArc(3);
         addView(zpVar, gb1.m(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -121,7 +121,7 @@ public final class y1 extends FrameLayout {
         u6 u6Var = this.f15904f;
         spannableStringBuilder.setSpan(new p10(i10, u6Var), 0, spannableStringBuilder.length(), 33);
         if (str3 != null) {
-            p10 p10Var = new p10(y6.f23558o6, u6Var);
+            p10 p10Var = new p10(y6.f23560o6, u6Var);
             if (str3.length() <= 0) {
                 length = 1;
             } else {
@@ -150,7 +150,7 @@ public final class y1 extends FrameLayout {
             int i11 = x1.d;
             SpannableString spannableString = new SpannableString("+");
             x1 x1Var = new x1(b2Var.a() - 1);
-            this.f15905n[0] = (int) (((q11) x1Var.f15896c).f31788c + AndroidUtilities.dp(10.0f));
+            this.f15905n[0] = (int) (((q11) x1Var.f15896c).f31790c + AndroidUtilities.dp(10.0f));
             spannableString.setSpan(x1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, nVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
@@ -228,7 +228,7 @@ public final class y1 extends FrameLayout {
         if (this.f15906r) {
             Paint V0 = y6.V0("paintDivider", this.f15904f);
             if (V0 == null) {
-                V0 = y6.f23476k0;
+                V0 = y6.f23478k0;
             }
             Paint paint = V0;
             float f11 = 64.0f;

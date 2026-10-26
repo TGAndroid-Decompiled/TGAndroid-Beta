@@ -248,7 +248,7 @@ public final class h0 implements Runnable {
                 sg.t1 t1Var = e6Var.Z0;
                 int i22 = t1Var.d + 1;
                 t1Var.a(i22);
-                AndroidUtilities.updateImageViewImageAnimated(t1Var.f48513a[i22], i21);
+                AndroidUtilities.updateImageViewImageAnimated(t1Var.f48516a[i22], i21);
                 t1Var.e = true;
                 return;
             case 13:
@@ -359,8 +359,8 @@ public final class h0 implements Runnable {
                 j4 j4Var = (j4) this.f1541c;
                 String str4 = (String) this.d;
                 int i30 = this.f1540b;
-                HashMap hashMap = new HashMap(j4Var.f40446u0[0].f41441c.f39884w);
-                ArrayList arrayList2 = new ArrayList(j4Var.f40446u0[0].f41441c.f39885x);
+                HashMap hashMap = new HashMap(j4Var.f40449u0[0].f41444c.f39887w);
+                ArrayList arrayList2 = new ArrayList(j4Var.f40449u0[0].f41444c.f39888x);
                 j4Var.W0 = null;
                 Utilities.searchQueue.postRunnable(new sb(j4Var, arrayList2, hashMap, str4, i30, 15));
                 return;

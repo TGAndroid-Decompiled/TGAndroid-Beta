@@ -9,12 +9,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class up extends s4.h0 {
-    public final Context f44509c;
+    public final Context f44512c;
     public final vp d;
 
     public up(vp vpVar, Context context) {
         this.d = vpVar;
-        this.f44509c = context;
+        this.f44512c = context;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class up extends s4.h0 {
         int i10;
         vp vpVar = this.d;
         if (!vpVar.d.isEmpty()) {
-            i10 = vpVar.f44871n.size() + 1;
+            i10 = vpVar.f44874n.size() + 1;
         } else {
             i10 = 0;
         }
@@ -46,13 +46,13 @@ public final class up extends s4.h0 {
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         int i11;
-        View view = e1Var.f47735a;
+        View view = e1Var.f47738a;
         int j10 = j(i10);
         vp vpVar = this.d;
         if (j10 != 0) {
             if (j10 != 1) {
                 if (j10 == 2) {
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) vpVar.f44871n.get(i10 - 3);
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) vpVar.f44874n.get(i10 - 3);
                     boolean contains = vpVar.d.contains(tL_availableReaction.reaction);
                     i11 = ((org.telegram.ui.ActionBar.r2) vpVar).currentAccount;
                     ((org.telegram.ui.Cells.x) view).a(tL_availableReaction, contains, i11);
@@ -65,7 +65,7 @@ public final class up extends s4.h0 {
         }
         org.telegram.ui.Cells.i9 i9Var = (org.telegram.ui.Cells.i9) view;
         org.telegram.ui.ActionBar.f7.V(i9Var.getTextView(), org.telegram.ui.ActionBar.y6.B6, null);
-        int i12 = vpVar.f44873s;
+        int i12 = vpVar.f44876s;
         if (i12 == 1) {
             i9Var.setText(LocaleController.getString(R.string.EnableSomeReactionsInfo));
         } else if (i12 == 0) {
@@ -77,7 +77,7 @@ public final class up extends s4.h0 {
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f44509c;
+        Context context = this.f44512c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -85,8 +85,8 @@ public final class up extends s4.h0 {
                 }
                 FrameLayout frameLayout = new FrameLayout(context);
                 vp vpVar = this.d;
-                AndroidUtilities.removeFromParent(vpVar.f44872r);
-                frameLayout.addView(vpVar.f44872r);
+                AndroidUtilities.removeFromParent(vpVar.f44875r);
+                frameLayout.addView(vpVar.f44875r);
                 frameLayout.setLayoutParams(new s4.q0(-1, -2));
                 return new s4.e1(frameLayout);
             }

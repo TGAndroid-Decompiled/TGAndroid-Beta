@@ -28,7 +28,7 @@ public final class h {
 
     public final double a() {
         Double d10;
-        Bundle bundle = (Bundle) this.f8296a.f52841b;
+        Bundle bundle = (Bundle) this.f8296a.f52844b;
         if (bundle.containsKey("firebase_sessions_sampling_rate")) {
             d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
         } else {

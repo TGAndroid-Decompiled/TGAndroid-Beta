@@ -169,8 +169,8 @@ public final class a2 implements Runnable {
                     str = "";
                 }
                 org.telegram.ui.Components.qc M = h7Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
-                M.f31887j = 5000;
-                M.f31898u = true;
+                M.f31889j = 5000;
+                M.f31900u = true;
                 M.j();
                 z00 z00Var = h7Var.f4727a0;
                 if (z00Var != null) {

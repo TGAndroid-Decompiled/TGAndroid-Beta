@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import org.json.JSONArray;
 public final class lb1 {
-    public Canvas f30154a;
-    public int f30155b;
-    public Object f30156c;
+    public Canvas f30156a;
+    public int f30157b;
+    public Object f30158c;
     public int d;
     public int e;
-    public Bitmap f30157f;
-    public final Matrix f30158g = new Matrix();
+    public Bitmap f30159f;
+    public final Matrix f30160g = new Matrix();
     public float h;
-    public JSONArray f30159i;
+    public JSONArray f30161i;
 }

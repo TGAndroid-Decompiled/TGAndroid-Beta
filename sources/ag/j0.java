@@ -87,14 +87,14 @@ public final class j0 implements f50, b2, u7, e5, u5.b, t9.g {
         switch (this.f1304a) {
             case 7:
                 t9.f fVar = (t9.f) this.f1306c;
-                return fVar.f48743b.schedule(new t9.d(fVar, (Runnable) this.d, e3Var, 1), this.f1305b, (TimeUnit) this.e);
+                return fVar.f48746b.schedule(new t9.d(fVar, (Runnable) this.d, e3Var, 1), this.f1305b, (TimeUnit) this.e);
             default:
                 final t9.f fVar2 = (t9.f) this.f1306c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f48743b.schedule(new Callable() {
+                return fVar2.f48746b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f48742a.submit(new u(4, callable, e3Var));
+                        return f.this.f48745a.submit(new u(4, callable, e3Var));
                     }
                 }, this.f1305b, (TimeUnit) this.e);
         }
@@ -185,7 +185,7 @@ public final class j0 implements f50, b2, u7, e5, u5.b, t9.g {
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.e;
-                ProfileActivity profileActivity = ((rz0) this.f1306c).f43312b;
+                ProfileActivity profileActivity = ((rz0) this.f1306c).f43315b;
                 profileActivity.N1 = true;
                 Bundle i11 = a1.g.i("scrollToTopOnResume", true);
                 long j10 = -this.f1305b;

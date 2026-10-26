@@ -31,7 +31,7 @@ public final class sf implements Runnable {
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f21251f;
                 CharSequence charSequence = (CharSequence) this.h;
-                chatActivityEnterView.f25875f0 = null;
+                chatActivityEnterView.f25877f0 = null;
                 chatActivityEnterView.n0(true);
                 org.telegram.ui.Components.pf pfVar = chatActivityEnterView.E0;
                 if (pfVar != null) {

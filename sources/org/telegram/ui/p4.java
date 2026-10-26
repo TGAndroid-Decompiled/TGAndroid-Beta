@@ -6,8 +6,8 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class p4 extends org.telegram.ui.ActionBar.r2 {
-    public org.telegram.ui.Components.mm0 f42346a;
-    public o4 f42347b;
+    public org.telegram.ui.Components.mm0 f42349a;
+    public o4 f42350b;
 
     @Override
     public final View createView(Context context) {
@@ -18,23 +18,23 @@ public final class p4 extends org.telegram.ui.ActionBar.r2 {
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
-        this.f42346a = mm0Var;
+        this.f42349a = mm0Var;
         mm0Var.setSectionsDrawBackground(true);
-        this.f42346a.u1();
-        this.f42346a.setLayoutManager(new s4.c0());
-        this.f42346a.setVerticalScrollBarEnabled(false);
-        org.telegram.ui.Components.mm0 mm0Var2 = this.f42346a;
+        this.f42349a.u1();
+        this.f42349a.setLayoutManager(new s4.c0());
+        this.f42349a.setVerticalScrollBarEnabled(false);
+        org.telegram.ui.Components.mm0 mm0Var2 = this.f42349a;
         o4 o4Var = new o4(context);
-        this.f42347b = o4Var;
+        this.f42350b = o4Var;
         mm0Var2.setAdapter(o4Var);
-        this.f42346a.setOnItemClickListener(new h(this, 2));
-        frameLayout.addView(this.f42346a, org.telegram.ui.Components.gb1.g(-1.0f, -1));
+        this.f42349a.setOnItemClickListener(new h(this, 2));
+        frameLayout.addView(this.f42349a, org.telegram.ui.Components.gb1.g(-1.0f, -1));
         return this.fragmentView;
     }
 
     @Override
     public final org.telegram.ui.Components.mm0 getListViewForSimpleGlass() {
-        return this.f42346a;
+        return this.f42349a;
     }
 
     @Override

@@ -413,7 +413,7 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                 }
                 if (dVar != null) {
                     ArrayList arrayList = dVar.f19445a;
-                    dVar.f19446b = e.f47065b;
+                    dVar.f19446b = e.f47068b;
                     while (dVar.f19446b > arrayList.size()) {
                         arrayList.add(new oi.b(arrayList.size()));
                     }
@@ -488,7 +488,7 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                     boolean z10 = !h1Var.d;
                     h1Var.d = z10;
                     ((a9) view).setChecked(z10);
-                    h1Var.f15721a.f32150g3.O(true);
+                    h1Var.f15721a.f32152g3.O(true);
                     h1Var.Z(true);
                     return;
                 } else if (i11 == -2) {
@@ -497,7 +497,7 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                     r2Var.f15706c = new ai.n1(26, h1Var, view);
                     h1Var.presentFragment((r2) r2Var);
                     return;
-                } else if (t61Var.f47037a != 5 || i11 < 0 || i11 >= h1Var.f15724f.length) {
+                } else if (t61Var.f47040a != 5 || i11 < 0 || i11 >= h1Var.f15724f.length) {
                     return;
                 } else {
                     if (!LocaleController.isRTL ? floatValue >= view.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
@@ -529,7 +529,7 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                         }
                     }
                     int i18 = i16 + 1439;
-                    CharSequence charSequence = t61Var.f32872l;
+                    CharSequence charSequence = t61Var.f32875l;
                     ArrayList arrayList = h1Var.f15724f[t61Var.d];
                     int i19 = 0;
                     for (int i20 = 0; i20 < 7; i20++) {
@@ -566,8 +566,8 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                     t61Var2.e = z11;
                     a9Var.setChecked(z11);
                     boolean z12 = j1Var2.f15744r;
-                    a9Var.b(y6.x0(null, z12 ? y6.f23391f6 : y6.f23373e6, false), z12);
-                    j1Var2.f15743n.f32150g3.O(true);
+                    a9Var.b(y6.x0(null, z12 ? y6.f23393f6 : y6.f23375e6, false), z12);
+                    j1Var2.f15743n.f32152g3.O(true);
                     ua uaVar = j1Var2.f15742f;
                     if (uaVar != null) {
                         uaVar.run();
@@ -590,9 +590,9 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                     if (uaVar2 != null) {
                         uaVar2.run();
                     }
-                    j1Var2.f15743n.f32150g3.O(true);
+                    j1Var2.f15743n.f32152g3.O(true);
                     return;
-                } else if (t61Var2.f47037a != 3 || (i10 = i23 / 3) < 0 || i10 >= arrayList3.size()) {
+                } else if (t61Var2.f47040a != 3 || (i10 = i23 / 3) < 0 || i10 >= arrayList3.size()) {
                     return;
                 } else {
                     int i25 = i10 - 1;
@@ -620,7 +620,7 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                                         g1Var2.f15713a = intValue;
                                         ((v8) view2).w(g1.a(intValue), true);
                                         if (W != j1Var3.W()) {
-                                            j1Var3.f15743n.f32150g3.O(true);
+                                            j1Var3.f15743n.f32152g3.O(true);
                                         }
                                         ua uaVar3 = j1Var3.f15742f;
                                         if (uaVar3 != null) {
@@ -635,7 +635,7 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                                         g1Var2.f15714b = intValue2;
                                         ((v8) view2).w(g1.a(intValue2), true);
                                         if (W2 != j1Var4.W()) {
-                                            j1Var4.f15743n.f32150g3.O(true);
+                                            j1Var4.f15743n.f32152g3.O(true);
                                         }
                                         ua uaVar4 = j1Var4.f15742f;
                                         if (uaVar4 != null) {
@@ -667,7 +667,7 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                                         g1Var2.f15713a = intValue;
                                         ((v8) view2).w(g1.a(intValue), true);
                                         if (W != j1Var3.W()) {
-                                            j1Var3.f15743n.f32150g3.O(true);
+                                            j1Var3.f15743n.f32152g3.O(true);
                                         }
                                         ua uaVar3 = j1Var3.f15742f;
                                         if (uaVar3 != null) {
@@ -682,7 +682,7 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                                         g1Var2.f15714b = intValue2;
                                         ((v8) view2).w(g1.a(intValue2), true);
                                         if (W2 != j1Var4.W()) {
-                                            j1Var4.f15743n.f32150g3.O(true);
+                                            j1Var4.f15743n.f32152g3.O(true);
                                         }
                                         ua uaVar4 = j1Var4.f15742f;
                                         if (uaVar4 != null) {
@@ -699,7 +699,7 @@ public final class e1 implements Utilities.Callback5, org.telegram.ui.ActionBar.
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new g1(0, 1439));
                         }
-                        j1Var2.f15743n.f32150g3.O(true);
+                        j1Var2.f15743n.f32152g3.O(true);
                         ua uaVar3 = j1Var2.f15742f;
                         if (uaVar3 != null) {
                             uaVar3.run();

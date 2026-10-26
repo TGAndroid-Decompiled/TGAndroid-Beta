@@ -10,18 +10,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.telegram.ui.ActionBar.b2, Utilities.Callback2Return, org.telegram.ui.Components.nw0, org.telegram.ui.Components.ow0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.id0, org.telegram.ui.Components.kd0 {
-    public final int f38446a;
+    public final int f38449a;
 
     public cg(int i10) {
-        this.f38446a = i10;
+        this.f38449a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         xr xrVar = (xr) obj;
-        switch (this.f38446a) {
+        switch (this.f38449a) {
             case 5:
-                xrVar.f45834b = f7;
+                xrVar.f45837b = f7;
                 if (xrVar.getParent() != null) {
                     ((View) xrVar.getParent()).invalidate();
                     return;
@@ -37,7 +37,7 @@ public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.teleg
                 }
                 return;
             case 7:
-                xrVar.f45835c = f7;
+                xrVar.f45838c = f7;
                 if (xrVar.getParent() != null) {
                     ((View) xrVar.getParent()).invalidate();
                     return;
@@ -55,7 +55,7 @@ public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.teleg
 
     @Override
     public String f(int i10) {
-        switch (this.f38446a) {
+        switch (this.f38449a) {
             case 14:
                 return ic.a.i(i10, "");
             case 15:
@@ -142,15 +142,15 @@ public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.teleg
     @Override
     public float get(Object obj) {
         xr xrVar = (xr) obj;
-        switch (this.f38446a) {
+        switch (this.f38449a) {
             case 4:
-                return xrVar.f45834b;
+                return xrVar.f45837b;
             case 5:
             case 7:
             default:
                 return xrVar.e;
             case 6:
-                return xrVar.f45835c;
+                return xrVar.f45838c;
             case 8:
                 return xrVar.d;
         }
@@ -158,7 +158,7 @@ public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.teleg
 
     @Override
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f38446a) {
+        switch (this.f38449a) {
             case 2:
                 e2Var.dismiss();
                 return;
@@ -178,12 +178,12 @@ public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.teleg
 
     @Override
     public void q(org.telegram.ui.Components.md0 md0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.g5.f28418a;
+        Pattern pattern = org.telegram.ui.Components.g5.f28420a;
     }
 
     @Override
     public void run(Exception exc) {
-        switch (this.f38446a) {
+        switch (this.f38449a) {
             case 12:
                 FileLog.e(exc);
                 return;

@@ -4,24 +4,24 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 public final class xp0 extends s4.u0 {
-    public final ef f34793a;
+    public final ef f34796a;
 
     public xp0(ef efVar) {
-        this.f34793a = efVar;
+        this.f34796a = efVar;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         boolean z10;
         float f7;
-        ef efVar = this.f34793a;
-        View view = efVar.f26944u;
-        if (efVar.f26945w.I0() != 0) {
+        ef efVar = this.f34796a;
+        View view = efVar.f26946u;
+        if (efVar.f26947w.I0() != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        Boolean bool = efVar.f26946x;
+        Boolean bool = efVar.f26948x;
         if (bool != null && z10 == bool.booleanValue()) {
             return;
         }
@@ -33,6 +33,6 @@ public final class xp0 extends s4.u0 {
             f7 = 0.0f;
         }
         animate.alpha(f7).setDuration(150L).start();
-        efVar.f26946x = Boolean.valueOf(z10);
+        efVar.f26948x = Boolean.valueOf(z10);
     }
 }

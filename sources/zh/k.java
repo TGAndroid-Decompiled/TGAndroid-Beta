@@ -19,19 +19,19 @@ import org.telegram.ui.Components.s6;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.Components.zq;
 public final class k extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final y9 f53075a;
-    public final s6 f53076b;
-    public final s6 f53077c;
+    public final y9 f53078a;
+    public final s6 f53079b;
+    public final s6 f53080c;
     public final s6 d;
     public final zq[] e;
-    public boolean f53078f;
+    public boolean f53081f;
 
     public k(Context context, u6 u6Var) {
         super(context);
         this.e = new zq[1];
         setOrientation(0);
         s6 s6Var = new s6(context, false, false, false);
-        this.f53077c = s6Var;
+        this.f53080c = s6Var;
         int i10 = y6.G6;
         f7.Z(s6Var, i10, u6Var);
         s6Var.setTextSize(AndroidUtilities.dp(15.0f));
@@ -39,12 +39,12 @@ public final class k extends LinearLayout implements NotificationCenter.Notifica
         s6Var.setEllipsizeByGradient(true);
         s6 s6Var2 = new s6(context, false, false, false);
         this.d = s6Var2;
-        f7.Z(s6Var2, y6.f23746y6, u6Var);
+        f7.Z(s6Var2, y6.f23748y6, u6Var);
         s6Var2.setTextSize(AndroidUtilities.dp(15.0f));
         y9 y9Var = new y9(context);
-        this.f53075a = y9Var;
+        this.f53078a = y9Var;
         s6 s6Var3 = new s6(context, false, false, false);
-        this.f53076b = s6Var3;
+        this.f53079b = s6Var3;
         s6Var3.setTextSize(AndroidUtilities.dp(15.0f));
         s6Var3.setPadding(AndroidUtilities.dp(20.0f), 0, 0, 0);
         f7.Z(s6Var3, i10, u6Var);
@@ -61,7 +61,7 @@ public final class k extends LinearLayout implements NotificationCenter.Notifica
     }
 
     public final void b(int i10, boolean z10, boolean z11) {
-        s6 s6Var = this.f53076b;
+        s6 s6Var = this.f53079b;
         if (z10 && i10 <= 3) {
             if (i10 == 1) {
                 s6Var.c(Emoji.replaceWithRestrictedEmoji("🥇", s6Var.getPaint().getFontMetricsInt(), (Runnable) null), z11, true);
@@ -89,22 +89,22 @@ public final class k extends LinearLayout implements NotificationCenter.Notifica
     public final void c(TLRPC.User user) {
         j9 j9Var = new j9((u6) null);
         j9Var.r(user);
-        y9 y9Var = this.f53075a;
+        y9 y9Var = this.f53078a;
         y9Var.f(user, j9Var);
         y9Var.setRoundRadius(AndroidUtilities.dp(16.0f));
-        this.f53077c.setText(UserObject.getUserName(user));
+        this.f53080c.setText(UserObject.getUserName(user));
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        this.f53076b.invalidate();
+        this.f53079b.invalidate();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f53078f) {
-            canvas.drawLine(AndroidUtilities.dp(112.0f), getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(16.0f), getMeasuredHeight(), y6.f23476k0);
+        if (this.f53081f) {
+            canvas.drawLine(AndroidUtilities.dp(112.0f), getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(16.0f), getMeasuredHeight(), y6.f23478k0);
         }
     }
 

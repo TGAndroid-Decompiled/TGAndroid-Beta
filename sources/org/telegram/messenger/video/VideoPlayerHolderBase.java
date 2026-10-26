@@ -212,9 +212,9 @@ public class VideoPlayerHolderBase {
         }
         s81 s81Var2 = new s81(false, z10);
         this.videoPlayer = s81Var2;
-        s81Var2.f32473y = this.allowMultipleInstances;
+        s81Var2.f32475y = this.allowMultipleInstances;
         s81Var2.J = new AnonymousClass2();
-        this.videoPlayer.f32459c = true;
+        this.videoPlayer.f32461c = true;
     }
 
     public void lambda$loopBack$9() {
@@ -362,7 +362,7 @@ public class VideoPlayerHolderBase {
         boolean y3 = s81Var.y();
         if (z10) {
             s81 s81Var2 = this.videoPlayer;
-            if (s81Var2.f32458b0) {
+            if (s81Var2.f32460b0) {
                 s81Var2.B();
                 long n10 = this.videoPlayer.n();
                 this.videoPlayer.H();

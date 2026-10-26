@@ -15,19 +15,19 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ds;
 import org.telegram.ui.q40;
 public abstract class a2 extends View {
-    public Bitmap f48137a;
-    public Paint f48138b;
-    public Paint f48139c;
+    public Bitmap f48140a;
+    public Paint f48141b;
+    public Paint f48142c;
     public Paint d;
     public float e;
-    public float f48140f;
+    public float f48143f;
     public Path h;
-    public Rect f48141n;
-    public RectF f48142r;
-    public int f48143s;
+    public Rect f48144n;
+    public RectF f48145r;
+    public int f48146s;
     public boolean v;
-    public q0.a f48144w;
-    public float f48145x;
+    public q0.a f48147w;
+    public float f48148x;
 
     public final void a(boolean z10) {
         if (this.v) {
@@ -35,7 +35,7 @@ public abstract class a2 extends View {
         }
         this.v = true;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
-        duration.setInterpolator(ds.f27584f);
+        duration.setInterpolator(ds.f27586f);
         duration.addUpdateListener(new e4(this, 21));
         duration.addListener(new q40(15, this, z10));
         duration.start();
@@ -44,9 +44,9 @@ public abstract class a2 extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ((rg.n) this).f47468y.f47594n.d();
-        this.f48137a.recycle();
-        this.f48137a = null;
+        ((rg.n) this).f47471y.f47597n.d();
+        this.f48140a.recycle();
+        this.f48140a = null;
     }
 
     @Override
@@ -54,33 +54,33 @@ public abstract class a2 extends View {
         Bitmap bitmap;
         int i10;
         float f7;
-        Rect rect = this.f48141n;
-        Paint paint = this.f48138b;
-        RectF rectF = this.f48142r;
+        Rect rect = this.f48144n;
+        Paint paint = this.f48141b;
+        RectF rectF = this.f48145r;
         Path path = this.h;
         super.onDraw(canvas);
         float min = Math.min(getWidth(), getHeight()) * 0.2f;
         float width = this.e * getWidth();
-        float height = this.f48140f * getHeight();
-        int round = Math.round(this.e * this.f48137a.getWidth());
-        int round2 = Math.round(this.f48140f * this.f48137a.getHeight());
-        int pixel = this.f48137a.getPixel(Utilities.clamp(round, bitmap.getWidth() - 1, 0), Utilities.clamp(round2, this.f48137a.getHeight() - 1, 0));
-        this.f48143s = pixel;
+        float height = this.f48143f * getHeight();
+        int round = Math.round(this.e * this.f48140a.getWidth());
+        int round2 = Math.round(this.f48143f * this.f48140a.getHeight());
+        int pixel = this.f48140a.getPixel(Utilities.clamp(round, bitmap.getWidth() - 1, 0), Utilities.clamp(round2, this.f48140a.getHeight() - 1, 0));
+        this.f48146s = pixel;
         Paint paint2 = this.d;
         paint2.setColor(pixel);
-        float f10 = this.f48145x;
+        float f10 = this.f48148x;
         if (f10 != 0.0f && f10 != 1.0f) {
             RectF rectF2 = AndroidUtilities.rectTmp;
             f7 = 1.0f;
             i10 = round;
             rectF2.set(width - min, height - min, width + min, height + min);
-            canvas.saveLayerAlpha(rectF2, (int) (this.f48145x * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF2, (int) (this.f48148x * 255.0f), 31);
         } else {
             i10 = round;
             f7 = 1.0f;
             canvas.save();
         }
-        float f11 = (this.f48145x * 0.5f) + 0.5f;
+        float f11 = (this.f48148x * 0.5f) + 0.5f;
         canvas.scale(f11, f11, width, height);
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
@@ -89,7 +89,7 @@ public abstract class a2 extends View {
         int round3 = Math.round(3.5f);
         rect.set(i10 - round3, round2 - round3, i10 + round3, round2 + round3);
         rectF.set(width - min, height - min, width + min, height + min);
-        canvas.drawBitmap(this.f48137a, rect, rectF, (Paint) null);
+        canvas.drawBitmap(this.f48140a, rect, rectF, (Paint) null);
         float strokeWidth = min - (paint2.getStrokeWidth() / 2.0f);
         canvas.drawCircle(width, height, strokeWidth, paint2);
         float strokeWidth2 = (strokeWidth - (paint2.getStrokeWidth() / 2.0f)) - (paint.getStrokeWidth() / 2.0f);
@@ -110,7 +110,7 @@ public abstract class a2 extends View {
             path.moveTo(width - strokeWidth3, f16);
             path.lineTo(width + strokeWidth3, f16);
         }
-        canvas.drawPath(path, this.f48139c);
+        canvas.drawPath(path, this.f48142c);
         float f17 = f12 / 2.0f;
         rectF.set(width - f17, height - f17, width + f17, height + f17);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(f7), AndroidUtilities.dp(f7), paint);
@@ -122,7 +122,7 @@ public abstract class a2 extends View {
         super.onSizeChanged(i10, i11, i12, i13);
         if (i10 != 0 && i11 != 0 && i12 != 0 && i13 != 0 && isLaidOut()) {
             this.e = (i12 * this.e) / i10;
-            this.f48140f = (i13 * this.f48140f) / i11;
+            this.f48143f = (i13 * this.f48143f) / i11;
         }
     }
 
@@ -139,7 +139,7 @@ public abstract class a2 extends View {
                     return true;
                 }
                 this.e = motionEvent.getX() / getWidth();
-                this.f48140f = motionEvent.getY() / getHeight();
+                this.f48143f = motionEvent.getY() / getHeight();
                 invalidate();
                 return true;
             }
@@ -147,13 +147,13 @@ public abstract class a2 extends View {
             return true;
         }
         this.e = motionEvent.getX() / getWidth();
-        this.f48140f = motionEvent.getY() / getHeight();
+        this.f48143f = motionEvent.getY() / getHeight();
         invalidate();
         getParent().requestDisallowInterceptTouchEvent(true);
         return true;
     }
 
     public void setColorListener(q0.a aVar) {
-        this.f48144w = aVar;
+        this.f48147w = aVar;
     }
 }

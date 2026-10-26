@@ -2966,7 +2966,7 @@ public class ChatObject {
     }
 
     public static boolean isHiddenInCommunity(int i10, TLRPC.User user) {
-        return user != null && isHiddenInCommunity(i10, user.linked_community_id, user.f22174id);
+        return user != null && isHiddenInCommunity(i10, user.linked_community_id, user.f22176id);
     }
 
     public static boolean isMonoForum(TLRPC.Chat chat) {

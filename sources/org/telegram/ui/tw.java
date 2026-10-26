@@ -19,26 +19,26 @@ public final class tw extends e31 {
         this.U = txVar;
         this.V = context2;
         this.e = 0.0f;
-        this.f38975n = new AnimationNotificationsLocker();
+        this.f38978n = new AnimationNotificationsLocker();
         this.M = true;
     }
 
     @Override
     public final void d(boolean z10) {
         ay ayVar = this.T;
-        ayVar.f37912c.G = true;
-        ayVar.d.P(this.T.f37910a, c());
+        ayVar.f37915c.G = true;
+        ayVar.d.P(this.T.f37913a, c());
         ay ayVar2 = this.T;
         ayVar2.d.G = false;
         ayVar2.G.G = false;
         cy cyVar = this.W;
         cyVar.I4(false, true);
-        this.T.f37910a.setClipChildren(true);
-        this.T.f37910a.invalidate();
+        this.T.f37913a.setClipChildren(true);
+        this.T.f37913a.invalidate();
         this.T.d.l();
         this.T.G.l();
-        this.T.f37910a.E1(null, 0.0f, z10);
-        cyVar.f38686y = false;
+        this.T.f37913a.E1(null, 0.0f, z10);
+        cyVar.f38689y = false;
         this.U.requestLayout();
         if (!c()) {
             cyVar.Q = true;
@@ -63,10 +63,10 @@ public final class tw extends e31 {
         oi.q qVar;
         int i10;
         cy cyVar = this.W;
-        cyVar.f38686y = true;
+        cyVar.f38689y = true;
         cyVar.E = z10;
         this.U.requestLayout();
-        ay ayVar = cyVar.f38583e0[0];
+        ay ayVar = cyVar.f38586e0[0];
         this.T = ayVar;
         if (ayVar.F == null) {
             ayVar.F = new org.telegram.ui.Components.mm0(this.V, null);
@@ -74,9 +74,9 @@ public final class tw extends e31 {
             qVar.b(this.T.F);
             this.T.F.setLayoutManager(new sw(this, this.T));
             ay ayVar2 = this.T;
-            int i11 = this.T.f37916s;
+            int i11 = this.T.f37919s;
             int i12 = cyVar.W2;
-            boolean z11 = cyVar.f38620l2;
+            boolean z11 = cyVar.f38623l2;
             ArrayList arrayList = cyVar.I2;
             i10 = ((org.telegram.ui.ActionBar.r2) cyVar).currentAccount;
             ayVar2.G = new ig.n(cyVar, this.V, i11, i12, z11, arrayList, i10, cyVar.G);
@@ -91,17 +91,17 @@ public final class tw extends e31 {
             cyVar.Q = false;
             cyVar.K4(-cyVar.b4());
         }
-        this.T.f37910a.C0();
+        this.T.f37913a.C0();
         ay ayVar5 = this.T;
         ig.n nVar2 = ayVar5.G;
-        nVar2.h = ayVar5.f37916s;
+        nVar2.h = ayVar5.f37919s;
         nVar2.l();
         ay ayVar6 = this.T;
-        ayVar6.d.P(ayVar6.f37910a, false);
+        ayVar6.d.P(ayVar6.f37913a, false);
         ay ayVar7 = this.T;
         ayVar7.d.G = true;
         ayVar7.G.G = true;
-        ayVar7.f37912c.H = false;
+        ayVar7.f37915c.H = false;
         cyVar.I4(true, true);
         cyVar.k4(this.S);
         this.T.d.l();
@@ -112,9 +112,9 @@ public final class tw extends e31 {
             f7 = -cyVar.N;
         }
         ay ayVar8 = this.T;
-        ayVar8.f37910a.E1(ayVar8.F, f7, false);
-        this.T.f37910a.setClipChildren(false);
-        this.T.f37910a.C0();
+        ayVar8.f37913a.E1(ayVar8.F, f7, false);
+        this.T.f37913a.setClipChildren(false);
+        this.T.f37913a.C0();
         cyVar.L3();
         cyVar.c5();
     }
@@ -179,20 +179,20 @@ public final class tw extends e31 {
             backButton.setAlpha(f10);
         }
         if (cyVar.W2 != 0 || cyVar.Y2 != 0) {
-            Paint paint = cyVar.f38590f1;
-            int i10 = org.telegram.ui.ActionBar.y6.f23354d6;
+            Paint paint = cyVar.f38593f1;
+            int i10 = org.telegram.ui.ActionBar.y6.f23356d6;
             paint.setColor(i0.a.f(f7, cyVar.getThemedColor(i10), cyVar.getThemedColor(i10)));
         }
         ay ayVar = this.T;
         if (ayVar != null) {
-            ayVar.f37910a.setOpenRightFragmentProgress(f7);
+            ayVar.f37913a.setOpenRightFragmentProgress(f7);
         }
         cyVar.K3();
         cyVar.P3();
         cyVar.C3();
         cyVar.M3();
-        ay ayVar2 = cyVar.f38583e0[0];
-        if (ayVar2 != null && (wxVar = ayVar2.f37910a) != null) {
+        ay ayVar2 = cyVar.f38586e0[0];
+        if (ayVar2 != null && (wxVar = ayVar2.f37913a) != null) {
             wxVar.requestLayout();
         }
         View view2 = cyVar.fragmentView;

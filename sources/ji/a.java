@@ -26,14 +26,14 @@ public final class a extends View {
         this.f15971c = paint3;
         this.d = new RectF();
         paint2.setColor(-1);
-        paint.setColor(y6.w0(y6.f23354d6, u6Var));
+        paint.setColor(y6.w0(y6.f23356d6, u6Var));
         paint3.setColor(y6.w0(y6.wj, u6Var));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int i10 = y6.f23354d6;
+        int i10 = y6.f23356d6;
         u6 u6Var = this.e;
         int w02 = y6.w0(i10, u6Var);
         Paint paint = this.f15969a;

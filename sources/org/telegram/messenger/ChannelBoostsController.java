@@ -148,15 +148,15 @@ public class ChannelBoostsController {
             LaunchActivity launchActivity = LaunchActivity.I1;
             if (launchActivity == null || !launchActivity.isFinishing()) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
-                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.AppName);
                 HashMap hashMap = new HashMap();
                 int i10 = org.telegram.ui.ActionBar.y6.L5;
                 hashMap.put("info1", Integer.valueOf(org.telegram.ui.ActionBar.y6.x0(null, i10, false)));
                 hashMap.put("info2", Integer.valueOf(org.telegram.ui.ActionBar.y6.x0(null, i10, false)));
                 alertDialog$Builder.m(R.raw.not_available, 52, org.telegram.ui.ActionBar.y6.x0(null, i10, false), hashMap);
-                alertDialog$Builder.f22366a.W = true;
-                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.ChannelPrivate);
-                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
+                alertDialog$Builder.f22368a.W = true;
+                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.ChannelPrivate);
+                alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
                 t.p(R.string.Close, alertDialog$Builder, null);
             }
         } else {

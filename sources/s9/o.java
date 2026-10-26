@@ -5,15 +5,15 @@ import j$.util.concurrent.ConcurrentHashMap;
 import java.util.Collections;
 import java.util.Set;
 public final class o implements ra.b {
-    public volatile Set f48007a;
-    public volatile Set f48008b;
+    public volatile Set f48010a;
+    public volatile Set f48011b;
 
     public final synchronized void a() {
         try {
-            for (ra.b bVar : this.f48007a) {
-                this.f48008b.add(bVar.get());
+            for (ra.b bVar : this.f48010a) {
+                this.f48011b.add(bVar.get());
             }
-            this.f48007a = null;
+            this.f48010a = null;
         } catch (Throwable th2) {
             throw th2;
         }
@@ -21,17 +21,17 @@ public final class o implements ra.b {
 
     @Override
     public final Object get() {
-        if (this.f48008b == null) {
+        if (this.f48011b == null) {
             synchronized (this) {
                 try {
-                    if (this.f48008b == null) {
-                        this.f48008b = Collections.newSetFromMap(new ConcurrentHashMap());
+                    if (this.f48011b == null) {
+                        this.f48011b = Collections.newSetFromMap(new ConcurrentHashMap());
                         a();
                     }
                 } finally {
                 }
             }
         }
-        return DesugarCollections.unmodifiableSet(this.f48008b);
+        return DesugarCollections.unmodifiableSet(this.f48011b);
     }
 }

@@ -7,10 +7,10 @@ import android.graphics.Rect;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class ww0 extends vw0 {
-    public Activity f34540l0;
+    public Activity f34543l0;
     public final Rect m0;
-    public int f34541n0;
-    public boolean f34542o0;
+    public int f34544n0;
+    public boolean f34545o0;
 
     public ww0(Context context, Activity activity) {
         super(context, null);
@@ -24,14 +24,14 @@ public abstract class ww0 extends vw0 {
         Rect rect = this.m0;
         getWindowVisibleDisplayFrame(rect);
         int i10 = 0;
-        if (this.f34542o0) {
+        if (this.f34545o0) {
             int height = rootView.getHeight();
             if (rect.top != 0) {
                 i10 = AndroidUtilities.statusBarHeight;
             }
             return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
         }
-        int height2 = (this.f34540l0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
+        int height2 = (this.f34543l0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
         if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
             return 0;
         }
@@ -41,10 +41,10 @@ public abstract class ww0 extends vw0 {
     @Override
     public void R() {
         boolean z10;
-        if (this.f34286n == null && this.f34287r.isEmpty()) {
+        if (this.f34289n == null && this.f34290r.isEmpty()) {
             return;
         }
-        this.f34541n0 = Q();
+        this.f34544n0 = Q();
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
             z10 = true;
@@ -56,7 +56,7 @@ public abstract class ww0 extends vw0 {
 
     @Override
     public int getKeyboardHeight() {
-        return this.f34541n0;
+        return this.f34544n0;
     }
 
     @Override
@@ -66,10 +66,10 @@ public abstract class ww0 extends vw0 {
     }
 
     public void setActivity(Activity activity) {
-        this.f34540l0 = activity;
+        this.f34543l0 = activity;
     }
 
     public void setWithoutWindow(boolean z10) {
-        this.f34542o0 = z10;
+        this.f34545o0 = z10;
     }
 }

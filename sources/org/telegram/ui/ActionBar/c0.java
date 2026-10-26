@@ -6,42 +6,42 @@ import android.widget.PopupWindow;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.md;
 public final class c0 implements PopupWindow.OnDismissListener {
-    public final int f22489a;
-    public final Object f22490b;
-    public final Object f22491c;
+    public final int f22491a;
+    public final Object f22492b;
+    public final Object f22493c;
 
     public c0(int i10, Object obj, Object obj2) {
-        this.f22489a = i10;
-        this.f22490b = obj;
-        this.f22491c = obj2;
+        this.f22491a = i10;
+        this.f22492b = obj;
+        this.f22493c = obj2;
     }
 
     @Override
     public final void onDismiss() {
-        switch (this.f22489a) {
+        switch (this.f22491a) {
             case 0:
-                w0 w0Var = (w0) this.f22490b;
-                Utilities.Callback callback = (Utilities.Callback) this.f22491c;
+                w0 w0Var = (w0) this.f22492b;
+                Utilities.Callback callback = (Utilities.Callback) this.f22493c;
                 if (callback != null) {
                     callback.run(Boolean.valueOf(w0Var.T));
                     return;
                 }
                 return;
             default:
-                md mdVar = (md) this.f22490b;
-                lh.e eVar = (lh.e) this.f22491c;
+                md mdVar = (md) this.f22492b;
+                lh.e eVar = (lh.e) this.f22493c;
                 ValueAnimator valueAnimator = mdVar.e;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
                     mdVar.e.cancel();
                     mdVar.e = null;
                 }
-                mdVar.f30526b.removeOnAttachStateChangeListener(mdVar.f30530i);
+                mdVar.f30528b.removeOnAttachStateChangeListener(mdVar.f30532i);
                 eVar.setCenterMenuVisible(false);
-                Bitmap bitmap = mdVar.f30528f;
+                Bitmap bitmap = mdVar.f30530f;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    mdVar.f30528f = null;
+                    mdVar.f30530f = null;
                     return;
                 }
                 return;

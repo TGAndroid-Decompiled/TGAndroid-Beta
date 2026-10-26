@@ -97,7 +97,7 @@ public final class r9 implements View.OnClickListener {
                         valueAnimator2.setDuration(j10);
                         ValueAnimator valueAnimator3 = sbVar2.E2;
                         if (z12) {
-                            dsVar = ds.f27586i;
+                            dsVar = ds.f27588i;
                         } else {
                             dsVar = ds.h;
                         }

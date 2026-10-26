@@ -5,11 +5,11 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.text.Layout;
 public final class cc1 extends Layout {
-    public final bc1 f27113a;
+    public final bc1 f27115a;
 
     public cc1(bc1 bc1Var) {
-        super(bc1Var.f26822a, dc1.f27506b, Math.max(1, bc1Var.d), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f);
-        this.f27113a = bc1Var;
+        super(bc1Var.f26824a, dc1.f27508b, Math.max(1, bc1Var.d), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f);
+        this.f27115a = bc1Var;
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class cc1 extends Layout {
 
     @Override
     public final int getLineCount() {
-        return this.f27113a.f26826g.length;
+        return this.f27115a.f26828g.length;
     }
 
     @Override
@@ -55,8 +55,8 @@ public final class cc1 extends Layout {
     public final int getLineForOffset(int i10) {
         int i11 = 0;
         while (true) {
-            bc1 bc1Var = this.f27113a;
-            float[][] fArr = bc1Var.f26826g;
+            bc1 bc1Var = this.f27115a;
+            float[][] fArr = bc1Var.f26828g;
             if (i11 < fArr.length) {
                 int i12 = i11 + 1;
                 if (i10 < bc1Var.e[i12]) {
@@ -71,7 +71,7 @@ public final class cc1 extends Layout {
 
     @Override
     public final float getLineLeft(int i10) {
-        float[][] fArr = this.f27113a.f26826g;
+        float[][] fArr = this.f27115a.f26828g;
         return fArr[Math.max(0, Math.min(i10, fArr.length - 1))][0];
     }
 
@@ -82,21 +82,21 @@ public final class cc1 extends Layout {
 
     @Override
     public final float getLineRight(int i10) {
-        float[][] fArr = this.f27113a.f26826g;
+        float[][] fArr = this.f27115a.f26828g;
         float[] fArr2 = fArr[Math.max(0, Math.min(i10, fArr.length - 1))];
         return fArr2[fArr2.length - 1];
     }
 
     @Override
     public final int getLineStart(int i10) {
-        bc1 bc1Var = this.f27113a;
-        return bc1Var.e[Math.max(0, Math.min(i10, bc1Var.f26826g.length))];
+        bc1 bc1Var = this.f27115a;
+        return bc1Var.e[Math.max(0, Math.min(i10, bc1Var.f26828g.length))];
     }
 
     @Override
     public final int getLineTop(int i10) {
-        bc1 bc1Var = this.f27113a;
-        return bc1Var.f26825f[Math.max(0, Math.min(i10, bc1Var.f26826g.length))];
+        bc1 bc1Var = this.f27115a;
+        return bc1Var.f26827f[Math.max(0, Math.min(i10, bc1Var.f26828g.length))];
     }
 
     @Override
@@ -106,9 +106,9 @@ public final class cc1 extends Layout {
 
     @Override
     public final int getOffsetForHorizontal(int i10, float f7) {
-        bc1 bc1Var = this.f27113a;
-        int max = Math.max(0, Math.min(i10, bc1Var.f26826g.length - 1));
-        float[] fArr = bc1Var.f26826g[max];
+        bc1 bc1Var = this.f27115a;
+        int max = Math.max(0, Math.min(i10, bc1Var.f26828g.length - 1));
+        float[] fArr = bc1Var.f26828g[max];
         int[] iArr = bc1Var.e;
         int i11 = iArr[max + 1] - iArr[max];
         int i12 = 0;
@@ -120,7 +120,7 @@ public final class cc1 extends Layout {
                 }
             }
         }
-        if (i12 == i11 && i11 > 0 && max < bc1Var.f26826g.length - 1 && Character.isWhitespace(bc1Var.f26822a.charAt((bc1Var.e[max] + i11) - 1))) {
+        if (i12 == i11 && i11 > 0 && max < bc1Var.f26828g.length - 1 && Character.isWhitespace(bc1Var.f26824a.charAt((bc1Var.e[max] + i11) - 1))) {
             i12--;
         }
         return bc1Var.e[max] + i12;
@@ -134,8 +134,8 @@ public final class cc1 extends Layout {
     @Override
     public final float getPrimaryHorizontal(int i10) {
         int lineForOffset = getLineForOffset(i10);
-        bc1 bc1Var = this.f27113a;
-        float[] fArr = bc1Var.f26826g[lineForOffset];
+        bc1 bc1Var = this.f27115a;
+        float[] fArr = bc1Var.f26828g[lineForOffset];
         return fArr[Math.max(0, Math.min(i10 - bc1Var.e[lineForOffset], fArr.length - 1))];
     }
 

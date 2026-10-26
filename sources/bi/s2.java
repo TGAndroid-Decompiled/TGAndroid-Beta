@@ -53,10 +53,10 @@ public final class s2 implements Utilities.Callback2 {
                     v51Var.run();
                     return;
                 }
-                org.telegram.ui.ActionBar.k3 k3Var = dl0.f38903a;
+                org.telegram.ui.ActionBar.k3 k3Var = dl0.f38906a;
                 if (k3Var != null) {
                     k3Var.dismiss();
-                    dl0.f38903a = null;
+                    dl0.f38906a = null;
                 }
                 org.telegram.ui.Components.wc a2 = dl0.a();
                 int i11 = R.raw.error;
@@ -79,15 +79,15 @@ public final class s2 implements Utilities.Callback2 {
                 if (updates != null) {
                     MessagesController.getInstance(a1Var.M).lambda$processUpdates$379(updates, false);
                     a1Var.x(x7Var, "requested_chat_sent", org.telegram.ui.web.a1.A(str2, "req_id"));
-                    long j10 = a1Var.U.f22174id;
+                    long j10 = a1Var.U.f22176id;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f22174id);
+                    bundle.putLong("user_id", user.f22176id);
                     org.telegram.ui.web.e0 e0Var = new org.telegram.ui.web.e0(a1Var, bundle, user, j10);
                     org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
                     if (U != null) {
                         U.presentFragment(e0Var);
                     }
-                    org.telegram.ui.web.g0 g0Var = a1Var.f45155c;
+                    org.telegram.ui.web.g0 g0Var = a1Var.f45158c;
                     if (g0Var != null) {
                         g0Var.b();
                         return;

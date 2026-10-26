@@ -15,37 +15,37 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public abstract class l11 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final ei.a f41108a;
-    public final org.telegram.ui.Components.t91 f41109b;
-    public final di.v6 f41110c;
+    public final ei.a f41111a;
+    public final org.telegram.ui.Components.t91 f41112b;
+    public final di.v6 f41113c;
     public final k11 d;
     public int e;
-    public boolean f41111f;
+    public boolean f41114f;
     public ValueAnimator h;
-    public float f41112n;
-    public boolean f41113r;
-    public final Rect f41114s;
+    public float f41115n;
+    public boolean f41116r;
+    public final Rect f41117s;
     public final my0 v;
 
     public l11(Context context, di.v6 v6Var, final org.telegram.ui.Components.ys0 ys0Var) {
         super(context);
-        this.f41114s = new Rect();
-        this.f41110c = v6Var;
+        this.f41117s = new Rect();
+        this.f41113c = v6Var;
         Objects.requireNonNull(v6Var);
         this.v = new my0(v6Var, 9);
         final org.telegram.ui.Components.zs0 zs0Var = (org.telegram.ui.Components.zs0) this;
         ei.a aVar = new ei.a(zs0Var, context, ys0Var);
-        this.f41108a = aVar;
+        this.f41111a = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
         k11 k11Var = new k11(zs0Var);
         this.d = k11Var;
-        k11Var.f40782a = v6Var.a();
+        k11Var.f40785a = v6Var.a();
         aVar.setAdapter(k11Var);
         aVar.setTranslationY(AndroidUtilities.dp(42.0f));
         org.telegram.ui.Components.t91 n10 = aVar.n(10, true);
-        this.f41109b = n10;
-        n10.g(org.telegram.ui.ActionBar.y6.Gh, org.telegram.ui.ActionBar.y6.G6, org.telegram.ui.ActionBar.y6.Eh, org.telegram.ui.ActionBar.y6.Hh, org.telegram.ui.ActionBar.y6.f23634s8);
-        n10.f32940r = 12;
+        this.f41112b = n10;
+        n10.g(org.telegram.ui.ActionBar.y6.Gh, org.telegram.ui.ActionBar.y6.G6, org.telegram.ui.ActionBar.y6.Eh, org.telegram.ui.ActionBar.y6.Hh, org.telegram.ui.ActionBar.y6.f23636s8);
+        n10.f32943r = 12;
         n10.setPreTabClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
@@ -54,22 +54,22 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                 switch (r3) {
                     case 0:
                         Integer num2 = (Integer) obj2;
-                        if (zs0Var.f41111f) {
+                        if (zs0Var.f41114f) {
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
                             org.telegram.ui.Components.ys0 ys0Var2 = ys0Var;
-                            org.telegram.ui.Components.g5.R(ys0Var2.f35132a, ys0Var2.f35133b, ys0Var2.f35134c, new org.telegram.ui.Components.tv(ys0Var2, 22));
+                            org.telegram.ui.Components.g5.R(ys0Var2.f35135a, ys0Var2.f35136b, ys0Var2.f35137c, new org.telegram.ui.Components.tv(ys0Var2, 22));
                             return Boolean.TRUE;
                         }
                         return Boolean.FALSE;
                     default:
                         View view = (View) obj2;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !zs0Var.f41111f) {
+                        if (num.intValue() != -1 && num.intValue() != 0 && !zs0Var.f41114f) {
                             final int intValue = num.intValue();
                             final org.telegram.ui.Components.ys0 ys0Var3 = ys0Var;
                             org.telegram.ui.Components.aw0 aw0Var = ys0Var3.d;
-                            org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26702x1;
+                            org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26704x1;
                             storiesController = aw0Var.getStoriesController();
                             if (storiesController.i(aw0Var.l1)) {
                                 org.telegram.ui.Components.k80 H = org.telegram.ui.Components.k80.H(r2Var, view);
@@ -80,18 +80,18 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                                         switch (r3) {
                                             case 0:
                                                 aw0 aw0Var2 = ys0Var3.d;
-                                                aw0Var2.U0(aw0Var2.f26702x1, aw0Var2.l1, intValue);
+                                                aw0Var2.U0(aw0Var2.f26704x1, aw0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 aw0 aw0Var3 = ys0Var3.d;
-                                                aw0Var3.W0(aw0Var3.f26702x1, aw0Var3.l1, intValue);
+                                                aw0Var3.W0(aw0Var3.f26704x1, aw0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 ys0Var3.d.m1(intValue);
                                                 return;
                                             default:
                                                 aw0 aw0Var4 = ys0Var3.d;
-                                                aw0Var4.V0(aw0Var4.f26702x1, aw0Var4.l1, intValue);
+                                                aw0Var4.V0(aw0Var4.f26704x1, aw0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -103,18 +103,18 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                                         switch (r3) {
                                             case 0:
                                                 aw0 aw0Var2 = ys0Var3.d;
-                                                aw0Var2.U0(aw0Var2.f26702x1, aw0Var2.l1, intValue);
+                                                aw0Var2.U0(aw0Var2.f26704x1, aw0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 aw0 aw0Var3 = ys0Var3.d;
-                                                aw0Var3.W0(aw0Var3.f26702x1, aw0Var3.l1, intValue);
+                                                aw0Var3.W0(aw0Var3.f26704x1, aw0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 ys0Var3.d.m1(intValue);
                                                 return;
                                             default:
                                                 aw0 aw0Var4 = ys0Var3.d;
-                                                aw0Var4.V0(aw0Var4.f26702x1, aw0Var4.l1, intValue);
+                                                aw0Var4.V0(aw0Var4.f26704x1, aw0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -125,18 +125,18 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                                         switch (r3) {
                                             case 0:
                                                 aw0 aw0Var2 = ys0Var3.d;
-                                                aw0Var2.U0(aw0Var2.f26702x1, aw0Var2.l1, intValue);
+                                                aw0Var2.U0(aw0Var2.f26704x1, aw0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 aw0 aw0Var3 = ys0Var3.d;
-                                                aw0Var3.W0(aw0Var3.f26702x1, aw0Var3.l1, intValue);
+                                                aw0Var3.W0(aw0Var3.f26704x1, aw0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 ys0Var3.d.m1(intValue);
                                                 return;
                                             default:
                                                 aw0 aw0Var4 = ys0Var3.d;
-                                                aw0Var4.V0(aw0Var4.f26702x1, aw0Var4.l1, intValue);
+                                                aw0Var4.V0(aw0Var4.f26704x1, aw0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -147,18 +147,18 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                                         switch (r3) {
                                             case 0:
                                                 aw0 aw0Var2 = ys0Var3.d;
-                                                aw0Var2.U0(aw0Var2.f26702x1, aw0Var2.l1, intValue);
+                                                aw0Var2.U0(aw0Var2.f26704x1, aw0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 aw0 aw0Var3 = ys0Var3.d;
-                                                aw0Var3.W0(aw0Var3.f26702x1, aw0Var3.l1, intValue);
+                                                aw0Var3.W0(aw0Var3.f26704x1, aw0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 ys0Var3.d.m1(intValue);
                                                 return;
                                             default:
                                                 aw0 aw0Var4 = ys0Var3.d;
-                                                aw0Var4.V0(aw0Var4.f26702x1, aw0Var4.l1, intValue);
+                                                aw0Var4.V0(aw0Var4.f26704x1, aw0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -179,22 +179,22 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                 switch (r3) {
                     case 0:
                         Integer num2 = (Integer) obj2;
-                        if (zs0Var.f41111f) {
+                        if (zs0Var.f41114f) {
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
                             org.telegram.ui.Components.ys0 ys0Var2 = ys0Var;
-                            org.telegram.ui.Components.g5.R(ys0Var2.f35132a, ys0Var2.f35133b, ys0Var2.f35134c, new org.telegram.ui.Components.tv(ys0Var2, 22));
+                            org.telegram.ui.Components.g5.R(ys0Var2.f35135a, ys0Var2.f35136b, ys0Var2.f35137c, new org.telegram.ui.Components.tv(ys0Var2, 22));
                             return Boolean.TRUE;
                         }
                         return Boolean.FALSE;
                     default:
                         View view = (View) obj2;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !zs0Var.f41111f) {
+                        if (num.intValue() != -1 && num.intValue() != 0 && !zs0Var.f41114f) {
                             final int intValue = num.intValue();
                             final org.telegram.ui.Components.ys0 ys0Var3 = ys0Var;
                             org.telegram.ui.Components.aw0 aw0Var = ys0Var3.d;
-                            org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26702x1;
+                            org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26704x1;
                             storiesController = aw0Var.getStoriesController();
                             if (storiesController.i(aw0Var.l1)) {
                                 org.telegram.ui.Components.k80 H = org.telegram.ui.Components.k80.H(r2Var, view);
@@ -205,18 +205,18 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                                         switch (r3) {
                                             case 0:
                                                 aw0 aw0Var2 = ys0Var3.d;
-                                                aw0Var2.U0(aw0Var2.f26702x1, aw0Var2.l1, intValue);
+                                                aw0Var2.U0(aw0Var2.f26704x1, aw0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 aw0 aw0Var3 = ys0Var3.d;
-                                                aw0Var3.W0(aw0Var3.f26702x1, aw0Var3.l1, intValue);
+                                                aw0Var3.W0(aw0Var3.f26704x1, aw0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 ys0Var3.d.m1(intValue);
                                                 return;
                                             default:
                                                 aw0 aw0Var4 = ys0Var3.d;
-                                                aw0Var4.V0(aw0Var4.f26702x1, aw0Var4.l1, intValue);
+                                                aw0Var4.V0(aw0Var4.f26704x1, aw0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -228,18 +228,18 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                                         switch (r3) {
                                             case 0:
                                                 aw0 aw0Var2 = ys0Var3.d;
-                                                aw0Var2.U0(aw0Var2.f26702x1, aw0Var2.l1, intValue);
+                                                aw0Var2.U0(aw0Var2.f26704x1, aw0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 aw0 aw0Var3 = ys0Var3.d;
-                                                aw0Var3.W0(aw0Var3.f26702x1, aw0Var3.l1, intValue);
+                                                aw0Var3.W0(aw0Var3.f26704x1, aw0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 ys0Var3.d.m1(intValue);
                                                 return;
                                             default:
                                                 aw0 aw0Var4 = ys0Var3.d;
-                                                aw0Var4.V0(aw0Var4.f26702x1, aw0Var4.l1, intValue);
+                                                aw0Var4.V0(aw0Var4.f26704x1, aw0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -250,18 +250,18 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                                         switch (r3) {
                                             case 0:
                                                 aw0 aw0Var2 = ys0Var3.d;
-                                                aw0Var2.U0(aw0Var2.f26702x1, aw0Var2.l1, intValue);
+                                                aw0Var2.U0(aw0Var2.f26704x1, aw0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 aw0 aw0Var3 = ys0Var3.d;
-                                                aw0Var3.W0(aw0Var3.f26702x1, aw0Var3.l1, intValue);
+                                                aw0Var3.W0(aw0Var3.f26704x1, aw0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 ys0Var3.d.m1(intValue);
                                                 return;
                                             default:
                                                 aw0 aw0Var4 = ys0Var3.d;
-                                                aw0Var4.V0(aw0Var4.f26702x1, aw0Var4.l1, intValue);
+                                                aw0Var4.V0(aw0Var4.f26704x1, aw0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -272,18 +272,18 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
                                         switch (r3) {
                                             case 0:
                                                 aw0 aw0Var2 = ys0Var3.d;
-                                                aw0Var2.U0(aw0Var2.f26702x1, aw0Var2.l1, intValue);
+                                                aw0Var2.U0(aw0Var2.f26704x1, aw0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 aw0 aw0Var3 = ys0Var3.d;
-                                                aw0Var3.W0(aw0Var3.f26702x1, aw0Var3.l1, intValue);
+                                                aw0Var3.W0(aw0Var3.f26704x1, aw0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 ys0Var3.d.m1(intValue);
                                                 return;
                                             default:
                                                 aw0 aw0Var4 = ys0Var3.d;
-                                                aw0Var4.V0(aw0Var4.f26702x1, aw0Var4.l1, intValue);
+                                                aw0Var4.V0(aw0Var4.f26704x1, aw0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -302,17 +302,17 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
 
     public final void a() {
         int i10;
-        org.telegram.ui.Components.t91 t91Var = this.f41109b;
+        org.telegram.ui.Components.t91 t91Var = this.f41112b;
         if (t91Var != null) {
             i10 = t91Var.getCurrentTabId();
         } else {
             i10 = 0;
         }
-        di.v6 v6Var = this.f41110c;
+        di.v6 v6Var = this.f41113c;
         boolean a2 = v6Var.a();
         k11 k11Var = this.d;
-        k11Var.f40782a = a2;
-        this.f41108a.o(true);
+        k11Var.f40785a = a2;
+        this.f41111a.o(true);
         c(!v6Var.h.isEmpty(), true, false);
         int i11 = this.e;
         if (i11 > 0) {
@@ -328,10 +328,10 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
     public abstract void b();
 
     public final void c(boolean z10, boolean z11, boolean z12) {
-        if (this.f41113r == z10 && !z12) {
+        if (this.f41116r == z10 && !z12) {
             return;
         }
-        this.f41113r = z10;
+        this.f41116r = z10;
         setEnabled(z10);
         ValueAnimator valueAnimator = this.h;
         if (valueAnimator != null) {
@@ -343,11 +343,11 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
             if (z10) {
                 f7 = 1.0f;
             }
-            this.f41112n = f7;
+            this.f41115n = f7;
             b();
             return;
         }
-        float f10 = this.f41112n;
+        float f10 = this.f41115n;
         if (z10) {
             f7 = 1.0f;
         }
@@ -361,37 +361,37 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.storyAlbumsCollectionsUpdate && ((Long) objArr[0]).longValue() == this.f41110c.f9261b) {
+        if (i10 == NotificationCenter.storyAlbumsCollectionsUpdate && ((Long) objArr[0]).longValue() == this.f41113c.f9261b) {
             a();
         }
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f41113r && super.dispatchTouchEvent(motionEvent)) {
+        if (this.f41116r && super.dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return false;
     }
 
     public int getCurrentAlbumId() {
-        return this.d.f(this.f41109b.getCurrentPosition());
+        return this.d.f(this.f41112b.getCurrentPosition());
     }
 
     public float getVisibilityFactor() {
-        return this.f41112n;
+        return this.f41115n;
     }
 
     public float getVisualHeight() {
-        return getMeasuredHeight() * this.f41112n;
+        return getMeasuredHeight() * this.f41115n;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        di.v6 v6Var = this.f41110c;
+        di.v6 v6Var = this.f41113c;
         NotificationCenter.getInstance(v6Var.f9260a).addObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
-        if (this.f41113r != v6Var.h.isEmpty() && this.d.f40782a == v6Var.a()) {
+        if (this.f41116r != v6Var.h.isEmpty() && this.d.f40785a == v6Var.a()) {
             return;
         }
         a();
@@ -400,13 +400,13 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f41110c.f9260a).removeObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
+        NotificationCenter.getInstance(this.f41113c.f9260a).removeObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        Rect rect = this.f41114s;
+        Rect rect = this.f41117s;
         rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
         setClipBounds(rect);
     }
@@ -422,14 +422,14 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
     public void setReorderingAlbums(boolean z10) {
         float f7;
         float f10;
-        if (this.f41111f != z10) {
-            this.f41111f = z10;
-            org.telegram.ui.Components.t91 t91Var = this.f41109b;
+        if (this.f41114f != z10) {
+            this.f41114f = z10;
+            org.telegram.ui.Components.t91 t91Var = this.f41112b;
             t91Var.setReordering(z10);
-            boolean z11 = this.f41111f;
+            boolean z11 = this.f41114f;
             org.telegram.ui.Components.zs0 zs0Var = (org.telegram.ui.Components.zs0) this;
-            org.telegram.ui.Components.aw0 aw0Var = zs0Var.f35397w;
-            TextView textView = aw0Var.f26689s0;
+            org.telegram.ui.Components.aw0 aw0Var = zs0Var.f35400w;
+            TextView textView = aw0Var.f26691s0;
             textView.setVisibility(0);
             ViewPropertyAnimator animate = textView.animate();
             float f11 = 1.0f;
@@ -460,13 +460,13 @@ public abstract class l11 extends FrameLayout implements NotificationCenter.Noti
             }
             if (!z10) {
                 AndroidUtilities.cancelRunOnUIThread(this.v);
-                di.v6 v6Var = this.f41110c;
+                di.v6 v6Var = this.f41113c;
                 v6Var.e();
                 v6Var.f(false);
                 int currentPosition = t91Var.getCurrentPosition();
                 k11 k11Var = this.d;
                 int f12 = k11Var.f(currentPosition);
-                this.f41108a.o(true);
+                this.f41111a.o(true);
                 int i10 = k11Var.i(f12);
                 t91Var.e(0.0f, i10, i10);
             }

@@ -18,13 +18,13 @@ public final class wv0 extends org.telegram.ui.Cells.s1 {
     public final void Y1(Canvas canvas) {
         switch (this.He) {
             case 0:
-                this.f25132i6 = 0;
-                this.f25145j6 = this.Y5.size() - 1;
+                this.f25134i6 = 0;
+                this.f25147j6 = this.Y5.size() - 1;
                 super.Y1(canvas);
                 return;
             default:
-                this.f25132i6 = 0;
-                this.f25145j6 = this.Y5.size() - 1;
+                this.f25134i6 = 0;
+                this.f25147j6 = this.Y5.size() - 1;
                 super.Y1(canvas);
                 return;
         }

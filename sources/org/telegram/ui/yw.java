@@ -5,22 +5,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class yw implements w60 {
-    public final org.telegram.ui.ActionBar.e2 f46117a;
-    public final cy f46118b;
+    public final org.telegram.ui.ActionBar.e2 f46120a;
+    public final cy f46121b;
 
     public yw(cy cyVar, org.telegram.ui.ActionBar.e2 e2Var) {
-        this.f46118b = cyVar;
-        this.f46117a = e2Var;
+        this.f46121b = cyVar;
+        this.f46120a = e2Var;
     }
 
     @Override
     public final void a(x60 x60Var, final long j10) {
         final org.telegram.ui.ActionBar.r2[] r2VarArr = {x60Var, null};
         Utilities.Callback callback = new Utilities.Callback(this) {
-            public final yw f45561b;
+            public final yw f45564b;
 
             {
-                this.f45561b = this;
+                this.f45564b = this;
             }
 
             @Override
@@ -28,7 +28,7 @@ public final class yw implements w60 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        cy cyVar = this.f45561b.f46118b;
+                        cy cyVar = this.f45564b.f46121b;
                         Boolean bool = cyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -36,7 +36,7 @@ public final class yw implements w60 {
                             bundle.putLong("chat_id", j10);
                             bundle.putBoolean("forcePublic", cyVar.G.has_username.booleanValue());
                             nd ndVar = new nd(bundle);
-                            ndVar.f41865u0 = new e5(runnable, 12);
+                            ndVar.f41868u0 = new e5(runnable, 12);
                             cyVar.presentFragment(ndVar);
                             r2VarArr[1] = ndVar;
                             return;
@@ -44,18 +44,18 @@ public final class yw implements w60 {
                         runnable.run();
                         return;
                     default:
-                        yw ywVar = this.f45561b;
-                        cy cyVar2 = ywVar.f46118b;
+                        yw ywVar = this.f45564b;
+                        cy cyVar2 = ywVar.f46121b;
                         cyVar2.Y4(cyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new org.telegram.ui.Components.c71(25, ywVar, r2VarArr));
                         return;
                 }
             }
         };
         Utilities.Callback callback2 = new Utilities.Callback(this) {
-            public final yw f45561b;
+            public final yw f45564b;
 
             {
-                this.f45561b = this;
+                this.f45564b = this;
             }
 
             @Override
@@ -63,7 +63,7 @@ public final class yw implements w60 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        cy cyVar = this.f45561b.f46118b;
+                        cy cyVar = this.f45564b.f46121b;
                         Boolean bool = cyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -71,7 +71,7 @@ public final class yw implements w60 {
                             bundle.putLong("chat_id", j10);
                             bundle.putBoolean("forcePublic", cyVar.G.has_username.booleanValue());
                             nd ndVar = new nd(bundle);
-                            ndVar.f41865u0 = new e5(runnable, 12);
+                            ndVar.f41868u0 = new e5(runnable, 12);
                             cyVar.presentFragment(ndVar);
                             r2VarArr[1] = ndVar;
                             return;
@@ -79,19 +79,19 @@ public final class yw implements w60 {
                         runnable.run();
                         return;
                     default:
-                        yw ywVar = this.f45561b;
-                        cy cyVar2 = ywVar.f46118b;
+                        yw ywVar = this.f45564b;
+                        cy cyVar2 = ywVar.f46121b;
                         cyVar2.Y4(cyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new org.telegram.ui.Components.c71(25, ywVar, r2VarArr));
                         return;
                 }
             }
         };
-        org.telegram.ui.ActionBar.e2 e2Var = this.f46117a;
+        org.telegram.ui.ActionBar.e2 e2Var = this.f46120a;
         Utilities.doCallbacks(callback, callback2, new bi.c2(this, e2Var, j10, 2), new Utilities.Callback(this) {
-            public final yw f45886b;
+            public final yw f45889b;
 
             {
-                this.f45886b = this;
+                this.f45889b = this;
             }
 
             @Override
@@ -100,7 +100,7 @@ public final class yw implements w60 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        cy cyVar = this.f45886b.f46118b;
+                        cy cyVar = this.f45889b.f46121b;
                         if (cyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = cyVar.getMessagesController().getUser(Long.valueOf(cyVar.H));
                             MessagesController messagesController = cyVar.getMessagesController();
@@ -120,7 +120,7 @@ public final class yw implements w60 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        cy cyVar2 = this.f45886b.f46118b;
+                        cy cyVar2 = this.f45889b.f46121b;
                         if (cyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = cyVar2.getMessagesController();
                             long j11 = j10;
@@ -132,10 +132,10 @@ public final class yw implements w60 {
                 }
             }
         }, new Utilities.Callback(this) {
-            public final yw f45886b;
+            public final yw f45889b;
 
             {
-                this.f45886b = this;
+                this.f45889b = this;
             }
 
             @Override
@@ -144,7 +144,7 @@ public final class yw implements w60 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        cy cyVar = this.f45886b.f46118b;
+                        cy cyVar = this.f45889b.f46121b;
                         if (cyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = cyVar.getMessagesController().getUser(Long.valueOf(cyVar.H));
                             MessagesController messagesController = cyVar.getMessagesController();
@@ -164,7 +164,7 @@ public final class yw implements w60 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        cy cyVar2 = this.f45886b.f46118b;
+                        cy cyVar2 = this.f45889b.f46121b;
                         if (cyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = cyVar2.getMessagesController();
                             long j11 = j10;

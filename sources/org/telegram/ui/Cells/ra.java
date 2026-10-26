@@ -20,49 +20,49 @@ import org.telegram.ui.Components.mm0;
 import org.telegram.ui.Components.zl0;
 import org.telegram.ui.xc1;
 public abstract class ra extends mm0 implements NotificationCenter.NotificationCenterDelegate {
-    public static final byte[] f24996q3 = new byte[1024];
-    public boolean f24997f3;
-    public final ig.a0 f24998g3;
-    public final HashMap f24999h3;
-    public final HashMap f25000i3;
-    public org.telegram.ui.ActionBar.x6 f25001j3;
-    public final qa f25002k3;
-    public final ArrayList f25003l3;
-    public final ArrayList f25004m3;
-    public final int f25005n3;
-    public int f25006o3;
-    public final org.telegram.ui.ActionBar.r2 f25007p3;
+    public static final byte[] f24998q3 = new byte[1024];
+    public boolean f24999f3;
+    public final ig.a0 f25000g3;
+    public final HashMap f25001h3;
+    public final HashMap f25002i3;
+    public org.telegram.ui.ActionBar.x6 f25003j3;
+    public final qa f25004k3;
+    public final ArrayList f25005l3;
+    public final ArrayList f25006m3;
+    public final int f25007n3;
+    public int f25008o3;
+    public final org.telegram.ui.ActionBar.r2 f25009p3;
 
     public ra(Context context, org.telegram.ui.ActionBar.r2 r2Var, int i10, ArrayList arrayList, ArrayList arrayList2) {
         super(context, null);
-        this.f24999h3 = new HashMap();
-        this.f25000i3 = new HashMap();
-        this.f25003l3 = arrayList2;
-        this.f25004m3 = arrayList;
-        this.f25005n3 = i10;
-        this.f25007p3 = r2Var;
+        this.f25001h3 = new HashMap();
+        this.f25002i3 = new HashMap();
+        this.f25005l3 = arrayList2;
+        this.f25006m3 = arrayList;
+        this.f25007n3 = i10;
+        this.f25009p3 = r2Var;
         if (i10 == 2) {
-            org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23425h5, this, null);
+            org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23427h5, this, null);
         } else {
-            org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, this, null);
+            org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, this, null);
         }
         setItemAnimator(null);
         setLayoutAnimation(null);
         ig.a0 a0Var = new ig.a0(3);
-        this.f24998g3 = a0Var;
+        this.f25000g3 = a0Var;
         setPadding(0, 0, 0, 0);
         setClipToPadding(false);
         a0Var.k1(0);
         setLayoutManager(a0Var);
         qa qaVar = new qa(this, context);
-        this.f25002k3 = qaVar;
+        this.f25004k3 = qaVar;
         setAdapter(qaVar);
         setOnItemClickListener(new zl0() {
             @Override
             public final void c(int i11, View view) {
                 ra raVar = ra.this;
                 raVar.getClass();
-                raVar.E1(((ThemesHorizontalListCell$InnerThemeView) view).f23824b, view);
+                raVar.E1(((ThemesHorizontalListCell$InnerThemeView) view).f23826b, view);
                 int left = view.getLeft();
                 int right = view.getRight();
                 if (left < 0) {
@@ -81,8 +81,8 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
             View childAt = getChildAt(i10);
             if (childAt instanceof ThemesHorizontalListCell$InnerThemeView) {
                 ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) childAt;
-                if (themesHorizontalListCell$InnerThemeView.f23824b == x6Var && themesHorizontalListCell$InnerThemeView.c()) {
-                    themesHorizontalListCell$InnerThemeView.f23824b.U = true;
+                if (themesHorizontalListCell$InnerThemeView.f23826b == x6Var && themesHorizontalListCell$InnerThemeView.c()) {
+                    themesHorizontalListCell$InnerThemeView.f23826b.U = true;
                     themesHorizontalListCell$InnerThemeView.a();
                 }
             }
@@ -96,18 +96,18 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
             i10 = view.getMeasuredWidth();
         }
         if (i10 != 0) {
-            if (this.f25005n3 == 1) {
+            if (this.f25007n3 == 1) {
                 C0 = org.telegram.ui.ActionBar.y6.J;
             } else {
                 C0 = org.telegram.ui.ActionBar.y6.C0();
             }
-            this.f25001j3 = C0;
-            ArrayList arrayList = this.f25004m3;
+            this.f25003j3 = C0;
+            ArrayList arrayList = this.f25006m3;
             int indexOf = arrayList.indexOf(C0);
-            if (indexOf < 0 && (indexOf = this.f25003l3.indexOf(this.f25001j3) + arrayList.size()) < 0) {
+            if (indexOf < 0 && (indexOf = this.f25005l3.indexOf(this.f25003j3) + arrayList.size()) < 0) {
                 return;
             }
-            this.f24998g3.h1(indexOf, (i10 - AndroidUtilities.dp(76.0f)) / 2);
+            this.f25000g3.h1(indexOf, (i10 - AndroidUtilities.dp(76.0f)) / 2);
         }
     }
 
@@ -120,7 +120,7 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
         if (tL_theme != null) {
             if (x6Var.U) {
                 if (tL_theme.document == null) {
-                    org.telegram.ui.ActionBar.r2 r2Var = this.f25007p3;
+                    org.telegram.ui.ActionBar.r2 r2Var = this.f25009p3;
                     if (r2Var != null) {
                         r2Var.presentFragment(new xc1(x6Var, null, true));
                         return;
@@ -135,14 +135,14 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
             org.telegram.ui.ActionBar.t6.a(false);
         }
         SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
-        if (this.f25005n3 != 1 && !x6Var.q()) {
+        if (this.f25007n3 != 1 && !x6Var.q()) {
             str = "lastDayTheme";
         } else {
             str = "lastDarkTheme";
         }
         edit.putString(str, x6Var.m());
         edit.commit();
-        if (this.f25005n3 == 1) {
+        if (this.f25007n3 == 1) {
             if (x6Var != org.telegram.ui.ActionBar.y6.J) {
                 if (org.telegram.ui.ActionBar.y6.I == org.telegram.ui.ActionBar.y6.J) {
                     z11 = true;
@@ -167,13 +167,13 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
             View childAt = getChildAt(i10);
             if (childAt instanceof ThemesHorizontalListCell$InnerThemeView) {
                 ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) childAt;
-                if (themesHorizontalListCell$InnerThemeView.f23823a0.f25005n3 == 1) {
+                if (themesHorizontalListCell$InnerThemeView.f23825a0.f25007n3 == 1) {
                     C0 = org.telegram.ui.ActionBar.y6.J;
                 } else {
                     C0 = org.telegram.ui.ActionBar.y6.C0();
                 }
-                RadioButton radioButton = themesHorizontalListCell$InnerThemeView.f23822a;
-                if (themesHorizontalListCell$InnerThemeView.f23824b == C0) {
+                RadioButton radioButton = themesHorizontalListCell$InnerThemeView.f23824a;
+                if (themesHorizontalListCell$InnerThemeView.f23826b == C0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -182,8 +182,8 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
             }
         }
         org.telegram.ui.ActionBar.h4.p(x6Var, x6Var.Y);
-        if (this.f25005n3 != 1) {
-            org.telegram.ui.ActionBar.y6.J1(this.f25007p3);
+        if (this.f25007n3 != 1) {
+            org.telegram.ui.ActionBar.y6.J1(this.f25009p3);
         }
     }
 
@@ -194,17 +194,17 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
         if (i10 == NotificationCenter.fileLoaded) {
             String str = (String) objArr[0];
             File file = (File) objArr[1];
-            org.telegram.ui.ActionBar.x6 x6Var = (org.telegram.ui.ActionBar.x6) this.f24999h3.get(str);
+            org.telegram.ui.ActionBar.x6 x6Var = (org.telegram.ui.ActionBar.x6) this.f25001h3.get(str);
             if (x6Var != null) {
-                this.f24999h3.remove(str);
-                if (this.f25000i3.remove(x6Var) != null) {
+                this.f25001h3.remove(str);
+                if (this.f25002i3.remove(x6Var) != null) {
                     Utilities.globalQueue.postRunnable(new jg.f1(this, x6Var, file, 26));
                 } else {
                     C1(x6Var);
                 }
             }
         } else if (i10 == NotificationCenter.fileLoadFailed) {
-            this.f24999h3.remove((String) objArr[0]);
+            this.f25001h3.remove((String) objArr[0]);
         }
     }
 
@@ -231,7 +231,7 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f24997f3) {
+        if (this.f24999f3) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -245,7 +245,7 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23476k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23478k0);
         }
     }
 
@@ -264,7 +264,7 @@ public abstract class ra extends mm0 implements NotificationCenter.NotificationC
     }
 
     public void setDrawDivider(boolean z10) {
-        this.f24997f3 = z10;
+        this.f24999f3 = z10;
     }
 
     public void F1(org.telegram.ui.ActionBar.x6 x6Var) {

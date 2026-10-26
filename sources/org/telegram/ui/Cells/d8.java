@@ -20,17 +20,17 @@ public final class d8 extends org.telegram.ui.Components.y9 {
         int dp;
         f8 f8Var = this.H;
         t91 t91Var = f8Var.v;
-        if (t91Var != null && (t91Var.f43702a instanceof TL_stats.TL_postInteractionCountersStory)) {
+        if (t91Var != null && (t91Var.f43705a instanceof TL_stats.TL_postInteractionCountersStory)) {
             float dp2 = AndroidUtilities.dp(1.0f);
-            f8Var.f24081r.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
-            di.w7 w7Var = f8Var.f24081r;
+            f8Var.f24083r.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
+            di.w7 w7Var = f8Var.f24083r;
             w7Var.f9312a = false;
             w7Var.f9313b = false;
             w7Var.v = true;
             w7Var.f9323o = false;
             w7Var.f9333z = 1;
             w7Var.J = this.G;
-            di.a8.h(0L, canvas, this.f34981a, w7Var);
+            di.a8.h(0L, canvas, this.f34984a, w7Var);
             return;
         }
         super.onDraw(canvas);

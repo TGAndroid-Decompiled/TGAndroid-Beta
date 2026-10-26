@@ -25,7 +25,7 @@ public abstract class p5 extends mm0 implements o7 {
             default:
                 un unVar = (un) this.f8906g3;
                 iArr[0] = ((int) unVar.E9) - AndroidUtilities.dp(4.0f);
-                iArr[1] = org.telegram.messenger.t.B(3.0f, unVar.f44468x0.getPaddingBottom(), unVar.f44468x0.getMeasuredHeight());
+                iArr[1] = org.telegram.messenger.t.B(3.0f, unVar.f44471x0.getPaddingBottom(), unVar.f44471x0.getMeasuredHeight());
                 return;
         }
     }

@@ -48,7 +48,7 @@ public final class wc extends LinearLayout {
         textView.setVisibility(8);
         TextView e = vh.e(linearLayout, textView, gb1.o(0.0f, 0.0f, 0.0f, 1.0f, -1, -2), context);
         this.f5627f = e;
-        int i12 = org.telegram.ui.ActionBar.y6.f23765z6;
+        int i12 = org.telegram.ui.ActionBar.y6.f23767z6;
         org.telegram.ui.ActionBar.f7.V(e, i12, u6Var);
         e.setTextSize(1, 14.0f);
         linearLayout.addView(e, gb1.o(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
@@ -71,7 +71,7 @@ public final class wc extends LinearLayout {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f5630s) {
-            canvas.drawRect(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.y6.f23476k0);
+            canvas.drawRect(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.y6.f23478k0);
         }
     }
 

@@ -69,7 +69,7 @@ public final class m31 extends org.telegram.ui.Components.bb {
         }
         linearLayout.addView(new di.i4(this, context, i13, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new d80(this, isPremium, t90Var, 10)), true)), org.telegram.ui.Components.gb1.t(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23355d7, view, u6Var);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d7, view, u6Var);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);

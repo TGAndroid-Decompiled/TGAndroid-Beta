@@ -15,11 +15,11 @@ public final class r70 extends ey0 {
         switch (this.K) {
             case 0:
                 super.onAttachedToWindow();
-                this.f28013b.getImageReceiver().startAnimation();
+                this.f28015b.getImageReceiver().startAnimation();
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f28013b.getImageReceiver().startAnimation();
+                this.f28015b.getImageReceiver().startAnimation();
                 return;
             default:
                 super.onAttachedToWindow();

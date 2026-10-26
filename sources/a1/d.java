@@ -115,8 +115,8 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 return;
             case 10:
                 go goVar = (go) this.f37b;
-                goVar.f28630j0.e((TLRPC.TL_messageMediaPoll) this.f38c, goVar.O, goVar.f28635m1, (ArrayList) this.d, z10, i10, ((Long) this.e).longValue());
-                goVar.f30213b.dismiss(true);
+                goVar.f28632j0.e((TLRPC.TL_messageMediaPoll) this.f38c, goVar.O, goVar.f28637m1, (ArrayList) this.d, z10, i10, ((Long) this.e).longValue());
+                goVar.f30215b.dismiss(true);
                 return;
             case 11:
                 dt dtVar = (dt) this.f37b;
@@ -180,7 +180,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                     } else {
                         str = null;
                     }
-                    pd0 pd0Var = oj0Var.f42224c;
+                    pd0 pd0Var = oj0Var.f42227c;
                     if (pd0Var != null) {
                         pd0Var.getEditText().setText(str3);
                     } else {
@@ -205,7 +205,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.m0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f35576s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f35579s);
                 return;
             default:
                 af1 af1Var = (af1) obj4;
@@ -302,7 +302,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                             m3Var.Q0 = true;
                         }
                         org.telegram.ui.ActionBar.g5 g5Var = new org.telegram.ui.ActionBar.g5(new un(i12));
-                        g5Var.f22661b = true;
+                        g5Var.f22663b = true;
                         lastFragment.presentFragment(g5Var);
                     }
                 }
@@ -325,12 +325,12 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                     i13.putLong("chat_id", -j11);
                 }
                 i13.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                r2 r2Var = tiVar.f33018f0;
+                r2 r2Var = tiVar.f33021f0;
                 if (MessagesController.getInstance(tiVar.M1).checkCanOpenChat(i13, r2Var)) {
                     sd0Var2.dismiss();
                     tiVar.dismiss(true);
                     org.telegram.ui.ActionBar.g5 g5Var2 = new org.telegram.ui.ActionBar.g5(new un(i13));
-                    g5Var2.f22661b = true;
+                    g5Var2.f22663b = true;
                     r2Var.presentFragment(g5Var2);
                 }
                 return true;
@@ -370,7 +370,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        f7.V(textView, y6.f23462j5, u6Var);
+        f7.V(textView, y6.f23464j5, u6Var);
         StringBuilder sb2 = new StringBuilder("x");
         int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f7;

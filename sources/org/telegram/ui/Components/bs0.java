@@ -4,26 +4,26 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.BirthdayController;
 public final class bs0 implements View.OnClickListener {
-    public final int f26954a;
-    public final boolean f26955b;
-    public final int f26956c;
+    public final int f26956a;
+    public final boolean f26957b;
+    public final int f26958c;
     public final FrameLayout d;
 
     public bs0(FrameLayout frameLayout, boolean z10, int i10, int i11) {
-        this.f26954a = i11;
+        this.f26956a = i11;
         this.d = frameLayout;
-        this.f26955b = z10;
-        this.f26956c = i10;
+        this.f26957b = z10;
+        this.f26958c = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f26954a) {
+        switch (this.f26956a) {
             case 0:
                 aw0 aw0Var = (aw0) this.d;
-                org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26702x1;
-                if (this.f26955b) {
-                    aw0Var.U0(r2Var, aw0Var.l1, this.f26956c);
+                org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26704x1;
+                if (this.f26957b) {
+                    aw0Var.U0(r2Var, aw0Var.l1, this.f26958c);
                     return;
                 }
                 r2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
@@ -35,11 +35,11 @@ public final class bs0 implements View.OnClickListener {
                     vs0Var.a();
                     return;
                 }
-                boolean z10 = this.f26955b;
-                int i10 = this.f26956c;
+                boolean z10 = this.f26957b;
+                int i10 = this.f26958c;
                 if (z10) {
-                    zh.p1 p1Var = new zh.p1(vs0Var.getContext(), i10, vs0Var.f53229c, null, null);
-                    p1Var.V(BirthdayController.getInstance(i10).isToday(vs0Var.f53229c));
+                    zh.p1 p1Var = new zh.p1(vs0Var.getContext(), i10, vs0Var.f53232c, null, null);
+                    p1Var.V(BirthdayController.getInstance(i10).isToday(vs0Var.f53232c));
                     p1Var.show();
                     return;
                 }

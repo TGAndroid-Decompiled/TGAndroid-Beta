@@ -23,7 +23,7 @@ public final class j31 extends qg.b {
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        int i10 = e1Var.f47738f;
+        int i10 = e1Var.f47741f;
         if (i10 == 1 || i10 == 2 || i10 == 4 || i10 == 6) {
             return true;
         }
@@ -32,29 +32,29 @@ public final class j31 extends qg.b {
 
     @Override
     public final int h() {
-        return this.d.f36146s.size();
+        return this.d.f36149s.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((k31) this.d.f36146s.get(i10)).f47037a;
+        return ((k31) this.d.f36149s.get(i10)).f47040a;
     }
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         String str;
         int i11;
-        View view = e1Var.f47735a;
+        View view = e1Var.f47738a;
         SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.d;
-        ArrayList arrayList = saveToGallerySettingsActivity.f36146s;
+        ArrayList arrayList = saveToGallerySettingsActivity.f36149s;
         boolean z10 = false;
-        if (((k31) arrayList.get(i10)).f47037a == 1) {
+        if (((k31) arrayList.get(i10)).f47040a == 1) {
             org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) view;
             if (saveToGallerySettingsActivity.v.size() > 0) {
                 z10 = true;
             }
             v8Var.setNeedDivider(z10);
-        } else if (((k31) arrayList.get(i10)).f47037a == 6) {
+        } else if (((k31) arrayList.get(i10)).f47040a == 6) {
             org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
             SaveToGallerySettingsHelper.Settings Z = saveToGallerySettingsActivity.Z();
             if (i10 == saveToGallerySettingsActivity.e) {
@@ -68,15 +68,15 @@ public final class j31 extends qg.b {
             int i13 = org.telegram.ui.ActionBar.y6.ij;
             a9Var.c(saveToGallerySettingsActivity.getThemedColor(i13), R.drawable.msg_filled_data_videos);
             SaveToGallerySettingsActivity.X(saveToGallerySettingsActivity, a9Var, i13);
-        } else if (((k31) arrayList.get(i10)).f47037a == 7) {
+        } else if (((k31) arrayList.get(i10)).f47040a == 7) {
             org.telegram.ui.Cells.i9 i9Var = (org.telegram.ui.Cells.i9) view;
             if (i10 == saveToGallerySettingsActivity.h) {
                 long j10 = saveToGallerySettingsActivity.Z().limitVideo;
-                if (saveToGallerySettingsActivity.f36142c != null) {
+                if (saveToGallerySettingsActivity.f36145c != null) {
                     i9Var.setText(LocaleController.formatString("SaveToGalleryVideoHintCurrent", R.string.SaveToGalleryVideoHintCurrent, new Object[0]));
                     return;
                 }
-                int i14 = saveToGallerySettingsActivity.f36140a;
+                int i14 = saveToGallerySettingsActivity.f36143a;
                 if (i14 == 1) {
                     i9Var.setText(LocaleController.formatString("SaveToGalleryVideoHintUser", R.string.SaveToGalleryVideoHintUser, new Object[0]));
                     return;
@@ -91,11 +91,11 @@ public final class j31 extends qg.b {
                 }
             }
             i9Var.setText(((k31) arrayList.get(i10)).d);
-        } else if (((k31) arrayList.get(i10)).f47037a == 5) {
+        } else if (((k31) arrayList.get(i10)).f47040a == 5) {
             ((org.telegram.ui.Cells.q4) view).setText(((k31) arrayList.get(i10)).d);
-        } else if (((k31) arrayList.get(i10)).f47037a == 2) {
+        } else if (((k31) arrayList.get(i10)).f47040a == 2) {
             org.telegram.ui.Cells.ab abVar = (org.telegram.ui.Cells.ab) view;
-            SaveToGallerySettingsHelper.DialogException dialogException = ((k31) arrayList.get(i10)).f40792c;
+            SaveToGallerySettingsHelper.DialogException dialogException = ((k31) arrayList.get(i10)).f40795c;
             TLObject userOrChat = saveToGallerySettingsActivity.getMessagesController().getUserOrChat(dialogException.dialogId);
             if (userOrChat instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) userOrChat;
@@ -112,7 +112,7 @@ public final class j31 extends qg.b {
             abVar.setSelfAsSavedMessages(true);
             i11 = ((org.telegram.ui.ActionBar.r2) saveToGallerySettingsActivity).currentAccount;
             CharSequence createDescription = dialogException.createDescription(i11);
-            if (i10 == arrayList.size() - 1 || ((k31) arrayList.get(i10 + 1)).f47037a == 2) {
+            if (i10 == arrayList.size() - 1 || ((k31) arrayList.get(i10 + 1)).f47040a == 2) {
                 z10 = true;
             }
             abVar.d(userOrChat, str, createDescription, z10);
@@ -133,13 +133,13 @@ public final class j31 extends qg.b {
             case 1:
                 org.telegram.ui.Cells.v8 v8Var = new org.telegram.ui.Cells.v8(viewGroup.getContext());
                 v8Var.o(R.drawable.msg_contact_add, LocaleController.getString(R.string.NotificationsAddAnException), true);
-                v8Var.g(org.telegram.ui.ActionBar.y6.f23690v6, org.telegram.ui.ActionBar.y6.f23671u6);
-                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, v8Var, null);
+                v8Var.g(org.telegram.ui.ActionBar.y6.f23692v6, org.telegram.ui.ActionBar.y6.f23673u6);
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, v8Var, null);
                 view = v8Var;
                 break;
             case 2:
                 View abVar = new org.telegram.ui.Cells.ab(4, 0, viewGroup.getContext(), null, false, false);
-                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, abVar, null);
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, abVar, null);
                 linearLayout = abVar;
                 view = linearLayout;
                 break;
@@ -150,20 +150,20 @@ public final class j31 extends qg.b {
             case 4:
                 org.telegram.ui.Cells.v8 v8Var2 = new org.telegram.ui.Cells.v8(viewGroup.getContext());
                 v8Var2.k(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
-                v8Var2.g(-1, org.telegram.ui.ActionBar.y6.f23579p7);
-                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, v8Var2, null);
+                v8Var2.g(-1, org.telegram.ui.ActionBar.y6.f23581p7);
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, v8Var2, null);
                 zaVar = v8Var2;
                 view = zaVar;
                 break;
             case 5:
                 View q4Var = new org.telegram.ui.Cells.q4(viewGroup.getContext());
-                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, q4Var, null);
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, q4Var, null);
                 zaVar = q4Var;
                 view = zaVar;
                 break;
             case 6:
                 View a9Var = new org.telegram.ui.Cells.a9(viewGroup.getContext());
-                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, a9Var, null);
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, a9Var, null);
                 zaVar = a9Var;
                 view = zaVar;
                 break;
@@ -200,22 +200,22 @@ public final class j31 extends qg.b {
                     f7 = (((float) (j10 - 524288)) / ((float) 104333312)) * 0.7f;
                 }
                 lp0Var.setProgress(f7);
-                lp0Var.f30259x.U(lp0Var.getProgress(), false);
-                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, linearLayout2, null);
+                lp0Var.f30261x.U(lp0Var.getProgress(), false);
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, linearLayout2, null);
                 linearLayout = linearLayout2;
                 view = linearLayout;
                 break;
             case 9:
                 org.telegram.ui.Cells.za zaVar2 = new org.telegram.ui.Cells.za(saveToGallerySettingsActivity.getParentActivity(), saveToGallerySettingsActivity.getResourceProvider());
-                if (DialogObject.isUserDialog(saveToGallerySettingsActivity.f36141b)) {
+                if (DialogObject.isUserDialog(saveToGallerySettingsActivity.f36144b)) {
                     i12 = ((org.telegram.ui.ActionBar.r2) saveToGallerySettingsActivity).currentAccount;
-                    chat = MessagesController.getInstance(i12).getUser(Long.valueOf(saveToGallerySettingsActivity.f36141b));
+                    chat = MessagesController.getInstance(i12).getUser(Long.valueOf(saveToGallerySettingsActivity.f36144b));
                 } else {
                     i11 = ((org.telegram.ui.ActionBar.r2) saveToGallerySettingsActivity).currentAccount;
-                    chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-saveToGallerySettingsActivity.f36141b));
+                    chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-saveToGallerySettingsActivity.f36144b));
                 }
                 zaVar2.a(chat, null);
-                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, zaVar2, saveToGallerySettingsActivity.getResourceProvider());
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, zaVar2, saveToGallerySettingsActivity.getResourceProvider());
                 zaVar = zaVar2;
                 view = zaVar;
                 break;

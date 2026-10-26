@@ -228,7 +228,7 @@ public class ImageLocation {
     public String getKey(Object obj, Object obj2, boolean z10) {
         int i10;
         if (this.secureDocument != null) {
-            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f22162id;
+            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f22164id;
         }
         TLRPC.PhotoSize photoSize = this.photoSize;
         if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -241,7 +241,7 @@ public class ImageLocation {
             }
             org.telegram.ui.web.g2 g2Var = this.instantFile;
             if (g2Var != null) {
-                return Utilities.MD5(g2Var.f45250b);
+                return Utilities.MD5(g2Var.f45253b);
             }
             TLRPC.Document document = this.document;
             if (document != null) {

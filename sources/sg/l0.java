@@ -13,16 +13,16 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.nt0;
 public final class l0 extends FrameLayout {
-    public float f48295a;
-    public float f48296b;
-    public final nt0 f48297c;
+    public float f48298a;
+    public float f48299b;
+    public final nt0 f48300c;
 
     public l0(nt0 nt0Var, Context context) {
         super(context);
-        this.f48297c = nt0Var;
+        this.f48300c = nt0Var;
         new Path();
         setWillNotDraw(false);
-        Paint paint = nt0Var.f48360w1;
+        Paint paint = nt0Var.f48363w1;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
@@ -34,15 +34,15 @@ public final class l0 extends FrameLayout {
         ViewGroup viewGroup2;
         Canvas canvas2 = canvas;
         super.onDraw(canvas);
-        nt0 nt0Var = this.f48297c;
-        rg.q1 q1Var = nt0Var.f48366z1;
-        Paint paint = nt0Var.f48362x1;
-        Paint paint2 = nt0Var.f48360w1;
-        Paint paint3 = nt0Var.f48364y1;
+        nt0 nt0Var = this.f48300c;
+        rg.q1 q1Var = nt0Var.f48369z1;
+        Paint paint = nt0Var.f48365x1;
+        Paint paint2 = nt0Var.f48363w1;
+        Paint paint3 = nt0Var.f48367y1;
         barView = nt0Var.getBarView();
         Rect rect = AndroidUtilities.rectTmp2;
         int left = barView.getLeft();
-        k0 k0Var = nt0Var.f48358v1;
+        k0 k0Var = nt0Var.f48361v1;
         rect.set(AndroidUtilities.lerp(left, k0Var.getLeft(), nt0Var.C1), AndroidUtilities.lerp(barView.getTop(), k0Var.getTop(), nt0Var.C1), AndroidUtilities.lerp(barView.getRight(), k0Var.getRight(), nt0Var.C1), AndroidUtilities.lerp(barView.getBottom(), k0Var.getBottom(), nt0Var.C1));
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
@@ -69,14 +69,14 @@ public final class l0 extends FrameLayout {
                 int height = (childAt.getHeight() - childAt.getPaddingTop()) - childAt.getPaddingBottom();
                 float x9 = (width / 2.0f) + childAt.getX() + childAt.getPaddingLeft();
                 float y3 = (height / 2.0f) + childAt.getY() + childAt.getPaddingTop();
-                int i10 = q1Var.f47522a;
+                int i10 = q1Var.f47525a;
                 int i11 = nt0Var.W0;
                 View view = childAt;
                 if (i11 != -1) {
                     if (i11 == 0) {
-                        viewGroup = nt0Var.f48339i1;
+                        viewGroup = nt0Var.f48342i1;
                     } else if (i11 == 2) {
-                        viewGroup = nt0Var.f48340j1;
+                        viewGroup = nt0Var.f48343j1;
                     } else {
                         viewGroup = null;
                     }
@@ -96,13 +96,13 @@ public final class l0 extends FrameLayout {
                     View childAt3 = k0Var.getChildAt(0);
                     x9 = AndroidUtilities.lerp(x9, (childAt3.getWidth() / 2.0f) + childAt3.getX() + (k0Var.getX() - barView.getLeft()), nt0Var.C1);
                     y3 = AndroidUtilities.lerp(y3, (childAt3.getHeight() / 2.0f) + childAt3.getY() + (k0Var.getY() - barView.getTop()), nt0Var.C1);
-                    i10 = i0.a.f(nt0Var.C1, q1Var.f47522a, nt0Var.K1.b(0));
+                    i10 = i0.a.f(nt0Var.C1, q1Var.f47525a, nt0Var.K1.b(0));
                 }
                 float f7 = x9;
                 float f10 = y3;
-                if (f7 != this.f48295a || f10 != this.f48296b) {
-                    this.f48295a = f7;
-                    this.f48296b = f10;
+                if (f7 != this.f48298a || f10 != this.f48299b) {
+                    this.f48298a = f7;
+                    this.f48299b = f10;
                     paint2.setShader(new SweepGradient(f7, f10, new int[]{-1356981, -1146130, -10452764, -16711681, -7352832, -256, -23296, -1356981}, (float[]) null));
                 }
                 float min = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
@@ -135,7 +135,7 @@ public final class l0 extends FrameLayout {
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        j0 j0Var = this.f48297c.S0;
+        j0 j0Var = this.f48300c.S0;
         if (j0Var != null) {
             j0Var.invalidate();
         }

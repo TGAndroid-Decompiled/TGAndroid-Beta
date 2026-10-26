@@ -56,7 +56,7 @@ public final class z4 extends Drawable implements a7, NotificationCenter.Notific
         this.f13405n = new RectF();
         this.f13407s = new h6(new y4(this, 1), 320L, ds.h, 0);
         this.f13406r = false;
-        int i10 = y6.f23354d6;
+        int i10 = y6.f23356d6;
         paint.setColor(y6.x0(null, i10, false));
         paint2.setColor(y6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), y6.o1(0.18f, -16777216));
@@ -151,7 +151,7 @@ public final class z4 extends Drawable implements a7, NotificationCenter.Notific
         t5 t5Var2;
         int i11;
         Rect bounds = getBounds();
-        int x02 = y6.x0(null, y6.f23354d6, false);
+        int x02 = y6.x0(null, y6.f23356d6, false);
         Paint paint = this.f13401a;
         if (paint.getColor() != x02) {
             paint.setColor(x02);
@@ -166,7 +166,7 @@ public final class z4 extends Drawable implements a7, NotificationCenter.Notific
         } else {
             i10 = 28;
         }
-        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f31788c) / 2.0f;
+        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f31790c) / 2.0f;
         float dp2 = AndroidUtilities.dp(32.0f) / 2.0f;
         RectF rectF = this.f13405n;
         rectF.set(bounds.centerX() - dp, bounds.centerY() - dp2, bounds.centerX() + dp, bounds.centerY() + dp2);
@@ -249,7 +249,7 @@ public final class z4 extends Drawable implements a7, NotificationCenter.Notific
         this.f13405n = new RectF();
         this.f13407s = new h6(new y4(this, 1), 320L, ds.h, 0);
         this.f13406r = true;
-        int i10 = y6.f23354d6;
+        int i10 = y6.f23356d6;
         paint.setColor(y6.x0(null, i10, false));
         paint2.setColor(y6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), y6.o1(0.18f, -16777216));
@@ -258,7 +258,7 @@ public final class z4 extends Drawable implements a7, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, j9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120);
-        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, y6.f23297a7, 0.35f), 0L, null, null, 0);
+        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, y6.f23299a7, 0.35f), 0L, null, null, 0);
         this.h = new q11(UserObject.getUserName(user), 14.0f, null);
     }
 

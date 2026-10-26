@@ -23,15 +23,15 @@ import org.telegram.ui.Components.lm0;
 import org.telegram.ui.Components.z90;
 import org.telegram.ui.wg1;
 public final class m0 extends lm0 {
-    public final s0 f50200c;
+    public final s0 f50203c;
 
     public m0(s0 s0Var) {
-        this.f50200c = s0Var;
+        this.f50203c = s0Var;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f == 3) {
+        if (e1Var.f47741f == 3) {
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public final class m0 extends lm0 {
 
     @Override
     public final int h() {
-        return this.f50200c.Y.size() + 3;
+        return this.f50203c.Y.size() + 3;
     }
 
     @Override
@@ -60,9 +60,9 @@ public final class m0 extends lm0 {
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         String str;
-        int i11 = e1Var.f47738f;
-        View view = e1Var.f47735a;
-        s0 s0Var = this.f50200c;
+        int i11 = e1Var.f47741f;
+        View view = e1Var.f47738a;
+        s0 s0Var = this.f50203c;
         if (i11 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) s0Var.Y.get(i10 - 3);
             zg.l lVar = (zg.l) view;
@@ -75,7 +75,7 @@ public final class m0 extends lm0 {
             q4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
         } else if (i11 == 0) {
             r0 r0Var = (r0) view;
-            s0Var.f50253b0 = r0Var;
+            s0Var.f50256b0 = r0Var;
             TLRPC.Chat chat = s0Var.Z;
             z90 z90Var = r0Var.e;
             try {
@@ -102,7 +102,7 @@ public final class m0 extends lm0 {
         View view;
         u6 u6Var;
         Context context = viewGroup.getContext();
-        s0 s0Var = this.f50200c;
+        s0 s0Var = this.f50203c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -116,7 +116,7 @@ public final class m0 extends lm0 {
                     view = new q4(context, 22);
                 }
             } else {
-                int i11 = y6.f23297a7;
+                int i11 = y6.f23299a7;
                 view = new f7(context, y6.x0(null, i11, false), 0);
                 org.telegram.ui.ActionBar.f7.i(i11, view, null);
             }

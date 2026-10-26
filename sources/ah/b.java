@@ -34,7 +34,7 @@ public final class b extends ab {
         this.f1408c0 = new FrameLayout(getContext());
         TextView textView = new TextView(getContext());
         this.f1407b0 = textView;
-        textView.setTextColor(y6.w0(y6.G6, this.f23880y));
+        textView.setTextColor(y6.w0(y6.G6, this.f23882y));
         this.f1407b0.setTypeface(AndroidUtilities.bold());
         this.f1407b0.setTextSize(12.0f);
         this.f1407b0.setGravity(17);
@@ -89,7 +89,7 @@ public final class b extends ab {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, y6.f23476k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, y6.f23478k0);
         }
     }
 
@@ -100,7 +100,7 @@ public final class b extends ab {
         FrameLayout frameLayout = this.f1408c0;
         TextView textView = this.f1407b0;
         int i11 = 0;
-        b6 b6Var = this.f23872b;
+        b6 b6Var = this.f23874b;
         if (!z10 && !boost.giveaway) {
             frameLayout.setVisibility(8);
         } else {
@@ -108,7 +108,7 @@ public final class b extends ab {
             int i12 = ((boost.expires - boost.date) / 30) / 86400;
             long j10 = boost.stars;
             int i13 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-            k4 k4Var = this.f23870a;
+            k4 k4Var = this.f23872a;
             j9 j9Var = this.E;
             if (i13 > 0) {
                 b6Var.l(LocaleController.formatPluralString("BoostingBoostStars", (int) j10, new Object[0]), false);
@@ -130,7 +130,7 @@ public final class b extends ab {
             }
             String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
             int i14 = (boost.stars > 0L ? 1 : (boost.stars == 0L ? 0 : -1));
-            b6 b6Var2 = this.f23873c;
+            b6 b6Var2 = this.f23875c;
             if (i14 > 0) {
                 b6Var2.l(LocaleController.formatString(R.string.BoostingStarsExpires, format), false);
             } else {

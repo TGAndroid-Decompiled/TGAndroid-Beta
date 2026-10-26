@@ -12,27 +12,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 public final class cb1 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final org.telegram.ui.Cells.ka f38415a;
-    public final org.telegram.ui.Components.lp0 f38416b;
-    public final int f38417c;
+    public final org.telegram.ui.Cells.ka f38418a;
+    public final org.telegram.ui.Components.lp0 f38419b;
+    public final int f38420c;
     public final int d;
     public final TextPaint e;
-    public int f38418f;
+    public int f38421f;
     public int h;
-    public final ThemeActivity f38419n;
+    public final ThemeActivity f38422n;
 
     public cb1(ThemeActivity themeActivity, Context context) {
         super(context);
         org.telegram.ui.ActionBar.j5 j5Var;
-        this.f38419n = themeActivity;
-        this.f38417c = 12;
+        this.f38422n = themeActivity;
+        this.f38420c = 12;
         this.d = 30;
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
         this.e = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         org.telegram.ui.Components.lp0 lp0Var = new org.telegram.ui.Components.lp0(context);
-        this.f38416b = lp0Var;
+        this.f38419b = lp0Var;
         lp0Var.setReportChanges(true);
         lp0Var.setSeparatorsCount(19);
         lp0Var.setDelegate(new uv0(this, 4));
@@ -40,7 +40,7 @@ public final class cb1 extends FrameLayout implements org.telegram.ui.ActionBar.
         addView(lp0Var, org.telegram.ui.Components.gb1.h(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
         j5Var = ((org.telegram.ui.ActionBar.r2) themeActivity).parentLayout;
         org.telegram.ui.Cells.ka kaVar = new org.telegram.ui.Cells.ka(context, j5Var, 0);
-        this.f38415a = kaVar;
+        this.f38418a = kaVar;
         kaVar.setImportantForAccessibility(4);
         addView(kaVar, org.telegram.ui.Components.gb1.h(-1, -2.0f, 51, 0.0f, 53.0f, 0.0f, 0.0f));
     }
@@ -53,8 +53,8 @@ public final class cb1 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f38415a.invalidate();
-        this.f38416b.invalidate();
+        this.f38418a.invalidate();
+        this.f38419b.invalidate();
     }
 
     @Override
@@ -68,24 +68,24 @@ public final class cb1 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f38416b.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+        this.f38419b.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         int size = View.MeasureSpec.getSize(i10);
-        if (this.f38418f != size) {
+        if (this.f38421f != size) {
             int i12 = SharedConfig.fontSize;
-            int i13 = this.f38417c;
-            this.f38416b.setProgress((i12 - i13) / (this.d - i13));
-            this.f38418f = size;
+            int i13 = this.f38420c;
+            this.f38419b.setProgress((i12 - i13) / (this.d - i13));
+            this.f38421f = size;
         }
     }
 
     @Override
     public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f38416b.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f38419b.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
             return false;
         }
         return true;
@@ -93,7 +93,7 @@ public final class cb1 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Components.lp0 lp0Var = this.f38416b;
+        org.telegram.ui.Components.lp0 lp0Var = this.f38419b;
         if (lp0Var == null) {
             return;
         }

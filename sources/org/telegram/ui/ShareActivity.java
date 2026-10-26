@@ -18,8 +18,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
-    public static final int f36218b = 0;
-    public org.telegram.ui.Components.mr0 f36219a;
+    public static final int f36221b = 0;
+    public org.telegram.ui.Components.mr0 f36222a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -56,10 +56,10 @@ public class ShareActivity extends Activity {
                 messageObject.messageOwner.with_my_score = true;
                 try {
                     org.telegram.ui.Components.mr0 P0 = org.telegram.ui.Components.mr0.P0(this, messageObject, null, false, string2);
-                    this.f36219a = P0;
+                    this.f36222a = P0;
                     P0.setCanceledOnTouchOutside(true);
-                    this.f36219a.setOnDismissListener(new u5(this, 15));
-                    this.f36219a.show();
+                    this.f36222a.setOnDismissListener(new u5(this, 15));
+                    this.f36222a.show();
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -77,10 +77,10 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.mr0 mr0Var = this.f36219a;
+            org.telegram.ui.Components.mr0 mr0Var = this.f36222a;
             if (mr0Var != null && mr0Var.isShowing()) {
-                this.f36219a.dismiss();
-                this.f36219a = null;
+                this.f36222a.dismiss();
+                this.f36222a = null;
             }
         } catch (Exception e) {
             FileLog.e(e);

@@ -26,7 +26,7 @@ public final class e2 extends by0 {
             while (true) {
                 if (i10 < xx0VarArr.length) {
                     xx0 xx0Var = xx0VarArr[i10];
-                    if (xx0Var != null && xx0Var.f34843b) {
+                    if (xx0Var != null && xx0Var.f34846b) {
                         break;
                     }
                     i10++;

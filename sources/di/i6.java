@@ -129,7 +129,7 @@ public final class i6 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i15 = i11; i15 < arrayList2.size(); i15++) {
                             if (arrayList2.get(i15) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = u7Var.f(arrayList2.get(i15).f22264id, peerDialogId);
+                                TL_stories.StoryItem f7 = u7Var.f(arrayList2.get(i15).f22266id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i15, f7);
                                 }
@@ -258,9 +258,9 @@ public final class i6 implements Runnable {
                                 if (str4 != str3) {
                                     return;
                                 }
-                                c61Var3.f38337z1 = true;
+                                c61Var3.f38340z1 = true;
                                 c61Var3.z(true, z15);
-                                t41 t41Var = c61Var3.f38292f0;
+                                t41 t41Var = c61Var3.f38295f0;
                                 if (t41Var != null) {
                                     t41Var.d(true);
                                 }
@@ -289,7 +289,7 @@ public final class i6 implements Runnable {
                                     arrayList15.clear();
                                 }
                                 int i18 = 0;
-                                c61Var3.f38298i0.v0(0);
+                                c61Var3.f38301i0.v0(0);
                                 int i19 = c61Var3.W;
                                 if (i19 == 1 || i19 == 14 || i19 == 11 || i19 == 2) {
                                     ArrayList arrayList16 = arrayList8;
@@ -329,7 +329,7 @@ public final class i6 implements Runnable {
                                     i18++;
                                     c61Var3.D1.addAll((ArrayList) obj6);
                                 }
-                                c61Var3.f38313q0.E(true ^ z16);
+                                c61Var3.f38316q0.E(true ^ z16);
                             }
                         });
                     }
@@ -342,7 +342,7 @@ public final class i6 implements Runnable {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(c61Var.V).getEmojiSuggestions(c61.f38275b2, str, false, new af0(18, linkedHashSet2, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(c61Var.V).getEmojiSuggestions(c61.f38278b2, str, false, new af0(18, linkedHashSet2, runnable), null, false, false, false, 0);
                                     return;
                                 default:
                                     MediaDataController.getInstance(c61Var.V).getAnimatedEmojiByKeywords(str, new l41(linkedHashSet2, runnable, 0));
@@ -382,7 +382,7 @@ public final class i6 implements Runnable {
                                         return;
                                     default:
                                         c61 c61Var2 = c61Var;
-                                        MediaDataController.getInstance(c61Var2.V).getEmojiSuggestions(c61.f38275b2, str, false, new a1.d(c61Var2, arrayList5, arrayList4, (Runnable) obj4, 17), null, false, false, false, 0);
+                                        MediaDataController.getInstance(c61Var2.V).getEmojiSuggestions(c61.f38278b2, str, false, new a1.d(c61Var2, arrayList5, arrayList4, (Runnable) obj4, 17), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -417,7 +417,7 @@ public final class i6 implements Runnable {
                                         return;
                                     default:
                                         c61 c61Var2 = c61Var;
-                                        MediaDataController.getInstance(c61Var2.V).getEmojiSuggestions(c61.f38275b2, str, false, new a1.d(c61Var2, arrayList5, arrayList4, (Runnable) obj4, 17), null, false, false, false, 0);
+                                        MediaDataController.getInstance(c61Var2.V).getEmojiSuggestions(c61.f38278b2, str, false, new a1.d(c61Var2, arrayList5, arrayList4, (Runnable) obj4, 17), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -432,7 +432,7 @@ public final class i6 implements Runnable {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(c61Var.V).getEmojiSuggestions(c61.f38275b2, str, false, new af0(18, linkedHashSet, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(c61Var.V).getEmojiSuggestions(c61.f38278b2, str, false, new af0(18, linkedHashSet, runnable), null, false, false, false, 0);
                                     return;
                                 default:
                                     MediaDataController.getInstance(c61Var.V).getAnimatedEmojiByKeywords(str, new l41(linkedHashSet, runnable, 0));
@@ -453,9 +453,9 @@ public final class i6 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                rg.q0 q0Var = ((rg.a1) obj3).f47365y.f47374c;
-                qw0 qw0Var = q0Var.f47504g;
-                m4.w1 h = q0Var.h(new RectF(0.0f, 0.0f, qw0Var.f32052a, qw0Var.f32053b), false, z12, z11);
+                rg.q0 q0Var = ((rg.a1) obj3).f47368y.f47377c;
+                qw0 qw0Var = q0Var.f47507g;
+                m4.w1 h = q0Var.h(new RectF(0.0f, 0.0f, qw0Var.f32054a, qw0Var.f32055b), false, z12, z11);
                 if (h != null) {
                     bitmapArr[0] = (Bitmap) h.f18293b;
                 }

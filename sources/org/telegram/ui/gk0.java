@@ -8,6 +8,6 @@ public final class gk0 extends s4.l {
 
     @Override
     public final void P(s4.e1 e1Var) {
-        this.F.f35570a.invalidate();
+        this.F.f35573a.invalidate();
     }
 }

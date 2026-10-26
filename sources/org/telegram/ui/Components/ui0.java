@@ -39,40 +39,40 @@ public class ui0 extends View {
     public float Q;
     public float R;
     public float S;
-    public final PorterDuffColorFilter f33414a;
-    public final PorterDuffColorFilter f33415b;
-    public q11 f33416c;
+    public final PorterDuffColorFilter f33417a;
+    public final PorterDuffColorFilter f33418b;
+    public q11 f33419c;
     public q11 d;
     public ui0 e;
-    public ui0 f33417f;
+    public ui0 f33420f;
     public final Paint h;
-    public final Paint f33418n;
-    public final Path f33419r;
-    public final Drawable f33420s;
+    public final Paint f33421n;
+    public final Path f33422r;
+    public final Drawable f33423s;
     public final RectF v;
-    public final Paint f33421w;
-    public final Path f33422x;
-    public final Path f33423y;
+    public final Paint f33424w;
+    public final Path f33425x;
+    public final Path f33426y;
 
     public ui0(Context context) {
         super(context);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.f33414a = new PorterDuffColorFilter(-1, mode);
-        this.f33415b = new PorterDuffColorFilter(-16777216, mode);
+        this.f33417a = new PorterDuffColorFilter(-1, mode);
+        this.f33418b = new PorterDuffColorFilter(-16777216, mode);
         this.h = new Paint();
         Paint paint = new Paint();
-        this.f33418n = paint;
+        this.f33421n = paint;
         Path path = new Path();
-        this.f33419r = path;
+        this.f33422r = path;
         this.v = new RectF();
-        this.f33421w = new Paint(1);
-        this.f33422x = new Path();
-        this.f33423y = new Path();
+        this.f33424w = new Paint(1);
+        this.f33425x = new Path();
+        this.f33426y = new Path();
         this.E = new xc(this);
         this.F = -1;
         this.M = new Paint(1);
         this.N = new Matrix();
-        this.f33420s = context.getResources().getDrawable(R.drawable.files_music).mutate();
+        this.f33423s = context.getResources().getDrawable(R.drawable.files_music).mutate();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -99,13 +99,13 @@ public class ui0 extends View {
         }
         this.F = i10;
         if (z10) {
-            porterDuffColorFilter = this.f33415b;
+            porterDuffColorFilter = this.f33418b;
         } else {
-            porterDuffColorFilter = this.f33414a;
+            porterDuffColorFilter = this.f33417a;
         }
-        this.f33420s.setColorFilter(porterDuffColorFilter);
+        this.f33423s.setColorFilter(porterDuffColorFilter);
         this.h.setColor(this.F);
-        this.f33418n.setColor(org.telegram.ui.ActionBar.y6.o1(0.85f, this.F));
+        this.f33421n.setColor(org.telegram.ui.ActionBar.y6.o1(0.85f, this.F));
         invalidate();
     }
 
@@ -116,19 +116,19 @@ public class ui0 extends View {
         int i11 = dp / 2;
         int i12 = i10 - i11;
         int i13 = i10 + i11;
-        Drawable drawable = this.f33420s;
+        Drawable drawable = this.f33423s;
         drawable.setBounds(0, i12, dp, i13);
         drawable.draw(canvas);
         canvas.translate(AndroidUtilities.dp(16.6f), 0.0f);
-        this.f33416c.c(0.0f, height, f7, this.F, canvas);
-        canvas.translate(this.f33416c.l(), 0.0f);
+        this.f33419c.c(0.0f, height, f7, this.F, canvas);
+        canvas.translate(this.f33419c.l(), 0.0f);
         this.d.c(0.0f, height, f7 * 0.85f, this.F, canvas);
         canvas.translate(this.d.l(), 0.0f);
         float dpf2 = AndroidUtilities.dpf2(1.16f);
-        Paint paint = this.f33418n;
+        Paint paint = this.f33421n;
         paint.setStrokeWidth(dpf2);
         canvas.translate(AndroidUtilities.dpf2(4.8f), height);
-        canvas.drawPath(this.f33419r, paint);
+        canvas.drawPath(this.f33422r, paint);
     }
 
     public final void c() {
@@ -165,27 +165,27 @@ public class ui0 extends View {
         xc xcVar = this.E;
         if (action == 0) {
             xcVar.c(rectF.contains(motionEvent.getX(), motionEvent.getY()));
-        } else if (motionEvent.getAction() == 2 && xcVar.f34687i) {
+        } else if (motionEvent.getAction() == 2 && xcVar.f34690i) {
             if (!rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                 xcVar.c(false);
             }
         } else if (motionEvent.getAction() == 3) {
             xcVar.c(false);
         } else if (motionEvent.getAction() == 1) {
-            if (xcVar.f34687i) {
+            if (xcVar.f34690i) {
                 performClick();
             }
             xcVar.c(false);
         }
-        return xcVar.f34687i;
+        return xcVar.f34690i;
     }
 
     public float e(float f7) {
         float max = Math.max(0.0f, ((f7 - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(16.6f)) - AndroidUtilities.dp(8.0f));
-        q11 q11Var = this.f33416c;
-        q11Var.f31798p = max / 2.0f;
-        this.d.f31798p = Math.max(0.0f, max - q11Var.l());
-        return this.d.l() + this.f33416c.l() + AndroidUtilities.dp(16.6f) + AndroidUtilities.dp(8.0f);
+        q11 q11Var = this.f33419c;
+        q11Var.f31800p = max / 2.0f;
+        this.d.f31800p = Math.max(0.0f, max - q11Var.l());
+        return this.d.l() + this.f33419c.l() + AndroidUtilities.dp(16.6f) + AndroidUtilities.dp(8.0f);
     }
 
     public final void f(int i10, boolean z10) {
@@ -199,12 +199,12 @@ public class ui0 extends View {
         this.I = i10;
         this.J = z10;
         this.K = null;
-        this.f33421w.setColor(i10);
+        this.f33424w.setColor(i10);
         a();
     }
 
     public final void g(String str, String str2) {
-        this.f33416c = new q11(str, 11.0f, AndroidUtilities.bold());
+        this.f33419c = new q11(str, 11.0f, AndroidUtilities.bold());
         this.d = new q11(str2, 11.0f, null);
         setContentDescription(LocaleController.getString(R.string.AccDescrProfileMusic) + " " + ((Object) str) + " — " + ((Object) str2));
     }
@@ -224,17 +224,17 @@ public class ui0 extends View {
         float e;
         float width;
         float f7;
-        if (this.f33416c != null && this.d != null) {
+        if (this.f33419c != null && this.d != null) {
             float clamp01 = Utilities.clamp01(this.S / AndroidUtilities.dp(21.0f));
             float a2 = this.E.a(0.02f);
             if (clamp01 > 0.0f) {
                 int width2 = getWidth() - (AndroidUtilities.dp(12.0f) * 2);
                 ui0 ui0Var = this.e;
                 if (ui0Var == null) {
-                    ui0Var = this.f33417f;
+                    ui0Var = this.f33420f;
                 }
                 if (ui0Var != null && ui0Var.getVisibility() == 0) {
-                    ui0 ui0Var2 = this.f33417f;
+                    ui0 ui0Var2 = this.f33420f;
                     if (ui0Var2 == null) {
                         ui0Var2 = this;
                     }
@@ -246,7 +246,7 @@ public class ui0 extends View {
                     e = ui0Var3.e(f10 / 2.0f) + AndroidUtilities.dp(16.0f);
                     float e10 = ui0Var2.e(Math.max(0.0f, (f10 - e) - AndroidUtilities.dp(6.0f))) + AndroidUtilities.dp(16.0f);
                     width = (((getWidth() - e10) - AndroidUtilities.dp(6.0f)) - e) / 2.0f;
-                    ui0 ui0Var4 = this.f33417f;
+                    ui0 ui0Var4 = this.f33420f;
                     if (ui0Var4 == null) {
                         e = e10;
                     }
@@ -266,7 +266,7 @@ public class ui0 extends View {
                 } else {
                     f7 = 1.0f;
                 }
-                Paint paint = this.f33421w;
+                Paint paint = this.f33424w;
                 paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
                 int alpha = paint.getAlpha();
                 paint.setAlpha((int) (alpha * clamp01 * f7));
@@ -289,7 +289,7 @@ public class ui0 extends View {
                     paint2.setAlpha((int) (255.0f * clamp01));
                     canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
                 }
-                Path path = this.f33422x;
+                Path path = this.f33425x;
                 path.rewind();
                 path.addRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, Path.Direction.CW);
                 canvas.save();
@@ -304,7 +304,7 @@ public class ui0 extends View {
                         float y3 = view.getY() - getTranslationY();
                         float scaleX = view.getScaleX() * view.getWidth();
                         float scaleY = view.getScaleY() * view.getHeight();
-                        Path path2 = this.f33423y;
+                        Path path2 = this.f33426y;
                         path2.rewind();
                         path2.addRoundRect(x9, y3, x9 + scaleX, y3 + scaleY, view.getScaleX() * this.O.getRoundRadiusForExpand(), view.getScaleY() * this.O.getRoundRadiusForExpand(), Path.Direction.CCW);
                         canvas.clipPath(path2);
@@ -415,7 +415,7 @@ public class ui0 extends View {
 
     public void setTrailingView(ui0 ui0Var) {
         this.e = ui0Var;
-        ui0Var.f33417f = this;
+        ui0Var.f33420f = this;
         invalidate();
         ui0Var.invalidate();
     }

@@ -93,7 +93,7 @@ public class q7 extends View {
             paint5.setStrokeCap(Paint.Cap.ROUND);
         } else {
             r6Var.w(AndroidUtilities.dp(14.0f));
-            r6Var.f32119b = 5;
+            r6Var.f32121b = 5;
             org.telegram.ui.Components.r6 r6Var2 = new org.telegram.ui.Components.r6(false, true, true);
             this.f11498y = r6Var2;
             r6Var2.M = AndroidUtilities.displaySize.x;
@@ -275,7 +275,7 @@ public class q7 extends View {
         long j10;
         String str = Math.round(100.0f * f7) + "%";
         org.telegram.ui.Components.r6 r6Var = this.f11497x;
-        if (!TextUtils.equals(r6Var.f32124i, str)) {
+        if (!TextUtils.equals(r6Var.f32126i, str)) {
             r6Var.a();
             if (this.e) {
                 j10 = 320;

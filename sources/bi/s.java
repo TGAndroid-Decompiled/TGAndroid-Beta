@@ -25,7 +25,7 @@ public final class s extends rd0 {
                     yVar.Z.setFocusable(true);
                     yVar.Z.setFocusableInTouchMode(true);
                     int D1 = yVar.e.D1(1);
-                    if (D1 >= 0 && D1 < yVar.e.f32150g3.f29509y.size()) {
+                    if (D1 >= 0 && D1 < yVar.e.f32152g3.f29511y.size()) {
                         yVar.e.C0();
                         yVar.e.y0(D1);
                     }
@@ -40,7 +40,7 @@ public final class s extends rd0 {
                     tVar2.setFocusable(true);
                     tVar2.setFocusableInTouchMode(true);
                     int D12 = r71Var.D1(3);
-                    if (D12 >= 0 && D12 < r71Var.f32150g3.f29509y.size()) {
+                    if (D12 >= 0 && D12 < r71Var.f32152g3.f29511y.size()) {
                         r71Var.C0();
                         r71Var.y0(D12);
                     }

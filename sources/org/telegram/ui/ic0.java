@@ -16,11 +16,11 @@ public final class ic0 extends ig.t0 {
     @Override
     public final void l() {
         pc0 pc0Var = this.N;
-        org.telegram.ui.ActionBar.w0 w0Var = pc0Var.f42453w;
+        org.telegram.ui.ActionBar.w0 w0Var = pc0Var.f42456w;
         if (w0Var != null) {
             w0Var.setShowSearchProgress(pc0Var.W.J);
         }
-        TextView textView = pc0Var.f42446r;
+        TextView textView = pc0Var.f42449r;
         if (textView != null) {
             textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, pc0Var.W.f14014x)));
         }

@@ -144,14 +144,14 @@ public final class i implements Continuation, s9.d, j5.e, e9.k, NativeInstance.A
                 } else {
                     f7 = 0.76f;
                 }
-                return gh.c.n(f7, y6.w0(y6.f23354d6, u6Var), y6.w0(y6.Sd, u6Var));
+                return gh.c.n(f7, y6.w0(y6.f23356d6, u6Var), y6.w0(y6.Sd, u6Var));
             case 27:
                 if (LiteMode.isEnabled(262144)) {
                     f10 = 0.85f;
                 } else {
                     f10 = 0.76f;
                 }
-                return y6.o1(f10, y6.w0(y6.f23354d6, u6Var));
+                return y6.o1(f10, y6.w0(y6.f23356d6, u6Var));
             case 28:
                 if (!LiteMode.isEnabled(256)) {
                     return y6.x0(null, y6.G8, false);
@@ -169,7 +169,7 @@ public final class i implements Continuation, s9.d, j5.e, e9.k, NativeInstance.A
                 } else {
                     f12 = 0.76f;
                 }
-                return gh.c.n(f12, y6.w0(y6.f23354d6, u6Var), y6.w0(y6.Zk, u6Var));
+                return gh.c.n(f12, y6.w0(y6.f23356d6, u6Var), y6.w0(y6.Zk, u6Var));
         }
     }
 

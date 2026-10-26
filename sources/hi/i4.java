@@ -21,7 +21,7 @@ public class i4 extends View implements p6 {
     public i4(Context context, u6 u6Var) {
         super(context);
         pw0 pw0Var = new pw0(new gh.a(14), new gh.a(15));
-        pw0Var.f31728c = 100.0f;
+        pw0Var.f31730c = 100.0f;
         this.f13034a = pw0Var;
         Paint paint = new Paint(1);
         this.f13035b = paint;

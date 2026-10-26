@@ -83,7 +83,7 @@ public final class q extends org.telegram.ui.Wallet.j2 implements NotificationCe
                 dVar.i(string, true, true);
                 dVar.setLoading(true);
                 V();
-                String str = this.f13222p0.f22235id;
+                String str = this.f13222p0.f22237id;
                 this.f13209b0.connect(str, trim, new ai.n1(16, this, str));
             }
         }
@@ -98,7 +98,7 @@ public final class q extends org.telegram.ui.Wallet.j2 implements NotificationCe
             imageView.setImageResource(R.drawable.ic_ab_back);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(y6.G6), PorterDuff.Mode.SRC_IN));
-            imageView.setBackground(y6.g0(getThemedColor(y6.f23446i6), 1, -1));
+            imageView.setBackground(y6.g0(getThemedColor(y6.f23448i6), 1, -1));
             imageView.setOnClickListener(lVar);
             gb1.b(imageView);
             if (LocaleController.isRTL) {
@@ -126,7 +126,7 @@ public final class q extends org.telegram.ui.Wallet.j2 implements NotificationCe
 
     public final r71 T(Context context, Utilities.Callback2 callback2, e1.c cVar) {
         r71 r71Var = new r71(context, this.currentAccount, 0, true, callback2, cVar, null, this.resourcesProvider);
-        r71Var.f32150g3.f29505r = false;
+        r71Var.f32152g3.f29507r = false;
         r71Var.u1();
         r71Var.setNestedScrollingEnabled(false);
         r71Var.setOverScrollMode(2);
@@ -158,7 +158,7 @@ public final class q extends org.telegram.ui.Wallet.j2 implements NotificationCe
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.agentSettingsUpdated) {
-            this.f13213f0.f32150g3.O(false);
+            this.f13213f0.f32152g3.O(false);
         }
     }
 

@@ -50,7 +50,7 @@ public final class u0 extends s4.u0 {
                 return;
             case 6:
                 zu zuVar = (zu) this.f1944c;
-                yu[] yuVarArr = zuVar.f46363f;
+                yu[] yuVarArr = zuVar.f46366f;
                 ((s4.u0) this.f1943b).a(recyclerView, i10);
                 if (i10 != 1) {
                     int i11 = (int) (-zu.i0(zuVar).getTranslationY());
@@ -80,7 +80,7 @@ public final class u0 extends s4.u0 {
                 return;
             case 8:
                 vq0 vq0Var = (vq0) this.f1944c;
-                q5[] q5VarArr = vq0Var.f44886n;
+                q5[] q5VarArr = vq0Var.f44889n;
                 ((s4.u0) this.f1943b).a(recyclerView, i10);
                 if (i10 != 1) {
                     kVar = ((r2) vq0Var).actionBar;
@@ -88,10 +88,10 @@ public final class u0 extends s4.u0 {
                     int currentActionBarHeight2 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
                     if (i14 != 0 && i14 != currentActionBarHeight2) {
                         if (i14 < currentActionBarHeight2 / 2) {
-                            ((mm0) q5VarArr[0].f22989f).w0(0, -i14, null);
+                            ((mm0) q5VarArr[0].f22991f).w0(0, -i14, null);
                             return;
                         } else {
-                            ((mm0) q5VarArr[0].f22989f).w0(0, currentActionBarHeight2 - i14, null);
+                            ((mm0) q5VarArr[0].f22991f).w0(0, currentActionBarHeight2 - i14, null);
                             return;
                         }
                     }
@@ -142,7 +142,7 @@ public final class u0 extends s4.u0 {
                 }
                 return;
             case 2:
-                r71 r71Var = ((ee) this.f1944c).f39088a;
+                r71 r71Var = ((ee) this.f1944c).f39091a;
                 if (r71Var.canScrollVertically(1)) {
                     for (int i15 = 0; i15 < r71Var.getChildCount(); i15++) {
                         if (!(r71Var.getChildAt(i15) instanceof c10)) {
@@ -155,7 +155,7 @@ public final class u0 extends s4.u0 {
             case 3:
                 un unVar = (un) this.f1944c;
                 if (recyclerView.getScrollState() == 1) {
-                    AndroidUtilities.hideKeyboard(unVar.f44292j1);
+                    AndroidUtilities.hideKeyboard(unVar.f44295j1);
                 }
                 int N0 = ((s4.c0) this.f1943b).N0();
                 if (N0 == -1) {
@@ -164,17 +164,17 @@ public final class u0 extends s4.u0 {
                     i12 = N0;
                 }
                 if (i12 > 0 && N0 > unVar.Y3.h - 5) {
-                    if (unVar.f44221d4 == 7) {
+                    if (unVar.f44224d4 == 7) {
                         if (!unVar.S6 && !unVar.O6[0]) {
                             unVar.S6 = true;
-                            unVar.f44421t6.add(Integer.valueOf(unVar.f44272h6));
+                            unVar.f44424t6.add(Integer.valueOf(unVar.f44275h6));
                             i13 = ((r2) unVar).currentAccount;
                             HashtagSearchController hashtagSearchController = HashtagSearchController.getInstance(i13);
                             String str = unVar.G3;
                             i14 = ((r2) unVar).classGuid;
-                            int i16 = unVar.f44180a4;
-                            int i17 = unVar.f44272h6;
-                            unVar.f44272h6 = i17 + 1;
+                            int i16 = unVar.f44183a4;
+                            int i17 = unVar.f44275h6;
+                            unVar.f44275h6 = i17 + 1;
                             hashtagSearchController.searchHashtag(str, i14, i16, i17);
                             return;
                         }
@@ -187,11 +187,11 @@ public final class u0 extends s4.u0 {
             case 4:
                 cy cyVar = (cy) this.f1943b;
                 wh0 wh0Var = (wh0) this.f1944c;
-                r71 r71Var2 = wh0Var.f34441c;
-                if (TextUtils.isEmpty(wh0Var.f34446w)) {
+                r71 r71Var2 = wh0Var.f34444c;
+                if (TextUtils.isEmpty(wh0Var.f34449w)) {
                     arrayList = wh0Var.e;
                 } else {
-                    arrayList = wh0Var.f34443n;
+                    arrayList = wh0Var.f34446n;
                 }
                 if (!arrayList.isEmpty()) {
                     if (r71Var2.canScrollVertically(1)) {
@@ -216,7 +216,7 @@ public final class u0 extends s4.u0 {
             case 6:
                 ((s4.u0) this.f1943b).b(recyclerView, i10, i11);
                 zu zuVar = (zu) this.f1944c;
-                yu yuVar = zuVar.f46363f[0];
+                yu yuVar = zuVar.f46366f[0];
                 if (recyclerView == yuVar.d || recyclerView == yuVar.e) {
                     float translationY2 = zu.j0(zuVar).getTranslationY();
                     float f10 = translationY2 - i11;
@@ -234,7 +234,7 @@ public final class u0 extends s4.u0 {
                 return;
             case 7:
                 jh0 jh0Var = (jh0) this.f1944c;
-                if (jh0Var.f40645b0 && !jh0Var.W) {
+                if (jh0Var.f40648b0 && !jh0Var.W) {
                     if (jh0Var.X - ((ig.a0) this.f1943b).N0() < 10) {
                         jh0Var.f0(true);
                         return;
@@ -245,7 +245,7 @@ public final class u0 extends s4.u0 {
             case 8:
                 ((s4.u0) this.f1943b).b(recyclerView, i10, i11);
                 vq0 vq0Var = (vq0) this.f1944c;
-                if (recyclerView == ((mm0) vq0Var.f44886n[0].f22989f)) {
+                if (recyclerView == ((mm0) vq0Var.f44889n[0].f22991f)) {
                     kVar = ((r2) vq0Var).actionBar;
                     float translationY3 = kVar.getTranslationY();
                     float f11 = translationY3 - i11;
@@ -267,7 +267,7 @@ public final class u0 extends s4.u0 {
                 return;
             default:
                 m2 m2Var = (m2) this.f1944c;
-                h2 h2Var = m2Var.f53143f;
+                h2 h2Var = m2Var.f53146f;
                 if (m2Var.isAttachedToWindow()) {
                     if (h2Var.canScrollVertically(1)) {
                         for (int i19 = 0; i19 < h2Var.getChildCount(); i19++) {

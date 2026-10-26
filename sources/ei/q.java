@@ -172,23 +172,23 @@ public class q extends tl0 {
         int i12;
         int i13;
         if (this.e != null) {
-            View view = e1Var.f47735a;
+            View view = e1Var.f47738a;
             if (!(view instanceof org.telegram.ui.Cells.w7)) {
                 return;
             }
             org.telegram.ui.Cells.w7 w7Var = (org.telegram.ui.Cells.w7) view;
-            w7Var.f25638d0 = true;
+            w7Var.f25640d0 = true;
             r rVar = this.f9999s;
             ArrayList arrayList = this.d;
             if (i10 >= 0 && i10 < arrayList.size()) {
                 g7 g7Var = (g7) arrayList.get(i10);
-                w7Var.f25641f0 = false;
+                w7Var.f25643f0 = false;
                 if (g7Var.K == null) {
                     TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
                     long j10 = g7Var.f8583a;
                     int i14 = (int) (j10 ^ (j10 >>> 32));
                     tL_storyItem.messageId = i14;
-                    tL_storyItem.f22264id = i14;
+                    tL_storyItem.f22266id = i14;
                     tL_storyItem.attachPath = g7Var.f8586f;
                     MessageObject messageObject = new MessageObject(this.e.f9490c, tL_storyItem);
                     g7Var.K = messageObject;
@@ -201,7 +201,7 @@ public class q extends tl0 {
                     i13 = rVar.d;
                 }
                 w7Var.k(messageObject2, i13, false);
-                w7Var.f25638d0 = true;
+                w7Var.f25640d0 = true;
                 w7Var.setReorder(false);
                 w7Var.i(false, false);
                 return;
@@ -214,7 +214,7 @@ public class q extends tl0 {
                 } else {
                     z10 = false;
                 }
-                w7Var.f25641f0 = z10;
+                w7Var.f25643f0 = z10;
                 w7Var.setReorder(true);
                 if (this == this.f9996f) {
                     i12 = rVar.e;
@@ -231,14 +231,14 @@ public class q extends tl0 {
                     return;
                 }
             }
-            w7Var.f25641f0 = false;
+            w7Var.f25643f0 = false;
             if (this == this.f9996f) {
                 i11 = rVar.e;
             } else {
                 i11 = rVar.d;
             }
             w7Var.k(null, i11, false);
-            w7Var.f25638d0 = true;
+            w7Var.f25640d0 = true;
         }
     }
 
@@ -249,9 +249,9 @@ public class q extends tl0 {
             this.h = new v7(viewGroup.getContext(), us0Var.f10017c);
         }
         org.telegram.ui.Cells.w7 w7Var = new org.telegram.ui.Cells.w7(this.f9995c, this.h, us0Var.f10016b);
-        w7Var.f25661w0 = true;
+        w7Var.f25663w0 = true;
         w7Var.setGradientView(null);
-        w7Var.f25638d0 = true;
+        w7Var.f25640d0 = true;
         return new e1(w7Var);
     }
 

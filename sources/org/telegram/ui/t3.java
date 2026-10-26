@@ -13,12 +13,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
 public final class t3 implements Utilities.Callback {
-    public final int f43663a;
-    public final Object f43664b;
+    public final int f43666a;
+    public final Object f43667b;
 
     public t3(Object obj, int i10) {
-        this.f43663a = i10;
-        this.f43664b = obj;
+        this.f43666a = i10;
+        this.f43667b = obj;
     }
 
     @Override
@@ -28,16 +28,16 @@ public final class t3 implements Utilities.Callback {
         float f11;
         float f12;
         float f13;
-        int i10 = this.f43663a;
+        int i10 = this.f43666a;
         boolean z10 = false;
-        Object obj2 = this.f43664b;
+        Object obj2 = this.f43667b;
         switch (i10) {
             case 0:
                 j4 j4Var = ((v3) obj2).K;
                 if (((Integer) obj).intValue() - AndroidUtilities.navigationBarHeight > AndroidUtilities.dp(20.0f)) {
                     z10 = true;
                 }
-                j4Var.f40440o0 = z10;
+                j4Var.f40443o0 = z10;
                 return;
             case 1:
                 AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.m0(25, (dc) obj2, (TL_stories.TL_premium_boostsStatus) obj));
@@ -50,8 +50,8 @@ public final class t3 implements Utilities.Callback {
                 return;
             case 4:
                 kr krVar = ((gr) obj2).d;
-                krVar.f41060z1 = ((Integer) obj).intValue();
-                AndroidUtilities.updateVisibleRow(krVar.f41007c, krVar.f41036q0);
+                krVar.f41063z1 = ((Integer) obj).intValue();
+                AndroidUtilities.updateVisibleRow(krVar.f41010c, krVar.f41039q0);
                 return;
             case 5:
                 js.V((js) obj2, (TL_account.TL_birthday) obj);
@@ -79,7 +79,7 @@ public final class t3 implements Utilities.Callback {
                 of0Var.getClass();
                 FileLog.d("LoginBilling purchased done " + str);
                 if ("CANCELLED".equalsIgnoreCase(str)) {
-                    of0Var.f42174b.setLoading(false);
+                    of0Var.f42177b.setLoading(false);
                     return;
                 }
                 return;
@@ -90,18 +90,18 @@ public final class t3 implements Utilities.Callback {
                 if (num.intValue() - ni0Var.d.d > AndroidUtilities.dp(20.0f)) {
                     z10 = true;
                 }
-                ni0Var.f41902a0 = z10;
+                ni0Var.f41905a0 = z10;
                 if (z10) {
-                    f7 = Math.min(ni0Var.f41904b0, (ni0Var.E.getHeight() - num.intValue()) - ni0Var.f41906c0.getMeasuredHeight());
+                    f7 = Math.min(ni0Var.f41907b0, (ni0Var.E.getHeight() - num.intValue()) - ni0Var.f41909c0.getMeasuredHeight());
                 } else {
-                    f7 = ni0Var.f41904b0;
+                    f7 = ni0Var.f41907b0;
                 }
-                ni0Var.f41906c0.animate().translationY(f7 - ni0Var.f41906c0.getTop()).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.q1.f22961w).start();
+                ni0Var.f41909c0.animate().translationY(f7 - ni0Var.f41909c0.getTop()).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.q1.f22963w).start();
                 return;
             case 12:
                 cj0 cj0Var = (cj0) obj2;
-                cj0Var.f38481j0 = (String) obj;
-                y5 y5Var = cj0Var.f38490t0;
+                cj0Var.f38484j0 = (String) obj;
+                y5 y5Var = cj0Var.f38493t0;
                 AndroidUtilities.cancelRunOnUIThread(y5Var);
                 AndroidUtilities.runOnUIThread(y5Var, 100L);
                 return;
@@ -121,27 +121,27 @@ public final class t3 implements Utilities.Callback {
                 if (!hashSet.remove(num2)) {
                     hashSet.add(num2);
                 }
-                xj0.o0(xj0Var.f45781b[0]);
+                xj0.o0(xj0Var.f45784b[0]);
                 xj0Var.p0(true);
                 return;
             case 15:
                 lp0 lp0Var = (lp0) obj2;
                 View view = (View) obj;
-                rp0 rp0Var = lp0Var.f41330p0;
+                rp0 rp0Var = lp0Var.f41333p0;
                 if (view instanceof op0) {
-                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
                     ((op0) view).updateColors();
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.v8) {
-                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
                     ((org.telegram.ui.Cells.v8) view).updateColors();
                     return;
                 } else if (view instanceof kp0) {
-                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
                     ((kp0) view).updateColors();
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.q4) {
-                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
                     return;
                 } else if (view instanceof zo0) {
                     ((zo0) view).d.invalidate();
@@ -160,24 +160,24 @@ public final class t3 implements Utilities.Callback {
                 return;
             case 17:
                 Boolean bool4 = (Boolean) obj;
-                ((jp0) obj2).f40713c.e();
+                ((jp0) obj2).f40716c.e();
                 return;
             case 18:
                 ((fi.h1) obj2).E(((Integer) obj).intValue());
                 return;
             case 19:
                 fw0 fw0Var = (fw0) obj2;
-                fw0Var.f39486r = ((Integer) obj).intValue();
+                fw0Var.f39489r = ((Integer) obj).intValue();
                 View E1 = fw0Var.d.E1(4);
                 if (E1 instanceof org.telegram.ui.Cells.i9) {
                     org.telegram.ui.Cells.i9 i9Var = (org.telegram.ui.Cells.i9) E1;
-                    if (i9Var.getFixedSize() <= 0 && fw0Var.f39486r > 0) {
+                    if (i9Var.getFixedSize() <= 0 && fw0Var.f39489r > 0) {
                         i9Var.setText(fw0Var.X());
                         fw0Var.W(true);
                         return;
                     }
                 }
-                fw0Var.d.f32150g3.O(true);
+                fw0Var.d.f32152g3.O(true);
                 fw0Var.W(true);
                 return;
             case 20:

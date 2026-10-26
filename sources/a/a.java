@@ -17,7 +17,7 @@ import o6.l;
 public abstract class a {
     public static a6.a a(Context context, GoogleSignInOptions googleSignInOptions) {
         l.h(googleSignInOptions);
-        return new j(context, x5.a.f51401a, googleSignInOptions, new i(new Object(), Looper.getMainLooper()));
+        return new j(context, x5.a.f51404a, googleSignInOptions, new i(new Object(), Looper.getMainLooper()));
     }
 
     public static Task b(Intent intent) {

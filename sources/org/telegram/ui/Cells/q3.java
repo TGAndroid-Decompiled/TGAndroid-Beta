@@ -34,20 +34,20 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
     public boolean J;
     public int K;
     public int L;
-    public final boolean f24817a;
-    public final TextView f24818b;
-    public final TextView f24819c;
+    public final boolean f24819a;
+    public final TextView f24820b;
+    public final TextView f24821c;
     public final wi0 d;
     public final TextView e;
-    public TLRPC.StickerSetCovered f24820f;
+    public TLRPC.StickerSetCovered f24822f;
     public AnimatorSet h;
-    public boolean f24821n;
-    public boolean f24822r;
-    public boolean f24823s;
+    public boolean f24823n;
+    public boolean f24824r;
+    public boolean f24825s;
     public boolean v;
-    public final int f24824w;
-    public final Paint f24825x;
-    public int f24826y;
+    public final int f24826w;
+    public final Paint f24827x;
+    public int f24828y;
 
     public q3(int i10, Context context, org.telegram.ui.ActionBar.u6 u6Var, boolean z10, boolean z11) {
         super(context);
@@ -55,12 +55,12 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
         ViewGroup.LayoutParams h10;
         ViewGroup.LayoutParams h11;
         ViewGroup.LayoutParams h12;
-        this.f24824w = UserConfig.selectedAccount;
-        this.f24825x = new Paint(1);
-        this.f24817a = z11;
+        this.f24826w = UserConfig.selectedAccount;
+        this.f24827x = new Paint(1);
+        this.f24819a = z11;
         this.I = u6Var;
         TextView textView = new TextView(context);
-        this.f24818b = textView;
+        this.f24820b = textView;
         org.telegram.messenger.t.r(textView, org.telegram.ui.ActionBar.y6.Se, u6Var, 1, 17.0f);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -72,7 +72,7 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
         }
         addView(textView, h);
         TextView textView2 = new TextView(context);
-        this.f24819c = textView2;
+        this.f24821c = textView2;
         org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.We, u6Var);
         textView2.setTextSize(1, 13.0f);
         textView2.setEllipsize(truncateAt);
@@ -114,18 +114,18 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
         arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, g7Var, org.telegram.ui.ActionBar.y6.Nh));
         arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, g7Var, org.telegram.ui.ActionBar.y6.Oh));
         arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, g7Var, org.telegram.ui.ActionBar.y6.Qh));
-        arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, g7Var, org.telegram.ui.ActionBar.y6.f23595q6));
+        arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, g7Var, org.telegram.ui.ActionBar.y6.f23597q6));
         arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, g7Var, org.telegram.ui.ActionBar.y6.We));
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23355d7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23357d7));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.Th));
     }
 
     public final void b(boolean z10, boolean z11) {
-        if (this.f24817a) {
+        if (this.f24819a) {
             this.d.a(z10, z11);
         }
     }
@@ -144,7 +144,7 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
             this.h = null;
         }
         float f15 = 0.0f;
-        if (this.f24820f != stickerSetCovered) {
+        if (this.f24822f != stickerSetCovered) {
             if (z10) {
                 f14 = 1.0f;
             } else {
@@ -153,16 +153,16 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
             this.H = f14;
             invalidate();
         }
-        this.f24820f = stickerSetCovered;
-        this.f24826y = i10;
+        this.f24822f = stickerSetCovered;
+        this.f24828y = i10;
         this.E = i11;
-        TextView textView = this.f24818b;
+        TextView textView = this.f24820b;
         if (i11 != 0) {
             if (i11 != 0) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f24820f.set.title);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f24822f.set.title);
                 try {
-                    p10 p10Var = new p10(org.telegram.ui.ActionBar.y6.f23595q6, this.I);
-                    int i12 = this.f24826y;
+                    p10 p10Var = new p10(org.telegram.ui.ActionBar.y6.f23597q6, this.I);
+                    int i12 = this.f24828y;
                     spannableStringBuilder.setSpan(p10Var, i12, this.E + i12, 33);
                 } catch (Exception unused) {
                 }
@@ -173,24 +173,24 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
         }
         TLRPC.StickerSet stickerSet = stickerSetCovered.set;
         boolean z14 = stickerSet.emojis;
-        TextView textView2 = this.f24819c;
+        TextView textView2 = this.f24821c;
         if (z14) {
             textView2.setText(LocaleController.formatPluralString("EmojiCount", stickerSet.count, new Object[0]));
         } else {
             textView2.setText(LocaleController.formatPluralString("Stickers", stickerSet.count, new Object[0]));
         }
         this.v = z10;
-        if (this.f24817a) {
-            boolean z15 = this.f24823s;
+        if (this.f24819a) {
+            boolean z15 = this.f24825s;
             wi0 wi0Var = this.d;
             if (z15) {
                 wi0Var.setVisibility(0);
-                if (!z12 && !MediaDataController.getInstance(this.f24824w).isStickerPackInstalled(stickerSetCovered.set.f22054id)) {
+                if (!z12 && !MediaDataController.getInstance(this.f24826w).isStickerPackInstalled(stickerSetCovered.set.f22054id)) {
                     z13 = false;
                 } else {
                     z13 = true;
                 }
-                this.f24822r = z13;
+                this.f24824r = z13;
                 TextView textView3 = this.e;
                 if (z11) {
                     if (z13) {
@@ -202,7 +202,7 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
                     this.h = animatorSet2;
                     animatorSet2.setDuration(250L);
                     AnimatorSet animatorSet3 = this.h;
-                    if (this.f24822r) {
+                    if (this.f24824r) {
                         f7 = 1.0f;
                     } else {
                         f7 = 0.0f;
@@ -210,7 +210,7 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
                     float[] fArr = {f7};
                     Property property = View.ALPHA;
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView3, property, fArr);
-                    if (this.f24822r) {
+                    if (this.f24824r) {
                         f10 = 1.0f;
                     } else {
                         f10 = 0.0f;
@@ -218,7 +218,7 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
                     float[] fArr2 = {f10};
                     Property property2 = View.SCALE_X;
                     ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView3, property2, fArr2);
-                    if (this.f24822r) {
+                    if (this.f24824r) {
                         f11 = 1.0f;
                     } else {
                         f11 = 0.0f;
@@ -226,19 +226,19 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
                     float[] fArr3 = {f11};
                     Property property3 = View.SCALE_Y;
                     ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textView3, property3, fArr3);
-                    if (this.f24822r) {
+                    if (this.f24824r) {
                         f12 = 0.0f;
                     } else {
                         f12 = 1.0f;
                     }
                     ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(wi0Var, property, f12);
-                    if (this.f24822r) {
+                    if (this.f24824r) {
                         f13 = 0.0f;
                     } else {
                         f13 = 1.0f;
                     }
                     ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(wi0Var, property2, f13);
-                    if (!this.f24822r) {
+                    if (!this.f24824r) {
                         f15 = 1.0f;
                     }
                     animatorSet3.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ObjectAnimator.ofFloat(wi0Var, property3, f15));
@@ -279,16 +279,16 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
         if (charSequence != null) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.F);
             try {
-                spannableStringBuilder.setSpan(new p10(org.telegram.ui.ActionBar.y6.f23595q6, u6Var), 0, this.G, 33);
+                spannableStringBuilder.setSpan(new p10(org.telegram.ui.ActionBar.y6.f23597q6, u6Var), 0, this.G, 33);
                 spannableStringBuilder.setSpan(new p10(org.telegram.ui.ActionBar.y6.We, u6Var), this.G, this.F.length(), 33);
             } catch (Exception unused) {
             }
-            this.f24819c.setText(spannableStringBuilder);
+            this.f24821c.setText(spannableStringBuilder);
         }
     }
 
     public TLRPC.StickerSetCovered getStickerSet() {
-        return this.f24820f;
+        return this.f24822f;
     }
 
     @Override
@@ -307,9 +307,9 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
                         invalidate();
                     }
                     int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Th, u6Var);
-                    Paint paint = this.f24825x;
+                    Paint paint = this.f24827x;
                     paint.setColor(w02);
-                    canvas.drawCircle(AndroidUtilities.dp(12.0f) + this.f24818b.getRight(), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f) * this.H, paint);
+                    canvas.drawCircle(AndroidUtilities.dp(12.0f) + this.f24820b.getRight(), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f) * this.H, paint);
                 }
             }
             if (!z10) {
@@ -325,11 +325,11 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
                 }
             }
             int w022 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Th, u6Var);
-            Paint paint2 = this.f24825x;
+            Paint paint2 = this.f24827x;
             paint2.setColor(w022);
-            canvas.drawCircle(AndroidUtilities.dp(12.0f) + this.f24818b.getRight(), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f) * this.H, paint2);
+            canvas.drawCircle(AndroidUtilities.dp(12.0f) + this.f24820b.getRight(), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f) * this.H, paint2);
         }
-        if (this.f24821n) {
+        if (this.f24823n) {
             canvas.drawLine(0.0f, 0.0f, getWidth(), 0.0f, org.telegram.ui.ActionBar.y6.V0("paintDivider", u6Var));
         }
     }
@@ -337,7 +337,7 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-        if (this.f24817a) {
+        if (this.f24819a) {
             int measuredWidth = this.d.getMeasuredWidth();
             TextView textView = this.e;
             int measuredWidth2 = textView.getMeasuredWidth();
@@ -347,26 +347,26 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
             } else {
                 layoutParams.rightMargin = AndroidUtilities.dp(14.0f);
             }
-            measureChildWithMargins(this.f24818b, i10, measuredWidth, i11, 0);
+            measureChildWithMargins(this.f24820b, i10, measuredWidth, i11, 0);
         }
     }
 
     public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        if (this.f24817a) {
-            this.f24823s = true;
+        if (this.f24819a) {
+            this.f24825s = true;
             this.d.setOnClickListener(onClickListener);
             this.e.setOnClickListener(onClickListener);
         }
     }
 
     public void setNeedDivider(boolean z10) {
-        this.f24821n = z10;
+        this.f24823n = z10;
     }
 
     @Override
     public final void updateColors() {
         wi0 wi0Var;
-        if (this.f24817a && (wi0Var = this.d) != null) {
+        if (this.f24819a && (wi0Var = this.d) != null) {
             int i10 = org.telegram.ui.ActionBar.y6.Nh;
             org.telegram.ui.ActionBar.u6 u6Var = this.I;
             wi0Var.setProgressColor(org.telegram.ui.ActionBar.y6.w0(i10, u6Var));
@@ -380,11 +380,11 @@ public final class q3 extends FrameLayout implements org.telegram.ui.ActionBar.p
             }
             wi0Var.invalidate();
         }
-        TextView textView = this.f24818b;
+        TextView textView = this.f24820b;
         if (textView != null) {
             textView.invalidate();
         }
-        TextView textView2 = this.f24819c;
+        TextView textView2 = this.f24821c;
         if (textView2 != null) {
             textView2.invalidate();
         }

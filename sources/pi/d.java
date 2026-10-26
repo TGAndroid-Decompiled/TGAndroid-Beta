@@ -8,18 +8,18 @@ import android.graphics.RuntimeShader;
 import android.support.v4.media.session.x;
 import org.telegram.ui.Components.vc0;
 public final class d extends lf {
-    public final RenderNode f46876a = x.o();
-    public final RuntimeShader f46877b = vc0.a();
-    public int f46878c = -1;
+    public final RenderNode f46879a = x.o();
+    public final RuntimeShader f46880b = vc0.a();
+    public int f46881c = -1;
     public int d = -1;
     public int e;
-    public RenderEffect[] f46879f;
-    public float[] f46880g;
+    public RenderEffect[] f46882f;
+    public float[] f46883g;
     public float[] h;
-    public final e f46881i;
+    public final e f46884i;
 
     public d(e eVar) {
-        this.f46881i = eVar;
+        this.f46884i = eVar;
     }
 
     @Override
@@ -29,22 +29,22 @@ public final class d extends lf {
 
     @Override
     public final void b() {
-        this.f46876a.discardDisplayList();
-        this.f46878c = -1;
+        this.f46879a.discardDisplayList();
+        this.f46881c = -1;
     }
 
     @Override
     public final void c(Canvas canvas) {
-        canvas.drawRenderNode(this.f46876a);
+        canvas.drawRenderNode(this.f46879a);
     }
 
     @Override
     public final boolean d() {
-        return this.f46876a.hasDisplayList();
+        return this.f46879a.hasDisplayList();
     }
 
     @Override
     public final void e(float f7) {
-        this.f46876a.setAlpha(f7);
+        this.f46879a.setAlpha(f7);
     }
 }

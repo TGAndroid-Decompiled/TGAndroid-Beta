@@ -59,14 +59,14 @@ public final class g0 implements zl0 {
                 org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) obj2;
                 Context context = (Context) obj;
                 org.telegram.ui.Cells.s sVar = (org.telegram.ui.Cells.s) view;
-                sa0 sa0Var = (sa0) tVar.f25420f3.get(i10);
+                sa0 sa0Var = (sa0) tVar.f25422f3.get(i10);
                 if (sa0Var.e && !UserConfig.hasPremiumOnAccounts()) {
                     r2Var.showDialog(new tg.y0(r2Var, 10, true));
                     return;
                 } else if (!ze.a(sa0Var)) {
                     s4.d0 d0Var = new s4.d0(context);
-                    d0Var.f47677a = i10;
-                    tVar.f25421g3.w0(d0Var);
+                    d0Var.f47680a = i10;
+                    tVar.f25423g3.w0(d0Var);
                     ze.b(sa0Var);
                     int i12 = org.telegram.ui.Cells.s.h;
                     sVar.b(true, true);

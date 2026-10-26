@@ -6,7 +6,7 @@ import org.telegram.ui.Components.b10;
 import q3.h;
 import s3.c;
 public final class a {
-    public static final a f47654a = new Object();
+    public static final a f47657a = new Object();
 
     public final wd a(x xVar) {
         String str = xVar.f3586s;

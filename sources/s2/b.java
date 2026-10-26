@@ -42,7 +42,7 @@ public final class b extends i2.b implements Handler.Callback {
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f47654a;
+        this.I = a.f47657a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }

@@ -5,32 +5,32 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ht0 extends s4.n0 {
-    public final at0 f29054a;
-    public final aw0 f29055b;
+    public final at0 f29056a;
+    public final aw0 f29057b;
 
     public ht0(aw0 aw0Var, at0 at0Var) {
-        this.f29055b = aw0Var;
-        this.f29054a = at0Var;
+        this.f29057b = aw0Var;
+        this.f29056a = at0Var;
     }
 
     @Override
     public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
         boolean z10;
         boolean z11;
-        at0 at0Var = this.f29054a;
+        at0 at0Var = this.f29056a;
         int i10 = 0;
-        if (at0Var.h.getAdapter() == this.f29055b.Q) {
+        if (at0Var.h.getAdapter() == this.f29057b.Q) {
             int R = RecyclerView.R(view);
             rect.left = 0;
             rect.bottom = 0;
-            bt0 bt0Var = at0Var.f33160w;
+            bt0 bt0Var = at0Var.f33163w;
             bt0Var.C1();
             if (R <= bt0Var.U) {
                 rect.top = 0;
             } else {
                 rect.top = AndroidUtilities.dp(2.0f);
             }
-            if (!at0Var.f33160w.F1(R)) {
+            if (!at0Var.f33163w.F1(R)) {
                 i10 = AndroidUtilities.dp(2.0f);
             }
             rect.right = i10;
@@ -38,14 +38,14 @@ public final class ht0 extends s4.n0 {
             org.telegram.ui.Cells.w7 w7Var = (org.telegram.ui.Cells.w7) view;
             at0Var.h.getClass();
             int R2 = RecyclerView.R(w7Var);
-            int i11 = at0Var.f33160w.J;
+            int i11 = at0Var.f33163w.J;
             boolean z12 = true;
             if (R2 < i11) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            w7Var.f25633a0 = z10;
+            w7Var.f25635a0 = z10;
             int i12 = R2 % i11;
             if (i12 == 0) {
                 z11 = true;

@@ -17,21 +17,21 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class md1 extends org.telegram.ui.Components.lm0 {
-    public int f41532c;
+    public int f41535c;
     public int d;
     public int e;
-    public int f41533f;
+    public int f41536f;
     public int h;
-    public int f41534n;
-    public final pd1 f41535r;
+    public int f41537n;
+    public final pd1 f41538r;
 
     public md1(pd1 pd1Var) {
-        this.f41535r = pd1Var;
+        this.f41538r = pd1Var;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.b() >= this.f41533f && e1Var.b() < this.h) {
+        if (e1Var.b() >= this.f41536f && e1Var.b() < this.h) {
             return true;
         }
         return false;
@@ -39,29 +39,29 @@ public final class md1 extends org.telegram.ui.Components.lm0 {
 
     public final void E() {
         this.e = -1;
-        this.f41533f = -1;
+        this.f41536f = -1;
         this.h = -1;
-        this.f41534n = -1;
-        this.f41532c = 2;
+        this.f41537n = -1;
+        this.f41535c = 2;
         this.d = 1;
-        ArrayList arrayList = this.f41535r.f42471f;
+        ArrayList arrayList = this.f41538r.f42474f;
         if (!arrayList.isEmpty()) {
-            int i10 = this.f41532c;
+            int i10 = this.f41535c;
             int i11 = i10 + 1;
             this.e = i10;
             int i12 = i10 + 2;
-            this.f41532c = i12;
-            this.f41533f = i11;
+            this.f41535c = i12;
+            this.f41536f = i11;
             int size = (arrayList.size() - 1) + i12;
             this.h = size;
-            this.f41532c = size + 1;
-            this.f41534n = size;
+            this.f41535c = size + 1;
+            this.f41537n = size;
         }
     }
 
     @Override
     public final int h() {
-        return this.f41532c;
+        return this.f41535c;
     }
 
     @Override
@@ -75,7 +75,7 @@ public final class md1 extends org.telegram.ui.Components.lm0 {
         if (i10 == this.e) {
             return 3;
         }
-        if (i10 == this.f41534n) {
+        if (i10 == this.f41537n) {
             return 5;
         }
         return 4;
@@ -89,9 +89,9 @@ public final class md1 extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
-        View view = e1Var.f47735a;
+        View view = e1Var.f47738a;
         int i11 = this.e;
-        pd1 pd1Var = this.f41535r;
+        pd1 pd1Var = this.f41538r;
         if (i10 >= i11 && i11 > 0) {
             view.setAlpha(pd1Var.E);
         } else {
@@ -99,15 +99,15 @@ public final class md1 extends org.telegram.ui.Components.lm0 {
         }
         if (j(i10) == 4) {
             org.telegram.ui.Cells.k4 k4Var = (org.telegram.ui.Cells.k4) view;
-            TLRPC.Chat chat = (TLRPC.Chat) pd1Var.f42471f.get(i10 - this.f41533f);
-            String str = (String) pd1Var.h.get(i10 - this.f41533f);
+            TLRPC.Chat chat = (TLRPC.Chat) pd1Var.f42474f.get(i10 - this.f41536f);
+            String str = (String) pd1Var.h.get(i10 - this.f41536f);
             String str2 = chat.title;
             boolean z10 = true;
             if (i10 == this.h - 1) {
                 z10 = false;
             }
             k4Var.e(chat, str2, str, z10);
-            k4Var.c(pd1Var.f42475w.contains(Long.valueOf(chat.f22027id)), false);
+            k4Var.c(pd1Var.f42478w.contains(Long.valueOf(chat.f22027id)), false);
         }
     }
 
@@ -132,11 +132,11 @@ public final class md1 extends org.telegram.ui.Components.lm0 {
                 }
             } else {
                 View f7Var = new org.telegram.ui.Cells.f7(viewGroup.getContext(), (d3) null);
-                Drawable X0 = org.telegram.ui.ActionBar.y6.X0(viewGroup.getContext(), R.drawable.greydivider, org.telegram.ui.ActionBar.y6.f23316b7);
-                int i11 = org.telegram.ui.ActionBar.y6.f23297a7;
+                Drawable X0 = org.telegram.ui.ActionBar.y6.X0(viewGroup.getContext(), R.drawable.greydivider, org.telegram.ui.ActionBar.y6.f23318b7);
+                int i11 = org.telegram.ui.ActionBar.y6.f23299a7;
                 ColorDrawable colorDrawable = new ColorDrawable(org.telegram.ui.ActionBar.y6.x0(null, i11, false));
                 org.telegram.ui.Components.ar arVar = new org.telegram.ui.Components.ar(colorDrawable, X0);
-                arVar.f26597w = true;
+                arVar.f26599w = true;
                 f7Var.setBackground(arVar);
                 org.telegram.ui.ActionBar.f7.y(f7Var, colorDrawable, i11, null, PorterDuff.Mode.SRC_IN);
                 k4Var = f7Var;
@@ -146,15 +146,15 @@ public final class md1 extends org.telegram.ui.Components.lm0 {
             Context context = viewGroup.getContext();
             ?? frameLayout = new FrameLayout(context);
             ImageView imageView = new ImageView(context);
-            int i12 = org.telegram.ui.ActionBar.y6.f23521m9;
+            int i12 = org.telegram.ui.ActionBar.y6.f23523m9;
             org.telegram.ui.ActionBar.f7.t(imageView, i12, null, PorterDuff.Mode.MULTIPLY);
             TextView textView = new TextView(context);
             org.telegram.messenger.t.r(textView, i12, null, 1, 20.0f);
             textView.setGravity(17);
             frameLayout.addView(textView, org.telegram.ui.Components.gb1.h(-1, -2.0f, 51, 52.0f, 75.0f, 52.0f, 0.0f));
             TextView textView2 = new TextView(context);
-            frameLayout.f25419a = textView2;
-            org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23412g9, null);
+            frameLayout.f25421a = textView2;
+            org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23414g9, null);
             textView2.setTextSize(1, 14.0f);
             textView2.setGravity(17);
             frameLayout.addView(textView2, org.telegram.ui.Components.gb1.h(-1, -2.0f, 51, 36.0f, 110.0f, 36.0f, 0.0f));
@@ -168,8 +168,8 @@ public final class md1 extends org.telegram.ui.Components.lm0 {
             frameLayout.addView(t1Var, org.telegram.ui.Components.gb1.h(-2, -2.0f, 49, 0.0f, 12.0f, 0.0f, 6.0f));
             textView.setText(LocaleController.getString(R.string.TooManyCommunities));
             imageView.setImageResource(R.drawable.groups_limit1);
-            pd1 pd1Var = this.f41535r;
-            pd1Var.f42476x = frameLayout;
+            pd1 pd1Var = this.f41538r;
+            pd1Var.f42479x = frameLayout;
             int i13 = pd1Var.G;
             if (i13 == 0) {
                 string = LocaleController.getString(R.string.TooManyCommunitiesHintJoin);
@@ -178,11 +178,11 @@ public final class md1 extends org.telegram.ui.Components.lm0 {
             } else {
                 string = LocaleController.getString(R.string.TooManyCommunitiesHintCreate);
             }
-            pd1Var.f42476x.setMessageText(string);
+            pd1Var.f42479x.setMessageText(string);
             s4.q0 q0Var = new s4.q0(-1, -2);
             ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin = AndroidUtilities.dp(16.0f);
             ((ViewGroup.MarginLayoutParams) q0Var).topMargin = AndroidUtilities.dp(23.0f);
-            pd1Var.f42476x.setLayoutParams(q0Var);
+            pd1Var.f42479x.setLayoutParams(q0Var);
             q4Var = frameLayout;
         }
         return new s4.e1(q4Var);

@@ -163,7 +163,7 @@ public final class s implements Utilities.Callback {
                 int i22 = this.f9131b;
                 if (!z16 && wallettransaction.nft == null) {
                     if (z10) {
-                        i16 = org.telegram.ui.ActionBar.y6.f23765z6;
+                        i16 = org.telegram.ui.ActionBar.y6.f23767z6;
                     } else {
                         i16 = org.telegram.ui.ActionBar.y6.Oh;
                     }
@@ -212,9 +212,9 @@ public final class s implements Utilities.Callback {
                         }
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(a2);
                         if (wallettransaction.failed) {
-                            i18 = org.telegram.ui.ActionBar.y6.f23579p7;
+                            i18 = org.telegram.ui.ActionBar.y6.f23581p7;
                         } else {
-                            i18 = org.telegram.ui.ActionBar.y6.f23538n6;
+                            i18 = org.telegram.ui.ActionBar.y6.f23540n6;
                         }
                         c11 = 0;
                         spannableStringBuilder2.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.y6.w0(i18, u6Var)), 0, spannableStringBuilder2.length(), 33);
@@ -251,7 +251,7 @@ public final class s implements Utilities.Callback {
                 if (walletTransactionPeer instanceof TL_wallet.walletTransactionPeerUser) {
                     TL_wallet.walletTransactionPeerUser wallettransactionpeeruser = (TL_wallet.walletTransactionPeerUser) walletTransactionPeer;
                     TLRPC.User user = MessagesController.getInstance(i22).getUser(Long.valueOf(wallettransactionpeeruser.user_id));
-                    if (user != null && !UserObject.isService(user.f22174id)) {
+                    if (user != null && !UserObject.isService(user.f22176id)) {
                         if (z12) {
                             i15 = R.string.WalletSender;
                         } else {
@@ -665,7 +665,7 @@ public final class s implements Utilities.Callback {
                         textViewArr[0].setTextSize(1, 14.0f);
                         TextView textView3 = textViewArr[0];
                         if (z10) {
-                            i14 = org.telegram.ui.ActionBar.y6.f23765z6;
+                            i14 = org.telegram.ui.ActionBar.y6.f23767z6;
                         } else {
                             i14 = org.telegram.ui.ActionBar.y6.G6;
                         }

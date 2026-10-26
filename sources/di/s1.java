@@ -30,7 +30,7 @@ public final class s1 extends View {
                 int height = getHeight();
                 gq gqVar2 = this.f9142b;
                 gqVar2.setBounds(0, 0, width, height);
-                gqVar2.b(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23517m5, false));
+                gqVar2.b(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23519m5, false));
                 gqVar2.setAlpha(255);
                 gqVar2.draw(canvas);
                 invalidate();
@@ -41,6 +41,6 @@ public final class s1 extends View {
 
     public s1(Activity activity) {
         super(activity);
-        this.f9142b = new gq(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23517m5, false));
+        this.f9142b = new gq(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23519m5, false));
     }
 }

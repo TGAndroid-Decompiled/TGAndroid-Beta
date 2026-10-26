@@ -40,29 +40,29 @@ public final class l51 extends View {
     public float T;
     public final g50 U;
     public final c61 V;
-    public boolean f41138a;
-    public boolean f41139b;
-    public int f41140c;
+    public boolean f41141a;
+    public boolean f41142b;
+    public int f41143c;
     public TLRPC.Document d;
     public org.telegram.ui.Components.c6 e;
-    public final ImageReceiver.BackgroundThreadDrawHolder[] f41141f;
+    public final ImageReceiver.BackgroundThreadDrawHolder[] f41144f;
     public ImageReceiver h;
-    public final ImageReceiver f41142n;
-    public ImageReceiver f41143r;
-    public boolean f41144s;
+    public final ImageReceiver f41145n;
+    public ImageReceiver f41146r;
+    public boolean f41147s;
     public TL_stars.TL_starGiftUnique v;
-    public Integer f41145w;
-    public bh.x0 f41146x;
-    public boolean f41147y;
+    public Integer f41148w;
+    public bh.x0 f41149x;
+    public boolean f41150y;
 
     public l51(c61 c61Var, Context context) {
         super(context);
         this.V = c61Var;
-        this.f41138a = false;
-        this.f41139b = false;
-        this.f41141f = new ImageReceiver.BackgroundThreadDrawHolder[2];
+        this.f41141a = false;
+        this.f41142b = false;
+        this.f41144f = new ImageReceiver.BackgroundThreadDrawHolder[2];
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f41142n = imageReceiver;
+        this.f41145n = imageReceiver;
         this.T = 1.0f;
         this.U = new g50(this, 1);
         imageReceiver.ignoreNotifications = true;
@@ -95,9 +95,9 @@ public final class l51 extends View {
             return;
         }
         k51Var.h = false;
-        k51Var.f48831n = -1;
-        if (k51Var.f48827a == 2 && (paint = k51Var.f48835x) != null) {
-            paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23297a7, false));
+        k51Var.f48834n = -1;
+        if (k51Var.f48830a == 2 && (paint = k51Var.f48838x) != null) {
+            paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23299a7, false));
         }
     }
 
@@ -105,7 +105,7 @@ public final class l51 extends View {
         String str;
         this.d = document;
         a(e51Var);
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.y6.f23518m6, 0.2f);
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.y6.f23520m6, 0.2f);
         if (this.V.W == 6) {
             ImageReceiver imageReceiver = this.h;
             ImageLocation forDocument = ImageLocation.getForDocument(document);
@@ -212,7 +212,7 @@ public final class l51 extends View {
             imageReceiver.setParentView((View) getParent());
             this.h.onAttachedToWindow();
         }
-        this.f41142n.onAttachedToWindow();
+        this.f41145n.onAttachedToWindow();
     }
 
     @Override
@@ -225,7 +225,7 @@ public final class l51 extends View {
         Drawable drawable = this.E;
         if (drawable instanceof org.telegram.ui.Components.t5) {
             ((org.telegram.ui.Components.t5) drawable).p(this.U);
-            di.f3 f3Var = ((org.telegram.ui.Components.t5) this.E).f32849k;
+            di.f3 f3Var = ((org.telegram.ui.Components.t5) this.E).f32852k;
             if (f3Var != null) {
                 f3Var.setEmojiPaused(false);
             }
@@ -235,7 +235,7 @@ public final class l51 extends View {
             imageReceiver.onDetachedFromWindow();
             this.h.setEmojiPaused(false);
         }
-        this.f41142n.onDetachedFromWindow();
+        this.f41145n.onDetachedFromWindow();
     }
 
     @Override
@@ -243,10 +243,10 @@ public final class l51 extends View {
         String str;
         org.telegram.ui.Components.c6 c6Var;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f41138a) {
+        if (this.f41141a) {
             str = LocaleController.getString(R.string.RemoveStatus);
         } else {
-            bh.x0 x0Var = this.f41146x;
+            bh.x0 x0Var = this.f41149x;
             if (x0Var == null || (str = x0Var.f4208f) == null) {
                 TLRPC.Document document = this.d;
                 if (document == null && (c6Var = this.e) != null && (document = c6Var.document) == null) {

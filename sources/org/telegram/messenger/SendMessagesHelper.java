@@ -156,7 +156,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             public void lambda$run$0(TLObject tLObject, TLRPC.TL_messages_initHistoryImport tL_messages_initHistoryImport, TLRPC.TL_error tL_error) {
                 if (tLObject instanceof TLRPC.TL_messages_historyImport) {
                     ImportingHistory importingHistory = ImportingHistory.this;
-                    importingHistory.importId = ((TLRPC.TL_messages_historyImport) tLObject).f22128id;
+                    importingHistory.importId = ((TLRPC.TL_messages_historyImport) tLObject).f22130id;
                     importingHistory.uploadSet.remove(importingHistory.historyPath);
                     SendMessagesHelper.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.historyImportProgressChanged, Long.valueOf(ImportingHistory.this.dialogId));
                     if (ImportingHistory.this.uploadSet.isEmpty()) {
@@ -1801,10 +1801,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 j10 = 0;
                 arrayList = arrayList5;
                 i10 = 2;
-                updateMediaPaths(messageObject, null, tL_updateShortSentMessage.f22173id, null, false, hashMap);
+                updateMediaPaths(messageObject, null, tL_updateShortSentMessage.f22175id, null, false, hashMap);
                 sendMessagesHelper = this;
                 int mediaExistanceFlags = messageObject.getMediaExistanceFlags();
-                int i19 = tL_updateShortSentMessage.f22173id;
+                int i19 = tL_updateShortSentMessage.f22175id;
                 message2.f22048id = i19;
                 message2.local_id = i19;
                 message2.date = tL_updateShortSentMessage.date;
@@ -2606,7 +2606,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 if (update instanceof TL_update.TL_updateMessageID) {
                     TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) update;
                     updates2 = updates3;
-                    hVar.k(Integer.valueOf(tL_updateMessageID.f22283id), tL_updateMessageID.random_id);
+                    hVar.k(Integer.valueOf(tL_updateMessageID.f22285id), tL_updateMessageID.random_id);
                     arrayList8.remove(i16);
                 } else {
                     updates2 = updates3;
@@ -3391,7 +3391,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
         }
         if (iVar != null) {
-            iVar.f48686a.f();
+            iVar.f48689a.f();
         }
         handleError(i12, accountInstance);
     }
@@ -3625,7 +3625,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         ik ikVar = new ik(messageObject, this, keyboardButtonProto, unVar, twoStepVerificationActivity, z10);
         twoStepVerificationActivity.Z = 0;
-        twoStepVerificationActivity.f36302b0 = ikVar;
+        twoStepVerificationActivity.f36305b0 = ikVar;
         unVar.presentFragment(twoStepVerificationActivity);
     }
 
@@ -3730,10 +3730,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     if (tL_messages_botCallbackAnswer.alert) {
                         if (unVar.getParentActivity() != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar.getParentActivity());
-                            alertDialog$Builder.f22366a.R = str2;
+                            alertDialog$Builder.f22368a.R = str2;
                             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
                             String str4 = tL_messages_botCallbackAnswer.message;
-                            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+                            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
                             e2Var.T = str4;
                             unVar.showDialog(e2Var);
                             return;
@@ -3747,36 +3747,36 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                         unVar.Y0.h(11, unVar.Z2);
                         unVar.Y0.g(unVar.Z2);
                         TextView textView = new TextView(unVar.getParentActivity());
-                        unVar.f44193b3 = textView;
+                        unVar.f44196b3 = textView;
                         textView.setTextSize(1, 14.0f);
-                        org.telegram.ui.ActionBar.f7.V(unVar.f44193b3, org.telegram.ui.ActionBar.y6.f23398fe, unVar.getResourceProvider());
-                        unVar.f44193b3.setTypeface(AndroidUtilities.bold());
-                        unVar.f44193b3.setSingleLine(true);
-                        TextView textView2 = unVar.f44193b3;
+                        org.telegram.ui.ActionBar.f7.V(unVar.f44196b3, org.telegram.ui.ActionBar.y6.f23400fe, unVar.getResourceProvider());
+                        unVar.f44196b3.setTypeface(AndroidUtilities.bold());
+                        unVar.f44196b3.setSingleLine(true);
+                        TextView textView2 = unVar.f44196b3;
                         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                         textView2.setEllipsize(truncateAt);
-                        unVar.f44193b3.setMaxLines(1);
-                        unVar.Z2.addView(unVar.f44193b3, gb1.h(-2, -2.0f, 51, 8.0f, 5.0f, 8.0f, 0.0f));
+                        unVar.f44196b3.setMaxLines(1);
+                        unVar.Z2.addView(unVar.f44196b3, gb1.h(-2, -2.0f, 51, 8.0f, 5.0f, 8.0f, 0.0f));
                         TextView textView3 = new TextView(unVar.getParentActivity());
-                        unVar.f44207c3 = textView3;
+                        unVar.f44210c3 = textView3;
                         textView3.setTextSize(1, 14.0f);
-                        org.telegram.ui.ActionBar.f7.V(unVar.f44207c3, org.telegram.ui.ActionBar.y6.f23416ge, unVar.getResourceProvider());
-                        unVar.f44207c3.setSingleLine(true);
-                        unVar.f44207c3.setEllipsize(truncateAt);
-                        unVar.f44207c3.setMaxLines(1);
-                        unVar.Z2.addView(unVar.f44207c3, gb1.h(-2, -2.0f, 51, 8.0f, 23.0f, 8.0f, 0.0f));
+                        org.telegram.ui.ActionBar.f7.V(unVar.f44210c3, org.telegram.ui.ActionBar.y6.f23418ge, unVar.getResourceProvider());
+                        unVar.f44210c3.setSingleLine(true);
+                        unVar.f44210c3.setEllipsize(truncateAt);
+                        unVar.f44210c3.setMaxLines(1);
+                        unVar.Z2.addView(unVar.f44210c3, gb1.h(-2, -2.0f, 51, 8.0f, 23.0f, 8.0f, 0.0f));
                     }
                     FrameLayout frameLayout2 = unVar.Z2;
                     if (frameLayout2 != null && (chVar = unVar.Y0) != null) {
                         chVar.i(frameLayout2, true, true);
-                        unVar.f44193b3.setText(str2);
-                        unVar.f44207c3.setText(Emoji.replaceEmoji(str3.replace('\n', ' '), unVar.f44207c3.getPaint().getFontMetricsInt(), false));
-                        org.telegram.ui.pk pkVar = unVar.f44179a3;
+                        unVar.f44196b3.setText(str2);
+                        unVar.f44210c3.setText(Emoji.replaceEmoji(str3.replace('\n', ' '), unVar.f44210c3.getPaint().getFontMetricsInt(), false));
+                        org.telegram.ui.pk pkVar = unVar.f44182a3;
                         if (pkVar != null) {
                             AndroidUtilities.cancelRunOnUIThread(pkVar);
                         }
                         org.telegram.ui.pk pkVar2 = new org.telegram.ui.pk(unVar, 1);
-                        unVar.f44179a3 = pkVar2;
+                        unVar.f44182a3 = pkVar2;
                         AndroidUtilities.runOnUIThread(pkVar2, 3000L);
                     }
                 } else if (tL_messages_botCallbackAnswer.url != null && unVar.getParentActivity() != null) {
@@ -3813,11 +3813,11 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             if ("PASSWORD_HASH_INVALID".equals(tL_error.text)) {
                 if (inputCheckPasswordSRP == null) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(unVar.getParentActivity());
-                    alertDialog$Builder2.f22366a.R = LocaleController.getString(R.string.BotOwnershipTransfer);
-                    alertDialog$Builder2.f22366a.T = AndroidUtilities.replaceTags(LocaleController.formatString("BotOwnershipTransferReadyAlertText", R.string.BotOwnershipTransferReadyAlertText, new Object[0]));
+                    alertDialog$Builder2.f22368a.R = LocaleController.getString(R.string.BotOwnershipTransfer);
+                    alertDialog$Builder2.f22368a.T = AndroidUtilities.replaceTags(LocaleController.formatString("BotOwnershipTransferReadyAlertText", R.string.BotOwnershipTransferReadyAlertText, new Object[0]));
                     alertDialog$Builder2.k(LocaleController.getString(R.string.BotOwnershipTransferChangeOwner), new nk(this, z11, messageObject, keyboardButtonProto, unVar));
                     alertDialog$Builder2.h(LocaleController.getString(R.string.Cancel), null);
-                    unVar.showDialog(alertDialog$Builder2.f22366a);
+                    unVar.showDialog(alertDialog$Builder2.f22368a);
                 }
             } else if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                 if ("SRP_ID_INVALID".equals(tL_error.text)) {
@@ -3838,13 +3838,13 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     twoStepVerificationActivity.p0();
                 }
                 AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(unVar.getParentActivity());
-                alertDialog$Builder3.f22366a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
+                alertDialog$Builder3.f22368a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
                 LinearLayout linearLayout = new LinearLayout(unVar.getParentActivity());
                 linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                 linearLayout.setOrientation(1);
                 alertDialog$Builder3.o(linearLayout);
                 TextView textView4 = new TextView(unVar.getParentActivity());
-                int i17 = org.telegram.ui.ActionBar.y6.f23462j5;
+                int i17 = org.telegram.ui.ActionBar.y6.f23464j5;
                 org.telegram.ui.ActionBar.f7.V(textView4, i17, null);
                 textView4.setTextSize(1, 16.0f);
                 if (LocaleController.isRTL) {
@@ -3945,7 +3945,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     linearLayout.addView(textView7, gb1.o(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                     alertDialog$Builder3.h(LocaleController.getString(R.string.OK), null);
                 }
-                unVar.showDialog(alertDialog$Builder3.f22366a);
+                unVar.showDialog(alertDialog$Builder3.f22368a);
             }
         }
     }
@@ -4337,7 +4337,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     public void lambda$toggleTodo$37(MessageObject messageObject, TLRPC.TodoItem todoItem, boolean z10, long j10, int i10, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
-            getMessagesStorage().toggleTodo(messageObject.getDialogId(), messageObject.getId(), todoItem.f22172id, z10, j10);
+            getMessagesStorage().toggleTodo(messageObject.getDialogId(), messageObject.getId(), todoItem.f22174id, z10, j10);
             getMessagesController().lambda$processUpdates$379((TLRPC.Updates) tLObject, false);
         }
         AndroidUtilities.runOnUIThread(new b5(this, i10, z10, runnable, 4));
@@ -4462,7 +4462,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         boolean z11;
         boolean z12;
         boolean z13;
-        sh.f fVar = hVar.f48647a;
+        sh.f fVar = hVar.f48650a;
         boolean z14 = true;
         if (fVar != null) {
             final ArrayList arrayList = new ArrayList();
@@ -4474,8 +4474,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             ArrayList arrayList7 = new ArrayList();
             ArrayList arrayList8 = new ArrayList();
             final int[] iArr = new int[1];
-            SparseArray sparseArray = fVar.f48629a;
-            SparseArray sparseArray2 = fVar.f48629a;
+            SparseArray sparseArray = fVar.f48632a;
+            SparseArray sparseArray2 = fVar.f48632a;
             int size = sparseArray.size();
             int i11 = 0;
             while (i11 < size) {
@@ -4483,21 +4483,21 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 int keyAt = sparseArray2.keyAt(i11);
                 boolean z15 = z14;
                 if (eVar instanceof th.g) {
-                    arrayList7.add(((th.g) eVar).f49161b);
+                    arrayList7.add(((th.g) eVar).f49164b);
                     arrayList8.add(Integer.valueOf(keyAt));
                 } else if (eVar instanceof th.d) {
-                    SendingMediaInfo sendingMediaInfo = ((th.d) eVar).f49153c;
+                    SendingMediaInfo sendingMediaInfo = ((th.d) eVar).f49156c;
                     sendingMediaInfo.pollIndex = keyAt;
                     arrayList.add(sendingMediaInfo);
                 } else if (eVar instanceof th.c) {
                     th.c cVar = (th.c) eVar;
-                    String str = cVar.f49148b;
+                    String str = cVar.f49151b;
                     if (!TextUtils.isEmpty(str)) {
                         arrayList2.add(str);
                         arrayList3.add(str);
                         arrayList4.add(Integer.valueOf(keyAt));
                     } else {
-                        Uri uri = cVar.f49149c;
+                        Uri uri = cVar.f49152c;
                         if (uri != null) {
                             arrayList5.add(uri);
                             arrayList6.add(Integer.valueOf(keyAt));
@@ -4556,10 +4556,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         } else {
             hVar2 = hVar;
         }
-        SendMessageParams of2 = SendMessageParams.of(hVar2.f48648b, j10, messageObject, messageObject2, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
+        SendMessageParams of2 = SendMessageParams.of(hVar2.f48651b, j10, messageObject, messageObject2, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
         of2.caption = hVar2.e;
         of2.invert_media = true;
-        of2.entities = hVar2.f48650f;
+        of2.entities = hVar2.f48653f;
         of2.sendMessageChatArguments = sendMessageChatArguments;
         of2.payStars = j11;
         of2.monoForumPeer = j12;
@@ -4851,7 +4851,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             TL_iv.inputPageBlockMap inputpageblockmap = new TL_iv.inputPageBlockMap();
             inputpageblockmap.geo = toInputGeoPoint(pageblockmap.geo);
             inputpageblockmap.zoom = pageblockmap.zoom;
-            inputpageblockmap.f22248w = pageblockmap.f22250w;
+            inputpageblockmap.f22250w = pageblockmap.f22252w;
             inputpageblockmap.h = pageblockmap.h;
             inputpageblockmap.caption = pageblockmap.caption;
             return inputpageblockmap;
@@ -5041,17 +5041,17 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
             if (eVar instanceof th.d) {
                 ArrayList arrayList = new ArrayList(1);
-                arrayList.add(((th.d) eVar).f49153c);
+                arrayList.add(((th.d) eVar).f49156c);
                 prepareSendingMedia(getAccountInstance(), arrayList, dialogId, null, null, null, null, false, false, messageObject, tL_inputPollAnswer, false, 0, 0, 0, false, null, null, 0L, false, 0L, 0L, null);
             } else if (eVar instanceof th.h) {
                 th.h hVar = (th.h) eVar;
-                editMessage(messageObject, tL_inputPollAnswer, null, null, (TLRPC.TL_document) hVar.f49163b, null, null, null, false, false, hVar.f49164c);
+                editMessage(messageObject, tL_inputPollAnswer, null, null, (TLRPC.TL_document) hVar.f49166b, null, null, null, false, false, hVar.f49167c);
             } else if (eVar instanceof th.f) {
-                tL_inputPollAnswer.input_media = bg.d.h(((th.f) eVar).f49160b);
+                tL_inputPollAnswer.input_media = bg.d.h(((th.f) eVar).f49163b);
                 editMessage(messageObject, tL_inputPollAnswer, null, null, null, null, null, null, false, false, null);
             } else if (eVar instanceof th.e) {
                 TLRPC.TL_inputMediaWebPage tL_inputMediaWebPage = new TLRPC.TL_inputMediaWebPage();
-                tL_inputMediaWebPage.url = ((th.e) eVar).f49154b;
+                tL_inputMediaWebPage.url = ((th.e) eVar).f49157b;
                 tL_inputMediaWebPage.optional = true;
                 tL_inputPollAnswer.input_media = tL_inputMediaWebPage;
                 editMessage(messageObject, tL_inputPollAnswer, null, null, null, null, null, null, false, false, null);
@@ -5142,7 +5142,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                         TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) update2;
                         arrayList = arrayList2;
                         if (tL_updateMessageID.random_id == j10) {
-                            i11 = tL_updateMessageID.f22283id;
+                            i11 = tL_updateMessageID.f22285id;
                             break;
                         }
                     } else {
@@ -5230,7 +5230,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     public TLRPC.InputReplyTo createReplyInput(TL_stories.StoryItem storyItem) {
         TLRPC.TL_inputReplyToStory tL_inputReplyToStory = new TLRPC.TL_inputReplyToStory();
-        tL_inputReplyToStory.story_id = storyItem.f22264id;
+        tL_inputReplyToStory.story_id = storyItem.f22266id;
         tL_inputReplyToStory.peer = getMessagesController().getInputPeer(storyItem.dialogId);
         return tL_inputReplyToStory;
     }
@@ -5241,7 +5241,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         tL_messageService.f22048id = newMessageId;
         tL_messageService.local_id = newMessageId;
         tL_messageService.random_id = j11;
-        tL_messageService.dialog_id = user.f22174id;
+        tL_messageService.dialog_id = user.f22176id;
         tL_messageService.out = true;
         tL_messageService.unread = true;
         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
@@ -5250,7 +5250,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         tL_messageService.flags |= 256;
         TLRPC.TL_peerUser tL_peerUser2 = new TLRPC.TL_peerUser();
         tL_messageService.peer_id = tL_peerUser2;
-        tL_peerUser2.user_id = user.f22174id;
+        tL_peerUser2.user_id = user.f22176id;
         tL_messageService.date = getConnectionsManager().getCurrentTime();
         tL_messageService.send_state = 1;
         TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = new TLRPC.TL_messageActionGramTransfer();
@@ -5267,7 +5267,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         ArrayList<TLRPC.Message> arrayList = new ArrayList<>();
         arrayList.add(tL_messageService);
         getMessagesStorage().putMessages(arrayList, false, true, false, 0, 0, 0L);
-        getMessagesController().updateInterfaceWithMessages(user.f22174id, t.l(messageObject), 0);
+        getMessagesController().updateInterfaceWithMessages(user.f22176id, t.l(messageObject), 0);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
         putToSendingMessages(tL_messageService, false);
         return messageObject;
@@ -5309,13 +5309,13 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
         if (messageObject.isEphemeral()) {
             TL_ephemeral.TL_editMessage tL_editMessage2 = new TL_ephemeral.TL_editMessage();
-            tL_editMessage2.f22110id = MessageObject.ephemeralMessageIdUnpack(messageObject.getId());
+            tL_editMessage2.f22111id = MessageObject.ephemeralMessageIdUnpack(messageObject.getId());
             tL_editMessage2.receiver_id = new TLRPC.TL_inputUserEmpty();
             tL_editMessage2.welcome = true;
             tL_editMessage = tL_editMessage2;
         } else {
             TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-            tL_messages_editMessage.f22110id = messageObject.getId();
+            tL_messages_editMessage.f22111id = messageObject.getId();
             tL_editMessage = tL_messages_editMessage;
         }
         tL_editMessage.peer = getMessagesController().getInputPeer(messageObject.getDialogId());
@@ -5379,7 +5379,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public Boolean getSendingTodoValue(MessageObject messageObject, TLRPC.TodoItem todoItem) {
-        return this.waitingForTodoUpdate.get(Integer.valueOf(Objects.hash(Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()), Integer.valueOf(todoItem.f22172id))));
+        return this.waitingForTodoUpdate.get(Integer.valueOf(Objects.hash(Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()), Integer.valueOf(todoItem.f22174id))));
     }
 
     public long getVoteSendTime(long j10) {
@@ -5650,7 +5650,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                         tL_userContact_old2.phone = messageMedia4.phone_number;
                         tL_userContact_old2.first_name = messageMedia4.first_name;
                         tL_userContact_old2.last_name = messageMedia4.last_name;
-                        tL_userContact_old2.f22174id = messageMedia4.user_id;
+                        tL_userContact_old2.f22176id = messageMedia4.user_id;
                         SendMessageParams of4 = SendMessageParams.of((TLRPC.User) tL_userContact_old2, j10, messageObject.replyMessageObject, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0);
                         of4.monoForumPeer = j12;
                         of4.suggestionParams = messageSuggestionParams;
@@ -5998,19 +5998,19 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     public void sendScreenshotMessage(TLRPC.User user, int i10, TLRPC.Message message) {
         TLRPC.Message message2 = message;
-        if (user != null && i10 != 0 && user.f22174id != getUserConfig().getClientUserId()) {
+        if (user != null && i10 != 0 && user.f22176id != getUserConfig().getClientUserId()) {
             TLRPC.TL_messages_sendScreenshotNotification tL_messages_sendScreenshotNotification = new TLRPC.TL_messages_sendScreenshotNotification();
             TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
             tL_messages_sendScreenshotNotification.peer = tL_inputPeerUser;
             tL_inputPeerUser.access_hash = user.access_hash;
-            tL_inputPeerUser.user_id = user.f22174id;
+            tL_inputPeerUser.user_id = user.f22176id;
             if (message2 != null) {
                 tL_messages_sendScreenshotNotification.reply_to = createReplyInput(i10);
                 tL_messages_sendScreenshotNotification.random_id = message2.random_id;
             } else {
                 message2 = new TLRPC.TL_messageService();
                 message2.random_id = getNextRandomId();
-                message2.dialog_id = user.f22174id;
+                message2.dialog_id = user.f22176id;
                 message2.unread = true;
                 message2.out = true;
                 int newMessageId = getUserConfig().getNewMessageId();
@@ -6026,7 +6026,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 tL_messageReplyHeader.reply_to_msg_id = i10;
                 TLRPC.TL_peerUser tL_peerUser2 = new TLRPC.TL_peerUser();
                 message2.peer_id = tL_peerUser2;
-                tL_peerUser2.user_id = user.f22174id;
+                tL_peerUser2.user_id = user.f22176id;
                 message2.date = getConnectionsManager().getCurrentTime();
                 message2.action = new TLRPC.TL_messageActionScreenshotTaken();
                 getUserConfig().saveConfig(false);
@@ -6079,15 +6079,15 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         if (messageObject == null) {
             return 0;
         }
-        final int hash = Objects.hash(Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()), Integer.valueOf(todoItem.f22172id));
+        final int hash = Objects.hash(Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()), Integer.valueOf(todoItem.f22174id));
         this.waitingForTodoUpdate.put(Integer.valueOf(hash), Boolean.valueOf(z10));
         TLRPC.TL_messages_toggleTodoCompleted tL_messages_toggleTodoCompleted = new TLRPC.TL_messages_toggleTodoCompleted();
         tL_messages_toggleTodoCompleted.msg_id = messageObject.getId();
         tL_messages_toggleTodoCompleted.peer = getMessagesController().getInputPeer(messageObject.getDialogId());
         if (z10) {
-            tL_messages_toggleTodoCompleted.completed.add(Integer.valueOf(todoItem.f22172id));
+            tL_messages_toggleTodoCompleted.completed.add(Integer.valueOf(todoItem.f22174id));
         } else {
-            tL_messages_toggleTodoCompleted.incompleted.add(Integer.valueOf(todoItem.f22172id));
+            tL_messages_toggleTodoCompleted.incompleted.add(Integer.valueOf(todoItem.f22174id));
         }
         return getConnectionsManager().sendRequest(tL_messages_toggleTodoCompleted, new RequestDelegate() {
             @Override
@@ -7207,7 +7207,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         } else if (messageObject.isEphemeral()) {
             TL_ephemeral.TL_getCallbackAnswer tL_getCallbackAnswer = new TL_ephemeral.TL_getCallbackAnswer();
             tL_getCallbackAnswer.peer = getMessagesController().getInputPeer(messageObject.getDialogId());
-            tL_getCallbackAnswer.f22241id = messageObject.getEphemeralId();
+            tL_getCallbackAnswer.f22243id = messageObject.getEphemeralId();
             tL_getCallbackAnswer.data = keyboardButtonProto.getData();
             getConnectionsManager().sendRequest(tL_getCallbackAnswer, jiVar, 2);
         } else {
@@ -7575,34 +7575,34 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tL_inputReplyToMessage.flags |= 1;
             tL_inputReplyToMessage.top_msg_id = i11;
         }
-        if (knVar != null && knVar.h && (pollAnswer = knVar.f40984l) != null) {
+        if (knVar != null && knVar.h && (pollAnswer = knVar.f40987l) != null) {
             tL_inputReplyToMessage.poll_option = pollAnswer.option;
-        } else if (knVar != null && knVar.f40980g && (todoItem = knVar.f40983k) != null) {
+        } else if (knVar != null && knVar.f40983g && (todoItem = knVar.f40986k) != null) {
             tL_inputReplyToMessage.flags |= 64;
-            tL_inputReplyToMessage.todo_item_id = todoItem.f22172id;
-        } else if (knVar != null && (z10 = knVar.f40985m)) {
-            ArrayList arrayList = knVar.f40986n;
+            tL_inputReplyToMessage.todo_item_id = todoItem.f22174id;
+        } else if (knVar != null && (z10 = knVar.f40988m)) {
+            ArrayList arrayList = knVar.f40989n;
             if (arrayList != null && !arrayList.isEmpty()) {
-                tL_inputReplyToMessage.quote_rich = new ArrayList<>(knVar.f40986n);
+                tL_inputReplyToMessage.quote_rich = new ArrayList<>(knVar.f40989n);
                 tL_inputReplyToMessage.flags |= 16;
-                tL_inputReplyToMessage.quote_offset = z10 ? knVar.f40987o : knVar.f40977b;
+                tL_inputReplyToMessage.quote_offset = z10 ? knVar.f40990o : knVar.f40980b;
             }
-        } else if (knVar != null && !knVar.f40980g && !knVar.h) {
-            String str = knVar.f40981i;
+        } else if (knVar != null && !knVar.f40983g && !knVar.h) {
+            String str = knVar.f40984i;
             tL_inputReplyToMessage.quote_text = str;
             if (!TextUtils.isEmpty(str)) {
                 tL_inputReplyToMessage.flags |= 4;
-                ArrayList<TLRPC.MessageEntity> arrayList2 = knVar.f40982j;
+                ArrayList<TLRPC.MessageEntity> arrayList2 = knVar.f40985j;
                 tL_inputReplyToMessage.quote_entities = arrayList2;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
                     tL_inputReplyToMessage.quote_entities = new ArrayList<>(tL_inputReplyToMessage.quote_entities);
                     tL_inputReplyToMessage.flags |= 8;
                 }
                 tL_inputReplyToMessage.flags |= 16;
-                tL_inputReplyToMessage.quote_offset = knVar.f40977b;
+                tL_inputReplyToMessage.quote_offset = knVar.f40980b;
             }
         }
-        if (knVar != null && (messageObject = knVar.f40976a) != null) {
+        if (knVar != null && (messageObject = knVar.f40979a) != null) {
             TLRPC.InputPeer inputPeer2 = getMessagesController().getInputPeer(messageObject.getDialogId());
             if (inputPeer2 != null && !MessageObject.peersEqual(inputPeer2, inputPeer)) {
                 tL_inputReplyToMessage.flags |= 2;
@@ -7941,13 +7941,13 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
         if (messageObject.isEphemeral()) {
             TL_ephemeral.TL_editMessage tL_editMessage2 = new TL_ephemeral.TL_editMessage();
-            tL_editMessage2.f22110id = MessageObject.ephemeralMessageIdUnpack(messageObject.getId());
+            tL_editMessage2.f22111id = MessageObject.ephemeralMessageIdUnpack(messageObject.getId());
             tL_editMessage2.receiver_id = new TLRPC.TL_inputUserEmpty();
             tL_editMessage2.welcome = true;
             tL_editMessage = tL_editMessage2;
         } else {
             TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-            tL_messages_editMessage.f22110id = messageObject.getId();
+            tL_messages_editMessage.f22111id = messageObject.getId();
             tL_editMessage = tL_messages_editMessage;
         }
         tL_editMessage.peer = getMessagesController().getInputPeer(messageObject.getDialogId());

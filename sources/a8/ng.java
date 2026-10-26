@@ -172,19 +172,19 @@ public class ng implements c3.i, k9.t {
                     throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e);
                 }
             case 25:
-                w7.g9 g9Var = w7.g9.f50860c;
+                w7.g9 g9Var = w7.g9.f50863c;
                 ti.e eVar = (ti.e) this.f640c;
                 ((ff) this.d).f461j = false;
                 ff ffVar2 = (ff) this.d;
                 ffVar2.h = Boolean.FALSE;
-                eVar.f49181b = new w7.h8(ffVar2);
+                eVar.f49184b = new w7.h8(ffVar2);
                 try {
                     w7.g9.b();
                     w7.n6 n6Var = new w7.n6(eVar);
                     s4.d dVar4 = new s4.d(6);
                     g9Var.a(dVar4);
-                    HashMap hashMap3 = new HashMap((HashMap) dVar4.f47717b);
-                    HashMap hashMap4 = new HashMap((HashMap) dVar4.f47718c);
+                    HashMap hashMap3 = new HashMap((HashMap) dVar4.f47720b);
+                    HashMap hashMap4 = new HashMap((HashMap) dVar4.f47721c);
                     w7.i iVar = (w7.i) dVar4.d;
                     ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
@@ -201,7 +201,7 @@ public class ng implements c3.i, k9.t {
                     throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e10);
                 }
             default:
-                y7.fa faVar = y7.fa.f52144c;
+                y7.fa faVar = y7.fa.f52147c;
                 aa.m0 m0Var = (aa.m0) this.f640c;
                 ((ff) this.d).f461j = false;
                 ff ffVar3 = (ff) this.d;
@@ -212,8 +212,8 @@ public class ng implements c3.i, k9.t {
                     y7.n7 n7Var = new y7.n7(m0Var);
                     s4.d dVar5 = new s4.d(14);
                     faVar.a(dVar5);
-                    HashMap hashMap5 = new HashMap((HashMap) dVar5.f47717b);
-                    HashMap hashMap6 = new HashMap((HashMap) dVar5.f47718c);
+                    HashMap hashMap5 = new HashMap((HashMap) dVar5.f47720b);
+                    HashMap hashMap6 = new HashMap((HashMap) dVar5.f47721c);
                     y7.c0 c0Var = (y7.c0) dVar5.d;
                     ByteArrayOutputStream byteArrayOutputStream3 = new ByteArrayOutputStream();
                     try {
@@ -364,7 +364,7 @@ public class ng implements c3.i, k9.t {
         Iterator it = ((CopyOnWriteArrayList) this.d).iterator();
         while (it.hasNext()) {
             u2.j0 j0Var = (u2.j0) it.next();
-            e2.n0.W(j0Var.f49320a, new sg.u(12, jVar, j0Var.f49321b));
+            e2.n0.W(j0Var.f49323a, new sg.u(12, jVar, j0Var.f49324b));
         }
     }
 
@@ -525,7 +525,7 @@ public class ng implements c3.i, k9.t {
     }
 
     public void y(int i10) {
-        A(i10, 200L, ds.f27584f);
+        A(i10, 200L, ds.f27586f);
     }
 
     @Override

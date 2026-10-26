@@ -15,14 +15,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SecureDocument;
 import org.telegram.messenger.UserConfig;
 public final class gn0 extends FrameLayout implements DownloadController.FileDownloadProgressListener {
-    public final TextView f39722a;
-    public final TextView f39723b;
-    public final org.telegram.ui.Components.y9 f39724c;
+    public final TextView f39725a;
+    public final TextView f39726b;
+    public final org.telegram.ui.Components.y9 f39727c;
     public final org.telegram.ui.Components.bk0 d;
     public int e;
-    public SecureDocument f39725f;
+    public SecureDocument f39728f;
     public final int h;
-    public final in0 f39726n;
+    public final in0 f39729n;
 
     public gn0(in0 in0Var, Activity activity) {
         super(activity);
@@ -34,12 +34,12 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
         int i15;
         int i16;
         int i17;
-        this.f39726n = in0Var;
+        this.f39729n = in0Var;
         i10 = ((org.telegram.ui.ActionBar.r2) in0Var).currentAccount;
         this.h = DownloadController.getInstance(i10).generateObserverTag();
         this.d = new org.telegram.ui.Components.bk0(this);
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(activity);
-        this.f39724c = y9Var;
+        this.f39727c = y9Var;
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
@@ -47,7 +47,7 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
         }
         addView(y9Var, org.telegram.ui.Components.gb1.h(48, 48.0f, i11 | 48, 21.0f, 8.0f, 21.0f, 0.0f));
         TextView textView = new TextView(activity);
-        this.f39722a = textView;
+        this.f39725a = textView;
         org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, null);
         org.telegram.messenger.vh.r(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
@@ -78,8 +78,8 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
         }
         addView(textView, org.telegram.ui.Components.gb1.h(-2, -2.0f, i18, f7, 10.0f, i15, 0.0f));
         TextView textView2 = new TextView(activity);
-        this.f39723b = textView2;
-        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23765z6, null);
+        this.f39726b = textView2;
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23767z6, null);
         textView2.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
             i16 = 5;
@@ -107,18 +107,18 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
         int i11;
         int i12;
         int i13;
-        String attachFileName = FileLoader.getAttachFileName(this.f39725f);
-        boolean exists = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(this.f39725f).exists();
+        String attachFileName = FileLoader.getAttachFileName(this.f39728f);
+        boolean exists = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(this.f39728f).exists();
         boolean isEmpty = TextUtils.isEmpty(attachFileName);
         org.telegram.ui.Components.bk0 bk0Var = this.d;
         if (isEmpty) {
             bk0Var.d(null, false, false);
             return;
         }
-        SecureDocument secureDocument = this.f39725f;
+        SecureDocument secureDocument = this.f39728f;
         String str = secureDocument.path;
         float f7 = 0.0f;
-        in0 in0Var = this.f39726n;
+        in0 in0Var = this.f39729n;
         if (str != null) {
             if (secureDocument.inputFile != null) {
                 i13 = ((org.telegram.ui.ActionBar.r2) in0Var).currentAccount;
@@ -128,9 +128,9 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
                 return;
             }
             i12 = ((org.telegram.ui.ActionBar.r2) in0Var).currentAccount;
-            DownloadController.getInstance(i12).addLoadingFileObserver(this.f39725f.path, this);
+            DownloadController.getInstance(i12).addLoadingFileObserver(this.f39728f.path, this);
             this.e = 1;
-            Float fileProgress = ImageLoader.getInstance().getFileProgress(this.f39725f.path);
+            Float fileProgress = ImageLoader.getInstance().getFileProgress(this.f39728f.path);
             bk0Var.d(getResources().getDrawable(R.drawable.circle), true, z10);
             if (fileProgress != null) {
                 f7 = fileProgress.floatValue();
@@ -160,7 +160,7 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         boolean drawChild = super.drawChild(canvas, view, j10);
-        if (view == this.f39724c) {
+        if (view == this.f39727c) {
             this.d.a(canvas);
         }
         return drawChild;
@@ -174,7 +174,7 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f39722a.invalidate();
+        this.f39725a.invalidate();
     }
 
     @Override
@@ -194,7 +194,7 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
         } else {
             i10 = 0;
         }
-        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23476k0);
+        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23478k0);
     }
 
     @Override
@@ -205,7 +205,7 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        org.telegram.ui.Components.y9 y9Var = this.f39724c;
+        org.telegram.ui.Components.y9 y9Var = this.f39727c;
         int measuredWidth = ((y9Var.getMeasuredWidth() - AndroidUtilities.dp(24.0f)) / 2) + y9Var.getLeft();
         int measuredHeight = ((y9Var.getMeasuredHeight() - AndroidUtilities.dp(24.0f)) / 2) + y9Var.getTop();
         this.d.f(measuredWidth, measuredHeight, AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(24.0f) + measuredHeight);
@@ -236,6 +236,6 @@ public final class gn0 extends FrameLayout implements DownloadController.FileDow
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f39723b.setText(charSequence);
+        this.f39726b.setText(charSequence);
     }
 }

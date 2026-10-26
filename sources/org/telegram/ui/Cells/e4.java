@@ -24,7 +24,7 @@ public final class e4 extends org.telegram.ui.ActionBar.b6 {
         if (this.N0 == 4) {
             float fullAlpha = i4Var.d[4].getFullAlpha();
             if (i4Var.c()) {
-                float f10 = i4Var.f24226e0;
+                float f10 = i4Var.f24228e0;
                 if (f10 > 0.0f) {
                     super.setAlpha(1.0f - f10);
                     return;

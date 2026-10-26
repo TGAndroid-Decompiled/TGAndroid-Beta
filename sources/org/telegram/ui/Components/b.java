@@ -4,22 +4,22 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class b implements View.OnClickListener {
-    public final int f26710a;
-    public final e0 f26711b;
+    public final int f26712a;
+    public final e0 f26713b;
 
     public b(e0 e0Var, int i10) {
-        this.f26710a = i10;
-        this.f26711b = e0Var;
+        this.f26712a = i10;
+        this.f26713b = e0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f26710a) {
+        switch (this.f26712a) {
             case 0:
-                this.f26711b.dismiss();
+                this.f26713b.dismiss();
                 return;
             case 1:
-                e0 e0Var = this.f26711b;
+                e0 e0Var = this.f26713b;
                 org.telegram.ui.Cells.g3 g3Var = e0Var.A0;
                 AndroidUtilities.hideKeyboard(g3Var.d);
                 e0Var.I0 = g3Var.getText().toString();
@@ -28,45 +28,45 @@ public final class b implements View.OnClickListener {
                 e0Var.k0();
                 return;
             case 2:
-                e0 e0Var2 = this.f26711b;
-                if (e0Var2.f27650k0 != null) {
+                e0 e0Var2 = this.f26713b;
+                if (e0Var2.f27652k0 != null) {
                     TL_iv.RichMessage g02 = e0Var2.g0();
                     if (g02 != null) {
-                        e0Var2.f27650k0.run(g02);
+                        e0Var2.f27652k0.run(g02);
                     }
-                } else if (e0Var2.f27649j0 != null && e0Var2.h0() != null) {
-                    e0Var2.f27649j0.run(e0Var2.h0());
+                } else if (e0Var2.f27651j0 != null && e0Var2.h0() != null) {
+                    e0Var2.f27651j0.run(e0Var2.h0());
                 }
                 e0Var2.dismiss();
                 return;
             case 3:
-                this.f26711b.dismiss();
+                this.f26713b.dismiss();
                 return;
             case 4:
-                e0 e0Var3 = this.f26711b;
+                e0 e0Var3 = this.f26713b;
                 e0Var3.P0 = false;
                 e0Var3.J();
                 e0Var3.O0.O(true);
                 e0Var3.s();
                 return;
             case 5:
-                e0.Y(this.f26711b, view);
+                e0.Y(this.f26713b, view);
                 return;
             case 6:
-                e0.R(this.f26711b, view);
+                e0.R(this.f26713b, view);
                 return;
             case 7:
-                e0 e0Var4 = this.f26711b;
+                e0 e0Var4 = this.f26713b;
                 if (!e0Var4.R0) {
                     AndroidUtilities.addToClipboard(e0Var4.h0());
                     return;
                 }
                 return;
             case 8:
-                this.f26711b.dismiss();
+                this.f26713b.dismiss();
                 return;
             default:
-                e0 e0Var5 = this.f26711b;
+                e0 e0Var5 = this.f26713b;
                 e0Var5.l0(0, 0, true);
                 e0Var5.dismiss();
                 return;

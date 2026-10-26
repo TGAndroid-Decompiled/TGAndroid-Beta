@@ -5,24 +5,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 public final class g4 implements Runnable {
-    public final int f39535a;
-    public final int f39536b;
-    public final Object f39537c;
+    public final int f39538a;
+    public final int f39539b;
+    public final Object f39540c;
     public final Object d;
 
     public g4(int i10, Object obj, Object obj2, int i11) {
-        this.f39535a = i11;
-        this.f39536b = i10;
-        this.f39537c = obj;
+        this.f39538a = i11;
+        this.f39539b = i10;
+        this.f39540c = obj;
         this.d = obj2;
     }
 
     private final void a() {
         int i10;
-        org.telegram.ui.Components.u21 u21Var = (org.telegram.ui.Components.u21) this.f39537c;
+        org.telegram.ui.Components.u21 u21Var = (org.telegram.ui.Components.u21) this.f39540c;
         String str = (String) this.d;
-        int i11 = this.f39536b;
-        org.telegram.ui.Components.t21 t21Var = u21Var.f33230r.f26339n;
+        int i11 = this.f39539b;
+        org.telegram.ui.Components.t21 t21Var = u21Var.f33233r.f26341n;
         try {
             String lowerCase = str.trim().toLowerCase();
             if (lowerCase.length() == 0) {
@@ -75,23 +75,23 @@ public final class g4 implements Runnable {
     }
 
     public g4(Object obj, int i10, Object obj2, int i11) {
-        this.f39535a = i11;
-        this.f39537c = obj;
-        this.f39536b = i10;
+        this.f39538a = i11;
+        this.f39540c = obj;
+        this.f39539b = i10;
         this.d = obj2;
     }
 
     public g4(Object obj, Object obj2, int i10, int i11) {
-        this.f39535a = i11;
-        this.f39537c = obj;
+        this.f39538a = i11;
+        this.f39540c = obj;
         this.d = obj2;
-        this.f39536b = i10;
+        this.f39539b = i10;
     }
 
     public g4(h4 h4Var, int i10, int[] iArr, int[] iArr2) {
-        this.f39535a = 0;
-        this.f39537c = h4Var;
-        this.f39536b = i10;
+        this.f39538a = 0;
+        this.f39540c = h4Var;
+        this.f39539b = i10;
         this.d = iArr2;
     }
 }

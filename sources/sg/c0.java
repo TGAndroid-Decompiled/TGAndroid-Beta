@@ -16,10 +16,10 @@ import org.telegram.ui.Components.c6;
 import org.telegram.ui.Components.p61;
 import org.telegram.ui.Components.ty;
 public final class c0 implements ty {
-    public final n0 f48161a;
+    public final n0 f48164a;
 
     public c0(n0 n0Var) {
-        this.f48161a = n0Var;
+        this.f48164a = n0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class c0 implements ty {
 
     @Override
     public final boolean k() {
-        b editText = ((x2) this.f48161a.H0).getEditText();
+        b editText = ((x2) this.f48164a.H0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -72,7 +72,7 @@ public final class c0 implements ty {
         x2 x2Var;
         b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        j jVar = this.f48161a.H0;
+        j jVar = this.f48164a.H0;
         if ((jVar instanceof x2) && (editText = (x2Var = (x2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -98,10 +98,10 @@ public final class c0 implements ty {
 
     @Override
     public final void n() {
-        n0 n0Var = this.f48161a;
+        n0 n0Var = this.f48164a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(n0Var.getContext(), 0, n0Var.F1);
-        alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new org.telegram.ui.Components.voip.j1(this, 13));
         ic.a.r(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -114,7 +114,7 @@ public final class c0 implements ty {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         c6 c6Var;
-        b editText = ((x2) this.f48161a.H0).getEditText();
+        b editText = ((x2) this.f48164a.H0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {

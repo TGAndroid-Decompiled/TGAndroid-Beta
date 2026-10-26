@@ -7,12 +7,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ya1 extends org.telegram.ui.Cells.ra {
-    public final int f46014r3 = 1;
-    public final Object f46015s3;
+    public final int f46017r3 = 1;
+    public final Object f46018s3;
 
     public ya1(Context context, org.telegram.ui.ActionBar.r2 r2Var, ArrayList arrayList, ArrayList arrayList2, org.telegram.ui.ActionBar.e3 e3Var) {
         super(context, r2Var, 2, arrayList, arrayList2);
-        this.f46015s3 = e3Var;
+        this.f46018s3 = e3Var;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class ya1 extends org.telegram.ui.Cells.ra {
         CharSequence[] charSequenceArr;
         boolean z11;
         int[] iArr;
-        switch (this.f46014r3) {
+        switch (this.f46017r3) {
             case 0:
-                bb1 bb1Var = ((bb1) this.f46015s3).e.f36260a;
+                bb1 bb1Var = ((bb1) this.f46018s3).e.f36263a;
                 ThemeActivity themeActivity = bb1Var.e;
                 if (themeActivity.getParentActivity() != null) {
-                    if ((x6Var.F == null || x6Var.U) && themeActivity.f36268f != 1) {
+                    if ((x6Var.F == null || x6Var.U) && themeActivity.f36271f != 1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
-                        if (x6Var.f23251b == null) {
+                        if (x6Var.f23253b == null) {
                             charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", R.string.ExportTheme)};
                             iArr = new int[]{0, R.drawable.msg_shareout};
                             z11 = false;
@@ -67,13 +67,13 @@ public final class ya1 extends org.telegram.ui.Cells.ra {
                             iArr = new int[]{R.drawable.msg_share, R.drawable.msg_shareout, R.drawable.msg_edit, R.drawable.msg_link, R.drawable.msg_delete};
                         }
                         ng.j jVar = new ng.j(13, bb1Var, x6Var);
-                        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+                        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
                         e2Var.P = charSequenceArr;
                         e2Var.Q = iArr;
                         e2Var.M = jVar;
                         themeActivity.showDialog(e2Var);
                         if (z11) {
-                            e2Var.m(e2Var.P0.size() - 1, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23596q7, false), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23579p7, false));
+                            e2Var.m(e2Var.P0.size() - 1, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23598q7, false), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23581p7, false));
                             return;
                         }
                         return;
@@ -89,12 +89,12 @@ public final class ya1 extends org.telegram.ui.Cells.ra {
     @Override
     public final void G1() {
         Runnable runnable;
-        switch (this.f46014r3) {
+        switch (this.f46017r3) {
             case 0:
-                ((bb1) this.f46015s3).e.B0(false);
+                ((bb1) this.f46018s3).e.B0(false);
                 return;
             default:
-                runnable = ((org.telegram.ui.ActionBar.e3) this.f46015s3).f22599a.dismissRunnable;
+                runnable = ((org.telegram.ui.ActionBar.e3) this.f46018s3).f22601a.dismissRunnable;
                 runnable.run();
                 return;
         }
@@ -102,6 +102,6 @@ public final class ya1 extends org.telegram.ui.Cells.ra {
 
     public ya1(bb1 bb1Var, Context context, org.telegram.ui.ActionBar.r2 r2Var, int i10, ArrayList arrayList, ArrayList arrayList2) {
         super(context, r2Var, i10, arrayList, arrayList2);
-        this.f46015s3 = bb1Var;
+        this.f46018s3 = bb1Var;
     }
 }

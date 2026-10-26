@@ -10,17 +10,17 @@ import java.util.List;
 import n4.x;
 public final class f extends p6.a implements q {
     public static final Parcelable.Creator<f> CREATOR = new x(21);
-    public final List f46817a;
-    public final String f46818b;
+    public final List f46820a;
+    public final String f46821b;
 
     public f(String str, ArrayList arrayList) {
-        this.f46817a = arrayList;
-        this.f46818b = str;
+        this.f46820a = arrayList;
+        this.f46821b = str;
     }
 
     @Override
     public final Status h() {
-        if (this.f46818b != null) {
+        if (this.f46821b != null) {
             return Status.e;
         }
         return Status.f6465r;
@@ -29,8 +29,8 @@ public final class f extends p6.a implements q {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        df.n(parcel, 1, this.f46817a);
-        df.l(parcel, 2, this.f46818b);
+        df.n(parcel, 1, this.f46820a);
+        df.l(parcel, 2, this.f46821b);
         df.r(parcel, q5);
     }
 }

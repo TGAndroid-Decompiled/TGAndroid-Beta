@@ -6,16 +6,16 @@ import org.telegram.ui.Components.b31;
 import org.telegram.ui.Components.fl0;
 import org.telegram.ui.xu0;
 public final class b1 extends Property {
-    public final int f23892a;
+    public final int f23894a;
 
     public b1(Class cls, String str, int i10) {
         super(cls, str);
-        this.f23892a = i10;
+        this.f23894a = i10;
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f23892a) {
+        switch (this.f23894a) {
             case 0:
                 return Float.valueOf(((s1) obj).Be);
             case 1:
@@ -25,13 +25,13 @@ public final class b1 extends Property {
             case 3:
                 return Float.valueOf(((b31) obj).h);
             default:
-                return Float.valueOf(((xu0) obj).f45858a);
+                return Float.valueOf(((xu0) obj).f45861a);
         }
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f23892a) {
+        switch (this.f23894a) {
             case 0:
                 ((s1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
                 return;

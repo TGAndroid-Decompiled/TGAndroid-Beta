@@ -13,14 +13,14 @@ import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.wi0;
 import org.telegram.ui.Components.zp;
 public final class t4 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final org.telegram.ui.Components.y9 f25442a;
-    public final org.telegram.ui.ActionBar.b6 f25443b;
-    public final org.telegram.ui.ActionBar.b6 f25444c;
+    public final org.telegram.ui.Components.y9 f25444a;
+    public final org.telegram.ui.ActionBar.b6 f25445b;
+    public final org.telegram.ui.ActionBar.b6 f25446c;
     public final org.telegram.ui.Components.j9 d;
     public final zp e;
-    public ContactsController.Contact f25445f;
+    public ContactsController.Contact f25447f;
     public CharSequence h;
-    public int f25446n;
+    public int f25448n;
 
     public t4(Context context, boolean z10) {
         super(context);
@@ -33,7 +33,7 @@ public final class t4 extends FrameLayout implements org.telegram.ui.ActionBar.p
         float f7;
         this.d = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.u6) null);
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f25442a = y9Var;
+        this.f25444a = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(23.0f));
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -53,7 +53,7 @@ public final class t4 extends FrameLayout implements org.telegram.ui.ActionBar.p
         FrameLayout frameLayout = new FrameLayout(context);
         linearLayout.addView(frameLayout, gb1.p(1.0f, 0, 58));
         org.telegram.ui.ActionBar.b6 b6Var = new org.telegram.ui.ActionBar.b6(context);
-        this.f25443b = b6Var;
+        this.f25445b = b6Var;
         org.telegram.ui.ActionBar.f7.Y(b6Var, org.telegram.ui.ActionBar.y6.G6, null);
         b6Var.setTypeface(AndroidUtilities.bold());
         b6Var.setTextSize(15);
@@ -70,7 +70,7 @@ public final class t4 extends FrameLayout implements org.telegram.ui.ActionBar.p
         }
         frameLayout.addView(b6Var, gb1.h(-1, 20.0f, i13 | 48, 0.0f, 9.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.b6 b6Var2 = new org.telegram.ui.ActionBar.b6(context);
-        this.f25444c = b6Var2;
+        this.f25446c = b6Var2;
         b6Var2.setTextSize(13);
         if (LocaleController.isRTL) {
             i14 = 5;
@@ -87,7 +87,7 @@ public final class t4 extends FrameLayout implements org.telegram.ui.ActionBar.p
         if (z10) {
             zp zpVar = new zp(context, 21, null);
             this.e = zpVar;
-            zpVar.b(-1, org.telegram.ui.ActionBar.y6.f23354d6, org.telegram.ui.ActionBar.y6.f23483k7);
+            zpVar.b(-1, org.telegram.ui.ActionBar.y6.f23356d6, org.telegram.ui.ActionBar.y6.f23485k7);
             zpVar.setDrawUnchecked(false);
             zpVar.setDrawBackgroundAsArc(3);
             boolean z12 = LocaleController.isRTL;
@@ -118,7 +118,7 @@ public final class t4 extends FrameLayout implements org.telegram.ui.ActionBar.p
     }
 
     public final void a(ContactsController.Contact contact, CharSequence charSequence) {
-        this.f25445f = contact;
+        this.f25447f = contact;
         this.h = charSequence;
         if (contact == null) {
             return;
@@ -128,30 +128,30 @@ public final class t4 extends FrameLayout implements org.telegram.ui.ActionBar.p
         org.telegram.ui.Components.j9 j9Var = this.d;
         j9Var.o(contact.contact_id, str, str2, null, null);
         CharSequence charSequence2 = this.h;
-        org.telegram.ui.ActionBar.b6 b6Var = this.f25443b;
+        org.telegram.ui.ActionBar.b6 b6Var = this.f25445b;
         if (charSequence2 != null) {
             b6Var.l(charSequence2, true);
         } else {
-            ContactsController.Contact contact2 = this.f25445f;
+            ContactsController.Contact contact2 = this.f25447f;
             b6Var.l(ContactsController.formatName(contact2.first_name, contact2.last_name), false);
         }
-        int i10 = org.telegram.ui.ActionBar.y6.f23746y6;
+        int i10 = org.telegram.ui.ActionBar.y6.f23748y6;
         Integer valueOf = Integer.valueOf(i10);
-        org.telegram.ui.ActionBar.b6 b6Var2 = this.f25444c;
+        org.telegram.ui.ActionBar.b6 b6Var2 = this.f25446c;
         b6Var2.setTag(valueOf);
         org.telegram.ui.ActionBar.f7.Y(b6Var2, i10, null);
-        ContactsController.Contact contact3 = this.f25445f;
+        ContactsController.Contact contact3 = this.f25447f;
         int i11 = contact3.imported;
         if (i11 > 0) {
             b6Var2.l(LocaleController.formatPluralString("TelegramContacts", i11, new Object[0]), false);
         } else {
             b6Var2.l(contact3.phones.get(0), false);
         }
-        this.f25442a.setImageDrawable(j9Var);
+        this.f25444a.setImageDrawable(j9Var);
     }
 
     public ContactsController.Contact getContact() {
-        return this.f25445f;
+        return this.f25447f;
     }
 
     @Override
@@ -163,9 +163,9 @@ public final class t4 extends FrameLayout implements org.telegram.ui.ActionBar.p
     public final void updateColors() {
         try {
             int x02 = (((((((((((((org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.J7, false) * 31) + org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.O7, false)) * 31) + org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.P7, false)) * 31) + org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Q7, false)) * 31) + org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.R7, false)) * 31) + org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.S7, false)) * 31) + org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.T7, false)) * 31) + org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.U7, false);
-            if (x02 != this.f25446n) {
-                this.f25446n = x02;
-                org.telegram.ui.Components.y9 y9Var = this.f25442a;
+            if (x02 != this.f25448n) {
+                this.f25448n = x02;
+                org.telegram.ui.Components.y9 y9Var = this.f25444a;
                 if (y9Var != null) {
                     y9Var.invalidate();
                 }

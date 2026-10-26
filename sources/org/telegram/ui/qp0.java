@@ -19,33 +19,33 @@ public final class qp0 extends FrameLayout {
     public boolean I;
     public final Path J;
     public int K;
-    public final k10 f42883a;
-    public final s4.c0 f42884b;
-    public final c8 f42885c;
+    public final k10 f42886a;
+    public final s4.c0 f42887b;
+    public final c8 f42888c;
     public int d;
     public final org.telegram.ui.Components.h6 e;
-    public final ArrayList f42886f;
+    public final ArrayList f42889f;
     public dp0 h;
-    public final RectF f42887n;
-    public final RectF f42888r;
-    public final RectF f42889s;
+    public final RectF f42890n;
+    public final RectF f42891r;
+    public final RectF f42892s;
     public final Paint v;
-    public final Paint f42890w;
-    public int f42891x;
-    public int f42892y;
+    public final Paint f42893w;
+    public int f42894x;
+    public int f42895y;
 
     public qp0(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f42886f = new ArrayList();
-        this.f42887n = new RectF();
-        this.f42888r = new RectF();
-        this.f42889s = new RectF();
+        this.f42889f = new ArrayList();
+        this.f42890n = new RectF();
+        this.f42891r = new RectF();
+        this.f42892s = new RectF();
         this.v = new Paint(1);
-        this.f42890w = new Paint(1);
+        this.f42893w = new Paint(1);
         this.J = new Path();
         this.K = Integer.MIN_VALUE;
         k10 k10Var = new k10(this, context, u6Var, 2);
-        this.f42883a = k10Var;
+        this.f42886a = k10Var;
         k10Var.setClipToPadding(false);
         k10Var.setClipChildren(false);
         k10Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
@@ -53,10 +53,10 @@ public final class qp0 extends FrameLayout {
         k10Var.setHorizontalScrollBarEnabled(false);
         k10Var.setItemAnimator(null);
         s4.c0 c0Var = new s4.c0(0, false);
-        this.f42884b = c0Var;
+        this.f42887b = c0Var;
         k10Var.setLayoutManager(c0Var);
         c8 c8Var = new c8(this, 5);
-        this.f42885c = c8Var;
+        this.f42888c = c8Var;
         k10Var.setAdapter(c8Var);
         k10Var.setOnItemClickListener(new h(this, 21));
         addView(k10Var, org.telegram.ui.Components.gb1.i(-1, -1, 119));
@@ -76,9 +76,9 @@ public final class qp0 extends FrameLayout {
         if (i10 != i11) {
             b(i10);
         }
-        ArrayList arrayList = this.f42886f;
+        ArrayList arrayList = this.f42889f;
         boolean isEmpty = arrayList.isEmpty();
-        k10 k10Var = this.f42883a;
+        k10 k10Var = this.f42886a;
         if (!isEmpty) {
             int clamp = Utilities.clamp(i10, arrayList.size() - 1, 0);
             if (z10) {
@@ -92,13 +92,13 @@ public final class qp0 extends FrameLayout {
 
     public final void b(int i10) {
         int i11;
-        View m10 = this.f42884b.m(i10);
+        View m10 = this.f42887b.m(i10);
         if (m10 instanceof TextView) {
             TextView textView = (TextView) m10;
             if (i10 == this.d) {
                 i11 = this.E;
             } else {
-                i11 = this.f42892y;
+                i11 = this.f42895y;
             }
             textView.setTextColor(i11);
             m10.invalidate();

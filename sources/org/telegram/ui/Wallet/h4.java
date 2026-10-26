@@ -9,12 +9,12 @@ import org.telegram.ui.Components.m91;
 import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.y51;
 public final class h4 extends m91 {
-    public final Context f36627a;
-    public final m5 f36628b;
+    public final Context f36630a;
+    public final m5 f36631b;
 
     public h4(m5 m5Var, Context context) {
-        this.f36628b = m5Var;
-        this.f36627a = context;
+        this.f36631b = m5Var;
+        this.f36630a = context;
     }
 
     @Override
@@ -28,8 +28,8 @@ public final class h4 extends m91 {
         int i12;
         org.telegram.ui.ActionBar.u6 u6Var;
         int i13;
-        m5 m5Var = this.f36628b;
-        r71[] r71VarArr = m5Var.f36952r0;
+        m5 m5Var = this.f36631b;
+        r71[] r71VarArr = m5Var.f36955r0;
         r71 r71Var = r71VarArr[i10];
         if (r71Var == null) {
             i11 = ((org.telegram.ui.ActionBar.r2) m5Var).currentAccount;
@@ -43,7 +43,7 @@ public final class h4 extends m91 {
             } else {
                 i13 = -1;
             }
-            r71 r71Var2 = new r71(this.f36627a, i11, i12, false, oVar, r3Var, r3Var2, u6Var, i13, 1);
+            r71 r71Var2 = new r71(this.f36630a, i11, i12, false, oVar, r3Var, r3Var2, u6Var, i13, 1);
             if (i10 == 1) {
                 r71Var2.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(12.0f));
             }
@@ -56,7 +56,7 @@ public final class h4 extends m91 {
                 r71Var2.setSelectorType(9);
                 r71Var2.setSelectorDrawableColor(0);
             }
-            r71Var2.f32150g3.f29505r = false;
+            r71Var2.f32152g3.f29507r = false;
             r71Var2.j(new y51(this, i10));
             r71VarArr[i10] = r71Var2;
             return r71Var2;
@@ -66,7 +66,7 @@ public final class h4 extends m91 {
 
     @Override
     public final int e() {
-        if (this.f36628b.f36939f0) {
+        if (this.f36631b.f36942f0) {
             return 2;
         }
         return 1;

@@ -83,7 +83,7 @@ public final class n5 extends s61 {
     @Override
     public final View createView(Context context, mm0 mm0Var, int i10, int i11, u6 u6Var) {
         p5 p5Var = new p5(context, u6Var);
-        p5Var.setBackground(new y1(y6.w0(y6.f23354d6, u6Var)));
+        p5Var.setBackground(new y1(y6.w0(y6.f23356d6, u6Var)));
         return p5Var;
     }
 

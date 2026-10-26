@@ -20,12 +20,12 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.gb1;
 public class c extends FrameLayout implements p6 {
-    public int f52858a;
-    public final u6 f52859b;
-    public final ImageView f52860c;
+    public int f52861a;
+    public final u6 f52862b;
+    public final ImageView f52863c;
     public final TextView d;
     public Runnable e;
-    public final j2 f52861f;
+    public final j2 f52864f;
     public final Paint h;
 
     public c(Context context, u6 u6Var) {
@@ -34,7 +34,7 @@ public class c extends FrameLayout implements p6 {
         float f7;
         float f10;
         this.h = new Paint(1);
-        this.f52859b = u6Var;
+        this.f52862b = u6Var;
         TextView textView = new TextView(context);
         this.d = textView;
         vh.j(20.0f, 1, textView);
@@ -44,7 +44,7 @@ public class c extends FrameLayout implements p6 {
             i10 = 3;
         }
         textView.setGravity(i10);
-        int i11 = y6.f23462j5;
+        int i11 = y6.f23464j5;
         f7.V(textView, i11, u6Var);
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -59,15 +59,15 @@ public class c extends FrameLayout implements p6 {
         }
         addView(textView, gb1.h(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f52860c = imageView;
+        this.f52863c = imageView;
         j2 j2Var = new j2(false);
-        this.f52861f = j2Var;
+        this.f52864f = j2Var;
         imageView.setImageDrawable(j2Var);
         int w02 = y6.w0(i11, u6Var);
-        this.f52858a = w02;
+        this.f52861a = w02;
         j2Var.a(w02);
         j2Var.b(y6.w0(i11, u6Var));
-        j2Var.f22736k = 220.0f;
+        j2Var.f22738k = 220.0f;
         addView(imageView, gb1.h(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new d0(this, 26));
     }
@@ -75,7 +75,7 @@ public class c extends FrameLayout implements p6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int w02 = y6.w0(y6.f23355d7, this.f52859b);
+        int w02 = y6.w0(y6.f23357d7, this.f52862b);
         Paint paint = this.h;
         paint.setColor(w02);
         canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
@@ -91,7 +91,7 @@ public class c extends FrameLayout implements p6 {
     }
 
     public void setBackImage(int i10) {
-        this.f52860c.setImageResource(i10);
+        this.f52863c.setImageResource(i10);
     }
 
     public void setCloseImageVisible(boolean z10) {
@@ -103,7 +103,7 @@ public class c extends FrameLayout implements p6 {
         } else {
             i10 = 8;
         }
-        this.f52860c.setVisibility(i10);
+        this.f52863c.setVisibility(i10);
         boolean z11 = LocaleController.isRTL;
         if (!z11 && z10) {
             f7 = 53.0f;
@@ -128,15 +128,15 @@ public class c extends FrameLayout implements p6 {
 
     @Override
     public final void updateColors() {
-        j2 j2Var = this.f52861f;
+        j2 j2Var = this.f52864f;
         if (j2Var != null) {
             try {
-                int w02 = y6.w0(y6.f23462j5, this.f52859b);
-                if (w02 != this.f52858a) {
-                    this.f52858a = w02;
+                int w02 = y6.w0(y6.f23464j5, this.f52862b);
+                if (w02 != this.f52861a) {
+                    this.f52861a = w02;
                     j2Var.a(w02);
                     j2Var.b(w02);
-                    ImageView imageView = this.f52860c;
+                    ImageView imageView = this.f52863c;
                     if (imageView != null) {
                         imageView.invalidate();
                     }

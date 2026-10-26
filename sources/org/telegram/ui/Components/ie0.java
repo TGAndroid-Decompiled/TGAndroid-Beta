@@ -8,26 +8,26 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class ie0 extends FrameLayout {
-    public final ImageView f29283a;
-    public final TextView f29284b;
-    public final TextView f29285c;
+    public final ImageView f29285a;
+    public final TextView f29286b;
+    public final TextView f29287c;
 
     public ie0(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f29283a = imageView;
+        this.f29285a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.fingerprint);
         addView(imageView, gb1.i(-1, -1, 119));
         TextView textView = new TextView(context);
-        this.f29284b = textView;
+        this.f29286b = textView;
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextColor(-1);
         textView.setTextSize(1, 26.0f);
         textView.setGravity(17);
         addView(textView, gb1.h(-1, -2.0f, 17, 0.0f, -5.33f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f29285c = textView2;
+        this.f29287c = textView2;
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setTextSize(1, 10.0f);
         textView2.setTextColor(Integer.MAX_VALUE);
@@ -42,18 +42,18 @@ public final class ie0 extends FrameLayout {
     }
 
     public void setImage(int i10) {
-        ImageView imageView = this.f29283a;
+        ImageView imageView = this.f29285a;
         imageView.setVisibility(0);
-        this.f29284b.setVisibility(8);
-        this.f29285c.setVisibility(8);
+        this.f29286b.setVisibility(8);
+        this.f29287c.setVisibility(8);
         imageView.setImageResource(i10);
     }
 
     public void setNum(int i10) {
-        this.f29283a.setVisibility(8);
-        TextView textView = this.f29284b;
+        this.f29285a.setVisibility(8);
+        TextView textView = this.f29286b;
         textView.setVisibility(0);
-        TextView textView2 = this.f29285c;
+        TextView textView2 = this.f29287c;
         textView2.setVisibility(0);
         String str = "";
         textView.setText("" + i10);

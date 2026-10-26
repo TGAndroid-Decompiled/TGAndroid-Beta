@@ -8,12 +8,12 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.vh;
 import org.telegram.ui.Components.mm0;
 public final class v1 extends mm0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Path f48531f3;
-    public q0.a f48532g3;
+    public final Path f48534f3;
+    public q0.a f48535g3;
 
     public v1(Context context) {
         super(context, null);
-        this.f48531f3 = new Path();
+        this.f48534f3 = new Path();
         setWillNotDraw(false);
         setLayoutManager(new s4.c0());
         setAdapter(new s4.h0());
@@ -35,15 +35,15 @@ public final class v1 extends mm0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void draw(Canvas canvas) {
-        q0.a aVar = this.f48532g3;
+        q0.a aVar = this.f48535g3;
         if (aVar != null) {
-            Path path = this.f48531f3;
+            Path path = this.f48534f3;
             aVar.accept(path);
             canvas.save();
             canvas.clipPath(path);
         }
         super.draw(canvas);
-        if (this.f48532g3 != null) {
+        if (this.f48535g3 != null) {
             canvas.restore();
         }
     }
@@ -66,7 +66,7 @@ public final class v1 extends mm0 implements NotificationCenter.NotificationCent
     }
 
     public void setMaskProvider(q0.a aVar) {
-        this.f48532g3 = aVar;
+        this.f48535g3 = aVar;
         invalidate();
     }
 }

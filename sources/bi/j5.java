@@ -143,7 +143,7 @@ public final class j5 extends FrameLayout {
                 RectF rectF = (RectF) this.f4871b;
                 rectF.set(h7.z1(h7Var), d, getWidth() - h7.A1(h7Var), getHeight() + dp);
                 Paint paint = (Paint) this.f4872c;
-                paint.setColor(h7Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23425h5));
+                paint.setColor(h7Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23427h5));
                 Path path = (Path) this.d;
                 path.rewind();
                 path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
@@ -182,12 +182,12 @@ public final class j5 extends FrameLayout {
                 Paint paint2 = (Paint) this.f4872c;
                 PhotoViewer photoViewer = (PhotoViewer) this.e;
                 if (!photoViewer.S4) {
-                    if (photoViewer.f35721n0.getVisibility() == 0) {
+                    if (photoViewer.f35724n0.getVisibility() == 0) {
                         i10 = getMeasuredHeight() - AndroidUtilities.dp(48.0f);
                     } else {
                         i10 = 0;
                     }
-                    int i12 = photoViewer.f35627c2;
+                    int i12 = photoViewer.f35630c2;
                     if (i12 != 0 && i12 != 2 && i12 != -1) {
                         paint2.setShader(null);
                         paint2.setColor(2130706432);
@@ -215,8 +215,8 @@ public final class j5 extends FrameLayout {
                 tc1 tc1Var = (tc1) this.e;
                 paint5.setShadowLayer(dpf2, 0.0f, dpf22, i0.a.o(-16777216, (int) (tc1Var.S1.getAlpha() * 27.0f)));
                 canvas.drawRoundRect(rectF2, dp2, dp2, paint5);
-                ic1 ic1Var = tc1Var.f43799y0;
-                sb1 sb1Var = tc1Var.f43733a;
+                ic1 ic1Var = tc1Var.f43802y0;
+                sb1 sb1Var = tc1Var.f43736a;
                 org.telegram.ui.ActionBar.y6.s(this, ic1Var, sb1Var);
                 Paint d10 = sb1Var.d("paintChatActionBackground");
                 int alpha = d10.getAlpha();
@@ -224,9 +224,9 @@ public final class j5 extends FrameLayout {
                 canvas.drawRoundRect(rectF2, dp2, dp2, d10);
                 d10.setAlpha(alpha);
                 if (tc1Var.N1) {
-                    float f7 = tc1Var.f43775o1;
+                    float f7 = tc1Var.f43778o1;
                     if (f7 > 0.0f) {
-                        paint3.setColor(i0.a.o(-16777216, (int) (f7 * 255.0f * tc1Var.f43777p1)));
+                        paint3.setColor(i0.a.o(-16777216, (int) (f7 * 255.0f * tc1Var.f43780p1)));
                         canvas.drawRoundRect(rectF2, dp2, dp2, paint3);
                     }
                 }
@@ -240,42 +240,42 @@ public final class j5 extends FrameLayout {
                 Paint paint6 = (Paint) this.f4872c;
                 LimitPreviewView limitPreviewView = (LimitPreviewView) this.e;
                 if (limitPreviewView.P) {
-                    if (!limitPreviewView.f26220c0 && !limitPreviewView.R) {
-                        paint6.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23374e7, u6Var));
+                    if (!limitPreviewView.f26222c0 && !limitPreviewView.R) {
+                        paint6.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23376e7, u6Var));
                     } else {
-                        paint6.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23446i6, u6Var));
+                        paint6.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23448i6, u6Var));
                     }
                 } else {
-                    paint6.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23297a7, u6Var));
+                    paint6.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23299a7, u6Var));
                 }
                 RectF rectF3 = AndroidUtilities.rectTmp;
                 rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                tg.t tVar = limitPreviewView.f26222e0;
+                tg.t tVar = limitPreviewView.f26224e0;
                 if (tVar != null) {
-                    canvas.drawRoundRect(rectF3, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), ((org.telegram.ui.x5) ((org.telegram.ui.y0) tVar).f45912b).r0(getX() + ((ViewGroup) getParent()).getX(), getY() + ((ViewGroup) getParent()).getY()));
+                    canvas.drawRoundRect(rectF3, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), ((org.telegram.ui.x5) ((org.telegram.ui.y0) tVar).f45915b).r0(getX() + ((ViewGroup) getParent()).getX(), getY() + ((ViewGroup) getParent()).getY()));
                 } else {
                     canvas.drawRoundRect(rectF3, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint6);
                 }
                 canvas.save();
                 if (!limitPreviewView.P) {
-                    canvas.clipRect(limitPreviewView.f26231n, 0, getMeasuredWidth(), getMeasuredHeight());
+                    canvas.clipRect(limitPreviewView.f26233n, 0, getMeasuredWidth(), getMeasuredHeight());
                 }
                 if (limitPreviewView.R) {
                     e = limitPreviewView.K;
-                } else if (limitPreviewView.f26222e0 != null) {
+                } else if (limitPreviewView.f26224e0 != null) {
                     e = (Paint) this.f4871b;
                 } else {
                     e = tg.b1.d().e();
                 }
-                ViewGroup viewGroup = limitPreviewView.f26237y;
+                ViewGroup viewGroup = limitPreviewView.f26239y;
                 if (viewGroup != null) {
                     tg.a1 a1Var = limitPreviewView.E;
                     if (a1Var != null) {
-                        e = a1Var.f48794f;
+                        e = a1Var.f48797f;
                         a1Var.a();
                         Matrix matrix2 = a1Var.e;
                         matrix2.reset();
-                        matrix2.postScale(1.0f, limitPreviewView.f26219c / 100.0f, 0.0f, 0.0f);
+                        matrix2.postScale(1.0f, limitPreviewView.f26221c / 100.0f, 0.0f, 0.0f);
                         matrix2.postTranslate(0.0f, -limitPreviewView.F);
                         a1Var.d.setLocalMatrix(matrix2);
                     } else {
@@ -297,22 +297,22 @@ public final class j5 extends FrameLayout {
                     d12.f(globalXOffset - getLeft(), -getTop(), measuredWidth2, measuredHeight2);
                 }
                 int alpha2 = e.getAlpha();
-                if (limitPreviewView.V && (valueAnimator2 = limitPreviewView.f26227i0) != null) {
+                if (limitPreviewView.V && (valueAnimator2 = limitPreviewView.f26229i0) != null) {
                     e.setAlpha((int) ((1.0f - ((Float) valueAnimator2.getAnimatedValue()).floatValue()) * alpha2));
-                } else if (limitPreviewView.U && (valueAnimator = limitPreviewView.f26227i0) != null) {
+                } else if (limitPreviewView.U && (valueAnimator = limitPreviewView.f26229i0) != null) {
                     e.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * alpha2));
                 }
                 if (limitPreviewView.P) {
                     if (!limitPreviewView.L && !limitPreviewView.M) {
-                        AndroidUtilities.rectTmp.set(0.0f, 0.0f, limitPreviewView.f26231n, getMeasuredHeight());
+                        AndroidUtilities.rectTmp.set(0.0f, 0.0f, limitPreviewView.f26233n, getMeasuredHeight());
                     } else {
-                        AndroidUtilities.rectTmp.set(limitPreviewView.f26231n, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                        AndroidUtilities.rectTmp.set(limitPreviewView.f26233n, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     }
                 }
                 canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), e);
                 e.setAlpha(alpha2);
                 canvas.restore();
-                if (limitPreviewView.E == null && limitPreviewView.f26221d0) {
+                if (limitPreviewView.E == null && limitPreviewView.f26223d0) {
                     invalidate();
                 }
                 super.dispatchDraw(canvas);
@@ -331,7 +331,7 @@ public final class j5 extends FrameLayout {
                 rectF4.set(0.0f, 0.0f, rectF4.width(), rectF4.height());
                 tg.a1 a1Var2 = (tg.a1) this.f4871b;
                 a1Var2.e(rectF4);
-                canvas.drawRoundRect(rectF4, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), a1Var2.f48794f);
+                canvas.drawRoundRect(rectF4, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), a1Var2.f48797f);
                 canvas.restore();
                 super.dispatchDraw(canvas);
                 return;
@@ -421,17 +421,17 @@ public final class j5 extends FrameLayout {
                 Path path = (Path) this.d;
                 Matrix matrix = (Matrix) this.f4871b;
                 fi.q5 q5Var = (fi.q5) this.e;
-                sg.y0 y0Var = q5Var.f48210r0;
-                if (view == q5Var.f48215w0) {
+                sg.y0 y0Var = q5Var.f48213r0;
+                if (view == q5Var.f48218w0) {
                     org.telegram.ui.Cells.s1 q5 = sg.g1.q(q5Var);
                     if (q5 == null || (photoImage = q5.getPhotoImage()) == null) {
                         return false;
                     }
                     matrix.reset();
-                    float max = Math.max(photoImage.getImageWidth() / q5Var.f48217y0, photoImage.getImageHeight() / q5Var.f48218z0);
-                    matrix.postScale((q5Var.f48217y0 / q5Var.f48215w0.getWidth()) * max, (q5Var.f48218z0 / q5Var.f48215w0.getHeight()) * max);
-                    matrix.postTranslate((photoImage.getCenterX() + (q5.getX() + y0Var.getX())) - ((q5Var.f48217y0 * max) / 2.0f), (photoImage.getCenterY() + (q5.getY() + y0Var.getY())) - ((q5Var.f48218z0 * max) / 2.0f));
-                    q5Var.f48215w0.setTransform(matrix);
+                    float max = Math.max(photoImage.getImageWidth() / q5Var.f48220y0, photoImage.getImageHeight() / q5Var.f48221z0);
+                    matrix.postScale((q5Var.f48220y0 / q5Var.f48218w0.getWidth()) * max, (q5Var.f48221z0 / q5Var.f48218w0.getHeight()) * max);
+                    matrix.postTranslate((photoImage.getCenterX() + (q5.getX() + y0Var.getX())) - ((q5Var.f48220y0 * max) / 2.0f), (photoImage.getCenterY() + (q5.getY() + y0Var.getY())) - ((q5Var.f48221z0 * max) / 2.0f));
+                    q5Var.f48218w0.setTransform(matrix);
                     canvas.save();
                     path.rewind();
                     AndroidUtilities.rectTmp.set(photoImage.getImageX() + q5.getX() + y0Var.getX(), photoImage.getImageY() + q5.getY() + y0Var.getY(), photoImage.getImageX2() + q5.getX() + y0Var.getX(), photoImage.getImageY2() + q5.getY() + y0Var.getY());
@@ -468,9 +468,9 @@ public final class j5 extends FrameLayout {
                 boolean drawChild3 = super.drawChild(canvas, view, j10);
                 vh.f fVar = (vh.f) this.e;
                 int i12 = (int) fVar.X.f19334f;
-                if (view == fVar.f50317h0 && i12 > 0) {
+                if (view == fVar.f50320h0 && i12 > 0) {
                     h0Var2.setBounds(0, AndroidUtilities.dp(40.0f), getWidth(), AndroidUtilities.dp(48.0f));
-                    int i13 = org.telegram.ui.ActionBar.y6.f23425h5;
+                    int i13 = org.telegram.ui.ActionBar.y6.f23427h5;
                     h0Var2.b(org.telegram.ui.ActionBar.y6.w0(i13, u6Var));
                     h0Var2.draw(canvas);
                     int dp = AndroidUtilities.dp(48.0f) + i12;
@@ -586,7 +586,7 @@ public final class j5 extends FrameLayout {
                 return;
             case 6:
                 fi.q5 q5Var = (fi.q5) this.e;
-                sg.y0 y0Var = q5Var.f48210r0;
+                sg.y0 y0Var = q5Var.f48213r0;
                 int measuredWidth2 = y0Var.getMeasuredWidth();
                 int i16 = 0;
                 for (int i17 = 0; i17 < y0Var.getChildCount(); i17++) {
@@ -612,7 +612,7 @@ public final class j5 extends FrameLayout {
                     i16 = Math.max(right, i16);
                 }
                 y0Var.layout(-measuredWidth2, 0, y0Var.getMeasuredWidth() - measuredWidth2, y0Var.getMeasuredHeight());
-                TextureView textureView = q5Var.f48215w0;
+                TextureView textureView = q5Var.f48218w0;
                 if (textureView != null) {
                     textureView.layout(0, 0, getMeasuredWidth(), y0Var.getMeasuredHeight());
                     return;
@@ -706,9 +706,9 @@ public final class j5 extends FrameLayout {
                 return;
             case 6:
                 fi.q5 q5Var = (fi.q5) this.e;
-                sg.y0 y0Var = q5Var.f48210r0;
+                sg.y0 y0Var = q5Var.f48213r0;
                 y0Var.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
-                TextureView textureView = q5Var.f48215w0;
+                TextureView textureView = q5Var.f48218w0;
                 if (textureView != null) {
                     textureView.measure(View.MeasureSpec.makeMeasureSpec(y0Var.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(y0Var.getMeasuredHeight(), 1073741824));
                 }
@@ -741,9 +741,9 @@ public final class j5 extends FrameLayout {
             case 7:
                 LimitPreviewView limitPreviewView = (LimitPreviewView) this.e;
                 org.telegram.ui.Components.s6 s6Var = limitPreviewView.v;
-                TextView textView = limitPreviewView.f26235w;
-                gh0 gh0Var = limitPreviewView.f26225g0;
-                gh0 gh0Var2 = limitPreviewView.f26224f0;
+                TextView textView = limitPreviewView.f26237w;
+                gh0 gh0Var = limitPreviewView.f26227g0;
+                gh0 gh0Var2 = limitPreviewView.f26226f0;
                 if (getChildCount() == 2) {
                     int size3 = View.MeasureSpec.getSize(i10);
                     int size4 = View.MeasureSpec.getSize(i11);
@@ -760,18 +760,18 @@ public final class j5 extends FrameLayout {
                     int max = Math.max(measuredWidth3, measuredWidth4 + i14);
                     gh0Var.measure(View.MeasureSpec.makeMeasureSpec(size3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
                     if (limitPreviewView.P) {
-                        float f7 = limitPreviewView.f26215a;
+                        float f7 = limitPreviewView.f26217a;
                         float f10 = 0.0f;
                         if (f7 == 0.0f) {
-                            limitPreviewView.f26231n = 0;
+                            limitPreviewView.f26233n = 0;
                             if (!limitPreviewView.U && !limitPreviewView.V) {
-                                if (!limitPreviewView.L && limitPreviewView.f26222e0 == null) {
+                                if (!limitPreviewView.L && limitPreviewView.f26224e0 == null) {
                                     z10 = false;
                                 } else {
                                     z10 = true;
                                 }
                                 limitPreviewView.setPremiumCountColor(z10);
-                                if (limitPreviewView.f26222e0 != null) {
+                                if (limitPreviewView.f26224e0 != null) {
                                     limitPreviewView.setDefaultTextColor(true);
                                 } else {
                                     limitPreviewView.setDefaultTextColor(false);
@@ -786,13 +786,13 @@ public final class j5 extends FrameLayout {
                             if (!limitPreviewView.L) {
                                 f10 = gh0Var.getMeasuredWidth() - AndroidUtilities.dp(8.0f);
                             }
-                            limitPreviewView.f26231n = (int) ((((size3 - measuredWidth) - f10) * limitPreviewView.f26215a) + measuredWidth);
+                            limitPreviewView.f26233n = (int) ((((size3 - measuredWidth) - f10) * limitPreviewView.f26217a) + measuredWidth);
                             if (!limitPreviewView.U && !limitPreviewView.V) {
-                                limitPreviewView.setPremiumCountColor((limitPreviewView.L || limitPreviewView.f26222e0 != null) ? true : true);
+                                limitPreviewView.setPremiumCountColor((limitPreviewView.L || limitPreviewView.f26224e0 != null) ? true : true);
                                 limitPreviewView.setDefaultTextColor(true);
                             }
                         } else {
-                            limitPreviewView.f26231n = size3;
+                            limitPreviewView.f26233n = size3;
                             if (!limitPreviewView.U && !limitPreviewView.V) {
                                 limitPreviewView.setPremiumCountColor(true);
                                 limitPreviewView.setDefaultTextColor(true);
@@ -804,10 +804,10 @@ public final class j5 extends FrameLayout {
                         if (s6Var.getVisibility() == 0) {
                             i20 = s6Var.getMeasuredWidth() + AndroidUtilities.dp(24.0f);
                         }
-                        int clamp = (int) Utilities.clamp(size3 * limitPreviewView.f26215a, size3 - Math.max(measuredWidth5, measuredWidth6 + i20), max);
-                        limitPreviewView.f26231n = clamp;
+                        int clamp = (int) Utilities.clamp(size3 * limitPreviewView.f26217a, size3 - Math.max(measuredWidth5, measuredWidth6 + i20), max);
+                        limitPreviewView.f26233n = clamp;
                         gh0Var2.measure(View.MeasureSpec.makeMeasureSpec(clamp, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
-                        gh0Var.measure(View.MeasureSpec.makeMeasureSpec(size3 - limitPreviewView.f26231n, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
+                        gh0Var.measure(View.MeasureSpec.makeMeasureSpec(size3 - limitPreviewView.f26233n, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
                     }
                     setMeasuredDimension(size3, size4);
                     return;
@@ -840,11 +840,11 @@ public final class j5 extends FrameLayout {
                 }
                 os0 os0Var = photoViewer.U1;
                 if (os0Var != null && os0Var.getVisibility() != 8) {
-                    photoViewer.U1.setAlpha(photoViewer.f35829y7[0] * f7);
+                    photoViewer.U1.setAlpha(photoViewer.f35832y7[0] * f7);
                 }
                 ps0 ps0Var = photoViewer.V1;
                 if (ps0Var != null && ps0Var.getVisibility() != 8) {
-                    photoViewer.V1.setAlpha(f7 * photoViewer.f35838z7[0]);
+                    photoViewer.V1.setAlpha(f7 * photoViewer.f35841z7[0]);
                     return;
                 }
                 return;
@@ -957,7 +957,7 @@ public final class j5 extends FrameLayout {
         this.f4872c = textView;
         vh.j(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23462j5, u6Var);
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23464j5, u6Var);
         addView(textView);
         ImageView imageView = new ImageView(context);
         this.f4871b = imageView;

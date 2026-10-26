@@ -13,23 +13,23 @@ import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.zp;
 public final class b extends xg.c {
-    public final zp f52855s;
+    public final zp f52858s;
     public TLRPC.TL_help_country v;
-    public final TextPaint f52856w;
-    public final ti.g f52857x;
+    public final TextPaint f52859w;
+    public final ti.g f52860x;
 
     public b(Context context, u6 u6Var) {
         super(context, u6Var);
         int i10;
         TextPaint textPaint = new TextPaint();
-        this.f52856w = textPaint;
-        this.f52857x = new ti.g(this, 16);
+        this.f52859w = textPaint;
+        this.f52860x = new ti.g(this, 16);
         textPaint.setTextSize(AndroidUtilities.dp(20.0f));
-        this.f51761f.setVisibility(8);
-        this.f51760c.setVisibility(8);
+        this.f51764f.setVisibility(8);
+        this.f51763c.setVisibility(8);
         zp zpVar = new zp(context, 21, u6Var);
-        this.f52855s = zpVar;
-        zpVar.b(y6.B5, y6.f23464j7, y6.C5);
+        this.f52858s = zpVar;
+        zpVar.b(y6.B5, y6.f23466j7, y6.C5);
         zpVar.setDrawUnchecked(true);
         zpVar.setDrawBackgroundAsArc(10);
         addView(zpVar);
@@ -54,7 +54,7 @@ public final class b extends xg.c {
 
     @Override
     public final void c(boolean z10, boolean z11) {
-        zp zpVar = this.f52855s;
+        zp zpVar = this.f52858s;
         if (zpVar.getVisibility() == 0) {
             zpVar.a(z10, z11);
         }
@@ -122,13 +122,13 @@ public final class b extends xg.c {
         } else {
             f14 = 15.0f;
         }
-        this.f51761f.setLayoutParams(gb1.h(22, 22.0f, i15, f13, 0.0f, f14, 0.0f));
+        this.f51764f.setLayoutParams(gb1.h(22, 22.0f, i15, f13, 0.0f, f14, 0.0f));
     }
 
     public final void f() {
         TLRPC.TL_help_country tL_help_country = this.v;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.f52856w.getFontMetricsInt(), 0, this.f52857x);
+        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.f52859w.getFontMetricsInt(), 0, this.f52860x);
         if (replaceWithRestrictedEmoji != null) {
             spannableStringBuilder.append(replaceWithRestrictedEmoji).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new a(16), replaceWithRestrictedEmoji.length(), replaceWithRestrictedEmoji.length() + 1, 0);

@@ -395,7 +395,7 @@ public class TopicsController extends BaseController {
     public void lambda$pinTopic$19(org.telegram.ui.ActionBar.r2 r2Var) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(r2Var.getContext());
         String string = LocaleController.getString(R.string.LimitReached);
-        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
         e2Var.R = string;
         e2Var.T = LocaleController.formatString(R.string.LimitReachedPinnedTopics, Integer.valueOf(MessagesController.getInstance(this.currentAccount).topicsPinnedLimit));
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
@@ -726,7 +726,7 @@ public class TopicsController extends BaseController {
         if (hVar != null) {
             TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) hVar.f(j11);
             if (tL_forumTopic == null && getMessagesController().isMonoForum(-j10)) {
-                int i10 = pg.d.f46852a;
+                int i10 = pg.d.f46855a;
                 return (TLRPC.TL_forumTopic) hVar.f((int) ((j11 >>> 32) ^ j11));
             }
             return tL_forumTopic;

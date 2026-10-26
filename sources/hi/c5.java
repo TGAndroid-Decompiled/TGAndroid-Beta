@@ -85,11 +85,11 @@ public final class c5 {
                     if (user == null) {
                         j12 = 0;
                     } else {
-                        j12 = user.f22174id;
+                        j12 = user.f22176id;
                     }
                     TLRPC.User user2 = c5Var.f12924m;
                     if (user2 != null) {
-                        j13 = user2.f22174id;
+                        j13 = user2.f22176id;
                     }
                     if (j12 == j13 && this.f12925n == c5Var.f12925n) {
                         return true;

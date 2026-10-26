@@ -72,7 +72,7 @@ public abstract class k9 extends ScrollView implements org.telegram.ui.ActionBar
         this.f11123a = u6Var;
         this.h = w8Var;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23354d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23356d6, false));
         j9 j9Var = new j9(this, context);
         this.d = j9Var;
         addView(j9Var, gb1.g(-2.0f, -1));
@@ -185,7 +185,7 @@ public abstract class k9 extends ScrollView implements org.telegram.ui.ActionBar
                 return;
             }
         }
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23354d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23356d6, false));
     }
 
     @Override

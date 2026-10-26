@@ -63,7 +63,7 @@ public final class k4 implements o1.f {
             case 3:
                 ti tiVar = (ti) ((bi.x4) this.f13072b).d;
                 tiVar.C0.setTranslationY(0.0f);
-                tiVar.C0.l(tiVar.f33046o2);
+                tiVar.C0.l(tiVar.f33049o2);
                 qVar = ((org.telegram.ui.ActionBar.k3) tiVar).glassEngine;
                 qVar.g();
                 viewGroup = ((org.telegram.ui.ActionBar.k3) tiVar).containerView;

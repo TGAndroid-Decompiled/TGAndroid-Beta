@@ -54,9 +54,9 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         boolean M1;
         ti tiVar = (ti) this.f8482c;
         li liVar = tiVar.B0;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f33030j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f33033j0;
         long j10 = this.f8481b;
-        if (liVar != chatAttachAlertPhotoLayout && liVar != tiVar.f33050q0) {
+        if (liVar != chatAttachAlertPhotoLayout && liVar != tiVar.f33053q0) {
             if (!liVar.K(i10, z10, i11, tiVar.w1(), j10)) {
                 tiVar.G2 = true;
                 tiVar.dismiss();
@@ -65,10 +65,10 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         } else {
             M1 = tiVar.M1(i10, z10, i11, tiVar.w1(), j10);
         }
-        mf mfVar = tiVar.f33024h0;
+        mf mfVar = tiVar.f33027h0;
         if (mfVar != null) {
             mfVar.g(!M1);
-            tiVar.f33024h0 = null;
+            tiVar.f33027h0 = null;
         }
     }
 
@@ -138,7 +138,7 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     @Override
     public void f(int i10, ArrayList arrayList) {
         ke1 ke1Var = (ke1) this.f8482c;
-        org.telegram.ui.ActionBar.r2 r2Var = ke1Var.f40924b;
+        org.telegram.ui.ActionBar.r2 r2Var = ke1Var.f40927b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();
@@ -160,7 +160,7 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
         switch (this.f8480a) {
             case 8:
-                wo0 wo0Var = ((cy) this.f8482c).C0.f27934d0;
+                wo0 wo0Var = ((cy) this.f8482c).C0.f27936d0;
                 a0.h hVar = wo0Var.f14101x0;
                 long j10 = this.f8481b;
                 ig.h0 h0Var = (ig.h0) hVar.f(j10);
@@ -175,7 +175,7 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
                 }
                 return;
             default:
-                ((lx) this.f8482c).f41384a.getMediaDataController().removePeer(this.f8481b);
+                ((lx) this.f8482c).f41387a.getMediaDataController().removePeer(this.f8481b);
                 return;
         }
     }

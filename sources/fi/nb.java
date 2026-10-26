@@ -23,7 +23,7 @@ public abstract class nb {
         int[] iArr = new int[2];
         imageView.getLocationOnScreen(iArr);
         lbVar.f11324c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
-        lbVar.d = new org.telegram.ui.Cells.j7(imageView.getContext(), null, false, k7Var.f24347y);
+        lbVar.d = new org.telegram.ui.Cells.j7(imageView.getContext(), null, false, k7Var.f24349y);
         lbVar.f11323b = Math.max(lbVar.f11324c.width(), lbVar.f11324c.height()) / 2.0f;
         return lbVar;
     }

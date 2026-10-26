@@ -97,13 +97,13 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
         long j12;
         y2.o oVar = (y2.o) iVar;
         l2.g gVar = (l2.g) this.f15726a;
-        long j13 = oVar.f51964a;
-        g2.m mVar = oVar.f51965b;
+        long j13 = oVar.f51967a;
+        g2.m mVar = oVar.f51968b;
         g2.b0 b0Var = oVar.d;
         u2.u uVar = new u2.u(mVar, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
         gVar.f16813m.getClass();
-        gVar.f16817q.q(uVar, oVar.f51966c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        m2.c cVar = (m2.c) oVar.f51967f;
+        gVar.f16817q.q(uVar, oVar.f51969c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        m2.c cVar = (m2.c) oVar.f51970f;
         m2.c cVar2 = gVar.G;
         if (cVar2 == null) {
             size = 0;
@@ -129,7 +129,7 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
             }
             int i11 = gVar.L;
             gVar.L = i11 + 1;
-            if (i11 < gVar.f16813m.B0(oVar.f51966c)) {
+            if (i11 < gVar.f16813m.B0(oVar.f51969c)) {
                 gVar.D.postDelayed(gVar.v, Math.min((gVar.L - 1) * 1000, 5000));
                 return;
             }
@@ -144,7 +144,7 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
         gVar.N += i10;
         synchronized (gVar.f16820t) {
             try {
-                if (oVar.f51965b.f12258a.equals(gVar.E)) {
+                if (oVar.f51968b.f12258a.equals(gVar.E)) {
                     Uri uri = gVar.G.f17942k;
                     if (uri == null) {
                         uri = w7.h0.a(oVar.d.f12231c);
@@ -252,7 +252,7 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
     @Override
     public int J() {
         s4.p0 p0Var = (s4.p0) this.f15726a;
-        return p0Var.f47824m - p0Var.E();
+        return p0Var.f47827m - p0Var.E();
     }
 
     @Override
@@ -294,7 +294,7 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
 
     @Override
     public void P() {
-        ((o9) this.f15726a).f31226a.invalidate();
+        ((o9) this.f15726a).f31228a.invalidate();
     }
 
     @Override
@@ -350,14 +350,14 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
     @Override
     public void U(float f7, boolean z10) {
         wa1 wa1Var = (wa1) ((org.telegram.ui.Cells.j0) this.f15726a);
-        int i10 = (int) (y6.f23589q * 100.0f);
+        int i10 = (int) (y6.f23591q * 100.0f);
         int i11 = (int) (f7 * 100.0f);
-        y6.f23589q = f7;
+        y6.f23591q = f7;
         if (i10 != i11) {
-            ThemeActivity themeActivity = wa1Var.f45056f.e;
-            vl0 vl0Var = (vl0) themeActivity.f36262b.K(themeActivity.f36269f0);
+            ThemeActivity themeActivity = wa1Var.f45059f.e;
+            vl0 vl0Var = (vl0) themeActivity.f36265b.K(themeActivity.f36272f0);
             if (vl0Var != null) {
-                ((i9) vl0Var.f47735a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (y6.f23589q * 100.0f))));
+                ((i9) vl0Var.f47738a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (y6.f23591q * 100.0f))));
             }
             y6.E(true);
         }
@@ -366,7 +366,7 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
     @Override
     public void V(float f7) {
         sg.x0 x0Var = (sg.x0) this.f15726a;
-        rg.s0.e(x0Var.f48550a).k("-1", f7);
+        rg.s0.e(x0Var.f48553a).k("-1", f7);
         x0Var.e.setBrushSize(f7);
     }
 
@@ -385,7 +385,7 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
         aw0 aw0Var = (aw0) this.f15726a;
         org.telegram.ui.ActionBar.g1 e = aw0Var.I.e(0, i10, str);
         if (z10) {
-            int i11 = y6.f23579p7;
+            int i11 = y6.f23581p7;
             e.d(aw0Var.p0(i11), aw0Var.p0(i11));
         }
         e.setOnClickListener(new pc0(this, z11, runnable));
@@ -485,19 +485,19 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
         if (f7 == 1.0f) {
             if (viewArr[1] != null) {
                 u91Var.G();
-                u91Var.h.put(u91Var.f33316f[1], viewArr[1]);
+                u91Var.h.put(u91Var.f33319f[1], viewArr[1]);
                 u91Var.removeView(viewArr[1]);
                 u91Var.F(viewArr[0], 0.0f);
                 viewArr[1] = null;
             }
-            u91Var.A(u91Var.f33314b);
+            u91Var.A(u91Var.f33317b);
             return;
         }
         View view = viewArr[1];
         if (view == null) {
             return;
         }
-        if (u91Var.f33322y) {
+        if (u91Var.f33325y) {
             u91Var.F(view, (1.0f - f7) * viewArr[0].getMeasuredWidth());
             View view2 = viewArr[0];
             u91Var.F(view2, (-view2.getMeasuredWidth()) * f7);
@@ -530,13 +530,13 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
         int i11 = 0;
         for (o2.q qVar : kVar.J) {
             qVar.e();
-            i11 += qVar.Y.f49412a;
+            i11 += qVar.Y.f49415a;
         }
         b2.q1[] q1VarArr = new b2.q1[i11];
         int i12 = 0;
         for (o2.q qVar2 : kVar.J) {
             qVar2.e();
-            int i13 = qVar2.Y.f49412a;
+            int i13 = qVar2.Y.f49415a;
             int i14 = 0;
             while (i14 < i13) {
                 qVar2.e();
@@ -567,10 +567,10 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
     @Override
     public float get() {
         sg.x0 x0Var = (sg.x0) this.f15726a;
-        int i10 = x0Var.f48550a;
+        int i10 = x0Var.f48553a;
         rg.m currentBrush = x0Var.e.getCurrentBrush();
         if (currentBrush == null) {
-            return rg.s0.e(i10).f47545i;
+            return rg.s0.e(i10).f47548i;
         }
         return rg.s0.e(i10).f("-1", currentBrush.d());
     }
@@ -607,7 +607,7 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
         g1Var.getClass();
         int i13 = v0Var.f3511a;
         int i14 = v0Var.f3512b;
-        View view = e1Var.f47735a;
+        View view = e1Var.f47738a;
         if (v0Var2 == null) {
             i10 = view.getLeft();
         } else {
@@ -634,7 +634,7 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
                     }
                 }
             }
-            e1Var.f47740i = (e1Var.h - i18) + (i18 * 1000);
+            e1Var.f47743i = (e1Var.h - i18) + (i18 * 1000);
             g1Var.s(e1Var, v0Var);
             z10 = true;
         }
@@ -651,13 +651,13 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
     public void j0(s4.e1 e1Var) {
         RecyclerView recyclerView = (RecyclerView) this.f15726a;
         s4.p0 p0Var = recyclerView.f3084x;
-        View view = e1Var.f47735a;
+        View view = e1Var.f47738a;
         rf.e eVar = recyclerView.f3056b;
-        s4.d dVar = p0Var.f47815a;
-        s0 s0Var = (s0) dVar.f47717b;
+        s4.d dVar = p0Var.f47818a;
+        s0 s0Var = (s0) dVar.f47720b;
         int indexOfChild = ((RecyclerView) s0Var.f15828b).indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((lg) dVar.f47718c).B(indexOfChild)) {
+            if (((lg) dVar.f47721c).B(indexOfChild)) {
                 dVar.t(view);
             }
             s0Var.h0(indexOfChild);
@@ -731,11 +731,11 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
     @Override
     public void onStateChanged(boolean z10, int i10) {
         gl0 gl0Var = (gl0) this.f15726a;
-        if (z10 && gl0Var.f28592n.n() >= 0) {
-            gl0Var.f28595w = true;
+        if (z10 && gl0Var.f28594n.n() >= 0) {
+            gl0Var.f28597w = true;
         }
-        dh0 dh0Var = gl0Var.f28591f;
-        wa0 wa0Var = gl0Var.f28596x;
+        dh0 dh0Var = gl0Var.f28593f;
+        wa0 wa0Var = gl0Var.f28598x;
         dh0Var.a(z10, true);
         AndroidUtilities.cancelRunOnUIThread(wa0Var);
         if (z10) {
@@ -814,11 +814,11 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
         k4.d dVar;
         y2.o oVar = (y2.o) iVar;
         l2.g gVar = (l2.g) this.f15726a;
-        long j12 = oVar.f51964a;
-        g2.m mVar = oVar.f51965b;
+        long j12 = oVar.f51967a;
+        g2.m mVar = oVar.f51968b;
         g2.b0 b0Var = oVar.d;
         u2.u uVar = new u2.u(mVar, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
-        int i11 = oVar.f51966c;
+        int i11 = oVar.f51969c;
         gVar.f16813m.getClass();
         for (Throwable th2 = iOException; th2 != null; th2 = th2.getCause()) {
             if ((th2 instanceof b2.x0) || (th2 instanceof FileNotFoundException) || (th2 instanceof g2.u) || (th2 instanceof y2.k) || ((th2 instanceof g2.j) && ((g2.j) th2).f12248a == 2008)) {
@@ -828,7 +828,7 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
         }
         min = Math.min((i10 - 1) * 1000, 5000);
         if (min == -9223372036854775807L) {
-            dVar = y2.l.f51960f;
+            dVar = y2.l.f51963f;
         } else {
             dVar = new k4.d(0, min, false);
         }
@@ -853,15 +853,15 @@ public class i implements ri, m.e2, y2.g, hp0, e5, li.i0, l.w, l.i, o0.a, u2.e1,
         y2.o oVar = (y2.o) iVar;
         l2.g gVar = (l2.g) this.f15726a;
         if (i10 == 0) {
-            long j12 = oVar.f51964a;
-            uVar = new u2.u(oVar.f51965b, j10);
+            long j12 = oVar.f51967a;
+            uVar = new u2.u(oVar.f51968b, j10);
         } else {
-            long j13 = oVar.f51964a;
-            g2.m mVar = oVar.f51965b;
+            long j13 = oVar.f51967a;
+            g2.m mVar = oVar.f51968b;
             g2.b0 b0Var = oVar.d;
             uVar = new u2.u(mVar, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
         }
-        gVar.f16817q.u(uVar, oVar.f51966c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
+        gVar.f16817q.u(uVar, oVar.f51969c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
     }
 
     public i(y6.a aVar) {

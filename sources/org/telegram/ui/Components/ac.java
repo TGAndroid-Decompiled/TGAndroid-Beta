@@ -9,10 +9,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class ac implements el0 {
-    public final bc f26461a;
+    public final bc f26463a;
 
     public ac(bc bcVar) {
-        this.f26461a = bcVar;
+        this.f26463a = bcVar;
     }
 
     @Override
@@ -33,8 +33,8 @@ public final class ac implements el0 {
     @Override
     public final void p(View view, bh.x0 x0Var, boolean z10, boolean z11) {
         boolean z12;
-        bc bcVar = this.f26461a;
-        org.telegram.ui.ActionBar.r2 r2Var = bcVar.f26818f;
+        bc bcVar = this.f26463a;
+        org.telegram.ui.ActionBar.r2 r2Var = bcVar.f26820f;
         if (bcVar.e == null) {
             return;
         }
@@ -53,7 +53,7 @@ public final class ac implements el0 {
             MessageObject messageObject = new MessageObject(r2Var.getCurrentAccount(), message, false, false);
             ArrayList<bh.x0> arrayList = new ArrayList<>();
             arrayList.add(x0Var);
-            r2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, x0Var, false, false, bcVar.f26818f, null);
+            r2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, x0Var, false, false, bcVar.f26820f, null);
             i10 = message.f22048id;
         }
         bcVar.f();

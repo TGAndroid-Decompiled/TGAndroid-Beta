@@ -109,7 +109,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
                             return;
                         default:
                             g1 g1Var = this.f4416b;
-                            org.telegram.ui.Components.g5.S(context, g1Var.I, new a1.c(g1Var, 5), u6Var, 0).f22599a.show();
+                            org.telegram.ui.Components.g5.S(context, g1Var.I, new a1.c(g1Var, 5), u6Var, 0).f22601a.show();
                             return;
                     }
                 }
@@ -117,7 +117,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         } else {
             this.f4633b = null;
         }
-        fixNavigationBarKey(org.telegram.ui.ActionBar.y6.f23425h5);
+        fixNavigationBarKey(org.telegram.ui.ActionBar.y6.f23427h5);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         LinearLayout d = vh.d(context, 0);
@@ -199,7 +199,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         rd0Var.addView(imageView3, gb1.h(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.s6 s6Var = new org.telegram.ui.Components.s6(context, false, false, false);
         this.v = s6Var;
-        int i15 = org.telegram.ui.ActionBar.y6.f23746y6;
+        int i15 = org.telegram.ui.ActionBar.y6.f23748y6;
         org.telegram.ui.ActionBar.f7.Z(s6Var, i15, null);
         s6Var.setTextSize(AndroidUtilities.dp(13.0f));
         s6Var.setGravity(5);
@@ -244,7 +244,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
                         return;
                     default:
                         g1 g1Var = this.f4416b;
-                        org.telegram.ui.Components.g5.S(context, g1Var.I, new a1.c(g1Var, 5), u6Var, 0).f22599a.show();
+                        org.telegram.ui.Components.g5.S(context, g1Var.I, new a1.c(g1Var, 5), u6Var, 0).f22601a.show();
                         return;
                 }
             }

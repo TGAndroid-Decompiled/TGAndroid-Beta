@@ -279,14 +279,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f49168b);
-            outputSerializedData.writeInt32(this.settings.f49169c);
+            outputSerializedData.writeString(this.settings.f49171b);
+            outputSerializedData.writeInt32(this.settings.f49172c);
             outputSerializedData.writeString(this.settings.d);
             outputSerializedData.writeString(this.settings.e);
-            outputSerializedData.writeString(this.settings.f49170f);
+            outputSerializedData.writeString(this.settings.f49173f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f49167a);
+            int c10 = m1.j.c(this.settings.f49170a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -912,10 +912,10 @@ public class SharedConfig {
             ImageLoader.getInstance().checkMediaPaths(new a2(22));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f22366a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f22368a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new yg(3));
-            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
             e2Var.setCanceledOnTouchOutside(false);
             e2Var.show();
         }

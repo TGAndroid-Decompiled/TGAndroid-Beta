@@ -26,7 +26,7 @@ public final class m0 extends s4.p {
                 if (tLObject instanceof TLRPC.User) {
                     TLObject tLObject2 = p0Var2.f14201f;
                     if (tLObject2 instanceof TLRPC.User) {
-                        if (((TLRPC.User) tLObject).f22174id == ((TLRPC.User) tLObject2).f22174id) {
+                        if (((TLRPC.User) tLObject).f22176id == ((TLRPC.User) tLObject2).f22176id) {
                             return true;
                         }
                         return false;

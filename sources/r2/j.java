@@ -6,27 +6,27 @@ import android.media.MediaCodec;
 import java.util.HashSet;
 import java.util.Iterator;
 public final class j {
-    public final HashSet f47217a;
-    public final i f47218b;
-    public LoudnessCodecController f47219c;
+    public final HashSet f47220a;
+    public final i f47221b;
+    public LoudnessCodecController f47222c;
 
     public j() {
-        i iVar = i.f47215a;
-        this.f47217a = new HashSet();
-        this.f47218b = iVar;
+        i iVar = i.f47218a;
+        this.f47220a = new HashSet();
+        this.f47221b = iVar;
     }
 
     public final void a(MediaCodec mediaCodec) {
-        LoudnessCodecController loudnessCodecController = this.f47219c;
+        LoudnessCodecController loudnessCodecController = this.f47222c;
         if (loudnessCodecController != null && !loudnessCodecController.addMediaCodec(mediaCodec)) {
             return;
         }
-        yb.p(this.f47217a.add(mediaCodec));
+        yb.p(this.f47220a.add(mediaCodec));
     }
 
     public final void b() {
-        this.f47217a.clear();
-        LoudnessCodecController loudnessCodecController = this.f47219c;
+        this.f47220a.clear();
+        LoudnessCodecController loudnessCodecController = this.f47222c;
         if (loudnessCodecController != null) {
             loudnessCodecController.close();
         }
@@ -34,20 +34,20 @@ public final class j {
 
     public final void c(MediaCodec mediaCodec) {
         LoudnessCodecController loudnessCodecController;
-        if (this.f47217a.remove(mediaCodec) && (loudnessCodecController = this.f47219c) != null) {
+        if (this.f47220a.remove(mediaCodec) && (loudnessCodecController = this.f47222c) != null) {
             loudnessCodecController.removeMediaCodec(mediaCodec);
         }
     }
 
     public final void d(int i10) {
-        LoudnessCodecController loudnessCodecController = this.f47219c;
+        LoudnessCodecController loudnessCodecController = this.f47222c;
         if (loudnessCodecController != null) {
             loudnessCodecController.close();
-            this.f47219c = null;
+            this.f47222c = null;
         }
         LoudnessCodecController create = LoudnessCodecController.create(i10, k9.r.f16491a, new h(this));
-        this.f47219c = create;
-        Iterator it = this.f47217a.iterator();
+        this.f47222c = create;
+        Iterator it = this.f47220a.iterator();
         while (it.hasNext()) {
             if (!create.addMediaCodec((MediaCodec) it.next())) {
                 it.remove();

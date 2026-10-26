@@ -98,14 +98,14 @@ public final class a4 extends FrameLayout implements p6 {
         this.f17093i0 = new ArrayList();
         this.f17094j0 = new ArrayList();
         this.f17081a = lVar;
-        u6 u6Var = lVar.f17336a.f30212a;
+        u6 u6Var = lVar.f17336a.f30214a;
         this.f17083b = u6Var;
         setClipChildren(false);
         setClipToPadding(false);
         View view = new View(context);
         this.f17085c = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i12 = y6.f23354d6;
+        int i12 = y6.f23356d6;
         GradientDrawable gradientDrawable = new GradientDrawable(orientation, new int[]{y6.w0(i12, u6Var), y6.o1(0.0f, y6.w0(i12, u6Var))});
         this.f17087d0 = gradientDrawable;
         view.setBackground(gradientDrawable);
@@ -129,7 +129,7 @@ public final class a4 extends FrameLayout implements p6 {
         int i13 = y6.Yk;
         int w02 = y6.w0(i13, u6Var);
         int w03 = y6.w0(i13, u6Var);
-        int i14 = y6.f23446i6;
+        int i14 = y6.f23448i6;
         org.telegram.ui.Cells.y a02 = y6.a0(w02, y6.v(w03, y6.w0(i14, u6Var)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
         f(imageView, i13, a02);
         imageView.setBackground(new a2(a02));
@@ -185,9 +185,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -215,7 +215,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -267,9 +267,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -297,7 +297,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -364,9 +364,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -394,7 +394,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -464,9 +464,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -494,7 +494,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -551,9 +551,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -581,7 +581,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -677,9 +677,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -707,7 +707,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -757,9 +757,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -787,7 +787,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -845,9 +845,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -875,7 +875,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -920,9 +920,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -950,7 +950,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -1005,9 +1005,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -1035,7 +1035,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -1088,9 +1088,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -1118,7 +1118,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -1168,9 +1168,9 @@ public final class a4 extends FrameLayout implements p6 {
                         if (n22 != null) {
                             TL_iv.RichMessage a2 = n22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30212a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(qVar2.getContext(), qVar2.f30214a);
                                 e0Var.n0(a2);
-                                e0Var.f27650k0 = new ig.o(n22, 8);
+                                e0Var.f27652k0 = new ig.o(n22, 8);
                                 e0Var.show();
                                 return;
                             }
@@ -1198,7 +1198,7 @@ public final class a4 extends FrameLayout implements p6 {
                         l lVar2 = lVar;
                         q qVar3 = lVar2.f17336a;
                         Context context2 = qVar3.getContext();
-                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30212a).show();
+                        new w(qVar3.f17417n, context2, new ig.o(lVar2, 9), qVar3.f30214a).show();
                         return;
                     case 10:
                         q.O(lVar.f17336a);
@@ -1219,7 +1219,7 @@ public final class a4 extends FrameLayout implements p6 {
         int i12;
         LinearLayout linearLayout = this.f17103y;
         x1 x1Var = new x1(linearLayout.getContext(), i10, this.f17083b);
-        x1Var.c(y6.f23354d6);
+        x1Var.c(y6.f23356d6);
         if (z10) {
             x1Var.d();
             this.V.add(x1Var);
@@ -1329,7 +1329,7 @@ public final class a4 extends FrameLayout implements p6 {
                 ak0Var.setScaleY(f7);
             }
             if (z10) {
-                i10 = y6.f23596q7;
+                i10 = y6.f23598q7;
             } else {
                 i10 = y6.G6;
             }
@@ -1337,7 +1337,7 @@ public final class a4 extends FrameLayout implements p6 {
             xj0 animatedDrawable = ak0Var.getAnimatedDrawable();
             if (animatedDrawable != null) {
                 if (z10) {
-                    if (animatedDrawable.f34733a0 > 34) {
+                    if (animatedDrawable.f34736a0 > 34) {
                         animatedDrawable.N(0, false, false);
                     }
                     animatedDrawable.P(33);
@@ -1357,7 +1357,7 @@ public final class a4 extends FrameLayout implements p6 {
         u6 u6Var = this.f17083b;
         this.f17093i0.add(Integer.valueOf(y6.w0(i10, u6Var)));
         if (drawable instanceof RippleDrawable) {
-            i11 = y6.v(y6.w0(i10, u6Var), y6.w0(y6.f23446i6, u6Var));
+            i11 = y6.v(y6.w0(i10, u6Var), y6.w0(y6.f23448i6, u6Var));
         } else {
             i11 = 0;
         }

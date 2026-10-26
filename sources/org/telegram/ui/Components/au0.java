@@ -7,21 +7,21 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class au0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f26618a;
-    public final int f26619b;
-    public final KeyEvent.Callback f26620c;
+    public final int f26620a;
+    public final int f26621b;
+    public final KeyEvent.Callback f26622c;
 
     public au0(KeyEvent.Callback callback, int i10, int i11) {
-        this.f26618a = i11;
-        this.f26620c = callback;
-        this.f26619b = i10;
+        this.f26620a = i11;
+        this.f26622c = callback;
+        this.f26621b = i10;
     }
 
     @Override
     public final boolean onPreDraw() {
-        int i10 = this.f26618a;
-        int i11 = this.f26619b;
-        KeyEvent.Callback callback = this.f26620c;
+        int i10 = this.f26620a;
+        int i11 = this.f26621b;
+        KeyEvent.Callback callback = this.f26622c;
         switch (i10) {
             case 0:
                 aw0 aw0Var = (aw0) callback;

@@ -80,7 +80,7 @@ public abstract class n3 extends lm0 {
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
-        org.telegram.ui.Components.y9 y9Var = (org.telegram.ui.Components.y9) e1Var.f47735a;
+        org.telegram.ui.Components.y9 y9Var = (org.telegram.ui.Components.y9) e1Var.f47738a;
         TLObject tLObject = (TLObject) this.f11293c.get(i10);
         boolean z10 = tLObject instanceof TLRPC.Document;
         ColorDrawable colorDrawable = this.f11297s;

@@ -35,11 +35,11 @@ public final class o0 implements Runnable {
                 LongSparseIntArray longSparseIntArray = unVar.Y5;
                 long j10 = this.f1360c;
                 longSparseIntArray.put(j10, 0);
-                e41 e41Var = unVar.f44219d2;
+                e41 e41Var = unVar.f44222d2;
                 if (e41Var != null) {
                     e41Var.setAllTopicsHidden(false);
                 }
-                if (j10 == unVar.f44370p4) {
+                if (j10 == unVar.f44373p4) {
                     unVar.A0.O(false);
                     return;
                 }
@@ -47,7 +47,7 @@ public final class o0 implements Runnable {
             case 3:
                 un unVar2 = this.f1359b;
                 qc v = wc.v(unVar2.getParentActivity(), unVar2, null, 1, this.f1360c, 1, unVar2.getThemedColor(y6.Fi), unVar2.getThemedColor(y6.Hi), 5000, true, null);
-                v.f31888k = true;
+                v.f31890k = true;
                 v.k(true);
                 return;
             case 4:

@@ -26,7 +26,7 @@ public final class ft0 extends m4 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         PhotoViewer photoViewer = this.h;
-        if (view == photoViewer.E3 && photoViewer.f35665g4) {
+        if (view == photoViewer.E3 && photoViewer.f35668g4) {
             return true;
         }
         return super.drawChild(canvas, view, j10);
@@ -36,7 +36,7 @@ public final class ft0 extends m4 {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         PhotoViewer photoViewer = this.h;
-        ImageView imageView = photoViewer.f35816x3;
+        ImageView imageView = photoViewer.f35819x3;
         if (imageView != null) {
             ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
             layoutParams.width = getMeasuredWidth();

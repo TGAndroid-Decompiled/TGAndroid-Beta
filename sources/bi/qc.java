@@ -35,7 +35,7 @@ public final class qc extends org.telegram.ui.Components.s6 {
                 return;
             default:
                 c00 c00Var = (c00) this.f5308w;
-                int a2 = c00Var.f38194w.a(c00Var.v, false);
+                int a2 = c00Var.f38197w.a(c00Var.v, false);
                 setTextColor(a2);
                 Paint paint = (Paint) this.v;
                 if (org.telegram.ui.ActionBar.y6.I.q()) {

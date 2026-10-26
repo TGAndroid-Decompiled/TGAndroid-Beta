@@ -12,19 +12,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class oe implements RequestDelegate {
-    public final int f42163a;
-    public final un f42164b;
+    public final int f42166a;
+    public final un f42167b;
 
     public oe(un unVar, int i10) {
-        this.f42163a = i10;
-        this.f42164b = unVar;
+        this.f42166a = i10;
+        this.f42167b = unVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f42163a) {
+        switch (this.f42166a) {
             case 0:
-                final un unVar = this.f42164b;
+                final un unVar = this.f42167b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -41,11 +41,11 @@ public final class oe implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 unVar2.A5 = 0;
                                 if (tLObject2 == null && unVar2.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar2.getParentActivity(), 0, unVar2.f44385qa);
-                                    alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar2.getParentActivity(), 0, unVar2.f44388qa);
+                                    alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    unVar2.showDialog(alertDialog$Builder.f22366a);
+                                    unVar2.showDialog(alertDialog$Builder.f22368a);
                                     hk hkVar = unVar2.Y;
                                     if (hkVar != null) {
                                         hkVar.Z0(null, null, false);
@@ -84,7 +84,7 @@ public final class oe implements RequestDelegate {
                 });
                 return;
             case 1:
-                final un unVar2 = this.f42164b;
+                final un unVar2 = this.f42167b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -101,11 +101,11 @@ public final class oe implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 unVar22.A5 = 0;
                                 if (tLObject2 == null && unVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar22.getParentActivity(), 0, unVar22.f44385qa);
-                                    alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar22.getParentActivity(), 0, unVar22.f44388qa);
+                                    alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    unVar22.showDialog(alertDialog$Builder.f22366a);
+                                    unVar22.showDialog(alertDialog$Builder.f22368a);
                                     hk hkVar = unVar22.Y;
                                     if (hkVar != null) {
                                         hkVar.Z0(null, null, false);
@@ -144,7 +144,7 @@ public final class oe implements RequestDelegate {
                 });
                 return;
             case 2:
-                final un unVar3 = this.f42164b;
+                final un unVar3 = this.f42167b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -161,11 +161,11 @@ public final class oe implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 unVar22.A5 = 0;
                                 if (tLObject2 == null && unVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar22.getParentActivity(), 0, unVar22.f44385qa);
-                                    alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar22.getParentActivity(), 0, unVar22.f44388qa);
+                                    alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    unVar22.showDialog(alertDialog$Builder.f22366a);
+                                    unVar22.showDialog(alertDialog$Builder.f22368a);
                                     hk hkVar = unVar22.Y;
                                     if (hkVar != null) {
                                         hkVar.Z0(null, null, false);
@@ -204,7 +204,7 @@ public final class oe implements RequestDelegate {
                 });
                 return;
             case 3:
-                final un unVar4 = this.f42164b;
+                final un unVar4 = this.f42167b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -221,11 +221,11 @@ public final class oe implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 unVar22.A5 = 0;
                                 if (tLObject2 == null && unVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar22.getParentActivity(), 0, unVar22.f44385qa);
-                                    alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar22.getParentActivity(), 0, unVar22.f44388qa);
+                                    alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    unVar22.showDialog(alertDialog$Builder.f22366a);
+                                    unVar22.showDialog(alertDialog$Builder.f22368a);
                                     hk hkVar = unVar22.Y;
                                     if (hkVar != null) {
                                         hkVar.Z0(null, null, false);
@@ -264,7 +264,7 @@ public final class oe implements RequestDelegate {
                 });
                 return;
             case 4:
-                un unVar5 = this.f42164b;
+                un unVar5 = this.f42167b;
                 if (tL_error != null) {
                     unVar5.getClass();
                     return;
@@ -273,7 +273,7 @@ public final class oe implements RequestDelegate {
                     return;
                 }
             default:
-                un.f1(this.f42164b, tLObject);
+                un.f1(this.f42167b, tLObject);
                 return;
         }
     }

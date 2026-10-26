@@ -3,40 +3,40 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 public final class ta0 implements org.telegram.ui.Components.e5, org.telegram.ui.ActionBar.b2, org.telegram.ui.Components.yw0 {
-    public final int f43714a;
-    public final db0 f43715b;
+    public final int f43717a;
+    public final db0 f43718b;
 
     public ta0(db0 db0Var, int i10) {
-        this.f43714a = i10;
-        this.f43715b = db0Var;
+        this.f43717a = i10;
+        this.f43718b = db0Var;
     }
 
     @Override
     public void G(int i10, int i11, boolean z10) {
-        this.f43715b.W(i10);
+        this.f43718b.W(i10);
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        db0 db0Var = this.f43715b;
+        db0 db0Var = this.f43718b;
         db0Var.S.a(db0Var.e);
         db0Var.finishFragment();
     }
 
     @Override
     public void j(int i10) {
-        switch (this.f43714a) {
+        switch (this.f43717a) {
             case 2:
-                db0 db0Var = this.f43715b;
+                db0 db0Var = this.f43718b;
                 ArrayList arrayList = db0Var.O;
                 if (i10 < arrayList.size()) {
-                    db0Var.f38819w.setText(LocaleController.formatDateAudio(db0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
+                    db0Var.f38822w.setText(LocaleController.formatDateAudio(db0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
                     return;
                 }
-                db0Var.f38819w.setText("");
+                db0Var.f38822w.setText("");
                 return;
             default:
-                db0 db0Var2 = this.f43715b;
+                db0 db0Var2 = this.f43718b;
                 db0Var2.F.clearFocus();
                 db0Var2.N = true;
                 ArrayList arrayList2 = db0Var2.Q;
@@ -52,7 +52,7 @@ public final class ta0 implements org.telegram.ui.Components.e5, org.telegram.ui
 
     @Override
     public void m() {
-        int i10 = this.f43714a;
+        int i10 = this.f43717a;
     }
 
     private final void a() {

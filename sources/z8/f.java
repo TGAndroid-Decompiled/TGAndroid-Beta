@@ -6,24 +6,24 @@ import android.os.Parcelable;
 import android.util.Log;
 public final class f extends p6.a {
     public static final Parcelable.Creator<f> CREATOR = new d(1);
-    public final g f52725a;
-    public final int f52726b;
-    public final int f52727c;
+    public final g f52728a;
+    public final int f52729b;
+    public final int f52730c;
     public final int d;
 
     public f(g gVar, int i10, int i11, int i12) {
-        this.f52725a = gVar;
-        this.f52726b = i10;
-        this.f52727c = i11;
+        this.f52728a = gVar;
+        this.f52729b = i10;
+        this.f52730c = i11;
         this.d = i12;
     }
 
     public final void b(y8.c cVar) {
-        g gVar = this.f52725a;
-        int i10 = this.f52726b;
+        g gVar = this.f52728a;
+        int i10 = this.f52729b;
         if (i10 != 1) {
             int i11 = this.d;
-            int i12 = this.f52727c;
+            int i12 = this.f52730c;
             if (i10 != 2) {
                 if (i10 != 3) {
                     if (i10 != 4) {
@@ -45,8 +45,8 @@ public final class f extends p6.a {
     public final String toString() {
         String str;
         String str2;
-        String valueOf = String.valueOf(this.f52725a);
-        int i10 = this.f52726b;
+        String valueOf = String.valueOf(this.f52728a);
+        int i10 = this.f52729b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -64,7 +64,7 @@ public final class f extends p6.a {
         } else {
             str = "CHANNEL_OPENED";
         }
-        int i11 = this.f52727c;
+        int i11 = this.f52730c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -93,11 +93,11 @@ public final class f extends p6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        df.k(parcel, 2, this.f52725a, i10);
+        df.k(parcel, 2, this.f52728a, i10);
         df.s(parcel, 3, 4);
-        parcel.writeInt(this.f52726b);
+        parcel.writeInt(this.f52729b);
         df.s(parcel, 4, 4);
-        parcel.writeInt(this.f52727c);
+        parcel.writeInt(this.f52730c);
         df.s(parcel, 5, 4);
         parcel.writeInt(this.d);
         df.r(parcel, q5);

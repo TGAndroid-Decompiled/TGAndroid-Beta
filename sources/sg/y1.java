@@ -18,33 +18,33 @@ public final class y1 extends View {
     public Runnable I;
     public boolean J;
     public x1 K;
-    public final Paint f48577a;
-    public final Paint f48578b;
-    public final Path f48579c;
+    public final Paint f48580a;
+    public final Paint f48581b;
+    public final Path f48582c;
     public final jg.s0 d;
     public final RectF e;
-    public boolean f48580f;
+    public boolean f48583f;
     public boolean h;
-    public float f48581n;
-    public float f48582r;
-    public long f48583s;
+    public float f48584n;
+    public float f48585r;
+    public long f48586s;
     public boolean v;
-    public final h6 f48584w;
-    public final h6 f48585x;
-    public final h6 f48586y;
+    public final h6 f48587w;
+    public final h6 f48588x;
+    public final h6 f48589y;
 
     public y1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f48577a = paint;
+        this.f48580a = paint;
         Paint paint2 = new Paint(1);
-        this.f48578b = paint2;
-        this.f48579c = new Path();
+        this.f48581b = paint2;
+        this.f48582c = new Path();
         this.e = new RectF();
         this.v = true;
-        this.f48584w = new h6(this);
-        this.f48585x = new h6(this);
-        this.f48586y = new h6(this);
+        this.f48587w = new h6(this);
+        this.f48588x = new h6(this);
+        this.f48589y = new h6(this);
         this.H = new rg.q1(1.0f, 0.016773745f, -1);
         this.J = true;
         this.d = new jg.s0(context, new w1(this));
@@ -58,9 +58,9 @@ public final class y1 extends View {
         if (z10) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((f7 - f11) - AndroidUtilities.dp(6.0f), (f10 - f11) - AndroidUtilities.dp(6.0f), f7 + f11 + AndroidUtilities.dp(6.0f), f10 + f11 + AndroidUtilities.dp(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f48582r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f48585r * 255.0f), 31);
         }
-        canvas.drawCircle(f7, f10, f11, this.f48578b);
+        canvas.drawCircle(f7, f10, f11, this.f48581b);
         if (z10) {
             canvas.restore();
         }
@@ -90,13 +90,13 @@ public final class y1 extends View {
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f48580f = false;
+        this.f48583f = false;
         invalidate();
         return onTouchEvent;
     }
 
     public void setBrushWeight(float f7) {
-        this.H.f47524c = f7;
+        this.H.f47527c = f7;
         invalidate();
     }
 

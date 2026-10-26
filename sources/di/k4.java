@@ -56,7 +56,7 @@ public final class k4 extends org.telegram.ui.Components.y9 {
         Canvas canvas2;
         switch (this.G) {
             case 0:
-                if (this.f34981a.getVisible()) {
+                if (this.f34984a.getVisible()) {
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     ((m4) this.H).b(1.0f, canvas, rectF, true);
@@ -65,13 +65,13 @@ public final class k4 extends org.telegram.ui.Components.y9 {
                 return;
             case 2:
                 org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) this.H;
-                k4 k4Var = o7Var.f24608b;
+                k4 k4Var = o7Var.f24610b;
                 float f7 = 1.0f;
                 if (k4Var.getImageReceiver().hasBitmapImage()) {
                     f7 = 1.0f - k4Var.getImageReceiver().getCurrentAlpha();
                 }
                 o7Var.d.setAlpha(f7);
-                o7Var.f24607a.setAlpha(f7);
+                o7Var.f24609a.setAlpha(f7);
                 super.onDraw(canvas);
                 return;
             case 3:
@@ -79,7 +79,7 @@ public final class k4 extends org.telegram.ui.Components.y9 {
                 org.telegram.ui.Cells.q6 q6Var = abVar.T;
                 if (abVar.F) {
                     q6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    a8.h(abVar.U, canvas, this.f34981a, q6Var);
+                    a8.h(abVar.U, canvas, this.f34984a, q6Var);
                     return;
                 }
                 super.onDraw(canvas);
@@ -91,20 +91,20 @@ public final class k4 extends org.telegram.ui.Components.y9 {
                 if (!(obj instanceof bi1) && !(obj instanceof ci1)) {
                     canvas2 = canvas;
                 } else {
-                    canvas.drawLine(1.0f, 0.0f, getMeasuredWidth() - 1, 0.0f, ebVar.f24048s.f24125n);
+                    canvas.drawLine(1.0f, 0.0f, getMeasuredWidth() - 1, 0.0f, ebVar.f24050s.f24127n);
                     canvas2 = canvas;
-                    canvas2.drawLine(0.0f, 0.0f, 0.0f, getMeasuredHeight(), ebVar.f24048s.f24125n);
-                    canvas2.drawLine(getMeasuredWidth() - 1, 0.0f, getMeasuredWidth() - 1, getMeasuredHeight(), ebVar.f24048s.f24125n);
-                    canvas2.drawLine(1.0f, getMeasuredHeight() - 1, getMeasuredWidth() - 1, getMeasuredHeight() - 1, ebVar.f24048s.f24125n);
+                    canvas2.drawLine(0.0f, 0.0f, 0.0f, getMeasuredHeight(), ebVar.f24050s.f24127n);
+                    canvas2.drawLine(getMeasuredWidth() - 1, 0.0f, getMeasuredWidth() - 1, getMeasuredHeight(), ebVar.f24050s.f24127n);
+                    canvas2.drawLine(1.0f, getMeasuredHeight() - 1, getMeasuredWidth() - 1, getMeasuredHeight() - 1, ebVar.f24050s.f24127n);
                 }
                 if (ebVar.e) {
-                    ebVar.f24048s.f24126r.setColor(org.telegram.ui.ActionBar.y6.f23329c0);
+                    ebVar.f24050s.f24128r.setColor(org.telegram.ui.ActionBar.y6.f23331c0);
                     int measuredWidth = getMeasuredWidth() / 2;
                     int measuredHeight = getMeasuredHeight() / 2;
-                    canvas2.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(20.0f), ebVar.f24048s.f24126r);
-                    Drawable drawable = ebVar.f24048s.v;
-                    drawable.setBounds(org.telegram.ui.d3.x(2, measuredWidth, drawable), org.telegram.ui.d3.i(2, measuredHeight, ebVar.f24048s.v), org.telegram.ui.d3.C(2, measuredWidth, ebVar.f24048s.v), org.telegram.ui.d3.B(2, measuredHeight, ebVar.f24048s.v));
-                    ebVar.f24048s.v.draw(canvas2);
+                    canvas2.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(20.0f), ebVar.f24050s.f24128r);
+                    Drawable drawable = ebVar.f24050s.v;
+                    drawable.setBounds(org.telegram.ui.d3.x(2, measuredWidth, drawable), org.telegram.ui.d3.i(2, measuredHeight, ebVar.f24050s.v), org.telegram.ui.d3.C(2, measuredWidth, ebVar.f24050s.v), org.telegram.ui.d3.B(2, measuredHeight, ebVar.f24050s.v));
+                    ebVar.f24050s.v.draw(canvas2);
                     return;
                 }
                 return;
@@ -113,10 +113,10 @@ public final class k4 extends org.telegram.ui.Components.y9 {
                     super.onDraw(canvas);
                     return;
                 }
-                Drawable drawable2 = this.f34981a.getDrawable();
+                Drawable drawable2 = this.f34984a.getDrawable();
                 if (drawable2 != null) {
-                    this.f34981a.setImageCoords(0.0f, 0.0f, getWidth(), (getWidth() / drawable2.getIntrinsicWidth()) * drawable2.getIntrinsicHeight());
-                    this.f34981a.draw(canvas);
+                    this.f34984a.setImageCoords(0.0f, 0.0f, getWidth(), (getWidth() / drawable2.getIntrinsicWidth()) * drawable2.getIntrinsicHeight());
+                    this.f34984a.draw(canvas);
                     return;
                 }
                 return;
@@ -168,7 +168,7 @@ public final class k4 extends org.telegram.ui.Components.y9 {
         super(context);
         this.G = 11;
         this.H = a1Var;
-        this.f34981a = new f3(this, this, 7);
+        this.f34984a = new f3(this, this, 7);
     }
 
     @Override
@@ -182,7 +182,7 @@ public final class k4 extends org.telegram.ui.Components.y9 {
                 super.invalidate();
                 return;
             case 6:
-                fi.f6 f6Var2 = ((mo) this.H).f41602f;
+                fi.f6 f6Var2 = ((mo) this.H).f41605f;
                 if (f6Var2 != null) {
                     f6Var2.invalidate();
                 }
@@ -230,7 +230,7 @@ public final class k4 extends org.telegram.ui.Components.y9 {
                 super.invalidate(i10, i11, i12, i13);
                 return;
             case 6:
-                fi.f6 f6Var2 = ((mo) this.H).f41602f;
+                fi.f6 f6Var2 = ((mo) this.H).f41605f;
                 if (f6Var2 != null) {
                     f6Var2.invalidate();
                 }

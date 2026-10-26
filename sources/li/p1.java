@@ -25,7 +25,7 @@ public final class p1 implements nl, cj {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f22250w = 600;
+            pageblockmap.f22252w = 600;
             pageblockmap.h = 400;
             b2Var.P.X1(pageblockmap);
             tiVar.dismiss(true);

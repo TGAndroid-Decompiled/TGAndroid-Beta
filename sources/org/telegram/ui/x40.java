@@ -8,14 +8,14 @@ import android.os.Build;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class x40 implements org.telegram.ui.Components.el0 {
-    public final Path f45634a = new Path();
-    public final Paint f45635b;
-    public final v50 f45636c;
+    public final Path f45637a = new Path();
+    public final Paint f45638b;
+    public final v50 f45639c;
 
     public x40(v50 v50Var) {
-        this.f45636c = v50Var;
+        this.f45639c = v50Var;
         Paint paint = new Paint(1);
-        this.f45635b = paint;
+        this.f45638b = paint;
         paint.setColor(-14603467);
     }
 
@@ -32,18 +32,18 @@ public final class x40 implements org.telegram.ui.Components.el0 {
     @Override
     public final void l(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
         int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        Paint paint = this.f45635b;
+        Paint paint = this.f45638b;
         if (i11 > 0) {
             canvas.drawRoundRect(rectF, f7, f7, paint);
         } else {
             canvas.drawRect(rectF, paint);
         }
         if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-            v50 v50Var = this.f45636c;
+            v50 v50Var = this.f45639c;
             if (v50Var.Q2 != null) {
                 canvas.save();
                 if (i11 > 0) {
-                    Path path = this.f45634a;
+                    Path path = this.f45637a;
                     path.rewind();
                     path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                     path.close();
@@ -81,7 +81,7 @@ public final class x40 implements org.telegram.ui.Components.el0 {
             tL_messageEntityCustomEmoji.length = str.length();
             tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
         }
-        v50 v50Var = this.f45636c;
+        v50 v50Var = this.f45639c;
         v50Var.A1(tL_textWithEntities);
         u30 u30Var = v50Var.H;
         if (u30Var.m()) {

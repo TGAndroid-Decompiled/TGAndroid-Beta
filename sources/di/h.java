@@ -26,7 +26,7 @@ public final class h extends ar {
         qw qwVar = this.G;
         int i12 = qwVar.f9073b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.y6.f23634s8;
+            i10 = org.telegram.ui.ActionBar.y6.f23636s8;
         } else {
             i10 = org.telegram.ui.ActionBar.y6.M8;
         }

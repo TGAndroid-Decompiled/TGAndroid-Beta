@@ -6,19 +6,19 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import org.telegram.messenger.AndroidUtilities;
 public final class fa1 extends WebView {
-    public final int f28134a = 0;
-    public final Object f28135b;
+    public final int f28136a = 0;
+    public final Object f28137b;
 
     public fa1(org.telegram.ui.po0 po0Var, Context context) {
         super(context);
-        this.f28135b = po0Var;
+        this.f28137b = po0Var;
     }
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f28134a) {
+        switch (this.f28136a) {
             case 0:
-                AndroidUtilities.checkAndroidTheme((Context) this.f28135b, true);
+                AndroidUtilities.checkAndroidTheme((Context) this.f28137b, true);
                 super.onAttachedToWindow();
                 return;
             default:
@@ -29,9 +29,9 @@ public final class fa1 extends WebView {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f28134a) {
+        switch (this.f28136a) {
             case 0:
-                AndroidUtilities.checkAndroidTheme((Context) this.f28135b, false);
+                AndroidUtilities.checkAndroidTheme((Context) this.f28137b, false);
                 super.onDetachedFromWindow();
                 return;
             default:
@@ -42,7 +42,7 @@ public final class fa1 extends WebView {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f28134a) {
+        switch (this.f28136a) {
             case 1:
                 super.onMeasure(i10, i11);
                 return;
@@ -54,9 +54,9 @@ public final class fa1 extends WebView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f28134a) {
+        switch (this.f28136a) {
             case 1:
-                ((ViewGroup) ((org.telegram.ui.po0) this.f28135b).fragmentView).requestDisallowInterceptTouchEvent(true);
+                ((ViewGroup) ((org.telegram.ui.po0) this.f28137b).fragmentView).requestDisallowInterceptTouchEvent(true);
                 return super.onTouchEvent(motionEvent);
             default:
                 return super.onTouchEvent(motionEvent);
@@ -65,6 +65,6 @@ public final class fa1 extends WebView {
 
     public fa1(Context context, Context context2) {
         super(context);
-        this.f28135b = context2;
+        this.f28137b = context2;
     }
 }

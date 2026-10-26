@@ -6,20 +6,20 @@ import org.telegram.ui.Components.g21;
 import org.telegram.ui.Components.gb1;
 import org.telegram.ui.yx;
 public final class n implements Runnable {
-    public final int f48327a;
-    public final n0 f48328b;
+    public final int f48330a;
+    public final n0 f48331b;
 
     public n(n0 n0Var, int i10) {
-        this.f48327a = i10;
-        this.f48328b = n0Var;
+        this.f48330a = i10;
+        this.f48331b = n0Var;
     }
 
     @Override
     public final void run() {
         int e;
-        switch (this.f48327a) {
+        switch (this.f48330a) {
             case 0:
-                n0 n0Var = this.f48328b;
+                n0 n0Var = this.f48331b;
                 g21 g21Var = n0Var.P0;
                 if (g21Var != null) {
                     n0Var.P0 = null;
@@ -28,28 +28,28 @@ public final class n implements Runnable {
                 }
                 return;
             case 1:
-                n0 n0Var2 = this.f48328b;
-                if (n0Var2.f48353t0 != null) {
-                    n0Var2.f48357v0.postRunnable(new n(n0Var2, 3), 200L);
+                n0 n0Var2 = this.f48331b;
+                if (n0Var2.f48356t0 != null) {
+                    n0Var2.f48360v0.postRunnable(new n(n0Var2, 3), 200L);
                     return;
                 }
                 return;
             case 2:
-                y1 y1Var = this.f48328b.f48329a1;
+                y1 y1Var = this.f48331b.f48332a1;
                 if (y1Var != null) {
                     y1Var.invalidate();
                     return;
                 }
                 return;
             case 3:
-                n0.Y(this.f48328b);
+                n0.Y(this.f48331b);
                 return;
             default:
-                n0 n0Var3 = this.f48328b;
-                boolean z10 = rg.s0.e(n0Var3.E1).f47547k;
+                n0 n0Var3 = this.f48331b;
+                boolean z10 = rg.s0.e(n0Var3.E1).f47550k;
                 int i10 = 0;
                 while (true) {
-                    List list = rg.l.f47457b;
+                    List list = rg.l.f47460b;
                     if (i10 < list.size()) {
                         rg.l lVar = (rg.l) list.get(i10);
                         if (z10) {

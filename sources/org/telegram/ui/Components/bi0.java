@@ -41,36 +41,36 @@ public final class bi0 extends View {
     public int U;
     public PorterDuffColorFilter V;
     public yh0 W;
-    public final ArrayList f26855a;
-    public float f26856a0;
-    public final Paint f26857b;
-    public float f26858b0;
-    public final Paint f26859c;
-    public long f26860c0;
+    public final ArrayList f26857a;
+    public float f26858a0;
+    public final Paint f26859b;
+    public float f26860b0;
+    public final Paint f26861c;
+    public long f26862c0;
     public float d;
-    public xh0 f26861d0;
+    public xh0 f26863d0;
     public boolean e;
-    public float f26862f;
+    public float f26864f;
     public final Path h;
-    public final Path f26863n;
-    public org.telegram.ui.wz0 f26864r;
-    public float f26865s;
+    public final Path f26865n;
+    public org.telegram.ui.wz0 f26866r;
+    public float f26867s;
     public float v;
-    public RenderNode f26866w;
-    public int f26867x;
-    public final int f26868y;
+    public RenderNode f26868w;
+    public int f26869x;
+    public final int f26870y;
 
     public bi0(Context context, int i10) {
         super(context);
-        this.f26855a = new ArrayList();
+        this.f26857a = new ArrayList();
         Paint paint = new Paint();
-        this.f26857b = paint;
-        this.f26859c = new Paint();
+        this.f26859b = paint;
+        this.f26861c = new Paint();
         this.e = true;
-        this.f26862f = -1.0f;
+        this.f26864f = -1.0f;
         this.h = new Path();
-        this.f26863n = new Path();
-        this.f26867x = 0;
+        this.f26865n = new Path();
+        this.f26869x = 0;
         this.E = 0.0f;
         this.F = null;
         this.G = new HashSet();
@@ -87,7 +87,7 @@ public final class bi0 extends View {
         float dpf22 = AndroidUtilities.dpf2(8.0f);
         this.P = dpf22;
         AndroidUtilities.dpf2(4.0f);
-        this.f26868y = (int) ((i10 - dpf2) - dpf22);
+        this.f26870y = (int) ((i10 - dpf2) - dpf22);
         setBackgroundColor(0);
         setImportantForAccessibility(1);
     }
@@ -95,7 +95,7 @@ public final class bi0 extends View {
     private float getItemWidth() {
         int measuredWidth = getMeasuredWidth();
         float f7 = this.N;
-        int i10 = this.f26867x;
+        int i10 = this.f26869x;
         return ((measuredWidth - ((f7 / 2.0f) * (i10 - 1))) - (f7 * 2.0f)) / i10;
     }
 
@@ -103,7 +103,7 @@ public final class bi0 extends View {
         int size = list.size();
         for (int i11 = 0; i11 < size; i11++) {
             yh0 yh0Var = (yh0) list.get(i11);
-            if (!yh0Var.f35052o && yh0Var.f35041a == i10) {
+            if (!yh0Var.f35055o && yh0Var.f35044a == i10) {
                 return yh0Var;
             }
         }
@@ -112,20 +112,20 @@ public final class bi0 extends View {
 
     public final void a() {
         yh0 yh0Var = new yh0(this, zh0.I);
-        yh0Var.f35041a = 14;
-        this.f26855a.add(yh0Var);
+        yh0Var.f35044a = 14;
+        this.f26857a.add(yh0Var);
     }
 
     public final void b() {
         yh0 yh0Var = new yh0(this, zh0.J);
-        yh0Var.f35041a = 16;
-        this.f26855a.add(yh0Var);
+        yh0Var.f35044a = 16;
+        this.f26857a.add(yh0Var);
     }
 
     public final void c() {
         yh0 yh0Var = new yh0(this, zh0.K);
-        yh0Var.f35041a = 17;
-        this.f26855a.add(yh0Var);
+        yh0Var.f35044a = 17;
+        this.f26857a.add(yh0Var);
     }
 
     public final void d() {
@@ -134,7 +134,7 @@ public final class bi0 extends View {
             return;
         }
         if (this.H == 6) {
-            this.f26867x = this.f26855a.size();
+            this.f26869x = this.f26857a.size();
             invalidate();
             return;
         }
@@ -225,7 +225,7 @@ public final class bi0 extends View {
         int i10 = this.Q;
         if (i10 != 0) {
             if (!this.R) {
-                this.f26857b.setColor(i10);
+                this.f26859b.setColor(i10);
                 return;
             }
             int measuredWidth = getMeasuredWidth();
@@ -233,9 +233,9 @@ public final class bi0 extends View {
                 return;
             }
             float f10 = this.N;
-            float max = ((measuredWidth - ((f10 / 2.0f) * Math.max(0, this.f26867x - 1))) - (f10 * 2.0f)) / Math.max(1, this.f26867x);
+            float max = ((measuredWidth - ((f10 / 2.0f) * Math.max(0, this.f26869x - 1))) - (f10 * 2.0f)) / Math.max(1, this.f26869x);
             float f11 = max / 2.0f;
-            float f12 = this.f26868y / 2.0f;
+            float f12 = this.f26870y / 2.0f;
             if (this.R) {
                 f7 = max * 0.65f;
             } else {
@@ -243,16 +243,16 @@ public final class bi0 extends View {
             }
             RadialGradient radialGradient = new RadialGradient(f11, f12, f7, org.telegram.ui.ActionBar.y6.o1(0.8f, this.Q), this.Q, Shader.TileMode.CLAMP);
             this.S = radialGradient;
-            this.f26859c.setShader(radialGradient);
+            this.f26861c.setShader(radialGradient);
         }
     }
 
     @Override
     public AccessibilityNodeProvider getAccessibilityNodeProvider() {
-        if (this.f26861d0 == null) {
-            this.f26861d0 = new xh0(this);
+        if (this.f26863d0 == null) {
+            this.f26863d0 = new xh0(this);
         }
-        return this.f26861d0;
+        return this.f26863d0;
     }
 
     public float getRoundRadius() {
@@ -269,15 +269,15 @@ public final class bi0 extends View {
     }
 
     public final void i() {
-        if (this.f26866w != null) {
-            this.f26866w = null;
-            this.f26864r = null;
+        if (this.f26868w != null) {
+            this.f26868w = null;
+            this.f26866r = null;
             invalidate();
         }
     }
 
     public final yh0 k(int i10) {
-        yh0 j10 = j(i10, this.f26855a);
+        yh0 j10 = j(i10, this.f26857a);
         if (j10 != null) {
             if (i10 == 1) {
                 p(j10, false);
@@ -296,63 +296,63 @@ public final class bi0 extends View {
                 j10 = new yh0(this, zh0.h);
                 break;
             case 3:
-                j10 = new yh0(this, zh0.f35330n);
-                j10.f35057t = true;
-                j10.f35060x = 200;
+                j10 = new yh0(this, zh0.f35333n);
+                j10.f35060t = true;
+                j10.f35063x = 200;
                 break;
             case 4:
-                j10 = new yh0(this, zh0.f35331r);
+                j10 = new yh0(this, zh0.f35334r);
                 break;
             case 5:
-                j10 = new yh0(this, zh0.f35332s);
+                j10 = new yh0(this, zh0.f35335s);
                 this.K = j10;
-                j10.f35057t = true;
-                j10.f35060x = 500;
+                j10.f35060t = true;
+                j10.f35063x = 500;
                 break;
             case 6:
                 j10 = new yh0(this, zh0.v);
-                j10.f35057t = true;
-                j10.f35060x = 500;
+                j10.f35060t = true;
+                j10.f35063x = 500;
                 break;
             case 7:
-                j10 = new yh0(this, zh0.f35333w);
-                j10.f35057t = true;
+                j10 = new yh0(this, zh0.f35336w);
+                j10.f35060t = true;
                 j10.v = 300;
                 break;
             case 8:
-                j10 = new yh0(this, zh0.f35334x);
-                j10.f35057t = true;
-                j10.f35060x = 500;
+                j10 = new yh0(this, zh0.f35337x);
+                j10.f35060t = true;
+                j10.f35063x = 500;
                 break;
             case 9:
-                j10 = new yh0(this, zh0.f35335y);
-                j10.f35057t = true;
-                j10.f35058u = R.raw.profile_leave;
-                j10.f35060x = 300;
+                j10 = new yh0(this, zh0.f35338y);
+                j10.f35060t = true;
+                j10.f35061u = R.raw.profile_leave;
+                j10.f35063x = 300;
                 break;
             case 10:
                 j10 = new yh0(this, zh0.E);
-                j10.f35057t = true;
-                j10.f35058u = R.raw.profile_voicechat;
-                j10.f35060x = 500;
+                j10.f35060t = true;
+                j10.f35061u = R.raw.profile_voicechat;
+                j10.f35063x = 500;
                 break;
             case 11:
                 j10 = new yh0(this, zh0.F);
-                j10.f35057t = true;
-                j10.f35058u = R.raw.profile_voicechat;
-                j10.f35060x = 500;
+                j10.f35060t = true;
+                j10.f35061u = R.raw.profile_voicechat;
+                j10.f35063x = 500;
                 break;
             case 12:
                 j10 = new yh0(this, zh0.G);
                 break;
             case 13:
                 j10 = new yh0(this, zh0.H);
-                j10.f35057t = true;
-                j10.f35060x = 300;
+                j10.f35060t = true;
+                j10.f35063x = 300;
                 break;
         }
         if (j10 != null) {
-            j10.f35041a = i10;
+            j10.f35044a = i10;
         }
         return j10;
     }
@@ -398,7 +398,7 @@ public final class bi0 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.makeMeasureSpec((int) (this.f26868y + this.P + this.O), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.makeMeasureSpec((int) (this.f26870y + this.P + this.O), 1073741824));
     }
 
     @Override
@@ -410,7 +410,7 @@ public final class bi0 extends View {
             int action = motionEvent.getAction();
             if (action == 0) {
                 this.W = null;
-                ArrayList arrayList = this.f26855a;
+                ArrayList arrayList = this.f26857a;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
@@ -418,49 +418,49 @@ public final class bi0 extends View {
                         break;
                     }
                     yh0 yh0Var2 = (yh0) arrayList.get(i10);
-                    if (!yh0Var2.f35052o && yh0Var2.d.contains(x9, y3)) {
+                    if (!yh0Var2.f35055o && yh0Var2.d.contains(x9, y3)) {
                         this.W = yh0Var2;
-                        this.f26856a0 = x9;
-                        this.f26858b0 = y3;
-                        this.f26860c0 = System.currentTimeMillis();
-                        this.W.f35042b.c(true);
+                        this.f26858a0 = x9;
+                        this.f26860b0 = y3;
+                        this.f26862c0 = System.currentTimeMillis();
+                        this.W.f35045b.c(true);
                         break;
                     }
                     i10++;
                 }
             } else if (action == 2) {
-                if (this.W != null && (Math.abs(x9 - this.f26856a0) > 20.0f || Math.abs(y3 - this.f26858b0) > 20.0f)) {
-                    this.W.f35042b.c(false);
+                if (this.W != null && (Math.abs(x9 - this.f26858a0) > 20.0f || Math.abs(y3 - this.f26860b0) > 20.0f)) {
+                    this.W.f35045b.c(false);
                     this.W = null;
                 }
             } else if ((action == 1 || action == 3) && (yh0Var = this.W) != null) {
-                yh0Var.f35042b.c(false);
+                yh0Var.f35045b.c(false);
                 if (action == 1 && this.W.d.contains(x9, y3)) {
-                    if (System.currentTimeMillis() - this.f26860c0 > 250) {
+                    if (System.currentTimeMillis() - this.f26862c0 > 250) {
                         try {
                             performHapticFeedback(0, 1);
                         } catch (Exception unused) {
                         }
                     }
                     yh0 yh0Var3 = this.W;
-                    if (yh0Var3.f35057t && !yh0Var3.f35056s) {
-                        yh0Var3.f35056s = true;
+                    if (yh0Var3.f35060t && !yh0Var3.f35059s) {
+                        yh0Var3.f35059s = true;
                         invalidate();
                     }
                     yh0 yh0Var4 = this.W;
-                    int i11 = yh0Var4.f35058u;
+                    int i11 = yh0Var4.f35061u;
                     if (i11 != 0) {
                         yh0Var4.d(i11, 0, 0);
                     }
-                    this.W.f35059w = System.currentTimeMillis();
+                    this.W.f35062w = System.currentTimeMillis();
                     yh0 yh0Var5 = this.W;
                     ai0 ai0Var = this.F;
                     if (ai0Var != null) {
                         int i12 = yh0Var5.v;
                         if (i12 == 0) {
-                            int i13 = yh0Var5.f35041a;
+                            int i13 = yh0Var5.f35044a;
                             RectF rectF = yh0Var5.d;
-                            ProfileActivity.e0(((org.telegram.ui.wx0) ai0Var).f45582b, i13, rectF.left, rectF.top);
+                            ProfileActivity.e0(((org.telegram.ui.wx0) ai0Var).f45585b, i13, rectF.left, rectF.top);
                         } else {
                             postDelayed(new t90(7, this, yh0Var5), i12);
                         }
@@ -481,22 +481,22 @@ public final class bi0 extends View {
         if (z10) {
             if (this.J) {
                 zh0 zh0Var2 = zh0.e;
-                yh0Var.c(LocaleController.getString(zh0Var2.f35336a));
-                yh0Var.d(R.raw.profile_unmuting, zh0Var2.f35337b, zh0Var2.f35338c);
+                yh0Var.c(LocaleController.getString(zh0Var2.f35339a));
+                yh0Var.d(R.raw.profile_unmuting, zh0Var2.f35340b, zh0Var2.f35341c);
                 return;
             }
-            zh0 zh0Var3 = zh0.f35329f;
-            yh0Var.c(LocaleController.getString(zh0Var3.f35336a));
-            yh0Var.d(R.raw.profile_muting, zh0Var3.f35337b, zh0Var3.f35338c);
+            zh0 zh0Var3 = zh0.f35332f;
+            yh0Var.c(LocaleController.getString(zh0Var3.f35339a));
+            yh0Var.d(R.raw.profile_muting, zh0Var3.f35340b, zh0Var3.f35341c);
             return;
         }
         if (this.J) {
             zh0Var = zh0.e;
         } else {
-            zh0Var = zh0.f35329f;
+            zh0Var = zh0.f35332f;
         }
-        yh0Var.d(0, zh0Var.f35337b, zh0Var.f35338c);
-        yh0Var.c(LocaleController.getString(zh0Var.f35336a));
+        yh0Var.d(0, zh0Var.f35340b, zh0Var.f35341c);
+        yh0Var.c(LocaleController.getString(zh0Var.f35339a));
     }
 
     public void setNotifications(boolean z10) {
@@ -507,7 +507,7 @@ public final class bi0 extends View {
             z11 = false;
         }
         this.J = z10;
-        yh0 j10 = j(1, this.f26855a);
+        yh0 j10 = j(1, this.f26857a);
         if (j10 != null) {
             p(j10, z11);
             invalidate();

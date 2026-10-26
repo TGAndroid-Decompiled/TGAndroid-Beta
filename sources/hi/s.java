@@ -45,7 +45,7 @@ public final class s extends FrameLayout {
         y9 y9Var = new y9(context);
         this.f13251b = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(8.0f));
-        j9Var.f29542r = AndroidUtilities.dp(8.0f);
+        j9Var.f29544r = AndroidUtilities.dp(8.0f);
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
@@ -54,7 +54,7 @@ public final class s extends FrameLayout {
         addView(y9Var, gb1.h(28, 28.0f, i11 | 16, 15.0f, 0.0f, 15.0f, 0.0f));
         r5 r5Var = new r5(AndroidUtilities.dp(28.0f), 7, y9Var, false);
         this.d = r5Var;
-        r5Var.f32099x = Integer.valueOf(i10);
+        r5Var.f32101x = Integer.valueOf(i10);
         LinearLayout d = vh.d(context, 1);
         TextView textView = new TextView(context);
         this.e = textView;
@@ -73,7 +73,7 @@ public final class s extends FrameLayout {
         TextView textView2 = new TextView(context);
         this.f13253f = textView2;
         textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(y6.w0(y6.f23746y6, u6Var));
+        textView2.setTextColor(y6.w0(y6.f23748y6, u6Var));
         textView2.setSingleLine();
         textView2.setEllipsize(truncateAt);
         if (LocaleController.isRTL) {
@@ -113,7 +113,7 @@ public final class s extends FrameLayout {
         this.f13254n = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.msg_arrowright);
-        imageView2.setColorFilter(new PorterDuffColorFilter(y6.w0(y6.f23518m6, u6Var), mode));
+        imageView2.setColorFilter(new PorterDuffColorFilter(y6.w0(y6.f23520m6, u6Var), mode));
         if (LocaleController.isRTL) {
             imageView2.setScaleX(-1.0f);
         }

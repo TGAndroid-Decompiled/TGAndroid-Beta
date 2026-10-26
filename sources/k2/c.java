@@ -138,19 +138,19 @@ public final class c implements Runnable {
                 if (!i1Var2.e.isInLayout()) {
                     i1Var2.e.requestLayout();
                     i1Var2.d.requestLayout();
-                    i1Var2.f33846f.requestLayout();
+                    i1Var2.f33849f.requestLayout();
                     return;
                 }
                 return;
             case 19:
-                ((h1) this.f16130b).f33828a.i(false);
+                ((h1) this.f16130b).f33831a.i(false);
                 return;
             case 20:
                 i2 i2Var = (i2) this.f16130b;
                 i2Var.e = false;
-                HashMap hashMap = i2Var.f33853a;
-                ArrayList arrayList = i2Var.f33855c;
-                ArrayList arrayList2 = i2Var.f33854b;
+                HashMap hashMap = i2Var.f33856a;
+                ArrayList arrayList = i2Var.f33858c;
+                ArrayList arrayList2 = i2Var.f33857b;
                 if (!arrayList2.isEmpty() || !arrayList.isEmpty()) {
                     if (i2Var.getParent() != null) {
                         TransitionManager.beginDelayedTransition(i2Var, i2Var.d);
@@ -162,7 +162,7 @@ public final class c implements Runnable {
                         while (true) {
                             if (i11 >= arrayList.size()) {
                                 break;
-                            } else if (h2Var.f33829a.equals(((h2) arrayList.get(i11)).f33829a)) {
+                            } else if (h2Var.f33832a.equals(((h2) arrayList.get(i11)).f33832a)) {
                                 arrayList2.remove(i10);
                                 arrayList.remove(i11);
                                 i10--;
@@ -181,7 +181,7 @@ public final class c implements Runnable {
                     hashMap.clear();
                     for (int i14 = 0; i14 < i2Var.getChildCount(); i14++) {
                         h2 h2Var2 = (h2) i2Var.getChildAt(i14);
-                        hashMap.put(h2Var2.f33829a, h2Var2);
+                        hashMap.put(h2Var2.f33832a, h2Var2);
                     }
                     arrayList2.clear();
                     arrayList.clear();
@@ -196,13 +196,13 @@ public final class c implements Runnable {
                 }
                 return;
             case 21:
-                TextView[] textViewArr = ((q2) this.f16130b).f34029a;
+                TextView[] textViewArr = ((q2) this.f16130b).f34032a;
                 TextView textView = textViewArr[0];
                 textViewArr[0] = textViewArr[1];
                 textViewArr[1] = textView;
                 return;
             case 22:
-                TextView[] textViewArr2 = ((q2) ((ig.k0) this.f16130b).e).f34029a;
+                TextView[] textViewArr2 = ((q2) ((ig.k0) this.f16130b).e).f34032a;
                 TextView textView2 = textViewArr2[0];
                 textViewArr2[0] = textViewArr2[1];
                 textViewArr2[1] = textView2;
@@ -217,14 +217,14 @@ public final class c implements Runnable {
             case 24:
                 y2 y2Var = (y2) this.f16130b;
                 y2Var.e = Bitmap.createBitmap(y2Var.getMeasuredWidth(), y2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                new Canvas(y2Var.e).drawText(y2Var.d, y2Var.getMeasuredWidth() / 2, (int) ((y2Var.getMeasuredHeight() / 2) - ((y2Var.f34219a.ascent() + y2Var.f34219a.descent()) / 2.0f)), y2Var.f34219a);
+                new Canvas(y2Var.e).drawText(y2Var.d, y2Var.getMeasuredWidth() / 2, (int) ((y2Var.getMeasuredHeight() / 2) - ((y2Var.f34222a.ascent() + y2Var.f34222a.descent()) / 2.0f)), y2Var.f34222a);
                 y2Var.postInvalidate();
                 return;
             case 25:
-                ((org.telegram.ui.web.l) this.f16130b).f45303w.f32150g3.O(true);
+                ((org.telegram.ui.web.l) this.f16130b).f45306w.f32152g3.O(true);
                 return;
             case 26:
-                org.telegram.ui.web.j jVar = ((org.telegram.ui.web.o) this.f16130b).f45333b.f45340f;
+                org.telegram.ui.web.j jVar = ((org.telegram.ui.web.o) this.f16130b).f45336b.f45343f;
                 if (jVar != null) {
                     jVar.d();
                     return;
@@ -234,11 +234,11 @@ public final class c implements Runnable {
                 ((ju) this.f16130b).requestFocus();
                 return;
             case 28:
-                qf.d.r(((org.telegram.ui.web.t0) this.f16130b).f45377b.e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                qf.d.r(((org.telegram.ui.web.t0) this.f16130b).f45380b.e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
                 return;
             default:
                 e1 e1Var = (e1) this.f16130b;
-                Utilities.searchQueue.postRunnable(new ny0(e1Var, new ArrayList(e1Var.f45221b.f45227f), e1Var.f45221b.f45229r));
+                Utilities.searchQueue.postRunnable(new ny0(e1Var, new ArrayList(e1Var.f45224b.f45230f), e1Var.f45224b.f45232r));
                 return;
         }
     }

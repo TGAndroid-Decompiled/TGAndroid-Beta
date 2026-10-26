@@ -43,7 +43,7 @@ public final class f9 extends a9 {
         n0Var.e(d);
         oyVar.getClass();
         String str = d.f4208f;
-        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.t5.f(oyVar.f42302b, d.f4209g)) : str;
+        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.t5.f(oyVar.f42305b, d.f4209g)) : str;
         if (str != null && (arrayList = (ArrayList) oyVar.e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
@@ -54,7 +54,7 @@ public final class f9 extends a9 {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.r6 r6Var = this.N;
-        r6Var.f32119b = 17;
+        r6Var.f32121b = 17;
         r6Var.x(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.w(AndroidUtilities.dp(18.0f));
         this.N.M = AndroidUtilities.displaySize.x;

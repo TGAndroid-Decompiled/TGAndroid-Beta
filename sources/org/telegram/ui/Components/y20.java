@@ -27,7 +27,7 @@ public abstract class y20 extends org.telegram.ui.ActionBar.k3 {
         linearLayout.addView((View) imageView, gb1.x(160, 160, 49, 17, 30, 17, 0));
         TextView textView = new TextView(context);
         org.telegram.messenger.vh.j(24.0f, 1, textView);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23462j5, null);
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23464j5, null);
         textView.setText(LocaleController.getString(R.string.GigagroupConvertTitle));
         linearLayout.addView(textView, gb1.x(-2, -2, 49, 17, 18, 17, 0));
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -44,7 +44,7 @@ public abstract class y20 extends org.telegram.ui.ActionBar.k3 {
                 }
                 linearLayout2.addView(d, gb1.x(-2, -2, i10, 0, 8, 0, 0));
                 ImageView imageView2 = new ImageView(context);
-                int i12 = org.telegram.ui.ActionBar.y6.f23612r5;
+                int i12 = org.telegram.ui.ActionBar.y6.f23614r5;
                 org.telegram.ui.ActionBar.f7.t(imageView2, i12, null, PorterDuff.Mode.MULTIPLY);
                 imageView2.setImageResource(R.drawable.list_circle);
                 TextView textView2 = new TextView(context);
@@ -74,11 +74,11 @@ public abstract class y20 extends org.telegram.ui.ActionBar.k3 {
             } else {
                 ?? frameLayout = new FrameLayout(context);
                 View view = new View(context);
-                frameLayout.f34594a = view;
+                frameLayout.f34597a = view;
                 view.setBackground(org.telegram.ui.ActionBar.o6.f(new float[]{4.0f}, org.telegram.ui.ActionBar.y6.Oh));
                 frameLayout.addView(view, gb1.h(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
                 TextView textView3 = new TextView(context);
-                frameLayout.f34595b = textView3;
+                frameLayout.f34598b = textView3;
                 textView3.setLines(1);
                 textView3.setSingleLine(true);
                 textView3.setGravity(1);
@@ -92,7 +92,7 @@ public abstract class y20 extends org.telegram.ui.ActionBar.k3 {
                 linearLayout.addView((View) frameLayout, gb1.x(-1, 50, 51, 0, 29, 0, 0));
                 TextView textView4 = new TextView(context);
                 textView4.setTextSize(1, 14.0f);
-                org.telegram.ui.ActionBar.f7.V(textView4, org.telegram.ui.ActionBar.y6.f23537n5, null);
+                org.telegram.ui.ActionBar.f7.V(textView4, org.telegram.ui.ActionBar.y6.f23539n5, null);
                 org.telegram.messenger.vh.k(R.string.GigagroupConvertCancelButton, textView4, 17);
                 linearLayout.addView(textView4, gb1.x(-2, 48, 49, 17, 0, 17, 16));
                 textView4.setOnClickListener(new f0(this, 19));

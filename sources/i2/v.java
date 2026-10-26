@@ -139,7 +139,7 @@ public final class v implements Runnable {
                         MessagesStorage.getInstance(i12).getUsersInternal(arrayList, arrayList5);
                         for (int i16 = 0; i16 < arrayList5.size(); i16++) {
                             TLRPC.User user = arrayList5.get(i16);
-                            ig.h0 h0Var4 = (ig.h0) hVar.f(user.f22174id);
+                            ig.h0 h0Var4 = (ig.h0) hVar.f(user.f22176id);
                             if (h0Var4 != null) {
                                 h0Var4.f14064a = user;
                             }
@@ -192,9 +192,9 @@ public final class v implements Runnable {
                 woVar.run(Integer.valueOf(i19));
                 return;
             case 10:
-                hc0 hc0Var = ((ac0) this.d).f26462f3;
+                hc0 hc0Var = ((ac0) this.d).f26464f3;
                 View d = hc0Var.d();
-                ac0 ac0Var = hc0Var.f28918f;
+                ac0 ac0Var = hc0Var.f28920f;
                 if (d != null) {
                     int top = d.getTop() + this.f13776b;
                     int top2 = d.getTop() + this.f13777c;
@@ -214,7 +214,7 @@ public final class v implements Runnable {
                 }
                 return;
             case 11:
-                org.telegram.ui.Components.voip.i1 i1Var = ((org.telegram.ui.Components.voip.h1) this.d).f33828a;
+                org.telegram.ui.Components.voip.i1 i1Var = ((org.telegram.ui.Components.voip.h1) this.d).f33831a;
                 sf.d dVar = i1Var.O;
                 if (dVar != null) {
                     dVar.d(this.f13776b, this.f13777c);

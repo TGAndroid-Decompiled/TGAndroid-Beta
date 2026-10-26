@@ -44,8 +44,8 @@ public final class y2 implements Runnable {
         v50 v50Var = (v50) this.f5751b;
         org.telegram.ui.ActionBar.e2[] e2VarArr = (org.telegram.ui.ActionBar.e2[]) this.d;
         TLRPC.User user = (TLRPC.User) this.e;
-        ChatObject.Call call = v50Var.f44607a1;
-        if (call != null && !v50Var.f44681s0) {
+        ChatObject.Call call = v50Var.f44610a1;
+        if (call != null && !v50Var.f44684s0) {
             call.addInvitedUser(this.f5752c);
             v50Var.O0(true);
             c40 c40Var = v50Var.E1;
@@ -63,7 +63,7 @@ public final class y2 implements Runnable {
 
     private final void b() {
         ja0 ja0Var = (ja0) this.f5751b;
-        LaunchActivity launchActivity = ja0Var.f40542g;
+        LaunchActivity launchActivity = ja0Var.f40545g;
         String str = (String) this.d;
         org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) this.e;
         if (str != null) {

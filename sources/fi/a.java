@@ -62,11 +62,11 @@ public final class a extends View implements org.telegram.ui.ActionBar.p6 {
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
         ar arVar = new ar(org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
-        arVar.f26597w = false;
+        arVar.f26599w = false;
         int dp = AndroidUtilities.dp(18.0f);
         int dp2 = AndroidUtilities.dp(18.0f);
         arVar.e = dp;
-        arVar.f26593f = dp2;
+        arVar.f26595f = dp2;
         if (photoEntry != null && (str2 = photoEntry.thumbPath) != null) {
             imageReceiver.setImage(ImageLocation.getForPath(str2), "30.0_30.0", (ImageLocation) null, (String) null, arVar, (Object) null, 0);
         } else if (photoEntry != null && photoEntry.path != null) {

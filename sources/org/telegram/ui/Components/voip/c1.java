@@ -31,27 +31,27 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.pg0;
 public final class c1 implements ow0, nw0, org.telegram.ui.ActionBar.b2, id0, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, yw0, c7, d7 {
-    public final int f33751a;
+    public final int f33754a;
 
     public c1(int i10) {
-        this.f33751a = i10;
+        this.f33754a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         i1 i1Var = (i1) obj;
-        switch (this.f33751a) {
+        switch (this.f33754a) {
             case 0:
-                WindowManager.LayoutParams layoutParams = i1Var.f33845c;
+                WindowManager.LayoutParams layoutParams = i1Var.f33848c;
                 i1Var.Q = f7;
                 layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(i1Var.f33844b, i1Var.d, layoutParams);
+                AndroidUtilities.updateViewLayout(i1Var.f33847b, i1Var.d, layoutParams);
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = i1Var.f33845c;
+                WindowManager.LayoutParams layoutParams2 = i1Var.f33848c;
                 i1Var.R = f7;
                 layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(i1Var.f33844b, i1Var.d, layoutParams2);
+                AndroidUtilities.updateViewLayout(i1Var.f33847b, i1Var.d, layoutParams2);
                 return;
         }
     }
@@ -59,16 +59,16 @@ public final class c1 implements ow0, nw0, org.telegram.ui.ActionBar.b2, id0, Ge
     @Override
     public void d(int i10, View view) {
         org.telegram.ui.Wallet.f3 f3Var = (org.telegram.ui.Wallet.f3) view;
-        ShapeDrawable shapeDrawable = f3Var.f36556e0;
+        ShapeDrawable shapeDrawable = f3Var.f36559e0;
         if (shapeDrawable != null) {
             shapeDrawable.getPaint().setColor(i10);
-            f3Var.f36556e0.invalidateSelf();
+            f3Var.f36559e0.invalidateSelf();
         }
     }
 
     @Override
     public int e(View view) {
-        ShapeDrawable shapeDrawable = ((org.telegram.ui.Wallet.f3) view).f36556e0;
+        ShapeDrawable shapeDrawable = ((org.telegram.ui.Wallet.f3) view).f36559e0;
         if (shapeDrawable != null) {
             return shapeDrawable.getPaint().getColor();
         }
@@ -77,7 +77,7 @@ public final class c1 implements ow0, nw0, org.telegram.ui.ActionBar.b2, id0, Ge
 
     @Override
     public String f(int i10) {
-        switch (this.f33751a) {
+        switch (this.f33754a) {
             case 7:
                 return String.format("%02d", Integer.valueOf(i10));
             case 8:
@@ -109,7 +109,7 @@ public final class c1 implements ow0, nw0, org.telegram.ui.ActionBar.b2, id0, Ge
 
     @Override
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f33751a) {
+        switch (this.f33754a) {
             case 3:
                 e2Var.dismiss();
                 return;
@@ -158,12 +158,12 @@ public final class c1 implements ow0, nw0, org.telegram.ui.ActionBar.b2, id0, Ge
     @Override
     public Object provide(Object obj) {
         Void r82 = (Void) obj;
-        switch (this.f33751a) {
+        switch (this.f33754a) {
             case 9:
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(y6.x0(null, y6.f23354d6, false));
+                canvas.drawColor(y6.x0(null, y6.f23356d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);

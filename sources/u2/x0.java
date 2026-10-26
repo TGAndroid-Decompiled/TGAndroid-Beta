@@ -1,8 +1,8 @@
 package u2;
 public final class x0 implements f0 {
-    public final g2.g f49468a;
-    public final org.telegram.ui.Components.voip.j1 f49469b;
-    public final k6.c f49470c;
+    public final g2.g f49471a;
+    public final org.telegram.ui.Components.voip.j1 f49472b;
+    public final k6.c f49473c;
     public final u7.s d;
     public final int e;
 
@@ -10,9 +10,9 @@ public final class x0 implements f0 {
         org.telegram.ui.Components.voip.j1 j1Var = new org.telegram.ui.Components.voip.j1(mVar, 22);
         k6.c cVar = new k6.c(8);
         u7.s sVar = new u7.s(26);
-        this.f49468a = gVar;
-        this.f49469b = j1Var;
-        this.f49470c = cVar;
+        this.f49471a = gVar;
+        this.f49472b = j1Var;
+        this.f49473c = cVar;
         this.d = sVar;
         this.e = 1048576;
     }
@@ -20,7 +20,7 @@ public final class x0 implements f0 {
     @Override
     public final y0 a(b2.p0 p0Var) {
         p0Var.f3345b.getClass();
-        return new y0(p0Var, this.f49468a, this.f49469b, this.f49470c.u(p0Var), this.d, this.e, null);
+        return new y0(p0Var, this.f49471a, this.f49472b, this.f49473c.u(p0Var), this.d, this.e, null);
     }
 
     @Override

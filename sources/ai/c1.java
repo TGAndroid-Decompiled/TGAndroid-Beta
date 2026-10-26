@@ -131,7 +131,7 @@ public final class c1 implements Utilities.Callback2 {
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j11;
-                        e2Var.f36506f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.s1(e2Var, callback, j11, i17, 1));
+                        e2Var.f36509f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.s1(e2Var, callback, j11, i17, 1));
                         return;
                     }
                     e2Var.d(j11, i17, callback);
@@ -171,7 +171,7 @@ public final class c1 implements Utilities.Callback2 {
                         TextView textView = new TextView(context2);
                         NotificationCenter.listenEmojiLoading(textView);
                         textView.setText(LocaleController.getString(R.string.Gift2AuctionsChangeRecipient));
-                        int i19 = y6.f23462j5;
+                        int i19 = y6.f23464j5;
                         org.telegram.messenger.t.r(textView, i19, u6Var, 1, 20.0f);
                         if (LocaleController.isRTL) {
                             i13 = 5;
@@ -194,11 +194,11 @@ public final class c1 implements Utilities.Callback2 {
                         alertDialog$Builder.o(d);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new x2.e(h0Var, 5));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        alertDialog$Builder.f22366a.show();
+                        alertDialog$Builder.f22368a.show();
                         return;
                     } else if (auction.auctionUserState.bid_date > 0 && !auction.isFinished()) {
                         zh.m mVar = new zh.m(context2, u6Var, null, auction);
-                        mVar.f53121n0 = runnable;
+                        mVar.f53124n0 = runnable;
                         mVar.show();
                         return;
                     } else {

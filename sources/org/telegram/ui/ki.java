@@ -15,8 +15,8 @@ public final class ki extends org.telegram.ui.Components.vo {
         super.onLayout(z10, i10, i11, i12, i13);
         float y3 = getY();
         un unVar = this.M;
-        float y10 = unVar.f44218d1.getY() + y3;
-        this.J = unVar.f44292j1.getBackgroundSizeY();
+        float y10 = unVar.f44221d1.getY() + y3;
+        this.J = unVar.f44295j1.getBackgroundSizeY();
         this.I = y10;
     }
 }

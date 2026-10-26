@@ -68,7 +68,7 @@ import y7.ca;
 import y7.k7;
 import y7.m7;
 public final class p2 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public static final int f48432r0 = 0;
+    public static final int f48435r0 = 0;
     public m2 E;
     public float F;
     public boolean G;
@@ -88,64 +88,64 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
     public int U;
     public boolean V;
     public n2 W;
-    public int f48433a;
-    public final u6 f48434a0;
-    public final h6 f48435b;
-    public e2 f48436b0;
-    public final h6 f48437c;
-    public String f48438c0;
+    public int f48436a;
+    public final u6 f48437a0;
+    public final h6 f48438b;
+    public e2 f48439b0;
+    public final h6 f48440c;
+    public String f48441c0;
     public final Paint d;
-    public fi.t0 f48439d0;
+    public fi.t0 f48442d0;
     public final Paint e;
-    public final Matrix f48440e0;
-    public final Paint f48441f;
-    public float f48442f0;
-    public float f48443g0;
+    public final Matrix f48443e0;
+    public final Paint f48444f;
+    public float f48445f0;
+    public float f48446g0;
     public final Paint h;
-    public final y1 f48444h0;
-    public boolean f48445i0;
-    public final Matrix f48446j0;
-    public Path f48447k0;
-    public Path f48448l0;
+    public final y1 f48447h0;
+    public boolean f48448i0;
+    public final Matrix f48449j0;
+    public Path f48450k0;
+    public Path f48451l0;
     public final RectF m0;
-    public final PathMeasure f48449n;
-    public float f48450n0;
-    public float f48451o0;
-    public final ArrayList f48452p0;
-    public final Rect f48453q0;
-    public final Path f48454r;
-    public final Path f48455s;
+    public final PathMeasure f48452n;
+    public float f48453n0;
+    public float f48454o0;
+    public final ArrayList f48455p0;
+    public final Rect f48456q0;
+    public final Path f48457r;
+    public final Path f48458s;
     public final Path v;
-    public final Path f48456w;
-    public volatile boolean f48457x;
-    public volatile boolean f48458y;
+    public final Path f48459w;
+    public volatile boolean f48460x;
+    public volatile boolean f48461y;
 
     public p2(ContextThemeWrapper contextThemeWrapper, u6 u6Var) {
         super(contextThemeWrapper);
-        this.f48433a = -1;
+        this.f48436a = -1;
         ds dsVar = ds.h;
-        this.f48435b = new h6(0.0f, (View) null, 0L, 420L, dsVar);
-        this.f48437c = new h6(0.0f, (View) null, 0L, 420L, dsVar);
+        this.f48438b = new h6(0.0f, (View) null, 0L, 420L, dsVar);
+        this.f48440c = new h6(0.0f, (View) null, 0L, 420L, dsVar);
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(1);
         this.e = paint2;
         Paint paint3 = new Paint(1);
-        this.f48441f = paint3;
+        this.f48444f = paint3;
         Paint paint4 = new Paint(1);
         this.h = paint4;
-        this.f48449n = new PathMeasure();
-        this.f48454r = new Path();
-        this.f48455s = new Path();
+        this.f48452n = new PathMeasure();
+        this.f48457r = new Path();
+        this.f48458s = new Path();
         this.v = new Path();
-        this.f48456w = new Path();
+        this.f48459w = new Path();
         this.F = 2.0f;
-        this.f48440e0 = new Matrix();
-        this.f48446j0 = new Matrix();
+        this.f48443e0 = new Matrix();
+        this.f48449j0 = new Matrix();
         this.m0 = new RectF();
-        this.f48452p0 = new ArrayList();
-        this.f48453q0 = new Rect();
-        this.f48434a0 = u6Var;
+        this.f48455p0 = new ArrayList();
+        this.f48456q0 = new Rect();
+        this.f48437a0 = u6Var;
         paint.setColor(-1);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
@@ -179,7 +179,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
         paint2.setColor(1711276032);
         setLayerType(2, null);
         y1 y1Var = new y1(contextThemeWrapper);
-        this.f48444h0 = y1Var;
+        this.f48447h0 = y1Var;
         y1Var.setAlpha(0.0f);
         y1Var.setTranslationX(-AndroidUtilities.dp(18.0f));
         y1Var.b(0.33f, 10.0f);
@@ -222,27 +222,27 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
         final n2 n2Var = this.W;
         if (n2Var != null) {
             final int i10 = UserConfig.selectedAccount;
-            n2Var.f48381o = true;
-            if (n2Var.f48379m != null) {
+            n2Var.f48384o = true;
+            if (n2Var.f48382m != null) {
                 h();
-                n2Var.f48379m.run(n2Var.f48371b, n2Var.e.document);
+                n2Var.f48382m.run(n2Var.f48374b, n2Var.e.document);
                 AndroidUtilities.runOnUIThread(new u90(23), 250L);
-            } else if (n2Var.f48377k != null) {
+            } else if (n2Var.f48380k != null) {
                 TLRPC.TL_stickers_replaceSticker tL_stickers_replaceSticker = new TLRPC.TL_stickers_replaceSticker();
-                tL_stickers_replaceSticker.sticker = MediaDataController.getInputStickerSetItem(n2Var.f48377k, n2Var.f48372c).document;
+                tL_stickers_replaceSticker.sticker = MediaDataController.getInputStickerSetItem(n2Var.f48380k, n2Var.f48375c).document;
                 tL_stickers_replaceSticker.new_sticker = n2Var.e;
                 ConnectionsManager.getInstance(i10).sendRequest(tL_stickers_replaceSticker, new RequestDelegate(this) {
-                    public final p2 f48220b;
+                    public final p2 f48223b;
 
                     {
-                        this.f48220b = this;
+                        this.f48223b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                final p2 p2Var = this.f48220b;
+                                final p2 p2Var = this.f48223b;
                                 final int i11 = i10;
                                 final n2 n2Var2 = n2Var;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -264,7 +264,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i12).isStickerPackInstalled(tL_messages_stickerSet.set.f22054id)) {
                                                         MediaDataController.getInstance(i12).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var = p2Var2.f48439d0;
+                                                    fi.t0 t0Var = p2Var2.f48442d0;
                                                     if (t0Var != null) {
                                                         t0Var.setProgress(1.0f);
                                                     }
@@ -280,21 +280,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i14 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var4.f48373f.document;
-                                                                    String str = n2Var4.f48378l;
+                                                                    TLRPC.Document document = n2Var4.f48376f.document;
+                                                                    String str = n2Var4.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i14, bool, tLObject3, document, str, bool);
                                                                     p2Var3.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject3, n2Var4.f48373f.document, n2Var4.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject3, n2Var4.f48376f.document, n2Var4.f48381l, Boolean.TRUE);
                                                                     p2Var3.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var4.f48373f.document;
-                                                                    String str2 = n2Var4.f48378l;
+                                                                    TLRPC.Document document2 = n2Var4.f48376f.document;
+                                                                    String str2 = n2Var4.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject3, document2, str2, bool2);
                                                                     p2Var3.h();
@@ -308,10 +308,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var2.h();
                                                     z10 = false;
                                                 }
-                                                Utilities.Callback callback = n2Var3.f48380n;
+                                                Utilities.Callback callback = n2Var3.f48383n;
                                                 if (callback != null) {
                                                     callback.run(Boolean.valueOf(z10));
-                                                    n2Var3.f48380n = null;
+                                                    n2Var3.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -324,7 +324,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     int i13 = i11;
                                                     MediaDataController.getInstance(i13).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i13).toggleStickerSet(null, tLObject3, 2, null, false, false);
-                                                    fi.t0 t0Var2 = p2Var3.f48439d0;
+                                                    fi.t0 t0Var2 = p2Var3.f48442d0;
                                                     if (t0Var2 != null) {
                                                         t0Var2.setProgress(1.0f);
                                                     }
@@ -340,21 +340,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i14 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var42.f48373f.document;
-                                                                    String str = n2Var42.f48378l;
+                                                                    TLRPC.Document document = n2Var42.f48376f.document;
+                                                                    String str = n2Var42.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i14, bool, tLObject32, document, str, bool);
                                                                     p2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48373f.document, n2Var42.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48376f.document, n2Var42.f48381l, Boolean.TRUE);
                                                                     p2Var32.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var42.f48373f.document;
-                                                                    String str2 = n2Var42.f48378l;
+                                                                    TLRPC.Document document2 = n2Var42.f48376f.document;
+                                                                    String str2 = n2Var42.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var32.h();
@@ -368,10 +368,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var3.h();
                                                     z11 = false;
                                                 }
-                                                Utilities.Callback callback2 = n2Var4.f48380n;
+                                                Utilities.Callback callback2 = n2Var4.f48383n;
                                                 if (callback2 != null) {
                                                     callback2.run(Boolean.valueOf(z11));
-                                                    n2Var4.f48380n = null;
+                                                    n2Var4.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -387,7 +387,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f22054id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var3 = p2Var4.f48439d0;
+                                                    fi.t0 t0Var3 = p2Var4.f48442d0;
                                                     if (t0Var3 != null) {
                                                         t0Var3.setProgress(1.0f);
                                                     }
@@ -403,21 +403,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var42.f48373f.document;
-                                                                    String str = n2Var42.f48378l;
+                                                                    TLRPC.Document document = n2Var42.f48376f.document;
+                                                                    String str = n2Var42.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48373f.document, n2Var42.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48376f.document, n2Var42.f48381l, Boolean.TRUE);
                                                                     p2Var32.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var42.f48373f.document;
-                                                                    String str2 = n2Var42.f48378l;
+                                                                    TLRPC.Document document2 = n2Var42.f48376f.document;
+                                                                    String str2 = n2Var42.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var32.h();
@@ -431,10 +431,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var4.h();
                                                     z12 = false;
                                                 }
-                                                Utilities.Callback callback3 = n2Var5.f48380n;
+                                                Utilities.Callback callback3 = n2Var5.f48383n;
                                                 if (callback3 != null) {
                                                     callback3.run(Boolean.valueOf(z12));
-                                                    n2Var5.f48380n = null;
+                                                    n2Var5.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -443,7 +443,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                 });
                                 return;
                             case 1:
-                                final p2 p2Var2 = this.f48220b;
+                                final p2 p2Var2 = this.f48223b;
                                 final int i12 = i10;
                                 final n2 n2Var3 = n2Var;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -465,7 +465,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f22054id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var = p2Var22.f48439d0;
+                                                    fi.t0 t0Var = p2Var22.f48442d0;
                                                     if (t0Var != null) {
                                                         t0Var.setProgress(1.0f);
                                                     }
@@ -481,21 +481,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var42.f48373f.document;
-                                                                    String str = n2Var42.f48378l;
+                                                                    TLRPC.Document document = n2Var42.f48376f.document;
+                                                                    String str = n2Var42.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48373f.document, n2Var42.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48376f.document, n2Var42.f48381l, Boolean.TRUE);
                                                                     p2Var32.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var42.f48373f.document;
-                                                                    String str2 = n2Var42.f48378l;
+                                                                    TLRPC.Document document2 = n2Var42.f48376f.document;
+                                                                    String str2 = n2Var42.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var32.h();
@@ -509,10 +509,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var22.h();
                                                     z10 = false;
                                                 }
-                                                Utilities.Callback callback = n2Var32.f48380n;
+                                                Utilities.Callback callback = n2Var32.f48383n;
                                                 if (callback != null) {
                                                     callback.run(Boolean.valueOf(z10));
-                                                    n2Var32.f48380n = null;
+                                                    n2Var32.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -525,7 +525,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     int i13 = i12;
                                                     MediaDataController.getInstance(i13).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i13).toggleStickerSet(null, tLObject3, 2, null, false, false);
-                                                    fi.t0 t0Var2 = p2Var3.f48439d0;
+                                                    fi.t0 t0Var2 = p2Var3.f48442d0;
                                                     if (t0Var2 != null) {
                                                         t0Var2.setProgress(1.0f);
                                                     }
@@ -541,21 +541,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var42.f48373f.document;
-                                                                    String str = n2Var42.f48378l;
+                                                                    TLRPC.Document document = n2Var42.f48376f.document;
+                                                                    String str = n2Var42.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48373f.document, n2Var42.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48376f.document, n2Var42.f48381l, Boolean.TRUE);
                                                                     p2Var32.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var42.f48373f.document;
-                                                                    String str2 = n2Var42.f48378l;
+                                                                    TLRPC.Document document2 = n2Var42.f48376f.document;
+                                                                    String str2 = n2Var42.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var32.h();
@@ -569,10 +569,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var3.h();
                                                     z11 = false;
                                                 }
-                                                Utilities.Callback callback2 = n2Var4.f48380n;
+                                                Utilities.Callback callback2 = n2Var4.f48383n;
                                                 if (callback2 != null) {
                                                     callback2.run(Boolean.valueOf(z11));
-                                                    n2Var4.f48380n = null;
+                                                    n2Var4.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -588,7 +588,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f22054id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var3 = p2Var4.f48439d0;
+                                                    fi.t0 t0Var3 = p2Var4.f48442d0;
                                                     if (t0Var3 != null) {
                                                         t0Var3.setProgress(1.0f);
                                                     }
@@ -604,21 +604,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var42.f48373f.document;
-                                                                    String str = n2Var42.f48378l;
+                                                                    TLRPC.Document document = n2Var42.f48376f.document;
+                                                                    String str = n2Var42.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48373f.document, n2Var42.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48376f.document, n2Var42.f48381l, Boolean.TRUE);
                                                                     p2Var32.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var42.f48373f.document;
-                                                                    String str2 = n2Var42.f48378l;
+                                                                    TLRPC.Document document2 = n2Var42.f48376f.document;
+                                                                    String str2 = n2Var42.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var32.h();
@@ -632,10 +632,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var4.h();
                                                     z12 = false;
                                                 }
-                                                Utilities.Callback callback3 = n2Var5.f48380n;
+                                                Utilities.Callback callback3 = n2Var5.f48383n;
                                                 if (callback3 != null) {
                                                     callback3.run(Boolean.valueOf(z12));
-                                                    n2Var5.f48380n = null;
+                                                    n2Var5.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -644,7 +644,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                 });
                                 return;
                             default:
-                                final p2 p2Var3 = this.f48220b;
+                                final p2 p2Var3 = this.f48223b;
                                 final int i13 = i10;
                                 final n2 n2Var4 = n2Var;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -666,7 +666,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f22054id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var = p2Var22.f48439d0;
+                                                    fi.t0 t0Var = p2Var22.f48442d0;
                                                     if (t0Var != null) {
                                                         t0Var.setProgress(1.0f);
                                                     }
@@ -682,21 +682,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var42.f48373f.document;
-                                                                    String str = n2Var42.f48378l;
+                                                                    TLRPC.Document document = n2Var42.f48376f.document;
+                                                                    String str = n2Var42.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var32.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48373f.document, n2Var42.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var42.f48376f.document, n2Var42.f48381l, Boolean.TRUE);
                                                                     p2Var32.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var42.f48373f.document;
-                                                                    String str2 = n2Var42.f48378l;
+                                                                    TLRPC.Document document2 = n2Var42.f48376f.document;
+                                                                    String str2 = n2Var42.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var32.h();
@@ -710,10 +710,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var22.h();
                                                     z10 = false;
                                                 }
-                                                Utilities.Callback callback = n2Var32.f48380n;
+                                                Utilities.Callback callback = n2Var32.f48383n;
                                                 if (callback != null) {
                                                     callback.run(Boolean.valueOf(z10));
-                                                    n2Var32.f48380n = null;
+                                                    n2Var32.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -726,7 +726,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     int i132 = i13;
                                                     MediaDataController.getInstance(i132).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i132).toggleStickerSet(null, tLObject3, 2, null, false, false);
-                                                    fi.t0 t0Var2 = p2Var32.f48439d0;
+                                                    fi.t0 t0Var2 = p2Var32.f48442d0;
                                                     if (t0Var2 != null) {
                                                         t0Var2.setProgress(1.0f);
                                                     }
@@ -742,21 +742,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -770,10 +770,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var32.h();
                                                     z11 = false;
                                                 }
-                                                Utilities.Callback callback2 = n2Var42.f48380n;
+                                                Utilities.Callback callback2 = n2Var42.f48383n;
                                                 if (callback2 != null) {
                                                     callback2.run(Boolean.valueOf(z11));
-                                                    n2Var42.f48380n = null;
+                                                    n2Var42.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -789,7 +789,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f22054id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var3 = p2Var4.f48439d0;
+                                                    fi.t0 t0Var3 = p2Var4.f48442d0;
                                                     if (t0Var3 != null) {
                                                         t0Var3.setProgress(1.0f);
                                                     }
@@ -805,21 +805,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -833,10 +833,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var4.h();
                                                     z12 = false;
                                                 }
-                                                Utilities.Callback callback3 = n2Var5.f48380n;
+                                                Utilities.Callback callback3 = n2Var5.f48383n;
                                                 if (callback3 != null) {
                                                     callback3.run(Boolean.valueOf(z12));
-                                                    n2Var5.f48380n = null;
+                                                    n2Var5.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -854,17 +854,17 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                 tL_stickers_createStickerSet.short_name = "";
                 tL_stickers_createStickerSet.stickers.add(n2Var.e);
                 ConnectionsManager.getInstance(i10).sendRequest(tL_stickers_createStickerSet, new RequestDelegate(this) {
-                    public final p2 f48220b;
+                    public final p2 f48223b;
 
                     {
-                        this.f48220b = this;
+                        this.f48223b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                final p2 p2Var = this.f48220b;
+                                final p2 p2Var = this.f48223b;
                                 final int i11 = i10;
                                 final n2 n2Var2 = n2Var;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -886,7 +886,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f22054id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var = p2Var22.f48439d0;
+                                                    fi.t0 t0Var = p2Var22.f48442d0;
                                                     if (t0Var != null) {
                                                         t0Var.setProgress(1.0f);
                                                     }
@@ -902,21 +902,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -930,10 +930,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var22.h();
                                                     z10 = false;
                                                 }
-                                                Utilities.Callback callback = n2Var32.f48380n;
+                                                Utilities.Callback callback = n2Var32.f48383n;
                                                 if (callback != null) {
                                                     callback.run(Boolean.valueOf(z10));
-                                                    n2Var32.f48380n = null;
+                                                    n2Var32.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -946,7 +946,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     int i132 = i11;
                                                     MediaDataController.getInstance(i132).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i132).toggleStickerSet(null, tLObject3, 2, null, false, false);
-                                                    fi.t0 t0Var2 = p2Var32.f48439d0;
+                                                    fi.t0 t0Var2 = p2Var32.f48442d0;
                                                     if (t0Var2 != null) {
                                                         t0Var2.setProgress(1.0f);
                                                     }
@@ -962,21 +962,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -990,10 +990,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var32.h();
                                                     z11 = false;
                                                 }
-                                                Utilities.Callback callback2 = n2Var42.f48380n;
+                                                Utilities.Callback callback2 = n2Var42.f48383n;
                                                 if (callback2 != null) {
                                                     callback2.run(Boolean.valueOf(z11));
-                                                    n2Var42.f48380n = null;
+                                                    n2Var42.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1009,7 +1009,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f22054id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var3 = p2Var4.f48439d0;
+                                                    fi.t0 t0Var3 = p2Var4.f48442d0;
                                                     if (t0Var3 != null) {
                                                         t0Var3.setProgress(1.0f);
                                                     }
@@ -1025,21 +1025,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1053,10 +1053,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var4.h();
                                                     z12 = false;
                                                 }
-                                                Utilities.Callback callback3 = n2Var5.f48380n;
+                                                Utilities.Callback callback3 = n2Var5.f48383n;
                                                 if (callback3 != null) {
                                                     callback3.run(Boolean.valueOf(z12));
-                                                    n2Var5.f48380n = null;
+                                                    n2Var5.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1065,7 +1065,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                 });
                                 return;
                             case 1:
-                                final p2 p2Var2 = this.f48220b;
+                                final p2 p2Var2 = this.f48223b;
                                 final int i12 = i10;
                                 final n2 n2Var3 = n2Var;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1087,7 +1087,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f22054id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var = p2Var22.f48439d0;
+                                                    fi.t0 t0Var = p2Var22.f48442d0;
                                                     if (t0Var != null) {
                                                         t0Var.setProgress(1.0f);
                                                     }
@@ -1103,21 +1103,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1131,10 +1131,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var22.h();
                                                     z10 = false;
                                                 }
-                                                Utilities.Callback callback = n2Var32.f48380n;
+                                                Utilities.Callback callback = n2Var32.f48383n;
                                                 if (callback != null) {
                                                     callback.run(Boolean.valueOf(z10));
-                                                    n2Var32.f48380n = null;
+                                                    n2Var32.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1147,7 +1147,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     int i132 = i12;
                                                     MediaDataController.getInstance(i132).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i132).toggleStickerSet(null, tLObject3, 2, null, false, false);
-                                                    fi.t0 t0Var2 = p2Var32.f48439d0;
+                                                    fi.t0 t0Var2 = p2Var32.f48442d0;
                                                     if (t0Var2 != null) {
                                                         t0Var2.setProgress(1.0f);
                                                     }
@@ -1163,21 +1163,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1191,10 +1191,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var32.h();
                                                     z11 = false;
                                                 }
-                                                Utilities.Callback callback2 = n2Var42.f48380n;
+                                                Utilities.Callback callback2 = n2Var42.f48383n;
                                                 if (callback2 != null) {
                                                     callback2.run(Boolean.valueOf(z11));
-                                                    n2Var42.f48380n = null;
+                                                    n2Var42.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1210,7 +1210,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f22054id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var3 = p2Var4.f48439d0;
+                                                    fi.t0 t0Var3 = p2Var4.f48442d0;
                                                     if (t0Var3 != null) {
                                                         t0Var3.setProgress(1.0f);
                                                     }
@@ -1226,21 +1226,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1254,10 +1254,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var4.h();
                                                     z12 = false;
                                                 }
-                                                Utilities.Callback callback3 = n2Var5.f48380n;
+                                                Utilities.Callback callback3 = n2Var5.f48383n;
                                                 if (callback3 != null) {
                                                     callback3.run(Boolean.valueOf(z12));
-                                                    n2Var5.f48380n = null;
+                                                    n2Var5.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1266,7 +1266,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                 });
                                 return;
                             default:
-                                final p2 p2Var3 = this.f48220b;
+                                final p2 p2Var3 = this.f48223b;
                                 final int i13 = i10;
                                 final n2 n2Var4 = n2Var;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1288,7 +1288,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f22054id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var = p2Var22.f48439d0;
+                                                    fi.t0 t0Var = p2Var22.f48442d0;
                                                     if (t0Var != null) {
                                                         t0Var.setProgress(1.0f);
                                                     }
@@ -1304,21 +1304,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1332,10 +1332,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var22.h();
                                                     z10 = false;
                                                 }
-                                                Utilities.Callback callback = n2Var32.f48380n;
+                                                Utilities.Callback callback = n2Var32.f48383n;
                                                 if (callback != null) {
                                                     callback.run(Boolean.valueOf(z10));
-                                                    n2Var32.f48380n = null;
+                                                    n2Var32.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1348,7 +1348,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     int i132 = i13;
                                                     MediaDataController.getInstance(i132).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i132).toggleStickerSet(null, tLObject3, 2, null, false, false);
-                                                    fi.t0 t0Var2 = p2Var32.f48439d0;
+                                                    fi.t0 t0Var2 = p2Var32.f48442d0;
                                                     if (t0Var2 != null) {
                                                         t0Var2.setProgress(1.0f);
                                                     }
@@ -1364,21 +1364,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1392,10 +1392,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var32.h();
                                                     z11 = false;
                                                 }
-                                                Utilities.Callback callback2 = n2Var42.f48380n;
+                                                Utilities.Callback callback2 = n2Var42.f48383n;
                                                 if (callback2 != null) {
                                                     callback2.run(Boolean.valueOf(z11));
-                                                    n2Var42.f48380n = null;
+                                                    n2Var42.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1411,7 +1411,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f22054id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var3 = p2Var4.f48439d0;
+                                                    fi.t0 t0Var3 = p2Var4.f48442d0;
                                                     if (t0Var3 != null) {
                                                         t0Var3.setProgress(1.0f);
                                                     }
@@ -1427,21 +1427,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1455,10 +1455,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var4.h();
                                                     z12 = false;
                                                 }
-                                                Utilities.Callback callback3 = n2Var5.f48380n;
+                                                Utilities.Callback callback3 = n2Var5.f48383n;
                                                 if (callback3 != null) {
                                                     callback3.run(Boolean.valueOf(z12));
-                                                    n2Var5.f48380n = null;
+                                                    n2Var5.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1473,38 +1473,38 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                 h();
                 NotificationCenter.getInstance(i10).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE);
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.h1(n2Var, 18), 350L);
-                Utilities.Callback callback = n2Var.f48380n;
+                Utilities.Callback callback = n2Var.f48383n;
                 if (callback != null) {
                     callback.run(Boolean.TRUE);
                 }
-            } else if (n2Var.f48375i != 0) {
-                SendMessagesHelper.getInstance(i10).sendSticker(n2Var.f48373f.document, null, n2Var.f48375i, null, null, null, null, null, true, 0, 0, false, null, null, 0L, 0L, null);
-                fi.t0 t0Var = this.f48439d0;
+            } else if (n2Var.f48378i != 0) {
+                SendMessagesHelper.getInstance(i10).sendSticker(n2Var.f48376f.document, null, n2Var.f48378i, null, null, null, null, null, true, 0, 0, false, null, null, 0L, 0L, null);
+                fi.t0 t0Var = this.f48442d0;
                 if (t0Var != null) {
                     t0Var.setProgress(1.0f);
                 }
                 AndroidUtilities.runOnUIThread(new wg1(this, i10, 11), 450L);
-                Utilities.Callback callback2 = n2Var.f48380n;
+                Utilities.Callback callback2 = n2Var.f48383n;
                 if (callback2 != null) {
                     callback2.run(Boolean.TRUE);
-                    n2Var.f48380n = null;
+                    n2Var.f48383n = null;
                 }
-            } else if (n2Var.f48376j != null) {
+            } else if (n2Var.f48379j != null) {
                 TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
-                tL_stickers_addStickerToSet.stickerset = MediaDataController.getInputStickerSet(n2Var.f48376j);
+                tL_stickers_addStickerToSet.stickerset = MediaDataController.getInputStickerSet(n2Var.f48379j);
                 tL_stickers_addStickerToSet.sticker = n2Var.e;
                 ConnectionsManager.getInstance(i10).sendRequest(tL_stickers_addStickerToSet, new RequestDelegate(this) {
-                    public final p2 f48220b;
+                    public final p2 f48223b;
 
                     {
-                        this.f48220b = this;
+                        this.f48223b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                final p2 p2Var = this.f48220b;
+                                final p2 p2Var = this.f48223b;
                                 final int i11 = i10;
                                 final n2 n2Var2 = n2Var;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1526,7 +1526,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f22054id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var2 = p2Var22.f48439d0;
+                                                    fi.t0 t0Var2 = p2Var22.f48442d0;
                                                     if (t0Var2 != null) {
                                                         t0Var2.setProgress(1.0f);
                                                     }
@@ -1542,21 +1542,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1570,10 +1570,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var22.h();
                                                     z10 = false;
                                                 }
-                                                Utilities.Callback callback3 = n2Var32.f48380n;
+                                                Utilities.Callback callback3 = n2Var32.f48383n;
                                                 if (callback3 != null) {
                                                     callback3.run(Boolean.valueOf(z10));
-                                                    n2Var32.f48380n = null;
+                                                    n2Var32.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1586,7 +1586,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     int i132 = i11;
                                                     MediaDataController.getInstance(i132).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i132).toggleStickerSet(null, tLObject3, 2, null, false, false);
-                                                    fi.t0 t0Var22 = p2Var32.f48439d0;
+                                                    fi.t0 t0Var22 = p2Var32.f48442d0;
                                                     if (t0Var22 != null) {
                                                         t0Var22.setProgress(1.0f);
                                                     }
@@ -1602,21 +1602,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1630,10 +1630,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var32.h();
                                                     z11 = false;
                                                 }
-                                                Utilities.Callback callback22 = n2Var42.f48380n;
+                                                Utilities.Callback callback22 = n2Var42.f48383n;
                                                 if (callback22 != null) {
                                                     callback22.run(Boolean.valueOf(z11));
-                                                    n2Var42.f48380n = null;
+                                                    n2Var42.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1649,7 +1649,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f22054id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var3 = p2Var4.f48439d0;
+                                                    fi.t0 t0Var3 = p2Var4.f48442d0;
                                                     if (t0Var3 != null) {
                                                         t0Var3.setProgress(1.0f);
                                                     }
@@ -1665,21 +1665,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1693,10 +1693,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var4.h();
                                                     z12 = false;
                                                 }
-                                                Utilities.Callback callback32 = n2Var5.f48380n;
+                                                Utilities.Callback callback32 = n2Var5.f48383n;
                                                 if (callback32 != null) {
                                                     callback32.run(Boolean.valueOf(z12));
-                                                    n2Var5.f48380n = null;
+                                                    n2Var5.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1705,7 +1705,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                 });
                                 return;
                             case 1:
-                                final p2 p2Var2 = this.f48220b;
+                                final p2 p2Var2 = this.f48223b;
                                 final int i12 = i10;
                                 final n2 n2Var3 = n2Var;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1727,7 +1727,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f22054id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var2 = p2Var22.f48439d0;
+                                                    fi.t0 t0Var2 = p2Var22.f48442d0;
                                                     if (t0Var2 != null) {
                                                         t0Var2.setProgress(1.0f);
                                                     }
@@ -1743,21 +1743,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1771,10 +1771,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var22.h();
                                                     z10 = false;
                                                 }
-                                                Utilities.Callback callback3 = n2Var32.f48380n;
+                                                Utilities.Callback callback3 = n2Var32.f48383n;
                                                 if (callback3 != null) {
                                                     callback3.run(Boolean.valueOf(z10));
-                                                    n2Var32.f48380n = null;
+                                                    n2Var32.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1787,7 +1787,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     int i132 = i12;
                                                     MediaDataController.getInstance(i132).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i132).toggleStickerSet(null, tLObject3, 2, null, false, false);
-                                                    fi.t0 t0Var22 = p2Var32.f48439d0;
+                                                    fi.t0 t0Var22 = p2Var32.f48442d0;
                                                     if (t0Var22 != null) {
                                                         t0Var22.setProgress(1.0f);
                                                     }
@@ -1803,21 +1803,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1831,10 +1831,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var32.h();
                                                     z11 = false;
                                                 }
-                                                Utilities.Callback callback22 = n2Var42.f48380n;
+                                                Utilities.Callback callback22 = n2Var42.f48383n;
                                                 if (callback22 != null) {
                                                     callback22.run(Boolean.valueOf(z11));
-                                                    n2Var42.f48380n = null;
+                                                    n2Var42.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1850,7 +1850,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f22054id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var3 = p2Var4.f48439d0;
+                                                    fi.t0 t0Var3 = p2Var4.f48442d0;
                                                     if (t0Var3 != null) {
                                                         t0Var3.setProgress(1.0f);
                                                     }
@@ -1866,21 +1866,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1894,10 +1894,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var4.h();
                                                     z12 = false;
                                                 }
-                                                Utilities.Callback callback32 = n2Var5.f48380n;
+                                                Utilities.Callback callback32 = n2Var5.f48383n;
                                                 if (callback32 != null) {
                                                     callback32.run(Boolean.valueOf(z12));
-                                                    n2Var5.f48380n = null;
+                                                    n2Var5.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1906,7 +1906,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                 });
                                 return;
                             default:
-                                final p2 p2Var3 = this.f48220b;
+                                final p2 p2Var3 = this.f48223b;
                                 final int i13 = i10;
                                 final n2 n2Var4 = n2Var;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1928,7 +1928,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i122).isStickerPackInstalled(tL_messages_stickerSet.set.f22054id)) {
                                                         MediaDataController.getInstance(i122).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var2 = p2Var22.f48439d0;
+                                                    fi.t0 t0Var2 = p2Var22.f48442d0;
                                                     if (t0Var2 != null) {
                                                         t0Var2.setProgress(1.0f);
                                                     }
@@ -1944,21 +1944,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -1972,10 +1972,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var22.h();
                                                     z10 = false;
                                                 }
-                                                Utilities.Callback callback3 = n2Var32.f48380n;
+                                                Utilities.Callback callback3 = n2Var32.f48383n;
                                                 if (callback3 != null) {
                                                     callback3.run(Boolean.valueOf(z10));
-                                                    n2Var32.f48380n = null;
+                                                    n2Var32.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -1988,7 +1988,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     int i132 = i13;
                                                     MediaDataController.getInstance(i132).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i132).toggleStickerSet(null, tLObject3, 2, null, false, false);
-                                                    fi.t0 t0Var22 = p2Var32.f48439d0;
+                                                    fi.t0 t0Var22 = p2Var32.f48442d0;
                                                     if (t0Var22 != null) {
                                                         t0Var22.setProgress(1.0f);
                                                     }
@@ -2004,21 +2004,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -2032,10 +2032,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var32.h();
                                                     z11 = false;
                                                 }
-                                                Utilities.Callback callback22 = n2Var42.f48380n;
+                                                Utilities.Callback callback22 = n2Var42.f48383n;
                                                 if (callback22 != null) {
                                                     callback22.run(Boolean.valueOf(z11));
-                                                    n2Var42.f48380n = null;
+                                                    n2Var42.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -2051,7 +2051,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     if (!MediaDataController.getInstance(i14).isStickerPackInstalled(tL_messages_stickerSet2.set.f22054id)) {
                                                         MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
-                                                    fi.t0 t0Var3 = p2Var4.f48439d0;
+                                                    fi.t0 t0Var3 = p2Var4.f48442d0;
                                                     if (t0Var3 != null) {
                                                         t0Var3.setProgress(1.0f);
                                                     }
@@ -2067,21 +2067,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i142 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document = n2Var422.f48373f.document;
-                                                                    String str = n2Var422.f48378l;
+                                                                    TLRPC.Document document = n2Var422.f48376f.document;
+                                                                    String str = n2Var422.f48381l;
                                                                     Boolean bool = Boolean.FALSE;
                                                                     notificationCenter.postNotificationNameOnUIThread(i142, bool, tLObject32, document, str, bool);
                                                                     p2Var322.h();
                                                                     return;
                                                                 case 1:
-                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48373f.document, n2Var422.f48378l, Boolean.TRUE);
+                                                                    NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE, tLObject32, n2Var422.f48376f.document, n2Var422.f48381l, Boolean.TRUE);
                                                                     p2Var322.h();
                                                                     return;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
                                                                     int i15 = NotificationCenter.customStickerCreated;
-                                                                    TLRPC.Document document2 = n2Var422.f48373f.document;
-                                                                    String str2 = n2Var422.f48378l;
+                                                                    TLRPC.Document document2 = n2Var422.f48376f.document;
+                                                                    String str2 = n2Var422.f48381l;
                                                                     Boolean bool2 = Boolean.FALSE;
                                                                     notificationCenter2.postNotificationNameOnUIThread(i15, bool2, tLObject32, document2, str2, bool2);
                                                                     p2Var322.h();
@@ -2095,10 +2095,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                                                     p2Var4.h();
                                                     z12 = false;
                                                 }
-                                                Utilities.Callback callback32 = n2Var5.f48380n;
+                                                Utilities.Callback callback32 = n2Var5.f48383n;
                                                 if (callback32 != null) {
                                                     callback32.run(Boolean.valueOf(z12));
-                                                    n2Var5.f48380n = null;
+                                                    n2Var5.f48383n = null;
                                                     return;
                                                 }
                                                 return;
@@ -2129,7 +2129,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                 }
                 m2 m2Var = m2VarArr[i10];
                 if (m2Var != null) {
-                    m2Var.f48318l.reset();
+                    m2Var.f48321l.reset();
                     Bitmap bitmap = m2Var.e;
                     if (bitmap != null) {
                         bitmap.recycle();
@@ -2140,30 +2140,30 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                         bitmap2.recycle();
                         m2Var.d = null;
                     }
-                    Bitmap bitmap3 = m2Var.f48314g;
+                    Bitmap bitmap3 = m2Var.f48317g;
                     if (bitmap3 != null) {
                         bitmap3.recycle();
-                        m2Var.f48314g = null;
+                        m2Var.f48317g = null;
                     }
-                    Bitmap bitmap4 = m2Var.f48313f;
+                    Bitmap bitmap4 = m2Var.f48316f;
                     if (bitmap4 != null) {
                         bitmap4.recycle();
-                        m2Var.f48313f = null;
+                        m2Var.f48316f = null;
                     }
                 }
                 i10++;
             }
             this.H = null;
         }
-        this.f48458y = false;
-        this.f48457x = false;
+        this.f48461y = false;
+        this.f48460x = false;
         this.L = false;
         this.M.setAlpha(0.0f);
         this.M.setScaleX(0.3f);
         this.M.setScaleY(0.3f);
         n2 n2Var = this.W;
         if (n2Var != null) {
-            if (!n2Var.f48381o) {
+            if (!n2Var.f48384o) {
                 n2Var.a();
             }
             this.W = null;
@@ -2207,21 +2207,21 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
             String str = (String) objArr[0];
             TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
             n2 n2Var2 = this.W;
-            if (n2Var2 != null && str.equalsIgnoreCase(n2Var2.f48371b)) {
+            if (n2Var2 != null && str.equalsIgnoreCase(n2Var2.f48374b)) {
                 n2 n2Var3 = this.W;
-                n2Var3.f48374g = inputFile;
+                n2Var3.f48377g = inputFile;
                 TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
                 tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
                 TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
                 tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
-                tL_inputMediaUploadedDocument.file = n2Var3.f48374g;
-                if (n2Var3.f48385s != null) {
+                tL_inputMediaUploadedDocument.file = n2Var3.f48377g;
+                if (n2Var3.f48388s != null) {
                     tL_inputMediaUploadedDocument.mime_type = "video/webm";
                 } else {
                     tL_inputMediaUploadedDocument.mime_type = "image/webp";
                 }
                 TLRPC.TL_documentAttributeSticker tL_documentAttributeSticker = new TLRPC.TL_documentAttributeSticker();
-                tL_documentAttributeSticker.alt = n2Var3.f48372c;
+                tL_documentAttributeSticker.alt = n2Var3.f48375c;
                 tL_documentAttributeSticker.stickerset = new TLRPC.TL_inputStickerSetEmpty();
                 tL_messages_uploadMedia.media.attributes.add(tL_documentAttributeSticker);
                 ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_uploadMedia, new l71(10, this, n2Var3), 2);
@@ -2229,13 +2229,13 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
         } else if (i10 == NotificationCenter.fileUploadProgressChanged) {
             String str2 = (String) objArr[0];
             n2 n2Var4 = this.W;
-            if (n2Var4 != null && str2.equalsIgnoreCase(n2Var4.f48371b)) {
+            if (n2Var4 != null && str2.equalsIgnoreCase(n2Var4.f48374b)) {
                 long longValue = ((Long) objArr[1]).longValue();
                 long longValue2 = ((Long) objArr[2]).longValue();
                 if (longValue2 > 0) {
                     n2 n2Var5 = this.W;
-                    n2Var5.f48387u = Utilities.clamp(((float) longValue) / ((float) longValue2), 1.0f, n2Var5.f48387u);
-                    fi.t0 t0Var = this.f48439d0;
+                    n2Var5.f48390u = Utilities.clamp(((float) longValue) / ((float) longValue2), 1.0f, n2Var5.f48390u);
+                    fi.t0 t0Var = this.f48442d0;
                     if (t0Var != null) {
                         t0Var.setProgress(this.W.b());
                     }
@@ -2244,32 +2244,32 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
         } else if (i10 == NotificationCenter.fileUploadFailed) {
             String str3 = (String) objArr[0];
             n2 n2Var6 = this.W;
-            if (n2Var6 != null && str3.equalsIgnoreCase(n2Var6.f48371b)) {
+            if (n2Var6 != null && str3.equalsIgnoreCase(n2Var6.f48374b)) {
                 h();
             }
         } else if (i10 == NotificationCenter.filePreparingStarted) {
             n2 n2Var7 = this.W;
-            if (n2Var7 != null && objArr[0] == n2Var7.f48384r) {
-                FileLoader.getInstance(UserConfig.selectedAccount).uploadFile(this.W.f48371b, false, true, 67108864);
+            if (n2Var7 != null && objArr[0] == n2Var7.f48387r) {
+                FileLoader.getInstance(UserConfig.selectedAccount).uploadFile(this.W.f48374b, false, true, 67108864);
             }
         } else if (i10 == NotificationCenter.fileNewChunkAvailable) {
             n2 n2Var8 = this.W;
-            if (n2Var8 != null && objArr[0] == n2Var8.f48384r) {
+            if (n2Var8 != null && objArr[0] == n2Var8.f48387r) {
                 String str4 = (String) objArr[1];
                 long longValue3 = ((Long) objArr[2]).longValue();
                 long longValue4 = ((Long) objArr[3]).longValue();
                 Float f7 = (Float) objArr[4];
                 float floatValue = f7.floatValue();
-                this.W.f48384r.videoEditedInfo.needUpdateProgress = true;
-                FileLoader.getInstance(this.f48433a).checkUploadNewDataAvailable(str4, false, Math.max(1L, longValue3), longValue4, f7);
+                this.W.f48387r.videoEditedInfo.needUpdateProgress = true;
+                FileLoader.getInstance(this.f48436a).checkUploadNewDataAvailable(str4, false, Math.max(1L, longValue3), longValue4, f7);
                 n2 n2Var9 = this.W;
-                n2Var9.f48386t = Math.max(n2Var9.f48386t, floatValue);
-                fi.t0 t0Var2 = this.f48439d0;
+                n2Var9.f48389t = Math.max(n2Var9.f48389t, floatValue);
+                fi.t0 t0Var2 = this.f48442d0;
                 if (t0Var2 != null) {
                     t0Var2.setProgress(this.W.b());
                 }
             }
-        } else if (i10 == NotificationCenter.filePreparingFailed && (n2Var = this.W) != null && objArr[0] == n2Var.f48384r) {
+        } else if (i10 == NotificationCenter.filePreparingFailed && (n2Var = this.W) != null && objArr[0] == n2Var.f48387r) {
             h();
         }
     }
@@ -2278,7 +2278,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         canvas.drawPath(this.v, this.e);
-        canvas.drawPath(this.f48456w, this.d);
+        canvas.drawPath(this.f48459w, this.d);
     }
 
     @Override
@@ -2293,7 +2293,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
         m2 m2Var = this.E;
         if (m2Var != null) {
             this.K = bitmap;
-            if (m2Var.f48313f != null && this.L) {
+            if (m2Var.f48316f != null && this.L) {
                 Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 Paint paint = new Paint(3);
@@ -2303,12 +2303,12 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                 Rect rect = new Rect();
                 rect.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
                 m2 m2Var2 = this.E;
-                if (m2Var2.f48312c != 0) {
+                if (m2Var2.f48315c != 0) {
                     Matrix matrix = new Matrix();
                     m2 m2Var3 = this.E;
-                    matrix.postRotate(m2Var3.f48312c, m2Var3.a().getWidth() / 2.0f, this.E.a().getHeight() / 2.0f);
+                    matrix.postRotate(m2Var3.f48315c, m2Var3.a().getWidth() / 2.0f, this.E.a().getHeight() / 2.0f);
                     m2 m2Var4 = this.E;
-                    if ((m2Var4.f48312c / 90) % 2 != 0) {
+                    if ((m2Var4.f48315c / 90) % 2 != 0) {
                         float height = (m2Var4.b().getHeight() - this.E.b().getWidth()) / 2.0f;
                         matrix.postTranslate(height, -height);
                     }
@@ -2324,7 +2324,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
     }
 
     public final void f() {
-        this.f48435b.d(0.0f, false);
+        this.f48438b.d(0.0f, false);
         ValueAnimator valueAnimator = this.N;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -2342,10 +2342,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
         float e;
         float f7;
         Paint paint;
-        h6 h6Var = this.f48437c;
-        h6Var.f28807a = viewGroup;
-        boolean z13 = this.f48445i0;
-        if (z13 || h6Var.f28809c > 0.0f) {
+        h6 h6Var = this.f48440c;
+        h6Var.f28809a = viewGroup;
+        boolean z13 = this.f48448i0;
+        if (z13 || h6Var.f28811c > 0.0f) {
             if (viewGroup == null) {
                 e = 1.0f;
             } else {
@@ -2361,22 +2361,22 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                 for (m2 m2Var : m2VarArr) {
                     if (m2Var != null && m2Var == this.E) {
                         if (this.F > 0.0f) {
-                            if (m2Var.f48326t.f48447k0 != null) {
+                            if (m2Var.f48329t.f48450k0 != null) {
                                 canvas.save();
-                                canvas.clipPath(m2Var.f48326t.f48447k0);
-                                if (m2Var.f48326t.I != null) {
+                                canvas.clipPath(m2Var.f48329t.f48450k0);
+                                if (m2Var.f48329t.I != null) {
                                     if (z10) {
-                                        paint = m2Var.f48323q;
+                                        paint = m2Var.f48326q;
                                     } else {
-                                        paint = m2Var.f48322p;
+                                        paint = m2Var.f48325p;
                                     }
                                     paint.setAlpha((int) (e * 255.0f));
                                     paint.setStrokeWidth(AndroidUtilities.dp(f7));
-                                    canvas.drawPath(m2Var.f48318l, paint);
-                                    if (m2Var.f48326t.f48447k0 != null && z10) {
-                                        canvas.clipPath(m2Var.f48318l);
+                                    canvas.drawPath(m2Var.f48321l, paint);
+                                    if (m2Var.f48329t.f48450k0 != null && z10) {
+                                        canvas.clipPath(m2Var.f48321l);
                                         paint.setStrokeWidth(AndroidUtilities.dp(f7 * 2.0f));
-                                        canvas.drawPath(m2Var.f48326t.f48447k0, paint);
+                                        canvas.drawPath(m2Var.f48329t.f48450k0, paint);
                                     }
                                 }
                                 canvas.restore();
@@ -2423,10 +2423,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
     }
 
     public final void h() {
-        fi.t0 t0Var = this.f48439d0;
+        fi.t0 t0Var = this.f48442d0;
         if (t0Var != null) {
             t0Var.a();
-            this.f48439d0 = null;
+            this.f48442d0 = null;
         }
     }
 
@@ -2448,7 +2448,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
             }
             m2 m2Var = m2VarArr[i10];
             if (m2Var != null) {
-                if ((m2Var.f48312c / 90) % 2 != 0) {
+                if ((m2Var.f48315c / 90) % 2 != 0) {
                     width = this.I.getHeight();
                     height = this.I.getWidth();
                 } else {
@@ -2456,13 +2456,13 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                     height = this.I.getHeight();
                 }
                 RectF rectF = AndroidUtilities.rectTmp;
-                RectF rectF2 = this.H[i10].f48315i;
+                RectF rectF2 = this.H[i10].f48318i;
                 float f11 = width;
-                float f12 = this.f48442f0;
+                float f12 = this.f48445f0;
                 float f13 = height;
-                float f14 = this.f48443g0;
+                float f14 = this.f48446g0;
                 rectF.set((rectF2.left / f11) * f12, (rectF2.top / f13) * f14, (rectF2.right / f11) * f12, (rectF2.bottom / f13) * f14);
-                this.f48440e0.mapRect(rectF);
+                this.f48443e0.mapRect(rectF);
                 if (rectF.contains(f7, f10)) {
                     return m2Var;
                 }
@@ -2479,10 +2479,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                 if (m2Var != null && (bitmap = m2Var.e) != null) {
                     bitmap.recycle();
                     m2Var.e = null;
-                    Bitmap bitmap2 = m2Var.f48314g;
+                    Bitmap bitmap2 = m2Var.f48317g;
                     if (bitmap2 != null) {
                         bitmap2.recycle();
-                        m2Var.f48314g = null;
+                        m2Var.f48317g = null;
                     }
                     c(m2Var, this.T, this.U);
                 }
@@ -2506,12 +2506,12 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
         }
         this.T = i13;
         this.U = i14;
-        if (!this.f48458y && !this.f48457x && bitmap != null && Build.VERSION.SDK_INT >= 24) {
+        if (!this.f48461y && !this.f48460x && bitmap != null && Build.VERSION.SDK_INT >= 24) {
             this.I = bitmap;
             this.J = i10;
-            this.f48438c0 = null;
+            this.f48441c0 = null;
             p4 p4Var = new p4(this, i10, dr0Var, 5);
-            this.f48457x = true;
+            this.f48460x = true;
             cc.d dVar = new cc.d();
             dVar.f6190b = true;
             dVar.f6191c = true;
@@ -2523,33 +2523,33 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                 int min = (int) (Math.min(bitmap2.getWidth(), bitmap2.getHeight()) * 0.4f);
                 obj.e = min;
                 obj.d = min;
-                obj.f48396a = Bitmap.createBitmap(min, min, Bitmap.Config.ARGB_8888);
-                new Canvas(obj.f48396a).drawRect(0.0f, 0.0f, obj.d, obj.e, y6.Ol);
-                obj.f48397b = (bitmap2.getWidth() - obj.d) / 2;
-                obj.f48398c = (bitmap2.getHeight() - obj.e) / 2;
+                obj.f48399a = Bitmap.createBitmap(min, min, Bitmap.Config.ARGB_8888);
+                new Canvas(obj.f48399a).drawRect(0.0f, 0.0f, obj.d, obj.e, y6.Ol);
+                obj.f48400b = (bitmap2.getWidth() - obj.d) / 2;
+                obj.f48401c = (bitmap2.getHeight() - obj.e) / 2;
                 arrayList.add(obj);
                 p4Var.run(arrayList);
                 return;
             }
             xb.a a10 = xb.a.a(bitmap, i10);
             a2.g(a10).addOnSuccessListener(new org.telegram.ui.Components.voip.j1(p4Var, 16)).addOnFailureListener(new e6(this, bitmap, i10, dr0Var, p4Var, 5));
-            if (this.f48438c0 == null) {
+            if (this.f48441c0 == null) {
                 ac.b bVar = ac.b.f1237b;
                 o6.l.i(bVar, "options cannot be null");
                 synchronized (yb.c.class) {
                     cVar = (yb.c) sb.g.c().a(yb.c.class);
                 }
-                ra.b bVar2 = (ra.b) cVar.f52512a.get(ac.b.class);
+                ra.b bVar2 = (ra.b) cVar.f52515a.get(ac.b.class);
                 o6.l.h(bVar2);
                 bc.d dVar2 = (bc.d) bVar2.get();
                 dVar2.getClass();
                 ca caVar = dVar2.f3843c;
                 ?? obj2 = new Object();
                 obj2.f1152c = k7.TYPE_THIN;
-                sb.m.f48061a.execute(new fg(caVar, new ng((aa.m0) obj2, 1), m7.ON_DEVICE_IMAGE_LABEL_CREATE, caVar.b(), 8));
-                new ImageLabelerImpl((sb.e) dVar2.f3841a.R0(bVar), (Executor) dVar2.f3842b.f48042a.get(), new l6.c("vision.ica", 1L)).g(a10).addOnSuccessListener(new org.telegram.ui.Components.voip.j1(this, 17)).addOnFailureListener(new s0.b(7));
+                sb.m.f48064a.execute(new fg(caVar, new ng((aa.m0) obj2, 1), m7.ON_DEVICE_IMAGE_LABEL_CREATE, caVar.b(), 8));
+                new ImageLabelerImpl((sb.e) dVar2.f3841a.R0(bVar), (Executor) dVar2.f3842b.f48045a.get(), new l6.c("vision.ica", 1L)).g(a10).addOnSuccessListener(new org.telegram.ui.Components.voip.j1(this, 17)).addOnFailureListener(new s0.b(7));
             }
-            List<TLRPC.TL_availableReaction> enabledReactionsList = MediaDataController.getInstance(this.f48433a).getEnabledReactionsList();
+            List<TLRPC.TL_availableReaction> enabledReactionsList = MediaDataController.getInstance(this.f48436a).getEnabledReactionsList();
             for (int i15 = 0; i15 < Math.min(enabledReactionsList.size(), 9); i15++) {
                 Emoji.getEmojiDrawable(enabledReactionsList.get(i15).reaction);
             }
@@ -2558,49 +2558,49 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
 
     public final void n(TLRPC.TL_error tL_error) {
         if (tL_error != null && !"PACK_TITLE_INVALID".equals(tL_error.text)) {
-            new wc((FrameLayout) getParent(), this.f48434a0).t(tL_error.text, null).j();
+            new wc((FrameLayout) getParent(), this.f48437a0).t(tL_error.text, null).j();
         }
     }
 
     public final void o() {
-        Path path = this.f48447k0;
+        Path path = this.f48450k0;
         if (path == null) {
-            this.f48447k0 = new Path();
+            this.f48450k0 = new Path();
         } else {
             path.rewind();
         }
-        if (this.f48448l0 == null) {
-            this.f48448l0 = new Path();
+        if (this.f48451l0 == null) {
+            this.f48451l0 = new Path();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, 1.0f, 1.0f);
-            this.f48448l0.addRoundRect(rectF, rectF.width() * 0.12f, rectF.height() * 0.12f, Path.Direction.CW);
+            this.f48451l0.addRoundRect(rectF, rectF.width() * 0.12f, rectF.height() * 0.12f, Path.Direction.CW);
         }
-        this.f48447k0.addPath(this.f48448l0, this.f48446j0);
-        this.f48447k0.computeBounds(this.m0, true);
+        this.f48450k0.addPath(this.f48451l0, this.f48449j0);
+        this.f48450k0.computeBounds(this.m0, true);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.fileUploaded);
-        NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.fileUploadProgressChanged);
-        NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.fileUploadFailed);
-        NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.filePreparingFailed);
-        NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.filePreparingStarted);
-        NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.fileNewChunkAvailable);
+        NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.fileUploaded);
+        NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.fileUploadProgressChanged);
+        NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.fileUploadFailed);
+        NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.filePreparingFailed);
+        NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.filePreparingStarted);
+        NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.fileNewChunkAvailable);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        int i10 = this.f48433a;
+        int i10 = this.f48436a;
         if (i10 >= 0) {
             NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploaded);
-            NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
-            NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.fileUploadFailed);
-            NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.filePreparingFailed);
-            NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.filePreparingStarted);
-            NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
+            NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
+            NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.fileUploadFailed);
+            NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.filePreparingFailed);
+            NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.filePreparingStarted);
+            NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
         }
     }
 
@@ -2616,17 +2616,17 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
         float f11 = measuredWidth + dp;
         rectF.set(dp, dp, f11, f11);
         rectF.offset(0.0f, (measuredHeight - rectF.height()) / 2.0f);
-        Path path = this.f48455s;
+        Path path = this.f48458s;
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF, f10, f10, direction);
-        Path path2 = this.f48454r;
+        Path path2 = this.f48457r;
         path2.rewind();
         path2.addRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), direction);
         Path path3 = this.v;
         path3.reset();
         path3.op(path2, path, Path.Op.DIFFERENCE);
-        Path path4 = this.f48456w;
+        Path path4 = this.f48459w;
         path4.rewind();
         rectF.inset(AndroidUtilities.dp(-1.0f), AndroidUtilities.dp(-1.0f));
         path4.addRoundRect(rectF, f10, f10, direction);
@@ -2637,10 +2637,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
         super.onMeasure(i10, i11);
         this.M.setTranslationY(-((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(10.0f)));
         if (Build.VERSION.SDK_INT >= 29) {
-            ArrayList arrayList = this.f48452p0;
+            ArrayList arrayList = this.f48455p0;
             arrayList.clear();
-            if (this.f48445i0) {
-                Rect rect = this.f48453q0;
+            if (this.f48448i0) {
+                Rect rect = this.f48456q0;
                 arrayList.add(rect);
                 int measuredHeight = (int) (getMeasuredHeight() * 0.3f);
                 rect.set(0, (getMeasuredHeight() - measuredHeight) / 2, AndroidUtilities.dp(20.0f), (getMeasuredHeight() + measuredHeight) / 2);
@@ -2657,7 +2657,7 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                 n2 n2Var;
                 p2 p2Var = p2.this;
                 Utilities.Callback callback3 = callback;
-                if (callback3 != null && (n2Var = p2Var.W) != null && n2Var.f48381o) {
+                if (callback3 != null && (n2Var = p2Var.W) != null && n2Var.f48384o) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -2668,36 +2668,36 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                         n2Var2.a();
                     }
                     ?? obj = new Object();
-                    obj.f48382p = new ArrayList();
-                    obj.f48383q = new ArrayList();
-                    obj.f48386t = 0.0f;
-                    obj.f48387u = 0.0f;
+                    obj.f48385p = new ArrayList();
+                    obj.f48386q = new ArrayList();
+                    obj.f48389t = 0.0f;
+                    obj.f48390u = 0.0f;
                     p2Var.W = obj;
                 }
                 n2 n2Var3 = p2Var.W;
-                n2Var3.f48372c = str2;
+                n2Var3.f48375c = str2;
                 String str4 = str;
-                n2Var3.f48371b = str4;
-                n2Var3.f48370a = str4;
+                n2Var3.f48374b = str4;
+                n2Var3.f48373a = str4;
                 n2Var3.d = charSequence;
                 n2Var3.h = z10;
-                n2Var3.f48375i = j10;
-                n2Var3.f48376j = stickerSet;
-                n2Var3.f48377k = document;
+                n2Var3.f48378i = j10;
+                n2Var3.f48379j = stickerSet;
+                n2Var3.f48380k = document;
                 VideoEditedInfo videoEditedInfo2 = videoEditedInfo;
-                n2Var3.f48385s = videoEditedInfo2;
-                n2Var3.f48378l = str3;
-                n2Var3.f48380n = callback3;
-                n2Var3.f48379m = callback2;
-                ArrayList arrayList = n2Var3.f48383q;
+                n2Var3.f48388s = videoEditedInfo2;
+                n2Var3.f48381l = str3;
+                n2Var3.f48383n = callback3;
+                n2Var3.f48382m = callback2;
+                ArrayList arrayList = n2Var3.f48386q;
                 if (!TextUtils.isEmpty(str4)) {
-                    n2Var3.f48382p.add(new File(n2Var3.f48371b));
+                    n2Var3.f48385p.add(new File(n2Var3.f48374b));
                 }
-                if (!TextUtils.isEmpty(n2Var3.f48370a) && !TextUtils.equals(n2Var3.f48370a, n2Var3.f48371b)) {
-                    arrayList.add(new File(n2Var3.f48370a));
+                if (!TextUtils.isEmpty(n2Var3.f48373a) && !TextUtils.equals(n2Var3.f48373a, n2Var3.f48374b)) {
+                    arrayList.add(new File(n2Var3.f48373a));
                 }
-                if (!TextUtils.isEmpty(n2Var3.f48378l)) {
-                    arrayList.add(new File(n2Var3.f48378l));
+                if (!TextUtils.isEmpty(n2Var3.f48381l)) {
+                    arrayList.add(new File(n2Var3.f48381l));
                 }
                 if (!z11) {
                     p2Var.a();
@@ -2705,9 +2705,9 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                     TLRPC.Document document3 = document2;
                     if (document3 != null) {
                         n2 n2Var4 = p2Var.W;
-                        n2Var4.e = MediaDataController.getInputStickerSetItem(document3, n2Var4.f48372c);
-                        p2Var.W.f48373f = new TLRPC.TL_messageMediaDocument();
-                        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = p2Var.W.f48373f;
+                        n2Var4.e = MediaDataController.getInputStickerSetItem(document3, n2Var4.f48375c);
+                        p2Var.W.f48376f = new TLRPC.TL_messageMediaDocument();
+                        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = p2Var.W.f48376f;
                         tL_messageMediaDocument.flags |= 1;
                         tL_messageMediaDocument.document = document3;
                         p2Var.a();
@@ -2717,23 +2717,23 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                         n2 n2Var5 = p2Var.W;
                         String absolutePath = w7.w(UserConfig.selectedAccount, "webm").getAbsolutePath();
                         tL_message.attachPath = absolutePath;
-                        n2Var5.f48371b = absolutePath;
-                        p2Var.W.f48384r = new MessageObject(UserConfig.selectedAccount, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
-                        p2Var.W.f48384r.videoEditedInfo = videoEditedInfo2;
-                        MediaController.getInstance().scheduleVideoConvert(p2Var.W.f48384r, false, false, false);
+                        n2Var5.f48374b = absolutePath;
+                        p2Var.W.f48387r = new MessageObject(UserConfig.selectedAccount, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
+                        p2Var.W.f48387r.videoEditedInfo = videoEditedInfo2;
+                        MediaController.getInstance().scheduleVideoConvert(p2Var.W.f48387r, false, false, false);
                     } else {
-                        FileLoader.getInstance(p2Var.f48433a).uploadFile(str4, false, true, 67108864);
+                        FileLoader.getInstance(p2Var.f48436a).uploadFile(str4, false, true, 67108864);
                     }
                 }
                 if (callback3 == null) {
-                    if (p2Var.f48439d0 == null) {
-                        p2Var.f48439d0 = new fi.t0(p2Var.getContext(), LocaleController.getString(R.string.PreparingSticker));
+                    if (p2Var.f48442d0 == null) {
+                        p2Var.f48442d0 = new fi.t0(p2Var.getContext(), LocaleController.getString(R.string.PreparingSticker));
                     }
-                    p2Var.f48439d0.setOnCancelListener(new f2(p2Var, 0));
-                    if (p2Var.f48439d0.getParent() == null) {
-                        p2Var.addView(p2Var.f48439d0, gb1.i(-1, -1, 17));
+                    p2Var.f48442d0.setOnCancelListener(new f2(p2Var, 0));
+                    if (p2Var.f48442d0.getParent() == null) {
+                        p2Var.addView(p2Var.f48442d0, gb1.i(-1, -1, 17));
                     }
-                    fi.t0 t0Var = p2Var.f48439d0;
+                    fi.t0 t0Var = p2Var.f48442d0;
                     t0Var.E = true;
                     t0Var.invalidate();
                 }
@@ -2742,33 +2742,33 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
     }
 
     public void setCurrentAccount(int i10) {
-        int i11 = this.f48433a;
+        int i11 = this.f48436a;
         if (i11 != i10) {
             if (i11 >= 0 && isAttachedToWindow()) {
-                NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.fileUploaded);
-                NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
-                NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.fileUploadFailed);
-                NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.filePreparingFailed);
-                NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.filePreparingStarted);
-                NotificationCenter.getInstance(this.f48433a).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
+                NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.fileUploaded);
+                NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
+                NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.fileUploadFailed);
+                NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.filePreparingFailed);
+                NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.filePreparingStarted);
+                NotificationCenter.getInstance(this.f48436a).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
             }
-            this.f48433a = i10;
+            this.f48436a = i10;
             if (i10 >= 0 && isAttachedToWindow()) {
-                NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.fileUploaded);
-                NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.fileUploadProgressChanged);
-                NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.fileUploadFailed);
-                NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.filePreparingFailed);
-                NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.filePreparingStarted);
-                NotificationCenter.getInstance(this.f48433a).addObserver(this, NotificationCenter.fileNewChunkAvailable);
+                NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.fileUploaded);
+                NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.fileUploadProgressChanged);
+                NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.fileUploadFailed);
+                NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.filePreparingFailed);
+                NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.filePreparingStarted);
+                NotificationCenter.getInstance(this.f48436a).addObserver(this, NotificationCenter.fileNewChunkAvailable);
             }
         }
     }
 
     public void setOutlineVisible(boolean z10) {
         float f7;
-        if (this.f48445i0 != z10) {
-            this.f48445i0 = z10;
-            ViewPropertyAnimator animate = this.f48444h0.animate();
+        if (this.f48448i0 != z10) {
+            this.f48448i0 = z10;
+            ViewPropertyAnimator animate = this.f48447h0.animate();
             float f10 = 0.0f;
             if (z10) {
                 f7 = 1.0f;
@@ -2784,10 +2784,10 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
                 ((View) getParent()).invalidate();
             }
             if (Build.VERSION.SDK_INT >= 29) {
-                ArrayList arrayList = this.f48452p0;
+                ArrayList arrayList = this.f48455p0;
                 arrayList.clear();
-                if (this.f48445i0) {
-                    Rect rect = this.f48453q0;
+                if (this.f48448i0) {
+                    Rect rect = this.f48456q0;
                     arrayList.add(rect);
                     int measuredHeight = (int) (getMeasuredHeight() * 0.3f);
                     rect.set(0, (getMeasuredHeight() - measuredHeight) / 2, AndroidUtilities.dp(20.0f), (getMeasuredHeight() + measuredHeight) / 2);
@@ -2805,6 +2805,6 @@ public final class p2 extends FrameLayout implements NotificationCenter.Notifica
     }
 
     public void setStickerCutOutBtn(e2 e2Var) {
-        this.f48436b0 = e2Var;
+        this.f48439b0 = e2Var;
     }
 }

@@ -4,11 +4,11 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class lm extends org.telegram.ui.ActionBar.q1 {
-    public final mm f41296x;
+    public final mm f41299x;
 
     public lm(mm mmVar, mm mmVar2) {
         super(mmVar2);
-        this.f41296x = mmVar;
+        this.f41299x = mmVar;
     }
 
     @Override
@@ -16,14 +16,14 @@ public final class lm extends org.telegram.ui.ActionBar.q1 {
         boolean z10;
         boolean z11;
         boolean z12;
-        un unVar = this.f41296x.B0;
+        un unVar = this.f41299x.B0;
         org.telegram.ui.ActionBar.j5 parentLayout = unVar.getParentLayout();
-        if (!unVar.f44201bb) {
+        if (!unVar.f44204bb) {
             z10 = ((org.telegram.ui.ActionBar.r2) unVar).inPreviewMode;
             if (!z10) {
                 z11 = ((org.telegram.ui.ActionBar.r2) unVar).inBubbleMode;
                 if (!z11 && !AndroidUtilities.isInMultiwindow && parentLayout != null && unVar.Ba <= 0 && System.currentTimeMillis() - unVar.Q9 >= 250) {
-                    if ((unVar != parentLayout.getLastFragment() || !((ActionBarLayout) parentLayout).A()) && !((ActionBarLayout) parentLayout).f22329n) {
+                    if ((unVar != parentLayout.getLastFragment() || !((ActionBarLayout) parentLayout).A()) && !((ActionBarLayout) parentLayout).f22331n) {
                         z12 = ((org.telegram.ui.ActionBar.r2) unVar).isPaused;
                         if (!z12 && unVar.Z5) {
                             di.a3 a3Var = unVar.V1;
@@ -52,16 +52,16 @@ public final class lm extends org.telegram.ui.ActionBar.q1 {
         org.telegram.ui.ActionBar.k kVar;
         int i10;
         org.telegram.ui.Components.e20 e20Var;
-        mm mmVar = this.f41296x;
+        mm mmVar = this.f41299x;
         un unVar = mmVar.B0;
-        if (unVar.getParentLayout() == null || !((ActionBarLayout) unVar.getParentLayout()).f22329n) {
+        if (unVar.getParentLayout() == null || !((ActionBarLayout) unVar.getParentLayout()).f22331n) {
             unVar.I9 = f7;
             unVar.J9 = f10;
             di.a3 a3Var = unVar.V1;
             if (a3Var == null || !a3Var.isShowing()) {
                 kVar = ((org.telegram.ui.ActionBar.r2) unVar).actionBar;
                 kVar.setTranslationY(f7);
-                xk xkVar = unVar.f44465wb;
+                xk xkVar = unVar.f44468wb;
                 if (xkVar != null) {
                     float f11 = unVar.I9;
                     sk skVar = unVar.A1;
@@ -80,21 +80,21 @@ public final class lm extends org.telegram.ui.ActionBar.q1 {
                 if (v3Var2 != null) {
                     v3Var2.setTranslationY(f7);
                 }
-                FrameLayout frameLayout = unVar.f44205c1;
+                FrameLayout frameLayout = unVar.f44208c1;
                 if (frameLayout != null) {
                     frameLayout.setTranslationY(f7 / 2.0f);
                 }
                 unVar.P.setTranslationY(f7 / 2.0f);
                 int i11 = (int) f7;
-                unVar.f44292j1.setBackgroundTranslation(i11);
-                org.telegram.ui.Components.t60 t60Var = unVar.f44343n3;
+                unVar.f44295j1.setBackgroundTranslation(i11);
+                org.telegram.ui.Components.t60 t60Var = unVar.f44346n3;
                 if (t60Var != null) {
                     t60Var.e(f7);
                 }
                 fi.f6 f6Var = unVar.K2;
                 if (f6Var != null) {
                     org.telegram.ui.Components.ja jaVar = (org.telegram.ui.Components.ja) f6Var.f10864b;
-                    jaVar.f29571u = f7;
+                    jaVar.f29573u = f7;
                     jaVar.d.invalidate();
                 }
                 unVar.setFragmentPanTranslationOffset(i11);
@@ -103,16 +103,16 @@ public final class lm extends org.telegram.ui.ActionBar.q1 {
             } else {
                 mmVar.setNonNoveTranslation(f7);
             }
-            unVar.f44468x0.invalidate();
-            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f31880x;
-            if (qcVar != null && unVar.f44452vc != null) {
+            unVar.f44471x0.invalidate();
+            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f31882x;
+            if (qcVar != null && unVar.f44455vc != null) {
                 qcVar.l();
             }
             if (AndroidUtilities.isTablet() && (unVar.getParentActivity() instanceof LaunchActivity)) {
                 org.telegram.ui.ActionBar.r2 lastFragment = ((LaunchActivity) unVar.getParentActivity()).O().getLastFragment();
                 if (lastFragment instanceof cy) {
                     cy cyVar = (cy) lastFragment;
-                    cyVar.f38670v1 = f7;
+                    cyVar.f38673v1 = f7;
                     cyVar.g5();
                 }
             }
@@ -120,7 +120,7 @@ public final class lm extends org.telegram.ui.ActionBar.q1 {
             if (t40Var != null && t40Var.getVisibility() == 0) {
                 unVar.E2.f(unVar.Y.getAudioVideoButtonContainer(), false);
             }
-            bk bkVar = unVar.f44293j2;
+            bk bkVar = unVar.f44296j2;
             if (bkVar != null && (e20Var = bkVar.B0) != null) {
                 e20Var.setExtraTranslationY(AndroidUtilities.dp(72.0f) + f7);
             }
@@ -130,11 +130,11 @@ public final class lm extends org.telegram.ui.ActionBar.q1 {
     @Override
     public final void f() {
         org.telegram.ui.Components.ie ieVar;
-        un unVar = this.f41296x.B0;
+        un unVar = this.f41299x.B0;
         hk hkVar = unVar.Y;
-        if (hkVar != null && (ieVar = hkVar.f25961u0) != null) {
+        if (hkVar != null && (ieVar = hkVar.f25963u0) != null) {
             ieVar.run();
-            hkVar.f25961u0 = null;
+            hkVar.f25963u0 = null;
         }
         org.telegram.ui.Components.t40 t40Var = unVar.E2;
         if (t40Var != null && t40Var.getVisibility() == 0) {
@@ -145,7 +145,7 @@ public final class lm extends org.telegram.ui.ActionBar.q1 {
     @Override
     public final void g(int i10, boolean z10) {
         org.telegram.ui.Components.sd sdVar;
-        un unVar = this.f41296x.B0;
+        un unVar = this.f41299x.B0;
         unVar.P4 = true;
         hk hkVar = unVar.Y;
         if (hkVar != null) {
@@ -159,7 +159,7 @@ public final class lm extends org.telegram.ui.ActionBar.q1 {
                 hkVar.W.run();
             }
         }
-        org.telegram.ui.Components.t40 t40Var = unVar.f44391r2;
+        org.telegram.ui.Components.t40 t40Var = unVar.f44394r2;
         if (t40Var != null) {
             t40Var.b(false);
         }
@@ -171,7 +171,7 @@ public final class lm extends org.telegram.ui.ActionBar.q1 {
 
     @Override
     public final int i() {
-        mm mmVar = this.f41296x;
+        mm mmVar = this.f41299x;
         un unVar = mmVar.B0;
         if (mmVar.getKeyboardHeight() <= AndroidUtilities.dp(20.0f) && unVar.Y.q0()) {
             return unVar.Y.getEmojiPadding();

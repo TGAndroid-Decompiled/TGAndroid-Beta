@@ -40,7 +40,7 @@ public final class c3 {
                 aVar3 = new a(new TL_iv.pageBlockParagraph(), 0, 0);
                 arrayList.add(aVar3);
             }
-            v3Var.f32150g3.O(false);
+            v3Var.f32152g3.O(false);
             f2 f2Var2 = v3Var.R3;
             if (f2Var2 != null) {
                 f2Var2.h();

@@ -43,7 +43,7 @@ public final class x extends FrameLayout {
         this.f4195a = unVar;
         setClipToPadding(false);
         setClipChildren(false);
-        unVar.f44468x0.j(new ai.b(this, 2));
+        unVar.f44471x0.j(new ai.b(this, 2));
     }
 
     public final void a(boolean z10) {
@@ -106,7 +106,7 @@ public final class x extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new v(this, 0));
             }
             un unVar = this.f4195a;
-            oj ojVar = unVar.f44468x0;
+            oj ojVar = unVar.f44471x0;
             int[] iArr = this.f4204y;
             ojVar.getLocationInWindow(iArr);
             boolean z13 = true;
@@ -155,7 +155,7 @@ public final class x extends FrameLayout {
                         float y3 = (s1Var.getY() + f12) - AndroidUtilities.dp(74.0f);
                         float dp4 = AndroidUtilities.dp(14.0f);
                         float dp5 = height - AndroidUtilities.dp(218.0f);
-                        bk bkVar = unVar.f44293j2;
+                        bk bkVar = unVar.f44296j2;
                         if (bkVar != null && bkVar.getVisibility() == 0) {
                             dp4 += bkVar.getHeight();
                         }
@@ -177,7 +177,7 @@ public final class x extends FrameLayout {
                         if (!z10) {
                             this.f4199n = this.f4200r;
                         }
-                        float interpolation = (ds.f27584f.getInterpolation(this.f4199n) * this.f4201s) + y3;
+                        float interpolation = (ds.f27586f.getInterpolation(this.f4199n) * this.f4201s) + y3;
                         w wVar3 = this.f4196b;
                         if (wVar3 != null) {
                             if (z11 != wVar3.N) {
@@ -191,7 +191,7 @@ public final class x extends FrameLayout {
                                     this.f4196b.setVisibility(0);
                                     if (!this.f4203x) {
                                         this.f4203x = true;
-                                        this.f4196b.p(this.e, unVar.f44322l8, true);
+                                        this.f4196b.p(this.e, unVar.f44325l8, true);
                                     }
                                 }
                             }

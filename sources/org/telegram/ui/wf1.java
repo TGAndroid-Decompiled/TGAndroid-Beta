@@ -5,19 +5,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class wf1 implements RequestDelegate {
-    public final int f45477a;
-    public final dg1 f45478b;
+    public final int f45480a;
+    public final dg1 f45481b;
 
     public wf1(dg1 dg1Var, int i10) {
-        this.f45477a = i10;
-        this.f45478b = dg1Var;
+        this.f45480a = i10;
+        this.f45481b = dg1Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f45477a) {
+        switch (this.f45480a) {
             case 0:
-                final dg1 dg1Var = this.f45478b;
+                final dg1 dg1Var = this.f45481b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -33,16 +33,16 @@ public final class wf1 implements RequestDelegate {
                 });
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new zf1(this.f45478b, tL_error, 0));
+                AndroidUtilities.runOnUIThread(new zf1(this.f45481b, tL_error, 0));
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new zf1(this.f45478b, tL_error, 1));
+                AndroidUtilities.runOnUIThread(new zf1(this.f45481b, tL_error, 1));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new zf1(this.f45478b, tL_error, 2));
+                AndroidUtilities.runOnUIThread(new zf1(this.f45481b, tL_error, 2));
                 return;
             default:
-                final dg1 dg1Var2 = this.f45478b;
+                final dg1 dg1Var2 = this.f45481b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {

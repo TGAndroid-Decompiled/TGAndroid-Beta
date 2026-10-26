@@ -228,7 +228,7 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
     public androidx.lifecycle.p0 B(Class cls, v1.b bVar) {
         androidx.lifecycle.m0 m0Var = null;
         for (v1.c cVar : (v1.c[]) this.f17285a) {
-            if (cVar.f49983a.equals(cls)) {
+            if (cVar.f49986a.equals(cls)) {
                 m0Var = new androidx.lifecycle.m0();
             }
         }
@@ -275,7 +275,7 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
     public void H(boolean z10) {
         of0 of0Var = (of0) this.f17285a;
         of0Var.getClass();
-        nf0 nf0Var = of0Var.f31282a;
+        nf0 nf0Var = of0Var.f31284a;
         if (nf0Var != null) {
             ((gs0) nf0Var).d(z10);
         }
@@ -283,10 +283,10 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void P() {
-        nf0 nf0Var = ((of0) this.f17285a).f31282a;
+        nf0 nf0Var = ((of0) this.f17285a).f31284a;
         if (nf0Var != null) {
-            PhotoViewer photoViewer = ((gs0) nf0Var).f39774a;
-            if (photoViewer.f35627c2 == 1) {
+            PhotoViewer photoViewer = ((gs0) nf0Var).f39777a;
+            if (photoViewer.f35630c2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.s3();
             }
@@ -318,9 +318,9 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
     @Override
     public void V(float f7) {
         nt0 nt0Var = (nt0) this.f17285a;
-        rg.s0.e(nt0Var.E1).k(String.valueOf(rg.m.f47462a.indexOf(nt0Var.L0.getCurrentBrush())), f7);
-        rg.q1 q1Var = nt0Var.f48366z1;
-        q1Var.f47524c = f7;
+        rg.s0.e(nt0Var.E1).k(String.valueOf(rg.m.f47465a.indexOf(nt0Var.L0.getCurrentBrush())), f7);
+        rg.q1 q1Var = nt0Var.f48369z1;
+        q1Var.f47527c = f7;
         nt0Var.r0(q1Var, null);
     }
 
@@ -413,15 +413,15 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     public void f(p4.p pVar, p4.m mVar, Collection collection) {
         p4.e eVar = (p4.e) this.f17285a;
-        if (pVar == eVar.f46675y && mVar != null) {
-            p4.u uVar = eVar.f46674x.f46766a;
+        if (pVar == eVar.f46678y && mVar != null) {
+            p4.u uVar = eVar.f46677x.f46769a;
             String d = mVar.d();
             p4.v vVar = new p4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f46675y, 3, eVar.f46674x, collection);
-                eVar.f46674x = null;
-                eVar.f46675y = null;
+                eVar.h(eVar, vVar, eVar.f46678y, 3, eVar.f46677x, collection);
+                eVar.f46677x = null;
+                eVar.f46678y = null;
             }
         } else if (pVar == eVar.e) {
             if (mVar != null) {
@@ -512,10 +512,10 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
         int dp = AndroidUtilities.dp(9.0f);
         u71 u71Var = (u71) this.f17285a;
         float f11 = -dp;
-        u71Var.f33270g.inset(f11, f11);
-        boolean contains = u71Var.f33270g.contains(f7, f10);
+        u71Var.f33273g.inset(f11, f11);
+        boolean contains = u71Var.f33273g.contains(f7, f10);
         float f12 = dp;
-        u71Var.f33270g.inset(f12, f12);
+        u71Var.f33273g.inset(f12, f12);
         return contains;
     }
 
@@ -531,7 +531,7 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((u71) this.f17285a).f33272j;
+        Runnable runnable = ((u71) this.f17285a).f33275j;
         if (runnable != null) {
             runnable.run();
         }
@@ -559,15 +559,15 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void q() {
-        nf0 nf0Var = ((of0) this.f17285a).f31282a;
+        nf0 nf0Var = ((of0) this.f17285a).f31284a;
         if (nf0Var != null) {
-            ((gs0) nf0Var).f39774a.f35643e0.invalidate();
+            ((gs0) nf0Var).f39777a.f35646e0.invalidate();
         }
     }
 
     @Override
     public void x(boolean z10) {
-        ((of0) this.f17285a).f31284c.setAspectLock(z10);
+        ((of0) this.f17285a).f31286c.setAspectLock(z10);
     }
 
     @Override
@@ -576,9 +576,9 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
         int i10 = nt0Var.E1;
         rg.m currentBrush = nt0Var.L0.getCurrentBrush();
         if (currentBrush == null) {
-            return rg.s0.e(i10).f47545i;
+            return rg.s0.e(i10).f47548i;
         }
-        return rg.s0.e(i10).f(String.valueOf(rg.m.f47462a.indexOf(currentBrush)), currentBrush.d());
+        return rg.s0.e(i10).f(String.valueOf(rg.m.f47465a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override

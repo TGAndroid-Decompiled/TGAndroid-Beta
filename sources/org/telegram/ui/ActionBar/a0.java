@@ -5,19 +5,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class a0 implements TextView.OnEditorActionListener {
-    public final int f22370a;
-    public final FrameLayout f22371b;
+    public final int f22372a;
+    public final FrameLayout f22373b;
 
     public a0(int i10, FrameLayout frameLayout) {
-        this.f22370a = i10;
-        this.f22371b = frameLayout;
+        this.f22372a = i10;
+        this.f22373b = frameLayout;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f22370a) {
+        switch (this.f22372a) {
             case 0:
-                w0 w0Var = (w0) this.f22371b;
+                w0 w0Var = (w0) this.f22373b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
                         AndroidUtilities.hideKeyboard(w0Var.e);
@@ -32,7 +32,7 @@ public final class a0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             default:
-                r5.a((r5) this.f22371b, i10, keyEvent);
+                r5.a((r5) this.f22373b, i10, keyEvent);
                 return false;
         }
     }

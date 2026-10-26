@@ -209,8 +209,8 @@ public final class ca {
 
     public static void e0(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, u6Var);
-        alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.StarsNotAvailableTitle);
-        alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.StarsNotAvailableText);
+        alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.StarsNotAvailableTitle);
+        alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.StarsNotAvailableText);
         org.telegram.messenger.t.p(R.string.OK, alertDialog$Builder, null);
     }
 
@@ -269,7 +269,7 @@ public final class ca {
         }
         if (tLObject instanceof TLRPC.TL_messages_forwardMessages) {
             TLRPC.TL_messages_forwardMessages tL_messages_forwardMessages = (TLRPC.TL_messages_forwardMessages) tLObject;
-            return tL_messages_forwardMessages.allow_paid_stars / tL_messages_forwardMessages.f22113id.size();
+            return tL_messages_forwardMessages.allow_paid_stars / tL_messages_forwardMessages.f22115id.size();
         } else if (tLObject instanceof TLRPC.TL_messages_sendMedia) {
             return ((TLRPC.TL_messages_sendMedia) tLObject).allow_paid_stars;
         } else {
@@ -458,7 +458,7 @@ public final class ca {
             ArrayList arrayList = this.H;
             if (i10 < arrayList.size()) {
                 TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList.get(i10);
-                if (starGift.f22254id == j10) {
+                if (starGift.f22256id == j10) {
                     return starGift;
                 }
                 i10++;
@@ -516,7 +516,7 @@ public final class ca {
     }
 
     public final void R(TLRPC.UserFull userFull) {
-        long j10 = userFull.f22175id;
+        long j10 = userFull.f22177id;
         t9 G = G(j10, false);
         if (G != null && G.f5473n != userFull.stargifts_count) {
             G.j(false);
@@ -691,7 +691,7 @@ public final class ca {
                                         Y.M(LocaleController.getString(R.string.StarsSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSubscriptionCompletedText", (int) j13, str6)), R.raw.stars_send).j();
                                     }
                                     LaunchActivity launchActivity = LaunchActivity.I1;
-                                    if (launchActivity != null && (oa0Var = launchActivity.f35564x0) != null) {
+                                    if (launchActivity != null && (oa0Var = launchActivity.f35567x0) != null) {
                                         oa0Var.c(true);
                                     }
                                     caVar2.T(true);
@@ -754,7 +754,7 @@ public final class ca {
                     j10 = messageObject.getDialogId();
                 }
                 if (j10 < 0 && messageObject.getFromChatId() > 0 && (user = MessagesController.getInstance(this.f4441a).getUser(Long.valueOf(messageObject.getFromChatId()))) != null && user.bot) {
-                    j10 = user.f22174id;
+                    j10 = user.f22176id;
                 }
             } else {
                 j10 = tL_payments_paymentFormStars.bot_id;
@@ -956,10 +956,10 @@ public final class ca {
         if (!aaVar4.f4275i && !aaVar4.f4276j) {
             aaVar4.h += j10;
             System.currentTimeMillis();
-            kcVar.f29898c.a();
-            kcVar.f29898c.c(AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSentText", (int) aaVar4.h, new Object[0])), true, true);
+            kcVar.f29900c.a();
+            kcVar.f29900c.c(AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSentText", (int) aaVar4.h, new Object[0])), true, true);
             if (aaVar4.f4279m) {
-                aaVar4.f4273f.f29601b = 5000L;
+                aaVar4.f4273f.f29603b = 5000L;
                 AndroidUtilities.cancelRunOnUIThread(y9Var);
                 AndroidUtilities.runOnUIThread(y9Var, 5000L);
             }
@@ -977,7 +977,7 @@ public final class ca {
                 NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(messageObject2.getDialogId()), Integer.valueOf(messageObject2.getId()), messageObject2.messageOwner.reactions);
                 aaVar4.f4277k += j10;
             }
-            kcVar.f29897b.setText(aaVar4.d());
+            kcVar.f29899b.setText(aaVar4.d());
         } else if (BuildVars.DEBUG_PRIVATE_VERSION) {
             throw new RuntimeException("adding more amount to committed reactions");
         }
@@ -1210,7 +1210,7 @@ public final class ca {
             return;
         }
         org.telegram.ui.Components.qc J = org.telegram.ui.Components.wc.b0(U).J(R.raw.stars_topup, LocaleController.getString(R.string.StarsTopupLinkEnough), LocaleController.getString(R.string.StarsTopupLinkTopupAnyway), new ag.c(5));
-        J.f31887j = 5000;
+        J.f31889j = 5000;
         J.k(true);
     }
 
@@ -1243,7 +1243,7 @@ public final class ca {
             final TLRPC.TL_inputInvoiceStarGift tL_inputInvoiceStarGift = new TLRPC.TL_inputInvoiceStarGift();
             tL_inputInvoiceStarGift.hide_name = z10;
             tL_inputInvoiceStarGift.peer = MessagesController.getInstance(this.f4441a).getInputPeer(j10);
-            tL_inputInvoiceStarGift.gift_id = starGift.f22254id;
+            tL_inputInvoiceStarGift.gift_id = starGift.f22256id;
             tL_inputInvoiceStarGift.include_upgrade = z11;
             if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
                 tL_inputInvoiceStarGift.flags |= 2;
@@ -1480,7 +1480,7 @@ public final class ca {
                                             }
                                             MessagesController.getInstance(caVar4.f4441a).getMainSettings().edit().putBoolean("show_gift_for_" + j17, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j17, true).apply();
                                             LaunchActivity launchActivity = LaunchActivity.I1;
-                                            if (launchActivity != null && (oa0Var = launchActivity.f35564x0) != null) {
+                                            if (launchActivity != null && (oa0Var = launchActivity.f35567x0) != null) {
                                                 oa0Var.c(true);
                                             }
                                         }
@@ -1551,9 +1551,9 @@ public final class ca {
                 j9Var2.s(chatInvite.color);
                 String str3 = chatInvite.title;
                 j9Var2.A = true;
-                j9Var2.f29538n = 0;
-                j9Var2.f29537m = false;
-                org.telegram.ui.Components.j9.a(str3, null, null, j9Var2.f29541q);
+                j9Var2.f29540n = 0;
+                j9Var2.f29539m = false;
+                org.telegram.ui.Components.j9.a(str3, null, null, j9Var2.f29543q);
                 TLRPC.Photo photo = chatInvite.photo;
                 if (photo != null) {
                     y9Var.h(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(80.0f)), chatInvite.photo), "80_80", j9Var2, chatInvite);
@@ -1562,7 +1562,7 @@ public final class ca {
                 }
                 frameLayout.addView(y9Var, gb1.i(80, 80, 17));
                 Drawable drawable = context2.getResources().getDrawable(R.drawable.star_small_outline);
-                int i12 = org.telegram.ui.ActionBar.y6.f23425h5;
+                int i12 = org.telegram.ui.ActionBar.y6.f23427h5;
                 org.telegram.ui.ActionBar.f7.y(frameLayout, drawable, i12, I, PorterDuff.Mode.SRC_IN);
                 Drawable drawable2 = context2.getResources().getDrawable(R.drawable.star_small_inner);
                 ImageView imageView = new ImageView(context2);
@@ -1584,7 +1584,7 @@ public final class ca {
                 d.addView(frameLayout, gb1.u(-1, 117, 7));
                 TextView g7 = org.telegram.messenger.t.g(context2, 1, 20.0f);
                 g7.setTypeface(AndroidUtilities.bold());
-                int i13 = org.telegram.ui.ActionBar.y6.f23462j5;
+                int i13 = org.telegram.ui.ActionBar.y6.f23464j5;
                 org.telegram.ui.ActionBar.f7.V(g7, i13, I);
                 vh.k(R.string.StarsSubscribeTitle, g7, 17);
                 TextView e = vh.e(d, g7, gb1.x(-2, -2, 1, 0, 8, 0, 0), context2);
@@ -1664,7 +1664,7 @@ public final class ca {
         int i11 = tL_messages_editMessage.flags;
         tL_messages_editMessage.flags = 32768 | i11;
         tL_messages_editMessage.schedule_date = messageObject.messageOwner.date;
-        tL_messages_editMessage.f22110id = id2;
+        tL_messages_editMessage.f22111id = id2;
         tL_messages_editMessage.flags = i11 | 49152;
         TLRPC.TL_inputMediaPaidMedia tL_inputMediaPaidMedia = new TLRPC.TL_inputMediaPaidMedia();
         tL_inputMediaPaidMedia.stars_amount = j10;
@@ -1720,7 +1720,7 @@ public final class ca {
                 t9 t9Var = (t9) longSparseArray.valueAt(i10);
                 for (int i11 = 0; i11 < t9Var.f5471l.size(); i11++) {
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) t9Var.f5471l.get(i11);
-                    if (savedStarGift != null && (starGift = savedStarGift.gift) != null && starGift.f22254id == j10) {
+                    if (savedStarGift != null && (starGift = savedStarGift.gift) != null && starGift.f22256id == j10) {
                         return savedStarGift;
                     }
                 }

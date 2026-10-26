@@ -6,7 +6,7 @@ public final class j7 implements oi.n, oi.m {
     public int f() {
         o7 o7Var = this.f11061a;
         o7Var.getClass();
-        return o7Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6);
+        return o7Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6);
     }
 
     @Override

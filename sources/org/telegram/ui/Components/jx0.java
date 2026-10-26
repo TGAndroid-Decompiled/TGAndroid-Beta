@@ -4,20 +4,20 @@ import android.animation.TimeAnimator;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class jx0 extends TimeAnimator {
-    public int f29728a;
-    public int f29729b;
-    public ValueAnimator.AnimatorUpdateListener f29730c;
+    public int f29730a;
+    public int f29731b;
+    public ValueAnimator.AnimatorUpdateListener f29732c;
     public Float d;
     public float[] e;
 
     @Override
     public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
-        this.f29730c = animatorUpdateListener;
+        this.f29732c = animatorUpdateListener;
     }
 
     @Override
     public final void end() {
-        this.f29730c = null;
+        this.f29732c = null;
         super.end();
     }
 
@@ -39,18 +39,18 @@ public final class jx0 extends TimeAnimator {
             public final void onTimeUpdate(TimeAnimator timeAnimator, long j10, long j11) {
                 int i10;
                 jx0 jx0Var = jx0.this;
-                int i11 = jx0Var.f29728a;
-                if (i11 > 0 && (i10 = jx0Var.f29729b) > 0) {
+                int i11 = jx0Var.f29730a;
+                if (i11 > 0 && (i10 = jx0Var.f29731b) > 0) {
                     int i12 = i11 - 1;
-                    jx0Var.f29728a = i12;
-                    if (jx0Var.f29730c != null) {
+                    jx0Var.f29730a = i12;
+                    if (jx0Var.f29732c != null) {
                         float[] fArr = jx0Var.e;
                         if (fArr != null && fArr.length == 2) {
                             float interpolation = jx0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
                             float[] fArr2 = jx0Var.e;
                             float f7 = fArr2[0];
                             jx0Var.d = Float.valueOf(((fArr2[1] - f7) * interpolation) + f7);
-                            jx0Var.f29730c.onAnimationUpdate(jx0Var);
+                            jx0Var.f29732c.onAnimationUpdate(jx0Var);
                             return;
                         }
                         jx0Var.end();
@@ -62,8 +62,8 @@ public final class jx0 extends TimeAnimator {
             }
         });
         int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
-        this.f29728a = duration;
-        this.f29729b = duration;
+        this.f29730a = duration;
+        this.f29731b = duration;
         super.start();
     }
 }

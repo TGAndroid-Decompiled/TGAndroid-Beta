@@ -12,22 +12,22 @@ import w7.l5;
 import w7.t;
 import w7.u;
 public final class k implements OutcomeReceiver {
-    public final int f49973a = 0;
-    public final i f49974b;
+    public final int f49976a = 0;
+    public final i f49977b;
 
     public k(i iVar, l lVar) {
-        this.f49974b = iVar;
+        this.f49977b = iVar;
     }
 
     public final void onError(Throwable th2) {
-        switch (this.f49973a) {
+        switch (this.f49976a) {
             case 0:
                 CreateCredentialException error = (CreateCredentialException) th2;
                 kotlin.jvm.internal.i.e(error, "error");
                 Log.i("CredManProvService", "CreateCredentialResponse error returned from framework");
                 String type = error.getType();
                 kotlin.jvm.internal.i.d(type, "getType(...)");
-                ((me.b) this.f49974b).onError(l5.a(error.getMessage(), type));
+                ((me.b) this.f49977b).onError(l5.a(error.getMessage(), type));
                 return;
             default:
                 GetCredentialException error2 = (GetCredentialException) th2;
@@ -35,20 +35,20 @@ public final class k implements OutcomeReceiver {
                 Log.i("CredManProvService", "GetCredentialResponse error returned from framework");
                 String type2 = error2.getType();
                 kotlin.jvm.internal.i.d(type2, "getType(...)");
-                this.f49974b.onError(l5.b(error2.getMessage(), type2));
+                this.f49977b.onError(l5.b(error2.getMessage(), type2));
                 return;
         }
     }
 
     public final void onResult(Object obj) {
-        switch (this.f49973a) {
+        switch (this.f49976a) {
             case 0:
                 CreateCredentialResponse response = (CreateCredentialResponse) obj;
                 kotlin.jvm.internal.i.e(response, "response");
                 Log.i("CredManProvService", "Create Result returned from framework: ");
                 Bundle data = response.getData();
                 kotlin.jvm.internal.i.d(data, "getData(...)");
-                ((me.b) this.f49974b).onResult(t.a("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", data));
+                ((me.b) this.f49977b).onResult(t.a("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", data));
                 return;
             default:
                 GetCredentialResponse response2 = (GetCredentialResponse) obj;
@@ -60,12 +60,12 @@ public final class k implements OutcomeReceiver {
                 kotlin.jvm.internal.i.d(type, "getType(...)");
                 Bundle data2 = credential.getData();
                 kotlin.jvm.internal.i.d(data2, "getData(...)");
-                this.f49974b.onResult(new o(u.a(type, data2)));
+                this.f49977b.onResult(new o(u.a(type, data2)));
                 return;
         }
     }
 
     public k(me.b bVar, e eVar, l lVar) {
-        this.f49974b = bVar;
+        this.f49977b = bVar;
     }
 }

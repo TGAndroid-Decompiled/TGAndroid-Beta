@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class e71 extends FrameLayout {
-    public int f27752a;
-    public boolean f27753b;
+    public int f27754a;
+    public boolean f27755b;
 
     @Override
     public final void onMeasure(int i10, int i11) {
         View view;
-        int i12 = this.f27752a;
+        int i12 = this.f27754a;
         if (getParent() instanceof View) {
             view = (View) getParent();
         } else {
             view = null;
         }
-        if (this.f27753b && view != null) {
+        if (this.f27755b && view != null) {
             i12 = view.getPaddingBottom() + view.getPaddingTop() + i12;
         }
         if (view != null && view.getMeasuredHeight() > 0) {
@@ -38,10 +38,10 @@ public final class e71 extends FrameLayout {
     }
 
     public void setMinusHeight(int i10) {
-        this.f27752a = i10;
+        this.f27754a = i10;
     }
 
     public void setMinusPadding(boolean z10) {
-        this.f27753b = z10;
+        this.f27755b = z10;
     }
 }

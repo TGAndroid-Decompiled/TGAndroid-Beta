@@ -23,11 +23,11 @@ public final class g extends bb {
     public j71 X;
     public final i91 Y;
     public boolean Z;
-    public int f50326a0;
+    public int f50329a0;
 
     public g(Activity activity, u6 u6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, u6Var);
-        setBackgroundColor(y6.w0(y6.f23297a7, u6Var));
+        setBackgroundColor(y6.w0(y6.f23299a7, u6Var));
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
@@ -55,12 +55,12 @@ public final class g extends bb {
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
         try {
-            int w02 = y6.w0(y6.f23297a7, this.resourcesProvider);
-            if (this.Z && w02 == this.f50326a0) {
+            int w02 = y6.w0(y6.f23299a7, this.resourcesProvider);
+            if (this.Z && w02 == this.f50329a0) {
                 return;
             }
             this.Z = true;
-            this.f50326a0 = w02;
+            this.f50329a0 = w02;
             setBackgroundColor(w02);
         } catch (Exception e) {
             FileLog.e(e);
@@ -71,7 +71,7 @@ public final class g extends bb {
     public final lm0 v(mm0 mm0Var) {
         j71 j71Var = new j71(mm0Var, getContext(), this.currentAccount, 0, true, new e2(this, 23), this.resourcesProvider);
         this.X = j71Var;
-        j71Var.f29505r = false;
+        j71Var.f29507r = false;
         return j71Var;
     }
 

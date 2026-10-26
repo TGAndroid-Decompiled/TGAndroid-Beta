@@ -45,18 +45,18 @@ public final class d implements View.OnTouchListener {
                 int i10 = r.f10000a0;
                 return true;
             case 1:
-                int i11 = k3.f22804a;
+                int i11 = k3.f22806a;
                 return true;
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = j4.f40402c1;
+                HashSet hashSet = j4.f40405c1;
                 return true;
             case 4:
                 int i12 = l9.e;
                 return true;
             case 5:
-                int i13 = v2.f25573w;
+                int i13 = v2.f25575w;
                 return true;
             case 6:
                 Paint paint = ta.H;
@@ -65,30 +65,30 @@ public final class d implements View.OnTouchListener {
                 int i14 = wb.Q0;
                 return true;
             case 8:
-                int i15 = un.f44168bd;
+                int i15 = un.f44171bd;
                 return true;
             case 9:
                 return true;
             case 10:
-                Pattern pattern = g5.f28418a;
+                Pattern pattern = g5.f28420a;
                 return true;
             case 11:
                 m8 m8Var = m8.Y0;
                 return true;
             case 12:
-                int i16 = ChatActivityEnterView.f25841r5;
+                int i16 = ChatActivityEnterView.f25843r5;
                 return true;
             case 13:
                 int i17 = ti.N2;
                 return true;
             case 14:
-                int i18 = nk.f31024g0;
+                int i18 = nk.f31026g0;
                 return true;
             case 15:
                 int i19 = sl.B0;
                 return true;
             case 16:
-                int i20 = yp.f35088l0;
+                int i20 = yp.f35091l0;
                 return true;
             case 17:
                 dv dvVar = dv.S;
@@ -97,34 +97,34 @@ public final class d implements View.OnTouchListener {
                 int i21 = uz.h;
                 return true;
             case 19:
-                int[] iArr = le0.f30182i0;
+                int[] iArr = le0.f30184i0;
                 return true;
             case 20:
                 int i22 = dj0.R;
                 return true;
             case 21:
-                int i23 = ep0.f27930a1;
+                int i23 = ep0.f27932a1;
                 return true;
             case 22:
                 int i24 = mr0.Z0;
                 return true;
             case 23:
-                int[] iArr2 = aw0.f26632p2;
+                int[] iArr2 = aw0.f26634p2;
                 return true;
             case 24:
-                int i25 = cz0.f27285w0;
+                int i25 = cz0.f27287w0;
                 return true;
             case 25:
-                int i26 = UndoView.f26345i0;
+                int i26 = UndoView.f26347i0;
                 return true;
             case 26:
-                int i27 = UndoView.f26345i0;
+                int i27 = UndoView.f26347i0;
                 return true;
             case 27:
-                int i28 = oj0.f42220e0;
+                int i28 = oj0.f42223e0;
                 return true;
             default:
-                List list = po0.f42581g1;
+                List list = po0.f42584g1;
                 return true;
         }
     }

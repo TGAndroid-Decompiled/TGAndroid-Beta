@@ -12,8 +12,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.gb1;
 public final class y1 extends FrameLayout {
-    public final TextView f23283a;
-    public final ImageView f23284b;
+    public final TextView f23285a;
+    public final ImageView f23286b;
 
     public y1(Context context, u6 u6Var) {
         super(context);
@@ -25,7 +25,7 @@ public final class y1 extends FrameLayout {
         f7.k(this, g02, null, N, u6Var);
         setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
         ImageView imageView = new ImageView(context);
-        this.f23284b = imageView;
+        this.f23286b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         f7.t(imageView, y6.J5, u6Var, PorterDuff.Mode.MULTIPLY);
         if (LocaleController.isRTL) {
@@ -35,12 +35,12 @@ public final class y1 extends FrameLayout {
         }
         addView(imageView, gb1.i(-2, 40, i10 | 16));
         TextView textView = new TextView(context);
-        this.f23283a = textView;
+        this.f23285a = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        f7.V(textView, y6.f23462j5, u6Var);
+        f7.V(textView, y6.f23464j5, u6Var);
         textView.setTextSize(1, 16.0f);
         addView(textView, gb1.i(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
     }
@@ -48,9 +48,9 @@ public final class y1 extends FrameLayout {
     public final void a(int i10, CharSequence charSequence) {
         int dp;
         int i11;
-        TextView textView = this.f23283a;
+        TextView textView = this.f23285a;
         textView.setText(charSequence);
-        ImageView imageView = this.f23284b;
+        ImageView imageView = this.f23286b;
         if (i10 != 0) {
             imageView.setImageResource(i10);
             imageView.setVisibility(0);
@@ -77,10 +77,10 @@ public final class y1 extends FrameLayout {
     }
 
     public void setGravity(int i10) {
-        this.f23283a.setGravity(i10);
+        this.f23285a.setGravity(i10);
     }
 
     public void setTextColor(int i10) {
-        this.f23283a.setTextColor(i10);
+        this.f23285a.setTextColor(i10);
     }
 }

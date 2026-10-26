@@ -51,19 +51,19 @@ public final class i4 extends FrameLayout {
     public void onDraw(Canvas canvas) {
         switch (this.f8671a) {
             case 6:
-                int intrinsicHeight = org.telegram.ui.ActionBar.y6.f23443i3.getIntrinsicHeight();
-                org.telegram.ui.ActionBar.y6.f23443i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
-                org.telegram.ui.ActionBar.y6.f23443i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.y6.f23459j2);
+                int intrinsicHeight = org.telegram.ui.ActionBar.y6.f23445i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.y6.f23445i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                org.telegram.ui.ActionBar.y6.f23445i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.y6.f23461j2);
                 return;
             case 17:
-                canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), org.telegram.ui.ActionBar.y6.f23476k0);
+                canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), org.telegram.ui.ActionBar.y6.f23478k0);
                 return;
             case 26:
-                int intrinsicHeight2 = org.telegram.ui.ActionBar.y6.f23443i3.getIntrinsicHeight();
-                org.telegram.ui.ActionBar.y6.f23443i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight2);
-                org.telegram.ui.ActionBar.y6.f23443i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight2, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.y6.f23459j2);
+                int intrinsicHeight2 = org.telegram.ui.ActionBar.y6.f23445i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.y6.f23445i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight2);
+                org.telegram.ui.ActionBar.y6.f23445i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight2, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.y6.f23461j2);
                 return;
             default:
                 super.onDraw(canvas);
@@ -281,7 +281,7 @@ public final class i4 extends FrameLayout {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(i10);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int i11 = org.telegram.ui.ActionBar.y6.f23462j5;
+        int i11 = org.telegram.ui.ActionBar.y6.f23464j5;
         org.telegram.ui.ActionBar.f7.t(imageView, i11, null, PorterDuff.Mode.MULTIPLY);
         boolean z10 = LocaleController.isRTL;
         addView(imageView, gb1.h(24, 24.0f, (z10 ? 5 : 3) | 16, z10 ? 0.0f : 22.0f, 0.0f, z10 ? 22.0f : 0.0f, 0.0f));
@@ -316,7 +316,7 @@ public final class i4 extends FrameLayout {
         linearLayout.addView(z90Var, gb1.x(-1, -2, 55, 0, 0, 0, 2));
         z90 z90Var2 = new z90(context, null);
         z90Var2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.f7.V(z90Var2, org.telegram.ui.ActionBar.y6.f23746y6, u6Var);
+        org.telegram.ui.ActionBar.f7.V(z90Var2, org.telegram.ui.ActionBar.y6.f23748y6, u6Var);
         org.telegram.ui.ActionBar.f7.H(z90Var2, i12, u6Var);
         z90Var2.setText(charSequence);
         linearLayout.addView(z90Var2, gb1.x(-1, -2, 55, 0, 0, 0, 0));

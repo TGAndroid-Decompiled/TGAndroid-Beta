@@ -163,7 +163,7 @@ public class BotForumHelper extends BaseController {
         r61Var.b(-1);
         r61Var.d();
         TypingBotSpan typingBotSpan = new TypingBotSpan(r61Var, 1);
-        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.y6.f23378ec);
+        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.y6.f23380ec);
         typingBotSpan.setTopOffset(-AndroidUtilities.dp(10.0f));
         spannableStringBuilder.append((CharSequence) " _");
         spannableStringBuilder.setSpan(typingBotSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
@@ -293,7 +293,7 @@ public class BotForumHelper extends BaseController {
             if (update2 instanceof TL_update.TL_updateMessageID) {
                 TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) update2;
                 if (tL_updateMessageID.random_id == j11) {
-                    i10 = tL_updateMessageID.f22283id;
+                    i10 = tL_updateMessageID.f22285id;
                 }
             } else if (update2 instanceof TL_update.TL_updateNewMessage) {
                 TLRPC.Message message = ((TL_update.TL_updateNewMessage) update2).message;

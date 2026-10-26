@@ -9,27 +9,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 public final class o31 implements Runnable {
-    public final int f42082a;
-    public final SecretMediaViewer f42083b;
+    public final int f42085a;
+    public final SecretMediaViewer f42086b;
 
     public o31(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f42082a = i10;
-        this.f42083b = secretMediaViewer;
+        this.f42085a = i10;
+        this.f42086b = secretMediaViewer;
     }
 
     @Override
     public final void run() {
         String format;
         String format2;
-        int i10 = this.f42082a;
-        SecretMediaViewer secretMediaViewer = this.f42083b;
+        int i10 = this.f42085a;
+        SecretMediaViewer secretMediaViewer = this.f42086b;
         switch (i10) {
             case 0:
                 secretMediaViewer.K0 = null;
                 secretMediaViewer.m0 = 0;
                 secretMediaViewer.e.setLayerType(0, null);
                 secretMediaViewer.e.setVisibility(4);
-                secretMediaViewer.f36188s = false;
+                secretMediaViewer.f36191s = false;
                 secretMediaViewer.N = null;
                 secretMediaViewer.M = false;
                 secretMediaViewer.i();
@@ -42,7 +42,7 @@ public final class o31 implements Runnable {
                     pVar.setLayerType(0, null);
                     secretMediaViewer.e.setVisibility(4);
                     secretMediaViewer.m0 = 0;
-                    secretMediaViewer.f36188s = false;
+                    secretMediaViewer.f36191s = false;
                     secretMediaViewer.N = null;
                     secretMediaViewer.M = false;
                     secretMediaViewer.i();
@@ -54,29 +54,29 @@ public final class o31 implements Runnable {
                 }
                 return;
             case 2:
-                u31 u31Var = secretMediaViewer.f36202y;
+                u31 u31Var = secretMediaViewer.f36205y;
                 if (u31Var != null) {
                     long n10 = u31Var.n();
-                    long p10 = secretMediaViewer.f36202y.p();
+                    long p10 = secretMediaViewer.f36205y.p();
                     if (p10 == -9223372036854775807L) {
                         n10 = 0;
                         p10 = 0;
                     }
                     if (p10 > 0) {
                         org.telegram.ui.Components.u81 u81Var = secretMediaViewer.Q;
-                        if (!u81Var.f33293f) {
+                        if (!u81Var.f33296f) {
                             u81Var.h(((float) n10) / ((float) p10), false);
                             secretMediaViewer.R.invalidate();
                         }
                     }
-                    int[] iArr = secretMediaViewer.f36171j1;
+                    int[] iArr = secretMediaViewer.f36174j1;
                     Arrays.fill(iArr, 0);
-                    int[] iArr2 = secretMediaViewer.f36173k1;
+                    int[] iArr2 = secretMediaViewer.f36176k1;
                     Arrays.fill(iArr2, 0);
-                    u31 u31Var2 = secretMediaViewer.f36202y;
+                    u31 u31Var2 = secretMediaViewer.f36205y;
                     if (u31Var2 != null) {
                         long max = Math.max(0L, u31Var2.n()) / 1000;
-                        long max2 = Math.max(0L, secretMediaViewer.f36202y.p()) / 1000;
+                        long max2 = Math.max(0L, secretMediaViewer.f36205y.p()) / 1000;
                         iArr[0] = (int) (max / 60);
                         iArr[1] = (int) (max % 60);
                         iArr2[0] = (int) (max2 / 60);
@@ -97,8 +97,8 @@ public final class o31 implements Runnable {
                     org.telegram.ui.ActionBar.b6 b6Var = secretMediaViewer.S;
                     Locale locale = Locale.ROOT;
                     b6Var.l(format + " / " + format2, false);
-                    if (secretMediaViewer.f36202y.y()) {
-                        AndroidUtilities.runOnUIThread(secretMediaViewer.f36169i1, 17L);
+                    if (secretMediaViewer.f36205y.y()) {
+                        AndroidUtilities.runOnUIThread(secretMediaViewer.f36172i1, 17L);
                         return;
                     }
                     return;
@@ -108,26 +108,26 @@ public final class o31 implements Runnable {
                 secretMediaViewer.m(false, true);
                 return;
             default:
-                ImageReceiver.BitmapHolder bitmapHolder = secretMediaViewer.f36168i0;
+                ImageReceiver.BitmapHolder bitmapHolder = secretMediaViewer.f36171i0;
                 if (bitmapHolder != null) {
                     bitmapHolder.release();
-                    secretMediaViewer.f36168i0 = null;
+                    secretMediaViewer.f36171i0 = null;
                 }
                 secretMediaViewer.h.setImageBitmap((Bitmap) null);
                 try {
                     if (secretMediaViewer.d.getParent() != null) {
-                        ((WindowManager) secretMediaViewer.f36151b.getSystemService("window")).removeView(secretMediaViewer.d);
+                        ((WindowManager) secretMediaViewer.f36154b.getSystemService("window")).removeView(secretMediaViewer.d);
                     }
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                secretMediaViewer.f36170j0 = false;
+                secretMediaViewer.f36173j0 = false;
                 return;
         }
     }
 
     public o31(SecretMediaViewer secretMediaViewer, qu0 qu0Var, int i10) {
-        this.f42082a = i10;
-        this.f42083b = secretMediaViewer;
+        this.f42085a = i10;
+        this.f42086b = secretMediaViewer;
     }
 }

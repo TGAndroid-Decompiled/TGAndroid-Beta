@@ -21,7 +21,7 @@ public final class r6 extends org.telegram.ui.Components.y9 {
         sc0 sc0Var = s6.H;
         if (this.G == 1) {
             q6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            di.a8.h(s6Var.f25399y, canvas, getImageReceiver(), q6Var);
+            di.a8.h(s6Var.f25401y, canvas, getImageReceiver(), q6Var);
             return;
         }
         super.onDraw(canvas);

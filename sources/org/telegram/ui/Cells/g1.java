@@ -8,11 +8,11 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SharedConfig;
 public final class g1 extends m1 {
     public final int e;
-    public final s1 f24140f;
+    public final s1 f24142f;
 
     public g1(int i10, s1 s1Var) {
         super(0);
-        this.f24140f = s1Var;
+        this.f24142f = s1Var;
         this.e = i10;
     }
 
@@ -26,23 +26,23 @@ public final class g1 extends m1 {
         Rect bounds = getBounds();
         RectF rectF = (RectF) this.d;
         rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        Path path = this.f24417b;
+        Path path = this.f24419b;
         path.rewind();
-        s1 s1Var = this.f24140f;
-        int[] iArr = s1Var.f25345x3;
+        s1 s1Var = this.f24142f;
+        int[] iArr = s1Var.f25347x3;
         int i12 = this.e;
         int i13 = iArr[i12];
         if (i13 != 3 && i13 != 4) {
             float f10 = 0.0f;
             if (i13 == 2) {
-                MessageObject messageObject = s1Var.f25363y7;
+                MessageObject messageObject = s1Var.f25365y7;
                 if (messageObject != null && messageObject.isOutOwner()) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 for (int i14 = 0; i14 < 4; i14++) {
-                    if (!s1Var.f25242q3) {
+                    if (!s1Var.f25244q3) {
                         if (z10) {
                             i10 = 3;
                         } else {
@@ -54,7 +54,7 @@ public final class g1 extends m1 {
                             float dp = AndroidUtilities.dp(SharedConfig.bubbleRadius);
                             fArr[i15 + 1] = dp;
                             fArr[i15] = dp;
-                        } else if (((s1Var.f25161k8 && s1Var.L == null) || s1Var.F) && (i14 == 2 || i14 == 3)) {
+                        } else if (((s1Var.f25163k8 && s1Var.L == null) || s1Var.F) && (i14 == 2 || i14 == 3)) {
                             float[] fArr2 = s1.Ge;
                             int i16 = i14 * 2;
                             int i17 = i16 + 1;
@@ -73,7 +73,7 @@ public final class g1 extends m1 {
                     fArr3[i18 + 1] = 0.0f;
                     fArr3[i18] = 0.0f;
                 }
-                if (!z10 && !s1Var.J && (groupedMessagePosition = s1Var.L) == null && (groupedMessagePosition == null || s1Var.f25014a3)) {
+                if (!z10 && !s1Var.J && (groupedMessagePosition = s1Var.L) == null && (groupedMessagePosition == null || s1Var.f25016a3)) {
                     path.moveTo(rectF.left + AndroidUtilities.dp(6.0f), rectF.top);
                     path.lineTo(rectF.left + AndroidUtilities.dp(6.0f), (rectF.bottom - AndroidUtilities.dp(6.0f)) - AndroidUtilities.dp(5.0f));
                     RectF rectF2 = AndroidUtilities.rectTmp;

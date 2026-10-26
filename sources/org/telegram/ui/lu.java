@@ -10,19 +10,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class lu extends org.telegram.ui.ActionBar.r2 {
-    public static final int[][] f41360r = {new int[]{-14899731, -15431455}, new int[]{-11154873, -14175180}, new int[]{-11565578, -13276952}, new int[]{-1007845, -1996271}, new int[]{-765355, -2148011}, new int[]{-3903756, -6335009}, new int[]{-13451058, -14836538}};
-    public static final int[] f41361s = {org.telegram.ui.ActionBar.y6.hj, org.telegram.ui.ActionBar.y6.ij, org.telegram.ui.ActionBar.y6.lj, org.telegram.ui.ActionBar.y6.kj, org.telegram.ui.ActionBar.y6.jj, org.telegram.ui.ActionBar.y6.pj, org.telegram.ui.ActionBar.y6.qj};
+    public static final int[][] f41363r = {new int[]{-14899731, -15431455}, new int[]{-11154873, -14175180}, new int[]{-11565578, -13276952}, new int[]{-1007845, -1996271}, new int[]{-765355, -2148011}, new int[]{-3903756, -6335009}, new int[]{-13451058, -14836538}};
+    public static final int[] f41364s = {org.telegram.ui.ActionBar.y6.hj, org.telegram.ui.ActionBar.y6.ij, org.telegram.ui.ActionBar.y6.lj, org.telegram.ui.ActionBar.y6.kj, org.telegram.ui.ActionBar.y6.jj, org.telegram.ui.ActionBar.y6.pj, org.telegram.ui.ActionBar.y6.qj};
     public static final int[] v = {R.drawable.msg_filled_data_videos, R.drawable.msg_filled_data_files, R.drawable.msg_filled_data_photos, R.drawable.msg_filled_data_messages, R.drawable.msg_filled_data_music, R.drawable.msg_filled_data_voice, R.drawable.msg_filled_data_calls};
-    public static final int[] f41362w = {R.string.LocalVideoCache, R.string.LocalDocumentCache, R.string.LocalPhotoCache, R.string.MessagesSettings, R.string.LocalMusicCache, R.string.LocalAudioCache, R.string.CallsDataUsage};
-    public static final int[] f41363x = {2, 5, 4, 1, 7, 3, 0};
-    public org.telegram.ui.Components.u91 f41364a;
-    public org.telegram.ui.Components.t91 f41365b;
-    public FrameLayout f41366c;
+    public static final int[] f41365w = {R.string.LocalVideoCache, R.string.LocalDocumentCache, R.string.LocalPhotoCache, R.string.MessagesSettings, R.string.LocalMusicCache, R.string.LocalAudioCache, R.string.CallsDataUsage};
+    public static final int[] f41366x = {2, 5, 4, 1, 7, 3, 0};
+    public org.telegram.ui.Components.u91 f41367a;
+    public org.telegram.ui.Components.t91 f41368b;
+    public FrameLayout f41369c;
     public View d;
     public final se.b e;
-    public boolean f41367f;
+    public boolean f41370f;
     public int h;
-    public int f41368n;
+    public int f41371n;
 
     public lu() {
         super(null);
@@ -35,28 +35,28 @@ public final class lu extends org.telegram.ui.ActionBar.r2 {
         this.simpleActionBar.setTitle(LocaleController.getString(R.string.NetworkUsage));
         this.simpleActionBar.setActionBarMenuOnItemClick(new ga(this, 24));
         di.i4 i4Var = new di.i4(context, 22);
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23297a7, i4Var, null);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23299a7, i4Var, null);
         org.telegram.ui.Components.u91 u91Var = new org.telegram.ui.Components.u91(context, null);
-        this.f41364a = u91Var;
+        this.f41367a = u91Var;
         u91Var.setAdapter(new iu(this));
-        this.f41366c = new FrameLayout(context);
-        this.f41365b = this.f41364a.n(-2, true);
-        i4Var.addView(this.f41364a, org.telegram.ui.Components.gb1.i(-1, -1, 119));
+        this.f41369c = new FrameLayout(context);
+        this.f41368b = this.f41367a.n(-2, true);
+        i4Var.addView(this.f41367a, org.telegram.ui.Components.gb1.i(-1, -1, 119));
         View view = new View(context);
         this.d = view;
         i4Var.addView(view, org.telegram.ui.Components.gb1.i(-1, 0, 48));
         this.d.getLayoutParams().height = AndroidUtilities.dp(44.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.h;
-        this.f41366c.setTranslationY((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.h) - AndroidUtilities.dp(9.0f));
-        this.f41366c.addView(this.f41365b, org.telegram.ui.Components.gb1.g(48.0f, -1));
-        this.f41366c.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        FrameLayout frameLayout = this.f41366c;
-        eh.d c10 = getBaseSimpleGlass().f19421c.c(this.f41366c, null, false);
+        this.f41369c.setTranslationY((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.h) - AndroidUtilities.dp(9.0f));
+        this.f41369c.addView(this.f41368b, org.telegram.ui.Components.gb1.g(48.0f, -1));
+        this.f41369c.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        FrameLayout frameLayout = this.f41369c;
+        eh.d c10 = getBaseSimpleGlass().f19421c.c(this.f41369c, null, false);
         c10.v(gh.c.m(this.resourceProvider));
         c10.w(AndroidUtilities.dp(9.66f));
         c10.x(AndroidUtilities.dp(18.0f));
         frameLayout.setBackground(c10);
         oi.a baseSimpleGlass = getBaseSimpleGlass();
-        org.telegram.ui.Components.u91 u91Var2 = this.f41364a;
+        org.telegram.ui.Components.u91 u91Var2 = this.f41367a;
         org.telegram.ui.ActionBar.r5 r5Var = this.simpleActionBar;
         org.telegram.ui.ActionBar.u6 u6Var = this.resourceProvider;
         baseSimpleGlass.f19423g = i4Var;
@@ -65,7 +65,7 @@ public final class lu extends org.telegram.ui.ActionBar.r2 {
         baseSimpleGlass.f(i4Var, r5Var, u6Var);
         getBaseSimpleGlass().f19424i = new bi.g(8, this, i4Var);
         getBaseSimpleGlass().h = null;
-        i4Var.addView(this.f41366c, org.telegram.ui.Components.gb1.h(-1, -2.0f, 48, -4.0f, 0.0f, -4.0f, 0.0f));
+        i4Var.addView(this.f41369c, org.telegram.ui.Components.gb1.h(-1, -2.0f, 48, -4.0f, 0.0f, -4.0f, 0.0f));
         this.d.setBackground(getBaseSimpleGlass().a(this.d));
         this.simpleActionBar.setBackground(null);
         this.fragmentView = i4Var;
@@ -79,10 +79,10 @@ public final class lu extends org.telegram.ui.ActionBar.r2 {
 
     @Override
     public final boolean isLightStatusBar() {
-        if (!this.f41367f) {
+        if (!this.f41370f) {
             return super.isLightStatusBar();
         }
-        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23711w8, false)) <= 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23713w8, false)) <= 0.721f) {
             return false;
         }
         return true;
@@ -100,7 +100,7 @@ public final class lu extends org.telegram.ui.ActionBar.r2 {
                 return true;
             }
         }
-        if (this.f41364a.getCurrentPosition() == 0) {
+        if (this.f41367a.getCurrentPosition() == 0) {
             return true;
         }
         return false;
@@ -109,28 +109,28 @@ public final class lu extends org.telegram.ui.ActionBar.r2 {
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
         this.h = i11;
-        this.f41368n = i13;
-        this.f41366c.setTranslationY((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i11) - AndroidUtilities.dp(9.0f));
+        this.f41371n = i13;
+        this.f41369c.setTranslationY((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i11) - AndroidUtilities.dp(9.0f));
         this.d.getLayoutParams().height = AndroidUtilities.dp(44.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.h;
         Iterator it = this.e.iterator();
         while (it.hasNext()) {
             hu huVar = (hu) it.next();
-            lu luVar = huVar.f40084w3;
-            oi.a.d(huVar, luVar.h, luVar.f41368n, AndroidUtilities.dp(42.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 0);
+            lu luVar = huVar.f40087w3;
+            oi.a.d(huVar, luVar.h, luVar.f41371n, AndroidUtilities.dp(42.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 0);
         }
     }
 
     @Override
     public final void onTransitionAnimationProgress(boolean z10, float f7) {
-        if (f7 > 0.5f && !this.f41367f) {
-            this.f41367f = true;
+        if (f7 > 0.5f && !this.f41370f) {
+            this.f41370f = true;
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         }
         super.onTransitionAnimationProgress(z10, f7);
     }
 
     public final void t0() {
-        View currentView = this.f41364a.getCurrentView();
+        View currentView = this.f41367a.getCurrentView();
         if (!(currentView instanceof hu)) {
             return;
         }

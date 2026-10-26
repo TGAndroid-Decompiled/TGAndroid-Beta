@@ -13,26 +13,26 @@ import org.telegram.ui.ji1;
 import org.telegram.ui.u90;
 public final class j0 {
     public static final j0 e;
-    public static final List f47434f;
-    public static final List f47435g;
+    public static final List f47437f;
+    public static final List f47438g;
     public static ArrayList h;
-    public static boolean f47436i;
-    public final String f47437a;
-    public final String f47438b;
-    public final String f47439c;
+    public static boolean f47439i;
+    public final String f47440a;
+    public final String f47441b;
+    public final String f47442c;
     public final m4.c d;
 
     static {
         j0 j0Var = new j0("roboto", "PhotoEditorTypefaceRoboto", new m4.c(new ji1(14), 16));
         e = j0Var;
-        f47434f = Arrays.asList(j0Var, new j0("italic", "PhotoEditorTypefaceItalic", new m4.c(new ji1(15), 16)), new j0("serif", "PhotoEditorTypefaceSerif", new m4.c(new ji1(16), 16)), new j0("condensed", "PhotoEditorTypefaceCondensed", new m4.c(new ji1(17), 16)), new j0("mono", "PhotoEditorTypefaceMono", new m4.c(new ji1(18), 16)), new j0("mw_bold", "PhotoEditorTypefaceMerriweather", new m4.c(new ji1(19), 16)));
-        f47435g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
+        f47437f = Arrays.asList(j0Var, new j0("italic", "PhotoEditorTypefaceItalic", new m4.c(new ji1(15), 16)), new j0("serif", "PhotoEditorTypefaceSerif", new m4.c(new ji1(16), 16)), new j0("condensed", "PhotoEditorTypefaceCondensed", new m4.c(new ji1(17), 16)), new j0("mono", "PhotoEditorTypefaceMono", new m4.c(new ji1(18), 16)), new j0("mw_bold", "PhotoEditorTypefaceMerriweather", new m4.c(new ji1(19), 16)));
+        f47438g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
     public j0(String str, String str2, m4.c cVar) {
-        this.f47437a = str;
-        this.f47438b = str2;
-        this.f47439c = null;
+        this.f47440a = str;
+        this.f47441b = str2;
+        this.f47442c = null;
         this.d = cVar;
     }
 
@@ -47,11 +47,11 @@ public final class j0 {
     public static List c() {
         ArrayList arrayList = h;
         if (arrayList == null) {
-            if (arrayList == null && !f47436i) {
-                f47436i = true;
+            if (arrayList == null && !f47439i) {
+                f47439i = true;
                 Utilities.themeQueue.postRunnable(new u90(19));
             }
-            return f47434f;
+            return f47437f;
         }
         return arrayList;
     }
@@ -62,9 +62,9 @@ public final class j0 {
             return null;
         }
         randomAccessFile.seek(i10 + i0Var.d);
-        byte[] bArr = new byte[i0Var.f47430c];
+        byte[] bArr = new byte[i0Var.f47433c];
         randomAccessFile.read(bArr);
-        if (i0Var.f47428a == 1) {
+        if (i0Var.f47431a == 1) {
             charset = StandardCharsets.UTF_16BE;
         } else {
             charset = StandardCharsets.UTF_8;
@@ -81,9 +81,9 @@ public final class j0 {
     }
 
     public j0(Font font, String str) {
-        this.f47437a = str;
-        this.f47439c = str;
-        this.f47438b = null;
+        this.f47440a = str;
+        this.f47442c = str;
+        this.f47441b = null;
         this.d = new m4.c(new org.telegram.ui.Components.voip.j1(font, 5), 16);
     }
 }

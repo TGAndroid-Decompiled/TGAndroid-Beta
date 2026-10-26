@@ -7,7 +7,7 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.gb1;
 public class d extends c {
     public static final int v = 0;
-    public int f51774s;
+    public int f51777s;
 
     public d(Context context, u6 u6Var) {
         super(context, u6Var);
@@ -34,7 +34,7 @@ public class d extends c {
         } else {
             i10 = 3;
         }
-        this.f51760c.setLayoutParams(gb1.h(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        this.f51763c.setLayoutParams(gb1.h(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -74,10 +74,10 @@ public class d extends c {
         if (LocaleController.isRTL) {
             i13 = 5;
         }
-        this.f51761f.setLayoutParams(gb1.h(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f51764f.setLayoutParams(gb1.h(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f51774s;
+        return this.f51777s;
     }
 }

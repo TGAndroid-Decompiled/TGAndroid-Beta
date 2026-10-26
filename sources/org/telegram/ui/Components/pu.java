@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pu implements ty {
-    public final ru f31702a;
+    public final ru f31704a;
 
     public pu(ru ruVar) {
-        this.f31702a = ruVar;
+        this.f31704a = ruVar;
     }
 
     @Override
@@ -51,16 +51,16 @@ public final class pu implements ty {
     @Override
     public final void i(int i10) {
         boolean z10;
-        ru ruVar = this.f31702a;
+        ru ruVar = this.f31704a;
         if (ruVar.b()) {
             if (i10 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            ruVar.f32331x = z10;
+            ruVar.f32333x = z10;
             ruVar.y();
-            vw0 vw0Var = ruVar.f32326f;
+            vw0 vw0Var = ruVar.f32328f;
             if (vw0Var != null) {
                 vw0Var.R();
             }
@@ -74,7 +74,7 @@ public final class pu implements ty {
 
     @Override
     public final boolean k() {
-        mu muVar = this.f31702a.f32323a;
+        mu muVar = this.f31704a.f32325a;
         if (muVar.length() == 0) {
             return false;
         }
@@ -84,7 +84,7 @@ public final class pu implements ty {
 
     @Override
     public final void l(String str) {
-        mu muVar = this.f31702a.f32323a;
+        mu muVar = this.f31704a.f32325a;
         int selectionEnd = muVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -101,15 +101,15 @@ public final class pu implements ty {
 
     @Override
     public final void n() {
-        ru ruVar = this.f31702a;
+        ru ruVar = this.f31704a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ruVar.getContext(), 0, ruVar.M);
-        alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 29));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         org.telegram.ui.ActionBar.r2 r2Var = ruVar.h;
         if (r2Var != null) {
-            r2Var.showDialog(alertDialog$Builder.f22366a);
+            r2Var.showDialog(alertDialog$Builder.f22368a);
         } else {
             alertDialog$Builder.p();
         }
@@ -122,7 +122,7 @@ public final class pu implements ty {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.r2 r2Var = this.f31702a.h;
+        org.telegram.ui.ActionBar.r2 r2Var = this.f31704a.h;
         if (r2Var == null) {
             new tg.y0((org.telegram.ui.ActionBar.r2) new bi.v4(this, 5), 11, false).show();
         } else {
@@ -133,8 +133,8 @@ public final class pu implements ty {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         c6 c6Var;
-        ru ruVar = this.f31702a;
-        mu muVar = ruVar.f32323a;
+        ru ruVar = this.f31704a;
+        mu muVar = ruVar.f32325a;
         int selectionEnd = muVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -146,7 +146,7 @@ public final class pu implements ty {
             } else {
                 c6Var = new c6(j10, muVar.getPaint().getFontMetricsInt());
             }
-            c6Var.cacheType = ruVar.d.f32714c;
+            c6Var.cacheType = ruVar.d.f32717c;
             spannableString.setSpan(c6Var, 0, spannableString.length(), 33);
             muVar.setText(muVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -160,7 +160,7 @@ public final class pu implements ty {
 
     @Override
     public final boolean z() {
-        return this.f31702a.f32331x;
+        return this.f31704a.f32333x;
     }
 
     @Override

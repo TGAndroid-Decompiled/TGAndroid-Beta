@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.WindowInsets;
 import org.telegram.ui.Wallet.p5;
 public final class u2 implements View.OnApplyWindowInsetsListener {
-    public final v2 f48529a;
+    public final v2 f48532a;
 
     public u2(v2 v2Var) {
-        this.f48529a = v2Var;
+        this.f48532a = v2Var;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class u2 implements View.OnApplyWindowInsetsListener {
         int i11;
         int i12;
         int i13;
-        v2 v2Var = this.f48529a;
-        p5 p5Var = v2Var.f48534b;
+        v2 v2Var = this.f48532a;
+        p5 p5Var = v2Var.f48537b;
         Rect rect = v2Var.h;
         int i14 = Build.VERSION.SDK_INT;
         if (i14 >= 30) {

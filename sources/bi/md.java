@@ -65,7 +65,7 @@ public final class md extends TextView {
     public void onDraw(Canvas canvas) {
         switch (this.f5113a) {
             case 5:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.j4.f40417s1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.j4.f40420s1);
                 super.onDraw(canvas);
                 return;
             default:

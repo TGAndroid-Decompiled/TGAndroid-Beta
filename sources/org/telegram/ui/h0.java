@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class h0 extends org.telegram.ui.ActionBar.m5 {
-    public final int f39808r;
-    public final Object f39809s;
+    public final int f39811r;
+    public final Object f39812s;
 
     public h0(Object obj, int i10) {
-        this.f39808r = i10;
-        this.f39809s = obj;
+        this.f39811r = i10;
+        this.f39812s = obj;
     }
 
     @Override
     public boolean g() {
-        switch (this.f39808r) {
+        switch (this.f39811r) {
             case 0:
-                j4 j4Var = (j4) this.f39809s;
+                j4 j4Var = (j4) this.f39812s;
                 org.telegram.ui.Cells.s9 s9Var = j4Var.Q0;
                 if (s9Var != null && s9Var.x()) {
                     j4Var.Q0.f(false);
@@ -23,15 +23,15 @@ public final class h0 extends org.telegram.ui.ActionBar.m5 {
             default:
                 return super.g();
             case 2:
-                return !((org.telegram.ui.Wallet.a2) this.f39809s).f36343m;
+                return !((org.telegram.ui.Wallet.a2) this.f39812s).f36346m;
         }
     }
 
     @Override
     public void onOpenAnimationEnd() {
-        switch (this.f39808r) {
+        switch (this.f39811r) {
             case 1:
-                ((org.telegram.ui.Components.mr0) this.f39809s).Z = true;
+                ((org.telegram.ui.Components.mr0) this.f39812s).Z = true;
                 return;
             default:
                 return;

@@ -30,7 +30,7 @@ public final class w8 extends FrameLayout implements org.telegram.ui.ActionBar.p
         Paint paint2 = new Paint(1);
         this.f9335b = paint2;
         this.f9337f = u6Var;
-        paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23596q7, u6Var));
+        paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23598q7, u6Var));
         paint2.setColor(-1);
         setWillNotDraw(false);
         TextView textView = new TextView(context);
@@ -94,7 +94,7 @@ public final class w8 extends FrameLayout implements org.telegram.ui.ActionBar.p
     @Override
     public final void updateColors() {
         try {
-            this.f9334a.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23596q7, this.f9337f));
+            this.f9334a.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23598q7, this.f9337f));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

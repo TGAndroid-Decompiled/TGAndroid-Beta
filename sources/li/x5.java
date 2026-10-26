@@ -222,7 +222,7 @@ public final class x5 implements f1 {
                 a aVar = d6Var.f17202x;
                 v3 v3Var = ((d3) a6Var).f17189a;
                 ArrayList arrayList = v3Var.f17574x4;
-                j71 j71Var = v3Var.f32150g3;
+                j71 j71Var = v3Var.f32152g3;
                 ArrayList arrayList2 = v3Var.f17565t3;
                 int indexOf = arrayList2.indexOf(aVar);
                 if (indexOf >= 0) {

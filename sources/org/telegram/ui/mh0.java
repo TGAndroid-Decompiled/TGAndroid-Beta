@@ -7,16 +7,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLRPC;
 public abstract class mh0 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public TLRPC.User f41561a;
-    public org.telegram.ui.Components.z90 f41562b;
-    public org.telegram.ui.Components.c10 f41563c;
+    public TLRPC.User f41564a;
+    public org.telegram.ui.Components.z90 f41565b;
+    public org.telegram.ui.Components.c10 f41566c;
     public boolean d;
     public int e;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        org.telegram.ui.Components.z90 z90Var = this.f41562b;
-        org.telegram.ui.Components.c10 c10Var = this.f41563c;
+        org.telegram.ui.Components.z90 z90Var = this.f41565b;
+        org.telegram.ui.Components.c10 c10Var = this.f41566c;
         View view = (View) getParent();
         if (view != null && view.getWidth() > 0) {
             i10 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);

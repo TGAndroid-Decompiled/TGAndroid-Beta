@@ -13,16 +13,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.R;
 public final class qm extends s4.n0 implements dh.a {
-    public Drawable f31955a;
-    public final Path f31956b = new Path();
-    public final Drawable f31957c;
+    public Drawable f31957a;
+    public final Path f31958b = new Path();
+    public final Drawable f31959c;
     public final fm d;
     public final ChatAttachAlertPhotoLayout e;
 
     public qm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, fm fmVar) {
         this.e = chatAttachAlertPhotoLayout;
         this.d = fmVar;
-        this.f31957c = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(R.drawable.camera).mutate();
+        this.f31959c = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(R.drawable.camera).mutate();
     }
 
     @Override
@@ -48,14 +48,14 @@ public final class qm extends s4.n0 implements dh.a {
         boolean z12;
         pm pmVar2;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.e;
-        if (!chatAttachAlertPhotoLayout.f26024d0 && !chatAttachAlertPhotoLayout.f26020b0 && chatAttachAlertPhotoLayout.G.e && !chatAttachAlertPhotoLayout.O0 && !chatAttachAlertPhotoLayout.P0) {
+        if (!chatAttachAlertPhotoLayout.f26026d0 && !chatAttachAlertPhotoLayout.f26022b0 && chatAttachAlertPhotoLayout.G.e && !chatAttachAlertPhotoLayout.O0 && !chatAttachAlertPhotoLayout.P0) {
             s4.e1 K = recyclerView.K(0);
             if (K != null) {
-                top = K.f47735a.getTop();
+                top = K.f47738a.getTop();
             } else {
                 K = recyclerView.K(chatAttachAlertPhotoLayout.M0);
                 if (K != null) {
-                    top = (K.f47735a.getTop() - AndroidUtilities.dp(2.0f)) - chatAttachAlertPhotoLayout.K0;
+                    top = (K.f47738a.getTop() - AndroidUtilities.dp(2.0f)) - chatAttachAlertPhotoLayout.K0;
                 } else if (aVar != null) {
                     aVar.f6296a = true;
                     return;
@@ -63,7 +63,7 @@ public final class qm extends s4.n0 implements dh.a {
                     return;
                 }
             }
-            int left = K.f47735a.getLeft();
+            int left = K.f47738a.getLeft();
             int i10 = chatAttachAlertPhotoLayout.K0;
             int i11 = left + i10;
             int dp = AndroidUtilities.dp(2.0f) + (i10 * 2) + top;
@@ -74,9 +74,9 @@ public final class qm extends s4.n0 implements dh.a {
                 aVar.a(dp);
             }
             if (rectF == null || rectF.intersects(left, top, i11, dp)) {
-                Drawable drawable = this.f31957c;
+                Drawable drawable = this.f31959c;
                 if (aVar != null) {
-                    if (this.f31955a != null && ((pmVar2 = chatAttachAlertPhotoLayout.P) == null || !pmVar2.isInited() || chatAttachAlertPhotoLayout.N)) {
+                    if (this.f31957a != null && ((pmVar2 = chatAttachAlertPhotoLayout.P) == null || !pmVar2.isInited() || chatAttachAlertPhotoLayout.N)) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -97,26 +97,26 @@ public final class qm extends s4.n0 implements dh.a {
                 }
                 if (canvas != null) {
                     float dp2 = AndroidUtilities.dp(16.0f);
-                    Path path = this.f31956b;
+                    Path path = this.f31958b;
                     path.rewind();
                     float f7 = left;
                     float f10 = top;
                     path.addRoundRect(f7, f10, i11 + dp2, dp + dp2, dp2, dp2, Path.Direction.CW);
                     canvas.save();
                     canvas.clipPath(path);
-                    if (this.f31955a != null && ((pmVar = chatAttachAlertPhotoLayout.P) == null || !pmVar.isInited() || chatAttachAlertPhotoLayout.N)) {
-                        this.f31955a.setBounds(left, top, i11, dp);
-                        this.f31955a.draw(canvas);
+                    if (this.f31957a != null && ((pmVar = chatAttachAlertPhotoLayout.P) == null || !pmVar.isInited() || chatAttachAlertPhotoLayout.N)) {
+                        this.f31957a.setBounds(left, top, i11, dp);
+                        this.f31957a.draw(canvas);
                     }
                     pm pmVar3 = chatAttachAlertPhotoLayout.P;
                     if (pmVar3 != null) {
-                        pmVar3.f31603b = true;
+                        pmVar3.f31605b = true;
                         canvas.save();
                         canvas.clipRect(left, top, i11, dp);
                         canvas.translate(f7, f10);
                         chatAttachAlertPhotoLayout.P.draw(canvas);
                         canvas.restore();
-                        chatAttachAlertPhotoLayout.P.f31603b = false;
+                        chatAttachAlertPhotoLayout.P.f31605b = false;
                     }
                     if (drawable != null) {
                         int dp3 = AndroidUtilities.dp(24.0f);
@@ -143,9 +143,9 @@ public final class qm extends s4.n0 implements dh.a {
         }
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.e;
         if (bitmap != null) {
-            this.f31955a = new BitmapDrawable(chatAttachAlertPhotoLayout.getContext().getResources(), bitmap);
+            this.f31957a = new BitmapDrawable(chatAttachAlertPhotoLayout.getContext().getResources(), bitmap);
         } else {
-            this.f31955a = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(R.drawable.icplaceholder).mutate();
+            this.f31957a = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(R.drawable.icplaceholder).mutate();
         }
         fm fmVar = chatAttachAlertPhotoLayout.E;
         if (fmVar != null) {

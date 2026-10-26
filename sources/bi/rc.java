@@ -47,7 +47,7 @@ public final class rc extends LinearLayout implements NotificationCenter.Notific
         addView(textView, gb1.u(-2, -2, 5));
         qc qcVar = new qc(this, context, context.getResources().getDrawable(R.drawable.star_small_inner).mutate());
         this.f5373c = qcVar;
-        qcVar.f32442n = true;
+        qcVar.f32444n = true;
         qcVar.getDrawable().r(false, true);
         qcVar.setTypeface(AndroidUtilities.bold());
         org.telegram.ui.ActionBar.f7.Z(qcVar, i11, u6Var);

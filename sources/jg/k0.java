@@ -82,7 +82,7 @@ public final class k0 extends bb {
         this.e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        f7.V(textView2, y6.f23746y6, u6Var);
+        f7.V(textView2, y6.f23748y6, u6Var);
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, gb1.v(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -95,7 +95,7 @@ public final class k0 extends bb {
             textView3.setGravity(17);
             linearLayout.addView(textView3, gb1.x(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = y6.f23297a7;
+        int i10 = y6.f23299a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBarKey(i10);
         this.f15757h0 = this.navBarColor;
@@ -131,7 +131,7 @@ public final class k0 extends bb {
         i12.rightMargin += i14;
         this.containerView.addView(frameLayout, i12);
         s4.l lVar = new s4.l();
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         lVar.C = false;
         lVar.o(ds.h);
         lVar.n(350L);
@@ -393,7 +393,7 @@ public final class k0 extends bb {
         int i10;
         try {
             super.onThemeColorsChanged();
-            int i11 = y6.f23297a7;
+            int i11 = y6.f23299a7;
             int themedColor = getThemedColor(i11);
             if (themedColor != this.f15758i0) {
                 this.f15758i0 = themedColor;
@@ -424,7 +424,7 @@ public final class k0 extends bb {
     public final lm0 v(mm0 mm0Var) {
         j71 j71Var = new j71(mm0Var, getContext(), this.currentAccount, 0, true, new hi.e2(this, 7), this.resourcesProvider);
         this.f15754e0 = j71Var;
-        j71Var.f29505r = false;
+        j71Var.f29507r = false;
         return j71Var;
     }
 

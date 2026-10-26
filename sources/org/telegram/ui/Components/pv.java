@@ -57,7 +57,7 @@ public final class pv extends st {
             ArrayList arrayList = this.O;
             if (i10 < arrayList.size()) {
                 rv rvVar = (rv) arrayList.get(i10);
-                rvVar.f32339b.draw(canvas, rvVar.f32338a[this.K]);
+                rvVar.f32341b.draw(canvas, rvVar.f32340a[this.K]);
                 i10++;
             } else {
                 return;
@@ -71,8 +71,8 @@ public final class pv extends st {
         if (this.N != null) {
             for (int i10 = 0; i10 < this.N.size(); i10++) {
                 rv rvVar = (rv) this.N.get(i10);
-                c6 c6Var = rvVar.f32340c;
-                if (c6Var != null && (t5Var = (t5) this.P.f32036y.f26623b.get(c6Var.getDocumentId())) != null && t5Var.f32849k != null && rvVar.f32339b != null) {
+                c6 c6Var = rvVar.f32342c;
+                if (c6Var != null && (t5Var = (t5) this.P.f32038y.f26625b.get(c6Var.getDocumentId())) != null && t5Var.f32852k != null && rvVar.f32341b != null) {
                     t5Var.setAlpha((int) (rvVar.getAlpha() * 255.0f * f7));
                     float width = ((rvVar.getWidth() - rvVar.getPaddingLeft()) - rvVar.getPaddingRight()) / 2.0f;
                     float height = ((rvVar.getHeight() - rvVar.getPaddingTop()) - rvVar.getPaddingBottom()) / 2.0f;
@@ -97,11 +97,11 @@ public final class pv extends st {
         while (true) {
             ArrayList arrayList = this.O;
             if (i10 >= arrayList.size()) {
-                viewGroup = ((org.telegram.ui.ActionBar.k3) this.P.f32036y).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.k3) this.P.f32038y).containerView;
                 viewGroup.invalidate();
                 return;
             }
-            ((rv) arrayList.get(i10)).f32338a[this.K].release();
+            ((rv) arrayList.get(i10)).f32340a[this.K].release();
             i10++;
         }
     }
@@ -109,16 +109,16 @@ public final class pv extends st {
     @Override
     public final void i(long j10) {
         t5 t5Var;
-        aw awVar = this.P.f32036y;
+        aw awVar = this.P.f32038y;
         ArrayList arrayList = this.O;
         arrayList.clear();
         for (int i10 = 0; i10 < this.N.size(); i10++) {
             rv rvVar = (rv) this.N.get(i10);
-            c6 c6Var = rvVar.f32340c;
-            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = rvVar.f32338a;
-            if (c6Var != null && (t5Var = (t5) awVar.f26623b.get(c6Var.getDocumentId())) != null && t5Var.f32849k != null) {
+            c6 c6Var = rvVar.f32342c;
+            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = rvVar.f32340a;
+            if (c6Var != null && (t5Var = (t5) awVar.f26625b.get(c6Var.getDocumentId())) != null && t5Var.f32852k != null) {
                 t5Var.t(j10);
-                di.f3 f3Var = t5Var.f32849k;
+                di.f3 f3Var = t5Var.f32852k;
                 int i11 = this.K;
                 ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = f3Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
                 backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
@@ -133,7 +133,7 @@ public final class pv extends st {
                     awVar.T = new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN);
                 }
                 t5Var.setColorFilter(awVar.T);
-                rvVar.f32339b = t5Var.f32849k;
+                rvVar.f32341b = t5Var.f32852k;
                 arrayList.add(rvVar);
             }
         }

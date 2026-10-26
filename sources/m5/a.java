@@ -10,9 +10,9 @@ public final class a implements ka.d {
     public final void a(Object obj, Object obj2) {
         p5.a aVar = (p5.a) obj;
         ka.e eVar = (ka.e) obj2;
-        eVar.a(f18312b, aVar.f46794a);
-        eVar.a(f18313c, aVar.f46795b);
-        eVar.a(d, aVar.f46796c);
+        eVar.a(f18312b, aVar.f46797a);
+        eVar.a(f18313c, aVar.f46798b);
+        eVar.a(d, aVar.f46799c);
         eVar.a(e, aVar.d);
     }
 }

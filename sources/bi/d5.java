@@ -76,11 +76,11 @@ public final class d5 extends u91 {
     @Override
     public final void G() {
         super.G();
-        int i10 = this.f33314b;
+        int i10 = this.f33317b;
         h7 h7Var = this.V;
         boolean z10 = false;
         if (i10 != h7Var.f2(false)) {
-            if (this.f33314b > h7Var.f2(false)) {
+            if (this.f33317b > h7Var.f2(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new bh.n(3, this, z10));

@@ -3,47 +3,47 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.json.JSONObject;
 public final class pa1 implements xb1 {
-    public volatile JSONObject f31514a;
-    public volatile String f31515b;
-    public final ArrayList f31516c = new ArrayList();
+    public volatile JSONObject f31516a;
+    public volatile String f31517b;
+    public final ArrayList f31518c = new ArrayList();
     public final ArrayList d = new ArrayList();
     public final Object e = new Object();
 
     @Override
     public final void c(String str) {
         synchronized (this.e) {
-            this.f31515b = str;
+            this.f31517b = str;
             this.e.notifyAll();
         }
     }
 
     @Override
     public final void e(JSONObject jSONObject) {
-        synchronized (this.f31516c) {
-            this.f31516c.add(jSONObject);
+        synchronized (this.f31518c) {
+            this.f31518c.add(jSONObject);
         }
     }
 
     @Override
     public final void f(JSONObject jSONObject) {
         synchronized (this.e) {
-            this.f31514a = jSONObject;
+            this.f31516a = jSONObject;
             this.e.notifyAll();
         }
     }
 
     public final int h() {
         int size;
-        synchronized (this.f31516c) {
-            size = this.f31516c.size();
+        synchronized (this.f31518c) {
+            size = this.f31518c.size();
         }
         return size;
     }
 
     public final String i() {
         String obj;
-        synchronized (this.f31516c) {
-            obj = this.f31516c.toString();
+        synchronized (this.f31518c) {
+            obj = this.f31518c.toString();
         }
         return obj;
     }

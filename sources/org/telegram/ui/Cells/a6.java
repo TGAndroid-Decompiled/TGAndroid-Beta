@@ -12,9 +12,9 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.vh;
 import org.telegram.ui.Components.gb1;
 public final class a6 extends FrameLayout {
-    public final org.telegram.ui.Components.y9 f23855a;
-    public final TextView f23856b;
-    public final TextView f23857c;
+    public final org.telegram.ui.Components.y9 f23857a;
+    public final TextView f23858b;
+    public final TextView f23859c;
     public final View d;
     public final c6 e;
 
@@ -22,14 +22,14 @@ public final class a6 extends FrameLayout {
         super(context);
         this.e = c6Var;
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f23855a = y9Var;
+        this.f23857a = y9Var;
         addView(y9Var, gb1.g(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setBackgroundResource(R.drawable.album_shadow);
         addView(linearLayout, gb1.i(-1, 60, 83));
         TextView textView = new TextView(context);
-        this.f23856b = textView;
+        this.f23858b = textView;
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(-1);
         textView.setSingleLine(true);
@@ -38,7 +38,7 @@ public final class a6 extends FrameLayout {
         textView.setMaxLines(1);
         textView.setGravity(80);
         TextView e = vh.e(linearLayout, textView, gb1.q(1.0f, 0, -1, 8, 0, 5), context);
-        this.f23857c = e;
+        this.f23859c = e;
         e.setTextSize(1, 13.0f);
         e.setTextColor(-1);
         e.setSingleLine(true);
@@ -54,7 +54,7 @@ public final class a6 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        org.telegram.ui.Components.y9 y9Var = this.f23855a;
+        org.telegram.ui.Components.y9 y9Var = this.f23857a;
         if (y9Var.getImageReceiver().hasNotThumb() && y9Var.getImageReceiver().getCurrentAlpha() == 1.0f) {
             return;
         }

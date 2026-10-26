@@ -125,7 +125,7 @@ public final class c2 extends EditTextBoldCursor {
                 org.telegram.ui.ActionBar.w0 w0Var = (org.telegram.ui.ActionBar.w0) this.f10605c;
                 if (i10 == 67 && w0Var.e.length() == 0 && ((w0Var.h.getVisibility() == 0 && w0Var.h.length() > 0) || w0Var.r())) {
                     if (w0Var.r()) {
-                        ig.p0 p0Var = (ig.p0) ic.a.g(1, w0Var.f23182g0);
+                        ig.p0 p0Var = (ig.p0) ic.a.g(1, w0Var.f23184g0);
                         org.telegram.ui.ActionBar.s0 s0Var = w0Var.H;
                         if (s0Var != null) {
                             s0Var.j(p0Var);
@@ -133,13 +133,13 @@ public final class c2 extends EditTextBoldCursor {
                         w0Var.I(p0Var);
                         return true;
                     }
-                    w0Var.f23195s.callOnClick();
+                    w0Var.f23197s.callOnClick();
                     return true;
                 }
                 return super.onKeyDown(i10, keyEvent);
             case 3:
                 org.telegram.ui.ActionBar.r5 r5Var = (org.telegram.ui.ActionBar.r5) this.f10605c;
-                if (i10 == 67 && length() == 0 && (textView = r5Var.f23045w) != null && textView.getVisibility() == 0) {
+                if (i10 == 67 && length() == 0 && (textView = r5Var.f23047w) != null && textView.getVisibility() == 0) {
                     r5Var.e();
                     return true;
                 }
@@ -149,7 +149,7 @@ public final class c2 extends EditTextBoldCursor {
                 return super.onKeyDown(i10, keyEvent);
             case 5:
                 m20 m20Var = (m20) this.f10605c;
-                if (i10 == 67 && m20Var.f30365r.length() == 0 && m20Var.d()) {
+                if (i10 == 67 && m20Var.f30367r.length() == 0 && m20Var.d()) {
                     if (!m20Var.d()) {
                         return true;
                     }
@@ -188,7 +188,7 @@ public final class c2 extends EditTextBoldCursor {
         switch (this.f10604b) {
             case 8:
                 if (i10 == 16908322 || i10 == 16908337) {
-                    ((ge0) this.f10605c).f39634y = true;
+                    ((ge0) this.f10605c).f39637y = true;
                     postDelayed(new p00(this, 23), 1000L);
                 }
                 return super.onTextContextMenuItem(i10);
@@ -252,10 +252,10 @@ public final class c2 extends EditTextBoldCursor {
                 return super.onTouchEvent(motionEvent);
             case 11:
                 zg.i iVar = (zg.i) this.f10605c;
-                x30 x30Var3 = iVar.f52876f;
+                x30 x30Var3 = iVar.f52879f;
                 if (x30Var3 != null) {
                     x30Var3.a();
-                    iVar.f52876f = null;
+                    iVar.f52879f = null;
                 }
                 if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
                     iVar.fullScroll(130);

@@ -22,7 +22,7 @@ public final class pb implements DialogInterface.OnDismissListener {
                 return;
             default:
                 sg.n0 n0Var = (sg.n0) this.f5245c;
-                PhotoViewer photoViewer = ((nt0) n0Var).f41996d2;
+                PhotoViewer photoViewer = ((nt0) n0Var).f41999d2;
                 if (photoViewer.F2 != null) {
                     photoViewer.H2 = false;
                     photoViewer.v0();

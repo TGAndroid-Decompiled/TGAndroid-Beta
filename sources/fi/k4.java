@@ -95,14 +95,14 @@ public abstract class k4 extends FrameLayout {
                             t61 K = t61.K(i4.class);
                             K.d = intValue;
                             K.G = (w7) iaVar2.f11108c.get(intValue);
-                            K.f32885z = i12;
+                            K.f32888z = i12;
                             if (iaVar2.f11109f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             K.L(z10);
-                            K.f32867f = iaVar2.e.contains(num);
+                            K.f32870f = iaVar2.e.contains(num);
                             K.D = new ai.w(iaVar2, intValue, 3);
                             arrayList.add(K);
                             if (iaVar2.e.contains(num)) {
@@ -127,7 +127,7 @@ public abstract class k4 extends FrameLayout {
             }
         }, new e1.c(iaVar, 8), bVar);
         this.f11107b = f4Var;
-        f4Var.f32150g3.f29505r = false;
+        f4Var.f32152g3.f29507r = false;
         f4Var.setClipToPadding(false);
         f4Var.setClipChildren(false);
         f4Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
@@ -153,14 +153,14 @@ public abstract class k4 extends FrameLayout {
                             t61 K = t61.K(i4.class);
                             K.d = intValue;
                             K.G = (w7) iaVar2.f11108c.get(intValue);
-                            K.f32885z = i12;
+                            K.f32888z = i12;
                             if (iaVar2.f11109f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             K.L(z10);
-                            K.f32867f = iaVar2.e.contains(num);
+                            K.f32870f = iaVar2.e.contains(num);
                             K.D = new ai.w(iaVar2, intValue, 3);
                             arrayList.add(K);
                             if (iaVar2.e.contains(num)) {
@@ -325,7 +325,7 @@ public abstract class k4 extends FrameLayout {
         q11 q11Var = this.f11113w;
         f4 f4Var = this.f11107b;
         if (q11Var != null) {
-            q11Var.c(rectF.centerX() - (this.f11113w.f31788c / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), 1.0f - f4Var.getAlpha(), -1, canvas);
+            q11Var.c(rectF.centerX() - (this.f11113w.f31790c / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), 1.0f - f4Var.getAlpha(), -1, canvas);
         }
         if (f4Var.getAlpha() > 0.0f) {
             canvas.save();
@@ -440,14 +440,14 @@ public abstract class k4 extends FrameLayout {
                 xcVar.c(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            if (xcVar.f34687i) {
+            if (xcVar.f34690i) {
                 c(!this.M, true);
             }
             xcVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             xcVar.c(false);
         }
-        if (!xcVar.f34687i && !super.onTouchEvent(motionEvent)) {
+        if (!xcVar.f34690i && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

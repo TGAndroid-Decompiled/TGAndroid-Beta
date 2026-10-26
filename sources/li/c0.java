@@ -146,7 +146,7 @@ public final class c0 extends View {
                                 richButtonStyle.link = false;
                                 pageButton.style = richButtonStyle;
                             }
-                            v3Var.f32150g3.O(false);
+                            v3Var.f32152g3.O(false);
                             f2 f2Var2 = v3Var.R3;
                             if (f2Var2 != null) {
                                 f2Var2.h();

@@ -55,7 +55,7 @@ public final class f6 extends org.telegram.ui.ActionBar.k3 {
         b6Var.setTextSize(14);
         b6Var.setAlignment(Layout.Alignment.ALIGN_CENTER);
         b6Var.setMaxLines(100);
-        org.telegram.ui.ActionBar.f7.Y(b6Var, org.telegram.ui.ActionBar.y6.f23746y6, u6Var);
+        org.telegram.ui.ActionBar.f7.Y(b6Var, org.telegram.ui.ActionBar.y6.f23748y6, u6Var);
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
             b6Var.l(LocaleController.getString(R.string.StealthModeHint), false);
         } else {
@@ -155,10 +155,10 @@ public final class f6 extends org.telegram.ui.ActionBar.k3 {
             int i10 = R.drawable.msg_stories_stealth2;
             String string = LocaleController.getString(R.string.StealthModeOn);
             String string2 = LocaleController.getString(R.string.StealthModeOnHint);
-            mc mcVar = new mc(Y.X(), Y.f34407c);
-            mcVar.f30517a.setImageResource(i10);
-            mcVar.f30518b.setText(string);
-            TextView textView = mcVar.f30519c;
+            mc mcVar = new mc(Y.X(), Y.f34410c);
+            mcVar.f30519a.setImageResource(i10);
+            mcVar.f30520b.setText(string);
+            TextView textView = mcVar.f30521c;
             textView.setText(string2);
             textView.setSingleLine(false);
             textView.setMaxLines(5);
@@ -190,7 +190,7 @@ public final class f6 extends org.telegram.ui.ActionBar.k3 {
                 p0Var.b(LocaleController.formatString("AvailableIn", R.string.AvailableIn, sb2.toString()), true, z10);
                 tg.o0 o0Var = p0Var.h;
                 org.telegram.ui.ActionBar.b7 h10 = org.telegram.ui.ActionBar.f7.h(org.telegram.ui.ActionBar.y6.Sh, 125);
-                org.telegram.ui.ActionBar.f7.n(o0Var, h10.f22483a, -1, 1, h10.d, null);
+                org.telegram.ui.ActionBar.f7.n(o0Var, h10.f22485a, -1, 1, h10.d, null);
                 bi.u6 u6Var = this.f8560f;
                 AndroidUtilities.cancelRunOnUIThread(u6Var);
                 AndroidUtilities.runOnUIThread(u6Var, 1000L);

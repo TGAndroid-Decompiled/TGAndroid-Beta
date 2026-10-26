@@ -14,7 +14,7 @@ public final class qx extends s4.t {
     public final void v0(RecyclerView recyclerView, s4.b1 b1Var, int i10) {
         try {
             fi.k1 k1Var = new fi.k1(this, recyclerView.getContext(), 2);
-            k1Var.f47677a = i10;
+            k1Var.f47680a = i10;
             w0(k1Var);
         } catch (Exception e) {
             FileLog.e(e);

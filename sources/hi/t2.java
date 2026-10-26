@@ -73,22 +73,22 @@ public final class t2 implements Runnable {
                 return;
             case 12:
                 int i10 = this.f13287b;
-                Set keySet = fb1.f28144b.keySet();
+                Set keySet = fb1.f28146b.keySet();
                 fb1.n(i10 + "/", keySet);
-                for (db1 db1Var : fb1.f28143a.values()) {
-                    if (db1Var.f27486b == i10 && db1Var.f27492k.isEmpty() && (jb1Var = db1Var.f27490i) != null) {
+                for (db1 db1Var : fb1.f28145a.values()) {
+                    if (db1Var.f27488b == i10 && db1Var.f27494k.isEmpty() && (jb1Var = db1Var.f27492i) != null) {
                         jb1Var.m();
-                        jb1Var.f29586g = null;
-                        jb1Var.f29587i = 0;
-                        jb1Var.f29589k = 0;
-                        jb1Var.f29590l = false;
+                        jb1Var.f29588g = null;
+                        jb1Var.f29589i = 0;
+                        jb1Var.f29591k = 0;
+                        jb1Var.f29592l = false;
                     }
                 }
                 return;
             case 13:
                 String m10 = a1.g.m(this.f13287b, "/");
-                fb1.n(m10, fb1.f28144b.keySet());
-                fb1.n(m10, fb1.f28145c.keySet());
+                fb1.n(m10, fb1.f28146b.keySet());
+                fb1.n(m10, fb1.f28147c.keySet());
                 fb1.n(m10, fb1.d.keySet());
                 return;
             default:

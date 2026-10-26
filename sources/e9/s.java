@@ -41,7 +41,7 @@ public final class s implements Iterator {
             while (true) {
                 int i11 = this.e;
                 if (i11 != -1) {
-                    e eVar = (e) this.h.f52841b;
+                    e eVar = (e) this.h.f52844b;
                     CharSequence charSequence = this.f9851c;
                     int length = charSequence.length();
                     yb.m(i11, length);

@@ -17,17 +17,17 @@ public abstract class p40 extends j71 {
     public boolean X;
     public int Y;
     public String Z;
-    public String f31439a0;
-    public int f31440b0;
-    public org.telegram.ui.g4 f31441c0;
-    public final boolean[] f31442d0;
+    public String f31441a0;
+    public int f31442b0;
+    public org.telegram.ui.g4 f31443c0;
+    public final boolean[] f31444d0;
 
     public p40(mm0 mm0Var, Context context, int i10) {
         super(mm0Var, context, i10, 0, false, null, null);
         this.Q = new ArrayList();
         this.V = 0;
         this.W = -1;
-        this.f31442d0 = new boolean[1];
+        this.f31444d0 = new boolean[1];
         this.v = new d(this, 16);
         this.P = i10;
     }
@@ -69,7 +69,7 @@ public abstract class p40 extends j71 {
             ConnectionsManager.getInstance(this.P).cancelRequest(this.W, true);
             this.W = -1;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f31441c0);
+        AndroidUtilities.cancelRunOnUIThread(this.f31443c0);
         this.V++;
         this.U = false;
     }
@@ -88,8 +88,8 @@ public abstract class p40 extends j71 {
 
     public final void Z(String str) {
         this.Z = str;
-        String Y = Y(str, this.f31442d0);
-        if (!TextUtils.equals(this.f31439a0, Y)) {
+        String Y = Y(str, this.f31444d0);
+        if (!TextUtils.equals(this.f31441a0, Y)) {
             this.Q.clear();
             this.X = false;
             this.Y = 0;
@@ -105,7 +105,7 @@ public abstract class p40 extends j71 {
         this.U = true;
         O(true);
         org.telegram.ui.g4 g4Var = new org.telegram.ui.g4(this, i10, Y, 11);
-        this.f31441c0 = g4Var;
+        this.f31443c0 = g4Var;
         AndroidUtilities.runOnUIThread(g4Var, 300L);
     }
 }

@@ -12,7 +12,7 @@ public final class u4 extends ws {
     public u4(m5 m5Var, Context context) {
         super(context);
         this.H = m5Var;
-        this.G = org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(22.0f), m5Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+        this.G = org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(22.0f), m5Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class u4 extends ws {
         int ceil = (int) Math.ceil(getMetadata().f19345g.f19351a);
         if (ceil > 0) {
             ShapeDrawable shapeDrawable = this.G;
-            shapeDrawable.getPaint().setColor(this.H.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+            shapeDrawable.getPaint().setColor(this.H.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
             shapeDrawable.setBounds(0, 0, getWidth(), ceil);
             shapeDrawable.setAlpha((int) (getMetadata().f19343c.f19351a * 255.0f));
             shapeDrawable.draw(canvas);

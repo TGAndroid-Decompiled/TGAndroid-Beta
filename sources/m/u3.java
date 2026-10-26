@@ -30,7 +30,7 @@ public abstract class u3 {
     }
 
     public static boolean a(View view) {
-        WeakHashMap weakHashMap = r0.i0.f47105a;
+        WeakHashMap weakHashMap = r0.i0.f47108a;
         if (view.getLayoutDirection() == 1) {
             return true;
         }

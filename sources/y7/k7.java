@@ -5,14 +5,14 @@ public enum k7 implements z {
     TYPE_THICK(2),
     TYPE_GMV(3);
     
-    public final int f52196a;
+    public final int f52199a;
 
     k7(int i10) {
-        this.f52196a = i10;
+        this.f52199a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f52196a;
+        return this.f52199a;
     }
 }

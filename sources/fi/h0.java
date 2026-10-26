@@ -29,9 +29,9 @@ public final class h0 implements ng.e {
                 m0Var.e.invalidate();
                 return m0Var.h.j();
             default:
-                nf0 nf0Var = ((of0) frameLayout).f31282a;
+                nf0 nf0Var = ((of0) frameLayout).f31284a;
                 if (nf0Var != null) {
-                    PhotoViewer photoViewer = ((gs0) nf0Var).f39774a;
+                    PhotoViewer photoViewer = ((gs0) nf0Var).f39777a;
                     Drawable[] drawableArr = PhotoViewer.U8;
                     return photoViewer.O0();
                 }
@@ -49,7 +49,7 @@ public final class h0 implements ng.e {
                 ((m0) this.f10940b).h.o();
                 return;
             default:
-                ((of0) this.f10940b).f31283b.o();
+                ((of0) this.f10940b).f31285b.o();
                 return;
         }
     }
@@ -64,7 +64,7 @@ public final class h0 implements ng.e {
                 ((m0) this.f10940b).h.f18843a.g(1, true);
                 return;
             default:
-                ((of0) this.f10940b).f31283b.f18843a.g(1, true);
+                ((of0) this.f10940b).f31285b.f18843a.g(1, true);
                 return;
         }
     }
@@ -89,11 +89,11 @@ public final class h0 implements ng.e {
                 m0Var.e.invalidate();
                 return m11;
             default:
-                nf0 nf0Var = ((of0) frameLayout).f31282a;
+                nf0 nf0Var = ((of0) frameLayout).f31284a;
                 if (nf0Var == null) {
                     return false;
                 }
-                PhotoViewer photoViewer = ((gs0) nf0Var).f39774a;
+                PhotoViewer photoViewer = ((gs0) nf0Var).f39777a;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return photoViewer.P0(-90.0f, false, null);
         }
@@ -109,7 +109,7 @@ public final class h0 implements ng.e {
                 ((m0) this.f10940b).h.k();
                 return;
             default:
-                ((of0) this.f10940b).f31283b.k();
+                ((of0) this.f10940b).f31285b.k();
                 return;
         }
     }
@@ -125,9 +125,9 @@ public final class h0 implements ng.e {
                 return;
             default:
                 of0 of0Var = (of0) this.f10940b;
-                of0Var.f31283b.setRotation(f7);
+                of0Var.f31285b.setRotation(f7);
                 of0Var.getClass();
-                nf0 nf0Var = of0Var.f31282a;
+                nf0 nf0Var = of0Var.f31284a;
                 if (nf0Var != null) {
                     ((gs0) nf0Var).d(false);
                     return;

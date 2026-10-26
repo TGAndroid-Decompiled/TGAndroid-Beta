@@ -5,12 +5,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ij extends li {
-    public bi.r1 f29295n;
-    public int f29296r;
-    public ei.k f29297s;
+    public bi.r1 f29297n;
+    public int f29298r;
+    public ei.k f29299s;
     public za v;
-    public int f29298w;
-    public q0.a f29299x;
+    public int f29300w;
+    public q0.a f29301x;
 
     @Override
     public final void B(int r9, int r10) {
@@ -19,23 +19,23 @@ public final class ij extends li {
 
     @Override
     public final void G(li liVar) {
-        ti tiVar = this.f30213b;
+        ti tiVar = this.f30215b;
         try {
-            tiVar.f33002a1.getTitleTextView().setBuildFullLayout(true);
+            tiVar.f33005a1.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
-        tiVar.f33002a1.setTitle(LocaleController.getString(R.string.SelectColor));
-        this.f29297s.h1(0, 0);
+        tiVar.f33005a1.setTitle(LocaleController.getString(R.string.SelectColor));
+        this.f29299s.h1(0, 0);
     }
 
     @Override
     public final void J() {
-        this.f29295n.y0(0);
+        this.f29297n.y0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        bi.r1 r1Var = this.f29295n;
+        bi.r1 r1Var = this.f29297n;
         if (r1Var.getChildCount() <= 0) {
             r1Var.setTopGlowOffset(r1Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -58,7 +58,7 @@ public final class ij extends li {
 
     @Override
     public int getListTopPadding() {
-        return this.f29295n.getPaddingTop();
+        return this.f29297n.getPaddingTop();
     }
 
     @Override
@@ -67,13 +67,13 @@ public final class ij extends li {
     }
 
     public void setDelegate(q0.a aVar) {
-        this.f29299x = aVar;
+        this.f29301x = aVar;
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30213b.getSheetContainer().invalidate();
+        this.f30215b.getSheetContainer().invalidate();
         invalidate();
     }
 }

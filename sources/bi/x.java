@@ -40,7 +40,7 @@ public final class x extends FrameLayout {
         r71 r71Var = new r71(context, i11, classGuid, true, eVar, cVar, null, u6Var);
         this.f5636c = r71Var;
         r71Var.v1(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
-        r71Var.f32150g3.f29505r = false;
+        r71Var.f32152g3.f29507r = false;
         r71Var.setCaptureSectionsDecoratorAllowed(true);
         r71Var.setClipToPadding(false);
         r71Var.setOverScrollMode(0);
@@ -77,7 +77,7 @@ public final class x extends FrameLayout {
             String str = this.d;
             tL_payments_getStarsTransactions.offset = str;
             tL_payments_getStarsTransactions.limit = 20;
-            this.f5636c.f32150g3.O(false);
+            this.f5636c.f32152g3.O(false);
             i11 = ((org.telegram.ui.ActionBar.r2) yVar).currentAccount;
             int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_payments_getStarsTransactions, new j(1, this, str));
             i12 = ((org.telegram.ui.ActionBar.r2) yVar).currentAccount;

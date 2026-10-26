@@ -7,16 +7,16 @@ import android.os.SystemClock;
 import android.text.TextPaint;
 import org.telegram.messenger.R;
 public final class k41 extends Drawable {
-    public final xj0 f29805a;
-    public int f29806b;
-    public final TextPaint f29807c;
+    public final xj0 f29807a;
+    public int f29808b;
+    public final TextPaint f29809c;
 
     public k41(TextPaint textPaint) {
         bh.u0 u0Var = new bh.u0(this, 8);
-        this.f29807c = textPaint;
+        this.f29809c = textPaint;
         float textSize = textPaint.getTextSize() * 0.89f;
         xj0 xj0Var = new xj0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
-        this.f29805a = xj0Var;
+        this.f29807a = xj0Var;
         xj0Var.setCallback(u0Var);
         xj0Var.K(1);
         xj0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
@@ -26,16 +26,16 @@ public final class k41 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        int color = this.f29807c.getColor();
-        int i10 = this.f29806b;
-        xj0 xj0Var = this.f29805a;
+        int color = this.f29809c.getColor();
+        int i10 = this.f29808b;
+        xj0 xj0Var = this.f29807a;
         if (color != i10) {
             xj0Var.Z = true;
             xj0Var.Q(color, "Comp 1");
             xj0Var.o();
             xj0Var.J(true);
             xj0Var.V(0L);
-            this.f29806b = color;
+            this.f29808b = color;
         }
         xj0Var.draw(canvas);
     }

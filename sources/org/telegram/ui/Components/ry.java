@@ -5,14 +5,14 @@ import java.util.LinkedHashSet;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.UserConfig;
 public final class ry implements gz {
-    public final sy f32344a;
+    public final sy f32346a;
 
     public ry(sy syVar) {
-        this.f32344a = syVar;
+        this.f32346a = syVar;
     }
 
     public final boolean a() {
-        return this.f32344a.F.V.F;
+        return this.f32346a.F.V.F;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class ry implements gz {
             return;
         }
         ArrayList arrayList = new ArrayList();
-        sy syVar = this.f32344a;
+        sy syVar = this.f32346a;
         syVar.F.V.e(true);
         sy.E(syVar, new so(16, this, arrayList), arrayList, true);
     }
@@ -29,7 +29,7 @@ public final class ry implements gz {
     @Override
     public final void run() {
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        String str = this.f32344a.v;
+        String str = this.f32346a.v;
         so soVar = new so(15, this, str);
         if (Emoji.fullyConsistsOfEmojis(str)) {
             by0.G3.fetch(UserConfig.selectedAccount, str, new oy(0, linkedHashSet, soVar));

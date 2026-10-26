@@ -7,27 +7,27 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class dk extends org.telegram.ui.Components.m91 {
-    public final Context f38897a;
-    public final un f38898b;
+    public final Context f38900a;
+    public final un f38901b;
 
     public dk(un unVar, Context context) {
-        this.f38898b = unVar;
-        this.f38897a = context;
+        this.f38901b = unVar;
+        this.f38900a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         if (view instanceof wn) {
-            ((wn) view).f45518a.Wc(this.f38898b.G3);
+            ((wn) view).f45521a.Wc(this.f38901b.G3);
         }
-        WeakHashMap weakHashMap = r0.i0.f47105a;
+        WeakHashMap weakHashMap = r0.i0.f47108a;
         r0.y.c(view);
     }
 
     @Override
     public final View d(int i10) {
-        Context context = this.f38897a;
-        un unVar = this.f38898b;
+        Context context = this.f38900a;
+        un unVar = this.f38901b;
         if (i10 == 0) {
             return new hn(unVar, context);
         }
@@ -37,11 +37,11 @@ public final class dk extends org.telegram.ui.Components.m91 {
         bundle.putString("searchHashtag", unVar.G3);
         ck ckVar = new ck(context, unVar.getParentLayout(), bundle, 0);
         ckVar.h = false;
-        vn vnVar = ckVar.f45518a;
+        vn vnVar = ckVar.f45521a;
         vnVar.L.f12845a = unVar.L;
-        vnVar.f44363oa = unVar.f44385qa;
-        vnVar.f44376pa = unVar;
-        vnVar.f44275h9 = new f(this, 13);
+        vnVar.f44366oa = unVar.f44388qa;
+        vnVar.f44379pa = unVar;
+        vnVar.f44278h9 = new f(this, 13);
         return ckVar;
     }
 

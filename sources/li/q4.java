@@ -72,7 +72,7 @@ public final class q4 extends z implements p6, r9 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23680uf));
+        hashSet.add(Integer.valueOf(y6.f23682uf));
         hashSet.add(Integer.valueOf(y6.G6));
     }
 
@@ -136,7 +136,7 @@ public final class q4 extends z implements p6, r9 {
         if (this.f17433w != null && (z2Var = this.f17435y) != null && (textSelectionHelper = z2Var.f17663a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f25408p0 && R <= textSelectionHelper.f25411s0) {
+            if (R >= 0 && R >= textSelectionHelper.f25410p0 && R <= textSelectionHelper.f25413s0) {
                 int[] iArr = this.F;
                 h(iArr);
                 canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f17431r);
@@ -151,7 +151,7 @@ public final class q4 extends z implements p6, r9 {
 
     @Override
     public final void updateColors() {
-        int i10 = y6.f23680uf;
+        int i10 = y6.f23682uf;
         u6 u6Var = this.f17430n;
         this.f17431r.setColor(y6.w0(i10, u6Var));
         int w02 = y6.w0(y6.G6, u6Var);

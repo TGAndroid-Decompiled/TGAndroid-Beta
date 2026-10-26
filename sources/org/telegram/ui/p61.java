@@ -10,10 +10,10 @@ public final class p61 extends org.telegram.ui.Components.bb implements Notifica
     public final org.telegram.ui.Components.vz X;
     public final fi.d Y;
     public final di.z6 Z;
-    public final HashMap f42373a0;
-    public final int f42374b0;
-    public int f42375c0;
-    public org.telegram.ui.Components.j71 f42376d0;
+    public final HashMap f42376a0;
+    public final int f42377b0;
+    public int f42378c0;
+    public org.telegram.ui.Components.j71 f42379d0;
 
     public p61(org.telegram.ui.ActionBar.r2 r17, long r18, int r20, bi.f4 r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p61.<init>(org.telegram.ui.ActionBar.r2, long, int, bi.f4):void");
@@ -32,7 +32,7 @@ public final class p61 extends org.telegram.ui.Components.bb implements Notifica
         if (z6Var != null) {
             int i10 = L0 + abs;
             int i11 = z6Var.i();
-            int i12 = this.f42374b0;
+            int i12 = this.f42377b0;
             if (i10 > i11 - i12) {
                 z6Var.p(Math.min(100, Math.max(1, i12 / 2) * i12 * i12), false);
             }
@@ -41,7 +41,7 @@ public final class p61 extends org.telegram.ui.Components.bb implements Notifica
 
     public final boolean Q(int i10, View view) {
         org.telegram.ui.Components.t61 G;
-        org.telegram.ui.Components.j71 j71Var = this.f42376d0;
+        org.telegram.ui.Components.j71 j71Var = this.f42379d0;
         if (j71Var == null || i10 == 0 || (G = j71Var.G(i10 - 1)) == null) {
             return false;
         }
@@ -50,7 +50,7 @@ public final class p61 extends org.telegram.ui.Components.bb implements Notifica
             MessageObject messageObject = (MessageObject) obj;
             int id2 = messageObject.getId();
             Integer valueOf = Integer.valueOf(id2);
-            HashMap hashMap = this.f42373a0;
+            HashMap hashMap = this.f42376a0;
             if (hashMap.containsKey(valueOf)) {
                 hashMap.remove(Integer.valueOf(id2));
                 G.e = false;
@@ -70,7 +70,7 @@ public final class p61 extends org.telegram.ui.Components.bb implements Notifica
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.storiesListUpdated && ((di.z6) objArr[0]) == this.Z) {
-            this.f42376d0.O(false);
+            this.f42379d0.O(false);
             P();
         }
     }
@@ -78,22 +78,22 @@ public final class p61 extends org.telegram.ui.Components.bb implements Notifica
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f42375c0 = this.Z.o();
+        this.f42378c0 = this.Z.o();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.Z.z(this.f42375c0);
+        this.Z.z(this.f42378c0);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
     }
 
     @Override
     public final org.telegram.ui.Components.lm0 v(org.telegram.ui.Components.mm0 mm0Var) {
         org.telegram.ui.Components.j71 j71Var = new org.telegram.ui.Components.j71(mm0Var, getContext(), this.currentAccount, 0, false, new e5(this, 25), this.resourcesProvider);
-        this.f42376d0 = j71Var;
-        j71Var.f29505r = false;
+        this.f42379d0 = j71Var;
+        j71Var.f29507r = false;
         return j71Var;
     }
 

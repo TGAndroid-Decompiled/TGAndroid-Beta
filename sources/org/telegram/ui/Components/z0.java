@@ -4,18 +4,18 @@ import android.content.DialogInterface;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class z0 implements DialogInterface.OnDismissListener {
-    public final int f35153a;
-    public final Object f35154b;
+    public final int f35156a;
+    public final Object f35157b;
 
     public z0(Object obj, int i10) {
-        this.f35153a = i10;
-        this.f35154b = obj;
+        this.f35156a = i10;
+        this.f35157b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f35153a;
-        Object obj = this.f35154b;
+        int i10 = this.f35156a;
+        Object obj = this.f35157b;
         switch (i10) {
             case 0:
                 ((org.telegram.ui.jg) obj).run();
@@ -53,11 +53,11 @@ public final class z0 implements DialogInterface.OnDismissListener {
                 return;
             default:
                 ThemeEditorView themeEditorView = ((h21) obj).d;
-                themeEditorView.f26334n = null;
+                themeEditorView.f26336n = null;
                 if (themeEditorView.d != null) {
-                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.f26330j, themeEditorView.f26326c, themeEditorView.f26329i);
+                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.f26332j, themeEditorView.f26328c, themeEditorView.f26331i);
                     try {
-                        themeEditorView.f26330j.addView(themeEditorView.f26326c, themeEditorView.f26329i);
+                        themeEditorView.f26332j.addView(themeEditorView.f26328c, themeEditorView.f26331i);
                         themeEditorView.e();
                         return;
                     } catch (Exception unused) {

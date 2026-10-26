@@ -10,12 +10,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class da extends View {
-    public Bitmap f27455a;
-    public Bitmap f27456b;
-    public Paint f27457c;
+    public Bitmap f27457a;
+    public Bitmap f27458b;
+    public Paint f27459c;
     public int d;
     public int e;
-    public ca f27458f;
+    public ca f27460f;
 
     public int getRating() {
         return this.e;
@@ -25,18 +25,18 @@ public final class da extends View {
     public final void onDraw(Canvas canvas) {
         int i10;
         Bitmap bitmap;
-        Paint paint = this.f27457c;
+        Paint paint = this.f27459c;
         for (int i11 = 0; i11 < this.d; i11++) {
             if (i11 < this.e) {
-                i10 = org.telegram.ui.ActionBar.y6.f23517m5;
+                i10 = org.telegram.ui.ActionBar.y6.f23519m5;
             } else {
-                i10 = org.telegram.ui.ActionBar.y6.f23651t5;
+                i10 = org.telegram.ui.ActionBar.y6.f23653t5;
             }
             paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
             if (i11 < this.e) {
-                bitmap = this.f27455a;
+                bitmap = this.f27457a;
             } else {
-                bitmap = this.f27456b;
+                bitmap = this.f27458b;
             }
             canvas.drawBitmap(bitmap, AndroidUtilities.dp(48.0f) * i11, 0.0f, paint);
         }
@@ -57,7 +57,7 @@ public final class da extends View {
         for (int i12 = 0; i12 < this.d; i12++) {
             if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.e != (i10 = i12 + 1)) {
                 this.e = i10;
-                ca caVar = this.f27458f;
+                ca caVar = this.f27460f;
                 if (caVar != null) {
                     View view = ((oe.a) caVar).f19323a;
                     if (i10 > 0) {
@@ -81,6 +81,6 @@ public final class da extends View {
     }
 
     public void setOnRatingChangeListener(ca caVar) {
-        this.f27458f = caVar;
+        this.f27460f = caVar;
     }
 }

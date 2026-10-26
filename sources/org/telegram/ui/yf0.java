@@ -18,19 +18,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class yf0 implements RequestDelegate {
-    public final int f46056a;
-    public final fg0 f46057b;
+    public final int f46059a;
+    public final fg0 f46060b;
 
     public yf0(fg0 fg0Var, int i10) {
-        this.f46056a = i10;
-        this.f46057b = fg0Var;
+        this.f46059a = i10;
+        this.f46060b = fg0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f46056a) {
+        switch (this.f46059a) {
             case 0:
-                final fg0 fg0Var = this.f46057b;
+                final fg0 fg0Var = this.f46060b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,7 +39,7 @@ public final class yf0 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 fg0 fg0Var2 = fg0Var;
-                                mj0 mj0Var = fg0Var2.f39358a;
+                                mj0 mj0Var = fg0Var2.f39361a;
                                 HashMap hashMap = fg0Var2.I;
                                 ArrayList arrayList = fg0Var2.G;
                                 HashMap hashMap2 = fg0Var2.H;
@@ -55,13 +55,13 @@ public final class yf0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f40740a = str;
+                                                obj.f40743a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f40741b = str2;
+                                                obj.f40744b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f40740a = str2;
+                                                    obj.f40743a = str2;
                                                 }
-                                                obj.f40742c = tL_help_countryCode.country_code;
+                                                obj.f40745c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -78,7 +78,7 @@ public final class yf0 implements RequestDelegate {
                                             }
                                         }
                                     }
-                                    gg0 gg0Var = fg0Var2.f39359a0;
+                                    gg0 gg0Var = fg0Var2.f39362a0;
                                     if (gg0Var.F == 2) {
                                         i10 = ((org.telegram.ui.ActionBar.r2) gg0Var).currentAccount;
                                         String d = kf.b.d(UserConfig.getInstance(i10).getClientPhone(), false);
@@ -131,7 +131,7 @@ public final class yf0 implements RequestDelegate {
                             default:
                                 fg0 fg0Var3 = fg0Var;
                                 fg0Var3.M = false;
-                                gg0 gg0Var2 = fg0Var3.f39359a0;
+                                gg0 gg0Var2 = fg0Var3.f39362a0;
                                 gg0Var2.A1(false, true);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 == null) {
@@ -154,7 +154,7 @@ public final class yf0 implements RequestDelegate {
                 });
                 return;
             default:
-                final fg0 fg0Var2 = this.f46057b;
+                final fg0 fg0Var2 = this.f46060b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -163,7 +163,7 @@ public final class yf0 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 fg0 fg0Var22 = fg0Var2;
-                                mj0 mj0Var = fg0Var22.f39358a;
+                                mj0 mj0Var = fg0Var22.f39361a;
                                 HashMap hashMap = fg0Var22.I;
                                 ArrayList arrayList = fg0Var22.G;
                                 HashMap hashMap2 = fg0Var22.H;
@@ -179,13 +179,13 @@ public final class yf0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f40740a = str;
+                                                obj.f40743a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f40741b = str2;
+                                                obj.f40744b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f40740a = str2;
+                                                    obj.f40743a = str2;
                                                 }
-                                                obj.f40742c = tL_help_countryCode.country_code;
+                                                obj.f40745c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -202,7 +202,7 @@ public final class yf0 implements RequestDelegate {
                                             }
                                         }
                                     }
-                                    gg0 gg0Var = fg0Var22.f39359a0;
+                                    gg0 gg0Var = fg0Var22.f39362a0;
                                     if (gg0Var.F == 2) {
                                         i10 = ((org.telegram.ui.ActionBar.r2) gg0Var).currentAccount;
                                         String d = kf.b.d(UserConfig.getInstance(i10).getClientPhone(), false);
@@ -255,7 +255,7 @@ public final class yf0 implements RequestDelegate {
                             default:
                                 fg0 fg0Var3 = fg0Var2;
                                 fg0Var3.M = false;
-                                gg0 gg0Var2 = fg0Var3.f39359a0;
+                                gg0 gg0Var2 = fg0Var3.f39362a0;
                                 gg0Var2.A1(false, true);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 == null) {

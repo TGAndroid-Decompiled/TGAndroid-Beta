@@ -67,7 +67,7 @@ public abstract class xe {
                 frameLayout.setFitsSystemWindows(true);
                 frameLayout.setWillNotDraw(false);
                 f986a = frameLayout;
-                launchActivity.f35562w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
+                launchActivity.f35565w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
                 og.i iVar2 = f986a;
                 iVar2.f19408a.setVisibility(0);
                 o1.j jVar = new o1.j(new ac.a(0.0f));
@@ -76,7 +76,7 @@ public abstract class xe {
                 jVar.h();
             } else {
                 iVar.getClass();
-                launchActivity.f35562w0.removeView(f986a);
+                launchActivity.f35565w0.removeView(f986a);
                 f986a = null;
             }
             if (z11) {

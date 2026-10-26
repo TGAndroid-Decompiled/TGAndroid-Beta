@@ -85,7 +85,7 @@ public abstract class k1 extends LinearLayout {
                 }
                 textView2.setGravity(i13);
                 this.h[i17].setTextSize(1, 13.0f);
-                f7.V(this.h[i17], y6.f23765z6, u6Var);
+                f7.V(this.h[i17], y6.f23767z6, u6Var);
                 i4Var.addView(this.h[i17], gb1.m(-2.0f, -2.0f, 8388659, 0.0f, 33.0f, 0.0f, 10.0f));
                 LinearLayout linearLayout = new LinearLayout(context);
                 this.v = linearLayout;
@@ -95,7 +95,7 @@ public abstract class k1 extends LinearLayout {
                 for (int i19 = 0; i19 < 2; i19++) {
                     this.f15764n[i17][i19] = new TextView(context);
                     this.f15764n[i17][i19].setTextSize(1, 14.0f);
-                    f7.V(this.f15764n[i17][i19], y6.f23765z6, u6Var);
+                    f7.V(this.f15764n[i17][i19], y6.f23767z6, u6Var);
                     TextView textView3 = this.f15764n[i17][i19];
                     if (LocaleController.isRTL) {
                         i16 = 3;
@@ -108,7 +108,7 @@ public abstract class k1 extends LinearLayout {
                 for (int i20 = 0; i20 < 2; i20++) {
                     this.f15762c[i20] = new TextView(context);
                     this.f15762c[i20].setTextSize(1, 14.0f);
-                    f7.V(this.f15762c[i20], y6.f23765z6, u6Var);
+                    f7.V(this.f15762c[i20], y6.f23767z6, u6Var);
                     TextView textView4 = this.f15762c[i20];
                     if (LocaleController.isRTL) {
                         i15 = 3;
@@ -124,7 +124,7 @@ public abstract class k1 extends LinearLayout {
                 imageView.setScaleX(0.6f);
                 imageView.setScaleY(0.6f);
                 imageView.setImageResource(R.drawable.arrow_more);
-                f7.t(imageView, y6.f23765z6, u6Var, PorterDuff.Mode.SRC_IN);
+                f7.t(imageView, y6.f23767z6, u6Var, PorterDuff.Mode.SRC_IN);
                 this.f15766s.addView(imageView, gb1.l(20.0f, 20.0f, 8388629));
                 this.v.addView(this.f15766s, new LinearLayout.LayoutParams(gb1.I(-1.0f), gb1.I(-1.0f), Gravity.getAbsoluteGravity(119, LocaleController.isRTL ? 1 : 0)));
                 pq pqVar = new pq(context);
@@ -139,7 +139,7 @@ public abstract class k1 extends LinearLayout {
                 }
                 pqVar.setGravity(i14);
                 int dp = AndroidUtilities.dp(8.0f);
-                int i21 = y6.f23558o6;
+                int i21 = y6.f23560o6;
                 int w02 = y6.w0(i21, u6Var);
                 a(w02);
                 int o12 = y6.o1(0.1f, w02);
@@ -176,7 +176,7 @@ public abstract class k1 extends LinearLayout {
                 for (int i22 = 0; i22 < 2; i22++) {
                     this.f15764n[i17][i22] = new TextView(context);
                     this.f15764n[i17][i22].setTextSize(1, 14.0f);
-                    f7.V(this.f15764n[i17][i22], y6.f23765z6, u6Var);
+                    f7.V(this.f15764n[i17][i22], y6.f23767z6, u6Var);
                     TextView textView6 = this.f15764n[i17][i22];
                     if (LocaleController.isRTL) {
                         i11 = 3;
@@ -225,7 +225,7 @@ public abstract class k1 extends LinearLayout {
         if (this.E) {
             Paint V0 = y6.V0("paintDivider", this.f15760a);
             if (V0 == null) {
-                V0 = y6.f23476k0;
+                V0 = y6.f23478k0;
             }
             Paint paint = V0;
             float f10 = 21.33f;

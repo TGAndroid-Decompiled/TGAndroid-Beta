@@ -8,11 +8,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.vh;
 import org.telegram.ui.Components.l71;
 public final class e1 extends org.telegram.ui.ActionBar.s0 {
-    public final k2.c f45220a = new k2.c(this, 29);
-    public final f1 f45221b;
+    public final k2.c f45223a = new k2.c(this, 29);
+    public final f1 f45224b;
 
     public e1(f1 f1Var) {
-        this.f45221b = f1Var;
+        this.f45224b = f1Var;
     }
 
     public static boolean n(String str, String str2) {
@@ -35,17 +35,17 @@ public final class e1 extends org.telegram.ui.ActionBar.s0 {
     @Override
     public final void h() {
         int i10;
-        f1 f1Var = this.f45221b;
-        f1Var.f45229r = null;
-        f1Var.f45228n = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f45220a);
-        l71 l71Var = f1Var.f30417a;
+        f1 f1Var = this.f45224b;
+        f1Var.f45232r = null;
+        f1Var.f45231n = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f45223a);
+        l71 l71Var = f1Var.f30419a;
         if (l71Var != null) {
-            l71Var.f32150g3.O(true);
-            f1Var.f30417a.f32149f3.h1(0, 0);
+            l71Var.f32152g3.O(true);
+            f1Var.f30419a.f32151f3.h1(0, 0);
         }
-        xh.n nVar = f1Var.f45232x.d;
-        if (TextUtils.isEmpty(f1Var.f45229r)) {
+        xh.n nVar = f1Var.f45235x.d;
+        if (TextUtils.isEmpty(f1Var.f45232r)) {
             i10 = R.string.WebNoHistory;
         } else {
             i10 = R.string.WebNoSearchedHistory;
@@ -56,16 +56,16 @@ public final class e1 extends org.telegram.ui.ActionBar.s0 {
     @Override
     public final void l(EditText editText) {
         int i10;
-        f1 f1Var = this.f45221b;
-        boolean z10 = !TextUtils.isEmpty(f1Var.f45229r);
+        f1 f1Var = this.f45224b;
+        boolean z10 = !TextUtils.isEmpty(f1Var.f45232r);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(f1Var.f45229r, obj)) {
-            f1Var.f45229r = obj;
-            f1Var.f45228n = true;
-            k2.c cVar = this.f45220a;
+        if (!TextUtils.equals(f1Var.f45232r, obj)) {
+            f1Var.f45232r = obj;
+            f1Var.f45231n = true;
+            k2.c cVar = this.f45223a;
             AndroidUtilities.cancelRunOnUIThread(cVar);
             AndroidUtilities.runOnUIThread(cVar, 500L);
-            xh.n nVar = f1Var.f45232x.d;
+            xh.n nVar = f1Var.f45235x.d;
             if (TextUtils.isEmpty(obj)) {
                 i10 = R.string.WebNoHistory;
             } else {
@@ -73,11 +73,11 @@ public final class e1 extends org.telegram.ui.ActionBar.s0 {
             }
             nVar.setText(LocaleController.getString(i10));
         }
-        l71 l71Var = f1Var.f30417a;
+        l71 l71Var = f1Var.f30419a;
         if (l71Var != null) {
-            l71Var.f32150g3.O(true);
+            l71Var.f32152g3.O(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                f1Var.f30417a.f32149f3.h1(0, 0);
+                f1Var.f30419a.f32151f3.h1(0, 0);
             }
         }
     }

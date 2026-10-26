@@ -6,15 +6,15 @@ import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 public final class ao0 implements View.OnClickListener {
-    public final bo0 f26586a;
+    public final bo0 f26588a;
 
     public ao0(bo0 bo0Var) {
-        this.f26586a = bo0Var;
+        this.f26588a = bo0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        co0 co0Var = this.f26586a.f26921c;
+        co0 co0Var = this.f26588a.f26923c;
         for (int i10 = 0; i10 < co0Var.e.size(); i10++) {
             MessageObject messageObject = (MessageObject) co0Var.e.get(i10);
             if (co0Var.H) {

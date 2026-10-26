@@ -22,14 +22,14 @@ import org.telegram.ui.Components.ds;
 import org.telegram.ui.Components.gb1;
 import org.telegram.ui.fc1;
 public final class k5 extends FrameLayout {
-    public final TextView f36782a;
-    public final FrameLayout f36783b;
-    public final FrameLayout f36784c;
+    public final TextView f36785a;
+    public final FrameLayout f36786b;
+    public final FrameLayout f36787c;
     public final FrameLayout d;
     public q0 e;
-    public boolean f36785f;
+    public boolean f36788f;
     public boolean h;
-    public ValueAnimator f36786n;
+    public ValueAnimator f36789n;
 
     public k5(Context context, String str) {
         super(context);
@@ -38,12 +38,12 @@ public final class k5 extends FrameLayout {
         ActivityManager activityManager;
         addView(new a5(context, str), gb1.i(-1, -1, 17));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f36783b = frameLayout;
+        this.f36786b = frameLayout;
         frameLayout.setBackground(org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(20.0f), -1));
         frameLayout.setCameraDistance(AndroidUtilities.dp(8000.0f));
         addView(frameLayout, gb1.h(212, 244.0f, 49, 0.0f, 22.0f, 0.0f, 0.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f36784c = frameLayout2;
+        this.f36787c = frameLayout2;
         frameLayout.addView(frameLayout2, gb1.g(-1.0f, -1));
         FrameLayout frameLayout3 = new FrameLayout(context);
         frameLayout2.addView(frameLayout3, gb1.h(164, 164.0f, 49, 0.0f, 24.0f, 0.0f, 0.0f));
@@ -67,7 +67,7 @@ public final class k5 extends FrameLayout {
             }
         }
         TextView textView = new TextView(context);
-        this.f36782a = textView;
+        this.f36785a = textView;
         textView.setText(LocaleController.getString(R.string.WalletCopyAddress));
         textView.setTextColor(-15556886);
         textView.setTextSize(1, 14.0f);
@@ -142,18 +142,18 @@ public final class k5 extends FrameLayout {
         gb1.b(k11);
         this.d.addView(k11, gb1.h(-2, 28.0f, 49, 0.0f, 202.0f, 0.0f, 0.0f));
         View.OnClickListener onClickListener = new View.OnClickListener(this) {
-            public final k5 f36733b;
+            public final k5 f36736b;
 
             {
-                this.f36733b = this;
+                this.f36736b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        k5 k5Var = this.f36733b;
-                        if (!k5Var.f36785f && !k5Var.h) {
+                        k5 k5Var = this.f36736b;
+                        if (!k5Var.f36788f && !k5Var.h) {
                             q0 q0Var = k5Var.e;
                             if (q0Var != null) {
                                 q0Var.run();
@@ -163,26 +163,26 @@ public final class k5 extends FrameLayout {
                         }
                         return;
                     default:
-                        this.f36733b.a(false);
+                        this.f36736b.a(false);
                         return;
                 }
             }
         };
         frameLayout3.setOnClickListener(onClickListener);
-        this.f36782a.setOnClickListener(onClickListener);
+        this.f36785a.setOnClickListener(onClickListener);
         k11.setOnClickListener(new View.OnClickListener(this) {
-            public final k5 f36733b;
+            public final k5 f36736b;
 
             {
-                this.f36733b = this;
+                this.f36736b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        k5 k5Var = this.f36733b;
-                        if (!k5Var.f36785f && !k5Var.h) {
+                        k5 k5Var = this.f36736b;
+                        if (!k5Var.f36788f && !k5Var.h) {
                             q0 q0Var = k5Var.e;
                             if (q0Var != null) {
                                 q0Var.run();
@@ -192,7 +192,7 @@ public final class k5 extends FrameLayout {
                         }
                         return;
                     default:
-                        this.f36733b.a(false);
+                        this.f36736b.a(false);
                         return;
                 }
             }
@@ -201,10 +201,10 @@ public final class k5 extends FrameLayout {
 
     public final void a(boolean z10) {
         float f7;
-        if (this.f36785f != z10 && !this.h) {
+        if (this.f36788f != z10 && !this.h) {
             this.h = true;
-            this.f36785f = z10;
-            FrameLayout frameLayout = this.f36783b;
+            this.f36788f = z10;
+            FrameLayout frameLayout = this.f36786b;
             frameLayout.setLayerType(2, null);
             float rotationY = frameLayout.getRotationY();
             if (z10) {
@@ -213,12 +213,12 @@ public final class k5 extends FrameLayout {
                 f7 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(rotationY, f7);
-            this.f36786n = ofFloat;
+            this.f36789n = ofFloat;
             ofFloat.setDuration(420L);
-            this.f36786n.setInterpolator(ds.h);
-            this.f36786n.addUpdateListener(new a3(this, 2));
-            this.f36786n.addListener(new fc1(this, 8));
-            this.f36786n.start();
+            this.f36789n.setInterpolator(ds.h);
+            this.f36789n.addUpdateListener(new a3(this, 2));
+            this.f36789n.addListener(new fc1(this, 8));
+            this.f36789n.start();
         }
     }
 }

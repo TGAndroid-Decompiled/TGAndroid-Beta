@@ -80,7 +80,7 @@ public final class t3 implements View.OnClickListener {
                     int i13 = i12 + 1;
                     TLObject tLObject = (TLObject) arrayList.get(i12);
                     if (tLObject instanceof TLRPC.User) {
-                        j10 = ((TLRPC.User) tLObject).f22174id;
+                        j10 = ((TLRPC.User) tLObject).f22176id;
                     } else {
                         if (tLObject instanceof TLRPC.Chat) {
                             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
@@ -98,8 +98,8 @@ public final class t3 implements View.OnClickListener {
                     F.g(tLObject, z10, new a9(i11, j10, this.f13291f, this.h, k3Var, u6Var));
                     i12 = i13;
                 }
-                F.f29867t = false;
-                F.f29866s = 0;
+                F.f29869t = false;
+                F.f29868s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();

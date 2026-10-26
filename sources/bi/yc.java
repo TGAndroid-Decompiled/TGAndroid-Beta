@@ -75,7 +75,7 @@ public final class yc extends LinearLayout {
         linearLayout.addView(z90Var, gb1.o(0.0f, 0.0f, 0.0f, 0.33f, -1, -2));
         TextView textView2 = new TextView(context);
         this.f5786r = textView2;
-        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23765z6, u6Var);
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23767z6, u6Var);
         textView2.setTextSize(1, 14.0f);
         textView2.setEllipsize(truncateAt);
         textView2.setSingleLine(true);
@@ -136,7 +136,7 @@ public final class yc extends LinearLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.y6.f23476k0);
+            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.y6.f23478k0);
         }
     }
 

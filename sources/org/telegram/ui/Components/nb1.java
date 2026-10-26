@@ -20,36 +20,36 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class nb1 {
-    public final Paint f30940a = new Paint(1);
-    public final Paint f30941b;
-    public final Paint f30942c;
+    public final Paint f30942a = new Paint(1);
+    public final Paint f30943b;
+    public final Paint f30944c;
     public final Paint d;
     public final Path e;
-    public final Path f30943f;
-    public final Path f30944g;
+    public final Path f30945f;
+    public final Path f30946g;
     public final RectF h;
-    public final RectF f30945i;
-    public final RectF f30946j;
-    public final float[] f30947k;
-    public final float[] f30948l;
-    public final Matrix f30949m;
-    public final float[] f30950n;
+    public final RectF f30947i;
+    public final RectF f30948j;
+    public final float[] f30949k;
+    public final float[] f30950l;
+    public final Matrix f30951m;
+    public final float[] f30952n;
 
     public nb1() {
         Paint paint = new Paint(1);
-        this.f30941b = paint;
-        this.f30942c = new Paint(2);
+        this.f30943b = paint;
+        this.f30944c = new Paint(2);
         this.d = new Paint(1);
         this.e = new Path();
-        this.f30943f = new Path();
-        this.f30944g = new Path();
+        this.f30945f = new Path();
+        this.f30946g = new Path();
         this.h = new RectF();
-        this.f30945i = new RectF();
-        this.f30946j = new RectF();
-        this.f30947k = new float[8];
-        this.f30948l = new float[8];
-        this.f30949m = new Matrix();
-        this.f30950n = new float[9];
+        this.f30947i = new RectF();
+        this.f30948j = new RectF();
+        this.f30949k = new float[8];
+        this.f30950l = new float[8];
+        this.f30951m = new Matrix();
+        this.f30952n = new float[9];
         paint.setStyle(Paint.Style.STROKE);
     }
 
@@ -225,7 +225,7 @@ public final class nb1 {
         }
         int i10 = 0;
         while (true) {
-            float[] fArr = this.f30947k;
+            float[] fArr = this.f30949k;
             if (i10 < 8) {
                 fArr[i10] = Math.max(((float) optJSONArray.optDouble(i10)) + f7, 0.0f);
                 i10++;
@@ -238,7 +238,7 @@ public final class nb1 {
 
     public final void b(Canvas canvas, JSONObject jSONObject) {
         if (jSONObject.has("l")) {
-            canvas.clipRect(i(jSONObject, "l", this.f30945i));
+            canvas.clipRect(i(jSONObject, "l", this.f30947i));
         }
     }
 
@@ -290,14 +290,14 @@ public final class nb1 {
                 Canvas canvas4 = (Canvas) e0Var5.f9530c;
                 int optInt = optJSONObject.optInt("k");
                 e0.e0 e0Var6 = e0Var5;
-                RectF rectF = nb1Var3.f30946j;
+                RectF rectF = nb1Var3.f30948j;
                 i11 = i14;
-                float[] fArr2 = nb1Var3.f30950n;
+                float[] fArr2 = nb1Var3.f30952n;
                 Path path = nb1Var3.e;
-                float[] fArr3 = nb1Var3.f30948l;
-                Paint paint = nb1Var3.f30941b;
-                Path path2 = nb1Var3.f30943f;
-                Paint paint2 = nb1Var3.f30940a;
+                float[] fArr3 = nb1Var3.f30950l;
+                Paint paint = nb1Var3.f30943b;
+                Path path2 = nb1Var3.f30945f;
+                Paint paint2 = nb1Var3.f30942a;
                 RectF rectF2 = nb1Var3.h;
                 switch (optInt) {
                     case 0:
@@ -393,7 +393,7 @@ public final class nb1 {
                                 nb1Var.j(optJSONObject, str, path2);
                                 canvas4.clipPath(path2);
                             }
-                            canvas4.drawBitmap(image, (Rect) null, i(optJSONObject, "r", rectF2), nb1Var.f30942c);
+                            canvas4.drawBitmap(image, (Rect) null, i(optJSONObject, "r", rectF2), nb1Var.f30944c);
                             canvas4.restore();
                         }
                         e0Var = e0Var2;
@@ -598,7 +598,7 @@ public final class nb1 {
                         fArr2[6] = 0.0f;
                         fArr2[7] = 0.0f;
                         fArr2[8] = 1.0f;
-                        Matrix matrix12 = this.f30949m;
+                        Matrix matrix12 = this.f30951m;
                         matrix12.setValues(fArr2);
                         canvas4.concat(matrix12);
                         matrix11.preConcat(matrix12);
@@ -647,7 +647,7 @@ public final class nb1 {
                                 blurMaskFilter = null;
                             }
                             paint3.setMaskFilter(blurMaskFilter);
-                            Path path3 = nb1Var2.f30944g;
+                            Path path3 = nb1Var2.f30946g;
                             path3.rewind();
                             if (z12) {
                                 float abs = Math.abs(f21) + Math.abs(f20) + Math.abs(f22) + (f10 * 1.5f) + 2.0f;
@@ -693,8 +693,8 @@ public final class nb1 {
                     case 15:
                         e0Var = e0Var6;
                         lb1 lb1Var = new lb1();
-                        lb1Var.f30154a = (Canvas) e0Var.f9530c;
-                        lb1Var.f30155b = e0Var.f9529b;
+                        lb1Var.f30156a = (Canvas) e0Var.f9530c;
+                        lb1Var.f30157b = e0Var.f9529b;
                         arrayList6.add(lb1Var);
                         JSONArray optJSONArray2 = optJSONObject.optJSONArray("fl");
                         if (optJSONArray2 != null && optJSONArray2.length() != 0) {
@@ -774,7 +774,7 @@ public final class nb1 {
                                     matrix4 = matrix14;
                                     matrix4.getValues(fArr4);
                                     if (fArr4[1] == 0.0f && fArr4[3] == 0.0f) {
-                                        Matrix matrix15 = lb1Var.f30158g;
+                                        Matrix matrix15 = lb1Var.f30160g;
                                         matrix15.set(matrix4);
                                         matrix15.postScale(f7, f7);
                                         matrix15.mapRect(rectF2, rectF);
@@ -783,12 +783,12 @@ public final class nb1 {
                                         int ceil = ((int) Math.ceil(rectF2.right)) - floor;
                                         int ceil2 = ((int) Math.ceil(rectF2.bottom)) - floor2;
                                         if (ceil > 0 && ceil2 > 0 && ceil * ceil2 <= 16777216) {
-                                            lb1Var.f30157f = Bitmap.createBitmap(ceil, ceil2, Bitmap.Config.ARGB_8888);
+                                            lb1Var.f30159f = Bitmap.createBitmap(ceil, ceil2, Bitmap.Config.ARGB_8888);
                                             lb1Var.d = floor;
                                             lb1Var.e = floor2;
                                             lb1Var.h = Math.abs(fArr4[0]) * f7;
-                                            lb1Var.f30159i = optJSONArray2;
-                                            Canvas canvas5 = new Canvas(lb1Var.f30157f);
+                                            lb1Var.f30161i = optJSONArray2;
+                                            Canvas canvas5 = new Canvas(lb1Var.f30159f);
                                             canvas5.translate(-floor, -floor2);
                                             canvas5.concat(matrix15);
                                             e0Var.f9530c = canvas5;
@@ -874,7 +874,7 @@ public final class nb1 {
         if (jSONObject.has(str) && optJSONArray != null && optJSONArray.length() >= 4) {
             int[] l4 = l(optJSONArray);
             float[] m10 = m(optJSONArray);
-            float[] fArr = this.f30948l;
+            float[] fArr = this.f30950l;
             c(jSONObject.optJSONArray(str2), fArr, 7, new float[0]);
             if (jSONObject.optInt(str) == 1) {
                 return new LinearGradient(fArr[0], fArr[1], fArr[2], fArr[3], l4, m10, Shader.TileMode.CLAMP);
@@ -890,9 +890,9 @@ public final class nb1 {
         lb1 lb1Var = (lb1) ic.a.y(1, (ArrayList) e0Var.f9531f);
         while (true) {
             int i11 = e0Var.f9529b;
-            obj = lb1Var.f30156c;
-            if (obj == null && lb1Var.f30157f == null) {
-                i10 = lb1Var.f30155b;
+            obj = lb1Var.f30158c;
+            if (obj == null && lb1Var.f30159f == null) {
+                i10 = lb1Var.f30157b;
             } else {
                 i10 = 0;
             }
@@ -903,22 +903,22 @@ public final class nb1 {
         }
         if (obj != null) {
             kb1.d(lb1Var, f7);
-            e0Var.f9530c = lb1Var.f30154a;
+            e0Var.f9530c = lb1Var.f30156a;
         } else {
-            Bitmap bitmap = lb1Var.f30157f;
+            Bitmap bitmap = lb1Var.f30159f;
             if (bitmap != null) {
-                WidgetSandboxNative.filterPixels(bitmap, lb1Var.f30159i.toString().getBytes(StandardCharsets.UTF_8), lb1Var.h);
-                e0Var.f9530c = lb1Var.f30154a;
+                WidgetSandboxNative.filterPixels(bitmap, lb1Var.f30161i.toString().getBytes(StandardCharsets.UTF_8), lb1Var.h);
+                e0Var.f9530c = lb1Var.f30156a;
                 Matrix matrix = new Matrix();
-                if (lb1Var.f30158g.invert(matrix)) {
+                if (lb1Var.f30160g.invert(matrix)) {
                     ((Canvas) e0Var.f9530c).save();
                     ((Canvas) e0Var.f9530c).concat(matrix);
-                    ((Canvas) e0Var.f9530c).drawBitmap(lb1Var.f30157f, lb1Var.d, lb1Var.e, this.f30942c);
+                    ((Canvas) e0Var.f9530c).drawBitmap(lb1Var.f30159f, lb1Var.d, lb1Var.e, this.f30944c);
                     ((Canvas) e0Var.f9530c).restore();
                 }
             }
         }
-        e0Var.f9529b = lb1Var.f30155b;
+        e0Var.f9529b = lb1Var.f30157b;
     }
 
     public final void j(JSONObject jSONObject, String str, Path path) {
@@ -932,7 +932,7 @@ public final class nb1 {
         }
         int i10 = 0;
         while (true) {
-            float[] fArr = this.f30947k;
+            float[] fArr = this.f30949k;
             if (i10 < 8) {
                 fArr[i10] = (float) optJSONArray.optDouble(i10);
                 i10++;

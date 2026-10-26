@@ -52,7 +52,7 @@ public abstract class d extends oi.e implements p6 {
     public int f9963r;
     public int f9964s;
     public int v;
-    public int f9965w = f7.f22626b;
+    public int f9965w = f7.f22628b;
     public final c f9966x;
     public b f9967y;
 
@@ -386,7 +386,7 @@ public abstract class d extends oi.e implements p6 {
 
     @Override
     public void updateColors() {
-        this.f9965w = f7.f22626b;
+        this.f9965w = f7.f22628b;
         fh.a aVar = this.e;
         if (aVar == null) {
             return;

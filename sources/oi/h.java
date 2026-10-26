@@ -32,7 +32,7 @@ public final class h {
         } else {
             i10 = 0;
         }
-        long j12 = y6.Ll + f7.f22626b;
+        long j12 = y6.Ll + f7.f22628b;
         if (qVar.f19495q != j12) {
             qVar.f19495q = j12;
             i10 |= 16;
@@ -175,7 +175,7 @@ public final class h {
         }
         boolean z17 = z10;
         if (z17) {
-            aVar.f47065b = 0;
+            aVar.f47068b = 0;
             int size2 = arrayList2.size();
             for (int i13 = 0; i13 < size2; i13++) {
                 p pVar2 = (p) arrayList2.get(i13);
@@ -188,8 +188,8 @@ public final class h {
             qi.a aVar2 = qVar.f19502y;
             bVar.getClass();
             if (aVar != aVar2) {
-                aVar2.f47065b = 0;
-                int i14 = aVar.f47065b;
+                aVar2.f47068b = 0;
+                int i14 = aVar.f47068b;
                 for (int i15 = 0; i15 < i14; i15++) {
                     RectF c10 = aVar.c(i15);
                     float f7 = c10.left;
@@ -197,16 +197,16 @@ public final class h {
                     float f11 = c10.right;
                     float f12 = c10.bottom;
                     int i16 = 0;
-                    while (i16 < aVar2.f47065b) {
+                    while (i16 < aVar2.f47068b) {
                         RectF c11 = aVar2.c(i16);
                         float f13 = c11.left;
                         float f14 = c11.right;
                         qi.a aVar3 = aVar;
-                        float f15 = bVar.f47067a;
+                        float f15 = bVar.f47070a;
                         if (f11 >= f13 ? f14 >= f7 || f7 - f14 <= f15 : f13 - f11 <= f15) {
                             float f16 = c11.top;
                             float f17 = c11.bottom;
-                            float f18 = bVar.f47068b;
+                            float f18 = bVar.f47071b;
                             if (f12 >= f16 ? f17 >= f10 || f10 - f17 <= f18 : f16 - f12 <= f18) {
                                 if (f13 < f7) {
                                     f7 = f13;
@@ -230,7 +230,7 @@ public final class h {
                     }
                     aVar2.a(f7, f10, f11, f12);
                 }
-                int i17 = aVar2.f47065b;
+                int i17 = aVar2.f47068b;
                 for (int i18 = 1; i18 < i17; i18++) {
                     RectF c12 = aVar2.c(i18);
                     float f19 = c12.left;

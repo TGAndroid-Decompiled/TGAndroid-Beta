@@ -13,9 +13,9 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
 public final class WidgetConformanceActivity extends Activity {
-    public TextView f37600a;
-    public ScrollView f37601b;
-    public Thread f37602c;
+    public TextView f37603a;
+    public ScrollView f37604b;
+    public Thread f37605c;
 
     public static boolean a(Intent intent) {
         if (!intent.getBooleanExtra("clearHeights", false)) {
@@ -34,15 +34,15 @@ public final class WidgetConformanceActivity extends Activity {
         String str;
         WidgetConformanceActivity widgetConformanceActivity;
         vh1 vh1Var;
-        if (this.f37601b == null) {
-            this.f37600a.setTypeface(Typeface.MONOSPACE);
-            this.f37600a.setTextSize(11.0f);
+        if (this.f37604b == null) {
+            this.f37603a.setTypeface(Typeface.MONOSPACE);
+            this.f37603a.setTextSize(11.0f);
             int dp = AndroidUtilities.dp(12.0f);
-            this.f37600a.setPadding(dp, dp, dp, dp);
+            this.f37603a.setPadding(dp, dp, dp, dp);
             ScrollView scrollView = new ScrollView(this);
-            this.f37601b = scrollView;
-            scrollView.addView(this.f37600a);
-            setContentView(this.f37601b);
+            this.f37604b = scrollView;
+            scrollView.addView(this.f37603a);
+            setContentView(this.f37604b);
         }
         int intExtra = intent.getIntExtra("width", 390);
         String str2 = "dark";
@@ -50,7 +50,7 @@ public final class WidgetConformanceActivity extends Activity {
         String stringExtra = intent.getStringExtra("filter");
         String str3 = "attacks";
         boolean booleanExtra2 = intent.getBooleanExtra("attacks", false);
-        TextView textView = this.f37600a;
+        TextView textView = this.f37603a;
         StringBuilder sb2 = new StringBuilder();
         if (!booleanExtra2) {
             StringBuilder k10 = ic.a.k(intExtra, "conformance · width ", " · ");
@@ -78,7 +78,7 @@ public final class WidgetConformanceActivity extends Activity {
             vh1Var = new vh1(new org.telegram.ui.Components.za1(widgetConformanceActivity, intExtra, booleanExtra, stringExtra, hl0Var), 2);
         }
         Thread thread = new Thread(vh1Var, "WidgetConformance");
-        widgetConformanceActivity.f37602c = thread;
+        widgetConformanceActivity.f37605c = thread;
         thread.start();
     }
 
@@ -91,14 +91,14 @@ public final class WidgetConformanceActivity extends Activity {
         } else if (a(getIntent())) {
             finish();
         } else {
-            this.f37600a = new TextView(this);
+            this.f37603a = new TextView(this);
             b(getIntent());
         }
     }
 
     @Override
     public final void onDestroy() {
-        Thread thread = this.f37602c;
+        Thread thread = this.f37605c;
         if (thread != null) {
             thread.interrupt();
         }
@@ -108,8 +108,8 @@ public final class WidgetConformanceActivity extends Activity {
     @Override
     public final void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (!a(intent) && this.f37600a != null) {
-            Thread thread = this.f37602c;
+        if (!a(intent) && this.f37603a != null) {
+            Thread thread = this.f37605c;
             if (thread == null || !thread.isAlive()) {
                 b(intent);
             }

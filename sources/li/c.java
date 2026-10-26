@@ -65,7 +65,7 @@ public final class c implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        f7.t(imageView, y6.f23596q7, u6Var, PorterDuff.Mode.SRC_IN);
+                        f7.t(imageView, y6.f23598q7, u6Var, PorterDuff.Mode.SRC_IN);
                         if (!z10) {
                             int i12 = -iArr[0];
                             iArr[0] = i12;
@@ -96,8 +96,8 @@ public final class c implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.i2 i2Var = (org.telegram.ui.Wallet.i2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !a2Var.f36343m && !a2Var.f36344n) {
-                    boolean z11 = a2Var.f36346p;
+                if (!zArr[0] && !a2Var.f36346m && !a2Var.f36347n) {
+                    boolean z11 = a2Var.f36349p;
                     zArr2[0] = z11;
                     dVar.setEnabled(z11);
                     boolean z12 = zArr2[0];

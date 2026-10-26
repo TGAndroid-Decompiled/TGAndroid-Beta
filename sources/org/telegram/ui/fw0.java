@@ -14,16 +14,16 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class fw0 extends org.telegram.ui.ActionBar.r2 {
-    public final long f39481a;
-    public org.telegram.ui.Cells.c8 f39482b;
-    public org.telegram.ui.Components.r90 f39483c;
+    public final long f39484a;
+    public org.telegram.ui.Cells.c8 f39485b;
+    public org.telegram.ui.Components.r90 f39486c;
     public org.telegram.ui.Components.r71 d;
     public org.telegram.ui.ActionBar.u5 e;
-    public final boolean f39484f;
+    public final boolean f39487f;
     public final long h;
-    public boolean f39485n;
-    public long f39486r;
-    public fo f39487s;
+    public boolean f39488n;
+    public long f39489r;
+    public fo f39490s;
     public boolean v;
 
     public fw0(long j10) {
@@ -31,18 +31,18 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
         TLRPC.Chat chat = null;
         boolean z10 = true;
         this.v = true;
-        this.f39481a = j10;
+        this.f39484a = j10;
         TLRPC.Chat chat2 = getMessagesController().getChat(Long.valueOf(j10));
         if (chat2 != null && chat2.linked_monoforum_id != 0) {
             chat = getMessagesController().getChat(Long.valueOf(chat2.linked_monoforum_id));
         }
         long j11 = chat != null ? chat.send_paid_messages_stars : 0L;
         z10 = (chat2 == null || !chat2.broadcast_messages_allowed) ? false : false;
-        this.f39484f = z10;
+        this.f39487f = z10;
         long clamp = Utilities.clamp(z10 ? j11 : getMessagesController().config.starsPaidMessagesChannelAmountDefault.get(), getMessagesController().starsPaidMessageAmountMax, 0L);
         this.h = clamp;
-        this.f39485n = z10;
-        this.f39486r = clamp;
+        this.f39488n = z10;
+        this.f39489r = clamp;
     }
 
     public static void V(fw0 fw0Var, TLRPC.TL_error tL_error, TLObject tLObject, TL_stars.updatePaidMessagesPrice updatepaidmessagesprice) {
@@ -56,7 +56,7 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
         fw0Var.getMessagesController().putChats(updates.chats, false);
         fw0Var.getMessagesController().lambda$processUpdates$379(updates, false);
         if (!fw0Var.isFinished && !fw0Var.finishing) {
-            fo foVar = fw0Var.f39487s;
+            fo foVar = fw0Var.f39490s;
             if (foVar != null) {
                 if (updatepaidmessagesprice.suggestions_allowed) {
                     j10 = updatepaidmessagesprice.send_paid_messages_stars;
@@ -80,11 +80,11 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
 
     public final String X() {
         int i10 = getMessagesController().starsPaidMessageCommissionPermille;
-        return LocaleController.formatString(R.string.PostSuggestionsPriceInfo2, hi.k.F0(i10), String.valueOf(((int) (((((float) this.f39486r) * (i10 / 1000.0f)) / 1000.0d) * getMessagesController().starsUsdWithdrawRate1000)) / 100.0d));
+        return LocaleController.formatString(R.string.PostSuggestionsPriceInfo2, hi.k.F0(i10), String.valueOf(((int) (((((float) this.f39489r) * (i10 / 1000.0f)) / 1000.0d) * getMessagesController().starsUsdWithdrawRate1000)) / 100.0d));
     }
 
     public final boolean Y() {
-        if (this.f39486r == this.h && this.f39485n == this.f39484f) {
+        if (this.f39489r == this.h && this.f39488n == this.f39487f) {
             return false;
         }
         return true;
@@ -93,7 +93,7 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
     public final void Z() {
         long j10;
         long j11;
-        if (!this.e.f23137x.f19327f) {
+        if (!this.e.f23139x.f19327f) {
             if (!Y()) {
                 finishFragment();
                 return;
@@ -101,11 +101,11 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
             this.e.b(true);
             TL_stars.updatePaidMessagesPrice updatepaidmessagesprice = new TL_stars.updatePaidMessagesPrice();
             MessagesController messagesController = getMessagesController();
-            long j12 = this.f39481a;
+            long j12 = this.f39484a;
             updatepaidmessagesprice.channel = messagesController.getInputChannel(j12);
-            boolean z10 = this.f39485n;
+            boolean z10 = this.f39488n;
             if (z10) {
-                j10 = this.f39486r;
+                j10 = this.f39489r;
             } else {
                 j10 = 0;
             }
@@ -114,7 +114,7 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
             getConnectionsManager().sendRequest(updatepaidmessagesprice, new j10(21, this, updatepaidmessagesprice));
             TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(j12));
             if (chat != null) {
-                if (this.f39485n) {
+                if (this.f39488n) {
                     chat.flags2 |= 65536;
                     chat.broadcast_messages_allowed = true;
                 } else {
@@ -124,9 +124,9 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
                 getMessagesController().putChat(chat, true);
                 TLRPC.Chat chat2 = getMessagesController().getChat(Long.valueOf(chat.linked_monoforum_id));
                 if (chat2 != null) {
-                    if (this.f39485n) {
+                    if (this.f39488n) {
                         chat2.flags2 |= 16384;
-                        chat2.send_paid_messages_stars = this.f39486r;
+                        chat2.send_paid_messages_stars = this.f39489r;
                     } else {
                         chat2.flags2 &= -16385;
                         chat2.send_paid_messages_stars = 0L;
@@ -134,10 +134,10 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
                     getMessagesController().putChat(chat2, true);
                 }
             }
-            fo foVar = this.f39487s;
+            fo foVar = this.f39490s;
             if (foVar != null) {
-                if (this.f39485n) {
-                    j11 = this.f39486r;
+                if (this.f39488n) {
+                    j11 = this.f39489r;
                 } else {
                     j11 = -1;
                 }
@@ -155,18 +155,18 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
         W(false);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23297a7, frameLayout, null);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23299a7, frameLayout, null);
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         org.telegram.ui.Cells.c8 c8Var = new org.telegram.ui.Cells.c8(context, this.resourceProvider);
-        this.f39482b = c8Var;
-        int i10 = org.telegram.ui.ActionBar.y6.f23354d6;
+        this.f39485b = c8Var;
+        int i10 = org.telegram.ui.ActionBar.y6.f23356d6;
         org.telegram.ui.ActionBar.f7.i(i10, c8Var, getResourceProvider());
         org.telegram.ui.Components.r90 r90Var = new org.telegram.ui.Components.r90(context, this, null, true, true);
-        this.f39483c = r90Var;
+        this.f39486c = r90Var;
         r90Var.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), 0);
-        org.telegram.ui.ActionBar.f7.i(i10, this.f39483c, getResourceProvider());
-        this.f39483c.b(true);
-        this.f39483c.d(0, null, false);
+        org.telegram.ui.ActionBar.f7.i(i10, this.f39486c, getResourceProvider());
+        this.f39486c.b(true);
+        this.f39486c.d(0, null, false);
         org.telegram.ui.Components.r71 r71Var = new org.telegram.ui.Components.r71(context, this.currentAccount, this.classGuid, false, new e5(this, 16), new ew0(this, 2), null, this.resourceProvider);
         this.d = r71Var;
         r71Var.u1();
@@ -194,11 +194,11 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
         if (Y()) {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.MessageSuggestionsUnsavedChanges);
+                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.MessageSuggestionsUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new ew0(this, 0));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Discard), new ew0(this, 1));
-                showDialog(alertDialog$Builder.f22366a);
+                showDialog(alertDialog$Builder.f22368a);
                 return false;
             }
             return false;
@@ -211,7 +211,7 @@ public final class fw0 extends org.telegram.ui.ActionBar.r2 {
         org.telegram.ui.Components.j71 j71Var;
         super.onFragmentCreate();
         org.telegram.ui.Components.r71 r71Var = this.d;
-        if (r71Var != null && (j71Var = r71Var.f32150g3) != null) {
+        if (r71Var != null && (j71Var = r71Var.f32152g3) != null) {
             j71Var.O(false);
             return true;
         }

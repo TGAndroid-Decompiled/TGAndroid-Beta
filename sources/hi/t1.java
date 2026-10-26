@@ -50,11 +50,11 @@ public final class t1 implements Predicate {
                 zh.p1 p1Var = (zh.p1) this.f13285b;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
                 if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                    z10 = p1Var.f53187b0.disallow_unique_stargifts;
+                    z10 = p1Var.f53190b0.disallow_unique_stargifts;
                 } else {
                     p1Var.getClass();
                     if (starGift.limited) {
-                        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = p1Var.f53187b0;
+                        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = p1Var.f53190b0;
                         if (!disallowedGiftsSettings.disallow_limited_stargifts) {
                             return true;
                         }
@@ -63,7 +63,7 @@ public final class t1 implements Predicate {
                         }
                         return false;
                     }
-                    z10 = p1Var.f53187b0.disallow_unlimited_stargifts;
+                    z10 = p1Var.f53190b0.disallow_unlimited_stargifts;
                 }
                 return true ^ z10;
         }

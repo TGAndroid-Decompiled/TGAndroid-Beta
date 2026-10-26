@@ -9,31 +9,31 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stats;
 public final class wd implements RequestDelegate {
-    public final int f45100a;
-    public final ke f45101b;
+    public final int f45103a;
+    public final ke f45104b;
 
     public wd(ke keVar, int i10) {
-        this.f45100a = i10;
-        this.f45101b = keVar;
+        this.f45103a = i10;
+        this.f45104b = keVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f45100a) {
+        switch (this.f45103a) {
             case 0:
                 if (tL_error != null) {
                     AndroidUtilities.runOnUIThread(new zt0(tL_error, 22));
                     return;
                 } else if (tLObject instanceof TLRPC.Updates) {
-                    ke keVar = this.f45101b;
+                    ke keVar = this.f45104b;
                     AndroidUtilities.runOnUIThread(new pd(keVar, 3));
-                    MessagesController.getInstance(keVar.f40904o0).lambda$processUpdates$379((TLRPC.Updates) tLObject, false);
+                    MessagesController.getInstance(keVar.f40907o0).lambda$processUpdates$379((TLRPC.Updates) tLObject, false);
                     return;
                 } else {
                     return;
                 }
             case 1:
-                final ke keVar2 = this.f45101b;
+                final ke keVar2 = this.f45104b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -49,12 +49,12 @@ public final class wd implements RequestDelegate {
                                     if (statsGraph != null) {
                                         statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
                                     }
-                                    keVar3.f40901m1 = w91.e0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
+                                    keVar3.f40904m1 = w91.e0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
                                     i91 i91Var = keVar3.l1;
                                     if (i91Var != null) {
-                                        i91Var.f40193n = true;
+                                        i91Var.f40196n = true;
                                     }
-                                    keVar3.f40896g1 = tL_payments_starsRevenueStats.usd_rate;
+                                    keVar3.f40899g1 = tL_payments_starsRevenueStats.usd_rate;
                                     keVar3.L(true, tL_payments_starsRevenueStats.status);
                                     keVar3.Y0.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.ds.h).withEndAction(new pd(keVar3, 5)).start();
                                     keVar3.E();
@@ -77,7 +77,7 @@ public final class wd implements RequestDelegate {
                 });
                 return;
             default:
-                final ke keVar3 = this.f45101b;
+                final ke keVar3 = this.f45104b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -93,12 +93,12 @@ public final class wd implements RequestDelegate {
                                     if (statsGraph != null) {
                                         statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
                                     }
-                                    keVar32.f40901m1 = w91.e0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
+                                    keVar32.f40904m1 = w91.e0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
                                     i91 i91Var = keVar32.l1;
                                     if (i91Var != null) {
-                                        i91Var.f40193n = true;
+                                        i91Var.f40196n = true;
                                     }
-                                    keVar32.f40896g1 = tL_payments_starsRevenueStats.usd_rate;
+                                    keVar32.f40899g1 = tL_payments_starsRevenueStats.usd_rate;
                                     keVar32.L(true, tL_payments_starsRevenueStats.status);
                                     keVar32.Y0.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.ds.h).withEndAction(new pd(keVar32, 5)).start();
                                     keVar32.E();

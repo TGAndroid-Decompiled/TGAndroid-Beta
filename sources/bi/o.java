@@ -36,7 +36,7 @@ public final class o implements TextView.OnEditorActionListener {
                     if (TextUtils.isEmpty(t0Var.f15850f.getText())) {
                         t0Var.f15856y = null;
                         t0Var.d.b();
-                        t0Var.f15849c.f32150g3.O(true);
+                        t0Var.f15849c.f32152g3.O(true);
                     } else {
                         AndroidUtilities.runOnUIThread(m0Var);
                     }

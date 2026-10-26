@@ -150,7 +150,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
                 if (bVar2 != null) {
                     bVar2.a(z10, true);
                 }
-                c20 c20Var = hVar.f38717s;
+                c20 c20Var = hVar.f38720s;
                 if (c20Var != null) {
                     c20Var.invalidate();
                     return;
@@ -176,7 +176,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void D(v0 v0Var) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new u(bVar, v0Var, 1));
         }
@@ -211,7 +211,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void J(v0 v0Var) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new u(bVar, v0Var, 0));
         }
@@ -407,7 +407,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f3670b;
         ffmpegAudioRenderer.f2872g0 = true;
         rf.b bVar = ffmpegAudioRenderer.I;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new r3(bVar, j10, 13));
         }
@@ -431,7 +431,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i10 = r7.a.f47301a;
+                int i10 = r7.a.f47304a;
                 obtain.writeStrongBinder(fVar);
                 r7.a.b(obtain, (h7.f) this.f3670b);
                 r7.a.b(obtain, gVar);
@@ -680,7 +680,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void m(int i10, long j10, long j11) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new k2.t(bVar, i10, j10, j11, 0));
         }
@@ -701,7 +701,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void onAudioSessionIdChanged(int i10) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new r0(bVar, i10, 15));
         }
@@ -724,7 +724,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new bh.n(12, bVar, z10));
         }
@@ -922,7 +922,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     public void r(Exception exc) {
         e2.a.d("DecoderAudioRenderer", "Audio sink error", exc);
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47332b;
+        Handler handler = (Handler) bVar.f47335b;
         if (handler != null) {
             handler.post(new k2.r(bVar, exc, 1));
         }
@@ -1004,8 +1004,8 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         d2 d2Var = ((o6) this.f3670b).f11389w;
         if (d2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(d2Var.f48185y0 - f10) >= 1.0E-4f) {
-                d2Var.f48185y0 = f10;
+            if (Math.abs(d2Var.f48188y0 - f10) >= 1.0E-4f) {
+                d2Var.f48188y0 = f10;
                 d2Var.requestLayout();
             }
         }

@@ -48,7 +48,7 @@ public final class eg implements Runnable {
                     while (true) {
                         q7Var = null;
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f22264id == this.d) {
+                            if (tL_stories_stories.stories.get(i11).f22266id == this.d) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;

@@ -3,31 +3,31 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class bs implements Runnable {
-    public final int f38150a;
-    public final js f38151b;
-    public final TLRPC.User f38152c;
+    public final int f38153a;
+    public final js f38154b;
+    public final TLRPC.User f38155c;
 
     public bs(js jsVar, TLRPC.User user, int i10) {
-        this.f38150a = i10;
-        this.f38151b = jsVar;
-        this.f38152c = user;
+        this.f38153a = i10;
+        this.f38154b = jsVar;
+        this.f38155c = user;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f38150a) {
+        switch (this.f38153a) {
             case 0:
-                js jsVar = this.f38151b;
-                TLRPC.User user = this.f38152c;
+                js jsVar = this.f38154b;
+                TLRPC.User user = this.f38155c;
                 if (user != null && jsVar.M == null && jsVar.N == null) {
                     if (user.phone == null && (str = jsVar.L) != null) {
                         user.phone = kf.b.d(str, false);
                     }
-                    jsVar.f40730b.setText(user.first_name);
-                    org.telegram.ui.Cells.e3 e3Var = jsVar.f40730b.d;
+                    jsVar.f40733b.setText(user.first_name);
+                    org.telegram.ui.Cells.e3 e3Var = jsVar.f40733b.d;
                     e3Var.setSelection(e3Var.length());
-                    jsVar.f40731c.setText(user.last_name);
+                    jsVar.f40734c.setText(user.last_name);
                 }
                 TLRPC.UserFull userFull = jsVar.getMessagesController().getUserFull(jsVar.H);
                 if (userFull != null) {
@@ -45,7 +45,7 @@ public final class bs implements Runnable {
                 }
                 return;
             default:
-                js.W(this.f38151b, this.f38152c);
+                js.W(this.f38154b, this.f38155c);
                 return;
         }
     }

@@ -6,17 +6,17 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.t61;
 public final class a implements org.telegram.ui.ActionBar.b2, Utilities.Callback5 {
-    public final l f45146a;
+    public final l f45149a;
 
     public a(l lVar) {
-        this.f45146a = lVar;
+        this.f45149a = lVar;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        l lVar = this.f45146a;
+        l lVar = this.f45149a;
         lVar.getContext().getSharedPreferences("webhistory", 0).edit().remove("queries_json").apply();
-        lVar.f45303w.f32150g3.O(true);
+        lVar.f45306w.f32152g3.O(true);
     }
 
     @Override
@@ -28,9 +28,9 @@ public final class a implements org.telegram.ui.ActionBar.b2, Utilities.Callback
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         boolean H = t61Var.H(e.class);
-        l lVar = this.f45146a;
+        l lVar = this.f45149a;
         if (H) {
-            String charSequence = t61Var.f32872l.toString();
+            String charSequence = t61Var.f32875l.toString();
             org.telegram.ui.y yVar = lVar.L;
             if (yVar != null) {
                 yVar.run(charSequence);

@@ -52,13 +52,13 @@ public final class z6 implements ValueAnimator.AnimatorUpdateListener {
                 ug.e eVar = (ug.e) this.f12073f;
                 eVar.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ug.g gVar = ((ug.f) eVar.f49765b).f49766a;
+                ug.g gVar = ((ug.f) eVar.f49768b).f49769a;
                 float f16 = this.f12072c;
                 float f17 = this.f12071b;
                 gVar.d = c3.h0.z(f16, f17, floatValue3, f17);
                 float f18 = this.e;
                 float f19 = this.d;
-                gVar.f49781i = c3.h0.z(f18, f19, floatValue3, f19);
+                gVar.f49784i = c3.h0.z(f18, f19, floatValue3, f19);
                 return;
         }
     }

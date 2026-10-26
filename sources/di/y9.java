@@ -195,7 +195,7 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
 
     public static void J(long j10, TL_stories.StoryItem storyItem, Editable editable) {
         if (j10 != 0 && storyItem != null) {
-            E1.put(j10 + (j10 >> 16) + (storyItem.f22264id << 16), editable);
+            E1.put(j10 + (j10 >> 16) + (storyItem.f22266id << 16), editable);
         }
     }
 
@@ -272,7 +272,7 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
         if (j10 == 0 || storyItem == null) {
             return "";
         }
-        return (CharSequence) E1.get(j10 + (j10 >> 16) + (storyItem.f22264id << 16), "");
+        return (CharSequence) E1.get(j10 + (j10 >> 16) + (storyItem.f22266id << 16), "");
     }
 
     public static boolean x(MessageObject messageObject) {
@@ -463,7 +463,7 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
         this.f9422c = z14;
         n9 n9Var = this.v;
         a1.c cVar = new a1.c(this, 29);
-        WeakHashMap weakHashMap = r0.i0.f47105a;
+        WeakHashMap weakHashMap = r0.i0.f47108a;
         r0.a0.i(n9Var, cVar);
         if (this.f9419b) {
             AndroidUtilities.removeFromParent(this.f9456s);
@@ -746,10 +746,10 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
                     int dp = AndroidUtilities.dp(8.0f);
                     ImageView imageView = new ImageView(context);
                     imageView.setImageResource(R.drawable.pip_video_close);
-                    int i11 = org.telegram.ui.ActionBar.y6.f23436hg;
+                    int i11 = org.telegram.ui.ActionBar.y6.f23438hg;
                     PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
                     org.telegram.ui.ActionBar.f7.t(imageView, i11, null, mode);
-                    int i12 = org.telegram.ui.ActionBar.y6.f23446i6;
+                    int i12 = org.telegram.ui.ActionBar.y6.f23448i6;
                     imageView.setBackground(org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.x0(null, i12, false), 1, -1));
                     imageView.setPadding(dp, dp, dp, dp);
                     imageView.setOnClickListener(new bh.f(2));
@@ -787,7 +787,7 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
                     o1Var.f8858b.addView(o1Var.d, o1Var.f8859c);
                     AnimatorSet animatorSet = new AnimatorSet();
                     animatorSet.setDuration(250L);
-                    animatorSet.setInterpolator(ds.f27584f);
+                    animatorSet.setInterpolator(ds.f27586f);
                     animatorSet.playTogether(ObjectAnimator.ofFloat(o1Var.d, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(o1Var.d, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(o1Var.d, View.SCALE_Y, 1.0f));
                     animatorSet.addListener(new n1(0));
                     animatorSet.start();
@@ -800,11 +800,11 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
                     }
                     if (findActivity != null && vf.b.a(findActivity) == 1) {
                         sf.c cVar = new sf.c(findActivity, o1Var);
-                        cVar.f48117c = "pip-live-story";
+                        cVar.f48120c = "pip-live-story";
                         cVar.e = 1;
                         cVar.d = AndroidUtilities.dp(10.0f);
-                        cVar.f48121j = o1Var.d;
-                        cVar.f48122k = o1Var.f8860f.getPlaceholderView();
+                        cVar.f48124j = o1Var.d;
+                        cVar.f48125k = o1Var.f8860f.getPlaceholderView();
                         o1Var.L = cVar.a();
                     }
                 }
@@ -938,7 +938,7 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
                     ArrayList arrayList2 = new ArrayList();
                     int i13 = 0;
                     while (i12 < this.O0.f9493i.size()) {
-                        if (selectedStory != null && selectedStory.f22264id == ((MessageObject) this.O0.f9493i.get(i12)).storyItem.f22264id) {
+                        if (selectedStory != null && selectedStory.f22266id == ((MessageObject) this.O0.f9493i.get(i12)).storyItem.f22266id) {
                             i13 = i12;
                         }
                         arrayList2.add(((MessageObject) this.O0.f9493i.get(i12)).storyItem);
@@ -989,7 +989,7 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
                     long longValue = ((Long) objArr[0]).longValue();
                     int intValue = ((Integer) objArr[1]).intValue();
                     TL_stories.StoryItem storyItem = this.T0;
-                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f22264id == intValue) {
+                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f22266id == intValue) {
                         this.S0 = true;
                         return;
                     }
@@ -1130,7 +1130,7 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
             ofFloat.addUpdateListener(new g9(this, 2));
             this.H.addListener(new h9(this, 1));
             this.H.setDuration(250L);
-            this.H.setInterpolator(org.telegram.ui.ActionBar.q1.f22961w);
+            this.H.setInterpolator(org.telegram.ui.ActionBar.q1.f22963w);
             this.H.start();
         }
     }
@@ -1169,7 +1169,7 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
                 this.f9464v1.setInterpolator(ds.h);
             } else {
                 this.f9464v1.setDuration(350L);
-                this.f9464v1.setInterpolator(ds.f27584f);
+                this.f9464v1.setInterpolator(ds.f27586f);
             }
             this.f9464v1.start();
         }
@@ -1196,7 +1196,7 @@ public final class y9 implements NotificationCenter.NotificationCenterDelegate, 
             if (currentPage != null) {
                 y4 y4Var = currentPage.f9196r;
                 h5 h5Var = currentPage.f9194f;
-                if (h5Var != null && h5Var.f29711b) {
+                if (h5Var != null && h5Var.f29713b) {
                     h5Var.a();
                     return true;
                 } else if (Math.abs(currentPage.f9193c.getTranslationY() - y4Var.getPaddingTop()) > AndroidUtilities.dp(2.0f)) {

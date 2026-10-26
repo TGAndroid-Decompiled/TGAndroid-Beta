@@ -5,14 +5,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class jl0 extends org.telegram.ui.Components.vw0 {
-    public final int f40681l0;
+    public final int f40684l0;
     public final FrameLayout m0;
-    public final org.telegram.ui.ActionBar.r2 f40682n0;
+    public final org.telegram.ui.ActionBar.r2 f40685n0;
 
     public jl0(org.telegram.ui.ActionBar.r2 r2Var, Context context, FrameLayout frameLayout, int i10) {
         super(context, null);
-        this.f40681l0 = i10;
-        this.f40682n0 = r2Var;
+        this.f40684l0 = i10;
+        this.f40685n0 = r2Var;
         this.m0 = frameLayout;
     }
 
@@ -21,9 +21,9 @@ public final class jl0 extends org.telegram.ui.Components.vw0 {
         int measuredHeight;
         org.telegram.ui.ActionBar.r5 r5Var;
         int measuredHeight2;
-        switch (this.f40681l0) {
+        switch (this.f40684l0) {
             case 0:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f40682n0;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f40685n0;
                 int visibility = passcodeActivity.v.getVisibility();
                 FrameLayout frameLayout = this.m0;
                 if (visibility != 8 && Q() >= AndroidUtilities.dp(20.0f)) {
@@ -55,8 +55,8 @@ public final class jl0 extends org.telegram.ui.Components.vw0 {
                 return;
             default:
                 k0 k0Var = (k0) this.m0;
-                dg1 dg1Var = (dg1) this.f40682n0;
-                if (dg1Var.f38869e0.getVisibility() != 8 && Q() >= AndroidUtilities.dp(20.0f)) {
+                dg1 dg1Var = (dg1) this.f40685n0;
+                if (dg1Var.f38872e0.getVisibility() != 8 && Q() >= AndroidUtilities.dp(20.0f)) {
                     if (dg1Var.w0()) {
                         int measuredWidth5 = getMeasuredWidth();
                         measuredHeight2 = Q() + (getMeasuredHeight() - AndroidUtilities.dp(230.0f));
@@ -66,7 +66,7 @@ public final class jl0 extends org.telegram.ui.Components.vw0 {
                         measuredHeight2 = getMeasuredHeight();
                         k0Var.layout(0, 0, measuredWidth6, measuredHeight2);
                     }
-                } else if (dg1Var.f38869e0.getVisibility() != 8) {
+                } else if (dg1Var.f38872e0.getVisibility() != 8) {
                     int measuredWidth7 = getMeasuredWidth();
                     measuredHeight2 = getMeasuredHeight() - AndroidUtilities.dp(230.0f);
                     k0Var.layout(0, 0, measuredWidth7, measuredHeight2);
@@ -75,7 +75,7 @@ public final class jl0 extends org.telegram.ui.Components.vw0 {
                     measuredHeight2 = getMeasuredHeight();
                     k0Var.layout(0, 0, measuredWidth8, measuredHeight2);
                 }
-                dg1Var.f38869e0.layout(0, measuredHeight2, getMeasuredWidth(), AndroidUtilities.dp(230.0f) + measuredHeight2);
+                dg1Var.f38872e0.layout(0, measuredHeight2, getMeasuredWidth(), AndroidUtilities.dp(230.0f) + measuredHeight2);
                 return;
         }
     }
@@ -84,12 +84,12 @@ public final class jl0 extends org.telegram.ui.Components.vw0 {
     public final void onMeasure(int i10, int i11) {
         int i12;
         org.telegram.ui.ActionBar.r5 r5Var;
-        switch (this.f40681l0) {
+        switch (this.f40684l0) {
             case 0:
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
                 setMeasuredDimension(size, size2);
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f40682n0;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f40685n0;
                 if (passcodeActivity.v.getVisibility() != 8 && Q() < AndroidUtilities.dp(20.0f)) {
                     i12 = size2 - AndroidUtilities.dp(230.0f);
                 } else {
@@ -108,12 +108,12 @@ public final class jl0 extends org.telegram.ui.Components.vw0 {
                 int size3 = View.MeasureSpec.getSize(i10);
                 int size4 = View.MeasureSpec.getSize(i11);
                 setMeasuredDimension(size3, size4);
-                dg1 dg1Var = (dg1) this.f40682n0;
-                if (dg1Var.f38869e0.getVisibility() != 8 && Q() < AndroidUtilities.dp(20.0f)) {
+                dg1 dg1Var = (dg1) this.f40685n0;
+                if (dg1Var.f38872e0.getVisibility() != 8 && Q() < AndroidUtilities.dp(20.0f)) {
                     size4 -= AndroidUtilities.dp(230.0f);
                 }
                 ((k0) this.m0).measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
-                dg1Var.f38869e0.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(230.0f), 1073741824));
+                dg1Var.f38872e0.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(230.0f), 1073741824));
                 return;
         }
     }

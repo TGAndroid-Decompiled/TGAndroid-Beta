@@ -68,7 +68,7 @@ public class pb extends AbstractMap {
                 return;
             default:
                 y7.e eVar = (y7.e) this.e;
-                y7.i iVar = eVar.f52121c;
+                y7.i iVar = eVar.f52124c;
                 if (this.f739b == iVar) {
                     for (Collection collection2 : iVar.values()) {
                         collection2.clear();
@@ -269,10 +269,10 @@ public class pb extends AbstractMap {
                 return ((f9.k1) this.e).keySet();
             default:
                 y7.e eVar = (y7.e) this.e;
-                y7.a aVar = eVar.f52104a;
+                y7.a aVar = eVar.f52107a;
                 if (aVar == null) {
-                    y7.a aVar2 = new y7.a(eVar, eVar.f52121c);
-                    eVar.f52104a = aVar2;
+                    y7.a aVar2 = new y7.a(eVar, eVar.f52124c);
+                    eVar.f52107a = aVar2;
                     return aVar2;
                 }
                 return aVar;

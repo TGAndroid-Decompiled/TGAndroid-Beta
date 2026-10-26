@@ -234,7 +234,7 @@ public final class q0 implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f1373f;
                 TLObject tLObject3 = (TLObject) this.f1371b;
                 org.telegram.ui.c1 c1Var = (org.telegram.ui.c1) this.h;
-                h70Var.f39921r = false;
+                h70Var.f39924r = false;
                 if (!((h4) this.e).e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject3;
@@ -244,7 +244,7 @@ public final class q0 implements Runnable {
                             MessagesController.getInstance(i14).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i14).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            h70Var.f39920n = chat;
+                            h70Var.f39923n = chat;
                             if (chat.left && !chat.kicked) {
                                 c1Var.a(0, false);
                                 return;
@@ -392,11 +392,11 @@ public final class q0 implements Runnable {
                 } else {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(a1Var.getContext());
-                    alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new zg1(7, a1Var, strArr2));
                     alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new ji1(2));
-                    a1Var.X(3, alertDialog$Builder.f22366a, new org.telegram.ui.web.x(strArr2, i18, x0Var, x7Var, 1));
+                    a1Var.X(3, alertDialog$Builder.f22368a, new org.telegram.ui.web.x(strArr2, i18, x0Var, x7Var, 1));
                     return;
                 }
         }

@@ -18,16 +18,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final TextView f43335a;
-    public final TextView f43336b;
-    public final ImageView f43337c;
+    public final TextView f43338a;
+    public final TextView f43339b;
+    public final ImageView f43340c;
     public SharedConfig.ProxyInfo d;
     public Drawable e;
-    public final org.telegram.ui.Components.zp f43338f;
+    public final org.telegram.ui.Components.zp f43341f;
     public boolean h;
-    public boolean f43339n;
-    public int f43340r;
-    public final ProxyListActivity f43341s;
+    public boolean f43342n;
+    public int f43343r;
+    public final ProxyListActivity f43344s;
 
     public s11(ProxyListActivity proxyListActivity, Context context) {
         super(context);
@@ -39,9 +39,9 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
         int i15;
         int i16;
         int i17;
-        this.f43341s = proxyListActivity;
+        this.f43344s = proxyListActivity;
         TextView textView = new TextView(context);
-        this.f43335a = textView;
+        this.f43338a = textView;
         org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, null);
         org.telegram.messenger.vh.r(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
@@ -73,7 +73,7 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
         }
         addView(textView, org.telegram.ui.Components.gb1.h(-2, -2.0f, i18, f7, 10.0f, i13, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f43336b = textView2;
+        this.f43339b = textView2;
         textView2.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
             i14 = 5;
@@ -101,7 +101,7 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
         }
         addView(textView2, org.telegram.ui.Components.gb1.h(-2, -2.0f, i19, i16, 35.0f, z11 ? 21 : 56, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f43337c = imageView;
+        this.f43340c = imageView;
         imageView.setImageResource(R.drawable.msg_info);
         org.telegram.ui.ActionBar.f7.t(imageView, org.telegram.ui.ActionBar.y6.A6, null, PorterDuff.Mode.MULTIPLY);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -114,8 +114,8 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
         addView(imageView, org.telegram.ui.Components.gb1.h(48, 48.0f, i17 | 48, 8.0f, 8.0f, 8.0f, 0.0f));
         imageView.setOnClickListener(new x50(this, 28));
         org.telegram.ui.Components.zp zpVar = new org.telegram.ui.Components.zp(context, 21, null);
-        this.f43338f = zpVar;
-        zpVar.b(org.telegram.ui.ActionBar.y6.f23447i7, org.telegram.ui.ActionBar.y6.g7, org.telegram.ui.ActionBar.y6.f23483k7);
+        this.f43341f = zpVar;
+        zpVar.b(org.telegram.ui.ActionBar.y6.f23449i7, org.telegram.ui.ActionBar.y6.g7, org.telegram.ui.ActionBar.y6.f23485k7);
         zpVar.setDrawBackgroundAsArc(14);
         zpVar.setVisibility(8);
         addView(zpVar, org.telegram.ui.Components.gb1.h(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 8.0f, 0.0f));
@@ -126,10 +126,10 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
         int dp;
         float f7;
         int i10;
-        if (this.f43339n == z10 && z11) {
+        if (this.f43342n == z10 && z11) {
             return;
         }
-        this.f43339n = z10;
+        this.f43342n = z10;
         if (LocaleController.isRTL) {
             dp = -AndroidUtilities.dp(32.0f);
         } else {
@@ -142,9 +142,9 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
             if (!z10) {
                 f10 = 0.0f;
             }
-            this.f43335a.setTranslationX(f10);
-            this.f43336b.setTranslationX(f10);
-            ImageView imageView = this.f43337c;
+            this.f43338a.setTranslationX(f10);
+            this.f43339b.setTranslationX(f10);
+            ImageView imageView = this.f43340c;
             imageView.setTranslationX(f10);
             boolean z12 = LocaleController.isRTL;
             int dp2 = AndroidUtilities.dp(32.0f);
@@ -152,7 +152,7 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
                 dp2 = -dp2;
             }
             float f12 = dp2 + f10;
-            org.telegram.ui.Components.zp zpVar = this.f43338f;
+            org.telegram.ui.Components.zp zpVar = this.f43341f;
             zpVar.setTranslationX(f12);
             if (z10) {
                 i10 = 8;
@@ -181,7 +181,7 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
             f11 = 1.0f;
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f11).setDuration(200L);
-        duration.setInterpolator(org.telegram.ui.Components.ds.f27584f);
+        duration.setInterpolator(org.telegram.ui.Components.ds.f27586f);
         duration.addUpdateListener(new dg(this, f10, 4));
         duration.addListener(new q40(7, this, z10));
         duration.start();
@@ -214,7 +214,7 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
         } else {
             i10 = 0;
         }
-        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23476k0);
+        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23478k0);
     }
 
     @Override
@@ -223,14 +223,14 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
     }
 
     public void setChecked(boolean z10) {
-        TextView textView = this.f43336b;
+        TextView textView = this.f43339b;
         if (z10) {
             if (this.e == null) {
                 this.e = getResources().getDrawable(R.drawable.proxy_check).mutate();
             }
             Drawable drawable = this.e;
             if (drawable != null) {
-                drawable.setColorFilter(new PorterDuffColorFilter(this.f43340r, PorterDuff.Mode.MULTIPLY));
+                drawable.setColorFilter(new PorterDuffColorFilter(this.f43343r, PorterDuff.Mode.MULTIPLY));
             }
             if (LocaleController.isRTL) {
                 textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, this.e, (Drawable) null);
@@ -245,31 +245,31 @@ public final class s11 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public void setProxy(SharedConfig.ProxyInfo proxyInfo) {
         String str;
-        if (proxyInfo.settings.f49167a == 3) {
-            str = a1.g.s(new StringBuilder(), proxyInfo.settings.f49168b, " (WEB)");
+        if (proxyInfo.settings.f49170a == 3) {
+            str = a1.g.s(new StringBuilder(), proxyInfo.settings.f49171b, " (WEB)");
         } else {
-            str = proxyInfo.settings.f49168b + ":" + proxyInfo.settings.f49169c;
+            str = proxyInfo.settings.f49171b + ":" + proxyInfo.settings.f49172c;
         }
-        this.f43335a.setText(str);
+        this.f43338a.setText(str);
         this.d = proxyInfo;
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f43336b.setText(charSequence);
+        this.f43339b.setText(charSequence);
     }
 
     @Override
     public final void updateColors() {
         int x02;
-        TextView textView = this.f43336b;
+        TextView textView = this.f43339b;
         if (textView != null) {
             try {
-                if ((textView.getTag() instanceof Integer) && (x02 = org.telegram.ui.ActionBar.y6.x0(null, ((Integer) textView.getTag()).intValue(), false)) != this.f43340r) {
-                    this.f43340r = x02;
+                if ((textView.getTag() instanceof Integer) && (x02 = org.telegram.ui.ActionBar.y6.x0(null, ((Integer) textView.getTag()).intValue(), false)) != this.f43343r) {
+                    this.f43343r = x02;
                     textView.setTextColor(x02);
                     Drawable drawable = this.e;
                     if (drawable != null) {
-                        drawable.setColorFilter(new PorterDuffColorFilter(this.f43340r, PorterDuff.Mode.MULTIPLY));
+                        drawable.setColorFilter(new PorterDuffColorFilter(this.f43343r, PorterDuff.Mode.MULTIPLY));
                     }
                 }
             } catch (Exception e) {

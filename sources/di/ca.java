@@ -37,10 +37,10 @@ public final class ca extends z9 {
         double d = daVar.d;
         TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f8474b;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaWeather.coordinates;
-        double d10 = (mediaAreaCoordinates.f22261x * d) / 100.0d;
+        double d10 = (mediaAreaCoordinates.f22263x * d) / 100.0d;
         double d11 = daVar.e;
-        double d12 = (mediaAreaCoordinates.f22262y * d11) / 100.0d;
-        float f10 = (float) ((d * mediaAreaCoordinates.f22260w) / 100.0d);
+        double d12 = (mediaAreaCoordinates.f22264y * d11) / 100.0d;
+        float f10 = (float) ((d * mediaAreaCoordinates.f22262w) / 100.0d);
         canvas.save();
         canvas.translate((float) (d10 + daVar.f8505b), (float) (d12 + daVar.f8506c));
         ba baVar = this.f8473a;
@@ -61,16 +61,16 @@ public final class ca extends z9 {
         if (z10) {
             baVar.K = true;
             if (baVar.L) {
-                baVar.f48509s.onAttachedToWindow();
+                baVar.f48512s.onAttachedToWindow();
                 return;
             } else {
-                baVar.f48508r.onAttachedToWindow();
+                baVar.f48511r.onAttachedToWindow();
                 return;
             }
         }
         baVar.K = false;
-        baVar.f48508r.onDetachedFromWindow();
-        baVar.f48509s.onDetachedFromWindow();
+        baVar.f48511r.onDetachedFromWindow();
+        baVar.f48512s.onDetachedFromWindow();
     }
 
     @Override

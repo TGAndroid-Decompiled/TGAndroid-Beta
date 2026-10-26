@@ -66,9 +66,9 @@ public final class h4 extends js {
             final rf.b bVar = new rf.b(this, actionBarPopupWindow$ActionBarPopupWindowLayout, false, 16);
             ?? obj = new Object();
             org.telegram.ui.ActionBar.g1[] g1VarArr = new org.telegram.ui.ActionBar.g1[5];
-            obj.f43576c = g1VarArr;
+            obj.f43579c = g1VarArr;
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, context, null);
-            obj.f43574a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            obj.f43577a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
             actionBarPopupWindow$ActionBarPopupWindowLayout2.setFitItems(true);
             org.telegram.ui.ActionBar.g1 c10 = org.telegram.ui.ActionBar.w0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
             c10.setOnClickListener(new nr(swipeBack, 1));
@@ -86,7 +86,7 @@ public final class h4 extends js {
             layoutParams.height = AndroidUtilities.dp(8.0f);
             i4Var.setLayoutParams(layoutParams);
             org.telegram.ui.ActionBar.c1 c1Var = new org.telegram.ui.ActionBar.c1(context, null);
-            obj.f43575b = c1Var;
+            obj.f43578b = c1Var;
             c1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
             c1Var.setDrawShadow(false);
             c1Var.setBackgroundColor(-14540254);
@@ -250,11 +250,11 @@ public final class h4 extends js {
             layoutParams3.width = -1;
             layoutParams3.height = AndroidUtilities.dp(48.0f);
             q4Var.f9026s3.setLayoutParams(layoutParams3);
-            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(q4Var.f9022r3.f43574a);
+            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(q4Var.f9022r3.f43577a);
             org.telegram.ui.ActionBar.g1 g1Var2 = q4Var.f9026s3;
             g1Var2.P = new a4(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
             g1Var2.setOnClickListener(new v3(this, 11));
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f22358c = true;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f22360c = true;
             if (z10) {
                 org.telegram.ui.ActionBar.l1 l1Var = new org.telegram.ui.ActionBar.l1(q4Var.getContext(), org.telegram.ui.ActionBar.y6.H8, this.d);
                 l1Var.setTag(R.id.fit_width_tag, 1);

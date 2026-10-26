@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public class ArticleViewer$BlockEmbedCell$TelegramWebviewProxy {
-    public final s1 f23809a;
+    public final s1 f23811a;
 
     public ArticleViewer$BlockEmbedCell$TelegramWebviewProxy(s1 s1Var) {
-        this.f23809a = s1Var;
+        this.f23811a = s1Var;
     }
 
     @JavascriptInterface

@@ -67,9 +67,9 @@ public final class d0 implements View.OnClickListener {
                 q3 q3Var = (q3) view.getParent();
                 TLRPC.StickerSetCovered stickerSet = q3Var.getStickerSet();
                 if (stickerSet != null && d2Var.h.indexOfKey(stickerSet.set.f22054id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f22054id) < 0) {
-                    if (q3Var.f24822r) {
+                    if (q3Var.f24824r) {
                         longSparseArray.put(stickerSet.set.f22054id, stickerSet);
-                        d2Var.e.f27410a.h(q3Var.getStickerSet());
+                        d2Var.e.f27412a.h(q3Var.getStickerSet());
                         return;
                     }
                     d2Var.F(stickerSet, q3Var);
@@ -163,7 +163,7 @@ public final class d0 implements View.OnClickListener {
                             f2Var.d();
                         }
                         pageblockdetails.open = !pageblockdetails.open;
-                        v3Var.f32150g3.O(true);
+                        v3Var.f32152g3.O(true);
                         f2 f2Var2 = v3Var.R3;
                         if (f2Var2 != null) {
                             f2Var2.h();
@@ -191,8 +191,8 @@ public final class d0 implements View.OnClickListener {
                 return;
             case 13:
                 org.telegram.ui.Components.voip.v0 v0Var = (org.telegram.ui.Components.voip.v0) this.f14025b;
-                if (!v0Var.f34137a) {
-                    if (v0Var.f34145x == 0 && v0Var.f34146y) {
+                if (!v0Var.f34140a) {
+                    if (v0Var.f34148x == 0 && v0Var.f34149y) {
                         ((Activity) v0Var.getContext()).startActivityForResult(((MediaProjectionManager) v0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -203,8 +203,8 @@ public final class d0 implements View.OnClickListener {
                 return;
             case 14:
                 ih1 ih1Var = (ih1) this.f14025b;
-                if (!ih1Var.f33731a) {
-                    if (ih1Var.f33738w == 0) {
+                if (!ih1Var.f33734a) {
+                    if (ih1Var.f33741w == 0) {
                         ((Activity) ih1Var.getContext()).startActivityForResult(((MediaProjectionManager) ih1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -229,8 +229,8 @@ public final class d0 implements View.OnClickListener {
             case 16:
                 org.telegram.ui.web.l lVar = (org.telegram.ui.web.l) this.f14025b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lVar.getContext());
-                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.WebRecentClearTitle);
-                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.WebRecentClearText);
+                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.WebRecentClearTitle);
+                alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.WebRecentClearText);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), new org.telegram.ui.web.a(lVar));
                 ic.a.r(R.string.Cancel, alertDialog$Builder, null);
                 return;
@@ -251,12 +251,12 @@ public final class d0 implements View.OnClickListener {
                 return;
             case 22:
                 PremiumPreviewFragment.q0();
-                PremiumPreviewFragment.l0(((tg.m1) this.f14025b).f48948t0, null, "profile", null);
+                PremiumPreviewFragment.l0(((tg.m1) this.f14025b).f48951t0, null, "profile", null);
                 return;
             case 23:
                 final vg.g0 g0Var = (vg.g0) this.f14025b;
                 xg.a aVar3 = g0Var.Q0;
-                if (!aVar3.f51748a.Q) {
+                if (!aVar3.f51751a.Q) {
                     aVar3.b(true);
                     String str = g0Var.R0;
                     Utilities.Callback callback = new Utilities.Callback() {
@@ -304,7 +304,7 @@ public final class d0 implements View.OnClickListener {
                 ((vg.j0) this.f14025b).dismiss();
                 return;
             case 25:
-                ((vg.b0) ((wg.e) this.f14025b)).f50144r.dismiss();
+                ((vg.b0) ((wg.e) this.f14025b)).f50147r.dismiss();
                 return;
             case 26:
                 Runnable runnable = ((zg.c) this.f14025b).e;
@@ -320,9 +320,9 @@ public final class d0 implements View.OnClickListener {
                 ((zh.c0) this.f14025b).dismiss();
                 return;
             default:
-                if (((zh.p1) this.f14025b).f53191f0.f5374f > 0 && (R = LaunchActivity.R()) != 0) {
+                if (((zh.p1) this.f14025b).f53194f0.f5374f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f22926a = true;
+                    obj.f22928a = true;
                     R.showAsSheet(new dd(), obj);
                     return;
                 }

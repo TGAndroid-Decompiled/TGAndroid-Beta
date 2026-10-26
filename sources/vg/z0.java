@@ -60,60 +60,60 @@ public final class z0 extends bb {
     public final fi.d X;
     public final y0 Y;
     public final z3 Z;
-    public final zg.c f50278a0;
-    public final Paint f50279b0;
-    public final ArrayList f50280c0;
-    public final ArrayList f50281d0;
-    public final HashSet f50282e0;
-    public final HashSet f50283f0;
-    public final ArrayList f50284g0;
-    public final ArrayList f50285h0;
-    public final HashMap f50286i0;
-    public final ArrayList f50287j0;
-    public final ArrayList f50288k0;
-    public final LinkedHashMap f50289l0;
+    public final zg.c f50281a0;
+    public final Paint f50282b0;
+    public final ArrayList f50283c0;
+    public final ArrayList f50284d0;
+    public final HashSet f50285e0;
+    public final HashSet f50286f0;
+    public final ArrayList f50287g0;
+    public final ArrayList f50288h0;
+    public final HashMap f50289i0;
+    public final ArrayList f50290j0;
+    public final ArrayList f50291k0;
+    public final LinkedHashMap f50292l0;
     public final h6 m0;
-    public String f50290n0;
-    public wg.h f50291o0;
-    public int f50292p0;
-    public final TLRPC.Chat f50293q0;
-    public int f50294r0;
-    public k f50295s0;
-    public int f50296t0;
-    public m f50297u0;
-    public final cy0 f50298v0;
+    public String f50293n0;
+    public wg.h f50294o0;
+    public int f50295p0;
+    public final TLRPC.Chat f50296q0;
+    public int f50297r0;
+    public k f50298s0;
+    public int f50299t0;
+    public m f50300u0;
+    public final cy0 f50301v0;
 
     public z0(r2 r2Var, long j10) {
         super(r2Var, false);
-        this.f50279b0 = new Paint(1);
-        this.f50280c0 = new ArrayList();
+        this.f50282b0 = new Paint(1);
+        this.f50283c0 = new ArrayList();
         ArrayList arrayList = new ArrayList();
-        this.f50281d0 = arrayList;
-        this.f50282e0 = new HashSet();
-        this.f50283f0 = new HashSet();
-        this.f50284g0 = new ArrayList();
-        this.f50285h0 = new ArrayList();
-        this.f50286i0 = new HashMap();
-        this.f50287j0 = new ArrayList();
-        this.f50288k0 = new ArrayList();
-        this.f50289l0 = new LinkedHashMap();
-        this.f50292p0 = AndroidUtilities.dp(134.0f);
-        this.f50298v0 = new cy0(this, 16);
+        this.f50284d0 = arrayList;
+        this.f50285e0 = new HashSet();
+        this.f50286f0 = new HashSet();
+        this.f50287g0 = new ArrayList();
+        this.f50288h0 = new ArrayList();
+        this.f50289i0 = new HashMap();
+        this.f50290j0 = new ArrayList();
+        this.f50291k0 = new ArrayList();
+        this.f50292l0 = new LinkedHashMap();
+        this.f50295p0 = AndroidUtilities.dp(134.0f);
+        this.f50301v0 = new cy0(this, 16);
         this.backgroundPaddingLeft = 0;
-        this.f50293q0 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
+        this.f50296q0 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
         ((ViewGroup) this.e.getParent()).removeView(this.e);
         ViewGroup viewGroup = this.containerView;
         ds dsVar = ds.h;
         this.m0 = new h6(viewGroup, 0L, 350L, dsVar);
         zg.c cVar = new zg.c(getContext(), this.resourcesProvider);
-        this.f50278a0 = cVar;
+        this.f50281a0 = cVar;
         cVar.setOnCloseClickListener(new t0(this, 7));
         cVar.setText(y());
         cVar.setCloseImageVisible(true);
-        cVar.f52861f.c(0.0f, false);
+        cVar.f52864f.c(0.0f, false);
         y0 y0Var = new y0(this, getContext(), this.resourcesProvider);
         this.Y = y0Var;
-        int i10 = y6.f23425h5;
+        int i10 = y6.f23427h5;
         f7.i(i10, y0Var, this.resourcesProvider);
         y0Var.setOnSearchTextChange(new w0(this, 0));
         this.Z = new z3(getContext(), this.resourcesProvider);
@@ -136,10 +136,10 @@ public final class z0 extends bb {
         ViewGroup viewGroup4 = this.containerView;
         int i13 = this.backgroundPaddingLeft;
         viewGroup4.addView(scVar, gb1.j(-2.0f, 87, i13, 0, i13, 0));
-        wg.h hVar = this.f50291o0;
+        wg.h hVar = this.f50294o0;
         mm0 mm0Var = this.d;
-        hVar.f51196n = arrayList;
-        hVar.f51195f = mm0Var;
+        hVar.f51199n = arrayList;
+        hVar.f51198f = mm0Var;
         int i14 = this.backgroundPaddingLeft;
         mm0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(60.0f));
         this.d.j(new ml(this, 25));
@@ -148,7 +148,7 @@ public final class z0 extends bb {
         lVar.n(350L);
         lVar.o(dsVar);
         lVar.C = false;
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         this.d.setItemAnimator(lVar);
         this.d.i(new p1(this, 8));
         b0(false, true);
@@ -157,13 +157,13 @@ public final class z0 extends bb {
     }
 
     public static void P(z0 z0Var, boolean z10, Pair pair) {
-        HashMap hashMap = z0Var.f50286i0;
+        HashMap hashMap = z0Var.f50289i0;
         if (z10) {
             hashMap.putAll((Map) pair.first);
-            z0Var.f50287j0.addAll((Collection) pair.second);
+            z0Var.f50290j0.addAll((Collection) pair.second);
             Map.EL.forEach(hashMap, new u0(z0Var, 0));
         }
-        if (z0Var.f50294r0 == 3) {
+        if (z0Var.f50297r0 == 3) {
             z0Var.b0(true, true);
             z0Var.X(true);
         }
@@ -173,9 +173,9 @@ public final class z0 extends bb {
         long j10;
         int i10;
         int i11;
-        LinkedHashMap linkedHashMap = z0Var.f50289l0;
+        LinkedHashMap linkedHashMap = z0Var.f50292l0;
         y0 y0Var = z0Var.Y;
-        HashSet hashSet = z0Var.f50282e0;
+        HashSet hashSet = z0Var.f50285e0;
         if (view instanceof v8) {
             linkedHashMap.clear();
             z0Var.W(true);
@@ -184,7 +184,7 @@ public final class z0 extends bb {
             TLRPC.User user = lVar.getUser();
             TLRPC.Chat chat = lVar.getChat();
             if (user != null) {
-                j10 = user.f22174id;
+                j10 = user.f22176id;
             } else {
                 j10 = -chat.f22027id;
             }
@@ -198,7 +198,7 @@ public final class z0 extends bb {
                 }
                 linkedHashMap.put(valueOf, user);
             }
-            if ((hashSet.size() == 11 && z0Var.f50294r0 == 1) || (hashSet.size() == s.f() + 1 && z0Var.f50294r0 == 2)) {
+            if ((hashSet.size() == 11 && z0Var.f50297r0 == 1) || (hashSet.size() == s.f() + 1 && z0Var.f50297r0 == 2)) {
                 hashSet.remove(Long.valueOf(j10));
                 z0Var.Y();
                 return;
@@ -206,7 +206,7 @@ public final class z0 extends bb {
             y0Var.b(true, hashSet, new t0(z0Var, 1), null);
             z0Var.b0(true, false);
             if (chat != null && !ChatObject.isPublic(chat) && hashSet.contains(Long.valueOf(j10))) {
-                Context context = z0Var.f26809n.getContext();
+                Context context = z0Var.f26811n.getContext();
                 u6 u6Var = z0Var.resourcesProvider;
                 lh0 lh0Var = new lh0(z0Var, j10, 4);
                 t0 t0Var = new t0(z0Var, 2);
@@ -218,13 +218,13 @@ public final class z0 extends bb {
                 } else {
                     i10 = R.string.BoostingGiveawayPrivateGroup;
                 }
-                alertDialog$Builder.f22366a.R = LocaleController.getString(i10);
+                alertDialog$Builder.f22368a.R = LocaleController.getString(i10);
                 if (isChannelAndNotMegaGroup) {
                     i11 = R.string.BoostingGiveawayPrivateChannelWarning;
                 } else {
                     i11 = R.string.BoostingGiveawayPrivateGroupWarning;
                 }
-                alertDialog$Builder.f22366a.T = LocaleController.getString(i11);
+                alertDialog$Builder.f22368a.T = LocaleController.getString(i11);
                 alertDialog$Builder.k(LocaleController.getString("Add", R.string.Add), new zg1(19, atomicBoolean, t0Var));
                 alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), new d(0));
                 alertDialog$Builder.j(new u3(18, atomicBoolean, lh0Var));
@@ -240,14 +240,14 @@ public final class z0 extends bb {
             } else {
                 hashSet.add(Long.valueOf(hashCode));
             }
-            if (hashSet.size() == MessagesController.getInstance(UserConfig.selectedAccount).giveawayCountriesMax + 1 && z0Var.f50294r0 == 3) {
+            if (hashSet.size() == MessagesController.getInstance(UserConfig.selectedAccount).giveawayCountriesMax + 1 && z0Var.f50297r0 == 3) {
                 hashSet.remove(Long.valueOf(hashCode));
                 z0Var.Y();
                 return;
             }
-            y0Var.b(true, hashSet, new t0(z0Var, 3), z0Var.f50288k0);
-            if (!TextUtils.isEmpty(z0Var.f50290n0)) {
-                z0Var.f50290n0 = null;
+            y0Var.b(true, hashSet, new t0(z0Var, 3), z0Var.f50291k0);
+            if (!TextUtils.isEmpty(z0Var.f50293n0)) {
+                z0Var.f50293n0 = null;
                 y0Var.setText("");
                 z0Var.b0(false, false);
                 z0Var.b0(true, true);
@@ -279,14 +279,14 @@ public final class z0 extends bb {
     public final void C(Canvas canvas, int i10) {
         y0 y0Var;
         boolean z10;
-        this.f50296t0 = i10;
-        zg.c cVar = this.f50278a0;
+        this.f50299t0 = i10;
+        zg.c cVar = this.f50281a0;
         cVar.setTranslationY(Math.max(i10, (((cVar.getMeasuredHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(40.0f)) / 2.0f) + AndroidUtilities.statusBarHeight));
         float translationY = cVar.getTranslationY() + cVar.getMeasuredHeight();
         this.Y.setTranslationY(translationY);
         this.d.setTranslationY((y0Var.getMeasuredHeight() + cVar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f));
-        int w02 = y6.w0(y6.f23425h5, this.resourcesProvider);
-        Paint paint = this.f50279b0;
+        int w02 = y6.w0(y6.f23427h5, this.resourcesProvider);
+        Paint paint = this.f50282b0;
         paint.setColor(w02);
         int max = Math.max(0, i10);
         if (max < AndroidUtilities.statusBarHeight) {
@@ -298,18 +298,18 @@ public final class z0 extends bb {
         int lerp = AndroidUtilities.lerp(max, 0, h6Var.e(z10));
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(this.backgroundPaddingLeft, lerp, this.containerView.getWidth() - this.backgroundPaddingLeft, AndroidUtilities.dp(14.0f) + this.containerView.getHeight());
-        float dp = (1.0f - h6Var.f28809c) * AndroidUtilities.dp(14.0f);
+        float dp = (1.0f - h6Var.f28811c) * AndroidUtilities.dp(14.0f);
         canvas.drawRoundRect(rectF, dp, dp, paint);
     }
 
     public final void R() {
-        if (!TextUtils.isEmpty(this.f50290n0)) {
-            this.f50290n0 = null;
+        if (!TextUtils.isEmpty(this.f50293n0)) {
+            this.f50293n0 = null;
             this.Y.setText("");
-            AndroidUtilities.cancelRunOnUIThread(this.f50298v0);
-            ArrayList arrayList = this.f50284g0;
+            AndroidUtilities.cancelRunOnUIThread(this.f50301v0);
+            ArrayList arrayList = this.f50287g0;
             arrayList.clear();
-            arrayList.addAll(s.e(this.f50293q0.f22027id));
+            arrayList.addAll(s.e(this.f50296q0.f22027id));
             b0(false, false);
             b0(true, true);
         }
@@ -317,19 +317,19 @@ public final class z0 extends bb {
 
     public final boolean S() {
         String string;
-        HashSet hashSet = this.f50282e0;
+        HashSet hashSet = this.f50285e0;
         int size = hashSet.size();
-        HashSet hashSet2 = this.f50283f0;
+        HashSet hashSet2 = this.f50286f0;
         if (size == hashSet2.size() && hashSet2.containsAll(hashSet) && hashSet.containsAll(hashSet2)) {
             return false;
         }
-        int i10 = this.f50294r0;
+        int i10 = this.f50297r0;
         Context context = getContext();
         u6 u6Var = this.resourcesProvider;
         t0 t0Var = new t0(this, 0);
         t0 t0Var2 = new t0(this, 6);
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, u6Var);
-        alertDialog$Builder.f22366a.R = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
+        alertDialog$Builder.f22368a.R = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -343,7 +343,7 @@ public final class z0 extends bb {
         } else {
             string = LocaleController.getString("BoostingApplyChangesUsers", R.string.BoostingApplyChangesUsers);
         }
-        alertDialog$Builder.f22366a.T = string;
+        alertDialog$Builder.f22368a.T = string;
         alertDialog$Builder.k(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new org.telegram.ui.Components.voip.j1(t0Var, 27));
         alertDialog$Builder.h(LocaleController.getString("Discard", R.string.Discard), new org.telegram.ui.Components.voip.j1(t0Var2, 24));
         alertDialog$Builder.p();
@@ -353,7 +353,7 @@ public final class z0 extends bb {
     public final void T(int i10, String str, boolean z10) {
         TLRPC.ChannelParticipantsFilter tL_channelParticipantsSearch;
         String country;
-        TLRPC.Chat chat = this.f50293q0;
+        TLRPC.Chat chat = this.f50296q0;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -404,22 +404,22 @@ public final class z0 extends bb {
 
     public final void V(int i10, List list) {
         long j10;
-        this.f50294r0 = i10;
-        this.f50290n0 = null;
-        HashSet hashSet = this.f50283f0;
+        this.f50297r0 = i10;
+        this.f50293n0 = null;
+        HashSet hashSet = this.f50286f0;
         hashSet.clear();
-        HashSet hashSet2 = this.f50282e0;
+        HashSet hashSet2 = this.f50285e0;
         hashSet2.clear();
-        ArrayList arrayList = this.f50284g0;
+        ArrayList arrayList = this.f50287g0;
         arrayList.clear();
-        LinkedHashMap linkedHashMap = this.f50289l0;
+        LinkedHashMap linkedHashMap = this.f50292l0;
         linkedHashMap.clear();
         if (i10 != 1) {
             if (i10 == 2) {
-                arrayList.addAll(s.e(this.f50293q0.f22027id));
+                arrayList.addAll(s.e(this.f50296q0.f22027id));
             }
         } else {
-            arrayList.addAll(this.f50285h0);
+            arrayList.addAll(this.f50288h0);
         }
         if (list != null) {
             Iterator it = list.iterator();
@@ -437,7 +437,7 @@ public final class z0 extends bb {
                     j10 = -((TLRPC.Chat) tLObject).f22027id;
                 }
                 if (tLObject instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) tLObject).f22174id;
+                    j10 = ((TLRPC.User) tLObject).f22176id;
                 }
                 if (tLObject instanceof TLRPC.TL_help_country) {
                     j10 = ((TLRPC.TL_help_country) tLObject).default_name.hashCode();
@@ -450,25 +450,25 @@ public final class z0 extends bb {
         y0 y0Var = this.Y;
         y0Var.setText("");
         y0Var.d.b(false);
-        y0Var.b(false, hashSet2, new t0(this, 4), this.f50288k0);
+        y0Var.b(false, hashSet2, new t0(this, 4), this.f50291k0);
         c0();
         b0(false, true);
-        this.f50278a0.setText(y());
+        this.f50281a0.setText(y());
         Z(false);
         X(false);
     }
 
     public final void W(boolean z10) {
         n nVar;
-        HashSet hashSet = this.f50282e0;
+        HashSet hashSet = this.f50285e0;
         if (hashSet.size() != 0 || z10) {
-            int i10 = this.f50294r0;
-            LinkedHashMap linkedHashMap = this.f50289l0;
+            int i10 = this.f50297r0;
+            LinkedHashMap linkedHashMap = this.f50292l0;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 == 3) {
                         ArrayList arrayList = new ArrayList();
-                        ArrayList arrayList2 = this.f50288k0;
+                        ArrayList arrayList2 = this.f50291k0;
                         int size = arrayList2.size();
                         int i11 = 0;
                         while (i11 < size) {
@@ -479,11 +479,11 @@ public final class z0 extends bb {
                                 arrayList.add(tL_help_country);
                             }
                         }
-                        m mVar = this.f50297u0;
+                        m mVar = this.f50300u0;
                         if (mVar != null) {
-                            mVar.f50199c.f50204b.E(0);
-                            a0 a0Var = mVar.f50197a;
-                            ArrayList arrayList3 = a0Var.f50119e0;
+                            mVar.f50202c.f50207b.E(0);
+                            a0 a0Var = mVar.f50200a;
+                            ArrayList arrayList3 = a0Var.f50122e0;
                             arrayList3.clear();
                             arrayList3.addAll(arrayList);
                             a0Var.a0(false, true);
@@ -502,11 +502,11 @@ public final class z0 extends bb {
                         }
                     }
                 }
-                m mVar2 = this.f50297u0;
+                m mVar2 = this.f50300u0;
                 if (mVar2 != null) {
-                    mVar2.f50199c.f50204b.E(0);
-                    a0 a0Var2 = mVar2.f50197a;
-                    ArrayList arrayList5 = a0Var2.f50117c0;
+                    mVar2.f50202c.f50207b.E(0);
+                    a0 a0Var2 = mVar2.f50200a;
+                    ArrayList arrayList5 = a0Var2.f50120c0;
                     arrayList5.clear();
                     arrayList5.addAll(arrayList4);
                     a0Var2.a0(!nVar.isKeyboardVisible(), true);
@@ -518,26 +518,26 @@ public final class z0 extends bb {
             for (TLObject tLObject2 : linkedHashMap.values()) {
                 if (tLObject2 instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) tLObject2;
-                    if (hashSet.contains(Long.valueOf(user.f22174id))) {
+                    if (hashSet.contains(Long.valueOf(user.f22176id))) {
                         arrayList6.add(user);
                     }
                 }
             }
-            m mVar3 = this.f50297u0;
+            m mVar3 = this.f50300u0;
             if (mVar3 != null) {
-                mVar3.f50199c.f50204b.E(0);
-                a0 a0Var3 = mVar3.f50197a;
-                ArrayList arrayList7 = a0Var3.f50118d0;
+                mVar3.f50202c.f50207b.E(0);
+                a0 a0Var3 = mVar3.f50200a;
+                ArrayList arrayList7 = a0Var3.f50121d0;
                 arrayList7.clear();
                 arrayList7.addAll(arrayList6);
                 if (arrayList6.isEmpty()) {
                     int i12 = xg.d.v;
-                    a0Var3.f50123i0 = 0;
+                    a0Var3.f50126i0 = 0;
                 } else {
                     int i13 = xg.d.v;
-                    a0Var3.f50123i0 = 1;
+                    a0Var3.f50126i0 = 1;
                 }
-                a0Var3.f50127n0 = 0;
+                a0Var3.f50130n0 = 0;
                 a0Var3.a0(false, true);
                 a0Var3.Z(true);
                 a0Var3.N();
@@ -549,7 +549,7 @@ public final class z0 extends bb {
         mm0 mm0Var = this.d;
         if (z10) {
             mi.n nVar = new mi.n(getContext(), 2, 0.6f);
-            nVar.f47677a = 1;
+            nVar.f47680a = 1;
             nVar.f18556p = AndroidUtilities.dp(38.0f);
             mm0Var.getLayoutManager().w0(nVar);
             return;
@@ -559,7 +559,7 @@ public final class z0 extends bb {
 
     public final void Y() {
         String string;
-        int i10 = this.f50294r0;
+        int i10 = this.f50297r0;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -573,9 +573,9 @@ public final class z0 extends bb {
         } else {
             string = LocaleController.getString(R.string.BoostingSelectUpToWarningUsers);
         }
-        m mVar = this.f50297u0;
+        m mVar = this.f50300u0;
         if (mVar != null) {
-            new wc(mVar.f50199c.container, mVar.f50198b).R(R.raw.chats_infotip, 36, string).k(true);
+            new wc(mVar.f50202c.container, mVar.f50201b).R(R.raw.chats_infotip, 36, string).k(true);
         }
     }
 
@@ -584,7 +584,7 @@ public final class z0 extends bb {
         fi.d dVar = this.X;
         boolean z11 = false;
         dVar.setShowZero(false);
-        int i10 = this.f50294r0;
+        int i10 = this.f50297r0;
         if (i10 != 1) {
             if (i10 != 2 && i10 != 3) {
                 string = "";
@@ -595,7 +595,7 @@ public final class z0 extends bb {
             string = LocaleController.getString(R.string.BoostingSaveRecipients);
         }
         dVar.i(string, z10, true);
-        HashSet hashSet = this.f50282e0;
+        HashSet hashSet = this.f50285e0;
         dVar.b(hashSet.size(), z10);
         if (hashSet.size() > 0) {
             z11 = true;
@@ -606,28 +606,28 @@ public final class z0 extends bb {
     public final void a0(boolean z10, boolean z11) {
         int i10;
         wg.h hVar;
-        ArrayList arrayList = this.f50280c0;
+        ArrayList arrayList = this.f50283c0;
         arrayList.clear();
-        ArrayList arrayList2 = this.f50281d0;
+        ArrayList arrayList2 = this.f50284d0;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
-        if (this.f50294r0 == 1) {
+        if (this.f50297r0 == 1) {
             int i11 = R.drawable.menu_random;
             String string = LocaleController.getString(R.string.GiveawayChooseUsersRandomly);
             wg.g gVar = new wg.g(9, false);
-            gVar.f51185i = 1;
-            gVar.f51186j = i11;
-            gVar.f51184g = string;
+            gVar.f51188i = 1;
+            gVar.f51189j = i11;
+            gVar.f51187g = string;
             arrayList2.add(gVar);
         }
         wg.g gVar2 = new wg.g(10, false);
         z3 z3Var = this.Z;
-        gVar2.f51193q = z3Var;
+        gVar2.f51196q = z3Var;
         arrayList2.add(gVar2);
-        int i12 = this.f50294r0;
-        HashSet hashSet = this.f50282e0;
+        int i12 = this.f50297r0;
+        HashSet hashSet = this.f50285e0;
         if (i12 == 3) {
-            ArrayList arrayList3 = this.f50287j0;
+            ArrayList arrayList3 = this.f50290j0;
             int size = arrayList3.size();
             i10 = 0;
             int i13 = 0;
@@ -636,13 +636,13 @@ public final class z0 extends bb {
                 i13++;
                 String str = (String) obj;
                 ArrayList arrayList4 = new ArrayList();
-                for (TLRPC.TL_help_country tL_help_country : (List) this.f50286i0.get(str)) {
-                    if (TextUtils.isEmpty(this.f50290n0) || U(tL_help_country, AndroidUtilities.translitSafe(this.f50290n0).toLowerCase())) {
+                for (TLRPC.TL_help_country tL_help_country : (List) this.f50289i0.get(str)) {
+                    if (TextUtils.isEmpty(this.f50293n0) || U(tL_help_country, AndroidUtilities.translitSafe(this.f50293n0).toLowerCase())) {
                         i10 += AndroidUtilities.dp(44.0f);
                         boolean contains = hashSet.contains(Long.valueOf(tL_help_country.default_name.hashCode()));
                         wg.g gVar3 = new wg.g(6, true);
-                        gVar3.f51183f = tL_help_country;
-                        gVar3.f51187k = contains;
+                        gVar3.f51186f = tL_help_country;
+                        gVar3.f51190k = contains;
                         arrayList4.add(gVar3);
                         arrayList3 = arrayList3;
                     }
@@ -651,7 +651,7 @@ public final class z0 extends bb {
                 if (!arrayList4.isEmpty()) {
                     String upperCase = str.toUpperCase();
                     wg.g gVar4 = new wg.g(7, false);
-                    gVar4.f51184g = upperCase;
+                    gVar4.f51187g = upperCase;
                     arrayList2.add(gVar4);
                     arrayList2.addAll(arrayList4);
                     i10 = AndroidUtilities.dp(32.0f) + i10;
@@ -661,7 +661,7 @@ public final class z0 extends bb {
         } else {
             i10 = 0;
         }
-        ArrayList arrayList6 = this.f50284g0;
+        ArrayList arrayList6 = this.f50287g0;
         int size2 = arrayList6.size();
         int i14 = 0;
         while (i14 < size2) {
@@ -672,9 +672,9 @@ public final class z0 extends bb {
             boolean contains2 = hashSet.contains(Long.valueOf(DialogObject.getPeerDialogId(inputPeer)));
             wg.g gVar5 = new wg.g(3, true);
             gVar5.d = inputPeer;
-            gVar5.f51182c = null;
+            gVar5.f51185c = null;
             gVar5.e = null;
-            gVar5.f51187k = contains2;
+            gVar5.f51190k = contains2;
             arrayList2.add(gVar5);
         }
         if (arrayList2.isEmpty()) {
@@ -683,19 +683,19 @@ public final class z0 extends bb {
         }
         int max = Math.max(0, ((int) (AndroidUtilities.displaySize.y * 0.6f)) - i10);
         wg.g gVar6 = new wg.g(-1, false);
-        gVar6.f51188l = max;
+        gVar6.f51191l = max;
         arrayList2.add(gVar6);
-        if (hashSet.size() > 0 && this.f50294r0 != 3) {
+        if (hashSet.size() > 0 && this.f50297r0 != 3) {
             z3Var.a(LocaleController.getString(R.string.UsersDeselectAll), new v0(this, 0));
         } else if (z10) {
             z3Var.setRightText(null);
         } else {
-            y3 y3Var = z3Var.f25780b;
+            y3 y3Var = z3Var.f25782b;
             y3Var.c(null, false, true);
             y3Var.setOnClickListener(null);
             y3Var.setVisibility(0);
         }
-        if (z11 && (hVar = this.f50291o0) != null) {
+        if (z11 && (hVar = this.f50294o0) != null) {
             if (z10) {
                 hVar.E(arrayList, arrayList2);
             } else {
@@ -714,15 +714,15 @@ public final class z0 extends bb {
                 if (childAt instanceof zg.l) {
                     int R = RecyclerView.R(childAt) - 1;
                     if (R >= 0) {
-                        ArrayList arrayList = this.f50281d0;
+                        ArrayList arrayList = this.f50284d0;
                         if (R < arrayList.size()) {
                             wg.g gVar = (wg.g) arrayList.get(R);
                             zg.l lVar = (zg.l) childAt;
-                            lVar.c(gVar.f51187k, z10);
+                            lVar.c(gVar.f51190k, z10);
                             TLRPC.Chat chat = gVar.e;
                             float f7 = 1.0f;
                             if (chat != null) {
-                                if (this.f50291o0.F(chat) > 200) {
+                                if (this.f50294o0.F(chat) > 200) {
                                     f7 = 0.3f;
                                 }
                                 lVar.i(f7, z10);
@@ -735,7 +735,7 @@ public final class z0 extends bb {
                 }
                 if (childAt instanceof zg.b) {
                     zg.b bVar = (zg.b) childAt;
-                    bVar.c(this.f50282e0.contains(Long.valueOf(bVar.getCountry().default_name.hashCode())), true);
+                    bVar.c(this.f50285e0.contains(Long.valueOf(bVar.getCountry().default_name.hashCode())), true);
                 }
                 i10++;
             } else {
@@ -748,7 +748,7 @@ public final class z0 extends bb {
     public final void c0() {
         String str;
         String formatPluralStringComma;
-        int i10 = this.f50294r0;
+        int i10 = this.f50297r0;
         z3 z3Var = this.Z;
         if (i10 != 1) {
             if (i10 != 2) {
@@ -763,13 +763,13 @@ public final class z0 extends bb {
                 z3Var.setLayerHeight(32);
             }
         } else {
-            TLRPC.Chat chat = this.f50293q0;
+            TLRPC.Chat chat = this.f50296q0;
             if (ChatObject.isChannelAndNotMegaGroup(chat)) {
                 str = "Subscribers";
             } else {
                 str = "Members";
             }
-            formatPluralStringComma = LocaleController.formatPluralStringComma(str, Math.max(0, this.f50291o0.F(chat) - 1));
+            formatPluralStringComma = LocaleController.formatPluralStringComma(str, Math.max(0, this.f50294o0.F(chat) - 1));
             z3Var.setLayerHeight(32);
         }
         z3Var.setText(formatPluralStringComma);
@@ -777,7 +777,7 @@ public final class z0 extends bb {
 
     @Override
     public final void dismiss() {
-        k kVar = this.f50295s0;
+        k kVar = this.f50298s0;
         if (kVar != null) {
             kVar.run();
         }
@@ -786,7 +786,7 @@ public final class z0 extends bb {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        AndroidUtilities.cancelRunOnUIThread(this.f50298v0);
+        AndroidUtilities.cancelRunOnUIThread(this.f50301v0);
     }
 
     @Override
@@ -798,13 +798,13 @@ public final class z0 extends bb {
     @Override
     public final lm0 v(mm0 mm0Var) {
         wg.h hVar = new wg.h(getContext(), this.resourcesProvider, true);
-        this.f50291o0 = hVar;
+        this.f50294o0 = hVar;
         return hVar;
     }
 
     @Override
     public final CharSequence y() {
-        int i10 = this.f50294r0;
+        int i10 = this.f50297r0;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {

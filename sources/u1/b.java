@@ -3,12 +3,12 @@ package u1;
 import android.view.animation.Interpolator;
 import c3.h0;
 public abstract class b implements Interpolator {
-    public final float[] f49234a;
-    public final float f49235b;
+    public final float[] f49237a;
+    public final float f49238b;
 
     public b(float[] fArr) {
-        this.f49234a = fArr;
-        this.f49235b = 1.0f / (fArr.length - 1);
+        this.f49237a = fArr;
+        this.f49238b = 1.0f / (fArr.length - 1);
     }
 
     @Override
@@ -19,9 +19,9 @@ public abstract class b implements Interpolator {
         if (f7 <= 0.0f) {
             return 0.0f;
         }
-        float[] fArr = this.f49234a;
+        float[] fArr = this.f49237a;
         int min = Math.min((int) ((fArr.length - 1) * f7), fArr.length - 2);
-        float f10 = this.f49235b;
+        float f10 = this.f49238b;
         float f11 = h0.f(min, f10, f7, f10);
         float f12 = fArr[min];
         return h0.z(fArr[min + 1], f12, f11, f12);

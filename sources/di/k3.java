@@ -95,7 +95,7 @@ public final class k3 implements Utilities.Callback {
                 }
                 if (l4.longValue() <= 0) {
                     qc r6 = new wc(q4Var.R0, q4Var.f9015q0).r(f7, LocaleController.getString(R.string.ReactionSent), LocaleController.getString(R.string.ViewInChat), new bi.u6(l3Var, 17));
-                    r6.f31887j = 5000;
+                    r6.f31889j = 5000;
                     r6.j();
                 }
                 if (q4Var.U1.getReactionsWindow() != null) {
@@ -141,9 +141,9 @@ public final class k3 implements Utilities.Callback {
                 return;
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj4;
-                int i16 = ChatActivityEnterView.f25841r5;
+                int i16 = ChatActivityEnterView.f25843r5;
                 ((org.telegram.ui.ActionBar.e2) obj3).dismiss();
-                zh.p1 p1Var = new zh.p1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f22174id, vg.s.c(vg.s.b(1, (List) obj)), null);
+                zh.p1 p1Var = new zh.p1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f22176id, vg.s.c(vg.s.b(1, (List) obj)), null);
                 p1Var.V(z10);
                 p1Var.show();
                 return;

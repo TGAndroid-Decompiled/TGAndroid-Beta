@@ -4,29 +4,29 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 public final class xj implements org.telegram.ui.ActionBar.u6 {
-    public final int f45778a;
-    public final Object f45779b;
+    public final int f45781a;
+    public final Object f45782b;
 
     public xj(Object obj, int i10) {
-        this.f45778a = i10;
-        this.f45779b = obj;
+        this.f45781a = i10;
+        this.f45782b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f45778a) {
+        switch (this.f45781a) {
             case 0:
                 return org.telegram.ui.ActionBar.y6.I.q();
             case 1:
-                return ((rp0) this.f45779b).S;
+                return ((rp0) this.f45782b).S;
             default:
-                return ((pc1) this.f45779b).f42461f.f43733a.a();
+                return ((pc1) this.f45782b).f42464f.f43736a.a();
         }
     }
 
     @Override
     public final void b(float f7, float f10, int i10, int i11) {
-        switch (this.f45778a) {
+        switch (this.f45781a) {
             case 0:
                 org.telegram.ui.ActionBar.y6.q(f7, f10, i10, i11);
                 return;
@@ -34,7 +34,7 @@ public final class xj implements org.telegram.ui.ActionBar.u6 {
                 org.telegram.ui.ActionBar.y6.q(f7, f10, i10, i11);
                 return;
             default:
-                sb1 sb1Var = ((pc1) this.f45779b).f42461f.f43733a;
+                sb1 sb1Var = ((pc1) this.f45782b).f42464f.f43736a;
                 if (sb1Var != null) {
                     sb1Var.b(f7, f10, i10, i11);
                     return;
@@ -47,93 +47,93 @@ public final class xj implements org.telegram.ui.ActionBar.u6 {
 
     @Override
     public final ColorFilter c() {
-        switch (this.f45778a) {
+        switch (this.f45781a) {
             case 0:
-                return org.telegram.ui.ActionBar.y6.f23687v3;
+                return org.telegram.ui.ActionBar.y6.f23689v3;
             case 1:
-                return org.telegram.ui.ActionBar.y6.f23687v3;
+                return org.telegram.ui.ActionBar.y6.f23689v3;
             default:
-                return org.telegram.ui.ActionBar.y6.f23687v3;
+                return org.telegram.ui.ActionBar.y6.f23689v3;
         }
     }
 
     @Override
     public final Paint d(String str) {
-        switch (this.f45778a) {
+        switch (this.f45781a) {
             case 0:
                 return org.telegram.ui.ActionBar.y6.U0(str);
             case 1:
                 return org.telegram.ui.ActionBar.y6.U0(str);
             default:
-                return ((pc1) this.f45779b).f42461f.f43733a.d(str);
+                return ((pc1) this.f45782b).f42464f.f43736a.d(str);
         }
     }
 
     @Override
     public final int e(int i10) {
-        switch (this.f45778a) {
+        switch (this.f45781a) {
             case 0:
                 return g(i10);
             case 1:
                 return g(i10);
             default:
-                return ((pc1) this.f45779b).f42461f.f43733a.g(i10);
+                return ((pc1) this.f45782b).f42464f.f43736a.g(i10);
         }
     }
 
     @Override
     public final boolean f() {
-        switch (this.f45778a) {
+        switch (this.f45781a) {
             case 0:
                 return false;
             case 1:
                 return false;
             default:
-                return ((pc1) this.f45779b).f42461f.f43733a.f();
+                return ((pc1) this.f45782b).f42464f.f43736a.f();
         }
     }
 
     @Override
     public final int g(int i10) {
-        switch (this.f45778a) {
+        switch (this.f45781a) {
             case 0:
-                return ((un) this.f45779b).getThemedColor(i10);
+                return ((un) this.f45782b).getThemedColor(i10);
             case 1:
-                rp0 rp0Var = (rp0) this.f45779b;
+                rp0 rp0Var = (rp0) this.f45782b;
                 int indexOfKey = rp0Var.v.indexOfKey(i10);
                 if (indexOfKey >= 0) {
                     return rp0Var.v.valueAt(indexOfKey);
                 }
-                org.telegram.ui.ActionBar.u6 u6Var = rp0Var.f43232s;
+                org.telegram.ui.ActionBar.u6 u6Var = rp0Var.f43235s;
                 if (u6Var != null) {
                     return u6Var.g(i10);
                 }
                 return org.telegram.ui.ActionBar.y6.x0(null, i10, false);
             default:
-                return ((pc1) this.f45779b).f42461f.f43733a.g(i10);
+                return ((pc1) this.f45782b).f42464f.f43736a.g(i10);
         }
     }
 
     @Override
     public final Drawable getDrawable(String str) {
-        switch (this.f45778a) {
+        switch (this.f45781a) {
             case 0:
                 return null;
             case 1:
-                rp0 rp0Var = (rp0) this.f45779b;
+                rp0 rp0Var = (rp0) this.f45782b;
                 if (str.equals("drawableMsgIn")) {
-                    return rp0Var.f43233w;
+                    return rp0Var.f43236w;
                 }
                 if (str.equals("drawableMsgInSelected")) {
-                    return rp0Var.f43234x;
+                    return rp0Var.f43237x;
                 }
-                org.telegram.ui.ActionBar.u6 u6Var = rp0Var.f43232s;
+                org.telegram.ui.ActionBar.u6 u6Var = rp0Var.f43235s;
                 if (u6Var != null) {
                     return u6Var.getDrawable(str);
                 }
                 return org.telegram.ui.ActionBar.y6.Q0(str);
             default:
-                tc1 tc1Var = ((pc1) this.f45779b).f42461f;
+                tc1 tc1Var = ((pc1) this.f45782b).f42464f;
                 if (str.equals("drawableMsgOut")) {
                     return tc1Var.S;
                 }
@@ -146,7 +146,7 @@ public final class xj implements org.telegram.ui.ActionBar.u6 {
                 if (str.equals("drawableMsgOutMediaSelected")) {
                     return tc1Var.V;
                 }
-                sb1 sb1Var = tc1Var.f43733a;
+                sb1 sb1Var = tc1Var.f43736a;
                 if (sb1Var != null) {
                     return sb1Var.getDrawable(str);
                 }
@@ -156,18 +156,18 @@ public final class xj implements org.telegram.ui.ActionBar.u6 {
 
     @Override
     public final void h(int i10, int i11) {
-        int i12 = this.f45778a;
+        int i12 = this.f45781a;
     }
 
     @Override
     public final int i(int i10) {
-        switch (this.f45778a) {
+        switch (this.f45781a) {
             case 0:
                 return g(i10);
             case 1:
                 return g(i10);
             default:
-                return ((pc1) this.f45779b).f42461f.f43733a.i(i10);
+                return ((pc1) this.f45782b).f42464f.f43736a.i(i10);
         }
     }
 

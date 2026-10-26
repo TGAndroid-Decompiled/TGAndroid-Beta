@@ -7,29 +7,29 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class kk extends FrameLayout {
-    public final int f40954a;
-    public final un f40955b;
+    public final int f40957a;
+    public final un f40958b;
 
     public kk(un unVar, Context context, int i10) {
         super(context);
-        this.f40954a = i10;
-        this.f40955b = unVar;
+        this.f40957a = i10;
+        this.f40958b = unVar;
     }
 
     @Override
     public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
         int i14;
-        switch (this.f40954a) {
+        switch (this.f40957a) {
             case 1:
-                un unVar = this.f40955b;
-                if (view == unVar.f44258g3) {
-                    ImageView imageView = unVar.f44233e3;
+                un unVar = this.f40958b;
+                if (view == unVar.f44261g3) {
+                    ImageView imageView = unVar.f44236e3;
                     if (imageView != null && imageView.getVisibility() != 8) {
                         i14 = 66;
                     } else {
                         i14 = 18;
                     }
-                    ImageView imageView2 = unVar.f44246f3;
+                    ImageView imageView2 = unVar.f44249f3;
                     if (imageView2 != null && imageView2.getVisibility() != 8) {
                         i14 += 48;
                     }
@@ -45,10 +45,10 @@ public final class kk extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f40954a) {
+        switch (this.f40957a) {
             case 2:
                 super.setTranslationY(f7);
-                this.f40955b.f44292j1.invalidate();
+                this.f40958b.f44295j1.invalidate();
                 return;
             default:
                 super.setTranslationY(f7);
@@ -59,10 +59,10 @@ public final class kk extends FrameLayout {
     @Override
     public void setVisibility(int i10) {
         boolean z10;
-        switch (this.f40954a) {
+        switch (this.f40957a) {
             case 0:
                 super.setVisibility(i10);
-                k6.m mVar = this.f40955b.Yc;
+                k6.m mVar = this.f40958b.Yc;
                 boolean z11 = false;
                 if (i10 == 0) {
                     z10 = true;

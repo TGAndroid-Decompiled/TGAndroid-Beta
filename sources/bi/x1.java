@@ -143,7 +143,7 @@ public final class x1 extends org.telegram.ui.Components.bb {
         ?? lVar = new s4.l();
         this.f5650i0 = lVar;
         lVar.C = false;
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         lVar.n(280L);
         lVar.o(ds.h);
         lVar.D = 30L;
@@ -263,7 +263,7 @@ public final class x1 extends org.telegram.ui.Components.bb {
                 eh.d c12 = this.f5659s0.c(this.f5651j0, null, false);
                 c12.w(AndroidUtilities.dp(4.0f));
                 c12.x(AndroidUtilities.dp(28.0f));
-                c12.v(new fh.b(org.telegram.ui.ActionBar.y6.f23354d6, u6Var));
+                c12.v(new fh.b(org.telegram.ui.ActionBar.y6.f23356d6, u6Var));
                 this.f5651j0.setBackground(c12);
                 this.containerView.addView(this.f5651j0, gb1.h(268, 64.0f, 81, 0.0f, 0.0f, 0.0f, 5.0f));
                 this.f5660t0 = new s1((TL_stars.starGiftAttributeBackdrop) bg.d.d(arrayList, TL_stars.starGiftAttributeBackdrop.class), (TL_stars.starGiftAttributePattern) bg.d.d(arrayList, TL_stars.starGiftAttributePattern.class), (TL_stars.starGiftAttributeModel) bg.d.d(arrayList, TL_stars.starGiftAttributeModel.class));
@@ -313,7 +313,7 @@ public final class x1 extends org.telegram.ui.Components.bb {
     }
 
     public final int Q() {
-        return i0.a.f(0.1f, getThemedColor(org.telegram.ui.ActionBar.y6.f23445i5), getThemedColor(org.telegram.ui.ActionBar.y6.f23425h5));
+        return i0.a.f(0.1f, getThemedColor(org.telegram.ui.ActionBar.y6.f23447i5), getThemedColor(org.telegram.ui.ActionBar.y6.f23427h5));
     }
 
     public final boolean S(s1 s1Var) {
@@ -448,7 +448,7 @@ public final class x1 extends org.telegram.ui.Components.bb {
     public final lm0 v(mm0 mm0Var) {
         q1 q1Var = new q1(this, this.d, getContext(), this.X, new ai.e(this, 6), this.resourcesProvider);
         this.f5652k0 = q1Var;
-        q1Var.f29505r = false;
+        q1Var.f29507r = false;
         return q1Var;
     }
 

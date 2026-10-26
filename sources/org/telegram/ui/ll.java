@@ -4,10 +4,10 @@ import android.content.Intent;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 public final class ll implements zp0 {
-    public final un f41293a;
+    public final un f41296a;
 
     public ll(un unVar) {
-        this.f41293a = unVar;
+        this.f41296a = unVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class ll implements zp0 {
             intent2.setType("image/*");
             Intent createChooser = Intent.createChooser(intent2, null);
             createChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent});
-            this.f41293a.startActivityForResult(createChooser, 1);
+            this.f41296a.startActivityForResult(createChooser, 1);
         } catch (Exception e) {
             FileLog.e(e);
         }

@@ -5,19 +5,19 @@ import android.graphics.drawable.BitmapDrawable;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 public final class d7 implements Utilities.Callback2 {
-    public final int f27412a;
-    public final m8 f27413b;
+    public final int f27414a;
+    public final m8 f27415b;
 
     public d7(m8 m8Var, int i10) {
-        this.f27412a = i10;
-        this.f27413b = m8Var;
+        this.f27414a = i10;
+        this.f27415b = m8Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f27412a) {
+        switch (this.f27414a) {
             case 0:
-                m8 m8Var = this.f27413b;
+                m8 m8Var = this.f27415b;
                 m8Var.X = !((Boolean) obj2).booleanValue();
                 MediaController mediaController = MediaController.getInstance();
                 org.telegram.ui.ActionBar.c1 c1Var = m8Var.W;
@@ -27,7 +27,7 @@ public final class d7 implements Utilities.Callback2 {
                 return;
             default:
                 Bitmap bitmap = (Bitmap) obj2;
-                this.f27413b.f30430h0.setBackground(new BitmapDrawable((Bitmap) obj));
+                this.f27415b.f30432h0.setBackground(new BitmapDrawable((Bitmap) obj));
                 return;
         }
     }

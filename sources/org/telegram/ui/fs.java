@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class fs extends org.telegram.ui.ActionBar.j {
-    public final js f39438a;
+    public final js f39441a;
 
     public fs(js jsVar) {
-        this.f39438a = jsVar;
+        this.f39441a = jsVar;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class fs extends org.telegram.ui.ActionBar.j {
         boolean z10;
         int i11;
         int i12;
-        js jsVar = this.f39438a;
+        js jsVar = this.f39441a;
         if (i10 == -1) {
             jsVar.finishFragment();
-        } else if (i10 == 1 && jsVar.f40730b.getText().length() != 0) {
+        } else if (i10 == 1 && jsVar.f40733b.getText().length() != 0) {
             TLRPC.User user = jsVar.getMessagesController().getUser(Long.valueOf(jsVar.H));
             TLRPC.UserFull userFull = jsVar.getMessagesController().getUserFull(jsVar.H);
-            user.first_name = jsVar.f40730b.getText().toString();
-            user.last_name = jsVar.f40731c.getText().toString();
+            user.first_name = jsVar.f40733b.getText().toString();
+            user.last_name = jsVar.f40734c.getText().toString();
             user.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = jsVar.d.getTextWithEntities();
             jsVar.getMessagesController().putUser(user, false);
@@ -49,7 +49,7 @@ public final class fs extends org.telegram.ui.ActionBar.j {
                 }
                 i12 = ((org.telegram.ui.ActionBar.r2) jsVar).currentAccount;
                 MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
-                jsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f22175id), userFull);
+                jsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f22177id), userFull);
             }
             jsVar.finishFragment();
             is isVar = jsVar.O;

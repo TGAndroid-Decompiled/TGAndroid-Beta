@@ -22,7 +22,7 @@ public final class m extends gb1 {
                 ((fi.n1) this.d).f11284j3 = false;
                 return;
             default:
-                ((c61) this.d).f38332x1 = false;
+                ((c61) this.d).f38335x1 = false;
                 return;
         }
     }
@@ -34,7 +34,7 @@ public final class m extends gb1 {
                 ((fi.n1) this.d).f11284j3 = true;
                 return;
             case 2:
-                ((c61) this.d).f38332x1 = true;
+                ((c61) this.d).f38335x1 = true;
                 return;
             default:
                 return;

@@ -16,12 +16,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.gb1;
 public final class k extends FrameLayout {
-    public final org.telegram.ui.ActionBar.b6 f24299a;
-    public final TextView f24300b;
-    public final org.telegram.ui.Components.y9 f24301c;
+    public final org.telegram.ui.ActionBar.b6 f24301a;
+    public final TextView f24302b;
+    public final org.telegram.ui.Components.y9 f24303c;
     public final ImageView d;
     public final org.telegram.ui.Components.j9 e;
-    public int f24302f;
+    public int f24304f;
 
     public k(Activity activity, boolean z10) {
         super(activity);
@@ -30,11 +30,11 @@ public final class k extends FrameLayout {
         this.e = j9Var;
         j9Var.u(AndroidUtilities.dp(12.0f));
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(activity);
-        this.f24301c = y9Var;
+        this.f24303c = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(18.0f));
         addView(y9Var, gb1.h(36, 36.0f, 51, 10.0f, 10.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.b6 b6Var = new org.telegram.ui.ActionBar.b6(activity);
-        this.f24299a = b6Var;
+        this.f24301a = b6Var;
         b6Var.setTextSize(15);
         b6Var.setTypeface(AndroidUtilities.bold());
         b6Var.setEllipsizeByGradient(true);
@@ -42,11 +42,11 @@ public final class k extends FrameLayout {
         b6Var.setGravity(19);
         if (z10) {
             addView(b6Var, gb1.h(-2, -2.0f, 51, 61.0f, 7.0f, 8.0f, 0.0f));
-            org.telegram.ui.ActionBar.f7.Y(b6Var, org.telegram.ui.ActionBar.y6.f23548ng, null);
+            org.telegram.ui.ActionBar.f7.Y(b6Var, org.telegram.ui.ActionBar.y6.f23550ng, null);
             b6Var.l(LocaleController.getString(R.string.VoipGroupDisplayAs), false);
             TextView textView = new TextView(activity);
-            this.f24300b = textView;
-            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23568og, null);
+            this.f24302b = textView;
+            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23570og, null);
             vh.r(textView, 1, 15.0f, 1, 1);
             textView.setSingleLine(true);
             textView.setMaxWidth(AndroidUtilities.dp(320.0f));
@@ -66,14 +66,14 @@ public final class k extends FrameLayout {
     }
 
     public int getAccountNumber() {
-        return this.f24302f;
+        return this.f24304f;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f24300b == null) {
-            org.telegram.ui.ActionBar.f7.Y(this.f24299a, org.telegram.ui.ActionBar.y6.G9, null);
+        if (this.f24302b == null) {
+            org.telegram.ui.ActionBar.f7.Y(this.f24301a, org.telegram.ui.ActionBar.y6.G9, null);
         }
     }
 
@@ -83,7 +83,7 @@ public final class k extends FrameLayout {
         int i12;
         float f7;
         ImageView imageView = this.d;
-        if (imageView == null && ((textView = this.f24300b) == null || getLayoutParams().width == -2)) {
+        if (imageView == null && ((textView = this.f24302b) == null || getLayoutParams().width == -2)) {
             if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
                 float dp = AndroidUtilities.dp(196.0f);
                 if (imageView != null) {
@@ -92,7 +92,7 @@ public final class k extends FrameLayout {
                     i12 = 0;
                 }
                 float dp2 = AndroidUtilities.dp(i12 + 69);
-                org.telegram.ui.ActionBar.b6 b6Var = this.f24299a;
+                org.telegram.ui.ActionBar.b6 b6Var = this.f24301a;
                 float measureText = b6Var.getTextPaint().measureText(b6Var.getText().toString());
                 if (textView != null) {
                     f7 = textView.getPaint().measureText(textView.getText().toString());
@@ -111,8 +111,8 @@ public final class k extends FrameLayout {
     public void setObject(TLObject tLObject) {
         String str;
         boolean z10 = tLObject instanceof TLRPC.User;
-        org.telegram.ui.Components.y9 y9Var = this.f24301c;
-        TextView textView = this.f24300b;
+        org.telegram.ui.Components.y9 y9Var = this.f24303c;
+        TextView textView = this.f24302b;
         org.telegram.ui.Components.j9 j9Var = this.e;
         if (z10) {
             TLRPC.User user = (TLRPC.User) tLObject;

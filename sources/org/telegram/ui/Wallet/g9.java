@@ -5,29 +5,29 @@ import android.graphics.Paint;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 public final class g9 {
-    public final float f36606a;
-    public final float f36607b;
-    public final float f36608c;
+    public final float f36609a;
+    public final float f36610b;
+    public final float f36611c;
     public final float d;
     public final float e;
-    public final boolean f36609f;
-    public final long f36610g;
+    public final boolean f36612f;
+    public final long f36613g;
     public final h9 h;
 
     public g9(h9 h9Var, g9 g9Var, float f7, boolean z10) {
         float z11;
         this.h = h9Var;
-        this.f36609f = z10;
-        this.f36607b = f7;
-        this.f36606a = g9Var != null ? g9Var.f36606a : f7;
-        this.f36610g = (g9Var == null || z10) ? SystemClock.uptimeMillis() : g9Var.f36610g;
+        this.f36612f = z10;
+        this.f36610b = f7;
+        this.f36609a = g9Var != null ? g9Var.f36609a : f7;
+        this.f36613g = (g9Var == null || z10) ? SystemClock.uptimeMillis() : g9Var.f36613g;
         float f10 = 0.0f;
         float a2 = (g9Var == null || !z10) ? 0.0f : g9Var.a();
         if (g9Var != null) {
-            float f11 = g9Var.f36608c;
+            float f11 = g9Var.f36611c;
             f10 = c3.h0.z(1.0f, f11, a2, f11);
         }
-        this.f36608c = f10;
+        this.f36611c = f10;
         if (g9Var == null) {
             z11 = h9Var.O;
         } else {
@@ -42,7 +42,7 @@ public final class g9 {
         if (this.h.I >= 1.0f) {
             return 1.0f;
         }
-        return h9.S.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f36610g)) / 320.0f));
+        return h9.S.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f36613g)) / 320.0f));
     }
 
     public final void b(Canvas canvas, Paint paint, String str, float f7, int i10) {
@@ -50,13 +50,13 @@ public final class g9 {
         float f11;
         float a2 = a();
         float f12 = 1.0f;
-        boolean z10 = this.f36609f;
+        boolean z10 = this.f36612f;
         if (z10) {
             f10 = 0.0f;
         } else {
             f10 = 1.0f;
         }
-        float f13 = this.f36608c;
+        float f13 = this.f36611c;
         float z11 = c3.h0.z(f10, f13, a2, f13);
         if (z11 <= 0.0f) {
             return;
@@ -95,30 +95,30 @@ public final class g9 {
     }
 
     public final float d() {
-        float f7 = this.f36607b;
-        float f10 = this.f36606a;
+        float f7 = this.f36610b;
+        float f10 = this.f36609a;
         return (h9.S.getInterpolation(this.h.I) * (f7 - f10)) + f10;
     }
 
     public g9(h9 h9Var, float f7) {
         this.h = h9Var;
-        this.f36609f = false;
-        this.f36607b = f7;
-        this.f36606a = f7;
-        this.f36608c = 1.0f;
+        this.f36612f = false;
+        this.f36610b = f7;
+        this.f36609a = f7;
+        this.f36611c = 1.0f;
         this.d = 1.0f;
         this.e = 0.0f;
-        this.f36610g = SystemClock.uptimeMillis();
+        this.f36613g = SystemClock.uptimeMillis();
     }
 
     public g9(h9 h9Var, float f7, g9 g9Var) {
         this.h = h9Var;
-        this.f36609f = g9Var.f36609f;
-        this.f36607b = f7;
-        this.f36606a = f7;
-        this.f36608c = g9Var.f36608c;
+        this.f36612f = g9Var.f36612f;
+        this.f36610b = f7;
+        this.f36609a = f7;
+        this.f36611c = g9Var.f36611c;
         this.d = g9Var.d;
         this.e = g9Var.e;
-        this.f36610g = g9Var.f36610g;
+        this.f36613g = g9Var.f36613g;
     }
 }

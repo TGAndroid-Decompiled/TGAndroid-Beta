@@ -80,7 +80,7 @@ public final class f2 extends FrameLayout implements org.telegram.ui.ActionBar.p
         this.f10856r = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageDrawable(new d2(u6Var));
-        int i13 = org.telegram.ui.ActionBar.y6.f23446i6;
+        int i13 = org.telegram.ui.ActionBar.y6.f23448i6;
         org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.w0(i13, u6Var), 1, AndroidUtilities.dp(15.0f));
         org.telegram.ui.ActionBar.b7 N2 = org.telegram.ui.ActionBar.f7.N(i13);
         imageView2.setBackground(g02);
@@ -104,7 +104,7 @@ public final class f2 extends FrameLayout implements org.telegram.ui.ActionBar.p
                         return;
                     default:
                         f2 f2Var = this.f10503b;
-                        int i14 = f2Var.d.f27916k;
+                        int i14 = f2Var.d.f27918k;
                         if (i14 == 1) {
                             f2Var.b();
                             e2 e2Var = f2Var.h;
@@ -138,7 +138,7 @@ public final class f2 extends FrameLayout implements org.telegram.ui.ActionBar.p
                         return;
                     default:
                         f2 f2Var = this.f10503b;
-                        int i14 = f2Var.d.f27916k;
+                        int i14 = f2Var.d.f27918k;
                         if (i14 == 1) {
                             f2Var.b();
                             e2 e2Var = f2Var.h;
@@ -210,7 +210,7 @@ public final class f2 extends FrameLayout implements org.telegram.ui.ActionBar.p
                                 return;
                             }
                             f2Var2.h.L1(xx0Var);
-                            String str = xx0Var.f34842a;
+                            String str = xx0Var.f34845a;
                             int categoryIndex = f2Var2.h.getCategoryIndex();
                             Utilities.Callback2 callback22 = f2Var2.f10858w;
                             if (callback22 != null) {
@@ -255,7 +255,7 @@ public final class f2 extends FrameLayout implements org.telegram.ui.ActionBar.p
                                 return;
                             }
                             f2Var2.h.L1(xx0Var);
-                            String str = xx0Var.f34842a;
+                            String str = xx0Var.f34845a;
                             int categoryIndex = f2Var2.h.getCategoryIndex();
                             Utilities.Callback2 callback22 = f2Var2.f10858w;
                             if (callback22 != null) {
@@ -301,7 +301,7 @@ public final class f2 extends FrameLayout implements org.telegram.ui.ActionBar.p
         if (z11 && ((c2Var.length() != 0 || ((e2Var2 = this.h) != null && e2Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (c2Var.length() <= 0 && ((e2Var = this.h) == null || e2Var.f26995w3 <= 0.5f || ((e2Var == null || !e2Var.f26990r3) && e2Var.getSelectedCategory() == null))) {
+        if (c2Var.length() <= 0 && ((e2Var = this.h) == null || e2Var.f26997w3 <= 0.5f || ((e2Var == null || !e2Var.f26992r3) && e2Var.getSelectedCategory() == null))) {
             i10 = 0;
         } else {
             i10 = 1;

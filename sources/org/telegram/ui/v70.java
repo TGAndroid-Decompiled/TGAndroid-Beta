@@ -8,37 +8,37 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class v70 extends ViewGroup {
-    public AnimatorSet f44727a;
-    public boolean f44728b;
-    public final ArrayList f44729c;
+    public AnimatorSet f44730a;
+    public boolean f44731b;
+    public final ArrayList f44732c;
     public org.telegram.ui.Components.x30 d;
     public int e;
-    public final w70 f44730f;
+    public final w70 f44733f;
 
     public v70(w70 w70Var, Context context) {
         super(context);
-        this.f44730f = w70Var;
-        this.f44729c = new ArrayList();
+        this.f44733f = w70Var;
+        this.f44732c = new ArrayList();
     }
 
     public final void a(org.telegram.ui.Components.x30 x30Var) {
-        w70 w70Var = this.f44730f;
-        w70Var.f44999y.remove(x30Var.getKey());
+        w70 w70Var = this.f44733f;
+        w70Var.f45002y.remove(x30Var.getKey());
         w70Var.E.remove(x30Var);
         x30Var.setOnClickListener(null);
-        AnimatorSet animatorSet = this.f44727a;
+        AnimatorSet animatorSet = this.f44730a;
         if (animatorSet != null && animatorSet.isRunning()) {
-            this.f44727a.setupEndValues();
-            this.f44727a.cancel();
+            this.f44730a.setupEndValues();
+            this.f44730a.cancel();
         }
-        this.f44728b = false;
+        this.f44731b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f44727a = animatorSet2;
+        this.f44730a = animatorSet2;
         animatorSet2.addListener(new org.telegram.ui.Components.ll0(8, this, x30Var));
-        this.f44727a.setInterpolator(org.telegram.ui.Components.ds.h);
-        this.f44727a.setDuration(320L);
+        this.f44730a.setInterpolator(org.telegram.ui.Components.ds.h);
+        this.f44730a.setDuration(320L);
         this.d = x30Var;
-        ArrayList arrayList = this.f44729c;
+        ArrayList arrayList = this.f44732c;
         arrayList.clear();
         arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_X, 1.0f, 0.75f));
         arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 1.0f, 0.75f));
@@ -71,7 +71,7 @@ public final class v70 extends ViewGroup {
         int i18 = 0;
         int i19 = 0;
         while (true) {
-            arrayList = this.f44729c;
+            arrayList = this.f44732c;
             if (i16 >= childCount) {
                 break;
             }
@@ -87,7 +87,7 @@ public final class v70 extends ViewGroup {
                     i19 = 0;
                 }
                 int i20 = dp + i18;
-                if (!this.f44728b) {
+                if (!this.f44731b) {
                     org.telegram.ui.Components.x30 x30Var = this.d;
                     if (childAt == x30Var) {
                         childAt.setTranslationX(dp + i19);
@@ -121,23 +121,23 @@ public final class v70 extends ViewGroup {
             i16++;
         }
         int D2 = org.telegram.messenger.t.D(28.0f, i17, dp);
-        if (!this.f44728b) {
-            AnimatorSet animatorSet = this.f44727a;
+        if (!this.f44731b) {
+            AnimatorSet animatorSet = this.f44730a;
             if (animatorSet != null) {
                 this.e = D2;
                 animatorSet.playTogether(arrayList);
-                this.f44727a.start();
-                this.f44728b = true;
+                this.f44730a.start();
+                this.f44731b = true;
             } else {
                 this.e = Math.max(D2, AndroidUtilities.dp(28.0f) + i14 + dp);
             }
         }
-        w70 w70Var = this.f44730f;
-        oe.e eVar = w70Var.f44990a;
+        w70 w70Var = this.f44733f;
+        oe.e eVar = w70Var.f44993a;
         if (w70Var.E.isEmpty()) {
             min = 0.0f;
         } else {
-            min = Math.min(D2, w70Var.f44997w);
+            min = Math.min(D2, w70Var.f45000w);
         }
         eVar.a(min);
         setMeasuredDimension(size, this.e);

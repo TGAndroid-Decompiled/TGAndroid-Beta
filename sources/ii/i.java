@@ -52,7 +52,7 @@ public final class i implements Utilities.Callback2 {
                         i10 = R.string.CommunitySettingsSetPhoto;
                     }
                     t61 c10 = t61.c(141, i12, LocaleController.getString(i10));
-                    c10.f32877q = true;
+                    c10.f32880q = true;
                     arrayList2.add(c10);
                     arrayList2.add(t61.E(2, AndroidUtilities.dp(14.0f)));
                     arrayList2.add(t61.t(0, LocaleController.getString(R.string.CommunitySectionCommunityName)));
@@ -99,7 +99,7 @@ public final class i implements Utilities.Callback2 {
                 }
                 arrayList2.add(t61.E(5, AndroidUtilities.dp(14.0f)));
                 t61 c11 = t61.c(146, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityMenuAddChat));
-                c11.f32877q = true;
+                c11.f32880q = true;
                 arrayList2.add(c11);
                 TLRPC.ChatFull chatFull4 = oVar2.J;
                 if (chatFull4 != null && (arrayList = chatFull4.linked_peers) != null) {

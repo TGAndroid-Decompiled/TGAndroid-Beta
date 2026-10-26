@@ -10,13 +10,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.gb1;
 public final class h3 extends FrameLayout {
-    public final EditTextBoldCursor f24190a;
+    public final EditTextBoldCursor f24192a;
 
     public h3(Context context) {
         super(context);
         int i10;
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f24190a = editTextBoldCursor;
+        this.f24192a = editTextBoldCursor;
         org.telegram.ui.ActionBar.f7.V(editTextBoldCursor, org.telegram.ui.ActionBar.y6.G6, null);
         org.telegram.ui.ActionBar.f7.E(editTextBoldCursor, org.telegram.ui.ActionBar.y6.H6, null);
         editTextBoldCursor.setTextSize(1, 16.0f);
@@ -37,28 +37,28 @@ public final class h3 extends FrameLayout {
     }
 
     public final void a(String str) {
-        EditTextBoldCursor editTextBoldCursor = this.f24190a;
+        EditTextBoldCursor editTextBoldCursor = this.f24192a;
         editTextBoldCursor.setText("");
         editTextBoldCursor.setHint(str);
         setWillNotDraw(true);
     }
 
     public String getText() {
-        return this.f24190a.getText().toString();
+        return this.f24192a.getText().toString();
     }
 
     public EditTextBoldCursor getTextView() {
-        return this.f24190a;
+        return this.f24192a;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f));
-        this.f24190a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f24192a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i10) {
-        this.f24190a.setTextColor(i10);
+        this.f24192a.setTextColor(i10);
     }
 
     @Override

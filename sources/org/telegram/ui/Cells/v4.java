@@ -5,18 +5,18 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class v4 extends FrameLayout {
-    public TextView f25582a;
+    public TextView f25584a;
 
     public void setCellHeight(int i10) {
         setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(54.0f), i10));
     }
 
     public void setLetter(String str) {
-        this.f25582a.setText(str.toUpperCase());
+        this.f25584a.setText(str.toUpperCase());
     }
 
     public void setLetterProgress(float f7) {
-        TextView textView = this.f25582a;
+        TextView textView = this.f25584a;
         textView.setAlpha(f7);
         float f10 = (0.4f * f7) + 0.6f;
         textView.setScaleX(f10);
@@ -25,6 +25,6 @@ public final class v4 extends FrameLayout {
     }
 
     public void setLetterTextSize(float f7) {
-        this.f25582a.setTextSize(1, f7);
+        this.f25584a.setTextSize(1, f7);
     }
 }

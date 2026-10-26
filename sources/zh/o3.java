@@ -16,7 +16,7 @@ import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.t5;
 import org.telegram.ui.Components.t61;
 public final class o3 extends s61 {
-    public static final int f53176a = 0;
+    public static final int f53179a = 0;
 
     static {
         s61.setup(new s61());
@@ -26,20 +26,20 @@ public final class o3 extends s61 {
     public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
         p3 p3Var = (p3) view;
         TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) t61Var.G;
-        int i10 = t61Var.f32885z;
-        String str = (String) t61Var.f32872l;
+        int i10 = t61Var.f32888z;
+        String str = (String) t61Var.f32875l;
         boolean z11 = t61Var.e;
-        ak0 ak0Var = p3Var.f22636c;
-        n3 n3Var = p3Var.f53210a0;
+        ak0 ak0Var = p3Var.f22638c;
+        n3 n3Var = p3Var.f53213a0;
         if (n3Var == null || p3Var.W != stargiftattributemodel.document.f22033id) {
             p3Var.W = stargiftattributemodel.document.f22033id;
             if (n3Var != null) {
                 n3Var.o(ak0Var);
             }
-            p3Var.f53210a0 = new t5(3, p3Var.V, stargiftattributemodel.document);
+            p3Var.f53213a0 = new t5(3, p3Var.V, stargiftattributemodel.document);
         }
         if (ak0Var.isAttachedToWindow()) {
-            p3Var.f53210a0.a(ak0Var);
+            p3Var.f53213a0.a(ak0Var);
         }
         SpannableStringBuilder spannableStringBuilder = stargiftattributemodel.name;
         if (!TextUtils.isEmpty(str)) {
@@ -53,7 +53,7 @@ public final class o3 extends s61 {
             spannableStringBuilder2.setSpan(new q61(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
-        p3Var.j(spannableStringBuilder, 0, p3Var.f53210a0);
+        p3Var.j(spannableStringBuilder, 0, p3Var.f53213a0);
         p3Var.setChecked(z11);
     }
 

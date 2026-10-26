@@ -5,55 +5,55 @@ import java.util.ArrayList;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 public final class xs implements View.OnClickListener {
-    public final ArrayList f45845a;
-    public final boolean f45846b;
-    public final bt f45847c;
+    public final ArrayList f45848a;
+    public final boolean f45849b;
+    public final bt f45850c;
 
     public xs(bt btVar, ArrayList arrayList, boolean z10) {
-        this.f45847c = btVar;
-        this.f45845a = arrayList;
-        this.f45846b = z10;
+        this.f45850c = btVar;
+        this.f45848a = arrayList;
+        this.f45849b = z10;
     }
 
     @Override
     public final void onClick(View view) {
-        ft ftVar = this.f45847c.f38155a;
-        if (ftVar.f39466w != null) {
+        ft ftVar = this.f45850c.f38158a;
+        if (ftVar.f39469w != null) {
             int intValue = ((Integer) view.getTag()).intValue();
-            ArrayList arrayList = this.f45845a;
+            ArrayList arrayList = this.f45848a;
             if (((Integer) arrayList.get(intValue)).intValue() != 0 && ((Integer) arrayList.get(intValue)).intValue() != 6) {
                 if (((Integer) arrayList.get(intValue)).intValue() == 1) {
-                    dt dtVar = ftVar.f39456l;
+                    dt dtVar = ftVar.f39459l;
                     if (dtVar != null) {
-                        dtVar.L(ftVar.f39444a0, ftVar.f39453i);
+                        dtVar.L(ftVar.f39447a0, ftVar.f39456i);
                     }
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 2) {
-                    MediaDataController.getInstance(ftVar.f39462r).addRecentSticker(2, ftVar.f39446b0, ftVar.W, (int) (System.currentTimeMillis() / 1000), this.f45846b);
+                    MediaDataController.getInstance(ftVar.f39465r).addRecentSticker(2, ftVar.f39449b0, ftVar.W, (int) (System.currentTimeMillis() / 1000), this.f45849b);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 3) {
                     TLRPC.Document document = ftVar.W;
-                    Object obj = ftVar.f39446b0;
+                    Object obj = ftVar.f39449b0;
                     String str = ftVar.Y;
-                    dt dtVar2 = ftVar.f39456l;
+                    dt dtVar2 = ftVar.f39459l;
                     if (dtVar2 == null) {
                         return;
                     }
-                    org.telegram.ui.Components.g5.K(ftVar.f39466w, dtVar2.a(), new a1.d(dtVar2, document, str, obj, 12));
+                    org.telegram.ui.Components.g5.K(ftVar.f39469w, dtVar2.a(), new a1.d(dtVar2, document, str, obj, 12));
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 4) {
-                    MediaDataController.getInstance(ftVar.f39462r).addRecentSticker(0, ftVar.f39446b0, ftVar.W, (int) (System.currentTimeMillis() / 1000), true);
+                    MediaDataController.getInstance(ftVar.f39465r).addRecentSticker(0, ftVar.f39449b0, ftVar.W, (int) (System.currentTimeMillis() / 1000), true);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 5) {
-                    ftVar.f39456l.j(ftVar.X);
+                    ftVar.f39459l.j(ftVar.X);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 7) {
-                    ftVar.f39456l.o(ftVar.W);
+                    ftVar.f39459l.o(ftVar.W);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 8) {
-                    ftVar.f39456l.E(ftVar.W);
+                    ftVar.f39459l.E(ftVar.W);
                 }
             } else {
-                dt dtVar3 = ftVar.f39456l;
+                dt dtVar3 = ftVar.f39459l;
                 if (dtVar3 != null) {
                     TLRPC.Document document2 = ftVar.W;
                     String str2 = ftVar.Y;
                     boolean z10 = true;
-                    Object obj2 = ftVar.f39446b0;
+                    Object obj2 = ftVar.f39449b0;
                     if (((Integer) arrayList.get(intValue)).intValue() != 0) {
                         z10 = false;
                     }

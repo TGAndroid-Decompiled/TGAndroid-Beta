@@ -14,12 +14,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.lm0;
 public final class qa extends lm0 {
-    public final Context f24838c;
+    public final Context f24840c;
     public final ra d;
 
     public qa(ra raVar, Context context) {
         this.d = raVar;
-        this.f24838c = context;
+        this.f24840c = context;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class qa extends lm0 {
     @Override
     public final int h() {
         ra raVar = this.d;
-        int size = raVar.f25003l3.size() + raVar.f25004m3.size();
-        raVar.f25006o3 = size;
+        int size = raVar.f25005l3.size() + raVar.f25006m3.size();
+        raVar.f25008o3 = size;
         return size;
     }
 
@@ -43,13 +43,13 @@ public final class qa extends lm0 {
         float f7;
         org.telegram.ui.ActionBar.x6 x6Var;
         TLRPC.TL_theme tL_theme;
-        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) e1Var.f47735a;
+        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) e1Var.f47738a;
         ra raVar = this.d;
-        ArrayList arrayList = raVar.f25004m3;
+        ArrayList arrayList = raVar.f25006m3;
         if (i10 < arrayList.size()) {
             i11 = i10;
         } else {
-            ArrayList arrayList2 = raVar.f25003l3;
+            ArrayList arrayList2 = raVar.f25005l3;
             int size = i10 - arrayList.size();
             arrayList = arrayList2;
             i11 = size;
@@ -65,14 +65,14 @@ public final class qa extends lm0 {
         } else {
             z11 = false;
         }
-        HashMap hashMap = themesHorizontalListCell$InnerThemeView.f23823a0.f24999h3;
-        themesHorizontalListCell$InnerThemeView.f23824b = x6Var2;
-        themesHorizontalListCell$InnerThemeView.f23829s = z11;
-        themesHorizontalListCell$InnerThemeView.f23828r = z10;
+        HashMap hashMap = themesHorizontalListCell$InnerThemeView.f23825a0.f25001h3;
+        themesHorizontalListCell$InnerThemeView.f23826b = x6Var2;
+        themesHorizontalListCell$InnerThemeView.f23831s = z11;
+        themesHorizontalListCell$InnerThemeView.f23830r = z10;
         themesHorizontalListCell$InnerThemeView.F = x6Var2.Y;
-        RadioButton radioButton = themesHorizontalListCell$InnerThemeView.f23822a;
+        RadioButton radioButton = themesHorizontalListCell$InnerThemeView.f23824a;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) radioButton.getLayoutParams();
-        if (themesHorizontalListCell$InnerThemeView.f23829s) {
+        if (themesHorizontalListCell$InnerThemeView.f23831s) {
             f7 = 49.0f;
         } else {
             f7 = 27.0f;
@@ -80,12 +80,12 @@ public final class qa extends lm0 {
         layoutParams.leftMargin = AndroidUtilities.dp(f7);
         radioButton.setLayoutParams(layoutParams);
         themesHorizontalListCell$InnerThemeView.v = 0.0f;
-        org.telegram.ui.ActionBar.x6 x6Var3 = themesHorizontalListCell$InnerThemeView.f23824b;
-        if (x6Var3.f23251b != null && !x6Var3.T) {
-            x6Var3.Q = org.telegram.ui.ActionBar.y6.E0(org.telegram.ui.ActionBar.y6.f23616ra);
-            themesHorizontalListCell$InnerThemeView.f23824b.R = org.telegram.ui.ActionBar.y6.E0(org.telegram.ui.ActionBar.y6.Aa);
-            boolean exists = new File(themesHorizontalListCell$InnerThemeView.f23824b.f23251b).exists();
-            if ((!exists || !themesHorizontalListCell$InnerThemeView.c() || !exists) && (tL_theme = (x6Var = themesHorizontalListCell$InnerThemeView.f23824b).F) != null) {
+        org.telegram.ui.ActionBar.x6 x6Var3 = themesHorizontalListCell$InnerThemeView.f23826b;
+        if (x6Var3.f23253b != null && !x6Var3.T) {
+            x6Var3.Q = org.telegram.ui.ActionBar.y6.E0(org.telegram.ui.ActionBar.y6.f23618ra);
+            themesHorizontalListCell$InnerThemeView.f23826b.R = org.telegram.ui.ActionBar.y6.E0(org.telegram.ui.ActionBar.y6.Aa);
+            boolean exists = new File(themesHorizontalListCell$InnerThemeView.f23826b.f23253b).exists();
+            if ((!exists || !themesHorizontalListCell$InnerThemeView.c() || !exists) && (tL_theme = (x6Var = themesHorizontalListCell$InnerThemeView.f23826b).F) != null) {
                 if (tL_theme.document != null) {
                     x6Var.U = false;
                     themesHorizontalListCell$InnerThemeView.v = 1.0f;
@@ -95,11 +95,11 @@ public final class qa extends lm0 {
                     themesHorizontalListCell$InnerThemeView.U = x02;
                     org.telegram.ui.ActionBar.y6.z1(x02, mutate);
                     if (!exists) {
-                        String attachFileName = FileLoader.getAttachFileName(themesHorizontalListCell$InnerThemeView.f23824b.F.document);
+                        String attachFileName = FileLoader.getAttachFileName(themesHorizontalListCell$InnerThemeView.f23826b.F.document);
                         if (!hashMap.containsKey(attachFileName)) {
-                            hashMap.put(attachFileName, themesHorizontalListCell$InnerThemeView.f23824b);
-                            FileLoader fileLoader = FileLoader.getInstance(themesHorizontalListCell$InnerThemeView.f23824b.E);
-                            TLRPC.TL_theme tL_theme2 = themesHorizontalListCell$InnerThemeView.f23824b.F;
+                            hashMap.put(attachFileName, themesHorizontalListCell$InnerThemeView.f23826b);
+                            FileLoader fileLoader = FileLoader.getInstance(themesHorizontalListCell$InnerThemeView.f23826b.E);
+                            TLRPC.TL_theme tL_theme2 = themesHorizontalListCell$InnerThemeView.f23826b.F;
                             fileLoader.loadFile(tL_theme2.document, tL_theme2, 1, 1);
                         }
                     }
@@ -117,6 +117,6 @@ public final class qa extends lm0 {
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        return new s4.e1(new ThemesHorizontalListCell$InnerThemeView(this.d, this.f24838c));
+        return new s4.e1(new ThemesHorizontalListCell$InnerThemeView(this.d, this.f24840c));
     }
 }

@@ -29,14 +29,14 @@ import org.telegram.ui.Components.m71;
 import org.telegram.ui.Components.t61;
 public final class ca extends m71 implements NotificationCenter.NotificationCenterDelegate {
     public static void Z(ca caVar, TL_wallet.tonConnectSession tonconnectsession, Utilities.Callback callback) {
-        e2 e2Var = l0.w(caVar.currentAccount).f36808g;
+        e2 e2Var = l0.w(caVar.currentAccount).f36811g;
         e2Var.getClass();
         AndroidUtilities.runOnUIThread(new h(e2Var, tonconnectsession, callback, 4));
     }
 
     @Override
     public final void V(ArrayList arrayList, j71 j71Var) {
-        e2 e2Var = l0.w(this.currentAccount).f36808g;
+        e2 e2Var = l0.w(this.currentAccount).f36811g;
         if (!e2Var.d.isEmpty()) {
             ic.a.p(R.string.WalletActiveConnections, arrayList);
         }
@@ -46,7 +46,7 @@ public final class ca extends m71 implements NotificationCenter.NotificationCent
         while (i10 < size) {
             Object obj = arrayList2.get(i10);
             i10++;
-            int i11 = aa.f36373a;
+            int i11 = aa.f36376a;
             t61 K = t61.K(aa.class);
             K.G = (TL_wallet.tonConnectSession) obj;
             arrayList.add(K);
@@ -75,7 +75,7 @@ public final class ca extends m71 implements NotificationCenter.NotificationCent
             ImageView imageView = new ImageView(parentActivity);
             imageView.setImageResource(R.drawable.ic_ab_close);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i10 = org.telegram.ui.ActionBar.y6.f23446i6;
+            int i10 = org.telegram.ui.ActionBar.y6.f23448i6;
             org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.w0(i10, resourceProvider), 1, -1);
             org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i10);
             imageView.setBackground(g02);
@@ -130,7 +130,7 @@ public final class ca extends m71 implements NotificationCenter.NotificationCent
             fi.d dVar = new fi.d(parentActivity, resourceProvider, true);
             dVar.setRoundRadius(24);
             dVar.setText(LocaleController.getString(R.string.WalletDisconnect));
-            int i12 = org.telegram.ui.ActionBar.y6.f23596q7;
+            int i12 = org.telegram.ui.ActionBar.y6.f23598q7;
             dVar.setColor(org.telegram.ui.ActionBar.y6.w0(i12, resourceProvider));
             if (dVar.getBackground() != null) {
                 Drawable background = dVar.getBackground();
@@ -154,17 +154,17 @@ public final class ca extends m71 implements NotificationCenter.NotificationCent
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f30417a);
-        this.f30417a.u1();
-        this.f30417a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f30419a);
+        this.f30419a.u1();
+        this.f30419a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         l71 l71Var;
-        if (i10 == NotificationCenter.walletUpdate && (l71Var = this.f30417a) != null) {
-            l71Var.f32150g3.O(true);
+        if (i10 == NotificationCenter.walletUpdate && (l71Var = this.f30419a) != null) {
+            l71Var.f32152g3.O(true);
         }
     }
 
@@ -187,7 +187,7 @@ public final class ca extends m71 implements NotificationCenter.NotificationCent
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f30417a.setPadding(0, 0, 0, i13);
-        this.f30417a.setClipToPadding(false);
+        this.f30419a.setPadding(0, 0, 0, i13);
+        this.f30419a.setClipToPadding(false);
     }
 }

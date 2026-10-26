@@ -16,12 +16,12 @@ public abstract class va0 extends b81 {
     public final ey0 X;
     public float Y;
     public boolean Z;
-    public int f33616a0;
+    public int f33619a0;
 
     public va0(org.telegram.ui.ActionBar.r2 r2Var, long j10) {
         super(r2Var.getParentActivity(), r2Var.getCurrentAccount(), r2Var.getResourceProvider());
         this.T = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i10 = org.telegram.ui.ActionBar.y6.f23297a7;
+        int i10 = org.telegram.ui.ActionBar.y6.f23299a7;
         setBackgroundColor(getThemedColor(i10));
         this.L = i10;
         this.K = i10;
@@ -33,14 +33,14 @@ public abstract class va0 extends b81 {
         this.U = ua0Var;
         ua0Var.B = false;
         setDimBehindAlpha(75);
-        this.f26782w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
-        yh.f fVar = ua0Var.f52610f;
-        this.f26778f = fVar;
+        this.f26784w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        yh.f fVar = ua0Var.f52613f;
+        this.f26780f = fVar;
         this.e = fVar;
         this.d.setAdapter(fVar);
         this.d.u1();
         bi.r1 r1Var = this.d;
-        ua0Var.f52619p = r1Var;
+        ua0Var.f52622p = r1Var;
         r1Var.setOnItemClickListener(new ai.k(ua0Var, 23));
         s4.u0 onScrollListener = r1Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -68,9 +68,9 @@ public abstract class va0 extends b81 {
         int action = motionEvent.getAction();
         ua0 ua0Var = this.U;
         if (action == 0) {
-            this.Y = this.f26784y;
+            this.Y = this.f26786y;
             ua0Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f26784y - this.Y) < this.T && !this.Z) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f26786y - this.Y) < this.T && !this.Z) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
@@ -109,7 +109,7 @@ public abstract class va0 extends b81 {
     @Override
     public final void I(int i10) {
         super.I(i10);
-        this.V.setTranslationY(this.f26777c.getMeasuredHeight() + i10);
+        this.V.setTranslationY(this.f26779c.getMeasuredHeight() + i10);
         float f7 = i10;
         this.W.setTranslationY(f7);
         this.X.setTranslationY(f7);
@@ -125,8 +125,8 @@ public abstract class va0 extends b81 {
             } else {
                 i10 = 0;
             }
-            if (this.f26784y != i10) {
-                this.f26784y = i10;
+            if (this.f26786y != i10) {
+                this.f26786y = i10;
                 I(i10);
                 return;
             }
@@ -137,7 +137,7 @@ public abstract class va0 extends b81 {
 
     @Override
     public final void onBackPressed() {
-        yh.j jVar = this.U.f52622s;
+        yh.j jVar = this.U.f52625s;
         if (jVar != null) {
             jVar.e(false);
         } else {
@@ -148,9 +148,9 @@ public abstract class va0 extends b81 {
     @Override
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.f23297a7);
-        if (themedColor != this.f33616a0) {
-            this.f33616a0 = themedColor;
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.f23299a7);
+        if (themedColor != this.f33619a0) {
+            this.f33619a0 = themedColor;
             setBackgroundColor(themedColor);
         }
     }
@@ -158,10 +158,10 @@ public abstract class va0 extends b81 {
     @Override
     public final void show() {
         ua0 ua0Var = this.U;
-        if (ua0Var.f52608b && this.f26784y == 0) {
-            this.f26784y = AndroidUtilities.dp(8.0f);
+        if (ua0Var.f52611b && this.f26786y == 0) {
+            this.f26786y = AndroidUtilities.dp(8.0f);
         }
         super.show();
-        ua0Var.f52608b = false;
+        ua0Var.f52611b = false;
     }
 }

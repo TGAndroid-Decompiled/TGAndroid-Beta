@@ -66,7 +66,7 @@ public final class c0 implements ob {
             case 0:
                 return;
             case 1:
-                if (qcVar.f31881a == 2 && (j4Var = ((q3) this.f4000b).f8964x.F1) != null) {
+                if (qcVar.f31883a == 2 && (j4Var = ((q3) this.f4000b).f8964x.F1) != null) {
                     y9 y9Var = ((p9) j4Var).d;
                     y9Var.Y0 = true;
                     y9Var.P();
@@ -113,7 +113,7 @@ public final class c0 implements ob {
             case 0:
                 return;
             case 1:
-                if (qcVar.f31881a == 2 && (j4Var = ((q3) this.f4000b).f8964x.F1) != null) {
+                if (qcVar.f31883a == 2 && (j4Var = ((q3) this.f4000b).f8964x.F1) != null) {
                     y9 y9Var = ((p9) j4Var).d;
                     y9Var.Y0 = false;
                     y9Var.P();
@@ -188,7 +188,7 @@ public final class c0 implements ob {
                 dp = AndroidUtilities.dp(12.0f);
                 break;
             case 5:
-                return ((a8) this.f4000b).e.f30451y.getHeight();
+                return ((a8) this.f4000b).e.f30453y.getHeight();
             case 6:
                 return ((r2) this.f4000b).getBottomInset();
             case 7:
@@ -199,14 +199,14 @@ public final class c0 implements ob {
                 return obVar.f(i10);
             case 8:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((pm) this.f4000b).f31604c.f30213b.getBottomInset();
+                dp = ((pm) this.f4000b).f31606c.f30215b.getBottomInset();
                 break;
             case 9:
                 editTextHeight = ta0.V((ta0) this.f4000b).d;
                 dp = AndroidUtilities.dp(72.0f);
                 break;
             case 10:
-                FrameLayout frameLayout = ((cz0) this.f4000b).f27313w;
+                FrameLayout frameLayout = ((cz0) this.f4000b).f27315w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }

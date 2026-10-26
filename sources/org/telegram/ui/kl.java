@@ -16,9 +16,9 @@ public final class kl extends org.telegram.ui.Components.x11 {
         super(activity);
         this.K = unVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f34581b = textPaint;
+        this.f34584b = textPaint;
         Paint paint = new Paint(1);
-        this.f34582c = paint;
+        this.f34585c = paint;
         this.d = AndroidUtilities.dp(24.0f);
         this.e = new OvershootInterpolator();
         this.H = new org.telegram.ui.Components.mp0(this, 20);
@@ -40,7 +40,7 @@ public final class kl extends org.telegram.ui.Components.x11 {
     public final void d() {
         int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
         un unVar = this.K;
-        int top = unVar.Y.getTop() - unVar.f44292j1.getMeasuredHeight();
+        int top = unVar.Y.getTop() - unVar.f44295j1.getMeasuredHeight();
         setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
     }
 

@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 public final class ar implements q0.a {
-    public final int f37882a;
+    public final int f37885a;
 
     public ar(int i10) {
-        this.f37882a = i10;
+        this.f37885a = i10;
     }
 
     @Override
@@ -16,13 +16,13 @@ public final class ar implements q0.a {
         boolean z11;
         long j10;
         boolean z12 = true;
-        switch (this.f37882a) {
+        switch (this.f37885a) {
             case 0:
                 TLRPC.User user = (TLRPC.User) obj;
                 return;
             case 1:
                 View view = (View) obj;
-                boolean z13 = ChatAttachAlertPhotoLayout.f26013q1;
+                boolean z13 = ChatAttachAlertPhotoLayout.f26015q1;
                 if (view instanceof org.telegram.ui.Cells.x5) {
                     org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) view;
                     if (x5Var.getPhotoEntry() != null && x5Var.getPhotoEntry().hasSpoiler) {
@@ -42,7 +42,7 @@ public final class ar implements q0.a {
                     } else {
                         j10 = 0;
                     }
-                    if (ChatAttachAlertPhotoLayout.f26015s1.size() <= 1) {
+                    if (ChatAttachAlertPhotoLayout.f26017s1.size() <= 1) {
                         z12 = false;
                     }
                     x5Var.f(j10, z12);

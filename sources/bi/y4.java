@@ -65,7 +65,7 @@ public final class y4 implements Utilities.Callback {
                     cVar.b();
                 }
                 if (user != null) {
-                    launchActivity.n0(i11, user.f22174id, null);
+                    launchActivity.n0(i11, user.f22176id, null);
                     return;
                 }
                 org.telegram.ui.ActionBar.r2 R = LaunchActivity.R();

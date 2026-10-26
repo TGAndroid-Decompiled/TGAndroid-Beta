@@ -273,7 +273,7 @@ public class v3 extends View {
                 i12 = Math.max(max, spanEnd2);
                 if (i12 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(q61VarArr[i13].f31845a);
+                    textPaint3.setTypeface(q61VarArr[i13].f31847a);
                     textPaint3.setTypeface(typeface);
                     f7 = textPaint3.measureText(spanned, max, i12) + f7;
                 }
@@ -662,7 +662,7 @@ public class v3 extends View {
         invalidate();
         Runnable runnable2 = this.f11798l0;
         if (runnable2 != null) {
-            AndroidUtilities.runOnUIThread(runnable2, h6Var.f28809c * ((float) h6Var.f28811g));
+            AndroidUtilities.runOnUIThread(runnable2, h6Var.f28811c * ((float) h6Var.f28813g));
         }
         this.Q.d(true);
     }
@@ -687,7 +687,7 @@ public class v3 extends View {
             return charSequence;
         }
         if (!this.I) {
-            return this.H.f32124i;
+            return this.H.f32126i;
         }
         StaticLayout staticLayout = this.L;
         if (staticLayout != null) {
@@ -700,7 +700,7 @@ public class v3 extends View {
         if (this.I) {
             return this.J;
         }
-        return this.H.f32117a;
+        return this.H.f32119a;
     }
 
     public final void h(int i10) {
@@ -736,8 +736,8 @@ public class v3 extends View {
             this.d = Math.max(this.d, xj0Var3.r());
         }
         xj0 xj0Var4 = this.f11788c0;
-        this.f11792f0 = xj0Var4.f34734b;
-        this.f11793g0 = xj0Var4.f34736c;
+        this.f11792f0 = xj0Var4.f34737b;
+        this.f11793g0 = xj0Var4.f34739c;
         this.f11794h0 = true;
     }
 
@@ -880,7 +880,7 @@ public class v3 extends View {
             this.f11800n0 = ofFloat;
             ofFloat.addUpdateListener(new zg.e(1, this));
             this.f11800n0.addListener(new bh.b(this, 20));
-            this.f11800n0.setInterpolator(ds.f27588k);
+            this.f11800n0.setInterpolator(ds.f27590k);
             this.f11800n0.setDuration(300L);
             this.f11800n0.start();
         }

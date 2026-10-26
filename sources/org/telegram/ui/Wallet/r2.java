@@ -103,7 +103,7 @@ public abstract class r2 {
                                                                     i13 = i14;
                                                                     m2 m2Var = new m2(i13, callbackReturn4, callback24, q2Var2, callback34, z17, z18, b1Var4, 1);
                                                                     q2Var2.Z = 1;
-                                                                    q2Var2.f36302b0 = m2Var;
+                                                                    q2Var2.f36305b0 = m2Var;
                                                                     q2Var2.t0(new d80(b1Var4, z17, q2Var2, 13));
                                                                     q2Var = q2Var2;
                                                                 } else {
@@ -170,14 +170,14 @@ public abstract class r2 {
                                                         boolean z17 = z15;
                                                         m2 m2Var = new m2(i20, callbackReturn4, callback24, q2Var, callback34, z17, z16, b1Var4, 0);
                                                         q2Var.Z = 1;
-                                                        q2Var.f36302b0 = m2Var;
+                                                        q2Var.f36305b0 = m2Var;
                                                         q2Var.I = password;
                                                         q2Var.J = false;
                                                         org.telegram.ui.ActionBar.r2 U2 = LaunchActivity.U();
                                                         if (U2 != 0 && U2.getContext() != null) {
                                                             if (z17) {
                                                                 ?? obj8 = new Object();
-                                                                obj8.f22926a = true;
+                                                                obj8.f22928a = true;
                                                                 U2.showAsSheet(q2Var, obj8);
                                                                 return;
                                                             }
@@ -190,13 +190,13 @@ public abstract class r2 {
                                                     b1Var4.b();
                                                     Activity activity3 = activity2;
                                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity3);
-                                                    alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
+                                                    alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
                                                     LinearLayout linearLayout = new LinearLayout(activity3);
                                                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                                                     linearLayout.setOrientation(1);
                                                     alertDialog$Builder.o(linearLayout);
                                                     TextView textView = new TextView(activity3);
-                                                    int i21 = org.telegram.ui.ActionBar.y6.f23462j5;
+                                                    int i21 = org.telegram.ui.ActionBar.y6.f23464j5;
                                                     org.telegram.ui.ActionBar.f7.V(textView, i21, null);
                                                     textView.setTextSize(1, 16.0f);
                                                     if (LocaleController.isRTL) {
@@ -300,9 +300,9 @@ public abstract class r2 {
                                                     }
                                                     TwoStepVerificationActivity twoStepVerificationActivity4 = twoStepVerificationActivity3;
                                                     if (twoStepVerificationActivity4 != null) {
-                                                        twoStepVerificationActivity4.showDialog(alertDialog$Builder.f22366a);
+                                                        twoStepVerificationActivity4.showDialog(alertDialog$Builder.f22368a);
                                                     } else {
-                                                        r2Var3.showDialog(alertDialog$Builder.f22366a);
+                                                        r2Var3.showDialog(alertDialog$Builder.f22368a);
                                                     }
                                                 }
                                             }, 8);

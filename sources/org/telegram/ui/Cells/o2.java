@@ -17,16 +17,16 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class o2 {
-    public final p2 f24576a;
-    public int f24577b;
-    public int f24578c;
+    public final p2 f24578a;
+    public int f24579b;
+    public int f24580c;
     public boolean d;
     public boolean e;
-    public HashMap f24579f;
-    public CharSequence f24580g;
+    public HashMap f24581f;
+    public CharSequence f24582g;
 
     public o2(p2 p2Var) {
-        this.f24576a = p2Var;
+        this.f24578a = p2Var;
     }
 
     public static void a(o2 o2Var, int i10, MessageObject messageObject, TLRPC.Chat chat) {
@@ -42,12 +42,12 @@ public final class o2 {
         } else {
             i11 = 0;
         }
-        if (o2Var.f24577b != i11 || o2Var.e) {
-            o2Var.f24579f = null;
-            o2Var.f24578c = 0;
+        if (o2Var.f24579b != i11 || o2Var.e) {
+            o2Var.f24581f = null;
+            o2Var.f24580c = 0;
             o2Var.d = false;
             o2Var.e = false;
-            o2Var.f24577b = i11;
+            o2Var.f24579b = i11;
             TextPaint textPaint = org.telegram.ui.ActionBar.y6.F0[0];
             if (chat != null) {
                 ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(i10).getTopicsController().getTopics(chat.f22027id);
@@ -67,7 +67,7 @@ public final class o2 {
                             } else {
                                 i13 = 0;
                             }
-                            o2Var.f24578c = j11.length();
+                            o2Var.f24580c = j11.length();
                             if (messageObject.isOutOwner()) {
                                 o2Var.d = false;
                             } else {
@@ -95,16 +95,16 @@ public final class o2 {
                         i13 = 0;
                     }
                     if (ChatObject.isMonoForum(chat)) {
-                        o2Var.f24579f = new HashMap();
+                        o2Var.f24581f = new HashMap();
                         for (int i14 = 0; i14 < Math.min(4, arrayList.size()); i14++) {
                             if (spannableStringBuilder.length() != 0) {
                                 spannableStringBuilder.append((CharSequence) "  ");
                             }
                             long peerDialogId = DialogObject.getPeerDialogId(((TLRPC.TL_forumTopic) arrayList.get(i14)).from_id);
-                            org.telegram.ui.j5 j5Var = new org.telegram.ui.j5(i10, o2Var.f24576a);
+                            org.telegram.ui.j5 j5Var = new org.telegram.ui.j5(i10, o2Var.f24578a);
                             j5Var.h = false;
                             j5Var.c(peerDialogId);
-                            o2Var.f24579f.put(Long.valueOf(peerDialogId), j5Var);
+                            o2Var.f24581f.put(Long.valueOf(peerDialogId), j5Var);
                             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(DialogObject.getName(peerDialogId));
                             valueOf.insert(0, (CharSequence) "  ");
                             valueOf.setSpan(j5Var, 0, 1, 33);
@@ -131,15 +131,15 @@ public final class o2 {
                         Typeface bold = AndroidUtilities.bold();
                         int i17 = org.telegram.ui.ActionBar.y6.X8;
                         ?? metricAffectingSpan = new MetricAffectingSpan();
-                        metricAffectingSpan.f31845a = bold;
-                        metricAffectingSpan.f31847c = i17;
-                        metricAffectingSpan.f31846b = org.telegram.ui.ActionBar.y6.x0(null, i17, false);
+                        metricAffectingSpan.f31847a = bold;
+                        metricAffectingSpan.f31849c = i17;
+                        metricAffectingSpan.f31848b = org.telegram.ui.ActionBar.y6.x0(null, i17, false);
                         spannableStringBuilder.setSpan(metricAffectingSpan, 0, Math.min(spannableStringBuilder.length(), i13 + 2), 0);
                     }
-                    o2Var.f24580g = spannableStringBuilder;
+                    o2Var.f24582g = spannableStringBuilder;
                 } else if (!MessagesController.getInstance(i10).getTopicsController().endIsReached(chat.f22027id)) {
                     MessagesController.getInstance(i10).getTopicsController().preloadTopics(chat.f22027id);
-                    o2Var.f24580g = LocaleController.getString(R.string.Loading);
+                    o2Var.f24582g = LocaleController.getString(R.string.Loading);
                     o2Var.e = true;
                 } else {
                     if (ChatObject.isMonoForum(chat)) {
@@ -147,7 +147,7 @@ public final class o2 {
                     } else {
                         i12 = R.string.NoTopicsCreated;
                     }
-                    o2Var.f24580g = LocaleController.getString(i12);
+                    o2Var.f24582g = LocaleController.getString(i12);
                 }
             }
         }

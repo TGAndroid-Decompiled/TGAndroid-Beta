@@ -54,7 +54,7 @@ public final class g {
     }
 
     public final synchronized String d(p1 p1Var, g0 g0Var) {
-        return c(p1Var.g(g0Var.f49294a, this.f15210b).f3280c, g0Var).f15203a;
+        return c(p1Var.g(g0Var.f49297a, this.f15210b).f3280c, g0Var).f15203a;
     }
 
     public final void e(a aVar) {
@@ -80,8 +80,8 @@ public final class g {
         if (g0Var2 != null) {
             long j10 = g0Var2.d;
             if (g0Var2.b()) {
-                if (fVar2 == null || fVar2.f15205c != j10 || (g0Var = fVar2.d) == null || g0Var.f49295b != g0Var2.f49295b || g0Var.f49296c != g0Var2.f49296c) {
-                    c(i10, new g0(g0Var2.f49294a, j10));
+                if (fVar2 == null || fVar2.f15205c != j10 || (g0Var = fVar2.d) == null || g0Var.f49298b != g0Var2.f49298b || g0Var.f49299c != g0Var2.f49299c) {
+                    c(i10, new g0(g0Var2.f49297a, j10));
                     this.d.getClass();
                 }
             }

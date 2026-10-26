@@ -18,7 +18,7 @@ public final class pd0 extends rd0 {
         c2Var.setSingleLine(true);
         c2Var.setInputType(1);
         c2Var.setTypeface(Typeface.DEFAULT);
-        org.telegram.ui.ActionBar.f7.m(c2Var, 30, org.telegram.ui.ActionBar.y6.f23500l6, null);
+        org.telegram.ui.ActionBar.f7.m(c2Var, 30, org.telegram.ui.ActionBar.y6.f23502l6, null);
         c2Var.setCursorWidth(1.5f);
         c2Var.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         e(c2Var);

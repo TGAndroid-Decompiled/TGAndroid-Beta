@@ -28,7 +28,7 @@ public abstract class g0 extends FrameLayout {
         addView(frameLayout, gb1.i(-1, -1, 119));
         ?? view = new View(getContext());
         this.f14348b = view;
-        view.setupColorKey(y6.f23297a7);
+        view.setupColorKey(y6.f23299a7);
         view.setFadeZoneBottom(AndroidUtilities.dp(72.0f) + AndroidUtilities.navigationBarHeight);
         view.setFadeHeightBottom(AndroidUtilities.dp(24.0f));
         view.setFadeZoneTop(AndroidUtilities.dp(64.0f) + AndroidUtilities.statusBarHeight);
@@ -42,7 +42,7 @@ public abstract class g0 extends FrameLayout {
         f0Var.n(350L);
         f0Var.o(ds.h);
         f0Var.C = false;
-        f0Var.f47760m = false;
+        f0Var.f47763m = false;
         this.d.setItemAnimator(f0Var);
     }
 
@@ -52,7 +52,7 @@ public abstract class g0 extends FrameLayout {
             View childAt = this.d.getChildAt(i10);
             e1 T = this.d.T(childAt);
             if (T != null) {
-                t61 G = this.d.f32150g3.G(T.b());
+                t61 G = this.d.f32152g3.G(T.b());
                 if (G != null && G.d != 99) {
                     f7 = Math.min(childAt.getY() + this.f14349c.getPaddingTop(), f7);
                 }

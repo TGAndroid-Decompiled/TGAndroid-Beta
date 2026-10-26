@@ -9,35 +9,35 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class x70 extends ViewGroup {
-    public boolean f34649a;
-    public final ArrayList f34650b;
-    public x30 f34651c;
+    public boolean f34652a;
+    public final ArrayList f34653b;
+    public x30 f34654c;
     public boolean d;
     public final y70 e;
 
     public x70(y70 y70Var, Context context) {
         super(context);
         this.e = y70Var;
-        this.f34650b = new ArrayList();
+        this.f34653b = new ArrayList();
     }
 
     public final void a(x30 x30Var, boolean z10) {
         this.d = true;
         y70 y70Var = this.e;
-        y70Var.f34946f0.k(x30Var, x30Var.getUid());
-        AnimatorSet animatorSet = y70Var.f34944d0;
+        y70Var.f34949f0.k(x30Var, x30Var.getUid());
+        AnimatorSet animatorSet = y70Var.f34947d0;
         if (animatorSet != null) {
             animatorSet.setupEndValues();
-            y70Var.f34944d0.cancel();
+            y70Var.f34947d0.cancel();
         }
-        this.f34649a = false;
+        this.f34652a = false;
         if (z10) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            y70Var.f34944d0 = animatorSet2;
+            y70Var.f34947d0 = animatorSet2;
             animatorSet2.addListener(new w70(this, 1));
-            y70Var.f34944d0.setDuration(150L);
-            y70Var.f34944d0.setInterpolator(ds.f27584f);
-            ArrayList arrayList = this.f34650b;
+            y70Var.f34947d0.setDuration(150L);
+            y70Var.f34947d0.setInterpolator(ds.f27586f);
+            ArrayList arrayList = this.f34653b;
             arrayList.clear();
             arrayList.add(ObjectAnimator.ofFloat(x30Var, View.SCALE_X, 0.01f, 1.0f));
             arrayList.add(ObjectAnimator.ofFloat(x30Var, View.SCALE_Y, 0.01f, 1.0f));
@@ -49,24 +49,24 @@ public final class x70 extends ViewGroup {
     public final void b(x30 x30Var) {
         this.d = false;
         y70 y70Var = this.e;
-        y70Var.f34946f0.l(x30Var.getUid());
+        y70Var.f34949f0.l(x30Var.getUid());
         x30Var.setOnClickListener(null);
-        AnimatorSet animatorSet = y70Var.f34944d0;
+        AnimatorSet animatorSet = y70Var.f34947d0;
         if (animatorSet != null) {
             animatorSet.setupEndValues();
-            y70Var.f34944d0.cancel();
+            y70Var.f34947d0.cancel();
         }
-        this.f34649a = false;
+        this.f34652a = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        y70Var.f34944d0 = animatorSet2;
+        y70Var.f34947d0 = animatorSet2;
         animatorSet2.addListener(new bi.ce(28, this, x30Var));
-        y70Var.f34944d0.setDuration(150L);
-        this.f34651c = x30Var;
-        ArrayList arrayList = this.f34650b;
+        y70Var.f34947d0.setDuration(150L);
+        this.f34654c = x30Var;
+        ArrayList arrayList = this.f34653b;
         arrayList.clear();
-        arrayList.add(ObjectAnimator.ofFloat(this.f34651c, View.SCALE_X, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f34651c, View.SCALE_Y, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f34651c, View.ALPHA, 1.0f, 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f34654c, View.SCALE_X, 1.0f, 0.01f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f34654c, View.SCALE_Y, 1.0f, 0.01f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f34654c, View.ALPHA, 1.0f, 0.0f));
         requestLayout();
     }
 
@@ -100,7 +100,7 @@ public final class x70 extends ViewGroup {
         int i15 = 0;
         int i16 = 0;
         while (true) {
-            arrayList = this.f34650b;
+            arrayList = this.f34653b;
             if (i14 >= childCount) {
                 break;
             }
@@ -110,7 +110,7 @@ public final class x70 extends ViewGroup {
             } else {
                 w1Var = w1Var2;
                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
-                if (childAt != this.f34651c && childAt.getMeasuredWidth() + i15 > dp) {
+                if (childAt != this.f34654c && childAt.getMeasuredWidth() + i15 > dp) {
                     dp2 = org.telegram.messenger.t.D(8.0f, childAt.getMeasuredHeight(), dp2);
                     i15 = 0;
                 }
@@ -119,8 +119,8 @@ public final class x70 extends ViewGroup {
                     i16 = 0;
                 }
                 int dp4 = AndroidUtilities.dp(13.0f) + i15;
-                if (!this.f34649a) {
-                    x30 x30Var = this.f34651c;
+                if (!this.f34652a) {
+                    x30 x30Var = this.f34654c;
                     if (childAt == x30Var) {
                         childAt.setTranslationX(AndroidUtilities.dp(13.0f) + i16);
                         childAt.setTranslationY(dp3);
@@ -143,7 +143,7 @@ public final class x70 extends ViewGroup {
                         childAt.setTranslationY(dp2);
                     }
                 }
-                if (childAt != this.f34651c) {
+                if (childAt != this.f34654c) {
                     i15 = org.telegram.messenger.t.D(9.0f, childAt.getMeasuredWidth(), i15);
                 }
                 i16 = org.telegram.messenger.t.D(9.0f, childAt.getMeasuredWidth(), i16);
@@ -155,26 +155,26 @@ public final class x70 extends ViewGroup {
         int dp5 = AndroidUtilities.dp(42.0f) + dp3;
         final int dp6 = AndroidUtilities.dp(42.0f) + dp2;
         if (y70Var.m0 != null) {
-            if (y70Var.f34947g0) {
-                c10 = Math.min(y70Var.f34958s0, dp6);
+            if (y70Var.f34950g0) {
+                c10 = Math.min(y70Var.f34961s0, dp6);
             } else {
                 c10 = 0;
             }
         } else {
-            c10 = org.telegram.messenger.t.c(52.0f, Math.min(y70Var.f34958s0, dp6), 0);
+            c10 = org.telegram.messenger.t.c(52.0f, Math.min(y70Var.f34961s0, dp6), 0);
         }
-        int i17 = y70Var.f34960u0;
-        if (y70Var.m0 == null && y70Var.f34946f0.m() > 0) {
+        int i17 = y70Var.f34963u0;
+        if (y70Var.m0 == null && y70Var.f34949f0.m() > 0) {
             i12 = AndroidUtilities.dp(56.0f);
         } else {
             i12 = 0;
         }
-        y70Var.f34960u0 = i12;
-        if (c10 != y70Var.f34954o0 || i17 != i12) {
-            y70Var.f34954o0 = c10;
+        y70Var.f34963u0 = i12;
+        if (c10 != y70Var.f34957o0 || i17 != i12) {
+            y70Var.f34957o0 = c10;
             if (r1Var.getAdapter() != null && r1Var.getAdapter().h() > 0 && (K = r1Var.K(0)) != null) {
                 r1Var.getAdapter().m(0);
-                y70Var.R.h1(0, K.f47735a.getTop() - r1Var.getPaddingTop());
+                y70Var.R.h1(0, K.f47738a.getTop() - r1Var.getPaddingTop());
                 if (r1Var.getItemAnimator() != null) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     ofFloat.addUpdateListener(new di.u4(this, 8));
@@ -182,67 +182,67 @@ public final class x70 extends ViewGroup {
                 }
             }
         }
-        int min = Math.min(y70Var.f34958s0, dp6);
-        int i18 = y70Var.f34951k0;
+        int min = Math.min(y70Var.f34961s0, dp6);
+        int i18 = y70Var.f34954k0;
         if (i18 != min) {
             ValueAnimator ofInt = ValueAnimator.ofInt(i18, min);
             ofInt.addUpdateListener(new n6(this, 29));
             arrayList.add(ofInt);
         }
         boolean z10 = this.d;
-        if (z10 && dp6 > y70Var.f34958s0) {
+        if (z10 && dp6 > y70Var.f34961s0) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final x70 f33590b;
+                public final x70 f33593b;
 
                 {
-                    this.f33590b = this;
+                    this.f33593b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            y70 y70Var2 = this.f33590b.e;
-                            y70Var2.V.smoothScrollTo(0, dp6 - y70Var2.f34958s0);
+                            y70 y70Var2 = this.f33593b.e;
+                            y70Var2.V.smoothScrollTo(0, dp6 - y70Var2.f34961s0);
                             return;
                         default:
-                            y70 y70Var3 = this.f33590b.e;
-                            y70Var3.V.smoothScrollTo(0, dp6 - y70Var3.f34958s0);
+                            y70 y70Var3 = this.f33593b.e;
+                            y70Var3.V.smoothScrollTo(0, dp6 - y70Var3.f34961s0);
                             return;
                     }
                 }
             });
         } else if (!z10 && w1Var3.getMeasuredHeight() + w1Var3.getScrollY() > dp6) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final x70 f33590b;
+                public final x70 f33593b;
 
                 {
-                    this.f33590b = this;
+                    this.f33593b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            y70 y70Var2 = this.f33590b.e;
-                            y70Var2.V.smoothScrollTo(0, dp6 - y70Var2.f34958s0);
+                            y70 y70Var2 = this.f33593b.e;
+                            y70Var2.V.smoothScrollTo(0, dp6 - y70Var2.f34961s0);
                             return;
                         default:
-                            y70 y70Var3 = this.f33590b.e;
-                            y70Var3.V.smoothScrollTo(0, dp6 - y70Var3.f34958s0);
+                            y70 y70Var3 = this.f33593b.e;
+                            y70Var3.V.smoothScrollTo(0, dp6 - y70Var3.f34961s0);
                             return;
                     }
                 }
             });
         }
-        if (!this.f34649a && (animatorSet = y70Var.f34944d0) != null) {
+        if (!this.f34652a && (animatorSet = y70Var.f34947d0) != null) {
             animatorSet.playTogether(arrayList);
-            y70Var.f34944d0.addListener(new w70(this, 0));
-            y70Var.f34944d0.start();
-            this.f34649a = true;
+            y70Var.f34947d0.addListener(new w70(this, 0));
+            y70Var.f34947d0.start();
+            this.f34652a = true;
         }
-        if (y70Var.f34944d0 == null) {
-            y70Var.f34951k0 = min;
+        if (y70Var.f34947d0 == null) {
+            y70Var.f34954k0 = min;
             y70.T(y70Var).invalidate();
         }
         setMeasuredDimension(size, Math.max(dp6, dp5));

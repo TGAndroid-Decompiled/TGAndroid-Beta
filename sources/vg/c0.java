@@ -25,7 +25,7 @@ public final class c0 extends bb {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public b0 Z;
-    public final String f50150a0;
+    public final String f50153a0;
 
     public c0(r2 r2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(r2Var, true);
@@ -37,7 +37,7 @@ public final class c0 extends bb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f50150a0 = str;
+        this.f50153a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -47,9 +47,9 @@ public final class c0 extends bb {
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
         b0Var.e = r2Var;
-        b0Var.f51179f = tL_payments_checkedGiftCode;
+        b0Var.f51182f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f51180n = h3Var;
+        b0Var.f51183n = h3Var;
     }
 
     public static u6 P(c0 c0Var) {
@@ -94,7 +94,7 @@ public final class c0 extends bb {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (cVar != null) {
             cVar.d();
-            cVar.f47031b = new e(atomicBoolean, 1);
+            cVar.f47034b = new e(atomicBoolean, 1);
         }
         y2 y2Var = new y2(atomicBoolean, r2Var, str, cVar, 16);
         g gVar = new g(atomicBoolean, cVar, 1);

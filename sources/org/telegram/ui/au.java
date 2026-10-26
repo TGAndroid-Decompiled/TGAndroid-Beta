@@ -13,9 +13,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class au extends FrameLayout {
-    public final ImageView f37896a;
-    public final TextView f37897b;
-    public final ImageView f37898c;
+    public final ImageView f37899a;
+    public final TextView f37900b;
+    public final ImageView f37901c;
     public final TextView d;
     public boolean e;
 
@@ -23,9 +23,9 @@ public final class au extends FrameLayout {
         super(context);
         int i10;
         int i11;
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, this, null);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, this, null);
         ImageView imageView = new ImageView(context);
-        this.f37896a = imageView;
+        this.f37899a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -49,7 +49,7 @@ public final class au extends FrameLayout {
         }
         linearLayout2.setWeightSum(2.0f);
         TextView textView = new TextView(context);
-        this.f37897b = textView;
+        this.f37900b = textView;
         textView.setTextSize(1, 16.0f);
         int i12 = org.telegram.ui.ActionBar.y6.G6;
         org.telegram.ui.ActionBar.f7.V(textView, i12, null);
@@ -57,7 +57,7 @@ public final class au extends FrameLayout {
         textView.setSingleLine();
         textView.setLines(1);
         ImageView imageView2 = new ImageView(context);
-        this.f37898c = imageView2;
+        this.f37901c = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView2.setImageResource(R.drawable.arrow_more);
         org.telegram.ui.ActionBar.f7.t(imageView2, i12, null, PorterDuff.Mode.MULTIPLY);
@@ -73,7 +73,7 @@ public final class au extends FrameLayout {
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 16.0f);
-        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23558o6, null);
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23560o6, null);
         textView2.setGravity(LocaleController.isRTL ? 3 : 5);
         if (LocaleController.isRTL) {
             linearLayout.addView(textView2, org.telegram.ui.Components.gb1.u(-2, -2, 19));
@@ -103,7 +103,7 @@ public final class au extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23476k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23478k0);
         }
     }
 

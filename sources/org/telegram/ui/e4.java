@@ -8,24 +8,24 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class e4 extends FrameLayout {
-    public final org.telegram.ui.Components.lp0 f38981a;
-    public final int f38982b;
-    public final int f38983c;
+    public final org.telegram.ui.Components.lp0 f38984a;
+    public final int f38985b;
+    public final int f38986c;
     public int d;
     public final TextPaint e;
-    public final j4 f38984f;
+    public final j4 f38987f;
 
     public e4(j4 j4Var, Context context) {
         super(context);
-        this.f38984f = j4Var;
-        this.f38982b = 12;
-        this.f38983c = 30;
+        this.f38987f = j4Var;
+        this.f38985b = 12;
+        this.f38986c = 30;
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
         this.e = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         org.telegram.ui.Components.lp0 lp0Var = new org.telegram.ui.Components.lp0(context, null, false);
-        this.f38981a = lp0Var;
+        this.f38984a = lp0Var;
         lp0Var.setReportChanges(true);
         lp0Var.setSeparatorsCount(19);
         lp0Var.setDelegate(new f(this, 3));
@@ -35,13 +35,13 @@ public final class e4 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f38981a.invalidate();
+        this.f38984a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10 = org.telegram.ui.ActionBar.y6.I6;
-        this.f38984f.getClass();
+        this.f38987f.getClass();
         int x02 = org.telegram.ui.ActionBar.y6.x0(null, i10, false);
         TextPaint textPaint = this.e;
         textPaint.setColor(x02);
@@ -54,8 +54,8 @@ public final class e4 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         if (this.d != size) {
             int i12 = SharedConfig.ivFontSize;
-            int i13 = this.f38982b;
-            this.f38981a.setProgress((i12 - i13) / (this.f38983c - i13));
+            int i13 = this.f38985b;
+            this.f38984a.setProgress((i12 - i13) / (this.f38986c - i13));
             this.d = size;
         }
     }

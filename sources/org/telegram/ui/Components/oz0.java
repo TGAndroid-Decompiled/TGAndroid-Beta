@@ -13,10 +13,10 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class oz0 implements org.telegram.ui.dt {
-    public final tz0 f31394a;
+    public final tz0 f31396a;
 
     public oz0(tz0 tz0Var) {
-        this.f31394a = tz0Var;
+        this.f31396a = tz0Var;
     }
 
     @Override
@@ -26,13 +26,13 @@ public final class oz0 implements org.telegram.ui.dt {
 
     @Override
     public final void B(TLRPC.Document document) {
-        tz0 tz0Var = this.f31394a;
-        rz0 rz0Var = tz0Var.f33173c;
+        tz0 tz0Var = this.f31396a;
+        rz0 rz0Var = tz0Var.f33176c;
         if (rz0Var != null) {
             org.telegram.ui.ActionBar.r2 parentFragment = rz0Var.getParentFragment();
             if (parentFragment instanceof org.telegram.ui.un) {
                 ((org.telegram.ui.un) parentFragment).lb(document);
-                tz0Var.f33173c.setFieldText("");
+                tz0Var.f33176c.setFieldText("");
             }
         }
     }
@@ -44,7 +44,7 @@ public final class oz0 implements org.telegram.ui.dt {
 
     @Override
     public final boolean D(TLRPC.Document document) {
-        if (this.f31394a.f33184y) {
+        if (this.f31396a.f33187y) {
             return false;
         }
         return UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
@@ -60,7 +60,7 @@ public final class oz0 implements org.telegram.ui.dt {
         rz0 rz0Var;
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
         valueOf.setSpan(new c6(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
-        if (AndroidUtilities.addToClipboard(valueOf) && (rz0Var = this.f31394a.f33173c) != null) {
+        if (AndroidUtilities.addToClipboard(valueOf) && (rz0Var = this.f31396a.f33176c) != null) {
             org.telegram.messenger.vh.m(R.string.EmojiCopied, wc.b0(rz0Var.getParentFragment()));
         }
     }
@@ -84,7 +84,7 @@ public final class oz0 implements org.telegram.ui.dt {
     public final Boolean P(TLRPC.Document document) {
         TLRPC.User currentUser;
         boolean z10;
-        if (this.f31394a.E || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) == null) {
+        if (this.f31396a.E || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) == null) {
             return null;
         }
         Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
@@ -113,7 +113,7 @@ public final class oz0 implements org.telegram.ui.dt {
 
     @Override
     public final boolean c() {
-        rz0 rz0Var = this.f31394a.f33173c;
+        rz0 rz0Var = this.f31396a.f33176c;
         if (rz0Var == null) {
             return false;
         }
@@ -161,7 +161,7 @@ public final class oz0 implements org.telegram.ui.dt {
 
     @Override
     public final boolean l(int i10) {
-        rz0 rz0Var = this.f31394a.f33173c;
+        rz0 rz0Var = this.f31396a.f33176c;
         if (rz0Var == null) {
             return false;
         }
@@ -191,8 +191,8 @@ public final class oz0 implements org.telegram.ui.dt {
         TLRPC.EmojiStatus emojiStatus;
         Object obj;
         org.telegram.ui.ActionBar.r2 parentFragment;
-        tz0 tz0Var = this.f31394a;
-        org.telegram.ui.ActionBar.u6 u6Var = tz0Var.f33171b;
+        tz0 tz0Var = this.f31396a;
+        org.telegram.ui.ActionBar.u6 u6Var = tz0Var.f33174b;
         if (document == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
@@ -206,9 +206,9 @@ public final class oz0 implements org.telegram.ui.dt {
         } else {
             obj = currentUser.emoji_status;
         }
-        MessagesController.getInstance(tz0Var.f33169a).updateEmojiStatus(emojiStatus);
+        MessagesController.getInstance(tz0Var.f33172a).updateEmojiStatus(emojiStatus);
         t90 t90Var = new t90(23, this, obj);
-        rz0 rz0Var = tz0Var.f33173c;
+        rz0 rz0Var = tz0Var.f33176c;
         if (rz0Var == null) {
             parentFragment = null;
         } else {
@@ -217,10 +217,10 @@ public final class oz0 implements org.telegram.ui.dt {
         if (parentFragment != null) {
             if (document == null) {
                 ic icVar = new ic(tz0Var.getContext(), u6Var);
-                icVar.f29274b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
-                icVar.f29273a.setImageResource(R.drawable.msg_settings_premium);
+                icVar.f29276b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
+                icVar.f29275a.setImageResource(R.drawable.msg_settings_premium);
                 oc ocVar = new oc(tz0Var.getContext(), u6Var, true);
-                ocVar.f31253b = t90Var;
+                ocVar.f31255b = t90Var;
                 icVar.setButton(ocVar);
                 qc.g(parentFragment, icVar, 1500).j();
                 return;

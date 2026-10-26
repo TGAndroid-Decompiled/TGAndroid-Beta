@@ -38,12 +38,12 @@ public final class dc implements Utilities.CallbackReturn {
                     ti tiVar = new ti(n0Var.getContext(), new sg.y(n0Var), false, false, false, n0Var.F1);
                     tiVar.drawNavigationBar = true;
                     tiVar.S1(LocaleController.getString(R.string.AddImage));
-                    tiVar.f33010c2 = new sg.z(n0Var, tiVar);
+                    tiVar.f33013c2 = new sg.z(n0Var, tiVar);
                     tiVar.setOnDismissListener(new fi.e1(8));
                     tiVar.Q1(1, false);
                     tiVar.v1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    tiVar.f33030j0.f0();
+                    tiVar.f33033j0.f0();
                     tiVar.show();
                 }
                 return Boolean.TRUE;

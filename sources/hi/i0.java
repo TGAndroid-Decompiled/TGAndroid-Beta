@@ -55,13 +55,13 @@ public final class i0 extends View implements p6 {
         this.f13019n = LocaleController.getString(R.string.BotsMenuTitle);
         this.E = true;
         updateColors();
-        f0Var.f22817n = true;
+        f0Var.f22819n = true;
         f0Var.h = false;
         f0Var.a(0.0f, false);
         f0Var.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.bold());
-        f0Var.f22807a.setStrokeCap(Paint.Cap.ROUND);
-        f0Var.f22815l = true;
+        f0Var.f22809a.setStrokeCap(Paint.Cap.ROUND);
+        f0Var.f22817l = true;
         int dp = AndroidUtilities.dp(16.0f);
         int x02 = y6.x0(null, y6.Qh, false);
         this.F = x02;
@@ -75,8 +75,8 @@ public final class i0 extends View implements p6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23344cf));
-        hashSet.add(Integer.valueOf(y6.f23380ef));
+        hashSet.add(Integer.valueOf(y6.f23346cf));
+        hashSet.add(Integer.valueOf(y6.f23382ef));
         hashSet.add(Integer.valueOf(y6.Qh));
     }
 
@@ -168,11 +168,11 @@ public final class i0 extends View implements p6 {
     public final void updateColors() {
         TextPaint textPaint = this.f13017c;
         try {
-            this.f13016b.setColor(y6.x0(null, y6.f23344cf, false));
-            int x02 = y6.x0(null, y6.f23380ef, false);
+            this.f13016b.setColor(y6.x0(null, y6.f23346cf, false));
+            int x02 = y6.x0(null, y6.f23382ef, false);
             f0 f0Var = this.d;
-            f0Var.f22814k = x02;
-            f0Var.f22813j = x02;
+            f0Var.f22816k = x02;
+            f0Var.f22815j = x02;
             xj0 xj0Var = this.e;
             if (xj0Var != null) {
                 if (xj0Var == this.G) {

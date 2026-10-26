@@ -14,12 +14,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.TranslateController;
 public final class jg implements Runnable {
-    public final int f40622a;
-    public final un f40623b;
+    public final int f40625a;
+    public final un f40626b;
 
     public jg(un unVar, int i10) {
-        this.f40622a = i10;
-        this.f40623b = unVar;
+        this.f40625a = i10;
+        this.f40626b = unVar;
     }
 
     @Override
@@ -28,20 +28,20 @@ public final class jg implements Runnable {
         boolean z10;
         boolean z11;
         fi.v3 v3Var;
-        int i10 = this.f40622a;
+        int i10 = this.f40625a;
         boolean z12 = true;
-        un unVar = this.f40623b;
+        un unVar = this.f40626b;
         switch (i10) {
             case 0:
                 unVar.C7 = null;
-                org.telegram.ui.Components.t60 t60Var = unVar.f44343n3;
+                org.telegram.ui.Components.t60 t60Var = unVar.f44346n3;
                 if (t60Var != null) {
                     org.telegram.ui.Components.q60 cameraContainer = t60Var.getCameraContainer();
                     AnimatorSet animatorSet = new AnimatorSet();
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, 0.5f);
                     ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, 0.5f);
                     Property property = View.ALPHA;
-                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(unVar.f44343n3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(unVar.f44343n3.getPaint(), org.telegram.ui.Components.v6.f33577b, 0), ObjectAnimator.ofFloat(unVar.f44343n3.getMuteImageView(), property, 0.0f));
+                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(unVar.f44346n3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(unVar.f44346n3.getPaint(), org.telegram.ui.Components.v6.f33580b, 0), ObjectAnimator.ofFloat(unVar.f44346n3.getMuteImageView(), property, 0.0f));
                     animatorSet.addListener(new pi(unVar, 0));
                     animatorSet.start();
                     return;
@@ -53,17 +53,17 @@ public final class jg implements Runnable {
             case 2:
                 if (unVar.getParentActivity() != null && unVar.fragmentView != null && unVar.Y != null && unVar.Ra == null && unVar.getMessagesController().getSendPaidMessagesStars(unVar.a()) <= 0 && (sendButton = unVar.Y.getSendButton()) != null && unVar.Y.getEditField() != null && unVar.Y.getEditField().getText().length() != 0) {
                     SharedConfig.increaseScheduledHintShowed();
-                    if (unVar.f44430u2 == null) {
-                        org.telegram.ui.Components.t40 t40Var = new org.telegram.ui.Components.t40(4, unVar.getParentActivity(), unVar.f44385qa, false);
-                        unVar.f44430u2 = t40Var;
+                    if (unVar.f44433u2 == null) {
+                        org.telegram.ui.Components.t40 t40Var = new org.telegram.ui.Components.t40(4, unVar.getParentActivity(), unVar.f44388qa, false);
+                        unVar.f44433u2 = t40Var;
                         t40Var.a();
-                        unVar.f44430u2.setAlpha(0.0f);
-                        unVar.f44430u2.setVisibility(4);
-                        unVar.f44430u2.setText(LocaleController.getString(R.string.ScheduledHint));
-                        unVar.f44292j1.addView(unVar.f44430u2, org.telegram.ui.Components.gb1.h(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+                        unVar.f44433u2.setAlpha(0.0f);
+                        unVar.f44433u2.setVisibility(4);
+                        unVar.f44433u2.setText(LocaleController.getString(R.string.ScheduledHint));
+                        unVar.f44295j1.addView(unVar.f44433u2, org.telegram.ui.Components.gb1.h(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
                     }
-                    unVar.f44430u2.f(sendButton, true);
-                    unVar.f44443v2 = true;
+                    unVar.f44433u2.f(sendButton, true);
+                    unVar.f44446v2 = true;
                     return;
                 }
                 return;
@@ -77,12 +77,12 @@ public final class jg implements Runnable {
                 return;
             case 5:
                 ArrayList arrayList = unVar.G6;
-                unVar.f44229dc = System.currentTimeMillis();
-                if (unVar.f44468x0 != null && unVar.A0 != null) {
+                unVar.f44232dc = System.currentTimeMillis();
+                if (unVar.f44471x0 != null && unVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < unVar.f44468x0.getChildCount(); i13++) {
-                        View childAt = unVar.f44468x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < unVar.f44471x0.getChildCount(); i13++) {
+                        View childAt = unVar.f44471x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.s1) {
                             org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) childAt;
                             if (s1Var.getCurrentMessagesGroup() != null) {
@@ -150,13 +150,13 @@ public final class jg implements Runnable {
                 if (hkVar != null && unVar.Zc != null) {
                     if (hkVar.q0()) {
                         unVar.Y.j0(false);
-                        AndroidUtilities.showKeyboard(unVar.Zc.f48615a);
-                        unVar.Zc.f48616b.f48612a.a(false, true);
+                        AndroidUtilities.showKeyboard(unVar.Zc.f48618a);
+                        unVar.Zc.f48619b.f48615a.a(false, true);
                         return;
                     }
                     unVar.Y.S0(false, false, false);
                     unVar.Y.p1();
-                    unVar.Zc.f48616b.f48612a.a(true, true);
+                    unVar.Zc.f48619b.f48615a.a(true, true);
                     return;
                 }
                 return;
@@ -183,10 +183,10 @@ public final class jg implements Runnable {
                 unVar.n8(false, true, 0.0f);
                 return;
             case 15:
-                org.telegram.ui.ActionBar.e2 e2Var = new org.telegram.ui.ActionBar.e2(unVar.getParentActivity(), 3, unVar.f44385qa);
+                org.telegram.ui.ActionBar.e2 e2Var = new org.telegram.ui.ActionBar.e2(unVar.getParentActivity(), 3, unVar.f44388qa);
                 unVar.Lb = e2Var;
                 e2Var.setOnShowListener(new hf(unVar, 1));
-                unVar.Lb.setOnCancelListener(unVar.f44490ya);
+                unVar.Lb.setOnCancelListener(unVar.f44493ya);
                 unVar.Lb.r(500L);
                 return;
             case 16:
@@ -200,10 +200,10 @@ public final class jg implements Runnable {
                 unVar.U6();
                 return;
             case 19:
-                unVar.f44176a = (unVar.f44176a + 1) % 3;
+                unVar.f44179a = (unVar.f44179a + 1) % 3;
                 return;
             case 20:
-                unVar.f44189b = !unVar.f44189b;
+                unVar.f44192b = !unVar.f44192b;
                 return;
             case 21:
                 unVar.A0.M.clear();
@@ -219,7 +219,7 @@ public final class jg implements Runnable {
             case 23:
                 unVar.Ec = 0;
                 unVar.Fc = false;
-                unVar.f44468x0.g1();
+                unVar.f44471x0.g1();
                 return;
             case 24:
                 unVar.x9();
@@ -228,10 +228,10 @@ public final class jg implements Runnable {
                 unVar.A7();
                 return;
             case 25:
-                unVar.Lc(0, (unVar.f44196b6 == 0 || SystemClock.elapsedRealtime() < unVar.f44196b6 + 150) ? false : false);
+                unVar.Lc(0, (unVar.f44199b6 == 0 || SystemClock.elapsedRealtime() < unVar.f44199b6 + 150) ? false : false);
                 return;
             case 26:
-                kk kkVar = unVar.f44220d3;
+                kk kkVar = unVar.f44223d3;
                 if ((kkVar == null || kkVar.getVisibility() != 0) && (v3Var = unVar.I1) != null) {
                     v3Var.u();
                     return;
@@ -246,7 +246,7 @@ public final class jg implements Runnable {
             default:
                 FrameLayout.LayoutParams i17 = org.telegram.ui.Components.gb1.i(-1, -2, 87);
                 i17.bottomMargin = unVar.Y.getMeasuredHeight();
-                unVar.f44292j1.addView(unVar.K1, i17);
+                unVar.f44295j1.addView(unVar.K1, i17);
                 unVar.K1.setTranslationY(-AndroidUtilities.navigationBarHeight);
                 unVar.K1.m(0.0f, unVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
                 unVar.K1.u();

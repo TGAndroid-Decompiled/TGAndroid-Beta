@@ -41,21 +41,21 @@ public final class p0 implements Runnable {
                 return;
             case 2:
                 String str = (String) this.e;
-                d2 d2Var = ((a2) this.d).f23841b;
-                d2Var.f23986d0 = false;
-                d2Var.f23987e0 = str;
+                d2 d2Var = ((a2) this.d).f23843b;
+                d2Var.f23988d0 = false;
+                d2Var.f23989e0 = str;
                 if (str == null) {
-                    d2Var.f23987e0 = "";
+                    d2Var.f23989e0 = "";
                 }
-                d2Var.f23989f0 = this.f9705b;
+                d2Var.f23991f0 = this.f9705b;
                 d2Var.f(this.f9706c, true);
                 return;
             case 3:
                 org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.d;
                 Utilities.Callback callback = (Utilities.Callback) this.e;
                 TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) l0Var.e;
-                org.telegram.ui.Wallet.p0 p0Var = l0Var.f36806c;
-                if (p0Var != null && TextUtils.equals(p0Var.f37076c, tL_walletState.address) && l0Var.f36806c.f(tL_walletState.public_key)) {
+                org.telegram.ui.Wallet.p0 p0Var = l0Var.f36809c;
+                if (p0Var != null && TextUtils.equals(p0Var.f37079c, tL_walletState.address) && l0Var.f36809c.f(tL_walletState.public_key)) {
                     callback.run(null);
                     return;
                 } else {
@@ -67,9 +67,9 @@ public final class p0 implements Runnable {
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.e;
                 org.telegram.ui.Wallet.l0.F("getSecretPhrase: ready!");
                 TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) l0Var2.e;
-                if (l0Var2.f36806c.f(tL_walletState2.public_key)) {
+                if (l0Var2.f36809c.f(tL_walletState2.public_key)) {
                     org.telegram.ui.Wallet.l0.F("getSecretPhrase: device has secured phrase, requesting");
-                    org.telegram.ui.Wallet.p0 p0Var2 = l0Var2.f36806c;
+                    org.telegram.ui.Wallet.p0 p0Var2 = l0Var2.f36809c;
                     byte[] bArr = tL_walletState2.public_key;
                     org.telegram.ui.Wallet.k kVar = new org.telegram.ui.Wallet.k(callback2, 1);
                     if (bArr == null) {
@@ -87,7 +87,7 @@ public final class p0 implements Runnable {
                     return;
                 } else {
                     org.telegram.ui.Wallet.l0.F("getSecretPhrase: exportSecretPhrase through password request");
-                    r2.a(l0Var2.f36804a, new ai.d0(12), null, null, null, new di.c0(4, l0Var2, callback2), this.f9705b, this.f9706c, new b1((Object) null, 2));
+                    r2.a(l0Var2.f36807a, new ai.d0(12), null, null, null, new di.c0(4, l0Var2, callback2), this.f9705b, this.f9706c, new b1((Object) null, 2));
                     return;
                 }
         }

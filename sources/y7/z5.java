@@ -2,7 +2,7 @@ package y7;
 
 import org.telegram.ui.Components.b10;
 public final class z5 implements ka.d {
-    public static final z5 f52391a = new Object();
+    public static final z5 f52394a = new Object();
 
     static {
         b10.s(b10.o(b0.class, b10.r(2, b10.o(b0.class, new y(1)))));

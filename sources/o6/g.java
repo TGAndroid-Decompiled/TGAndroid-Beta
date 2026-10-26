@@ -394,7 +394,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
 
     @Override
     public final void g(rb.c cVar) {
-        ((o0) cVar.f47320b).f6593o.f6544x.post(new a5.d(cVar, 14));
+        ((o0) cVar.f47323b).f6593o.f6544x.post(new a5.d(cVar, 14));
     }
 
     @Override

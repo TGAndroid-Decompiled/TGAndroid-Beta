@@ -49,7 +49,7 @@ public final class a41 extends org.telegram.ui.Cells.s1 {
         Paint paint = this.Le;
         c41 c41Var = this.Ue;
         if (paint != null) {
-            float f7 = c41Var.f38257s;
+            float f7 = c41Var.f38260s;
             RectF rectF = c41Var.R;
             if (f7 > 0.0f) {
                 if (c41Var.Q) {
@@ -78,7 +78,7 @@ public final class a41 extends org.telegram.ui.Cells.s1 {
                         }
                         canvas.drawCircle(centerX, centerY, width, this.Oe);
                     }
-                    getPhotoImage().setAlpha(Math.max(1.0f - this.Re.e(c41Var.Q), 1.0f - c41Var.f38257s));
+                    getPhotoImage().setAlpha(Math.max(1.0f - this.Re.e(c41Var.Q), 1.0f - c41Var.f38260s));
                     getPhotoImage().draw(canvas);
                 } else {
                     getPhotoImage().draw(canvas);
@@ -108,14 +108,14 @@ public final class a41 extends org.telegram.ui.Cells.s1 {
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(c41Var.R);
         rectF2.inset(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-        canvas.drawArc(rectF2, -90.0f, (1.0f - c41Var.f38247a0) * (-360.0f), false, paint3);
+        canvas.drawArc(rectF2, -90.0f, (1.0f - c41Var.f38250a0) * (-360.0f), false, paint3);
         if (this.Qe == null) {
             org.telegram.ui.Components.g31 g31Var = new org.telegram.ui.Components.g31(120);
             this.Qe = g31Var;
-            g31Var.f28398b = true;
+            g31Var.f28400b = true;
         }
         paint3.setStrokeWidth(AndroidUtilities.dp(2.8f));
-        this.Qe.a((1.0f - c41Var.f38247a0) * (-360.0f), 1.0f, canvas, paint3, rectF2);
+        this.Qe.a((1.0f - c41Var.f38250a0) * (-360.0f), 1.0f, canvas, paint3, rectF2);
         canvas.restore();
     }
 
@@ -130,8 +130,8 @@ public final class a41 extends org.telegram.ui.Cells.s1 {
         canvas.save();
         bh.y0 y0Var = this.N;
         c41 c41Var = this.Ue;
-        canvas.translate(AndroidUtilities.lerp(0, -y0Var.f4217c, c41Var.f38257s), AndroidUtilities.lerp(c41Var.O.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), y0Var.f4227p, c41Var.f38257s));
-        super.d2(canvas, (1.0f - c41Var.f38257s) * f7, num);
+        canvas.translate(AndroidUtilities.lerp(0, -y0Var.f4217c, c41Var.f38260s), AndroidUtilities.lerp(c41Var.O.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), y0Var.f4227p, c41Var.f38260s));
+        super.d2(canvas, (1.0f - c41Var.f38260s) * f7, num);
         canvas.restore();
     }
 
@@ -160,7 +160,7 @@ public final class a41 extends org.telegram.ui.Cells.s1 {
                 }
                 i11 += 20;
             }
-            canvas.translate(((this.Je.right - (AndroidUtilities.dp(8 + i11) + i10)) - this.f25262rb) * c41Var.f38257s, 0.0f);
+            canvas.translate(((this.Je.right - (AndroidUtilities.dp(8 + i11) + i10)) - this.f25264rb) * c41Var.f38260s, 0.0f);
         }
         super.m2(f7, canvas, z10);
         canvas.restore();
@@ -188,21 +188,21 @@ public final class a41 extends org.telegram.ui.Cells.s1 {
                 this.Le.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
                 this.Me = new Matrix();
             }
-            AndroidUtilities.lerp(rectF3, rectF2, c41Var.f38257s, rectF);
+            AndroidUtilities.lerp(rectF3, rectF2, c41Var.f38260s, rectF);
             W3(rectF.left, rectF.top, rectF.width(), rectF.height());
             getPhotoImage().setRoundRadius((int) rectF.width());
-            if (c41Var.f38257s > 0.0f && c41Var.Q) {
+            if (c41Var.f38260s > 0.0f && c41Var.Q) {
                 canvas2 = canvas;
                 canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             } else {
                 canvas2 = canvas;
             }
-            this.f25355xe = 1.0f - c41Var.f38257s;
+            this.f25357xe = 1.0f - c41Var.f38260s;
         } else {
             canvas2 = canvas;
         }
         S1(canvas2);
-        if (c41Var.S && c41Var.f38257s > 0.0f && c41Var.Q) {
+        if (c41Var.S && c41Var.f38260s > 0.0f && c41Var.Q) {
             canvas2.restore();
         }
     }

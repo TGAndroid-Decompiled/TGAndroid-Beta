@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class ml0 extends org.telegram.ui.Components.lm0 {
-    public final Context f41572c;
+    public final Context f41575c;
     public final PasscodeActivity d;
 
     public ml0(PasscodeActivity passcodeActivity, Context context) {
         this.d = passcodeActivity;
-        this.f41572c = context;
+        this.f41575c = context;
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class ml0 extends org.telegram.ui.Components.lm0 {
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         View a9Var;
-        Context context = this.f41572c;
+        Context context = this.f41575c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {

@@ -320,7 +320,7 @@ public class FileRefController extends BaseController {
             } else if (messageMedia.photo != null) {
                 return "botstory_photo_" + r6Var.media.photo.f22051id;
             } else {
-                return "botstory_" + r6Var.f22264id;
+                return "botstory_" + r6Var.f22266id;
             }
         }
         long j10 = 0;
@@ -330,7 +330,7 @@ public class FileRefController extends BaseController {
                 FileLog.d("failed request reference can't find dialogId");
                 return null;
             }
-            return "story_" + storyItem.dialogId + "_" + storyItem.f22264id;
+            return "story_" + storyItem.dialogId + "_" + storyItem.f22266id;
         } else if (obj instanceof TLRPC.TL_help_premiumPromo) {
             return "premium_promo";
         } else {
@@ -356,9 +356,9 @@ public class FileRefController extends BaseController {
                     }
                     return "message" + message2.f22048id + "_" + j10 + "_" + message2.from_scheduled;
                 } else if (obj instanceof TLRPC.WebPage) {
-                    return "webpage" + ((TLRPC.WebPage) obj).f22180id;
+                    return "webpage" + ((TLRPC.WebPage) obj).f22182id;
                 } else if (obj instanceof TLRPC.User) {
-                    return "user" + ((TLRPC.User) obj).f22174id;
+                    return "user" + ((TLRPC.User) obj).f22176id;
                 } else if (obj instanceof TLRPC.Chat) {
                     return "chat" + ((TLRPC.Chat) obj).f22027id;
                 } else if (obj instanceof String) {
@@ -371,9 +371,9 @@ public class FileRefController extends BaseController {
                     } else if (obj instanceof TLRPC.InputStickerSet) {
                         return "set" + ((TLRPC.InputStickerSet) obj).f22047id;
                     } else if (obj instanceof TLRPC.TL_wallPaper) {
-                        return "wallpaper" + ((TLRPC.TL_wallPaper) obj).f22179id;
+                        return "wallpaper" + ((TLRPC.TL_wallPaper) obj).f22181id;
                     } else if (obj instanceof TLRPC.TL_theme) {
-                        return "theme" + ((TLRPC.TL_theme) obj).f22164id;
+                        return "theme" + ((TLRPC.TL_theme) obj).f22166id;
                     } else if (obj == null) {
                         return null;
                     } else {
@@ -393,7 +393,7 @@ public class FileRefController extends BaseController {
             StringBuilder sb2 = new StringBuilder("story(dialogId=");
             sb2.append(storyItem.dialogId);
             sb2.append(" id=");
-            return a1.g.n(storyItem.f22264id, ")", sb2);
+            return a1.g.n(storyItem.f22266id, ")", sb2);
         } else if (obj instanceof MessageObject) {
             MessageObject messageObject = (MessageObject) obj;
             return "message(dialogId=" + messageObject.getDialogId() + "messageId" + messageObject.getId() + ")";
@@ -419,13 +419,13 @@ public class FileRefController extends BaseController {
         if (user != null) {
             if (user.access_hash == 0 && user.fromMessageId != 0 && user.fromMessageDialogId != 0) {
                 inputPeer = new TLRPC.TL_inputPeerUserFromMessage();
-                inputPeer.user_id = user.f22174id;
+                inputPeer.user_id = user.f22176id;
                 inputPeer.peer = getMessagesController().getInputPeer(user.fromMessageDialogId);
                 inputPeer.msg_id = user.fromMessageId;
                 tL_inputPeerPhotoFileLocation.photo_id = user.photo.photo_id;
             } else {
                 inputPeer = new TLRPC.TL_inputPeerUser();
-                inputPeer.user_id = user.f22174id;
+                inputPeer.user_id = user.f22176id;
                 inputPeer.access_hash = user.access_hash;
                 tL_inputPeerPhotoFileLocation.photo_id = user.photo.photo_id;
             }
@@ -480,7 +480,7 @@ public class FileRefController extends BaseController {
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             TLRPC.TL_theme tL_theme2 = ((org.telegram.ui.ActionBar.x6) arrayList.get(i10)).F;
-            if (tL_theme2 != null && tL_theme2.f22164id == tL_theme.f22164id) {
+            if (tL_theme2 != null && tL_theme2.f22166id == tL_theme.f22166id) {
                 TLRPC.Document document2 = tL_theme2.document;
                 if (document2 != null && (document = tL_theme.document) != null) {
                     document2.file_reference = document.file_reference;
@@ -717,7 +717,7 @@ public class FileRefController extends BaseController {
             TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
             TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
             tL_stories_getStoriesByID.peer = getMessagesController().getInputPeer(storyItem.dialogId);
-            tL_stories_getStoriesByID.f22271id.add(Integer.valueOf(storyItem.f22264id));
+            tL_stories_getStoriesByID.f22273id.add(Integer.valueOf(storyItem.f22266id));
             getConnectionsManager().sendRequest(tL_stories_getStoriesByID, new RequestDelegate(this) {
                 public final FileRefController f21386b;
 
@@ -979,7 +979,7 @@ public class FileRefController extends BaseController {
             });
         } else if (obj instanceof TL_bots.BotInfo) {
             TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-            tL_users_getFullUser.f22167id = getMessagesController().getInputUser(((TL_bots.BotInfo) obj).user_id);
+            tL_users_getFullUser.f22169id = getMessagesController().getInputUser(((TL_bots.BotInfo) obj).user_id);
             getConnectionsManager().sendRequest(tL_users_getFullUser, new RequestDelegate(this) {
                 public final FileRefController f21386b;
 
@@ -1160,7 +1160,7 @@ public class FileRefController extends BaseController {
             if (messageObject.scheduled) {
                 TLRPC.TL_messages_getScheduledMessages tL_messages_getScheduledMessages = new TLRPC.TL_messages_getScheduledMessages();
                 tL_messages_getScheduledMessages.peer = getMessagesController().getInputPeer(messageObject.getDialogId());
-                tL_messages_getScheduledMessages.f22127id.add(Integer.valueOf(messageObject.getRealId()));
+                tL_messages_getScheduledMessages.f22129id.add(Integer.valueOf(messageObject.getRealId()));
                 getConnectionsManager().sendRequest(tL_messages_getScheduledMessages, new RequestDelegate(this) {
                     public final FileRefController f21386b;
 
@@ -1250,7 +1250,7 @@ public class FileRefController extends BaseController {
                 TLRPC.TL_messages_getQuickReplyMessages tL_messages_getQuickReplyMessages = new TLRPC.TL_messages_getQuickReplyMessages();
                 tL_messages_getQuickReplyMessages.shortcut_id = messageObject.getQuickReplyId();
                 tL_messages_getQuickReplyMessages.flags |= 1;
-                tL_messages_getQuickReplyMessages.f22126id.add(Integer.valueOf(messageObject.getRealId()));
+                tL_messages_getQuickReplyMessages.f22128id.add(Integer.valueOf(messageObject.getRealId()));
                 getConnectionsManager().sendRequest(tL_messages_getQuickReplyMessages, new RequestDelegate(this) {
                     public final FileRefController f21386b;
 
@@ -1341,7 +1341,7 @@ public class FileRefController extends BaseController {
                 if (message != null && message.rich_message != null && inputPeer != null) {
                     TL_iv.getRichMessage getrichmessage = new TL_iv.getRichMessage();
                     getrichmessage.peer = inputPeer;
-                    getrichmessage.f22247id = messageObject.getRealId();
+                    getrichmessage.f22249id = messageObject.getRealId();
                     getConnectionsManager().sendRequest(getrichmessage, new RequestDelegate(this) {
                         public final FileRefController f21386b;
 
@@ -1518,7 +1518,7 @@ public class FileRefController extends BaseController {
                     });
                 } else {
                     TLRPC.TL_messages_getMessages tL_messages_getMessages = new TLRPC.TL_messages_getMessages();
-                    tL_messages_getMessages.f22121id.add(Integer.valueOf(messageObject.getRealId()));
+                    tL_messages_getMessages.f22123id.add(Integer.valueOf(messageObject.getRealId()));
                     getConnectionsManager().sendRequest(tL_messages_getMessages, new RequestDelegate(this) {
                         public final FileRefController f21386b;
 
@@ -1610,7 +1610,7 @@ public class FileRefController extends BaseController {
             TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) obj;
             TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
             TLRPC.TL_inputWallPaper tL_inputWallPaper = new TLRPC.TL_inputWallPaper();
-            tL_inputWallPaper.f22099id = tL_wallPaper.f22179id;
+            tL_inputWallPaper.f22099id = tL_wallPaper.f22181id;
             tL_inputWallPaper.access_hash = tL_wallPaper.access_hash;
             getwallpaper.wallpaper = tL_inputWallPaper;
             getConnectionsManager().sendRequest(getwallpaper, new RequestDelegate(this) {
@@ -1702,7 +1702,7 @@ public class FileRefController extends BaseController {
             TLRPC.TL_theme tL_theme = (TLRPC.TL_theme) obj;
             TL_account.getTheme gettheme = new TL_account.getTheme();
             TLRPC.TL_inputTheme tL_inputTheme = new TLRPC.TL_inputTheme();
-            tL_inputTheme.f22098id = tL_theme.f22164id;
+            tL_inputTheme.f22098id = tL_theme.f22166id;
             tL_inputTheme.access_hash = tL_theme.access_hash;
             gettheme.theme = tL_inputTheme;
             gettheme.format = "android";
@@ -1882,7 +1882,7 @@ public class FileRefController extends BaseController {
             });
         } else if (obj instanceof TLRPC.User) {
             TLRPC.TL_users_getUsers tL_users_getUsers = new TLRPC.TL_users_getUsers();
-            tL_users_getUsers.f22168id.add(getMessagesController().getInputUser((TLRPC.User) obj));
+            tL_users_getUsers.f22170id.add(getMessagesController().getInputUser((TLRPC.User) obj));
             getConnectionsManager().sendRequest(tL_users_getUsers, new RequestDelegate(this) {
                 public final FileRefController f21386b;
 
@@ -1972,7 +1972,7 @@ public class FileRefController extends BaseController {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (chat instanceof TLRPC.TL_chat) {
                 TLRPC.TL_messages_getChats tL_messages_getChats = new TLRPC.TL_messages_getChats();
-                tL_messages_getChats.f22115id.add(Long.valueOf(chat.f22027id));
+                tL_messages_getChats.f22117id.add(Long.valueOf(chat.f22027id));
                 getConnectionsManager().sendRequest(tL_messages_getChats, new RequestDelegate(this) {
                     public final FileRefController f21386b;
 
@@ -2459,7 +2459,7 @@ public class FileRefController extends BaseController {
                 tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterChatPhotos();
                 tL_messages_search.limit = 80;
                 tL_messages_search.offset_id = 0;
-                tL_messages_search.f22136q = "";
+                tL_messages_search.f22138q = "";
                 tL_messages_search.peer = getMessagesController().getInputPeer(longValue);
                 getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate(this) {
                     public final FileRefController f21386b;
@@ -2642,7 +2642,7 @@ public class FileRefController extends BaseController {
                         return;
                     }
                     TLRPC.TL_messages_getMessages tL_messages_getMessages2 = new TLRPC.TL_messages_getMessages();
-                    tL_messages_getMessages2.f22121id.add(Utilities.parseInt((CharSequence) split[2]));
+                    tL_messages_getMessages2.f22123id.add(Utilities.parseInt((CharSequence) split[2]));
                     getConnectionsManager().sendRequest(tL_messages_getMessages2, new RequestDelegate(this) {
                         public final FileRefController f21386b;
 
@@ -3111,16 +3111,16 @@ public class FileRefController extends BaseController {
                 }
             } else if (obj instanceof TLRPC.TL_messages_saveGif) {
                 TLRPC.TL_messages_saveGif tL_messages_saveGif = (TLRPC.TL_messages_saveGif) obj;
-                if (isSameReference(tL_messages_saveGif.f22134id.file_reference, bArr)) {
+                if (isSameReference(tL_messages_saveGif.f22136id.file_reference, bArr)) {
                     return false;
                 }
-                tL_messages_saveGif.f22134id.file_reference = bArr;
+                tL_messages_saveGif.f22136id.file_reference = bArr;
             } else if (obj instanceof TLRPC.TL_messages_saveRecentSticker) {
                 TLRPC.TL_messages_saveRecentSticker tL_messages_saveRecentSticker = (TLRPC.TL_messages_saveRecentSticker) obj;
-                if (isSameReference(tL_messages_saveRecentSticker.f22135id.file_reference, bArr)) {
+                if (isSameReference(tL_messages_saveRecentSticker.f22137id.file_reference, bArr)) {
                     return false;
                 }
-                tL_messages_saveRecentSticker.f22135id.file_reference = bArr;
+                tL_messages_saveRecentSticker.f22137id.file_reference = bArr;
             } else if (obj instanceof TLRPC.TL_stickers_addStickerToSet) {
                 TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = (TLRPC.TL_stickers_addStickerToSet) obj;
                 if (isSameReference(tL_stickers_addStickerToSet.sticker.document.file_reference, bArr)) {
@@ -3129,10 +3129,10 @@ public class FileRefController extends BaseController {
                 tL_stickers_addStickerToSet.sticker.document.file_reference = bArr;
             } else if (obj instanceof TLRPC.TL_messages_faveSticker) {
                 TLRPC.TL_messages_faveSticker tL_messages_faveSticker = (TLRPC.TL_messages_faveSticker) obj;
-                if (isSameReference(tL_messages_faveSticker.f22111id.file_reference, bArr)) {
+                if (isSameReference(tL_messages_faveSticker.f22113id.file_reference, bArr)) {
                     return false;
                 }
-                tL_messages_faveSticker.f22111id.file_reference = bArr;
+                tL_messages_faveSticker.f22113id.file_reference = bArr;
             } else if (obj instanceof TLRPC.TL_messages_getAttachedStickers) {
                 TLRPC.InputStickeredMedia inputStickeredMedia = ((TLRPC.TL_messages_getAttachedStickers) obj).media;
                 if (inputStickeredMedia instanceof TLRPC.TL_inputStickeredMediaDocument) {
@@ -3225,13 +3225,13 @@ public class FileRefController extends BaseController {
                 return new Pair<>(tL_inputPhotoFileLocation, "botstory_photo_" + r6Var.media.photo.f22051id);
             } else {
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation2 = new TLRPC.TL_inputDocumentFileLocation();
-                return new Pair<>(tL_inputDocumentFileLocation2, "botstory_" + r6Var.f22264id);
+                return new Pair<>(tL_inputDocumentFileLocation2, "botstory_" + r6Var.f22266id);
             }
         } else if (obj2 instanceof TL_stories.TL_storyItem) {
             TL_stories.TL_storyItem tL_storyItem = (TL_stories.TL_storyItem) obj2;
             TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation3 = new TLRPC.TL_inputDocumentFileLocation();
             tL_inputDocumentFileLocation3.f22042id = tL_storyItem.media.document.f22033id;
-            return new Pair<>(tL_inputDocumentFileLocation3, "story_" + tL_storyItem.f22264id);
+            return new Pair<>(tL_inputDocumentFileLocation3, "story_" + tL_storyItem.f22266id);
         } else {
             if (obj2 instanceof TLRPC.TL_inputSingleMedia) {
                 TLRPC.InputMedia inputMedia = ((TLRPC.TL_inputSingleMedia) obj2).media;
@@ -3353,13 +3353,13 @@ public class FileRefController extends BaseController {
             } else if (obj2 instanceof TLRPC.TL_messages_saveGif) {
                 TLRPC.TL_messages_saveGif tL_messages_saveGif = (TLRPC.TL_messages_saveGif) obj2;
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation13 = new TLRPC.TL_inputDocumentFileLocation();
-                tL_inputDocumentFileLocation13.f22042id = tL_messages_saveGif.f22134id.f22039id;
-                return new Pair<>(tL_inputDocumentFileLocation13, "file_" + tL_messages_saveGif.f22134id.f22039id);
+                tL_inputDocumentFileLocation13.f22042id = tL_messages_saveGif.f22136id.f22039id;
+                return new Pair<>(tL_inputDocumentFileLocation13, "file_" + tL_messages_saveGif.f22136id.f22039id);
             } else if (obj2 instanceof TLRPC.TL_messages_saveRecentSticker) {
                 TLRPC.TL_messages_saveRecentSticker tL_messages_saveRecentSticker = (TLRPC.TL_messages_saveRecentSticker) obj2;
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation14 = new TLRPC.TL_inputDocumentFileLocation();
-                tL_inputDocumentFileLocation14.f22042id = tL_messages_saveRecentSticker.f22135id.f22039id;
-                return new Pair<>(tL_inputDocumentFileLocation14, "file_" + tL_messages_saveRecentSticker.f22135id.f22039id);
+                tL_inputDocumentFileLocation14.f22042id = tL_messages_saveRecentSticker.f22137id.f22039id;
+                return new Pair<>(tL_inputDocumentFileLocation14, "file_" + tL_messages_saveRecentSticker.f22137id.f22039id);
             } else if (obj2 instanceof TLRPC.TL_stickers_addStickerToSet) {
                 TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = (TLRPC.TL_stickers_addStickerToSet) obj2;
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation15 = new TLRPC.TL_inputDocumentFileLocation();
@@ -3368,8 +3368,8 @@ public class FileRefController extends BaseController {
             } else if (obj2 instanceof TLRPC.TL_messages_faveSticker) {
                 TLRPC.TL_messages_faveSticker tL_messages_faveSticker = (TLRPC.TL_messages_faveSticker) obj2;
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation16 = new TLRPC.TL_inputDocumentFileLocation();
-                tL_inputDocumentFileLocation16.f22042id = tL_messages_faveSticker.f22111id.f22039id;
-                return new Pair<>(tL_inputDocumentFileLocation16, "file_" + tL_messages_faveSticker.f22111id.f22039id);
+                tL_inputDocumentFileLocation16.f22042id = tL_messages_faveSticker.f22113id.f22039id;
+                return new Pair<>(tL_inputDocumentFileLocation16, "file_" + tL_messages_faveSticker.f22113id.f22039id);
             } else if (obj2 instanceof TLRPC.TL_messages_getAttachedStickers) {
                 TLRPC.InputStickeredMedia inputStickeredMedia = ((TLRPC.TL_messages_getAttachedStickers) obj2).media;
                 if (inputStickeredMedia instanceof TLRPC.TL_inputStickeredMediaDocument) {

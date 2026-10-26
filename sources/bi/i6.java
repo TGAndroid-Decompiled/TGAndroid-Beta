@@ -62,9 +62,9 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 return;
             case 6:
                 org.telegram.ui.Components.la laVar = (org.telegram.ui.Components.la) this.f4828b;
-                ArrayList arrayList2 = laVar.f30137c;
+                ArrayList arrayList2 = laVar.f30139c;
                 arrayList2.clear();
-                for (View view2 = laVar.f30136b; view2 != null; view2 = (View) view2.getParent()) {
+                for (View view2 = laVar.f30138b; view2 != null; view2 = (View) view2.getParent()) {
                     arrayList2.add(0, view2);
                     if (!(view2.getParent() instanceof View)) {
                         return;
@@ -79,11 +79,11 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 return;
             case 10:
                 wm0 wm0Var = (wm0) this.f4828b;
-                org.telegram.ui.Components.r5 r5Var = wm0Var.f34496t;
+                org.telegram.ui.Components.r5 r5Var = wm0Var.f34499t;
                 if (r5Var != null) {
                     r5Var.a();
                 }
-                org.telegram.ui.Components.r5 r5Var2 = wm0Var.f34497u;
+                org.telegram.ui.Components.r5 r5Var2 = wm0Var.f34500u;
                 if (r5Var2 != null) {
                     r5Var2.a();
                     return;
@@ -102,21 +102,21 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 14:
-                ((zh.d1) this.f4828b).f52938l.a();
+                ((zh.d1) this.f4828b).f52941l.a();
                 return;
             case 15:
                 zh.p3 p3Var = (zh.p3) this.f4828b;
-                zh.n3 n3Var = p3Var.f53210a0;
+                zh.n3 n3Var = p3Var.f53213a0;
                 if (n3Var != null) {
-                    n3Var.a(p3Var.f22636c);
+                    n3Var.a(p3Var.f22638c);
                     return;
                 }
                 return;
             default:
                 zh.s3 s3Var = (zh.s3) this.f4828b;
-                zh.q3 q3Var = s3Var.f53245a0;
+                zh.q3 q3Var = s3Var.f53248a0;
                 if (q3Var != null) {
-                    q3Var.a(s3Var.f22636c);
+                    q3Var.a(s3Var.f22638c);
                     return;
                 }
                 return;
@@ -176,7 +176,7 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 ((zh.k2) this.f4828b).o(view);
                 return;
             case 6:
-                ((org.telegram.ui.Components.la) this.f4828b).f30137c.clear();
+                ((org.telegram.ui.Components.la) this.f4828b).f30139c.clear();
                 return;
             case 7:
                 org.telegram.ui.Components.qc qcVar = (org.telegram.ui.Components.qc) this.f4828b;
@@ -191,18 +191,18 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 return;
             case 10:
                 wm0 wm0Var = (wm0) this.f4828b;
-                org.telegram.ui.Components.r5 r5Var = wm0Var.f34496t;
+                org.telegram.ui.Components.r5 r5Var = wm0Var.f34499t;
                 if (r5Var != null) {
                     r5Var.b();
                 }
-                org.telegram.ui.Components.r5 r5Var2 = wm0Var.f34497u;
+                org.telegram.ui.Components.r5 r5Var2 = wm0Var.f34500u;
                 if (r5Var2 != null) {
                     r5Var2.a();
                     return;
                 }
                 return;
             case 11:
-                view.removeCallbacks((Runnable) ((jp0) this.f4828b).f29688a.remove(view));
+                view.removeCallbacks((Runnable) ((jp0) this.f4828b).f29690a.remove(view));
                 view.removeOnAttachStateChangeListener(this);
                 return;
             case 12:
@@ -216,21 +216,21 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 14:
-                ((zh.d1) this.f4828b).f52938l.b();
+                ((zh.d1) this.f4828b).f52941l.b();
                 return;
             case 15:
                 zh.p3 p3Var = (zh.p3) this.f4828b;
-                zh.n3 n3Var = p3Var.f53210a0;
+                zh.n3 n3Var = p3Var.f53213a0;
                 if (n3Var != null) {
-                    n3Var.o(p3Var.f22636c);
+                    n3Var.o(p3Var.f22638c);
                     return;
                 }
                 return;
             default:
                 zh.s3 s3Var = (zh.s3) this.f4828b;
-                zh.q3 q3Var = s3Var.f53245a0;
+                zh.q3 q3Var = s3Var.f53248a0;
                 if (q3Var != null) {
-                    q3Var.o(s3Var.f22636c);
+                    q3Var.o(s3Var.f22638c);
                     return;
                 }
                 return;

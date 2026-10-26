@@ -49,7 +49,7 @@ public final class nk implements org.telegram.ui.ActionBar.b2, e2.j {
             case 1:
                 fn fnVar = (fn) obj4;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                un unVar = fnVar.f39420a;
+                un unVar = fnVar.f39423a;
                 li.s2 s2Var = new li.s2(19, fnVar, (org.telegram.ui.Cells.s1) obj3);
                 if (((boolean[]) obj2)[0]) {
                     if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
@@ -78,7 +78,7 @@ public final class nk implements org.telegram.ui.ActionBar.b2, e2.j {
                 int i13 = zVar.f13804b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) zVar.d;
                 if (i13 == 8) {
-                    int[] iArr = in0Var.f40321x;
+                    int[] iArr = in0Var.f40324x;
                     iArr[0] = value;
                     iArr[1] = value2 + 1;
                     iArr[2] = value3;

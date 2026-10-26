@@ -3,15 +3,15 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesStorage;
 public final class fx implements org.telegram.ui.Components.e5 {
-    public final cy f39488a;
+    public final cy f39491a;
 
     public fx(cy cyVar) {
-        this.f39488a = cyVar;
+        this.f39491a = cyVar;
     }
 
     @Override
     public final void G(int i10, int i11, boolean z10) {
-        cy cyVar = this.f39488a;
+        cy cyVar = this.f39491a;
         ArrayList arrayList = cyVar.I2;
         cyVar.K2 = i10;
         cyVar.L2 = i11;

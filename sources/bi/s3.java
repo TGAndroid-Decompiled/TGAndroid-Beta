@@ -27,12 +27,12 @@ public final class s3 implements Runnable {
         switch (i10) {
             case 0:
                 org.telegram.ui.Components.qc M = org.telegram.ui.Components.wc.b0(unVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, h7Var.W1(), DialogObject.getShortName(j10))), R.raw.forward);
-                M.f31898u = true;
+                M.f31900u = true;
                 M.j();
                 return;
             default:
                 org.telegram.ui.Components.qc M2 = org.telegram.ui.Components.wc.b0(unVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, h7Var.W1(), DialogObject.getShortName(j10))), R.raw.forward);
-                M2.f31898u = true;
+                M2.f31900u = true;
                 M2.j();
                 return;
         }

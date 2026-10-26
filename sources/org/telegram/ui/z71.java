@@ -14,10 +14,10 @@ public final class z71 extends org.telegram.ui.Components.s61 {
     public static org.telegram.ui.Components.t61 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
         org.telegram.ui.Components.t61 K = org.telegram.ui.Components.t61.K(z71.class);
         K.d = i10;
-        K.f32871k = i13;
-        K.f32872l = charSequence;
-        K.f32873m = charSequence2;
-        K.f32874n = charSequence3;
+        K.f32874k = i13;
+        K.f32875l = charSequence;
+        K.f32876m = charSequence2;
+        K.f32877n = charSequence3;
         K.B = (i11 & 4294967295L) | (i12 << 32);
         return K;
     }
@@ -31,20 +31,20 @@ public final class z71 extends org.telegram.ui.Components.s61 {
         int i11 = (int) j10;
         int i12 = (int) (j10 >>> 32);
         a81 a81Var = (a81) view;
-        int i13 = t61Var.f32871k;
-        CharSequence charSequence = t61Var.f32872l;
-        CharSequence charSequence2 = t61Var.f32873m;
-        CharSequence charSequence3 = t61Var.f32874n;
+        int i13 = t61Var.f32874k;
+        CharSequence charSequence = t61Var.f32875l;
+        CharSequence charSequence2 = t61Var.f32876m;
+        CharSequence charSequence3 = t61Var.f32877n;
         TextView textView = a81Var.e;
-        TextView textView2 = a81Var.f37667f;
+        TextView textView2 = a81Var.f37670f;
         int i14 = 0;
         if (i11 == 0 && i12 == 0) {
             z11 = false;
         } else {
             z11 = true;
         }
-        a81Var.f37668n = z11;
-        FrameLayout frameLayout = a81Var.f37666c;
+        a81Var.f37671n = z11;
+        FrameLayout frameLayout = a81Var.f37669c;
         if (i13 != 0) {
             i10 = 0;
         } else {
@@ -62,11 +62,11 @@ public final class z71 extends org.telegram.ui.Components.s61 {
             f10 = AndroidUtilities.dp(2.0f);
         }
         textView2.setTranslationX(f10);
-        a81Var.f37665b.b(i11, i12);
+        a81Var.f37668b.b(i11, i12);
         a81Var.d.setImageResource(i13);
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        a81Var.f37669r = !isEmpty;
+        a81Var.f37672r = !isEmpty;
         if (isEmpty) {
             i14 = 8;
         }

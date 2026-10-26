@@ -97,11 +97,11 @@ public final class a1 {
     }
 
     public final z0 d(b2.p1 p1Var, u2.g0 g0Var, long j10, long j11, long j12) {
-        p1Var.g(g0Var.f49294a, this.f13476a);
+        p1Var.g(g0Var.f49297a, this.f13476a);
         if (g0Var.b()) {
-            return e(p1Var, g0Var.f49294a, g0Var.f49295b, g0Var.f49296c, j10, g0Var.d, false);
+            return e(p1Var, g0Var.f49297a, g0Var.f49298b, g0Var.f49299c, j10, g0Var.d, false);
         }
-        return f(p1Var, g0Var.f49294a, j11, j12, j10, g0Var.d, false);
+        return f(p1Var, g0Var.f49297a, j11, j12, j10, g0Var.d, false);
     }
 
     public final z0 e(b2.p1 p1Var, Object obj, int i10, int i11, long j10, long j11, boolean z10) {
@@ -182,10 +182,10 @@ public final class a1 {
             z10 = false;
         }
         boolean z11 = z10;
-        int i11 = g0Var.f49295b;
+        int i11 = g0Var.f49298b;
         boolean j12 = j(p1Var, g0Var);
         boolean i12 = i(p1Var, g0Var, z11);
-        Object obj = g0Var.f49294a;
+        Object obj = g0Var.f49297a;
         b2.m1 m1Var = this.f13476a;
         p1Var.g(obj, m1Var);
         if (!g0Var.b() && i10 != -1) {
@@ -195,7 +195,7 @@ public final class a1 {
             j10 = -9223372036854775807L;
         }
         if (g0Var.b()) {
-            j11 = m1Var.a(i11, g0Var.f49296c);
+            j11 = m1Var.a(i11, g0Var.f49299c);
         } else if (j10 != -9223372036854775807L && j10 != Long.MIN_VALUE) {
             j11 = j10;
         } else {
@@ -210,7 +210,7 @@ public final class a1 {
     }
 
     public final boolean i(b2.p1 p1Var, u2.g0 g0Var, boolean z10) {
-        int b10 = p1Var.b(g0Var.f49294a);
+        int b10 = p1Var.b(g0Var.f49297a);
         if (!p1Var.m(p1Var.f(b10, this.f13476a, false).f3280c, this.f13477b, 0L).f3330i) {
             if (p1Var.d(b10, this.f13476a, this.f13477b, this.f13480g, this.h) == -1 && z10) {
                 return true;
@@ -226,7 +226,7 @@ public final class a1 {
         } else {
             z10 = false;
         }
-        Object obj = g0Var.f49294a;
+        Object obj = g0Var.f49297a;
         if (z10) {
             if (p1Var.m(p1Var.g(obj, this.f13476a).f3280c, this.f13477b, 0L).f3336o == p1Var.b(obj)) {
                 return true;

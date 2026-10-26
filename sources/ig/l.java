@@ -50,7 +50,7 @@ public final class l extends qg.a {
     public l(n nVar, TLRPC.User user) {
         super(23, false);
         this.f14158n = user;
-        long j10 = user.f22174id;
+        long j10 = user.f22176id;
         LongSparseIntArray longSparseIntArray = nVar.X;
         int i10 = longSparseIntArray.get(j10, -1);
         if (i10 >= 0) {
@@ -60,7 +60,7 @@ public final class l extends qg.a {
         int i11 = nVar.W;
         nVar.W = i11 + 1;
         this.f14155k = i11;
-        longSparseIntArray.put(user.f22174id, i11);
+        longSparseIntArray.put(user.f22176id, i11);
     }
 
     public l(n nVar, TLRPC.Chat chat) {

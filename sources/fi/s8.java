@@ -14,7 +14,7 @@ public final class s8 extends LinearLayout {
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f11595a = textView;
-        org.telegram.messenger.t.r(textView, org.telegram.ui.ActionBar.y6.f23462j5, u6Var, 1, 20.0f);
+        org.telegram.messenger.t.r(textView, org.telegram.ui.ActionBar.y6.f23464j5, u6Var, 1, 20.0f);
         if (z10) {
             i10 = 4;
         } else {

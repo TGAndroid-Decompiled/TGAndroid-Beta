@@ -31,7 +31,7 @@ public final class h extends View {
         this.e = r61Var;
         r61Var.setCallback(this);
         r61Var.b(-1);
-        r61Var.f32146i = true;
+        r61Var.f32148i = true;
     }
 
     @Override
@@ -90,16 +90,16 @@ public final class h extends View {
             default:
                 m4 m4Var = (m4) this.e;
                 m4Var.getClass();
-                int themedColor = m4Var.getThemedColor(y6.f23354d6);
+                int themedColor = m4Var.getThemedColor(y6.f23356d6);
                 Paint paint2 = this.f15955b;
                 paint2.setColor(themedColor);
-                ViewGroup viewGroup = m4Var.f36930b0;
+                ViewGroup viewGroup = m4Var.f36933b0;
                 int[] iArr = (int[]) this.f15956c;
                 viewGroup.getLocationInWindow(iArr);
                 int[] iArr2 = (int[]) this.d;
                 getLocationInWindow(iArr2);
                 float f11 = iArr[0] - iArr2[0];
-                View view = ((u91) m4Var.f36930b0).getViewPages()[0];
+                View view = ((u91) m4Var.f36933b0).getViewPages()[0];
                 if (view != null) {
                     i10 = view.getPaddingLeft();
                 } else {
@@ -111,8 +111,8 @@ public final class h extends View {
                     i11 = 0;
                 }
                 canvas.save();
-                canvas.clipRect(i10 + f11, 0.0f, (f11 + m4Var.f36930b0.getWidth()) - i11, getHeight());
-                for (View view2 : ((u91) m4Var.f36930b0).getViewPages()) {
+                canvas.clipRect(i10 + f11, 0.0f, (f11 + m4Var.f36933b0.getWidth()) - i11, getHeight());
+                for (View view2 : ((u91) m4Var.f36933b0).getViewPages()) {
                     if (view2 != null && view2.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view2.getLeft() + (iArr[0] - iArr2[0]), view2.getTop() + (iArr[1] - iArr2[1]));

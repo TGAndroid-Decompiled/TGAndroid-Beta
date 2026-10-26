@@ -24,7 +24,7 @@ public final class j extends a {
 
     @Override
     public final long a() {
-        return this.f50025s + this.E;
+        return this.f50028s + this.E;
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class j extends a {
         boolean z11;
         c1[] c1VarArr;
         long j10;
-        m4.c cVar = this.f49985x;
+        m4.c cVar = this.f49988x;
         cVar.getClass();
         if (this.H == 0) {
             long j11 = this.F;
@@ -51,18 +51,18 @@ public final class j extends a {
             } else {
                 j10 = j12 - this.F;
             }
-            long j14 = this.f49984w;
+            long j14 = this.f49987w;
             if (j14 != -9223372036854775807L) {
                 j13 = j14 - this.F;
             }
             eVar.b(cVar, j10, j13);
         }
         try {
-            g2.m b10 = this.f50004b.b(this.H);
-            b0 b0Var = this.f50008r;
+            g2.m b10 = this.f50007b.b(this.H);
+            b0 b0Var = this.f50011r;
             c3.l lVar = new c3.l(b0Var, b10.e, b0Var.open(b10));
             while (!this.I) {
-                int f7 = this.G.f49996a.f(lVar, e.v);
+                int f7 = this.G.f49999a.f(lVar, e.v);
                 if (f7 != 1) {
                     z10 = true;
                 } else {
@@ -85,17 +85,17 @@ public final class j extends a {
             if (w0.k(str) && ((i10 > 1 || i11 > 1) && i10 != -1 && i11 != -1)) {
                 j0 B0 = cVar.B0(4);
                 int i12 = i10 * i11;
-                long j15 = (this.f50007n - this.h) / i12;
+                long j15 = (this.f50010n - this.h) / i12;
                 for (int i13 = 1; i13 < i12; i13++) {
                     B0.d(0, new e2.x());
                     B0.c(i13 * j15, 0, 0, 0, null);
                 }
             }
-            this.H = lVar.d - this.f50004b.e;
-            hc.a(this.f50008r);
+            this.H = lVar.d - this.f50007b.e;
+            hc.a(this.f50011r);
             this.J = !this.I;
         } catch (Throwable th2) {
-            hc.a(this.f50008r);
+            hc.a(this.f50011r);
             throw th2;
         }
     }

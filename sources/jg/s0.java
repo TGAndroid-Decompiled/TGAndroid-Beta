@@ -282,8 +282,8 @@ public final class s0 implements ig.z1, y2.m, li.i0, t3, l.i, l2.h, k1.f, o5.b, 
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         hn0 hn0Var = (hn0) this.f15828b;
         hn0Var.v.setPadding(defaultWindowInsets.f13450a, defaultWindowInsets.f13451b, defaultWindowInsets.f13452c, defaultWindowInsets.d);
-        hn0Var.f29024s.requestLayout();
-        return r0.k1.f47114b;
+        hn0Var.f29026s.requestLayout();
+        return r0.k1.f47117b;
     }
 
     @Override
@@ -615,7 +615,7 @@ public final class s0 implements ig.z1, y2.m, li.i0, t3, l.i, l2.h, k1.f, o5.b, 
                 return;
             default:
                 org.telegram.ui.Wallet.r9 r9Var = (org.telegram.ui.Wallet.r9) this.f15828b;
-                if (!r9Var.f37199r && i10 == r9Var.J) {
+                if (!r9Var.f37202r && i10 == r9Var.J) {
                     r9Var.f0(r9Var.N.getText().toString().trim());
                     return;
                 }
@@ -784,7 +784,7 @@ public final class s0 implements ig.z1, y2.m, li.i0, t3, l.i, l2.h, k1.f, o5.b, 
     public void invalidate() {
         switch (this.f15827a) {
             case 15:
-                ((org.telegram.ui.Cells.s1) ((org.telegram.ui.Cells.f1) this.f15828b).f24055b).invalidate();
+                ((org.telegram.ui.Cells.s1) ((org.telegram.ui.Cells.f1) this.f15828b).f24057b).invalidate();
                 return;
             default:
                 ((ch0) this.f15828b).h.invalidate();
@@ -874,10 +874,10 @@ public final class s0 implements ig.z1, y2.m, li.i0, t3, l.i, l2.h, k1.f, o5.b, 
         li.b2 b2Var = (li.b2) this.f15828b;
         if (aVar != null && (aVar.f17054b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(b2Var)) {
             ti tiVar = new ti(b2Var.getParentActivity(), b2Var, false, false, false, b2Var.getResourceProvider());
-            tiVar.f33010c2 = new tb.a(12);
+            tiVar.f33013c2 = new tb.a(12);
             tiVar.P = true;
             tiVar.A1.setVisibility(8);
-            tiVar.f33084z2 = new androidx.car.app.utils.a(b2Var, aVar, tiVar, 12);
+            tiVar.f33087z2 = new androidx.car.app.utils.a(b2Var, aVar, tiVar, 12);
             tiVar.v1();
             tiVar.show();
         }

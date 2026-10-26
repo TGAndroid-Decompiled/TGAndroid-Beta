@@ -7,12 +7,12 @@ public enum a {
     CALLS(R.raw.tab_calls),
     CHATS(R.raw.tab_chats),
     SETTINGS(R.raw.tab_settings),
-    f47044s("CHECKLIST", R.raw.tab_checklist_reverse),
+    f47047s("CHECKLIST", R.raw.tab_checklist_reverse),
     v("COLORS", R.raw.tab_colors_reverse),
-    f47045w("FILES", R.raw.tab_files_reverse),
-    f47046x("GALLERY", R.raw.tab_gallery_reverse),
+    f47048w("FILES", R.raw.tab_files_reverse),
+    f47049x("GALLERY", R.raw.tab_gallery_reverse),
     EF9("GIFT", R.raw.tab_gift_reverse),
-    f47047y("LOCATION", R.raw.tab_location_reverse),
+    f47050y("LOCATION", R.raw.tab_location_reverse),
     E("STICKER", R.raw.tab_sticker_reverse),
     F("EMOJI", R.raw.tab_emoji_reverse),
     G("MODELS", R.raw.tab_models_reverse),
@@ -29,41 +29,41 @@ public enum a {
     STORIES_SAVED(R.raw.msg_stories_saved, 20, 40),
     STORIES_ARCHIVE(R.raw.msg_stories_archive);
     
-    public final int f47048a;
-    public final int f47049b;
-    public final int f47050c;
+    public final int f47051a;
+    public final int f47052b;
+    public final int f47053c;
     public final int d;
     public final int e;
 
     a(int i10, int i11, int i12) {
-        this.f47048a = i10;
-        this.f47049b = i10;
+        this.f47051a = i10;
+        this.f47052b = i10;
         this.d = i11;
         this.e = i12;
-        this.f47050c = -1;
+        this.f47053c = -1;
     }
 
     a(int i10) {
-        this.f47050c = i10;
-        this.f47048a = -1;
-        this.f47049b = -1;
+        this.f47053c = i10;
+        this.f47051a = -1;
+        this.f47052b = -1;
         this.d = -1;
         this.e = -1;
     }
 
     a(int i10) {
-        this.f47048a = i10;
-        this.f47049b = i10;
+        this.f47051a = i10;
+        this.f47052b = i10;
         this.d = -1;
         this.e = -1;
-        this.f47050c = -1;
+        this.f47053c = -1;
     }
 
     a(String str, int i10) {
-        this.f47048a = r2;
-        this.f47049b = i10;
+        this.f47051a = r2;
+        this.f47052b = i10;
         this.d = -1;
         this.e = -1;
-        this.f47050c = -1;
+        this.f47053c = -1;
     }
 }

@@ -210,7 +210,7 @@ public abstract class pr {
         org.telegram.ui.Cells.e3 e3Var = g3Var.d;
         e3Var.setImeOptions(5);
         int dp = AndroidUtilities.dp(16.0f);
-        int i14 = org.telegram.ui.ActionBar.y6.f23354d6;
+        int i14 = org.telegram.ui.ActionBar.y6.f23356d6;
         ShapeDrawable c02 = org.telegram.ui.ActionBar.y6.c0(dp, org.telegram.ui.ActionBar.y6.w0(i14, u6Var));
         org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i14);
         g3Var.setBackground(c02);
@@ -275,7 +275,7 @@ public abstract class pr {
         i11.useBackgroundTopPadding = false;
         i11.smoothKeyboardAnimationEnabled = true;
         i11.doNotOverlayNavigationBar = true;
-        i11.setBackgroundColorKey(org.telegram.ui.ActionBar.y6.f23297a7);
+        i11.setBackgroundColorKey(org.telegram.ui.ActionBar.y6.f23299a7);
         i11.fixNavigationBar();
         new WeakReference(i11);
         boolean[] zArr = new boolean[1];

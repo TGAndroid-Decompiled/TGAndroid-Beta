@@ -112,7 +112,7 @@ public final class n implements Runnable {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
                 org.telegram.ui.Components.qc W = new org.telegram.ui.Components.wc(q4Var.S0, q4Var.f9015q0).W(Arrays.asList(tLObject2), replaceTags, null, cVar);
-                W.f31881a = 2;
+                W.f31883a = 2;
                 W.k(true);
                 return;
             case 2:
@@ -136,7 +136,7 @@ public final class n implements Runnable {
                         if (z10 && R != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, u6Var);
                             String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+                            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
                             e2Var.R = string;
                             e2Var.T = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
                             org.telegram.messenger.t.p(R.string.OK, alertDialog$Builder, null);
@@ -165,7 +165,7 @@ public final class n implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj2;
                 TLRPC.Document document = (TLRPC.Document) obj;
-                ChatActivityEnterView chatActivityEnterView = ((gg) obj4).f28564a;
+                ChatActivityEnterView chatActivityEnterView = ((gg) obj4).f28566a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -209,7 +209,7 @@ public final class n implements Runnable {
                 TLObject tLObject3 = (TLObject) obj2;
                 String str3 = (String) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj3;
-                int i11 = lb0Var.f41236b;
+                int i11 = lb0Var.f41239b;
                 lb0Var.c();
                 if (tLObject3 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject3;
@@ -218,10 +218,10 @@ public final class n implements Runnable {
                     TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(tL_contacts_resolvedPeer.peer.user_id));
                     if (user != null) {
                         org.telegram.ui.Wallet.i9 i9Var = new org.telegram.ui.Wallet.i9(user);
-                        i9Var.f36708s = j10;
-                        i9Var.f36695g0 = str3;
-                        i9Var.f36696h0 = z10;
-                        i9Var.f36694f0 = true;
+                        i9Var.f36711s = j10;
+                        i9Var.f36698g0 = str3;
+                        i9Var.f36699h0 = z10;
+                        i9Var.f36697f0 = true;
                         lb0Var.u(i9Var, false);
                         return;
                     }
@@ -234,8 +234,8 @@ public final class n implements Runnable {
                 }
             default:
                 rz0 rz0Var = (rz0) obj4;
-                ProfileActivity profileActivity = rz0Var.f43312b;
-                gq gqVar = new gq(profileActivity.f35976e1, -j10, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z10, null);
+                ProfileActivity profileActivity = rz0Var.f43315b;
+                gq gqVar = new gq(profileActivity.f35979e1, -j10, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z10, null);
                 gqVar.X0 = new qz0(rz0Var, (cy) obj);
                 profileActivity.presentFragment(gqVar);
                 return;

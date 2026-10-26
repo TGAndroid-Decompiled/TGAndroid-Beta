@@ -23,22 +23,22 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.ui.ji1;
 public final class d extends k {
-    public static final f f47337l;
-    public static final HashMap f47338m;
+    public static final f f47340l;
+    public static final HashMap f47341m;
     public final ExtendedDefaultDataSourceFactory e;
-    public final ji1 f47339f;
-    public final tb.a f47340g;
+    public final ji1 f47342f;
+    public final tb.a f47343g;
     public final HashMap h;
-    public Pair f47341i;
-    public boolean f47342j;
-    public final AtomicInteger f47343k;
+    public Pair f47344i;
+    public boolean f47345j;
+    public final AtomicInteger f47346k;
 
     static {
         f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f47337l = fVar;
+        f47340l = fVar;
         f[] fVarArr = {fVar};
         HashMap hashMap = new HashMap();
-        f47338m = hashMap;
+        f47341m = hashMap;
         f fVar2 = fVarArr[0];
         hashMap.put(fVar2.d, fVar2);
     }
@@ -46,11 +46,11 @@ public final class d extends k {
     public d() {
         this.f3890c = new lg(1);
         this.h = new HashMap();
-        this.f47341i = null;
-        this.f47342j = false;
-        this.f47343k = new AtomicInteger();
-        this.f47339f = new ji1(13);
-        this.f47340g = new tb.a(8);
+        this.f47344i = null;
+        this.f47345j = false;
+        this.f47346k = new AtomicInteger();
+        this.f47342f = new ji1(13);
+        this.f47343g = new tb.a(8);
         this.e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
@@ -86,7 +86,7 @@ public final class d extends k {
     @Override
     public final h e(bd.d dVar) {
         String str;
-        int incrementAndGet = this.f47343k.incrementAndGet();
+        int incrementAndGet = this.f47346k.incrementAndGet();
         StringBuilder k10 = ic.a.k(incrementAndGet, "Request ", " ");
         switch (dVar.f3863g) {
             case 1:
@@ -169,7 +169,7 @@ public final class d extends k {
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f47342j) {
+            if (this.f47345j) {
                 try {
                     k.d(this.f3888a);
                     lg lgVar = this.f3890c;
@@ -191,12 +191,12 @@ public final class d extends k {
                 } catch (Exception e) {
                     k.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e);
                 }
-                this.f47342j = false;
+                this.f47345j = false;
             }
-        } else if (!this.f47342j) {
+        } else if (!this.f47345j) {
             try {
                 f();
-                this.f47342j = true;
+                this.f47345j = true;
             } catch (IOException e10) {
                 throw new RuntimeException(e10);
             }
@@ -209,16 +209,16 @@ public final class d extends k {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f47341i = new Pair(str, file);
+            this.f47344i = new Pair(str, file);
         } else {
-            Pair pair = this.f47341i;
+            Pair pair = this.f47344i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f47341i.second).delete();
+                    ((File) this.f47344i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f47341i = null;
+            this.f47344i = null;
         }
         h();
     }

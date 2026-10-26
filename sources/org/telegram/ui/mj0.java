@@ -19,7 +19,7 @@ public final class mj0 extends AnimatedPhoneNumberEditText {
     public void onDraw(Canvas canvas) {
         switch (this.G) {
             case 1:
-                this.f31831b.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.H6, false));
+                this.f31833b.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.H6, false));
                 super.onDraw(canvas);
                 return;
             default:
@@ -37,7 +37,7 @@ public final class mj0 extends AnimatedPhoneNumberEditText {
             case 0:
                 super.onFocusChanged(z10, i10, rect);
                 oj0 oj0Var = (oj0) this.H;
-                org.telegram.ui.Components.rd0 rd0Var = oj0Var.f42229r;
+                org.telegram.ui.Components.rd0 rd0Var = oj0Var.f42232r;
                 if (!z10 && !oj0Var.P.isFocused()) {
                     f7 = 0.0f;
                 } else {
@@ -48,7 +48,7 @@ public final class mj0 extends AnimatedPhoneNumberEditText {
             case 1:
                 super.onFocusChanged(z10, i10, rect);
                 oj0 oj0Var2 = (oj0) this.H;
-                org.telegram.ui.Components.rd0 rd0Var2 = oj0Var2.f42229r;
+                org.telegram.ui.Components.rd0 rd0Var2 = oj0Var2.f42232r;
                 if (!z10 && !oj0Var2.N.isFocused()) {
                     f10 = 0.0f;
                 } else {
@@ -59,15 +59,15 @@ public final class mj0 extends AnimatedPhoneNumberEditText {
             default:
                 super.onFocusChanged(z10, i10, rect);
                 fg0 fg0Var = (fg0) this.H;
-                org.telegram.ui.Components.rd0 rd0Var3 = fg0Var.f39362f;
-                if (!z10 && !fg0Var.f39360b.isFocused()) {
+                org.telegram.ui.Components.rd0 rd0Var3 = fg0Var.f39365f;
+                if (!z10 && !fg0Var.f39363b.isFocused()) {
                     f11 = 0.0f;
                 } else {
                     f11 = 1.0f;
                 }
                 rd0Var3.b(f11, f11, true);
                 if (z10) {
-                    fg0Var.f39359a0.f39652c.setEditText(this);
+                    fg0Var.f39362a0.f39655c.setEditText(this);
                     return;
                 }
                 return;

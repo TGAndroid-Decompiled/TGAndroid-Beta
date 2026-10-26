@@ -4,7 +4,7 @@ public final class ke {
     public final ef f576b;
 
     public ke(rf.b bVar) {
-        this.f575a = (qb) bVar.f47332b;
-        this.f576b = (ef) bVar.f47333c;
+        this.f575a = (qb) bVar.f47335b;
+        this.f576b = (ef) bVar.f47336c;
     }
 }

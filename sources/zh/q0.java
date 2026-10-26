@@ -17,12 +17,12 @@ import org.telegram.ui.Components.j71;
 import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.vs0;
 public final class q0 implements Utilities.Callback2 {
-    public final int f53215a;
-    public final Object f53216b;
+    public final int f53218a;
+    public final Object f53219b;
 
     public q0(Object obj, int i10) {
-        this.f53215a = i10;
-        this.f53216b = obj;
+        this.f53218a = i10;
+        this.f53219b = obj;
     }
 
     @Override
@@ -38,9 +38,9 @@ public final class q0 implements Utilities.Callback2 {
         float f11;
         int i14;
         long j10;
-        int i15 = this.f53215a;
+        int i15 = this.f53218a;
         boolean z12 = false;
-        Object obj3 = this.f53216b;
+        Object obj3 = this.f53219b;
         switch (i15) {
             case 0:
                 ((p1) obj3).U((ArrayList) obj, (j71) obj2);
@@ -49,8 +49,8 @@ public final class q0 implements Utilities.Callback2 {
                 m2 m2Var = (m2) obj3;
                 ArrayList arrayList = (ArrayList) obj;
                 j71 j71Var = (j71) obj2;
-                u6 u6Var = m2Var.f53142c;
-                vs0 vs0Var = m2Var.f53140a;
+                u6 u6Var = m2Var.f53145c;
+                vs0 vs0Var = m2Var.f53143a;
                 t9 t9Var = m2Var.e;
                 if (t9Var != null) {
                     if ((!t9Var.e || t9Var.f5467g != 783) && t9Var.f5471l.size() <= 0) {
@@ -79,14 +79,14 @@ public final class q0 implements Utilities.Callback2 {
                             i17++;
                             TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj4;
                             boolean z13 = m2Var.d;
-                            int i18 = f1.f52966a;
+                            int i18 = f1.f52969a;
                             t61 K = t61.K(f1.class);
-                            K.f32881u = 1;
-                            K.f32885z = 0;
+                            K.f32884u = 1;
+                            K.f32888z = 0;
                             K.G = savedStarGift;
-                            K.f32877q = true;
-                            K.f32867f = false;
-                            K.f32878r = z13;
+                            K.f32880q = true;
+                            K.f32870f = false;
+                            K.f32881r = z13;
                             if (m2Var.h && (m2Var.e != vs0Var.d || savedStarGift.pinned_to_top)) {
                                 z10 = true;
                             } else {
@@ -111,7 +111,7 @@ public final class q0 implements Utilities.Callback2 {
                                 if (i19 < i12) {
                                     i19++;
                                     t61 q5 = t61.q(i19, 34);
-                                    q5.f32881u = 1;
+                                    q5.f32884u = 1;
                                     arrayList.add(q5);
                                 }
                             }
@@ -119,20 +119,20 @@ public final class q0 implements Utilities.Callback2 {
                     }
                     if (vs0Var.d == m2Var.e) {
                         arrayList.add(t61.D(AndroidUtilities.dp(20.0f)));
-                        if (vs0Var.f53229c == UserConfig.getInstance(m2Var.f53141b).getClientUserId()) {
-                            int i20 = y6.f23765z6;
+                        if (vs0Var.f53232c == UserConfig.getInstance(m2Var.f53144b).getClientUserId()) {
+                            int i20 = y6.f23767z6;
                             int w02 = y6.w0(i20, u6Var);
                             String string = LocaleController.getString(R.string.ProfileGiftsInfo);
                             int dp = AndroidUtilities.dp(24.0f);
-                            int i21 = n2.f53159a;
+                            int i21 = n2.f53162a;
                             t61 K2 = t61.K(n2.class);
-                            K2.f32872l = string;
-                            K2.f32885z = 17;
+                            K2.f32875l = string;
+                            K2.f32888z = 17;
                             K2.B = w02;
                             K2.A = 14.0f;
-                            K2.f32869i = dp;
-                            K2.f32871k = 0;
-                            K2.f32877q = false;
+                            K2.f32872i = dp;
+                            K2.f32874k = 0;
+                            K2.f32880q = false;
                             K2.G = u6Var;
                             K2.H = Integer.valueOf(i20);
                             arrayList.add(K2);
@@ -149,7 +149,7 @@ public final class q0 implements Utilities.Callback2 {
                         }
                         arrayList.add(0, t61.D(AndroidUtilities.dp(f7)));
                     }
-                    if (m2Var.f53143f.getSpanCount() != max) {
+                    if (m2Var.f53146f.getSpanCount() != max) {
                         AndroidUtilities.runOnUIThread(new q1(m2Var, max, 1));
                     }
                     vs0Var.p();
@@ -170,64 +170,64 @@ public final class q0 implements Utilities.Callback2 {
                     i22++;
                     arrayList3.add(f1.a(0, (TL_stars.TL_starGiftUnique) obj5, false, false, false, true, false));
                 }
-                if (u3Var.f53278t || !u3Var.f53279u) {
+                if (u3Var.f53281t || !u3Var.f53282u) {
                     t61 q9 = t61.q(-1, 34);
-                    q9.f32881u = 1;
+                    q9.f32884u = 1;
                     arrayList3.add(q9);
                     t61 q10 = t61.q(-2, 34);
-                    q10.f32881u = 1;
+                    q10.f32884u = 1;
                     arrayList3.add(q10);
                     t61 q11 = t61.q(-3, 34);
-                    q11.f32881u = 1;
+                    q11.f32884u = 1;
                     arrayList3.add(q11);
                     if (u3Var.d.isEmpty()) {
                         t61 q12 = t61.q(-4, 34);
-                        q12.f32881u = 1;
+                        q12.f32884u = 1;
                         arrayList3.add(q12);
                         t61 q13 = t61.q(-5, 34);
-                        q13.f32881u = 1;
+                        q13.f32884u = 1;
                         arrayList3.add(q13);
                         t61 q14 = t61.q(-6, 34);
-                        q14.f32881u = 1;
+                        q14.f32884u = 1;
                         arrayList3.add(q14);
                         t61 q15 = t61.q(-7, 34);
-                        q15.f32881u = 1;
+                        q15.f32884u = 1;
                         arrayList3.add(q15);
                         t61 q16 = t61.q(-8, 34);
-                        q16.f32881u = 1;
+                        q16.f32884u = 1;
                         arrayList3.add(q16);
                         t61 q17 = t61.q(-9, 34);
-                        q17.f32881u = 1;
+                        q17.f32884u = 1;
                         arrayList3.add(q17);
                         t61 q18 = t61.q(-10, 34);
-                        q18.f32881u = 1;
+                        q18.f32884u = 1;
                         arrayList3.add(q18);
                         t61 q19 = t61.q(-11, 34);
-                        q19.f32881u = 1;
+                        q19.f32884u = 1;
                         arrayList3.add(q19);
                         t61 q20 = t61.q(-12, 34);
-                        q20.f32881u = 1;
+                        q20.f32884u = 1;
                         arrayList3.add(q20);
                         t61 q21 = t61.q(-13, 34);
-                        q21.f32881u = 1;
+                        q21.f32884u = 1;
                         arrayList3.add(q21);
                         t61 q22 = t61.q(-14, 34);
-                        q22.f32881u = 1;
+                        q22.f32884u = 1;
                         arrayList3.add(q22);
                         t61 q23 = t61.q(-15, 34);
-                        q23.f32881u = 1;
+                        q23.f32884u = 1;
                         arrayList3.add(q23);
                     }
                 }
-                if (arrayList3.isEmpty() && !u3Var.f53278t) {
+                if (arrayList3.isEmpty() && !u3Var.f53281t) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (h4Var.f53032x != z11) {
-                    h4Var.f53032x = z11;
-                    h4Var.f53031w.setVisibility(0);
-                    ViewPropertyAnimator animate = h4Var.f53031w.animate();
+                if (h4Var.f53035x != z11) {
+                    h4Var.f53035x = z11;
+                    h4Var.f53034w.setVisibility(0);
+                    ViewPropertyAnimator animate = h4Var.f53034w.animate();
                     float f12 = 1.0f;
                     if (z11) {
                         f10 = 1.0f;
@@ -262,31 +262,31 @@ public final class q0 implements Utilities.Callback2 {
                     arrayList5.add(t61.D(AndroidUtilities.dp(16.0f)));
                     if (t9Var6.f5468i && arrayList6.isEmpty()) {
                         t61 q24 = t61.q(1, 34);
-                        q24.f32881u = 1;
+                        q24.f32884u = 1;
                         arrayList5.add(q24);
                         t61 q25 = t61.q(2, 34);
-                        q25.f32881u = 1;
+                        q25.f32884u = 1;
                         arrayList5.add(q25);
                         t61 q26 = t61.q(3, 34);
-                        q26.f32881u = 1;
+                        q26.f32884u = 1;
                         arrayList5.add(q26);
                         t61 q27 = t61.q(4, 34);
-                        q27.f32881u = 1;
+                        q27.f32884u = 1;
                         arrayList5.add(q27);
                         t61 q28 = t61.q(5, 34);
-                        q28.f32881u = 1;
+                        q28.f32884u = 1;
                         arrayList5.add(q28);
                         t61 q29 = t61.q(6, 34);
-                        q29.f32881u = 1;
+                        q29.f32884u = 1;
                         arrayList5.add(q29);
                         t61 q30 = t61.q(7, 34);
-                        q30.f32881u = 1;
+                        q30.f32884u = 1;
                         arrayList5.add(q30);
                         t61 q31 = t61.q(8, 34);
-                        q31.f32881u = 1;
+                        q31.f32884u = 1;
                         arrayList5.add(q31);
                         t61 q32 = t61.q(9, 34);
-                        q32.f32881u = 1;
+                        q32.f32884u = 1;
                         arrayList5.add(q32);
                     } else {
                         int size3 = arrayList6.size();
@@ -297,14 +297,14 @@ public final class q0 implements Utilities.Callback2 {
                             i24++;
                             TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj6;
                             if (!savedStarGift2.collection_id.contains(Integer.valueOf(l4Var.X))) {
-                                int i25 = f1.f52966a;
+                                int i25 = f1.f52969a;
                                 t61 K3 = t61.K(f1.class);
-                                K3.f32881u = 1;
-                                K3.f32885z = z12 ? 1 : 0;
+                                K3.f32884u = 1;
+                                K3.f32888z = z12 ? 1 : 0;
                                 K3.G = savedStarGift2;
-                                K3.f32877q = true;
-                                K3.f32867f = true;
-                                K3.f32878r = z12;
+                                K3.f32880q = true;
+                                K3.f32870f = true;
+                                K3.f32881r = z12;
                                 HashSet hashSet = l4Var.Z;
                                 int i26 = savedStarGift2.msg_id;
                                 if (i26 == 0) {
@@ -313,7 +313,7 @@ public final class q0 implements Utilities.Callback2 {
                                     j10 = i26;
                                 }
                                 K3.L(hashSet.contains(Long.valueOf(j10)));
-                                K3.f32881u = 1;
+                                K3.f32884u = 1;
                                 arrayList5.add(K3);
                                 i23--;
                                 if (i23 == 0) {
@@ -333,7 +333,7 @@ public final class q0 implements Utilities.Callback2 {
                                 if (i27 < i14) {
                                     i27++;
                                     t61 q33 = t61.q(i27, 34);
-                                    q33.f32881u = 1;
+                                    q33.f32884u = 1;
                                     arrayList5.add(q33);
                                 }
                             }

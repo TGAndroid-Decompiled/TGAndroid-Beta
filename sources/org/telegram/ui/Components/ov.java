@@ -11,15 +11,15 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class ov extends lm0 {
-    public final aw f31379c;
+    public final aw f31381c;
 
     public ov(aw awVar) {
-        this.f31379c = awVar;
+        this.f31381c = awVar;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47738f == 1) {
+        if (e1Var.f47741f == 1) {
             return true;
         }
         return false;
@@ -27,7 +27,7 @@ public final class ov extends lm0 {
 
     public final int E(int i10) {
         int i11;
-        aw awVar = this.f31379c;
+        aw awVar = this.f31381c;
         kv kvVar = awVar.e;
         if (awVar.I) {
             i11 = 2;
@@ -36,13 +36,13 @@ public final class ov extends lm0 {
         }
         int i12 = 0;
         while (true) {
-            ArrayList[] arrayListArr = kvVar.f34826c;
+            ArrayList[] arrayListArr = kvVar.f34829c;
             if (i12 >= arrayListArr.length || i12 == i10) {
                 break;
             }
             int size = arrayListArr[i12].size();
-            if (kvVar.f34826c.length > 1) {
-                size = Math.min(awVar.f26631y.J * 2, size);
+            if (kvVar.f34829c.length > 1) {
+                size = Math.min(awVar.f26633y.J * 2, size);
             }
             i11 += size + 2;
             i12++;
@@ -57,23 +57,23 @@ public final class ov extends lm0 {
         int i11;
         int min;
         ArrayList arrayList;
-        aw awVar = this.f31379c;
+        aw awVar = this.f31381c;
         kv kvVar = awVar.e;
         i10 = ((org.telegram.ui.ActionBar.k3) awVar).currentAccount;
-        if (!UserConfig.getInstance(i10).isPremium() && (arrayList = kvVar.f34825b) != null && arrayList.size() == 1 && MessageObject.isPremiumEmojiPack((TLRPC.TL_messages_stickerSet) kvVar.f34825b.get(0))) {
+        if (!UserConfig.getInstance(i10).isPremium() && (arrayList = kvVar.f34828b) != null && arrayList.size() == 1 && MessageObject.isPremiumEmojiPack((TLRPC.TL_messages_stickerSet) kvVar.f34828b.get(0))) {
             r22 = 1;
         } else {
             r22 = 0;
         }
         awVar.I = r22;
         int i12 = r22 + 1;
-        if (kvVar.f34826c == null) {
+        if (kvVar.f34829c == null) {
             i11 = 0;
         } else {
             int i13 = 0;
             i11 = 0;
             while (true) {
-                ArrayList[] arrayListArr = kvVar.f34826c;
+                ArrayList[] arrayListArr = kvVar.f34829c;
                 if (i13 >= arrayListArr.length) {
                     break;
                 }
@@ -82,19 +82,19 @@ public final class ov extends lm0 {
                     if (arrayListArr.length == 1) {
                         min = arrayList2.size();
                     } else {
-                        min = Math.min(kvVar.f34827f.f26631y.J * 2, arrayList2.size());
+                        min = Math.min(kvVar.f34830f.f26633y.J * 2, arrayList2.size());
                     }
                     i11 = min + i11 + 1;
                 }
                 i13++;
             }
         }
-        return Math.max(0, kvVar.f34826c.length - 1) + i12 + i11;
+        return Math.max(0, kvVar.f34829c.length - 1) + i12 + i11;
     }
 
     @Override
     public final int j(int i10) {
-        aw awVar = this.f31379c;
+        aw awVar = this.f31381c;
         kv kvVar = awVar.e;
         int i11 = 0;
         if (i10 == 0) {
@@ -111,7 +111,7 @@ public final class ov extends lm0 {
         }
         int i13 = 0;
         while (true) {
-            ArrayList[] arrayListArr = kvVar.f34826c;
+            ArrayList[] arrayListArr = kvVar.f34829c;
             if (i11 >= arrayListArr.length) {
                 return 1;
             }
@@ -119,8 +119,8 @@ public final class ov extends lm0 {
                 return 2;
             }
             int size = arrayListArr[i11].size();
-            if (kvVar.f34826c.length > 1) {
-                size = Math.min(awVar.f26631y.J * 2, size);
+            if (kvVar.f34829c.length > 1) {
+                size = Math.min(awVar.f26633y.J * 2, size);
             }
             int i14 = size + 1 + i13;
             if (i12 == i14) {
@@ -141,18 +141,18 @@ public final class ov extends lm0 {
         View view;
         org.telegram.ui.ActionBar.u6 u6Var;
         View view2;
-        aw awVar = this.f31379c;
+        aw awVar = this.f31381c;
         if (i10 == 0) {
             view = awVar.d;
         } else {
             boolean z10 = true;
             if (i10 == 1) {
                 ?? view3 = new View(awVar.getContext());
-                view3.f32338a = new ImageReceiver.BackgroundThreadDrawHolder[2];
+                view3.f32340a = new ImageReceiver.BackgroundThreadDrawHolder[2];
                 view2 = view3;
             } else if (i10 == 2) {
                 Context context = awVar.getContext();
-                if (awVar.e.f34826c.length > 1) {
+                if (awVar.e.f34829c.length > 1) {
                     z10 = false;
                 }
                 view2 = new vv(awVar, context, z10);

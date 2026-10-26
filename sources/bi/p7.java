@@ -66,8 +66,8 @@ public final class p7 implements BillingController.ProductDetailsResponseListene
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f36229s0;
-        ((bz0) cVar.f47320b).a(canvas, s4Var, s4Var2);
+        int i10 = ProfileStoriesView.f36232s0;
+        ((bz0) cVar.f47323b).a(canvas, s4Var, s4Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
     }
@@ -76,7 +76,7 @@ public final class p7 implements BillingController.ProductDetailsResponseListene
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
         org.telegram.ui.ActionBar.s3 s3Var = (org.telegram.ui.ActionBar.s3) this.f5232a;
         ((boolean[]) this.f5233b)[0] = true;
-        s3Var.h(s3Var.f23077w, (org.telegram.ui.ActionBar.r3) this.f5234c, true);
+        s3Var.h(s3Var.f23079w, (org.telegram.ui.ActionBar.r3) this.f5234c, true);
         ((Utilities.Callback) this.d).run(Boolean.TRUE);
         ((org.telegram.ui.ActionBar.e2[]) this.e)[0].dismiss();
     }
@@ -91,7 +91,7 @@ public final class p7 implements BillingController.ProductDetailsResponseListene
         kotlin.jvm.internal.i.e(e, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.i.e(request, "request");
-        for (v0.p pVar : request.f49976a) {
+        for (v0.p pVar : request.f49979a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new c1.e(aVar.e).g(request, cancellationSignal, executor, iVar);

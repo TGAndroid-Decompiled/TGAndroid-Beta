@@ -20,77 +20,77 @@ public final class t61 extends qg.a {
     public Object G;
     public Object H;
     public boolean I;
-    public View f32866c;
+    public View f32869c;
     public int d;
     public boolean e;
-    public boolean f32867f;
-    public boolean f32868g;
+    public boolean f32870f;
+    public boolean f32871g;
     public boolean h;
-    public int f32869i;
-    public boolean f32870j;
-    public int f32871k;
-    public CharSequence f32872l;
-    public CharSequence f32873m;
-    public CharSequence f32874n;
-    public CharSequence f32875o;
-    public String[] f32876p;
-    public boolean f32877q;
-    public boolean f32878r;
-    public boolean f32879s;
-    public boolean f32880t;
-    public int f32881u;
+    public int f32872i;
+    public boolean f32873j;
+    public int f32874k;
+    public CharSequence f32875l;
+    public CharSequence f32876m;
+    public CharSequence f32877n;
+    public CharSequence f32878o;
+    public String[] f32879p;
+    public boolean f32880q;
+    public boolean f32881r;
+    public boolean f32882s;
+    public boolean f32883t;
+    public int f32884u;
     public int v;
-    public boolean f32882w;
-    public long f32883x;
-    public int f32884y;
-    public int f32885z;
+    public boolean f32885w;
+    public long f32886x;
+    public int f32887y;
+    public int f32888z;
 
     public t61(int i10) {
         super(i10, false);
-        this.f32868g = true;
-        this.f32881u = -1;
+        this.f32871g = true;
+        this.f32884u = -1;
         this.I = true;
     }
 
     public static t61 A(String str, CharSequence charSequence, int i10) {
         t61 t61Var = new t61(41);
         t61Var.d = i10;
-        t61Var.f32872l = charSequence;
-        t61Var.f32875o = str;
+        t61Var.f32875l = charSequence;
+        t61Var.f32878o = str;
         return t61Var;
     }
 
     public static t61 B(int i10, CharSequence charSequence) {
         t61 t61Var = new t61(7);
         t61Var.d = i10;
-        t61Var.f32872l = charSequence;
+        t61Var.f32875l = charSequence;
         return t61Var;
     }
 
     public static t61 C(CharSequence charSequence) {
         t61 t61Var = new t61(7);
-        t61Var.f32872l = charSequence;
+        t61Var.f32875l = charSequence;
         return t61Var;
     }
 
     public static t61 D(int i10) {
         t61 t61Var = new t61(28);
-        t61Var.f32885z = i10;
+        t61Var.f32888z = i10;
         return t61Var;
     }
 
     public static t61 E(int i10, int i11) {
         t61 t61Var = new t61(28);
         t61Var.d = i10;
-        t61Var.f32885z = i11;
+        t61Var.f32888z = i11;
         return t61Var;
     }
 
     public static t61 F(int i10, String str) {
         t61 t61Var = new t61(39);
         t61Var.d = i10;
-        t61Var.f32872l = str;
-        t61Var.f32885z = 1;
+        t61Var.f32875l = str;
+        t61Var.f32888z = 1;
         return t61Var;
     }
 
@@ -118,52 +118,52 @@ public final class t61 extends qg.a {
 
     public static t61 b(String str) {
         t61 t61Var = new t61(1);
-        t61Var.f32872l = str;
+        t61Var.f32875l = str;
         return t61Var;
     }
 
     public static t61 c(int i10, int i11, String str) {
         t61 t61Var = new t61(3);
         t61Var.d = i10;
-        t61Var.f32871k = i11;
-        t61Var.f32872l = str;
+        t61Var.f32874k = i11;
+        t61Var.f32875l = str;
         return t61Var;
     }
 
     public static t61 d(int i10, int i11, String str, String str2) {
         t61 t61Var = new t61(3);
         t61Var.d = i10;
-        t61Var.f32871k = i11;
-        t61Var.f32872l = str;
-        t61Var.f32874n = str2;
+        t61Var.f32874k = i11;
+        t61Var.f32875l = str;
+        t61Var.f32877n = str2;
         return t61Var;
     }
 
     public static t61 e(int i10, String str) {
         t61 t61Var = new t61(3);
         t61Var.d = i10;
-        t61Var.f32872l = str;
+        t61Var.f32875l = str;
         return t61Var;
     }
 
     public static t61 f(String str, CharSequence charSequence, int i10) {
         t61 t61Var = new t61(3);
         t61Var.d = i10;
-        t61Var.f32872l = str;
-        t61Var.f32874n = charSequence;
+        t61Var.f32875l = str;
+        t61Var.f32877n = charSequence;
         return t61Var;
     }
 
     public static t61 g(CharSequence charSequence) {
         t61 t61Var = new t61(7);
-        t61Var.f32872l = charSequence;
-        t61Var.f32877q = true;
+        t61Var.f32875l = charSequence;
+        t61Var.f32880q = true;
         return t61Var;
     }
 
     public static t61 h(int i10, int i11, org.telegram.ui.i91 i91Var) {
         t61 t61Var = new t61(i10 + 18);
-        t61Var.f32885z = i11;
+        t61Var.f32888z = i11;
         t61Var.G = i91Var;
         return t61Var;
     }
@@ -171,78 +171,78 @@ public final class t61 extends qg.a {
     public static t61 i(int i10, CharSequence charSequence) {
         t61 t61Var = new t61(4);
         t61Var.d = i10;
-        t61Var.f32872l = charSequence;
+        t61Var.f32875l = charSequence;
         return t61Var;
     }
 
     public static t61 j(int i10, View view) {
         t61 t61Var = new t61(-1);
         t61Var.d = i10;
-        t61Var.f32866c = view;
-        t61Var.f32885z = -1;
+        t61Var.f32869c = view;
+        t61Var.f32888z = -1;
         return t61Var;
     }
 
     public static t61 k(View view) {
         t61 t61Var = new t61(-1);
-        t61Var.f32866c = view;
-        t61Var.f32885z = -1;
+        t61Var.f32869c = view;
+        t61Var.f32888z = -1;
         return t61Var;
     }
 
     public static t61 l(int i10, View view) {
         t61 t61Var = new t61(-4);
         t61Var.d = i10;
-        t61Var.f32866c = view;
-        t61Var.f32885z = -1;
+        t61Var.f32869c = view;
+        t61Var.f32888z = -1;
         return t61Var;
     }
 
     public static t61 m(View view) {
         t61 t61Var = new t61(-4);
-        t61Var.f32866c = view;
-        t61Var.f32885z = -1;
+        t61Var.f32869c = view;
+        t61Var.f32888z = -1;
         return t61Var;
     }
 
     public static t61 n(View view, int i10) {
         t61 t61Var = new t61(-4);
-        t61Var.f32866c = view;
-        t61Var.f32885z = i10;
+        t61Var.f32869c = view;
+        t61Var.f32888z = i10;
         return t61Var;
     }
 
     public static t61 o(int i10, String str, String str2) {
         t61 t61Var = new t61(40);
         t61Var.d = i10;
-        t61Var.f32872l = str;
-        t61Var.f32875o = str2;
+        t61Var.f32875l = str;
+        t61Var.f32878o = str2;
         return t61Var;
     }
 
     public static t61 p(int i10) {
         t61 t61Var = new t61(34);
-        t61Var.f32885z = i10;
+        t61Var.f32888z = i10;
         return t61Var;
     }
 
     public static t61 q(int i10, int i11) {
         t61 t61Var = new t61(34);
         t61Var.d = i10;
-        t61Var.f32885z = i11;
+        t61Var.f32888z = i11;
         return t61Var;
     }
 
     public static t61 r(String str) {
         t61 t61Var = new t61(31);
-        t61Var.f32872l = str;
+        t61Var.f32875l = str;
         return t61Var;
     }
 
     public static t61 s(String str, String str2, View.OnClickListener onClickListener) {
         t61 t61Var = new t61(31);
-        t61Var.f32872l = str;
-        t61Var.f32873m = str2;
+        t61Var.f32875l = str;
+        t61Var.f32876m = str2;
         t61Var.D = onClickListener;
         return t61Var;
     }
@@ -250,13 +250,13 @@ public final class t61 extends qg.a {
     public static t61 t(int i10, String str) {
         t61 t61Var = new t61(0);
         t61Var.d = i10;
-        t61Var.f32872l = str;
+        t61Var.f32875l = str;
         return t61Var;
     }
 
     public static t61 u(String str) {
         t61 t61Var = new t61(0);
-        t61Var.f32872l = str;
+        t61Var.f32875l = str;
         return t61Var;
     }
 
@@ -275,29 +275,29 @@ public final class t61 extends qg.a {
     public static t61 x(int i10, String str) {
         t61 t61Var = new t61(10);
         t61Var.d = i10;
-        t61Var.f32872l = str;
+        t61Var.f32875l = str;
         return t61Var;
     }
 
     public static t61 y(int i10, String str, String str2) {
         t61 t61Var = new t61(44);
         t61Var.d = i10;
-        t61Var.f32872l = str;
-        t61Var.f32874n = str2;
+        t61Var.f32875l = str;
+        t61Var.f32877n = str2;
         return t61Var;
     }
 
     public static t61 z(int i10, CharSequence charSequence) {
         t61 t61Var = new t61(35);
         t61Var.d = i10;
-        t61Var.f32872l = charSequence;
+        t61Var.f32875l = charSequence;
         return t61Var;
     }
 
     public final boolean H(Class cls) {
         HashMap hashMap;
         s61 s61Var;
-        if (this.f47037a >= 10000 && (hashMap = L) != null && (s61Var = (s61) hashMap.get(cls)) != null && s61Var.viewType == this.f47037a) {
+        if (this.f47040a >= 10000 && (hashMap = L) != null && (s61Var = (s61) hashMap.get(cls)) != null && s61Var.viewType == this.f47040a) {
             return true;
         }
         return false;
@@ -308,7 +308,7 @@ public final class t61 extends qg.a {
     }
 
     public final boolean J(t61 t61Var) {
-        if (this.d == t61Var.d && this.f32869i == t61Var.f32869i && this.f32883x == t61Var.f32883x && this.f32871k == t61Var.f32871k && this.f32870j == t61Var.f32870j && this.f32879s == t61Var.f32879s && this.f32878r == t61Var.f32878r && this.f32880t == t61Var.f32880t && this.f32877q == t61Var.f32877q && this.f32866c == t61Var.f32866c && TextUtils.equals(this.f32872l, t61Var.f32872l) && TextUtils.equals(this.f32873m, t61Var.f32873m) && TextUtils.equals(this.f32874n, t61Var.f32874n) && this.f32866c == t61Var.f32866c && this.f32885z == t61Var.f32885z && Math.abs(this.A - t61Var.A) < 0.01f && this.B == t61Var.B && Objects.equals(this.G, t61Var.G) && Objects.equals(this.H, t61Var.H)) {
+        if (this.d == t61Var.d && this.f32872i == t61Var.f32872i && this.f32886x == t61Var.f32886x && this.f32874k == t61Var.f32874k && this.f32873j == t61Var.f32873j && this.f32882s == t61Var.f32882s && this.f32881r == t61Var.f32881r && this.f32883t == t61Var.f32883t && this.f32880q == t61Var.f32880q && this.f32869c == t61Var.f32869c && TextUtils.equals(this.f32875l, t61Var.f32875l) && TextUtils.equals(this.f32876m, t61Var.f32876m) && TextUtils.equals(this.f32877n, t61Var.f32877n) && this.f32869c == t61Var.f32869c && this.f32888z == t61Var.f32888z && Math.abs(this.A - t61Var.A) < 0.01f && this.B == t61Var.B && Objects.equals(this.G, t61Var.G) && Objects.equals(this.H, t61Var.H)) {
             return true;
         }
         return false;
@@ -316,8 +316,8 @@ public final class t61 extends qg.a {
 
     public final void L(boolean z10) {
         this.e = z10;
-        if (this.f47037a == 11) {
-            this.f47037a = 12;
+        if (this.f47040a == 11) {
+            this.f47040a = 12;
         }
     }
 
@@ -327,15 +327,15 @@ public final class t61 extends qg.a {
         if (this != aVar) {
             if (t61.class == aVar.getClass()) {
                 t61 t61Var = (t61) aVar;
-                int i10 = this.f47037a;
-                if (i10 == t61Var.f47037a) {
+                int i10 = this.f47040a;
+                if (i10 == t61Var.f47040a) {
                     if (i10 == 31) {
-                        if (TextUtils.equals(this.f32872l, t61Var.f32872l) && TextUtils.equals(this.f32873m, t61Var.f32873m)) {
+                        if (TextUtils.equals(this.f32875l, t61Var.f32875l) && TextUtils.equals(this.f32876m, t61Var.f32876m)) {
                             return true;
                         }
                         return false;
                     } else if (i10 == 28) {
-                        if (this.f32885z == t61Var.f32885z) {
+                        if (this.f32888z == t61Var.f32888z) {
                             return true;
                         }
                         return false;
@@ -344,7 +344,7 @@ public final class t61 extends qg.a {
                             return G.contentsEquals(this, t61Var);
                         }
                         return I(t61Var);
-                    } else if (this.d == t61Var.d && TextUtils.equals(this.f32872l, t61Var.f32872l) && this.e == t61Var.e) {
+                    } else if (this.d == t61Var.d && TextUtils.equals(this.f32875l, t61Var.f32875l) && this.e == t61Var.e) {
                         return true;
                     } else {
                         return false;
@@ -362,8 +362,8 @@ public final class t61 extends qg.a {
         if (this != obj) {
             if (obj != null && t61.class == obj.getClass()) {
                 t61 t61Var = (t61) obj;
-                int i10 = this.f47037a;
-                if (i10 == t61Var.f47037a) {
+                int i10 = this.f47040a;
+                if (i10 == t61Var.f47040a) {
                     if (i10 != 36 && i10 != 35) {
                         if (i10 == 28) {
                             if (this.d == t61Var.d) {
@@ -371,7 +371,7 @@ public final class t61 extends qg.a {
                             }
                             return false;
                         } else if (i10 == 31) {
-                            return TextUtils.equals(this.f32872l, t61Var.f32872l);
+                            return TextUtils.equals(this.f32875l, t61Var.f32875l);
                         } else {
                             if (i10 >= 10000 && (G = G(i10)) != null) {
                                 return G.equals(this, t61Var);

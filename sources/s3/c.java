@@ -12,9 +12,9 @@ import java.util.Collections;
 import java.util.List;
 import jg.s0;
 public final class c extends wd {
-    public final x f47658a = new x();
-    public final g f47659b = new g();
-    public k0 f47660c;
+    public final x f47661a = new x();
+    public final g f47662b = new g();
+    public k0 f47663c;
 
     @Override
     public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
@@ -29,17 +29,17 @@ public final class c extends wd {
         boolean z16;
         long j11;
         long j12;
-        k0 k0Var = this.f47660c;
+        k0 k0Var = this.f47663c;
         if (k0Var == null || aVar.f16857r != k0Var.e()) {
             k0 k0Var2 = new k0(aVar.e);
-            this.f47660c = k0Var2;
+            this.f47663c = k0Var2;
             k0Var2.a(aVar.e - aVar.f16857r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        x xVar = this.f47658a;
+        x xVar = this.f47661a;
         xVar.L(limit, array);
-        g gVar = this.f47659b;
+        g gVar = this.f47662b;
         gVar.k(limit, array);
         gVar.o(39);
         long g7 = (gVar.g(1) << 32) | gVar.g(32);
@@ -54,12 +54,12 @@ public final class c extends wd {
                         if (g11 != 6) {
                             obj = null;
                         } else {
-                            k0 k0Var3 = this.f47660c;
+                            k0 k0Var3 = this.f47663c;
                             long d = a.d(g7, xVar);
                             obj = new a(d, k0Var3.b(d), 1);
                         }
                     } else {
-                        k0 k0Var4 = this.f47660c;
+                        k0 k0Var4 = this.f47663c;
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
                             z13 = true;

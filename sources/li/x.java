@@ -24,7 +24,7 @@ public final class x extends s61 {
     @Override
     public final View createView(Context context, mm0 mm0Var, int i10, int i11, u6 u6Var) {
         y yVar = new y(context, i10, u6Var);
-        yVar.setBackground(new y1(y6.w0(y6.f23354d6, u6Var)));
+        yVar.setBackground(new y1(y6.w0(y6.f23356d6, u6Var)));
         return yVar;
     }
 

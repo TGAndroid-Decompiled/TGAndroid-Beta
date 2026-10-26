@@ -145,7 +145,7 @@ public final class s6 extends z6 {
             id2 = messageObject.getId();
         }
         message.f22048id = id2;
-        storyItem2.f22264id = id2;
+        storyItem2.f22266id = id2;
         messageObject2.parentStoriesList = this;
         messageObject2.generateThumbs(false);
         if (arrayList2.isEmpty()) {
@@ -188,7 +188,7 @@ public final class s6 extends z6 {
         int i10 = this.I;
         this.I = i10 + 1;
         message.f22048id = i10;
-        storyItem.f22264id = i10;
+        storyItem.f22266id = i10;
         messageObject.parentStoriesList = this;
         messageObject.generateThumbs(false);
         ArrayList arrayList = this.H;

@@ -84,7 +84,7 @@ public final class f extends r2 implements NotificationCenter.NotificationCenter
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new bh.m(this, 5));
         hh.c cVar = new hh.c();
-        cVar.a(getThemedColor(y6.f23354d6));
+        cVar.a(getThemedColor(y6.f23356d6));
         this.f14338a = cVar;
         ch.b bVar = new ch.b(cVar);
         this.actionBar.setBackground(null);
@@ -92,7 +92,7 @@ public final class f extends r2 implements NotificationCenter.NotificationCenter
         this.actionBar.Q0 = true;
         FrameLayout frameLayout = new FrameLayout(context);
         this.e = frameLayout;
-        f7.i(y6.f23297a7, frameLayout, null);
+        f7.i(y6.f23299a7, frameLayout, null);
         e eVar = new e(context, this.resourceProvider);
         this.h = eVar;
         eVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
@@ -119,9 +119,9 @@ public final class f extends r2 implements NotificationCenter.NotificationCenter
         this.f14341f = r71Var;
         r71Var.setClipToPadding(false);
         r71 r71Var2 = this.f14341f;
-        j71 j71Var = r71Var2.f32150g3;
-        j71Var.f29505r = false;
-        j71Var.f29506s = true;
+        j71 j71Var = r71Var2.f32152g3;
+        j71Var.f29507r = false;
+        j71Var.f29508s = true;
         r71Var2.u1();
         this.e.addView(this.f14341f, gb1.g(-1.0f, -1));
         this.e.addView(this.actionBar, gb1.i(-1, -2, 48));
@@ -148,7 +148,7 @@ public final class f extends r2 implements NotificationCenter.NotificationCenter
                 m6Var.setSubLabel(LocaleController.formatPluralString("Chats", i12, new Object[0]));
                 return;
             }
-            this.f14341f.f32150g3.O(false);
+            this.f14341f.f32152g3.O(false);
         }
     }
 
@@ -190,7 +190,7 @@ public final class f extends r2 implements NotificationCenter.NotificationCenter
         try {
             hh.c cVar = this.f14338a;
             if (cVar != null) {
-                cVar.a(getThemedColor(y6.f23354d6));
+                cVar.a(getThemedColor(y6.f23356d6));
             }
             org.telegram.ui.ActionBar.k kVar = this.actionBar;
             if (kVar != null) {

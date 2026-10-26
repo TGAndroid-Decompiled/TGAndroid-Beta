@@ -13,7 +13,7 @@ public final class z50 extends org.telegram.ui.Components.voip.l {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         b60 b60Var = this.h;
-        if (b60Var.f37982r && getParticipant() != null) {
+        if (b60Var.f37985r && getParticipant() != null) {
             b60Var.E(this, true);
         }
     }

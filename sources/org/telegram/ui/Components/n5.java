@@ -6,27 +6,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class n5 implements Runnable {
-    public final int f30834a;
-    public final p5 f30835b;
-    public final ArrayList f30836c;
+    public final int f30836a;
+    public final p5 f30837b;
+    public final ArrayList f30838c;
     public final HashSet d;
 
     public n5(p5 p5Var, ArrayList arrayList, HashSet hashSet, int i10) {
-        this.f30834a = i10;
-        this.f30835b = p5Var;
-        this.f30836c = arrayList;
+        this.f30836a = i10;
+        this.f30837b = p5Var;
+        this.f30838c = arrayList;
         this.d = hashSet;
     }
 
     @Override
     public final void run() {
-        switch (this.f30834a) {
+        switch (this.f30836a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new n5(this.f30835b, this.f30836c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new n5(this.f30837b, this.f30838c, this.d, 1));
                 return;
             default:
-                p5 p5Var = this.f30835b;
-                p5Var.d(this.f30836c);
+                p5 p5Var = this.f30837b;
+                p5Var.d(this.f30838c);
                 HashSet hashSet = this.d;
                 if (!hashSet.isEmpty()) {
                     ArrayList<Long> arrayList = new ArrayList<>(hashSet);

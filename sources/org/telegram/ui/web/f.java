@@ -13,9 +13,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.gb1;
 public final class f extends FrameLayout {
-    public final ImageView f45224a;
-    public final TextView f45225b;
-    public final ImageView f45226c;
+    public final ImageView f45227a;
+    public final TextView f45228b;
+    public final ImageView f45229c;
     public final Paint d;
     public boolean e;
 
@@ -23,17 +23,17 @@ public final class f extends FrameLayout {
         super(context);
         this.d = new Paint(1);
         ImageView imageView = new ImageView(context);
-        this.f45224a = imageView;
+        this.f45227a = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.menu_clear_recent);
         addView(imageView, gb1.h(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         TextView textView = new TextView(context);
-        this.f45225b = textView;
+        this.f45228b = textView;
         textView.setTextSize(1, 16.0f);
         addView(textView, gb1.h(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f45226c = imageView2;
+        this.f45229c = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.menu_browser_arrowup);
         addView(imageView2, gb1.h(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
@@ -54,7 +54,7 @@ public final class f extends FrameLayout {
 
     public void setAsShowMore(l lVar) {
         int i10 = R.drawable.arrow_more;
-        ImageView imageView = this.f45224a;
+        ImageView imageView = this.f45227a;
         imageView.setImageResource(i10);
         imageView.setColorFilter(new PorterDuffColorFilter(lVar.H, PorterDuff.Mode.SRC_IN));
     }

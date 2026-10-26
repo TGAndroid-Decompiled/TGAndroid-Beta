@@ -9,14 +9,14 @@ import java.util.Arrays;
 import java.util.List;
 public final class j extends p6.a {
     public static final Parcelable.Creator<j> CREATOR = new m(3);
-    public final int f47903a;
-    public final int f47904b;
-    public final String f47905c;
+    public final int f47906a;
+    public final int f47907b;
+    public final String f47908c;
     public final String d;
     public final int e;
-    public final String f47906f;
+    public final String f47909f;
     public final j h;
-    public final t f47907n;
+    public final t f47910n;
 
     static {
         Process.myUid();
@@ -27,17 +27,17 @@ public final class j extends p6.a {
         u uVar;
         u uVar2;
         t tVar;
-        this.f47903a = i10;
-        this.f47904b = i11;
-        this.f47905c = str;
+        this.f47906a = i10;
+        this.f47907b = i11;
+        this.f47908c = str;
         this.d = str2;
-        this.f47906f = str3;
+        this.f47909f = str3;
         this.e = i12;
-        r rVar = t.f47923b;
+        r rVar = t.f47926b;
         if (list instanceof q) {
             tVar = (t) ((q) list);
             if (tVar.o()) {
-                Object[] array = tVar.toArray(q.f47919a);
+                Object[] array = tVar.toArray(q.f47922a);
                 int length = array.length;
                 if (length == 0) {
                     uVar2 = u.e;
@@ -63,14 +63,14 @@ public final class j extends p6.a {
                 tVar = uVar;
             }
         }
-        this.f47907n = tVar;
+        this.f47910n = tVar;
         this.h = jVar;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof j) {
             j jVar = (j) obj;
-            if (this.f47903a == jVar.f47903a && this.f47904b == jVar.f47904b && this.e == jVar.e && this.f47905c.equals(jVar.f47905c) && ag.a(this.d, jVar.d) && ag.a(this.f47906f, jVar.f47906f) && ag.a(this.h, jVar.h) && this.f47907n.equals(jVar.f47907n)) {
+            if (this.f47906a == jVar.f47906a && this.f47907b == jVar.f47907b && this.e == jVar.e && this.f47908c.equals(jVar.f47908c) && ag.a(this.d, jVar.d) && ag.a(this.f47909f, jVar.f47909f) && ag.a(this.h, jVar.h) && this.f47910n.equals(jVar.f47910n)) {
                 return true;
             }
             return false;
@@ -79,18 +79,18 @@ public final class j extends p6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f47903a), this.f47905c, this.d, this.f47906f});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f47906a), this.f47908c, this.d, this.f47909f});
     }
 
     public final String toString() {
-        String str = this.f47905c;
+        String str = this.f47908c;
         int length = str.length() + 18;
         String str2 = this.d;
         if (str2 != null) {
             length += str2.length();
         }
         StringBuilder sb2 = new StringBuilder(length);
-        sb2.append(this.f47903a);
+        sb2.append(this.f47906a);
         sb2.append("/");
         sb2.append(str);
         if (str2 != null) {
@@ -102,7 +102,7 @@ public final class j extends p6.a {
             }
             sb2.append("]");
         }
-        String str3 = this.f47906f;
+        String str3 = this.f47909f;
         if (str3 != null) {
             sb2.append("/");
             sb2.append(Integer.toHexString(str3.hashCode()));
@@ -114,16 +114,16 @@ public final class j extends p6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
         df.s(parcel, 1, 4);
-        parcel.writeInt(this.f47903a);
+        parcel.writeInt(this.f47906a);
         df.s(parcel, 2, 4);
-        parcel.writeInt(this.f47904b);
-        df.l(parcel, 3, this.f47905c);
+        parcel.writeInt(this.f47907b);
+        df.l(parcel, 3, this.f47908c);
         df.l(parcel, 4, this.d);
         df.s(parcel, 5, 4);
         parcel.writeInt(this.e);
-        df.l(parcel, 6, this.f47906f);
+        df.l(parcel, 6, this.f47909f);
         df.k(parcel, 7, this.h, i10);
-        df.p(parcel, 8, this.f47907n);
+        df.p(parcel, 8, this.f47910n);
         df.r(parcel, q5);
     }
 }

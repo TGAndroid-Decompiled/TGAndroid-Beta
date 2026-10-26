@@ -6,15 +6,15 @@ import java.util.Collections;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 public final class f implements ra.b {
-    public final int f47987a;
+    public final int f47990a;
 
     public f(int i10) {
-        this.f47987a = i10;
+        this.f47990a = i10;
     }
 
     @Override
     public final Object get() {
-        switch (this.f47987a) {
+        switch (this.f47990a) {
             case 0:
                 return Collections.EMPTY_SET;
             case 1:

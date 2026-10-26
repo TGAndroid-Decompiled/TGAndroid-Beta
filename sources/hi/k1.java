@@ -96,7 +96,7 @@ public final class k1 implements Runnable {
                     i0Var = i0Var2;
                 }
                 try {
-                    a2Var = new org.telegram.ui.Wallet.a2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.e2.f(i0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, e2Var2.f36506f.getCurrentTime()), str, bArr);
+                    a2Var = new org.telegram.ui.Wallet.a2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.e2.f(i0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, e2Var2.f36509f.getCurrentTime()), str, bArr);
                     h = null;
                 } catch (Exception e11) {
                     e = e11;

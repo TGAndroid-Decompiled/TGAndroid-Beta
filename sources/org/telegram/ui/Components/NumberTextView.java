@@ -10,24 +10,24 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public class NumberTextView extends View {
-    public final ArrayList f26184a;
-    public final ArrayList f26185b;
-    public final TextPaint f26186c;
+    public final ArrayList f26186a;
+    public final ArrayList f26187b;
+    public final TextPaint f26188c;
     public ObjectAnimator d;
     public float e;
-    public int f26187f;
+    public int f26189f;
     public boolean h;
-    public boolean f26188n;
-    public float f26189r;
-    public float f26190s;
+    public boolean f26190n;
+    public float f26191r;
+    public float f26192s;
 
     public NumberTextView(Context context) {
         super(context);
-        this.f26184a = new ArrayList();
-        this.f26185b = new ArrayList();
-        this.f26186c = new TextPaint(1);
+        this.f26186a = new ArrayList();
+        this.f26187b = new ArrayList();
+        this.f26188c = new TextPaint(1);
         this.e = 0.0f;
-        this.f26187f = 1;
+        this.f26189f = 1;
     }
 
     public final void a(int r22, boolean r23) {
@@ -35,7 +35,7 @@ public class NumberTextView extends View {
     }
 
     public float getOldTextWidth() {
-        return this.f26190s;
+        return this.f26192s;
     }
 
     public float getProgress() {
@@ -43,7 +43,7 @@ public class NumberTextView extends View {
     }
 
     public float getTextWidth() {
-        return this.f26189r;
+        return this.f26191r;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class NumberTextView extends View {
         float f11;
         StaticLayout staticLayout;
         float lineWidth;
-        ArrayList arrayList = this.f26184a;
+        ArrayList arrayList = this.f26186a;
         if (arrayList.isEmpty()) {
             return;
         }
@@ -63,9 +63,9 @@ public class NumberTextView extends View {
         } else {
             f7 = height;
         }
-        if (this.f26188n) {
-            f10 = (getMeasuredWidth() - this.f26189r) / 2.0f;
-            f11 = ((getMeasuredWidth() - this.f26190s) / 2.0f) - f10;
+        if (this.f26190n) {
+            f10 = (getMeasuredWidth() - this.f26191r) / 2.0f;
+            f11 = ((getMeasuredWidth() - this.f26192s) / 2.0f) - f10;
         } else {
             f10 = 0.0f;
             f11 = 0.0f;
@@ -73,7 +73,7 @@ public class NumberTextView extends View {
         canvas.save();
         canvas.translate(getPaddingLeft() + f10, (getMeasuredHeight() - height) / 2.0f);
         int size = arrayList.size();
-        ArrayList arrayList2 = this.f26185b;
+        ArrayList arrayList2 = this.f26187b;
         int max = Math.max(size, arrayList2.size());
         for (int i10 = 0; i10 < max; i10++) {
             canvas.save();
@@ -88,7 +88,7 @@ public class NumberTextView extends View {
             }
             float f12 = this.e;
             int i11 = (f12 > 0.0f ? 1 : (f12 == 0.0f ? 0 : -1));
-            TextPaint textPaint = this.f26186c;
+            TextPaint textPaint = this.f26188c;
             if (i11 > 0) {
                 if (staticLayout != null) {
                     textPaint.setAlpha((int) (f12 * 255.0f));
@@ -140,7 +140,7 @@ public class NumberTextView extends View {
     }
 
     public void setCenterAlign(boolean z10) {
-        this.f26188n = z10;
+        this.f26190n = z10;
     }
 
     public void setProgress(float f7) {
@@ -152,22 +152,22 @@ public class NumberTextView extends View {
     }
 
     public void setTextColor(int i10) {
-        this.f26186c.setColor(i10);
+        this.f26188c.setColor(i10);
         invalidate();
     }
 
     public void setTextSize(int i10) {
-        this.f26186c.setTextSize(AndroidUtilities.dp(i10));
-        this.f26185b.clear();
-        this.f26184a.clear();
-        a(this.f26187f, false);
+        this.f26188c.setTextSize(AndroidUtilities.dp(i10));
+        this.f26187b.clear();
+        this.f26186a.clear();
+        a(this.f26189f, false);
     }
 
     public void setTypeface(Typeface typeface) {
-        this.f26186c.setTypeface(typeface);
-        this.f26185b.clear();
-        this.f26184a.clear();
-        a(this.f26187f, false);
+        this.f26188c.setTypeface(typeface);
+        this.f26187b.clear();
+        this.f26186a.clear();
+        a(this.f26189f, false);
     }
 
     public void setOnTextWidthProgressChangedListener(nd0 nd0Var) {

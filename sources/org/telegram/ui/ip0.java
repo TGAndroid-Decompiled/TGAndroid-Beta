@@ -10,6 +10,6 @@ public final class ip0 extends t51 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f41329o0 = null;
+        this.e.f41332o0 = null;
     }
 }

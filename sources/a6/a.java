@@ -18,7 +18,7 @@ public final class a extends j {
     public static int f328k = 1;
 
     public a(Context context, i iVar) {
-        super(context, y8.j.f52396a, y8.i.f52395a, iVar);
+        super(context, y8.j.f52399a, y8.i.f52398a, iVar);
     }
 
     public Intent f() {

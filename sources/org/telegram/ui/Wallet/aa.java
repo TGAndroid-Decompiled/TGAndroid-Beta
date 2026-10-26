@@ -13,7 +13,7 @@ import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.t61;
 public final class aa extends s61 {
-    public static final int f36373a = 0;
+    public static final int f36376a = 0;
 
     static {
         s61.setup(new s61());
@@ -28,9 +28,9 @@ public final class aa extends s61 {
         if (tonconnectmanifest != null) {
             TLRPC.WebDocument webDocument = tonconnectmanifest.icon;
             if (webDocument != null) {
-                baVar.f36402b.n(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), "28_28", null, tonconnectsession.manifest);
+                baVar.f36405b.n(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), "28_28", null, tonconnectsession.manifest);
             }
-            baVar.f36403c.setText(tonconnectsession.manifest.name);
+            baVar.f36406c.setText(tonconnectsession.manifest.name);
             baVar.d.setText(AndroidUtilities.getHostAuthority(tonconnectsession.manifest.url));
         }
     }

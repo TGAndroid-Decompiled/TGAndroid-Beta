@@ -47,7 +47,7 @@ public final class l1 extends LinearLayout implements p6 {
         int w02 = y6.w0(i15, u6Var);
         da0Var.g(y6.o1(0.05f, w02), y6.o1(0.15f, w02), y6.o1(0.1f, w02), y6.o1(0.3f, w02));
         da0Var.k(4.0f);
-        da0Var.f27478x.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        da0Var.f27480x.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -73,7 +73,7 @@ public final class l1 extends LinearLayout implements p6 {
         addView(textView, gb1.x(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        f7.V(textView2, y6.f23765z6, u6Var);
+        f7.V(textView2, y6.f23767z6, u6Var);
         d3.o(R.string.BusinessProfileLocation, textView2, 1, 13.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -121,7 +121,7 @@ public final class l1 extends LinearLayout implements p6 {
         if (this.e) {
             Paint V0 = y6.V0("paintDivider", this.f15774a);
             if (V0 == null) {
-                V0 = y6.f23476k0;
+                V0 = y6.f23478k0;
             }
             Paint paint = V0;
             float f11 = 21.33f;

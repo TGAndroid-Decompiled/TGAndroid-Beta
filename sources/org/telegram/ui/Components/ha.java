@@ -19,25 +19,25 @@ import org.telegram.tgnet.TLRPC;
 public final class ha extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.ActionBar.p6 {
     public int E;
     public int F;
-    public TextView f28888a;
-    public TextView f28889b;
-    public bh.r f28890c;
+    public TextView f28890a;
+    public TextView f28891b;
+    public bh.r f28892c;
     public bh.r d;
     public bk0 e;
-    public ScrollView f28891f;
+    public ScrollView f28893f;
     public AnimatorSet h;
-    public TLRPC.TL_help_appUpdate f28892n;
-    public String f28893r;
-    public int f28894s;
+    public TLRPC.TL_help_appUpdate f28894n;
+    public String f28895r;
+    public int f28896s;
     public int v;
-    public GradientDrawable f28895w;
-    public GradientDrawable f28896x;
-    public boolean f28897y;
+    public GradientDrawable f28897w;
+    public GradientDrawable f28898x;
+    public boolean f28899y;
 
     public final void a(boolean z10) {
         bh.r rVar = this.d;
-        TextView textView = this.f28889b;
-        bh.r rVar2 = this.f28890c;
+        TextView textView = this.f28891b;
+        bh.r rVar2 = this.f28892c;
         AnimatorSet animatorSet = this.h;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -64,20 +64,20 @@ public final class ha extends FrameLayout implements NotificationCenter.Notifica
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.fileLoaded) {
             String str = (String) objArr[0];
-            String str2 = this.f28893r;
+            String str2 = this.f28895r;
             if (str2 != null && str2.equals(str)) {
                 a(false);
-                ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.f28892n.document);
+                ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.f28894n.document);
             }
         } else if (i10 == NotificationCenter.fileLoadFailed) {
             String str3 = (String) objArr[0];
-            String str4 = this.f28893r;
+            String str4 = this.f28895r;
             if (str4 != null && str4.equals(str3)) {
                 a(false);
             }
         } else if (i10 == NotificationCenter.fileLoadProgressChanged) {
             String str5 = (String) objArr[0];
-            String str6 = this.f28893r;
+            String str6 = this.f28895r;
             if (str6 != null && str6.equals(str5)) {
                 this.e.e(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
             }
@@ -87,11 +87,11 @@ public final class ha extends FrameLayout implements NotificationCenter.Notifica
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        GradientDrawable gradientDrawable = this.f28895w;
-        ScrollView scrollView = this.f28891f;
+        GradientDrawable gradientDrawable = this.f28897w;
+        ScrollView scrollView = this.f28893f;
         gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), AndroidUtilities.dp(16.0f) + scrollView.getTop());
         gradientDrawable.draw(canvas);
-        GradientDrawable gradientDrawable2 = this.f28896x;
+        GradientDrawable gradientDrawable2 = this.f28898x;
         gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - AndroidUtilities.dp(18.0f), scrollView.getRight(), scrollView.getBottom());
         gradientDrawable2.draw(canvas);
     }
@@ -100,9 +100,9 @@ public final class ha extends FrameLayout implements NotificationCenter.Notifica
     public void setVisibility(int i10) {
         super.setVisibility(i10);
         if (i10 == 8) {
-            NotificationCenter.getInstance(this.f28894s).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.f28894s).removeObserver(this, NotificationCenter.fileLoadFailed);
-            NotificationCenter.getInstance(this.f28894s).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+            NotificationCenter.getInstance(this.f28896s).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.f28896s).removeObserver(this, NotificationCenter.fileLoadFailed);
+            NotificationCenter.getInstance(this.f28896s).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
         }
     }
 
@@ -112,20 +112,20 @@ public final class ha extends FrameLayout implements NotificationCenter.Notifica
         boolean z11;
         int x02;
         ScrollView scrollView;
-        GradientDrawable gradientDrawable = this.f28896x;
-        GradientDrawable gradientDrawable2 = this.f28895w;
+        GradientDrawable gradientDrawable = this.f28898x;
+        GradientDrawable gradientDrawable2 = this.f28897w;
         try {
-            int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23354d6, false);
-            if (this.f28897y) {
+            int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23356d6, false);
+            if (this.f28899y) {
                 if (x03 != this.E) {
                 }
-                x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23634s8, false);
-                scrollView = this.f28891f;
-                if (scrollView != null && (!this.f28897y || x02 != this.F)) {
+                x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23636s8, false);
+                scrollView = this.f28893f;
+                if (scrollView != null && (!this.f28899y || x02 != this.F)) {
                     this.F = x02;
                     AndroidUtilities.setScrollViewEdgeEffectColor(scrollView, x02);
                 }
-                this.f28897y = true;
+                this.f28899y = true;
                 invalidate();
             }
             this.E = x03;
@@ -145,13 +145,13 @@ public final class ha extends FrameLayout implements NotificationCenter.Notifica
             if (z11) {
                 gradientDrawable.setColors(new int[]{x03, 0});
             }
-            x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23634s8, false);
-            scrollView = this.f28891f;
+            x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23636s8, false);
+            scrollView = this.f28893f;
             if (scrollView != null) {
                 this.F = x02;
                 AndroidUtilities.setScrollViewEdgeEffectColor(scrollView, x02);
             }
-            this.f28897y = true;
+            this.f28899y = true;
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

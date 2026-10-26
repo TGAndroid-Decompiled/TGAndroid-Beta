@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import android.app.Activity;
 import org.telegram.messenger.Utilities;
 public final class ve0 implements Utilities.Callback {
-    public final int f33638a;
-    public final String[] f33639b;
-    public final Activity f33640c;
+    public final int f33641a;
+    public final String[] f33642b;
+    public final Activity f33643c;
     public final Utilities.Callback d;
 
     public ve0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
-        this.f33638a = i10;
-        this.f33639b = strArr;
-        this.f33640c = activity;
+        this.f33641a = i10;
+        this.f33642b = strArr;
+        this.f33643c = activity;
         this.d = callback;
     }
 
     @Override
     public final void run(Object obj) {
         int[] iArr = (int[]) obj;
-        switch (this.f33638a) {
+        switch (this.f33641a) {
             case 0:
-                String[] strArr = this.f33639b;
+                String[] strArr = this.f33642b;
                 int length = strArr.length;
                 boolean z10 = false;
                 int i10 = 0;
                 while (true) {
                     if (i10 < length) {
-                        if (this.f33640c.checkSelfPermission(strArr[i10]) == 0) {
+                        if (this.f33643c.checkSelfPermission(strArr[i10]) == 0) {
                             z10 = true;
                         } else {
                             i10++;
@@ -40,13 +40,13 @@ public final class ve0 implements Utilities.Callback {
                 }
                 return;
             default:
-                String[] strArr2 = this.f33639b;
+                String[] strArr2 = this.f33642b;
                 int length2 = strArr2.length;
                 boolean z11 = false;
                 int i11 = 0;
                 while (true) {
                     if (i11 < length2) {
-                        if (this.f33640c.checkSelfPermission(strArr2[i11]) == 0) {
+                        if (this.f33643c.checkSelfPermission(strArr2[i11]) == 0) {
                             i11++;
                         }
                     } else {

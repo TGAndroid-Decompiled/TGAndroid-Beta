@@ -98,8 +98,8 @@ public final class g7 extends View {
         float e = this.d.e(this.f10917y);
         q11 q11Var = this.f10913r;
         if (q11Var != null && this.f10914s != null && e > 0.0f) {
-            q11Var.f31798p = getWidth() * 0.7f;
-            this.f10914s.f31798p = getWidth() * 0.7f;
+            q11Var.f31800p = getWidth() * 0.7f;
+            this.f10914s.f31800p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
@@ -111,7 +111,7 @@ public final class g7 extends View {
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f10913r.f31788c, this.f10914s.f31788c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            float max = Math.max(min, Math.max(this.f10913r.f31790c, this.f10914s.f31790c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
             if (this.f10912n) {
                 f10 = dp3;
             } else {
@@ -197,11 +197,11 @@ public final class g7 extends View {
                     xcVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (xcVar.f34687i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (xcVar.f34690i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     xcVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (xcVar.f34687i && (q9Var = this.f10910c) != null && this.E != null) {
+                if (xcVar.f34690i && (q9Var = this.f10910c) != null && this.E != null) {
                     q9Var.run(new c7(this, 1));
                 }
                 xcVar.c(false);
@@ -210,7 +210,7 @@ public final class g7 extends View {
                 xcVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !xcVar.f34687i) {
+            if (!this.L && !xcVar.f34690i) {
                 return false;
             }
             return true;

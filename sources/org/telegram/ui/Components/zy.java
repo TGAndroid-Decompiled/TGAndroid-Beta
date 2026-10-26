@@ -11,18 +11,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class zy extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final ImageView f35432a;
-    public final TextView f35433b;
-    public final RadialProgressView f35434c;
+    public final ImageView f35435a;
+    public final TextView f35436b;
+    public final RadialProgressView f35437c;
     public boolean d;
     public final sz e;
 
     public zy(sz szVar, Context context) {
         super(context);
         this.e = szVar;
-        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22625a;
+        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22627a;
         ImageView imageView = new ImageView(getContext());
-        this.f35432a = imageView;
+        this.f35435a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.gif_empty);
         int i10 = org.telegram.ui.ActionBar.y6.Le;
@@ -30,14 +30,14 @@ public final class zy extends FrameLayout implements org.telegram.ui.ActionBar.p
         org.telegram.ui.ActionBar.f7.t(imageView, i10, u6Var, PorterDuff.Mode.MULTIPLY);
         addView(imageView, gb1.h(-2, -2.0f, 17, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView = new TextView(getContext());
-        this.f35433b = textView;
+        this.f35436b = textView;
         org.telegram.ui.d3.o(R.string.NoGIFsFound, textView, 1, 16.0f);
         org.telegram.ui.ActionBar.f7.V(textView, i10, u6Var);
         addView(textView, gb1.h(-2, -2.0f, 17, 0.0f, 42.0f, 0.0f, 0.0f));
         RadialProgressView radialProgressView = new RadialProgressView(context, u6Var);
-        this.f35434c = radialProgressView;
+        this.f35437c = radialProgressView;
         radialProgressView.setVisibility(8);
-        radialProgressView.setProgressColor(szVar.A(org.telegram.ui.ActionBar.y6.f23426h6));
+        radialProgressView.setProgressColor(szVar.A(org.telegram.ui.ActionBar.y6.f23428h6));
         addView(radialProgressView, gb1.i(-2, -2, 17));
     }
 
@@ -52,17 +52,17 @@ public final class zy extends FrameLayout implements org.telegram.ui.ActionBar.p
             } else {
                 i10 = 0;
             }
-            this.f35432a.setVisibility(i10);
+            this.f35435a.setVisibility(i10);
             if (z10) {
                 i11 = 8;
             } else {
                 i11 = 0;
             }
-            this.f35433b.setVisibility(i11);
+            this.f35436b.setVisibility(i11);
             if (!z10) {
                 i12 = 8;
             }
-            this.f35434c.setVisibility(i12);
+            this.f35437c.setVisibility(i12);
         }
     }
 
@@ -70,9 +70,9 @@ public final class zy extends FrameLayout implements org.telegram.ui.ActionBar.p
     public final void onMeasure(int i10, int i11) {
         int dp;
         sz szVar = this.e;
-        int measuredHeight = szVar.f32731h0.getMeasuredHeight();
+        int measuredHeight = szVar.f32734h0.getMeasuredHeight();
         if (!this.d) {
-            dp = (int) (org.telegram.messenger.vh.B(8.0f, measuredHeight - szVar.f32712b1, 3) * 1.7f);
+            dp = (int) (org.telegram.messenger.vh.B(8.0f, measuredHeight - szVar.f32715b1, 3) * 1.7f);
         } else {
             dp = measuredHeight - AndroidUtilities.dp(80.0f);
         }
@@ -82,7 +82,7 @@ public final class zy extends FrameLayout implements org.telegram.ui.ActionBar.p
     @Override
     public final void updateColors() {
         try {
-            this.f35434c.setProgressColor(this.e.A(org.telegram.ui.ActionBar.y6.f23426h6));
+            this.f35437c.setProgressColor(this.e.A(org.telegram.ui.ActionBar.y6.f23428h6));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

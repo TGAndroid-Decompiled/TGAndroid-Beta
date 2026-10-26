@@ -105,7 +105,7 @@ public final class e6 implements org.telegram.ui.ActionBar.b2, kd0, MediaDataCon
         int i10 = this.f4555b;
         dr0 dr0Var = (dr0) this.e;
         hi.p4 p4Var = (hi.p4) this.f4557f;
-        p2Var.f48457x = false;
+        p2Var.f48460x = false;
         FileLog.e(exc);
         if ((exc instanceof ob.a) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && p2Var.isAttachedToWindow()) {
             AndroidUtilities.runOnUIThread(new zr0(p2Var, bitmap, i10, dr0Var, 23), 2000L);
@@ -153,7 +153,7 @@ public final class e6 implements org.telegram.ui.ActionBar.b2, kd0, MediaDataCon
             }
         }
         if (!arrayList2.isEmpty()) {
-            tz0Var.f33183x = false;
+            tz0Var.f33186x = false;
             tz0Var.v = false;
             tz0Var.c();
             bh.r rVar = tz0Var.d;
@@ -161,22 +161,22 @@ public final class e6 implements org.telegram.ui.ActionBar.b2, kd0, MediaDataCon
                 rVar.setVisibility(0);
             }
             tz0Var.W = AndroidUtilities.dp(10.0f);
-            tz0Var.f33182w = arrayList;
-            tz0Var.f33170a0 = 0;
-            tz0Var.f33172b0 = Integer.valueOf(str2.length());
+            tz0Var.f33185w = arrayList;
+            tz0Var.f33173a0 = 0;
+            tz0Var.f33175b0 = Integer.valueOf(str2.length());
             bh.r rVar2 = tz0Var.d;
             if (rVar2 != null) {
                 rVar2.invalidate();
             }
-            qz0 qz0Var = tz0Var.f33177f;
+            qz0 qz0Var = tz0Var.f33180f;
             if (qz0Var != null) {
                 qz0Var.l();
                 return;
             }
             return;
         }
-        tz0Var.f33182w = null;
-        tz0Var.f33183x = true;
+        tz0Var.f33185w = null;
+        tz0Var.f33186x = true;
         tz0Var.f();
     }
 
@@ -243,7 +243,7 @@ public final class e6 implements org.telegram.ui.ActionBar.b2, kd0, MediaDataCon
             TL_stars.TL_starGiftCollection tL_starGiftCollection2 = tL_starGiftCollection;
             int i11 = i10;
             int i12 = this.f4555b;
-            String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i12).getUserOrChat(vs0Var.f53229c));
+            String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i12).getUserOrChat(vs0Var.f53232c));
             boolean h = q9Var.h();
             if (TextUtils.isEmpty(publicUsername) && !h) {
                 return Boolean.FALSE;

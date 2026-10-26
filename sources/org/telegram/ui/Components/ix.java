@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessagesController;
 public final class ix implements a5.i {
-    public final boolean f29389a;
-    public final sz f29390b;
+    public final boolean f29391a;
+    public final sz f29392b;
 
     public ix(sz szVar, boolean z10) {
-        this.f29390b = szVar;
-        this.f29389a = z10;
+        this.f29392b = szVar;
+        this.f29391a = z10;
     }
 
     @Override
     public final void a(int i10) {
         boolean z10;
         int i11;
-        sz szVar = this.f29390b;
+        sz szVar = this.f29392b;
         fx fxVar = szVar.h;
         boolean z11 = false;
         if (fxVar != null) {
@@ -37,18 +37,18 @@ public final class ix implements a5.i {
             z10 = false;
         }
         szVar.L(z10, true);
-        if (i10 == 2 && (this.f29389a || szVar.f32774v0)) {
+        if (i10 == 2 && (this.f29391a || szVar.f32777v0)) {
             z11 = true;
         }
         szVar.Q(z11, true);
-        if (szVar.f32769t1.z()) {
+        if (szVar.f32772t1.z()) {
             if (i10 == 0) {
                 rw rwVar = szVar.V;
                 if (rwVar != null) {
                     rwVar.d.requestFocus();
                 }
             } else if (i10 == 1) {
-                ww wwVar = szVar.f32751o0;
+                ww wwVar = szVar.f32754o0;
                 if (wwVar != null) {
                     wwVar.d.requestFocus();
                 }
@@ -69,18 +69,18 @@ public final class ix implements a5.i {
         int i12;
         int i13;
         int i14;
-        sz szVar = this.f29390b;
+        sz szVar = this.f29392b;
         fz fzVar3 = szVar.G0;
-        fz fzVar4 = szVar.f32751o0;
+        fz fzVar4 = szVar.f32754o0;
         fz fzVar5 = szVar.V;
         ex exVar = szVar.C0;
         zw zwVar = szVar.D0;
-        xx xxVar = szVar.f32754p0;
-        uw uwVar = szVar.f32731h0;
+        xx xxVar = szVar.f32757p0;
+        uw uwVar = szVar.f32734h0;
         dy dyVar = szVar.P;
         int i15 = 2;
         boolean z10 = true;
-        if (szVar.f32782x0 == null || szVar.f32728g0 == null) {
+        if (szVar.f32785x0 == null || szVar.f32731g0 == null) {
             f10 = 0.0f;
         } else {
             int i16 = 8;
@@ -137,7 +137,7 @@ public final class ix implements a5.i {
         szVar.getMeasuredWidth();
         szVar.getPaddingLeft();
         szVar.getPaddingRight();
-        ty tyVar = szVar.f32769t1;
+        ty tyVar = szVar.f32772t1;
         if (tyVar != null) {
             if (i10 == 1) {
                 if (i11 == 0) {

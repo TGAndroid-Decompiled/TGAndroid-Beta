@@ -14,8 +14,8 @@ public final class f implements Runnable {
     public final void run() {
         switch (this.f14049a) {
             case 0:
-                for (ay ayVar : this.f14050b.R.f38583e0) {
-                    ((s4.c0) ayVar.f37910a.getLayoutManager()).f47711u = false;
+                for (ay ayVar : this.f14050b.R.f38586e0) {
+                    ((s4.c0) ayVar.f37913a.getLayoutManager()).f47714u = false;
                 }
                 return;
             default:

@@ -5,10 +5,10 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class u20 extends s4.n0 {
-    public final v50 f43980a;
+    public final v50 f43983a;
 
     public u20(v50 v50Var) {
-        this.f43980a = v50Var;
+        this.f43983a = v50Var;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class u20 extends s4.n0 {
         int R = RecyclerView.R(view);
         if (R >= 0) {
             rect.setEmpty();
-            p50 p50Var = this.f43980a.P;
+            p50 p50Var = this.f43983a.P;
             int i11 = p50Var.G;
             if (R >= i11 && R < p50Var.H) {
                 int i12 = R - i11;

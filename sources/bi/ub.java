@@ -24,18 +24,18 @@ public final class ub extends gu0 {
         int[] iArr = new int[2];
         y9Var.getLocationInWindow(iArr);
         qu0 qu0Var = new qu0();
-        qu0Var.f42917b = iArr[0];
-        qu0Var.f42918c = iArr[1];
+        qu0Var.f42920b = iArr[0];
+        qu0Var.f42921c = iArr[1];
         qu0Var.d = this.f5529b;
-        qu0Var.f42925m = null;
-        qu0Var.f42916a = imageReceiver;
+        qu0Var.f42928m = null;
+        qu0Var.f42919a = imageReceiver;
         if (z10) {
             qu0Var.e = imageReceiver.getBitmapSafe();
         }
         qu0Var.h = imageReceiver.getRoundRadius(true);
-        qu0Var.f42919f = this.f5530c;
-        qu0Var.f42922j = 0;
-        qu0Var.f42921i = 0;
+        qu0Var.f42922f = this.f5530c;
+        qu0Var.f42925j = 0;
+        qu0Var.f42924i = 0;
         return qu0Var;
     }
 

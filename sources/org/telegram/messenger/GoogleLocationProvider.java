@@ -172,7 +172,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         s7.c cVar = (s7.c) this.locationProviderClient;
         cVar.getClass();
         com.google.android.gms.common.api.internal.u b10 = com.google.android.gms.common.api.internal.v.b();
-        b10.f6622c = s7.a.f47891c;
+        b10.f6622c = s7.a.f47894c;
         b10.f6620a = 2414;
         cVar.e(0, b10.a()).addOnCompleteListener(new n4(aVar, 0));
     }
@@ -181,7 +181,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
     public void init(Context context) {
         com.google.android.gms.common.api.e eVar = h8.d.f12703a;
         com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f6478c;
-        com.google.android.gms.common.api.e eVar2 = s7.c.f47893k;
+        com.google.android.gms.common.api.e eVar2 = s7.c.f47896k;
         com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f6469j;
         this.locationProviderClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
         this.settingsClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
@@ -331,7 +331,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
             cVar.getClass();
             String simpleName = h8.c.class.getSimpleName();
             o6.l.g(simpleName, "Listener type must not be empty");
-            cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(s7.b.f47892a, s7.a.f47890b);
+            cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(s7.b.f47895a, s7.a.f47893b);
         }
     }
 
@@ -344,7 +344,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
                 cVar.getClass();
                 String simpleName = h8.c.class.getSimpleName();
                 o6.l.g(simpleName, "Listener type must not be empty");
-                cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(s7.b.f47892a, s7.a.f47890b);
+                cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(s7.b.f47895a, s7.a.f47893b);
             }
             h8.c cVar2 = new h8.c() {
                 {

@@ -56,7 +56,7 @@ public final class n8 {
         this.f8844k = new xh.l(o8Var, arrayList, new a1.c(this, 28));
         da0 da0Var = new da0();
         this.f8852s = da0Var;
-        da0Var.f27479y = path;
+        da0Var.f27481y = path;
         da0Var.k(4.0f);
         da0Var.g(org.telegram.ui.ActionBar.y6.o1(0.3f, -1), org.telegram.ui.ActionBar.y6.o1(0.1f, -1), org.telegram.ui.ActionBar.y6.o1(0.2f, -1), org.telegram.ui.ActionBar.y6.o1(0.7f, -1));
         da0Var.setCallback(o8Var);
@@ -204,7 +204,7 @@ public final class n8 {
                             arrayList2 = arrayList;
                             i11 = i13;
                             float lerp = AndroidUtilities.lerp(f11, f12, o8Var.f8890w);
-                            float lerp2 = AndroidUtilities.lerp(l8Var.d, l8Var.f8768f, ds.f27585g.getInterpolation(o8Var.f8890w));
+                            float lerp2 = AndroidUtilities.lerp(l8Var.d, l8Var.f8768f, ds.f27587g.getInterpolation(o8Var.f8890w));
                             canvas.translate(o8Var.E + lerp, o8Var.F + i10 + lerp2);
                             if (z10) {
                                 f(l8Var.f8766b, o8Var.E + lerp, o8Var.F + i10 + lerp2);
@@ -415,7 +415,7 @@ public final class n8 {
         int i18 = o8Var.E;
         int i19 = o8Var.F;
         xh.l lVar = this.f8844k;
-        lVar.f51901c = i18;
+        lVar.f51904c = i18;
         lVar.d = i19;
     }
 
@@ -454,8 +454,8 @@ public final class n8 {
             k8Var.f8743s = m8Var;
             new wm0(o8Var);
             k8Var.f8734j.setCallback(o8Var);
-            k8Var.h.f28807a = o8Var;
-            k8Var.f8733i.f34682a = o8Var;
+            k8Var.h.f28809a = o8Var;
+            k8Var.f8733i.f34685a = o8Var;
             k8Var.c();
         }
         k8 k8Var3 = this.f8849p;
@@ -465,8 +465,8 @@ public final class n8 {
             k8Var3.f8743s = m8Var2;
             new wm0(o8Var);
             k8Var3.f8734j.setCallback(o8Var);
-            k8Var3.h.f28807a = o8Var;
-            k8Var3.f8733i.f34682a = o8Var;
+            k8Var3.h.f28809a = o8Var;
+            k8Var3.f8733i.f34685a = o8Var;
             k8Var3.c();
         }
         o8Var.f8889s = 0;

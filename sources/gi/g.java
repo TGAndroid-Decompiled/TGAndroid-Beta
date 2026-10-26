@@ -46,12 +46,12 @@ public final class g extends bb implements NotificationCenter.NotificationCenter
         mm0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new k(this, 12));
         l lVar = new l();
-        lVar.f47760m = false;
+        lVar.f47763m = false;
         lVar.C = false;
         lVar.o(ds.h);
         lVar.n(350L);
         this.d.setItemAnimator(lVar);
-        setBackgroundColor(y6.w0(y6.f23425h5, u6Var));
+        setBackgroundColor(y6.w0(y6.f23427h5, u6Var));
         this.X = aVar;
         mc mcVar = new mc(context, 2, u6Var);
         this.Y = mcVar;
@@ -157,7 +157,7 @@ public final class g extends bb implements NotificationCenter.NotificationCenter
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
         try {
-            int w02 = y6.w0(y6.f23425h5, this.resourcesProvider);
+            int w02 = y6.w0(y6.f23427h5, this.resourcesProvider);
             if (w02 != this.f12501b0) {
                 this.f12501b0 = w02;
                 setBackgroundColor(w02);

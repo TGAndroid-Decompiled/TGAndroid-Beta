@@ -30,54 +30,54 @@ public final class q00 extends View {
     public boolean U;
     public boolean V;
     public boolean W;
-    public ValueAnimator f31752a;
-    public float f31753a0;
-    public p00 f31754b;
-    public int f31755b0;
-    public int f31756c;
-    public int f31757c0;
+    public ValueAnimator f31754a;
+    public float f31755a0;
+    public p00 f31756b;
+    public int f31757b0;
+    public int f31758c;
+    public int f31759c0;
     public int d;
-    public int f31758d0;
+    public int f31760d0;
     public int e;
-    public float f31759e0;
-    public final RectF f31760f;
-    public float f31761f0;
-    public float f31762g0;
+    public float f31761e0;
+    public final RectF f31762f;
+    public float f31763f0;
+    public float f31764g0;
     public CharSequence h;
-    public float f31763h0;
-    public float f31764i0;
-    public float f31765j0;
-    public float f31766k0;
-    public boolean f31767l0;
+    public float f31765h0;
+    public float f31766i0;
+    public float f31767j0;
+    public float f31768k0;
+    public boolean f31769l0;
     public final s00 m0;
-    public boolean f31768n;
-    public y5 f31769r;
-    public StaticLayout f31770s;
+    public boolean f31770n;
+    public y5 f31771r;
+    public StaticLayout f31772s;
     public int v;
-    public boolean f31771w;
-    public float f31772x;
-    public float f31773y;
+    public boolean f31773w;
+    public float f31774x;
+    public float f31775y;
 
     public q00(s00 s00Var, Context context) {
         super(context);
         this.m0 = s00Var;
-        this.f31760f = new RectF();
+        this.f31762f = new RectF();
         this.I = -1;
     }
 
     public final void a() {
-        this.f31771w = false;
+        this.f31773w = false;
         this.H = false;
         this.U = false;
         this.G = false;
         this.W = false;
-        this.f31752a = null;
+        this.f31754a = null;
         invalidate();
     }
 
     public final void b(float f7, int i10) {
         if (i10 == 6) {
-            this.f31773y = 0.0f;
+            this.f31775y = 0.0f;
             return;
         }
         AnimatorSet animatorSet = new AnimatorSet();
@@ -91,7 +91,7 @@ public final class q00 extends View {
 
     @Override
     public int getId() {
-        return this.f31754b.f31399a;
+        return this.f31756b.f31401a;
     }
 
     @Override
@@ -99,28 +99,28 @@ public final class q00 extends View {
         int i10;
         int i11;
         int i12;
-        this.f31767l0 = true;
+        this.f31769l0 = true;
         super.onAttachedToWindow();
         int i13 = 26;
-        if (this.f31754b.f31403g) {
+        if (this.f31756b.f31405g) {
             i10 = 26;
         } else {
             i10 = 0;
         }
-        this.f31769r = c6.update(i10, this, this.f31769r, this.f31770s);
-        if (this.f31754b.f31403g) {
+        this.f31771r = c6.update(i10, this, this.f31771r, this.f31772s);
+        if (this.f31756b.f31405g) {
             i11 = 26;
         } else {
             i11 = 0;
         }
         this.O = c6.update(i11, this, this.O, this.P);
-        if (this.f31754b.f31403g) {
+        if (this.f31756b.f31405g) {
             i12 = 26;
         } else {
             i12 = 0;
         }
         this.Q = c6.update(i12, this, this.Q, this.R);
-        if (!this.f31754b.f31403g) {
+        if (!this.f31756b.f31405g) {
             i13 = 0;
         }
         this.S = c6.update(i13, this, this.S, this.T);
@@ -128,22 +128,22 @@ public final class q00 extends View {
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f31767l0 = false;
+        this.f31769l0 = false;
         super.onDetachedFromWindow();
-        this.f31771w = false;
+        this.f31773w = false;
         this.H = false;
         this.U = false;
         this.G = false;
         this.W = false;
-        ValueAnimator valueAnimator = this.f31752a;
+        ValueAnimator valueAnimator = this.f31754a;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f31752a.removeAllUpdateListeners();
-            this.f31752a.cancel();
-            this.f31752a = null;
+            this.f31754a.removeAllUpdateListeners();
+            this.f31754a.cancel();
+            this.f31754a = null;
         }
         invalidate();
-        c6.release(this, this.f31769r);
+        c6.release(this, this.f31771r);
         c6.release(this, this.O);
         c6.release(this, this.Q);
         c6.release(this, this.S);
@@ -160,8 +160,8 @@ public final class q00 extends View {
         int i10;
         int i11;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        p00 p00Var = this.f31754b;
-        if (p00Var != null && (i11 = this.m0.L) != -1 && p00Var.f31399a == i11) {
+        p00 p00Var = this.f31756b;
+        if (p00Var != null && (i11 = this.m0.L) != -1 && p00Var.f31401a == i11) {
             z10 = true;
         } else {
             z10 = false;
@@ -169,10 +169,10 @@ public final class q00 extends View {
         accessibilityNodeInfo.setSelected(z10);
         accessibilityNodeInfo.addAction(16);
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenMenu2)));
-        if (this.f31754b != null) {
+        if (this.f31756b != null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f31754b.f31400b);
-            p00 p00Var2 = this.f31754b;
+            sb2.append(this.f31756b.f31402b);
+            p00 p00Var2 = this.f31756b;
             if (p00Var2 != null) {
                 i10 = p00Var2.d;
             } else {
@@ -188,6 +188,6 @@ public final class q00 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(24.0f) + this.f31754b.a(false) + this.m0.N, View.MeasureSpec.getSize(i11));
+        setMeasuredDimension(AndroidUtilities.dp(24.0f) + this.f31756b.a(false) + this.m0.N, View.MeasureSpec.getSize(i11));
     }
 }

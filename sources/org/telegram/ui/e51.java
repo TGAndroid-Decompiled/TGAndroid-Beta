@@ -16,28 +16,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 public abstract class e51 extends org.telegram.ui.Components.mm0 {
-    public final SparseArray f38995f3;
-    public final ArrayList f38996g3;
-    public final ArrayList f38997h3;
-    public final ArrayList f38998i3;
-    public final ArrayList f38999j3;
-    public boolean f39000k3;
-    public final LongSparseArray f39001l3;
-    public final c61 f39002m3;
+    public final SparseArray f38998f3;
+    public final ArrayList f38999g3;
+    public final ArrayList f39000h3;
+    public final ArrayList f39001i3;
+    public final ArrayList f39002j3;
+    public boolean f39003k3;
+    public final LongSparseArray f39004l3;
+    public final c61 f39005m3;
 
     public e51(c61 c61Var, Context context) {
         super(context, null);
-        this.f39002m3 = c61Var;
-        this.f38995f3 = new SparseArray();
-        this.f38996g3 = new ArrayList();
-        this.f38997h3 = new ArrayList();
-        this.f38998i3 = new ArrayList();
-        this.f38999j3 = new ArrayList();
-        this.f39001l3 = new LongSparseArray();
+        this.f39005m3 = c61Var;
+        this.f38998f3 = new SparseArray();
+        this.f38999g3 = new ArrayList();
+        this.f39000h3 = new ArrayList();
+        this.f39001i3 = new ArrayList();
+        this.f39002j3 = new ArrayList();
+        this.f39004l3 = new LongSparseArray();
         setDrawSelectorBehind(true);
         setClipToPadding(false);
         setSelectorRadius(AndroidUtilities.dp(4.0f));
-        org.telegram.ui.ActionBar.f7.m(this, 20, org.telegram.ui.ActionBar.y6.f23446i6, this.f30644n2);
+        org.telegram.ui.ActionBar.f7.m(this, 20, org.telegram.ui.ActionBar.y6.f23448i6, this.f30646n2);
     }
 
     public static void C1(ArrayList arrayList) {
@@ -74,9 +74,9 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
         float f12;
         Canvas canvas2 = canvas;
         if (getVisibility() == 0) {
-            this.f39000k3 = false;
+            this.f39003k3 = false;
             int saveCount = canvas2.getSaveCount();
-            c61 c61Var = this.f39002m3;
+            c61 c61Var = this.f39005m3;
             int i11 = c61Var.W;
             int i12 = 14;
             if (i11 != 6 && i11 != 14 && i11 != 13) {
@@ -84,7 +84,7 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                 if (!rect.isEmpty()) {
                     this.B1.setBounds(rect);
                     canvas2.save();
-                    q0.a aVar = this.f30642m2;
+                    q0.a aVar = this.f30644m2;
                     if (aVar != null) {
                         aVar.accept(canvas2);
                     }
@@ -94,9 +94,9 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
             }
             int i13 = 0;
             while (true) {
-                sparseArray = this.f38995f3;
+                sparseArray = this.f38998f3;
                 int size = sparseArray.size();
-                arrayList = this.f38996g3;
+                arrayList = this.f38999g3;
                 if (i13 >= size) {
                     break;
                 }
@@ -111,7 +111,7 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
             } else {
                 z10 = false;
             }
-            if (this.f39001l3 != null) {
+            if (this.f39004l3 != null) {
                 int i14 = 0;
                 boolean z12 = false;
                 while (i14 < getChildCount()) {
@@ -127,8 +127,8 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                                 l51Var.invalidate();
                             }
                         }
-                        int i16 = l51Var.f41140c;
-                        if (c61Var.f38332x1) {
+                        int i16 = l51Var.f41143c;
+                        if (c61Var.f38335x1) {
                             top = (int) childAt.getY();
                         } else {
                             top = childAt.getTop();
@@ -136,7 +136,7 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                         ArrayList arrayList5 = (ArrayList) sparseArray.get(top);
                         canvas2.save();
                         canvas2.translate(l51Var.getX(), l51Var.getY());
-                        if (l51Var.f41145w != null) {
+                        if (l51Var.f41148w != null) {
                             bi.td collectionParticles = c61Var.getCollectionParticles();
                             i10 = i14;
                             boolean z13 = z12;
@@ -163,7 +163,7 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                             view = childAt;
                             canvas2.scale(f11, f12, l51Var.getWidth() / 2.0f, l51Var.getHeight() / 2.0f);
                             canvas2.rotate((i16 % 4) * 90, l51Var.getWidth() / 2.0f, l51Var.getHeight() / 2.0f);
-                            collectionParticles.a(canvas2, l51Var.f41145w.intValue());
+                            collectionParticles.a(canvas2, l51Var.f41148w.intValue());
                             canvas2.restore();
                             z12 = z14;
                         } else {
@@ -171,7 +171,7 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                             view = childAt;
                         }
                         boolean z15 = l51Var.L;
-                        if ((z15 || l51Var.M || l51Var.S > 0.0f) && !l51Var.f41139b) {
+                        if ((z15 || l51Var.M || l51Var.S > 0.0f) && !l51Var.f41142b) {
                             if (z15 || l51Var.M) {
                                 float f14 = l51Var.R;
                                 if (f14 < 1.0f) {
@@ -208,7 +208,7 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                             rectF.set(0.0f, 0.0f, l51Var.getMeasuredWidth(), l51Var.getMeasuredHeight());
                             float f16 = dp;
                             rectF.inset(f16, f16);
-                            if (!l51Var.f41138a) {
+                            if (!l51Var.f41141a) {
                                 Drawable drawable = l51Var.E;
                                 if (!(drawable instanceof org.telegram.ui.Components.t5) || !((org.telegram.ui.Components.t5) drawable).c()) {
                                     paint = c61Var2.L;
@@ -245,7 +245,7 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                         }
                         arrayList3.add(l51Var);
                         k51 k51Var = l51Var.J;
-                        if (k51Var != null && k51Var.getVisibility() == 0 && l51Var.J.getImageReceiver() == null && (imageReceiver2 = l51Var.f41143r) != null) {
+                        if (k51Var != null && k51Var.getVisibility() == 0 && l51Var.J.getImageReceiver() == null && (imageReceiver2 = l51Var.f41146r) != null) {
                             l51Var.J.setImageReceiver(imageReceiver2);
                         }
                     } else {
@@ -254,7 +254,7 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                     }
                     boolean z16 = z12;
                     if (z10 && view != null && RecyclerView.R(view) == c61Var.O1 - 1) {
-                        float interpolation2 = org.telegram.ui.Components.ds.f27585g.getInterpolation(a8.ee.a(((float) (SystemClock.elapsedRealtime() - c61Var.Q1)) / 200.0f, 0.0f, 1.0f));
+                        float interpolation2 = org.telegram.ui.Components.ds.f27587g.getInterpolation(a8.ee.a(((float) (SystemClock.elapsedRealtime() - c61Var.Q1)) / 200.0f, 0.0f, 1.0f));
                         if (interpolation2 < 1.0f) {
                             float f18 = 1.0f - interpolation2;
                             canvas2.saveLayerAlpha(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), (int) (255.0f * f18), 31);
@@ -273,16 +273,16 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                     i12 = 14;
                 }
             }
-            ArrayList arrayList6 = this.f38999j3;
+            ArrayList arrayList6 = this.f39002j3;
             arrayList6.clear();
-            ArrayList arrayList7 = this.f38998i3;
+            ArrayList arrayList7 = this.f39001i3;
             arrayList6.addAll(arrayList7);
             arrayList7.clear();
             long currentTimeMillis = System.currentTimeMillis();
             int i18 = 0;
             while (true) {
                 int size2 = sparseArray.size();
-                arrayList2 = this.f38997h3;
+                arrayList2 = this.f39000h3;
                 if (i18 >= size2) {
                     break;
                 }
@@ -348,7 +348,7 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
                         canvas2.translate((int) ((l51Var3.getX() + l51Var3.getMeasuredWidth()) - l51Var3.J.getMeasuredWidth()), (int) ((l51Var3.getY() + l51Var3.getMeasuredHeight()) - l51Var3.J.getMeasuredHeight()));
                         Drawable drawable2 = l51Var3.E;
                         if (drawable2 instanceof org.telegram.ui.Components.t5) {
-                            imageReceiver = ((org.telegram.ui.Components.t5) drawable2).f32849k;
+                            imageReceiver = ((org.telegram.ui.Components.t5) drawable2).f32852k;
                         } else {
                             imageReceiver = l51Var3.h;
                         }
@@ -394,18 +394,18 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
 
     @Override
     public final void invalidate() {
-        if (bh.m0.b(this) || this.f39000k3) {
+        if (bh.m0.b(this) || this.f39003k3) {
             return;
         }
-        this.f39000k3 = true;
+        this.f39003k3 = true;
         super.invalidate();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        c61 c61Var = this.f39002m3;
-        if (this == c61Var.f38296h0) {
+        c61 c61Var = this.f39005m3;
+        if (this == c61Var.f38299h0) {
             c61Var.V0.onAttachedToWindow();
         }
     }
@@ -413,13 +413,13 @@ public abstract class e51 extends org.telegram.ui.Components.mm0 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        c61 c61Var = this.f39002m3;
-        if (this == c61Var.f38296h0) {
+        c61 c61Var = this.f39005m3;
+        if (this == c61Var.f38299h0) {
             c61Var.V0.onDetachedFromWindow();
         }
-        C1(this.f38997h3);
-        C1(this.f38998i3);
-        C1(this.f38999j3);
+        C1(this.f39000h3);
+        C1(this.f39001i3);
+        C1(this.f39002j3);
     }
 
     @Override

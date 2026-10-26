@@ -127,7 +127,7 @@ public final class m9 extends vw0 {
                 ofFloat.addUpdateListener(new j9(this, 0));
                 y9Var.G.addListener(new k9(this, 0));
                 y9Var.G.setDuration(250L);
-                y9Var.G.setInterpolator(ds.f27584f);
+                y9Var.G.setInterpolator(ds.f27586f);
                 y9Var.G.start();
             }
             if (y9Var.V >= 0.3f) {
@@ -286,7 +286,7 @@ public final class m9 extends vw0 {
                 ofFloat.addUpdateListener(new j9(this, 1));
                 y9Var.G.addListener(new k9(this, 1));
                 y9Var.G.setDuration(150L);
-                y9Var.G.setInterpolator(ds.f27584f);
+                y9Var.G.setInterpolator(ds.f27586f);
                 y9Var.G.start();
             }
             q4 t10 = y9Var.t();

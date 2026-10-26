@@ -297,7 +297,7 @@ public abstract class o3 extends FrameLayout implements NotificationCenter.Notif
         this.f11351s = ey0Var;
         xh.n nVar = ey0Var.d;
         nVar.setTextSize(1, 16.0f);
-        org.telegram.ui.ActionBar.f7.V(nVar, org.telegram.ui.ActionBar.y6.f23746y6, u6Var);
+        org.telegram.ui.ActionBar.f7.V(nVar, org.telegram.ui.ActionBar.y6.f23748y6, u6Var);
         nVar.setTypeface(null);
         nVar.setText(LocaleController.getString(R.string.SearchImagesType));
         this.v = new z3(this, false, new ai.i(this, 19));
@@ -408,7 +408,7 @@ public abstract class o3 extends FrameLayout implements NotificationCenter.Notif
             LinearLayout linearLayout = new LinearLayout(context);
             this.I = linearLayout;
             linearLayout.setOrientation(1);
-            org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23425h5, linearLayout, u6Var);
+            org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23427h5, linearLayout, u6Var);
             linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(AndroidUtilities.navigationBarHeight > 0 ? 0.0f : f11) + AndroidUtilities.navigationBarHeight);
             addView(linearLayout, gb1.h(-1, -2.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
             linearLayout.setAlpha(0.0f);
@@ -716,7 +716,7 @@ public abstract class o3 extends FrameLayout implements NotificationCenter.Notif
         y2 y2Var = this.e;
         if (z10) {
             mi.n nVar = new mi.n(getContext(), 2);
-            nVar.f47677a = 1;
+            nVar.f47680a = 1;
             nVar.f18556p = AndroidUtilities.dp(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
             y2Var.w0(nVar);
             return;
@@ -819,7 +819,7 @@ public abstract class o3 extends FrameLayout implements NotificationCenter.Notif
     public final void h() {
         a aVar;
         d3 d3Var = this.F;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = d3Var.f23174b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = d3Var.f23176b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }

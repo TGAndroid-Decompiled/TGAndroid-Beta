@@ -11,19 +11,19 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class z1 extends HorizontalScrollView implements org.telegram.ui.ActionBar.p6, e3 {
-    public final h70 f46148a;
-    public final FrameLayout f46149b;
-    public final ImageView f46150c;
+    public final h70 f46151a;
+    public final FrameLayout f46152b;
+    public final ImageView f46153c;
     public int d;
 
     public z1(Context context, h70 h70Var) {
         super(context);
-        this.f46148a = h70Var;
+        this.f46151a = h70Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f46149b = frameLayout;
+        this.f46152b = frameLayout;
         addView(frameLayout, org.telegram.ui.Components.gb1.g(-2.0f, -2));
         ImageView imageView = new ImageView(context);
-        this.f46150c = imageView;
+        this.f46153c = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         frameLayout.addView(imageView, org.telegram.ui.Components.gb1.g(-2.0f, -2));
         updateColors();
@@ -62,7 +62,7 @@ public final class z1 extends HorizontalScrollView implements org.telegram.ui.Ac
             super.onLayout(z10, i10, i11, i12, i13);
             return;
         }
-        FrameLayout frameLayout = this.f46149b;
+        FrameLayout frameLayout = this.f46152b;
         frameLayout.layout((i14 - i15) / 2, 0, (i14 + i15) / 2, frameLayout.getMeasuredHeight());
     }
 
@@ -73,9 +73,9 @@ public final class z1 extends HorizontalScrollView implements org.telegram.ui.Ac
 
     public void setBlock(TL_iv.pageBlockMath pageblockmath) {
         li.r a2;
-        ImageView imageView = this.f46150c;
+        ImageView imageView = this.f46153c;
         imageView.setImageBitmap(null);
-        h70 h70Var = this.f46148a;
+        h70 h70Var = this.f46151a;
         h70Var.getClass();
         float f7 = 18;
         int dp = AndroidUtilities.dp(f7);
@@ -97,7 +97,7 @@ public final class z1 extends HorizontalScrollView implements org.telegram.ui.Ac
 
     @Override
     public final void updateColors() {
-        this.f46150c.setColorFilter(new PorterDuffColorFilter(this.f46148a.b(), PorterDuff.Mode.SRC_IN));
+        this.f46153c.setColorFilter(new PorterDuffColorFilter(this.f46151a.b(), PorterDuff.Mode.SRC_IN));
     }
 
     @Override

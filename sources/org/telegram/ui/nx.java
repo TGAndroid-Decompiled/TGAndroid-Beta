@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class nx implements org.telegram.ui.Components.f50 {
-    public final cy f42013a;
+    public final cy f42016a;
 
     public nx(cy cyVar) {
-        this.f42013a = cyVar;
+        this.f42016a = cyVar;
     }
 
     @Override
     public final void F(float f7) {
-        org.telegram.ui.Components.qc qcVar = this.f42013a.f38587e4;
+        org.telegram.ui.Components.qc qcVar = this.f42016a.f38590e4;
         if (qcVar != null) {
             ((org.telegram.ui.Components.hc) qcVar.e).setProgress(f7 * 0.9f);
         }
@@ -27,21 +27,21 @@ public final class nx implements org.telegram.ui.Components.f50 {
         org.telegram.ui.ActionBar.u6 u6Var;
         org.telegram.ui.ActionBar.u6 u6Var2;
         int i10;
-        cy cyVar = this.f42013a;
-        org.telegram.ui.Components.qc qcVar = cyVar.f38587e4;
+        cy cyVar = this.f42016a;
+        org.telegram.ui.Components.qc qcVar = cyVar.f38590e4;
         if (qcVar != null) {
             qcVar.b();
-            cyVar.f38587e4 = null;
+            cyVar.f38590e4 = null;
         }
         Activity parentActivity = cyVar.getParentActivity();
         u6Var = ((org.telegram.ui.ActionBar.r2) cyVar).resourceProvider;
         ?? nbVar = new org.telegram.ui.Components.nb(parentActivity, u6Var);
         org.telegram.ui.Components.gc gcVar = new org.telegram.ui.Components.gc(nbVar, parentActivity);
-        nbVar.f28910b = gcVar;
+        nbVar.f28912b = gcVar;
         gcVar.setWillNotDraw(false);
         nbVar.addView(gcVar, org.telegram.ui.Components.gb1.m(32.0f, 32.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(parentActivity);
-        nbVar.f28911c = y9Var;
+        nbVar.f28913c = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(14.0f));
         gcVar.addView(y9Var, org.telegram.ui.Components.gb1.i(28, 28, 17));
         org.telegram.ui.Components.s6 s6Var = new org.telegram.ui.Components.s6(parentActivity, false, false, false);
@@ -53,7 +53,7 @@ public final class nx implements org.telegram.ui.Components.f50 {
         nbVar.setTextColor(nbVar.getThemedColor(org.telegram.ui.ActionBar.y6.Hi));
         nbVar.setBackground(nbVar.getThemedColor(org.telegram.ui.ActionBar.y6.Fi));
         if (z10) {
-            y9Var.setImageBitmap(cyVar.f38571b4.f28424r);
+            y9Var.setImageBitmap(cyVar.f38574b4.f28426r);
         } else {
             y9Var.setImageBitmap(PhotoViewer.u1().C4.getBitmap());
         }
@@ -61,7 +61,7 @@ public final class nx implements org.telegram.ui.Components.f50 {
         u6Var2 = ((org.telegram.ui.ActionBar.r2) cyVar).resourceProvider;
         org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(parentActivity2, u6Var2, true);
         ocVar.e(LocaleController.getString(R.string.ViewAction));
-        ocVar.f31253b = new ui(this, 23);
+        ocVar.f31255b = new ui(this, 23);
         nbVar.setButton(ocVar);
         nbVar.getButton().setVisibility(8);
         if (z11) {
@@ -71,11 +71,11 @@ public final class nx implements org.telegram.ui.Components.f50 {
         }
         s6Var.c(LocaleController.getString(i10), true, true);
         org.telegram.ui.Components.qc b10 = org.telegram.ui.Components.wc.b0(cyVar).b(nbVar, -1);
-        cyVar.f38587e4 = b10;
-        b10.f31896s = false;
+        cyVar.f38590e4 = b10;
+        b10.f31898s = false;
         b10.i(false);
-        org.telegram.ui.Components.qc qcVar2 = cyVar.f38587e4;
-        qcVar2.f31897t = true;
+        org.telegram.ui.Components.qc qcVar2 = cyVar.f38590e4;
+        qcVar2.f31899t = true;
         qcVar2.j();
     }
 
@@ -86,14 +86,14 @@ public final class nx implements org.telegram.ui.Components.f50 {
             public final void run() {
                 org.telegram.ui.ActionBar.k kVar;
                 nx nxVar = nx.this;
-                cy cyVar = nxVar.f42013a;
+                cy cyVar = nxVar.f42016a;
                 TLRPC.InputFile inputFile3 = inputFile;
                 TLRPC.InputFile inputFile4 = inputFile2;
                 TLRPC.VideoSize videoSize2 = videoSize;
                 if (inputFile3 == null && inputFile4 == null && videoSize2 == null) {
-                    cyVar.f38577c4 = photoSize2.location;
-                    cyVar.f38582d4 = photoSize.location;
-                } else if (cyVar.f38577c4 == null) {
+                    cyVar.f38580c4 = photoSize2.location;
+                    cyVar.f38585d4 = photoSize.location;
+                } else if (cyVar.f38580c4 == null) {
                     return;
                 } else {
                     TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
@@ -126,24 +126,24 @@ public final class nx implements org.telegram.ui.Components.f50 {
 
     @Override
     public final qu0 getCloseIntoObject() {
-        cy cyVar = this.f42013a;
-        org.telegram.ui.Components.qc qcVar = cyVar.f38587e4;
+        cy cyVar = this.f42016a;
+        org.telegram.ui.Components.qc qcVar = cyVar.f38590e4;
         if (qcVar != null) {
             org.telegram.ui.Components.hc hcVar = (org.telegram.ui.Components.hc) qcVar.e;
             qu0 qu0Var = new qu0();
             int[] iArr = new int[2];
-            org.telegram.ui.Components.y9 y9Var = hcVar.f28911c;
-            org.telegram.ui.Components.y9 y9Var2 = hcVar.f28911c;
+            org.telegram.ui.Components.y9 y9Var = hcVar.f28913c;
+            org.telegram.ui.Components.y9 y9Var2 = hcVar.f28913c;
             y9Var.getLocationInWindow(iArr);
-            qu0Var.f42917b = iArr[0];
-            qu0Var.f42918c = iArr[1];
+            qu0Var.f42920b = iArr[0];
+            qu0Var.f42921c = iArr[1];
             qu0Var.d = cyVar.fragmentView;
             ImageReceiver imageReceiver = y9Var2.getImageReceiver();
-            qu0Var.f42916a = imageReceiver;
+            qu0Var.f42919a = imageReceiver;
             qu0Var.e = imageReceiver.getBitmapSafe();
-            qu0Var.f42921i = 0;
-            qu0Var.h = qu0Var.f42916a.getRoundRadius();
-            qu0Var.f42923k = y9Var2.getScaleX();
+            qu0Var.f42924i = 0;
+            qu0Var.h = qu0Var.f42919a.getRoundRadius();
+            qu0Var.f42926k = y9Var2.getScaleX();
             return qu0Var;
         }
         return null;

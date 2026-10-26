@@ -2,35 +2,35 @@ package r0;
 
 import a8.rf;
 public abstract class a1 {
-    public final k1 f47070a;
-    public i0.b[] f47071b;
+    public final k1 f47073a;
+    public i0.b[] f47074b;
 
     public a1() {
         this(new k1());
     }
 
     public final void a() {
-        i0.b[] bVarArr = this.f47071b;
+        i0.b[] bVarArr = this.f47074b;
         if (bVarArr != null) {
             i0.b bVar = bVarArr[0];
             i0.b bVar2 = bVarArr[1];
-            k1 k1Var = this.f47070a;
+            k1 k1Var = this.f47073a;
             if (bVar2 == null) {
-                bVar2 = k1Var.f47115a.f(2);
+                bVar2 = k1Var.f47118a.f(2);
             }
             if (bVar == null) {
-                bVar = k1Var.f47115a.f(1);
+                bVar = k1Var.f47118a.f(1);
             }
             g(i0.b.a(bVar, bVar2));
-            i0.b bVar3 = this.f47071b[rf.a(16)];
+            i0.b bVar3 = this.f47074b[rf.a(16)];
             if (bVar3 != null) {
                 f(bVar3);
             }
-            i0.b bVar4 = this.f47071b[rf.a(32)];
+            i0.b bVar4 = this.f47074b[rf.a(32)];
             if (bVar4 != null) {
                 d(bVar4);
             }
-            i0.b bVar5 = this.f47071b[rf.a(64)];
+            i0.b bVar5 = this.f47074b[rf.a(64)];
             if (bVar5 != null) {
                 h(bVar5);
             }
@@ -40,12 +40,12 @@ public abstract class a1 {
     public abstract k1 b();
 
     public void c(int i10, i0.b bVar) {
-        if (this.f47071b == null) {
-            this.f47071b = new i0.b[10];
+        if (this.f47074b == null) {
+            this.f47074b = new i0.b[10];
         }
         for (int i11 = 1; i11 <= 512; i11 <<= 1) {
             if ((i10 & i11) != 0) {
-                this.f47071b[rf.a(i11)] = bVar;
+                this.f47074b[rf.a(i11)] = bVar;
             }
         }
     }
@@ -55,7 +55,7 @@ public abstract class a1 {
     public abstract void g(i0.b bVar);
 
     public a1(k1 k1Var) {
-        this.f47070a = k1Var;
+        this.f47073a = k1Var;
     }
 
     public void d(i0.b bVar) {

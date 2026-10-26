@@ -41,7 +41,7 @@ public final class a1 extends org.telegram.ui.Cells.s1 {
     @Override
     public final Paint M2(String str) {
         if ("paintChatActionBackground".equals(str)) {
-            this.Ne.h.f48214v0 = true;
+            this.Ne.h.f48217v0 = true;
             Paint c10 = this.He.c(1.0f);
             if (c10 != null) {
                 return c10;
@@ -57,7 +57,7 @@ public final class a1 extends org.telegram.ui.Cells.s1 {
         ImageReceiver photoImage = getPhotoImage();
         b1 b1Var = this.Ne;
         q5 q5Var = b1Var.h;
-        if (b1Var.f48158f && photoImage != null && (((n6Var = b1Var.e) != null && n6Var.f11306g && n6Var.d && q5Var.f48216x0) || q5Var.f48213u0 || (q5Var.f48215w0 != null && q5Var.M0.f10822x0))) {
+        if (b1Var.f48161f && photoImage != null && (((n6Var = b1Var.e) != null && n6Var.f11306g && n6Var.d && q5Var.f48219x0) || q5Var.f48216u0 || (q5Var.f48218w0 != null && q5Var.M0.f10822x0))) {
             int i10 = 0;
             while (true) {
                 int length = photoImage.getRoundRadius().length;
@@ -75,22 +75,22 @@ public final class a1 extends org.telegram.ui.Cells.s1 {
             Path path = this.Je;
             path.rewind();
             path.addRoundRect(rectF, fArr, Path.Direction.CW);
-            TextureView textureView = q5Var.f48215w0;
+            TextureView textureView = q5Var.f48218w0;
             if (textureView != null && q5Var.M0.f10822x0) {
                 Bitmap bitmap = textureView.getBitmap();
                 if (bitmap != null) {
                     canvas.save();
                     canvas.clipPath(path);
                     canvas.translate(-getX(), -getY());
-                    float max = Math.max(photoImage.getImageWidth() / q5Var.f48217y0, photoImage.getImageHeight() / q5Var.f48218z0);
-                    canvas.translate(photoImage.getCenterX() - ((q5Var.f48217y0 * max) / 2.0f), photoImage.getCenterY() - ((q5Var.f48218z0 * max) / 2.0f));
-                    canvas.scale((q5Var.f48217y0 / q5Var.f48215w0.getWidth()) * max, (q5Var.f48218z0 / q5Var.f48215w0.getHeight()) * max);
+                    float max = Math.max(photoImage.getImageWidth() / q5Var.f48220y0, photoImage.getImageHeight() / q5Var.f48221z0);
+                    canvas.translate(photoImage.getCenterX() - ((q5Var.f48220y0 * max) / 2.0f), photoImage.getCenterY() - ((q5Var.f48221z0 * max) / 2.0f));
+                    canvas.scale((q5Var.f48220y0 / q5Var.f48218w0.getWidth()) * max, (q5Var.f48221z0 / q5Var.f48218w0.getHeight()) * max);
                     int width = bitmap.getWidth();
                     int height = bitmap.getHeight();
                     Rect rect = this.Le;
                     rect.set(0, 0, width, height);
                     RectF rectF2 = this.Me;
-                    rectF2.set(0.0f, 0.0f, q5Var.f48215w0.getWidth(), q5Var.f48215w0.getHeight());
+                    rectF2.set(0.0f, 0.0f, q5Var.f48218w0.getWidth(), q5Var.f48218w0.getHeight());
                     canvas.drawBitmap(bitmap, rect, rectF2, (Paint) null);
                     canvas.restore();
                     return true;
@@ -108,7 +108,7 @@ public final class a1 extends org.telegram.ui.Cells.s1 {
         Canvas canvas2;
         b1 b1Var = this.Ne;
         n6 n6Var = b1Var.e;
-        if ((n6Var != null && n6Var.f11306g && n6Var.d) || b1Var.h.f48213u0) {
+        if ((n6Var != null && n6Var.f11306g && n6Var.d) || b1Var.h.f48216u0) {
             canvas2 = canvas;
             canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         } else {

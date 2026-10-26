@@ -126,15 +126,15 @@ public final class k0 implements f50, b2, p6, bm0, MessagesStorage.BooleanCallba
         r6 r6Var = (r6) this.f1331c;
         ArrayList arrayList = (ArrayList) this.d;
         ArrayList arrayList2 = (ArrayList) this.e;
-        StaticLayout j10 = r6Var.j(this.f1330b - ((int) Math.ceil(Math.min(r6Var.d, r6Var.f32125j))), charSequence);
+        StaticLayout j10 = r6Var.j(this.f1330b - ((int) Math.ceil(Math.min(r6Var.d, r6Var.f32127j))), charSequence);
         o6 o6Var = new o6(r6Var, j10, r6Var.d, arrayList.size());
-        o6 o6Var2 = new o6(r6Var, j10, r6Var.f32125j, arrayList2.size());
+        o6 o6Var2 = new o6(r6Var, j10, r6Var.f32127j, arrayList2.size());
         arrayList2.add(o6Var);
         arrayList.add(o6Var2);
         float f7 = r6Var.d;
-        float f10 = o6Var.f31162f;
+        float f10 = o6Var.f31164f;
         r6Var.d = f7 + f10;
-        r6Var.f32125j += f10;
+        r6Var.f32127j += f10;
         r6Var.f(o6Var);
         r6Var.g(o6Var2);
     }
@@ -145,7 +145,7 @@ public final class k0 implements f50, b2, p6, bm0, MessagesStorage.BooleanCallba
         oo0 oo0Var = (oo0) this.f1331c;
         r2 r2Var = (r2) this.d;
         u6 u6Var = (u6) this.e;
-        ArrayList arrayList = oo0Var.f31339r;
+        ArrayList arrayList = oo0Var.f31341r;
         if (i10 >= 0 && i10 < arrayList.size()) {
             int i12 = this.f1330b;
             if (UserConfig.getInstance(i12).isPremium()) {
@@ -153,15 +153,15 @@ public final class k0 implements f50, b2, p6, bm0, MessagesStorage.BooleanCallba
                     new tg.y0(r2Var, 24, true).show();
                     return true;
                 }
-                mo0 mo0Var = ((no0) view).f31047a;
+                mo0 mo0Var = ((no0) view).f31049a;
                 if (mo0Var != null) {
                     mo0Var.q();
                 }
                 lo0 lo0Var = (lo0) arrayList.get(i10);
                 k80 H = k80.H(r2Var, view);
-                H.f29848i = 3;
+                H.f29850i = 3;
                 int i13 = R.drawable.menu_tag_rename;
-                if (TextUtils.isEmpty(lo0Var.f30235c)) {
+                if (TextUtils.isEmpty(lo0Var.f30237c)) {
                     i11 = R.string.SavedTagLabelTag;
                 } else {
                     i11 = R.string.SavedTagRenameTag;
@@ -182,7 +182,7 @@ public final class k0 implements f50, b2, p6, bm0, MessagesStorage.BooleanCallba
         if (VoIPService.getSharedInstance() != null) {
             AndroidUtilities.cancelRunOnUIThread(ph1Var.S0);
             ph1Var.R0 = false;
-            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(ph1Var.f42510b, false, Integer.valueOf(this.f1330b));
+            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(ph1Var.f42513b, false, Integer.valueOf(this.f1330b));
             ph1Var.t(l3Var, voIPService);
         }
     }
@@ -218,8 +218,8 @@ public final class k0 implements f50, b2, p6, bm0, MessagesStorage.BooleanCallba
                 final boolean z10 = tL_username.active;
                 final String str = tL_username.username;
                 final boolean z11 = !z10;
-                ta taVar = iaVar.f40195a;
-                long j10 = taVar.f43712x;
+                ta taVar = iaVar.f40198a;
+                long j10 = taVar.f43715x;
                 if (j10 == 0) {
                     TL_account.toggleUsername toggleusername2 = new TL_account.toggleUsername();
                     toggleusername2.username = str;
@@ -240,7 +240,7 @@ public final class k0 implements f50, b2, p6, bm0, MessagesStorage.BooleanCallba
                         AndroidUtilities.runOnUIThread(new org.telegram.messenger.zi(ia.this, str, tLObject, i13, z11, tL_error, tL_username, z10));
                     }
                 });
-                taVar.f43711w.add(tL_username.username);
+                taVar.f43714w.add(tL_username.username);
                 ((qa) view).setLoading(true);
                 return;
             case 2:
@@ -275,7 +275,7 @@ public final class k0 implements f50, b2, p6, bm0, MessagesStorage.BooleanCallba
                 tL_messages_editMessage.media = tL_inputMediaPoll;
                 int i14 = this.f1330b;
                 tL_messages_editMessage.peer = MessagesController.getInstance(i14).getInputPeer(aw0Var.l1);
-                tL_messages_editMessage.f22110id = messageObject.getId();
+                tL_messages_editMessage.f22111id = messageObject.getId();
                 tL_messages_editMessage.flags |= 16384;
                 AndroidUtilities.runOnUIThread(new ns0(e2VarArr, i14, ConnectionsManager.getInstance(i14).sendRequest(tL_messages_editMessage, new q8(aw0Var, e2VarArr, i14, tL_messages_editMessage, 5)), 1), 500L);
                 return;

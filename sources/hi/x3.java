@@ -188,8 +188,8 @@ public final class x3 extends ClickableSpan {
             }
         }, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortProfitability), z12);
         H.V(5);
-        H.f29867t = false;
-        H.f29866s = 0;
+        H.f29869t = false;
+        H.f29868s = 0;
         H.a0(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f));
         H.Z();
     }

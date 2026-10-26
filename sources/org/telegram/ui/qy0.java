@@ -28,10 +28,10 @@ public final class qy0 extends s4.l {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f47785p.isEmpty();
-        boolean isEmpty2 = this.f47787r.isEmpty();
-        boolean isEmpty3 = this.f47788s.isEmpty();
-        boolean isEmpty4 = this.f47786q.isEmpty();
+        boolean isEmpty = this.f47788p.isEmpty();
+        boolean isEmpty2 = this.f47790r.isEmpty();
+        boolean isEmpty3 = this.f47791s.isEmpty();
+        boolean isEmpty4 = this.f47789q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addUpdateListener(new b3(this, 25));

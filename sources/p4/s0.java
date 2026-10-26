@@ -21,21 +21,21 @@ import org.telegram.ui.Components.cy0;
 import org.telegram.ui.Components.voip.j1;
 import org.telegram.ui.yx;
 public final class s0 {
-    public boolean f46753a;
-    public final Object f46754b;
-    public final Object f46755c;
+    public boolean f46756a;
+    public final Object f46757b;
+    public final Object f46758c;
     public final Object d;
     public final Object e;
-    public final Serializable f46756f;
-    public Object f46757g;
+    public final Serializable f46759f;
+    public Object f46760g;
     public Object h;
 
     public s0(Context context, e eVar) {
-        this.f46756f = new ArrayList();
-        this.f46757g = new androidx.mediarouter.app.g(this, 10);
+        this.f46759f = new ArrayList();
+        this.f46760g = new androidx.mediarouter.app.g(this, 10);
         this.h = new cy0(this, 8);
-        this.f46754b = context;
-        this.f46755c = eVar;
+        this.f46757b = context;
+        this.f46758c = eVar;
         this.d = new Handler();
         this.e = context.getPackageManager();
     }
@@ -46,7 +46,7 @@ public final class s0 {
         } catch (FileNotFoundException e) {
             String message = e.getMessage();
             if (message != null && message.contains("compressed")) {
-                ((r4.c) this.f46755c).T();
+                ((r4.c) this.f46758c).T();
                 return null;
             }
             return null;
@@ -54,16 +54,16 @@ public final class s0 {
     }
 
     public void b(int i10, Serializable serializable) {
-        ((Executor) this.f46754b).execute(new yx(this, i10, serializable, 22));
+        ((Executor) this.f46757b).execute(new yx(this, i10, serializable, 22));
     }
 
     public void c() {
         boolean f7;
         int i10;
-        e eVar = (e) this.f46755c;
+        e eVar = (e) this.f46758c;
         PackageManager packageManager = (PackageManager) this.e;
-        ArrayList arrayList = (ArrayList) this.f46756f;
-        if (this.f46753a) {
+        ArrayList arrayList = (ArrayList) this.f46759f;
+        if (this.f46756a) {
             ArrayList arrayList2 = new ArrayList();
             if (Build.VERSION.SDK_INT >= 30) {
                 Intent intent = new Intent("android.media.MediaRoute2ProviderService");
@@ -82,7 +82,7 @@ public final class s0 {
                 }
                 ServiceInfo serviceInfo = it.next().serviceInfo;
                 if (serviceInfo != null) {
-                    if (x.f46785c == null) {
+                    if (x.f46788c == null) {
                         f7 = false;
                     } else {
                         f7 = x.c().f();
@@ -104,7 +104,7 @@ public final class s0 {
                     int i13 = 0;
                     while (true) {
                         if (i13 < size2) {
-                            ComponentName componentName = ((r0) arrayList.get(i13)).f46748r;
+                            ComponentName componentName = ((r0) arrayList.get(i13)).f46751r;
                             if (componentName.getPackageName().equals(str) && componentName.getClassName().equals(str2)) {
                                 break;
                             }
@@ -115,10 +115,10 @@ public final class s0 {
                         }
                     }
                     if (i13 < 0) {
-                        r0 r0Var = new r0((Context) this.f46754b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
+                        r0 r0Var = new r0((Context) this.f46757b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
                         r0Var.F = new j1(this, r0Var);
-                        if (!r0Var.f46750w) {
-                            r0Var.f46750w = true;
+                        if (!r0Var.f46753w) {
+                            r0Var.f46753w = true;
                             r0Var.r();
                         }
                         i10 = i11 + 1;
@@ -126,12 +126,12 @@ public final class s0 {
                         eVar.a(r0Var, false);
                     } else if (i13 >= i11) {
                         r0 r0Var2 = (r0) arrayList.get(i13);
-                        if (!r0Var2.f46750w) {
-                            r0Var2.f46750w = true;
+                        if (!r0Var2.f46753w) {
+                            r0Var2.f46753w = true;
                             r0Var2.r();
                         }
-                        if (r0Var2.f46752y == null) {
-                            if (!r0Var2.f46750w || (((n) r0Var2.h) == null && r0Var2.v.isEmpty())) {
+                        if (r0Var2.f46755y == null) {
+                            if (!r0Var2.f46753w || (((n) r0Var2.h) == null && r0Var2.v.isEmpty())) {
                                 z10 = false;
                             }
                             if (z10) {
@@ -155,13 +155,13 @@ public final class s0 {
                         r0Var3.f7392f = null;
                         r0Var3.h(null);
                         eVar.m(d, null);
-                        eVar.f46655a.b(514, d);
-                        eVar.f46663l.remove(d);
+                        eVar.f46658a.b(514, d);
+                        eVar.f46666l.remove(d);
                     }
                     arrayList.remove(r0Var3);
                     r0Var3.F = null;
-                    if (r0Var3.f46750w) {
-                        r0Var3.f46750w = false;
+                    if (r0Var3.f46753w) {
+                        r0Var3.f46753w = false;
                         r0Var3.r();
                     }
                 }
@@ -170,10 +170,10 @@ public final class s0 {
     }
 
     public s0(AssetManager assetManager, Executor executor, r4.c cVar, String str, File file) {
-        this.f46753a = false;
-        this.f46754b = executor;
-        this.f46755c = cVar;
-        this.f46756f = str;
+        this.f46756a = false;
+        this.f46757b = executor;
+        this.f46758c = cVar;
+        this.f46759f = str;
         this.e = file;
         int i10 = Build.VERSION.SDK_INT;
         byte[] bArr = null;
@@ -184,10 +184,10 @@ public final class s0 {
                     bArr = r4.d.h;
                     break;
                 case 26:
-                    bArr = r4.d.f47285g;
+                    bArr = r4.d.f47288g;
                     break;
                 case 27:
-                    bArr = r4.d.f47284f;
+                    bArr = r4.d.f47287f;
                     break;
                 case 28:
                 case 29:

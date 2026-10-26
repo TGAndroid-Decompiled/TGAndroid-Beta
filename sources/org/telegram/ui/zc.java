@@ -13,27 +13,27 @@ import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class zc extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final int f46249a;
-    public final org.telegram.ui.ActionBar.u6 f46250b;
-    public final ArrayList f46251c;
+    public final int f46252a;
+    public final org.telegram.ui.ActionBar.u6 f46253b;
+    public final ArrayList f46254c;
     public final za1 d;
     public final org.telegram.ui.Components.c10 e;
-    public boolean f46252f;
+    public boolean f46255f;
     public final xc h;
-    public boolean f46253n;
-    public Utilities.Callback f46254r;
-    public String f46255s;
+    public boolean f46256n;
+    public Utilities.Callback f46257r;
+    public String f46258s;
     public TLRPC.WallPaper v;
-    public final HashMap f46256w;
-    public final HashMap f46257x;
+    public final HashMap f46259w;
+    public final HashMap f46260x;
 
     public zc(int i10, Activity activity, org.telegram.ui.ActionBar.u6 u6Var) {
         super(activity);
-        this.f46251c = new ArrayList();
-        this.f46256w = new HashMap();
-        this.f46257x = new HashMap();
-        this.f46249a = i10;
-        this.f46250b = u6Var;
+        this.f46254c = new ArrayList();
+        this.f46259w = new HashMap();
+        this.f46260x = new HashMap();
+        this.f46252a = i10;
+        this.f46253b = u6Var;
         org.telegram.ui.Components.c10 c10Var = new org.telegram.ui.Components.c10(getContext(), u6Var);
         this.e = c10Var;
         c10Var.setViewType(14);
@@ -59,7 +59,7 @@ public final class zc extends FrameLayout implements org.telegram.ui.ActionBar.p
         chatThemeController.preloadAllWallpaperImages(true);
         chatThemeController.preloadAllWallpaperImages(false);
         chatThemeController.requestAllChatThemes(new yc(this, i10), true);
-        if (!this.f46253n) {
+        if (!this.f46256n) {
             AndroidUtilities.updateViewVisibilityAnimated(c10Var, true, 1.0f, true, false);
         } else {
             AndroidUtilities.updateViewVisibilityAnimated(c10Var, false, 1.0f, true, false);
@@ -69,17 +69,17 @@ public final class zc extends FrameLayout implements org.telegram.ui.ActionBar.p
     public final void a(String str, boolean z10) {
         ArrayList arrayList;
         int R;
-        this.f46255s = str;
+        this.f46258s = str;
         int i10 = -1;
         int i11 = 0;
         while (true) {
-            arrayList = this.f46251c;
+            arrayList = this.f46254c;
             boolean z11 = true;
             if (i11 >= arrayList.size()) {
                 break;
             }
             org.telegram.ui.Components.xp xpVar = (org.telegram.ui.Components.xp) arrayList.get(i11);
-            if (!TextUtils.equals(this.f46255s, xpVar.a()) && (!TextUtils.isEmpty(str) || !xpVar.f34790a.f22680a)) {
+            if (!TextUtils.equals(this.f46258s, xpVar.a()) && (!TextUtils.isEmpty(str) || !xpVar.f34793a.f22682a)) {
                 z11 = false;
             }
             xpVar.d = z11;
@@ -109,27 +109,27 @@ public final class zc extends FrameLayout implements org.telegram.ui.ActionBar.p
         this.v = wallPaper;
         AndroidUtilities.forEachViews((RecyclerView) this.d, (Utilities.Callback<View>) new vc(this, 1));
         if (this.v != null) {
-            ArrayList arrayList = this.f46251c;
-            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.xp) arrayList.get(0)).f34790a.f22680a) && this.f46252f) {
-                arrayList.add(0, new org.telegram.ui.Components.xp(org.telegram.ui.ActionBar.h4.a(this.f46249a)));
+            ArrayList arrayList = this.f46254c;
+            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.xp) arrayList.get(0)).f34793a.f22682a) && this.f46255f) {
+                arrayList.add(0, new org.telegram.ui.Components.xp(org.telegram.ui.ActionBar.h4.a(this.f46252a)));
                 this.h.l();
             }
         }
     }
 
     public void setOnEmoticonSelected(Utilities.Callback<String> callback) {
-        this.f46254r = callback;
+        this.f46257r = callback;
     }
 
     public void setWithRemovedStub(boolean z10) {
-        this.f46252f = z10;
+        this.f46255f = z10;
     }
 
     @Override
     public final void updateColors() {
         ?? r02;
         xc xcVar;
-        org.telegram.ui.ActionBar.u6 u6Var = this.f46250b;
+        org.telegram.ui.ActionBar.u6 u6Var = this.f46253b;
         if (u6Var != null) {
             r02 = u6Var.a();
         } else {
@@ -138,13 +138,13 @@ public final class zc extends FrameLayout implements org.telegram.ui.ActionBar.p
         int i10 = 0;
         boolean z10 = false;
         while (true) {
-            ArrayList arrayList = this.f46251c;
+            ArrayList arrayList = this.f46254c;
             if (i10 >= arrayList.size()) {
                 break;
             }
             org.telegram.ui.Components.xp xpVar = (org.telegram.ui.Components.xp) arrayList.get(i10);
-            if (xpVar.f34792c != r02) {
-                xpVar.f34792c = r02;
+            if (xpVar.f34795c != r02) {
+                xpVar.f34795c = r02;
                 z10 = true;
             }
             i10++;

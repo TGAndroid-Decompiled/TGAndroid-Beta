@@ -6,24 +6,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.WallpapersListActivity;
 public final class hp implements View.OnClickListener {
-    public final int f29032a;
-    public final yp f29033b;
+    public final int f29034a;
+    public final yp f29035b;
 
     public hp(yp ypVar, int i10) {
-        this.f29032a = i10;
-        this.f29033b = ypVar;
+        this.f29034a = i10;
+        this.f29035b = ypVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f29032a) {
+        switch (this.f29034a) {
             case 0:
-                yp ypVar = this.f29033b;
+                yp ypVar = this.f29035b;
                 ti tiVar = ypVar.X;
-                if (tiVar.B0 == tiVar.f33030j0) {
+                if (tiVar.B0 == tiVar.f33033j0) {
                     ypVar.Z.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
                     ypVar.X.H1();
-                    ij ijVar = ypVar.X.f33054r0;
+                    ij ijVar = ypVar.X.f33057r0;
                     boolean z10 = ypVar.M;
                     za zaVar = ijVar.v;
                     ((ArrayList) zaVar.e).clear();
@@ -33,10 +33,10 @@ public final class hp implements View.OnClickListener {
                 }
                 ypVar.Z.setText(LocaleController.getString(R.string.SetColorAsBackground));
                 ti tiVar2 = ypVar.X;
-                tiVar2.X1(tiVar2.f33030j0);
+                tiVar2.X1(tiVar2.f33033j0);
                 return;
             case 1:
-                yp ypVar2 = this.f29033b;
+                yp ypVar2 = this.f29035b;
                 if (ypVar2.A()) {
                     ypVar2.F(true);
                     ypVar2.L(true);
@@ -45,14 +45,14 @@ public final class hp implements View.OnClickListener {
                 ypVar2.dismiss();
                 return;
             case 2:
-                yp ypVar3 = this.f29033b;
+                yp ypVar3 = this.f29035b;
                 if (ypVar3.S == null) {
                     ypVar3.H(!ypVar3.M);
                     return;
                 }
                 return;
             default:
-                this.f29033b.u(false);
+                this.f29035b.u(false);
                 return;
         }
     }

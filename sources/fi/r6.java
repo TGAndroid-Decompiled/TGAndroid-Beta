@@ -28,7 +28,7 @@ public final class r6 {
         paint.setShadowLayer(1.0804527E9f, 0.0f, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f));
         this.f11554j = new Path();
         this.f11548a = a0Var;
-        ds dsVar = ds.f27585g;
+        ds dsVar = ds.f27587g;
         this.d = new org.telegram.ui.Components.h6(0.0f, a0Var, 0L, 320L, dsVar);
         this.e = new org.telegram.ui.Components.h6(0.0f, a0Var, 0L, 160L, dsVar);
         this.f11551f = new org.telegram.ui.Components.h6(0.0f, a0Var, 0L, 160L, dsVar);

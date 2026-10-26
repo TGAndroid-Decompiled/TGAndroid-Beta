@@ -13,10 +13,10 @@ import org.telegram.ui.ActionBar.e2;
 import org.telegram.ui.Components.id0;
 import zh.g4;
 public final class d implements b2, id0, e9.k, e2.j, Continuation, s9.d, GenericProvider {
-    public final int f50154a;
+    public final int f50157a;
 
     public d(int i10) {
-        this.f50154a = i10;
+        this.f50157a = i10;
     }
 
     @Override
@@ -32,14 +32,14 @@ public final class d implements b2, id0, e9.k, e2.j, Continuation, s9.d, Generic
     @Override
     public Object d1(me meVar) {
         Set x9 = meVar.x(za.a.class);
-        za.c cVar = za.c.f52839c;
+        za.c cVar = za.c.f52842c;
         if (cVar == null) {
             synchronized (za.c.class) {
                 try {
-                    cVar = za.c.f52839c;
+                    cVar = za.c.f52842c;
                     if (cVar == null) {
                         cVar = new za.c(0);
-                        za.c.f52839c = cVar;
+                        za.c.f52842c = cVar;
                     }
                 } finally {
                 }
@@ -50,7 +50,7 @@ public final class d implements b2, id0, e9.k, e2.j, Continuation, s9.d, Generic
 
     @Override
     public String f(int i10) {
-        switch (this.f50154a) {
+        switch (this.f50157a) {
             case 1:
                 return String.valueOf(i10);
             default:
@@ -60,7 +60,7 @@ public final class d implements b2, id0, e9.k, e2.j, Continuation, s9.d, Generic
 
     @Override
     public void h(e2 e2Var, int i10) {
-        switch (this.f50154a) {
+        switch (this.f50157a) {
             case 0:
                 return;
             case 3:
@@ -81,7 +81,7 @@ public final class d implements b2, id0, e9.k, e2.j, Continuation, s9.d, Generic
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = g4.f53009k0;
+        int i10 = g4.f53012k0;
         return 0;
     }
 
@@ -91,10 +91,10 @@ public final class d implements b2, id0, e9.k, e2.j, Continuation, s9.d, Generic
         File file;
         if (task.isSuccessful()) {
             y9.b bVar = (y9.b) task.getResult();
-            v9.b bVar2 = v9.b.f50097a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f52413b);
+            v9.b bVar2 = v9.b.f50100a;
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f52416b);
             z10 = true;
-            if (bVar.f52414c.delete()) {
+            if (bVar.f52417c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
@@ -107,7 +107,7 @@ public final class d implements b2, id0, e9.k, e2.j, Continuation, s9.d, Generic
     }
 
     public d(aa.m0 m0Var) {
-        this.f50154a = 13;
+        this.f50157a = 13;
     }
 
     private final void b(e2 e2Var, int i10) {

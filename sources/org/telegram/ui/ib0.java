@@ -55,10 +55,10 @@ public final class ib0 extends r60 {
     public final void o0(HashSet hashSet) {
         if (hashSet.size() == 1) {
             TLRPC.User user = getMessagesController().getUser((Long) hashSet.iterator().next());
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(user.f22174id);
+            TLRPC.UserFull userFull = getMessagesController().getUserFull(user.f22176id);
             if (userFull == null) {
                 TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f22167id = getMessagesController().getInputUser(user.f22174id);
+                tL_users_getFullUser.f22169id = getMessagesController().getInputUser(user.f22176id);
                 getConnectionsManager().sendRequest(tL_users_getFullUser, new j10(7, this, user));
                 return;
             }

@@ -80,16 +80,16 @@ public final class d7 extends org.telegram.ui.Components.ua {
         }
         float f15 = f14 + f7;
         this.X.addView(w01Var, gb1.v(-1, -2, 7, f15, 16.0f, f15, 15.0f));
-        TextView L3 = gb1.L(context, 12.0f, org.telegram.ui.ActionBar.y6.f23746y6, false, null);
+        TextView L3 = gb1.L(context, 12.0f, org.telegram.ui.ActionBar.y6.f23748y6, false, null);
         L3.setGravity(17);
         L3.setText(LocaleController.getString(R.string.Gift2UpgradeCostsFooter));
         this.X.addView(L3, gb1.x(-1, -2, 17, 32, 0, 32, 15));
         float f16 = this.backgroundPaddingLeft / AndroidUtilities.density;
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.Y = frameLayout;
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23425h5, frameLayout, this.resourcesProvider);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23427h5, frameLayout, this.resourcesProvider);
         View view = new View(getContext());
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23355d7, view, this.resourcesProvider);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d7, view, this.resourcesProvider);
         this.Y.addView(view, gb1.e(-1.0f, 1.0f / AndroidUtilities.density, 55));
         fi.d dVar = new fi.d(getContext(), this.resourcesProvider, true);
         this.Z = dVar;

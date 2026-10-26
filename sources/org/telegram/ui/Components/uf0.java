@@ -9,18 +9,18 @@ import android.view.View;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 public final class uf0 extends View {
-    public int f33385a;
-    public boolean f33386b;
-    public boolean f33387c;
+    public int f33388a;
+    public boolean f33389b;
+    public boolean f33390c;
     public float d;
     public hl0 e;
-    public Paint f33388f;
+    public Paint f33391f;
     public Paint h;
-    public Paint f33389n;
-    public TextPaint f33390r;
-    public Path f33391s;
+    public Paint f33392n;
+    public TextPaint f33393r;
+    public Path f33394s;
     public tf0 v;
-    public ag0 f33392w;
+    public ag0 f33395w;
 
     public final void a(int i10, MotionEvent motionEvent) {
         bg0 bg0Var;
@@ -28,15 +28,15 @@ public final class uf0 extends View {
         float y3 = motionEvent.getY();
         if (i10 != 1) {
             if (i10 != 2) {
-                if ((i10 == 3 || i10 == 4 || i10 == 5) && this.f33385a != 0) {
-                    this.f33385a = 0;
+                if ((i10 == 3 || i10 == 4 || i10 == 5) && this.f33388a != 0) {
+                    this.f33388a = 0;
                     return;
                 }
                 return;
             }
             float min = Math.min(2.0f, (this.d - y3) / 8.0f);
-            ag0 ag0Var = this.f33392w;
-            int i11 = ag0Var.f26500f;
+            ag0 ag0Var = this.f33395w;
+            int i11 = ag0Var.f26502f;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -46,15 +46,15 @@ public final class uf0 extends View {
                             bg0Var = ag0Var.d;
                         }
                     } else {
-                        bg0Var = ag0Var.f26499c;
+                        bg0Var = ag0Var.f26501c;
                     }
                 } else {
-                    bg0Var = ag0Var.f26498b;
+                    bg0Var = ag0Var.f26500b;
                 }
             } else {
-                bg0Var = ag0Var.f26497a;
+                bg0Var = ag0Var.f26499a;
             }
-            int i12 = this.f33385a;
+            int i12 = this.f33388a;
             if (i12 != 1) {
                 if (i12 != 2) {
                     if (i12 != 3) {
@@ -66,29 +66,29 @@ public final class uf0 extends View {
                             bg0Var.d = org.telegram.messenger.vh.A(bg0Var.d, min, 100.0f, 0.0f);
                         }
                     } else {
-                        bg0Var.f26850c = org.telegram.messenger.vh.A(bg0Var.f26850c, min, 100.0f, 0.0f);
+                        bg0Var.f26852c = org.telegram.messenger.vh.A(bg0Var.f26852c, min, 100.0f, 0.0f);
                     }
                 } else {
-                    bg0Var.f26849b = org.telegram.messenger.vh.A(bg0Var.f26849b, min, 100.0f, 0.0f);
+                    bg0Var.f26851b = org.telegram.messenger.vh.A(bg0Var.f26851b, min, 100.0f, 0.0f);
                 }
             } else {
-                bg0Var.f26848a = org.telegram.messenger.vh.A(bg0Var.f26848a, min, 100.0f, 0.0f);
+                bg0Var.f26850a = org.telegram.messenger.vh.A(bg0Var.f26850a, min, 100.0f, 0.0f);
             }
             invalidate();
             tf0 tf0Var = this.v;
             if (tf0Var != null) {
-                eg0 eg0Var = ((vf0) tf0Var).f33642a;
+                eg0 eg0Var = ((vf0) tf0Var).f33645a;
                 eg0Var.g();
-                e00 e00Var = eg0Var.f27841l0;
+                e00 e00Var = eg0Var.f27843l0;
                 if (e00Var != null) {
                     e00Var.d(false, false, false);
                 }
             }
             this.d = y3;
-        } else if (this.f33385a != 0) {
+        } else if (this.f33388a != 0) {
         } else {
             hl0 hl0Var = this.e;
-            this.f33385a = (int) Math.floor(c3.h0.B(x9, hl0Var.f29007a, hl0Var.f29009c / 5.0f, 1.0f));
+            this.f33388a = (int) Math.floor(c3.h0.B(x9, hl0Var.f29009a, hl0Var.f29011c / 5.0f, 1.0f));
         }
     }
 
@@ -97,23 +97,23 @@ public final class uf0 extends View {
         bg0 bg0Var;
         int i10;
         String format;
-        TextPaint textPaint = this.f33390r;
-        Path path = this.f33391s;
-        Paint paint = this.f33389n;
-        ag0 ag0Var = this.f33392w;
+        TextPaint textPaint = this.f33393r;
+        Path path = this.f33394s;
+        Paint paint = this.f33392n;
+        ag0 ag0Var = this.f33395w;
         hl0 hl0Var = this.e;
-        float f7 = hl0Var.f29009c / 5.0f;
+        float f7 = hl0Var.f29011c / 5.0f;
         for (int i11 = 0; i11 < 4; i11++) {
-            float f10 = hl0Var.f29007a;
+            float f10 = hl0Var.f29009a;
             float f11 = i11 * f7;
             float f12 = f10 + f7 + f11;
-            float f13 = hl0Var.f29008b;
-            canvas.drawLine(f12, f13, f11 + f10 + f7, f13 + hl0Var.d, this.f33388f);
+            float f13 = hl0Var.f29010b;
+            canvas.drawLine(f12, f13, f11 + f10 + f7, f13 + hl0Var.d, this.f33391f);
         }
-        float f14 = hl0Var.f29007a;
-        float f15 = hl0Var.f29008b;
-        canvas.drawLine(f14, f15 + hl0Var.d, f14 + hl0Var.f29009c, f15, this.h);
-        int i12 = ag0Var.f26500f;
+        float f14 = hl0Var.f29009a;
+        float f15 = hl0Var.f29010b;
+        canvas.drawLine(f14, f15 + hl0Var.d, f14 + hl0Var.f29011c, f15, this.h);
+        int i12 = ag0Var.f26502f;
         int i13 = 3;
         int i14 = 2;
         if (i12 != 0) {
@@ -127,15 +127,15 @@ public final class uf0 extends View {
                     }
                 } else {
                     paint.setColor(-15667555);
-                    bg0Var = ag0Var.f26499c;
+                    bg0Var = ag0Var.f26501c;
                 }
             } else {
                 paint.setColor(-1229492);
-                bg0Var = ag0Var.f26498b;
+                bg0Var = ag0Var.f26500b;
             }
         } else {
             paint.setColor(-1);
-            bg0Var = ag0Var.f26497a;
+            bg0Var = ag0Var.f26499a;
         }
         int i15 = 0;
         while (i15 < 5) {
@@ -156,17 +156,17 @@ public final class uf0 extends View {
                         }
                     } else {
                         i10 = i14;
-                        format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.f26850c / 100.0f));
+                        format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.f26852c / 100.0f));
                     }
                 } else {
                     i10 = i14;
-                    format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.f26849b / 100.0f));
+                    format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.f26851b / 100.0f));
                 }
             } else {
                 i10 = i14;
-                format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.f26848a / 100.0f));
+                format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.f26850a / 100.0f));
             }
-            canvas.drawText(format, (i15 * f7) + c3.h0.B(f7, textPaint.measureText(format), 2.0f, hl0Var.f29007a), (hl0Var.f29008b + hl0Var.d) - AndroidUtilities.dp(4.0f), textPaint);
+            canvas.drawText(format, (i15 * f7) + c3.h0.B(f7, textPaint.measureText(format), 2.0f, hl0Var.f29009a), (hl0Var.f29010b + hl0Var.d) - AndroidUtilities.dp(4.0f), textPaint);
             i15++;
             i14 = i10;
             i13 = 3;
@@ -177,10 +177,10 @@ public final class uf0 extends View {
         for (int i16 = 0; i16 < a2.length / 2; i16++) {
             if (i16 == 0) {
                 int i17 = i16 * 2;
-                path.moveTo((a2[i17] * hl0Var.f29009c) + hl0Var.f29007a, ((1.0f - a2[i17 + 1]) * hl0Var.d) + hl0Var.f29008b);
+                path.moveTo((a2[i17] * hl0Var.f29011c) + hl0Var.f29009a, ((1.0f - a2[i17 + 1]) * hl0Var.d) + hl0Var.f29010b);
             } else {
                 int i18 = i16 * 2;
-                path.lineTo((a2[i18] * hl0Var.f29009c) + hl0Var.f29007a, ((1.0f - a2[i18 + 1]) * hl0Var.d) + hl0Var.f29008b);
+                path.lineTo((a2[i18] * hl0Var.f29011c) + hl0Var.f29009a, ((1.0f - a2[i18 + 1]) * hl0Var.d) + hl0Var.f29010b);
             }
         }
         canvas.drawPath(path, paint);

@@ -30,7 +30,7 @@ public final class ib extends r {
     @Override
     public final boolean e() {
         org.telegram.ui.Components.qc qcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f31880x) != null && qcVar.f31881a == 2)) {
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f31882x) != null && qcVar.f31883a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
@@ -46,8 +46,8 @@ public final class ib extends r {
             }
         }
         org.telegram.ui.Components.qc M = new wc(this.S1.f11641l0, this.f11191a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f31881a = 2;
-        M.f31887j = 5000;
+        M.f31883a = 2;
+        M.f31889j = 5000;
         M.k(false);
         return true;
     }
@@ -106,9 +106,9 @@ public final class ib extends r {
                     if (childAt instanceof sg.j) {
                         hl0 selectionBounds = ((sg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f29007a;
-                        float f12 = selectionBounds.f29008b;
-                        rectF.set(f11, f12, selectionBounds.f29009c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f29009a;
+                        float f12 = selectionBounds.f29010b;
+                        rectF.set(f11, f12, selectionBounds.f29011c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x11, y11)) {
                             return true;
                         }

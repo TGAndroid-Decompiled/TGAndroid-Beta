@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class qw0 {
-    public float f32052a;
-    public float f32053b;
-    public boolean f32054c;
+    public float f32054a;
+    public float f32055b;
+    public boolean f32056c;
 
     public qw0(float f7, float f10) {
-        this.f32052a = f7;
-        this.f32053b = f10;
+        this.f32054a = f7;
+        this.f32055b = f10;
     }
 }

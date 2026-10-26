@@ -7,19 +7,19 @@ public final class u7 extends ak0 {
     public long F;
     public final float G;
     public final m8 H;
-    public float f33258r;
-    public float f33259s;
+    public float f33261r;
+    public float f33262s;
     public int v;
-    public long f33260w;
-    public long f33261x;
-    public final t7 f33262y;
+    public long f33263w;
+    public long f33264x;
+    public final t7 f33265y;
 
     public u7(m8 m8Var, Context context, float f7) {
         super(context);
         this.H = m8Var;
         this.G = f7;
         this.v = 0;
-        this.f33262y = new t7(this, 0);
+        this.f33265y = new t7(this, 0);
         this.E = new t7(this, 1);
     }
 

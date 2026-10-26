@@ -19,20 +19,20 @@ public final class k3 extends View {
     public float G;
     public float H;
     public float I;
-    public xj0 f33884a;
-    public xj0 f33885b;
-    public xj0 f33886c;
+    public xj0 f33887a;
+    public xj0 f33888b;
+    public xj0 f33889c;
     public final Paint d;
     public final Paint e;
-    public final Paint f33887f;
+    public final Paint f33890f;
     public final Path h;
-    public final int f33888n;
-    public int f33889r;
-    public int f33890s;
+    public final int f33891n;
+    public int f33892r;
+    public int f33893s;
     public boolean v;
-    public int f33891w;
-    public j3 f33892x;
-    public ValueAnimator f33893y;
+    public int f33894w;
+    public j3 f33895x;
+    public ValueAnimator f33896y;
 
     public k3(Context context, r1 r1Var) {
         super(context);
@@ -41,14 +41,14 @@ public final class k3 extends View {
         Paint paint2 = new Paint(1);
         this.e = paint2;
         Paint paint3 = new Paint(1);
-        this.f33887f = paint3;
+        this.f33890f = paint3;
         this.h = new Path();
         int dp = AndroidUtilities.dp(26.0f);
-        this.f33888n = dp;
-        this.f33889r = dp;
-        this.f33890s = 0;
+        this.f33891n = dp;
+        this.f33892r = dp;
+        this.f33893s = 0;
         this.v = false;
-        this.f33891w = 0;
+        this.f33894w = 0;
         this.G = 1.0f;
         this.E = r1Var;
         r1Var.a(this);
@@ -82,69 +82,69 @@ public final class k3 extends View {
 
     public final void a(int i10, boolean z10, boolean z11) {
         ValueAnimator ofInt;
-        ValueAnimator valueAnimator = this.f33893y;
+        ValueAnimator valueAnimator = this.f33896y;
         if (valueAnimator != null && valueAnimator.isRunning()) {
-            this.f33893y.removeAllUpdateListeners();
-            this.f33893y.cancel();
+            this.f33896y.removeAllUpdateListeners();
+            this.f33896y.cancel();
             z11 = false;
         }
-        int i11 = this.f33888n;
+        int i11 = this.f33891n;
         if (z11) {
-            if (this.f33886c != null) {
-                ValueAnimator valueAnimator2 = this.f33893y;
+            if (this.f33889c != null) {
+                ValueAnimator valueAnimator2 = this.f33896y;
                 if (valueAnimator2 != null) {
                     valueAnimator2.removeAllUpdateListeners();
-                    this.f33893y.cancel();
+                    this.f33896y.cancel();
                 }
                 if (z10) {
                     ofInt = ValueAnimator.ofInt(20, 100);
                 } else {
                     ofInt = ValueAnimator.ofInt(100, 20);
                 }
-                this.f33893y = ofInt;
+                this.f33896y = ofInt;
                 ofInt.addUpdateListener(new h3(this, 1));
-                this.f33893y.setDuration(200L);
-                this.f33893y.start();
+                this.f33896y.setDuration(200L);
+                this.f33896y.start();
                 if (i10 == 2) {
-                    this.f33886c.N(0, false, false);
-                    this.f33886c.start();
+                    this.f33889c.N(0, false, false);
+                    this.f33889c.start();
                 }
             } else {
-                ValueAnimator valueAnimator3 = this.f33893y;
+                ValueAnimator valueAnimator3 = this.f33896y;
                 if (valueAnimator3 != null) {
                     valueAnimator3.removeAllUpdateListeners();
-                    this.f33893y.cancel();
+                    this.f33896y.cancel();
                 }
                 ValueAnimator ofInt2 = ValueAnimator.ofInt(0, i11);
-                this.f33893y = ofInt2;
+                this.f33896y = ofInt2;
                 if (z10) {
-                    this.f33889r = i11;
+                    this.f33892r = i11;
                     ofInt2.addUpdateListener(new h3(this, 2));
-                    this.f33893y.addListener(new i3(this, 0));
-                    this.f33893y.setDuration(200L);
-                    this.f33893y.start();
-                    this.f33885b.N(0, false, false);
-                    this.f33885b.start();
+                    this.f33896y.addListener(new i3(this, 0));
+                    this.f33896y.setDuration(200L);
+                    this.f33896y.start();
+                    this.f33888b.N(0, false, false);
+                    this.f33888b.start();
                 } else {
-                    this.f33890s = i11;
+                    this.f33893s = i11;
                     ofInt2.addUpdateListener(new h3(this, 3));
-                    this.f33893y.setDuration(200L);
-                    this.f33893y.addListener(new i3(this, 1));
-                    this.f33893y.start();
+                    this.f33896y.setDuration(200L);
+                    this.f33896y.addListener(new i3(this, 1));
+                    this.f33896y.start();
                 }
             }
         } else if (z10) {
-            this.f33890s = i11;
-            this.f33889r = 0;
-            this.f33891w = 100;
+            this.f33893s = i11;
+            this.f33892r = 0;
+            this.f33894w = 100;
             if (i10 == 3 || i10 == 1) {
-                xj0 xj0Var = this.f33885b;
+                xj0 xj0Var = this.f33888b;
                 xj0Var.N(xj0Var.e[0] - 1, false, false);
             }
         } else {
-            this.f33890s = 0;
-            this.f33889r = i11;
-            this.f33891w = 20;
+            this.f33893s = 0;
+            this.f33892r = i11;
+            this.f33894w = 20;
         }
         this.v = z10;
         invalidate();
@@ -165,46 +165,46 @@ public final class k3 extends View {
         float x9 = ((View) getParent()).getX() + getX();
         float y3 = ((View) ((View) getParent()).getParent()).getY() + getY();
         r1 r1Var = this.E;
-        int i12 = r1Var.f34044g;
-        Paint paint = r1Var.f34046j;
-        aa.m0 m0Var = r1Var.f34040a;
-        float f10 = r1Var.f34044g;
+        int i12 = r1Var.f34047g;
+        Paint paint = r1Var.f34049j;
+        aa.m0 m0Var = r1Var.f34043a;
+        float f10 = r1Var.f34047g;
         float f11 = 1.12f * f10;
         float f12 = -x9;
         float f13 = -y3;
-        m0Var.y(f12 - ((f11 - r1Var.f34043f) / 2.0f), f13 - ((f11 - f10) / 2.0f), (i12 * 1.12f) / ((Bitmap) m0Var.f1152c).getHeight(), r1Var.h);
-        r1Var.f34042c.w(f12, f13, r1Var.f34043f - x9, r1Var.f34044g - y3);
-        xj0 xj0Var = this.f33886c;
+        m0Var.y(f12 - ((f11 - r1Var.f34046f) / 2.0f), f13 - ((f11 - f10) / 2.0f), (i12 * 1.12f) / ((Bitmap) m0Var.f1152c).getHeight(), r1Var.h);
+        r1Var.f34045c.w(f12, f13, r1Var.f34046f - x9, r1Var.f34047g - y3);
+        xj0 xj0Var = this.f33889c;
         Paint paint2 = this.e;
         Paint paint3 = this.d;
-        int i13 = this.f33888n;
+        int i13 = this.f33891n;
         if (xj0Var != null) {
-            if (this.f33891w > 20) {
-                Paint paint4 = this.f33887f;
+            if (this.f33894w > 20) {
+                Paint paint4 = this.f33890f;
                 paint4.setAlpha((int) ((i11 * 35) / 100.0f));
-                paint2.setAlpha((int) ((this.f33891w * 255) / 100.0f));
+                paint2.setAlpha((int) ((this.f33894w * 255) / 100.0f));
                 canvas.drawCircle(width, height, i13, paint2);
-                this.f33886c.q(canvas, paint3, false, 0L, 0);
-                this.f33886c.q(canvas, paint4, false, 0L, 0);
+                this.f33889c.q(canvas, paint3, false, 0L, 0);
+                this.f33889c.q(canvas, paint4, false, 0L, 0);
                 return;
             }
             float f14 = i13;
-            if (!r1Var.f34045i) {
+            if (!r1Var.f34048i) {
                 paint = (Paint) m0Var.f1150a;
             }
             canvas.drawCircle(width, height, f14, paint);
             if (r1Var.e) {
-                canvas.drawCircle(width, height, f14, (Paint) r1Var.f34042c.f1150a);
+                canvas.drawCircle(width, height, f14, (Paint) r1Var.f34045c.f1150a);
             }
-            this.f33886c.draw(canvas);
-        } else if (this.f33885b != null && this.f33884a != null) {
-            int i14 = this.f33889r;
-            if (i14 == i13 && this.f33890s == 0) {
+            this.f33889c.draw(canvas);
+        } else if (this.f33888b != null && this.f33887a != null) {
+            int i14 = this.f33892r;
+            if (i14 == i13 && this.f33893s == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int i15 = this.f33890s;
+            int i15 = this.f33893s;
             if (i15 == i13 && i14 == 0) {
                 z11 = true;
             } else {
@@ -213,41 +213,41 @@ public final class k3 extends View {
             Path path2 = this.h;
             if (i15 == i13 && i14 > 0 && i14 != i13) {
                 canvas.drawCircle(width, height, i15, paint2);
-                canvas.drawCircle(width, height, this.f33889r, paint3);
-                this.f33885b.setAlpha(255);
+                canvas.drawCircle(width, height, this.f33892r, paint3);
+                this.f33888b.setAlpha(255);
                 i10 = i13;
-                this.f33885b.q(canvas, paint3, false, 0L, 0);
-                this.f33885b.setAlpha(35);
-                this.f33885b.draw(canvas);
+                this.f33888b.q(canvas, paint3, false, 0L, 0);
+                this.f33888b.setAlpha(35);
+                this.f33888b.draw(canvas);
                 path2.reset();
                 path = path2;
-                path.addCircle(width, height, this.f33889r, Path.Direction.CW);
+                path.addCircle(width, height, this.f33892r, Path.Direction.CW);
                 canvas.clipPath(path);
-                canvas.drawCircle(width, height, this.f33889r, paint3);
+                canvas.drawCircle(width, height, this.f33892r, paint3);
             } else {
                 i10 = i13;
                 path = path2;
             }
-            if (z10 || this.f33889r > 0) {
-                float f15 = this.f33889r;
-                if (!r1Var.f34045i) {
+            if (z10 || this.f33892r > 0) {
+                float f15 = this.f33892r;
+                if (!r1Var.f34048i) {
                     paint = (Paint) m0Var.f1150a;
                 }
                 canvas.drawCircle(width, height, f15, paint);
                 if (r1Var.e) {
-                    canvas.drawCircle(width, height, this.f33889r, (Paint) r1Var.f34042c.f1150a);
+                    canvas.drawCircle(width, height, this.f33892r, (Paint) r1Var.f34045c.f1150a);
                 }
-                this.f33884a.draw(canvas);
+                this.f33887a.draw(canvas);
             }
-            if (z11 || (this.f33890s > 0 && this.f33889r == i10)) {
+            if (z11 || (this.f33893s > 0 && this.f33892r == i10)) {
                 path.reset();
-                path.addCircle(width, height, this.f33890s, Path.Direction.CW);
+                path.addCircle(width, height, this.f33893s, Path.Direction.CW);
                 canvas.clipPath(path);
-                canvas.drawCircle(width, height, this.f33890s, paint2);
-                this.f33885b.setAlpha(255);
-                this.f33885b.q(canvas, paint3, false, 0L, 0);
-                this.f33885b.setAlpha(35);
-                this.f33885b.draw(canvas);
+                canvas.drawCircle(width, height, this.f33893s, paint2);
+                this.f33888b.setAlpha(255);
+                this.f33888b.q(canvas, paint3, false, 0L, 0);
+                this.f33888b.setAlpha(35);
+                this.f33888b.draw(canvas);
             }
             canvas.restore();
         }
@@ -274,17 +274,17 @@ public final class k3 extends View {
                 float abs = Math.abs(f7 - x9);
                 float abs2 = Math.abs(f10 - y3);
                 if (abs <= AndroidUtilities.dp(48.0f) && abs2 <= AndroidUtilities.dp(48.0f)) {
-                    int i10 = this.f33889r;
-                    int i11 = this.f33888n;
-                    if (i10 == i11 && this.f33890s == 0) {
+                    int i10 = this.f33892r;
+                    int i11 = this.f33891n;
+                    if (i10 == i11 && this.f33893s == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (this.f33890s == i11 && i10 == 0) {
+                    if (this.f33893s == i11 && i10 == 0) {
                         z11 = true;
                     }
-                    if ((z10 || z11) && (j3Var = this.f33892x) != null) {
+                    if ((z10 || z11) && (j3Var = this.f33895x) != null) {
                         j3Var.d(this);
                     }
                 }
@@ -298,6 +298,6 @@ public final class k3 extends View {
     }
 
     public void setOnBtnClickedListener(j3 j3Var) {
-        this.f33892x = j3Var;
+        this.f33895x = j3Var;
     }
 }

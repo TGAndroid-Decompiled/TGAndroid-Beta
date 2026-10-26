@@ -11,7 +11,7 @@ import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.t61;
 public final class v3 extends s61 {
-    public static final int f25581a = 0;
+    public static final int f25583a = 0;
 
     static {
         s61.setup(new s61());
@@ -20,14 +20,14 @@ public final class v3 extends s61 {
     @Override
     public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
         w3 w3Var = (w3) view;
-        w3Var.f25628w = z10;
+        w3Var.f25630w = z10;
         w3Var.b((MessageObject) t61Var.G, (ArrayList) t61Var.H);
         w3Var.invalidate();
     }
 
     @Override
     public final boolean contentsEquals(t61 t61Var, t61 t61Var2) {
-        if (t61Var.G == t61Var2.G && Objects.equals(t61Var.H, t61Var2.H) && t61Var.f32870j == t61Var2.f32870j) {
+        if (t61Var.G == t61Var2.G && Objects.equals(t61Var.H, t61Var2.H) && t61Var.f32873j == t61Var2.f32873j) {
             return true;
         }
         return false;

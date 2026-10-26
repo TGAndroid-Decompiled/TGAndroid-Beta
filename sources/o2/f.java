@@ -14,13 +14,13 @@ public final class f extends v2.b {
     @Override
     public final long k() {
         a();
-        return this.e + ((p2.k) this.d.get((int) this.f49989c)).e;
+        return this.e + ((p2.k) this.d.get((int) this.f49992c)).e;
     }
 
     @Override
     public final long y() {
         a();
-        p2.k kVar = (p2.k) this.d.get((int) this.f49989c);
-        return this.e + kVar.e + kVar.f46552c;
+        p2.k kVar = (p2.k) this.d.get((int) this.f49992c);
+        return this.e + kVar.e + kVar.f46555c;
     }
 }

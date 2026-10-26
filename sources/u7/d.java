@@ -9,7 +9,7 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class d extends a implements List, RandomAccess, j$.util.List {
-    public static final b f49594b = new b(g.e, 0);
+    public static final b f49597b = new b(g.e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -138,7 +138,7 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
     public final b listIterator(int i10) {
         w7.m.b(i10, size());
         if (isEmpty()) {
-            return f49594b;
+            return f49597b;
         }
         return new b(this, i10);
     }

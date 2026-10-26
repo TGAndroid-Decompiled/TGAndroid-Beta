@@ -19,16 +19,16 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.WidgetConformanceActivity;
 public final class qa1 {
-    public final Context f31871a;
-    public final File f31872b;
-    public final String f31873c;
+    public final Context f31873a;
+    public final File f31874b;
+    public final String f31875c;
     public final org.telegram.ui.hl0 d;
     public final Handler e = new Handler(Looper.getMainLooper());
 
     public qa1(WidgetConformanceActivity widgetConformanceActivity, String str, org.telegram.ui.hl0 hl0Var) {
-        this.f31871a = widgetConformanceActivity.getApplicationContext();
-        this.f31872b = new File(widgetConformanceActivity.getExternalFilesDir(null), "attacks");
-        this.f31873c = str;
+        this.f31873a = widgetConformanceActivity.getApplicationContext();
+        this.f31874b = new File(widgetConformanceActivity.getExternalFilesDir(null), "attacks");
+        this.f31875c = str;
         this.d = hl0Var;
     }
 
@@ -40,7 +40,7 @@ public final class qa1 {
     public final void b() {
         char c10;
         int i10;
-        File file = this.f31872b;
+        File file = this.f31874b;
         JSONArray jSONArray = new JSONArray();
         try {
             try {
@@ -60,7 +60,7 @@ public final class qa1 {
                             String str = "dead";
                             if (i12 < length) {
                                 File file2 = listFiles[i12];
-                                String str2 = this.f31873c;
+                                String str2 = this.f31875c;
                                 if (str2 != null && !str2.isEmpty()) {
                                     c10 = c11;
                                     if (!file2.getName().contains(str2)) {
@@ -154,7 +154,7 @@ public final class qa1 {
         String str2;
         JSONObject put = new JSONObject().put("file", file.getName());
         pa1 pa1Var = new pa1();
-        Context context = this.f31871a;
+        Context context = this.f31873a;
         FileInputStream fileInputStream = new FileInputStream(file);
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -176,7 +176,7 @@ public final class qa1 {
                 try {
                     yb1Var.f(Math.round(AndroidUtilities.density * 390.0f));
                 } catch (Exception e) {
-                    pa1Var.f31515b = String.valueOf(e.getMessage());
+                    pa1Var.f31517b = String.valueOf(e.getMessage());
                 }
                 pa1Var.j();
                 int h = pa1Var.h();
@@ -203,7 +203,7 @@ public final class qa1 {
                 if (h10 > 1) {
                     jSONArray.put("ACTIONS after one tap: " + pa1Var.i());
                 }
-                JSONObject jSONObject = pa1Var.f31514a;
+                JSONObject jSONObject = pa1Var.f31516a;
                 if (jSONObject == null) {
                     optString = "";
                 } else {
@@ -232,8 +232,8 @@ public final class qa1 {
                     str = " — " + optString;
                 }
                 sb2.append(str);
-                if (pa1Var.f31515b != null) {
-                    str2 = " — failure: " + pa1Var.f31515b;
+                if (pa1Var.f31517b != null) {
+                    str2 = " — failure: " + pa1Var.f31517b;
                 } else {
                     str2 = "";
                 }

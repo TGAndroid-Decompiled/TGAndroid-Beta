@@ -70,7 +70,7 @@ public abstract class v extends FrameLayout implements p6, NotificationCenter.No
         u6 resourceProvider = r2Var.getResourceProvider();
         this.f10017c = resourceProvider;
         this.d = j10;
-        setBackgroundColor(y6.v(y6.w0(y6.f23354d6, resourceProvider), y6.o1(0.04f, y6.w0(y6.G6, resourceProvider))));
+        setBackgroundColor(y6.v(y6.w0(y6.f23356d6, resourceProvider), y6.o1(0.04f, y6.w0(y6.G6, resourceProvider))));
         if (F == null) {
             F = new LongSparseArray();
         }
@@ -97,7 +97,7 @@ public abstract class v extends FrameLayout implements p6, NotificationCenter.No
         addView(aVar, gb1.i(-1, -1, 119));
         t91 n10 = aVar.n(9, true);
         this.f10020r = n10;
-        n10.f32940r = 12;
+        n10.f32943r = 12;
         n10.setPreTabClick(new e1.c(us0Var, 1));
         addView(n10, gb1.i(-1, 42, 48));
         i(false);
@@ -110,9 +110,9 @@ public abstract class v extends FrameLayout implements p6, NotificationCenter.No
             tiVar.Q1(1, false);
             tiVar.W0 = true;
             tiVar.V0 = false;
-            tiVar.f33038m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            tiVar.f33030j0.f0();
-            tiVar.f33010c2 = new c(this, tiVar, str);
+            tiVar.f33041m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            tiVar.f33033j0.f0();
+            tiVar.f33013c2 = new c(this, tiVar, str);
             tiVar.v1();
             tiVar.show();
         }
@@ -409,7 +409,7 @@ public abstract class v extends FrameLayout implements p6, NotificationCenter.No
         spannableString.setSpan(zqVar, 0, 1, 33);
         t91 t91Var = this.f10020r;
         t91Var.a(-1, spannableString);
-        t91Var.f32944x.l();
+        t91Var.f32947x.l();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {
@@ -522,7 +522,7 @@ public abstract class v extends FrameLayout implements p6, NotificationCenter.No
     public final void updateColors() {
         u6 u6Var = this.f10017c;
         try {
-            setBackgroundColor(y6.v(y6.w0(y6.f23354d6, u6Var), y6.o1(0.04f, y6.w0(y6.G6, u6Var))));
+            setBackgroundColor(y6.v(y6.w0(y6.f23356d6, u6Var), y6.o1(0.04f, y6.w0(y6.G6, u6Var))));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);
