@@ -5,25 +5,25 @@ import android.graphics.Point;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class l4 extends LinearLayout {
-    public final int f30055a;
-    public boolean f30056b;
-    public final md0 f30057c;
+    public final int f30105a;
+    public boolean f30106b;
+    public final nd0 f30107c;
 
-    public l4(Context context, md0 md0Var, int i10) {
+    public l4(Context context, nd0 nd0Var, int i10) {
         super(context);
-        this.f30055a = i10;
-        this.f30057c = md0Var;
-        this.f30056b = false;
+        this.f30105a = i10;
+        this.f30107c = nd0Var;
+        this.f30106b = false;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
         int i13;
-        switch (this.f30055a) {
+        switch (this.f30105a) {
             case 0:
-                k4 k4Var = (k4) this.f30057c;
-                this.f30056b = true;
+                k4 k4Var = (k4) this.f30107c;
+                this.f30106b = true;
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
                     i12 = 3;
@@ -32,12 +32,12 @@ public final class l4 extends LinearLayout {
                 }
                 k4Var.setItemCount(i12);
                 k4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-                this.f30056b = false;
+                this.f30106b = false;
                 super.onMeasure(i10, i11);
                 return;
             default:
-                p4 p4Var = (p4) this.f30057c;
-                this.f30056b = true;
+                p4 p4Var = (p4) this.f30107c;
+                this.f30106b = true;
                 Point point2 = AndroidUtilities.displaySize;
                 if (point2.x > point2.y) {
                     i13 = 3;
@@ -46,7 +46,7 @@ public final class l4 extends LinearLayout {
                 }
                 p4Var.setItemCount(i13);
                 p4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
-                this.f30056b = false;
+                this.f30106b = false;
                 super.onMeasure(i10, i11);
                 return;
         }
@@ -54,15 +54,15 @@ public final class l4 extends LinearLayout {
 
     @Override
     public final void requestLayout() {
-        switch (this.f30055a) {
+        switch (this.f30105a) {
             case 0:
-                if (!this.f30056b) {
+                if (!this.f30106b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             default:
-                if (!this.f30056b) {
+                if (!this.f30106b) {
                     super.requestLayout();
                     return;
                 }

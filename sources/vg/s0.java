@@ -17,18 +17,18 @@ import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.r2;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.wc;
 public final class s0 extends bb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final d0 f50255a0;
-    public r0 f50256b0;
-    public l0 f50257c0;
+    public final d0 f50290a0;
+    public r0 f50291b0;
+    public l0 f50292c0;
 
     public s0(r2 r2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(r2Var, false);
@@ -44,7 +44,7 @@ public final class s0 extends bb {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f22027id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f22028id)) {
                 this.Y.add(tL_myBoost2);
             }
         }
@@ -52,19 +52,19 @@ public final class s0 extends bb {
         scVar.setClickable(true);
         scVar.setOrientation(1);
         scVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        f7.i(y6.f23427h5, scVar, this.resourcesProvider);
+        f7.i(y6.f23428h5, scVar, this.resourcesProvider);
         d0 d0Var = new d0(getContext(), this.resourcesProvider);
-        this.f50255a0 = d0Var;
+        this.f50290a0 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new org.telegram.ui.web.c(5, this, chat));
-        scVar.addView(d0Var, gb1.u(-1, 48, 87));
+        scVar.addView(d0Var, kb1.u(-1, 48, 87));
         ViewGroup viewGroup = this.containerView;
         int i11 = this.backgroundPaddingLeft;
-        viewGroup.addView(scVar, gb1.j(-2.0f, 87, i11, 0, i11, 0));
-        mm0 mm0Var = this.d;
+        viewGroup.addView(scVar, kb1.j(-2.0f, 87, i11, 0, i11, 0));
+        nm0 nm0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
+        nm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new x4(24, this, chat));
         fixNavigationBar();
         N();
@@ -87,12 +87,12 @@ public final class s0 extends bb {
             }
             lVar.c(arrayList.contains(lVar.getBoost()), true);
             s0Var.S(true);
-            s0Var.f50256b0.a(arrayList, chat);
+            s0Var.f50291b0.a(arrayList, chat);
         }
     }
 
     public final void S(boolean z10) {
-        d0 d0Var = this.f50255a0;
+        d0 d0Var = this.f50290a0;
         boolean z11 = false;
         d0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -111,22 +111,22 @@ public final class s0 extends bb {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f50257c0 = new l0(this);
+        this.f50292c0 = new l0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f50257c0.cancel();
+        this.f50292c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f50257c0.start();
+        this.f50292c0.start();
     }
 
     @Override
-    public final lm0 v(mm0 mm0Var) {
+    public final mm0 v(nm0 nm0Var) {
         return new m0(this);
     }
 

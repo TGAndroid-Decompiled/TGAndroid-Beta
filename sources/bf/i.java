@@ -64,7 +64,7 @@ public final class i extends gf.a {
                     sb2.append((CharSequence) arrayList.get(i10));
                     sb2.append('\n');
                 }
-                ((ef.l) this.f3937b).f9933g = sb2.toString();
+                ((ef.l) this.f3937b).f9932g = sb2.toString();
                 return;
             default:
                 return;
@@ -112,7 +112,7 @@ public final class i extends gf.a {
         this.f3936a = 0;
         ?? pVar = new ef.p();
         this.f3937b = pVar;
-        pVar.f9929g = i10;
+        pVar.f9928g = i10;
         this.f3938c = str;
     }
 }

@@ -9,10 +9,10 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.DataSettingsActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.cy;
-import org.telegram.ui.ff;
-import org.telegram.ui.wt;
-import org.telegram.ui.yw;
+import org.telegram.ui.ax;
+import org.telegram.ui.ef;
+import org.telegram.ui.ey;
+import org.telegram.ui.yt;
 public final class c2 implements Utilities.Callback {
     public final int f4418a;
     public final long f4419b;
@@ -47,7 +47,7 @@ public final class c2 implements Utilities.Callback {
             case 1:
                 DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f4420c;
                 Long l4 = (Long) obj;
-                AndroidUtilities.cancelRunOnUIThread((wt) this.d);
+                AndroidUtilities.cancelRunOnUIThread((yt) this.d);
                 if (!dataSettingsActivity.V && System.currentTimeMillis() - this.f4419b <= 120) {
                     z10 = false;
                 } else {
@@ -56,7 +56,7 @@ public final class c2 implements Utilities.Callback {
                 dataSettingsActivity.V = z10;
                 dataSettingsActivity.X = l4.longValue();
                 dataSettingsActivity.W = false;
-                if (dataSettingsActivity.f35488a != null && (i10 = dataSettingsActivity.f35494s) >= 0) {
+                if (dataSettingsActivity.f35512a != null && (i10 = dataSettingsActivity.f35518s) >= 0) {
                     dataSettingsActivity.o0(i10);
                     return;
                 }
@@ -64,10 +64,10 @@ public final class c2 implements Utilities.Callback {
             case 2:
                 Runnable runnable = (Runnable) obj;
                 ((org.telegram.ui.ActionBar.e2) this.d).r(150L);
-                cy cyVar = ((yw) this.f4420c).f46121b;
-                Boolean bool = cyVar.G.bot_participant;
+                ey eyVar = ((ax) this.f4420c).f37838b;
+                Boolean bool = eyVar.G.bot_participant;
                 if (bool != null && bool.booleanValue()) {
-                    cyVar.getMessagesController().addUserToChat(this.f4419b, cyVar.getMessagesController().getUser(Long.valueOf(cyVar.H)), 0, null, cyVar, false, runnable, new ff(6, runnable));
+                    eyVar.getMessagesController().addUserToChat(this.f4419b, eyVar.getMessagesController().getUser(Long.valueOf(eyVar.H)), 0, null, eyVar, false, runnable, new ef(6, runnable));
                     return;
                 }
                 runnable.run();

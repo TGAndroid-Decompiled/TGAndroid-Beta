@@ -21,10 +21,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.pl0;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.q5;
+import org.telegram.ui.Components.ql0;
 import org.telegram.ui.Components.t5;
 public abstract class y extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static final long[] K = {5449505950283078474L, 5420315771991497307L, 5373141891321699086L, 5373026167722876724L, 5435957248314579621L, 5440354006335495210L, 5436040291507247633L, 5445284980978621387L, 5442983582882601962L, 5409008750893734809L, 5371017798065592581L, 5472030678633684592L, 5467583879948803288L, 5471952986970267163L, 5415696465945173620L, 5397915559037785261L, 5283020991981693429L, 5283051451889756068L, 5282816560128336499L, 5465449362807070392L, 5470012829983580233L};
@@ -40,7 +40,7 @@ public abstract class y extends FrameLayout implements NotificationCenter.Notifi
     public final r f1972c;
     public final s4.t d;
     public final p e;
-    public final pl0 f1973f;
+    public final ql0 f1973f;
     public final x h;
     public final ArrayList f1974n;
     public int f1975r;
@@ -63,27 +63,27 @@ public abstract class y extends FrameLayout implements NotificationCenter.Notifi
         this.f1970a = i10;
         this.f1971b = w0Var;
         this.f1977w = UserConfig.getInstance(i10).isPremium();
-        ?? mm0Var = new mm0(context, null);
-        this.f1972c = mm0Var;
+        ?? nm0Var = new nm0(context, null);
+        this.f1972c = nm0Var;
         s4.t tVar = new s4.t(this.f1975r);
         this.d = tVar;
         tVar.O = new l(x0Var, 0);
-        mm0Var.setLayoutManager(tVar);
-        pl0 pl0Var = new pl0(mm0Var, tVar);
-        this.f1973f = pl0Var;
-        pl0Var.f31601i = new m(x0Var, 0);
-        mm0Var.setAdapter(pVar);
-        mm0Var.setSelectorDrawableColor(0);
-        mm0Var.setOnItemClickListener(new k(w0Var, 0));
-        mm0Var.setItemAnimator(null);
-        mm0Var.setOverScrollMode(2);
-        mm0Var.setVerticalScrollBarEnabled(false);
-        mm0Var.setClipToPadding(false);
-        mm0Var.j(new b(x0Var, 1));
-        addView((View) mm0Var, gb1.g(-1.0f, -1));
+        nm0Var.setLayoutManager(tVar);
+        ql0 ql0Var = new ql0(nm0Var, tVar);
+        this.f1973f = ql0Var;
+        ql0Var.f31938i = new m(x0Var, 0);
+        nm0Var.setAdapter(pVar);
+        nm0Var.setSelectorDrawableColor(0);
+        nm0Var.setOnItemClickListener(new k(w0Var, 0));
+        nm0Var.setItemAnimator(null);
+        nm0Var.setOverScrollMode(2);
+        nm0Var.setVerticalScrollBarEnabled(false);
+        nm0Var.setClipToPadding(false);
+        nm0Var.j(new b(x0Var, 1));
+        addView((View) nm0Var, kb1.g(-1.0f, -1));
         x xVar = new x(x0Var, context);
         this.h = xVar;
-        addView(xVar, gb1.i(-1, 36, 48));
+        addView(xVar, kb1.i(-1, 36, 48));
         e();
     }
 
@@ -234,7 +234,7 @@ public abstract class y extends FrameLayout implements NotificationCenter.Notifi
                     TLRPC.Document document5 = document4;
                     String str4 = str;
                     if (document5 != null) {
-                        hashMap.put(Long.valueOf(document5.f22033id), document5);
+                        hashMap.put(Long.valueOf(document5.f22034id), document5);
                     }
                     str = str4;
                 }
@@ -269,7 +269,7 @@ public abstract class y extends FrameLayout implements NotificationCenter.Notifi
                 }
                 if (document6 != null) {
                     arrayList10.add(document6);
-                    hashSet.add(Long.valueOf(document6.f22033id));
+                    hashSet.add(Long.valueOf(document6.f22034id));
                 } else if (this.G.add(Long.valueOf(j12))) {
                     t5.h(i13).b(j12, new q5() {
                         @Override
@@ -299,7 +299,7 @@ public abstract class y extends FrameLayout implements NotificationCenter.Notifi
                     document = (TLRPC.Document) obj;
                     arrayList4 = a2;
                     i12 = i22;
-                    if (document.f22033id == longValue) {
+                    if (document.f22034id == longValue) {
                         break;
                     }
                     a2 = arrayList4;
@@ -314,7 +314,7 @@ public abstract class y extends FrameLayout implements NotificationCenter.Notifi
             if (document == null) {
                 document = t5.f(i13, longValue);
             }
-            if (document != null && str2.equals(document.mime_type) && hashSet2.add(Long.valueOf(document.f22033id))) {
+            if (document != null && str2.equals(document.mime_type) && hashSet2.add(Long.valueOf(document.f22034id))) {
                 arrayList11.add(document);
             }
             i22 = i12 + 1;
@@ -336,7 +336,7 @@ public abstract class y extends FrameLayout implements NotificationCenter.Notifi
                     } else {
                         z10 = false;
                     }
-                    if (z10 && hashSet2.add(Long.valueOf(f7.f22033id))) {
+                    if (z10 && hashSet2.add(Long.valueOf(f7.f22034id))) {
                         arrayList11.add(f7);
                     }
                 } catch (NumberFormatException unused) {
@@ -395,8 +395,8 @@ public abstract class y extends FrameLayout implements NotificationCenter.Notifi
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         int i10 = this.f1970a;
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.stickersDidLoad);
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.groupStickersDidLoad);
+        NotificationCenter.getInstance(i10).addWeakObserver(this, NotificationCenter.stickersDidLoad);
+        NotificationCenter.getInstance(i10).addWeakObserver(this, NotificationCenter.groupStickersDidLoad);
         e();
     }
 

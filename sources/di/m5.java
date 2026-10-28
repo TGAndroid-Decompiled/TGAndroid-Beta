@@ -18,6 +18,6 @@ public final class m5 extends org.telegram.ui.Cells.s6 {
         }
         y9 createOverlayStoryViewer = R.createOverlayStoryViewer();
         createOverlayStoryViewer.getClass();
-        createOverlayStoryViewer.D(getContext(), j10, q7.a(this.L.d.f9196r));
+        createOverlayStoryViewer.E(getContext(), j10, q7.a(this.L.d.f9195r));
     }
 }

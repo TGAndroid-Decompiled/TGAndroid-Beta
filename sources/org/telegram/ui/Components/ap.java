@@ -8,7 +8,7 @@ public interface ap {
 
     void o();
 
-    void r();
+    void s();
 
-    void u(int i10);
+    void w(int i10);
 }

@@ -5,20 +5,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class q0 implements Utilities.Callback {
-    public final int f11463a;
-    public final u0 f11464b;
+    public final int f11462a;
+    public final u0 f11463b;
 
     public q0(u0 u0Var, int i10) {
-        this.f11463a = i10;
-        this.f11464b = u0Var;
+        this.f11462a = i10;
+        this.f11463b = u0Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f11463a) {
+        switch (this.f11462a) {
             case 0:
                 Float f7 = (Float) obj;
-                t0 t0Var = this.f11464b.f11737n;
+                t0 t0Var = this.f11463b.f11736n;
                 if (t0Var != null) {
                     t0Var.setProgress(f7.floatValue());
                     return;
@@ -26,10 +26,10 @@ public final class q0 implements Utilities.Callback {
                 return;
             case 1:
                 Uri uri = (Uri) obj;
-                u0 u0Var = this.f11464b;
-                if (u0Var.f11735c && u0Var.f11738r != null) {
-                    u0Var.f11737n.b(R.raw.ic_save_to_gallery, 3500, LocaleController.getString("VideoSavedHint"));
-                    u0Var.f11735c = false;
+                u0 u0Var = this.f11463b;
+                if (u0Var.f11734c && u0Var.f11737r != null) {
+                    u0Var.f11736n.b(R.raw.ic_save_to_gallery, 3500, LocaleController.getString("VideoSavedHint"));
+                    u0Var.f11734c = false;
                     u0Var.d();
                     u0Var.v = uri;
                     return;
@@ -37,18 +37,18 @@ public final class q0 implements Utilities.Callback {
                 return;
             default:
                 Uri uri2 = (Uri) obj;
-                u0 u0Var2 = this.f11464b;
-                u0Var2.f11735c = false;
+                u0 u0Var2 = this.f11463b;
+                u0Var2.f11734c = false;
                 u0Var2.d();
-                t0 t0Var2 = u0Var2.f11737n;
+                t0 t0Var2 = u0Var2.f11736n;
                 if (t0Var2 != null) {
                     t0Var2.a();
-                    u0Var2.f11737n = null;
+                    u0Var2.f11736n = null;
                 }
                 t0 t0Var3 = new t0(u0Var2.getContext());
-                u0Var2.f11737n = t0Var3;
+                u0Var2.f11736n = t0Var3;
                 t0Var3.b(R.raw.ic_save_to_gallery, 2500, LocaleController.getString("PhotoSavedHint"));
-                u0Var2.f11734b.addView(u0Var2.f11737n);
+                u0Var2.f11733b.addView(u0Var2.f11736n);
                 u0Var2.v = uri2;
                 return;
         }

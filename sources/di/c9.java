@@ -21,46 +21,46 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.oy;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.qy;
 public abstract class c9 extends FrameLayout implements View.OnClickListener {
     public final Path E;
     public Bitmap F;
     public boolean G;
-    public a9 f8463a;
-    public a9 f8464b;
-    public fi.v3 f8465c;
+    public a9 f8462a;
+    public a9 f8463b;
+    public fi.v3 f8464c;
     public final FrameLayout d;
     public final Matrix e;
-    public final float[] f8466f;
+    public final float[] f8465f;
     public final View h;
-    public final org.telegram.ui.ActionBar.u6 f8467n;
-    public ArrayList f8468r;
-    public final Rect f8469s;
+    public final org.telegram.ui.ActionBar.u6 f8466n;
+    public ArrayList f8467r;
+    public final Rect f8468s;
     public final RectF v;
-    public final Paint f8470w;
-    public final org.telegram.ui.Components.h6 f8471x;
-    public final org.telegram.ui.Components.h6 f8472y;
+    public final Paint f8469w;
+    public final org.telegram.ui.Components.h6 f8470x;
+    public final org.telegram.ui.Components.h6 f8471y;
 
     public c9(Context context, View view, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f8463a = null;
-        this.f8464b = null;
-        this.f8465c = null;
+        this.f8462a = null;
+        this.f8463b = null;
+        this.f8464c = null;
         this.e = new Matrix();
-        this.f8466f = new float[2];
-        this.f8469s = new Rect();
+        this.f8465f = new float[2];
+        this.f8468s = new Rect();
         this.v = new RectF();
         Paint paint = new Paint(1);
-        this.f8470w = paint;
+        this.f8469w = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         paint.setColor(-1);
         this.E = new Path();
         this.G = false;
         this.h = view;
-        this.f8467n = u6Var;
-        this.f8471x = new org.telegram.ui.Components.h6(view, 0L, 120L, new LinearInterpolator());
-        this.f8472y = new org.telegram.ui.Components.h6(view, 0L, 360L, ds.h);
+        this.f8466n = u6Var;
+        this.f8470x = new org.telegram.ui.Components.h6(view, 0L, 120L, new LinearInterpolator());
+        this.f8471y = new org.telegram.ui.Components.h6(view, 0L, 360L, ds.h);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
@@ -83,15 +83,15 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
 
     public abstract void b(boolean z10);
 
-    public final void c(TL_stories.StoryItem storyItem, ArrayList arrayList, oy oyVar) {
+    public final void c(TL_stories.StoryItem storyItem, ArrayList arrayList, qy qyVar) {
         FrameLayout frameLayout;
         f9 f9Var;
-        ArrayList arrayList2 = this.f8468r;
-        if (arrayList != arrayList2 || (arrayList != null && arrayList2 != null && arrayList.size() != this.f8468r.size())) {
-            fi.v3 v3Var = this.f8465c;
+        ArrayList arrayList2 = this.f8467r;
+        if (arrayList != arrayList2 || (arrayList != null && arrayList2 != null && arrayList.size() != this.f8467r.size())) {
+            fi.v3 v3Var = this.f8464c;
             if (v3Var != null) {
                 v3Var.e(true);
-                this.f8465c = null;
+                this.f8464c = null;
             }
             int i10 = 0;
             while (true) {
@@ -107,11 +107,11 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                 }
                 i10++;
             }
-            this.f8464b = null;
-            this.f8472y.d(0.0f, true);
+            this.f8463b = null;
+            this.f8471y.d(0.0f, true);
             invalidate();
             b(false);
-            this.f8468r = arrayList;
+            this.f8467r = arrayList;
             if (arrayList == null) {
                 return;
             }
@@ -120,44 +120,44 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                 TL_stories.MediaArea mediaArea = (TL_stories.MediaArea) arrayList.get(i11);
                 if (mediaArea != null && mediaArea.coordinates != null) {
                     if (mediaArea instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
-                        f9 f9Var2 = new f9(getContext(), this, (TL_stories.TL_mediaAreaSuggestedReaction) mediaArea, oyVar);
+                        f9 f9Var2 = new f9(getContext(), this, (TL_stories.TL_mediaAreaSuggestedReaction) mediaArea, qyVar);
                         if (storyItem != null) {
                             f9Var2.c(storyItem.views, false);
                         }
-                        gb1.b(f9Var2);
+                        kb1.b(f9Var2);
                         f9Var = f9Var2;
                     } else if (mediaArea instanceof TL_stories.TL_mediaAreaWeather) {
                         TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = (TL_stories.TL_mediaAreaWeather) mediaArea;
                         ?? tLObject = new TLObject();
-                        tLObject.f11455c = tL_mediaAreaWeather.emoji;
+                        tLObject.f11454c = tL_mediaAreaWeather.emoji;
                         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
-                        sg.t0 t0Var = new sg.t0(getContext(), AndroidUtilities.density);
-                        t0Var.setMaxWidth(AndroidUtilities.displaySize.x);
-                        t0Var.setIsVideo(true);
-                        t0Var.d(UserConfig.selectedAccount, tLObject.f11455c);
-                        t0Var.setText(tLObject.a());
-                        t0Var.e(3, tL_mediaAreaWeather.color);
-                        f9Var = new b9(getContext(), t0Var, mediaArea);
+                        sg.s0 s0Var = new sg.s0(getContext(), AndroidUtilities.density);
+                        s0Var.setMaxWidth(AndroidUtilities.displaySize.x);
+                        s0Var.setIsVideo(true);
+                        s0Var.d(UserConfig.selectedAccount, tLObject.f11454c);
+                        s0Var.setText(tLObject.a());
+                        s0Var.e(3, tL_mediaAreaWeather.color);
+                        f9Var = new b9(getContext(), s0Var, mediaArea);
                     } else {
                         f9Var = new a9(getContext(), this.h, mediaArea);
                     }
                     f9Var.setOnClickListener(this);
                     addView(f9Var);
-                    double d = mediaArea.coordinates.f22262w;
+                    double d = mediaArea.coordinates.f22263w;
                 }
             }
             frameLayout.bringToFront();
         }
     }
 
-    public final void d(TL_stories.StoryItem storyItem, oy oyVar) {
+    public final void d(TL_stories.StoryItem storyItem, qy qyVar) {
         ArrayList<TL_stories.MediaArea> arrayList;
         if (storyItem != null) {
             arrayList = storyItem.media_areas;
         } else {
             arrayList = null;
         }
-        c(storyItem, arrayList, oyVar);
+        c(storyItem, arrayList, qyVar);
     }
 
     @Override
@@ -172,20 +172,20 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
         boolean z12;
         FrameLayout frameLayout = this.d;
         if (view == frameLayout) {
-            a9 a9Var2 = this.f8464b;
+            a9 a9Var2 = this.f8463b;
             if (a9Var2 != null && a9Var2.f8401s && !a9Var2.f8402w) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            float e = this.f8471x.e(z10);
-            a9 a9Var3 = this.f8464b;
+            float e = this.f8470x.e(z10);
+            a9 a9Var3 = this.f8463b;
             if (a9Var3 != null && a9Var3.f8402w) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            float e10 = this.f8472y.e(z11);
+            float e10 = this.f8471y.e(z11);
             int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
             RectF rectF2 = this.v;
             if (i10 > 0) {
@@ -197,7 +197,7 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                     View childAt = getChildAt(i11);
                     if (childAt != frameLayout) {
                         org.telegram.ui.Components.h6 h6Var = ((a9) childAt).f8395a;
-                        a9 a9Var4 = this.f8464b;
+                        a9 a9Var4 = this.f8463b;
                         if (childAt == a9Var4 && a9Var4.f8401s) {
                             z12 = true;
                         } else {
@@ -209,7 +209,7 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                             rectF.set(childAt.getX(), childAt.getY(), childAt.getX() + childAt.getMeasuredWidth(), childAt.getY() + childAt.getMeasuredHeight());
                             canvas2.rotate(childAt.getRotation(), rectF.centerX(), rectF.centerY());
                             int i12 = (int) (e11 * 255.0f);
-                            Paint paint = this.f8470w;
+                            Paint paint = this.f8469w;
                             paint.setAlpha(i12);
                             canvas2.drawRoundRect(rectF, rectF.height() * 0.2f, rectF.height() * 0.2f, paint);
                             canvas2.restore();
@@ -221,7 +221,7 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                 canvas2 = canvas;
                 rectF = rectF2;
             }
-            if ((z11 || e10 > 0.0f) && this.f8463a != null) {
+            if ((z11 || e10 > 0.0f) && this.f8462a != null) {
                 if (this.F == null) {
                     this.F = ((m3) this).I.getPlayingBitmap();
                 }
@@ -230,8 +230,8 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                     canvas2.save();
                     Path path = this.E;
                     path.rewind();
-                    rectF.set(this.f8463a.getX(), this.f8463a.getY(), this.f8463a.getX() + this.f8463a.getMeasuredWidth(), this.f8463a.getY() + this.f8463a.getMeasuredHeight());
-                    a9 a9Var5 = this.f8463a;
+                    rectF.set(this.f8462a.getX(), this.f8462a.getY(), this.f8462a.getX() + this.f8462a.getMeasuredWidth(), this.f8462a.getY() + this.f8462a.getMeasuredHeight());
+                    a9 a9Var5 = this.f8462a;
                     if (a9Var5.f8403x) {
                         f7 = a9Var5.f8400r.a(0.05f);
                     } else {
@@ -239,8 +239,8 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                     }
                     float lerp = AndroidUtilities.lerp(1.0f, f7 * 1.05f, e10);
                     canvas2.scale(lerp, lerp, rectF.centerX(), rectF.centerY());
-                    canvas2.rotate(this.f8463a.getRotation(), rectF.centerX(), rectF.centerY());
-                    TL_stories.MediaAreaCoordinates mediaAreaCoordinates = this.f8463a.f8396b.coordinates;
+                    canvas2.rotate(this.f8462a.getRotation(), rectF.centerX(), rectF.centerY());
+                    TL_stories.MediaAreaCoordinates mediaAreaCoordinates = this.f8462a.f8396b.coordinates;
                     if ((mediaAreaCoordinates.flags & 1) != 0) {
                         measuredHeight = (float) ((mediaAreaCoordinates.radius / 100.0d) * a9Var.getMeasuredWidth());
                     } else {
@@ -252,16 +252,16 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                     rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
                     int width = this.F.getWidth();
                     int height = this.F.getHeight();
-                    Rect rect = this.f8469s;
+                    Rect rect = this.f8468s;
                     rect.set(0, 0, width, height);
-                    canvas2.rotate(-this.f8463a.getRotation(), rectF.centerX(), rectF.centerY());
+                    canvas2.rotate(-this.f8462a.getRotation(), rectF.centerX(), rectF.centerY());
                     canvas2.drawBitmap(this.F, rect, rectF3, (Paint) null);
                     canvas2.restore();
                     canvas2.save();
-                    canvas2.translate(this.f8463a.getX(), this.f8463a.getY());
-                    canvas2.rotate(this.f8463a.getRotation(), this.f8463a.getPivotX(), this.f8463a.getPivotY());
-                    canvas2.scale(this.f8463a.getScaleX() * lerp, this.f8463a.getScaleY() * lerp, this.f8463a.getPivotX(), this.f8463a.getPivotY());
-                    this.f8463a.b(canvas2);
+                    canvas2.translate(this.f8462a.getX(), this.f8462a.getY());
+                    canvas2.rotate(this.f8462a.getRotation(), this.f8462a.getPivotX(), this.f8462a.getPivotY());
+                    canvas2.scale(this.f8462a.getScaleX() * lerp, this.f8462a.getScaleY() * lerp, this.f8462a.getPivotX(), this.f8462a.getPivotY());
+                    this.f8462a.b(canvas2);
                     canvas2.restore();
                 }
             } else {
@@ -330,8 +330,8 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                 int measuredWidth = a9Var.getMeasuredWidth();
                 int measuredHeight = a9Var.getMeasuredHeight();
                 a9Var.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
-                a9Var.setTranslationX((float) ((mediaArea.coordinates.f22263x / 100.0d) * getMeasuredWidth()));
-                a9Var.setTranslationY((float) ((mediaArea.coordinates.f22264y / 100.0d) * getMeasuredHeight()));
+                a9Var.setTranslationX((float) ((mediaArea.coordinates.f22264x / 100.0d) * getMeasuredWidth()));
+                a9Var.setTranslationY((float) ((mediaArea.coordinates.f22265y / 100.0d) * getMeasuredHeight()));
                 a9Var.setRotation((float) mediaArea.coordinates.rotation);
             } else if (childAt instanceof b9) {
                 b9 b9Var = (b9) childAt;
@@ -339,8 +339,8 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                 int measuredWidth2 = b9Var.getMeasuredWidth();
                 int measuredHeight2 = b9Var.getMeasuredHeight();
                 b9Var.layout((-measuredWidth2) / 2, (-measuredHeight2) / 2, measuredWidth2 / 2, measuredHeight2 / 2);
-                b9Var.setTranslationX((float) ((mediaArea2.coordinates.f22263x / 100.0d) * getMeasuredWidth()));
-                b9Var.setTranslationY((float) ((mediaArea2.coordinates.f22264y / 100.0d) * getMeasuredHeight()));
+                b9Var.setTranslationX((float) ((mediaArea2.coordinates.f22264x / 100.0d) * getMeasuredWidth()));
+                b9Var.setTranslationY((float) ((mediaArea2.coordinates.f22265y / 100.0d) * getMeasuredHeight()));
                 b9Var.setRotation((float) mediaArea2.coordinates.rotation);
             }
         }
@@ -357,10 +357,10 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof a9) {
                 a9 a9Var = (a9) getChildAt(i12);
-                a9Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((a9Var.f8396b.coordinates.f22262w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((a9Var.f8396b.coordinates.h / 100.0d) * size2), 1073741824));
+                a9Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((a9Var.f8396b.coordinates.f22263w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((a9Var.f8396b.coordinates.h / 100.0d) * size2), 1073741824));
             } else if (childAt instanceof b9) {
                 b9 b9Var = (b9) getChildAt(i12);
-                b9Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((b9Var.f8439a.coordinates.f22262w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((b9Var.f8439a.coordinates.h / 100.0d) * size2), 1073741824));
+                b9Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((b9Var.f8439a.coordinates.f22263w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((b9Var.f8439a.coordinates.h / 100.0d) * size2), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);
@@ -369,16 +369,16 @@ public abstract class c9 extends FrameLayout implements View.OnClickListener {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         fi.v3 v3Var;
-        if (getChildCount() == 0 || (v3Var = this.f8465c) == null || !v3Var.V) {
+        if (getChildCount() == 0 || (v3Var = this.f8464c) == null || !v3Var.V) {
             return false;
         }
         if (motionEvent.getAction() == 1) {
-            fi.v3 v3Var2 = this.f8465c;
+            fi.v3 v3Var2 = this.f8464c;
             if (v3Var2 != null) {
                 v3Var2.e(true);
-                this.f8465c = null;
+                this.f8464c = null;
             }
-            this.f8464b = null;
+            this.f8463b = null;
             invalidate();
             b(false);
         }

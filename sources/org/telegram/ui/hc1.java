@@ -1,187 +1,220 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLRPC;
-public final class hc1 extends org.telegram.ui.ActionBar.j {
-    public final tc1 f39982a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.Iterator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class hc1 extends AnimatorListenerAdapter {
+    public final int f39852a;
+    public final Object f39853b;
 
-    public hc1(tc1 tc1Var) {
-        this.f39982a = tc1Var;
+    public hc1(Object obj, int i10) {
+        this.f39852a = i10;
+        this.f39853b = obj;
     }
 
     @Override
-    public final void b(int i10) {
-        File file;
-        org.telegram.ui.ActionBar.w6 k10;
-        String b10;
-        String str;
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
         int i11;
-        String str2;
-        tc1 tc1Var = this.f39982a;
-        org.telegram.ui.ActionBar.w6 w6Var = tc1Var.v;
-        int i12 = 0;
-        if (i10 == -1) {
-            if (tc1Var.Q0(true)) {
-                tc1Var.O0(false);
-            }
-        } else if (i10 >= 1 && i10 <= 3) {
-            tc1Var.Z0(i10, true);
-        } else if (i10 == 4) {
-            if (tc1Var.f43795w) {
-                org.telegram.ui.ActionBar.y6.s1(false);
-            }
-            File d = w6Var.d();
-            if (d != null) {
-                d.delete();
-            }
-            TLRPC.TL_wallPaper tL_wallPaper = tc1Var.X0;
-            if (tL_wallPaper != null) {
-                str2 = tL_wallPaper.slug;
-            } else {
-                str2 = "";
-            }
-            w6Var.f23226o = str2;
-            w6Var.f23227p = tc1Var.f43773m1;
-            w6Var.f23228q = tc1Var.F1;
-            if (((int) w6Var.f23221j) == 0) {
-                w6Var.f23221j = 4294967296L;
-            }
-            if (((int) w6Var.f23222k) == 0) {
-                w6Var.f23222k = 4294967296L;
-            }
-            if (((int) w6Var.f23223l) == 0) {
-                w6Var.f23223l = 4294967296L;
-            }
-            if (((int) w6Var.f23224m) == 0) {
-                w6Var.f23224m = 4294967296L;
-            }
-            tc1Var.X0();
-            NotificationCenter.getGlobalInstance().removeObserver(tc1Var, NotificationCenter.wallpapersDidLoad);
-            org.telegram.ui.ActionBar.y6.w1(tc1Var.f43754f0, true, false, false, true, false);
-            org.telegram.ui.ActionBar.y6.o();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, tc1Var.f43754f0, Boolean.valueOf(tc1Var.f43757g0), null, -1);
-            tc1Var.finishFragment();
-        } else if (i10 == 5) {
-            if (tc1Var.getParentActivity() != null) {
-                StringBuilder sb2 = new StringBuilder();
-                if (tc1Var.G1) {
-                    sb2.append("blur");
-                }
-                if (tc1Var.F1) {
-                    if (sb2.length() > 0) {
-                        sb2.append("+");
-                    }
-                    sb2.append("motion");
-                }
-                Object obj = tc1Var.C1;
-                if (obj instanceof TLRPC.TL_wallPaper) {
-                    StringBuilder sb3 = new StringBuilder("https://");
-                    i11 = ((org.telegram.ui.ActionBar.r2) tc1Var).currentAccount;
-                    sb3.append(MessagesController.getInstance(i11).linkPrefix);
-                    sb3.append("/bg/");
-                    sb3.append(((TLRPC.TL_wallPaper) obj).slug);
-                    b10 = sb3.toString();
-                    if (sb2.length() > 0) {
-                        StringBuilder l4 = org.telegram.ui.Components.b10.l(b10, "?mode=");
-                        l4.append(sb2.toString());
-                        b10 = l4.toString();
-                    }
-                } else if (obj instanceof bi1) {
-                    TLRPC.TL_wallPaper tL_wallPaper2 = tc1Var.X0;
-                    if (tL_wallPaper2 != null) {
-                        str = tL_wallPaper2.slug;
-                    } else {
-                        str = "c";
-                    }
-                    bi1 bi1Var = new bi1(str, tc1Var.f43738a1, tc1Var.f43745c1, tc1Var.f43748d1, tc1Var.f43751e1, tc1Var.f43764i1, tc1Var.f43773m1, tc1Var.F1, null);
-                    bi1Var.f38107g = tL_wallPaper2;
-                    b10 = bi1Var.b();
-                } else if (BuildVars.DEBUG_PRIVATE_VERSION && (k10 = org.telegram.ui.ActionBar.y6.I.k(false)) != null) {
-                    bi1 bi1Var2 = new bi1(k10.f23226o, (int) k10.f23221j, (int) k10.f23222k, (int) k10.f23223l, (int) k10.f23224m, k10.f23225n, k10.f23227p, k10.f23228q, null);
-                    int size = tc1Var.V0.size();
-                    while (true) {
-                        if (i12 >= size) {
-                            break;
-                        }
-                        TLRPC.TL_wallPaper tL_wallPaper3 = (TLRPC.TL_wallPaper) tc1Var.V0.get(i12);
-                        if (tL_wallPaper3.pattern && k10.f23226o.equals(tL_wallPaper3.slug)) {
-                            bi1Var2.f38107g = tL_wallPaper3;
-                            break;
-                        }
-                        i12++;
-                    }
-                    b10 = bi1Var2.b();
-                } else {
+        int i12 = this.f39852a;
+        int i13 = 4;
+        float f7 = 1.0f;
+        Object obj = this.f39853b;
+        switch (i12) {
+            case 0:
+                vc1 vc1Var = ((jc1) obj).f40509a;
+                if (!vc1Var.f44292q1.a()) {
+                    vc1Var.S1.setVisibility(8);
                     return;
                 }
-                tc1Var.showDialog(new ec1(this, tc1Var.getParentActivity(), b10, b10));
-            }
-        } else if (i10 == 6) {
-            if (SharedConfig.dayNightWallpaperSwitchHint <= 3) {
-                SharedConfig.dayNightWallpaperSwitchHint = 10;
-                SharedConfig.increaseDayNightWallpaperSiwtchHint();
-            }
-            boolean a2 = tc1Var.f43782q1.a();
-            kc1 kc1Var = tc1Var.f43782q1;
-            if (kc1Var != null) {
-                if (!kc1Var.X0()) {
-                    tc1Var.h1();
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                ((wd1) obj).f44647a = null;
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                ((af1) obj).setScrollEnabled(true);
+                return;
+            case 3:
+                eg1 eg1Var = (eg1) obj;
+                if (animator.equals(eg1Var.d.K)) {
+                    eg1Var.d.K = null;
                     return;
                 }
-                tc1Var.f43782q1.j1(true);
-                org.telegram.ui.Components.xj0 xj0Var = tc1Var.O1;
-                xj0Var.h = true;
-                if (a2) {
-                    xj0Var.P(0);
-                } else {
-                    xj0Var.P(36);
+                return;
+            case 4:
+                tg1 tg1Var = (tg1) obj;
+                tg1Var.d = null;
+                tg1Var.f43639a = null;
+                tg1Var.f43640b = false;
+                tg1Var.f43642f.f36348c.setAllowDrawCursor(true);
+                return;
+            case 5:
+                ((org.telegram.ui.Wallet.f3) obj).K = null;
+                return;
+            case 6:
+                ((org.telegram.ui.Wallet.m3) obj).f();
+                return;
+            case 7:
+                org.telegram.ui.Wallet.m5 m5Var = (org.telegram.ui.Wallet.m5) obj;
+                if (m5Var.J0 == animator) {
+                    m5Var.J0 = null;
+                    return;
                 }
-                tc1Var.O1.start();
-                if (tc1Var.N1) {
-                    kc1 kc1Var2 = tc1Var.f43782q1;
-                    float f7 = 0.0f;
-                    if (kc1Var2 != null && kc1Var2.a()) {
-                        tc1Var.S1.setVisibility(0);
-                        tc1Var.S1.a(tc1Var.f43778o1);
+                return;
+            case 8:
+                org.telegram.ui.Wallet.k5 k5Var = (org.telegram.ui.Wallet.k5) obj;
+                k5Var.h = false;
+                k5Var.f36815n = null;
+                k5Var.f36812b.setLayerType(0, null);
+                return;
+            case 9:
+                org.telegram.ui.Wallet.r5 r5Var = (org.telegram.ui.Wallet.r5) obj;
+                r5Var.N = 0.0f;
+                r5Var.O = 0.0f;
+                r5Var.f37193b0 = null;
+                return;
+            case 10:
+                org.telegram.ui.Wallet.m6 m6Var = (org.telegram.ui.Wallet.m6) obj;
+                m6Var.I = null;
+                m6Var.f36985i0 = 1.0f;
+                m6Var.f36984h0 = 0.0f;
+                m6Var.f36983g0 = 0.0f;
+                m6Var.e();
+                return;
+            case 11:
+                org.telegram.ui.Wallet.n8 n8Var = (org.telegram.ui.Wallet.n8) obj;
+                EditTextBoldCursor editTextBoldCursor = n8Var.f37057b;
+                if (n8Var.f37062s == animator) {
+                    n8Var.f37062s = null;
+                    View view = n8Var.f37056a;
+                    if (n8Var.f37064x) {
+                        i10 = 4;
                     } else {
-                        tc1Var.S1.a(0.0f);
+                        i10 = 0;
                     }
-                    ValueAnimator valueAnimator = tc1Var.Q1;
-                    if (valueAnimator != null) {
-                        valueAnimator.removeAllListeners();
-                        tc1Var.Q1.cancel();
+                    view.setVisibility(i10);
+                    if (n8Var.f37064x) {
+                        i13 = 0;
                     }
-                    float f10 = tc1Var.f43780p1;
-                    if (tc1Var.f43782q1.a()) {
-                        f7 = 1.0f;
+                    editTextBoldCursor.setVisibility(i13);
+                    if (n8Var.f37064x && !n8Var.f37065y) {
+                        editTextBoldCursor.requestFocus();
+                        AndroidUtilities.showKeyboard(editTextBoldCursor);
+                        return;
                     }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-                    tc1Var.Q1 = ofFloat;
-                    ofFloat.addUpdateListener(new v11(this, 11));
-                    tc1Var.Q1.addListener(new fc1(this, 0));
-                    tc1Var.Q1.setDuration(250L);
-                    tc1Var.Q1.setInterpolator(org.telegram.ui.Components.ds.f27586f);
-                    tc1Var.Q1.start();
+                    return;
                 }
-            }
-        } else if (i10 == 7) {
-            Object obj2 = tc1Var.C1;
-            if ((obj2 instanceof ci1) && (file = ((ci1) obj2).e) != null) {
-                MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L);
-                photoEntry.isVideo = false;
-                photoEntry.thumbPath = null;
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(photoEntry);
-                PhotoViewer.u1().M2(tc1Var.getParentActivity(), null, null);
-                PhotoViewer.u1().i2(arrayList, 0, 3, false, new gc1(this, photoEntry), null);
-            }
+                return;
+            case 12:
+                org.telegram.ui.Wallet.h9 h9Var = (org.telegram.ui.Wallet.h9) obj;
+                h9Var.f36670n = null;
+                org.telegram.ui.Wallet.m6 m6Var2 = h9Var.d;
+                if (h9Var.f36673w) {
+                    i11 = 4;
+                } else {
+                    i11 = 0;
+                }
+                m6Var2.setVisibility(i11);
+                TextView textView = h9Var.f36669f;
+                if (h9Var.f36674x) {
+                    i13 = 0;
+                }
+                textView.setVisibility(i13);
+                return;
+            case 13:
+                org.telegram.ui.Components.jg0 jg0Var = (org.telegram.ui.Components.jg0) obj;
+                ((pi1) jg0Var.f29673b).getClass();
+                ((pi1) jg0Var.f29673b).f42443c.setVisibility(4);
+                return;
+            case 14:
+                ((org.telegram.ui.web.a1) obj).f44688s.setVisibility(8);
+                return;
+            case 15:
+                rg.e0 e0Var = (rg.e0) obj;
+                e0Var.f47426a.getPainting().c(null, e0Var.f47426a.getCurrentColor(), true, null);
+                e0Var.f47440r = null;
+                return;
+            case 16:
+                super.onAnimationEnd(animator);
+                sg.l0 l0Var = (sg.l0) obj;
+                ImageView imageView = l0Var.f48333c;
+                l0Var.f48333c = l0Var.d;
+                l0Var.d = imageView;
+                imageView.bringToFront();
+                l0Var.d.setVisibility(8);
+                l0Var.h = null;
+                return;
+            case 17:
+                sg.s1 s1Var = (sg.s1) obj;
+                if (animator == s1Var.f48546r) {
+                    s1Var.f48544f = s1Var.h;
+                    s1Var.h = -1;
+                    s1Var.f48546r = null;
+                    return;
+                }
+                return;
+            case 18:
+                tg.p0 p0Var = (tg.p0) obj;
+                if (!p0Var.f49018r) {
+                    f7 = 0.0f;
+                }
+                p0Var.f49019s = f7;
+                p0Var.e();
+                return;
+            case 19:
+                tg.a2 a2Var = (tg.a2) ((fi.c0) obj).f10591b;
+                a2Var.F = true;
+                a2Var.invalidate();
+                return;
+            case 20:
+                int i14 = ug.f.K;
+                ((ug.f) ((ug.e) obj).f49803b).d();
+                return;
+            case 21:
+                ug.f fVar = (ug.f) obj;
+                fVar.d = null;
+                fVar.e();
+                return;
+            case 22:
+                super.onAnimationEnd(animator);
+                ug.n nVar = ((ug.i) obj).f49839b;
+                nVar.f49851b.d = 0.0f;
+                nVar.f49855d0 = null;
+                nVar.j(nVar.L);
+                return;
+            case 23:
+                vg.b bVar = (vg.b) obj;
+                bVar.f50180b = 1.0f;
+                bVar.invalidate();
+                return;
+            case 24:
+                xh.g gVar = (xh.g) obj;
+                Iterator it = gVar.h.iterator();
+                while (it.hasNext()) {
+                    xh.c cVar = (xh.c) it.next();
+                    if (gVar.f51920c.size() < gVar.d) {
+                        gVar.f51920c.push(cVar);
+                    }
+                    it.remove();
+                }
+                Runnable runnable = gVar.f51931q;
+                if (runnable != null) {
+                    runnable.run();
+                    gVar.f51931q = null;
+                }
+                gVar.f51932r = null;
+                gVar.invalidateSelf();
+                return;
+            default:
+                ((zh.g0) obj).f53037b.f53101w.setVisibility(8);
+                return;
         }
     }
 }

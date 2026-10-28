@@ -56,7 +56,7 @@ public final class f extends w {
                 ?? obj = new Object();
                 obj.d = 0;
                 Charset charset = z.f2531a;
-                obj.f9658c = hVar;
+                obj.f9657c = hVar;
                 hVar.f2448b = obj;
                 fVar = obj;
             }
@@ -88,7 +88,7 @@ public final class f extends w {
             case 1:
                 return null;
             case 2:
-                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f17926a});
+                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f17925a});
             case 3:
                 return new f();
             case 4:

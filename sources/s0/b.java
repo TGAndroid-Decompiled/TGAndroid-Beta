@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.e2;
-import sg.p2;
+import sg.o2;
 import u2.a1;
 import u2.e0;
 public final class b implements s9.e, ra.a, s9.d, OnFailureListener, t5.e, b2, e9.k, e2.j, q3.g {
-    public final int f47644a;
+    public final int f47679a;
 
     public b(int i10) {
-        this.f47644a = i10;
+        this.f47679a = i10;
     }
 
     @Override
@@ -30,13 +30,13 @@ public final class b implements s9.e, ra.a, s9.d, OnFailureListener, t5.e, b2, e
 
     @Override
     public void accept(Object obj) {
-        ((a1) obj).f49245b.release();
+        ((a1) obj).f49280b.release();
     }
 
     @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f47644a) {
+        switch (this.f47679a) {
             case 10:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
@@ -51,7 +51,7 @@ public final class b implements s9.e, ra.a, s9.d, OnFailureListener, t5.e, b2, e
                         } else {
                             decode = Base64.decode(string, 0);
                         }
-                        a2.f16406b = decode;
+                        a2.f16405b = decode;
                         arrayList.add(a2.j());
                     }
                     return arrayList;
@@ -61,7 +61,7 @@ public final class b implements s9.e, ra.a, s9.d, OnFailureListener, t5.e, b2, e
             case 17:
                 return ((o) obj).b().getClass().getSimpleName();
             case 18:
-                return i0.u(f9.o.x(((e0) obj).p().f49416b, new b(20)));
+                return i0.u(f9.o.x(((e0) obj).p().f49451b, new b(20)));
             default:
                 return Integer.valueOf(((q1) obj).f3360c);
         }
@@ -88,7 +88,7 @@ public final class b implements s9.e, ra.a, s9.d, OnFailureListener, t5.e, b2, e
 
     @Override
     public void h(e2 e2Var, int i10) {
-        switch (this.f47644a) {
+        switch (this.f47679a) {
             case 15:
                 e2Var.dismiss();
                 return;
@@ -100,7 +100,7 @@ public final class b implements s9.e, ra.a, s9.d, OnFailureListener, t5.e, b2, e
 
     @Override
     public void i(ra.b bVar) {
-        switch (this.f47644a) {
+        switch (this.f47679a) {
             case 5:
                 return;
             case 21:
@@ -117,11 +117,11 @@ public final class b implements s9.e, ra.a, s9.d, OnFailureListener, t5.e, b2, e
 
     @Override
     public void onFailure(Exception exc) {
-        int i10 = p2.f48435r0;
+        int i10 = o2.f48460r0;
     }
 
     public b(Object obj, int i10) {
-        this.f47644a = i10;
+        this.f47679a = i10;
     }
 
     private final void b(ra.b bVar) {

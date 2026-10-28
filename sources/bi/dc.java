@@ -25,25 +25,25 @@ public final class dc implements Utilities.CallbackReturn {
                 return ecVar.f4576r[((Integer) obj).intValue() % ecVar.f4576r.length];
             case 1:
                 MessageObject messageObject = (MessageObject) obj;
-                ((fi.o7) this.f4510b).f11411q0 = messageObject;
+                ((fi.o7) this.f4510b).f11410q0 = messageObject;
                 return Boolean.valueOf(MediaController.getInstance().setPlaylist(org.telegram.messenger.t.l(messageObject), messageObject, 0L));
             case 2:
                 gi.d dVar = (gi.d) this.f4510b;
-                return dVar.f12496r[((Integer) obj).intValue() % dVar.f12496r.length];
+                return dVar.f12495r[((Integer) obj).intValue() % dVar.f12495r.length];
             case 3:
-                return new org.telegram.ui.Wallet.q6(16, (org.telegram.ui.l0) this.f4510b, (Integer) obj);
+                return new org.telegram.ui.Wallet.a6(17, (org.telegram.ui.l0) this.f4510b, (Integer) obj);
             case 4:
-                sg.n0 n0Var = (sg.n0) this.f4510b;
+                sg.m0 m0Var = (sg.m0) this.f4510b;
                 if (((Integer) obj).intValue() == 2) {
-                    ti tiVar = new ti(n0Var.getContext(), new sg.y(n0Var), false, false, false, n0Var.F1);
+                    ti tiVar = new ti(m0Var.getContext(), new sg.x(m0Var), false, false, false, m0Var.F1);
                     tiVar.drawNavigationBar = true;
-                    tiVar.S1(LocaleController.getString(R.string.AddImage));
-                    tiVar.f33013c2 = new sg.z(n0Var, tiVar);
+                    tiVar.T1(LocaleController.getString(R.string.AddImage));
+                    tiVar.f32982c2 = new sg.y(m0Var, tiVar);
                     tiVar.setOnDismissListener(new fi.e1(8));
-                    tiVar.Q1(1, false);
-                    tiVar.v1();
+                    tiVar.R1(1, false);
+                    tiVar.w1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    tiVar.f33033j0.f0();
+                    tiVar.f33002j0.g0();
                     tiVar.show();
                 }
                 return Boolean.TRUE;

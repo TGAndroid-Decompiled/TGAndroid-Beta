@@ -17,12 +17,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ga extends org.telegram.ui.ActionBar.j {
-    public final int f39578a;
-    public final Object f39579b;
+    public final int f39546a;
+    public final Object f39547b;
 
     public ga(Object obj, int i10) {
-        this.f39578a = i10;
-        this.f39579b = obj;
+        this.f39546a = i10;
+        this.f39547b = obj;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class ga extends org.telegram.ui.ActionBar.j {
         Runnable runnable;
         int i11;
         org.telegram.ui.ActionBar.r5 r5Var;
-        int i12 = this.f39578a;
-        Object obj = this.f39579b;
+        int i12 = this.f39546a;
+        Object obj = this.f39547b;
         switch (i12) {
             case 0:
                 ta taVar = (ta) obj;
@@ -54,7 +54,7 @@ public final class ga extends org.telegram.ui.ActionBar.j {
             case 2:
                 bd bdVar = (bd) obj;
                 if (i10 == -1) {
-                    if (bdVar.f38037b >= bdVar.V0() && bdVar.T0()) {
+                    if (bdVar.f37979b >= bdVar.V0() && bdVar.T0()) {
                         bdVar.Y0();
                         return;
                     } else {
@@ -83,14 +83,14 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                     mc mcVar = new mc(bdVar, bdVar.getParentActivity(), canvas, (bdVar.L.getMeasuredWidth() / 2.0f) + f7, (bdVar.L.getMeasuredHeight() / 2.0f) + f10, max, paint, createBitmap, paint2, f7, f10, 0);
                     bdVar.m0 = mcVar;
                     mcVar.setOnTouchListener(new ei.d(2));
-                    bdVar.f38052n0 = 0.0f;
+                    bdVar.f37994n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    bdVar.f38053o0 = ofFloat;
+                    bdVar.f37995o0 = ofFloat;
                     ofFloat.addUpdateListener(new fi.bb(bdVar, 1));
-                    bdVar.f38053o0.addListener(new kg.e(bdVar, 24));
-                    bdVar.f38053o0.setDuration(400L);
-                    bdVar.f38053o0.setInterpolator(org.telegram.ui.Components.ut.e);
-                    bdVar.f38053o0.start();
+                    bdVar.f37995o0.addListener(new kg.e(bdVar, 24));
+                    bdVar.f37995o0.setDuration(400L);
+                    bdVar.f37995o0.setInterpolator(org.telegram.ui.Components.ut.e);
+                    bdVar.f37995o0.start();
                     frameLayout.addView(bdVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new hc(bdVar, 0));
                     return;
@@ -98,28 +98,28 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 3:
-                mo moVar = (mo) obj;
+                oo ooVar = (oo) obj;
                 if (i10 == -1) {
-                    if (moVar.f0(true)) {
-                        moVar.finishFragment();
+                    if (ooVar.f0(true)) {
+                        ooVar.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    moVar.k0();
+                    ooVar.k0();
                     return;
                 } else {
                     return;
                 }
             case 4:
-                ap apVar = (ap) obj;
+                cp cpVar = (cp) obj;
                 if (i10 == -1) {
-                    apVar.finishFragment();
+                    cpVar.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    org.telegram.ui.ActionBar.u5 u5Var = apVar.f37865r;
-                    if (u5Var == null || !u5Var.f23139x.f19327f) {
-                        apVar.a0();
+                    org.telegram.ui.ActionBar.u5 u5Var = cpVar.f38422r;
+                    if (u5Var == null || !u5Var.f23140x.f19326f) {
+                        cpVar.a0();
                         return;
                     }
                     return;
@@ -128,40 +128,40 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                 }
             case 5:
                 if (i10 == -1) {
-                    ((np) obj).finishFragment();
+                    ((pp) obj).finishFragment();
                     return;
                 }
                 return;
             case 6:
                 if (i10 == -1) {
-                    ((vp) obj).finishFragment();
+                    ((xp) obj).finishFragment();
                     return;
                 }
                 return;
             case 7:
-                gq gqVar = (gq) obj;
+                iq iqVar = (iq) obj;
                 if (i10 == -1) {
-                    if (gqVar.n0(true)) {
-                        gqVar.finishFragment();
+                    if (iqVar.n0(true)) {
+                        iqVar.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    gqVar.s0(true);
+                    iqVar.s0(true);
                     return;
                 } else {
                     return;
                 }
             case 8:
-                kr krVar = (kr) obj;
+                mr mrVar = (mr) obj;
                 if (i10 == -1) {
-                    if (krVar.h0(true)) {
-                        krVar.finishFragment();
+                    if (mrVar.h0(true)) {
+                        mrVar.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    krVar.v0();
+                    mrVar.v0();
                     return;
                 } else {
                     return;
@@ -199,38 +199,38 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 13:
-                org.telegram.ui.Components.ta0 ta0Var = (org.telegram.ui.Components.ta0) obj;
+                org.telegram.ui.Components.ua0 ua0Var = (org.telegram.ui.Components.ua0) obj;
                 if (i10 == -1) {
-                    if (!ta0Var.R.S(true)) {
-                        ta0Var.finishFragment();
+                    if (!ua0Var.R.S(true)) {
+                        ua0Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 10) {
-                    org.telegram.ui.Components.sa0 sa0Var = ta0Var.R;
-                    sa0Var.l1(sa0Var.getClosestTab(), false);
+                    org.telegram.ui.Components.ta0 ta0Var = ua0Var.R;
+                    ta0Var.l1(ta0Var.getClosestTab(), false);
                     return;
                 } else {
                     return;
                 }
             case 14:
-                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.fg0) obj).f28188r) != null) {
+                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.gg0) obj).f28582r) != null) {
                     AndroidUtilities.runOnUIThread(runnable);
                     return;
                 }
                 return;
             case 15:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.nh0) obj).dismiss();
+                    ((org.telegram.ui.Components.oh0) obj).dismiss();
                     return;
                 }
                 return;
             case 16:
-                ((org.telegram.ui.Components.mr0) obj).onBackPressed();
+                ((org.telegram.ui.Components.nr0) obj).onBackPressed();
                 return;
             case 17:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.m71) obj).finishFragment();
+                    ((org.telegram.ui.Components.n71) obj).finishFragment();
                     return;
                 }
                 return;
@@ -242,7 +242,7 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                 return;
             case 19:
                 if (i10 == -1) {
-                    ((ih1) obj).a(false, false);
+                    ((kh1) obj).a(false, false);
                     return;
                 }
                 return;
@@ -261,7 +261,7 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(contactsActivity.getParentActivity(), 0, contactsActivity.getResourceProvider());
                     a0.h hVar = contactsActivity.Z;
                     int m10 = hVar.m();
-                    org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
+                    org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
                     if (m10 == 1) {
                         e2Var.R = LocaleController.getString(R.string.DeleteContactTitle);
                         e2Var.T = LocaleController.getString(R.string.DeleteContactSubtitle);
@@ -269,31 +269,31 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                         e2Var.R = LocaleController.formatPluralString("DeleteContactsTitle", hVar.m(), new Object[0]);
                         e2Var.T = LocaleController.getString(R.string.DeleteContactsSubtitle);
                     }
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new ms(contactsActivity));
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new os(contactsActivity));
                     alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.voip.c1(3));
                     e2Var.show();
                     e2Var.i();
                     return;
                 } else if (i10 == 1) {
                     SharedConfig.toggleSortContactsByName();
-                    contactsActivity.f35473r = SharedConfig.sortContactsByName;
-                    org.telegram.ui.ActionBar.y5 y5Var = contactsActivity.f35471n;
+                    contactsActivity.f35497r = SharedConfig.sortContactsByName;
+                    org.telegram.ui.ActionBar.y5 y5Var = contactsActivity.f35495n;
                     if (y5Var != null) {
-                        org.telegram.ui.Components.ak0 iconView = y5Var.getIconView();
-                        if (contactsActivity.f35473r) {
+                        org.telegram.ui.Components.bk0 iconView = y5Var.getIconView();
+                        if (contactsActivity.f35497r) {
                             i11 = R.drawable.msg_contacts_time;
                         } else {
                             i11 = R.drawable.msg_contacts_name;
                         }
                         AndroidUtilities.updateImageViewImageAnimated(iconView, i11);
                     }
-                    ViewPropertyAnimator viewPropertyAnimator = contactsActivity.f35462e0;
+                    ViewPropertyAnimator viewPropertyAnimator = contactsActivity.f35486e0;
                     if (viewPropertyAnimator != null) {
                         viewPropertyAnimator.cancel();
                     }
-                    contactsActivity.f35455a.b();
-                    ViewPropertyAnimator withEndAction = contactsActivity.d.animate().alpha(0.0f).setDuration(120L).setInterpolator(org.telegram.ui.Components.ds.f27587g).withEndAction(new ls(contactsActivity, 0));
-                    contactsActivity.f35462e0 = withEndAction;
+                    contactsActivity.f35479a.b();
+                    ViewPropertyAnimator withEndAction = contactsActivity.d.animate().alpha(0.0f).setDuration(120L).setInterpolator(org.telegram.ui.Components.ds.f27531g).withEndAction(new ns(contactsActivity, 0));
+                    contactsActivity.f35486e0 = withEndAction;
                     withEndAction.start();
                     return;
                 } else {
@@ -301,7 +301,7 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                 }
             case 21:
                 if (i10 == -1) {
-                    ((ot) obj).finishFragment();
+                    ((qt) obj).finishFragment();
                     return;
                 }
                 return;
@@ -319,46 +319,46 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                 return;
             case 24:
                 if (i10 == -1) {
-                    ((lu) obj).finishFragment();
+                    ((nu) obj).finishFragment();
                     return;
                 }
                 return;
             case 25:
                 if (i10 == -1) {
-                    ((zu) obj).finishFragment();
+                    ((bv) obj).finishFragment();
                     return;
                 }
                 return;
             case 26:
                 if (i10 == -1) {
-                    ((uy) obj).finishFragment();
+                    ((wy) obj).finishFragment();
                     return;
                 }
                 return;
             case 27:
-                lz lzVar = (lz) obj;
+                oz ozVar = (oz) obj;
                 if (i10 == -1) {
-                    if (lzVar.X(true)) {
-                        lzVar.finishFragment();
+                    if (ozVar.X(true)) {
+                        ozVar.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    lzVar.d0();
+                    ozVar.d0();
                     return;
                 } else {
                     return;
                 }
             case 28:
-                o00 o00Var = (o00) obj;
+                q00 q00Var = (q00) obj;
                 if (i10 == -1) {
-                    if (o00Var.j0(true)) {
-                        o00Var.finishFragment();
+                    if (q00Var.j0(true)) {
+                        q00Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    o00Var.s0();
+                    q00Var.s0();
                     return;
                 } else {
                     return;

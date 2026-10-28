@@ -21,25 +21,25 @@ public class CheckBox extends View {
     public int E;
     public int F;
     public String G;
-    public final Drawable f26066a;
-    public final TextPaint f26067b;
-    public Bitmap f26068c;
+    public final Drawable f26068a;
+    public final TextPaint f26069b;
+    public Bitmap f26070c;
     public Bitmap d;
     public Canvas e;
-    public Canvas f26069f;
+    public Canvas f26071f;
     public boolean h;
-    public boolean f26070n;
-    public float f26071r;
-    public ObjectAnimator f26072s;
+    public boolean f26072n;
+    public float f26073r;
+    public ObjectAnimator f26074s;
     public boolean v;
-    public boolean f26073w;
-    public boolean f26074x;
-    public int f26075y;
+    public boolean f26075w;
+    public boolean f26076x;
+    public int f26077y;
 
     public CheckBox(Context context, int i10) {
         super(context);
         this.v = true;
-        this.f26075y = 22;
+        this.f26077y = 22;
         if (H == null) {
             H = new Paint(1);
             Paint paint = new Paint(1);
@@ -63,10 +63,10 @@ public class CheckBox extends View {
         J.setStrokeWidth(AndroidUtilities.dp(28.0f));
         K.setStrokeWidth(AndroidUtilities.dp(2.0f));
         TextPaint textPaint = new TextPaint(1);
-        this.f26067b = textPaint;
+        this.f26069b = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(18.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        this.f26066a = context.getResources().getDrawable(i10).mutate();
+        this.f26068a = context.getResources().getDrawable(i10).mutate();
     }
 
     public final void a(boolean z10) {
@@ -74,27 +74,27 @@ public class CheckBox extends View {
     }
 
     public final void b(boolean z10, boolean z11) {
-        if (z10 == this.f26074x) {
+        if (z10 == this.f26076x) {
             return;
         }
-        this.f26074x = z10;
+        this.f26076x = z10;
         float f7 = 0.0f;
-        if (this.f26073w && z11) {
+        if (this.f26075w && z11) {
             this.v = z10;
             if (z10) {
                 f7 = 1.0f;
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f7);
-            this.f26072s = ofFloat;
-            ofFloat.addListener(new org.telegram.ui.qp(this, 19));
-            this.f26072s.setDuration(300L);
-            this.f26072s.start();
+            this.f26074s = ofFloat;
+            ofFloat.addListener(new org.telegram.ui.sp(this, 19));
+            this.f26074s.setDuration(300L);
+            this.f26074s.start();
             return;
         }
-        ObjectAnimator objectAnimator = this.f26072s;
+        ObjectAnimator objectAnimator = this.f26074s;
         if (objectAnimator != null) {
             objectAnimator.cancel();
-            this.f26072s = null;
+            this.f26074s = null;
         }
         if (z10) {
             f7 = 1.0f;
@@ -104,25 +104,25 @@ public class CheckBox extends View {
 
     public final void c(int i10, int i11) {
         this.F = i10;
-        this.f26066a.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f26067b.setColor(i11);
+        this.f26068a.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
+        this.f26069b.setColor(i11);
         invalidate();
     }
 
     public float getProgress() {
-        return this.f26071r;
+        return this.f26073r;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f26073w = true;
+        this.f26075w = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f26073w = false;
+        this.f26075w = false;
     }
 
     @Override
@@ -135,7 +135,7 @@ public class CheckBox extends View {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f26074x);
+        accessibilityNodeInfo.setChecked(this.f26076x);
     }
 
     @Override
@@ -150,8 +150,8 @@ public class CheckBox extends View {
     }
 
     public void setCheckColor(int i10) {
-        this.f26066a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
-        this.f26067b.setColor(i10);
+        this.f26068a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
+        this.f26069b.setColor(i10);
         invalidate();
     }
 
@@ -164,30 +164,30 @@ public class CheckBox extends View {
     }
 
     public void setHasBorder(boolean z10) {
-        this.f26070n = z10;
+        this.f26072n = z10;
     }
 
     public void setNum(int i10) {
         if (i10 >= 0) {
             this.G = "" + (i10 + 1);
-        } else if (this.f26072s == null) {
+        } else if (this.f26074s == null) {
             this.G = null;
         }
         invalidate();
     }
 
     public void setProgress(float f7) {
-        if (this.f26071r == f7) {
+        if (this.f26073r == f7) {
             return;
         }
-        this.f26071r = f7;
+        this.f26073r = f7;
         invalidate();
     }
 
     public void setSize(int i10) {
-        this.f26075y = i10;
+        this.f26077y = i10;
         if (i10 == 40) {
-            this.f26067b.setTextSize(AndroidUtilities.dp(24.0f));
+            this.f26069b.setTextSize(AndroidUtilities.dp(24.0f));
         }
     }
 
@@ -198,15 +198,15 @@ public class CheckBox extends View {
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        if (i10 == 0 && this.f26068c == null) {
+        if (i10 == 0 && this.f26070c == null) {
             try {
-                int dp = AndroidUtilities.dp(this.f26075y);
-                int dp2 = AndroidUtilities.dp(this.f26075y);
+                int dp = AndroidUtilities.dp(this.f26077y);
+                int dp2 = AndroidUtilities.dp(this.f26077y);
                 Bitmap.Config config = Bitmap.Config.ARGB_4444;
-                this.f26068c = Bitmap.createBitmap(dp, dp2, config);
-                this.e = new Canvas(this.f26068c);
-                this.d = Bitmap.createBitmap(AndroidUtilities.dp(this.f26075y), AndroidUtilities.dp(this.f26075y), config);
-                this.f26069f = new Canvas(this.d);
+                this.f26070c = Bitmap.createBitmap(dp, dp2, config);
+                this.e = new Canvas(this.f26070c);
+                this.d = Bitmap.createBitmap(AndroidUtilities.dp(this.f26077y), AndroidUtilities.dp(this.f26077y), config);
+                this.f26071f = new Canvas(this.d);
             } catch (Throwable unused) {
             }
         }

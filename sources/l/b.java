@@ -4,7 +4,7 @@ import android.view.View;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import m.u1;
 public final class b extends u1 {
-    public final int f16685s = 0;
+    public final int f16684s = 0;
     public final View v;
 
     public b(ActionMenuItemView actionMenuItemView) {
@@ -15,10 +15,10 @@ public final class b extends u1 {
     @Override
     public final b0 b() {
         m.d dVar;
-        switch (this.f16685s) {
+        switch (this.f16684s) {
             case 0:
                 c cVar = ((ActionMenuItemView) this.v).f2168x;
-                if (cVar != null && (dVar = ((m.e) cVar).f17708a.J) != null) {
+                if (cVar != null && (dVar = ((m.e) cVar).f17707a.J) != null) {
                     return dVar.a();
                 }
                 return null;
@@ -34,7 +34,7 @@ public final class b extends u1 {
     @Override
     public final boolean c() {
         b0 b10;
-        switch (this.f16685s) {
+        switch (this.f16684s) {
             case 0:
                 ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.v;
                 j jVar = actionMenuItemView.v;
@@ -50,7 +50,7 @@ public final class b extends u1 {
 
     @Override
     public boolean d() {
-        switch (this.f16685s) {
+        switch (this.f16684s) {
             case 1:
                 m.h hVar = ((m.g) this.v).d;
                 if (hVar.K != null) {

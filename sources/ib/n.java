@@ -13,7 +13,7 @@ public final class n extends nb.b {
     public n() {
         super(H);
         this.E = new ArrayList();
-        this.G = fb.k.f10396a;
+        this.G = fb.k.f10395a;
     }
 
     @Override
@@ -81,13 +81,13 @@ public final class n extends nb.b {
 
     @Override
     public final nb.b i() {
-        w(fb.k.f10396a);
+        w(fb.k.f10395a);
         return this;
     }
 
     @Override
     public final void n(double d) {
-        if (this.f18769n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
+        if (this.f18768n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
             w(new fb.m(Double.valueOf(d)));
             return;
         }
@@ -102,7 +102,7 @@ public final class n extends nb.b {
     @Override
     public final void p(Boolean bool) {
         if (bool == null) {
-            w(fb.k.f10396a);
+            w(fb.k.f10395a);
         } else {
             w(new fb.m(bool));
         }
@@ -111,10 +111,10 @@ public final class n extends nb.b {
     @Override
     public final void q(Number number) {
         if (number == null) {
-            w(fb.k.f10396a);
+            w(fb.k.f10395a);
             return;
         }
-        if (this.f18769n != 1) {
+        if (this.f18768n != 1) {
             double doubleValue = number.doubleValue();
             if (Double.isNaN(doubleValue) || Double.isInfinite(doubleValue)) {
                 throw new IllegalArgumentException("JSON forbids NaN and infinities: " + number);
@@ -126,7 +126,7 @@ public final class n extends nb.b {
     @Override
     public final void r(String str) {
         if (str == null) {
-            w(fb.k.f10396a);
+            w(fb.k.f10395a);
         } else {
             w(new fb.m(str));
         }
@@ -160,7 +160,7 @@ public final class n extends nb.b {
         } else {
             fb.i v = v();
             if (v instanceof fb.h) {
-                ((fb.h) v).f10395a.add(iVar);
+                ((fb.h) v).f10394a.add(iVar);
                 return;
             }
             throw new IllegalStateException();

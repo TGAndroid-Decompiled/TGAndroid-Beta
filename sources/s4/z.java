@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cy0;
-import org.telegram.ui.Components.gm0;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.dy0;
+import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.nm0;
 public class z extends n0 implements r0 {
     public int E;
     public int G;
@@ -27,25 +27,25 @@ public class z extends n0 implements r0 {
     public long R;
     public float d;
     public float e;
-    public float f47864f;
+    public float f47899f;
     public float h;
-    public float f47865n;
-    public float f47866r;
-    public float f47867s;
+    public float f47900n;
+    public float f47901r;
+    public float f47902s;
     public float v;
-    public final w f47869x;
-    public final ArrayList f47861a = new ArrayList();
-    public final float[] f47862b = new float[2];
-    public e1 f47863c = null;
-    public int f47868w = -1;
-    public int f47870y = 0;
+    public final w f47904x;
+    public final ArrayList f47896a = new ArrayList();
+    public final float[] f47897b = new float[2];
+    public e1 f47898c = null;
+    public int f47903w = -1;
+    public int f47905y = 0;
     public final ArrayList F = new ArrayList();
-    public final cy0 I = new cy0(this, 11);
+    public final dy0 I = new dy0(this, 11);
     public View M = null;
-    public final gm0 P = new gm0(this);
+    public final hm0 P = new hm0(this);
 
     public z(w wVar) {
-        this.f47869x = wVar;
+        this.f47904x = wVar;
     }
 
     public static boolean o(View view, float f7, float f10, float f11, float f12) {
@@ -60,14 +60,14 @@ public class z extends n0 implements r0 {
         q(view);
         e1 T = this.H.T(view);
         if (T != null) {
-            e1 e1Var = this.f47863c;
+            e1 e1Var = this.f47898c;
             if (e1Var != null && T == e1Var) {
                 r(null, 0);
                 return;
             }
             l(T, false);
-            if (this.f47861a.remove(T.f47738a)) {
-                this.f47869x.a(this.H, T);
+            if (this.f47896a.remove(T.f47773a)) {
+                this.f47904x.a(this.H, T);
             }
         }
     }
@@ -81,8 +81,8 @@ public class z extends n0 implements r0 {
     public final void e(Canvas canvas, RecyclerView recyclerView) {
         float f7;
         float f10;
-        if (this.f47863c != null) {
-            float[] fArr = this.f47862b;
+        if (this.f47898c != null) {
+            float[] fArr = this.f47897b;
             n(fArr);
             float f11 = fArr[0];
             f7 = fArr[1];
@@ -91,31 +91,31 @@ public class z extends n0 implements r0 {
             f7 = 0.0f;
             f10 = 0.0f;
         }
-        e1 e1Var = this.f47863c;
-        int i10 = this.f47870y;
-        w wVar = this.f47869x;
+        e1 e1Var = this.f47898c;
+        int i10 = this.f47905y;
+        w wVar = this.f47904x;
         wVar.getClass();
         ArrayList arrayList = this.F;
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             v vVar = (v) arrayList.get(i11);
             e1 e1Var2 = vVar.e;
-            float f12 = vVar.f47840a;
-            float f13 = vVar.f47842c;
+            float f12 = vVar.f47875a;
+            float f13 = vVar.f47877c;
             if (f12 == f13) {
-                vVar.f47845r = e1Var2.f47738a.getTranslationX();
+                vVar.f47880r = e1Var2.f47773a.getTranslationX();
             } else {
-                vVar.f47845r = c3.h0.z(f13, f12, vVar.f47848x, f12);
+                vVar.f47880r = c3.h0.z(f13, f12, vVar.f47883x, f12);
             }
-            float f14 = vVar.f47841b;
+            float f14 = vVar.f47876b;
             float f15 = vVar.d;
             if (f14 == f15) {
-                vVar.f47846s = e1Var2.f47738a.getTranslationY();
+                vVar.f47881s = e1Var2.f47773a.getTranslationY();
             } else {
-                vVar.f47846s = c3.h0.z(f15, f14, vVar.f47848x, f14);
+                vVar.f47881s = c3.h0.z(f15, f14, vVar.f47883x, f14);
             }
             int save = canvas.save();
-            wVar.m(canvas, recyclerView, vVar.e, vVar.f47845r, vVar.f47846s, vVar.f47843f, false);
+            wVar.m(canvas, recyclerView, vVar.e, vVar.f47880r, vVar.f47881s, vVar.f47878f, false);
             canvas.restoreToCount(save);
         }
         if (e1Var != null) {
@@ -128,19 +128,19 @@ public class z extends n0 implements r0 {
     @Override
     public final void g(Canvas canvas, RecyclerView recyclerView) {
         boolean z10 = false;
-        if (this.f47863c != null) {
-            float[] fArr = this.f47862b;
+        if (this.f47898c != null) {
+            float[] fArr = this.f47897b;
             n(fArr);
             float f7 = fArr[0];
             float f10 = fArr[1];
         }
-        e1 e1Var = this.f47863c;
-        this.f47869x.getClass();
+        e1 e1Var = this.f47898c;
+        this.f47904x.getClass();
         ArrayList arrayList = this.F;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             int save = canvas.save();
-            View view = ((v) arrayList.get(i10)).e.f47738a;
+            View view = ((v) arrayList.get(i10)).e.f47773a;
             canvas.restoreToCount(save);
         }
         if (e1Var != null) {
@@ -148,8 +148,8 @@ public class z extends n0 implements r0 {
         }
         for (int i11 = size - 1; i11 >= 0; i11--) {
             v vVar = (v) arrayList.get(i11);
-            boolean z11 = vVar.f47847w;
-            if (z11 && !vVar.f47844n) {
+            boolean z11 = vVar.f47882w;
+            if (z11 && !vVar.f47879n) {
                 arrayList.remove(i11);
             } else if (!z11) {
                 z10 = true;
@@ -160,15 +160,15 @@ public class z extends n0 implements r0 {
         }
     }
 
-    public final void h(mm0 mm0Var) {
+    public final void h(nm0 nm0Var) {
         RecyclerView recyclerView = this.H;
-        if (recyclerView != mm0Var) {
-            gm0 gm0Var = this.P;
+        if (recyclerView != nm0Var) {
+            hm0 hm0Var = this.P;
             if (recyclerView != null) {
                 recyclerView.q0(this);
                 RecyclerView recyclerView2 = this.H;
-                recyclerView2.E.remove(gm0Var);
-                if (recyclerView2.F == gm0Var) {
+                recyclerView2.E.remove(hm0Var);
+                if (recyclerView2.F == hm0Var) {
                     recyclerView2.F = null;
                 }
                 ArrayList arrayList = this.H.P;
@@ -182,7 +182,7 @@ public class z extends n0 implements r0 {
                     if (size < 0) {
                         break;
                     }
-                    this.f47869x.a(this.H, ((v) arrayList2.get(0)).e);
+                    this.f47904x.a(this.H, ((v) arrayList2.get(0)).e);
                 }
                 arrayList2.clear();
                 this.M = null;
@@ -193,21 +193,21 @@ public class z extends n0 implements r0 {
                 }
                 x xVar = this.O;
                 if (xVar != null) {
-                    xVar.f47858a = false;
+                    xVar.f47893a = false;
                     this.O = null;
                 }
                 if (this.N != null) {
                     this.N = null;
                 }
             }
-            this.H = mm0Var;
-            if (mm0Var != null) {
-                mm0Var.getResources();
-                this.f47864f = AndroidUtilities.dp(120.0f);
+            this.H = nm0Var;
+            if (nm0Var != null) {
+                nm0Var.getResources();
+                this.f47899f = AndroidUtilities.dp(120.0f);
                 this.h = AndroidUtilities.dp(800.0f);
                 this.G = ViewConfiguration.get(this.H.getContext()).getScaledTouchSlop();
                 this.H.i(this);
-                this.H.E.add(gm0Var);
+                this.H.E.add(hm0Var);
                 RecyclerView recyclerView3 = this.H;
                 if (recyclerView3.P == null) {
                     recyclerView3.P = new ArrayList();
@@ -223,27 +223,27 @@ public class z extends n0 implements r0 {
         int i11;
         if ((i10 & 12) != 0) {
             int i12 = 4;
-            if (this.f47865n > 0.0f) {
+            if (this.f47900n > 0.0f) {
                 i11 = 8;
             } else {
                 i11 = 4;
             }
             VelocityTracker velocityTracker = this.J;
-            w wVar = this.f47869x;
-            if (velocityTracker != null && this.f47868w > -1) {
+            w wVar = this.f47904x;
+            if (velocityTracker != null && this.f47903w > -1) {
                 velocityTracker.computeCurrentVelocity(1000, wVar.h(this.h));
-                float xVelocity = this.J.getXVelocity(this.f47868w);
-                float yVelocity = this.J.getYVelocity(this.f47868w);
+                float xVelocity = this.J.getXVelocity(this.f47903w);
+                float yVelocity = this.J.getYVelocity(this.f47903w);
                 if (xVelocity > 0.0f) {
                     i12 = 8;
                 }
                 float abs = Math.abs(xVelocity);
-                if ((i12 & i10) != 0 && i11 == i12 && abs >= wVar.f(this.f47864f) && abs > Math.abs(yVelocity)) {
+                if ((i12 & i10) != 0 && i11 == i12 && abs >= wVar.f(this.f47899f) && abs > Math.abs(yVelocity)) {
                     return i12;
                 }
             }
             float g7 = wVar.g() * this.H.getWidth();
-            if ((i10 & i11) != 0 && Math.abs(this.f47865n) > g7) {
+            if ((i10 & i11) != 0 && Math.abs(this.f47900n) > g7) {
                 return i11;
             }
             return 0;
@@ -253,11 +253,11 @@ public class z extends n0 implements r0 {
 
     public final void j(int i10, int i11, MotionEvent motionEvent) {
         View m10;
-        if (this.f47863c == null && i10 == 2 && this.f47870y != 2) {
-            w wVar = this.f47869x;
+        if (this.f47898c == null && i10 == 2 && this.f47905y != 2) {
+            w wVar = this.f47904x;
             if (wVar.j() && this.H.getScrollState() != 1) {
                 p0 layoutManager = this.H.getLayoutManager();
-                int i12 = this.f47868w;
+                int i12 = this.f47903w;
                 e1 e1Var = null;
                 if (i12 != -1) {
                     int findPointerIndex = motionEvent.findPointerIndex(i12);
@@ -271,7 +271,7 @@ public class z extends n0 implements r0 {
                 if (e1Var != null) {
                     RecyclerView recyclerView = this.H;
                     int e = wVar.e(recyclerView, e1Var);
-                    WeakHashMap weakHashMap = r0.i0.f47108a;
+                    WeakHashMap weakHashMap = r0.i0.f47143a;
                     int b10 = (wVar.b(e, recyclerView.getLayoutDirection()) & 65280) >> 8;
                     if (b10 != 0) {
                         float x9 = motionEvent.getX(i11);
@@ -297,9 +297,9 @@ public class z extends n0 implements r0 {
                             } else {
                                 return;
                             }
-                            this.f47866r = 0.0f;
-                            this.f47865n = 0.0f;
-                            this.f47868w = motionEvent.getPointerId(0);
+                            this.f47901r = 0.0f;
+                            this.f47900n = 0.0f;
+                            this.f47903w = motionEvent.getPointerId(0);
                             r(e1Var, 1);
                         }
                     }
@@ -312,27 +312,27 @@ public class z extends n0 implements r0 {
         int i11;
         if ((i10 & 3) != 0) {
             int i12 = 1;
-            if (this.f47866r > 0.0f) {
+            if (this.f47901r > 0.0f) {
                 i11 = 2;
             } else {
                 i11 = 1;
             }
             VelocityTracker velocityTracker = this.J;
-            w wVar = this.f47869x;
-            if (velocityTracker != null && this.f47868w > -1) {
+            w wVar = this.f47904x;
+            if (velocityTracker != null && this.f47903w > -1) {
                 velocityTracker.computeCurrentVelocity(1000, wVar.h(this.h));
-                float xVelocity = this.J.getXVelocity(this.f47868w);
-                float yVelocity = this.J.getYVelocity(this.f47868w);
+                float xVelocity = this.J.getXVelocity(this.f47903w);
+                float yVelocity = this.J.getYVelocity(this.f47903w);
                 if (yVelocity > 0.0f) {
                     i12 = 2;
                 }
                 float abs = Math.abs(yVelocity);
-                if ((i12 & i10) != 0 && i12 == i11 && abs >= wVar.f(this.f47864f) && abs > Math.abs(xVelocity)) {
+                if ((i12 & i10) != 0 && i12 == i11 && abs >= wVar.f(this.f47899f) && abs > Math.abs(xVelocity)) {
                     return i12;
                 }
             }
             float g7 = wVar.g() * this.H.getHeight();
-            if ((i10 & i11) != 0 && Math.abs(this.f47866r) > g7) {
+            if ((i10 & i11) != 0 && Math.abs(this.f47901r) > g7) {
                 return i11;
             }
             return 0;
@@ -346,7 +346,7 @@ public class z extends n0 implements r0 {
             v vVar = (v) arrayList.get(size);
             if (vVar.e == e1Var) {
                 vVar.v |= z10;
-                if (!vVar.f47847w) {
+                if (!vVar.f47882w) {
                     vVar.h.cancel();
                 }
                 arrayList.remove(size);
@@ -358,18 +358,18 @@ public class z extends n0 implements r0 {
     public final View m(MotionEvent motionEvent) {
         float x9 = motionEvent.getX();
         float y3 = motionEvent.getY();
-        e1 e1Var = this.f47863c;
+        e1 e1Var = this.f47898c;
         if (e1Var != null) {
-            View view = e1Var.f47738a;
-            if (o(view, x9, y3, this.f47867s + this.f47865n, this.v + this.f47866r)) {
+            View view = e1Var.f47773a;
+            if (o(view, x9, y3, this.f47902s + this.f47900n, this.v + this.f47901r)) {
                 return view;
             }
         }
         ArrayList arrayList = this.F;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             v vVar = (v) arrayList.get(size);
-            View view2 = vVar.e.f47738a;
-            if (o(view2, x9, y3, vVar.f47845r, vVar.f47846s)) {
+            View view2 = vVar.e.f47773a;
+            if (o(view2, x9, y3, vVar.f47880r, vVar.f47881s)) {
                 return view2;
             }
         }
@@ -378,14 +378,14 @@ public class z extends n0 implements r0 {
 
     public final void n(float[] fArr) {
         if ((this.E & 12) != 0) {
-            fArr[0] = (this.f47867s + this.f47865n) - this.f47863c.f47738a.getLeft();
+            fArr[0] = (this.f47902s + this.f47900n) - this.f47898c.f47773a.getLeft();
         } else {
-            fArr[0] = this.f47863c.f47738a.getTranslationX();
+            fArr[0] = this.f47898c.f47773a.getTranslationX();
         }
         if ((this.E & 3) != 0) {
-            fArr[1] = (this.v + this.f47866r) - this.f47863c.f47738a.getTop();
+            fArr[1] = (this.v + this.f47901r) - this.f47898c.f47773a.getTop();
         } else {
-            fArr[1] = this.f47863c.f47738a.getTranslationY();
+            fArr[1] = this.f47898c.f47773a.getTranslationY();
         }
     }
 
@@ -403,12 +403,12 @@ public class z extends n0 implements r0 {
         View view;
         int i11;
         int i12;
-        if (!this.H.isLayoutRequested() && this.f47870y == 2) {
-            w wVar = this.f47869x;
+        if (!this.H.isLayoutRequested() && this.f47905y == 2) {
+            w wVar = this.f47904x;
             wVar.getClass();
-            int i13 = (int) (this.f47867s + this.f47865n);
-            int i14 = (int) (this.v + this.f47866r);
-            View view2 = e1Var.f47738a;
+            int i13 = (int) (this.f47902s + this.f47900n);
+            int i14 = (int) (this.v + this.f47901r);
+            View view2 = e1Var.f47773a;
             if (Math.abs(i14 - view2.getTop()) >= view2.getHeight() * 0.5f || Math.abs(i13 - view2.getLeft()) >= view2.getWidth() * 0.5f) {
                 ArrayList arrayList2 = this.K;
                 if (arrayList2 == null) {
@@ -418,8 +418,8 @@ public class z extends n0 implements r0 {
                     arrayList2.clear();
                     this.L.clear();
                 }
-                int round = Math.round(this.f47867s + this.f47865n);
-                int round2 = Math.round(this.v + this.f47866r);
+                int round = Math.round(this.f47902s + this.f47900n);
+                int round2 = Math.round(this.v + this.f47901r);
                 int width = view2.getWidth() + round;
                 int height = view2.getHeight() + round2;
                 int i15 = (round + width) / 2;
@@ -483,24 +483,24 @@ public class z extends n0 implements r0 {
                     int i24 = 0;
                     while (i24 < size2) {
                         e1 e1Var3 = (e1) arrayList3.get(i24);
-                        if (left2 > 0 && (right = e1Var3.f47738a.getRight() - width2) < 0) {
+                        if (left2 > 0 && (right = e1Var3.f47773a.getRight() - width2) < 0) {
                             arrayList = arrayList3;
-                            if (e1Var3.f47738a.getRight() > view3.getRight() && (abs4 = Math.abs(right)) > i23) {
+                            if (e1Var3.f47773a.getRight() > view3.getRight() && (abs4 = Math.abs(right)) > i23) {
                                 i23 = abs4;
                                 e1Var2 = e1Var3;
                             }
                         } else {
                             arrayList = arrayList3;
                         }
-                        if (left2 < 0 && (left = e1Var3.f47738a.getLeft() - i22) > 0 && e1Var3.f47738a.getLeft() < view3.getLeft() && (abs3 = Math.abs(left)) > i23) {
+                        if (left2 < 0 && (left = e1Var3.f47773a.getLeft() - i22) > 0 && e1Var3.f47773a.getLeft() < view3.getLeft() && (abs3 = Math.abs(left)) > i23) {
                             i23 = abs3;
                             e1Var2 = e1Var3;
                         }
-                        if (top2 < 0 && (top = e1Var3.f47738a.getTop() - i14) > 0 && e1Var3.f47738a.getTop() < view3.getTop() && (abs2 = Math.abs(top)) > i23) {
+                        if (top2 < 0 && (top = e1Var3.f47773a.getTop() - i14) > 0 && e1Var3.f47773a.getTop() < view3.getTop() && (abs2 = Math.abs(top)) > i23) {
                             i23 = abs2;
                             e1Var2 = e1Var3;
                         }
-                        if (top2 > 0 && (bottom = e1Var3.f47738a.getBottom() - height2) < 0 && e1Var3.f47738a.getBottom() > view3.getBottom() && (abs = Math.abs(bottom)) > i23) {
+                        if (top2 > 0 && (bottom = e1Var3.f47773a.getBottom() - height2) < 0 && e1Var3.f47773a.getBottom() > view3.getBottom() && (abs = Math.abs(bottom)) > i23) {
                             i23 = abs;
                             e1Var2 = e1Var3;
                         }
@@ -515,7 +515,7 @@ public class z extends n0 implements r0 {
                     int b10 = e1Var2.b();
                     e1Var.b();
                     if (wVar.n(this.H, e1Var, e1Var2)) {
-                        this.f47869x.o(this.H, e1Var, e1Var2, b10, i22, i14);
+                        this.f47904x.o(this.H, e1Var, e1Var2, b10, i22, i14);
                     }
                 }
             }
@@ -538,11 +538,11 @@ public class z extends n0 implements r0 {
 
     public final void t(e1 e1Var) {
         RecyclerView recyclerView = this.H;
-        w wVar = this.f47869x;
+        w wVar = this.f47904x;
         int e = wVar.e(recyclerView, e1Var);
-        WeakHashMap weakHashMap = r0.i0.f47108a;
+        WeakHashMap weakHashMap = r0.i0.f47143a;
         if ((wVar.b(e, recyclerView.getLayoutDirection()) & 16711680) != 0) {
-            if (e1Var.f47738a.getParent() != this.H) {
+            if (e1Var.f47773a.getParent() != this.H) {
                 Log.e("ItemTouchHelper", "Start drag has been called with a view holder which is not a child of the RecyclerView which is controlled by this ItemTouchHelper.");
                 return;
             }
@@ -551,8 +551,8 @@ public class z extends n0 implements r0 {
                 velocityTracker.recycle();
             }
             this.J = VelocityTracker.obtain();
-            this.f47866r = 0.0f;
-            this.f47865n = 0.0f;
+            this.f47901r = 0.0f;
+            this.f47900n = 0.0f;
             r(e1Var, 2);
             return;
         }
@@ -563,19 +563,19 @@ public class z extends n0 implements r0 {
         float x9 = motionEvent.getX(i11);
         float y3 = motionEvent.getY(i11);
         float f7 = x9 - this.d;
-        this.f47865n = f7;
-        this.f47866r = y3 - this.e;
+        this.f47900n = f7;
+        this.f47901r = y3 - this.e;
         if ((i10 & 4) == 0) {
-            this.f47865n = Math.max(0.0f, f7);
+            this.f47900n = Math.max(0.0f, f7);
         }
         if ((i10 & 8) == 0) {
-            this.f47865n = Math.min(0.0f, this.f47865n);
+            this.f47900n = Math.min(0.0f, this.f47900n);
         }
         if ((i10 & 1) == 0) {
-            this.f47866r = Math.max(0.0f, this.f47866r);
+            this.f47901r = Math.max(0.0f, this.f47901r);
         }
         if ((i10 & 2) == 0) {
-            this.f47866r = Math.min(0.0f, this.f47866r);
+            this.f47901r = Math.min(0.0f, this.f47901r);
         }
     }
 

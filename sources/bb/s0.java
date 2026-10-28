@@ -34,7 +34,7 @@ public final class s0 implements Application.ActivityLifecycleCallbacks {
         com.google.firebase.messaging.q qVar = f3820c;
         if (qVar != null) {
             qVar.C(1);
-            iVar = jd.i.f15580a;
+            iVar = jd.i.f15579a;
         } else {
             iVar = null;
         }

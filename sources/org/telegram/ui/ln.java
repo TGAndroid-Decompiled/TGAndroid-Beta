@@ -1,49 +1,65 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
-public final class ln implements ValueAnimator.AnimatorUpdateListener {
-    public final int f41303a;
-    public final mn f41304b;
+import android.widget.TextView;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public final class ln extends TextView implements org.telegram.ui.ActionBar.p6 {
+    public final org.telegram.ui.Cells.y f41214a;
+    public int f41215b;
+    public boolean f41216c;
+    public final wn d;
 
-    public ln(mn mnVar, int i10) {
-        this.f41303a = i10;
-        this.f41304b = mnVar;
+    public ln(wn wnVar, Activity activity) {
+        super(activity);
+        this.d = wnVar;
+        setSingleLine(true);
+        setLines(1);
+        setMaxLines(1);
+        setEllipsize(TextUtils.TruncateAt.END);
+        org.telegram.ui.ActionBar.f7.V(this, org.telegram.ui.ActionBar.y6.Sh, wnVar.getResourceProvider());
+        int themedColor = wnVar.getThemedColor(org.telegram.ui.ActionBar.y6.Oh);
+        this.f41215b = themedColor;
+        org.telegram.ui.Cells.y e = org.telegram.ui.ActionBar.o6.e(new float[]{16.0f}, themedColor);
+        this.f41214a = e;
+        setBackground(e);
+        setTextSize(1, 14.0f);
+        setTypeface(AndroidUtilities.bold());
+        setGravity(17);
+        setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f41303a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mn mnVar = this.f41304b;
-                mnVar.f41593a = floatValue;
-                View view = mnVar.f41594b.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                    return;
-                }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), (int) (AndroidUtilities.displaySize.x * 0.45f)), Integer.MIN_VALUE), i11);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.y6.Oh);
+            if (themedColor == this.f41215b && this.f41216c == org.telegram.ui.ActionBar.y6.I.q()) {
                 return;
-            case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mn mnVar2 = this.f41304b;
-                mnVar2.f41593a = floatValue2;
-                View view2 = mnVar2.f41594b.fragmentView;
-                if (view2 != null) {
-                    view2.invalidate();
-                    return;
-                }
-                return;
-            default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mn mnVar3 = this.f41304b;
-                mnVar3.f41593a = floatValue3;
-                View view3 = mnVar3.f41594b.fragmentView;
-                if (view3 != null) {
-                    view3.invalidate();
-                    return;
-                }
-                return;
+            }
+            Drawable background = getBackground();
+            org.telegram.ui.Cells.y yVar = this.f41214a;
+            if (background == yVar) {
+                this.f41216c = org.telegram.ui.ActionBar.y6.I.q();
+                org.telegram.ui.ActionBar.y6.E1(yVar, themedColor, false);
+                org.telegram.ui.ActionBar.y6.E1(yVar, org.telegram.ui.ActionBar.o6.b(themedColor), true);
+                this.f41215b = themedColor;
+                invalidate();
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -19,7 +19,7 @@ import org.json.JSONObject;
 import v0.i;
 import v0.n;
 import v0.p;
-import w7.i0;
+import w7.j0;
 public final class e extends b1.d {
     public final Context e;
     public i f5923f;
@@ -78,7 +78,7 @@ public final class e extends b1.d {
         long j10 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         y5.b bVar2 = bVar;
         boolean z11 = false;
-        for (p pVar : request.f49979a) {
+        for (p pVar : request.f50014a) {
             if ((pVar instanceof p) && !z11) {
                 if (j10 >= 231815000) {
                     LinkedHashMap linkedHashMap = f.f7835a;
@@ -98,13 +98,13 @@ public final class e extends b1.d {
             }
         }
         if (j10 > 241217000) {
-            z10 = request.f49980b;
+            z10 = request.f50015b;
         } else {
             z10 = false;
         }
-        j7.b a2 = i0.a(context);
+        j7.b a2 = j0.a(context);
         new y5.a(false, null, null, true, null, null, false);
-        y5.e eVar = new y5.e(dVar, aVar, a2.f15534k, false, 0, cVar, bVar2, z10);
+        y5.e eVar = new y5.e(dVar, aVar, a2.f15533k, false, 0, cVar, bVar2, z10);
         u b10 = v.b();
         b10.d = new l6.c[]{new l6.c("auth_api_credentials_begin_sign_in", 8L)};
         b10.f6622c = new b6.i(a2, eVar);

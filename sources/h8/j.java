@@ -11,10 +11,10 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import m.n0;
 import n4.r;
 public final class j implements Parcelable.Creator {
-    public final int f12713a;
+    public final int f12712a;
 
     public j(int i10) {
-        this.f12713a = i10;
+        this.f12712a = i10;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class j implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f12713a) {
+        switch (this.f12712a) {
             case 0:
                 return new g[i10];
             case 1:

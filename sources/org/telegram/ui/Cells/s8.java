@@ -15,20 +15,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.vh;
-import org.telegram.ui.Components.gb1;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.p10;
 public final class s8 extends FrameLayout {
-    public final TextView f25403a;
-    public final TextView f25404b;
-    public final TextView f25405c;
+    public final TextView f25405a;
+    public final TextView f25406b;
+    public final TextView f25407c;
     public final ImageView d;
     public boolean e;
-    public CharSequence f25406f;
+    public CharSequence f25408f;
     public int h;
-    public int f25407n;
-    public CharSequence f25408r;
-    public int f25409s;
+    public int f25409n;
+    public CharSequence f25410r;
+    public int f25411s;
     public final org.telegram.ui.ActionBar.u6 v;
 
     public s8(Context context, boolean z10, boolean z11, org.telegram.ui.ActionBar.u6 u6Var, boolean z12) {
@@ -55,7 +55,7 @@ public final class s8 extends FrameLayout {
         linearLayout.setOrientation(0);
         linearLayout.setGravity(17);
         TextView textView = new TextView(context);
-        this.f25403a = textView;
+        this.f25405a = textView;
         if (z12) {
             N = org.telegram.ui.ActionBar.f7.h(org.telegram.ui.ActionBar.y6.Wk, 153);
         } else {
@@ -82,7 +82,7 @@ public final class s8 extends FrameLayout {
             } else {
                 f14 = 25.0f;
             }
-            h = gb1.m(-2.0f, -2.0f, 8388659, f13, 5.0f, f14, 0.0f);
+            h = kb1.m(-2.0f, -2.0f, 8388659, f13, 5.0f, f14, 0.0f);
         } else {
             if (z10) {
                 f7 = 5.0f;
@@ -94,11 +94,11 @@ public final class s8 extends FrameLayout {
             } else {
                 f10 = 25.0f;
             }
-            h = gb1.h(-2, -2.0f, 51, f7, 5.0f, f10, 0.0f);
+            h = kb1.h(-2, -2.0f, 51, f7, 5.0f, f10, 0.0f);
         }
         addView(linearLayout, h);
-        TextView e = vh.e(linearLayout, textView, gb1.s(-2, -2, 1.0f, 16), context);
-        this.f25405c = e;
+        TextView e = wh.e(linearLayout, textView, kb1.s(-2, -2, 1.0f, 16), context);
+        this.f25407c = e;
         if (z12) {
             N2 = org.telegram.ui.ActionBar.f7.h(org.telegram.ui.ActionBar.y6.Wk, 153);
         } else {
@@ -137,11 +137,11 @@ public final class s8 extends FrameLayout {
         org.telegram.ui.ActionBar.f7.k(e, j02, L, L2, u6Var);
         e.setGravity(17);
         e.setSingleLine(true);
-        gb1.b(e);
-        linearLayout.addView(e, gb1.t(-2, -2, 0.0f, 16, 5, 1, 0, 0));
+        kb1.b(e);
+        linearLayout.addView(e, kb1.t(-2, -2, 0.0f, 16, 5, 1, 0, 0));
         e.setVisibility(8);
         TextView textView2 = new TextView(context);
-        this.f25404b = textView2;
+        this.f25406b = textView2;
         if (z12) {
             N3 = org.telegram.ui.ActionBar.f7.h(org.telegram.ui.ActionBar.y6.Wk, 153);
         } else {
@@ -153,9 +153,9 @@ public final class s8 extends FrameLayout {
         textView2.setSingleLine(true);
         textView2.setVisibility(4);
         if (z11) {
-            h10 = gb1.m(-2.0f, -2.0f, 8388661, 12.0f, 6.0f, 17.0f, 0.0f);
+            h10 = kb1.m(-2.0f, -2.0f, 8388661, 12.0f, 6.0f, 17.0f, 0.0f);
         } else {
-            h10 = gb1.h(-2, -2.0f, 53, 12.0f, 6.0f, 17.0f, 0.0f);
+            h10 = kb1.h(-2, -2.0f, 53, 12.0f, 6.0f, 17.0f, 0.0f);
         }
         addView(textView2, h10);
         ImageView imageView = new ImageView(context);
@@ -167,15 +167,15 @@ public final class s8 extends FrameLayout {
             N4 = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.Ve);
         }
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        int i12 = N4.f22485a;
-        int i13 = N4.f22486b;
-        int i14 = N4.f22487c;
+        int i12 = N4.f22486a;
+        int i13 = N4.f22487b;
+        int i14 = N4.f22488c;
         float f15 = N4.d;
         int Q = org.telegram.ui.ActionBar.f7.Q(i12, i13, i14, f15, u6Var);
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(Q, mode);
         imageView.setColorFilter(porterDuffColorFilter);
         org.telegram.ui.ActionBar.f7.O(imageView, 5, i12, i13, i14, f15, u6Var, Q, porterDuffColorFilter).h = mode;
-        int i15 = org.telegram.ui.ActionBar.y6.f23448i6;
+        int i15 = org.telegram.ui.ActionBar.y6.f23449i6;
         y g02 = org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.w0(i15, u6Var), 3, -1);
         org.telegram.ui.ActionBar.b7 N5 = org.telegram.ui.ActionBar.f7.N(i15);
         imageView.setBackground(g02);
@@ -186,14 +186,14 @@ public final class s8 extends FrameLayout {
             } else {
                 f12 = 10.0f;
             }
-            h11 = gb1.m(24.0f, 24.0f, 8388661, 0.0f, 0.0f, f12, 0.0f);
+            h11 = kb1.m(24.0f, 24.0f, 8388661, 0.0f, 0.0f, f12, 0.0f);
         } else {
             if (z10) {
                 f11 = 0.0f;
             } else {
                 f11 = 10.0f;
             }
-            h11 = gb1.h(24, 24.0f, 53, 0.0f, 0.0f, f11, 0.0f);
+            h11 = kb1.h(24, 24.0f, 53, 0.0f, 0.0f, f11, 0.0f);
         }
         imageView.setTranslationY(AndroidUtilities.dp(4.0f));
         addView(imageView, h11);
@@ -204,10 +204,10 @@ public final class s8 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence, int i10, CharSequence charSequence2, int i11, int i12) {
-        this.f25406f = charSequence;
+        this.f25408f = charSequence;
         this.h = i11;
-        this.f25407n = i12;
-        TextView textView = this.f25403a;
+        this.f25409n = i12;
+        TextView textView = this.f25405a;
         ImageView imageView = this.d;
         if (charSequence == null) {
             this.e = true;
@@ -228,63 +228,63 @@ public final class s8 extends FrameLayout {
                 imageView.setVisibility(4);
             }
         }
-        this.f25405c.setVisibility(8);
+        this.f25407c.setVisibility(8);
     }
 
     public final void c(int i10, CharSequence charSequence) {
         int i11;
-        this.f25408r = charSequence;
-        this.f25409s = i10;
+        this.f25410r = charSequence;
+        this.f25411s = i10;
         if (charSequence != null) {
             i11 = 0;
         } else {
             i11 = 8;
         }
-        this.f25404b.setVisibility(i11);
+        this.f25406b.setVisibility(i11);
         e();
     }
 
     public final void d() {
-        if (this.f25406f != null && this.f25407n > 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f25406f);
+        if (this.f25408f != null && this.f25409n > 0) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f25408f);
             try {
                 p10 p10Var = new p10(org.telegram.ui.ActionBar.y6.Ue, this.v);
                 int i10 = this.h;
-                spannableStringBuilder.setSpan(p10Var, i10, this.f25407n + i10, 33);
+                spannableStringBuilder.setSpan(p10Var, i10, this.f25409n + i10, 33);
             } catch (Exception unused) {
             }
-            TextView textView = this.f25403a;
+            TextView textView = this.f25405a;
             textView.setText(Emoji.replaceEmoji(spannableStringBuilder, textView.getPaint().getFontMetricsInt(), false));
         }
     }
 
     public final void e() {
         org.telegram.ui.ActionBar.u6 u6Var = this.v;
-        if (this.f25408r != null) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f25408r);
+        if (this.f25410r != null) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f25410r);
             try {
-                spannableStringBuilder.setSpan(new r8(org.telegram.ui.ActionBar.y6.Ue, u6Var), 0, this.f25409s, 33);
-                spannableStringBuilder.setSpan(new r8(org.telegram.ui.ActionBar.y6.Te, u6Var), this.f25409s, this.f25408r.length(), 33);
+                spannableStringBuilder.setSpan(new r8(org.telegram.ui.ActionBar.y6.Ue, u6Var), 0, this.f25411s, 33);
+                spannableStringBuilder.setSpan(new r8(org.telegram.ui.ActionBar.y6.Te, u6Var), this.f25411s, this.f25410r.length(), 33);
             } catch (Exception unused) {
             }
-            this.f25404b.setText(spannableStringBuilder);
+            this.f25406b.setText(spannableStringBuilder);
         }
     }
 
     public TextView getTextView() {
-        return this.f25403a;
+        return this.f25405a;
     }
 
     @Override
     public final void invalidate() {
-        this.f25403a.invalidate();
+        this.f25405a.invalidate();
         super.invalidate();
     }
 
     @Override
     public final void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
-        if (view == this.f25404b) {
-            i11 = org.telegram.messenger.t.D(16.0f, this.f25403a.getMeasuredWidth(), i11);
+        if (view == this.f25406b) {
+            i11 = org.telegram.messenger.t.D(16.0f, this.f25405a.getMeasuredWidth(), i11);
         }
         super.measureChildWithMargins(view, i10, i11, i12, i13);
     }
@@ -299,14 +299,14 @@ public final class s8 extends FrameLayout {
     }
 
     public void setEdit(View.OnClickListener onClickListener) {
-        TextView textView = this.f25405c;
+        TextView textView = this.f25407c;
         textView.setVisibility(0);
         textView.setText(LocaleController.getString(R.string.EditPack));
         textView.setOnClickListener(onClickListener);
     }
 
     public void setHeaderOnClick(View.OnClickListener onClickListener) {
-        this.f25403a.setOnClickListener(onClickListener);
+        this.f25405a.setOnClickListener(onClickListener);
     }
 
     public void setOnIconClickListener(View.OnClickListener onClickListener) {
@@ -314,6 +314,6 @@ public final class s8 extends FrameLayout {
     }
 
     public void setTitleColor(int i10) {
-        this.f25403a.setTextColor(i10);
+        this.f25405a.setTextColor(i10);
     }
 }

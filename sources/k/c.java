@@ -6,25 +6,25 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 public final class c extends ContextWrapper {
-    public int f16002a;
-    public Resources.Theme f16003b;
-    public LayoutInflater f16004c;
+    public int f16001a;
+    public Resources.Theme f16002b;
+    public LayoutInflater f16003c;
     public Resources d;
 
     public c(Context context, int i10) {
         super(context);
-        this.f16002a = i10;
+        this.f16001a = i10;
     }
 
     public final void a() {
-        if (this.f16003b == null) {
-            this.f16003b = getResources().newTheme();
+        if (this.f16002b == null) {
+            this.f16002b = getResources().newTheme();
             Resources.Theme theme = getBaseContext().getTheme();
             if (theme != null) {
-                this.f16003b.setTo(theme);
+                this.f16002b.setTo(theme);
             }
         }
-        this.f16003b.applyStyle(this.f16002a, true);
+        this.f16002b.applyStyle(this.f16001a, true);
     }
 
     @Override
@@ -48,31 +48,31 @@ public final class c extends ContextWrapper {
     @Override
     public final Object getSystemService(String str) {
         if ("layout_inflater".equals(str)) {
-            if (this.f16004c == null) {
-                this.f16004c = LayoutInflater.from(getBaseContext()).cloneInContext(this);
+            if (this.f16003c == null) {
+                this.f16003c = LayoutInflater.from(getBaseContext()).cloneInContext(this);
             }
-            return this.f16004c;
+            return this.f16003c;
         }
         return getBaseContext().getSystemService(str);
     }
 
     @Override
     public final Resources.Theme getTheme() {
-        Resources.Theme theme = this.f16003b;
+        Resources.Theme theme = this.f16002b;
         if (theme != null) {
             return theme;
         }
-        if (this.f16002a == 0) {
-            this.f16002a = 2131755303;
+        if (this.f16001a == 0) {
+            this.f16001a = 2131755303;
         }
         a();
-        return this.f16003b;
+        return this.f16002b;
     }
 
     @Override
     public final void setTheme(int i10) {
-        if (this.f16002a != i10) {
-            this.f16002a = i10;
+        if (this.f16001a != i10) {
+            this.f16001a = i10;
             a();
         }
     }

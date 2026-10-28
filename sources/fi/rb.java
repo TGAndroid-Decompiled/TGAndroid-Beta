@@ -12,41 +12,41 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.fl0;
+import org.telegram.ui.Components.gl0;
 import org.telegram.ui.Components.sz;
-import org.telegram.ui.Components.vw0;
-public final class rb extends vw0 {
-    public final jg.i f11561l0;
+import org.telegram.ui.Components.ww0;
+public final class rb extends ww0 {
+    public final jg.i f11560l0;
     public final ScaleGestureDetector m0;
-    public boolean f11562n0;
-    public boolean f11563o0;
-    public boolean f11564p0;
-    public float f11565q0;
-    public float f11566r0;
-    public float f11567s0;
-    public final sb f11568t0;
+    public boolean f11561n0;
+    public boolean f11562o0;
+    public boolean f11563p0;
+    public float f11564q0;
+    public float f11565r0;
+    public float f11566s0;
+    public final sb f11567t0;
 
     public rb(sb sbVar, Activity activity) {
         super(activity, null);
-        this.f11568t0 = sbVar;
-        this.f11564p0 = false;
-        this.f11561l0 = new jg.i(activity, new pb(this));
+        this.f11567t0 = sbVar;
+        this.f11563p0 = false;
+        this.f11560l0 = new jg.i(activity, new pb(this));
         this.m0 = new ScaleGestureDetector(activity, new qb(this));
     }
 
     public final void X(Bitmap bitmap, float f7) {
         Canvas canvas = new Canvas(bitmap);
         canvas.drawColor(-16777216);
-        sb sbVar = this.f11568t0;
-        float width = bitmap.getWidth() / sbVar.f11645n.getWidth();
+        sb sbVar = this.f11567t0;
+        float width = bitmap.getWidth() / sbVar.f11644n.getWidth();
         canvas.scale(width, width);
         TextureView textureView = sbVar.X0.getTextureView();
         if (textureView == null) {
-            textureView = sbVar.X0.f11382r;
+            textureView = sbVar.X0.f11381r;
         }
         if (textureView != null) {
             canvas.save();
-            canvas.translate(sbVar.f11629h0.getX() + sbVar.f11658r.getX(), sbVar.f11629h0.getY() + sbVar.f11658r.getY());
+            canvas.translate(sbVar.f11628h0.getX() + sbVar.f11657r.getX(), sbVar.f11628h0.getY() + sbVar.f11657r.getY());
             try {
                 Bitmap bitmap2 = textureView.getBitmap((int) (textureView.getWidth() / f7), (int) (textureView.getHeight() / f7));
                 float f10 = 1.0f / width;
@@ -58,15 +58,15 @@ public final class rb extends vw0 {
             canvas.restore();
         }
         canvas.save();
-        canvas.translate(sbVar.f11658r.getX(), sbVar.f11658r.getY());
-        for (int i10 = 0; i10 < sbVar.f11658r.getChildCount(); i10++) {
-            View childAt = sbVar.f11658r.getChildAt(i10);
+        canvas.translate(sbVar.f11657r.getX(), sbVar.f11657r.getY());
+        for (int i10 = 0; i10 < sbVar.f11657r.getChildCount(); i10++) {
+            View childAt = sbVar.f11657r.getChildAt(i10);
             canvas.save();
             canvas.translate(childAt.getX(), childAt.getY());
             if (childAt.getVisibility() == 0) {
-                if (childAt == sbVar.f11629h0) {
-                    for (int i11 = 0; i11 < sbVar.f11629h0.getChildCount(); i11++) {
-                        View childAt2 = sbVar.f11629h0.getChildAt(i11);
+                if (childAt == sbVar.f11628h0) {
+                    for (int i11 = 0; i11 < sbVar.f11628h0.getChildCount(); i11++) {
+                        View childAt2 = sbVar.f11628h0.getChildAt(i11);
                         if (childAt2 != sbVar.X0 && childAt2 != sbVar.B0 && childAt2.getVisibility() == 0) {
                             canvas.save();
                             canvas.translate(childAt2.getX(), childAt2.getY());
@@ -91,7 +91,7 @@ public final class rb extends vw0 {
     @Override
     public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
         if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-            this.f11568t0.L();
+            this.f11567t0.L();
             return true;
         }
         return super.dispatchKeyEventPreIme(keyEvent);
@@ -100,29 +100,29 @@ public final class rb extends vw0 {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10 = false;
-        this.f11562n0 = false;
-        sb sbVar = this.f11568t0;
+        this.f11561n0 = false;
+        sb sbVar = this.f11567t0;
         y yVar = sbVar.I0;
         boolean z11 = true;
         if (yVar != null && yVar.e) {
-            float y3 = sbVar.I0.getY() + sbVar.f11632i0.getY() + sbVar.f11658r.getY();
-            if ((motionEvent.getY() >= y3 && motionEvent.getY() <= y3 + sbVar.I0.getHeight()) || this.f11563o0) {
+            float y3 = sbVar.I0.getY() + sbVar.f11631i0.getY() + sbVar.f11657r.getY();
+            if ((motionEvent.getY() >= y3 && motionEvent.getY() <= y3 + sbVar.I0.getHeight()) || this.f11562o0) {
                 if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                     z10 = true;
                 }
-                this.f11563o0 = z10;
+                this.f11562o0 = z10;
                 return super.dispatchTouchEvent(motionEvent);
             }
             sbVar.I0.a(false, true);
             sbVar.l0(true);
         }
-        if (this.f11563o0 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
-            this.f11563o0 = false;
+        if (this.f11562o0 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
+            this.f11562o0 = false;
         }
         this.m0.onTouchEvent(motionEvent);
-        this.f11561l0.g0(motionEvent);
-        if (motionEvent.getAction() == 1 && !this.f11562n0) {
-            if (sbVar.f11658r.getTranslationY() > 0.0f) {
+        this.f11560l0.g0(motionEvent);
+        if (motionEvent.getAction() == 1 && !this.f11561n0) {
+            if (sbVar.f11657r.getTranslationY() > 0.0f) {
                 if (sbVar.K > 0.4f) {
                     sbVar.p(true);
                 } else {
@@ -147,18 +147,18 @@ public final class rb extends vw0 {
     @Override
     public int getBottomPadding() {
         int height = getHeight();
-        sb sbVar = this.f11568t0;
-        return (height - sbVar.f11658r.getBottom()) + sbVar.U;
+        sb sbVar = this.f11567t0;
+        return (height - sbVar.f11657r.getBottom()) + sbVar.U;
     }
 
     public int getBottomPadding2() {
-        return getHeight() - this.f11568t0.f11658r.getBottom();
+        return getHeight() - this.f11567t0.f11657r.getBottom();
     }
 
     public int getPaddingUnderContainer() {
         int height = getHeight();
-        sb sbVar = this.f11568t0;
-        return (height - sbVar.f11609b0) - sbVar.f11658r.getBottom();
+        sb sbVar = this.f11567t0;
+        return (height - sbVar.f11608b0) - sbVar.f11657r.getBottom();
     }
 
     @Override
@@ -168,19 +168,19 @@ public final class rb extends vw0 {
         sz emojiView;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        sb sbVar = this.f11568t0;
+        sb sbVar = this.f11567t0;
         int i15 = sbVar.Z;
         int measuredHeight2 = sbVar.m0.getMeasuredHeight();
         if (sbVar.V) {
             i15 = 0;
         }
         int i16 = sbVar.S;
-        int b10 = ee.b((measuredWidth - i16) / 2, sbVar.Y, (measuredWidth - sbVar.f11606a0) - i16);
+        int b10 = ee.b((measuredWidth - i16) / 2, sbVar.Y, (measuredWidth - sbVar.f11605a0) - i16);
         int i17 = sbVar.S + b10;
         if (sbVar.V) {
             i14 = sbVar.T;
         } else {
-            int i18 = sbVar.f11609b0;
+            int i18 = sbVar.f11608b0;
             int i19 = sbVar.T;
             int i20 = (((((measuredHeight - i15) - i18) - i19) - measuredHeight2) / 2) + i15;
             if (sbVar.J == 1) {
@@ -195,8 +195,8 @@ public final class rb extends vw0 {
             }
             i14 = sbVar.T;
         }
-        sbVar.f11658r.layout(b10, i15, i17, i14 + i15 + measuredHeight2);
-        sbVar.f11662s.f11466b.layout(0, 0, measuredWidth, measuredHeight);
+        sbVar.f11657r.layout(b10, i15, i17, i14 + i15 + measuredHeight2);
+        sbVar.f11661s.f11465b.layout(0, 0, measuredWidth, measuredHeight);
         ab abVar = sbVar.C2;
         if (abVar != null) {
             abVar.layout(0, 0, measuredWidth, measuredHeight);
@@ -205,22 +205,22 @@ public final class rb extends vw0 {
         if (qaVar != null) {
             qaVar.layout((measuredWidth - qaVar.getMeasuredWidth()) / 2, 0, (sbVar.M0.getMeasuredWidth() + measuredWidth) / 2, measuredHeight);
         }
-        ib ibVar = sbVar.f11614c1;
-        if (ibVar != null && (emojiView = ibVar.f11199f.getEmojiView()) != null) {
-            emojiView.layout(sbVar.Y, (measuredHeight - sbVar.f11609b0) - emojiView.getMeasuredHeight(), measuredWidth - sbVar.f11606a0, measuredHeight - sbVar.f11609b0);
+        ib ibVar = sbVar.f11613c1;
+        if (ibVar != null && (emojiView = ibVar.f11198f.getEmojiView()) != null) {
+            emojiView.layout(sbVar.Y, (measuredHeight - sbVar.f11608b0) - emojiView.getMeasuredHeight(), measuredWidth - sbVar.f11605a0, measuredHeight - sbVar.f11608b0);
         }
-        ta taVar = sbVar.f11673v1;
+        ta taVar = sbVar.f11672v1;
         if (taVar != null) {
-            sz szVar = taVar.f10787e2;
+            sz szVar = taVar.f10786e2;
             if (szVar != null) {
-                szVar.layout(sbVar.Y, (measuredHeight - sbVar.f11609b0) - szVar.getMeasuredHeight(), measuredWidth - sbVar.f11606a0, measuredHeight - sbVar.f11609b0);
+                szVar.layout(sbVar.Y, (measuredHeight - sbVar.f11608b0) - szVar.getMeasuredHeight(), measuredWidth - sbVar.f11605a0, measuredHeight - sbVar.f11608b0);
             }
-            fl0 fl0Var = sbVar.f11673v1.O1;
-            if (fl0Var != null) {
+            gl0 gl0Var = sbVar.f11672v1.O1;
+            if (gl0Var != null) {
                 int i21 = sbVar.Y;
-                fl0Var.layout(i21, sbVar.Z, fl0Var.getMeasuredWidth() + i21, sbVar.f11673v1.O1.getMeasuredHeight() + sbVar.Z);
-                if (sbVar.f11673v1.O1.getReactionsWindow() != null) {
-                    pVar = sbVar.f11673v1.O1.getReactionsWindow().f4049c;
+                gl0Var.layout(i21, sbVar.Z, gl0Var.getMeasuredWidth() + i21, sbVar.f11672v1.O1.getMeasuredHeight() + sbVar.Z);
+                if (sbVar.f11672v1.O1.getReactionsWindow() != null) {
+                    pVar = sbVar.f11672v1.O1.getReactionsWindow().f4049c;
                 } else {
                     pVar = null;
                 }
@@ -230,17 +230,17 @@ public final class rb extends vw0 {
                 }
             }
         }
-        cb cbVar = sbVar.f11660r1;
+        cb cbVar = sbVar.f11659r1;
         if (cbVar != null) {
-            cbVar.e.setPadding(0, sbVar.Z, 0, sbVar.f11609b0);
-            sbVar.f11660r1.layout(0, 0, measuredWidth, measuredHeight);
-            sbVar.f11660r1.d.layout(0, 0, measuredWidth, measuredHeight);
+            cbVar.e.setPadding(0, sbVar.Z, 0, sbVar.f11608b0);
+            sbVar.f11659r1.layout(0, 0, measuredWidth, measuredHeight);
+            sbVar.f11659r1.d.layout(0, 0, measuredWidth, measuredHeight);
         }
-        db dbVar = sbVar.f11664s1;
+        db dbVar = sbVar.f11663s1;
         if (dbVar != null) {
-            dbVar.f11229f.setPadding(0, sbVar.Z, 0, sbVar.f11609b0);
-            sbVar.f11664s1.layout(0, 0, measuredWidth, measuredHeight);
-            sbVar.f11664s1.e.layout(0, 0, measuredWidth, measuredHeight);
+            dbVar.f11228f.setPadding(0, sbVar.Z, 0, sbVar.f11608b0);
+            sbVar.f11663s1.layout(0, 0, measuredWidth, measuredHeight);
+            sbVar.f11663s1.e.layout(0, 0, measuredWidth, measuredHeight);
         }
         for (int i23 = 0; i23 < getChildCount(); i23++) {
             View childAt = getChildAt(i23);
@@ -261,10 +261,10 @@ public final class rb extends vw0 {
         boolean z10;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        sb sbVar = this.f11568t0;
-        int i16 = (size - sbVar.Y) - sbVar.f11606a0;
+        sb sbVar = this.f11567t0;
+        int i16 = (size - sbVar.Y) - sbVar.f11605a0;
         int i17 = sbVar.Z;
-        int i18 = sbVar.f11609b0;
+        int i18 = sbVar.f11608b0;
         int ceil = (int) Math.ceil((i16 / 9.0f) * 16.0f);
         int dp = AndroidUtilities.dp(48.0f);
         sbVar.U = dp;
@@ -298,8 +298,8 @@ public final class rb extends vw0 {
             i14 = systemUiVisibility & (-5);
         }
         setSystemUiVisibility(i14);
-        sbVar.f11658r.measure(View.MeasureSpec.makeMeasureSpec(sbVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(sbVar.T + sbVar.U, 1073741824));
-        sbVar.f11662s.f11466b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        sbVar.f11657r.measure(View.MeasureSpec.makeMeasureSpec(sbVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(sbVar.T + sbVar.U, 1073741824));
+        sbVar.f11661s.f11465b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         ab abVar = sbVar.C2;
         if (abVar != null) {
             abVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
@@ -308,26 +308,26 @@ public final class rb extends vw0 {
         if (qaVar != null) {
             qaVar.measure(View.MeasureSpec.makeMeasureSpec(sbVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        ib ibVar = sbVar.f11614c1;
+        ib ibVar = sbVar.f11613c1;
         if (ibVar != null) {
-            sz emojiView = ibVar.f11199f.getEmojiView();
+            sz emojiView = ibVar.f11198f.getEmojiView();
             Q();
             AndroidUtilities.dp(20.0f);
             if (emojiView != null) {
                 emojiView.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(emojiView.getLayoutParams().height, 1073741824));
             }
         }
-        ta taVar = sbVar.f11673v1;
+        ta taVar = sbVar.f11672v1;
         if (taVar != null) {
-            sz szVar = taVar.f10787e2;
+            sz szVar = taVar.f10786e2;
             if (szVar != null) {
-                szVar.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(sbVar.f11673v1.f10787e2.getLayoutParams().height, 1073741824));
+                szVar.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(sbVar.f11672v1.f10786e2.getLayoutParams().height, 1073741824));
             }
-            fl0 fl0Var = sbVar.f11673v1.O1;
-            if (fl0Var != null) {
-                measureChild(fl0Var, i10, i11);
-                if (sbVar.f11673v1.O1.getReactionsWindow() != null) {
-                    measureChild(sbVar.f11673v1.O1.getReactionsWindow().f4049c, i10, i11);
+            gl0 gl0Var = sbVar.f11672v1.O1;
+            if (gl0Var != null) {
+                measureChild(gl0Var, i10, i11);
+                if (sbVar.f11672v1.O1.getReactionsWindow() != null) {
+                    measureChild(sbVar.f11672v1.O1.getReactionsWindow().f4049c, i10, i11);
                 }
             }
         }
@@ -346,15 +346,15 @@ public final class rb extends vw0 {
                 childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(dp2, size2 - i15), 1073741824));
             }
         }
-        cb cbVar = sbVar.f11660r1;
+        cb cbVar = sbVar.f11659r1;
         if (cbVar != null) {
             cbVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            sbVar.f11660r1.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            sbVar.f11659r1.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        db dbVar = sbVar.f11664s1;
+        db dbVar = sbVar.f11663s1;
         if (dbVar != null) {
             dbVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            sbVar.f11664s1.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            sbVar.f11663s1.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
         setMeasuredDimension(size, size2);
     }

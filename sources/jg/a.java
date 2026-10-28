@@ -9,72 +9,72 @@ import org.telegram.ui.Cells.a9;
 import org.telegram.ui.Cells.v8;
 import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.un;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.wn;
 public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b2 {
-    public final int f15618a;
-    public final c f15619b;
+    public final int f15617a;
+    public final c f15618b;
 
     public a(c cVar, int i10) {
-        this.f15618a = i10;
-        this.f15619b = cVar;
+        this.f15617a = i10;
+        this.f15618b = cVar;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f15618a) {
+        switch (this.f15617a) {
             case 1:
-                this.f15619b.Y();
+                this.f15618b.Y();
                 return;
             default:
-                this.f15619b.finishFragment();
+                this.f15618b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void mo5run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        t61 t61Var = (t61) obj;
+        u61 u61Var = (u61) obj;
         final View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        final c cVar = this.f15619b;
-        if (!cVar.f15647c.h(t61Var)) {
-            int i10 = t61Var.d;
-            if (i10 != 2 && t61Var.f47040a != 17) {
+        final c cVar = this.f15618b;
+        if (!cVar.f15646c.h(u61Var)) {
+            int i10 = u61Var.d;
+            if (i10 != 2 && u61Var.f47075a != 17) {
                 if (i10 == 1) {
-                    cVar.f15650r = !cVar.f15650r;
-                    cVar.f15646b.f32152g3.O(true);
+                    cVar.f15649r = !cVar.f15649r;
+                    cVar.f15645b.f32504g3.O(true);
                     cVar.W(true);
                     return;
                 } else if (i10 == 6) {
-                    b0 b0Var = cVar.f15647c;
-                    cVar.f15651s = true;
+                    b0 b0Var = cVar.f15646c;
+                    cVar.f15650s = true;
                     b0Var.h = true;
-                    cVar.f15646b.f32152g3.O(true);
+                    cVar.f15645b.f32504g3.O(true);
                     cVar.W(true);
                     return;
                 } else if (i10 == 7) {
-                    b0 b0Var2 = cVar.f15647c;
-                    cVar.f15651s = false;
+                    b0 b0Var2 = cVar.f15646c;
+                    cVar.f15650s = false;
                     b0Var2.h = false;
-                    cVar.f15646b.f32152g3.O(true);
+                    cVar.f15645b.f32504g3.O(true);
                     cVar.W(true);
                     return;
                 } else if (i10 == 3) {
-                    cVar.f15652w = 0;
-                    cVar.f15646b.f32152g3.O(true);
+                    cVar.f15651w = 0;
+                    cVar.f15645b.f32504g3.O(true);
                     cVar.W(true);
                     return;
                 } else if (i10 == 4) {
-                    cVar.f15652w = 1;
-                    cVar.f15646b.f32152g3.O(true);
+                    cVar.f15651w = 1;
+                    cVar.f15645b.f32504g3.O(true);
                     cVar.W(true);
                     return;
                 } else if (i10 == 5) {
-                    cVar.f15652w = 2;
-                    cVar.f15646b.f32152g3.O(true);
+                    cVar.f15651w = 2;
+                    cVar.f15645b.f32504g3.O(true);
                     cVar.W(true);
                     return;
                 } else if (i10 == 8) {
@@ -137,7 +137,7 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b
             bundle.putLong("user_id", cVar.getUserConfig().getClientUserId());
             bundle.putInt("chatMode", 5);
             bundle.putString("quick_reply", "away");
-            cVar.presentFragment(new un(bundle));
+            cVar.presentFragment(new wn(bundle));
         }
     }
 }

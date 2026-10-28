@@ -138,7 +138,7 @@ public final class u implements s4.e0, androidx.lifecycle.a0, z9.i {
             boolean z10 = true;
             for (int i11 = 0; i11 < i10 && z10; i11++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i11));
-                u uVar = p0.f.f46480a;
+                u uVar = p0.f.f46515a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {
@@ -174,7 +174,7 @@ public final class u implements s4.e0, androidx.lifecycle.a0, z9.i {
             return;
         }
         try {
-            ((m5.s) this.f3464c).a(new j5.a(null, x3Var, j5.d.f15513a, null), new m4.x0(11));
+            ((m5.s) this.f3464c).a(new j5.a(null, x3Var, j5.d.f15512a, null), new m4.x0(11));
         } catch (Throwable unused) {
             com.google.android.gms.internal.play_billing.u.h("BillingLogger", "logging failed.");
         }

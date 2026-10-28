@@ -3,12 +3,12 @@ package m;
 import android.content.Context;
 import android.content.ContextWrapper;
 public abstract class c3 extends ContextWrapper {
-    public static final Object f17688a = null;
+    public static final Object f17687a = null;
 
     public static void a(Context context) {
         if (!(context.getResources() instanceof e3)) {
             context.getResources();
-            int i10 = s3.f17854a;
+            int i10 = s3.f17853a;
         }
     }
 }

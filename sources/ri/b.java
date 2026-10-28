@@ -2,7 +2,7 @@ package ri;
 
 import android.graphics.Canvas;
 public final class b implements a {
-    public static final b f47629a = new Object();
+    public static final b f47664a = new Object();
 
     @Override
     public final void w(Canvas canvas, float f7, float f10, float f11, float f12) {

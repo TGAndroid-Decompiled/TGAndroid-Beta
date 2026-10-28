@@ -24,7 +24,7 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Cells.r9;
 import org.telegram.ui.Cells.s9;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class o4 extends z implements p6, r9, k0 {
     public static final int M = 0;
     public final Drawable E;
@@ -35,43 +35,43 @@ public final class o4 extends z implements p6, r9, k0 {
     public Drawable J;
     public int K;
     public final j0 L;
-    public final int f17392n;
-    public final u6 f17393r;
-    public final Paint f17394s;
+    public final int f17391n;
+    public final u6 f17392r;
+    public final Paint f17393s;
     public final Paint v;
-    public final Paint f17395w;
-    public final TextPaint f17396x;
-    public final ImageReceiver f17397y;
+    public final Paint f17394w;
+    public final TextPaint f17395x;
+    public final ImageReceiver f17396y;
 
     public o4(Context context, int i10, u6 u6Var) {
         super(context);
-        this.f17394s = new Paint(1);
+        this.f17393s = new Paint(1);
         this.v = new Paint(1);
-        this.f17395w = new Paint(1);
+        this.f17394w = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
-        this.f17396x = textPaint;
-        this.f17392n = i10;
-        this.f17393r = u6Var;
+        this.f17395x = textPaint;
+        this.f17391n = i10;
+        this.f17392r = u6Var;
         setWillNotDraw(false);
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         textPaint.setTextAlign(Paint.Align.CENTER);
-        this.f17397y = new ImageReceiver(this);
+        this.f17396y = new ImageReceiver(this);
         this.E = getContext().getResources().getDrawable(R.drawable.msg_map).mutate();
         f(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
         View view = new View(context);
         this.F = view;
         view.setOnClickListener(new ig.d0(this, 11));
-        addView(view, gb1.i(-1, -2, 51));
+        addView(view, kb1.i(-1, -2, 51));
         j0 j0Var = new j0(context, u6Var, new jg.i(this));
         this.L = j0Var;
-        addView(j0Var.f17306a, gb1.i(-2, -2, 51));
+        addView(j0Var.f17305a, kb1.i(-2, -2, 51));
         updateColors();
     }
 
     private TL_iv.pageBlockMap getMap() {
-        a aVar = this.f17653a;
+        a aVar = this.f17652a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f17054b;
+            TL_iv.PageBlock pageBlock = aVar.f17053b;
             if (pageBlock instanceof TL_iv.pageBlockMap) {
                 return (TL_iv.pageBlockMap) pageBlock;
             }
@@ -87,9 +87,9 @@ public final class o4 extends z implements p6, r9, k0 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23586pe));
+        hashSet.add(Integer.valueOf(y6.f23587pe));
         hashSet.add(Integer.valueOf(y6.Gd));
-        hashSet.add(Integer.valueOf(y6.f23682uf));
+        hashSet.add(Integer.valueOf(y6.f23683uf));
         hashSet.add(Integer.valueOf(y6.G6));
     }
 
@@ -115,7 +115,7 @@ public final class o4 extends z implements p6, r9, k0 {
     }
 
     public final void g(a aVar, m4 m4Var) {
-        this.f17653a = aVar;
+        this.f17652a = aVar;
         this.G = m4Var;
         c(aVar);
         this.I = null;
@@ -127,17 +127,17 @@ public final class o4 extends z implements p6, r9, k0 {
 
     @Override
     public g1 getCaptionEditText() {
-        return this.L.f17306a;
+        return this.L.f17305a;
     }
 
     @Override
     public a getRow() {
-        return this.f17653a;
+        return this.f17652a;
     }
 
     public final void h() {
         TL_iv.pageBlockMap map = getMap();
-        ImageReceiver imageReceiver = this.f17397y;
+        ImageReceiver imageReceiver = this.f17396y;
         if (map != null && (map.geo instanceof TLRPC.TL_geoPoint)) {
             int measuredWidth = getMeasuredWidth();
             int i10 = this.K;
@@ -148,14 +148,14 @@ public final class o4 extends z implements p6, r9, k0 {
                 String str = map.geo.lat + "_" + map.geo._long + "_" + i11 + "x" + i12;
                 if (!str.equals(this.I)) {
                     this.I = str;
-                    int i13 = MessagesController.getInstance(this.f17392n).mapProvider;
+                    int i13 = MessagesController.getInstance(this.f17391n).mapProvider;
                     this.H = i13;
                     if (i13 == 2) {
                         imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(map.geo, i11, i12, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), null, null, null, null, 0);
                         return;
                     }
                     TLRPC.GeoPoint geoPoint = map.geo;
-                    imageReceiver.setImage(AndroidUtilities.formapMapUrl(this.f17392n, geoPoint.lat, geoPoint._long, i11, i12, true, 15, -1), null, null, null, 0L);
+                    imageReceiver.setImage(AndroidUtilities.formapMapUrl(this.f17391n, geoPoint.lat, geoPoint._long, i11, i12, true, 15, -1), null, null, null, 0L);
                     return;
                 }
                 return;
@@ -169,7 +169,7 @@ public final class o4 extends z implements p6, r9, k0 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f17397y.onAttachedToWindow();
+        this.f17396y.onAttachedToWindow();
         this.I = null;
         h();
     }
@@ -177,7 +177,7 @@ public final class o4 extends z implements p6, r9, k0 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f17397y.onDetachedFromWindow();
+        this.f17396y.onDetachedFromWindow();
     }
 
     @Override
@@ -185,9 +185,9 @@ public final class o4 extends z implements p6, r9, k0 {
         Canvas canvas2;
         s9 textSelectionHelper;
         if (getMap() != null) {
-            ImageReceiver imageReceiver = this.f17397y;
+            ImageReceiver imageReceiver = this.f17396y;
             canvas2 = canvas;
-            canvas2.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2(), this.f17394s);
+            canvas2.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2(), this.f17393s);
             int centerX = (int) imageReceiver.getCenterX();
             int centerY = (int) imageReceiver.getCenterY();
             Drawable drawable = this.E;
@@ -217,11 +217,11 @@ public final class o4 extends z implements p6, r9, k0 {
             canvas2 = canvas;
         }
         m4 m4Var = this.G;
-        if (m4Var != null && (textSelectionHelper = ((r3) m4Var).f17443a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
+        if (m4Var != null && (textSelectionHelper = ((r3) m4Var).f17442a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f25410p0 && R <= textSelectionHelper.f25413s0) {
-                canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f17395w);
+            if (R >= 0 && R > textSelectionHelper.f25412p0 && R <= textSelectionHelper.f25415s0) {
+                canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f17394w);
             }
         }
     }
@@ -232,7 +232,7 @@ public final class o4 extends z implements p6, r9, k0 {
         int paddingRight = getPaddingRight();
         int i14 = i12 - i10;
         int max = Math.max(0, (i14 - paddingLeft) - paddingRight);
-        this.f17397y.setImageCoords(paddingLeft, getPaddingTop(), max, this.K);
+        this.f17396y.setImageCoords(paddingLeft, getPaddingTop(), max, this.K);
         int paddingTop = getPaddingTop() + this.K;
         this.F.layout(paddingLeft, getPaddingTop(), max + paddingLeft, paddingTop);
         this.L.g(paddingLeft, paddingRight, i14, getPaddingTop() + this.K);
@@ -246,8 +246,8 @@ public final class o4 extends z implements p6, r9, k0 {
         int paddingRight = getPaddingRight();
         int max = Math.max(0, (size - paddingLeft) - paddingRight);
         TL_iv.pageBlockMap map = getMap();
-        if (map != null && map.f22252w > 0 && map.h > 0) {
-            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f22252w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
+        if (map != null && map.f22253w > 0 && map.h > 0) {
+            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f22253w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
         } else {
             this.K = (AndroidUtilities.dp(200.0f) - getPaddingTop()) - getPaddingBottom();
         }
@@ -258,13 +258,13 @@ public final class o4 extends z implements p6, r9, k0 {
 
     @Override
     public final void updateColors() {
-        int i10 = y6.f23586pe;
-        u6 u6Var = this.f17393r;
-        this.f17394s.setColor(y6.w0(i10, u6Var));
+        int i10 = y6.f23587pe;
+        u6 u6Var = this.f17392r;
+        this.f17393s.setColor(y6.w0(i10, u6Var));
         this.v.setColor(y6.w0(y6.Gd, u6Var));
-        this.f17395w.setColor(y6.w0(y6.f23682uf, u6Var));
+        this.f17394w.setColor(y6.w0(y6.f23683uf, u6Var));
         int i11 = y6.G6;
-        this.f17396x.setColor(y6.o1(0.5f, y6.w0(i11, u6Var)));
+        this.f17395x.setColor(y6.o1(0.5f, y6.w0(i11, u6Var)));
         this.E.setColorFilter(new PorterDuffColorFilter(y6.o1(0.5f, y6.w0(i11, u6Var)), PorterDuff.Mode.SRC_IN));
         j0 j0Var = this.L;
         if (j0Var != null) {

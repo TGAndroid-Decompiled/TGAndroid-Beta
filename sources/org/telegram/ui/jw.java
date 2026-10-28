@@ -1,74 +1,53 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class jw extends ChatActivityEnterView {
-    public final cy f40755s5;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class jw extends FragmentContextView {
+    public final int X0;
+    public final ey Y0;
 
-    public jw(cy cyVar, Activity activity, tx txVar) {
-        super(activity, txVar, null, false, null);
-        this.f40755s5 = cyVar;
+    public jw(ey eyVar, Context context, ey eyVar2, int i10) {
+        super(context, eyVar2, true);
+        this.X0 = i10;
+        switch (i10) {
+            case 1:
+                this.Y0 = eyVar;
+                super(context, eyVar2, false);
+                return;
+            default:
+                this.Y0 = eyVar;
+                return;
+        }
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int i10;
-        if (motionEvent.getAction() == 0) {
-            cy cyVar = this.f40755s5;
-            Activity parentActivity = cyVar.getParentActivity();
-            i10 = ((org.telegram.ui.ActionBar.r2) cyVar).classGuid;
-            AndroidUtilities.requestAdjustResize(parentActivity, i10);
+    public final void setVisibility(int i10) {
+        boolean z10;
+        boolean z11;
+        switch (this.X0) {
+            case 0:
+                ey eyVar = this.Y0;
+                org.telegram.ui.Components.ws wsVar = eyVar.J1;
+                FrameLayout frameLayout = eyVar.G1;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                wsVar.i(frameLayout, z10, true);
+                return;
+            default:
+                ey eyVar2 = this.Y0;
+                org.telegram.ui.Components.ws wsVar2 = eyVar2.J1;
+                FrameLayout frameLayout2 = eyVar2.I1;
+                if (i10 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                wsVar2.i(frameLayout2, z11, true);
+                return;
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final int getMessagesCount() {
-        CharSequence fieldText;
-        cy cyVar = this.f40755s5;
-        int i10 = cyVar.S0;
-        jw jwVar = cyVar.B1;
-        if (jwVar == null) {
-            fieldText = "";
-        } else {
-            fieldText = jwVar.getFieldText();
-        }
-        return Math.max(1, i10 + (!TextUtils.isEmpty(fieldText) ? 1 : 0));
-    }
-
-    @Override
-    public final long getStarsPrice() {
-        cy cyVar = this.f40755s5;
-        ArrayList arrayList = cyVar.I2;
-        if (arrayList == null) {
-            return 0L;
-        }
-        int size = arrayList.size();
-        int i10 = 0;
-        long j10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            long longValue = ((Long) obj).longValue();
-            long sendPaidMessagesStars = cyVar.getMessagesController().getSendPaidMessagesStars(longValue);
-            if (sendPaidMessagesStars <= 0 && longValue > 0) {
-                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(cyVar.getMessagesController().isUserContactBlocked(longValue));
-            }
-            j10 += sendPaidMessagesStars;
-        }
-        return j10;
-    }
-
-    @Override
-    public final void y0(float f7) {
-        cy cyVar = this.f40755s5;
-        cyVar.f38691y1.setInputBubbleHeight(f7);
-        cyVar.A3();
-        cyVar.B3();
     }
 }

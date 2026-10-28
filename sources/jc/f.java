@@ -4,17 +4,17 @@ import b2.v0;
 import d5.z;
 public final class f {
     public static final int[] e = {31892, 34236, 39577, 42195, 48118, 51042, 55367, 58893, 63784, 68472, 70749, 76311, 79154, 84390, 87683, 92361, 96236, 102084, 102881, 110507, 110734, 117786, 119615, 126325, 127568, 133589, 136944, 141498, 145311, 150283, 152622, 158308, 161089, 167017};
-    public static final f[] f15566f = a();
-    public final int f15567a;
-    public final int[] f15568b;
-    public final z[] f15569c;
+    public static final f[] f15565f = a();
+    public final int f15566a;
+    public final int[] f15567b;
+    public final z[] f15568c;
     public final int d;
 
     public f(int i10, int[] iArr, z... zVarArr) {
         v0[] v0VarArr;
-        this.f15567a = i10;
-        this.f15568b = iArr;
-        this.f15569c = zVarArr;
+        this.f15566a = i10;
+        this.f15567b = iArr;
+        this.f15568c = zVarArr;
         z zVar = zVarArr[0];
         int i11 = zVar.f8026b;
         int i12 = 0;
@@ -50,12 +50,12 @@ public final class f {
 
     public static f c(int i10) {
         if (i10 >= 1 && i10 <= 40) {
-            return f15566f[i10 - 1];
+            return f15565f[i10 - 1];
         }
         throw new IllegalArgumentException();
     }
 
     public final String toString() {
-        return String.valueOf(this.f15567a);
+        return String.valueOf(this.f15566a);
     }
 }

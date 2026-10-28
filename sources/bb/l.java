@@ -41,19 +41,19 @@ public final class l extends nd.i implements ud.p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f3792a) {
             case 0:
-                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
             case 1:
-                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
             case 2:
-                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
             case 3:
-                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
             case 4:
-                return ((l) create((k1.s) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+                return ((l) create((k1.s) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
             case 5:
-                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
             default:
-                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+                return ((l) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
         }
     }
 

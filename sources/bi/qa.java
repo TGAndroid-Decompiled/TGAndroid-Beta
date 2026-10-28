@@ -9,9 +9,9 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.fw0;
-import org.telegram.ui.kr;
-import org.telegram.ui.un;
+import org.telegram.ui.hw0;
+import org.telegram.ui.mr;
+import org.telegram.ui.wn;
 public final class qa implements Runnable {
     public final int f5299a;
     public final int f5300b;
@@ -37,15 +37,15 @@ public final class qa implements Runnable {
                     int i10 = this.f5300b;
                     long j11 = -j10;
                     if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i10).getChat(Long.valueOf(j11)))) {
-                        U.presentFragment(new fw0(j11));
+                        U.presentFragment(new hw0(j11));
                         return;
                     }
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", j11);
                     bundle.putInt("type", 3);
-                    kr krVar = new kr(bundle);
-                    krVar.y0(MessagesController.getInstance(i10).getChatFull(j11));
-                    U.presentFragment(krVar);
+                    mr mrVar = new mr(bundle);
+                    mrVar.y0(MessagesController.getInstance(i10).getChatFull(j11));
+                    U.presentFragment(mrVar);
                     return;
                 }
                 return;
@@ -70,7 +70,7 @@ public final class qa implements Runnable {
             default:
                 org.telegram.ui.ActionBar.r2 U2 = LaunchActivity.U();
                 if (U2 != null) {
-                    U2.presentFragment(un.aa(this.f5300b, this.f5301c));
+                    U2.presentFragment(wn.da(this.f5300b, this.f5301c));
                     return;
                 }
                 return;

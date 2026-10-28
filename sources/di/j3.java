@@ -10,15 +10,15 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.a60;
 public final class j3 implements a60 {
-    public final q4 f8694a;
+    public final q4 f8693a;
 
     public j3(q4 q4Var) {
-        this.f8694a = q4Var;
+        this.f8693a = q4Var;
     }
 
     @Override
     public final long a() {
-        return this.f8694a.f9016q1;
+        return this.f8693a.f9015q1;
     }
 
     @Override
@@ -28,17 +28,17 @@ public final class j3 implements a60 {
 
     @Override
     public final int getClassGuid() {
-        return this.f8694a.f9009o2;
+        return this.f8693a.f9008o2;
     }
 
     @Override
     public final View getFragmentView() {
-        return this.f8694a;
+        return this.f8693a;
     }
 
     @Override
     public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.f8694a.getContext());
+        return AndroidUtilities.findActivity(this.f8693a.getContext());
     }
 
     @Override
@@ -48,24 +48,24 @@ public final class j3 implements a60 {
         boolean z12;
         AccountInstance accountInstance3;
         AccountInstance accountInstance4;
-        q4 q4Var = this.f8694a;
-        TL_stories.StoryItem storyItem = q4Var.D1.f8871a;
+        q4 q4Var = this.f8693a;
+        TL_stories.StoryItem storyItem = q4Var.D1.f8870a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            storyItem.dialogId = q4Var.f9016q1;
+            storyItem.dialogId = q4Var.f9015q1;
             if (photoEntry.isVideo) {
                 if (videoEditedInfo != null) {
                     accountInstance4 = q4Var.getAccountInstance();
-                    SendMessagesHelper.prepareSendingVideo(accountInstance4, photoEntry.path, videoEditedInfo, null, null, q4Var.f9016q1, null, null, storyItem, null, photoEntry.entities, photoEntry.ttl, null, z10, i10, i11, false, photoEntry.hasSpoiler, photoEntry.caption, null, 0L, j10);
+                    SendMessagesHelper.prepareSendingVideo(accountInstance4, photoEntry.path, videoEditedInfo, null, null, q4Var.f9015q1, null, null, storyItem, null, photoEntry.entities, photoEntry.ttl, null, z10, i10, i11, false, photoEntry.hasSpoiler, photoEntry.caption, null, 0L, j10);
                 } else {
                     accountInstance3 = q4Var.getAccountInstance();
-                    SendMessagesHelper.prepareSendingVideo(accountInstance3, photoEntry.path, null, null, null, q4Var.f9016q1, null, null, storyItem, null, photoEntry.entities, photoEntry.ttl, null, z10, i10, i11, false, photoEntry.hasSpoiler, photoEntry.caption, null, 0L, j10);
+                    SendMessagesHelper.prepareSendingVideo(accountInstance3, photoEntry.path, null, null, null, q4Var.f9015q1, null, null, storyItem, null, photoEntry.entities, photoEntry.ttl, null, z10, i10, i11, false, photoEntry.hasSpoiler, photoEntry.caption, null, 0L, j10);
                 }
             } else if (photoEntry.imagePath != null) {
                 accountInstance2 = q4Var.getAccountInstance();
-                SendMessagesHelper.prepareSendingPhoto(accountInstance2, photoEntry.imagePath, photoEntry.thumbPath, null, q4Var.f9016q1, null, null, storyItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z10, i10, i11, false, photoEntry.caption, null, 0L, j10);
+                SendMessagesHelper.prepareSendingPhoto(accountInstance2, photoEntry.imagePath, photoEntry.thumbPath, null, q4Var.f9015q1, null, null, storyItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z10, i10, i11, false, photoEntry.caption, null, 0L, j10);
             } else if (photoEntry.path != null) {
                 accountInstance = q4Var.getAccountInstance();
-                SendMessagesHelper.prepareSendingPhoto(accountInstance, photoEntry.path, photoEntry.thumbPath, null, q4Var.f9016q1, null, null, storyItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z10, i10, i11, false, photoEntry.caption, null, 0L, j10);
+                SendMessagesHelper.prepareSendingPhoto(accountInstance, photoEntry.path, photoEntry.thumbPath, null, q4Var.f9015q1, null, null, storyItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z10, i10, i11, false, photoEntry.caption, null, 0L, j10);
             }
             if (j10 <= 0) {
                 z12 = true;

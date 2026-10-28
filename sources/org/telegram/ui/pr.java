@@ -1,56 +1,24 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-public final class pr implements Drawable.Callback {
-    public final int f42645a;
-    public final Drawable f42646b;
+import android.view.View;
+public final class pr implements View.OnClickListener {
+    public final int f42492a;
+    public final org.telegram.ui.Components.th0 f42493b;
 
-    public pr(int i10, Drawable drawable) {
-        this.f42645a = i10;
-        this.f42646b = drawable;
+    public pr(org.telegram.ui.Components.th0 th0Var, int i10) {
+        this.f42492a = i10;
+        this.f42493b = th0Var;
     }
 
     @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f42645a) {
+    public final void onClick(View view) {
+        switch (this.f42492a) {
             case 0:
-                ((qr) this.f42646b).invalidateSelf();
+                this.f42493b.b(true);
                 return;
             default:
-                org.telegram.ui.Cells.v0 v0Var = ((v01) this.f42646b).h;
-                if (v0Var != null) {
-                    v0Var.invalidate();
-                    return;
-                }
+                this.f42493b.b(true);
                 return;
         }
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        switch (this.f42645a) {
-            case 0:
-                ((qr) this.f42646b).scheduleSelf(runnable, j10);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f42645a) {
-            case 0:
-                ((qr) this.f42646b).unscheduleSelf(runnable);
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void b(Drawable drawable, Runnable runnable) {
-    }
-
-    private final void a(Drawable drawable, Runnable runnable, long j10) {
     }
 }

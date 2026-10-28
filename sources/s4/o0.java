@@ -13,13 +13,13 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
-import sg.p2;
-import sg.x1;
-public final class o0 implements j1, com.google.android.gms.common.api.internal.o, x1, com.google.android.gms.common.api.internal.r, v0.h, OnCompleteListener {
-    public Object f47816a;
+import sg.o2;
+import sg.w1;
+public final class o0 implements j1, com.google.android.gms.common.api.internal.o, w1, com.google.android.gms.common.api.internal.r, v0.h, OnCompleteListener {
+    public Object f47851a;
 
     public o0(Object obj) {
-        this.f47816a = obj;
+        this.f47851a = obj;
     }
 
     public static void b(String str, TreeMap treeMap) {
@@ -39,18 +39,18 @@ public final class o0 implements j1, com.google.android.gms.common.api.internal.
 
     @Override
     public int J() {
-        p0 p0Var = (p0) this.f47816a;
-        return p0Var.f47828n - p0Var.C();
+        p0 p0Var = (p0) this.f47851a;
+        return p0Var.f47863n - p0Var.C();
     }
 
     @Override
     public void V(float f7) {
-        ((p2) this.f47816a).setOutlineWidth(f7);
+        ((o2) this.f47851a).setOutlineWidth(f7);
     }
 
     @Override
     public View W(int i10) {
-        return ((p0) this.f47816a).q(i10);
+        return ((p0) this.f47851a).q(i10);
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class o0 implements j1, com.google.android.gms.common.api.internal.
         me.b bVar = new me.b(mVar);
         a3.b bVar2 = new a3.b(2);
         kotlin.jvm.internal.i.e(context, "context");
-        v0.j b10 = m5.j.b(new m5.j((Context) this.f47816a, 2), eVar);
+        v0.j b10 = m5.j.b(new m5.j((Context) this.f47851a, 2), eVar);
         if (b10 == null) {
             bVar.onError(new w0.c("createCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
         } else if (context.getPackageManager().hasSystemFeature("android.hardware.type.watch")) {
@@ -75,7 +75,7 @@ public final class o0 implements j1, com.google.android.gms.common.api.internal.
             b10.onCreateCredential(context, eVar, cancellationSignal, bVar2, bVar);
         }
         Object r6 = mVar.r();
-        md.a aVar = md.a.f18412a;
+        md.a aVar = md.a.f18411a;
         return r6;
     }
 
@@ -85,7 +85,7 @@ public final class o0 implements j1, com.google.android.gms.common.api.internal.
         t6.e eVar = (t6.e) ((t6.i) obj).u();
         Parcel H0 = eVar.H0();
         l7.a.d(H0, gVar);
-        l7.a.c(H0, (t6.a) this.f47816a);
+        l7.a.c(H0, (t6.a) this.f47851a);
         H0.writeStrongBinder(null);
         eVar.I0(H0, 2);
     }
@@ -94,7 +94,7 @@ public final class o0 implements j1, com.google.android.gms.common.api.internal.
         String str;
         List list = (List) treeMap.get("Sec-WebSocket-Protocol");
         if (list != null && (str = (String) list.get(0)) != null && str.length() != 0) {
-            synchronized (((uc.u) this.f47816a).f49685c) {
+            synchronized (((uc.u) this.f47851a).f49720c) {
             }
             throw new uc.n(19, "The protocol contained in the Sec-WebSocket-Protocol header is not supported: ".concat(str), aVar);
         }
@@ -102,7 +102,7 @@ public final class o0 implements j1, com.google.android.gms.common.api.internal.
 
     @Override
     public float get() {
-        return ((p2) this.f47816a).F;
+        return ((o2) this.f47851a).F;
     }
 
     @Override
@@ -112,7 +112,7 @@ public final class o0 implements j1, com.google.android.gms.common.api.internal.
 
     @Override
     public void onComplete(Task task) {
-        z8.f0 f0Var = (z8.f0) this.f47816a;
+        z8.f0 f0Var = (z8.f0) this.f47851a;
         if (task.isSuccessful()) {
             y8.m.L0(f0Var, true, (byte[]) task.getResult());
             return;
@@ -125,7 +125,7 @@ public final class o0 implements j1, com.google.android.gms.common.api.internal.
     public void p(Object obj) {
         com.google.android.gms.common.api.internal.n nVar;
         h8.c cVar = (h8.c) obj;
-        androidx.activity.n nVar2 = ((s7.i) this.f47816a).f47905b;
+        androidx.activity.n nVar2 = ((s7.i) this.f47851a).f47940b;
         synchronized (nVar2) {
             nVar2.f2120a = false;
             nVar = ((com.google.android.gms.common.api.internal.p) nVar2.f2121b).f6599c;
@@ -137,11 +137,11 @@ public final class o0 implements j1, com.google.android.gms.common.api.internal.
 
     @Override
     public int s() {
-        return ((p0) this.f47816a).G();
+        return ((p0) this.f47851a).G();
     }
 
     public o0(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
-        this.f47816a = context;
+        this.f47851a = context;
     }
 }

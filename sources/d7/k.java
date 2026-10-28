@@ -41,8 +41,8 @@ public final class k extends l {
         k6.c cVar2 = new k6.c(13, false);
         ((k6.c) cVar.d).d = cVar2;
         cVar.d = cVar2;
-        cVar2.f16406b = valueOf;
-        cVar2.f16407c = "errorCode";
+        cVar2.f16405b = valueOf;
+        cVar2.f16406c = "errorCode";
         String str = this.f8198b;
         if (str != null) {
             cVar.K(str, "errorMessage");

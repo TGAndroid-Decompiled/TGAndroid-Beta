@@ -7,7 +7,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 public abstract class c {
-    public static final rd f16505a;
+    public static final rd f16504a;
 
     static {
         b bVar;
@@ -16,7 +16,7 @@ public abstract class c {
         } catch (ReflectiveOperationException unused) {
             bVar = new Object();
         }
-        f16505a = bVar;
+        f16504a = bVar;
     }
 
     public static void a(AccessibleObject accessibleObject, StringBuilder sb2) {

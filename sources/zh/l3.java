@@ -11,14 +11,14 @@ import org.telegram.ui.ActionBar.b7;
 import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.zq;
 public final class l3 extends TextView {
-    public final zq f53101a;
+    public final zq f53159a;
 
     public l3(Context context, u6 u6Var) {
         super(context);
-        int i10 = y6.f23750y8;
+        int i10 = y6.f23751y8;
         int w02 = y6.w0(i10, u6Var);
         f7.V(this, i10, u6Var);
         org.telegram.ui.Cells.y a02 = y6.a0(y6.o1(0.08f, w02), y6.o1(0.15f, w02), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f));
@@ -29,9 +29,9 @@ public final class l3 extends TextView {
         setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
         setGravity(17);
         setTypeface(AndroidUtilities.bold());
-        gb1.b(this);
+        kb1.b(this);
         zq zqVar = new zq(R.drawable.arrows_select, 0);
-        this.f53101a = zqVar;
+        this.f53159a = zqVar;
         zqVar.spaceScaleX = 0.8f;
         zqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
     }
@@ -68,7 +68,7 @@ public final class l3 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f53101a, append.length() - 1, length, 33);
+        append.setSpan(this.f53159a, append.length() - 1, length, 33);
         setText(append);
     }
 }

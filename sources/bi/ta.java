@@ -4,7 +4,7 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.kx0;
+import org.telegram.ui.Components.lx0;
 public final class ta implements Runnable {
     public final int f5477a;
     public final org.telegram.ui.ActionBar.k3[] f5478b;
@@ -22,14 +22,14 @@ public final class ta implements Runnable {
         org.telegram.ui.ActionBar.r2 r2Var;
         switch (this.f5477a) {
             case 0:
-                kx0 kx0Var = new kx0(this.f5479c);
+                lx0 lx0Var = new lx0(this.f5479c);
                 if (!AndroidUtilities.isTablet()) {
                     org.telegram.ui.ActionBar.k3[] k3VarArr = this.f5478b;
                     if (!AndroidUtilities.hasDialogOnTop(k3VarArr[0].attachedFragment) && (k3Var = k3VarArr[0]) != null && (r2Var = k3Var.attachedFragment) != null) {
-                        kx0Var.makeAttached(r2Var);
+                        lx0Var.makeAttached(r2Var);
                     }
                 }
-                kx0Var.show();
+                lx0Var.show();
                 return;
             case 1:
                 this.f5478b[0].dismiss();

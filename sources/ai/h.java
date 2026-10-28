@@ -13,7 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import java.util.HashMap;
 import java.util.Random;
 import org.telegram.messenger.TelegramQRCodeWriter;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.d3;
 public final class h {
     public static final float S;
@@ -125,8 +125,8 @@ public final class h {
     public static g c(String str, int i10, jc.c cVar, float f7, ColorDrawable colorDrawable) {
         try {
             HashMap hashMap = new HashMap();
-            hashMap.put(ec.b.f9874a, cVar);
-            hashMap.put(ec.b.f9876c, 0);
+            hashMap.put(ec.b.f9873a, cVar);
+            hashMap.put(ec.b.f9875c, 0);
             TelegramQRCodeWriter telegramQRCodeWriter = new TelegramQRCodeWriter();
             if (colorDrawable != null) {
                 telegramQRCodeWriter.setCenterDrawable(colorDrawable);
@@ -134,7 +134,7 @@ public final class h {
             g gVar = new g();
             Bitmap encode = telegramQRCodeWriter.encode(str, i10, i10, hashMap, null, f7, 0, -1);
             gVar.f1498b = encode.getWidth();
-            int i11 = ((lc.b) lc.c.b(str, cVar, hashMap).f9531f).f16970b;
+            int i11 = ((lc.b) lc.c.b(str, cVar, hashMap).f9530f).f16969b;
             gVar.e = i11;
             gVar.f1500f = (gVar.f1498b - (gVar.f1501g * 2.0f)) / i11;
             int i12 = i11 * i11;
@@ -147,7 +147,7 @@ public final class h {
                     float f11 = i14 + 0.5f;
                     float f12 = gVar.f1500f;
                     int i15 = (int) ((f11 * f12) + f10);
-                    int a2 = (int) vh.a(i13, 0.5f, f12, f10);
+                    int a2 = (int) wh.a(i13, 0.5f, f12, f10);
                     boolean z10 = false;
                     for (int i16 = -1; i16 <= 1 && !z10; i16++) {
                         if (Color.alpha(encode.getPixel(Math.max(0, Math.min(gVar.f1498b - 1, ((int) (i16 * gVar.f1500f * 0.3f)) + i15)), a2)) > 40) {
@@ -192,7 +192,7 @@ public final class h {
     public static float h(g gVar, float f7) {
         float f10 = 1.0f - f7;
         float f11 = f10 * f10;
-        return vh.a(gVar.e, 6.0f, 1.0f - (((f10 * 0.45f) + 0.55f) * f11), -1.5f);
+        return wh.a(gVar.e, 6.0f, 1.0f - (((f10 * 0.45f) + 0.55f) * f11), -1.5f);
     }
 
     public static boolean i(g gVar, int i10, int i11) {
@@ -312,7 +312,7 @@ public final class h {
                             float f15 = gVar.f1501g;
                             float f16 = gVar.f1500f;
                             fArr[i17] = ((i19 + 0.5f) * f16) + f15;
-                            gVar.f1508o[i17] = vh.a(i18, 0.5f, f16, f15);
+                            gVar.f1508o[i17] = wh.a(i18, 0.5f, f16, f15);
                             float[] fArr2 = gVar.f1509p;
                             float hypot = (((float) Math.hypot(f10 - f7, f11 - f7)) / f13) * 0.5f;
                             if (i23) {

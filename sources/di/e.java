@@ -15,21 +15,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.xa;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.a31;
 import org.telegram.ui.bd;
-import org.telegram.ui.u90;
-import org.telegram.ui.y21;
+import org.telegram.ui.w90;
 public final class e implements Utilities.Callback {
-    public final int f8507a;
+    public final int f8506a;
 
     public e(int i10) {
-        this.f8507a = i10;
+        this.f8506a = i10;
     }
 
     @Override
     public final void run(Object obj) {
         MessageObject messageObject;
         MessageObject messageObject2;
-        switch (this.f8507a) {
+        switch (this.f8506a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -45,7 +45,7 @@ public final class e implements Utilities.Callback {
             case 3:
                 View view2 = (View) obj;
                 if (view2 instanceof jg.y1) {
-                    ((jg.y1) view2).f15903c.invalidate();
+                    ((jg.y1) view2).f15902c.invalidate();
                     return;
                 }
                 return;
@@ -65,11 +65,11 @@ public final class e implements Utilities.Callback {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i10 = org.telegram.ui.ActionBar.q3.f22982r;
+                int i10 = org.telegram.ui.ActionBar.q3.f22983r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i11 = xa.f25728n;
+                int i11 = xa.f25730n;
                 return;
             case 9:
                 bd.b1((View) obj);
@@ -102,11 +102,11 @@ public final class e implements Utilities.Callback {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.l5) {
                     org.telegram.ui.Cells.l5 l5Var = (org.telegram.ui.Cells.l5) view7;
-                    l5Var.f24382b.invalidate();
-                    l5Var.f24383c.invalidate();
+                    l5Var.f24384b.invalidate();
+                    l5Var.f24385c.invalidate();
                     return;
                 } else if (view7 instanceof jg.y1) {
-                    ((jg.y1) view7).f15903c.invalidate();
+                    ((jg.y1) view7).f15902c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -142,7 +142,7 @@ public final class e implements Utilities.Callback {
                     }
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new u90(5));
+                AndroidUtilities.runOnUIThread(new w90(5));
                 return;
             case 19:
                 Boolean bool3 = (Boolean) obj;
@@ -151,7 +151,7 @@ public final class e implements Utilities.Callback {
             case 20:
                 HashSet hashSet = (HashSet) obj;
                 String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
-                hashSet.addAll(y21.Z());
+                hashSet.addAll(a31.Z());
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str)) {
                     edit.remove("translate_button_restricted_languages");
@@ -159,7 +159,7 @@ public final class e implements Utilities.Callback {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                y21.f45937s = false;
+                a31.f37671s = false;
                 for (int i13 = 0; i13 < 4; i13++) {
                     try {
                         MessagesController.getInstance(i13).getTranslateController().checkRestrictedLanguagesUpdate();
@@ -193,6 +193,6 @@ public final class e implements Utilities.Callback {
     }
 
     public e(bd bdVar) {
-        this.f8507a = 9;
+        this.f8506a = 9;
     }
 }

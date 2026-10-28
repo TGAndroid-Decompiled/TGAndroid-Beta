@@ -1,50 +1,19 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class ac1 extends org.telegram.ui.Components.gb1 {
-    public final int f37714c;
-    public final NotificationCenter.NotificationCenterDelegate d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ac1 extends AnimatorListenerAdapter {
+    public final vc1 f37734a;
 
-    public ac1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f37714c = i10;
-        this.d = notificationCenterDelegate;
+    public ac1(vc1 vc1Var) {
+        this.f37734a = vc1Var;
     }
 
     @Override
-    public void M() {
-        switch (this.f37714c) {
-            case 1:
-                ((ph1) this.d).v.invalidate();
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void P(int i10, int i11) {
-        boolean z10;
-        switch (this.f37714c) {
-            case 0:
-                Point point = AndroidUtilities.displaySize;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((tc1) this.d).f43802y0.invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        vc1 vc1Var = this.f37734a;
+        if (vc1Var.X0 == null) {
+            vc1Var.K0[0].setVisibility(4);
         }
     }
 }

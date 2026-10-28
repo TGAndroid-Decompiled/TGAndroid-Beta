@@ -24,9 +24,9 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.wl0;
 import s4.e1;
 import s4.q0;
 public abstract class a {
@@ -443,7 +443,7 @@ public abstract class a {
         return DesugarCollections.unmodifiableMap(new HashMap(hashMap));
     }
 
-    public static vl0 n(View view, View view2, int i10, int i11) {
+    public static wl0 n(View view, View view2, int i10, int i11) {
         view.setLayoutParams(new q0(i10, i11));
         return new e1(view2);
     }
@@ -454,7 +454,7 @@ public abstract class a {
     }
 
     public static void p(int i10, ArrayList arrayList) {
-        arrayList.add(t61.u(LocaleController.getString(i10)));
+        arrayList.add(u61.u(LocaleController.getString(i10)));
     }
 
     public static void q(int i10, HashMap hashMap, String str, int i11, String str2) {
@@ -505,6 +505,6 @@ public abstract class a {
     }
 
     public static void z(int i10, ArrayList arrayList) {
-        arrayList.add(t61.C(LocaleController.getString(i10)));
+        arrayList.add(u61.C(LocaleController.getString(i10)));
     }
 }

@@ -1,7 +1,7 @@
 package bi;
 
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.vz0;
+import org.telegram.ui.xz0;
 public final class p8 implements Runnable {
     public final int f5235a;
     public final ProfileActivity f5236b;
@@ -16,9 +16,9 @@ public final class p8 implements Runnable {
         switch (this.f5235a) {
             case 0:
                 ProfileActivity profileActivity = this.f5236b;
-                vz0 vz0Var = profileActivity.N;
-                if (vz0Var != null) {
-                    vz0Var.e1(14);
+                xz0 xz0Var = profileActivity.N;
+                if (xz0Var != null) {
+                    xz0Var.e1(14);
                     profileActivity.O4(false);
                     return;
                 }

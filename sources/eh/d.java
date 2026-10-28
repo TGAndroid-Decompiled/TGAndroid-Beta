@@ -46,19 +46,19 @@ public abstract class d extends oi.e implements p6 {
     public NinePatchDrawable U;
     public long V;
     public fh.a e;
-    public int f9961f;
+    public int f9960f;
     public int h;
-    public int f9962n;
-    public int f9963r;
-    public int f9964s;
+    public int f9961n;
+    public int f9962r;
+    public int f9963s;
     public int v;
-    public int f9965w = f7.f22628b;
-    public final c f9966x;
-    public b f9967y;
+    public int f9964w = f7.f22629b;
+    public final c f9965x;
+    public b f9966y;
 
     public d() {
         c cVar = new c();
-        this.f9966x = cVar;
+        this.f9965x = cVar;
         this.H = 1.0f;
         this.I = new Paint(1);
         this.J = new Paint(1);
@@ -75,8 +75,8 @@ public abstract class d extends oi.e implements p6 {
         this.R = new RectF();
         this.S = new Object();
         this.T = new Rect();
-        cVar.f9954i = AndroidUtilities.dpf2(1.0f);
-        cVar.f9955j = AndroidUtilities.dpf2(0.6666667f);
+        cVar.f9953i = AndroidUtilities.dpf2(1.0f);
+        cVar.f9954j = AndroidUtilities.dpf2(0.6666667f);
         this.F = AndroidUtilities.dpf2(1.0f);
         this.G = AndroidUtilities.dpf2(0.33333334f);
     }
@@ -124,18 +124,18 @@ public abstract class d extends oi.e implements p6 {
     }
 
     public final void A(int i10) {
-        this.f9966x.f9952f = i10;
+        this.f9965x.f9951f = i10;
         t();
     }
 
     @Override
     public final void b(Rect rect) {
-        rect.set(this.f9966x.f9958m);
+        rect.set(this.f9965x.f9957m);
     }
 
     @Override
     public final int c() {
-        return this.f9964s;
+        return this.f9963s;
     }
 
     @Override
@@ -155,13 +155,13 @@ public abstract class d extends oi.e implements p6 {
 
     @Override
     public final void getOutline(Outline outline) {
-        c cVar = this.f9966x;
-        r(outline, cVar.f9958m, cVar.f9950b);
+        c cVar = this.f9965x;
+        r(outline, cVar.f9957m, cVar.f9949b);
     }
 
     @Override
     public final boolean getPadding(Rect rect) {
-        c cVar = this.f9966x;
+        c cVar = this.f9965x;
         int i10 = cVar.d;
         rect.set(i10, i10, i10, i10);
         return cVar.e;
@@ -184,9 +184,9 @@ public abstract class d extends oi.e implements p6 {
         aVar.f6297b = 0L;
         aVar.f6296a = false;
         aVar.a(i10);
-        aVar.a(this.f9961f);
-        c cVar = this.f9966x;
-        for (float f7 : cVar.f9950b) {
+        aVar.a(this.f9960f);
+        c cVar = this.f9965x;
+        for (float f7 : cVar.f9949b) {
             aVar.c(f7);
         }
         aVar.c(this.F);
@@ -194,10 +194,10 @@ public abstract class d extends oi.e implements p6 {
         aVar.c(this.G);
         aVar.b(z10);
         if (z10) {
-            aVar.a(this.f9962n);
-            aVar.a(this.f9963r);
-            aVar.c(cVar.f9954i);
-            aVar.c(cVar.f9955j);
+            aVar.a(this.f9961n);
+            aVar.a(this.f9962r);
+            aVar.c(cVar.f9953i);
+            aVar.c(cVar.f9954j);
         }
         if (aVar.f6296a) {
             j10 = -1;
@@ -211,7 +211,7 @@ public abstract class d extends oi.e implements p6 {
             } else {
                 i11 = 1;
             }
-            NinePatchDrawable b10 = yc.b(null, cVar.f9950b, this.F, this.G, i11, new a(i10, this, z10));
+            NinePatchDrawable b10 = yc.b(null, cVar.f9949b, this.F, this.G, i11, new a(i10, this, z10));
             this.U = b10;
             b10.getPadding(this.T);
         }
@@ -219,10 +219,10 @@ public abstract class d extends oi.e implements p6 {
     }
 
     public final void l() {
-        Rect rect = this.f9966x.f9958m;
+        Rect rect = this.f9965x.f9957m;
         RectF rectF = this.Q;
         rectF.set(rect);
-        rectF.offset(this.f19462c, this.d);
+        rectF.offset(this.f19461c, this.d);
         RectF rectF2 = this.R;
         if (!rectF.equals(rectF2)) {
             rectF2.set(rectF);
@@ -231,18 +231,18 @@ public abstract class d extends oi.e implements p6 {
 
     public final void m(Canvas canvas, hh.a aVar) {
         int i10;
-        c cVar = this.f9966x;
-        Rect rect = cVar.f9958m;
-        Rect rect2 = cVar.f9958m;
+        c cVar = this.f9965x;
+        Rect rect = cVar.f9957m;
+        Rect rect2 = cVar.f9957m;
         if (!rect.isEmpty()) {
             boolean z10 = false;
             if (Color.alpha(this.h) == 255) {
                 n(canvas, 0);
             } else if (aVar instanceof hh.c) {
-                n(canvas, ((hh.c) aVar).f12837b);
+                n(canvas, ((hh.c) aVar).f12836b);
             } else if (aVar instanceof hh.b) {
                 hh.b bVar = (hh.b) aVar;
-                int i11 = this.f19461b;
+                int i11 = this.f19460b;
                 Bitmap bitmap = bVar.d;
                 Bitmap bitmap2 = (Bitmap) this.O.get();
                 Paint paint = this.K;
@@ -257,7 +257,7 @@ public abstract class d extends oi.e implements p6 {
                         paint.setShader(null);
                     }
                 }
-                if (Color.alpha(this.f9961f) > 0) {
+                if (Color.alpha(this.f9960f) > 0) {
                     NinePatchDrawable k10 = k(0, false);
                     int i12 = rect2.left;
                     Rect rect3 = this.T;
@@ -266,10 +266,10 @@ public abstract class d extends oi.e implements p6 {
                     k10.draw(canvas);
                 }
                 if (this.P != null && bitmap != null && !bitmap.isRecycled() && i11 > 0) {
-                    Matrix matrix = bVar.f12832b;
+                    Matrix matrix = bVar.f12831b;
                     Matrix matrix2 = this.N;
                     matrix2.set(matrix);
-                    matrix2.postTranslate(-this.f19462c, -this.d);
+                    matrix2.postTranslate(-this.f19461c, -this.d);
                     this.P.setLocalMatrix(matrix2);
                     paint.setAlpha(i11);
                     cVar.b(canvas, paint);
@@ -284,24 +284,24 @@ public abstract class d extends oi.e implements p6 {
             } else if (Build.VERSION.SDK_INT >= 29 && (aVar instanceof hh.d)) {
                 hh.d dVar = (hh.d) aVar;
                 if (!canvas.isHardwareAccelerated()) {
-                    m(canvas, dVar.f12838a);
+                    m(canvas, dVar.f12837a);
                 }
             } else if (aVar instanceof hh.e) {
-                m(canvas, ((hh.e) aVar).f12845a);
-            } else if (aVar != null && (i10 = this.f19461b) != 0) {
+                m(canvas, ((hh.e) aVar).f12844a);
+            } else if (aVar != null && (i10 = this.f19460b) != 0) {
                 int o13 = y6.o1(i10 / 255.0f, this.h);
-                if (Color.alpha(this.f9961f) > 0 && i10 == 255) {
+                if (Color.alpha(this.f9960f) > 0 && i10 == 255) {
                     float f7 = this.H;
                     if (f7 > 0.0f) {
                         float f10 = this.F;
                         float f11 = this.G;
-                        int o14 = y6.o1(f7, this.f9961f);
+                        int o14 = y6.o1(f7, this.f9960f);
                         Paint paint3 = this.M;
                         paint3.setShadowLayer(f10, 0.0f, f11, o14);
                         cVar.c(canvas, paint3, this.E);
                     }
                 }
-                float f12 = this.f19462c;
+                float f12 = this.f19461c;
                 float f13 = this.d;
                 float f14 = rect2.left;
                 float f15 = f14 + f12;
@@ -319,7 +319,7 @@ public abstract class d extends oi.e implements p6 {
                     canvas.saveLayerAlpha(f14, f16, f18, f20, i10);
                 }
                 canvas.save();
-                canvas.clipPath(cVar.f9956k);
+                canvas.clipPath(cVar.f9955k);
                 canvas.translate(rect2.left, rect2.top);
                 canvas.translate(-f15, -f17);
                 aVar.w(canvas, f15, f17, f19, f21);
@@ -338,13 +338,13 @@ public abstract class d extends oi.e implements p6 {
     }
 
     public final void n(Canvas canvas, int i10) {
-        int i11 = this.f19461b;
+        int i11 = this.f19460b;
         int k10 = i0.a.k(this.h, i10);
-        if (Color.alpha(k10) == 0 && Color.alpha(this.f9961f) == 0) {
+        if (Color.alpha(k10) == 0 && Color.alpha(this.f9960f) == 0) {
             return;
         }
         NinePatchDrawable k11 = k(k10, true);
-        Rect rect = this.f9966x.f9958m;
+        Rect rect = this.f9965x.f9957m;
         int i12 = rect.left;
         Rect rect2 = this.T;
         k11.setBounds(i12 - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
@@ -355,26 +355,26 @@ public abstract class d extends oi.e implements p6 {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        c cVar = this.f9966x;
-        cVar.f9949a.set(rect);
+        c cVar = this.f9965x;
+        cVar.f9948a.set(rect);
         cVar.a();
         t();
     }
 
     public final void q(Canvas canvas) {
-        float f7 = this.f19461b / 255.0f;
-        int o12 = y6.o1(f7, this.f9962n);
-        int o13 = y6.o1(f7, this.f9963r);
+        float f7 = this.f19460b / 255.0f;
+        int o12 = y6.o1(f7, this.f9961n);
+        int o13 = y6.o1(f7, this.f9962r);
         int alpha = Color.alpha(o12);
-        c cVar = this.f9966x;
+        c cVar = this.f9965x;
         Paint paint = this.J;
         if (alpha > 0) {
             paint.setColor(o12);
-            canvas.drawPath(cVar.f9959n, paint);
+            canvas.drawPath(cVar.f9958n, paint);
         }
         if (Color.alpha(o13) > 0) {
             paint.setColor(o13);
-            canvas.drawPath(cVar.f9960o, paint);
+            canvas.drawPath(cVar.f9959o, paint);
         }
     }
 
@@ -386,7 +386,7 @@ public abstract class d extends oi.e implements p6 {
 
     @Override
     public void updateColors() {
-        this.f9965w = f7.f22628b;
+        this.f9964w = f7.f22629b;
         fh.a aVar = this.e;
         if (aVar == null) {
             return;
@@ -395,9 +395,9 @@ public abstract class d extends oi.e implements p6 {
             ((fh.b) aVar).c();
         }
         this.h = this.e.v0();
-        this.f9961f = this.e.f0();
-        this.f9962n = this.e.t();
-        this.f9963r = this.e.A();
+        this.f9960f = this.e.f0();
+        this.f9961n = this.e.t();
+        this.f9962r = this.e.A();
     }
 
     public final void v(fh.a aVar) {
@@ -405,20 +405,20 @@ public abstract class d extends oi.e implements p6 {
         updateColors();
         if (aVar instanceof fh.e) {
             fh.e eVar = (fh.e) aVar;
-            float f7 = eVar.f10484f;
+            float f7 = eVar.f10483f;
             float f10 = eVar.h;
-            c cVar = this.f9966x;
-            cVar.f9954i = f7;
-            cVar.f9955j = f10;
-            float f11 = eVar.f10485n;
-            float f12 = eVar.f10486r;
+            c cVar = this.f9965x;
+            cVar.f9953i = f7;
+            cVar.f9954j = f10;
+            float f11 = eVar.f10484n;
+            float f12 = eVar.f10485r;
             this.F = f11;
             this.G = f12;
         }
     }
 
     public final void w(int i10) {
-        c cVar = this.f9966x;
+        c cVar = this.f9965x;
         if (cVar.d != i10) {
             cVar.d = i10;
             cVar.a();
@@ -427,16 +427,16 @@ public abstract class d extends oi.e implements p6 {
     }
 
     public final void x(float f7) {
-        c cVar = this.f9966x;
-        Arrays.fill(cVar.f9950b, f7);
-        Arrays.fill(cVar.f9951c, f7);
+        c cVar = this.f9965x;
+        Arrays.fill(cVar.f9949b, f7);
+        Arrays.fill(cVar.f9950c, f7);
         cVar.a();
         t();
     }
 
     public final void y(float f7, float f10, float f11, float f12) {
-        c cVar = this.f9966x;
-        float[] fArr = cVar.f9950b;
+        c cVar = this.f9965x;
+        float[] fArr = cVar.f9949b;
         fArr[1] = f7;
         fArr[0] = f7;
         fArr[3] = f10;
@@ -450,8 +450,8 @@ public abstract class d extends oi.e implements p6 {
     }
 
     public final void z(float f7, float f10, float f11, float f12) {
-        c cVar = this.f9966x;
-        float[] fArr = cVar.f9950b;
+        c cVar = this.f9965x;
+        float[] fArr = cVar.f9949b;
         fArr[1] = f7;
         fArr[0] = f7;
         fArr[3] = f10;
@@ -460,7 +460,7 @@ public abstract class d extends oi.e implements p6 {
         fArr[4] = 0.0f;
         fArr[7] = 0.0f;
         fArr[6] = 0.0f;
-        float[] fArr2 = cVar.f9951c;
+        float[] fArr2 = cVar.f9950c;
         fArr2[1] = f7;
         fArr2[0] = f7;
         fArr2[3] = f10;

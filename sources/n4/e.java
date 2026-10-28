@@ -5,17 +5,17 @@ import android.os.IBinder;
 import android.os.Parcel;
 import java.lang.ref.WeakReference;
 public final class e extends Binder implements b {
-    public static final int f18658b = 0;
-    public final WeakReference f18659a;
+    public static final int f18657b = 0;
+    public final WeakReference f18658a;
 
     public e() {
         attachInterface(this, "android.support.v4.media.session.IMediaControllerCallback");
-        this.f18659a = new WeakReference(null);
+        this.f18658a = new WeakReference(null);
     }
 
     @Override
     public final void h(int i10) {
-        if (this.f18659a.get() == null) {
+        if (this.f18658a.get() == null) {
             return;
         }
         throw new ClassCastException();
@@ -23,7 +23,7 @@ public final class e extends Binder implements b {
 
     @Override
     public final void onRepeatModeChanged(int i10) {
-        if (this.f18659a.get() == null) {
+        if (this.f18658a.get() == null) {
             return;
         }
         throw new ClassCastException();
@@ -35,7 +35,7 @@ public final class e extends Binder implements b {
         if (i10 != 3) {
             if (i10 != 9) {
                 if (i10 != 1598968902) {
-                    WeakReference weakReference = this.f18659a;
+                    WeakReference weakReference = this.f18658a;
                     switch (i10) {
                         case 11:
                             parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
@@ -79,7 +79,7 @@ public final class e extends Binder implements b {
 
     @Override
     public final void r(z zVar) {
-        if (this.f18659a.get() == null) {
+        if (this.f18658a.get() == null) {
             return;
         }
         throw new ClassCastException();

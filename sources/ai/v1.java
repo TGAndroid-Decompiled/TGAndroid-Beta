@@ -15,9 +15,9 @@ import android.text.StaticLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.da0;
+import org.telegram.ui.Components.ea0;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.yc0;
+import org.telegram.ui.Components.zc0;
 public final class v1 {
     public static float f1953i;
     public static float f1954j;
@@ -197,31 +197,31 @@ public final class v1 {
             ((org.telegram.ui.Cells.y) this.f1959g).draw(canvas);
         }
         if (z10) {
-            da0 da0Var = (da0) this.h;
-            if (da0Var == null) {
-                da0 da0Var2 = new da0();
-                this.h = da0Var2;
-                da0Var2.D = true;
-            } else if (da0Var.c() || ((da0) this.h).d()) {
-                da0 da0Var3 = (da0) this.h;
-                da0Var3.f27462b = -1L;
-                da0Var3.f27463c = -1L;
+            ea0 ea0Var = (ea0) this.h;
+            if (ea0Var == null) {
+                ea0 ea0Var2 = new ea0();
+                this.h = ea0Var2;
+                ea0Var2.D = true;
+            } else if (ea0Var.c() || ((ea0) this.h).d()) {
+                ea0 ea0Var3 = (ea0) this.h;
+                ea0Var3.f27787b = -1L;
+                ea0Var3.f27788c = -1L;
             }
         } else {
-            da0 da0Var4 = (da0) this.h;
-            if (da0Var4 != null && !da0Var4.d() && !((da0) this.h).c()) {
-                ((da0) this.h).a();
+            ea0 ea0Var4 = (ea0) this.h;
+            if (ea0Var4 != null && !ea0Var4.d() && !((ea0) this.h).c()) {
+                ((ea0) this.h).a();
             }
         }
         canvas.restore();
-        da0 da0Var5 = (da0) this.h;
-        if (da0Var5 != null && !da0Var5.c()) {
-            da0 da0Var6 = (da0) this.h;
-            da0Var6.f27481y = path;
-            da0Var6.g(y6.o1(0.7f, this.f1957c), y6.o1(1.3f, this.f1957c), y6.o1(1.5f, this.f1957c), y6.o1(2.0f, this.f1957c));
-            ((da0) this.h).setBounds(rect);
+        ea0 ea0Var5 = (ea0) this.h;
+        if (ea0Var5 != null && !ea0Var5.c()) {
+            ea0 ea0Var6 = (ea0) this.h;
+            ea0Var6.f27806y = path;
+            ea0Var6.g(y6.o1(0.7f, this.f1957c), y6.o1(1.3f, this.f1957c), y6.o1(1.5f, this.f1957c), y6.o1(2.0f, this.f1957c));
+            ((ea0) this.h).setBounds(rect);
             canvas.save();
-            ((da0) this.h).draw(canvas);
+            ((ea0) this.h).draw(canvas);
             canvas.restore();
             ((org.telegram.ui.Cells.s1) this.d).invalidate();
         }
@@ -332,9 +332,9 @@ public final class v1 {
                 Paint paint = new Paint();
                 this.d = paint;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                this.e = new yc0(tileMode);
-                this.f1958f = new yc0(tileMode);
-                this.f1959g = new yc0(Shader.TileMode.REPEAT);
+                this.e = new zc0(tileMode);
+                this.f1958f = new zc0(tileMode);
+                this.f1959g = new zc0(Shader.TileMode.REPEAT);
                 this.f1955a = new Object();
                 this.f1956b = new Object();
                 this.h = new float[4];

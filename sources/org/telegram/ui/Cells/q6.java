@@ -2,7 +2,7 @@ package org.telegram.ui.Cells;
 
 import android.view.View;
 import org.telegram.ui.Components.lo;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.LaunchActivity;
 public final class q6 extends di.w7 {
     public final int S = 1;
@@ -24,13 +24,13 @@ public final class q6 extends di.w7 {
                 org.telegram.ui.ActionBar.r2 R = LaunchActivity.R();
                 if (R != null) {
                     R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(abVar.getContext(), j10, di.q7.a((mm0) abVar.getParent()));
+                    R.getOrCreateStoryViewer().E(abVar.getContext(), j10, di.q7.a((nm0) abVar.getParent()));
                     return;
                 }
                 return;
             default:
                 lo loVar = (lo) this.T;
-                loVar.H.getOrCreateStoryViewer().D(loVar.getContext(), j10, new org.telegram.ui.Components.s(this, 25));
+                loVar.H.getOrCreateStoryViewer().E(loVar.getContext(), j10, new org.telegram.ui.Components.s(this, 25));
                 return;
         }
     }

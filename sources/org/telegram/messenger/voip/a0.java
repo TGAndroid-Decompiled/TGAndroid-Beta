@@ -5,24 +5,24 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class a0 implements RequestDelegate {
-    public final int f21613a;
-    public final VoIPService f21614b;
-    public final MessagesStorage f21615c;
+    public final int f21601a;
+    public final VoIPService f21602b;
+    public final MessagesStorage f21603c;
 
     public a0(VoIPService voIPService, MessagesStorage messagesStorage, int i10) {
-        this.f21613a = i10;
-        this.f21614b = voIPService;
-        this.f21615c = messagesStorage;
+        this.f21601a = i10;
+        this.f21602b = voIPService;
+        this.f21603c = messagesStorage;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21613a) {
+        switch (this.f21601a) {
             case 0:
-                this.f21614b.lambda$acceptIncomingCall$103(this.f21615c, tLObject, tL_error);
+                this.f21602b.lambda$acceptIncomingCall$103(this.f21603c, tLObject, tL_error);
                 return;
             default:
-                this.f21614b.lambda$startOutgoingCall$11(this.f21615c, tLObject, tL_error);
+                this.f21602b.lambda$startOutgoingCall$11(this.f21603c, tLObject, tL_error);
                 return;
         }
     }

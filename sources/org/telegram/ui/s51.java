@@ -1,21 +1,23 @@
 package org.telegram.ui;
-public final class s51 implements Runnable {
-    public final int f43367a;
-    public final t51 f43368b;
 
-    public s51(t51 t51Var, int i10) {
-        this.f43367a = i10;
-        this.f43368b = t51Var;
+import org.telegram.messenger.AndroidUtilities;
+public final class s51 implements Runnable {
+    public final int f43241a;
+    public final org.telegram.ui.Cells.g6 f43242b;
+
+    public s51(org.telegram.ui.Cells.g6 g6Var, int i10) {
+        this.f43241a = i10;
+        this.f43242b = g6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f43367a) {
+        switch (this.f43241a) {
             case 0:
-                t51.a(this.f43368b);
+                AndroidUtilities.showKeyboard(((w41) this.f43242b.d).h);
                 return;
             default:
-                this.f43368b.dismiss();
+                this.f43242b.requestFocus();
                 return;
         }
     }

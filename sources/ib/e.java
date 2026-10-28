@@ -4,8 +4,8 @@ import java.util.Date;
 public class e implements fb.v {
     @Override
     public final fb.u create(fb.g gVar, mb.a aVar) {
-        if (aVar.f18407a == Date.class) {
-            return new h(g.f13918a);
+        if (aVar.f18406a == Date.class) {
+            return new h(g.f13917a);
         }
         return null;
     }

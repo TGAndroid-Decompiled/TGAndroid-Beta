@@ -2,7 +2,7 @@ package ei;
 
 import android.content.Context;
 import di.z6;
-import org.telegram.ui.Components.ey0;
+import org.telegram.ui.Components.fy0;
 public final class l extends q {
     public final r v;
 
@@ -16,18 +16,18 @@ public final class l extends q {
         boolean z10;
         super.l();
         r rVar = this.v;
-        if (rVar.f10006r.getVisibility() == 0) {
-            rVar.f10008w.l();
+        if (rVar.f10005r.getVisibility() == 0) {
+            rVar.f10007w.l();
         }
-        ey0 ey0Var = rVar.f10010y;
-        if (ey0Var != null) {
+        fy0 fy0Var = rVar.f10009y;
+        if (fy0Var != null) {
             z6 z6Var = this.e;
             if (z6Var != null && z6Var.k()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            ey0Var.e(z10, true);
+            fy0Var.e(z10, true);
         }
     }
 }

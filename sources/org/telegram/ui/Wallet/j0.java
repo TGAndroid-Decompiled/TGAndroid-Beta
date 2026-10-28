@@ -10,32 +10,32 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class j0 implements Utilities.Callback2 {
-    public final int f36723a;
-    public final k0 f36724b;
-    public final TL_wallet.getTransactions f36725c;
+    public final int f36748a;
+    public final k0 f36749b;
+    public final TL_wallet.getTransactions f36750c;
 
     public j0(k0 k0Var, TL_wallet.getTransactions gettransactions, int i10) {
-        this.f36723a = i10;
-        this.f36724b = k0Var;
-        this.f36725c = gettransactions;
+        this.f36748a = i10;
+        this.f36749b = k0Var;
+        this.f36750c = gettransactions;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         boolean z10;
         boolean z11;
-        switch (this.f36723a) {
+        switch (this.f36748a) {
             case 0:
-                k0 k0Var = this.f36724b;
-                HashMap hashMap = k0Var.f36764f;
+                k0 k0Var = this.f36749b;
+                HashMap hashMap = k0Var.f36790f;
                 HashSet hashSet = k0Var.d;
                 TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i10 = k0Var.f36769l.f36807a;
-                ArrayList arrayList = k0Var.f36762b;
-                k0Var.f36767j = -1;
+                int i10 = k0Var.f36795l.f36834a;
+                ArrayList arrayList = k0Var.f36788b;
+                k0Var.f36793j = -1;
                 boolean z12 = false;
-                k0Var.f36766i = false;
+                k0Var.f36792i = false;
                 if (wallettransactions != null) {
                     MessagesController.getInstance(i10).putUsers(wallettransactions.users, false);
                     MessagesController.getInstance(i10).putChats(wallettransactions.chats, false);
@@ -54,8 +54,8 @@ public final class j0 implements Utilities.Callback2 {
                                     k0Var.e(wallettransaction2);
                                     if (c10 != null) {
                                         boolean z14 = c10.set(wallettransaction2);
-                                        if (!TextUtils.equals(c10.f22291id, wallettransaction2.f22291id)) {
-                                            c10.f22291id = wallettransaction2.f22291id;
+                                        if (!TextUtils.equals(c10.f22292id, wallettransaction2.f22292id)) {
+                                            c10.f22292id = wallettransaction2.f22292id;
                                             z14 = true;
                                         }
                                         if (!z14) {
@@ -119,8 +119,8 @@ public final class j0 implements Utilities.Callback2 {
                                     k0Var.f(wallettransaction5);
                                 }
                             }
-                            k0Var.f36765g = wallettransactions.next_offset;
-                            if (wallettransactions.transactions.size() < this.f36725c.limit) {
+                            k0Var.f36791g = wallettransactions.next_offset;
+                            if (wallettransactions.transactions.size() < this.f36750c.limit) {
                                 z12 = true;
                             }
                             k0Var.h = z12;
@@ -137,9 +137,9 @@ public final class j0 implements Utilities.Callback2 {
             default:
                 TL_wallet.walletTransactions wallettransactions2 = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                k0 k0Var2 = this.f36724b;
-                int i15 = k0Var2.f36769l.f36807a;
-                k0Var2.f36768k = -1;
+                k0 k0Var2 = this.f36749b;
+                int i15 = k0Var2.f36795l.f36834a;
+                k0Var2.f36794k = -1;
                 if (wallettransactions2 != null) {
                     int i16 = 0;
                     MessagesController.getInstance(i15).putUsers(wallettransactions2.users, false);
@@ -155,16 +155,16 @@ public final class j0 implements Utilities.Callback2 {
                             k0Var2.e(wallettransaction7);
                             if (c11 != null) {
                                 c11.set(wallettransaction7);
-                                if (!TextUtils.equals(c11.f22291id, wallettransaction7.f22291id)) {
-                                    c11.f22291id = wallettransaction7.f22291id;
+                                if (!TextUtils.equals(c11.f22292id, wallettransaction7.f22292id)) {
+                                    c11.f22292id = wallettransaction7.f22292id;
                                 }
                             } else {
-                                k0Var2.f36762b.add(wallettransaction7);
+                                k0Var2.f36788b.add(wallettransaction7);
                             }
                         }
                     }
-                    k0Var2.f36765g = wallettransactions2.next_offset;
-                    if (wallettransactions2.transactions.size() < this.f36725c.limit) {
+                    k0Var2.f36791g = wallettransactions2.next_offset;
+                    if (wallettransactions2.transactions.size() < this.f36750c.limit) {
                         k0Var2.h = true;
                     }
                 } else {

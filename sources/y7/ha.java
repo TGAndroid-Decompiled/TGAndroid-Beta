@@ -7,7 +7,7 @@ public final class ha extends a8.a implements ja {
     public final ga V0(y6.b bVar, la laVar) {
         ga aVar;
         Parcel N0 = N0();
-        int i10 = x.f52374a;
+        int i10 = x.f52432a;
         N0.writeStrongBinder(bVar);
         N0.writeInt(1);
         laVar.writeToParcel(N0, 0);

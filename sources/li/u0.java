@@ -10,14 +10,14 @@ import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 public final class u0 extends View implements p6 {
-    public final u6 f17505a;
-    public final Paint f17506b;
-    public a f17507c;
+    public final u6 f17504a;
+    public final Paint f17505b;
+    public a f17506c;
 
     public u0(Context context, u6 u6Var) {
         super(context);
-        this.f17506b = new Paint();
-        this.f17505a = u6Var;
+        this.f17505b = new Paint();
+        this.f17504a = u6Var;
         updateColors();
     }
 
@@ -27,12 +27,12 @@ public final class u0 extends View implements p6 {
     }
 
     public a getRow() {
-        return this.f17507c;
+        return this.f17506c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.f17506b);
+        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.f17505b);
     }
 
     @Override
@@ -42,6 +42,6 @@ public final class u0 extends View implements p6 {
 
     @Override
     public final void updateColors() {
-        this.f17506b.setColor(y6.w0(y6.Fk, this.f17505a));
+        this.f17505b.setColor(y6.w0(y6.Fk, this.f17504a));
     }
 }

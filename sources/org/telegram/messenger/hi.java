@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class hi implements Runnable {
-    public final int f20267a;
-    public final SecretChatHelper f20268b;
-    public final ArrayList f20269c;
+    public final int f20263a;
+    public final SecretChatHelper f20264b;
+    public final TLRPC.TL_encryptedChatDiscarded f20265c;
 
-    public hi(SecretChatHelper secretChatHelper, ArrayList arrayList, int i10) {
-        this.f20267a = i10;
-        this.f20268b = secretChatHelper;
-        this.f20269c = arrayList;
+    public hi(SecretChatHelper secretChatHelper, TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded, int i10) {
+        this.f20263a = i10;
+        this.f20264b = secretChatHelper;
+        this.f20265c = tL_encryptedChatDiscarded;
     }
 
     @Override
     public final void run() {
-        switch (this.f20267a) {
+        switch (this.f20263a) {
             case 0:
-                this.f20268b.lambda$resendMessages$14(this.f20269c);
+                this.f20264b.lambda$processAcceptedSecretChat$19(this.f20265c);
                 return;
             default:
-                this.f20268b.lambda$processPendingEncMessages$0(this.f20269c);
+                this.f20264b.lambda$decryptMessage$17(this.f20265c);
                 return;
         }
     }

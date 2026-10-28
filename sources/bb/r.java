@@ -24,7 +24,7 @@ public abstract class r {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = kd.o.f16525a;
+            list = kd.o.f16524a;
         }
         ArrayList f7 = kd.g.f(list);
         ArrayList arrayList = new ArrayList();

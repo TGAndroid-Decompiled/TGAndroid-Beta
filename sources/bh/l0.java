@@ -42,13 +42,13 @@ public abstract class l0 extends ju implements p6 {
         setGravity(80);
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
         f7.V(this, y6.Ud, u6Var);
-        f7.H(this, y6.f23434hc, u6Var);
-        f7.D(this, y6.f23682uf, u6Var);
+        f7.H(this, y6.f23435hc, u6Var);
+        f7.D(this, y6.f23683uf, u6Var);
         int i12 = y6.Vd;
         f7.m(this, 34, i12, u6Var);
         f7.E(this, i12, u6Var);
         f7.m(this, 30, y6.Wd, u6Var);
-        f7.m(this, 36, y6.f23700vf, u6Var);
+        f7.m(this, 36, y6.f23701vf, u6Var);
         if (i11 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -60,7 +60,7 @@ public abstract class l0 extends ju implements p6 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.d.f15828b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.d.f15827b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -151,7 +151,7 @@ public abstract class l0 extends ju implements p6 {
         try {
             setHintColor(y6.w0(y6.Vd, u6Var));
             setCursorColor(y6.w0(y6.Wd, u6Var));
-            setHandlesColor(y6.w0(y6.f23700vf, u6Var));
+            setHandlesColor(y6.w0(y6.f23701vf, u6Var));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

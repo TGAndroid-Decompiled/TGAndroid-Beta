@@ -79,16 +79,16 @@ public final class g {
             ef.p pVar2 = (ef.p) rVar.e;
             mVar.e = pVar2;
             if (pVar2 != null) {
-                pVar2.f9939f = mVar;
+                pVar2.f9938f = mVar;
             }
-            mVar.f9939f = rVar;
+            mVar.f9938f = rVar;
             rVar.e = mVar;
-            ef.p pVar3 = (ef.p) rVar.f9937b;
-            mVar.f9937b = pVar3;
+            ef.p pVar3 = (ef.p) rVar.f9936b;
+            mVar.f9936b = pVar3;
             if (((ef.p) mVar.e) == null) {
-                pVar3.f9938c = mVar;
+                pVar3.f9937c = mVar;
             }
-            String str = mVar.f9934g;
+            String str = mVar.f9933g;
             LinkedHashMap linkedHashMap = this.f3930m;
             if (!linkedHashMap.containsKey(str)) {
                 linkedHashMap.put(str, mVar);

@@ -17,13 +17,13 @@ public final class ll extends ig.t0 {
     public final void l() {
         sl slVar = this.N;
         ll llVar = slVar.P;
-        org.telegram.ui.ActionBar.w0 w0Var = slVar.f32619x;
+        org.telegram.ui.ActionBar.w0 w0Var = slVar.f32640x;
         if (w0Var != null) {
             w0Var.setShowSearchProgress(llVar.J);
         }
-        TextView textView = slVar.f32617w;
+        TextView textView = slVar.f32638w;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, llVar.f14014x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, llVar.f14013x)));
         }
         super.l();
     }

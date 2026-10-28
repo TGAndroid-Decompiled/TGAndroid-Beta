@@ -1,34 +1,46 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class lp implements Runnable {
-    public final int f41310a;
-    public final mp f41311b;
-    public final String f41312c;
+import android.content.Context;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public final class lp extends org.telegram.ui.Components.h90 {
+    public final TLRPC.Chat f41227w;
+    public final mp f41228x;
 
-    public lp(mp mpVar, String str, int i10) {
-        this.f41310a = i10;
-        this.f41311b = mpVar;
-        this.f41312c = str;
+    public lp(mp mpVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
+        super(context, chat);
+        this.f41228x = mpVar;
+        this.f41227w = chat2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41310a) {
-            case 0:
-                mp mpVar = this.f41311b;
-                String str = this.f41312c;
-                mpVar.getClass();
-                AndroidUtilities.runOnUIThread(new lp(mpVar, str, 1));
-                return;
-            default:
-                mp mpVar2 = this.f41311b;
-                String str2 = this.f41312c;
-                mpVar2.f41634f = null;
-                Utilities.searchQueue.postRunnable(new q1(mpVar2, str2, new ArrayList(mpVar2.h.v), 28));
-                return;
+    public final boolean a(boolean z10, org.telegram.ui.Components.f90 f90Var) {
+        pp ppVar = this.f41228x.d;
+        if (ppVar.P) {
+            return false;
+        }
+        ppVar.P = true;
+        e(new ed(29, this, f90Var), new bi.s9(this, this.f41227w, z10, f90Var, 16));
+        return true;
+    }
+
+    @Override
+    public final boolean b(boolean z10, org.telegram.ui.Components.g90 g90Var) {
+        pp ppVar = this.f41228x.d;
+        if (ppVar.O) {
+            return false;
+        }
+        ppVar.O = true;
+        e(new ed(29, this, g90Var), new bi.s9(this, this.f41227w, z10, g90Var, 15));
+        return true;
+    }
+
+    public final void e(ed edVar, Runnable runnable) {
+        pp ppVar = this.f41228x.d;
+        if (!ChatObject.isChannel(ppVar.f42467f)) {
+            ppVar.getMessagesController().convertToMegaGroup(ppVar.getParentActivity(), this.f41227w.f22028id, ppVar, new m4.s0(25, this, runnable), edVar);
+        } else {
+            runnable.run();
         }
     }
 }

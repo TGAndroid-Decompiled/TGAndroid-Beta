@@ -20,6 +20,6 @@ public abstract class aa {
     }
 
     public static void b(Canvas canvas, e0.e0 e0Var, int i10, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) e0Var.f9530c, 0, (float[]) e0Var.d, 0, (int[]) e0Var.f9531f, 0, (short[]) e0Var.e, 0, i10 * 6, paint);
+        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) e0Var.f9529c, 0, (float[]) e0Var.d, 0, (int[]) e0Var.f9530f, 0, (short[]) e0Var.e, 0, i10 * 6, paint);
     }
 }

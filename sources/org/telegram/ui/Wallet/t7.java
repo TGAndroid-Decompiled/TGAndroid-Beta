@@ -45,10 +45,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.k80;
-import org.telegram.ui.Components.xj0;
-import org.telegram.ui.lg;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.Components.l80;
+import org.telegram.ui.Components.yj0;
+import org.telegram.ui.dg;
 public final class t7 extends View {
     public static final int G1 = 0;
     public float A0;
@@ -102,87 +102,87 @@ public final class t7 extends View {
     public boolean X0;
     public float Y0;
     public float Z0;
-    public final org.telegram.ui.ActionBar.r2 f37275a;
-    public float f37276a0;
-    public boolean f37277a1;
-    public final boolean f37278b;
-    public float f37279b0;
-    public TL_wallet.card f37280b1;
-    public final w5 f37281c;
-    public final r7 f37282c0;
-    public String f37283c1;
+    public final org.telegram.ui.ActionBar.r2 f37299a;
+    public float f37300a0;
+    public boolean f37301a1;
+    public final boolean f37302b;
+    public float f37303b0;
+    public TL_wallet.card f37304b1;
+    public final w5 f37305c;
+    public final r7 f37306c0;
+    public String f37307c1;
     public final m4.c d;
-    public final Paint f37284d0;
-    public boolean f37285d1;
+    public final Paint f37308d0;
+    public boolean f37309d1;
     public final SharedPreferences e;
-    public final xj0 f37286e0;
-    public boolean f37287e1;
-    public final LinkedHashMap f37288f;
-    public boolean f37289f0;
-    public int f37290f1;
-    public s7 f37291g0;
-    public final l7 f37292g1;
+    public final yj0 f37310e0;
+    public boolean f37311e1;
+    public final LinkedHashMap f37312f;
+    public boolean f37313f0;
+    public int f37314f1;
+    public s7 f37315g0;
+    public final l7 f37316g1;
     public final ArrayList h;
-    public s7 f37293h0;
-    public boolean f37294h1;
-    public boolean f37295i0;
-    public boolean f37296i1;
-    public final Paint f37297j0;
-    public boolean f37298j1;
-    public final Paint f37299k0;
-    public s7 f37300k1;
-    public final Paint f37301l0;
+    public s7 f37317h0;
+    public boolean f37318h1;
+    public boolean f37319i0;
+    public boolean f37320i1;
+    public final Paint f37321j0;
+    public boolean f37322j1;
+    public final Paint f37323k0;
+    public s7 f37324k1;
+    public final Paint f37325l0;
     public g7 l1;
     public boolean m0;
-    public float[] f37302m1;
-    public final ArrayList f37303n;
-    public boolean f37304n0;
-    public float f37305n1;
-    public boolean f37306o0;
-    public final float[] f37307o1;
-    public boolean f37308p0;
-    public final r7 f37309p1;
-    public boolean f37310q0;
-    public final r7 f37311q1;
-    public final Matrix f37312r;
-    public boolean f37313r0;
-    public final Paint f37314r1;
-    public final Matrix f37315s;
-    public boolean f37316s0;
-    public final Paint f37317s1;
-    public boolean f37318t0;
-    public final Matrix f37319t1;
-    public boolean f37320u0;
-    public final Path f37321u1;
+    public float[] f37326m1;
+    public final ArrayList f37327n;
+    public boolean f37328n0;
+    public float f37329n1;
+    public boolean f37330o0;
+    public final float[] f37331o1;
+    public boolean f37332p0;
+    public final r7 f37333p1;
+    public boolean f37334q0;
+    public final r7 f37335q1;
+    public final Matrix f37336r;
+    public boolean f37337r0;
+    public final Paint f37338r1;
+    public final Matrix f37339s;
+    public boolean f37340s0;
+    public final Paint f37341s1;
+    public boolean f37342t0;
+    public final Matrix f37343t1;
+    public boolean f37344u0;
+    public final Path f37345u1;
     public final Matrix v;
-    public int f37322v0;
-    public final RectF f37323v1;
-    public final Matrix f37324w;
-    public float f37325w0;
-    public fi.v3 f37326w1;
-    public final Paint f37327x;
-    public float f37328x0;
-    public fi.v3 f37329x1;
-    public final Paint f37330y;
-    public float f37331y0;
-    public final n1 f37332y1;
-    public float f37333z0;
-    public final x4 f37334z1;
+    public int f37346v0;
+    public final RectF f37347v1;
+    public final Matrix f37348w;
+    public float f37349w0;
+    public fi.v3 f37350w1;
+    public final Paint f37351x;
+    public float f37352x0;
+    public fi.v3 f37353x1;
+    public final Paint f37354y;
+    public float f37355y0;
+    public final n1 f37356y1;
+    public float f37357z0;
+    public final x4 f37358z1;
 
     public t7(org.telegram.ui.ActionBar.r2 r2Var, w5 w5Var, m4.c cVar, TL_wallet.card cardVar) {
         super(r2Var.getContext());
         boolean z10;
         SharedPreferences sharedPreferences;
         boolean z11;
-        this.f37288f = new LinkedHashMap();
+        this.f37312f = new LinkedHashMap();
         this.h = new ArrayList();
-        this.f37303n = new ArrayList();
-        this.f37312r = new Matrix();
-        this.f37315s = new Matrix();
+        this.f37327n = new ArrayList();
+        this.f37336r = new Matrix();
+        this.f37339s = new Matrix();
         this.v = new Matrix();
-        this.f37324w = new Matrix();
-        this.f37327x = new Paint(3);
-        this.f37330y = new Paint(3);
+        this.f37348w = new Matrix();
+        this.f37351x = new Paint(3);
+        this.f37354y = new Paint(3);
         this.E = new RectF();
         Paint paint = new Paint(1);
         this.F = paint;
@@ -204,27 +204,27 @@ public final class t7 extends View {
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{16777215, 16777215, 352321535, 16777215, 16777215}, new float[]{0.0f, 0.36f, 0.5f, 0.64f, 1.0f}, Shader.TileMode.CLAMP);
         this.V = linearGradient;
         this.W = new Matrix();
-        this.f37282c0 = new r7(0.0f, 120.0f, 1.0f);
-        this.f37284d0 = new Paint(1);
-        this.f37297j0 = new Paint(1);
-        this.f37299k0 = new Paint(1);
-        this.f37301l0 = new Paint(1);
+        this.f37306c0 = new r7(0.0f, 120.0f, 1.0f);
+        this.f37308d0 = new Paint(1);
+        this.f37321j0 = new Paint(1);
+        this.f37323k0 = new Paint(1);
+        this.f37325l0 = new Paint(1);
         this.U0 = 1.0f;
         this.V0 = 0.5f;
         this.W0 = 0.5f;
-        this.f37292g1 = new l7(this, 1);
-        this.f37307o1 = new float[3];
-        this.f37309p1 = new r7(0.0f, 260.0f, 1.0f);
-        this.f37311q1 = new r7(0.0f, 220.0f, 1.0f);
+        this.f37316g1 = new l7(this, 1);
+        this.f37331o1 = new float[3];
+        this.f37333p1 = new r7(0.0f, 260.0f, 1.0f);
+        this.f37335q1 = new r7(0.0f, 220.0f, 1.0f);
         Paint paint4 = new Paint(1);
-        this.f37314r1 = paint4;
+        this.f37338r1 = paint4;
         Paint paint5 = new Paint(1);
-        this.f37317s1 = paint5;
-        this.f37319t1 = new Matrix();
-        this.f37321u1 = new Path();
-        this.f37323v1 = new RectF();
-        this.f37332y1 = new n1(this, 1);
-        this.f37334z1 = new x4(2, this);
+        this.f37341s1 = paint5;
+        this.f37343t1 = new Matrix();
+        this.f37345u1 = new Path();
+        this.f37347v1 = new RectF();
+        this.f37356y1 = new n1(this, 1);
+        this.f37358z1 = new x4(2, this);
         this.A1 = new l7(this, 2);
         this.B1 = new l7(this, 3);
         this.C1 = new o7(this);
@@ -234,24 +234,24 @@ public final class t7 extends View {
         paint6.setColor(-16777216);
         paint6.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         this.F1 = new Rect();
-        this.f37275a = r2Var;
+        this.f37299a = r2Var;
         if (cardVar != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f37278b = z10;
-        xj0 xj0Var = new xj0(R.raw.wallet_gift_trash, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
-        this.f37286e0 = xj0Var;
-        xj0Var.R(this);
-        this.f37281c = w5Var;
+        this.f37302b = z10;
+        yj0 yj0Var = new yj0(R.raw.wallet_gift_trash, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
+        this.f37310e0 = yj0Var;
+        yj0Var.R(this);
+        this.f37305c = w5Var;
         this.d = cVar;
         paint3.setShader(linearGradient);
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
         if (z10) {
             sharedPreferences = null;
         } else {
-            sharedPreferences = getContext().getSharedPreferences("wallet_card_stickers_" + r2Var.getCurrentAccount() + "_" + l0.w(r2Var.getCurrentAccount()).s(), 0);
+            sharedPreferences = getContext().getSharedPreferences("wallet_card_stickers_" + r2Var.getCurrentAccount() + "_" + l0.x(r2Var.getCurrentAccount()).t(), 0);
         }
         this.e = sharedPreferences;
         this.P0 = z10 ? null : sharedPreferences.getString("style", null);
@@ -260,7 +260,7 @@ public final class t7 extends View {
         } else {
             z11 = false;
         }
-        this.f37294h1 = z11;
+        this.f37318h1 = z11;
         Paint.Style style = Paint.Style.STROKE;
         paint4.setStyle(style);
         Paint.Cap cap = Paint.Cap.ROUND;
@@ -276,9 +276,9 @@ public final class t7 extends View {
         this.M = m7Var;
         n7 n7Var = new n7(this, getContext());
         this.L = n7Var;
-        m7Var.setTag(r5.f37165n0);
-        w5Var.getFrontFace().addView(m7Var, 0, gb1.g(-1.0f, -1));
-        w5Var.getFrontFace().addView(n7Var, w5Var.getStickerLayerIndex(), gb1.g(-1.0f, -1));
+        m7Var.setTag(r5.f37189n0);
+        w5Var.getFrontFace().addView(m7Var, 0, kb1.g(-1.0f, -1));
+        w5Var.getFrontFace().addView(n7Var, w5Var.getStickerLayerIndex(), kb1.g(-1.0f, -1));
         if (z10) {
             n7Var.addOnLayoutChangeListener(new i7(this, 0));
             d(cardVar);
@@ -320,11 +320,11 @@ public final class t7 extends View {
         boolean z10;
         int i12;
         boolean z11;
-        if (s7Var != null && s7Var.F == null && (bitmap = s7Var.f37245u) != null) {
+        if (s7Var != null && s7Var.F == null && (bitmap = s7Var.f37269u) != null) {
             Bitmap createScaledBitmap = Bitmap.createScaledBitmap(bitmap, 128, 128, true);
             int[] iArr = new int[16384];
             createScaledBitmap.getPixels(iArr, 0, 128, 0, 0, 128, 128);
-            if (createScaledBitmap != s7Var.f37245u) {
+            if (createScaledBitmap != s7Var.f37269u) {
                 createScaledBitmap.recycle();
             }
             boolean[] zArr = new boolean[16384];
@@ -493,7 +493,7 @@ public final class t7 extends View {
 
     public static boolean b(s7 s7Var) {
         TL_wallet.nftItem nftitem;
-        if (s7Var != null && (nftitem = s7Var.f37226b) != null && nftitem.gift != null) {
+        if (s7Var != null && (nftitem = s7Var.f37250b) != null && nftitem.gift != null) {
             return true;
         }
         return false;
@@ -533,7 +533,7 @@ public final class t7 extends View {
             return;
         }
         v3Var.setTag(Integer.valueOf(i10));
-        v3Var.f11783a = i10;
+        v3Var.f11782a = i10;
         v3Var.m(1.0f, 0.0f);
     }
 
@@ -546,17 +546,17 @@ public final class t7 extends View {
         if (mediaAreaCoordinates == null) {
             return "";
         }
-        return String.format(Locale.US, "%.2f,%.2f,%.2f,%.2f", Double.valueOf(mediaAreaCoordinates.f22263x), Double.valueOf(mediaAreaCoordinates.f22264y), Double.valueOf(mediaAreaCoordinates.f22262w), Double.valueOf(mediaAreaCoordinates.rotation % 360.0d));
+        return String.format(Locale.US, "%.2f,%.2f,%.2f,%.2f", Double.valueOf(mediaAreaCoordinates.f22264x), Double.valueOf(mediaAreaCoordinates.f22265y), Double.valueOf(mediaAreaCoordinates.f22263w), Double.valueOf(mediaAreaCoordinates.rotation % 360.0d));
     }
 
     public final boolean A() {
-        w5 w5Var = this.f37281c;
+        w5 w5Var = this.f37305c;
         this.Y0 = w5Var.getFrontFace().getWidth();
         float height = w5Var.getFrontFace().getHeight();
         this.Z0 = height;
         if (this.Y0 > 0.0f && height > 0.0f) {
-            Matrix matrix = this.f37312r;
-            if (w5Var.g(this, matrix) && matrix.invert(this.f37315s)) {
+            Matrix matrix = this.f37336r;
+            if (w5Var.g(this, matrix) && matrix.invert(this.f37339s)) {
                 return true;
             }
             return false;
@@ -583,31 +583,31 @@ public final class t7 extends View {
         v3Var.s(string);
         v3Var.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         v3Var.setTranslationZ(getTranslationZ() + 1.0f);
-        ((ViewGroup) getParent()).addView(v3Var, gb1.i(-1, 150, 48));
+        ((ViewGroup) getParent()).addView(v3Var, kb1.i(-1, 150, 48));
         return v3Var;
     }
 
     public final boolean C() {
         Path H;
-        if (this.f37302m1 == null) {
+        if (this.f37326m1 == null) {
             H = null;
         } else {
-            H = H(this.f37300k1);
+            H = H(this.f37324k1);
         }
         if (H == null) {
             return false;
         }
-        float U = U() * this.f37302m1[2];
-        Matrix matrix = this.f37319t1;
+        float U = U() * this.f37326m1[2];
+        Matrix matrix = this.f37343t1;
         matrix.setScale(U, U);
-        float[] fArr = this.f37302m1;
+        float[] fArr = this.f37326m1;
         matrix.postTranslate(fArr[0], fArr[1]);
-        H.transform(matrix, this.f37321u1);
+        H.transform(matrix, this.f37345u1);
         return true;
     }
 
     public final float[] D(float f7) {
-        float[] fArr = this.f37307o1;
+        float[] fArr = this.f37331o1;
         fArr[0] = (u(f7, 0.45f, 0.82f) - u(f7, 1.3f, 1.72f)) * 0.9f;
         fArr[1] = (((float) Math.sin(Utilities.clamp01((f7 - 0.92f) / 0.26f) * 3.141592653589793d)) * 0.035f) + (u(f7, 0.6f, 0.92f) - u(f7, 1.18f, 1.46f));
         fArr[2] = u(f7, 1.58f, 1.7f) - u(f7, 1.7f, 1.92f);
@@ -621,29 +621,29 @@ public final class t7 extends View {
         float f12;
         s7Var.J = 0L;
         r7 r7Var = s7Var.h;
-        r7 r7Var2 = s7Var.f37231f;
+        r7 r7Var2 = s7Var.f37255f;
         r7 r7Var3 = s7Var.e;
-        if (s7Var.f37224a.equals(this.P0)) {
+        if (s7Var.f37248a.equals(this.P0)) {
             l();
         }
         if (s7Var.b()) {
-            float[] L = L(r7Var3.f37191a, r7Var2.f37191a);
+            float[] L = L(r7Var3.f37215a, r7Var2.f37215a);
             r7Var3.a(L[0]);
             r7Var2.a(L[1]);
         }
         s7Var.H = 4;
         s7Var.W = 0.0f;
-        s7Var.X = r7Var3.f37191a;
-        s7Var.Y = r7Var2.f37191a;
-        s7Var.Z = s7Var.f37232g.f37191a * r7Var.f37191a;
-        s7Var.f37225a0 = s7Var.f37233i.f37191a;
-        if (this.f37325w0 > AndroidUtilities.dp(650.0f)) {
+        s7Var.X = r7Var3.f37215a;
+        s7Var.Y = r7Var2.f37215a;
+        s7Var.Z = s7Var.f37256g.f37215a * r7Var.f37215a;
+        s7Var.f37249a0 = s7Var.f37257i.f37215a;
+        if (this.f37349w0 > AndroidUtilities.dp(650.0f)) {
             f7 = 0.32f;
         } else {
             f7 = 0.44f;
         }
-        s7Var.f37227b0 = f7;
-        this.f37325w0 = 0.0f;
+        s7Var.f37251b0 = f7;
+        this.f37349w0 = 0.0f;
         g7 j10 = j(s7Var);
         if (j10 != null) {
             j10.animate().cancel();
@@ -654,7 +654,7 @@ public final class t7 extends View {
         } else {
             f10 = 1.0f;
         }
-        s7Var.f37229c0 = f10;
+        s7Var.f37253c0 = f10;
         RectF Z = Z(s7Var);
         if (Z != null) {
             float centerX = Z.centerX() - s7Var.X;
@@ -673,7 +673,7 @@ public final class t7 extends View {
             }
             s7Var.V = f12;
         }
-        s7Var.f37236l.a(0.0f);
+        s7Var.f37260l.a(0.0f);
         r7Var.a(1.0f);
         long j11 = this.N0 + 1;
         this.N0 = j11;
@@ -683,7 +683,7 @@ public final class t7 extends View {
     }
 
     public final ArrayList G() {
-        ArrayList arrayList = new ArrayList(this.f37288f.values());
+        ArrayList arrayList = new ArrayList(this.f37312f.values());
         List.EL.sort(arrayList, Comparator$CC.comparingLong(new org.telegram.ui.Components.v0(2)));
         return arrayList;
     }
@@ -694,14 +694,14 @@ public final class t7 extends View {
         float f11;
         float f12;
         long j10 = s7Var.J;
-        r7 r7Var = s7Var.f37239o;
-        r7 r7Var2 = s7Var.f37238n;
+        r7 r7Var = s7Var.f37263o;
+        r7 r7Var2 = s7Var.f37262n;
         if (j10 == 0) {
             long j11 = this.R0 + 1;
             this.R0 = j11;
             s7Var.J = j11;
             ArrayList arrayList = new ArrayList();
-            for (s7 s7Var2 : this.f37288f.values()) {
+            for (s7 s7Var2 : this.f37312f.values()) {
                 if (s7Var2 != s7Var && s7Var2.b()) {
                     arrayList.add(s7Var2);
                 }
@@ -748,8 +748,8 @@ public final class t7 extends View {
         r7Var3.d = f7;
         r7Var3.e = f10;
         r7Var3.a(fArr[0]);
-        r7Var3.f37192b = fArr2[0];
-        r7 r7Var4 = s7Var.f37231f;
+        r7Var3.f37216b = fArr2[0];
+        r7 r7Var4 = s7Var.f37255f;
         if (z10) {
             f13 = 150.0f;
         }
@@ -760,21 +760,21 @@ public final class t7 extends View {
         r7Var4.e = f15;
         r7Var4.a(fArr[1]);
         float f17 = fArr2[1];
-        r7Var4.f37192b = f17;
-        s7Var.h.f37192b = fArr2[2];
-        r7 r7Var5 = s7Var.f37232g;
+        r7Var4.f37216b = f17;
+        s7Var.h.f37216b = fArr2[2];
+        r7 r7Var5 = s7Var.f37256g;
         r7Var5.d = 300.0f;
         r7Var5.e = 0.5f;
-        r7Var5.f37192b = 1.0f;
-        r7 r7Var6 = s7Var.f37234j;
+        r7Var5.f37216b = 1.0f;
+        r7 r7Var6 = s7Var.f37258j;
         if (z10) {
             f14 = 110.0f;
         }
         r7Var6.d = f14;
         r7Var6.e = 0.9f;
-        r7Var6.f37192b = 0.0f;
-        s7Var.f37237m.f37192b = 1.0f;
-        s7Var.f37236l.f37192b = 0.0f;
+        r7Var6.f37216b = 0.0f;
+        s7Var.f37261m.f37216b = 1.0f;
+        s7Var.f37260l.f37216b = 0.0f;
         float f18 = fArr2[0] - fArr[0];
         float f19 = f17 - fArr[1];
         float max = Math.max(1.0f, (float) Math.hypot(f18, f19));
@@ -790,46 +790,46 @@ public final class t7 extends View {
             f12 = 1.0f;
         }
         s7Var.V = f12;
-        r7 r7Var7 = s7Var.f37235k;
+        r7 r7Var7 = s7Var.f37259k;
         r7Var7.a(0.9f);
-        r7Var7.f37192b = 0.0f;
+        r7Var7.f37216b = 0.0f;
         if (z10) {
             float min = Math.min(AndroidUtilities.dp(110.0f), 0.32f * max);
             if (f18 >= 0.0f) {
                 f16 = -1.0f;
             }
             r7Var2.a(0.0f);
-            r7Var2.f37193c = ((-f19) / max) * min * f16 * 20.0f;
+            r7Var2.f37217c = ((-f19) / max) * min * f16 * 20.0f;
             r7Var.a(0.0f);
-            r7Var.f37193c = c3.h0.D(min, 0.5f, (f18 / max) * min * f16, 20.0f);
+            r7Var.f37217c = c3.h0.D(min, 0.5f, (f18 / max) * min * f16, 20.0f);
         }
         O();
         f0();
     }
 
     public final void K(s7 s7Var, TL_stories.MediaAreaCoordinates mediaAreaCoordinates, boolean z10) {
-        s7Var.h.a((float) (mediaAreaCoordinates.f22262w / 23.100000381469727d));
-        s7Var.f37233i.a(c((float) mediaAreaCoordinates.rotation));
+        s7Var.h.a((float) (mediaAreaCoordinates.f22263w / 23.100000381469727d));
+        s7Var.f37257i.a(c((float) mediaAreaCoordinates.rotation));
         s7Var.N = z10;
-        s7Var.e.a((((float) mediaAreaCoordinates.f22263x) / 100.0f) * this.Y0);
-        s7Var.f37231f.a((((float) mediaAreaCoordinates.f22264y) / 100.0f) * this.Z0);
-        s7Var.f37232g.a(1.0f);
-        s7Var.f37234j.a(0.0f);
-        s7Var.f37235k.a(0.0f);
-        s7Var.f37238n.a(0.0f);
-        s7Var.f37239o.a(0.0f);
-        s7Var.f37236l.a(0.0f);
+        s7Var.e.a((((float) mediaAreaCoordinates.f22264x) / 100.0f) * this.Y0);
+        s7Var.f37255f.a((((float) mediaAreaCoordinates.f22265y) / 100.0f) * this.Z0);
+        s7Var.f37256g.a(1.0f);
+        s7Var.f37258j.a(0.0f);
+        s7Var.f37259k.a(0.0f);
+        s7Var.f37262n.a(0.0f);
+        s7Var.f37263o.a(0.0f);
+        s7Var.f37260l.a(0.0f);
         s7Var.H = 2;
         long j10 = this.N0 + 1;
         this.N0 = j10;
         s7Var.I = j10;
-        s7Var.f37237m.a(1.0f);
+        s7Var.f37261m.a(1.0f);
         if (s7Var.J == 0) {
             long j11 = this.R0 + 1;
             this.R0 = j11;
             s7Var.J = j11;
         }
-        if (s7Var.f37224a.equals(this.P0)) {
+        if (s7Var.f37248a.equals(this.P0)) {
             this.T0 = s7Var;
             this.S0 = s7Var;
             this.U0 = 1.0f;
@@ -839,7 +839,7 @@ public final class t7 extends View {
 
     public final float[] L(float f7, float f10) {
         float[] fArr = {f7, f10};
-        this.f37312r.mapPoints(fArr);
+        this.f37336r.mapPoints(fArr);
         return fArr;
     }
 
@@ -847,28 +847,28 @@ public final class t7 extends View {
         float z10;
         r7 r7Var = s7Var.e;
         r7 r7Var2 = s7Var.h;
-        float[] L = L(r7Var.f37191a, s7Var.f37231f.f37191a);
+        float[] L = L(r7Var.f37215a, s7Var.f37255f.f37215a);
         boolean z11 = false;
         float dist = Utilities.dist(f7, f10, L[0], L[1]);
         if (Float.isNaN(this.E0)) {
             this.E0 = dist;
-            this.F0 = r7Var2.f37192b;
+            this.F0 = r7Var2.f37216b;
         }
         if (Math.abs(dist - this.E0) > AndroidUtilities.dp(5.0f)) {
-            r7 r7Var3 = s7Var.f37241q;
+            r7 r7Var3 = s7Var.f37265q;
             r7Var3.d = 700.0f;
             r7Var3.e = 1.0f;
-            r7Var3.f37192b = 1.0f;
+            r7Var3.f37216b = 1.0f;
         }
         float dp = AndroidUtilities.dp(32.0f) / U();
-        if (this.f37295i0) {
+        if (this.f37319i0) {
             z10 = (this.F0 * dist) / Math.max(1.0f, this.E0);
         } else {
             z10 = c3.h0.z(1.21f, dp, (dist - this.E0) / AndroidUtilities.dp(110.0f), this.F0);
         }
         r7Var2.d = 900.0f;
         r7Var2.e = 1.0f;
-        r7Var2.f37192b = Math.max(dp, Math.min(1.21f, z10));
+        r7Var2.f37216b = Math.max(dp, Math.min(1.21f, z10));
         if (dist < AndroidUtilities.dp(14.0f)) {
             this.B0 = Float.NaN;
             return;
@@ -887,28 +887,28 @@ public final class t7 extends View {
             performHapticFeedback(4);
         }
         this.L0 = z11;
-        r7 r7Var4 = s7Var.f37233i;
+        r7 r7Var4 = s7Var.f37257i;
         r7Var4.d = 900.0f;
         r7Var4.e = 0.95f;
         if (z11) {
             f11 = round;
         }
-        r7Var4.f37192b = f11;
+        r7Var4.f37216b = f11;
     }
 
     public final void O() {
-        if (!this.f37278b && this.Y0 > 0.0f && this.Z0 > 0.0f) {
+        if (!this.f37302b && this.Y0 > 0.0f && this.Z0 > 0.0f) {
             SharedPreferences.Editor edit = this.e.edit();
-            for (s7 s7Var : this.f37288f.values()) {
+            for (s7 s7Var : this.f37312f.values()) {
                 boolean b10 = s7Var.b();
-                String str = s7Var.f37224a;
+                String str = s7Var.f37248a;
                 if (b10) {
                     try {
                         JSONObject jSONObject = new JSONObject();
-                        jSONObject.put("x", s7Var.e.f37192b / this.Y0);
-                        jSONObject.put("y", s7Var.f37231f.f37192b / this.Z0);
-                        jSONObject.put("r", s7Var.f37233i.f37192b);
-                        jSONObject.put("s", s7Var.h.f37192b);
+                        jSONObject.put("x", s7Var.e.f37216b / this.Y0);
+                        jSONObject.put("y", s7Var.f37255f.f37216b / this.Z0);
+                        jSONObject.put("r", s7Var.f37257i.f37216b);
+                        jSONObject.put("s", s7Var.h.f37216b);
                         jSONObject.put("q", s7Var.N);
                         edit.putString(str, jSONObject.toString());
                     } catch (Exception unused) {
@@ -928,15 +928,15 @@ public final class t7 extends View {
     }
 
     public final float P(s7 s7Var) {
-        return (((1.0f - (s7Var.f37241q.f37191a * 0.9f)) * s7Var.f37236l.f37191a * 0.04f) + 1.0f) * U() * s7Var.f37232g.f37191a * s7Var.h.f37191a;
+        return (((1.0f - (s7Var.f37265q.f37215a * 0.9f)) * s7Var.f37260l.f37215a * 0.04f) + 1.0f) * U() * s7Var.f37256g.f37215a * s7Var.h.f37215a;
     }
 
     public final void Q() {
-        if (!this.f37285d1 || this.f37290f1 != 0) {
+        if (!this.f37309d1 || this.f37314f1 != 0) {
             return;
         }
-        if (!this.f37277a1 && (this.f37308p0 || !A())) {
-            AndroidUtilities.runOnUIThread(this.f37292g1, 1000L);
+        if (!this.f37301a1 && (this.f37332p0 || !A())) {
+            AndroidUtilities.runOnUIThread(this.f37316g1, 1000L);
             return;
         }
         StringBuilder sb2 = new StringBuilder();
@@ -950,7 +950,7 @@ public final class t7 extends View {
             i11++;
             s7 s7Var = (s7) obj;
             boolean b10 = s7Var.b();
-            String str2 = s7Var.f37224a;
+            String str2 = s7Var.f37248a;
             if (b10) {
                 sb2.append(str2);
                 sb2.append(':');
@@ -961,8 +961,8 @@ public final class t7 extends View {
                 }
             }
         }
-        if (a1.g.s(sb2, "bg:", str).equals(this.f37283c1)) {
-            this.f37285d1 = false;
+        if (a1.g.s(sb2, "bg:", str).equals(this.f37307c1)) {
+            this.f37309d1 = false;
             return;
         }
         TL_wallet.setCardStickers setcardstickers = new TL_wallet.setCardStickers();
@@ -974,7 +974,7 @@ public final class t7 extends View {
             i12++;
             s7 s7Var2 = (s7) obj2;
             boolean b11 = s7Var2.b();
-            String str3 = s7Var2.f37224a;
+            String str3 = s7Var2.f37248a;
             if (b11) {
                 TL_wallet.inputWalletCardSticker inputwalletcardsticker = new TL_wallet.inputWalletCardSticker();
                 inputwalletcardsticker.nft_address = str3;
@@ -985,11 +985,11 @@ public final class t7 extends View {
                 }
             }
         }
-        this.f37285d1 = false;
-        int currentAccount = this.f37275a.getCurrentAccount();
-        TL_wallet.card cardVar = this.f37280b1;
+        this.f37309d1 = false;
+        int currentAccount = this.f37299a.getCurrentAccount();
+        TL_wallet.card cardVar = this.f37304b1;
         TL_wallet.card cardVar2 = new TL_wallet.card();
-        TL_wallet.card cardVar3 = this.f37280b1;
+        TL_wallet.card cardVar3 = this.f37304b1;
         if (cardVar3 != null) {
             cardVar2.address = cardVar3.address;
             cardVar2.balance = cardVar3.balance;
@@ -1000,24 +1000,24 @@ public final class t7 extends View {
             TL_wallet.inputWalletCardSticker inputwalletcardsticker2 = arrayList.get(i10);
             i10++;
             TL_wallet.inputWalletCardSticker inputwalletcardsticker3 = inputwalletcardsticker2;
-            s7 s7Var3 = (s7) this.f37288f.get(inputwalletcardsticker3.nft_address);
-            if (s7Var3 != null && s7Var3.f37226b != null) {
+            s7 s7Var3 = (s7) this.f37312f.get(inputwalletcardsticker3.nft_address);
+            if (s7Var3 != null && s7Var3.f37250b != null) {
                 TL_wallet.cardSticker cardsticker = new TL_wallet.cardSticker();
-                cardsticker.nft = s7Var3.f37226b;
+                cardsticker.nft = s7Var3.f37250b;
                 cardsticker.coordinates = inputwalletcardsticker3.coordinates;
                 cardVar2.stickers.add(cardsticker);
                 if (inputwalletcardsticker3.nft_address.equals(setcardstickers.bg_nft_address)) {
-                    cardVar2.bg_nft_item = s7Var3.f37226b;
+                    cardVar2.bg_nft_item = s7Var3.f37250b;
                 }
             }
         }
         e0(currentAccount, cardVar2);
-        this.f37290f1 = ConnectionsManager.getInstance(currentAccount).sendRequestTyped(setcardstickers, new Object(), new lg(this, currentAccount, cardVar, 3));
+        this.f37314f1 = ConnectionsManager.getInstance(currentAccount).sendRequestTyped(setcardstickers, new Object(), new dg(this, currentAccount, cardVar, 3));
     }
 
     public final TL_wallet.cardSticker R(String str) {
         ArrayList<TL_wallet.cardSticker> arrayList;
-        TL_wallet.card cardVar = this.f37280b1;
+        TL_wallet.card cardVar = this.f37304b1;
         if (cardVar != null && (arrayList = cardVar.stickers) != null) {
             int size = arrayList.size();
             int i10 = 0;
@@ -1038,8 +1038,8 @@ public final class t7 extends View {
         int i10;
         int i11;
         removeCallbacks(this.A1);
-        this.f37316s0 = true;
-        this.f37308p0 = false;
+        this.f37340s0 = true;
+        this.f37332p0 = false;
         getParent().requestDisallowInterceptTouchEvent(false);
         VelocityTracker velocityTracker = this.O0;
         if (velocityTracker != null) {
@@ -1047,18 +1047,18 @@ public final class t7 extends View {
             this.O0 = null;
         }
         g7Var.animate().cancel();
-        g7Var.n(g7Var.getScaleX() * g7Var.f36604y0);
+        g7Var.n(g7Var.getScaleX() * g7Var.f36629y0);
         g7Var.setScaleX(1.0f);
         g7Var.setScaleY(1.0f);
         g7Var.m(1.0f, 150L, null);
-        final s7 v = v(g7Var.f36602w0);
-        String str = v.f37224a;
+        final s7 v = v(g7Var.f36627w0);
+        String str = v.f37248a;
         if (!b(v) && !v.b()) {
-            this.f37316s0 = false;
+            this.f37340s0 = false;
             return;
         }
-        k80 I = k80.I(this.f37275a, g7Var);
-        I.f29868s = 51;
+        l80 I = l80.I(this.f37299a, g7Var);
+        I.f30168s = 51;
         if (m(v) || str.equals(this.P0)) {
             int i12 = R.drawable.msg_colors;
             if (str.equals(this.P0)) {
@@ -1067,22 +1067,22 @@ public final class t7 extends View {
                 i10 = R.string.WalletGiftApplyColor;
             }
             I.c(i12, LocaleController.getString(i10), new Runnable(this) {
-                public final t7 f36791b;
+                public final t7 f36818b;
 
                 {
-                    this.f36791b = this;
+                    this.f36818b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f36791b.c0(v);
+                            this.f36818b.c0(v);
                             return;
                         default:
-                            t7 t7Var = this.f36791b;
+                            t7 t7Var = this.f36818b;
                             t7Var.getClass();
-                            t7Var.b0(v.f37226b);
+                            t7Var.b0(v.f37250b);
                             return;
                     }
                 }
@@ -1095,27 +1095,27 @@ public final class t7 extends View {
             i11 = R.string.WalletGiftAddToCard;
         }
         I.c(i13, LocaleController.getString(i11), new Runnable(this) {
-            public final t7 f36791b;
+            public final t7 f36818b;
 
             {
-                this.f36791b = this;
+                this.f36818b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        this.f36791b.c0(v);
+                        this.f36818b.c0(v);
                         return;
                     default:
-                        t7 t7Var = this.f36791b;
+                        t7 t7Var = this.f36818b;
                         t7Var.getClass();
-                        t7Var.b0(v.f37226b);
+                        t7Var.b0(v.f37250b);
                         return;
                 }
             }
         }, false);
-        I.f29863p = new l7(this, 0);
+        I.f30163p = new l7(this, 0);
         I.Z();
         performHapticFeedback(0);
     }
@@ -1125,7 +1125,7 @@ public final class t7 extends View {
     }
 
     public final void V(s7 s7Var) {
-        if (s7Var.f37224a.equals(this.P0)) {
+        if (s7Var.f37248a.equals(this.P0)) {
             l();
         }
         s7Var.N = false;
@@ -1145,28 +1145,28 @@ public final class t7 extends View {
         boolean z10;
         float[] fArr;
         boolean z11;
-        this.f37293h0 = null;
+        this.f37317h0 = null;
         this.m0 = true;
         if (this.K0 == 2) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f37306o0 = z10;
-        if (this.f37294h1) {
-            if (s7Var == this.f37300k1 && !z10) {
+        this.f37330o0 = z10;
+        if (this.f37318h1) {
+            if (s7Var == this.f37324k1 && !z10) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            this.f37296i1 = z11;
-            this.f37298j1 = false;
-            this.f37294h1 = false;
+            this.f37320i1 = z11;
+            this.f37322j1 = false;
+            this.f37318h1 = false;
             MessagesController.getGlobalMainSettings().edit().putBoolean("walletcardstickerhint", true).apply();
         }
         boolean z12 = s7Var.N;
-        r7 r7Var = s7Var.f37237m;
-        r7 r7Var2 = s7Var.f37231f;
+        r7 r7Var = s7Var.f37261m;
+        r7 r7Var2 = s7Var.f37255f;
         r7 r7Var3 = s7Var.e;
         float f11 = 1.0f;
         if (z12) {
@@ -1174,27 +1174,27 @@ public final class t7 extends View {
             r7 r7Var4 = s7Var.h;
             r7Var4.d = 420.0f;
             r7Var4.e = 0.8f;
-            r7Var4.f37192b = 1.0f;
+            r7Var4.f37216b = 1.0f;
         }
         g7 j10 = j(s7Var);
         if (j10 != null) {
             j10.animate().scaleX(1.0f).scaleY(1.0f).setDuration(220L).start();
         }
-        this.f37318t0 = false;
-        if (this.f37306o0) {
-            fArr = L(r7Var3.f37191a, r7Var2.f37191a);
+        this.f37342t0 = false;
+        if (this.f37330o0) {
+            fArr = L(r7Var3.f37215a, r7Var2.f37215a);
         } else {
             RectF Z = Z(s7Var);
             if (Z == null) {
                 return;
             }
             float[] fArr2 = {Z.centerX(), Z.centerY()};
-            r7 r7Var5 = s7Var.f37232g;
+            r7 r7Var5 = s7Var.f37256g;
             r7Var5.d = 500.0f;
             r7Var5.e = 0.75f;
             r7Var5.a((f(s7Var) * Z.width()) / U());
             r7Var.a(0.0f);
-            m5.i0((m5) this.d.f18010c, 0L);
+            m5.i0((m5) this.d.f18009c, 0L);
             fArr = fArr2;
         }
         r7Var3.d = 1100.0f;
@@ -1207,18 +1207,18 @@ public final class t7 extends View {
         long j11 = this.N0 + 1;
         this.N0 = j11;
         s7Var.I = j11;
-        r7Var.f37192b = 1.0f;
-        r7 r7Var6 = s7Var.f37234j;
+        r7Var.f37216b = 1.0f;
+        r7 r7Var6 = s7Var.f37258j;
         r7Var6.d = 320.0f;
         r7Var6.e = 0.75f;
-        r7Var6.f37192b = 1.0f;
-        s7Var.f37236l.a(0.0f);
-        this.f37333z0 = fArr[0] - f7;
+        r7Var6.f37216b = 1.0f;
+        s7Var.f37260l.a(0.0f);
+        this.f37357z0 = fArr[0] - f7;
         this.A0 = fArr[1] - f10;
-        if (!this.f37306o0) {
+        if (!this.f37330o0) {
             f11 = 0.0f;
         }
-        this.N.f37192b = f11;
+        this.N.f37216b = f11;
         performHapticFeedback(3);
     }
 
@@ -1228,15 +1228,15 @@ public final class t7 extends View {
         this.U0 = 0.0f;
         this.X0 = z10;
         if (s7Var != null) {
-            this.V0 = s7Var.e.f37192b / this.Y0;
-            this.W0 = s7Var.f37231f.f37192b / this.Z0;
+            this.V0 = s7Var.e.f37216b / this.Y0;
+            this.W0 = s7Var.f37255f.f37216b / this.Z0;
         }
         f0();
     }
 
     public final void Y(d0 d0Var) {
         TL_wallet.nftItem nftitem;
-        ArrayList arrayList = d0Var.f36442a;
+        ArrayList arrayList = d0Var.f36466a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -1247,14 +1247,14 @@ public final class t7 extends View {
                 v(nftitem2);
             }
         }
-        Iterator it = this.f37288f.values().iterator();
+        Iterator it = this.f37312f.values().iterator();
         boolean z10 = false;
         while (it.hasNext()) {
             s7 s7Var = (s7) it.next();
             int i11 = s7Var.H;
-            String str = s7Var.f37224a;
+            String str = s7Var.f37248a;
             if (i11 != 3) {
-                ArrayList arrayList2 = d0Var.f36444c;
+                ArrayList arrayList2 = d0Var.f36468c;
                 int size2 = arrayList2.size();
                 int i12 = 0;
                 while (true) {
@@ -1262,7 +1262,7 @@ public final class t7 extends View {
                         Object obj2 = arrayList2.get(i12);
                         i12++;
                         TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj2;
-                        if (!wallettransaction.failed && (nftitem = wallettransaction.nft) != null && l0.a(nftitem.address, str)) {
+                        if (!wallettransaction.failed && (nftitem = wallettransaction.nft) != null && l0.b(nftitem.address, str)) {
                             if (str.equals(this.P0) || str.equals(this.Q0)) {
                                 this.Q0 = null;
                                 this.P0 = null;
@@ -1279,7 +1279,7 @@ public final class t7 extends View {
                 }
             }
         }
-        if (z10 && !this.f37278b) {
+        if (z10 && !this.f37302b) {
             O();
             k();
         }
@@ -1291,7 +1291,7 @@ public final class t7 extends View {
         if (j10 != null && j10.isShown()) {
             Matrix matrix = this.v;
             w5.k(j10, matrix);
-            Matrix matrix2 = this.f37324w;
+            Matrix matrix2 = this.f37348w;
             w5.k(this, matrix2);
             if (!matrix2.invert(matrix2)) {
                 return null;
@@ -1307,10 +1307,10 @@ public final class t7 extends View {
     }
 
     public final void a() {
-        this.f37310q0 = false;
+        this.f37334q0 = false;
         removeCallbacks(this.B1);
         removeCallbacks(this.A1);
-        this.f37291g0 = null;
+        this.f37315g0 = null;
         VelocityTracker velocityTracker = this.O0;
         if (velocityTracker != null) {
             velocityTracker.recycle();
@@ -1321,12 +1321,12 @@ public final class t7 extends View {
 
     public final TL_stories.TL_mediaAreaCoordinates a0(s7 s7Var) {
         TL_stories.TL_mediaAreaCoordinates tL_mediaAreaCoordinates = new TL_stories.TL_mediaAreaCoordinates();
-        float U = U() * s7Var.h.f37192b;
-        tL_mediaAreaCoordinates.f22263x = N((s7Var.e.f37192b / this.Y0) * 100.0f);
-        tL_mediaAreaCoordinates.f22264y = N((s7Var.f37231f.f37192b / this.Z0) * 100.0f);
-        tL_mediaAreaCoordinates.f22262w = N((U / this.Y0) * 100.0f);
+        float U = U() * s7Var.h.f37216b;
+        tL_mediaAreaCoordinates.f22264x = N((s7Var.e.f37216b / this.Y0) * 100.0f);
+        tL_mediaAreaCoordinates.f22265y = N((s7Var.f37255f.f37216b / this.Z0) * 100.0f);
+        tL_mediaAreaCoordinates.f22263w = N((U / this.Y0) * 100.0f);
         tL_mediaAreaCoordinates.h = N((U / this.Z0) * 100.0f);
-        float f7 = s7Var.f37233i.f37192b % 360.0f;
+        float f7 = s7Var.f37257i.f37216b % 360.0f;
         if (f7 < 0.0f) {
             f7 += 360.0f;
         }
@@ -1352,7 +1352,7 @@ public final class t7 extends View {
     }
 
     public final void c0(s7 s7Var) {
-        String str = s7Var.f37224a;
+        String str = s7Var.f37248a;
         if (str.equals(this.P0)) {
             l();
         } else if (m(s7Var)) {
@@ -1379,9 +1379,9 @@ public final class t7 extends View {
         s7 s7Var;
         s7 s7Var2;
         int i10;
-        this.f37280b1 = cardVar;
-        this.f37283c1 = T(cardVar);
-        if (!this.f37285d1 && this.f37290f1 == 0 && !this.f37308p0) {
+        this.f37304b1 = cardVar;
+        this.f37307c1 = T(cardVar);
+        if (!this.f37309d1 && this.f37314f1 == 0 && !this.f37332p0) {
             TL_wallet.nftItem nftitem = cardVar.bg_nft_item;
             s7 s7Var3 = null;
             if (nftitem == null) {
@@ -1407,7 +1407,7 @@ public final class t7 extends View {
                     }
                 }
             }
-            if (this.f37278b) {
+            if (this.f37302b) {
                 TL_wallet.nftItem nftitem3 = cardVar.bg_nft_item;
                 if (nftitem3 != null && nftitem3.gift != null) {
                     s7Var3 = v(nftitem3);
@@ -1420,7 +1420,7 @@ public final class t7 extends View {
             } else if (!A()) {
                 f0();
             } else {
-                this.f37287e1 = true;
+                this.f37311e1 = true;
                 ArrayList G = G();
                 int size2 = G.size();
                 int i12 = 0;
@@ -1429,7 +1429,7 @@ public final class t7 extends View {
                     i12++;
                     s7 s7Var4 = (s7) obj;
                     if (s7Var4.K && (i10 = s7Var4.H) != 3 && i10 != 4 && i10 != 5) {
-                        TL_wallet.cardSticker R = R(s7Var4.f37224a);
+                        TL_wallet.cardSticker R = R(s7Var4.f37248a);
                         if (R != null) {
                             if (!s7Var4.b() || !y(a0(s7Var4)).equals(y(R.coordinates))) {
                                 K(s7Var4, R.coordinates, s7Var4.N);
@@ -1440,7 +1440,7 @@ public final class t7 extends View {
                     }
                 }
                 ArrayList<TL_wallet.cardSticker> arrayList2 = cardVar.stickers;
-                LinkedHashMap linkedHashMap = this.f37288f;
+                LinkedHashMap linkedHashMap = this.f37312f;
                 if (arrayList2 != null) {
                     int size3 = arrayList2.size();
                     int i13 = 0;
@@ -1473,7 +1473,7 @@ public final class t7 extends View {
                         X(null, true);
                     }
                 }
-                this.f37287e1 = false;
+                this.f37311e1 = false;
                 O();
                 f0();
             }
@@ -1481,16 +1481,16 @@ public final class t7 extends View {
     }
 
     public final void d0(s7 s7Var) {
-        m5.i0((m5) this.d.f18010c, 2600L);
+        m5.i0((m5) this.d.f18009c, 2600L);
         if (A()) {
             float[] x9 = x(s7Var, Float.NaN, Float.NaN, true);
             RectF Z = Z(s7Var);
             if (x9 != null && Z != null) {
-                s7Var.f37232g.a((f(s7Var) * Z.width()) / U());
-                s7Var.f37237m.a(0.0f);
-                s7Var.f37234j.a(1.0f);
+                s7Var.f37256g.a((f(s7Var) * Z.width()) / U());
+                s7Var.f37261m.a(0.0f);
+                s7Var.f37258j.a(1.0f);
                 float[] fArr = {Z.centerX(), Z.centerY()};
-                this.f37315s.mapPoints(fArr);
+                this.f37339s.mapPoints(fArr);
                 I(s7Var, fArr, x9, true);
                 performHapticFeedback(3);
                 return;
@@ -1512,14 +1512,14 @@ public final class t7 extends View {
         if (s7Var == null) {
             stargiftattributebackdrop = null;
         } else {
-            stargiftattributebackdrop = s7Var.f37244t;
+            stargiftattributebackdrop = s7Var.f37268t;
         }
         float[] i10 = h7.i(stargiftattributebackdrop);
         s7 s7Var2 = this.T0;
         if (s7Var2 == null) {
             stargiftattributebackdrop2 = null;
         } else {
-            stargiftattributebackdrop2 = s7Var2.f37244t;
+            stargiftattributebackdrop2 = s7Var2.f37268t;
         }
         float[] i11 = h7.i(stargiftattributebackdrop2);
         float f7 = 1.0f;
@@ -1546,23 +1546,23 @@ public final class t7 extends View {
         if (s7Var3 == null) {
             stargiftattributebackdrop3 = null;
         } else {
-            stargiftattributebackdrop3 = s7Var3.f37244t;
+            stargiftattributebackdrop3 = s7Var3.f37268t;
         }
         h7.m(fArr, 0, stargiftattributebackdrop3);
         s7 s7Var4 = this.T0;
         if (s7Var4 == null) {
             stargiftattributebackdrop4 = null;
         } else {
-            stargiftattributebackdrop4 = s7Var4.f37244t;
+            stargiftattributebackdrop4 = s7Var4.f37268t;
         }
         h7.m(fArr, 1, stargiftattributebackdrop4);
-        this.f37281c.setStickerStyle(fArr);
+        this.f37305c.setStickerStyle(fArr);
     }
 
     public final float f(s7 s7Var) {
         g7 j10 = j(s7Var);
         if (j10 != null) {
-            org.telegram.ui.Components.y9 y9Var = j10.f53010y;
+            org.telegram.ui.Components.y9 y9Var = j10.f53068y;
             if (j10.getWidth() > 0 && y9Var.getWidth() > 0) {
                 return ((y9Var.getWidth() / j10.getWidth()) * 288.0f) / 268.0f;
             }
@@ -1572,7 +1572,7 @@ public final class t7 extends View {
     }
 
     public final void f0() {
-        if (!this.f37277a1 && isAttachedToWindow()) {
+        if (!this.f37301a1 && isAttachedToWindow()) {
             o7 o7Var = this.C1;
             removeCallbacks(o7Var);
             postOnAnimation(o7Var);
@@ -1582,12 +1582,12 @@ public final class t7 extends View {
     public final void g(s7 s7Var) {
         s7Var.H = 0;
         s7Var.J = 0L;
-        s7Var.f37232g.a(1.0f);
+        s7Var.f37256g.a(1.0f);
         s7Var.h.a(1.0f);
-        s7Var.f37233i.a(0.0f);
-        s7Var.f37237m.a(0.0f);
-        s7Var.f37234j.a(0.0f);
-        s7Var.f37235k.a(0.0f);
+        s7Var.f37257i.a(0.0f);
+        s7Var.f37261m.a(0.0f);
+        s7Var.f37258j.a(0.0f);
+        s7Var.f37259k.a(0.0f);
         g7 j10 = j(s7Var);
         if (j10 != null) {
             j10.animate().cancel();
@@ -1606,7 +1606,7 @@ public final class t7 extends View {
         if (!arrayList.contains(g7Var)) {
             arrayList.add(g7Var);
         }
-        s7 v = v(g7Var.f36602w0);
+        s7 v = v(g7Var.f36627w0);
         if (v.H == 0) {
             f7 = 0.0f;
         } else {
@@ -1624,7 +1624,7 @@ public final class t7 extends View {
             Object obj = arrayList.get(i10);
             i10++;
             g7 g7Var = (g7) obj;
-            if (g7Var.isAttachedToWindow() && g7Var.f36602w0.address.equals(s7Var.f37224a)) {
+            if (g7Var.isAttachedToWindow() && g7Var.f36627w0.address.equals(s7Var.f37248a)) {
                 return g7Var;
             }
         }
@@ -1632,9 +1632,9 @@ public final class t7 extends View {
     }
 
     public final void k() {
-        if (!this.f37278b && !this.f37287e1) {
-            this.f37285d1 = true;
-            l7 l7Var = this.f37292g1;
+        if (!this.f37302b && !this.f37311e1) {
+            this.f37309d1 = true;
+            l7 l7Var = this.f37316g1;
             AndroidUtilities.cancelRunOnUIThread(l7Var);
             AndroidUtilities.runOnUIThread(l7Var, 1500L);
         }
@@ -1649,7 +1649,7 @@ public final class t7 extends View {
     }
 
     public final boolean m(s7 s7Var) {
-        if (b(s7Var) && F(this.f37275a.getCurrentAccount(), s7Var.f37226b.gift.slug)) {
+        if (b(s7Var) && F(this.f37299a.getCurrentAccount(), s7Var.f37250b.gift.slug)) {
             return true;
         }
         return false;
@@ -1658,10 +1658,10 @@ public final class t7 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        getViewTreeObserver().addOnScrollChangedListener(this.f37332y1);
-        getViewTreeObserver().addOnPreDrawListener(this.f37334z1);
-        for (s7 s7Var : this.f37288f.values()) {
-            s7Var.f37228c.onAttachedToWindow();
+        getViewTreeObserver().addOnScrollChangedListener(this.f37356y1);
+        getViewTreeObserver().addOnPreDrawListener(this.f37358z1);
+        for (s7 s7Var : this.f37312f.values()) {
+            s7Var.f37252c.onAttachedToWindow();
             s7Var.d.onAttachedToWindow();
         }
         f0();
@@ -1669,12 +1669,12 @@ public final class t7 extends View {
 
     @Override
     public final void onDetachedFromWindow() {
-        getViewTreeObserver().removeOnScrollChangedListener(this.f37332y1);
-        getViewTreeObserver().removeOnPreDrawListener(this.f37334z1);
+        getViewTreeObserver().removeOnScrollChangedListener(this.f37356y1);
+        getViewTreeObserver().removeOnPreDrawListener(this.f37358z1);
         removeCallbacks(this.C1);
         removeCallbacks(this.A1);
-        for (s7 s7Var : this.f37288f.values()) {
-            s7Var.f37228c.onDetachedFromWindow();
+        for (s7 s7Var : this.f37312f.values()) {
+            s7Var.f37252c.onDetachedFromWindow();
             s7Var.d.onDetachedFromWindow();
         }
         this.M0 = 0L;
@@ -1700,10 +1700,10 @@ public final class t7 extends View {
         t7 t7Var = this;
         Canvas canvas2 = canvas;
         if (t7Var.A()) {
-            float f16 = t7Var.N.f37191a;
+            float f16 = t7Var.N.f37215a;
             int i12 = (f16 > 0.01f ? 1 : (f16 == 0.01f ? 0 : -1));
             RectF rectF2 = t7Var.H;
-            Paint paint = t7Var.f37327x;
+            Paint paint = t7Var.f37351x;
             if (i12 < 0) {
                 f10 = 0.0f;
                 f11 = 2.0f;
@@ -1711,7 +1711,7 @@ public final class t7 extends View {
                 f12 = 0.6f;
                 f7 = 0.4f;
             } else {
-                float max = Math.max(0.0f, Math.min(1.2f, t7Var.O.f37191a));
+                float max = Math.max(0.0f, Math.min(1.2f, t7Var.O.f37215a));
                 float clamp01 = Utilities.clamp01(max);
                 f7 = 0.4f;
                 Paint paint2 = t7Var.G;
@@ -1722,8 +1722,8 @@ public final class t7 extends View {
                 canvas2.translate(t7Var.getWidth() / 2.0f, ((1.0f - f16) * AndroidUtilities.dp(90.0f)) + t7Var.h());
                 float f17 = (f16 * 0.4f) + 0.6f;
                 canvas2.scale(f17, f17);
-                int i13 = org.telegram.ui.ActionBar.y6.f23356d6;
-                org.telegram.ui.ActionBar.r2 r2Var = t7Var.f37275a;
+                int i13 = org.telegram.ui.ActionBar.y6.f23357d6;
+                org.telegram.ui.ActionBar.r2 r2Var = t7Var.f37299a;
                 paint.setColor(i0.a.f(clamp01, org.telegram.ui.ActionBar.y6.w0(i13, r2Var.getResourceProvider()), -1750963));
                 paint.setAlpha((int) (Utilities.clamp01(f16) * 255.0f));
                 float f18 = (-measureText) / 2.0f;
@@ -1732,23 +1732,23 @@ public final class t7 extends View {
                 canvas2.drawRoundRect(rectF2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), paint);
                 float dp = (f18 + AndroidUtilities.dp(30.0f)) * clamp01;
                 float dp2 = AndroidUtilities.dp(21.0f);
-                int round = Math.round(t7Var.f37282c0.f37191a);
+                int round = Math.round(t7Var.f37306c0.f37215a);
                 f11 = 2.0f;
-                xj0 xj0Var = t7Var.f37286e0;
-                xj0Var.N(round, false, false);
+                yj0 yj0Var = t7Var.f37310e0;
+                yj0Var.N(round, false, false);
                 float f20 = dp - dp2;
                 i10 = 0;
                 f12 = 0.6f;
                 float f21 = -dp2;
                 float f22 = dp + dp2;
-                xj0Var.setBounds((int) f20, (int) f21, (int) f22, (int) dp2);
+                yj0Var.setBounds((int) f20, (int) f21, (int) f22, (int) dp2);
                 PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i0.a.f(clamp01, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.G6, r2Var.getResourceProvider()), -1), PorterDuff.Mode.SRC_IN);
-                Paint paint3 = t7Var.f37284d0;
+                Paint paint3 = t7Var.f37308d0;
                 paint3.setColorFilter(porterDuffColorFilter);
                 paint3.setAlpha((int) (Utilities.clamp01(f16) * 255.0f));
                 canvas2 = canvas;
                 int saveLayer = canvas2.saveLayer(f20, f21, f22, dp2, paint3);
-                xj0Var.draw(canvas2);
+                yj0Var.draw(canvas2);
                 canvas2.restoreToCount(saveLayer);
                 if (clamp01 > 0.02f) {
                     paint2.setColor(-1);
@@ -1771,14 +1771,14 @@ public final class t7 extends View {
                 int i15 = i14 + 1;
                 s7 s7Var2 = (s7) G.get(i14);
                 r7 r7Var2 = s7Var2.e;
-                r7 r7Var3 = s7Var2.f37233i;
-                float f23 = r7Var2.f37191a;
-                float f24 = s7Var2.f37231f.f37191a;
-                float U = t7Var.U() * s7Var2.f37232g.f37191a * s7Var2.h.f37191a;
-                float f25 = s7Var2.f37234j.f37191a;
+                r7 r7Var3 = s7Var2.f37257i;
+                float f23 = r7Var2.f37215a;
+                float f24 = s7Var2.f37255f.f37215a;
+                float U = t7Var.U() * s7Var2.f37256g.f37215a * s7Var2.h.f37215a;
+                float f25 = s7Var2.f37258j.f37215a;
                 int i16 = s7Var2.H;
                 if (i16 == 1 && s7Var2.O && f25 > 0.3f) {
-                    float[] L = t7Var.L(f23 + s7Var2.f37238n.f37191a, f24 + s7Var2.f37239o.f37191a);
+                    float[] L = t7Var.L(f23 + s7Var2.f37262n.f37215a, f24 + s7Var2.f37263o.f37215a);
                     float f26 = L[i10];
                     float f27 = L[1];
                     U = c3.h0.C(f25, 0.15f, 1.0f, U);
@@ -1794,11 +1794,11 @@ public final class t7 extends View {
                 if (a2 != null) {
                     if (f28 >= 1.0f) {
                         canvas2.save();
-                        canvas2.rotate(r7Var3.f37191a, f23, f13);
+                        canvas2.rotate(r7Var3.f37215a, f23, f13);
                         Paint paint4 = paint;
                         t7Var.t(canvas2, s7Var2, f23, (AndroidUtilities.dp(5.0f) * f25) + AndroidUtilities.dp(1.5f) + f13, c3.h0.C(f25, 0.04f, 1.0f, f28), f25, 0.0f, 1.0f);
                         canvas.restore();
-                        float clamp012 = Utilities.clamp01(s7Var2.f37237m.f37191a);
+                        float clamp012 = Utilities.clamp01(s7Var2.f37261m.f37215a);
                         if (s7Var2.H == 4 && s7Var2.W > f12 && t7Var.j(s7Var2) != null) {
                             float clamp013 = Utilities.clamp01((s7Var2.W - f12) / f7);
                             float f29 = (1.0f - ((3.0f - (clamp013 * f11)) * (clamp013 * clamp013))) * 0.45f;
@@ -1813,7 +1813,7 @@ public final class t7 extends View {
                                 rectF = rectF2;
                                 f14 = f13;
                                 s7Var = s7Var2;
-                                t7Var.r(canvas, s7Var2.v, f23, f14, f15, f29, clamp014, r7Var3.f37191a, s7Var2.U, s7Var2.V);
+                                t7Var.r(canvas, s7Var2.v, f23, f14, f15, f29, clamp014, r7Var3.f37215a, s7Var2.U, s7Var2.V);
                             } else {
                                 f14 = f13;
                                 i11 = size;
@@ -1826,7 +1826,7 @@ public final class t7 extends View {
                             if (clamp012 > f10) {
                                 paint4.setAlpha((int) (clamp012 * 255.0f));
                                 canvas2 = canvas;
-                                r(canvas2, a2, f23, f14, f15, f29, clamp014, r7Var.f37191a, s7Var.U, s7Var.V);
+                                r(canvas2, a2, f23, f14, f15, f29, clamp014, r7Var.f37215a, s7Var.U, s7Var.V);
                             } else {
                                 canvas2 = canvas;
                             }
@@ -1844,7 +1844,7 @@ public final class t7 extends View {
                             RectF rectF3 = rectF2;
                             canvas2 = canvas;
                             canvas2.save();
-                            canvas2.rotate(r7Var3.f37191a, f23, f30);
+                            canvas2.rotate(r7Var3.f37215a, f23, f30);
                             float f31 = f28 / f11;
                             rectF3.set(f23 - f31, f30 - f31, f23 + f31, f31 + f30);
                             if (clamp012 < 1.0f) {
@@ -1883,18 +1883,18 @@ public final class t7 extends View {
     }
 
     public final void p() {
-        AndroidUtilities.removeFromParent(this.f37326w1);
-        AndroidUtilities.removeFromParent(this.f37329x1);
-        this.f37329x1 = null;
-        this.f37326w1 = null;
+        AndroidUtilities.removeFromParent(this.f37350w1);
+        AndroidUtilities.removeFromParent(this.f37353x1);
+        this.f37353x1 = null;
+        this.f37350w1 = null;
         O();
-        AndroidUtilities.cancelRunOnUIThread(this.f37292g1);
-        this.f37293h0 = null;
-        this.f37277a1 = true;
-        if (this.f37285d1) {
+        AndroidUtilities.cancelRunOnUIThread(this.f37316g1);
+        this.f37317h0 = null;
+        this.f37301a1 = true;
+        if (this.f37309d1) {
             Q();
         }
-        this.f37286e0.C(false);
+        this.f37310e0.C(false);
         removeCallbacks(this.C1);
         removeCallbacks(this.A1);
         removeCallbacks(this.B1);
@@ -1903,8 +1903,8 @@ public final class t7 extends View {
             velocityTracker.recycle();
             this.O0 = null;
         }
-        for (s7 s7Var : this.f37288f.values()) {
-            s7Var.f37228c.onDetachedFromWindow();
+        for (s7 s7Var : this.f37312f.values()) {
+            s7Var.f37252c.onDetachedFromWindow();
             s7Var.d.onDetachedFromWindow();
         }
         this.h.clear();
@@ -1973,7 +1973,7 @@ public final class t7 extends View {
                 f19 = f11;
                 f20 = f20;
             } else {
-                canvas.drawBitmapMesh(bitmap, 14, 14, this.J, 0, this.K, 0, this.f37327x);
+                canvas.drawBitmapMesh(bitmap, 14, 14, this.J, 0, this.K, 0, this.f37351x);
                 return;
             }
         }
@@ -1982,7 +1982,7 @@ public final class t7 extends View {
     public final void s(Canvas canvas, s7 s7Var, float f7, float f10, boolean z10) {
         float f11;
         ImageReceiver imageReceiver = s7Var.d;
-        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = s7Var.f37244t;
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = s7Var.f37268t;
         Bitmap bitmap = imageReceiver.getBitmap();
         if (bitmap != null && stargiftattributebackdrop != null) {
             canvas.save();
@@ -1995,7 +1995,7 @@ public final class t7 extends View {
             Path.Direction direction = Path.Direction.CW;
             path.addRoundRect(0.0f, 0.0f, f12, f13, (f12 * 0.15f) / 2.0f, (f13 * 0.15f) / 1.212122f, direction);
             canvas.clipPath(path);
-            this.f37281c.h(path, this.Y0, this.Z0);
+            this.f37305c.h(path, this.Y0, this.Z0);
             canvas.clipPath(path, Region.Op.DIFFERENCE);
             int i10 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
             if (i10 >= 0 && !z10) {
@@ -2004,7 +2004,7 @@ public final class t7 extends View {
                 canvas.clipPath(path);
             }
             PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(stargiftattributebackdrop.pattern_color | (-16777216), PorterDuff.Mode.SRC_IN);
-            Paint paint = this.f37327x;
+            Paint paint = this.f37351x;
             paint.setColorFilter(porterDuffColorFilter);
             float f15 = this.Y0 / 336.0f;
             float f16 = this.Z0 / 205.0f;
@@ -2063,7 +2063,7 @@ public final class t7 extends View {
     }
 
     public final void t(Canvas canvas, s7 s7Var, float f7, float f10, float f11, float f12, float f13, float f14) {
-        if (f14 > 0.01f && s7Var.f37246w != null) {
+        if (f14 > 0.01f && s7Var.f37270w != null) {
             float f15 = (((0.05f * f12) + 1.0f) * ((f11 * 176.0f) / 128.0f)) / 2.0f;
             float f16 = f7 - f15;
             float f17 = f10 - f15;
@@ -2071,12 +2071,12 @@ public final class t7 extends View {
             float f19 = f10 + f15;
             RectF rectF = this.H;
             rectF.set(f16, f17, f18, f19);
-            Paint paint = this.f37327x;
+            Paint paint = this.f37351x;
             int alpha = paint.getAlpha();
             paint.setColor(-16044452);
-            float clamp01 = Utilities.clamp01(s7Var.f37237m.f37191a);
+            float clamp01 = Utilities.clamp01(s7Var.f37261m.f37215a);
             paint.setAlpha((int) (clamp01 * Utilities.clamp01((f13 * 0.12f) + (f12 * (-0.049999997f)) + 0.16f) * 255.0f * f14));
-            canvas.drawBitmap(s7Var.f37246w, (Rect) null, rectF, paint);
+            canvas.drawBitmap(s7Var.f37270w, (Rect) null, rectF, paint);
             paint.setColor(-1);
             paint.setAlpha(alpha);
         }
@@ -2084,13 +2084,13 @@ public final class t7 extends View {
 
     public final s7 v(TL_wallet.nftItem nftitem) {
         String str = nftitem.address;
-        LinkedHashMap linkedHashMap = this.f37288f;
+        LinkedHashMap linkedHashMap = this.f37312f;
         s7 s7Var = (s7) linkedHashMap.get(str);
         if (s7Var == null) {
             s7Var = new s7(this, nftitem);
             linkedHashMap.put(nftitem.address, s7Var);
         }
-        s7Var.f37226b = nftitem;
+        s7Var.f37250b = nftitem;
         return s7Var;
     }
 
@@ -2109,9 +2109,9 @@ public final class t7 extends View {
         float f15;
         if (!z10) {
             s7Var.N = false;
-            return new float[]{f7, f10, s7Var.h.f37192b};
+            return new float[]{f7, f10, s7Var.h.f37216b};
         }
-        ArrayList<RectF> stickerObstacles = this.f37281c.getStickerObstacles();
+        ArrayList<RectF> stickerObstacles = this.f37305c.getStickerObstacles();
         float f16 = this.Y0 * 0.012f;
         int size = stickerObstacles.size();
         int i10 = 0;
@@ -2123,10 +2123,10 @@ public final class t7 extends View {
         }
         stickerObstacles.get(2).left -= this.Y0 * 0.035f;
         float dp = AndroidUtilities.dp(32.0f) / U();
-        float f18 = s7Var.h.f37192b;
+        float f18 = s7Var.h.f37216b;
         s7Var.N = false;
         ArrayList arrayList2 = new ArrayList();
-        for (s7 s7Var2 : this.f37288f.values()) {
+        for (s7 s7Var2 : this.f37312f.values()) {
             if (s7Var2 != s7Var && s7Var2.b()) {
                 arrayList2.add(s7Var2);
             }
@@ -2136,8 +2136,8 @@ public final class t7 extends View {
         } else {
             z11 = false;
         }
-        if (!z11 && s7Var == this.f37300k1 && this.f37302m1 != null && arrayList2.isEmpty()) {
-            return (float[]) this.f37302m1.clone();
+        if (!z11 && s7Var == this.f37324k1 && this.f37326m1 != null && arrayList2.isEmpty()) {
+            return (float[]) this.f37326m1.clone();
         }
         if (!z11) {
             f11 = this.Y0 * 0.6f;
@@ -2146,7 +2146,7 @@ public final class t7 extends View {
             f11 = f7;
             f12 = f10;
         }
-        Random random = new Random((System.nanoTime() / 400000000) + (arrayList2.size() * 31) + (s7Var.f37224a.hashCode() * 7919));
+        Random random = new Random((System.nanoTime() / 400000000) + (arrayList2.size() * 31) + (s7Var.f37248a.hashCode() * 7919));
         float f19 = org.telegram.ui.d3.f(random, 0.04f, 0.05f);
         float f20 = 0.5f;
         float nextFloat = (((random.nextFloat() - 0.5f) * 0.08f) + 0.5f) * this.Y0;
@@ -2185,7 +2185,7 @@ public final class t7 extends View {
                         Object obj = arrayList2.get(i12);
                         i12++;
                         s7 s7Var3 = (s7) obj;
-                        min4 = Math.min(min4, (Utilities.dist(f24, f22, s7Var3.e.f37192b, s7Var3.f37231f.f37192b) / (U() * 0.29f)) - s7Var3.h.f37192b);
+                        min4 = Math.min(min4, (Utilities.dist(f24, f22, s7Var3.e.f37216b, s7Var3.f37255f.f37216b) / (U() * 0.29f)) - s7Var3.h.f37216b);
                     }
                     float clamp01 = ((Utilities.clamp01((min2 - ((U() * f23) * min4)) / AndroidUtilities.dp(14.0f)) * 0.1f) + 0.9f) * min4;
                     if (clamp01 < f27) {
@@ -2215,15 +2215,15 @@ public final class t7 extends View {
                                 int i15 = size4;
                                 r7 r7Var2 = s7Var4.h;
                                 ArrayList arrayList5 = arrayList2;
-                                r7 r7Var3 = s7Var4.f37231f;
-                                f35 = Math.min(f35, Utilities.dist(f24, f22, r7Var.f37192b, r7Var3.f37192b) - ((r7Var2.f37192b + f37) * (U() * 0.4f)));
-                                float f38 = r7Var2.f37192b;
+                                r7 r7Var3 = s7Var4.f37255f;
+                                f35 = Math.min(f35, Utilities.dist(f24, f22, r7Var.f37216b, r7Var3.f37216b) - ((r7Var2.f37216b + f37) * (U() * 0.4f)));
+                                float f38 = r7Var2.f37216b;
                                 float f39 = f38 * f38;
-                                float f40 = s7Var4.e.f37192b;
+                                float f40 = s7Var4.e.f37216b;
                                 f34 = (f40 * f39) + f34;
-                                f32 = (r7Var3.f37192b * f39) + f32;
+                                f32 = (r7Var3.f37216b * f39) + f32;
                                 f33 += f39;
-                                f36 = Math.max(0.0f, 1.0f - (Math.abs(r7Var3.f37192b - f22) / (U() * 0.12f))) + Math.max(0.0f, 1.0f - (Math.abs(f40 - f24) / (U() * 0.12f))) + f36;
+                                f36 = Math.max(0.0f, 1.0f - (Math.abs(r7Var3.f37216b - f22) / (U() * 0.12f))) + Math.max(0.0f, 1.0f - (Math.abs(f40 - f24) / (U() * 0.12f))) + f36;
                                 clamp01 = f37;
                                 i13 = i14;
                                 size4 = i15;

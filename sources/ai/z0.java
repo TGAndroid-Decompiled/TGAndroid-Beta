@@ -38,9 +38,9 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.r2;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.z90;
-import org.telegram.ui.el0;
+import org.telegram.ui.Components.aa0;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.gl0;
 import org.telegram.ui.y9;
 public class z0 extends r2 {
     public boolean E;
@@ -142,24 +142,24 @@ public class z0 extends r2 {
             return;
         }
         zh.p1 p1Var = new zh.p1(z0Var.getParentActivity(), z0Var.currentAccount, z0Var.getUserConfig().getClientUserId(), null, null);
-        if (!p1Var.f53208u0) {
-            p1Var.f53208u0 = true;
-            ec ecVar = p1Var.f53210w0;
+        if (!p1Var.f53266u0) {
+            p1Var.f53266u0 = true;
+            ec ecVar = p1Var.f53268w0;
             if (ecVar != null && (ecVar.getParent() instanceof ViewGroup)) {
-                ViewGroup viewGroup = (ViewGroup) p1Var.f53210w0.getParent();
-                int indexOfChild = viewGroup.indexOfChild(p1Var.f53210w0);
-                viewGroup.removeView(p1Var.f53210w0);
+                ViewGroup viewGroup = (ViewGroup) p1Var.f53268w0.getParent();
+                int indexOfChild = viewGroup.indexOfChild(p1Var.f53268w0);
+                viewGroup.removeView(p1Var.f53268w0);
                 ec ecVar2 = new ec(p1Var.getContext(), 250, 2);
-                p1Var.f53210w0 = ecVar2;
-                viewGroup.addView(ecVar2, indexOfChild, gb1.g(-1.0f, -1));
+                p1Var.f53268w0 = ecVar2;
+                viewGroup.addView(ecVar2, indexOfChild, kb1.g(-1.0f, -1));
             }
-            z90 z90Var = p1Var.f53211x0;
-            if (z90Var != null) {
+            aa0 aa0Var = p1Var.f53269x0;
+            if (aa0Var != null) {
                 String string = LocaleController.getString(R.string.Gift2BrowseCollectiblesInfo);
-                zh.u0 u0Var = p1Var.f53200l0;
+                zh.u0 u0Var = p1Var.f53258l0;
                 u0Var.setText(string);
                 u0Var.setBreakStrategy(2);
-                z90Var.setVisibility(8);
+                aa0Var.setVisibility(8);
             }
             p1Var.Y.O(false);
         }
@@ -242,7 +242,7 @@ public class z0 extends r2 {
             o0Var.setButtonLabel(LocaleController.getString(R.string.QrScanQr));
             o0 o0Var2 = this.F;
             o0Var2.setOnGallery(new a1.f(14, this, o0Var2));
-            this.f1994f.addView(this.F, gb1.g(-1.0f, -1));
+            this.f1994f.addView(this.F, kb1.g(-1.0f, -1));
         }
     }
 
@@ -273,7 +273,7 @@ public class z0 extends r2 {
                 this.d.setOnPicksChanged(new t0(this, 1));
                 this.f2011x.setOutlineProvider(this.h.getOutlineProvider());
                 this.f2011x.setClipToOutline(true);
-                this.f1994f.addView(this.h, gb1.i(-1, -1, 48));
+                this.f1994f.addView(this.h, kb1.i(-1, -1, 48));
                 Z();
                 this.f1994f.post(new t0(this, 2));
             } else {
@@ -286,7 +286,7 @@ public class z0 extends r2 {
         int i13 = layoutParams.leftMargin;
         int i14 = layoutParams.rightMargin;
         if (this.f2011x.getParent() == null) {
-            this.f1994f.addView(this.f2011x, gb1.i(-1, -1, 48));
+            this.f1994f.addView(this.f2011x, kb1.i(-1, -1, 48));
         }
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f2011x.getLayoutParams();
         if (layoutParams2.height != i12 || layoutParams2.leftMargin != i13 || layoutParams2.rightMargin != i14) {
@@ -645,9 +645,9 @@ public class z0 extends r2 {
         h0();
         org.telegram.ui.f fVar = this.f1990c;
         if (fVar != null) {
-            el0 el0Var = (el0) fVar.f39224b;
-            if (el0Var.f39134b.remove(fVar)) {
-                el0Var.a();
+            gl0 gl0Var = (gl0) fVar.f39115b;
+            if (gl0Var.f39644b.remove(fVar)) {
+                gl0Var.a();
             }
             this.f1990c = null;
         }
@@ -717,7 +717,7 @@ public class z0 extends r2 {
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.f22368a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint));
+            alertDialog$Builder.f22369a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint));
             alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new p0(this));
             alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
             int i11 = R.raw.permission_request_camera;

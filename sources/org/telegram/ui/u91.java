@@ -1,31 +1,19 @@
 package org.telegram.ui;
-
-import android.content.Context;
-public final class u91 extends g91 {
-    public final int v;
-    public final int f44075w;
-    public int f44076x;
-    public qh f44077y;
-
-    public u91(Context context, int i10, int i11, kg.g gVar, int i12) {
-        super(context, i11, gVar, null);
-        this.v = i10;
-        this.f44075w = i12;
-    }
-
-    @Override
-    public final void b(i91 i91Var) {
-        int i10;
-        if (i91Var != null && (i10 = this.f44076x) >= 0) {
-            i91Var.a(this.v, this.f44075w, i10, this.f44077y);
-        }
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void f() {
-    }
+public final class u91 {
+    public String f43938a;
+    public String f43939b;
+    public String f43940c;
+    public boolean d;
+    public String e;
+    public String f43941f;
+    public String f43942g;
+    public boolean h;
+    public String f43943i;
+    public String f43944j;
+    public String f43945k;
+    public boolean f43946l;
+    public String f43947m;
+    public String f43948n;
+    public String f43949o;
+    public boolean f43950p;
 }

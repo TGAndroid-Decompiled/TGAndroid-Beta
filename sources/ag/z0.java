@@ -7,7 +7,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Looper;
 import android.view.ViewOutlineProvider;
-import org.telegram.ui.gp0;
+import org.telegram.ui.ip0;
 import org.telegram.ui.t3;
 public abstract class z0 {
     public static final v0 f1400a = new v0(0);
@@ -16,12 +16,12 @@ public abstract class z0 {
     public static Outline d;
     public static Rect e;
 
-    public static void a(Canvas canvas, gp0 gp0Var, t3 t3Var) {
+    public static void a(Canvas canvas, ip0 ip0Var, t3 t3Var) {
         Path path;
         Outline outline;
         Rect rect;
-        ViewOutlineProvider outlineProvider = gp0Var.getOutlineProvider();
-        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && gp0Var.getClipToOutline() && outlineProvider != null) {
+        ViewOutlineProvider outlineProvider = ip0Var.getOutlineProvider();
+        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && ip0Var.getClipToOutline() && outlineProvider != null) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
                 if (f1402c == null) {
                     f1402c = new Path();
@@ -39,7 +39,7 @@ public abstract class z0 {
                 rect = new Rect();
             }
             Path path2 = path;
-            outlineProvider.getOutline(gp0Var, outline);
+            outlineProvider.getOutline(ip0Var, outline);
             path2.rewind();
             if (!outline.isEmpty() && outline.getRect(rect)) {
                 float radius = outline.getRadius();

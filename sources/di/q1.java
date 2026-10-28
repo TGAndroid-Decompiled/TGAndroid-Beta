@@ -8,7 +8,7 @@ public final class q1 extends TLRPC.TL_messageMediaStory {
     @Override
     public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
         this.user_id = inputSerializedData.readInt64(z10);
-        this.f22049id = inputSerializedData.readInt32(z10);
+        this.f22050id = inputSerializedData.readInt32(z10);
         this.storyItem = TL_stories.StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
     }
 
@@ -16,7 +16,7 @@ public final class q1 extends TLRPC.TL_messageMediaStory {
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
         outputSerializedData.writeInt32(-946147809);
         outputSerializedData.writeInt64(this.user_id);
-        outputSerializedData.writeInt32(this.f22049id);
+        outputSerializedData.writeInt32(this.f22050id);
         this.storyItem.serializeToStream(outputSerializedData);
     }
 }

@@ -25,7 +25,7 @@ public final class n5 extends l2 {
         if (num.intValue() == 3) {
             int i10 = 0;
             for (int i11 = 0; i11 < y5Var.getChildCount(); i11++) {
-                if (y5Var.getChildAt(i11) instanceof sg.c2) {
+                if (y5Var.getChildAt(i11) instanceof sg.b2) {
                     i10++;
                 }
             }
@@ -63,7 +63,7 @@ public final class n5 extends l2 {
             while (true) {
                 if (i10 >= y5Var.getChildCount()) {
                     break;
-                } else if (y5Var.getChildAt(i10) instanceof sg.y2) {
+                } else if (y5Var.getChildAt(i10) instanceof sg.x2) {
                     z10 = true;
                     break;
                 } else {
@@ -83,19 +83,19 @@ public final class n5 extends l2 {
 
     @Override
     public final boolean p0(Runnable runnable) {
-        sb sbVar = ((ta) this.J).f11725p2;
-        Activity activity = sbVar.f11608b;
+        sb sbVar = ((ta) this.J).f11724p2;
+        Activity activity = sbVar.f11607b;
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    sbVar.f11686y2 = (ag.r0) runnable;
+                    sbVar.f11685y2 = (ag.r0) runnable;
                     return false;
                 }
                 return true;
             } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                sbVar.f11686y2 = (ag.r0) runnable;
+                sbVar.f11685y2 = (ag.r0) runnable;
                 return false;
             } else {
                 return true;

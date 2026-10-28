@@ -1,13 +1,13 @@
 package ig;
 public final class b2 implements Runnable {
-    public final d2 f14008a;
+    public final d2 f14007a;
 
     public b2(d2 d2Var) {
-        this.f14008a = d2Var;
+        this.f14007a = d2Var;
     }
 
     public final void a() {
-        d2 d2Var = this.f14008a;
+        d2 d2Var = this.f14007a;
         if (d2Var.Q) {
             return;
         }

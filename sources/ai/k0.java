@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.r2;
-import org.telegram.ui.zp0;
-public final class k0 implements zp0 {
+import org.telegram.ui.bq0;
+public final class k0 implements bq0 {
     public final Utilities.CallbackReturn f1561a;
     public final r2 f1562b;
     public final Utilities.Callback f1563c;

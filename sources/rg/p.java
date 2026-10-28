@@ -12,32 +12,32 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class p extends View {
-    public final Paint f47485a;
-    public final Paint f47486b;
-    public float f47487c;
+    public final Paint f47520a;
+    public final Paint f47521b;
+    public float f47522c;
     public final y d;
 
     public p(y yVar, Context context) {
         super(context);
         this.d = yVar;
-        this.f47485a = new Paint(1);
+        this.f47520a = new Paint(1);
         Paint paint = new Paint(1);
-        this.f47486b = paint;
+        this.f47521b = paint;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
     }
 
     public final void a() {
-        this.f47485a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, this.d.f47596f}, (float[]) null, Shader.TileMode.CLAMP));
+        this.f47520a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, this.d.f47631f}, (float[]) null, Shader.TileMode.CLAMP));
     }
 
     public final void b(float f7) {
         float dp = AndroidUtilities.dp(6.0f);
-        float a2 = ee.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f47486b.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
-        this.f47487c = a2;
+        float a2 = ee.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f47521b.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
+        this.f47522c = a2;
         y yVar = this.d;
-        yVar.m(i0.a.o(yVar.f47596f, (int) (a2 * 255.0f)), 1);
+        yVar.m(i0.a.o(yVar.f47631f, (int) (a2 * 255.0f)), 1);
         invalidate();
     }
 
@@ -55,16 +55,16 @@ public final class p extends View {
         yVar.e.rewind();
         yVar.e.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
         canvas.clipPath(yVar.e);
-        sg.k1.C1(canvas, rectF, AndroidUtilities.dp(6.0f));
+        sg.j1.C1(canvas, rectF, AndroidUtilities.dp(6.0f));
         canvas.restore();
         rectF.set(dp, f7, getWidth() - dp, f10);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f47485a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f47520a);
         float dp2 = AndroidUtilities.dp(13.0f);
-        Paint paint = this.f47486b;
+        Paint paint = this.f47521b;
         float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
-        float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * this.f47487c) + dp) - strokeWidth);
+        float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * this.f47522c) + dp) - strokeWidth);
         canvas.drawCircle(max, height, dp2, paint);
-        sg.k1.D1(max, height, strokeWidth, i0.a.o(yVar.f47596f, (int) (this.f47487c * 255.0f)), canvas);
+        sg.j1.D1(max, height, strokeWidth, i0.a.o(yVar.f47631f, (int) (this.f47522c * 255.0f)), canvas);
     }
 
     @Override

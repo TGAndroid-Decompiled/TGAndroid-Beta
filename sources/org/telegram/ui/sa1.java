@@ -1,39 +1,13 @@
 package org.telegram.ui;
-
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import org.telegram.messenger.ApplicationLoader;
-public final class sa1 implements LocationListener {
-    public final ThemeActivity f43441a;
+public final class sa1 extends org.telegram.ui.ActionBar.j {
+    public final ThemeActivity f43285a;
 
     public sa1(ThemeActivity themeActivity) {
-        this.f43441a = themeActivity;
+        this.f43285a = themeActivity;
     }
 
     @Override
-    public final void onLocationChanged(Location location) {
-        ThemeActivity themeActivity = this.f43441a;
-        if (location == null) {
-            return;
-        }
-        themeActivity.K0 = false;
-        LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
-        locationManager.removeUpdates(themeActivity.Q0);
-        locationManager.removeUpdates(themeActivity.R0);
-        themeActivity.C0(location, false);
-    }
-
-    @Override
-    public final void onProviderDisabled(String str) {
-    }
-
-    @Override
-    public final void onProviderEnabled(String str) {
-    }
-
-    @Override
-    public final void onStatusChanged(String str, int i10, Bundle bundle) {
+    public final void b(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sa1.b(int):void");
     }
 }

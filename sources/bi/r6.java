@@ -10,11 +10,11 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.w10;
+import org.telegram.ui.y10;
 public final class r6 extends View {
     public float E;
     public final Camera F;
-    public final w10 G;
+    public final y10 G;
     public final RectF H;
     public m6 f5336a;
     public m6 f5337b;
@@ -34,7 +34,7 @@ public final class r6 extends View {
     public r6(Context context) {
         super(context);
         this.F = new Camera();
-        this.G = new w10();
+        this.G = new y10();
         this.H = new RectF();
     }
 
@@ -63,10 +63,10 @@ public final class r6 extends View {
                 float dp = AndroidUtilities.dp(90.0f);
                 RectF rectF = this.H;
                 rectF.set(f16, 0.0f, f16 + dp, f11);
-                w10 w10Var = this.G;
-                w10Var.b(canvas, rectF, 0, 1.0f);
+                y10 y10Var = this.G;
+                y10Var.b(canvas, rectF, 0, 1.0f);
                 rectF.set(f17 - dp, 0.0f, f17, f11);
-                w10Var.b(canvas, rectF, 2, 1.0f);
+                y10Var.b(canvas, rectF, 2, 1.0f);
                 canvas.restore();
                 canvas.restore();
                 for (int i10 = 0; i10 < iArr.length; i10++) {

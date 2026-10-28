@@ -2,11 +2,11 @@ package ef;
 
 import a8.bc;
 public final class g extends p {
-    public final int f9924g;
+    public final int f9923g;
 
     @Override
     public final void a(bc bcVar) {
-        switch (this.f9924g) {
+        switch (this.f9923g) {
             case 0:
                 bcVar.e(this);
                 return;

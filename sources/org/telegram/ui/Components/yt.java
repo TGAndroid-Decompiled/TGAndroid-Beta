@@ -5,18 +5,18 @@ import android.widget.EdgeEffect;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public final class yt extends s4.l0 {
-    public final xt[] f35138a = new xt[4];
-    public final ArrayList f35139b = new ArrayList();
+    public final xt[] f35162a = new xt[4];
+    public final ArrayList f35163b = new ArrayList();
 
     @Override
     public final EdgeEffect a(RecyclerView recyclerView, int i10) {
         xt xtVar = new xt(recyclerView, i10, new vt(this, 0));
-        this.f35138a[i10] = xtVar;
+        this.f35162a[i10] = xtVar;
         return xtVar;
     }
 
     public final float b(int i10) {
-        xt xtVar = this.f35138a[i10];
+        xt xtVar = this.f35162a[i10];
         if (Build.VERSION.SDK_INT >= 31 && xtVar != null && !xtVar.isFinished()) {
             return xtVar.getDistance();
         }

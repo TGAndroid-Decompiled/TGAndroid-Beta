@@ -13,10 +13,10 @@ import m.r3;
 import y9.n;
 import y9.p;
 public final class c {
-    public final p f49628a;
+    public final p f49663a;
 
     public c(p pVar) {
-        this.f49628a = pVar;
+        this.f49663a = pVar;
     }
 
     public final void a(Throwable th2) {
@@ -24,7 +24,7 @@ public final class c {
             Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
             return;
         }
-        n nVar = this.f49628a.f52461f;
+        n nVar = this.f49663a.f52519f;
         Thread currentThread = Thread.currentThread();
         nVar.getClass();
         long currentTimeMillis = System.currentTimeMillis();
@@ -35,16 +35,16 @@ public final class c {
     }
 
     public final void b() {
-        p pVar = this.f49628a;
+        p pVar = this.f49663a;
         Boolean bool = Boolean.TRUE;
-        y9.s sVar = pVar.f52459b;
+        y9.s sVar = pVar.f52517b;
         synchronized (sVar) {
-            sVar.f52481f = false;
-            sVar.f52482g = bool;
-            SharedPreferences.Editor edit = sVar.f52478a.edit();
+            sVar.f52539f = false;
+            sVar.f52540g = bool;
+            SharedPreferences.Editor edit = sVar.f52536a.edit();
             edit.putBoolean("firebase_crashlytics_collection_enabled", true);
             edit.apply();
-            synchronized (sVar.f52480c) {
+            synchronized (sVar.f52538c) {
                 if (sVar.a()) {
                     if (!sVar.e) {
                         sVar.d.trySetResult(null);
@@ -59,12 +59,12 @@ public final class c {
     }
 
     public final void c(String str, String str2) {
-        n nVar = this.f49628a.f52461f;
+        n nVar = this.f49663a.f52519f;
         nVar.getClass();
         try {
             ((c2.b) nVar.d.d).x(str, str2);
         } catch (IllegalArgumentException e) {
-            Context context = nVar.f52442a;
+            Context context = nVar.f52500a;
             if (context != null && (context.getApplicationInfo().flags & 2) != 0) {
                 throw e;
             }
@@ -74,7 +74,7 @@ public final class c {
 
     public final void d(String str) {
         boolean equals;
-        r3 r3Var = this.f49628a.f52461f.d;
+        r3 r3Var = this.f49663a.f52519f.d;
         r3Var.getClass();
         String b10 = z9.d.b(1024, str);
         synchronized (((AtomicMarkableReference) r3Var.h)) {
@@ -93,7 +93,7 @@ public final class c {
                     return;
                 }
                 ((AtomicMarkableReference) r3Var.h).set(b10, true);
-                ((q) r3Var.f17845b).F(new g(r3Var, 1));
+                ((q) r3Var.f17844b).F(new g(r3Var, 1));
             } finally {
             }
         }

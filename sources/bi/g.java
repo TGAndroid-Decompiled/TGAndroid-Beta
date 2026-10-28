@@ -5,12 +5,12 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.gp0;
+import org.telegram.ui.Components.hp0;
 import org.telegram.ui.Components.m40;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.ta0;
+import org.telegram.ui.Components.nm0;
+import org.telegram.ui.Components.ua0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.lu;
+import org.telegram.ui.nu;
 public final class g implements dh.a {
     public final int f4627a;
     public final Object f4628b;
@@ -56,31 +56,31 @@ public final class g implements dh.a {
                 ((gi.h) obj2).U.d(canvas, rectF, (f) obj);
                 return;
             case 3:
-                gp0 gp0Var = (gp0) obj2;
-                ih.d.a(gp0Var, canvas, rectF, gp0Var, (FrameLayout) obj);
+                hp0 hp0Var = (hp0) obj2;
+                ih.d.a(hp0Var, canvas, rectF, hp0Var, (FrameLayout) obj);
                 return;
             case 4:
-                mm0 mm0Var = (mm0) obj2;
-                ih.d.a(mm0Var, canvas, rectF, mm0Var, (FrameLayout) obj);
+                nm0 nm0Var = (nm0) obj2;
+                ih.d.a(nm0Var, canvas, rectF, nm0Var, (FrameLayout) obj);
                 return;
             case 5:
-                ((org.telegram.ui.c7) obj2).f38348b0.d(canvas, rectF, (org.telegram.ui.e6) obj);
+                ((org.telegram.ui.c7) obj2).f38191b0.d(canvas, rectF, (org.telegram.ui.e6) obj);
                 return;
             case 6:
-                ((m40) obj2).f30381n.J(canvas, rectF, (FrameLayout) obj);
+                ((m40) obj2).f30379n.J(canvas, rectF, (FrameLayout) obj);
                 return;
             case 7:
-                ((ta0) obj2).R.J(canvas, rectF, (bh.r) obj);
+                ((ua0) obj2).R.J(canvas, rectF, (bh.r) obj);
                 return;
             case 8:
-                lu luVar = (lu) obj2;
+                nu nuVar = (nu) obj2;
                 di.i4 i4Var = (di.i4) obj;
-                int childCount = luVar.f41367a.getChildCount();
+                int childCount = nuVar.f41890a.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = luVar.f41367a.getChildAt(i11);
-                    if (childAt instanceof mm0) {
-                        mm0 mm0Var2 = (mm0) childAt;
-                        ih.d.a(mm0Var2, canvas, rectF, mm0Var2, i4Var);
+                    View childAt = nuVar.f41890a.getChildAt(i11);
+                    if (childAt instanceof nm0) {
+                        nm0 nm0Var2 = (nm0) childAt;
+                        ih.d.a(nm0Var2, canvas, rectF, nm0Var2, i4Var);
                     }
                 }
                 return;

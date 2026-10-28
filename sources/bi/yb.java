@@ -4,7 +4,7 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class yb extends ClickableSpan {
     public final org.telegram.ui.ActionBar.k3[] f5779a;
     public final long f5780b;
@@ -19,7 +19,7 @@ public final class yb extends ClickableSpan {
         this.f5779a[0].dismiss();
         org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
         if (U != null) {
-            U.presentFragment(un.ba(this.f5780b));
+            U.presentFragment(wn.ea(this.f5780b));
         }
     }
 

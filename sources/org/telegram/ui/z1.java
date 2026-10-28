@@ -11,21 +11,21 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class z1 extends HorizontalScrollView implements org.telegram.ui.ActionBar.p6, e3 {
-    public final h70 f46151a;
-    public final FrameLayout f46152b;
-    public final ImageView f46153c;
+    public final j70 f46138a;
+    public final FrameLayout f46139b;
+    public final ImageView f46140c;
     public int d;
 
-    public z1(Context context, h70 h70Var) {
+    public z1(Context context, j70 j70Var) {
         super(context);
-        this.f46151a = h70Var;
+        this.f46138a = j70Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f46152b = frameLayout;
-        addView(frameLayout, org.telegram.ui.Components.gb1.g(-2.0f, -2));
+        this.f46139b = frameLayout;
+        addView(frameLayout, org.telegram.ui.Components.kb1.g(-2.0f, -2));
         ImageView imageView = new ImageView(context);
-        this.f46153c = imageView;
+        this.f46140c = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        frameLayout.addView(imageView, org.telegram.ui.Components.gb1.g(-2.0f, -2));
+        frameLayout.addView(imageView, org.telegram.ui.Components.kb1.g(-2.0f, -2));
         updateColors();
     }
 
@@ -62,7 +62,7 @@ public final class z1 extends HorizontalScrollView implements org.telegram.ui.Ac
             super.onLayout(z10, i10, i11, i12, i13);
             return;
         }
-        FrameLayout frameLayout = this.f46152b;
+        FrameLayout frameLayout = this.f46139b;
         frameLayout.layout((i14 - i15) / 2, 0, (i14 + i15) / 2, frameLayout.getMeasuredHeight());
     }
 
@@ -73,31 +73,31 @@ public final class z1 extends HorizontalScrollView implements org.telegram.ui.Ac
 
     public void setBlock(TL_iv.pageBlockMath pageblockmath) {
         li.r a2;
-        ImageView imageView = this.f46153c;
+        ImageView imageView = this.f46140c;
         imageView.setImageBitmap(null);
-        h70 h70Var = this.f46151a;
-        h70Var.getClass();
+        j70 j70Var = this.f46138a;
+        j70Var.getClass();
         float f7 = 18;
         int dp = AndroidUtilities.dp(f7);
-        h70Var.getClass();
+        j70Var.getClass();
         imageView.setPadding(dp, 0, AndroidUtilities.dp(f7), 0);
         imageView.setLayoutParams(new FrameLayout.LayoutParams(0, 0));
-        h70Var.getClass();
+        j70Var.getClass();
         float f10 = 36;
         this.d = AndroidUtilities.dp(f10);
         if (pageblockmath != null && (a2 = li.r.a(pageblockmath.source, AndroidUtilities.dp(20.0f), false)) != null) {
-            imageView.setImageBitmap(a2.f17436a);
-            int i10 = a2.f17437b;
-            h70Var.getClass();
+            imageView.setImageBitmap(a2.f17435a);
+            int i10 = a2.f17436b;
+            j70Var.getClass();
             int dp2 = AndroidUtilities.dp(f10) + i10;
             this.d = dp2;
-            imageView.setLayoutParams(new FrameLayout.LayoutParams(dp2, a2.f17438c));
+            imageView.setLayoutParams(new FrameLayout.LayoutParams(dp2, a2.f17437c));
         }
     }
 
     @Override
     public final void updateColors() {
-        this.f46153c.setColorFilter(new PorterDuffColorFilter(this.f46151a.b(), PorterDuff.Mode.SRC_IN));
+        this.f46140c.setColorFilter(new PorterDuffColorFilter(this.f46138a.b(), PorterDuff.Mode.SRC_IN));
     }
 
     @Override

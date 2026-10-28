@@ -3,9 +3,9 @@ package li;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class c4 {
-    public String f17173a;
-    public boolean f17174b;
-    public String f17175c;
+    public String f17172a;
+    public boolean f17173b;
+    public String f17174c;
     public HashMap d;
     public final ArrayList e = new ArrayList();
 

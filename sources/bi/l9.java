@@ -52,7 +52,7 @@ public final class l9 implements Runnable {
                 } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && !z10) {
                     TLRPC.TL_messages_getScheduledMessages tL_messages_getScheduledMessages = new TLRPC.TL_messages_getScheduledMessages();
                     tL_messages_getScheduledMessages.peer = MessagesController.getInstance(caVar.f4441a).getInputPeer(j10);
-                    tL_messages_getScheduledMessages.f22129id.add(Integer.valueOf(i10));
+                    tL_messages_getScheduledMessages.f22130id.add(Integer.valueOf(i10));
                     ConnectionsManager.getInstance(caVar.f4441a).sendRequest(tL_messages_getScheduledMessages, new e0(caVar, messageObject, j11, runnable, 2));
                     return;
                 } else {
@@ -60,7 +60,7 @@ public final class l9 implements Runnable {
                     return;
                 }
             default:
-                ((MessagesStorage) this.f5037f).lambda$updateUnreadReactionsCountInternal$264(this.f5035b, this.f5036c, (String) this.h, this.d, this.e, (String) this.f5038n, (String) this.f5039r, (String) this.f5040s);
+                ((MessagesStorage) this.f5037f).lambda$updateUnreadReactionsCountInternal$265(this.f5035b, this.f5036c, (String) this.h, this.d, this.e, (String) this.f5038n, (String) this.f5039r, (String) this.f5040s);
                 return;
         }
     }

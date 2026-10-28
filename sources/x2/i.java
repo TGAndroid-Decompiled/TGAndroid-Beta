@@ -20,10 +20,10 @@ public final class i extends t1 {
 
     public i(j jVar) {
         d(jVar);
-        this.J = jVar.f51325w0;
-        this.K = jVar.f51326x0;
-        this.L = jVar.f51327y0;
-        this.M = jVar.f51328z0;
+        this.J = jVar.f51383w0;
+        this.K = jVar.f51384x0;
+        this.L = jVar.f51385y0;
+        this.M = jVar.f51386z0;
         this.N = jVar.A0;
         this.O = jVar.B0;
         this.P = jVar.C0;

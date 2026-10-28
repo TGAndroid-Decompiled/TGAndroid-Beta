@@ -1,6 +1,6 @@
 package nd;
 public final class b implements ld.c {
-    public static final b f18775a = new Object();
+    public static final b f18774a = new Object();
 
     @Override
     public final ld.h getContext() {

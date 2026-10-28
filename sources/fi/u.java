@@ -13,26 +13,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.b10;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.wa0;
+import org.telegram.ui.Components.xa0;
 public final class u extends Drawable {
-    public final int f11728a = 1;
-    public final Path f11729b;
-    public final Paint f11730c;
+    public final int f11727a = 1;
+    public final Path f11728b;
+    public final Paint f11729c;
     public final Paint d;
     public final Paint e;
-    public boolean f11731f;
-    public final Object f11732g;
+    public boolean f11730f;
+    public final Object f11731g;
 
     public u() {
         Path path = new Path();
-        this.f11729b = path;
+        this.f11728b = path;
         Paint paint = new Paint(1);
-        this.f11730c = paint;
+        this.f11729c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.e = paint3;
-        this.f11732g = new org.telegram.ui.Components.h6(new wa0(this, 3), 320L, ds.h, 0);
+        this.f11731g = new org.telegram.ui.Components.h6(new xa0(this, 3), 320L, ds.h, 0);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setColor(-1);
@@ -48,16 +48,16 @@ public final class u extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f11728a) {
+        switch (this.f11727a) {
             case 0:
-                boolean z10 = this.f11731f;
+                boolean z10 = this.f11730f;
                 if (z10) {
                     canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255, 31);
                 } else {
                     canvas.save();
                 }
                 canvas.translate(getBounds().centerX(), getBounds().centerY());
-                canvas.drawPath(this.f11729b, this.f11730c);
+                canvas.drawPath(this.f11728b, this.f11729c);
                 if (z10) {
                     canvas.drawLine(-AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), this.d);
                     canvas.drawLine(-AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), this.e);
@@ -66,12 +66,12 @@ public final class u extends Drawable {
                 return;
             default:
                 float dpf2 = AndroidUtilities.dpf2(1.66f);
-                Paint paint = this.f11730c;
+                Paint paint = this.f11729c;
                 paint.setStrokeWidth(dpf2);
                 float dpf22 = AndroidUtilities.dpf2(3.32f);
                 Paint paint2 = this.e;
                 paint2.setStrokeWidth(dpf22);
-                float e = ((org.telegram.ui.Components.h6) this.f11732g).e(this.f11731f);
+                float e = ((org.telegram.ui.Components.h6) this.f11731g).e(this.f11730f);
                 float centerX = getBounds().centerX();
                 float centerY = getBounds().centerY();
                 float dpf23 = AndroidUtilities.dpf2(10.66f);
@@ -86,10 +86,10 @@ public final class u extends Drawable {
                 }
                 canvas.save();
                 canvas.translate(AndroidUtilities.dpf2(1.0f) + centerX, centerY - AndroidUtilities.dpf2(0.5f));
-                canvas.drawPath(this.f11729b, this.d);
+                canvas.drawPath(this.f11728b, this.d);
                 canvas.restore();
                 if (i10 > 0) {
-                    if (this.f11731f) {
+                    if (this.f11730f) {
                         canvas.drawLine(centerX - AndroidUtilities.dpf2(8.33f), centerY - AndroidUtilities.dpf2(8.33f), org.telegram.ui.d3.c(16.66f, e, centerX - AndroidUtilities.dpf2(8.33f)), org.telegram.ui.d3.c(16.66f, e, centerY - AndroidUtilities.dpf2(8.33f)), paint2);
                         canvas.drawLine(centerX - AndroidUtilities.dpf2(8.33f), centerY - AndroidUtilities.dpf2(8.33f), org.telegram.ui.d3.c(16.66f, e, centerX - AndroidUtilities.dpf2(8.33f)), org.telegram.ui.d3.c(16.66f, e, centerY - AndroidUtilities.dpf2(8.33f)), paint);
                     } else {
@@ -104,7 +104,7 @@ public final class u extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        switch (this.f11728a) {
+        switch (this.f11727a) {
             case 0:
                 return AndroidUtilities.dp(32.0f);
             default:
@@ -114,7 +114,7 @@ public final class u extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        switch (this.f11728a) {
+        switch (this.f11727a) {
             case 0:
                 return AndroidUtilities.dp(32.0f);
             default:
@@ -124,7 +124,7 @@ public final class u extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f11728a) {
+        switch (this.f11727a) {
             case 0:
                 return -2;
             default:
@@ -134,12 +134,12 @@ public final class u extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f11728a) {
+        switch (this.f11727a) {
             case 0:
-                this.f11730c.setAlpha(i10);
+                this.f11729c.setAlpha(i10);
                 return;
             default:
-                this.f11730c.setAlpha(i10);
+                this.f11729c.setAlpha(i10);
                 this.d.setAlpha(i10);
                 return;
         }
@@ -147,13 +147,13 @@ public final class u extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f11728a) {
+        switch (this.f11727a) {
             case 0:
-                this.f11730c.setColorFilter(colorFilter);
+                this.f11729c.setColorFilter(colorFilter);
                 return;
             default:
                 this.d.setColorFilter(colorFilter);
-                this.f11730c.setColorFilter(colorFilter);
+                this.f11729c.setColorFilter(colorFilter);
                 return;
         }
     }
@@ -161,13 +161,13 @@ public final class u extends Drawable {
     public u(t tVar, boolean z10) {
         t tVar2 = tVar;
         Paint paint = new Paint(1);
-        this.f11730c = paint;
+        this.f11729c = paint;
         this.d = new Paint(1);
         this.e = new Paint(1);
         Path path = new Path();
-        this.f11729b = path;
-        this.f11732g = new float[8];
-        this.f11731f = z10;
+        this.f11728b = path;
+        this.f11731g = new float[8];
+        this.f11730f = z10;
         paint.setColor(-1);
         float dpf2 = AndroidUtilities.dpf2(13.333333f);
         float dpf22 = AndroidUtilities.dpf2(18.666666f);
@@ -183,7 +183,7 @@ public final class u extends Drawable {
         rectF.set((-dpf2) / 2.0f, (-dpf22) / 2.0f, dpf2 / 2.0f, dpf22 / 2.0f);
         path.addRoundRect(rectF, dpf23, dpf23, Path.Direction.CW);
         ArrayList arrayList = tVar2.e;
-        int i10 = tVar2.f11693c;
+        int i10 = tVar2.f11692c;
         int size = arrayList.size();
         int i11 = 0;
         int i12 = 0;
@@ -193,8 +193,8 @@ public final class u extends Drawable {
             s sVar = (s) obj;
             int[] iArr = tVar2.d;
             float f11 = f7;
-            int i14 = sVar.f11571c;
-            int i15 = sVar.f11570b;
+            int i14 = sVar.f11570c;
+            int i15 = sVar.f11569b;
             int i16 = iArr[i14];
             float f12 = f10;
             int i17 = i16 - 1;
@@ -216,7 +216,7 @@ public final class u extends Drawable {
             float f20 = dpf25;
             float f21 = dpf26;
             rectF2.set(f15 + (max * f14) + f13, f19 + (max2 * f18) + f16, b10.e(max, i15 + 1, f13, f15), b10.e(max2, i14 + 1, f16, f19));
-            float[] fArr = (float[]) this.f11732g;
+            float[] fArr = (float[]) this.f11731g;
             float f22 = 0.0f;
             float f23 = (i15 == 0 && i14 == 0) ? f21 : 0.0f;
             fArr[1] = f23;
@@ -232,7 +232,7 @@ public final class u extends Drawable {
             }
             fArr[7] = f22;
             fArr[6] = f22;
-            this.f11729b.addRoundRect(rectF2, fArr, Path.Direction.CW);
+            this.f11728b.addRoundRect(rectF2, fArr, Path.Direction.CW);
             tVar2 = tVar;
             f7 = f11;
             f10 = f12;

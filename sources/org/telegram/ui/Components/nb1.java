@@ -1,944 +1,435 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
-import android.graphics.Canvas;
-import android.graphics.DashPathEffect;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RadialGradient;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Region;
-import android.graphics.Shader;
-import android.graphics.SweepGradient;
-import android.os.Build;
+import android.app.Activity;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import org.json.JSONArray;
 import org.json.JSONObject;
-public final class nb1 {
-    public final Paint f30942a = new Paint(1);
-    public final Paint f30943b;
-    public final Paint f30944c;
-    public final Paint d;
-    public final Path e;
-    public final Path f30945f;
-    public final Path f30946g;
-    public final RectF h;
-    public final RectF f30947i;
-    public final RectF f30948j;
-    public final float[] f30949k;
-    public final float[] f30950l;
-    public final Matrix f30951m;
-    public final float[] f30952n;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.LaunchActivity;
+public final class nb1 implements cc1 {
+    public final String f30838a;
+    public final String f30839b;
+    public final Context f30840c;
+    public u7.s e;
+    public dc1 f30841f;
+    public ac1 f30842g;
+    public ub1 h;
+    public int f30843i;
+    public int f30844j;
+    public int f30845k;
+    public boolean f30846l;
+    public boolean f30848n;
+    public boolean f30849o;
+    public boolean f30850p;
+    public int f30851q;
+    public int f30852r;
+    public String f30853s;
+    public String f30854t;
+    public String f30855u;
+    public boolean f30857x;
+    public String v = "{}";
+    public String f30856w = "{}";
+    public boolean f30847m = false;
+    public final int d = 1;
 
-    public nb1() {
-        Paint paint = new Paint(1);
-        this.f30943b = paint;
-        this.f30944c = new Paint(2);
-        this.d = new Paint(1);
-        this.e = new Path();
-        this.f30945f = new Path();
-        this.f30946g = new Path();
-        this.h = new RectF();
-        this.f30947i = new RectF();
-        this.f30948j = new RectF();
-        this.f30949k = new float[8];
-        this.f30950l = new float[8];
-        this.f30951m = new Matrix();
-        this.f30952n = new float[9];
-        paint.setStyle(Paint.Style.STROKE);
+    public nb1(Context context, String str, String str2) {
+        this.f30840c = context.getApplicationContext();
+        this.f30838a = str;
+        this.f30839b = str2;
     }
 
-    public static void c(JSONArray jSONArray, float[] fArr, int i10, float... fArr2) {
-        float f7;
-        for (int i11 = 0; i11 < i10; i11++) {
-            if (i11 < fArr2.length) {
-                f7 = fArr2[i11];
-            } else {
-                f7 = 0.0f;
+    @Override
+    public final void a(boolean z10) {
+        if (this.f30857x != z10) {
+            this.f30857x = z10;
+            u7.s sVar = this.e;
+            if (sVar != null) {
+                sVar.getClass();
+                jb1.y();
             }
-            if (jSONArray != null && i11 < jSONArray.length()) {
-                f7 = (float) jSONArray.optDouble(i11, f7);
-            }
-            fArr[i11] = f7;
         }
     }
 
-    public static void d(Paint paint, JSONObject jSONObject, float f7, float f10) {
-        Paint.Cap cap;
-        Paint.Join join;
+    @Override
+    public final void b(String str) {
+        org.telegram.ui.ActionBar.r2 r2Var;
+        if (this.e != null && !TextUtils.isEmpty(str)) {
+            AndroidUtilities.addToClipboard(str);
+            if (AndroidUtilities.shouldShowClipboardToast()) {
+                r2Var = LaunchActivity.U();
+            } else {
+                r2Var = null;
+            }
+            if (r2Var != null) {
+                if (str.length() > 80) {
+                    str = str.substring(0, 80) + "…";
+                }
+                ic.a.s(R.string.WidgetTextCopied, new Object[]{str}, wc.b0(r2Var), R.raw.copy, 36);
+            }
+        }
+    }
+
+    @Override
+    public final void c(String str) {
+        ub1 ub1Var = this.h;
+        if (ub1Var != null) {
+            if (ub1Var.E || (ub1Var.f33353w && ub1Var.D)) {
+                ub1Var.f33335a.c(str);
+            }
+        }
+    }
+
+    @Override
+    public final void d(boolean z10, boolean z11, boolean z12) {
+        ub1 ub1Var = this.h;
+        if (ub1Var != null && ub1Var.f33353w && !ub1Var.f33354x) {
+            ub1Var.k(z10, z11, z12);
+        }
+    }
+
+    @Override
+    public final void e(String str) {
+        u7.s sVar = this.e;
+        if (sVar != null) {
+            sVar.getClass();
+            FileLog.e("widget " + this.f30838a + ": " + str);
+        }
+        ub1 ub1Var = this.h;
+        if (ub1Var != null) {
+            ub1Var.f33335a.d();
+        }
+    }
+
+    @Override
+    public final void f(org.telegram.ui.Components.dc1 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.nb1.f(org.telegram.ui.Components.dc1):void");
+    }
+
+    @Override
+    public final void g(JSONObject jSONObject) {
+        org.telegram.ui.ActionBar.r2 U;
         int i10;
-        paint.setStrokeWidth(f7);
-        int optInt = jSONObject.optInt("lc");
-        int optInt2 = jSONObject.optInt("lj");
-        if (optInt == 1) {
-            cap = Paint.Cap.ROUND;
-        } else if (optInt == 2) {
-            cap = Paint.Cap.SQUARE;
-        } else {
-            cap = Paint.Cap.BUTT;
-        }
-        paint.setStrokeCap(cap);
-        if (optInt2 == 1) {
-            join = Paint.Join.ROUND;
-        } else if (optInt2 == 2) {
-            join = Paint.Join.BEVEL;
-        } else {
-            join = Paint.Join.MITER;
-        }
-        paint.setStrokeJoin(join);
-        paint.setStrokeMiter((float) jSONObject.optDouble("ml", f10));
-        JSONArray optJSONArray = jSONObject.optJSONArray("d");
-        paint.setPathEffect(null);
-        if (optJSONArray != null && optJSONArray.length() != 0) {
-            int length = optJSONArray.length();
-            if (length % 2 == 1) {
-                i10 = length * 2;
-            } else {
-                i10 = length;
-            }
-            float[] fArr = new float[i10];
-            float f11 = 0.0f;
-            for (int i11 = 0; i11 < i10; i11++) {
-                float max = Math.max(0.0f, (float) optJSONArray.optDouble(i11 % length));
-                fArr[i11] = max;
-                f11 += max;
-            }
-            if (f11 > 0.0f) {
-                paint.setPathEffect(new DashPathEffect(fArr, (float) jSONObject.optDouble("do")));
-            }
-        }
-    }
-
-    public static void h(JSONObject jSONObject, Path path) {
-        int length;
-        Path.FillType fillType;
-        int i10;
-        path.rewind();
-        JSONArray optJSONArray = jSONObject.optJSONArray("o");
-        JSONArray optJSONArray2 = jSONObject.optJSONArray("v");
-        if (optJSONArray == null) {
-            return;
-        }
-        if (optJSONArray2 == null) {
-            length = 0;
-        } else {
-            length = optJSONArray2.length();
-        }
-        int i11 = 0;
-        int i12 = 0;
-        while (i12 < optJSONArray.length()) {
-            int optInt = optJSONArray.optInt(i12);
-            if (optInt == 3) {
-                i10 = 6;
-            } else if (optInt == 2) {
-                i10 = 4;
-            } else if (optInt == 4) {
-                i10 = 0;
-            } else {
-                i10 = 2;
-            }
-            int i13 = i11 + i10;
-            if (i13 > length) {
-                break;
-            }
-            if (optInt != 0) {
-                if (optInt != 1) {
-                    if (optInt != 2) {
-                        if (optInt != 3) {
-                            if (optInt == 4) {
-                                path.close();
-                            }
-                        } else {
-                            path.cubicTo((float) optJSONArray2.optDouble(i11), (float) optJSONArray2.optDouble(i11 + 1), (float) optJSONArray2.optDouble(i11 + 2), (float) optJSONArray2.optDouble(i11 + 3), (float) optJSONArray2.optDouble(i11 + 4), (float) optJSONArray2.optDouble(i11 + 5));
-                        }
-                    } else {
-                        path.quadTo((float) optJSONArray2.optDouble(i11), (float) optJSONArray2.optDouble(i11 + 1), (float) optJSONArray2.optDouble(i11 + 2), (float) optJSONArray2.optDouble(i11 + 3));
+        bn0 bn0Var;
+        if (this.e != null) {
+            gb1 h = jb1.h(this);
+            String optString = jSONObject.optString("kind");
+            View view = null;
+            if (!"openLink".equals(optString) && !"openTelegramLink".equals(optString)) {
+                if ("haptic".equals(optString)) {
+                    if (h != null && h.f28529w > 0 && (bn0Var = h.v) != null) {
+                        view = bn0Var.n();
                     }
-                } else {
-                    path.lineTo((float) optJSONArray2.optDouble(i11), (float) optJSONArray2.optDouble(i11 + 1));
+                    if (view != null) {
+                        String optString2 = jSONObject.optString("haptic");
+                        if ("selection".equals(optString2)) {
+                            i10 = 4;
+                        } else if ("notification".equals(optString2)) {
+                            i10 = 16;
+                        } else {
+                            i10 = 3;
+                        }
+                        view.performHapticFeedback(i10);
+                        return;
+                    }
+                    return;
                 }
-            } else {
-                path.moveTo((float) optJSONArray2.optDouble(i11), (float) optJSONArray2.optDouble(i11 + 1));
-            }
-            i12++;
-            i11 = i13;
-        }
-        if (jSONObject.optInt("e") != 0) {
-            fillType = Path.FillType.EVEN_ODD;
-        } else {
-            fillType = Path.FillType.WINDING;
-        }
-        path.setFillType(fillType);
-    }
-
-    public static RectF i(JSONObject jSONObject, String str, RectF rectF) {
-        JSONArray optJSONArray = jSONObject.optJSONArray(str);
-        if (optJSONArray == null) {
-            rectF.setEmpty();
-            return rectF;
-        }
-        float optDouble = (float) optJSONArray.optDouble(0);
-        float optDouble2 = (float) optJSONArray.optDouble(1);
-        rectF.set(optDouble, optDouble2, ((float) optJSONArray.optDouble(2)) + optDouble, ((float) optJSONArray.optDouble(3)) + optDouble2);
-        return rectF;
-    }
-
-    public static void k(Paint paint, int i10) {
-        paint.setShader(null);
-        paint.setColor(i10);
-    }
-
-    public static int[] l(JSONArray jSONArray) {
-        int length = jSONArray.length() / 2;
-        int[] iArr = new int[Math.max(2, length)];
-        for (int i10 = 0; i10 < length; i10++) {
-            iArr[i10] = (int) jSONArray.optLong((i10 * 2) + 1);
-        }
-        if (length == 1) {
-            iArr[1] = iArr[0];
-        }
-        return iArr;
-    }
-
-    public static float[] m(JSONArray jSONArray) {
-        int length = jSONArray.length() / 2;
-        if (length == 1) {
-            return new float[]{0.0f, 1.0f};
-        }
-        float[] fArr = new float[length];
-        for (int i10 = 0; i10 < length; i10++) {
-            fArr[i10] = Math.max(0.0f, Math.min(1.0f, (float) jSONArray.optDouble(i10 * 2)));
-        }
-        return fArr;
-    }
-
-    public final void a(Path path, JSONObject jSONObject, RectF rectF, float f7) {
-        JSONArray optJSONArray = jSONObject.optJSONArray("q");
-        if (optJSONArray == null) {
-            path.addRect(rectF, Path.Direction.CW);
-            return;
-        }
-        int i10 = 0;
-        while (true) {
-            float[] fArr = this.f30949k;
-            if (i10 < 8) {
-                fArr[i10] = Math.max(((float) optJSONArray.optDouble(i10)) + f7, 0.0f);
-                i10++;
-            } else {
-                path.addRoundRect(rectF, fArr, Path.Direction.CW);
                 return;
             }
-        }
-    }
-
-    public final void b(Canvas canvas, JSONObject jSONObject) {
-        if (jSONObject.has("l")) {
-            canvas.clipRect(i(jSONObject, "l", this.f30947i));
-        }
-    }
-
-    public final void e(Canvas canvas, JSONArray jSONArray, int i10, mb1 mb1Var, float f7, boolean z10) {
-        int i11;
-        nb1 nb1Var;
-        Matrix matrix;
-        e0.e0 e0Var;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        e0.e0 e0Var2;
-        Bitmap image;
-        Canvas canvas2;
-        Matrix matrix2;
-        e0.e0 e0Var3;
-        Shader shader;
-        int optLong;
-        boolean z11;
-        nb1 nb1Var2;
-        Matrix matrix3;
-        e0.e0 e0Var4;
-        int i12;
-        boolean z12;
-        float f10;
-        BlurMaskFilter blurMaskFilter;
-        Canvas canvas3;
-        ArrayList arrayList3;
-        Matrix matrix4;
-        boolean z13;
-        int i13;
-        float[] fArr;
-        ArrayList arrayList4;
-        Matrix matrix5;
-        nb1 nb1Var3 = this;
-        e0.e0 e0Var5 = new e0.e0(canvas);
-        ArrayList arrayList5 = (ArrayList) e0Var5.e;
-        Matrix matrix6 = (Matrix) e0Var5.d;
-        ArrayList arrayList6 = (ArrayList) e0Var5.f9531f;
-        int i14 = 0;
-        while (i14 < i10) {
-            JSONObject optJSONObject = jSONArray.optJSONObject(i14);
-            if (optJSONObject == null) {
-                e0Var = e0Var5;
-                i11 = i14;
-                matrix = matrix6;
-                arrayList2 = arrayList6;
-                nb1Var = nb1Var3;
-            } else {
-                Canvas canvas4 = (Canvas) e0Var5.f9530c;
-                int optInt = optJSONObject.optInt("k");
-                e0.e0 e0Var6 = e0Var5;
-                RectF rectF = nb1Var3.f30948j;
-                i11 = i14;
-                float[] fArr2 = nb1Var3.f30952n;
-                Path path = nb1Var3.e;
-                float[] fArr3 = nb1Var3.f30950l;
-                Paint paint = nb1Var3.f30943b;
-                Path path2 = nb1Var3.f30945f;
-                Paint paint2 = nb1Var3.f30942a;
-                RectF rectF2 = nb1Var3.h;
-                switch (optInt) {
-                    case 0:
-                        nb1Var = this;
-                        matrix = matrix6;
-                        e0Var = e0Var6;
-                        arrayList = arrayList5;
-                        arrayList2 = arrayList6;
-                        canvas4.save();
-                        nb1Var.b(canvas4, optJSONObject);
-                        k(paint2, (int) optJSONObject.optLong("c"));
-                        nb1Var.j(optJSONObject, "r", path);
-                        canvas4.drawPath(path, paint2);
-                        canvas4.restore();
-                        break;
-                    case 1:
-                        matrix = matrix6;
-                        e0Var = e0Var6;
-                        arrayList = arrayList5;
-                        arrayList2 = arrayList6;
-                        paint.setColor((int) optJSONObject.optLong("c"));
-                        paint.setStrokeWidth((float) optJSONObject.optDouble("w", 1.0d));
-                        paint.setStrokeCap(Paint.Cap.BUTT);
-                        paint.setStrokeJoin(Paint.Join.MITER);
-                        paint.setPathEffect(null);
-                        nb1Var = this;
-                        nb1Var.j(optJSONObject, "r", path);
-                        canvas4.drawPath(path, paint);
-                        break;
-                    case 2:
-                        matrix = matrix6;
-                        e0Var = e0Var6;
-                        arrayList = arrayList5;
-                        arrayList2 = arrayList6;
-                        k(paint2, (int) optJSONObject.optLong("c"));
-                        canvas4.drawOval(i(optJSONObject, "r", rectF2), paint2);
-                        nb1Var = this;
-                        break;
-                    case 3:
-                        matrix = matrix6;
-                        e0Var = e0Var6;
-                        arrayList = arrayList5;
-                        arrayList2 = arrayList6;
-                        float optDouble = (float) optJSONObject.optDouble("w", 1.0d);
-                        float f11 = optDouble / 2.0f;
-                        i(optJSONObject, "r", rectF2).inset(f11, f11);
-                        paint.setColor((int) optJSONObject.optLong("c"));
-                        paint.setStrokeWidth(optDouble);
-                        paint.setStrokeCap(Paint.Cap.BUTT);
-                        paint.setStrokeJoin(Paint.Join.MITER);
-                        paint.setPathEffect(null);
-                        canvas4.drawOval(rectF2, paint);
-                        nb1Var = this;
-                        break;
-                    case 4:
-                        nb1Var = this;
-                        matrix = matrix6;
-                        e0Var = e0Var6;
-                        arrayList = arrayList5;
-                        arrayList2 = arrayList6;
-                        Paint deviceFont = mb1Var.deviceFont(optJSONObject.optInt("f"));
-                        if (deviceFont != null) {
-                            deviceFont.setColor((int) optJSONObject.optLong("c"));
-                            deviceFont.setShader(null);
-                            canvas4.save();
-                            float f12 = 1.0f / f7;
-                            canvas4.scale(f12, f12);
-                            canvas4.drawText(optJSONObject.optString("t"), ((float) optJSONObject.optDouble("x")) * f7, ((float) optJSONObject.optDouble("y")) * f7, deviceFont);
-                            canvas4.restore();
-                            break;
-                        } else {
-                            break;
-                        }
-                    case 5:
-                        nb1Var = this;
-                        matrix = matrix6;
-                        e0Var2 = e0Var6;
-                        arrayList = arrayList5;
-                        arrayList2 = arrayList6;
-                        if (optJSONObject.has("cv")) {
-                            image = mb1Var.canvas(optJSONObject.optInt("cv"));
-                        } else {
-                            image = mb1Var.image(optJSONObject.optInt("i"));
-                        }
-                        if (image != null) {
-                            canvas4.save();
-                            nb1Var.b(canvas4, optJSONObject);
-                            if (optJSONObject.has("q")) {
-                                String str = "l";
-                                if (!optJSONObject.has("l")) {
-                                    str = "r";
-                                }
-                                nb1Var.j(optJSONObject, str, path2);
-                                canvas4.clipPath(path2);
-                            }
-                            canvas4.drawBitmap(image, (Rect) null, i(optJSONObject, "r", rectF2), nb1Var.f30944c);
-                            canvas4.restore();
-                        }
-                        e0Var = e0Var2;
-                        break;
-                    case 6:
-                    case 7:
-                    case 8:
-                        Matrix matrix7 = matrix6;
-                        arrayList = arrayList5;
-                        nb1Var = this;
-                        arrayList2 = arrayList6;
-                        JSONArray optJSONArray = optJSONObject.optJSONArray("s");
-                        if (optJSONArray == null || optJSONArray.length() < 2) {
-                            matrix = matrix7;
-                            e0Var2 = e0Var6;
-                        } else {
-                            int[] l4 = l(optJSONArray);
-                            float[] m10 = m(optJSONArray);
-                            matrix = matrix7;
-                            c(optJSONObject.optJSONArray("a"), fArr3, 4, new float[0]);
-                            float f13 = fArr3[0];
-                            float f14 = fArr3[1];
-                            float f15 = fArr3[2];
-                            float f16 = fArr3[3];
-                            canvas4.save();
-                            nb1Var.b(canvas4, optJSONObject);
-                            nb1Var.j(optJSONObject, "r", path2);
-                            canvas4.clipPath(path2);
-                            paint2.setColor(-16777216);
-                            int i15 = 6;
-                            if (optInt == 6) {
-                                if (l4.length > 16) {
-                                    double d = f15 - f13;
-                                    e0Var2 = e0Var6;
-                                    double d10 = f16 - f14;
-                                    float hypot = (float) Math.hypot(d, d10);
-                                    if (hypot <= 0.0f) {
-                                        canvas2 = canvas4;
-                                    } else {
-                                        canvas4.translate(f13, f14);
-                                        canvas4.rotate((float) Math.toDegrees(Math.atan2(d10, d)));
-                                        int length = m10.length - 1;
-                                        int i16 = l4[0];
-                                        paint2.setShader(null);
-                                        paint2.setColor(i16);
-                                        canvas4.drawRect(-8000.0f, -8000.0f, m10[0] * hypot, 8000.0f, paint2);
-                                        int i17 = 0;
-                                        while (i17 < length) {
-                                            float f17 = m10[i17] * hypot;
-                                            int i18 = i17 + 1;
-                                            float f18 = m10[i18] * hypot;
-                                            if (f18 > f17) {
-                                                int i19 = l4[i17];
-                                                if (i19 == l4[i18]) {
-                                                    paint2.setShader(null);
-                                                    paint2.setColor(i19);
-                                                } else {
-                                                    paint2.setColor(-16777216);
-                                                    paint2.setShader(new LinearGradient(f17, 0.0f, f18, 0.0f, l4[i17], l4[i18], Shader.TileMode.CLAMP));
-                                                }
-                                                canvas4.drawRect(f17, -8000.0f, f18, 8000.0f, paint2);
-                                            }
-                                            i17 = i18;
-                                        }
-                                        int i20 = l4[length];
-                                        paint2.setShader(null);
-                                        paint2.setColor(i20);
-                                        canvas4.drawRect(m10[length] * hypot, -8000.0f, 8000.0f, 8000.0f, paint2);
-                                        canvas2 = canvas4;
-                                        paint2.setShader(null);
-                                    }
-                                    canvas2.restore();
-                                } else {
-                                    i15 = 6;
-                                }
-                            }
-                            e0Var2 = e0Var6;
-                            if (optInt == i15) {
-                                paint2.setShader(new LinearGradient(f13, f14, f15, f16, l4, m10, Shader.TileMode.CLAMP));
-                            } else if (optInt == 7) {
-                                float max = Math.max(f15, 0.01f);
-                                float max2 = Math.max(f16, 0.01f);
-                                paint2.setShader(new RadialGradient(f13, f14, max, l4, m10, Shader.TileMode.CLAMP));
-                                canvas4.translate(f13, f14);
-                                canvas4.scale(1.0f, max2 / max);
-                                canvas4.translate(-f13, -f14);
-                            } else {
-                                paint2.setShader(new SweepGradient(f13, f14, l4, m10));
-                                canvas4.rotate(f15 - 90.0f, f13, f14);
-                            }
-                            i(optJSONObject, "r", rectF2);
-                            canvas4.drawRect(rectF2.left - 4000.0f, rectF2.top - 4000.0f, rectF2.right + 4000.0f, rectF2.bottom + 4000.0f, paint2);
-                            paint2.setShader(null);
-                            canvas4.restore();
-                        }
-                        e0Var = e0Var2;
-                        break;
-                    case 9:
-                        Matrix matrix8 = matrix6;
-                        arrayList = arrayList5;
-                        matrix2 = matrix8;
-                        nb1Var = this;
-                        e0Var3 = e0Var6;
-                        arrayList2 = arrayList6;
-                        canvas4.save();
-                        arrayList.add(new Matrix(matrix2));
-                        e0Var3.f9529b++;
-                        JSONObject optJSONObject2 = optJSONObject.optJSONObject("p");
-                        if (optJSONObject2 != null) {
-                            h(optJSONObject2, path2);
-                        } else {
-                            nb1Var.j(optJSONObject, "r", path2);
-                        }
-                        canvas4.clipPath(path2);
-                        matrix = matrix2;
-                        e0Var = e0Var3;
-                        break;
-                    case 10:
-                    case 13:
-                        Matrix matrix9 = matrix6;
-                        arrayList = arrayList5;
-                        matrix2 = matrix9;
-                        nb1Var = this;
-                        arrayList2 = arrayList6;
-                        e0Var3 = e0Var6;
-                        if (e0Var3.f9529b > 0) {
-                            e0Var3.d();
-                        }
-                        matrix = matrix2;
-                        e0Var = e0Var3;
-                        break;
-                    case 11:
-                        Matrix matrix10 = matrix6;
-                        arrayList = arrayList5;
-                        matrix2 = matrix10;
-                        nb1Var = this;
-                        e0Var3 = e0Var6;
-                        arrayList2 = arrayList6;
-                        JSONObject optJSONObject3 = optJSONObject.optJSONObject("p");
-                        if (optJSONObject3 != null) {
-                            h(optJSONObject3, path);
-                            Shader f19 = nb1Var.f(optJSONObject3, "g", "ga", "s");
-                            if (f19 != null) {
-                                paint2.setColor(-16777216);
-                                paint2.setShader(f19);
-                                canvas4.drawPath(path, paint2);
-                                paint2.setShader(null);
-                            } else if (optJSONObject3.has("f") && (((int) optJSONObject3.optLong("f")) >>> 24) != 0) {
-                                k(paint2, (int) optJSONObject3.optLong("f"));
-                                canvas4.drawPath(path, paint2);
-                            }
-                            float optDouble2 = (float) optJSONObject3.optDouble("sw");
-                            int i21 = (optDouble2 > 0.0f ? 1 : (optDouble2 == 0.0f ? 0 : -1));
-                            if (i21 > 0) {
-                                shader = nb1Var.f(optJSONObject3, "sg", "sga", "ss");
-                            } else {
-                                shader = null;
-                            }
-                            if (optJSONObject3.has("sc") && (((((int) optJSONObject3.optLong("sc")) >>> 24) != 0 || shader != null) && i21 > 0)) {
-                                if (shader != null) {
-                                    optLong = -16777216;
-                                } else {
-                                    optLong = (int) optJSONObject3.optLong("sc");
-                                }
-                                paint.setColor(optLong);
-                                paint.setShader(shader);
-                                d(paint, optJSONObject3, optDouble2, 4.0f);
-                                canvas4.drawPath(path, paint);
-                                paint.setPathEffect(null);
-                                paint.setShader(null);
-                            }
-                        }
-                        matrix = matrix2;
-                        e0Var = e0Var3;
-                        break;
-                    case 12:
-                        ArrayList arrayList7 = arrayList5;
-                        Matrix matrix11 = matrix6;
-                        arrayList2 = arrayList6;
-                        float optDouble3 = (float) optJSONObject.optDouble("o", 1.0d);
-                        if (optJSONObject.optInt("h") != 0) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        if (optDouble3 < 1.0f && !z11) {
-                            canvas4.saveLayerAlpha(null, Math.round(Math.max(0.0f, Math.min(1.0f, optDouble3)) * 255.0f));
-                        } else {
-                            canvas4.save();
-                        }
-                        arrayList = arrayList7;
-                        arrayList.add(new Matrix(matrix11));
-                        e0Var = e0Var6;
-                        e0Var.f9529b++;
-                        c(optJSONObject.optJSONArray("m"), fArr3, 6, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f);
-                        fArr2[0] = fArr3[0];
-                        fArr2[1] = fArr3[2];
-                        fArr2[2] = fArr3[4];
-                        fArr2[3] = fArr3[1];
-                        fArr2[4] = fArr3[3];
-                        fArr2[5] = fArr3[5];
-                        fArr2[6] = 0.0f;
-                        fArr2[7] = 0.0f;
-                        fArr2[8] = 1.0f;
-                        Matrix matrix12 = this.f30951m;
-                        matrix12.setValues(fArr2);
-                        canvas4.concat(matrix12);
-                        matrix11.preConcat(matrix12);
-                        if (z11) {
-                            canvas4.clipRect(0, 0, 0, 0);
-                            nb1Var = this;
-                            matrix = matrix11;
-                            break;
-                        } else {
-                            nb1Var = this;
-                            matrix = matrix11;
-                            break;
-                        }
-                    case 14:
-                        ArrayList arrayList8 = arrayList5;
-                        Matrix matrix13 = matrix6;
-                        arrayList2 = arrayList6;
-                        c(optJSONObject.optJSONArray("a"), fArr3, 4, new float[0]);
-                        float f20 = fArr3[0];
-                        float f21 = fArr3[1];
-                        float max3 = Math.max(fArr3[2], 0.0f);
-                        float f22 = fArr3[3];
-                        int optLong2 = (int) optJSONObject.optLong("c");
-                        i(optJSONObject, "r", rectF);
-                        if (rectF.isEmpty() || (optLong2 >>> 24) == 0 || ((i12 = Build.VERSION.SDK_INT) < 28 && (max3 / 2.0f) * f7 > 0.5f)) {
-                            nb1Var2 = this;
-                            matrix3 = matrix13;
-                            e0Var4 = e0Var6;
-                        } else {
-                            if (optJSONObject.optInt("n") != 0) {
-                                z12 = true;
-                            } else {
-                                z12 = false;
-                            }
-                            nb1Var2 = this;
-                            Paint paint3 = nb1Var2.d;
-                            paint3.setColor(optLong2);
-                            float f23 = (max3 / 2.0f) * f7;
-                            if (f23 > 0.5f) {
-                                f10 = max3;
-                                e0Var4 = e0Var6;
-                                blurMaskFilter = new BlurMaskFilter(((f23 - 0.5f) / 0.57735f) / f7, BlurMaskFilter.Blur.NORMAL);
-                            } else {
-                                f10 = max3;
-                                e0Var4 = e0Var6;
-                                blurMaskFilter = null;
-                            }
-                            paint3.setMaskFilter(blurMaskFilter);
-                            Path path3 = nb1Var2.f30946g;
-                            path3.rewind();
-                            if (z12) {
-                                float abs = Math.abs(f21) + Math.abs(f20) + Math.abs(f22) + (f10 * 1.5f) + 2.0f;
-                                matrix3 = matrix13;
-                                rectF2.set(rectF.left - abs, rectF.top - abs, rectF.right + abs, rectF.bottom + abs);
-                                path3.addRect(rectF2, Path.Direction.CW);
-                                rectF2.set(rectF.left + f22, rectF.top + f22, rectF.right - f22, rectF.bottom - f22);
-                                if (!rectF2.isEmpty()) {
-                                    nb1Var2.a(path3, optJSONObject, rectF2, -f22);
-                                }
-                                path3.setFillType(Path.FillType.EVEN_ODD);
-                            } else {
-                                matrix3 = matrix13;
-                                rectF2.set(rectF.left - f22, rectF.top - f22, rectF.right + f22, rectF.bottom + f22);
-                                if (!optJSONObject.has("q")) {
-                                    f22 = 0.0f;
-                                }
-                                nb1Var2.a(path3, optJSONObject, rectF2, f22);
-                            }
-                            path3.offset(f20, f21);
-                            canvas4.save();
-                            nb1Var2.j(optJSONObject, "r", path2);
-                            if (z12) {
-                                canvas3 = canvas4;
-                                canvas3.clipPath(path2);
-                            } else {
-                                canvas3 = canvas4;
-                                if (i12 >= 26) {
-                                    canvas3.clipOutPath(path2);
-                                } else {
-                                    canvas3.clipPath(path2, Region.Op.DIFFERENCE);
-                                }
-                            }
-                            canvas3.drawPath(path3, paint3);
-                            canvas3.restore();
-                            paint3.setMaskFilter(null);
-                        }
-                        nb1Var = nb1Var2;
-                        e0Var = e0Var4;
-                        arrayList = arrayList8;
-                        matrix = matrix3;
-                        break;
-                    case 15:
-                        e0Var = e0Var6;
-                        lb1 lb1Var = new lb1();
-                        lb1Var.f30156a = (Canvas) e0Var.f9530c;
-                        lb1Var.f30157b = e0Var.f9529b;
-                        arrayList6.add(lb1Var);
-                        JSONArray optJSONArray2 = optJSONObject.optJSONArray("fl");
-                        if (optJSONArray2 != null && optJSONArray2.length() != 0) {
-                            i(optJSONObject, "r", rectF);
-                            if (!rectF.isEmpty()) {
-                                arrayList2 = arrayList6;
-                                int i22 = 0;
-                                float f24 = 0.0f;
-                                float f25 = 0.0f;
-                                float f26 = 0.0f;
-                                float f27 = 0.0f;
-                                while (i22 < optJSONArray2.length()) {
-                                    JSONArray optJSONArray3 = optJSONArray2.optJSONArray(i22);
-                                    if (optJSONArray3 == null) {
-                                        i13 = i22;
-                                        fArr = fArr2;
-                                    } else {
-                                        i13 = i22;
-                                        fArr = fArr2;
-                                        float max4 = Math.max(0.0f, (float) optJSONArray3.optDouble(1));
-                                        if (optJSONArray3.optInt(0) == 0) {
-                                            float f28 = max4 * 3.0f;
-                                            f24 += f28;
-                                            f25 += f28;
-                                            f26 += f28;
-                                            f27 += f28;
-                                        } else {
-                                            arrayList4 = arrayList5;
-                                            matrix5 = matrix6;
-                                            if (optJSONArray3.optInt(0) == 9) {
-                                                float optDouble4 = (float) optJSONArray3.optDouble(2);
-                                                float optDouble5 = (float) optJSONArray3.optDouble(3);
-                                                float f29 = max4 * 1.5f;
-                                                float max5 = Math.max(f24, f29 - optDouble4);
-                                                float max6 = Math.max(f26, optDouble4 + f29);
-                                                float max7 = Math.max(f25, f29 - optDouble5);
-                                                f27 = Math.max(f27, f29 + optDouble5);
-                                                f26 = max6;
-                                                f24 = max5;
-                                                f25 = max7;
-                                            }
-                                            i22 = i13 + 1;
-                                            fArr2 = fArr;
-                                            arrayList5 = arrayList4;
-                                            matrix6 = matrix5;
-                                        }
-                                    }
-                                    arrayList4 = arrayList5;
-                                    matrix5 = matrix6;
-                                    i22 = i13 + 1;
-                                    fArr2 = fArr;
-                                    arrayList5 = arrayList4;
-                                    matrix6 = matrix5;
-                                }
-                                float[] fArr4 = fArr2;
-                                arrayList3 = arrayList5;
-                                Matrix matrix14 = matrix6;
-                                rectF.set(rectF.left - f24, rectF.top - f25, rectF.right + f26, rectF.bottom + f27);
-                                if (Build.VERSION.SDK_INT >= 31 && ((Canvas) e0Var.f9530c).isHardwareAccelerated()) {
-                                    Canvas b10 = kb1.b(lb1Var, rectF, optJSONArray2, f7);
-                                    if (b10 != null) {
-                                        e0Var.f9530c = b10;
-                                        e0Var.f9529b = 0;
-                                        z13 = false;
-                                        matrix4 = matrix14;
-                                        matrix = matrix4;
-                                        arrayList = arrayList3;
-                                        nb1Var = this;
-                                    } else {
-                                        matrix4 = matrix14;
-                                        z13 = false;
-                                        matrix = matrix4;
-                                        arrayList = arrayList3;
-                                        nb1Var = this;
-                                    }
-                                } else {
-                                    matrix4 = matrix14;
-                                    matrix4.getValues(fArr4);
-                                    if (fArr4[1] == 0.0f && fArr4[3] == 0.0f) {
-                                        Matrix matrix15 = lb1Var.f30160g;
-                                        matrix15.set(matrix4);
-                                        matrix15.postScale(f7, f7);
-                                        matrix15.mapRect(rectF2, rectF);
-                                        int floor = (int) Math.floor(rectF2.left);
-                                        int floor2 = (int) Math.floor(rectF2.top);
-                                        int ceil = ((int) Math.ceil(rectF2.right)) - floor;
-                                        int ceil2 = ((int) Math.ceil(rectF2.bottom)) - floor2;
-                                        if (ceil > 0 && ceil2 > 0 && ceil * ceil2 <= 16777216) {
-                                            lb1Var.f30159f = Bitmap.createBitmap(ceil, ceil2, Bitmap.Config.ARGB_8888);
-                                            lb1Var.d = floor;
-                                            lb1Var.e = floor2;
-                                            lb1Var.h = Math.abs(fArr4[0]) * f7;
-                                            lb1Var.f30161i = optJSONArray2;
-                                            Canvas canvas5 = new Canvas(lb1Var.f30159f);
-                                            canvas5.translate(-floor, -floor2);
-                                            canvas5.concat(matrix15);
-                                            e0Var.f9530c = canvas5;
-                                            z13 = false;
-                                            e0Var.f9529b = 0;
-                                            matrix = matrix4;
-                                            arrayList = arrayList3;
-                                            nb1Var = this;
-                                            break;
-                                        }
-                                    }
-                                    z13 = false;
-                                    matrix = matrix4;
-                                    arrayList = arrayList3;
-                                    nb1Var = this;
-                                }
-                            }
-                        }
-                        arrayList3 = arrayList5;
-                        matrix4 = matrix6;
-                        arrayList2 = arrayList6;
-                        z13 = false;
-                        matrix = matrix4;
-                        arrayList = arrayList3;
-                        nb1Var = this;
-                        break;
-                    case 16:
-                        e0Var = e0Var6;
-                        if (!arrayList6.isEmpty()) {
-                            g(e0Var, f7);
-                        }
-                        nb1Var = this;
-                        matrix = matrix6;
-                        arrayList2 = arrayList6;
-                        break;
-                    case 17:
-                        if (z10 && Build.VERSION.SDK_INT >= 31 && canvas4.isHardwareAccelerated()) {
-                            kb1.a(this, e0Var6, jSONArray, i11, optJSONObject, mb1Var, f7);
-                            nb1Var = this;
-                            e0Var = e0Var6;
-                            matrix = matrix6;
-                            arrayList2 = arrayList6;
-                            break;
-                        }
-                        break;
-                    default:
-                        nb1Var = this;
-                        matrix = matrix6;
-                        arrayList2 = arrayList6;
-                        e0Var = e0Var6;
-                        break;
+            String optString3 = jSONObject.optString("url");
+            boolean equals = "openTelegramLink".equals(optString);
+            if (!TextUtils.isEmpty(optString3) && !jb1.f29629i && (U = LaunchActivity.U()) != null && U.getParentActivity() != null) {
+                Activity parentActivity = U.getParentActivity();
+                if (equals) {
+                    qf.d.r(parentActivity, optString3);
+                    return;
                 }
-                nb1 nb1Var4 = nb1Var;
-                i14 = i11 + 1;
-                nb1Var3 = nb1Var4;
-                arrayList5 = arrayList;
-                e0Var5 = e0Var;
-                matrix6 = matrix;
-                arrayList6 = arrayList2;
+                jb1.f29629i = true;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(parentActivity, 0, U.getResourceProvider());
+                String string = LocaleController.getString(R.string.WidgetOpenLinkTitle);
+                org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
+                e2Var.R = string;
+                e2Var.T = LocaleController.formatString(R.string.WidgetOpenLinkText, optString3);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Open), new p1(29, parentActivity, optString3));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                e2Var.setOnDismissListener(new fi.e1(5));
+                if (U.showDialog(e2Var) == null) {
+                    jb1.f29629i = false;
+                }
             }
-            arrayList = arrayList5;
-            nb1 nb1Var42 = nb1Var;
-            i14 = i11 + 1;
-            nb1Var3 = nb1Var42;
-            arrayList5 = arrayList;
-            e0Var5 = e0Var;
-            matrix6 = matrix;
-            arrayList6 = arrayList2;
-        }
-        nb1 nb1Var5 = nb1Var3;
-        e0.e0 e0Var7 = e0Var5;
-        ArrayList arrayList9 = arrayList6;
-        while (!arrayList9.isEmpty()) {
-            nb1Var5.g(e0Var7, f7);
-        }
-        while (e0Var7.f9529b > 0) {
-            e0Var7.d();
         }
     }
 
-    public final Shader f(JSONObject jSONObject, String str, String str2, String str3) {
-        JSONArray optJSONArray = jSONObject.optJSONArray(str3);
-        if (jSONObject.has(str) && optJSONArray != null && optJSONArray.length() >= 4) {
-            int[] l4 = l(optJSONArray);
-            float[] m10 = m(optJSONArray);
-            float[] fArr = this.f30950l;
-            c(jSONObject.optJSONArray(str2), fArr, 7, new float[0]);
-            if (jSONObject.optInt(str) == 1) {
-                return new LinearGradient(fArr[0], fArr[1], fArr[2], fArr[3], l4, m10, Shader.TileMode.CLAMP);
+    @Override
+    public final void h(JSONObject jSONObject) {
+        ub1 ub1Var;
+        dc1 dc1Var;
+        gb1 h;
+        if (this.e != null) {
+            String optString = jSONObject.optString("dead");
+            if (!TextUtils.isEmpty(optString) && (h = jb1.h(this)) != null) {
+                int i10 = h.B;
+                int i11 = this.f30851q;
+                if (i10 != i11) {
+                    h.B = i11;
+                    h.A++;
+                    h.C = true;
+                    FileLog.d("widget " + this.f30838a + " stopped (" + h.A + "): " + optString);
+                    jb1.a(h);
+                    jb1.b();
+                }
             }
-            return new RadialGradient(fArr[0], fArr[1], Math.max(fArr[4], 0.01f), l4, m10, Shader.TileMode.CLAMP);
         }
-        return null;
+        if (jSONObject.optBoolean("loaded") && this.f30842g != null && (dc1Var = this.f30841f) != null) {
+            f(dc1Var);
+        } else if (m() && (ub1Var = this.h) != null) {
+            tb1 tb1Var = ub1Var.f33335a;
+            tb1Var.e();
+            tb1Var.d();
+        }
     }
 
-    public final void g(e0.e0 e0Var, float f7) {
-        Object obj;
+    @Override
+    public final void i(final long j10, String str) {
+        if (this.e != null) {
+            gb1 h = jb1.h(this);
+            if (h != null) {
+                int i10 = h.f28512b;
+                if (h.f28516i) {
+                    TLRPC.TL_messages_getBotWidgetQueryAnswer tL_messages_getBotWidgetQueryAnswer = new TLRPC.TL_messages_getBotWidgetQueryAnswer();
+                    tL_messages_getBotWidgetQueryAnswer.peer = MessagesController.getInstance(i10).getInputPeer(h.f28513c);
+                    tL_messages_getBotWidgetQueryAnswer.msg_id = h.d;
+                    tL_messages_getBotWidgetQueryAnswer.data = str.getBytes(StandardCharsets.UTF_8);
+                    final boolean[] zArr = new boolean[1];
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
+                    final bi.a0 a0Var = new bi.a0(zArr, connectionsManager, r7, this, j10, 14);
+                    int[] iArr = {connectionsManager.sendRequestTyped(tL_messages_getBotWidgetQueryAnswer, new Object(), new Utilities.Callback2() {
+                        @Override
+                        public final void run(Object obj, Object obj2) {
+                            String str2;
+                            TLRPC.TL_messages_botWidgetQueryAnswer tL_messages_botWidgetQueryAnswer = (TLRPC.TL_messages_botWidgetQueryAnswer) obj;
+                            TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                            boolean[] zArr2 = zArr;
+                            if (!zArr2[0]) {
+                                int i11 = 1;
+                                zArr2[0] = true;
+                                AndroidUtilities.cancelRunOnUIThread(a0Var);
+                                nb1 nb1Var = this;
+                                long j11 = j10;
+                                if (tL_messages_botWidgetQueryAnswer != null) {
+                                    String w10 = jb1.w(tL_messages_botWidgetQueryAnswer.result);
+                                    dc1 dc1Var = nb1Var.f30841f;
+                                    if (dc1Var != null) {
+                                        dc1Var.a(0, w10, j11);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                if (tL_error != null) {
+                                    str2 = tL_error.text;
+                                } else {
+                                    str2 = "";
+                                }
+                                if (!"WIDGET_RESPONSE_TIMEOUT".equals(str2)) {
+                                    if (str2 != null && str2.startsWith("FLOOD_WAIT")) {
+                                        i11 = 2;
+                                    } else {
+                                        i11 = 3;
+                                    }
+                                }
+                                dc1 dc1Var2 = nb1Var.f30841f;
+                                if (dc1Var2 != null) {
+                                    dc1Var2.a(i11, null, j11);
+                                }
+                            }
+                        }
+                    })};
+                    AndroidUtilities.runOnUIThread(a0Var, 30000L);
+                    return;
+                }
+            }
+            dc1 dc1Var = this.f30841f;
+            if (dc1Var != null) {
+                dc1Var.a(3, null, j10);
+                return;
+            }
+            return;
+        }
+        dc1 dc1Var2 = this.f30841f;
+        if (dc1Var2 != null) {
+            dc1Var2.a(3, null, j10);
+        }
+    }
+
+    @Override
+    public final void j(String str, JSONObject jSONObject) {
+        gb1 h;
+        String str2;
+        if (this.e != null && (h = jb1.h(this)) != null) {
+            String a2 = h.a();
+            JSONObject jSONObject2 = (JSONObject) jb1.f29626c.get(a2);
+            if (jSONObject2 == null) {
+                jSONObject2 = new JSONObject();
+            }
+            try {
+                jSONObject2.put(str, jSONObject);
+            } catch (Exception unused) {
+            }
+            jb1.f29626c.put(a2, jSONObject2);
+            for (gb1 gb1Var : jb1.f29624a.values()) {
+                if (gb1Var.f28526s != null && a2.equals(gb1Var.a())) {
+                    nb1 nb1Var = gb1Var.f28526s;
+                    try {
+                        str2 = LocaleController.getInstance().getCurrentLocale().toLanguageTag();
+                    } catch (Exception unused2) {
+                        str2 = null;
+                    }
+                    String jSONObject3 = jSONObject2.toString();
+                    nb1Var.f30854t = str2;
+                    nb1Var.f30855u = jSONObject3;
+                }
+            }
+            if ("local".equals(str)) {
+                jb1.d.put(a2, h);
+                k5 k5Var = jb1.e;
+                AndroidUtilities.cancelRunOnUIThread(k5Var);
+                AndroidUtilities.runOnUIThread(k5Var, 1000L);
+            }
+        }
+    }
+
+    public final void k() {
         int i10;
-        lb1 lb1Var = (lb1) ic.a.y(1, (ArrayList) e0Var.f9531f);
-        while (true) {
-            int i11 = e0Var.f9529b;
-            obj = lb1Var.f30158c;
-            if (obj == null && lb1Var.f30159f == null) {
-                i10 = lb1Var.f30157b;
-            } else {
-                i10 = 0;
+        dc1 dc1Var = this.f30841f;
+        if (dc1Var != null && !dc1Var.f27412t && dc1Var.f27411s != 0 && !dc1Var.B) {
+            ac1 ac1Var = dc1Var.E;
+            if (ac1Var == null || (((i10 = dc1Var.D) != 0 && Math.abs(ac1Var.d - i10) > 1) || !ac1Var.a())) {
+                dc1Var.B = true;
+                WidgetSandboxNative.repaint(dc1Var.f27411s);
             }
-            if (i11 <= i10) {
-                break;
-            }
-            e0Var.d();
         }
-        if (obj != null) {
-            kb1.d(lb1Var, f7);
-            e0Var.f9530c = lb1Var.f30156a;
+    }
+
+    public final ac1 l() {
+        ac1 ac1Var;
+        dc1 dc1Var = this.f30841f;
+        if (dc1Var == null) {
+            ac1Var = null;
         } else {
-            Bitmap bitmap = lb1Var.f30159f;
-            if (bitmap != null) {
-                WidgetSandboxNative.filterPixels(bitmap, lb1Var.f30161i.toString().getBytes(StandardCharsets.UTF_8), lb1Var.h);
-                e0Var.f9530c = lb1Var.f30156a;
-                Matrix matrix = new Matrix();
-                if (lb1Var.f30160g.invert(matrix)) {
-                    ((Canvas) e0Var.f9530c).save();
-                    ((Canvas) e0Var.f9530c).concat(matrix);
-                    ((Canvas) e0Var.f9530c).drawBitmap(lb1Var.f30159f, lb1Var.d, lb1Var.e, this.f30944c);
-                    ((Canvas) e0Var.f9530c).restore();
+            ac1Var = dc1Var.E;
+        }
+        if (ac1Var != null && (this.f30842g == null || dc1Var.f27413u)) {
+            return ac1Var;
+        }
+        ac1 ac1Var2 = this.f30842g;
+        if (ac1Var2 != null && Math.abs(ac1Var2.d - this.f30844j) <= 1) {
+            return this.f30842g;
+        }
+        if (ac1Var != null) {
+            return ac1Var;
+        }
+        return this.f30842g;
+    }
+
+    public final boolean m() {
+        dc1 dc1Var;
+        ac1 ac1Var;
+        if (this.f30852r != this.f30851q && (dc1Var = this.f30841f) != null && (ac1Var = dc1Var.E) != null) {
+            if (ac1Var.f26509g || dc1Var.f27414w) {
+                this.f30852r = this.f30851q;
+                if (this.e != null) {
+                    jb1.b();
+                    gb1 h = jb1.h(this);
+                    if (h != null) {
+                        jb1.a(h);
+                        return true;
+                    }
+                    return true;
+                }
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void n(String str) {
+        if (str != null && !str.equals(this.v)) {
+            this.v = str;
+            dc1 dc1Var = this.f30841f;
+            if (dc1Var != null) {
+                long j10 = dc1Var.f27411s;
+                if (!dc1Var.f27412t && j10 != 0) {
+                    WidgetSandboxNative.data(j10, str.getBytes(StandardCharsets.UTF_8));
                 }
             }
         }
-        e0Var.f9529b = lb1Var.f30157b;
     }
 
-    public final void j(JSONObject jSONObject, String str, Path path) {
-        RectF rectF = this.h;
-        i(jSONObject, str, rectF);
-        path.rewind();
-        JSONArray optJSONArray = jSONObject.optJSONArray("q");
-        if (optJSONArray == null) {
-            path.addRect(rectF, Path.Direction.CW);
-            return;
+    public final void o(String str) {
+        if (str != null && !str.equals(this.f30853s)) {
+            this.f30853s = str;
+            this.f30847m = str.contains("\"dark\"");
+            dc1 dc1Var = this.f30841f;
+            if (dc1Var != null) {
+                dc1Var.e(str);
+            }
         }
-        int i10 = 0;
-        while (true) {
-            float[] fArr = this.f30949k;
-            if (i10 < 8) {
-                fArr[i10] = (float) optJSONArray.optDouble(i10);
-                i10++;
+    }
+
+    public final void p(boolean z10) {
+        boolean z11;
+        this.f30848n = z10;
+        dc1 dc1Var = this.f30841f;
+        if (dc1Var != null) {
+            if (z10 && !this.f30850p) {
+                z11 = true;
             } else {
-                path.addRoundRect(rectF, fArr, Path.Direction.CW);
-                return;
+                z11 = false;
+            }
+            dc1Var.f(z11);
+        }
+    }
+
+    public final void q(int i10) {
+        if (i10 > 0 && i10 != this.f30844j) {
+            this.f30844j = i10;
+            dc1 dc1Var = this.f30841f;
+            if (dc1Var != null && i10 > 0 && i10 != dc1Var.D && !dc1Var.f27412t) {
+                dc1Var.D = i10;
+                long j10 = dc1Var.f27411s;
+                if (j10 != 0) {
+                    WidgetSandboxNative.width(j10, i10 / dc1Var.f27401i);
+                }
+            }
+        }
+    }
+
+    public final void r() {
+        this.f30849o = false;
+        if (this.f30841f != null) {
+            ac1 l4 = l();
+            if (l4 != null) {
+                this.f30842g = l4;
+            }
+            this.f30841f.b();
+            this.f30841f = null;
+            if (this.f30857x) {
+                this.f30857x = false;
+                u7.s sVar = this.e;
+                if (sVar != null) {
+                    sVar.getClass();
+                    jb1.y();
+                }
             }
         }
     }

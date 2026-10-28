@@ -14,18 +14,18 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.p7;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class c extends bb {
-    public static final int f52912a0 = 0;
+    public static final int f52970a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public j71 Z;
+    public k71 Z;
 
     public c(Context context, u6 u6Var, GiftAuctionController.Auction auction, List list) {
         super(context, null, false, false, 2, u6Var);
@@ -42,7 +42,7 @@ public final class c extends bb {
         fi.d dVar = new fi.d(context, u6Var, true);
         dVar.setOnClickListener(new ig.d0(this, 27));
         dVar.i(LocaleController.getString(R.string.OK), false, true);
-        FrameLayout.LayoutParams h = gb1.h(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        FrameLayout.LayoutParams h = kb1.h(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i10 = h.leftMargin;
         int i11 = this.backgroundPaddingLeft;
         h.leftMargin = i10 + i11;
@@ -71,11 +71,11 @@ public final class c extends bb {
     }
 
     @Override
-    public final lm0 v(mm0 mm0Var) {
-        j71 j71Var = new j71(this.d, getContext(), this.currentAccount, 0, true, new hi.e2(this, 25), this.resourcesProvider);
-        this.Z = j71Var;
-        j71Var.f29507r = false;
-        return j71Var;
+    public final mm0 v(nm0 nm0Var) {
+        k71 k71Var = new k71(this.d, getContext(), this.currentAccount, 0, true, new hi.e2(this, 25), this.resourcesProvider);
+        this.Z = k71Var;
+        k71Var.f29878r = false;
+        return k71Var;
     }
 
     @Override

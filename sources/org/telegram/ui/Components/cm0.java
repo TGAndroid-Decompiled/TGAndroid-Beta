@@ -2,9 +2,5 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public interface cm0 {
-    boolean mo17e(float f7, float f10, int i10, View view);
-
-    void g();
-
-    void o(float f7);
+    boolean c(int i10, View view);
 }

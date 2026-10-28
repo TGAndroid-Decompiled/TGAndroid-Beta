@@ -17,8 +17,8 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ny0;
-import org.telegram.ui.bv;
+import org.telegram.ui.Components.oy0;
+import org.telegram.ui.dv;
 public final class i0 implements RequestDelegate {
     public final int f4807a;
     public final Object f4808b;
@@ -30,9 +30,9 @@ public final class i0 implements RequestDelegate {
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        final Comparator bvVar;
+        final Comparator dvVar;
         Locale locale;
-        final Comparator bvVar2;
+        final Comparator dvVar2;
         Locale locale2;
         int i10 = this.f4807a;
         Object obj = this.f4808b;
@@ -119,7 +119,7 @@ public final class i0 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new k2.e0(7, (li.a5) obj, tLObject));
                 return;
             case 23:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6(18, (org.telegram.ui.web.f2) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.a6(19, (org.telegram.ui.web.f2) obj, tLObject));
                 return;
             case 24:
                 vg.x0 x0Var = (vg.x0) obj;
@@ -152,11 +152,11 @@ public final class i0 implements RequestDelegate {
                         }
                         Collator collator = Collator.getInstance(locale);
                         Objects.requireNonNull(collator);
-                        bvVar = new p5(collator, 6);
+                        dvVar = new p5(collator, 6);
                     } else {
-                        bvVar = new bv(20);
+                        dvVar = new dv(20);
                     }
-                    Collections.sort(arrayList, bvVar);
+                    Collections.sort(arrayList, dvVar);
                     for (List list2 : hashMap.values()) {
                         Collections.sort(list2, new Comparator() {
                             @Override
@@ -165,14 +165,14 @@ public final class i0 implements RequestDelegate {
                                 TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
                                 switch (r2) {
                                     case 0:
-                                        return bvVar.compare(tL_help_country2.default_name, tL_help_country3.default_name);
+                                        return dvVar.compare(tL_help_country2.default_name, tL_help_country3.default_name);
                                     default:
-                                        return bvVar.compare(tL_help_country2.default_name, tL_help_country3.default_name);
+                                        return dvVar.compare(tL_help_country2.default_name, tL_help_country3.default_name);
                                 }
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new ny0(x0Var, hashMap, arrayList, 20));
+                    AndroidUtilities.runOnUIThread(new oy0(x0Var, hashMap, arrayList, 20));
                     return;
                 }
                 return;
@@ -213,11 +213,11 @@ public final class i0 implements RequestDelegate {
                         }
                         Collator collator2 = Collator.getInstance(locale2);
                         Objects.requireNonNull(collator2);
-                        bvVar2 = new p5(collator2, 6);
+                        dvVar2 = new p5(collator2, 6);
                     } else {
-                        bvVar2 = new bv(20);
+                        dvVar2 = new dv(20);
                     }
-                    Collections.sort(arrayList2, bvVar2);
+                    Collections.sort(arrayList2, dvVar2);
                     for (List list4 : hashMap2.values()) {
                         Collections.sort(list4, new Comparator() {
                             @Override
@@ -226,25 +226,25 @@ public final class i0 implements RequestDelegate {
                                 TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
                                 switch (r2) {
                                     case 0:
-                                        return bvVar2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
+                                        return dvVar2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
                                     default:
-                                        return bvVar2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
+                                        return dvVar2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
                                 }
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new ny0(oVar, hashMap2, arrayList2, 23));
+                    AndroidUtilities.runOnUIThread(new oy0(oVar, hashMap2, arrayList2, 23));
                     return;
                 }
                 return;
             case 26:
-                AndroidUtilities.runOnUIThread(new sg.u(25, (vg.n1) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new s9.g(26, (vg.n1) obj, tLObject));
                 return;
             case 27:
-                AndroidUtilities.runOnUIThread(new vi.i0(2, (xf.c) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new vi.k0(2, (xf.c) obj, tLObject));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ny0((xf.d) obj, tLObject, tL_error, 27));
+                AndroidUtilities.runOnUIThread(new oy0((xf.d) obj, tLObject, tL_error, 27));
                 return;
         }
     }

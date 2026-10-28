@@ -2,13 +2,13 @@ package di;
 
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.ui.qw;
+import org.telegram.ui.sw;
 public final class n extends qg.b {
     public final boolean d;
-    public final qw e;
+    public final sw e;
 
-    public n(qw qwVar, boolean z10) {
-        this.e = qwVar;
+    public n(sw swVar, boolean z10) {
+        this.e = swVar;
         this.d = z10;
     }
 
@@ -21,25 +21,25 @@ public final class n extends qg.b {
     public final int h() {
         ArrayList arrayList;
         boolean z10 = this.d;
-        qw qwVar = this.e;
+        sw swVar = this.e;
         if (z10) {
-            arrayList = qwVar.f9103y;
+            arrayList = swVar.f9102y;
         } else {
-            arrayList = qwVar.f9101x;
+            arrayList = swVar.f9100x;
         }
         return arrayList.size();
     }
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
-        q qVar = (q) e1Var.f47738a;
-        qVar.f8937b = i10;
+        q qVar = (q) e1Var.f47773a;
+        qVar.f8936b = i10;
         boolean z10 = this.d;
-        qw qwVar = this.e;
+        sw swVar = this.e;
         if (z10) {
-            qVar.setDialogId(((o) qwVar.f9103y.get(i10)).f8855c);
+            qVar.setDialogId(((o) swVar.f9102y.get(i10)).f8854c);
         } else {
-            qVar.setDialogId(((o) qwVar.f9101x.get(i10)).f8855c);
+            qVar.setDialogId(((o) swVar.f9100x.get(i10)).f8854c);
         }
     }
 

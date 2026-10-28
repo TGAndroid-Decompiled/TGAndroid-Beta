@@ -7,9 +7,9 @@ import org.telegram.messenger.NotificationCenter;
 public class HomeScreen extends m implements e, NotificationCenter.NotificationCenterDelegate {
     @Override
     public final void a(t tVar) {
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.pushMessagesUpdated);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.notificationsCountUpdated);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.activeAccountChanged);
+        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.pushMessagesUpdated);
+        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.notificationsCountUpdated);
+        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.activeAccountChanged);
     }
 
     @Override

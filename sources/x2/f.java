@@ -19,15 +19,15 @@ public final class f extends m implements Comparable {
     public final boolean N;
     public final boolean O;
     public final int e;
-    public final boolean f51315f;
+    public final boolean f51373f;
     public final String h;
-    public final j f51316n;
-    public final boolean f51317r;
-    public final int f51318s;
+    public final j f51374n;
+    public final boolean f51375r;
+    public final int f51376s;
     public final int v;
-    public final int f51319w;
-    public final int f51320x;
-    public final boolean f51321y;
+    public final int f51377w;
+    public final int f51378x;
+    public final boolean f51379y;
 
     public f(int r8, b2.q1 r9, int r10, x2.j r11, int r12, boolean r13, x2.d r14, int r15) {
         throw new UnsupportedOperationException("Method not decompiled: x2.f.<init>(int, b2.q1, int, x2.j, int, boolean, x2.d, int):void");
@@ -44,11 +44,11 @@ public final class f extends m implements Comparable {
         String str;
         f fVar = (f) mVar;
         x xVar = fVar.d;
-        this.f51316n.getClass();
+        this.f51374n.getClass();
         x xVar2 = this.d;
         int i11 = xVar2.K;
         if (i11 != -1 && i11 == xVar.K) {
-            if ((this.f51321y || ((str = xVar2.f3586s) != null && TextUtils.equals(str, xVar.f3586s))) && (i10 = xVar2.L) != -1 && i10 == xVar.L && this.M == fVar.M && this.N == fVar.N) {
+            if ((this.f51379y || ((str = xVar2.f3586s) != null && TextUtils.equals(str, xVar.f3586s))) && (i10 = xVar2.L) != -1 && i10 == xVar.L && this.M == fVar.M && this.N == fVar.N) {
                 return true;
             }
             return false;
@@ -59,24 +59,24 @@ public final class f extends m implements Comparable {
     @Override
     public final int compareTo(f fVar) {
         q1 a2;
-        boolean z10 = this.f51317r;
-        boolean z11 = this.f51315f;
+        boolean z10 = this.f51375r;
+        boolean z11 = this.f51373f;
         if (z11 && z10) {
-            a2 = o.f51346l;
+            a2 = o.f51404l;
         } else {
-            a2 = o.f51346l.a();
+            a2 = o.f51404l.a();
         }
-        boolean z12 = fVar.f51317r;
+        boolean z12 = fVar.f51375r;
         int i10 = fVar.K;
-        w c10 = w.f10352a.c(z10, z12);
+        w c10 = w.f10351a.c(z10, z12);
         Integer valueOf = Integer.valueOf(this.v);
         Integer valueOf2 = Integer.valueOf(fVar.v);
-        n1 n1Var = n1.f10308c;
-        w b10 = c10.b(valueOf, valueOf2, n1Var).a(this.f51318s, fVar.f51318s).a(this.f51319w, fVar.f51319w).b(Integer.valueOf(this.f51320x), Integer.valueOf(fVar.f51320x), n1Var).c(this.H, fVar.H).c(this.E, fVar.E).b(Integer.valueOf(this.F), Integer.valueOf(fVar.F), n1Var).a(this.G, fVar.G).c(z11, fVar.f51315f).b(Integer.valueOf(this.L), Integer.valueOf(fVar.L), n1Var);
-        boolean z13 = this.f51316n.F;
+        n1 n1Var = n1.f10307c;
+        w b10 = c10.b(valueOf, valueOf2, n1Var).a(this.f51376s, fVar.f51376s).a(this.f51377w, fVar.f51377w).b(Integer.valueOf(this.f51378x), Integer.valueOf(fVar.f51378x), n1Var).c(this.H, fVar.H).c(this.E, fVar.E).b(Integer.valueOf(this.F), Integer.valueOf(fVar.F), n1Var).a(this.G, fVar.G).c(z11, fVar.f51373f).b(Integer.valueOf(this.L), Integer.valueOf(fVar.L), n1Var);
+        boolean z13 = this.f51374n.F;
         int i11 = this.K;
         if (z13) {
-            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), o.f51346l.a());
+            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), o.f51404l.a());
         }
         w b11 = b10.c(this.M, fVar.M).c(this.N, fVar.N).c(this.O, fVar.O).b(Integer.valueOf(this.I), Integer.valueOf(fVar.I), a2).b(Integer.valueOf(this.J), Integer.valueOf(fVar.J), a2);
         if (Objects.equals(this.h, fVar.h)) {

@@ -8,7 +8,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class a extends LinearLayout {
     public a(Context context) {
         super(context);
@@ -24,11 +24,11 @@ public final class a extends LinearLayout {
         textView.setTextSize(1, 14.0f);
         f7.V(textView, i10, null);
         org.telegram.messenger.t.n(R.string.AboutPremiumDescription, textView);
-        addView(textView, gb1.t(-1, -2, 0.0f, 0, 0, 0, 0, 0));
+        addView(textView, kb1.t(-1, -2, 0.0f, 0, 0, 0, 0, 0));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
         f7.V(textView2, i10, null);
         org.telegram.messenger.t.n(R.string.AboutPremiumDescription2, textView2);
-        addView(textView2, gb1.t(-1, -2, 0.0f, 0, 0, 24, 0, 0));
+        addView(textView2, kb1.t(-1, -2, 0.0f, 0, 0, 24, 0, 0));
     }
 }

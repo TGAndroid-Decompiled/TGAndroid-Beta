@@ -50,9 +50,9 @@ public final class e implements ToIntFunction {
             case 12:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 13:
-                return ((TLRPC.Message) obj).f22048id;
+                return ((TLRPC.Message) obj).f22049id;
             case 14:
-                return ((TLRPC.Message) obj).f22048id;
+                return ((TLRPC.Message) obj).f22049id;
             case 15:
                 return ((i6) obj).d;
             case 16:

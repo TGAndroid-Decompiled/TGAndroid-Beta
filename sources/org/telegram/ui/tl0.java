@@ -1,110 +1,115 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class tl0 implements View.OnClickListener {
-    public final int f43867a;
-    public final in0 f43868b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class tl0 implements TextView.OnEditorActionListener {
+    public final int f43668a;
+    public final kn0 f43669b;
 
-    public tl0(in0 in0Var, int i10) {
-        this.f43867a = i10;
-        this.f43868b = in0Var;
+    public tl0(kn0 kn0Var, int i10) {
+        this.f43668a = i10;
+        this.f43669b = kn0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f43867a) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f43668a) {
             case 0:
-                in0 in0Var = this.f43868b;
-                in0Var.S0 = 2;
-                in0Var.D1();
-                return;
+                kn0 kn0Var = this.f43669b;
+                if (i10 == 5) {
+                    kn0Var.Y[2].requestFocus();
+                    return true;
+                } else if (i10 == 6) {
+                    kn0Var.L.callOnClick();
+                    return true;
+                } else {
+                    kn0Var.getClass();
+                    return false;
+                }
             case 1:
-                this.f43868b.d1();
-                return;
+                kn0 kn0Var2 = this.f43669b;
+                kn0Var2.getClass();
+                if (i10 == 5) {
+                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr = kn0Var2.Y;
+                    if (intValue >= editTextBoldCursorArr.length) {
+                        return true;
+                    }
+                    if (editTextBoldCursorArr[intValue].isFocusable()) {
+                        kn0Var2.Y[intValue].requestFocus();
+                        return true;
+                    }
+                    kn0Var2.Y[intValue].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    textView.clearFocus();
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
+                }
+                return false;
             case 2:
-                in0 in0Var2 = this.f43868b;
-                in0Var2.S0 = 3;
-                in0Var2.D1();
-                return;
+                kn0 kn0Var3 = this.f43669b;
+                kn0Var3.getClass();
+                if (i10 == 5) {
+                    int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr2 = kn0Var3.f40836a0;
+                    if (intValue2 >= editTextBoldCursorArr2.length) {
+                        return true;
+                    }
+                    if (editTextBoldCursorArr2[intValue2].isFocusable()) {
+                        kn0Var3.f40836a0[intValue2].requestFocus();
+                        return true;
+                    }
+                    kn0Var3.f40836a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    textView.clearFocus();
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
+                }
+                return false;
             case 3:
-                in0 in0Var3 = this.f43868b;
-                in0Var3.S0 = 1;
-                in0Var3.D1();
-                return;
+                kn0 kn0Var4 = this.f43669b;
+                kn0Var4.getClass();
+                if (i10 != 6 && i10 != 5) {
+                    return false;
+                }
+                kn0Var4.L.callOnClick();
+                return true;
             case 4:
-                in0 in0Var4 = this.f43868b;
-                in0Var4.S0 = 4;
-                in0Var4.D1();
-                return;
+                kn0 kn0Var5 = this.f43669b;
+                kn0Var5.getClass();
+                if (i10 == 5) {
+                    int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr3 = kn0Var5.Y;
+                    if (intValue3 >= editTextBoldCursorArr3.length) {
+                        return true;
+                    }
+                    if (editTextBoldCursorArr3[intValue3].isFocusable()) {
+                        kn0Var5.Y[intValue3].requestFocus();
+                        return true;
+                    }
+                    kn0Var5.Y[intValue3].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    textView.clearFocus();
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
+                }
+                return false;
             case 5:
-                in0 in0Var5 = this.f43868b;
-                if (in0Var5.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                    in0Var5.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
-                    return;
+                kn0 kn0Var6 = this.f43669b;
+                kn0Var6.getClass();
+                if (i10 != 5 && i10 != 6) {
+                    return false;
                 }
-                y9 y9Var = new y9(0);
-                y9Var.M = new fm0(in0Var5);
-                in0Var5.presentFragment(y9Var);
-                return;
-            case 6:
-                in0 in0Var6 = this.f43868b;
-                in0Var6.f40285f = true;
-                in0Var6.L.callOnClick();
-                in0Var6.f40285f = false;
-                return;
-            case 7:
-                in0 in0Var7 = this.f43868b;
-                in0Var7.S0 = 0;
-                in0Var7.D1();
-                return;
-            case 8:
-                in0 in0Var8 = this.f43868b;
-                in0Var8.S0 = 4;
-                in0Var8.D1();
-                return;
-            case 9:
-                this.f43868b.d1();
-                return;
-            case 10:
-                in0.c0(this.f43868b);
-                return;
-            case 11:
-                in0.d0(this.f43868b);
-                return;
-            case 12:
-                this.f43868b.C1();
-                return;
-            case 13:
-                in0 in0Var9 = this.f43868b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(in0Var9.getParentActivity());
-                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
-                alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new vl0(in0Var9, 5));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
-                in0Var9.showDialog(e2Var);
-                TextView textView = (TextView) e2Var.d(-1);
-                if (textView != null) {
-                    org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23598q7, null);
-                    return;
-                }
-                return;
-            case 14:
-                this.f43868b.C1();
-                return;
-            case 15:
-                in0.W(this.f43868b);
-                return;
+                kn0Var6.L.callOnClick();
+                return true;
             default:
-                in0 in0Var10 = this.f43868b;
-                in0Var10.f40285f = true;
-                in0Var10.L.callOnClick();
-                in0Var10.f40285f = false;
-                return;
+                kn0 kn0Var7 = this.f43669b;
+                kn0Var7.getClass();
+                if (i10 != 6 && i10 != 5) {
+                    return false;
+                }
+                kn0Var7.L.callOnClick();
+                return true;
         }
     }
 }

@@ -1,119 +1,195 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.os.Bundle;
+import android.animation.ValueAnimator;
+import android.os.Build;
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class gw extends ig.n {
-    public final ay f39789d0;
-    public final cy f39790e0;
+import org.telegram.messenger.AndroidUtilities;
+public final class gw extends s4.u0 {
+    public boolean f39698a;
+    public final dy f39699b;
+    public final wx f39700c;
+    public final ey d;
 
-    public gw(cy cyVar, cy cyVar2, Context context, int i10, int i11, boolean z10, ArrayList arrayList, int i12, TLRPC.RequestPeerType requestPeerType, ay ayVar) {
-        super(cyVar2, context, i10, i11, z10, arrayList, i12, requestPeerType);
-        this.f39790e0 = cyVar;
-        this.f39789d0 = ayVar;
+    public gw(ey eyVar, dy dyVar, wx wxVar) {
+        this.d = eyVar;
+        this.f39699b = dyVar;
+        this.f39700c = wxVar;
     }
 
     @Override
-    public final void K() {
-        this.f39790e0.presentFragment(new k());
-    }
-
-    @Override
-    public final void L() {
-        int i10;
-        cy cyVar = this.f39790e0;
-        org.telegram.ui.ActionBar.e2 e2Var = new org.telegram.ui.ActionBar.e2(cyVar.getParentActivity(), 3, null);
-        TLRPC.RequestPeerType requestPeerType = cyVar.G;
-        if (requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast) {
-            Bundle g7 = org.telegram.ui.Components.b10.g(0, "step");
-            Boolean bool = cyVar.G.has_username;
-            if (bool != null) {
-                g7.putBoolean("forcePublic", bool.booleanValue());
+    public final void a(RecyclerView recyclerView, int i10) {
+        ey eyVar = this.d;
+        if (i10 == 1) {
+            this.f39698a = true;
+            eyVar.f39001e3 = true;
+            a8.ng ngVar = eyVar.f38998e0[0].f38703b;
+            ValueAnimator valueAnimator = (ValueAnimator) ngVar.f640c;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                ((ValueAnimator) ngVar.f640c).cancel();
+                ngVar.f640c = null;
             }
-            nd ndVar = new nd(g7);
-            ndVar.f41868u0 = new q6(cyVar, ndVar, e2Var, 2);
-            cyVar.presentFragment(ndVar);
-        } else if (requestPeerType instanceof TLRPC.TL_requestPeerTypeChat) {
-            Bundle bundle = new Bundle();
-            Boolean bool2 = cyVar.G.bot_participant;
-            bundle.putLongArray("result", (bool2 == null || !bool2.booleanValue()) ? new long[]{cyVar.getUserConfig().getClientUserId()} : new long[]{cyVar.getUserConfig().getClientUserId(), cyVar.H});
-            Boolean bool3 = cyVar.G.forum;
-            if (bool3 != null && bool3.booleanValue()) {
-                i10 = 5;
-            } else {
-                i10 = 4;
+            if (eyVar.X.f30347r.getText().length() == 0 && eyVar.X.f30347r.hasFocus()) {
+                AndroidUtilities.hideKeyboard(eyVar.X.f30347r);
+                eyVar.X.f30347r.clearFocus();
             }
-            bundle.putInt("chatType", i10);
-            bundle.putBoolean("canToggleTopics", false);
-            x60 x60Var = new x60(bundle);
-            x60Var.Y = new yw(cyVar, e2Var);
-            cyVar.presentFragment(x60Var);
+        } else {
+            eyVar.f39001e3 = false;
+        }
+        if (i10 == 0) {
+            this.f39698a = false;
+            eyVar.f39000e2 = false;
+            boolean z10 = eyVar.f38983b1;
+            dy dyVar = this.f39699b;
+            if (z10) {
+                eyVar.f38983b1 = false;
+                if (eyVar.f38994d1) {
+                    zx zxVar = dyVar.f38702a;
+                    int i11 = zx.C3;
+                    zxVar.G1();
+                    eyVar.f38994d1 = false;
+                }
+                dyVar.d.l();
+            }
+            ey.s1(eyVar, dyVar);
         }
     }
 
     @Override
-    public final void M(TLRPC.User user) {
-        int i10;
-        i10 = ((org.telegram.ui.ActionBar.r2) this.f39790e0).currentAccount;
-        MessagesController.getInstance(i10).openApp(user, 0);
-    }
-
-    @Override
-    public final boolean T() {
-        if (this.f39790e0.R0 == 0) {
-            return true;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        ch.f fVar;
+        zx zxVar;
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        View childAt;
+        int i13;
+        boolean z10;
+        Object[] objArr;
+        this.f39700c.V();
+        dy dyVar = this.f39699b;
+        cw cwVar = dyVar.f38710x;
+        int i14 = -i11;
+        ArrayList arrayList = cwVar.f30628x;
+        ArrayList arrayList2 = cwVar.f30620o;
+        boolean z11 = false;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            for (int i15 = 0; i15 < size; i15++) {
+                View view = ((s4.e1) arrayList2.get(i15)).f47773a;
+                view.setTranslationY(view.getTranslationY() + i14);
+            }
         }
-        return false;
-    }
-
-    @Override
-    public final void a(org.telegram.ui.Cells.p2 p2Var) {
-        ay ayVar = this.f39789d0;
-        ayVar.f37913a.getClass();
-        this.f39790e0.w4(p2Var, RecyclerView.R(p2Var), 0.0f, ayVar.d);
-    }
-
-    @Override
-    public final void d(org.telegram.ui.Cells.p2 p2Var) {
-        int i10;
-        if (p2Var.getMessage() != null) {
-            cy cyVar = this.f39790e0;
-            i10 = ((org.telegram.ui.ActionBar.r2) cyVar).currentAccount;
-            TLRPC.TL_forumTopic findTopic = cyVar.getMessagesController().getTopicsController().findTopic(-p2Var.getDialogId(), MessageObject.getTopicId(i10, p2Var.getMessage().messageOwner, true));
-            if (findTopic != null) {
-                if (cyVar.f38623l2) {
-                    cyVar.W3(p2Var.getDialogId(), findTopic.f22079id, false, null);
-                } else {
-                    pg.d.m(cyVar, -p2Var.getDialogId(), findTopic, 0);
+        if (!arrayList.isEmpty()) {
+            int size2 = arrayList.size();
+            for (int i16 = 0; i16 < size2; i16++) {
+                View view2 = ((s4.e1) arrayList.get(i16)).f47773a;
+                view2.setTranslationY(view2.getTranslationY() + i14);
+            }
+        }
+        int i17 = -1;
+        int i18 = -1;
+        for (int i19 = 0; i19 < recyclerView.getChildCount(); i19++) {
+            int R = RecyclerView.R(recyclerView.getChildAt(i19));
+            if (R >= 0) {
+                if (i17 == -1 || R > i17) {
+                    i17 = R;
+                }
+                if (i18 == -1 || R < i18) {
+                    i18 = R;
                 }
             }
         }
-    }
-
-    @Override
-    public final void l() {
-        int i10;
-        h();
-        int i11 = ay.L;
-        try {
-            super.l();
-        } catch (Exception e) {
-            FileLog.e(e);
+        ey eyVar = this.d;
+        eyVar.z3(dyVar);
+        eyVar.Q = true;
+        View view3 = eyVar.fragmentView;
+        if (view3 != null) {
+            view3.invalidate();
         }
-        cy cyVar = this.f39790e0;
-        if (cyVar.R0 == 15) {
-            org.telegram.ui.ActionBar.w0 w0Var = cyVar.f38612j0;
-            if (this.U) {
-                i10 = 8;
-            } else {
-                i10 = 0;
+        if (eyVar.R0 != 10 && this.f39698a && recyclerView.getChildCount() > 0 && i18 != -1) {
+            s4.e1 K = recyclerView.K(i18);
+            if (!eyVar.h4() || (K != null && K.b() >= 0)) {
+                if (K != null) {
+                    i13 = K.f47773a.getTop();
+                } else {
+                    i13 = 0;
+                }
+                int i20 = eyVar.Y1;
+                if (i20 == i18) {
+                    int i21 = eyVar.Z1;
+                    int i22 = i21 - i13;
+                    if (i13 < i21) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (Math.abs(i22) <= 1) {
+                        objArr = null;
+                        if (objArr != null && eyVar.a2 && (z10 || eyVar.f39001e3)) {
+                            eyVar.k4(z10);
+                        }
+                        eyVar.Y1 = i18;
+                        eyVar.Z1 = i13;
+                        eyVar.a2 = true;
+                    }
+                } else if (i18 > i20) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                objArr = 1;
+                if (objArr != null) {
+                    eyVar.k4(z10);
+                }
+                eyVar.Y1 = i18;
+                eyVar.Z1 = i13;
+                eyVar.a2 = true;
             }
-            w0Var.setVisibility(i10);
+        }
+        if (!eyVar.K && recyclerView == eyVar.f38998e0[0].f38702a && !eyVar.f39026j2) {
+            kVar = ((org.telegram.ui.ActionBar.r2) eyVar).actionBar;
+            if (kVar != null) {
+                kVar2 = ((org.telegram.ui.ActionBar.r2) eyVar).actionBar;
+                if (!kVar2.q() && !eyVar.f39000e2 && !eyVar.G3.c()) {
+                    if (i11 > 0 && eyVar.h4() && eyVar.f38998e0[0].f38708s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
+                        int top = (childAt.getTop() - recyclerView.getPaddingTop()) + childAt.getMeasuredHeight();
+                        if (top + i11 > 0) {
+                            if (top < 0) {
+                                i11 = -top;
+                            } else {
+                                return;
+                            }
+                        }
+                    }
+                    eyVar.Q = true;
+                    View view4 = eyVar.fragmentView;
+                    if (view4 != null) {
+                        view4.invalidate();
+                    }
+                }
+            }
+        }
+        vw vwVar = eyVar.G3;
+        if (vwVar != null && vwVar.c() && (zxVar = dyVar.f38702a) != null) {
+            zxVar.invalidate();
+        }
+        sw swVar = eyVar.E0;
+        if (swVar != null && swVar.getPremiumHint() != null && eyVar.E0.getPremiumHint().V) {
+            eyVar.E0.getPremiumHint().e(true);
+        }
+        ?? h42 = eyVar.h4();
+        View childAt2 = dyVar.f38702a.getChildAt(h42 == true ? 1 : 0);
+        if (childAt2 != null) {
+            i12 = childAt2.getTop();
+        } else {
+            i12 = 0;
+        }
+        eyVar.e.a((i18 > h42 || (i12 - eyVar.N) + AndroidUtilities.dp(5.0f) < dyVar.f38702a.getPaddingTop()) ? true : true, true);
+        if (i11 != 0 && (fVar = eyVar.f39033k4) != null && Build.VERSION.SDK_INT >= 31) {
+            fVar.f(i10, i11);
         }
     }
 }

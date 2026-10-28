@@ -6,7 +6,7 @@ public final class u0 extends s1 {
     public final long d;
     public final int e;
 
-    public u0(String str, int i10, String str2, long j10, long j11) {
+    public u0(int i10, long j10, String str, long j11, String str2) {
         this.f1207a = j10;
         this.f1208b = str;
         this.f1209c = str2;

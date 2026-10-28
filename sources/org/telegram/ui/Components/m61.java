@@ -1,38 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public abstract class m61 {
-    public String[] f30412a = new String[0];
+import android.animation.ValueAnimator;
+public final class m61 implements ValueAnimator.AnimatorUpdateListener {
+    public int f30420a = 0;
+    public final int f30421b;
+    public final q61 f30422c;
 
-    public boolean a() {
-        return false;
+    public m61(q61 q61Var, int i10) {
+        this.f30422c = q61Var;
+        this.f30421b = i10;
     }
 
-    public String[] b() {
-        return this.f30412a;
-    }
-
-    public boolean c() {
-        return false;
-    }
-
-    public boolean d(f61 f61Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(f61 f61Var, j jVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.f30412a = strArr;
-    }
-
-    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f30421b);
+        q61 q61Var = this.f30422c;
+        q61Var.N = true;
+        q61Var.f31807n.scrollBy(0, floatValue - this.f30420a);
+        q61Var.N = false;
+        this.f30420a = floatValue;
     }
 }

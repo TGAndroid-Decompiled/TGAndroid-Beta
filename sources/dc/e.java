@@ -24,7 +24,7 @@ public final class e implements jg {
     @Override
     public ng zza() {
         ?? obj = new Object();
-        obj.f17846c = ob.TYPE_THIN;
+        obj.f17845c = ob.TYPE_THIN;
         h0 h0Var = new h0(4, false);
         h0Var.d = ((f) this.f8320b).e.a();
         h0Var.f511b = (qb) this.f8321c;

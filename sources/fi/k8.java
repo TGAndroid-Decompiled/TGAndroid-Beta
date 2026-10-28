@@ -2,15 +2,15 @@ package fi;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class k8 implements org.telegram.ui.Components.ob {
-    public final int f11122a;
+    public final int f11121a;
 
     public k8(int i10) {
-        this.f11122a = i10;
+        this.f11121a = i10;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f11122a) {
+        switch (this.f11121a) {
             case 0:
                 return true;
             case 1:
@@ -48,22 +48,22 @@ public final class k8 implements org.telegram.ui.Components.ob {
 
     @Override
     public final void b(org.telegram.ui.Components.qc qcVar) {
-        int i10 = this.f11122a;
+        int i10 = this.f11121a;
     }
 
     @Override
     public final void c(float f7) {
-        int i10 = this.f11122a;
+        int i10 = this.f11121a;
     }
 
     @Override
     public final void d(org.telegram.ui.Components.qc qcVar) {
-        int i10 = this.f11122a;
+        int i10 = this.f11121a;
     }
 
     @Override
     public final boolean e() {
-        switch (this.f11122a) {
+        switch (this.f11121a) {
             case 0:
                 return true;
             case 1:
@@ -103,7 +103,7 @@ public final class k8 implements org.telegram.ui.Components.ob {
     public final int f(int i10) {
         int i11;
         int dp;
-        switch (this.f11122a) {
+        switch (this.f11121a) {
             case 0:
                 return 0;
             case 1:
@@ -146,7 +146,7 @@ public final class k8 implements org.telegram.ui.Components.ob {
 
     @Override
     public final boolean g(int i10) {
-        switch (this.f11122a) {
+        switch (this.f11121a) {
             case 0:
                 return false;
             case 1:
@@ -184,7 +184,7 @@ public final class k8 implements org.telegram.ui.Components.ob {
 
     @Override
     public final int h(int i10) {
-        switch (this.f11122a) {
+        switch (this.f11121a) {
             case 0:
                 return AndroidUtilities.statusBarHeight;
             case 1:

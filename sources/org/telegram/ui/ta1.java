@@ -2,55 +2,93 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.os.Bundle;
+import android.text.TextPaint;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
+import android.widget.FrameLayout;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ta1 extends View {
-    public static final int f43719c = 0;
-    public final Paint f43720a;
-    public int[] f43721b;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.SharedConfig;
+public final class ta1 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
+    public final org.telegram.ui.Components.mp0 f43587a;
+    public final int f43588b;
+    public final TextPaint f43589c;
+    public int d;
+    public final ThemeActivity e;
 
-    public ta1(Context context) {
+    public ta1(ThemeActivity themeActivity, Context context) {
         super(context);
-        this.f43720a = new Paint(1);
-        this.f43721b = new int[7];
+        this.e = themeActivity;
+        this.f43588b = 17;
+        setWillNotDraw(false);
+        TextPaint textPaint = new TextPaint(1);
+        this.f43589c = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        org.telegram.ui.Components.mp0 mp0Var = new org.telegram.ui.Components.mp0(context);
+        this.f43587a = mp0Var;
+        mp0Var.setReportChanges(true);
+        mp0Var.setSeparatorsCount(18);
+        mp0Var.setDelegate(new wv0(this, 3));
+        mp0Var.setImportantForAccessibility(2);
+        addView(mp0Var, org.telegram.ui.Components.kb1.h(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.Vi));
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f43587a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float measuredWidth = getMeasuredWidth() * 0.5f;
-        float measuredHeight = getMeasuredHeight() * 0.5f;
-        float dp = AndroidUtilities.dp(5.0f);
-        float dp2 = AndroidUtilities.dp(20.0f) - dp;
-        Paint.Style style = Paint.Style.FILL;
-        Paint paint = this.f43720a;
-        paint.setStyle(style);
-        int i10 = 0;
-        paint.setColor(this.f43721b[0]);
-        canvas.drawCircle(measuredWidth, measuredHeight, dp, paint);
-        double d = 0.0d;
-        while (i10 < 6) {
-            i10++;
-            paint.setColor(this.f43721b[i10]);
-            canvas.drawCircle((((float) Math.sin(d)) * dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * dp2), dp, paint);
-            d += 1.0471975511965976d;
-        }
+        int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.I6, false);
+        TextPaint textPaint = this.f43589c;
+        textPaint.setColor(x02);
+        canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", R.string.ColorPickerMainColor));
-        accessibilityNodeInfo.setClassName(Button.class.getName());
-        accessibilityNodeInfo.setEnabled(true);
+        this.f43587a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+        this.f43587a.setProgress(SharedConfig.bubbleRadius / this.f43588b);
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f43587a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void updateColors() {
+        org.telegram.ui.Components.mp0 mp0Var = this.f43587a;
+        if (mp0Var == null) {
+            return;
+        }
+        try {
+            int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Vi, false);
+            if (x02 != this.d) {
+                this.d = x02;
+                mp0Var.setOuterColor(x02);
+            }
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 }

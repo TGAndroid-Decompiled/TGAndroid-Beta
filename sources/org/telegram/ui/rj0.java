@@ -1,31 +1,34 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_feed;
-public final class rj0 implements Runnable {
-    public final int f43174a;
-    public final xj0 f43175b;
-    public final vj0 f43176c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rj0 implements RequestDelegate {
+    public final int f43074a;
+    public final zj0 f43075b;
 
-    public rj0(xj0 xj0Var, vj0 vj0Var, int i10) {
-        this.f43174a = i10;
-        this.f43175b = xj0Var;
-        this.f43176c = vj0Var;
+    public rj0(zj0 zj0Var, int i10) {
+        this.f43074a = i10;
+        this.f43075b = zj0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43174a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f43074a) {
             case 0:
-                this.f43175b.m0(this.f43176c);
+                AndroidUtilities.runOnUIThread(new kb0(23, this.f43075b, tLObject));
                 return;
             default:
-                vj0 vj0Var = this.f43176c;
-                vj0Var.f44851q = null;
-                TL_feed.TL_feed_readFeed tL_feed_readFeed = new TL_feed.TL_feed_readFeed();
-                tL_feed_readFeed.max_position = vj0Var.f44850p;
-                xj0 xj0Var = this.f43175b;
-                xj0Var.getConnectionsManager().sendRequest(tL_feed_readFeed, new pj0(xj0Var, 1));
-                return;
+                boolean z10 = tLObject instanceof TLRPC.Updates;
+                zj0 zj0Var = this.f43075b;
+                if (z10) {
+                    zj0Var.getMessagesController().lambda$processUpdates$379((TLRPC.Updates) tLObject, false);
+                    return;
+                } else {
+                    zj0Var.getClass();
+                    return;
+                }
         }
     }
 }

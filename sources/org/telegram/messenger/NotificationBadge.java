@@ -157,7 +157,7 @@ public class NotificationBadge {
             bundle.putString("package", ApplicationLoader.applicationContext.getPackageName());
             bundle.putString("class", NotificationBadge.componentName.getClassName());
             bundle.putInt("badgenumber", i10);
-            AndroidUtilities.runOnUIThread(new j1(bundle, 29));
+            AndroidUtilities.runOnUIThread(new j1(bundle, 28));
         }
 
         @Override
@@ -190,7 +190,7 @@ public class NotificationBadge {
             if (!NotificationBadge.canResolveBroadcast(intent) && !NotificationBadge.canResolveBroadcast(intent2)) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new nc(29, intent, intent2));
+            AndroidUtilities.runOnUIThread(new lc(29, intent, intent2));
         }
 
         @Override
@@ -468,7 +468,7 @@ public class NotificationBadge {
 
         @Override
         public void executeBadge(int i10) {
-            AndroidUtilities.runOnUIThread(new vg(0, this, b10.g(i10, "app_badge_count")));
+            AndroidUtilities.runOnUIThread(new wg(0, this, b10.g(i10, "app_badge_count")));
         }
 
         @Override

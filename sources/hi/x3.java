@@ -6,32 +6,32 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.k80;
+import org.telegram.ui.Components.l80;
 public final class x3 extends ClickableSpan {
-    public final int f13361a;
-    public final bi.k0 f13362b;
-    public final d4 f13363c;
+    public final int f13360a;
+    public final bi.k0 f13361b;
+    public final d4 f13362c;
 
     public x3(d4 d4Var, int i10, bi.k0 k0Var) {
-        this.f13363c = d4Var;
-        this.f13361a = i10;
-        this.f13362b = k0Var;
+        this.f13362c = d4Var;
+        this.f13360a = i10;
+        this.f13361b = k0Var;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         boolean z11;
-        k80 H = k80.H(this.f13363c, view);
+        l80 H = l80.H(this.f13362c, view);
         boolean z12 = true;
-        int i10 = this.f13361a;
+        int i10 = this.f13360a;
         if (i10 == 3) {
             z10 = true;
         } else {
             z10 = false;
         }
         String string = LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortDate);
-        final bi.k0 k0Var = this.f13362b;
+        final bi.k0 k0Var = this.f13361b;
         H.i(new Runnable() {
             @Override
             public final void run() {
@@ -188,8 +188,8 @@ public final class x3 extends ClickableSpan {
             }
         }, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortProfitability), z12);
         H.V(5);
-        H.f29869t = false;
-        H.f29868s = 0;
+        H.f30169t = false;
+        H.f30168s = 0;
         H.a0(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f));
         H.Z();
     }

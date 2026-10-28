@@ -1,29 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class ue implements Comparator {
-    public final int f21436a;
-    public final LongSparseIntArray f21437b;
+import org.telegram.messenger.Utilities;
+public final class ue implements Runnable {
+    public final int f21439a;
+    public final MessagesStorage f21440b;
+    public final Utilities.Callback f21441c;
+    public final long d;
+    public final long e;
 
-    public ue(LongSparseIntArray longSparseIntArray, int i10) {
-        this.f21436a = i10;
-        this.f21437b = longSparseIntArray;
+    public ue(MessagesStorage messagesStorage, Utilities.Callback callback, long j10, long j11, int i10) {
+        this.f21439a = i10;
+        this.f21440b = messagesStorage;
+        this.f21441c = callback;
+        this.d = j10;
+        this.e = j11;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$checkLoadedRemoteFilters$71;
-        int lambda$resetDialogs$97;
-        Long l4 = (Long) obj;
-        Long l10 = (Long) obj2;
-        switch (this.f21436a) {
+    public final void run() {
+        switch (this.f21439a) {
             case 0:
-                lambda$checkLoadedRemoteFilters$71 = MessagesStorage.lambda$checkLoadedRemoteFilters$71(this.f21437b, l4, l10);
-                return lambda$checkLoadedRemoteFilters$71;
+                this.f21440b.lambda$getEphemeralMessages$212(this.f21441c, this.d, this.e);
+                return;
             default:
-                lambda$resetDialogs$97 = MessagesStorage.lambda$resetDialogs$97(this.f21437b, l4, l10);
-                return lambda$resetDialogs$97;
+                this.f21440b.lambda$getEphemeralMessages$211(this.f21441c, this.d, this.e);
+                return;
         }
     }
 }

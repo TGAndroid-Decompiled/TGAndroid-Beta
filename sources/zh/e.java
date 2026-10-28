@@ -14,28 +14,28 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.nm0;
+import org.telegram.ui.Components.u61;
 public final class e extends bb implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final t61 X;
+    public final u61 X;
     public final LongSparseArray Y;
     public ArrayList Z;
-    public boolean f52957a0;
-    public j71 f52958b0;
-    public int f52959c0;
+    public boolean f53015a0;
+    public k71 f53016b0;
+    public int f53017c0;
 
     public e(Context context) {
         super(context, null, false, false, 2, null);
         int i10 = 0;
         this.Y = new LongSparseArray();
         this.Z = new ArrayList();
-        int x02 = y6.x0(null, y6.f23299a7, false);
-        this.f52959c0 = x02;
+        int x02 = y6.x0(null, y6.f23300a7, false);
+        this.f53017c0 = x02;
         setBackgroundColor(x02);
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
         this.L = false;
@@ -46,10 +46,10 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
-        this.X = t61.j(-1, linearLayout);
+        this.X = u61.j(-1, linearLayout);
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
         this.d.setOverScrollMode(2);
-        this.f52958b0.O(false);
+        this.f53016b0.O(false);
         ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
         int size = activeAuctions.size();
         while (i10 < size) {
@@ -57,8 +57,8 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             i10++;
             GiftAuctionController.Auction auction2 = auction;
             d dVar = new d(context, auction2);
-            dVar.f52926a.setOnClickListener(new a51(this, context, auction2, 4));
-            linearLayout.addView(dVar, gb1.r(-1, -2));
+            dVar.f52984a.setOnClickListener(new b51(this, context, auction2, 4));
+            linearLayout.addView(dVar, kb1.r(-1, -2));
             this.Y.put(auction2.giftId, dVar);
         }
         onActiveAuctionsUpdate(activeAuctions);
@@ -86,10 +86,10 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             }
             d dVar = (d) this.Y.get(auction.giftId);
             if (dVar != null) {
-                dVar.b(this.f52957a0);
+                dVar.b(this.f53015a0);
                 long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                dVar.a(max, this.f52957a0);
-                dVar.f52929f.a(max);
+                dVar.a(max, this.f53015a0);
+                dVar.f52987f.a(max);
             }
         }
     }
@@ -97,16 +97,16 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f52957a0 = true;
+        this.f53015a0 = true;
     }
 
     @Override
     public final void onThemeColorsChanged() {
         try {
             super.onThemeColorsChanged();
-            int x02 = y6.x0(null, y6.f23299a7, false);
-            if (x02 != this.f52959c0) {
-                this.f52959c0 = x02;
+            int x02 = y6.x0(null, y6.f23300a7, false);
+            if (x02 != this.f53017c0) {
+                this.f53017c0 = x02;
                 setBackgroundColor(x02);
             }
         } catch (Exception e) {
@@ -115,11 +115,11 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
     }
 
     @Override
-    public final lm0 v(mm0 mm0Var) {
-        j71 j71Var = new j71(this.d, getContext(), this.currentAccount, 0, true, new hi.e2(this, 26), this.resourcesProvider);
-        this.f52958b0 = j71Var;
-        j71Var.f29507r = false;
-        return j71Var;
+    public final mm0 v(nm0 nm0Var) {
+        k71 k71Var = new k71(this.d, getContext(), this.currentAccount, 0, true, new hi.e2(this, 26), this.resourcesProvider);
+        this.f53016b0 = k71Var;
+        k71Var.f29878r = false;
+        return k71Var;
     }
 
     @Override

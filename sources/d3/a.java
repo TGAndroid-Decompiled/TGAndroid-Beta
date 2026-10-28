@@ -43,7 +43,7 @@ public final class a implements o {
     public int f7896i = -1;
 
     static {
-        String str = n0.f9692a;
+        String str = n0.f9691a;
         Charset charset = StandardCharsets.UTF_8;
         f7890u = "#!AMR\n".getBytes(charset);
         v = "#!AMR-WB\n".getBytes(charset);
@@ -102,7 +102,7 @@ public final class a implements o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f10287b;
+        g0 g0Var = i0.f10286b;
         return s1.e;
     }
 
@@ -147,7 +147,7 @@ public final class a implements o {
         pVar.b(0, bArr.length, bArr2);
         if (Arrays.equals(bArr2, bArr)) {
             this.d = false;
-            pVar.q(bArr.length);
+            pVar.r(bArr.length);
             return true;
         }
         pVar.p();
@@ -158,7 +158,7 @@ public final class a implements o {
             return false;
         }
         this.d = true;
-        pVar.q(bArr3.length);
+        pVar.r(bArr3.length);
         return true;
     }
 

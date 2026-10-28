@@ -6,9 +6,9 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c90;
+import org.telegram.ui.Components.d90;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.lb0;
+import org.telegram.ui.ob0;
 public final class m implements RequestDelegate {
     public final int f5057a;
     public final boolean f5058b;
@@ -38,10 +38,10 @@ public final class m implements RequestDelegate {
                 ((MessagesController) this.d).lambda$checkChatInviter$376((TLRPC.Chat) this.e, this.f5058b, this.f5059c, tLObject, tL_error);
                 return;
             case 3:
-                c90.s((c90) this.d, this.f5059c, this.f5058b, (TLRPC.TL_messages_importChatInvite) this.e, tLObject, tL_error);
+                d90.s((d90) this.d, this.f5059c, this.f5058b, (TLRPC.TL_messages_importChatInvite) this.e, tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new n((lb0) this.d, tLObject, this.f5059c, (String) this.e, this.f5058b, tL_error));
+                AndroidUtilities.runOnUIThread(new n((ob0) this.d, tLObject, this.f5059c, (String) this.e, this.f5058b, tL_error));
                 return;
         }
     }
@@ -54,17 +54,17 @@ public final class m implements RequestDelegate {
         this.f5059c = j10;
     }
 
-    public m(c90 c90Var, long j10, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+    public m(d90 d90Var, long j10, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
         this.f5057a = 3;
-        this.d = c90Var;
+        this.d = d90Var;
         this.f5059c = j10;
         this.f5058b = z10;
         this.e = tL_messages_importChatInvite;
     }
 
-    public m(lb0 lb0Var, long j10, String str, boolean z10) {
+    public m(ob0 ob0Var, long j10, String str, boolean z10) {
         this.f5057a = 4;
-        this.d = lb0Var;
+        this.d = ob0Var;
         this.f5059c = j10;
         this.e = str;
         this.f5058b = z10;

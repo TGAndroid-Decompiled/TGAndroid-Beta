@@ -8,27 +8,27 @@ import java.util.Iterator;
 import java.util.List;
 import ud.q;
 public final class g extends nd.c implements fe.c {
-    public final fe.c f12480a;
-    public final ld.h f12481b;
-    public final int f12482c;
+    public final fe.c f12479a;
+    public final ld.h f12480b;
+    public final int f12481c;
     public ld.h d;
     public nd.c e;
 
     public g(fe.c cVar, ld.h hVar) {
-        super(d.f12477a, ld.i.f16988a);
-        this.f12480a = cVar;
-        this.f12481b = hVar;
-        this.f12482c = ((Number) hVar.fold(0, f.f12479b)).intValue();
+        super(d.f12476a, ld.i.f16987a);
+        this.f12479a = cVar;
+        this.f12480b = hVar;
+        this.f12481c = ((Number) hVar.fold(0, f.f12478b)).intValue();
     }
 
     @Override
     public final Object b(Object obj, nd.c cVar) {
         try {
             Object c10 = c(cVar, obj);
-            if (c10 == md.a.f18412a) {
+            if (c10 == md.a.f18411a) {
                 return c10;
             }
-            return jd.i.f15580a;
+            return jd.i.f15579a;
         } catch (Throwable th2) {
             this.d = new c(th2, cVar.getContext());
             throw th2;
@@ -45,7 +45,7 @@ public final class g extends nd.c implements fe.c {
         if (hVar != context) {
             int i11 = 0;
             if (hVar instanceof c) {
-                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((c) hVar).f12475a + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
+                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((c) hVar).f12474a + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
                 kotlin.jvm.internal.i.e(str2, "<this>");
                 List a2 = zd.d.a(new ae.j(str2, 0));
                 List list = a2;
@@ -133,18 +133,18 @@ public final class g extends nd.c implements fe.c {
                 StringBuilder sb2 = new StringBuilder(length2);
                 kd.g.g(arrayList3, sb2, "\n", "", "", "...", null);
                 throw new IllegalStateException(sb2.toString().toString());
-            } else if (((Number) context.fold(0, new j(this))).intValue() == this.f12482c) {
+            } else if (((Number) context.fold(0, new j(this))).intValue() == this.f12481c) {
                 this.d = context;
             } else {
-                throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f12481b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
+                throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f12480b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
             }
         }
         this.e = cVar;
-        q qVar = i.f12484a;
-        fe.c cVar2 = this.f12480a;
+        q qVar = i.f12483a;
+        fe.c cVar2 = this.f12479a;
         kotlin.jvm.internal.i.c(cVar2, "null cannot be cast to non-null type kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>");
         Object a10 = qVar.a(cVar2, obj, this);
-        if (!kotlin.jvm.internal.i.a(a10, md.a.f18412a)) {
+        if (!kotlin.jvm.internal.i.a(a10, md.a.f18411a)) {
             this.e = null;
         }
         return a10;
@@ -163,7 +163,7 @@ public final class g extends nd.c implements fe.c {
     public final ld.h getContext() {
         ld.h hVar = this.d;
         if (hVar == null) {
-            return ld.i.f16988a;
+            return ld.i.f16987a;
         }
         return hVar;
     }
@@ -183,6 +183,6 @@ public final class g extends nd.c implements fe.c {
         if (cVar != null) {
             cVar.resumeWith(obj);
         }
-        return md.a.f18412a;
+        return md.a.f18411a;
     }
 }

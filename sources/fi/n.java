@@ -1,21 +1,21 @@
 package fi;
 public final class n implements Runnable {
-    public final int f11277a;
-    public final ib f11278b;
+    public final int f11276a;
+    public final ib f11277b;
 
     public n(ib ibVar, int i10) {
-        this.f11277a = i10;
-        this.f11278b = ibVar;
+        this.f11276a = i10;
+        this.f11277b = ibVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f11277a) {
+        switch (this.f11276a) {
             case 0:
-                this.f11278b.n();
+                this.f11277b.n();
                 return;
             case 1:
-                ib ibVar = this.f11278b;
+                ib ibVar = this.f11277b;
                 ibVar.K0 = false;
                 ibVar.L0 = Integer.MIN_VALUE;
                 ibVar.invalidate();
@@ -23,7 +23,7 @@ public final class n implements Runnable {
                 ibVar.T0.setVisibility(0);
                 return;
             default:
-                sb sbVar = this.f11278b.S1;
+                sb sbVar = this.f11277b.S1;
                 gb gbVar = sbVar.X0;
                 if (gbVar != null) {
                     gbVar.O = false;

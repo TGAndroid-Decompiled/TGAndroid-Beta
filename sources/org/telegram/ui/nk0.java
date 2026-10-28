@@ -3,169 +3,131 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class nk0 extends org.telegram.ui.Components.lm0 {
-    public final Context f41948c;
-    public final NotificationsSettingsActivity d;
+import java.util.ArrayList;
+import org.telegram.messenger.DispatchQueue2;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+public final class nk0 extends org.telegram.ui.Components.mm0 {
+    public final Context f41816c;
+    public ArrayList d = new ArrayList();
+    public ArrayList e = new ArrayList();
+    public mk0 f41817f;
+    public final ig.a2 h;
+    public final NotificationsCustomSettingsActivity f41818n;
 
-    public nk0(NotificationsSettingsActivity notificationsSettingsActivity, Context context) {
-        this.d = notificationsSettingsActivity;
-        this.f41948c = context;
+    public nk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, Context context) {
+        this.f41818n = notificationsCustomSettingsActivity;
+        this.f41816c = context;
+        ig.a2 a2Var = new ig.a2(true);
+        this.h = a2Var;
+        a2Var.f13987a = new st(this, 26);
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        int b10 = e1Var.b();
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (b10 != notificationsSettingsActivity.f35591x && b10 != notificationsSettingsActivity.f35592y && b10 != notificationsSettingsActivity.E && b10 != notificationsSettingsActivity.K && b10 != notificationsSettingsActivity.M && b10 != notificationsSettingsActivity.S && b10 != notificationsSettingsActivity.N && b10 != notificationsSettingsActivity.L && b10 != notificationsSettingsActivity.R && b10 != notificationsSettingsActivity.F && b10 != notificationsSettingsActivity.G && b10 != notificationsSettingsActivity.O && b10 != notificationsSettingsActivity.f35588r && b10 != notificationsSettingsActivity.f35589s && b10 != notificationsSettingsActivity.T && b10 != notificationsSettingsActivity.J) {
-            return true;
+        return true;
+    }
+
+    public final Object E(int i10) {
+        if (i10 >= 0 && i10 < this.d.size()) {
+            return this.d.get(i10);
         }
-        return false;
+        int f7 = ic.a.f(1, i10, this.d);
+        ig.a2 a2Var = this.h;
+        ArrayList arrayList = a2Var.e;
+        if (f7 >= 0 && f7 < arrayList.size()) {
+            return a2Var.e.get(f7);
+        }
+        return null;
+    }
+
+    public final void F(String str) {
+        if (this.f41817f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f41817f);
+            this.f41817f = null;
+        }
+        if (str == null) {
+            this.d.clear();
+            this.e.clear();
+            this.h.f(null, null);
+            ig.a2 a2Var = this.h;
+            int i10 = this.f41818n.f35603s;
+            boolean z10 = true;
+            a2Var.g(null, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
+            l();
+            return;
+        }
+        DispatchQueue2 dispatchQueue2 = Utilities.searchQueue;
+        mk0 mk0Var = new mk0(this, str, 0);
+        this.f41817f = mk0Var;
+        dispatchQueue2.postRunnable(mk0Var, 300L);
     }
 
     @Override
     public final int h() {
-        return this.d.U;
+        int size = this.d.size();
+        ArrayList arrayList = this.h.e;
+        if (!arrayList.isEmpty()) {
+            return arrayList.size() + 1 + size;
+        }
+        return size;
     }
 
     @Override
     public final int j(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        int i19;
-        int i20;
-        int i21;
-        int i22;
-        int i23;
-        int i24;
-        int i25;
-        int i26;
-        int i27;
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (i10 != notificationsSettingsActivity.K && i10 != notificationsSettingsActivity.M && i10 != notificationsSettingsActivity.S && i10 != notificationsSettingsActivity.G && i10 != notificationsSettingsActivity.N && i10 != notificationsSettingsActivity.E && i10 != notificationsSettingsActivity.f35591x && i10 != notificationsSettingsActivity.f35588r) {
-            i11 = notificationsSettingsActivity.inappSoundRow;
-            if (i10 != i11) {
-                i12 = notificationsSettingsActivity.inappVibrateRow;
-                if (i10 != i12 && i10 != notificationsSettingsActivity.f35590w) {
-                    i13 = notificationsSettingsActivity.inappPreviewRow;
-                    if (i10 != i13) {
-                        i14 = notificationsSettingsActivity.contactJoinedRow;
-                        if (i10 != i14) {
-                            i15 = notificationsSettingsActivity.pinnedMessageRow;
-                            if (i10 != i15 && i10 != notificationsSettingsActivity.v) {
-                                i16 = notificationsSettingsActivity.badgeNumberMutedRow;
-                                if (i10 != i16) {
-                                    i17 = notificationsSettingsActivity.badgeNumberMessagesRow;
-                                    if (i10 != i17) {
-                                        i18 = notificationsSettingsActivity.badgeNumberShowRow;
-                                        if (i10 != i18) {
-                                            i19 = notificationsSettingsActivity.inappPriorityRow;
-                                            if (i10 != i19) {
-                                                i20 = notificationsSettingsActivity.inchatSoundRow;
-                                                if (i10 != i20 && i10 != notificationsSettingsActivity.P) {
-                                                    i21 = notificationsSettingsActivity.accountsAllRow;
-                                                    if (i10 != i21) {
-                                                        i22 = notificationsSettingsActivity.resetNotificationsRow;
-                                                        if (i10 != i22) {
-                                                            i23 = notificationsSettingsActivity.privateRow;
-                                                            if (i10 != i23) {
-                                                                i24 = notificationsSettingsActivity.groupRow;
-                                                                if (i10 != i24) {
-                                                                    i25 = notificationsSettingsActivity.channelsRow;
-                                                                    if (i10 != i25) {
-                                                                        i26 = notificationsSettingsActivity.storiesRow;
-                                                                        if (i10 != i26) {
-                                                                            i27 = notificationsSettingsActivity.reactionsRow;
-                                                                            if (i10 != i27) {
-                                                                                if (i10 != notificationsSettingsActivity.J && i10 != notificationsSettingsActivity.f35592y && i10 != notificationsSettingsActivity.L && i10 != notificationsSettingsActivity.R && i10 != notificationsSettingsActivity.F && i10 != notificationsSettingsActivity.O && i10 != notificationsSettingsActivity.T) {
-                                                                                    if (i10 == notificationsSettingsActivity.f35589s) {
-                                                                                        return 6;
-                                                                                    }
-                                                                                    return 5;
-                                                                                }
-                                                                                return 4;
-                                                                            }
-                                                                            return 3;
-                                                                        }
-                                                                        return 3;
-                                                                    }
-                                                                    return 3;
-                                                                }
-                                                                return 3;
-                                                            }
-                                                            return 3;
-                                                        }
-                                                        return 2;
-                                                    }
-                                                    return 1;
-                                                }
-                                                return 1;
-                                            }
-                                            return 1;
-                                        }
-                                        return 1;
-                                    }
-                                    return 1;
-                                }
-                                return 1;
-                            }
-                            return 1;
-                        }
-                        return 1;
-                    }
-                    return 1;
-                }
-                return 1;
-            }
+        if (i10 == this.d.size()) {
             return 1;
         }
         return 0;
     }
 
     @Override
-    public final void v(s4.e1 r23, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nk0.v(s4.e1, int):void");
+    public final void v(s4.e1 e1Var, int i10) {
+        int i11 = e1Var.f47776f;
+        View view = e1Var.f47773a;
+        boolean z10 = true;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                return;
+            }
+            ((org.telegram.ui.Cells.z3) view).setText(LocaleController.getString("AddToExceptions", R.string.AddToExceptions));
+            return;
+        }
+        org.telegram.ui.Cells.ab abVar = (org.telegram.ui.Cells.ab) view;
+        boolean z11 = false;
+        if (i10 < this.d.size()) {
+            qk0 qk0Var = (qk0) this.d.get(i10);
+            CharSequence charSequence = (CharSequence) this.e.get(i10);
+            if (i10 == this.d.size() - 1) {
+                z10 = false;
+            }
+            abVar.f(qk0Var, charSequence, z10);
+            abVar.setAddButtonVisible(false);
+            return;
+        }
+        int f7 = ic.a.f(1, i10, this.d);
+        ArrayList arrayList = this.h.e;
+        TLObject tLObject = (TLObject) arrayList.get(f7);
+        String string = LocaleController.getString("NotificationsOn", R.string.NotificationsOn);
+        if (f7 != arrayList.size() - 1) {
+            z11 = true;
+        }
+        abVar.d(tLObject, null, string, z11);
+        abVar.setAddButtonVisible(true);
     }
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        View q4Var;
-        org.telegram.ui.ActionBar.u6 u6Var;
-        org.telegram.ui.ActionBar.u6 u6Var2;
-        org.telegram.ui.ActionBar.u6 u6Var3;
-        org.telegram.ui.ActionBar.u6 u6Var4;
-        org.telegram.ui.ActionBar.u6 u6Var5;
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        Context context = this.f41948c;
-        if (i10 == 0) {
-            u6Var = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-            q4Var = new org.telegram.ui.Cells.q4(context, u6Var);
-        } else if (i10 == 1) {
-            u6Var2 = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-            q4Var = new org.telegram.ui.Cells.a9(context, u6Var2);
-        } else if (i10 != 2) {
-            if (i10 == 3) {
-                u6Var3 = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-                q4Var = new org.telegram.ui.Cells.n5(21, 64, this.f41948c, u6Var3, true);
-            } else if (i10 != 4) {
-                if (i10 != 5) {
-                    u6Var5 = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-                    q4Var = new org.telegram.ui.Cells.i9(context, u6Var5);
-                } else {
-                    u6Var4 = ((org.telegram.ui.ActionBar.r2) notificationsSettingsActivity).resourceProvider;
-                    q4Var = new org.telegram.ui.Cells.ga(context, 0, u6Var4);
-                }
-            } else {
-                q4Var = new org.telegram.ui.Cells.f7(context, (d3) null);
-            }
+        View abVar;
+        if (i10 != 0) {
+            abVar = new org.telegram.ui.Cells.z3(this.f41816c, null);
+            abVar.setBackgroundColor(0);
+            abVar.setTag(-33024);
         } else {
-            q4Var = new org.telegram.ui.Cells.h9(context);
+            abVar = new org.telegram.ui.Cells.ab(4, 0, this.f41816c, null, false, true);
         }
-        return new s4.e1(q4Var);
+        return new s4.e1(abVar);
     }
 }

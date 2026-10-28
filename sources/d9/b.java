@@ -30,7 +30,7 @@ public final class b implements ServiceConnection {
             c9.a aVar = (c9.a) cVar;
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.search.verification.api.ISearchActionVerificationService");
-            int i10 = i5.a.f13875a;
+            int i10 = i5.a.f13874a;
             if (intent == null) {
                 obtain.writeInt(0);
             } else {

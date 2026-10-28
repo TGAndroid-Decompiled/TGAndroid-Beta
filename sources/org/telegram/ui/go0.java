@@ -1,70 +1,25 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class go0 extends AnimatorListenerAdapter {
-    public final int f39732a;
-    public final boolean f39733b;
-    public final po0 f39734c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class go0 {
+    public final ro0 f39663a;
 
-    public go0(po0 po0Var, boolean z10, int i10) {
-        this.f39732a = i10;
-        this.f39734c = po0Var;
-        this.f39733b = z10;
+    public go0(ro0 ro0Var) {
+        this.f39663a = ro0Var;
     }
 
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f39732a) {
-            case 0:
-                po0 po0Var = this.f39734c;
-                AnimatorSet animatorSet = po0Var.v;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    po0Var.v = null;
-                    return;
-                }
-                return;
-            default:
-                po0 po0Var2 = this.f39734c;
-                AnimatorSet animatorSet2 = po0Var2.v;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    po0Var2.v = null;
-                    return;
-                }
-                return;
+    public final void a(Exception exc) {
+        ro0 ro0Var = this.f39663a;
+        if (ro0Var.Q0) {
+            return;
         }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39732a) {
-            case 0:
-                po0 po0Var = this.f39734c;
-                AnimatorSet animatorSet = po0Var.v;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f39733b) {
-                        po0Var.f42613r.setVisibility(4);
-                        return;
-                    } else {
-                        po0Var.f42608n.getContentView().setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-            default:
-                po0 po0Var2 = this.f39734c;
-                AnimatorSet animatorSet2 = po0Var2.v;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f39733b) {
-                        po0Var2.f42615s.setVisibility(4);
-                        return;
-                    } else {
-                        po0Var2.U.setVisibility(4);
-                        return;
-                    }
-                }
-                return;
+        ro0Var.I0(true, false);
+        ro0Var.E0(false);
+        if (!(exc instanceof wc.a) && !(exc instanceof wc.b)) {
+            org.telegram.ui.Components.g5.v0(ro0Var, exc.getMessage());
+        } else {
+            org.telegram.ui.Components.g5.v0(ro0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
         }
     }
 }

@@ -1,10 +1,10 @@
 package t5;
 public final class f {
-    public final String f48704a;
-    public final String f48705b;
+    public final String f48739a;
+    public final String f48740b;
 
     public f(String str, String str2) {
-        this.f48704a = str;
-        this.f48705b = str2;
+        this.f48739a = str;
+        this.f48740b = str2;
     }
 }

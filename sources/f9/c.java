@@ -11,13 +11,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class c extends a8.x {
-    public final int f10265b;
-    public final AbstractMap f10266c;
+    public final int f10264b;
+    public final AbstractMap f10265c;
 
     public c(AbstractMap abstractMap, int i10) {
         super(1);
-        this.f10265b = i10;
-        this.f10266c = abstractMap;
+        this.f10264b = i10;
+        this.f10265c = abstractMap;
     }
 
     @Override
@@ -27,9 +27,9 @@ public final class c extends a8.x {
 
     @Override
     public boolean contains(Object obj) {
-        switch (this.f10265b) {
+        switch (this.f10264b) {
             case 0:
-                Set entrySet = ((pb) this.f10266c).f739b.entrySet();
+                Set entrySet = ((pb) this.f10265c).f739b.entrySet();
                 entrySet.getClass();
                 try {
                     return entrySet.contains(obj);
@@ -71,24 +71,24 @@ public final class c extends a8.x {
 
     @Override
     public final Iterator iterator() {
-        switch (this.f10265b) {
+        switch (this.f10264b) {
             case 0:
-                return new ta((pb) this.f10266c, (byte) 0);
+                return new ta((pb) this.f10265c, (byte) 0);
             default:
-                h1 h1Var = (h1) this.f10266c;
-                Iterator it = h1Var.f10285a.entrySet().iterator();
-                g1 g1Var = h1Var.f10286b;
+                h1 h1Var = (h1) this.f10265c;
+                Iterator it = h1Var.f10284a.entrySet().iterator();
+                g1 g1Var = h1Var.f10285b;
                 g1Var.getClass();
                 return new w0(it, new za.c(g1Var, 19));
         }
     }
 
     public final Map m() {
-        switch (this.f10265b) {
+        switch (this.f10264b) {
             case 0:
-                return (pb) this.f10266c;
+                return (pb) this.f10265c;
             default:
-                return (h1) this.f10266c;
+                return (h1) this.f10265c;
         }
     }
 
@@ -102,14 +102,14 @@ public final class c extends a8.x {
     @Override
     public boolean remove(Object obj) {
         Object obj2;
-        switch (this.f10265b) {
+        switch (this.f10264b) {
             case 0:
                 if (!contains(obj)) {
                     return false;
                 }
                 Map.Entry entry = (Map.Entry) obj;
                 Objects.requireNonNull(entry);
-                k1 k1Var = (k1) ((pb) this.f10266c).e;
+                k1 k1Var = (k1) ((pb) this.f10265c).e;
                 Object key = entry.getKey();
                 Map map = k1Var.e;
                 map.getClass();
@@ -122,7 +122,7 @@ public final class c extends a8.x {
                 if (collection != null) {
                     int size = collection.size();
                     collection.clear();
-                    k1Var.f10293f -= size;
+                    k1Var.f10292f -= size;
                 }
                 return true;
             default:

@@ -30,11 +30,11 @@ public final class b0 extends nd.i implements ud.p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f3727a) {
             case 0:
-                jd.i iVar = jd.i.f15580a;
+                jd.i iVar = jd.i.f15579a;
                 ((b0) create((n1.b) obj, (ld.c) obj2)).invokeSuspend(iVar);
                 return iVar;
             default:
-                return ((b0) create((k1.a0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+                return ((b0) create((k1.a0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
         }
     }
 
@@ -45,16 +45,16 @@ public final class b0 extends nd.i implements ud.p {
         Object obj2 = this.f3729c;
         switch (i10) {
             case 0:
-                md.a aVar = md.a.f18412a;
+                md.a aVar = md.a.f18411a;
                 jd.b(obj);
                 n1.b bVar = (n1.b) this.f3728b;
                 bVar.getClass();
                 n1.d key = x.f3828a;
                 kotlin.jvm.internal.i.e(key, "key");
                 bVar.b(key, (String) obj2);
-                return jd.i.f15580a;
+                return jd.i.f15579a;
             default:
-                md.a aVar2 = md.a.f18412a;
+                md.a aVar2 = md.a.f18411a;
                 jd.b(obj);
                 k1.a0 a0Var = (k1.a0) this.f3728b;
                 k1.a0 a0Var2 = (k1.a0) obj2;

@@ -12,9 +12,9 @@ public final class f extends d {
 
     @Override
     public final void draw(Canvas canvas) {
-        int i10 = f7.f22628b;
-        if (this.f9965w != i10) {
-            this.f9965w = i10;
+        int i10 = f7.f22629b;
+        if (this.f9964w != i10) {
+            this.f9964w = i10;
             try {
                 updateColors();
             } catch (Exception e) {

@@ -9,17 +9,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.r2;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.cy;
-import org.telegram.ui.zg1;
+import org.telegram.ui.bh1;
+import org.telegram.ui.ey;
 public final class g0 extends tg.m1 {
     public static g0 S0;
     public final xg.a Q0;
@@ -30,19 +30,19 @@ public final class g0 extends tg.m1 {
         this.R0 = str;
         qc.a((FrameLayout) this.containerView, new k8(14));
         if (!z10) {
-            mm0 mm0Var = this.d;
+            nm0 nm0Var = this.d;
             int i11 = this.backgroundPaddingLeft;
-            mm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
+            nm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
             xg.a aVar = new xg.a(getContext(), this.resourcesProvider);
             this.Q0 = aVar;
             aVar.setOnClickListener(new ig.d0(this, 23));
             xg.a aVar2 = this.Q0;
             aVar2.e = true;
-            fi.d dVar = aVar2.f51751a;
+            fi.d dVar = aVar2.f51809a;
             dVar.setEnabled(true);
             dVar.i(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            f7.i(y6.f23427h5, aVar2.f51752b, aVar2.f51753c);
-            this.containerView.addView(this.Q0, gb1.h(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+            f7.i(y6.f23428h5, aVar2.f51810b, aVar2.f51811c);
+            this.containerView.addView(this.Q0, kb1.h(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         fixNavigationBar();
     }
@@ -53,17 +53,17 @@ public final class g0 extends tg.m1 {
     }
 
     public static void j0(g0 g0Var) {
-        tg.m1 m1Var = new tg.m1(g0Var.f26811n, UserConfig.selectedAccount, null, null, null, g0Var.resourcesProvider);
+        tg.m1 m1Var = new tg.m1(g0Var.f26793n, UserConfig.selectedAccount, null, null, null, g0Var.resourcesProvider);
         m1Var.J0 = true;
         m1Var.K0 = true;
-        m1Var.f48935c0 = true;
-        g0Var.f26811n.showDialog(m1Var);
+        m1Var.f48970c0 = true;
+        g0Var.f26793n.showDialog(m1Var);
     }
 
     public static void k0(g0 g0Var) {
-        cy cyVar = new cy(vh.c(3, "onlySelect", "dialogsType", true));
-        cyVar.C2 = new zg1(23, g0Var, "https://t.me/giftcode/" + g0Var.R0);
-        g0Var.f26811n.presentFragment(cyVar);
+        ey eyVar = new ey(wh.c(3, "onlySelect", "dialogsType", true));
+        eyVar.C2 = new bh1(23, g0Var, "https://t.me/giftcode/" + g0Var.R0);
+        g0Var.f26793n.presentFragment(eyVar);
         g0Var.dismiss();
     }
 
@@ -104,16 +104,16 @@ public final class g0 extends tg.m1 {
 
     @Override
     public final void h0() {
-        int i10 = this.f48938f0;
-        this.f48939g0 = i10;
-        this.f48940h0 = i10 + 1;
+        int i10 = this.f48973f0;
+        this.f48974g0 = i10;
+        this.f48975h0 = i10 + 1;
         int i11 = i10 + 2;
-        this.f48938f0 = i11;
-        this.f48941i0 = i11;
-        this.f48942j0 = i11;
+        this.f48973f0 = i11;
+        this.f48976i0 = i11;
+        this.f48977j0 = i11;
         int size = this.X.size() + i11;
-        this.f48943k0 = size;
-        this.f48938f0 = size + 1;
-        this.f48944l0 = size;
+        this.f48978k0 = size;
+        this.f48973f0 = size + 1;
+        this.f48979l0 = size;
     }
 }

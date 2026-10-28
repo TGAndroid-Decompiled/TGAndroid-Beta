@@ -18,6 +18,6 @@ public abstract class c extends com.googlecode.mp4parser.c {
         sb2.append("[entryCount=");
         t tVar = (t) this;
         h0.s(ue.a.b(t.h, tVar, tVar));
-        return a1.g.n(tVar.f12337f.length, "]", sb2);
+        return a1.g.n(tVar.f12336f.length, "]", sb2);
     }
 }

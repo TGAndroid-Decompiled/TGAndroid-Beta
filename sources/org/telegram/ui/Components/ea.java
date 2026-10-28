@@ -22,7 +22,7 @@ public final class ea extends s4.n0 implements dh.a {
     public int I;
     public float J;
     public boolean K;
-    public km0 L;
+    public lm0 L;
     public float[] M;
     public int[] N;
     public short[] O;
@@ -37,31 +37,31 @@ public final class ea extends s4.n0 implements dh.a {
     public short[] X;
     public int Y;
     public int Z;
-    public final mm0 f27774a;
-    public boolean f27775a0;
-    public final Utilities.CallbackReturn f27776b;
-    public float[] f27777b0;
-    public final Utilities.CallbackReturn f27778c;
-    public int f27779c0;
+    public final nm0 f27771a;
+    public boolean f27772a0;
+    public final Utilities.CallbackReturn f27773b;
+    public float[] f27774b0;
+    public final Utilities.CallbackReturn f27775c;
+    public int f27776c0;
     public final Utilities.Callback5 d;
-    public float[] f27780d0;
+    public float[] f27777d0;
     public final int e;
-    public int f27781e0;
-    public final float f27782f;
+    public int f27778e0;
+    public final float f27779f;
     public final boolean h;
-    public final Paint f27783n = new Paint(3);
-    public final Paint f27784r = new Paint(3);
-    public final Paint f27785s = new Paint();
+    public final Paint f27780n = new Paint(3);
+    public final Paint f27781r = new Paint(3);
+    public final Paint f27782s = new Paint();
     public final Paint v = new Paint();
-    public final Paint f27786w;
-    public final RectF f27787x;
-    public final Rect f27788y;
+    public final Paint f27783w;
+    public final RectF f27784x;
+    public final Rect f27785y;
 
-    public ea(mm0 mm0Var, Utilities.CallbackReturn callbackReturn, Utilities.CallbackReturn callbackReturn2, int i10, float f7, tv tvVar, boolean z10, boolean z11, km0 km0Var) {
+    public ea(nm0 nm0Var, Utilities.CallbackReturn callbackReturn, Utilities.CallbackReturn callbackReturn2, int i10, float f7, tv tvVar, boolean z10, boolean z11, lm0 lm0Var) {
         Paint paint = new Paint();
-        this.f27786w = paint;
-        this.f27787x = new RectF();
-        this.f27788y = new Rect();
+        this.f27783w = paint;
+        this.f27784x = new RectF();
+        this.f27785y = new Rect();
         this.E = new RectF();
         this.G = new float[32];
         this.J = -1.0f;
@@ -71,17 +71,17 @@ public final class ea extends s4.n0 implements dh.a {
         this.V = new float[128];
         this.W = new float[128];
         this.X = new short[96];
-        this.f27777b0 = new float[48];
-        this.f27780d0 = new float[32];
-        this.f27774a = mm0Var;
-        this.f27776b = callbackReturn;
-        this.f27778c = callbackReturn2;
+        this.f27774b0 = new float[48];
+        this.f27777d0 = new float[32];
+        this.f27771a = nm0Var;
+        this.f27773b = callbackReturn;
+        this.f27775c = callbackReturn2;
         this.e = i10;
-        this.f27782f = f7;
+        this.f27779f = f7;
         this.d = tvVar;
         this.h = z10;
         this.K = z11;
-        this.L = km0Var;
+        this.L = lm0Var;
         paint.setColor(-1);
     }
 
@@ -118,10 +118,10 @@ public final class ea extends s4.n0 implements dh.a {
 
     @Override
     public final void e(Canvas canvas, RecyclerView recyclerView) {
-        mm0 mm0Var = this.f27774a;
-        if (recyclerView == mm0Var) {
-            int sectionsBackgroundColorForDecoration = mm0Var.getSectionsBackgroundColorForDecoration();
-            Paint paint = this.f27785s;
+        nm0 nm0Var = this.f27771a;
+        if (recyclerView == nm0Var) {
+            int sectionsBackgroundColorForDecoration = nm0Var.getSectionsBackgroundColorForDecoration();
+            Paint paint = this.f27782s;
             if (paint.getColor() != sectionsBackgroundColorForDecoration) {
                 paint.setColor(sectionsBackgroundColorForDecoration);
                 this.F = null;
@@ -150,20 +150,20 @@ public final class ea extends s4.n0 implements dh.a {
                     if (i10 == 0) {
                         return;
                     }
-                    canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10, this.M, 0, null, 0, this.N, 0, this.O, 0, this.R, this.f27786w);
+                    canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10, this.M, 0, null, 0, this.N, 0, this.O, 0, this.R, this.f27783w);
                     return;
                 }
                 int r6 = r(1.0f);
                 Paint paint2 = this.v;
                 paint2.setColor(r6);
-                canvas.drawRect(0.0f, 0.0f, mm0Var.getWidth(), mm0Var.getHeight(), paint2);
+                canvas.drawRect(0.0f, 0.0f, nm0Var.getWidth(), nm0Var.getHeight(), paint2);
                 m(canvas, 0.0f);
                 this.T = true;
                 p(canvas);
                 this.T = false;
                 return;
             }
-            canvas.drawRect(0.0f, 0.0f, mm0Var.getWidth(), mm0Var.getHeight(), paint);
+            canvas.drawRect(0.0f, 0.0f, nm0Var.getWidth(), nm0Var.getHeight(), paint);
             p(canvas);
         }
     }
@@ -185,12 +185,12 @@ public final class ea extends s4.n0 implements dh.a {
     public final void g(Canvas canvas, RecyclerView recyclerView) {
         int i10;
         ea eaVar = this;
-        mm0 mm0Var = eaVar.f27774a;
-        if (recyclerView == mm0Var) {
-            float f7 = eaVar.f27782f;
+        nm0 nm0Var = eaVar.f27771a;
+        if (recyclerView == nm0Var) {
+            float f7 = eaVar.f27779f;
             if (f7 > 0.0f) {
-                int sectionsBackgroundColorForDecoration = mm0Var.getSectionsBackgroundColorForDecoration();
-                Paint paint = eaVar.f27785s;
+                int sectionsBackgroundColorForDecoration = nm0Var.getSectionsBackgroundColorForDecoration();
+                Paint paint = eaVar.f27782s;
                 if (paint.getColor() != sectionsBackgroundColorForDecoration) {
                     paint.setColor(sectionsBackgroundColorForDecoration);
                     eaVar.F = null;
@@ -199,7 +199,7 @@ public final class ea extends s4.n0 implements dh.a {
                 boolean z10 = true;
                 int max = Math.max(1, (int) Math.ceil(f7));
                 Bitmap bitmap = eaVar.F;
-                Paint paint2 = eaVar.f27784r;
+                Paint paint2 = eaVar.f27781r;
                 if (bitmap == null || eaVar.I != max || eaVar.J != f7) {
                     eaVar.I = max;
                     eaVar.J = f7;
@@ -215,20 +215,20 @@ public final class ea extends s4.n0 implements dh.a {
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     paint2.setShader(new BitmapShader(bitmap2, tileMode, tileMode));
                 }
-                z10 = (eaVar.K && eaVar.L == km0.f29943b) ? false : false;
-                eaVar.f27775a0 = z10;
+                z10 = (eaVar.K && eaVar.L == lm0.f30270b) ? false : false;
+                eaVar.f27772a0 = z10;
                 if (z10) {
                     eaVar.Y = 0;
                     eaVar.Z = 0;
                 }
-                if (mm0Var.b0()) {
-                    int paddingLeft = mm0Var.getPaddingLeft();
+                if (nm0Var.b0()) {
+                    int paddingLeft = nm0Var.getPaddingLeft();
                     int i12 = eaVar.e;
                     float f11 = paddingLeft + i12;
-                    float width = (mm0Var.getWidth() - mm0Var.getPaddingRight()) - i12;
+                    float width = (nm0Var.getWidth() - nm0Var.getPaddingRight()) - i12;
                     float f12 = f7 * 0.2f;
-                    for (int i13 = 0; i13 < eaVar.f27781e0; i13 += 4) {
-                        float[] fArr = eaVar.f27780d0;
+                    for (int i13 = 0; i13 < eaVar.f27778e0; i13 += 4) {
+                        float[] fArr = eaVar.f27777d0;
                         float f13 = fArr[i13];
                         float f14 = fArr[i13 + 1];
                         float f15 = fArr[i13 + 2];
@@ -237,47 +237,47 @@ public final class ea extends s4.n0 implements dh.a {
                         if (i14 > 0 && i13 > 0) {
                             f15 = Math.min(f15, Math.max(0.0f, Math.min(1.0f, (f13 - fArr[i13 - 3]) / f12)));
                         }
-                        if (i14 > 0 && (i10 = i13 + 4) < eaVar.f27781e0) {
-                            f16 = Math.min(f16, Math.max(0.0f, Math.min(1.0f, (eaVar.f27780d0[i10] - f14) / f12)));
+                        if (i14 > 0 && (i10 = i13 + 4) < eaVar.f27778e0) {
+                            f16 = Math.min(f16, Math.max(0.0f, Math.min(1.0f, (eaVar.f27777d0[i10] - f14) / f12)));
                         }
                         eaVar.q(canvas, f11, width, f13, f15);
                         eaVar.k(canvas, f11, width, f14, f16);
                     }
                 } else {
                     int i15 = 0;
-                    while (i15 < mm0Var.getChildCount()) {
-                        View childAt = mm0Var.getChildAt(i15);
-                        s4.e1 T = mm0Var.T(childAt);
+                    while (i15 < nm0Var.getChildCount()) {
+                        View childAt = nm0Var.getChildAt(i15);
+                        s4.e1 T = nm0Var.T(childAt);
                         int R = RecyclerView.R(childAt);
-                        if (childAt != mm0Var.getEmptyView() && childAt.getVisibility() == 0 && childAt.getAlpha() > 0.0f && R != -1 && ((T == null || !T.j()) && eaVar.u(childAt) && !mm0Var.h1(R))) {
+                        if (childAt != nm0Var.getEmptyView() && childAt.getVisibility() == 0 && childAt.getAlpha() > 0.0f && R != -1 && ((T == null || !T.j()) && eaVar.u(childAt) && !nm0Var.h1(R))) {
                             float x9 = childAt.getX();
                             float width2 = x9 + childAt.getWidth();
                             if (!eaVar.v(R - 1)) {
-                                eaVar.q(canvas, x9, width2, mm0.y1(childAt), 1.0f);
+                                eaVar.q(canvas, x9, width2, nm0.y1(childAt), 1.0f);
                             }
                             if (!eaVar.v(R + 1)) {
-                                eaVar.k(canvas, x9, width2, mm0.G0(childAt), 1.0f);
+                                eaVar.k(canvas, x9, width2, nm0.G0(childAt), 1.0f);
                             }
                         }
                         i15++;
                         eaVar = this;
                     }
                 }
-                if (mm0Var.K2 != null) {
-                    for (int i16 = 0; i16 < mm0Var.K2.size(); i16++) {
-                        long longValue = ((Long) mm0Var.K2.get(i16)).longValue();
-                        View U0 = mm0Var.U0(AndroidUtilities.unpackA(longValue));
-                        View U02 = mm0Var.U0(AndroidUtilities.unpackB(longValue));
+                if (nm0Var.K2 != null) {
+                    for (int i16 = 0; i16 < nm0Var.K2.size(); i16++) {
+                        long longValue = ((Long) nm0Var.K2.get(i16)).longValue();
+                        View U0 = nm0Var.U0(AndroidUtilities.unpackA(longValue));
+                        View U02 = nm0Var.U0(AndroidUtilities.unpackB(longValue));
                         if (U0 != null) {
-                            q(canvas, U0.getX(), U0.getWidth() + U0.getX(), mm0.y1(U0), 1.0f);
+                            q(canvas, U0.getX(), U0.getWidth() + U0.getX(), nm0.y1(U0), 1.0f);
                         }
                         if (U02 != null) {
-                            k(canvas, U02.getX(), U02.getX() + U02.getWidth(), mm0.G0(U02), 1.0f);
+                            k(canvas, U02.getX(), U02.getX() + U02.getWidth(), nm0.G0(U02), 1.0f);
                         }
                     }
                 }
-                if (this.f27775a0) {
-                    this.f27775a0 = false;
+                if (this.f27772a0) {
+                    this.f27772a0 = false;
                     int i17 = this.Y;
                     if (i17 != 0) {
                         canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i17, this.V, 0, this.W, 0, null, 0, this.X, 0, this.Z, paint2);
@@ -399,7 +399,7 @@ public final class ea extends s4.n0 implements dh.a {
     public final void j(Canvas canvas, float f7, float f10, float f11, float f12) {
         if (f11 > f7 && f12 > f10) {
             boolean z10 = this.S;
-            Paint paint = this.f27785s;
+            Paint paint = this.f27782s;
             if (z10) {
                 i(f7, f10, f11, f12, paint.getColor());
             } else {
@@ -431,7 +431,7 @@ public final class ea extends s4.n0 implements dh.a {
         } else {
             i12 = this.I;
         }
-        if (this.f27775a0) {
+        if (this.f27772a0) {
             float f13 = i11;
             float f14 = i12;
             int i13 = this.I;
@@ -516,11 +516,11 @@ public final class ea extends s4.n0 implements dh.a {
             return;
         }
         int i33 = this.I;
-        Rect rect = this.f27788y;
+        Rect rect = this.f27785y;
         rect.set(i11, i12, i11 + i33, i33 + i12);
         RectF rectF = this.E;
         rectF.set(f7, f10, f11, f12);
-        canvas.drawBitmap(this.F, rect, rectF, this.f27783n);
+        canvas.drawBitmap(this.F, rect, rectF, this.f27780n);
     }
 
     public final void m(Canvas canvas, float f7) {
@@ -529,44 +529,44 @@ public final class ea extends s4.n0 implements dh.a {
         ea eaVar;
         float f12;
         float f13;
-        mm0 mm0Var = this.f27774a;
-        float width = mm0Var.getWidth();
-        float height = mm0Var.getHeight();
-        int paddingLeft = mm0Var.getPaddingLeft();
+        nm0 nm0Var = this.f27771a;
+        float width = nm0Var.getWidth();
+        float height = nm0Var.getHeight();
+        int paddingLeft = nm0Var.getPaddingLeft();
         int i10 = this.e;
         float max = Math.max(0.0f, Math.min(width, paddingLeft + i10));
-        float max2 = Math.max(max, Math.min(width, (width - mm0Var.getPaddingRight()) - i10));
+        float max2 = Math.max(max, Math.min(width, (width - nm0Var.getPaddingRight()) - i10));
         if (max >= max2) {
             j(canvas, 0.0f, 0.0f, width, height);
             return;
         }
         this.H = 0;
-        for (int i11 = 0; i11 < mm0Var.getChildCount(); i11++) {
-            View childAt = mm0Var.getChildAt(i11);
+        for (int i11 = 0; i11 < nm0Var.getChildCount(); i11++) {
+            View childAt = nm0Var.getChildAt(i11);
             int R = RecyclerView.R(childAt);
-            s4.e1 T = mm0Var.T(childAt);
-            if (childAt != mm0Var.getEmptyView() && childAt.getVisibility() == 0 && childAt.getAlpha() > 0.0f && ((!mm0Var.b0() || T == null || !T.j() || childAt.getAlpha() >= 1.0f) && u(childAt) && !mm0Var.h1(R))) {
-                float y12 = mm0.y1(childAt);
-                float G0 = mm0.G0(childAt);
-                if (childAt instanceof g90) {
-                    G0 -= ((g90) childAt).getBottomInfoMargin();
+            s4.e1 T = nm0Var.T(childAt);
+            if (childAt != nm0Var.getEmptyView() && childAt.getVisibility() == 0 && childAt.getAlpha() > 0.0f && ((!nm0Var.b0() || T == null || !T.j() || childAt.getAlpha() >= 1.0f) && u(childAt) && !nm0Var.h1(R))) {
+                float y12 = nm0.y1(childAt);
+                float G0 = nm0.G0(childAt);
+                if (childAt instanceof h90) {
+                    G0 -= ((h90) childAt).getBottomInfoMargin();
                 }
                 h(y12, G0);
             }
         }
-        if (mm0Var.K2 != null) {
-            for (int i12 = 0; i12 < mm0Var.K2.size(); i12++) {
-                long longValue = ((Long) mm0Var.K2.get(i12)).longValue();
+        if (nm0Var.K2 != null) {
+            for (int i12 = 0; i12 < nm0Var.K2.size(); i12++) {
+                long longValue = ((Long) nm0Var.K2.get(i12)).longValue();
                 int unpackA = AndroidUtilities.unpackA(longValue);
                 int unpackB = AndroidUtilities.unpackB(longValue);
                 float f14 = height;
                 float f15 = 0.0f;
-                for (int i13 = 0; i13 < mm0Var.getChildCount(); i13++) {
-                    View childAt2 = mm0Var.getChildAt(i13);
+                for (int i13 = 0; i13 < nm0Var.getChildCount(); i13++) {
+                    View childAt2 = nm0Var.getChildAt(i13);
                     int R2 = RecyclerView.R(childAt2);
                     if (R2 >= unpackA && R2 <= unpackB) {
-                        f14 = Math.min(f14, mm0.y1(childAt2));
-                        f15 = Math.max(f15, mm0.G0(childAt2));
+                        f14 = Math.min(f14, nm0.y1(childAt2));
+                        f15 = Math.max(f15, nm0.G0(childAt2));
                     }
                 }
                 h(f14, f15);
@@ -665,20 +665,20 @@ public final class ea extends s4.n0 implements dh.a {
 
     public final void n(Canvas canvas, View view, View view2, boolean z10, boolean z11) {
         float f7;
-        mm0 mm0Var;
+        nm0 nm0Var;
         float f10;
         if (view != null && view2 != null) {
             float f11 = 0.0f;
-            if (view2 instanceof g90) {
-                f7 = ((g90) view2).getBottomInfoMargin();
+            if (view2 instanceof h90) {
+                f7 = ((h90) view2).getBottomInfoMargin();
             } else {
                 f7 = 0.0f;
             }
             float left = view.getLeft();
-            this.f27774a.getClass();
-            float f12 = this.f27782f;
+            this.f27771a.getClass();
+            float f12 = this.f27779f;
             float f13 = -f12;
-            float y12 = mm0.y1(view);
+            float y12 = nm0.y1(view);
             if (z10) {
                 f10 = f12;
             } else {
@@ -686,13 +686,13 @@ public final class ea extends s4.n0 implements dh.a {
             }
             float max = Math.max(f13, y12 - f10);
             float right = view.getRight();
-            float height = mm0Var.getHeight() - (-f12);
-            float G0 = mm0.G0(view2);
+            float height = nm0Var.getHeight() - (-f12);
+            float G0 = nm0.G0(view2);
             if (z11) {
                 f11 = f12;
             }
             float min = Math.min(height, (G0 + f11) - f7);
-            RectF rectF = this.f27787x;
+            RectF rectF = this.f27784x;
             rectF.set(left, max, right, min);
             if (rectF.bottom >= rectF.top) {
                 o(canvas, rectF, view.getAlpha());
@@ -705,9 +705,9 @@ public final class ea extends s4.n0 implements dh.a {
         boolean z10 = this.U;
         Paint paint = this.v;
         if (z10) {
-            int sectionColorForDecoration = this.f27774a.getSectionColorForDecoration();
+            int sectionColorForDecoration = this.f27771a.getSectionColorForDecoration();
             paint.setColor(i0.a.o(sectionColorForDecoration, Math.round(Math.max(0.0f, Math.min(1.0f, f7)) * Color.alpha(sectionColorForDecoration))));
-            float f10 = this.f27782f;
+            float f10 = this.f27779f;
             canvas.drawRoundRect(rectF, f10, f10, paint);
         } else if (this.K) {
             paint.setColor(r(f7));
@@ -739,16 +739,16 @@ public final class ea extends s4.n0 implements dh.a {
     }
 
     public final int r(float f7) {
-        int sectionColorForDecoration = this.f27774a.getSectionColorForDecoration();
-        return i0.a.k(i0.a.o(sectionColorForDecoration, Math.round(Math.max(0.0f, Math.min(1.0f, f7)) * Color.alpha(sectionColorForDecoration))), this.f27785s.getColor());
+        int sectionColorForDecoration = this.f27771a.getSectionColorForDecoration();
+        return i0.a.k(i0.a.o(sectionColorForDecoration, Math.round(Math.max(0.0f, Math.min(1.0f, f7)) * Color.alpha(sectionColorForDecoration))), this.f27782s.getColor());
     }
 
     public final boolean s(int i10, View view) {
         if (view != null && i10 <= 0) {
-            s4.h0 adapter = this.f27774a.getAdapter();
+            s4.h0 adapter = this.f27771a.getAdapter();
             int R = RecyclerView.R(view);
             if (adapter != null && R > 0) {
-                if (((Boolean) this.f27778c.run(Integer.valueOf(adapter.j(R - 1)))).booleanValue()) {
+                if (((Boolean) this.f27775c.run(Integer.valueOf(adapter.j(R - 1)))).booleanValue()) {
                     return true;
                 }
                 return false;
@@ -760,12 +760,12 @@ public final class ea extends s4.n0 implements dh.a {
 
     public final boolean t(int i10, View view) {
         if (view != null) {
-            mm0 mm0Var = this.f27774a;
-            if (i10 >= mm0Var.getChildCount() - 1) {
-                s4.h0 adapter = mm0Var.getAdapter();
+            nm0 nm0Var = this.f27771a;
+            if (i10 >= nm0Var.getChildCount() - 1) {
+                s4.h0 adapter = nm0Var.getAdapter();
                 int R = RecyclerView.R(view);
                 if (adapter != null && R >= 0 && R < adapter.h() - 1) {
-                    if (((Boolean) this.f27778c.run(Integer.valueOf(adapter.j(R + 1)))).booleanValue()) {
+                    if (((Boolean) this.f27775c.run(Integer.valueOf(adapter.j(R + 1)))).booleanValue()) {
                         return true;
                     }
                     return false;
@@ -778,21 +778,21 @@ public final class ea extends s4.n0 implements dh.a {
     }
 
     public final boolean u(View view) {
-        return ((Boolean) this.f27776b.run(view)).booleanValue();
+        return ((Boolean) this.f27773b.run(view)).booleanValue();
     }
 
     public final boolean v(int i10) {
-        mm0 mm0Var = this.f27774a;
-        s4.h0 adapter = mm0Var.getAdapter();
+        nm0 nm0Var = this.f27771a;
+        s4.h0 adapter = nm0Var.getAdapter();
         if (i10 >= 0 && adapter != null && i10 < adapter.h()) {
-            View U0 = mm0Var.U0(i10);
+            View U0 = nm0Var.U0(i10);
             if (U0 != null) {
-                if (!u(U0) || mm0Var.h1(i10)) {
+                if (!u(U0) || nm0Var.h1(i10)) {
                     return false;
                 }
                 return true;
             }
-            if (((Boolean) this.f27778c.run(Integer.valueOf(adapter.j(i10)))).booleanValue() && !mm0Var.h1(i10)) {
+            if (((Boolean) this.f27775c.run(Integer.valueOf(adapter.j(i10)))).booleanValue() && !nm0Var.h1(i10)) {
                 return true;
             }
         }

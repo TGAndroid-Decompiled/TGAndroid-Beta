@@ -4,13 +4,13 @@ import java.util.Map;
 public final class u1 extends t0 {
     public final transient l0 d;
     public final transient Object[] e;
-    public final transient int f10348f;
+    public final transient int f10347f;
     public final transient int h;
 
     public u1(l0 l0Var, Object[] objArr, int i10, int i11) {
         this.d = l0Var;
         this.e = objArr;
-        this.f10348f = i10;
+        this.f10347f = i10;
         this.h = i11;
     }
 

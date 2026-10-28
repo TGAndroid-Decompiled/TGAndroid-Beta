@@ -63,7 +63,7 @@ public final class b1 implements a1 {
                         }
                         int i14 = i13 + i10;
                         launchActivity.C1 = i14;
-                        org.telegram.ui.k0 k0Var = launchActivity.f35565w0;
+                        org.telegram.ui.k0 k0Var = launchActivity.f35589w0;
                         if (k0Var != null) {
                             if (i14 > 0) {
                                 i11 = 8;

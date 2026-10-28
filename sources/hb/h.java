@@ -1,6 +1,6 @@
 package hb;
 public abstract class h {
-    public static final int f12739a;
+    public static final int f12738a;
 
     static {
         int i10;
@@ -32,6 +32,6 @@ public abstract class h {
         if (i10 == -1) {
             i10 = 6;
         }
-        f12739a = i10;
+        f12738a = i10;
     }
 }

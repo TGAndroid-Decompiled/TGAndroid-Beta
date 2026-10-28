@@ -3,24 +3,24 @@ package org.telegram.messenger;
 import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLObject;
 public final class e1 implements Runnable {
-    public final int f19948a;
-    public final ChatObject.Call f19949b;
-    public final TLObject f19950c;
+    public final int f19943a;
+    public final ChatObject.Call f19944b;
+    public final TLObject f19945c;
 
     public e1(ChatObject.Call call, TLObject tLObject, int i10) {
-        this.f19948a = i10;
-        this.f19949b = call;
-        this.f19950c = tLObject;
+        this.f19943a = i10;
+        this.f19944b = call;
+        this.f19945c = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f19948a) {
+        switch (this.f19943a) {
             case 0:
-                this.f19949b.lambda$reloadGroupCall$8(this.f19950c);
+                this.f19944b.lambda$reloadGroupCall$8(this.f19945c);
                 return;
             default:
-                this.f19949b.lambda$loadGroupCall$10(this.f19950c);
+                this.f19944b.lambda$loadGroupCall$10(this.f19945c);
                 return;
         }
     }

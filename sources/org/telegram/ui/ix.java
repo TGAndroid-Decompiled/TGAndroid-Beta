@@ -1,119 +1,27 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ix implements org.telegram.ui.Components.zo0, org.telegram.ui.Components.cm0, fi.jb, org.telegram.ui.Components.l20 {
-    public final cy f40364a;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesStorage;
+public final class ix implements org.telegram.ui.Components.e5 {
+    public final ey f40284a;
 
-    public ix(cy cyVar) {
-        this.f40364a = cyVar;
+    public ix(ey eyVar) {
+        this.f40284a = eyVar;
     }
 
     @Override
-    public void a(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f40364a.movePreviewFragment(f7);
-        }
-    }
-
-    @Override
-    public fi.nb b(long j10) {
-        di.q qVar;
-        qw qwVar = this.f40364a.E0;
-        if (qwVar != null) {
-            qVar = qwVar.e(j10);
-        } else {
-            qVar = null;
-        }
-        return fi.nb.c(qVar);
-    }
-
-    @Override
-    public void c(long j10, bi.r3 r3Var) {
-        cy cyVar = this.f40364a;
-        if (cyVar.E0 != null) {
-            cyVar.F4(false, true);
-            cyVar.Q = true;
-            cyVar.fragmentView.invalidate();
-            if (j10 != 0 && j10 != cyVar.getUserConfig().getClientUserId()) {
-                cyVar.E0.k(j10);
-            } else {
-                cyVar.E0.S.h1(0, 0);
+    public final void G(int i10, int i11, boolean z10) {
+        ey eyVar = this.f40284a;
+        ArrayList arrayList = eyVar.I2;
+        eyVar.K2 = i10;
+        eyVar.L2 = i11;
+        eyVar.M2 = false;
+        if (eyVar.C2 != null && !arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList();
+            for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                arrayList2.add(MessagesStorage.TopicKey.of(((Long) arrayList.get(i12)).longValue(), 0L));
             }
-            cyVar.f38586e0[0].f37913a.getViewTreeObserver().addOnPreDrawListener(new zl(1, this, r3Var));
-            return;
-        }
-        r3Var.run();
-    }
-
-    @Override
-    public void d(org.telegram.ui.Cells.p2 p2Var) {
-        this.f40364a.P4(p2Var);
-    }
-
-    @Override
-    public boolean mo17e(float f7, float f10, int i10, View view) {
-        boolean z10 = view instanceof org.telegram.ui.Cells.m6;
-        cy cyVar = this.f40364a;
-        if (z10) {
-            org.telegram.ui.Cells.m6 m6Var = (org.telegram.ui.Cells.m6) view;
-            if (m6Var.f24466n0) {
-                cyVar.V4(m6Var.getDialogId(), view);
-                return true;
-            }
-        }
-        jx jxVar = cyVar.C0;
-        bi.r1 r1Var = jxVar.f27933a0;
-        return cyVar.w4(view, i10, f7, jxVar.f27936d0);
-    }
-
-    public void f(ig.p0 p0Var) {
-        cy cyVar = this.f40364a;
-        if (!cyVar.f38648q3) {
-            return;
-        }
-        jx jxVar = cyVar.C0;
-        if (jxVar != null) {
-            jxVar.C0.remove(p0Var);
-            jx jxVar2 = cyVar.C0;
-            String obj = cyVar.f38612j0.getSearchField().getText().toString();
-            View currentView = jxVar2.getCurrentView();
-            boolean z10 = true;
-            boolean z11 = !jxVar2.f27939g0;
-            if (!TextUtils.isEmpty(jxVar2.M0)) {
-                z10 = z11;
-            }
-            jxVar2.M0 = obj;
-            jxVar2.P(currentView, jxVar2.getCurrentPosition(), obj, z10);
-        }
-        cyVar.f5(true, null, null, false, true);
-        cyVar.Y.f1381a.l(cyVar.X.f30367r);
-    }
-
-    @Override
-    public void finish() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f40364a.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public void g() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f40364a.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public void o(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f40364a.movePreviewFragment(f7);
+            eyVar.C2.v(eyVar, arrayList2, eyVar.B1.getFieldText(), false, z10, i10, i11, null);
         }
     }
 }

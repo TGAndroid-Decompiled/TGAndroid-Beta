@@ -271,7 +271,7 @@ public class m extends ViewGroup {
                     scrollTo(0, currY);
                 }
             }
-            WeakHashMap weakHashMap = i0.f47108a;
+            WeakHashMap weakHashMap = i0.f47143a;
             postInvalidateOnAnimation();
             return;
         }
@@ -331,7 +331,7 @@ public class m extends ViewGroup {
             }
         }
         if (z10) {
-            WeakHashMap weakHashMap = i0.f47108a;
+            WeakHashMap weakHashMap = i0.f47143a;
             postInvalidateOnAnimation();
         }
     }
@@ -385,7 +385,7 @@ public class m extends ViewGroup {
         if (z11) {
             d dVar = this.f321q0;
             if (z10) {
-                WeakHashMap weakHashMap = i0.f47108a;
+                WeakHashMap weakHashMap = i0.f47143a;
                 postOnAnimation(dVar);
                 return;
             }
@@ -769,7 +769,7 @@ public class m extends ViewGroup {
                             this.N = true;
                         }
                         if (this.M && r(x9)) {
-                            WeakHashMap weakHashMap = i0.f47108a;
+                            WeakHashMap weakHashMap = i0.f47143a;
                             postInvalidateOnAnimation();
                         }
                     }
@@ -853,7 +853,7 @@ public class m extends ViewGroup {
             return;
         }
         l lVar = (l) parcelable;
-        super.onRestoreInstanceState(lVar.f13471a);
+        super.onRestoreInstanceState(lVar.f13470a);
         if (this.e != null) {
             y(lVar.f296c, 0, false, true);
             return;
@@ -976,7 +976,7 @@ public class m extends ViewGroup {
                 this.V = motionEvent.getPointerId(0);
             }
             if (z10) {
-                WeakHashMap weakHashMap = i0.f47108a;
+                WeakHashMap weakHashMap = i0.f47143a;
                 postInvalidateOnAnimation();
             }
         }
@@ -1307,7 +1307,7 @@ public class m extends ViewGroup {
                     int min = Math.min(abs, 600);
                     this.f324s = false;
                     this.f322r.startScroll(i13, scrollY, i14, i15, min);
-                    WeakHashMap weakHashMap = i0.f47108a;
+                    WeakHashMap weakHashMap = i0.f47143a;
                     postInvalidateOnAnimation();
                 }
             }

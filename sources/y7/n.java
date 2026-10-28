@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class n extends j implements List, RandomAccess {
-    public static final l f52241b = new l(r.e, 0);
+    public static final l f52299b = new l(r.e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -35,7 +35,7 @@ public abstract class n extends j implements List, RandomAccess {
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i10 = 0; i10 < size; i10++) {
-                            if (w7.g5.a(get(i10), list.get(i10))) {
+                            if (w7.h5.a(get(i10), list.get(i10))) {
                             }
                         }
                         return true;
@@ -45,7 +45,7 @@ public abstract class n extends j implements List, RandomAccess {
                     while (true) {
                         if (listIterator.hasNext()) {
                             if (it.hasNext()) {
-                                if (!w7.g5.a(listIterator.next(), it.next())) {
+                                if (!w7.h5.a(listIterator.next(), it.next())) {
                                     break;
                                 }
                             } else {
@@ -120,7 +120,7 @@ public abstract class n extends j implements List, RandomAccess {
 
     @Override
     public n subList(int i10, int i11) {
-        w7.h5.b(i10, i11, size());
+        w7.i5.b(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
@@ -136,11 +136,11 @@ public abstract class n extends j implements List, RandomAccess {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f52241b;
+                return f52299b;
             }
             return new l(this, i10);
         }
-        throw new IndexOutOfBoundsException(w7.h5.c(i10, size, "index"));
+        throw new IndexOutOfBoundsException(w7.i5.c(i10, size, "index"));
     }
 
     @Override

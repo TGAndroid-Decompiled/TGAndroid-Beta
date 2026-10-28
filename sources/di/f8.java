@@ -1,5 +1,6 @@
 package di;
 
+import android.content.Context;
 import android.os.Build;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
@@ -13,19 +14,53 @@ public abstract class f8 extends a5.m {
     public int E0;
     public int F0;
     public Runnable G0;
-    public n4 H0;
+    public final n4 H0;
     public int I0;
     public int J0;
     public float K0;
     public boolean L0;
-    public a5.d M0;
-    public y9 N0;
+    public final a5.d M0;
+    public final y9 N0;
     public int O0;
-    public float P0;
-    public long f8563w0;
-    public ArrayList f8564x0;
-    public int f8565y0;
-    public c8 f8566z0;
+    public final ArrayList P0;
+    public float Q0;
+    public long f8562w0;
+    public ArrayList f8563x0;
+    public int f8564y0;
+    public final c8 f8565z0;
+
+    public f8(int i10, Context context, y9 y9Var, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context);
+        boolean z10;
+        this.A0 = new ArrayList();
+        this.D0 = true;
+        x xVar = (x) this;
+        this.M0 = new a5.d(xVar, 20);
+        this.O0 = -1;
+        this.P0 = new ArrayList();
+        this.f8564y0 = i10;
+        this.H0 = new n4(context);
+        this.N0 = y9Var;
+        c8 c8Var = new c8(xVar, context, y9Var, u6Var);
+        this.f8565z0 = c8Var;
+        setAdapter(c8Var);
+        a1.c cVar = new a1.c(xVar, 27);
+        if (this.m0 != null) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        this.m0 = cVar;
+        setChildrenDrawingOrderEnabled(true);
+        this.f319o0 = 1;
+        this.f318n0 = 2;
+        if (z10) {
+            s();
+        }
+        setOffscreenPageLimit(0);
+        b(new d8(xVar, y9Var));
+        setOverScrollMode(2);
+    }
 
     public static boolean C(ArrayList arrayList, ArrayList arrayList2) {
         if (arrayList == null && arrayList2 == null) {
@@ -48,7 +83,7 @@ public abstract class f8 extends a5.m {
         while (true) {
             if (i10 < getChildCount()) {
                 e8 e8Var = (e8) getChildAt(i10);
-                if (e8Var.d && !e8Var.f8526a.D1.d()) {
+                if (e8Var.d && !e8Var.f8525a.D1.d()) {
                     break;
                 }
                 i10++;
@@ -68,15 +103,15 @@ public abstract class f8 extends a5.m {
                     if (!e8Var.d) {
                         this.O0 = -1;
                         e8Var.a(true);
-                        if (this.f8564x0 != null) {
-                            q4 q4Var = e8Var.f8526a;
-                            long j10 = e8Var.f8527b;
-                            ArrayList arrayList = e8Var.f8528c;
-                            q4Var.f9016q1 = j10;
-                            q4Var.f9008o1 = arrayList;
+                        if (this.f8563x0 != null) {
+                            q4 q4Var = e8Var.f8525a;
+                            long j10 = e8Var.f8526b;
+                            ArrayList arrayList = e8Var.f8527c;
+                            q4Var.f9015q1 = j10;
+                            q4Var.f9007o1 = arrayList;
                             q4Var.m0(0);
                         } else {
-                            e8Var.f8526a.S0(0, e8Var.f8527b);
+                            e8Var.f8525a.S0(0, e8Var.f8526b);
                         }
                     }
                 }
@@ -84,7 +119,7 @@ public abstract class f8 extends a5.m {
         }
     }
 
-    public final void D(int r9, long r10, java.util.ArrayList r12) {
+    public final void D(int r7, long r8, java.util.ArrayList r10) {
         throw new UnsupportedOperationException("Method not decompiled: di.f8.D(int, long, java.util.ArrayList):void");
     }
 
@@ -93,13 +128,13 @@ public abstract class f8 extends a5.m {
         boolean z11 = false;
         if (z10) {
             int currentItem = getCurrentItem();
-            ArrayList arrayList = this.f8564x0;
+            ArrayList arrayList = this.f8563x0;
             if (arrayList == null) {
                 arrayList = this.A0;
             }
             if (currentItem < arrayList.size() - 1) {
                 int currentItem2 = getCurrentItem() + 1;
-                if (y9Var.f9416a && Build.VERSION.SDK_INT < 33) {
+                if (y9Var.f9415a && Build.VERSION.SDK_INT < 33) {
                     z11 = true;
                 }
                 x(currentItem2, !z11);
@@ -110,7 +145,7 @@ public abstract class f8 extends a5.m {
             return false;
         }
         int currentItem3 = getCurrentItem() - 1;
-        if (y9Var.f9416a && Build.VERSION.SDK_INT < 33) {
+        if (y9Var.f9415a && Build.VERSION.SDK_INT < 33) {
             z11 = true;
         }
         x(currentItem3, !z11);
@@ -131,8 +166,8 @@ public abstract class f8 extends a5.m {
     }
 
     public long getCurrentDialogId() {
-        if (this.f8564x0 != null) {
-            return this.f8563w0;
+        if (this.f8563x0 != null) {
+            return this.f8562w0;
         }
         if (getCurrentItem() < this.A0.size()) {
             return ((Long) this.A0.get(getCurrentItem())).longValue();
@@ -200,8 +235,8 @@ public abstract class f8 extends a5.m {
     }
 
     public void setHorizontalProgressToDismiss(float f7) {
-        if (Math.abs(f7) <= 1.0f && this.P0 != f7) {
-            this.P0 = f7;
+        if (Math.abs(f7) <= 1.0f && this.Q0 != f7) {
+            this.Q0 = f7;
             setCameraDistance(getWidth() * 15);
             float f10 = 0.0f;
             if (f7 < 0.0f) {

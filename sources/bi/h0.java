@@ -93,7 +93,7 @@ public final class h0 implements Runnable {
                 fi.d dVar = (fi.d) obj3;
                 dVar.setLoading(true);
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f22257id;
+                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f22258id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
                 int i14 = this.f4701b;
                 ConnectionsManager.getInstance(i14).sendRequest(tL_fulfillStarsSubscription, new d0(dVar, (org.telegram.ui.ActionBar.k3[]) obj, i14, this.f4702c, 1));
@@ -102,15 +102,15 @@ public final class h0 implements Runnable {
                 di.h7 h7Var = (di.h7) obj3;
                 TLObject tLObject2 = (TLObject) obj;
                 String str2 = (String) obj2;
-                int i15 = h7Var.f8630a;
-                HashSet hashSet = h7Var.f8646t;
+                int i15 = h7Var.f8629a;
+                HashSet hashSet = h7Var.f8645t;
                 if (tLObject2 != null) {
                     TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject2;
                     MessagesController.getInstance(i15).putUsers(tL_stories_stories.users, false);
                     MessagesController.getInstance(i15).putChats(tL_stories_stories.chats, false);
                     while (true) {
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f22266id == i12) {
+                            if (tL_stories_stories.stories.get(i11).f22267id == i12) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -124,7 +124,7 @@ public final class h0 implements Runnable {
                     TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
                     tL_updateStory.peer = MessagesController.getInstance(i15).getPeer(j10);
                     tL_updateStory.story = storyItem;
-                    h7Var.Z(tL_updateStory);
+                    h7Var.c0(tL_updateStory);
                     return;
                 }
                 Iterator it = hashSet.iterator();
@@ -137,7 +137,7 @@ public final class h0 implements Runnable {
                     }
                 }
                 hashSet.add(str2);
-                h7Var.f8638l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
+                h7Var.f8637l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
                 return;
             case 3:
                 ((BotForumHelper) obj3).lambda$beforeSendingFinalRequest$3((long[]) obj2, this.f4702c, this.f4701b, (Runnable) obj);
@@ -146,16 +146,16 @@ public final class h0 implements Runnable {
                 ((MediaDataController) obj3).lambda$loadStickers$100((TLObject) obj, this.f4701b, (Utilities.Callback) obj2, this.f4702c);
                 return;
             case 5:
-                ((MessagesStorage) obj3).lambda$checkMessageId$157(this.f4702c, this.f4701b, (boolean[]) obj2, (CountDownLatch) obj);
+                ((MessagesStorage) obj3).lambda$checkMessageId$158(this.f4702c, this.f4701b, (boolean[]) obj2, (CountDownLatch) obj);
                 return;
             case 6:
-                ((MessagesStorage) obj3).lambda$overwriteChannel$193(this.f4702c, this.f4701b, (TLRPC.TL_updates_channelDifferenceTooLong) obj2, (Runnable) obj);
+                ((MessagesStorage) obj3).lambda$overwriteChannel$194(this.f4702c, this.f4701b, (TLRPC.TL_updates_channelDifferenceTooLong) obj2, (Runnable) obj);
                 return;
             case 7:
-                ((MessagesStorage) obj3).lambda$updateMessageVoiceTranscription$112(this.f4701b, this.f4702c, (TLRPC.Message) obj2, (String) obj);
+                ((MessagesStorage) obj3).lambda$updateMessageVoiceTranscription$113(this.f4701b, this.f4702c, (TLRPC.Message) obj2, (String) obj);
                 return;
             case 8:
-                ((MessagesStorage) obj3).lambda$setDialogsFolderId$247((ArrayList) obj2, (ArrayList) obj, this.f4701b, this.f4702c);
+                ((MessagesStorage) obj3).lambda$setDialogsFolderId$248((ArrayList) obj2, (ArrayList) obj, this.f4701b, this.f4702c);
                 return;
             case 9:
                 ((SendMessagesHelper) obj3).lambda$completeSendingGramTransfer$6((MessageObject) obj2, (TLRPC.Message) obj, this.f4702c, this.f4701b);

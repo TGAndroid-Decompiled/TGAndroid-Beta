@@ -10,41 +10,41 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.vw0;
 import org.telegram.ui.Components.wc;
-public final class t1 extends vw0 {
-    public boolean f17489l0;
+import org.telegram.ui.Components.ww0;
+public final class t1 extends ww0 {
+    public boolean f17488l0;
     public final Paint m0;
-    public final RectF f17490n0;
-    public final b2 f17491o0;
+    public final RectF f17489n0;
+    public final b2 f17490o0;
 
     public t1(b2 b2Var, Context context) {
         super(context, null);
-        this.f17491o0 = b2Var;
+        this.f17490o0 = b2Var;
         this.m0 = new Paint(1);
         new Path();
-        this.f17490n0 = new RectF();
+        this.f17489n0 = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b2 b2Var = this.f17491o0;
-        Rect rect = b2Var.f17147w;
-        int o12 = y6.o1(b2Var.I, b2Var.getThemedColor(y6.f23356d6));
+        b2 b2Var = this.f17490o0;
+        Rect rect = b2Var.f17146w;
+        int o12 = y6.o1(b2Var.I, b2Var.getThemedColor(y6.f23357d6));
         Paint paint = this.m0;
         paint.setColor(o12);
-        if (b2Var.E && b2Var.f17149x != null) {
-            RectF rectF = this.f17490n0;
+        if (b2Var.E && b2Var.f17148x != null) {
+            RectF rectF = this.f17489n0;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             rectF.inset(-AndroidUtilities.dp(7.0f), -AndroidUtilities.dp(7.0f));
             float lerp = AndroidUtilities.lerp(AndroidUtilities.dpf2(22.0f), 0.0f, b2Var.I);
-            AndroidUtilities.lerp(b2Var.f17151y, rectF, b2Var.I, rectF);
-            rect.set(b2Var.f17149x.getBounds());
-            b2Var.f17149x.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            b2Var.f17149x.x(lerp);
-            b2Var.f17149x.setAlpha((int) ((1.0f - b2Var.I) * 255.0f));
-            b2Var.f17149x.draw(canvas);
-            b2Var.f17149x.setBounds(rect);
+            AndroidUtilities.lerp(b2Var.f17150y, rectF, b2Var.I, rectF);
+            rect.set(b2Var.f17148x.getBounds());
+            b2Var.f17148x.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            b2Var.f17148x.x(lerp);
+            b2Var.f17148x.setAlpha((int) ((1.0f - b2Var.I) * 255.0f));
+            b2Var.f17148x.draw(canvas);
+            b2Var.f17148x.setBounds(rect);
             rectF.inset(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
             canvas.drawRoundRect(rectF, lerp, lerp, paint);
             if (b2Var.v != null) {
@@ -55,7 +55,7 @@ public final class t1 extends vw0 {
                 canvas.restore();
                 canvas.restore();
                 canvas.save();
-                canvas.translate(AndroidUtilities.lerp(rectF.right, (b2Var.f17152y0.getX() + (b2Var.f17120a0.getX() + (b2Var.Z.getX() + b2Var.Y.getX()))) + b2Var.f17152y0.getWidth(), b2Var.I) - b2Var.v.A1.getWidth(), AndroidUtilities.lerp(rectF.bottom, (b2Var.f17152y0.getY() + (b2Var.f17120a0.getY() + (b2Var.Z.getY() + b2Var.Y.getY()))) + b2Var.f17152y0.getHeight(), b2Var.I) - b2Var.v.A1.getHeight());
+                canvas.translate(AndroidUtilities.lerp(rectF.right, (b2Var.f17151y0.getX() + (b2Var.f17119a0.getX() + (b2Var.Z.getX() + b2Var.Y.getX()))) + b2Var.f17151y0.getWidth(), b2Var.I) - b2Var.v.A1.getWidth(), AndroidUtilities.lerp(rectF.bottom, (b2Var.f17151y0.getY() + (b2Var.f17119a0.getY() + (b2Var.Z.getY() + b2Var.Y.getY()))) + b2Var.f17151y0.getHeight(), b2Var.I) - b2Var.v.A1.getHeight());
                 canvas.saveLayerAlpha(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f), b2Var.v.A1.getWidth(), b2Var.v.A1.getHeight(), (int) ((1.0f - b2Var.I) * 255.0f), 31);
                 b2Var.v.A1.draw(canvas);
                 canvas.restore();
@@ -73,7 +73,7 @@ public final class t1 extends vw0 {
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         int action = keyEvent.getAction();
-        b2 b2Var = this.f17491o0;
+        b2 b2Var = this.f17490o0;
         if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
             if (b2Var.r0()) {
                 org.telegram.messenger.t.q(R.string.RichEditorDraftSaved, new wc(b2Var.X, b2Var.getResourceProvider()), R.raw.contact_check, 36);

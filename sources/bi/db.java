@@ -27,11 +27,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ct;
 import org.telegram.ui.Components.et;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.xj0;
-import org.telegram.ui.ou;
-import org.telegram.ui.pu;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.yj0;
+import org.telegram.ui.qu;
 import org.telegram.ui.ru;
+import org.telegram.ui.tu;
 public final class db implements Runnable {
     public final int f4505a;
     public final int f4506b;
@@ -54,7 +54,7 @@ public final class db implements Runnable {
         String str;
         TLRPC.Document document;
         Activity activity;
-        xj0 xj0Var;
+        yj0 yj0Var;
         float f7;
         RectF rectF;
         int i10 = this.f4505a;
@@ -96,7 +96,7 @@ public final class db implements Runnable {
                                 long longValue = tL_stickerPack.documents.get(0).longValue();
                                 for (int i13 = 0; i13 < stickerSetByName.documents.size(); i13++) {
                                     document = stickerSetByName.documents.get(i13);
-                                    if (document == null || document.f22033id != longValue) {
+                                    if (document == null || document.f22034id != longValue) {
                                     }
                                 }
                             } else {
@@ -114,7 +114,7 @@ public final class db implements Runnable {
                 if (document != null) {
                     imageReceiver.setAllowStartLottieAnimation(true);
                     imageReceiver.setDelegate(new hc(zArr));
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.y6.f23299a7, 0.3f);
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.y6.f23300a7, 0.3f);
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 160, true, null, true);
                     imageReceiver.setAutoRepeat(0);
                     imageReceiver.setImage(ImageLocation.getForDocument(document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "160_160", svgThumb, document.size, "tgs", stickerSetByName, 1);
@@ -131,17 +131,17 @@ public final class db implements Runnable {
                 m4.p0 p0Var = (m4.p0) obj3;
                 n4.t tVar = (n4.t) obj2;
                 m4.o0 o0Var = (m4.o0) obj;
-                m4.f0 f0Var = p0Var.f18181g;
+                m4.f0 f0Var = p0Var.f18180g;
                 if (!f0Var.j()) {
-                    if (!((n4.n) p0Var.f18186m.f18696b).f18679a.isActive()) {
+                    if (!((n4.n) p0Var.f18185m.f18695b).f18678a.isActive()) {
                         StringBuilder k10 = ic.a.k(i11, "Ignore incoming player command before initialization. command=", ", pid=");
-                        k10.append(tVar.f18698a.f18700b);
+                        k10.append(tVar.f18697a.f18699b);
                         e2.a.l("MediaSessionLegacyStub", k10.toString());
                         return;
                     }
                     m4.w L = p0Var.L(tVar);
-                    if (!p0Var.f18180f.v(L, i11)) {
-                        if (i11 == 1 && !f0Var.f18057t.t()) {
+                    if (!p0Var.f18179f.v(L, i11)) {
+                        if (i11 == 1 && !f0Var.f18056t.t()) {
                             e2.a.l("MediaSessionLegacyStub", "Calling play() omitted due to COMMAND_PLAY_PAUSE not being available. If this play command has started the service for instance for playback resumption, this may prevent the service from being started into the foreground.");
                             return;
                         }
@@ -172,8 +172,8 @@ public final class db implements Runnable {
                 TLObject tLObject = (TLObject) obj;
                 ArrayList arrayList = ctVar.V;
                 int i14 = ctVar.P;
-                if (i11 == ctVar.f27259f0 && TextUtils.equals(tL_messages_searchGlobal.f22140q, ctVar.f27260g0)) {
-                    ctVar.f27255b0 = false;
+                if (i11 == ctVar.f27250f0 && TextUtils.equals(tL_messages_searchGlobal.f22141q, ctVar.f27251g0)) {
+                    ctVar.f27246b0 = false;
                     if (!z11) {
                         arrayList.clear();
                     }
@@ -189,12 +189,12 @@ public final class db implements Runnable {
                             TLRPC.Message message = arrayList2.get(i15);
                             i15++;
                             MessageObject messageObject = new MessageObject(i14, message, false, true);
-                            messageObject.setQuery(ctVar.f27260g0);
+                            messageObject.setQuery(ctVar.f27251g0);
                             arrayList.add(messageObject);
                         }
-                        ctVar.f27257d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        ctVar.f27248d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList.size(), messages_messages.count);
-                        ctVar.f27258e0 = messages_messages.next_rate;
+                        ctVar.f27249e0 = messages_messages.next_rate;
                     }
                     ctVar.O(true);
                     return;
@@ -206,7 +206,7 @@ public final class db implements Runnable {
                 TLObject tLObject2 = (TLObject) obj;
                 ArrayList arrayList3 = etVar.R;
                 int i16 = etVar.P;
-                if (i11 == etVar.f27981c0 && TextUtils.equals(tL_messages_searchGlobal2.f22140q, etVar.f27982d0)) {
+                if (i11 == etVar.f27924c0 && TextUtils.equals(tL_messages_searchGlobal2.f22141q, etVar.f27925d0)) {
                     etVar.Y = false;
                     if (!z11) {
                         arrayList3.clear();
@@ -223,29 +223,29 @@ public final class db implements Runnable {
                             TLRPC.Message message2 = arrayList4.get(i17);
                             i17++;
                             MessageObject messageObject2 = new MessageObject(i16, message2, false, true);
-                            messageObject2.setQuery(etVar.f27982d0);
+                            messageObject2.setQuery(etVar.f27925d0);
                             arrayList3.add(messageObject2);
                         }
-                        etVar.f27979a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
+                        etVar.f27922a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList3.size(), messages_messages2.count);
-                        etVar.f27980b0 = messages_messages2.next_rate;
+                        etVar.f27923b0 = messages_messages2.next_rate;
                     }
                     etVar.O(true);
                     return;
                 }
                 return;
             case 5:
-                pu puVar = (pu) obj3;
+                ru ruVar = (ru) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) obj;
-                ru ruVar = puVar.f42661c;
-                ruVar.a();
-                org.telegram.ui.Cells.v8 v8Var = ruVar.e;
-                ruVar.c();
-                int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23597q6, false);
-                xj0 xj0Var2 = ruVar.d;
-                xj0Var2.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
-                int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23299a7, false);
+                tu tuVar = ruVar.f43172c;
+                tuVar.a();
+                org.telegram.ui.Cells.v8 v8Var = tuVar.e;
+                tuVar.c();
+                int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23598q6, false);
+                yj0 yj0Var2 = tuVar.d;
+                yj0Var2.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+                int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23300a7, false);
                 if (context instanceof Activity) {
                     activity = (Activity) context;
                 } else {
@@ -255,37 +255,37 @@ public final class db implements Runnable {
                     window = activity.getWindow();
                 }
                 if (window != null) {
-                    ValueAnimator valueAnimator = ruVar.h;
+                    ValueAnimator valueAnimator = tuVar.h;
                     if (valueAnimator != null && valueAnimator.isRunning()) {
-                        ruVar.h.cancel();
+                        tuVar.h.cancel();
                     }
-                    ValueAnimator valueAnimator2 = ruVar.h;
+                    ValueAnimator valueAnimator2 = tuVar.h;
                     if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-                        i11 = ruVar.f43294n;
+                        i11 = tuVar.f43780n;
                     }
                     int i18 = i11;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ruVar.h = ofFloat;
+                    tuVar.h = ofFloat;
                     if (z11) {
                         f7 = 50.0f;
                     } else {
                         f7 = 200.0f;
                     }
                     float f10 = f7;
-                    xj0Var = xj0Var2;
-                    ofFloat.addUpdateListener(new ou(puVar, f10, i18, x03, activity));
-                    ruVar.h.addListener(new org.telegram.ui.t0(activity, x03, 1));
-                    ruVar.h.setDuration(350L);
-                    ruVar.h.start();
+                    yj0Var = yj0Var2;
+                    ofFloat.addUpdateListener(new qu(ruVar, f10, i18, x03, activity));
+                    tuVar.h.addListener(new org.telegram.ui.t0(activity, x03, 1));
+                    tuVar.h.setDuration(350L);
+                    tuVar.h.start();
                 } else {
-                    xj0Var = xj0Var2;
+                    yj0Var = yj0Var2;
                 }
                 if (org.telegram.ui.ActionBar.y6.i1()) {
-                    v8Var.p(LocaleController.getString(R.string.SettingsSwitchToNightMode), xj0Var, true);
-                    v8Var.f25600w += 2;
+                    v8Var.p(LocaleController.getString(R.string.SettingsSwitchToNightMode), yj0Var, true);
+                    v8Var.f25602w += 2;
                 } else {
-                    v8Var.p(LocaleController.getString(R.string.SettingsSwitchToDayMode), xj0Var, true);
-                    v8Var.f25600w += 2;
+                    v8Var.p(LocaleController.getString(R.string.SettingsSwitchToDayMode), yj0Var, true);
+                    v8Var.f25602w += 2;
                 }
                 org.telegram.ui.ActionBar.y6.J1(r2Var);
                 return;
@@ -328,9 +328,9 @@ public final class db implements Runnable {
         this.f4508f = aVar;
     }
 
-    public db(j71 j71Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, TLObject tLObject, int i11) {
+    public db(k71 k71Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, TLObject tLObject, int i11) {
         this.f4505a = i11;
-        this.d = j71Var;
+        this.d = k71Var;
         this.f4506b = i10;
         this.e = tL_messages_searchGlobal;
         this.f4507c = z10;

@@ -4,32 +4,32 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.rd0;
+import org.telegram.ui.Components.sd0;
 public final class b2 implements TextWatcher {
-    public boolean f12889a;
-    public final EditTextBoldCursor f12890b;
-    public final int f12891c;
-    public final rd0 d;
+    public boolean f12888a;
+    public final EditTextBoldCursor f12889b;
+    public final int f12890c;
+    public final sd0 d;
 
-    public b2(EditTextBoldCursor editTextBoldCursor, int i10, rd0 rd0Var) {
-        this.f12890b = editTextBoldCursor;
-        this.f12891c = i10;
-        this.d = rd0Var;
+    public b2(EditTextBoldCursor editTextBoldCursor, int i10, sd0 sd0Var) {
+        this.f12889b = editTextBoldCursor;
+        this.f12890c = i10;
+        this.d = sd0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        EditTextBoldCursor editTextBoldCursor = this.f12890b;
+        EditTextBoldCursor editTextBoldCursor = this.f12889b;
         CharSequence text = editTextBoldCursor.getText();
-        if (!this.f12889a) {
+        if (!this.f12888a) {
             int length = text.length();
-            int i10 = this.f12891c;
+            int i10 = this.f12890c;
             if (length > i10) {
-                this.f12889a = true;
+                this.f12888a = true;
                 text = text.subSequence(0, i10);
                 editTextBoldCursor.setText(text);
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                this.f12889a = false;
+                this.f12888a = false;
             }
         }
         this.d.c(editTextBoldCursor.isFocused(), !TextUtils.isEmpty(text));

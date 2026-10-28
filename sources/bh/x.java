@@ -14,11 +14,11 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.s1;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.bk;
-import org.telegram.ui.oj;
-import org.telegram.ui.un;
+import org.telegram.ui.dk;
+import org.telegram.ui.rj;
+import org.telegram.ui.wn;
 public final class x extends FrameLayout {
-    public final un f4195a;
+    public final wn f4195a;
     public w f4196b;
     public List f4197c;
     public boolean d;
@@ -33,17 +33,17 @@ public final class x extends FrameLayout {
     public boolean f4203x;
     public final int[] f4204y;
 
-    public x(un unVar, Context context) {
+    public x(wn wnVar, Context context) {
         super(context);
         this.f4197c = Collections.EMPTY_LIST;
         this.f4198f = 22;
         this.h = 24;
         this.f4204y = new int[2];
         setVisibility(8);
-        this.f4195a = unVar;
+        this.f4195a = wnVar;
         setClipToPadding(false);
         setClipChildren(false);
-        unVar.f44471x0.j(new ai.b(this, 2));
+        wnVar.f45339x0.j(new ai.b(this, 2));
     }
 
     public final void a(boolean z10) {
@@ -60,14 +60,14 @@ public final class x extends FrameLayout {
     }
 
     public final MessageObject b() {
-        MessageObject.GroupedMessages H8;
+        MessageObject.GroupedMessages K8;
         ArrayList<MessageObject> arrayList;
         TLRPC.TL_messageReactions tL_messageReactions;
         ArrayList<TLRPC.ReactionCount> arrayList2;
         if (this.d && !this.f4197c.isEmpty()) {
             int i10 = 0;
             MessageObject messageObject = (MessageObject) this.f4197c.get(0);
-            if (messageObject.getGroupId() != 0 && (H8 = this.f4195a.H8(messageObject.getGroupId())) != null && (arrayList = H8.messages) != null) {
+            if (messageObject.getGroupId() != 0 && (K8 = this.f4195a.K8(messageObject.getGroupId())) != null && (arrayList = K8.messages) != null) {
                 int size = arrayList.size();
                 while (i10 < size) {
                     MessageObject messageObject2 = arrayList.get(i10);
@@ -105,16 +105,16 @@ public final class x extends FrameLayout {
                 }
                 AndroidUtilities.runOnUIThread(new v(this, 0));
             }
-            un unVar = this.f4195a;
-            oj ojVar = unVar.f44471x0;
+            wn wnVar = this.f4195a;
+            rj rjVar = wnVar.f45339x0;
             int[] iArr = this.f4204y;
-            ojVar.getLocationInWindow(iArr);
+            rjVar.getLocationInWindow(iArr);
             boolean z13 = true;
             getLocationInWindow(iArr);
-            float f12 = (iArr[1] - iArr[1]) - unVar.Z9;
+            float f12 = (iArr[1] - iArr[1]) - wnVar.f45097da;
             boolean z14 = false;
-            for (int i12 = 0; i12 < ojVar.getChildCount(); i12++) {
-                View childAt = ojVar.getChildAt(i12);
+            for (int i12 = 0; i12 < rjVar.getChildCount(); i12++) {
+                View childAt = rjVar.getChildAt(i12);
                 if (childAt instanceof s1) {
                     s1 s1Var = (s1) childAt;
                     MessageObject messageObject = s1Var.getMessageObject();
@@ -144,7 +144,7 @@ public final class x extends FrameLayout {
                         if (getHeight() != 0) {
                             height = getHeight();
                         } else {
-                            height = ojVar.getHeight();
+                            height = rjVar.getHeight();
                         }
                         if (s1Var.getCurrentMessagesGroup() != null) {
                             MessageObject.GroupedMessages.TransitionParams transitionParams = s1Var.getCurrentMessagesGroup().transitionParams;
@@ -155,9 +155,9 @@ public final class x extends FrameLayout {
                         float y3 = (s1Var.getY() + f12) - AndroidUtilities.dp(74.0f);
                         float dp4 = AndroidUtilities.dp(14.0f);
                         float dp5 = height - AndroidUtilities.dp(218.0f);
-                        bk bkVar = unVar.f44296j2;
-                        if (bkVar != null && bkVar.getVisibility() == 0) {
-                            dp4 += bkVar.getHeight();
+                        dk dkVar = wnVar.f45164j2;
+                        if (dkVar != null && dkVar.getVisibility() == 0) {
+                            dp4 += dkVar.getHeight();
                         }
                         float f14 = height2;
                         if (y3 > dp4 - (f14 / 2.0f) && y3 < dp5) {
@@ -177,7 +177,7 @@ public final class x extends FrameLayout {
                         if (!z10) {
                             this.f4199n = this.f4200r;
                         }
-                        float interpolation = (ds.f27586f.getInterpolation(this.f4199n) * this.f4201s) + y3;
+                        float interpolation = (ds.f27530f.getInterpolation(this.f4199n) * this.f4201s) + y3;
                         w wVar3 = this.f4196b;
                         if (wVar3 != null) {
                             if (z11 != wVar3.N) {
@@ -191,7 +191,7 @@ public final class x extends FrameLayout {
                                     this.f4196b.setVisibility(0);
                                     if (!this.f4203x) {
                                         this.f4203x = true;
-                                        this.f4196b.p(this.e, unVar.f44325l8, true);
+                                        this.f4196b.p(this.e, wnVar.f45245p8, true);
                                     }
                                 }
                             }

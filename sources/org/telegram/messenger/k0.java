@@ -5,43 +5,43 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class k0 implements RequestDelegate {
-    public final int f20474a;
-    public final Object f20475b;
+    public final int f20471a;
+    public final Object f20472b;
 
     public k0(Object obj, int i10) {
-        this.f20474a = i10;
-        this.f20475b = obj;
+        this.f20471a = i10;
+        this.f20472b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20474a) {
+        switch (this.f20471a) {
             case 0:
-                BirthdayController.d((BirthdayController) this.f20475b, tLObject, tL_error);
+                BirthdayController.d((BirthdayController) this.f20472b, tLObject, tL_error);
                 return;
             case 1:
-                ((DownloadController) this.f20475b).lambda$loadAutoDownloadConfig$2(tLObject, tL_error);
+                ((DownloadController) this.f20472b).lambda$loadAutoDownloadConfig$2(tLObject, tL_error);
                 return;
             case 2:
-                ((FileLoadOperation) this.f20475b).lambda$requestFileOffsets$22(tLObject, tL_error);
+                ((FileLoadOperation) this.f20472b).lambda$requestFileOffsets$22(tLObject, tL_error);
                 return;
             case 3:
-                MessagesController.lambda$unblockPeer$110((Runnable) this.f20475b, tLObject, tL_error);
+                MessagesController.lambda$unblockPeer$110((Runnable) this.f20472b, tLObject, tL_error);
                 return;
             case 4:
-                MessagesController.lambda$checkIsInChat$478((MessagesController.IsInChatCheckedCallback) this.f20475b, tLObject, tL_error);
+                MessagesController.lambda$checkIsInChat$479((MessagesController.IsInChatCheckedCallback) this.f20472b, tLObject, tL_error);
                 return;
             case 5:
-                ((MessagesController.SavedMusicIds) this.f20475b).lambda$load$1(tLObject, tL_error);
+                ((MessagesController.SavedMusicIds) this.f20472b).lambda$load$1(tLObject, tL_error);
                 return;
             case 6:
-                ((MessagesController.SavedMusicList) this.f20475b).lambda$load$1(tLObject, tL_error);
+                ((MessagesController.SavedMusicList) this.f20472b).lambda$load$1(tLObject, tL_error);
                 return;
             case 7:
-                ((TopicsController) this.f20475b).lambda$toggleViewForumAsMessages$18(tLObject, tL_error);
+                ((TopicsController) this.f20472b).lambda$toggleViewForumAsMessages$18(tLObject, tL_error);
                 return;
             default:
-                ((UserConfig) this.f20475b).lambda$loadGlobalTTl$4(tLObject, tL_error);
+                ((UserConfig) this.f20472b).lambda$loadGlobalTTl$4(tLObject, tL_error);
                 return;
         }
     }

@@ -17,7 +17,7 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.t;
 import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import r0.k1;
 public final class f extends FrameLayout implements p6 {
     public float E;
@@ -28,47 +28,47 @@ public final class f extends FrameLayout implements p6 {
     public float J;
     public float K;
     public boolean L;
-    public rh.g f15943a;
-    public final cc f15944b;
-    public final FrameLayout f15945c;
+    public rh.g f15942a;
+    public final cc f15943b;
+    public final FrameLayout f15944c;
     public final r d;
     public boolean e;
-    public eh.d f15946f;
+    public eh.d f15945f;
     public eh.d h;
-    public final Path f15947n;
-    public int f15948r;
-    public float f15949s;
+    public final Path f15946n;
+    public int f15947r;
+    public float f15948s;
     public float v;
-    public boolean f15950w;
-    public float f15951x;
-    public float f15952y;
+    public boolean f15949w;
+    public float f15950x;
+    public float f15951y;
 
     public f(Context context) {
         super(context);
         this.e = true;
-        this.f15947n = new Path();
+        this.f15946n = new Path();
         this.G = new Rect();
         this.H = new RectF();
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f15945c = frameLayout;
-        addView(frameLayout, gb1.i(-1, -2, 80));
+        this.f15944c = frameLayout;
+        addView(frameLayout, kb1.i(-1, -2, 80));
         r rVar = new r(this, context, 8);
         this.d = rVar;
-        addView(rVar, gb1.i(-1, -2, 80));
-        this.f15944b = new cc(this, context, 6);
+        addView(rVar, kb1.i(-1, -2, 80));
+        this.f15943b = new cc(this, context, 6);
     }
 
     public final void a(boolean z10) {
         e();
-        int round = Math.round(this.f15949s) + AndroidUtilities.dp(9.0f) + this.F;
-        if (this.f15948r == round && !z10) {
+        int round = Math.round(this.f15948s) + AndroidUtilities.dp(9.0f) + this.F;
+        if (this.f15947r == round && !z10) {
             return;
         }
-        this.f15948r = round;
+        this.f15947r = round;
         int dp = AndroidUtilities.dp(29.0f);
         RectF rectF = this.H;
         rectF.set(0.0f, getMeasuredHeight() - this.v, getMeasuredWidth(), getMeasuredHeight());
-        Path path = this.f15947n;
+        Path path = this.f15946n;
         path.rewind();
         float f7 = dp;
         path.addRoundRect(rectF, new float[]{f7, f7, f7, f7, 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CW);
@@ -82,20 +82,20 @@ public final class f extends FrameLayout implements p6 {
         ch.c cVar = this.I;
         if (cVar != null && (i10 = cVar.getBounds().top) != (measuredHeight = getMeasuredHeight() - Math.round(this.J))) {
             this.I.setBounds(0, measuredHeight, getMeasuredWidth(), getMeasuredHeight());
-            this.f15944b.invalidate(0, Math.max(0, Math.min(i10, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
+            this.f15943b.invalidate(0, Math.max(0, Math.min(i10, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
             invalidate(0, Math.max(0, Math.min(i10, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
         }
     }
 
     public final void c() {
         int i10;
-        k1 k1Var = ((rh.i) this.f15943a).f47624r;
+        k1 k1Var = ((rh.i) this.f15942a).f47659r;
         if (k1Var != null) {
-            i10 = k1Var.f47118a.f(2).d;
+            i10 = k1Var.f47153a.f(2).d;
         } else {
             i10 = 0;
         }
-        float c10 = ((rh.i) this.f15943a).c();
+        float c10 = ((rh.i) this.f15942a).c();
         r rVar = this.d;
         int childCount = rVar.getChildCount();
         for (int i11 = 0; i11 < childCount; i11++) {
@@ -113,21 +113,21 @@ public final class f extends FrameLayout implements p6 {
         int i10;
         WindowInsets rootWindowInsets;
         int i11;
-        this.f15949s = ((rh.i) this.f15943a).d();
-        this.v = ((rh.i) this.f15943a).c();
+        this.f15948s = ((rh.i) this.f15942a).d();
+        this.v = ((rh.i) this.f15942a).c();
         int i12 = 0;
         boolean z11 = true;
-        if (((rh.i) this.f15943a).f47625s != 1) {
+        if (((rh.i) this.f15942a).f47660s != 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f15950w = z10;
+        this.f15949w = z10;
         r rVar = this.d;
         if (rVar.getVisibility() != 0) {
             z11 = false;
         }
-        boolean z12 = this.f15950w;
+        boolean z12 = this.f15949w;
         if (z11 != z12) {
             if (z12) {
                 i11 = 0;
@@ -138,7 +138,7 @@ public final class f extends FrameLayout implements p6 {
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) rVar.getLayoutParams();
         int i13 = layoutParams.height;
-        int i14 = ((rh.i) this.f15943a).f47626w;
+        int i14 = ((rh.i) this.f15942a).f47661w;
         if (i13 != i14) {
             layoutParams.height = i14;
             requestLayout();
@@ -167,19 +167,19 @@ public final class f extends FrameLayout implements p6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         this.h.setBounds(0, getMeasuredHeight() - ((int) this.v), getMeasuredWidth(), t.z(58.0f, getMeasuredHeight() - ((int) this.v), getMeasuredHeight()));
-        int measuredHeight = getMeasuredHeight() - this.f15948r;
-        int round = Math.round(this.f15951x);
-        int measuredWidth = getMeasuredWidth() - Math.round(this.f15952y);
+        int measuredHeight = getMeasuredHeight() - this.f15947r;
+        int round = Math.round(this.f15950x);
+        int measuredWidth = getMeasuredWidth() - Math.round(this.f15951y);
         int i10 = this.F;
         Rect rect = this.G;
         rect.set(round, 0, measuredWidth, i10);
         rect.inset(0, -AndroidUtilities.dp(7.0f));
         rect.offset(0, measuredHeight + ((int) this.K));
-        this.f15946f.setBounds(rect);
+        this.f15945f.setBounds(rect);
         if (this.e) {
-            this.f15946f.draw(canvas);
+            this.f15945f.draw(canvas);
         }
-        if (this.f15950w) {
+        if (this.f15949w) {
             this.h.draw(canvas);
         }
         super.dispatchDraw(canvas);
@@ -195,7 +195,7 @@ public final class f extends FrameLayout implements p6 {
         }
         if (z10) {
             canvas.save();
-            canvas.clipPath(this.h.f9966x.f9956k);
+            canvas.clipPath(this.h.f9965x.f9955k);
         }
         boolean drawChild = super.drawChild(canvas, view, j10);
         if (z10) {
@@ -205,13 +205,13 @@ public final class f extends FrameLayout implements p6 {
     }
 
     public final void e() {
-        this.f15945c.setTranslationY((-this.f15949s) - AndroidUtilities.dp(9.0f));
+        this.f15944c.setTranslationY((-this.f15948s) - AndroidUtilities.dp(9.0f));
         r rVar = this.d;
         rVar.setTranslationY(rVar.getMeasuredHeight() - this.v);
     }
 
     public View getFadeView() {
-        return this.f15944b;
+        return this.f15943b;
     }
 
     public FrameLayout getInAppKeyboardBubbleContainer() {
@@ -219,7 +219,7 @@ public final class f extends FrameLayout implements p6 {
     }
 
     public float getInputBubbleBottom() {
-        return (getMeasuredHeight() - this.f15949s) - AndroidUtilities.dp(9.0f);
+        return (getMeasuredHeight() - this.f15948s) - AndroidUtilities.dp(9.0f);
     }
 
     public float getInputBubbleHeight() {
@@ -231,7 +231,7 @@ public final class f extends FrameLayout implements p6 {
     }
 
     public FrameLayout getInputIslandBubbleContainer() {
-        return this.f15945c;
+        return this.f15944c;
     }
 
     @Override
@@ -258,8 +258,8 @@ public final class f extends FrameLayout implements p6 {
         if (action == 0) {
             int x9 = (int) motionEvent.getX();
             int y3 = (int) motionEvent.getY();
-            eh.d dVar2 = this.f15946f;
-            if ((dVar2 != null && dVar2.f19461b == 255 && dVar2.getBounds().contains(x9, y3)) || ((dVar = this.h) != null && dVar.getBounds().contains(x9, y3))) {
+            eh.d dVar2 = this.f15945f;
+            if ((dVar2 != null && dVar2.f19460b == 255 && dVar2.getBounds().contains(x9, y3)) || ((dVar = this.h) != null && dVar.getBounds().contains(x9, y3))) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -284,7 +284,7 @@ public final class f extends FrameLayout implements p6 {
     }
 
     public void setInputBubbleAlpha(int i10) {
-        eh.d dVar = this.f15946f;
+        eh.d dVar = this.f15945f;
         if (dVar != null) {
             dVar.setAlpha(i10);
         }
@@ -302,9 +302,9 @@ public final class f extends FrameLayout implements p6 {
     }
 
     public void setInputIslandBubbleDrawable(eh.d dVar) {
-        this.f15946f = dVar;
+        this.f15945f = dVar;
         dVar.w(AndroidUtilities.dp(7.0f));
-        this.f15946f.x(AndroidUtilities.dp(22.0f));
+        this.f15945f.x(AndroidUtilities.dp(22.0f));
     }
 
     public void setUnderKeyboardBackgroundDrawable(eh.d dVar) {
@@ -313,17 +313,17 @@ public final class f extends FrameLayout implements p6 {
         dVar.y(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), 0.0f, 0.0f);
         this.h.A(AndroidUtilities.dp(32.0f));
         eh.d dVar2 = this.h;
-        dVar2.f9966x.f9953g = 0.4f;
+        dVar2.f9965x.f9952g = 0.4f;
         dVar2.t();
     }
 
     public void setWindowInsetsProvider(rh.g gVar) {
-        this.f15943a = gVar;
+        this.f15942a = gVar;
     }
 
     @Override
     public final void updateColors() {
-        eh.d dVar = this.f15946f;
+        eh.d dVar = this.f15945f;
         if (dVar != null) {
             dVar.updateColors();
         }

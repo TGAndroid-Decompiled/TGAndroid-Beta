@@ -15,7 +15,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -25,7 +25,7 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.lb;
 import org.telegram.ui.Components.wc;
 import org.telegram.ui.Wallet.e2;
@@ -97,7 +97,7 @@ public final class c1 implements Utilities.Callback2 {
                 TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
                 reportprofilephoto.peer = MessagesController.getInstance(i16).getInputPeer(j10);
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputPhoto.f22046id = photo.f22051id;
+                tL_inputPhoto.f22047id = photo.f22052id;
                 tL_inputPhoto.file_reference = photo.file_reference;
                 tL_inputPhoto.access_hash = photo.access_hash;
                 reportprofilephoto.photo_id = tL_inputPhoto;
@@ -131,7 +131,7 @@ public final class c1 implements Utilities.Callback2 {
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j11;
-                        e2Var.f36509f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.s1(e2Var, callback, j11, i17, 1));
+                        e2Var.f36516f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.s1(e2Var, callback, j11, i17, 1));
                         return;
                     }
                     e2Var.d(j11, i17, callback);
@@ -166,12 +166,12 @@ public final class c1 implements Utilities.Callback2 {
                             tLObject = chat;
                             chat2 = MessagesController.getInstance(i18).getChat(Long.valueOf(-j13));
                         }
-                        LinearLayout d = vh.d(context2, 1);
-                        d.addView(new e7(context2, tLObject, chat2), gb1.x(-1, -2, 48, 0, -4, 0, 0));
+                        LinearLayout d = wh.d(context2, 1);
+                        d.addView(new e7(context2, tLObject, chat2), kb1.x(-1, -2, 48, 0, -4, 0, 0));
                         TextView textView = new TextView(context2);
                         NotificationCenter.listenEmojiLoading(textView);
                         textView.setText(LocaleController.getString(R.string.Gift2AuctionsChangeRecipient));
-                        int i19 = y6.f23464j5;
+                        int i19 = y6.f23465j5;
                         org.telegram.messenger.t.r(textView, i19, u6Var, 1, 20.0f);
                         if (LocaleController.isRTL) {
                             i13 = 5;
@@ -184,21 +184,21 @@ public final class c1 implements Utilities.Callback2 {
                         } else {
                             i14 = 3;
                         }
-                        d.addView(textView, gb1.h(-2, -2.0f, i14 | 48, 24.0f, 19.0f, 24.0f, 2.0f));
+                        d.addView(textView, kb1.h(-2, -2.0f, i14 | 48, 24.0f, 19.0f, 24.0f, 2.0f));
                         TextView textView2 = new TextView(context2);
                         f7.V(textView2, i19, u6Var);
                         textView2.setTextSize(1, 16.0f);
-                        vh.o(R.string.Gift2AuctionsChangeRecipient2, new Object[]{DialogObject.getShortName(peerDialogId), DialogObject.getShortName(j13)}, textView2);
-                        d.addView(textView2, gb1.x(-1, -2, 48, 24, 4, 24, 4));
+                        wh.o(R.string.Gift2AuctionsChangeRecipient2, new Object[]{DialogObject.getShortName(peerDialogId), DialogObject.getShortName(j13)}, textView2);
+                        d.addView(textView2, kb1.x(-1, -2, 48, 24, 4, 24, 4));
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2, 0, u6Var);
                         alertDialog$Builder.o(d);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new x2.e(h0Var, 5));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        alertDialog$Builder.f22368a.show();
+                        alertDialog$Builder.f22369a.show();
                         return;
                     } else if (auction.auctionUserState.bid_date > 0 && !auction.isFinished()) {
                         zh.m mVar = new zh.m(context2, u6Var, null, auction);
-                        mVar.f53124n0 = runnable;
+                        mVar.f53182n0 = runnable;
                         mVar.show();
                         return;
                     } else {

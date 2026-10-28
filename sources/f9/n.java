@@ -3,18 +3,18 @@ package f9;
 import java.io.Serializable;
 import java.util.Arrays;
 public final class n extends q1 implements Serializable {
-    public final e9.k f10304a;
-    public final q1 f10305b;
+    public final e9.k f10303a;
+    public final q1 f10304b;
 
     public n(e9.k kVar, q1 q1Var) {
-        this.f10304a = kVar;
-        this.f10305b = q1Var;
+        this.f10303a = kVar;
+        this.f10304b = q1Var;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        e9.k kVar = this.f10304a;
-        return this.f10305b.compare(kVar.apply(obj), kVar.apply(obj2));
+        e9.k kVar = this.f10303a;
+        return this.f10304b.compare(kVar.apply(obj), kVar.apply(obj2));
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class n extends q1 implements Serializable {
         }
         if (obj instanceof n) {
             n nVar = (n) obj;
-            if (this.f10304a.equals(nVar.f10304a) && this.f10305b.equals(nVar.f10305b)) {
+            if (this.f10303a.equals(nVar.f10303a) && this.f10304b.equals(nVar.f10304b)) {
                 return true;
             }
         }
@@ -32,10 +32,10 @@ public final class n extends q1 implements Serializable {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f10304a, this.f10305b});
+        return Arrays.hashCode(new Object[]{this.f10303a, this.f10304b});
     }
 
     public final String toString() {
-        return this.f10305b + ".onResultOf(" + this.f10304a + ")";
+        return this.f10304b + ".onResultOf(" + this.f10303a + ")";
     }
 }

@@ -3,33 +3,33 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class r extends AnimatorListenerAdapter {
-    public final int f34037a;
-    public final t f34038b;
+    public final int f34142a;
+    public final t f34143b;
 
     public r(t tVar, int i10) {
-        this.f34037a = i10;
-        this.f34038b = tVar;
+        this.f34142a = i10;
+        this.f34143b = tVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
         int i10;
-        switch (this.f34037a) {
+        switch (this.f34142a) {
             case 0:
-                t tVar = this.f34038b;
+                t tVar = this.f34143b;
                 tVar.E = false;
                 tVar.invalidate();
                 return;
             case 1:
-                t tVar2 = this.f34038b;
-                s sVar = tVar2.f34077b0;
+                t tVar2 = this.f34143b;
+                s sVar = tVar2.f34182b0;
                 if (tVar2.W) {
                     f7 = 0.0f;
                 } else {
                     f7 = 1.0f;
                 }
-                tVar2.f34075a0 = f7;
+                tVar2.f34180a0 = f7;
                 sVar.setAlpha(f7);
                 if (tVar2.W) {
                     i10 = 8;
@@ -37,13 +37,13 @@ public final class r extends AnimatorListenerAdapter {
                     i10 = 0;
                 }
                 sVar.setVisibility(i10);
-                tVar2.f34074a.invalidate();
+                tVar2.f34179a.invalidate();
                 return;
             default:
                 super.onAnimationEnd(animator);
-                t tVar3 = this.f34038b;
+                t tVar3 = this.f34143b;
                 tVar3.J0 = null;
-                o oVar = tVar3.f34074a;
+                o oVar = tVar3.f34179a;
                 oVar.setRotationY(0.0f);
                 if (!tVar3.K0) {
                     oVar.d.clearImage();

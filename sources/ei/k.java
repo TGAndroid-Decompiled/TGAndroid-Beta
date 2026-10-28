@@ -3,7 +3,7 @@ package ei;
 import android.view.KeyEvent;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.cz0;
+import org.telegram.ui.Components.dz0;
 import org.telegram.ui.Components.gj;
 import org.telegram.ui.Components.li;
 import org.telegram.ui.Components.lm;
@@ -22,7 +22,7 @@ public final class k extends s4.t {
     public boolean Y0() {
         switch (this.Q) {
             case 3:
-                if (((cz0) this.R).W != null && LocaleController.isRTL) {
+                if (((dz0) this.R).W != null && LocaleController.isRTL) {
                     return true;
                 }
                 return false;
@@ -35,7 +35,7 @@ public final class k extends s4.t {
     public int o0(int i10, rf.e eVar, b1 b1Var) {
         switch (this.Q) {
             case 0:
-                if (((r) this.R).f10002b) {
+                if (((r) this.R).f10001b) {
                     i10 = 0;
                 }
                 return super.o0(i10, eVar, b1Var);
@@ -49,12 +49,12 @@ public final class k extends s4.t {
         switch (this.Q) {
             case 1:
                 gj gjVar = new gj(this, recyclerView.getContext());
-                gjVar.f47680a = i10;
+                gjVar.f47715a = i10;
                 w0(gjVar);
                 return;
             case 2:
                 lm lmVar = new lm(this, recyclerView.getContext());
-                lmVar.f47680a = i10;
+                lmVar.f47715a = i10;
                 w0(lmVar);
                 return;
             default:
@@ -77,10 +77,10 @@ public final class k extends s4.t {
         }
     }
 
-    public k(cz0 cz0Var) {
+    public k(dz0 dz0Var) {
         super(5);
         this.Q = 3;
-        this.R = cz0Var;
+        this.R = dz0Var;
     }
 
     public k(r rVar) {

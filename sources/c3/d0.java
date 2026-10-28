@@ -31,7 +31,7 @@ public final class d0 implements o {
         }
         yb.p(z10);
         e2.x xVar = new e2.x(i10);
-        ((l) pVar).h(xVar.f9732a, 0, i10, false);
+        ((l) pVar).h(xVar.f9731a, 0, i10, false);
         if (xVar.H() == i11) {
             return true;
         }
@@ -64,7 +64,7 @@ public final class d0 implements o {
 
     @Override
     public final List e() {
-        f9.g0 g0Var = f9.i0.f10287b;
+        f9.g0 g0Var = f9.i0.f10286b;
         return s1.e;
     }
 

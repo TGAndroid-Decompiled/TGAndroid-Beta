@@ -19,8 +19,8 @@ public final class yh extends ru {
         super.f();
         sz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f32781w0 = false;
-            emojiView.f32787x2 = false;
+            emojiView.f32775w0 = false;
+            emojiView.f32781x2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
@@ -28,9 +28,9 @@ public final class yh extends ru {
 
     @Override
     public final void i(ActionMode actionMode, Menu menu) {
-        org.telegram.ui.ActionBar.r2 r2Var = this.V.f33021f0;
-        if (r2Var instanceof org.telegram.ui.un) {
-            org.telegram.ui.un.r8(menu, ((org.telegram.ui.un) r2Var).h, true, true, true, true);
+        org.telegram.ui.ActionBar.r2 r2Var = this.V.f32990f0;
+        if (r2Var instanceof org.telegram.ui.wn) {
+            org.telegram.ui.wn.t8(menu, ((org.telegram.ui.wn) r2Var).h, true, true, true, true);
         }
     }
 
@@ -38,11 +38,11 @@ public final class yh extends ru {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         ti tiVar = this.V;
         yh yhVar = tiVar.S0;
-        if (!tiVar.f33079x1) {
+        if (!tiVar.f33048x1) {
             if (motionEvent.getX() > yhVar.getEditText().getLeft() && motionEvent.getX() < yhVar.getEditText().getRight() && motionEvent.getY() > yhVar.getEditText().getTop() && motionEvent.getY() < yhVar.getEditText().getBottom()) {
-                tiVar.y1(yhVar.getEditText(), true);
+                tiVar.z1(yhVar.getEditText(), true);
             } else {
-                tiVar.y1(yhVar.getEditText(), false);
+                tiVar.z1(yhVar.getEditText(), false);
             }
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -51,21 +51,21 @@ public final class yh extends ru {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.V.i2();
+        this.V.j2();
     }
 
     @Override
     public final void q(int i10, int i11) {
         boolean z10;
         ti tiVar = this.V;
-        tiVar.i2();
-        if (tiVar.f33011c0) {
+        tiVar.j2();
+        if (tiVar.f32980c0) {
             if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            tiVar.T1(z10);
+            tiVar.U1(z10);
         }
     }
 }

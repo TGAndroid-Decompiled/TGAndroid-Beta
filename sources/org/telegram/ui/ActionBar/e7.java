@@ -10,14 +10,14 @@ import java.util.HashSet;
 import java.util.IdentityHashMap;
 import org.telegram.messenger.FileLog;
 public final class e7 implements q0.a {
-    public final IdentityHashMap f22610a = new IdentityHashMap();
-    public boolean f22611b;
-    public int f22612c;
+    public final IdentityHashMap f22611a = new IdentityHashMap();
+    public boolean f22612b;
+    public int f22613c;
     public HashSet d;
     public boolean e;
 
     public final void a() {
-        this.f22610a.clear();
+        this.f22611a.clear();
         this.d = null;
         this.e = false;
     }
@@ -29,9 +29,9 @@ public final class e7 implements q0.a {
 
     public final void b(View view) {
         s4.w0 recycledViewPool;
-        if (view != null && this.f22610a.put(view, Boolean.TRUE) == null) {
+        if (view != null && this.f22611a.put(view, Boolean.TRUE) == null) {
             int i10 = 0;
-            if (this.f22612c == 0) {
+            if (this.f22613c == 0) {
                 if (view instanceof p6) {
                     try {
                         ((p6) view).updateColors();
@@ -71,26 +71,26 @@ public final class e7 implements q0.a {
                 a7 p10 = f7.p(view, false);
                 if (p10 != null) {
                     for (int i11 = 0; i11 < 6; i11++) {
-                        z6 z6Var = p10.f22419a[i11];
+                        z6 z6Var = p10.f22420a[i11];
                         if (z6Var != null) {
                             f7.g(z6Var, hashSet);
                         }
                     }
-                    if (p10.f22420b != null) {
-                        for (int i12 = 0; i12 < p10.f22420b.size(); i12++) {
-                            f7.g((z6) p10.f22420b.get(i12), hashSet);
+                    if (p10.f22421b != null) {
+                        for (int i12 = 0; i12 < p10.f22421b.size(); i12++) {
+                            f7.g((z6) p10.f22421b.get(i12), hashSet);
                         }
                     }
-                    if (p10.f22421c != null) {
-                        for (int i13 = 0; i13 < p10.f22421c.size(); i13++) {
-                            f7.g((z6) p10.f22421c.get(i13), hashSet);
+                    if (p10.f22422c != null) {
+                        for (int i13 = 0; i13 < p10.f22422c.size(); i13++) {
+                            f7.g((z6) p10.f22422c.get(i13), hashSet);
                         }
                     }
                     z6 z6Var2 = p10.e;
                     if (z6Var2 != null) {
                         f7.g(z6Var2, hashSet);
                     }
-                    z6 z6Var3 = p10.f22422f;
+                    z6 z6Var3 = p10.f22423f;
                     if (z6Var3 != null) {
                         f7.g(z6Var3, hashSet);
                     }
@@ -98,7 +98,7 @@ public final class e7 implements q0.a {
             }
             if (view instanceof RecyclerView) {
                 RecyclerView recyclerView = (RecyclerView) view;
-                boolean z10 = this.f22611b;
+                boolean z10 = this.f22612b;
                 for (int i14 = 0; i14 < recyclerView.getChildCount(); i14++) {
                     b(recyclerView.getChildAt(i14));
                 }
@@ -113,11 +113,11 @@ public final class e7 implements q0.a {
                 }
                 if (z10 && (recycledViewPool = recyclerView.getRecycledViewPool()) != null) {
                     ArrayList arrayList = new ArrayList();
-                    SparseArray sparseArray = recycledViewPool.f47856a;
+                    SparseArray sparseArray = recycledViewPool.f47891a;
                     for (int i18 = 0; i18 < sparseArray.size(); i18++) {
-                        ArrayList arrayList2 = ((s4.v0) sparseArray.valueAt(i18)).f47850a;
+                        ArrayList arrayList2 = ((s4.v0) sparseArray.valueAt(i18)).f47885a;
                         for (int i19 = 0; i19 < arrayList2.size(); i19++) {
-                            arrayList.add(((s4.e1) arrayList2.get(i19)).f47738a);
+                            arrayList.add(((s4.e1) arrayList2.get(i19)).f47773a);
                         }
                     }
                     while (i10 < arrayList.size()) {

@@ -1,47 +1,90 @@
 package org.telegram.ui;
 
-import android.content.ComponentName;
-import android.content.Context;
-import org.telegram.messenger.R;
-public final class sa0 {
-    public static final sa0 h;
-    public static final sa0[] f43436n;
-    public final String f43437a;
-    public final int f43438b;
-    public final int f43439c;
-    public final int d;
-    public final boolean e;
-    public ComponentName f43440f;
+import android.window.BackEvent;
+import android.window.OnBackAnimationCallback;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class sa0 implements OnBackAnimationCallback {
+    public boolean f43282b;
+    public boolean e;
+    public final LaunchActivity f43284f;
+    public final AnimationNotificationsLocker f43281a = new AnimationNotificationsLocker();
+    public boolean f43283c = false;
+    public boolean d = false;
 
-    static {
-        int i10 = R.drawable.icon_background_sa;
-        int i11 = R.mipmap.icon_foreground_sa;
-        sa0 sa0Var = new sa0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
-        h = sa0Var;
-        f43436n = new sa0[]{sa0Var, new sa0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new sa0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new sa0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new sa0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new sa0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
+    public sa0(LaunchActivity launchActivity) {
+        this.f43284f = launchActivity;
     }
 
-    public sa0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
-        this.f43437a = str2;
-        this.f43438b = i11;
-        this.f43439c = i12;
-        this.d = i13;
-        this.e = z10;
-    }
-
-    public static sa0 valueOf(String str) {
-        return (sa0) Enum.valueOf(sa0.class, str);
-    }
-
-    public static sa0[] values() {
-        return (sa0[]) f43436n.clone();
-    }
-
-    public final ComponentName a(Context context) {
-        if (this.f43440f == null) {
-            String packageName = context.getPackageName();
-            this.f43440f = new ComponentName(packageName, "org.telegram.messenger." + this.f43437a);
+    public final void onBackCancelled() {
+        ActionBarLayout actionBarLayout;
+        this.f43283c = false;
+        this.d = false;
+        if (this.f43282b) {
+            this.f43281a.unlock();
+            this.f43282b = false;
         }
-        return this.f43440f;
+        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f43284f.f35577q0) != null && actionBarLayout.f22325i1) {
+            actionBarLayout.f22325i1 = false;
+            actionBarLayout.e(true);
+        }
+    }
+
+    public final void onBackInvoked() {
+        this.d = true;
+        if (this.f43282b) {
+            this.f43281a.unlock();
+            this.f43282b = false;
+        }
+        if (AndroidUtilities.isTablet()) {
+            this.f43284f.onBackPressed();
+        } else if (!this.f43284f.e0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f43284f;
+            ActionBarLayout actionBarLayout = launchActivity.f35577q0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f22325i1) {
+                    actionBarLayout.H();
+                    return;
+                }
+                actionBarLayout.f22325i1 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
+        }
+    }
+
+    public final void onBackProgressed(BackEvent backEvent) {
+        ActionBarLayout actionBarLayout;
+        ActionBarLayout actionBarLayout2;
+        if (!this.f43283c || !this.d) {
+            float progress = backEvent.getProgress();
+            boolean z10 = false;
+            if (!this.e && progress > 0.015f) {
+                this.e = true;
+                if (!AndroidUtilities.isTablet() && this.f43284f.e0(false) && (actionBarLayout2 = this.f43284f.f35577q0) != null && actionBarLayout2.I(backEvent.getTouchX(), backEvent.getTouchY()) && !this.f43282b) {
+                    this.f43281a.lock();
+                    this.f43282b = true;
+                }
+            }
+            float max = Math.max(0.0f, progress - 0.015f) / 0.985f;
+            if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f43284f.f35577q0) != null && actionBarLayout.f22325i1) {
+                float interpolation = org.telegram.ui.Components.ds.f27535l.getInterpolation(max) * AndroidUtilities.dp(56.0f);
+                if (max > 0.0f) {
+                    z10 = true;
+                }
+                actionBarLayout.f22329k1 = z10;
+                actionBarLayout.f22344s.setTranslationX(interpolation);
+                actionBarLayout.setInnerTranslationX(interpolation);
+            }
+        }
+    }
+
+    public final void onBackStarted(BackEvent backEvent) {
+        this.f43283c = true;
+        this.d = false;
+        this.e = false;
     }
 }

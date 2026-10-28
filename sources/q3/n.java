@@ -9,15 +9,15 @@ import f9.s1;
 import j$.util.Objects;
 import java.util.ArrayList;
 public final class n extends i {
-    public final String f46952b;
-    public final i0 f46953c;
+    public final String f46987b;
+    public final i0 f46988c;
 
     public n(String str, String str2, s1 s1Var) {
         super(str);
         yb.g(!s1Var.isEmpty());
-        this.f46952b = str2;
+        this.f46987b = str2;
         i0 u10 = i0.u(s1Var);
-        this.f46953c = u10;
+        this.f46988c = u10;
         String str3 = (String) u10.get(0);
     }
 
@@ -48,7 +48,7 @@ public final class n extends i {
     public final void b(r0 r0Var) {
         char c10;
         Integer num;
-        String str = this.f46943a;
+        String str = this.f46978a;
         switch (str.hashCode()) {
             case 82815:
                 if (str.equals("TAL")) {
@@ -215,7 +215,7 @@ public final class n extends i {
                 c10 = 65535;
                 break;
         }
-        i0 i0Var = this.f46953c;
+        i0 i0Var = this.f46988c;
         try {
             switch (c10) {
                 case 0:
@@ -248,7 +248,7 @@ public final class n extends i {
                     return;
                 case 6:
                 case 21:
-                    String str3 = n0.f9692a;
+                    String str3 = n0.f9691a;
                     String[] split = ((String) i0Var.get(0)).split("/", -1);
                     int parseInt3 = Integer.parseInt(split[0]);
                     if (split.length > 1) {
@@ -326,7 +326,7 @@ public final class n extends i {
         }
         if (obj != null && n.class == obj.getClass()) {
             n nVar = (n) obj;
-            if (Objects.equals(this.f46943a, nVar.f46943a) && Objects.equals(this.f46952b, nVar.f46952b) && this.f46953c.equals(nVar.f46953c)) {
+            if (Objects.equals(this.f46978a, nVar.f46978a) && Objects.equals(this.f46987b, nVar.f46987b) && this.f46988c.equals(nVar.f46988c)) {
                 return true;
             }
         }
@@ -335,18 +335,18 @@ public final class n extends i {
 
     public final int hashCode() {
         int i10;
-        int f7 = a1.g.f(527, 31, this.f46943a);
-        String str = this.f46952b;
+        int f7 = a1.g.f(527, 31, this.f46978a);
+        String str = this.f46987b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        return this.f46953c.hashCode() + ((f7 + i10) * 31);
+        return this.f46988c.hashCode() + ((f7 + i10) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f46943a + ": description=" + this.f46952b + ": values=" + this.f46953c;
+        return this.f46978a + ": description=" + this.f46987b + ": values=" + this.f46988c;
     }
 }

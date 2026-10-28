@@ -4,13 +4,13 @@ import a8.yb;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 public abstract class a extends g2 implements ListIterator {
-    public final int f10251a;
-    public int f10252b;
+    public final int f10250a;
+    public int f10251b;
 
     public a(int i10, int i11) {
         yb.m(i11, i10);
-        this.f10251a = i10;
-        this.f10252b = i11;
+        this.f10250a = i10;
+        this.f10251b = i11;
     }
 
     public abstract Object a(int i10);
@@ -22,7 +22,7 @@ public abstract class a extends g2 implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f10252b < this.f10251a) {
+        if (this.f10251b < this.f10250a) {
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public abstract class a extends g2 implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f10252b > 0) {
+        if (this.f10251b > 0) {
             return true;
         }
         return false;
@@ -39,8 +39,8 @@ public abstract class a extends g2 implements ListIterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i10 = this.f10252b;
-            this.f10252b = i10 + 1;
+            int i10 = this.f10251b;
+            this.f10251b = i10 + 1;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -48,14 +48,14 @@ public abstract class a extends g2 implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f10252b;
+        return this.f10251b;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i10 = this.f10252b - 1;
-            this.f10252b = i10;
+            int i10 = this.f10251b - 1;
+            this.f10251b = i10;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -63,7 +63,7 @@ public abstract class a extends g2 implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f10252b - 1;
+        return this.f10251b - 1;
     }
 
     @Override

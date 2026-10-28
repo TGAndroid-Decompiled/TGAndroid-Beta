@@ -8,8 +8,8 @@ import java.util.Arrays;
 import o6.l;
 public final class a extends p6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(22);
-    public String f18362a;
-    public String f18363b;
+    public String f18361a;
+    public String f18362b;
 
     public final boolean equals(Object obj) {
         if (this == obj) {
@@ -17,7 +17,7 @@ public final class a extends p6.a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (l.l(this.f18362a, aVar.f18362a) && l.l(this.f18363b, aVar.f18363b)) {
+            if (l.l(this.f18361a, aVar.f18361a) && l.l(this.f18362b, aVar.f18362b)) {
                 return true;
             }
         }
@@ -25,14 +25,14 @@ public final class a extends p6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f18362a, this.f18363b});
+        return Arrays.hashCode(new Object[]{this.f18361a, this.f18362b});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        df.l(parcel, 1, this.f18362a);
-        df.l(parcel, 2, this.f18363b);
+        df.l(parcel, 1, this.f18361a);
+        df.l(parcel, 2, this.f18362b);
         df.r(parcel, q5);
     }
 }

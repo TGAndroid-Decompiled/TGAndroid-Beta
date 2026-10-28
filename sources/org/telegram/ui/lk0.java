@@ -1,133 +1,228 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import android.widget.ImageView;
 import java.util.ArrayList;
-import org.telegram.messenger.DispatchQueue2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-public final class lk0 extends org.telegram.ui.Components.lm0 {
-    public final Context f41293c;
-    public ArrayList d = new ArrayList();
-    public ArrayList e = new ArrayList();
-    public kk0 f41294f;
-    public final ig.a2 h;
-    public final NotificationsCustomSettingsActivity f41295n;
+public final class lk0 extends qg.b {
+    public final Context d;
+    public final NotificationsCustomSettingsActivity e;
 
     public lk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, Context context) {
-        this.f41295n = notificationsCustomSettingsActivity;
-        this.f41293c = context;
-        ig.a2 a2Var = new ig.a2(true);
-        this.h = a2Var;
-        a2Var.f13988a = new qt(this, 26);
+        this.e = notificationsCustomSettingsActivity;
+        this.d = context;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        return true;
-    }
-
-    public final Object E(int i10) {
-        if (i10 >= 0 && i10 < this.d.size()) {
-            return this.d.get(i10);
+        int i10 = e1Var.f47776f;
+        if (i10 != 0 && i10 != 4) {
+            return true;
         }
-        int f7 = ic.a.f(1, i10, this.d);
-        ig.a2 a2Var = this.h;
-        ArrayList arrayList = a2Var.e;
-        if (f7 >= 0 && f7 < arrayList.size()) {
-            return a2Var.e.get(f7);
-        }
-        return null;
-    }
-
-    public final void F(String str) {
-        if (this.f41294f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f41294f);
-            this.f41294f = null;
-        }
-        if (str == null) {
-            this.d.clear();
-            this.e.clear();
-            this.h.f(null, null);
-            ig.a2 a2Var = this.h;
-            int i10 = this.f41295n.f35579s;
-            boolean z10 = true;
-            a2Var.g(null, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
-            l();
-            return;
-        }
-        DispatchQueue2 dispatchQueue2 = Utilities.searchQueue;
-        kk0 kk0Var = new kk0(this, str, 0);
-        this.f41294f = kk0Var;
-        dispatchQueue2.postRunnable(kk0Var, 300L);
+        return false;
     }
 
     @Override
     public final int h() {
-        int size = this.d.size();
-        ArrayList arrayList = this.h.e;
-        if (!arrayList.isEmpty()) {
-            return arrayList.size() + 1 + size;
-        }
-        return size;
+        return this.e.I.size();
     }
 
     @Override
     public final int j(int i10) {
-        if (i10 == this.d.size()) {
-            return 1;
+        if (i10 >= 0) {
+            NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.e;
+            if (i10 < notificationsCustomSettingsActivity.I.size()) {
+                return ((kk0) notificationsCustomSettingsActivity.I.get(i10)).f47075a;
+            }
+            return 5;
         }
-        return 0;
+        return 5;
     }
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
-        int i11 = e1Var.f47741f;
-        View view = e1Var.f47738a;
-        boolean z10 = true;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                return;
-            }
-            ((org.telegram.ui.Cells.z3) view).setText(LocaleController.getString("AddToExceptions", R.string.AddToExceptions));
-            return;
-        }
-        org.telegram.ui.Cells.ab abVar = (org.telegram.ui.Cells.ab) view;
-        boolean z11 = false;
-        if (i10 < this.d.size()) {
-            ok0 ok0Var = (ok0) this.d.get(i10);
-            CharSequence charSequence = (CharSequence) this.e.get(i10);
-            if (i10 == this.d.size() - 1) {
+        boolean z10;
+        float f7;
+        ArrayList arrayList = this.e.I;
+        if (i10 >= 0 && i10 < arrayList.size()) {
+            kk0 kk0Var = (kk0) arrayList.get(i10);
+            boolean z11 = true;
+            int i11 = i10 + 1;
+            if (i11 < arrayList.size() && ((kk0) arrayList.get(i11)).f47075a != 4) {
+                z10 = true;
+            } else {
                 z10 = false;
             }
-            abVar.f(ok0Var, charSequence, z10);
-            abVar.setAddButtonVisible(false);
-            return;
+            int i12 = e1Var.f47776f;
+            View view = e1Var.f47773a;
+            switch (i12) {
+                case 0:
+                    ((org.telegram.ui.Cells.q4) view).setText(kk0Var.e);
+                    return;
+                case 1:
+                    ((org.telegram.ui.Cells.a9) view).f("" + ((Object) kk0Var.e), kk0Var.f40822i, z10);
+                    return;
+                case 2:
+                    ((org.telegram.ui.Cells.ab) view).f(kk0Var.f40821g, null, z10);
+                    return;
+                case 3:
+                    ((org.telegram.ui.Cells.c9) view).b(kk0Var.h, "" + ((Object) kk0Var.e), z10);
+                    return;
+                case 4:
+                    org.telegram.ui.Cells.i9 i9Var = (org.telegram.ui.Cells.i9) view;
+                    if (kk0Var.e == null) {
+                        i9Var.setFixedSize(12);
+                        i9Var.setText(null);
+                        return;
+                    }
+                    i9Var.setFixedSize(0);
+                    i9Var.setText(kk0Var.e);
+                    return;
+                case 5:
+                    ((org.telegram.ui.Cells.ga) view).c(kk0Var.e, kk0Var.f40820f, false, z10);
+                    return;
+                case 6:
+                    org.telegram.ui.Cells.n5 n5Var = (org.telegram.ui.Cells.n5) view;
+                    n5Var.setDrawLine(true);
+                    n5Var.setChecked(kk0Var.f40822i);
+                    n5Var.b(kk0Var.e, kk0Var.f40820f, kk0Var.d, kk0Var.f40822i, 0, false, z10, true);
+                    return;
+                case 7:
+                    org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) view;
+                    if (kk0Var.d == 0) {
+                        v8Var.g(-1, org.telegram.ui.ActionBar.y6.f23582p7);
+                        v8Var.k("" + ((Object) kk0Var.e), z10);
+                        return;
+                    }
+                    v8Var.g(org.telegram.ui.ActionBar.y6.f23693v6, org.telegram.ui.ActionBar.y6.f23674u6);
+                    v8Var.o(kk0Var.d, "" + ((Object) kk0Var.e), z10);
+                    return;
+                case 8:
+                    jk0 jk0Var = (jk0) view;
+                    jk0Var.g(org.telegram.ui.ActionBar.y6.f23693v6, org.telegram.ui.ActionBar.y6.f23674u6);
+                    CharSequence charSequence = kk0Var.e;
+                    if (kk0Var.d != 1) {
+                        z11 = false;
+                    }
+                    ViewPropertyAnimator animate = jk0Var.W.animate();
+                    if (z11) {
+                        f7 = 0.0f;
+                    } else {
+                        f7 = 180.0f;
+                    }
+                    org.telegram.messenger.wh.q(animate.rotation(f7), org.telegram.ui.Components.ds.h, 340L);
+                    jk0Var.k(charSequence, z10);
+                    return;
+                default:
+                    return;
+            }
         }
-        int f7 = ic.a.f(1, i10, this.d);
-        ArrayList arrayList = this.h.e;
-        TLObject tLObject = (TLObject) arrayList.get(f7);
-        String string = LocaleController.getString("NotificationsOn", R.string.NotificationsOn);
-        if (f7 != arrayList.size() - 1) {
-            z11 = true;
-        }
-        abVar.d(tLObject, null, string, z11);
-        abVar.setAddButtonVisible(true);
     }
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        View abVar;
-        if (i10 != 0) {
-            abVar = new org.telegram.ui.Cells.z3(this.f41293c, null);
-            abVar.setBackgroundColor(0);
-            abVar.setTag(-33024);
-        } else {
-            abVar = new org.telegram.ui.Cells.ab(4, 0, this.f41293c, null, false, true);
+        View q4Var;
+        org.telegram.ui.ActionBar.u6 u6Var;
+        int i11;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.e;
+        Context context = this.d;
+        switch (i10) {
+            case 0:
+                q4Var = new org.telegram.ui.Cells.q4(context);
+                break;
+            case 1:
+                q4Var = new org.telegram.ui.Cells.a9(context);
+                break;
+            case 2:
+                q4Var = new org.telegram.ui.Cells.ab(context, 6, 0, false);
+                break;
+            case 3:
+                q4Var = new org.telegram.ui.Cells.c9(context, null);
+                break;
+            case 4:
+                q4Var = new org.telegram.ui.Cells.i9(context);
+                break;
+            case 5:
+                q4Var = new org.telegram.ui.Cells.ga(context);
+                break;
+            case 6:
+                u6Var = ((org.telegram.ui.ActionBar.r2) notificationsCustomSettingsActivity).resourceProvider;
+                q4Var = new org.telegram.ui.Cells.n5(21, 64, this.d, u6Var, true);
+                break;
+            case 7:
+            default:
+                q4Var = new org.telegram.ui.Cells.v8(context);
+                break;
+            case 8:
+                ?? v8Var = new org.telegram.ui.Cells.v8(context);
+                ImageView imageView = new ImageView(context);
+                v8Var.W = imageView;
+                imageView.setScaleType(ImageView.ScaleType.CENTER);
+                org.telegram.ui.ActionBar.f7.t(imageView, org.telegram.ui.ActionBar.y6.f23693v6, notificationsCustomSettingsActivity.getResourceProvider(), PorterDuff.Mode.SRC_IN);
+                imageView.setImageResource(R.drawable.msg_expand);
+                if (LocaleController.isRTL) {
+                    i11 = 3;
+                } else {
+                    i11 = 5;
+                }
+                v8Var.addView(imageView, org.telegram.ui.Components.kb1.h(24, 24.0f, i11 | 16, 17.0f, 0.0f, 17.0f, 0.0f));
+                q4Var = v8Var;
+                break;
         }
-        return new s4.e1(abVar);
+        return new s4.e1(q4Var);
+    }
+
+    @Override
+    public final void y(s4.e1 e1Var) {
+        boolean isGlobalNotificationsEnabled;
+        kk0 kk0Var;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.e;
+        ArrayList arrayList3 = notificationsCustomSettingsActivity.I;
+        int i10 = notificationsCustomSettingsActivity.f35603s;
+        if (i10 == 3 || ((arrayList2 = notificationsCustomSettingsActivity.f35604w) != null && arrayList2.isEmpty())) {
+            if (i10 == 3) {
+                Boolean bool = notificationsCustomSettingsActivity.f35601n;
+                if (bool != null && !bool.booleanValue() && ((arrayList = notificationsCustomSettingsActivity.f35604w) == null || arrayList.isEmpty())) {
+                    isGlobalNotificationsEnabled = false;
+                } else {
+                    isGlobalNotificationsEnabled = true;
+                }
+            } else {
+                isGlobalNotificationsEnabled = notificationsCustomSettingsActivity.getNotificationsController().isGlobalNotificationsEnabled(i10);
+            }
+            int b10 = e1Var.b();
+            View view = e1Var.f47773a;
+            if (b10 >= 0 && b10 < arrayList3.size()) {
+                kk0Var = (kk0) arrayList3.get(b10);
+            } else {
+                kk0Var = null;
+            }
+            if (kk0Var == null || kk0Var.f40819c != 102) {
+                int i11 = e1Var.f47776f;
+                if (i11 != 0) {
+                    if (i11 != 1) {
+                        if (i11 != 3) {
+                            if (i11 != 5) {
+                                return;
+                            }
+                            ((org.telegram.ui.Cells.ga) view).a(null, isGlobalNotificationsEnabled);
+                            return;
+                        }
+                        ((org.telegram.ui.Cells.c9) view).a(null, isGlobalNotificationsEnabled);
+                        return;
+                    }
+                    ((org.telegram.ui.Cells.a9) view).e(null, isGlobalNotificationsEnabled);
+                    return;
+                }
+                ((org.telegram.ui.Cells.q4) view).a(null, isGlobalNotificationsEnabled);
+            }
+        }
     }
 }

@@ -2,20 +2,20 @@ package bi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.mm0;
-public final class q1 extends j71 {
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.nm0;
+public final class q1 extends k71 {
     public final x1 P;
 
-    public q1(x1 x1Var, mm0 mm0Var, Context context, int i10, ai.e eVar, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(mm0Var, context, i10, 0, true, eVar, u6Var);
+    public q1(x1 x1Var, nm0 nm0Var, Context context, int i10, ai.e eVar, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(nm0Var, context, i10, 0, true, eVar, u6Var);
         this.P = x1Var;
     }
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         super.v(e1Var, i10);
-        View view = e1Var.f47738a;
+        View view = e1Var.f47773a;
         if (!(view instanceof v1)) {
             return;
         }

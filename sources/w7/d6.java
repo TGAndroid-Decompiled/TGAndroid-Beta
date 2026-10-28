@@ -1,12 +1,12 @@
 package w7;
 public final class d6 {
-    public final Long f50832a;
-    public final l6 f50833b;
-    public final Boolean f50834c;
+    public final Long f50890a;
+    public final l6 f50891b;
+    public final Boolean f50892c;
 
     public d6(s4.d dVar) {
-        this.f50832a = (Long) dVar.f47720b;
-        this.f50833b = (l6) dVar.f47721c;
-        this.f50834c = (Boolean) dVar.d;
+        this.f50890a = (Long) dVar.f47755b;
+        this.f50891b = (l6) dVar.f47756c;
+        this.f50892c = (Boolean) dVar.d;
     }
 }

@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class i40 implements mu0 {
+public final class i40 implements nu0 {
     @Override
     public final boolean U() {
         return false;
     }
 
     @Override
-    public final mm0 f() {
+    public final nm0 f() {
         return null;
     }
 

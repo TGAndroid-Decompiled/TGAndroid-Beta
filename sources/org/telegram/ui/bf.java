@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.ToIntFunction;
 public final class bf implements ToIntFunction {
-    public final int f38080a;
-    public final Object f38081b;
+    public final int f38022a;
+    public final Object f38023b;
 
     public bf(Object obj, int i10) {
-        this.f38080a = i10;
-        this.f38081b = obj;
+        this.f38022a = i10;
+        this.f38023b = obj;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        int i10 = this.f38080a;
-        Object obj2 = this.f38081b;
+        int i10 = this.f38022a;
+        Object obj2 = this.f38023b;
         switch (i10) {
             case 0:
                 return ((Integer) ((HashMap) obj2).get((View) obj)).intValue();

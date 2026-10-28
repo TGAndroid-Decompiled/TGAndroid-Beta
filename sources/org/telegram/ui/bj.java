@@ -1,54 +1,20 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class bj extends org.telegram.ui.Components.t40 {
-    public final int I;
+import android.app.Activity;
+import java.util.ArrayList;
+public final class bj extends org.telegram.ui.Components.aw {
+    public final wn W;
 
-    public bj(int i10, int i11, Context context, org.telegram.ui.ActionBar.u6 u6Var, boolean z10) {
-        super(i10, context, u6Var, z10);
-        this.I = i11;
+    public bj(wn wnVar, org.telegram.ui.ActionBar.r2 r2Var, Activity activity, org.telegram.ui.ActionBar.u6 u6Var, ArrayList arrayList) {
+        super(r2Var, activity, u6Var, arrayList);
+        this.W = wnVar;
     }
 
     @Override
-    public int c() {
-        switch (this.I) {
-            case 0:
-                return AndroidUtilities.dp(56.0f) / 2;
-            default:
-                return super.c();
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.I) {
-            case 1:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    try {
-                        ((ViewGroup) getParent()).removeView(this);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
-            case 2:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    try {
-                        ((ViewGroup) getParent()).removeView(this);
-                        return;
-                    } catch (Exception unused2) {
-                        return;
-                    }
-                }
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
-        }
+    public final void dismiss() {
+        super.dismiss();
+        wn wnVar = this.W;
+        wnVar.getClass();
+        wnVar.p8(false, true, 0.0f);
     }
 }

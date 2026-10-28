@@ -1,31 +1,63 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-public abstract class cb1 {
-    public final int f27110a;
-    public final int f27111b;
-    public final int f27112c;
-    public final int d;
+import android.graphics.Picture;
+public final class cb1 extends db1 {
+    public final Picture e;
+    public boolean f27120f;
 
     public cb1(int i10, int i11, int i12, int i13) {
-        this.f27110a = i10;
-        this.f27111b = i11;
-        this.f27112c = i12;
-        this.d = i13;
+        super(i10, i11, i12, i13);
+        this.e = new Picture();
     }
 
-    public abstract Canvas a();
+    @Override
+    public final Canvas a() {
+        this.f27120f = true;
+        return this.e.beginRecording(Math.max(1, this.f27393c - this.f27391a), Math.max(1, this.d - this.f27392b));
+    }
 
-    public abstract boolean b(Canvas canvas);
+    @Override
+    public final boolean b(Canvas canvas) {
+        return true;
+    }
 
-    public abstract void c();
+    @Override
+    public final void c() {
+        if (this.f27120f) {
+            e();
+        }
+    }
 
-    public abstract void d(Canvas canvas, float f7);
+    @Override
+    public final void d(Canvas canvas, float f7) {
+        Canvas canvas2;
+        int save;
+        if (!this.f27120f && f7 > 0.0f) {
+            int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+            int i11 = this.f27392b;
+            int i12 = this.f27391a;
+            if (i10 < 0) {
+                canvas2 = canvas;
+                save = canvas2.saveLayerAlpha(i12, i11, this.f27393c, this.d, Math.round(f7 * 255.0f));
+            } else {
+                canvas2 = canvas;
+                save = canvas2.save();
+            }
+            canvas2.translate(i12, i11);
+            canvas2.drawPicture(this.e);
+            canvas2.restoreToCount(save);
+        }
+    }
 
-    public abstract void e();
+    @Override
+    public final void e() {
+        this.e.endRecording();
+        this.f27120f = false;
+    }
 
-    public abstract boolean f();
-
-    public void g() {
+    @Override
+    public final boolean f() {
+        return true;
     }
 }

@@ -8,20 +8,20 @@ import androidx.lifecycle.z;
 import java.lang.ref.WeakReference;
 import rb.c;
 public final class a extends FingerprintManager.AuthenticationCallback {
-    public final c f16042a;
+    public final c f16041a;
 
     public a(c cVar) {
-        this.f16042a = cVar;
+        this.f16041a = cVar;
     }
 
     @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        ((v) ((h0) this.f16042a.f47323b).d).a(i10, charSequence);
+        ((v) ((h0) this.f16041a.f47358b).d).a(i10, charSequence);
     }
 
     @Override
     public final void onAuthenticationFailed() {
-        WeakReference weakReference = ((v) ((h0) this.f16042a.f47323b).d).f2289a;
+        WeakReference weakReference = ((v) ((h0) this.f16041a.f47358b).d).f2289a;
         if (weakReference.get() != null && ((x) weakReference.get()).f2299n) {
             x xVar = (x) weakReference.get();
             if (xVar.f2306u == null) {
@@ -33,7 +33,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
 
     @Override
     public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
-        WeakReference weakReference = ((v) ((h0) this.f16042a.f47323b).d).f2289a;
+        WeakReference weakReference = ((v) ((h0) this.f16041a.f47358b).d).f2289a;
         if (weakReference.get() != null) {
             x xVar = (x) weakReference.get();
             if (xVar.f2305t == null) {

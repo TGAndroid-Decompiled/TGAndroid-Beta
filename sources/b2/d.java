@@ -135,10 +135,10 @@ public abstract class d {
     public static f9.s1 e(f fVar) {
         f9.f0 t10 = f9.i0.t();
         f9.l0 l0Var = k2.b.h;
-        f9.t0 t0Var = l0Var.f10298b;
+        f9.t0 t0Var = l0Var.f10297b;
         if (t0Var == null) {
             t0Var = l0Var.c();
-            l0Var.f10298b = t0Var;
+            l0Var.f10297b = t0Var;
         }
         g2 it = t0Var.iterator();
         while (it.hasNext()) {

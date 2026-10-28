@@ -7,19 +7,19 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class xr extends s61 {
-    public static final int f34807a = 0;
+public final class xr extends t61 {
+    public static final int f34836a = 0;
 
     static {
-        s61.setup(new s61());
+        t61.setup(new t61());
     }
 
     @Override
-    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
         org.telegram.ui.Cells.g9 g9Var = (org.telegram.ui.Cells.g9) view;
-        g9Var.c(t61Var.f32875l, t61Var.f32877n, !t61Var.f32873j);
-        xh.n nVar = g9Var.f24172a;
-        if (t61Var.f32875l instanceof SpannableStringBuilder) {
+        g9Var.c(u61Var.f33249l, u61Var.f33251n, !u61Var.f33247j);
+        xh.n nVar = g9Var.f24174a;
+        if (u61Var.f33249l instanceof SpannableStringBuilder) {
             nVar.setTextSize(1, 13.0f);
             nVar.setTranslationY(AndroidUtilities.dp(2.0f));
             nVar.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
@@ -27,9 +27,9 @@ public final class xr extends s61 {
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
+    public final View createView(Context context, nm0 nm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
         org.telegram.ui.Cells.g9 g9Var = new org.telegram.ui.Cells.g9(context, u6Var, true);
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, g9Var, u6Var);
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d6, g9Var, u6Var);
         Drawable mutate = context.getDrawable(R.drawable.msg_copy).mutate();
         org.telegram.ui.ActionBar.f7.y(g9Var, mutate, org.telegram.ui.ActionBar.y6.L6, u6Var, PorterDuff.Mode.MULTIPLY);
         g9Var.setImage(mutate);

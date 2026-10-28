@@ -1,60 +1,174 @@
 package org.telegram.ui;
-public final class hb0 implements Runnable {
-    public final int f39974a;
-    public final lb0 f39975b;
-    public final String f39976c;
 
-    public hb0(lb0 lb0Var, String str, int i10) {
-        this.f39974a = i10;
-        this.f39975b = lb0Var;
-        this.f39976c = str;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class hb0 implements Runnable {
+    public final int f39845a;
+    public final ProfileActivity f39846b;
+
+    public hb0(ProfileActivity profileActivity, int i10) {
+        this.f39845a = i10;
+        this.f39846b = profileActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f39974a) {
+        l01 l01Var;
+        int i10 = this.f39845a;
+        ProfileActivity profileActivity = this.f39846b;
+        switch (i10) {
             case 0:
-                lb0 lb0Var = this.f39975b;
-                if (lb0Var.a()) {
-                    lb0Var.w(this.f39976c);
+                xz0 xz0Var = profileActivity.N;
+                if (xz0Var != null) {
+                    xz0Var.e1(14);
+                    profileActivity.O4(false);
                     return;
                 }
                 return;
             case 1:
-                this.f39975b.w(this.f39976c);
+                xz0 xz0Var2 = profileActivity.N;
+                if (xz0Var2 != null) {
+                    xz0Var2.e1(14);
+                    profileActivity.O4(false);
+                    return;
+                }
                 return;
             case 2:
-                lb0 lb0Var2 = this.f39975b;
-                lb0Var2.getClass();
-                String str = this.f39976c;
-                if ("disable".equalsIgnoreCase(str)) {
-                    lb0Var2.x("turnPasswordOffRow");
+                AndroidUtilities.runOnUIThread(new hb0(profileActivity, 0), 200L);
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new hb0(profileActivity, 1), 200L);
+                return;
+            case 4:
+                int i11 = ProfileActivity.R6;
+                profileActivity.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", profileActivity.f36003e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 5:
+                int i12 = ProfileActivity.R6;
+                profileActivity.H4(false);
+                return;
+            case 6:
+                int i13 = ProfileActivity.R6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new UserInfoActivity());
+                return;
+            case 7:
+                int i14 = ProfileActivity.R6;
+                profileActivity.H4(true);
+                return;
+            case 8:
+                int i15 = ProfileActivity.R6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new jg.h1());
+                return;
+            case 9:
+                int i16 = ProfileActivity.R6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new jg.d1());
+                return;
+            case 10:
+                int i17 = ProfileActivity.R6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new ta(null));
+                return;
+            case 11:
+                int i18 = ProfileActivity.R6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new UserInfoActivity());
+                return;
+            case 12:
+                int i19 = ProfileActivity.R6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new g(3));
+                return;
+            case 13:
+                profileActivity.presentFragment(wn.ea(profileActivity.f36003e1));
+                return;
+            case 14:
+                int i20 = ProfileActivity.R6;
+                ?? obj = new Object();
+                obj.f22929a = true;
+                profileActivity.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                return;
+            case 15:
+                int i21 = ProfileActivity.R6;
+                profileActivity.r4(true);
+                if (profileActivity.f36040j2.isRunning()) {
+                    profileActivity.f36040j2.cancel();
                 }
-                if ("change".equalsIgnoreCase(str)) {
-                    lb0Var2.x("changePasswordRow");
-                }
-                if ("change-email".equalsIgnoreCase(str)) {
-                    lb0Var2.x("emailRow");
+                profileActivity.R4(1.0f);
+                return;
+            case 16:
+                int i22 = ProfileActivity.R6;
+                profileActivity.p5(false, false);
+                return;
+            case 17:
+                int i23 = ProfileActivity.R6;
+                profileActivity.N3();
+                return;
+            case 18:
+                xz0 xz0Var3 = profileActivity.N;
+                if (xz0Var3 != null) {
+                    xz0Var3.J1(true);
+                    profileActivity.N.y1();
                     return;
                 }
                 return;
-            default:
-                lb0 lb0Var3 = this.f39975b;
-                lb0Var3.getClass();
-                String str2 = this.f39976c;
-                if ("disable".equalsIgnoreCase(str2)) {
-                    lb0Var3.x("disablePasscodeRow");
-                }
-                if ("change".equalsIgnoreCase(str2)) {
-                    lb0Var3.x("changePasscodeRow");
-                }
-                if ("auto-lock".equalsIgnoreCase(str2)) {
-                    lb0Var3.x("autoLockRow");
-                }
-                if ("fingerprint".equalsIgnoreCase(str2)) {
-                    lb0Var3.x("fingerprintRow");
+            case 19:
+                if (!profileActivity.f35972a.c0() && (l01Var = profileActivity.d) != null) {
+                    l01Var.l();
                     return;
                 }
+                return;
+            case 20:
+                int i24 = ProfileActivity.R6;
+                profileActivity.getMessagesController().reloadUser(profileActivity.a());
+                return;
+            case 21:
+                int i25 = ProfileActivity.R6;
+                profileActivity.p5(false, false);
+                return;
+            case 22:
+                int i26 = ProfileActivity.R6;
+                profileActivity.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", profileActivity.f36011f1);
+                bundle.putLong("user_id", profileActivity.f36003e1);
+                profileActivity.presentFragment(new ai.z0(bundle));
+                return;
+            case 23:
+                int i27 = ProfileActivity.R6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new ta(null));
+                return;
+            case 24:
+                ProfileActivity.W(profileActivity);
+                return;
+            case 25:
+                profileActivity.E5.setVisibility(8);
+                return;
+            case 26:
+                TLRPC.UserFull userFull = profileActivity.f36122v2;
+                if (userFull != null) {
+                    AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(userFull.note, false));
+                    org.telegram.messenger.wh.m(R.string.TextCopied, org.telegram.ui.Components.wc.b0(profileActivity));
+                    return;
+                }
+                return;
+            case 27:
+                int i28 = ProfileActivity.R6;
+                profileActivity.getClass();
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", profileActivity.f36003e1);
+                bundle2.putBoolean("focus_notes", true);
+                profileActivity.presentFragment(new ls(bundle2, profileActivity.f36150z0));
+                return;
+            default:
+                profileActivity.O4(true);
                 return;
         }
     }

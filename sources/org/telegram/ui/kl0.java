@@ -1,34 +1,22 @@
 package org.telegram.ui;
+public final class kl0 implements Runnable {
+    public final int f40824a;
+    public final zr f40825b;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class kl0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.g1 f40962a;
-    public final PasscodeActivity f40963b;
-
-    public kl0(PasscodeActivity passcodeActivity, org.telegram.ui.ActionBar.g1 g1Var) {
-        this.f40963b = passcodeActivity;
-        this.f40962a = g1Var;
+    public kl0(zr zrVar, int i10) {
+        this.f40824a = i10;
+        this.f40825b = zrVar;
     }
 
     @Override
-    public final void b(int i10) {
-        PasscodeActivity passcodeActivity = this.f40963b;
-        if (i10 == -1) {
-            passcodeActivity.finishFragment();
-            return;
-        }
-        int i11 = 1;
-        if (i10 == 1) {
-            if (passcodeActivity.f35602y != 0) {
-                i11 = 0;
-            }
-            passcodeActivity.f35602y = i11;
-            AndroidUtilities.runOnUIThread(new wb0(27, this, this.f40962a), 150L);
-            passcodeActivity.h.setText("");
-            for (xr xrVar : passcodeActivity.f35597n.f44897f) {
-                xrVar.setText("");
-            }
-            passcodeActivity.v0();
+    public final void run() {
+        switch (this.f40824a) {
+            case 0:
+                this.f40825b.l(1.0f);
+                return;
+            default:
+                this.f40825b.l(1.0f);
+                return;
         }
     }
 }

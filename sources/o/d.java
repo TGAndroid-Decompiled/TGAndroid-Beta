@@ -2,40 +2,40 @@ package o;
 
 import java.util.Iterator;
 public final class d extends e implements Iterator {
-    public c f18915a;
-    public boolean f18916b = true;
-    public final f f18917c;
+    public c f18914a;
+    public boolean f18915b = true;
+    public final f f18916c;
 
     public d(f fVar) {
-        this.f18917c = fVar;
+        this.f18916c = fVar;
     }
 
     @Override
     public final void a(c cVar) {
         boolean z10;
-        c cVar2 = this.f18915a;
+        c cVar2 = this.f18914a;
         if (cVar == cVar2) {
             c cVar3 = cVar2.d;
-            this.f18915a = cVar3;
+            this.f18914a = cVar3;
             if (cVar3 == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f18916b = z10;
+            this.f18915b = z10;
         }
     }
 
     @Override
     public final boolean hasNext() {
-        if (this.f18916b) {
-            if (this.f18917c.f18918a == null) {
+        if (this.f18915b) {
+            if (this.f18916c.f18917a == null) {
                 return false;
             }
             return true;
         }
-        c cVar = this.f18915a;
-        if (cVar == null || cVar.f18914c == null) {
+        c cVar = this.f18914a;
+        if (cVar == null || cVar.f18913c == null) {
             return false;
         }
         return true;
@@ -44,18 +44,18 @@ public final class d extends e implements Iterator {
     @Override
     public final Object next() {
         c cVar;
-        if (this.f18916b) {
-            this.f18916b = false;
-            this.f18915a = this.f18917c.f18918a;
+        if (this.f18915b) {
+            this.f18915b = false;
+            this.f18914a = this.f18916c.f18917a;
         } else {
-            c cVar2 = this.f18915a;
+            c cVar2 = this.f18914a;
             if (cVar2 != null) {
-                cVar = cVar2.f18914c;
+                cVar = cVar2.f18913c;
             } else {
                 cVar = null;
             }
-            this.f18915a = cVar;
+            this.f18914a = cVar;
         }
-        return this.f18915a;
+        return this.f18914a;
     }
 }

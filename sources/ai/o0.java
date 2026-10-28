@@ -44,8 +44,8 @@ import org.telegram.ui.ActionBar.j2;
 import org.telegram.ui.ActionBar.j5;
 import org.telegram.ui.ActionBar.r2;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.m71;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.Components.n71;
 public final class o0 extends FrameLayout {
     public final Paint E;
     public final v1 F;
@@ -223,17 +223,17 @@ public final class o0 extends FrameLayout {
         return false;
     }
 
-    public static o0 k(m71 m71Var, View view, Utilities.CallbackReturn callbackReturn, Utilities.Callback callback, Runnable runnable) {
+    public static o0 k(n71 n71Var, View view, Utilities.CallbackReturn callbackReturn, Utilities.Callback callback, Runnable runnable) {
         FrameLayout frameLayout;
         int[] iArr;
         int[] iArr2;
-        j5 parentLayout = m71Var.getParentLayout();
+        j5 parentLayout = n71Var.getParentLayout();
         if (parentLayout != null) {
             frameLayout = parentLayout.getOverlayContainerView();
         } else {
             frameLayout = null;
         }
-        if (frameLayout == null || m71Var.getParentActivity() == null) {
+        if (frameLayout == null || n71Var.getParentActivity() == null) {
             return null;
         }
         frameLayout.getLocationInWindow(new int[2]);
@@ -241,11 +241,11 @@ public final class o0 extends FrameLayout {
         float width = (view.getWidth() / 2.0f) + (iArr2[0] - iArr[0]);
         float height = (view.getHeight() / 2.0f) + (iArr2[1] - iArr[1]);
         float min = Math.min(view.getWidth(), view.getHeight()) / 2.0f;
-        o0 o0Var = new o0(m71Var.getParentActivity(), new RectF(width - min, height - min, width + min, height + min), new RectF(), new i0(callback, runnable));
+        o0 o0Var = new o0(n71Var.getParentActivity(), new RectF(width - min, height - min, width + min, height + min), new RectF(), new i0(callback, runnable));
         o0Var.setPlainButton(true);
         o0Var.setAccept(callbackReturn);
-        o0Var.setOnGallery(new e0(m71Var, o0Var, callbackReturn, callback, 0));
-        frameLayout.addView(o0Var, gb1.g(-1.0f, -1));
+        o0Var.setOnGallery(new e0(n71Var, o0Var, callbackReturn, callback, 0));
+        frameLayout.addView(o0Var, kb1.g(-1.0f, -1));
         return o0Var;
     }
 
@@ -264,7 +264,7 @@ public final class o0 extends FrameLayout {
         try {
             rf.b f7 = f(bitmap, nVar, new za.c(28), callbackReturn);
             if (f7 != null) {
-                str = (String) f7.f47335b;
+                str = (String) f7.f47370b;
             }
             return str;
         } finally {

@@ -12,9 +12,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import m4.x0;
 public abstract class k {
-    public static int f18889c;
-    public static final q f18887a = new q(new x0(19), new x0(20));
-    public static final LinkedHashMap f18888b = new LinkedHashMap(8, 0.75f, true);
+    public static int f18888c;
+    public static final q f18886a = new q(new x0(19), new x0(20));
+    public static final LinkedHashMap f18887b = new LinkedHashMap(8, 0.75f, true);
     public static final Object d = new Object();
     public static final ArrayList e = new ArrayList();
 
@@ -77,7 +77,7 @@ public abstract class k {
             } else {
                 z10 = false;
             }
-            LinkedHashMap linkedHashMap = f18888b;
+            LinkedHashMap linkedHashMap = f18887b;
             synchronized (linkedHashMap) {
                 if (z10) {
                     try {
@@ -92,14 +92,14 @@ public abstract class k {
                 e eVar = new e(charSequence);
                 if (z10) {
                     linkedHashMap.put(cVar, eVar);
-                    f18889c += charSequence2.length();
+                    f18888c += charSequence2.length();
                     while (true) {
-                        LinkedHashMap linkedHashMap2 = f18888b;
-                        if (linkedHashMap2.size() <= 8 && f18889c <= 65536) {
+                        LinkedHashMap linkedHashMap2 = f18887b;
+                        if (linkedHashMap2.size() <= 8 && f18888c <= 65536) {
                             break;
                         }
                         Map.Entry entry = (Map.Entry) linkedHashMap2.entrySet().iterator().next();
-                        f18889c -= ((c) entry.getKey()).f18873b.length();
+                        f18888c -= ((c) entry.getKey()).f18872b.length();
                         linkedHashMap2.remove(entry.getKey());
                     }
                 }
@@ -126,7 +126,7 @@ public abstract class k {
                     while (true) {
                         if (it.hasNext()) {
                             jVar = (j) it.next();
-                            Spannable spannable2 = (Spannable) jVar.f18885a.get();
+                            Spannable spannable2 = (Spannable) jVar.f18884a.get();
                             if (spannable2 == null) {
                                 it.remove();
                             } else if (spannable2 == spannable) {
@@ -138,21 +138,21 @@ public abstract class k {
                             break;
                         }
                     }
-                    g gVar2 = (g) jVar.f18886b.put(Long.valueOf(j10), gVar);
-                    if (gVar2 != null && (pVar = gVar2.f18878b) != null) {
-                        pVar.f18897a = null;
+                    g gVar2 = (g) jVar.f18885b.put(Long.valueOf(j10), gVar);
+                    if (gVar2 != null && (pVar = gVar2.f18877b) != null) {
+                        pVar.f18896a = null;
                     }
                 } finally {
                 }
             }
             j jVar2 = jVar;
-            p d10 = f18887a.d(gVar.f18877a, str, new x1(jVar2, j10, gVar, i10));
+            p d10 = f18886a.d(gVar.f18876a, str, new x1(jVar2, j10, gVar, i10));
             synchronized (d) {
                 try {
-                    if (jVar2.f18886b.get(Long.valueOf(j10)) == gVar) {
-                        gVar.f18878b = d10;
+                    if (jVar2.f18885b.get(Long.valueOf(j10)) == gVar) {
+                        gVar.f18877b = d10;
                     } else {
-                        d10.f18897a = null;
+                        d10.f18896a = null;
                     }
                 } finally {
                 }
@@ -177,17 +177,17 @@ public abstract class k {
         }
         if (spanStart >= 0 && spanStart < 0) {
             if (characterStyle instanceof d) {
-                iVar2 = new d(((d) characterStyle).f18874a);
+                iVar2 = new d(((d) characterStyle).f18873a);
             } else {
-                iVar2 = new i(((i) characterStyle).f18884b);
+                iVar2 = new i(((i) characterStyle).f18883b);
             }
             spannable.setSpan(iVar2, spanStart, Math.min(0, spanEnd), 33);
         }
         if (spanEnd > i10) {
             if (characterStyle instanceof d) {
-                iVar = new d(((d) characterStyle).f18874a);
+                iVar = new d(((d) characterStyle).f18873a);
             } else {
-                iVar = new i(((i) characterStyle).f18884b);
+                iVar = new i(((i) characterStyle).f18883b);
             }
             spannable.setSpan(iVar, Math.max(i10, spanStart), spanEnd, 33);
         }

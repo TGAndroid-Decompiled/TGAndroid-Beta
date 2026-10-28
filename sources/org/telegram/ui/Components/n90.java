@@ -1,40 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import android.widget.PopupWindow;
-public final class n90 implements PopupWindow.OnDismissListener {
-    public final int f30928a;
-    public final FrameLayout f30929b;
-    public final View f30930c;
-    public final ViewTreeObserver.OnPreDrawListener d;
-    public final ViewGroup e;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class n90 extends nr0 {
+    public final s90 f30788a1;
 
-    public n90(ViewGroup viewGroup, View view, FrameLayout frameLayout, ViewTreeObserver.OnPreDrawListener onPreDrawListener, int i10) {
-        this.f30928a = i10;
-        this.e = viewGroup;
-        this.f30930c = view;
-        this.f30929b = frameLayout;
-        this.d = onPreDrawListener;
+    public n90(s90 s90Var, Context context, String str, String str2, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, null, str, false, str2, false, u6Var);
+        this.f30788a1 = s90Var;
     }
 
     @Override
-    public final void onDismiss() {
-        switch (this.f30928a) {
-            case 0:
-                ((r90) this.e).f32176s = null;
-                fi.f6 f6Var = (fi.f6) this.f30930c;
-                f6Var.animate().cancel();
-                f6Var.animate().alpha(0.0f).setDuration(150L).setListener(new i10(this, 5));
-                return;
-            default:
-                ((org.telegram.ui.jz) this.e).f39219x = null;
-                fi.f6 f6Var2 = (fi.f6) this.f30930c;
-                f6Var2.animate().cancel();
-                f6Var2.animate().alpha(0.0f).setDuration(150L).setListener(new h31(this, 28));
-                return;
+    public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        String formatString;
+        if (!z10) {
+            return;
         }
+        if (hVar != null && hVar.m() == 1) {
+            long j10 = ((TLRPC.Dialog) hVar.n(0)).f22032id;
+            if (j10 != 0 && j10 != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j10, true));
+            } else {
+                formatString = LocaleController.getString(R.string.InvLinkToSavedMessages);
+            }
+        } else {
+            formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i10, new Object[0]));
+        }
+        this.f30788a1.e(R.raw.forward, AndroidUtilities.replaceTags(formatString));
     }
 }

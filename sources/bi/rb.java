@@ -41,13 +41,13 @@ public final class rb implements Runnable {
         this.d = i10;
     }
 
-    public rb(vi.s0 s0Var, vi.v vVar, boolean z10, File file, boolean z11, int i10, vi.o0 o0Var) {
-        this.e = s0Var;
-        this.f5369f = vVar;
+    public rb(vi.u0 u0Var, vi.w wVar, boolean z10, File file, boolean z11, int i10, vi.q0 q0Var) {
+        this.e = u0Var;
+        this.f5369f = wVar;
         this.f5367b = z10;
         this.h = file;
         this.f5368c = z11;
         this.d = i10;
-        this.f5370n = o0Var;
+        this.f5370n = q0Var;
     }
 }

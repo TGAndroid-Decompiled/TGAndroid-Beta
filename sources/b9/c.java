@@ -67,30 +67,30 @@ public final class c implements ServiceConnection {
                 rf.b bVar = b0Var.h;
                 bVar.getClass();
                 try {
-                    bVar.b0(c10, (p3) bVar.f47335b);
+                    bVar.b0(c10, (p3) bVar.f47370b);
                     return;
                 } catch (Throwable th2) {
                     com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
                     return;
                 }
             default:
-                int i12 = yf.e.f52531a;
+                int i12 = yf.e.f52589a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof yf.f)) {
                         fVar = (yf.f) queryLocalInterface2;
                     } else {
                         ?? obj = new Object();
-                        obj.f52530a = iBinder;
+                        obj.f52588a = iBinder;
                         fVar = obj;
                     }
                 }
                 yf.c cVar2 = new yf.c(fVar, componentName);
                 if (((qf.b) ((WeakReference) this.f3683b).get()) != null) {
-                    qf.d.f47037b = cVar2;
-                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (cVar = qf.d.f47037b) != null) {
+                    qf.d.f47072b = cVar2;
+                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (cVar = qf.d.f47072b) != null) {
                         try {
-                            ((yf.d) ((yf.f) cVar.f52528a)).G0();
+                            ((yf.d) ((yf.f) cVar.f52586a)).G0();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -127,7 +127,7 @@ public final class c implements ServiceConnection {
                 return;
             default:
                 if (((qf.b) ((WeakReference) this.f3683b).get()) != null) {
-                    qf.d.f47037b = null;
+                    qf.d.f47072b = null;
                     return;
                 }
                 return;

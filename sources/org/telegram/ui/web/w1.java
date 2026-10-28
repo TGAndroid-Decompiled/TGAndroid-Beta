@@ -11,38 +11,38 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.ar;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.r71;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.nm0;
+import org.telegram.ui.Components.s71;
 import org.telegram.ui.Components.t5;
 import org.telegram.ui.Components.t61;
-import org.telegram.ui.mk;
-public final class w1 extends s61 {
-    public static final int f45438a = 0;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.ok;
+public final class w1 extends t61 {
+    public static final int f44949a = 0;
 
     static {
-        s61.setup(new s61());
+        t61.setup(new t61());
     }
 
     @Override
-    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
         x1 x1Var = (x1) view;
-        CharSequence charSequence = t61Var.f32877n;
-        String str = (String) t61Var.f32875l;
-        long j10 = t61Var.B;
-        ImageView imageView = x1Var.f45452a;
-        x1Var.f45453b.setText(charSequence);
-        mk mkVar = x1Var.f45454c;
-        mkVar.setText(str);
+        CharSequence charSequence = u61Var.f33251n;
+        String str = (String) u61Var.f33249l;
+        long j10 = u61Var.B;
+        ImageView imageView = x1Var.f44963a;
+        x1Var.f44964b.setText(charSequence);
+        ok okVar = x1Var.f44965c;
+        okVar.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
-            mkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
-            mkVar.setScaleX(1.3f);
-            mkVar.setScaleY(1.3f);
+            okVar.setTranslationY(-AndroidUtilities.dp(14.0f));
+            okVar.setScaleX(1.3f);
+            okVar.setScaleY(1.3f);
         } else {
-            mkVar.setTranslationY(0.0f);
-            mkVar.setScaleX(1.0f);
-            mkVar.setScaleY(1.0f);
+            okVar.setTranslationY(0.0f);
+            okVar.setScaleX(1.0f);
+            okVar.setScaleY(1.0f);
         }
         x1Var.e = str;
         if (TextUtils.isEmpty(charSequence)) {
@@ -71,15 +71,15 @@ public final class w1 extends s61 {
             int dp = AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(28.0f);
             arVar.h = dp;
-            arVar.f26596n = dp2;
+            arVar.f26643n = dp2;
             imageView.setImageDrawable(arVar);
         }
-        x1Var.f45455f = z10;
+        x1Var.f44966f = z10;
         x1Var.invalidate();
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, u6 u6Var) {
+    public final View createView(Context context, nm0 nm0Var, int i10, int i11, u6 u6Var) {
         return new x1(context);
     }
 }

@@ -5,17 +5,17 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 public final class zd implements TextWatcher {
-    public final ke f46266a;
+    public final ke f46231a;
 
     public zd(ke keVar) {
-        this.f46266a = keVar;
+        this.f46231a = keVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         long parseLong;
-        ke keVar = this.f46266a;
-        qd qdVar = keVar.f40898f1;
+        ke keVar = this.f46231a;
+        qd qdVar = keVar.f40760f1;
         bi.t tVar = keVar.O0;
         if (keVar.L0) {
             return;

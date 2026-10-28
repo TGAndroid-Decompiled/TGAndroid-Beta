@@ -8,18 +8,18 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class h8 extends LinearLayout {
-    public final RectF f10964a;
-    public final RectF f10965b;
-    public final RectF f10966c;
+    public final RectF f10963a;
+    public final RectF f10964b;
+    public final RectF f10965c;
     public final Paint d;
     public final i8 e;
 
     public h8(i8 i8Var, Context context) {
         super(context);
         this.e = i8Var;
-        this.f10964a = new RectF();
-        this.f10965b = new RectF();
-        this.f10966c = new RectF();
+        this.f10963a = new RectF();
+        this.f10964b = new RectF();
+        this.f10965c = new RectF();
         this.d = new Paint(1);
     }
 
@@ -27,9 +27,9 @@ public final class h8 extends LinearLayout {
         FrameLayout frameLayout;
         i8 i8Var = this.e;
         if (i10 <= -1) {
-            frameLayout = i8Var.f11007b;
+            frameLayout = i8Var.f11006b;
         } else if (i10 >= 1) {
-            frameLayout = i8Var.f11009f;
+            frameLayout = i8Var.f11008f;
         } else {
             frameLayout = i8Var.d;
         }
@@ -39,16 +39,16 @@ public final class h8 extends LinearLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         i8 i8Var = this.e;
-        RectF rectF = this.f10964a;
-        a(rectF, (int) Math.floor(i8Var.f11011r));
-        int ceil = (int) Math.ceil(i8Var.f11011r);
-        RectF rectF2 = this.f10965b;
+        RectF rectF = this.f10963a;
+        a(rectF, (int) Math.floor(i8Var.f11010r));
+        int ceil = (int) Math.ceil(i8Var.f11010r);
+        RectF rectF2 = this.f10964b;
         a(rectF2, ceil);
-        float f7 = i8Var.f11011r;
+        float f7 = i8Var.f11010r;
         float floor = f7 - ((float) Math.floor(f7));
-        RectF rectF3 = this.f10966c;
+        RectF rectF3 = this.f10965c;
         AndroidUtilities.lerp(rectF, rectF2, floor, rectF3);
-        int o12 = org.telegram.ui.ActionBar.y6.o1(0.15f, i0.a.f(i8Var.f11010n, -1, -16777216));
+        int o12 = org.telegram.ui.ActionBar.y6.o1(0.15f, i0.a.f(i8Var.f11009n, -1, -16777216));
         Paint paint = this.d;
         paint.setColor(o12);
         canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, paint);

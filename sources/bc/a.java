@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import n4.s;
 import o6.l;
 import sb.j;
-import w7.j5;
+import w7.k5;
 import y7.ga;
 import y7.ha;
 import y7.ia;
@@ -57,9 +57,9 @@ public final class a implements b {
             }
         }
         int i10 = aVar.e;
-        int i11 = aVar.f51708b;
-        int i12 = aVar.f51709c;
-        int a2 = j5.a(aVar.d);
+        int i11 = aVar.f51766b;
+        int i12 = aVar.f51767c;
+        int a2 = k5.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
         int i13 = aVar.e;
         if (i13 != -1) {
@@ -75,12 +75,12 @@ public final class a implements b {
             l.h(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f51707a;
+        Bitmap bitmap = aVar.f51765a;
         l.h(bitmap);
         bVar = new y6.b(bitmap);
         try {
             Parcel N0 = gaVar.N0();
-            int i14 = x.f52374a;
+            int i14 = x.f52432a;
             N0.writeStrongBinder(bVar);
             N0.writeInt(1);
             int q5 = df.q(N0, 20293);
@@ -105,7 +105,7 @@ public final class a implements b {
                 Object obj = createTypedArrayList.get(i15);
                 i15++;
                 ka kaVar = (ka) obj;
-                arrayList.add(new zb.a(kaVar.f52201b, kaVar.d, kaVar.f52200a, kaVar.f52202c));
+                arrayList.add(new zb.a(kaVar.f52259b, kaVar.d, kaVar.f52258a, kaVar.f52260c));
             }
             return arrayList;
         } catch (RemoteException e10) {
@@ -120,7 +120,7 @@ public final class a implements b {
             return;
         }
         AtomicBoolean atomicBoolean = new AtomicBoolean(true);
-        ((i0) this.e).f9672a.postDelayed(new b4(29, this, atomicBoolean), 1000L);
+        ((i0) this.e).f9671a.postDelayed(new b4(29, this, atomicBoolean), 1000L);
         i0Var.d(new p0(this, atomicBoolean, z10, z11, 0));
     }
 
@@ -141,8 +141,8 @@ public final class a implements b {
             return;
         }
         try {
-            IBinder b10 = z6.e.c(context, z6.e.f52679b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
-            int i10 = ia.f52182b;
+            IBinder b10 = z6.e.c(context, z6.e.f52737b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
+            int i10 = ia.f52240b;
             if (b10 == null) {
                 aVar = null;
             } else {
@@ -153,7 +153,7 @@ public final class a implements b {
                     aVar = new a8.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 11);
                 }
             }
-            this.e = ((ha) aVar).V0(new y6.b(context), new la(((ac.b) this.d).f52848a, -1));
+            this.e = ((ha) aVar).V0(new y6.b(context), new la(((ac.b) this.d).f52906a, -1));
         } catch (RemoteException e) {
             throw new ob.a("Failed to create thin image labeler.", e);
         } catch (z6.b unused) {

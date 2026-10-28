@@ -8,18 +8,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.LaunchActivity;
 public final class bg implements Runnable {
-    public final MessageObject f26846a;
-    public final long f26847b;
-    public final TL_keyboard.KeyboardButtonProto f26848c;
+    public final MessageObject f26823a;
+    public final long f26824b;
+    public final TL_keyboard.KeyboardButtonProto f26825c;
     public final MessageObject d;
     public final TLRPC.User e;
-    public final ChatActivityEnterView f26849f;
+    public final ChatActivityEnterView f26826f;
 
     public bg(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, long j10, TL_keyboard.KeyboardButtonProto keyboardButtonProto, MessageObject messageObject2, TLRPC.User user) {
-        this.f26849f = chatActivityEnterView;
-        this.f26846a = messageObject;
-        this.f26847b = j10;
-        this.f26848c = keyboardButtonProto;
+        this.f26826f = chatActivityEnterView;
+        this.f26823a = messageObject;
+        this.f26824b = j10;
+        this.f26825c = keyboardButtonProto;
         this.d = messageObject2;
         this.e = user;
     }
@@ -27,33 +27,33 @@ public final class bg implements Runnable {
     @Override
     public final void run() {
         int i10;
-        long X8;
+        long a92;
         String restrictionReason;
-        ChatActivityEnterView chatActivityEnterView = this.f26849f;
-        org.telegram.ui.un unVar = chatActivityEnterView.P2;
-        if (chatActivityEnterView.f25917m1.Q() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.q0()) {
-            if (unVar != null) {
+        ChatActivityEnterView chatActivityEnterView = this.f26826f;
+        org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
+        if (chatActivityEnterView.f25919m1.Q() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.p0()) {
+            if (wnVar != null) {
                 int i11 = chatActivityEnterView.Q;
-                long j10 = this.f26846a.messageOwner.dialog_id;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f26848c;
+                long j10 = this.f26823a.messageOwner.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f26825c;
                 String text = keyboardButtonProto.getText();
                 String url = keyboardButtonProto.getUrl();
                 boolean c10 = bg.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
                 MessageObject messageObject = this.d;
                 if (messageObject != null) {
-                    i10 = messageObject.messageOwner.f22048id;
+                    i10 = messageObject.messageOwner.f22049id;
                 } else {
                     i10 = 0;
                 }
-                if (unVar == null) {
-                    X8 = 0;
+                if (wnVar == null) {
+                    a92 = 0;
                 } else {
-                    X8 = unVar.X8();
+                    a92 = wnVar.a9();
                 }
-                hi.c5 b10 = hi.c5.b(i11, j10, this.f26847b, text, url, c10 ? 1 : 0, i10, X8, null, false, null, null, 0, false, false);
+                hi.c5 b10 = hi.c5.b(i11, j10, this.f26824b, text, url, c10 ? 1 : 0, i10, a92, null, false, null, null, 0, false, false);
                 LaunchActivity launchActivity = LaunchActivity.I1;
                 if (launchActivity != null && launchActivity.P() != null && LaunchActivity.I1.P().k(b10) != null) {
-                    hi.i0 i0Var = chatActivityEnterView.f25913l0;
+                    hi.i0 i0Var = chatActivityEnterView.f25915l0;
                     if (i0Var != null) {
                         i0Var.setOpened(false);
                         return;
@@ -68,18 +68,18 @@ public final class bg implements Runnable {
                 }
                 if (!TextUtils.isEmpty(restrictionReason)) {
                     MessagesController.getInstance(chatActivityEnterView.Q);
-                    MessagesController.showCantOpenAlert(unVar, restrictionReason);
+                    MessagesController.showCantOpenAlert(wnVar, restrictionReason);
                     return;
                 }
                 hi.m3 m3Var = new hi.m3(chatActivityEnterView.getContext(), chatActivityEnterView.W3);
-                m3Var.f13116l0 = chatActivityEnterView.O2;
-                m3Var.t(unVar, b10);
+                m3Var.f13115l0 = chatActivityEnterView.O2;
+                m3Var.t(wnVar, b10);
                 m3Var.show();
                 return;
             }
             return;
         }
-        chatActivityEnterView.j0(false);
+        chatActivityEnterView.i0(false);
         AndroidUtilities.hideKeyboard(chatActivityEnterView);
         AndroidUtilities.runOnUIThread(this, 150L);
     }

@@ -5,24 +5,24 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 public final class ht extends AnimatorListenerAdapter {
-    public final int f29053a = 1;
-    public final s4.e1 f29054b;
-    public final View f29055c;
+    public final int f29072a = 1;
+    public final s4.e1 f29073b;
+    public final View f29074c;
     public final ViewPropertyAnimator d;
     public final mt e;
 
     public ht(mt mtVar, s4.e1 e1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
         this.e = mtVar;
-        this.f29054b = e1Var;
+        this.f29073b = e1Var;
         this.d = viewPropertyAnimator;
-        this.f29055c = view;
+        this.f29074c = view;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f29053a) {
+        switch (this.f29072a) {
             case 1:
-                this.f29055c.setAlpha(1.0f);
+                this.f29074c.setAlpha(1.0f);
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -32,24 +32,24 @@ public final class ht extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f29053a) {
+        switch (this.f29072a) {
             case 0:
                 this.d.setListener(null);
-                this.f29055c.setAlpha(1.0f);
+                this.f29074c.setAlpha(1.0f);
                 mt mtVar = this.e;
-                s4.e1 e1Var = this.f29054b;
+                s4.e1 e1Var = this.f29073b;
                 mtVar.d(e1Var);
-                mtVar.f30749x.remove(e1Var);
+                mtVar.f30628x.remove(e1Var);
                 mtVar.A();
                 return;
             default:
                 this.d.setListener(null);
                 mt mtVar2 = this.e;
-                s4.e1 e1Var2 = this.f29054b;
+                s4.e1 e1Var2 = this.f29073b;
                 mtVar2.u(e1Var2);
                 mtVar2.v.remove(e1Var2);
                 mtVar2.A();
-                View view = e1Var2.f47738a;
+                View view = e1Var2.f47773a;
                 if (view instanceof org.telegram.ui.Cells.p2) {
                     ((org.telegram.ui.Cells.p2) view).setMoving(false);
                     return;
@@ -60,7 +60,7 @@ public final class ht extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f29053a) {
+        switch (this.f29072a) {
             case 0:
                 this.e.y();
                 return;
@@ -72,8 +72,8 @@ public final class ht extends AnimatorListenerAdapter {
 
     public ht(mt mtVar, s4.e1 e1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
         this.e = mtVar;
-        this.f29054b = e1Var;
-        this.f29055c = view;
+        this.f29073b = e1Var;
+        this.f29074c = view;
         this.d = viewPropertyAnimator;
     }
 }

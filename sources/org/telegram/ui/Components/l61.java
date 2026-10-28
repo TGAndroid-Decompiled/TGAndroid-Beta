@@ -1,23 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class l61 implements ValueAnimator.AnimatorUpdateListener {
-    public int f30091a = 0;
-    public final int f30092b;
-    public final p61 f30093c;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class l61 implements bz0 {
+    public final TLRPC.InputStickerSet f30124a;
+    public final q61 f30125b;
 
-    public l61(p61 p61Var, int i10) {
-        this.f30093c = p61Var;
-        this.f30092b = i10;
+    public l61(q61 q61Var, TLRPC.InputStickerSet inputStickerSet) {
+        this.f30125b = q61Var;
+        this.f30124a = inputStickerSet;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f30092b);
-        p61 p61Var = this.f30093c;
-        p61Var.N = true;
-        p61Var.f31455n.scrollBy(0, floatValue - this.f30091a);
-        p61Var.N = false;
-        this.f30091a = floatValue;
+    public final void a() {
+        q61 q61Var = this.f30125b;
+        s4.h0 adapter = q61Var.f31807n.getAdapter();
+        p61 p61Var = q61Var.f31809s;
+        TLRPC.InputStickerSet inputStickerSet = this.f30124a;
+        int i10 = 0;
+        if (adapter == p61Var) {
+            while (i10 < p61Var.e.size()) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) p61Var.e.get(i10);
+                if (stickerSetCovered.set.f22055id == inputStickerSet.f22048id) {
+                    p61Var.F(stickerSetCovered, null);
+                    return;
+                }
+                i10++;
+            }
+            return;
+        }
+        ig.d2 d2Var = q61Var.v;
+        ArrayList arrayList = d2Var.E;
+        while (i10 < arrayList.size()) {
+            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
+            if (stickerSetCovered2.set.f22055id == inputStickerSet.f22048id) {
+                d2Var.F(stickerSetCovered2, null);
+                return;
+            }
+            i10++;
+        }
     }
 }

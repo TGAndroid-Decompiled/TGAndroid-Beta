@@ -1,48 +1,26 @@
 package org.telegram.messenger;
 
-import j$.util.function.Function$CC;
-import java.util.function.Function;
-import org.telegram.messenger.TranslateController;
-public final class ja implements Function {
-    public final int f20411a;
+import org.telegram.tgnet.TLRPC;
+public final class ja implements Runnable {
+    public final int f20422a;
+    public final MessagesController f20423b;
+    public final TLRPC.User f20424c;
 
-    public ja(int i10) {
-        this.f20411a = i10;
-    }
-
-    public Function andThen(Function function) {
-        int i10 = this.f20411a;
-        return Function$CC.$default$andThen(this, function);
+    public ja(MessagesController messagesController, TLRPC.User user, int i10) {
+        this.f20422a = i10;
+        this.f20423b = messagesController;
+        this.f20424c = user;
     }
 
     @Override
-    public final Object apply(Object obj) {
-        String valueOf;
-        String lambda$applyAppConfig$34;
-        Long lambda$new$14;
-        int[] lambda$new$15;
-        String str;
-        switch (this.f20411a) {
+    public final void run() {
+        switch (this.f20422a) {
             case 0:
-                valueOf = String.valueOf((Long) obj);
-                return valueOf;
-            case 1:
-                lambda$applyAppConfig$34 = MessagesController.lambda$applyAppConfig$34((int[]) obj);
-                return lambda$applyAppConfig$34;
-            case 2:
-                lambda$new$14 = MessagesController.lambda$new$14((String) obj);
-                return lambda$new$14;
-            case 3:
-                lambda$new$15 = MessagesController.lambda$new$15((String) obj);
-                return lambda$new$15;
+                this.f20423b.lambda$processUpdateArray$414(this.f20424c);
+                return;
             default:
-                str = ((TranslateController.Language) obj).displayName;
-                return str;
+                this.f20423b.lambda$loadFullUser$70(this.f20424c);
+                return;
         }
-    }
-
-    public Function compose(Function function) {
-        int i10 = this.f20411a;
-        return Function$CC.$default$compose(this, function);
     }
 }

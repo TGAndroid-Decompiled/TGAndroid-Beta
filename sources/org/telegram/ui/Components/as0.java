@@ -1,80 +1,96 @@
 package org.telegram.ui.Components;
 
-import java.util.Collections;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import j$.util.Objects;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class as0 implements Runnable {
-    public final int f26612a;
-    public final aw0 f26613b;
-    public final TLRPC.TL_error f26614c;
-    public final int d;
-    public final int e;
-    public final TLObject f26615f;
+    public final int f26657a;
+    public final int f26658b;
+    public final Object f26659c;
+    public final Object d;
+    public final Object e;
 
-    public as0(aw0 aw0Var, TLRPC.TL_error tL_error, int i10, int i11, TLObject tLObject, int i12) {
-        this.f26612a = i12;
-        this.f26613b = aw0Var;
-        this.f26614c = tL_error;
-        this.d = i10;
-        this.e = i11;
-        this.f26615f = tLObject;
+    public as0(int i10, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.r2 r2Var, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
+        this.f26657a = 15;
+        this.f26658b = i10;
+        this.d = tL_error;
+        this.e = r2Var;
+        this.f26659c = tL_payments_assignPlayMarketTransaction;
+    }
+
+    private final void a() {
+        aa.b0 b0Var = (aa.b0) this.d;
+        m5.i iVar = (m5.i) this.e;
+        int i10 = this.f26658b;
+        Runnable runnable = (Runnable) this.f26659c;
+        u5.c cVar = (u5.c) b0Var.d;
+        try {
+            try {
+                t5.d dVar = (t5.d) b0Var.f1034f;
+                Objects.requireNonNull(dVar);
+                ((t5.g) cVar).f(new org.telegram.ui.Components.voip.j1(dVar, 7));
+                NetworkInfo activeNetworkInfo = ((ConnectivityManager) ((Context) b0Var.f1031a).getSystemService("connectivity")).getActiveNetworkInfo();
+                if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                    b0Var.e(iVar, i10);
+                } else {
+                    ((t5.g) cVar).f(new i2.z(b0Var, iVar, i10, 19));
+                }
+                runnable.run();
+            } catch (u5.a unused) {
+                ((s4.d) b0Var.f1032b).t(iVar, i10 + 1, false);
+                runnable.run();
+            }
+        } catch (Throwable th2) {
+            runnable.run();
+            throw th2;
+        }
     }
 
     @Override
     public final void run() {
-        switch (this.f26612a) {
-            case 0:
-                aw0 aw0Var = this.f26613b;
-                NotificationCenter.getInstance(aw0Var.f26704x1.getCurrentAccount()).doOnIdle(new as0(aw0Var, this.f26614c, this.d, this.e, this.f26615f, 1));
-                return;
-            default:
-                aw0 aw0Var2 = this.f26613b;
-                pv0[] pv0VarArr = aw0Var2.f26698v1;
-                if (this.f26614c == null) {
-                    int i10 = this.e;
-                    pv0 pv0Var = pv0VarArr[i10];
-                    if (this.d == pv0Var.f31718p) {
-                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f26615f;
-                        pv0Var.e.clear();
-                        int size = tL_messages_searchResultsPositions.positions.size();
-                        int i11 = 0;
-                        for (int i12 = 0; i12 < size; i12++) {
-                            TLRPC.TL_searchResultPosition tL_searchResultPosition = tL_messages_searchResultsPositions.positions.get(i12);
-                            int i13 = tL_searchResultPosition.date;
-                            if (i13 != 0) {
-                                ?? obj = new Object();
-                                obj.f35411c = i13;
-                                obj.d = tL_searchResultPosition.msg_id;
-                                obj.f35410b = tL_searchResultPosition.offset;
-                                obj.f35409a = LocaleController.formatYearMont(i13, true);
-                                pv0VarArr[i10].e.add(obj);
-                            }
-                        }
-                        Collections.sort(pv0VarArr[i10].e, new org.telegram.ui.ActionBar.n4(24));
-                        pv0 pv0Var2 = pv0VarArr[i10];
-                        pv0Var2.f31709f[0] = tL_messages_searchResultsPositions.count;
-                        pv0Var2.h = true;
-                        if (!pv0Var2.e.isEmpty()) {
-                            while (true) {
-                                tu0[] tu0VarArr = aw0Var2.m0;
-                                if (i11 < tu0VarArr.length) {
-                                    tu0 tu0Var = tu0VarArr[i11];
-                                    if (tu0Var.E == i10) {
-                                        tu0Var.f33157b = true;
-                                        aw0Var2.z1(tu0Var, true);
-                                    }
-                                    i11++;
-                                }
-                            }
-                        }
-                        aw0Var2.J.l();
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.as0.run():void");
+    }
+
+    public as0(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f26657a = i11;
+        this.d = obj;
+        this.f26658b = i10;
+        this.e = obj2;
+        this.f26659c = obj3;
+    }
+
+    public as0(Object obj, Object obj2, int i10, Object obj3, int i11) {
+        this.f26657a = i11;
+        this.d = obj;
+        this.e = obj2;
+        this.f26658b = i10;
+        this.f26659c = obj3;
+    }
+
+    public as0(Object obj, Object obj2, Object obj3, int i10, int i11) {
+        this.f26657a = i11;
+        this.d = obj;
+        this.e = obj2;
+        this.f26659c = obj3;
+        this.f26658b = i10;
+    }
+
+    public as0(String str, int i10, org.telegram.ui.ActionBar.k3 k3Var, org.telegram.ui.ActionBar.u6 u6Var) {
+        this.f26657a = 7;
+        this.f26659c = str;
+        this.f26658b = i10;
+        this.d = k3Var;
+        this.e = u6Var;
+    }
+
+    public as0(uz0 uz0Var, int i10, String str, ArrayList arrayList) {
+        this.f26657a = 3;
+        this.d = uz0Var;
+        this.f26658b = i10;
+        this.f26659c = str;
+        this.e = arrayList;
     }
 }

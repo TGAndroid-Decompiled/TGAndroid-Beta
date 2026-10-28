@@ -1,25 +1,25 @@
 package ec;
 public final class b {
-    public static final b f9874a;
-    public static final b f9875b;
-    public static final b f9876c;
+    public static final b f9873a;
+    public static final b f9874b;
+    public static final b f9875c;
     public static final b d;
     public static final b e;
-    public static final b f9877f;
+    public static final b f9876f;
     public static final b h;
-    public static final b[] f9878n;
+    public static final b[] f9877n;
 
     static {
         ?? r02 = new Enum("ERROR_CORRECTION", 0);
-        f9874a = r02;
+        f9873a = r02;
         ?? r12 = new Enum("CHARACTER_SET", 1);
-        f9875b = r12;
+        f9874b = r12;
         Enum r32 = new Enum("DATA_MATRIX_SHAPE", 2);
         Enum r52 = new Enum("DATA_MATRIX_COMPACT", 3);
         Enum r72 = new Enum("MIN_SIZE", 4);
         Enum r92 = new Enum("MAX_SIZE", 5);
         ?? r11 = new Enum("MARGIN", 6);
-        f9876c = r11;
+        f9875c = r11;
         Enum r13 = new Enum("PDF417_COMPACT", 7);
         Enum r15 = new Enum("PDF417_COMPACTION", 8);
         Enum r22 = new Enum("PDF417_DIMENSIONS", 9);
@@ -30,10 +30,10 @@ public final class b {
         ?? r10 = new Enum("QR_MASK_PATTERN", 13);
         e = r10;
         ?? r122 = new Enum("QR_COMPACT", 14);
-        f9877f = r122;
+        f9876f = r122;
         ?? r14 = new Enum("GS1_FORMAT", 15);
         h = r14;
-        f9878n = new b[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22, r42, r6, r82, r10, r122, r14, new Enum("FORCE_CODE_SET", 16), new Enum("FORCE_C40", 17), new Enum("CODE128_COMPACT", 18)};
+        f9877n = new b[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22, r42, r6, r82, r10, r122, r14, new Enum("FORCE_CODE_SET", 16), new Enum("FORCE_C40", 17), new Enum("CODE128_COMPACT", 18)};
     }
 
     public static b valueOf(String str) {
@@ -41,6 +41,6 @@ public final class b {
     }
 
     public static b[] values() {
-        return (b[]) f9878n.clone();
+        return (b[]) f9877n.clone();
     }
 }

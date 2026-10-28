@@ -70,7 +70,7 @@ public abstract class h implements g1 {
     public void J0() {
         i2.j0 j0Var = (i2.j0) this;
         j0Var.F1();
-        a1(11, -j0Var.f13602l0);
+        a1(11, -j0Var.f13601l0);
     }
 
     @Override
@@ -175,7 +175,7 @@ public abstract class h implements g1 {
             if (T0) {
                 long M0 = j0Var.M0();
                 j0Var.F1();
-                if (M0 <= j0Var.f13605n0) {
+                if (M0 <= j0Var.f13604n0) {
                     b1(7);
                     return;
                 }
@@ -414,7 +414,7 @@ public abstract class h implements g1 {
         if (duration == 0) {
             return 100;
         }
-        String str = e2.n0.f9692a;
+        String str = e2.n0.f9691a;
         long d = nc.d(d02, 100L);
         if (d != Long.MAX_VALUE && d != Long.MIN_VALUE) {
             j10 = d / duration;

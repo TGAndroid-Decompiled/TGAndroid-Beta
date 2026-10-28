@@ -17,39 +17,39 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Timer;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.LaunchActivity;
 public final class z1 implements Utilities.Callback {
-    public final int f45469a;
-    public final Timer.Task f45470b;
-    public final boolean[] f45471c;
+    public final int f44980a;
+    public final Timer.Task f44981b;
+    public final boolean[] f44982c;
     public final Timer d;
     public final h2 e;
-    public final Utilities.Callback f45472f;
+    public final Utilities.Callback f44983f;
 
     public z1(Timer.Task task, boolean[] zArr, Timer timer, h2 h2Var, Utilities.Callback callback, int i10) {
-        this.f45469a = i10;
-        this.f45470b = task;
-        this.f45471c = zArr;
+        this.f44980a = i10;
+        this.f44981b = task;
+        this.f44982c = zArr;
         this.d = timer;
         this.e = h2Var;
-        this.f45472f = callback;
+        this.f44983f = callback;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f45469a) {
+        switch (this.f44980a) {
             case 0:
-                Timer.Task task = this.f45470b;
-                boolean[] zArr = this.f45471c;
+                Timer.Task task = this.f44981b;
+                boolean[] zArr = this.f44982c;
                 Timer timer = this.d;
                 h2 h2Var = this.e;
-                Utilities.Callback callback = this.f45472f;
+                Utilities.Callback callback = this.f44983f;
                 InputStream inputStream = (InputStream) obj;
                 Timer.done(task);
                 if (!zArr[0]) {
                     Timer.Task start = Timer.start(timer, "readHTML");
-                    String str = h2Var.f45260a;
+                    String str = h2Var.f44771a;
                     final z1 z1Var = new z1(start, zArr, timer, h2Var, callback, 1);
                     if (inputStream == null) {
                         z1Var.run(null);
@@ -84,7 +84,7 @@ public final class z1 implements Utilities.Callback {
                     settings.setAllowUniversalAccessFromFileURLs(false);
                     webView.setWebViewClient(new c2(h2Var, inputStream));
                     webView.setWebChromeClient(new WebChromeClient());
-                    frameLayout.addView(webView, gb1.g(-1.0f, -1));
+                    frameLayout.addView(webView, kb1.g(-1.0f, -1));
                     final boolean[] zArr2 = {false};
                     webView.addJavascriptInterface(new Object() {
                         @JavascriptInterface
@@ -97,24 +97,24 @@ public final class z1 implements Utilities.Callback {
                 }
                 return;
             default:
-                Timer.Task task2 = this.f45470b;
-                boolean[] zArr3 = this.f45471c;
+                Timer.Task task2 = this.f44981b;
+                boolean[] zArr3 = this.f44982c;
                 Timer timer2 = this.d;
                 h2 h2Var2 = this.e;
-                Utilities.Callback callback2 = this.f45472f;
+                Utilities.Callback callback2 = this.f44983f;
                 JSONObject jSONObject = (JSONObject) obj;
                 Timer.done(task2);
                 if (!zArr3[0]) {
                     Timer.Task start2 = Timer.start(timer2, "parseJSON");
                     try {
-                        h2Var2.f45262c = h2Var2.i(h2Var2.f45260a, jSONObject);
+                        h2Var2.f44773c = h2Var2.i(h2Var2.f44771a, jSONObject);
                     } catch (Exception e) {
                         Timer.log(timer2, "error: " + e);
                         FileLog.e(e);
                     }
                     Timer.done(start2);
                     callback2.run(h2Var2);
-                    TLRPC.TL_webPage tL_webPage = h2Var2.f45262c;
+                    TLRPC.TL_webPage tL_webPage = h2Var2.f44773c;
                     if (tL_webPage != null) {
                         h2.e.put(tL_webPage, h2Var2);
                     }

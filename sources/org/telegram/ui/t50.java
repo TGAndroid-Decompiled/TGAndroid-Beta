@@ -1,48 +1,84 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class t50 extends LinearLayout {
-    public final org.telegram.ui.Components.s6 f43682a;
-    public float f43683b;
-    public final v50 f43684c;
+public final class t50 extends Drawable {
+    public long f43495b;
+    public int d;
+    public final View e;
+    public final Paint f43494a = new Paint(1);
+    public float f43496c = 1.0f;
 
-    public t50(v50 v50Var, Context context) {
-        super(context);
-        this.f43684c = v50Var;
-        this.f43683b = 0.0f;
-        setOrientation(1);
-        setGravity(17);
-        org.telegram.ui.Components.s6 s6Var = new org.telegram.ui.Components.s6(context, true, false, false);
-        this.f43682a = s6Var;
-        s6Var.setTextColor(-1);
-        s6Var.setTextSize(AndroidUtilities.dp(46.0f));
-        s6Var.setTypeface(AndroidUtilities.bold());
-        s6Var.setGravity(1);
-        TextView textView = new TextView(context);
-        textView.setTextColor(-1);
-        ic.a.o(14.0f, 1, textView);
-        textView.setText(LocaleController.getString(R.string.VoipChannelWatching));
-        addView(s6Var, org.telegram.ui.Components.gb1.r(-1, 46));
-        addView(textView, org.telegram.ui.Components.gb1.r(-2, -2));
+    public t50(View view) {
+        this.e = view;
     }
 
-    public void setWatchersCount(int i10) {
-        String formatNumber = LocaleController.formatNumber(i10, ',');
-        org.telegram.ui.Components.s6 s6Var = this.f43682a;
-        float measureText = s6Var.getPaint().measureText((CharSequence) formatNumber, 0, formatNumber.length());
-        if (this.f43683b != measureText) {
-            int i11 = org.telegram.ui.ActionBar.y6.Lj;
-            v50 v50Var = this.f43684c;
-            s6Var.getPaint().setShader(new LinearGradient(0.0f, 0.0f, measureText, 0.0f, new int[]{v50Var.getThemedColor(i11), v50Var.getThemedColor(org.telegram.ui.ActionBar.y6.Nj)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            this.f43683b = measureText;
+    @Override
+    public final void draw(Canvas canvas) {
+        int dp;
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        View view = this.e;
+        if (view instanceof org.telegram.ui.ActionBar.b6) {
+            dp = AndroidUtilities.dp(1.0f) + centerY;
+            centerX -= AndroidUtilities.dp(3.0f);
+        } else {
+            dp = AndroidUtilities.dp(2.0f) + centerY;
         }
-        s6Var.setText(formatNumber);
+        Paint paint = this.f43494a;
+        paint.setColor(-1147527);
+        paint.setAlpha((int) (this.f43496c * 255.0f));
+        canvas.drawCircle(centerX, dp, AndroidUtilities.dp(4.0f), paint);
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j10 = elapsedRealtime - this.f43495b;
+        if (j10 > 17) {
+            j10 = 17;
+        }
+        this.f43495b = elapsedRealtime;
+        int i10 = this.d;
+        if (i10 == 0) {
+            float f7 = (((float) j10) / 2000.0f) + this.f43496c;
+            this.f43496c = f7;
+            if (f7 >= 1.0f) {
+                this.f43496c = 1.0f;
+                this.d = 1;
+            }
+        } else if (i10 == 1) {
+            float f10 = this.f43496c - (((float) j10) / 2000.0f);
+            this.f43496c = f10;
+            if (f10 < 0.5f) {
+                this.f43496c = 0.5f;
+                this.d = 0;
+            }
+        }
+        view.invalidate();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

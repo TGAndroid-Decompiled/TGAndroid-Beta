@@ -96,7 +96,7 @@ public class FileLog {
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.n("_", name == null ? fb.k.f10396a : new fb.m(name));
+            lVar.n("_", name == null ? fb.k.f10395a : new fb.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -169,8 +169,8 @@ public class FileLog {
                 @Override
                 public boolean shouldSkipField(fb.b bVar) {
                     HashSet hashSet3 = FileLog.privateFields;
-                    Field field = bVar.f10380a;
-                    Field field2 = bVar.f10380a;
+                    Field field = bVar.f10379a;
+                    Field field2 = bVar.f10379a;
                     if (!hashSet3.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -180,26 +180,26 @@ public class FileLog {
                     return true;
                 }
             };
-            hb.g gVar = hb.g.f12736c;
+            hb.g gVar = hb.g.f12735c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             fb.c cVar = fb.g.h;
-            fb.p pVar = fb.g.f10388i;
-            fb.q qVar = fb.g.f10389j;
+            fb.p pVar = fb.g.f10387i;
+            fb.q qVar = fb.g.f10388j;
             ArrayDeque arrayDeque = new ArrayDeque();
             fb.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
             hb.g clone = gVar.clone();
-            ArrayList arrayList3 = new ArrayList(gVar.f12737a);
-            clone.f12737a = arrayList3;
+            ArrayList arrayList3 = new ArrayList(gVar.f12736a);
+            clone.f12736a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
             boolean z11 = byteArrayHexAdapter instanceof fb.o;
             if (!fb.i.class.isAssignableFrom(byte[].class)) {
                 if (z11) {
                     mb.a aVar2 = new mb.a(byte[].class);
-                    if (aVar2.f18408b == aVar2.f18407a) {
+                    if (aVar2.f18407b == aVar2.f18406a) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -207,7 +207,7 @@ public class FileLog {
                     arrayList.add(new ib.z(byteArrayHexAdapter, aVar2, z10, null));
                 }
                 mb.a aVar3 = new mb.a(byte[].class);
-                ib.x0 x0Var = ib.h1.f13923a;
+                ib.x0 x0Var = ib.h1.f13922a;
                 arrayList.add(new ib.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);
@@ -221,7 +221,7 @@ public class FileLog {
                     ArrayList arrayList5 = new ArrayList(arrayList2);
                     Collections.reverse(arrayList5);
                     arrayList4.addAll(arrayList5);
-                    boolean z12 = lb.f.f16964a;
+                    boolean z12 = lb.f.f16963a;
                     gson = new fb.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
                     return;
                 }
@@ -297,7 +297,7 @@ public class FileLog {
 
     public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i10) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
-            postProtocolDump(new c5(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
+            postProtocolDump(new d5(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
         }
     }
 
@@ -599,7 +599,7 @@ public class FileLog {
             if (dispatchQueue2 == null) {
                 atomicInteger.decrementAndGet();
             } else {
-                dispatchQueue2.postRunnable(new k3(0, runnable));
+                dispatchQueue2.postRunnable(new l3(0, runnable));
             }
         } catch (Throwable th2) {
             pendingProtocolDumps.decrementAndGet();
@@ -661,7 +661,7 @@ public class FileLog {
             ensureInitied();
             th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new l3(1, th2));
+                getInstance().logQueue.postRunnable(new m3(1, th2));
                 return;
             }
             th2.printStackTrace();
@@ -707,7 +707,7 @@ public class FileLog {
             ensureInitied();
             th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new l3(0, th2));
+                getInstance().logQueue.postRunnable(new m3(0, th2));
             } else {
                 th2.printStackTrace();
             }

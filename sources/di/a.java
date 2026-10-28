@@ -15,9 +15,9 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class a extends FrameLayout {
     public final ImageView f8352a;
     public final org.telegram.ui.Components.r6 f8353b;
@@ -35,7 +35,7 @@ public final class a extends FrameLayout {
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.h = 1.0f;
-        gb1.b(this);
+        kb1.b(this);
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(false, true, true);
         this.f8353b = r6Var;
         r6Var.u(-9866632);
@@ -52,17 +52,17 @@ public final class a extends FrameLayout {
         iVar.invalidateSelf();
         iVar.f6354f = AndroidUtilities.dp(1.0f);
         frameLayout.setBackground(iVar);
-        addView(frameLayout, gb1.i(40, 40, 17));
+        addView(frameLayout, kb1.i(40, 40, 17));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.menu_comments);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView, gb1.i(20, 20, 17));
+        frameLayout.addView(imageView, kb1.i(20, 20, 17));
         ImageView imageView2 = new ImageView(context);
         this.f8352a = imageView2;
         imageView2.setImageResource(R.drawable.menu_comments_arrow);
         imageView2.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView2, gb1.i(20, 20, 17));
+        frameLayout.addView(imageView2, kb1.i(20, 20, 17));
         imageView2.setPivotX(AndroidUtilities.dp(10.27f));
         imageView2.setPivotY(AndroidUtilities.dp(9.58f));
     }
@@ -79,7 +79,7 @@ public final class a extends FrameLayout {
             if (z10) {
                 f7 = 0.0f;
             }
-            vh.q(animate.rotation(f7), ds.h, 420L);
+            wh.q(animate.rotation(f7), ds.h, 420L);
             return;
         }
         if (z10) {

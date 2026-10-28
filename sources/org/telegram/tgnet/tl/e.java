@@ -6,15 +6,15 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class e implements Vector.TLDeserializer {
-    public final int f22295a;
+    public final int f22296a;
 
     public e(int i10) {
-        this.f22295a = i10;
+        this.f22296a = i10;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        switch (this.f22295a) {
+        switch (this.f22296a) {
             case 0:
                 return TL_wallet.walletTransaction.TLdeserialize(inputSerializedData, i10, z10);
             default:

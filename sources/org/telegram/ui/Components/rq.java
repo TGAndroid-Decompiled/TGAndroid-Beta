@@ -7,13 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class rq extends Drawable {
-    public final Paint f32282a;
-    public long f32283b;
-    public final RectF f32284c;
+    public final Paint f32318a;
+    public long f32319b;
+    public final RectF f32320c;
     public float d;
     public boolean e;
-    public int f32285f;
-    public int f32286g;
+    public int f32321f;
+    public int f32322g;
 
     public rq() {
         this(2.0f);
@@ -43,15 +43,15 @@ public abstract class rq extends Drawable {
 
     public rq(float f7) {
         Paint paint = new Paint(1);
-        this.f32282a = paint;
+        this.f32318a = paint;
         new DecelerateInterpolator();
-        this.f32284c = new RectF();
-        this.f32286g = 255;
+        this.f32320c = new RectF();
+        this.f32322g = 255;
         paint.setColor(-1);
         paint.setStrokeWidth(AndroidUtilities.dp(f7));
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStyle(Paint.Style.STROKE);
-        this.f32285f = AndroidUtilities.dp(8.0f);
+        this.f32321f = AndroidUtilities.dp(8.0f);
     }
 
     @Override

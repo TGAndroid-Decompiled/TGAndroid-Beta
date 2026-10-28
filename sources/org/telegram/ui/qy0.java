@@ -1,44 +1,80 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class qy0 extends s4.l {
-    public int F = -1;
-    public final ProfileActivity G;
+import android.view.TextureView;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class qy0 implements org.telegram.ui.ActionBar.t0, av0, org.telegram.ui.Components.q8 {
+    public final ProfileActivity f42816a;
 
     public qy0(ProfileActivity profileActivity) {
-        this.G = profileActivity;
+        this.f42816a = profileActivity;
     }
 
     @Override
-    public final long K(long j10, long j11, long j12) {
-        return 0L;
-    }
-
-    @Override
-    public final void N() {
-        AndroidUtilities.runOnUIThread(new my0(this, 1));
-    }
-
-    @Override
-    public final void P(s4.e1 e1Var) {
-        int i10 = ProfileActivity.R6;
-        this.G.g5();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f47788p.isEmpty();
-        boolean isEmpty2 = this.f47790r.isEmpty();
-        boolean isEmpty3 = this.f47791s.isEmpty();
-        boolean isEmpty4 = this.f47789q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new b3(this, 25));
-            ofFloat.setDuration(this.e);
-            ofFloat.start();
-            this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
+    public void B0(MessageObject messageObject) {
+        ProfileActivity profileActivity = this.f42816a;
+        profileActivity.f35972a.I0(true);
+        xz0 xz0Var = profileActivity.N;
+        if (xz0Var != null && xz0Var.getCurrentListView() != null) {
+            profileActivity.N.getCurrentListView().I0(true);
         }
-        super.m();
+        profileActivity.f35996d1.setBackgroundColor(i0.a.f(0.1f, profileActivity.Y3(profileActivity.f35985b5.f38949f), org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23300a7, profileActivity.f36150z0)));
+    }
+
+    @Override
+    public void E(MessageObject messageObject) {
+        org.telegram.ui.Components.fi0 fi0Var = this.f42816a.m0;
+        if (fi0Var != null && fi0Var.f28166a) {
+            fi0Var.O.d(0.0f, true);
+            fi0Var.invalidate();
+        }
+    }
+
+    @Override
+    public void T0(int i10, int i11) {
+        int i12;
+        int i13 = ProfileActivity.R6;
+        ProfileActivity profileActivity = this.f42816a;
+        long a2 = profileActivity.a();
+        profileActivity.getMessagesController().setDialogHistoryTTL(a2, i10);
+        if (profileActivity.f36122v2 == null && profileActivity.f36115u2 == null) {
+            return;
+        }
+        UndoView undoView = profileActivity.L;
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(a2));
+        TLRPC.UserFull userFull = profileActivity.f36122v2;
+        if (userFull != null) {
+            i12 = userFull.ttl_period;
+        } else {
+            i12 = profileActivity.f36115u2.ttl_period;
+        }
+        undoView.k(a2, i11, user, Integer.valueOf(i12), null, null);
+    }
+
+    @Override
+    public void b() {
+        int i10 = ProfileActivity.R6;
+        org.telegram.ui.Components.in0.d(new e5(this.f42816a, 18));
+    }
+
+    @Override
+    public void dismiss() {
+        this.f42816a.T0.U(null, null);
+    }
+
+    @Override
+    public void e1() {
+        this.f42816a.presentFragment(new t4());
+        dismiss();
+    }
+
+    @Override
+    public TextureView f0() {
+        return null;
+    }
+
+    @Override
+    public void a() {
     }
 }

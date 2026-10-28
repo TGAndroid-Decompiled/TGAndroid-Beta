@@ -116,7 +116,7 @@ public final class f1 implements NotificationCenter.NotificationCenterDelegate {
                 int i10 = 0;
                 while (true) {
                     if (i10 < arrayList2.size()) {
-                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i10)).f22256id == tL_starGiftUnique.f22256id) {
+                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i10)).f22257id == tL_starGiftUnique.f22257id) {
                             break;
                         }
                         i10++;
@@ -219,7 +219,7 @@ public final class f1 implements NotificationCenter.NotificationCenterDelegate {
             if (((Long) objArr[0]).longValue() == d1Var.f1471f) {
                 h(((TLRPC.UserFull) objArr[1]).share_theme);
             }
-        } else if (i10 == NotificationCenter.chatInfoDidLoad && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (-chatFull.f22028id) == d1Var.f1471f) {
+        } else if (i10 == NotificationCenter.chatInfoDidLoad && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (-chatFull.f22029id) == d1Var.f1471f) {
             h(chatFull.share_theme);
         }
     }
@@ -243,7 +243,7 @@ public final class f1 implements NotificationCenter.NotificationCenterDelegate {
         if (j10 > 0) {
             TLRPC.User user = messagesController.getUser(Long.valueOf(j10));
             if (user != null) {
-                NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.userInfoDidLoad);
+                NotificationCenter.getInstance(i10).addWeakObserver(this, NotificationCenter.userInfoDidLoad);
                 messagesController.loadUserInfo(user, true, 0);
                 return;
             }
@@ -253,8 +253,8 @@ public final class f1 implements NotificationCenter.NotificationCenterDelegate {
         if (chat == null) {
             return;
         }
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.chatInfoDidLoad);
-        MessagesStorage.getInstance(i10).loadChatInfo(chat.f22027id, ChatObject.isChannel(chat), null, true, false);
+        NotificationCenter.getInstance(i10).addWeakObserver(this, NotificationCenter.chatInfoDidLoad);
+        MessagesStorage.getInstance(i10).loadChatInfo(chat.f22028id, ChatObject.isChannel(chat), null, true, false);
     }
 
     public final void h(TLRPC.ShareTheme shareTheme) {

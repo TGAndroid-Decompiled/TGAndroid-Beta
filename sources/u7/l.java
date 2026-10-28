@@ -1,14 +1,14 @@
 package u7;
 public final class l extends a8.m {
-    public static final l f49607n = new l(null, new Object[0], 0);
+    public static final l f49642n = new l(null, new Object[0], 0);
     public final transient Object e;
-    public final transient Object[] f49608f;
+    public final transient Object[] f49643f;
     public final transient int h;
 
     public l(Object obj, Object[] objArr, int i10) {
         super(3);
         this.e = obj;
-        this.f49608f = objArr;
+        this.f49643f = objArr;
         this.h = i10;
     }
 

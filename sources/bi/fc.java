@@ -2,13 +2,13 @@ package bi;
 
 import android.app.Activity;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.mm0;
-public final class fc extends j71 {
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.nm0;
+public final class fc extends k71 {
     public final dd P;
 
-    public fc(dd ddVar, mm0 mm0Var, Activity activity, int i10, int i11, ai.e eVar, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(mm0Var, activity, i10, i11, true, eVar, u6Var);
+    public fc(dd ddVar, nm0 nm0Var, Activity activity, int i10, int i11, ai.e eVar, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(nm0Var, activity, i10, i11, true, eVar, u6Var);
         this.P = ddVar;
     }
 

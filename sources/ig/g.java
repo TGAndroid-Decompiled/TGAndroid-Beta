@@ -6,13 +6,13 @@ import android.view.View;
 import org.telegram.ui.ActionBar.c7;
 import org.telegram.ui.Components.ar;
 public final class g implements c7, e2.o {
-    public final int f14059a;
+    public final int f14058a;
 
     @Override
     public int e(View view) {
         Drawable background = view.getBackground();
         if (background instanceof ar) {
-            Drawable drawable = ((ar) background).f26592a;
+            Drawable drawable = ((ar) background).f26639a;
             if (drawable instanceof ColorDrawable) {
                 return ((ColorDrawable) drawable).getColor();
             }
@@ -24,7 +24,7 @@ public final class g implements c7, e2.o {
     @Override
     public void invoke(Object obj) {
         j2.b bVar = (j2.b) obj;
-        switch (this.f14059a) {
+        switch (this.f14058a) {
             case 1:
                 bVar.getClass();
                 return;
@@ -116,14 +116,10 @@ public final class g implements c7, e2.o {
     }
 
     public g(j2.a aVar) {
-        this.f14059a = 22;
+        this.f14058a = 22;
     }
 
     public g(j2.a aVar, int i10, int i11, char c10) {
-        this.f14059a = i11;
-    }
-
-    public g(j2.a aVar, String str, long j10, long j11, int i10) {
-        this.f14059a = i10;
+        this.f14058a = i11;
     }
 }

@@ -8,39 +8,39 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesStorage;
 public final class x1 implements Runnable {
-    public final int f14301a;
-    public final a2 f14302b;
+    public final int f14300a;
+    public final a2 f14301b;
 
     public x1(a2 a2Var, int i10) {
-        this.f14301a = i10;
-        this.f14302b = a2Var;
+        this.f14300a = i10;
+        this.f14301b = a2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f14301a) {
+        switch (this.f14300a) {
             case 0:
-                a2 a2Var = this.f14302b;
+                a2 a2Var = this.f14301b;
                 a2Var.getClass();
                 try {
-                    MessagesStorage.getInstance(a2Var.f13997m).getDatabase().executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
+                    MessagesStorage.getInstance(a2Var.f13996m).getDatabase().executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
                     return;
                 }
             default:
-                a2 a2Var2 = this.f14302b;
+                a2 a2Var2 = this.f14301b;
                 try {
-                    SQLiteCursor queryFinalized = MessagesStorage.getInstance(a2Var2.f13997m).getDatabase().queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = MessagesStorage.getInstance(a2Var2.f13996m).getDatabase().queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     HashMap hashMap = new HashMap();
                     while (queryFinalized.next()) {
                         ?? obj = new Object();
-                        obj.f14305a = queryFinalized.stringValue(0);
-                        obj.f14306b = queryFinalized.intValue(1);
+                        obj.f14304a = queryFinalized.stringValue(0);
+                        obj.f14305b = queryFinalized.intValue(1);
                         arrayList.add(obj);
-                        hashMap.put(obj.f14305a, obj);
+                        hashMap.put(obj.f14304a, obj);
                     }
                     queryFinalized.dispose();
                     Collections.sort(arrayList, new a4.d(22));

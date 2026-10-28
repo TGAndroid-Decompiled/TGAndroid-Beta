@@ -1,42 +1,39 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.play.core.integrity.IntegrityTokenResponse;
-import org.telegram.tgnet.TLRPC;
-public final class sc0 implements OnSuccessListener {
-    public final int f43468a = 0;
-    public final gg0 f43469b;
-    public final String f43470c;
-    public final TLRPC.auth_SentCode d;
-    public final Bundle e;
-    public final boolean f43471f;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class sc0 implements Runnable {
+    public final int f43295a;
+    public final ig0 f43296b;
 
-    public sc0(gg0 gg0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z10) {
-        this.f43469b = gg0Var;
-        this.e = bundle;
-        this.d = auth_sentcode;
-        this.f43470c = str;
-        this.f43471f = z10;
+    public sc0(ig0 ig0Var, int i10) {
+        this.f43295a = i10;
+        this.f43296b = ig0Var;
     }
 
     @Override
-    public final void onSuccess(Object obj) {
-        switch (this.f43468a) {
+    public final void run() {
+        switch (this.f43295a) {
             case 0:
-                gg0.Y(this.f43469b, this.e, this.d, this.f43470c, this.f43471f, (IntegrityTokenResponse) obj);
+                this.f43296b.f40145c0 = false;
+                return;
+            case 1:
+                ig0 ig0Var = this.f43296b;
+                ig0Var.f40169w0 = false;
+                ig0Var.C1(true, true);
                 return;
             default:
-                gg0.W(this.f43469b, this.f43470c, this.d, this.e, this.f43471f, (n8.d) obj);
+                ig0 ig0Var2 = this.f43296b;
+                if (ig0Var2.getParentActivity() != null && !ig0Var2.getParentActivity().isFinishing() && ig0Var2.getParentActivity() != null) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ig0Var2.getParentActivity());
+                    alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
+                    alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.SafetyNetErrorOccurred);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new vc0(ig0Var2, 1));
+                    alertDialog$Builder.p();
+                    return;
+                }
                 return;
         }
-    }
-
-    public sc0(gg0 gg0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z10) {
-        this.f43469b = gg0Var;
-        this.f43470c = str;
-        this.d = auth_sentcode;
-        this.e = bundle;
-        this.f43471f = z10;
     }
 }

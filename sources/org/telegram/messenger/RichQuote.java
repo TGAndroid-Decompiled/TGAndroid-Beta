@@ -259,7 +259,7 @@ public class RichQuote {
 
     public static TL_iv.RichText copy(TL_iv.RichText richText) {
         try {
-            return (TL_iv.RichText) TLObject.deepCopy(richText, new yg(2));
+            return (TL_iv.RichText) TLObject.deepCopy(richText, new zg(2));
         } catch (Exception e) {
             FileLog.e(e);
             return null;

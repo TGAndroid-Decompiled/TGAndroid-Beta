@@ -27,7 +27,7 @@ public final class x implements q0.a {
                 return;
             default:
                 o0.f fVar2 = (o0.f) obj;
-                synchronized (o0.g.f18936c) {
+                synchronized (o0.g.f18935c) {
                     try {
                         a0.l lVar = o0.g.d;
                         ArrayList arrayList = (ArrayList) lVar.get((String) this.f8022b);

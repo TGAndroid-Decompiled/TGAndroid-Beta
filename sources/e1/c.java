@@ -60,28 +60,28 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.e2;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.bm0;
-import org.telegram.ui.Components.jw0;
-import org.telegram.ui.Components.ol0;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.us0;
+import org.telegram.ui.Components.cm0;
+import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.pl0;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.vs0;
 import rg.s1;
-public final class c implements OnSuccessListener, Utilities.Callback2Return, bm0, g1, b2, ol0, Utilities.Callback5, s1, CameraController.VideoTakeCallback, jw0, g, o, w {
-    public final int f9613a;
-    public final Object f9614b;
+public final class c implements OnSuccessListener, Utilities.Callback2Return, cm0, g1, b2, pl0, Utilities.Callback5, s1, CameraController.VideoTakeCallback, kw0, g, o, w {
+    public final int f9612a;
+    public final Object f9613b;
 
     public c(j2.a aVar, Object obj, int i10) {
-        this.f9613a = i10;
-        this.f9614b = obj;
+        this.f9612a = i10;
+        this.f9613b = obj;
     }
 
     @Override
     public void a() {
         float f7;
-        ta taVar = (ta) this.f9614b;
-        TextView textView = taVar.f10784d1;
-        boolean a2 = taVar.f10812s0.a();
-        ImageView imageView = taVar.f10782c1;
+        ta taVar = (ta) this.f9613b;
+        TextView textView = taVar.f10783d1;
+        boolean a2 = taVar.f10811s0.a();
+        ImageView imageView = taVar.f10781c1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f10 = 0.6f;
@@ -113,73 +113,73 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
 
     @Override
     public void d() {
-        ((n1) this.f9614b).invalidate();
+        ((n1) this.f9613b).invalidate();
     }
 
     @Override
     public void e(long j10, x xVar) {
-        switch (this.f9613a) {
+        switch (this.f9612a) {
             case 28:
-                c3.b.c(j10, xVar, ((c0) this.f9614b).f15262c);
+                c3.b.c(j10, xVar, ((c0) this.f9613b).f15261c);
                 return;
             default:
-                c3.b.d(j10, xVar, ((c0) this.f9614b).f15262c);
+                c3.b.d(j10, xVar, ((c0) this.f9613b).f15261c);
                 return;
         }
     }
 
     @Override
     public long g(long j10) {
-        u uVar = (u) this.f9614b;
+        u uVar = (u) this.f9613b;
         return n0.j((j10 * uVar.e) / 1000000, 0L, uVar.f6102j - 1);
     }
 
     @Override
     public void h(e2 e2Var, int i10) {
-        switch (this.f9613a) {
+        switch (this.f9612a) {
             case 5:
-                sb sbVar = ((ib) ((r) this.f9614b)).S1;
+                sb sbVar = ((ib) ((r) this.f9613b)).S1;
                 gb gbVar = sbVar.X0;
                 if (gbVar != null) {
                     gbVar.s(null, null, true);
                 }
-                ta taVar = sbVar.f11673v1;
+                ta taVar = sbVar.f11672v1;
                 if (taVar != null) {
                     taVar.n0();
                 }
-                ib ibVar = sbVar.f11614c1;
+                ib ibVar = sbVar.f11613c1;
                 if (ibVar != null) {
                     ibVar.setHasRoundVideo(false);
                 }
                 w7 w7Var = sbVar.K1;
                 if (w7Var != null) {
-                    File file = w7Var.f11918o0;
+                    File file = w7Var.f11917o0;
                     if (file != null) {
                         try {
                             file.delete();
                         } catch (Exception unused) {
                         }
-                        sbVar.K1.f11918o0 = null;
+                        sbVar.K1.f11917o0 = null;
                     }
-                    if (sbVar.K1.f11920p0 != null) {
+                    if (sbVar.K1.f11919p0 != null) {
                         try {
-                            new File(sbVar.K1.f11920p0).delete();
+                            new File(sbVar.K1.f11919p0).delete();
                         } catch (Exception unused2) {
                         }
-                        sbVar.K1.f11920p0 = null;
+                        sbVar.K1.f11919p0 = null;
                         return;
                     }
                     return;
                 }
                 return;
             case 10:
-                ((t5) this.f9614b).f11708a.f10787e2.r();
+                ((t5) this.f9613b).f11707a.f10786e2.r();
                 return;
             case 14:
-                ((hi.d) this.f9614b).run();
+                ((hi.d) this.f9613b).run();
                 return;
             default:
-                k kVar = (k) this.f9614b;
+                k kVar = (k) this.f9613b;
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
                 updatestarrefprogram.bot = kVar.getMessagesController().getInputUser(kVar.R);
                 updatestarrefprogram.commission_permille = 0;
@@ -192,47 +192,47 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
 
     @Override
     public RecyclerView i(View view) {
-        ((cd) this.f9614b).getClass();
+        ((cd) this.f9613b).getClass();
         return ((ad) view).f4289a;
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f9613a) {
+        switch (this.f9612a) {
             case 18:
-                ((e1) obj).onAudioAttributesChanged((f) this.f9614b);
+                ((e1) obj).onAudioAttributesChanged((f) this.f9613b);
                 return;
             case 19:
-                ((e1) obj).onTrackSelectionParametersChanged((u1) this.f9614b);
+                ((e1) obj).onTrackSelectionParametersChanged((u1) this.f9613b);
                 return;
             case 20:
-                ((e1) obj).onCues((d2.c) this.f9614b);
+                ((e1) obj).onCues((d2.c) this.f9613b);
                 return;
             case 21:
-                ((e1) obj).onMediaMetadataChanged(((d0) this.f9614b).f13509a.Q);
+                ((e1) obj).onMediaMetadataChanged(((d0) this.f9613b).f13508a.Q);
                 return;
             case 22:
-                ((e1) obj).onMetadata((u0) this.f9614b);
+                ((e1) obj).onMetadata((u0) this.f9613b);
                 return;
             case 23:
             default:
-                ((j2.b) obj).b((u2.c0) this.f9614b);
+                ((j2.b) obj).b((u2.c0) this.f9613b);
                 return;
             case 24:
-                ((j2.b) obj).h((z0) this.f9614b);
+                ((j2.b) obj).h((z0) this.f9613b);
                 return;
             case 25:
-                ((j2.b) obj).onSeekStarted((j2.a) this.f9614b);
+                ((j2.b) obj).onSeekStarted((j2.a) this.f9613b);
                 return;
             case 26:
-                ((j2.b) obj).a((i2.e) this.f9614b);
+                ((j2.b) obj).a((i2.e) this.f9613b);
                 return;
         }
     }
 
     @Override
     public Object l(Object obj, Object obj2) {
-        return f9.o.x((List) ((Collection) obj2), new s(17, ((l1) this.f9614b).f10300f, obj));
+        return f9.o.x((List) ((Collection) obj2), new s(17, ((l1) this.f9613b).f10299f, obj));
     }
 
     @Override
@@ -242,15 +242,15 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
 
     @Override
     public void onFinishVideoRecording(String str, long j10) {
-        ma maVar = (ma) this.f9614b;
-        sb sbVar = maVar.f11270a;
+        ma maVar = (ma) this.f9613b;
+        sb sbVar = maVar.f11269a;
         w6 w6Var = sbVar.O0;
-        int i10 = sbVar.f11612c;
+        int i10 = sbVar.f11611c;
         if (w6Var != null) {
             w6Var.g(true);
         }
         if (sbVar.p0()) {
-            sbVar.f11662s.d();
+            sbVar.f11661s.d();
         }
         if (sbVar.G1 != null && sbVar.B0 != null) {
             sbVar.Q1 = false;
@@ -286,8 +286,8 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
             }
             sbVar.h0(false, true);
             w7 o10 = w7.o(sbVar.G1, str, j10);
-            o10.J0 = sbVar.f11672v0;
-            o10.K0 = sbVar.f11676w0;
+            o10.J0 = sbVar.f11671v0;
+            o10.K0 = sbVar.f11675w0;
             o10.B();
             sbVar.g(false, true);
             sbVar.c0(false);
@@ -308,8 +308,8 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
                     int videoHeight = sbVar.B0.getVideoHeight();
                     if (videoWidth > 0 && videoHeight > 0) {
                         w7 w7Var = sbVar.K1;
-                        w7Var.f11911k0 = videoWidth;
-                        w7Var.f11913l0 = videoHeight;
+                        w7Var.f11910k0 = videoWidth;
+                        w7Var.f11912l0 = videoHeight;
                         w7Var.A();
                     }
                 }
@@ -323,8 +323,8 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
             int videoHeight2 = sbVar.B0.getVideoHeight();
             if (videoWidth2 > 0 && videoHeight2 > 0) {
                 w7 w7Var2 = sbVar.K1;
-                w7Var2.f11911k0 = videoWidth2;
-                w7Var2.f11913l0 = videoHeight2;
+                w7Var2.f11910k0 = videoWidth2;
+                w7Var2.f11912l0 = videoHeight2;
                 w7Var2.A();
             }
             sbVar.K(new ka(maVar, 3), 0L);
@@ -333,37 +333,37 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
 
     @Override
     public void onSuccess(Object obj) {
-        switch (this.f9613a) {
+        switch (this.f9612a) {
             case 0:
-                ((b) this.f9614b).invoke(obj);
+                ((b) this.f9613b).invoke(obj);
                 return;
             default:
-                ((b) this.f9614b).invoke(obj);
+                ((b) this.f9613b).invoke(obj);
                 return;
         }
     }
 
     @Override
     public void mo5run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        switch (this.f9613a) {
+        switch (this.f9612a) {
             case 8:
-                ia iaVar = (ia) this.f9614b;
-                t61 t61Var = (t61) obj;
+                ia iaVar = (ia) this.f9613b;
+                u61 u61Var = (u61) obj;
                 View view = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                int i10 = t61Var.d;
-                w7 w7Var = (w7) t61Var.G;
+                int i10 = u61Var.d;
+                w7 w7Var = (w7) u61Var.G;
                 iaVar.c(false, true);
                 sb sbVar = iaVar.O;
                 if (w7Var == sbVar.K1 || sbVar.X1) {
                     return;
                 }
-                sbVar.f11617d1.setSelected(i10);
+                sbVar.f11616d1.setSelected(i10);
                 sbVar.X1 = true;
                 r0 r0Var = new r0(sbVar, i10, 10);
-                ta taVar = sbVar.f11673v1;
+                ta taVar = sbVar.f11672v1;
                 w7 w7Var2 = sbVar.K1;
                 if (taVar != null && w7Var2 != null) {
                     if (!taVar.r0()) {
@@ -372,29 +372,29 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
                     }
                     w7Var2.f();
                     boolean r02 = taVar.r0();
-                    Utilities.searchQueue.postRunnable(new s9(sbVar, taVar, w7Var2.f11907i0, w7Var2.f11909j0, w7Var2, taVar.D0.getPainting().E, r02, r0Var, 0));
+                    Utilities.searchQueue.postRunnable(new s9(sbVar, taVar, w7Var2.f11906i0, w7Var2.f11908j0, w7Var2, taVar.D0.getPainting().E, r02, r0Var, 0));
                     return;
                 }
                 r0Var.run();
                 return;
             case 16:
-                q qVar = (q) this.f9614b;
-                t61 t61Var2 = (t61) obj;
+                q qVar = (q) this.f9613b;
+                u61 u61Var2 = (u61) obj;
                 View view2 = (View) obj2;
                 Integer num = (Integer) obj3;
                 Float f7 = (Float) obj4;
                 Float f10 = (Float) obj5;
-                if (!qVar.f13223q0 && t61Var2.d == 1) {
-                    Object obj6 = t61Var2.G;
+                if (!qVar.f13222q0 && u61Var2.d == 1) {
+                    Object obj6 = u61Var2.G;
                     if (obj6 instanceof TL_agent.agentProvider) {
                         TL_agent.agentProvider agentprovider = (TL_agent.agentProvider) obj6;
-                        qVar.f13222p0 = agentprovider;
-                        qVar.f13219l0.setText("");
+                        qVar.f13221p0 = agentprovider;
+                        qVar.f13218l0.setText("");
                         qVar.U(false);
-                        qVar.f13221o0.i(LocaleController.formatString(R.string.AgentConnectProvider, agentprovider.title), false, true);
+                        qVar.f13220o0.i(LocaleController.formatString(R.string.AgentConnectProvider, agentprovider.title), false, true);
                         qVar.V();
-                        qVar.f13214g0.f32152g3.O(false);
-                        qVar.f13212e0.b(1, true);
+                        qVar.f13213g0.f32504g3.O(false);
+                        qVar.f13211e0.b(1, true);
                         AndroidUtilities.runOnUIThread(new m(qVar, 1), 250L);
                         return;
                     }
@@ -406,27 +406,27 @@ public final class c implements OnSuccessListener, Utilities.Callback2Return, bm
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                ((b5) this.f9614b).W((t61) obj);
+                ((b5) this.f9613b).W((u61) obj);
                 return;
         }
     }
 
     public c(j2.a aVar, u2.u uVar, u2.c0 c0Var, IOException iOException, boolean z10) {
-        this.f9613a = 27;
-        this.f9614b = c0Var;
+        this.f9612a = 27;
+        this.f9613b = c0Var;
     }
 
     public c(Object obj, int i10) {
-        this.f9613a = i10;
-        this.f9614b = obj;
+        this.f9612a = i10;
+        this.f9613b = obj;
     }
 
     @Override
     public Object run(Object obj, Object obj2) {
-        us0 us0Var = (us0) this.f9614b;
+        vs0 vs0Var = (vs0) this.f9613b;
         Integer num = (Integer) obj2;
         if (((Integer) obj).intValue() == -1) {
-            new ei.u(us0Var.f10015a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new i(us0Var, 14)).show();
+            new ei.u(vs0Var.f10014a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new i(vs0Var, 14)).show();
             return Boolean.TRUE;
         }
         return Boolean.FALSE;

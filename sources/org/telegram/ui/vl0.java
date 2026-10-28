@@ -1,84 +1,109 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class vl0 implements org.telegram.ui.ActionBar.b2, nt, wm0 {
-    public final int f44860a;
-    public final in0 f44861b;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class vl0 implements View.OnClickListener {
+    public final int f44379a;
+    public final kn0 f44380b;
 
-    public vl0(in0 in0Var, int i10) {
-        this.f44860a = i10;
-        this.f44861b = in0Var;
+    public vl0(kn0 kn0Var, int i10) {
+        this.f44379a = i10;
+        this.f44380b = kn0Var;
     }
 
     @Override
-    public void Y0(jt jtVar) {
-        String str;
-        switch (this.f44860a) {
-            case 2:
-                in0 in0Var = this.f44861b;
-                in0Var.Y[5].setText(jtVar.f40743a);
-                in0Var.f40312s = jtVar.d;
-                return;
-            default:
-                in0 in0Var2 = this.f44861b;
-                in0Var2.Y[0].setText(jtVar.f40743a);
-                if (in0Var2.U0.indexOf(jtVar.f40743a) != -1) {
-                    in0Var2.Z0 = true;
-                    String str2 = (String) in0Var2.V0.get(jtVar.f40743a);
-                    in0Var2.Y[1].setText(str2);
-                    String str3 = (String) in0Var2.X0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = in0Var2.Y[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
-                    }
-                    editTextBoldCursor.setHintText(str);
-                    in0Var2.Z0 = false;
-                }
-                AndroidUtilities.runOnUIThread(new sl0(in0Var2, 3), 300L);
-                in0Var2.Y[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = in0Var2.Y[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
-        }
-    }
-
-    @Override
-    public void d(String str, String str2) {
-        this.f44861b.x1();
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f44860a) {
+    public final void onClick(View view) {
+        switch (this.f44379a) {
             case 0:
-                in0 in0Var = this.f44861b;
-                in0Var.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    in0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                kn0 kn0Var = this.f44380b;
+                kn0Var.S0 = 2;
+                kn0Var.D1();
+                return;
             case 1:
-                this.f44861b.finishFragment();
+                this.f44380b.d1();
                 return;
             case 2:
+                kn0 kn0Var2 = this.f44380b;
+                kn0Var2.S0 = 3;
+                kn0Var2.D1();
+                return;
             case 3:
-            default:
-                in0.b0(this.f44861b);
+                kn0 kn0Var3 = this.f44380b;
+                kn0Var3.S0 = 1;
+                kn0Var3.D1();
                 return;
             case 4:
-                in0.e0(this.f44861b);
+                kn0 kn0Var4 = this.f44380b;
+                kn0Var4.S0 = 4;
+                kn0Var4.D1();
+                return;
+            case 5:
+                kn0 kn0Var5 = this.f44380b;
+                if (kn0Var5.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                    kn0Var5.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
+                    return;
+                }
+                y9 y9Var = new y9(0);
+                y9Var.M = new hm0(kn0Var5);
+                kn0Var5.presentFragment(y9Var);
+                return;
+            case 6:
+                kn0 kn0Var6 = this.f44380b;
+                kn0Var6.f40848f = true;
+                kn0Var6.L.callOnClick();
+                kn0Var6.f40848f = false;
+                return;
+            case 7:
+                kn0 kn0Var7 = this.f44380b;
+                kn0Var7.S0 = 0;
+                kn0Var7.D1();
+                return;
+            case 8:
+                kn0 kn0Var8 = this.f44380b;
+                kn0Var8.S0 = 4;
+                kn0Var8.D1();
+                return;
+            case 9:
+                this.f44380b.d1();
+                return;
+            case 10:
+                kn0.c0(this.f44380b);
+                return;
+            case 11:
+                kn0.d0(this.f44380b);
+                return;
+            case 12:
+                this.f44380b.C1();
+                return;
+            case 13:
+                kn0 kn0Var9 = this.f44380b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kn0Var9.getParentActivity());
+                alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
+                alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new xl0(kn0Var9, 5));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
+                kn0Var9.showDialog(e2Var);
+                TextView textView = (TextView) e2Var.d(-1);
+                if (textView != null) {
+                    org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23599q7, null);
+                    return;
+                }
+                return;
+            case 14:
+                this.f44380b.C1();
+                return;
+            case 15:
+                kn0.W(this.f44380b);
+                return;
+            default:
+                kn0 kn0Var10 = this.f44380b;
+                kn0Var10.f40848f = true;
+                kn0Var10.L.callOnClick();
+                kn0Var10.f40848f = false;
                 return;
         }
     }

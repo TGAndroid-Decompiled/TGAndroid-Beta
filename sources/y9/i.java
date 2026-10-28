@@ -5,12 +5,12 @@ import java.io.IOException;
 public final class i {
     public static final da.a d = new da.a(3);
     public static final y2.p e = new y2.p(1);
-    public final da.c f52429a;
-    public String f52430b = null;
-    public String f52431c = null;
+    public final da.c f52487a;
+    public String f52488b = null;
+    public String f52489c = null;
 
     public i(da.c cVar) {
-        this.f52429a = cVar;
+        this.f52487a = cVar;
     }
 
     public static void a(da.c cVar, String str, String str2) {

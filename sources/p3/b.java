@@ -6,12 +6,12 @@ import b2.t0;
 import b2.x;
 import j$.util.Objects;
 public final class b implements t0 {
-    public final int f46643a;
-    public final String f46644b;
-    public final String f46645c;
+    public final int f46678a;
+    public final String f46679b;
+    public final String f46680c;
     public final String d;
     public final boolean e;
-    public final int f46646f;
+    public final int f46681f;
 
     public b(int i10, String str, String str2, String str3, boolean z10, int i11) {
         boolean z11;
@@ -21,12 +21,12 @@ public final class b implements t0 {
             z11 = true;
         }
         yb.g(z11);
-        this.f46643a = i10;
-        this.f46644b = str;
-        this.f46645c = str2;
+        this.f46678a = i10;
+        this.f46679b = str;
+        this.f46680c = str2;
         this.d = str3;
         this.e = z10;
-        this.f46646f = i11;
+        this.f46681f = i11;
     }
 
     public static p3.b d(java.util.Map r14) {
@@ -40,11 +40,11 @@ public final class b implements t0 {
 
     @Override
     public final void b(r0 r0Var) {
-        String str = this.f46645c;
+        String str = this.f46680c;
         if (str != null) {
             r0Var.G = str;
         }
-        String str2 = this.f46644b;
+        String str2 = this.f46679b;
         if (str2 != null) {
             r0Var.E = str2;
         }
@@ -61,7 +61,7 @@ public final class b implements t0 {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f46643a == bVar.f46643a && Objects.equals(this.f46644b, bVar.f46644b) && Objects.equals(this.f46645c, bVar.f46645c) && Objects.equals(this.d, bVar.d) && this.e == bVar.e && this.f46646f == bVar.f46646f) {
+            if (this.f46678a == bVar.f46678a && Objects.equals(this.f46679b, bVar.f46679b) && Objects.equals(this.f46680c, bVar.f46680c) && Objects.equals(this.d, bVar.d) && this.e == bVar.e && this.f46681f == bVar.f46681f) {
                 return true;
             }
         }
@@ -71,16 +71,16 @@ public final class b implements t0 {
     public final int hashCode() {
         int i10;
         int i11;
-        int i12 = (527 + this.f46643a) * 31;
+        int i12 = (527 + this.f46678a) * 31;
         int i13 = 0;
-        String str = this.f46644b;
+        String str = this.f46679b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i14 = (i12 + i10) * 31;
-        String str2 = this.f46645c;
+        String str2 = this.f46680c;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
@@ -91,10 +91,10 @@ public final class b implements t0 {
         if (str3 != null) {
             i13 = str3.hashCode();
         }
-        return ((((i15 + i13) * 31) + (this.e ? 1 : 0)) * 31) + this.f46646f;
+        return ((((i15 + i13) * 31) + (this.e ? 1 : 0)) * 31) + this.f46681f;
     }
 
     public final String toString() {
-        return "IcyHeaders: name=\"" + this.f46645c + "\", genre=\"" + this.f46644b + "\", bitrate=" + this.f46643a + ", metadataInterval=" + this.f46646f;
+        return "IcyHeaders: name=\"" + this.f46680c + "\", genre=\"" + this.f46679b + "\", bitrate=" + this.f46678a + ", metadataInterval=" + this.f46681f;
     }
 }

@@ -1,58 +1,142 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.lang.reflect.Method;
-import org.telegram.messenger.FileLog;
-public final class qt0 extends AnimatorListenerAdapter {
-    public final int f42916a;
-    public final org.telegram.ui.Components.ln0 f42917b;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class qt0 extends du0 {
+    public final int f42789p0;
+    public final NotificationCenter.NotificationCenterDelegate f42790q0;
 
-    public qt0(org.telegram.ui.Components.ln0 ln0Var, int i10) {
-        this.f42916a = i10;
-        this.f42917b = ln0Var;
+    public qt0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, gu0 gu0Var, FrameLayout frameLayout, int i10) {
+        super(context, gu0Var, frameLayout);
+        this.f42789p0 = i10;
+        this.f42790q0 = notificationCenterDelegate;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f42916a) {
+    public boolean D() {
+        switch (this.f42789p0) {
             case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f42917b.f30234b;
-                photoViewer.Q1.getNextView().setText((CharSequence) null);
-                ot0 ot0Var = photoViewer.T1;
-                ot0Var.f38171l0 = false;
-                if (ot0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) ot0Var.f38173o0.getLayoutParams()).topMargin = ot0Var.m0;
-                    ot0Var.m0 = -1;
-                    ot0Var.requestLayout();
+                return !((PhotoViewer) this.f42790q0).f35792s;
+            default:
+                return super.D();
+        }
+    }
+
+    @Override
+    public void E() {
+        switch (this.f42789p0) {
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f42790q0;
+                if (secretMediaViewer.J && getScrollY() <= 0) {
+                    AndroidUtilities.runOnUIThread(secretMediaViewer.f36214r1, 3000L);
                     return;
                 }
                 return;
             default:
-                ((PhotoViewer) this.f42917b.f30234b).Q1.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f42916a) {
-            case 0:
-                ot0 ot0Var = ((PhotoViewer) this.f42917b.f30234b).T1;
-                Method method = ot0Var.f38165f0;
-                if (method != null) {
-                    try {
-                        method.invoke(ot0Var, null);
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
+    public void F() {
+        switch (this.f42789p0) {
+            case 1:
+                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f42790q0).f36214r1);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void G() {
+        boolean z10;
+        switch (this.f42789p0) {
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f42790q0;
+                if (secretMediaViewer.K0 == null) {
+                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f36199k0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
                     }
+                    secretMediaViewer.k(z10, true);
+                    return;
                 }
                 return;
             default:
-                super.onAnimationStart(animator);
+                return;
+        }
+    }
+
+    @Override
+    public void invalidate() {
+        boolean z10;
+        boolean z11;
+        int i10;
+        boolean z12;
+        switch (this.f42789p0) {
+            case 0:
+                super.invalidate();
+                PhotoViewer photoViewer = (PhotoViewer) this.f42790q0;
+                ou0[] ou0VarArr = photoViewer.W0;
+                ImageView[] imageViewArr = photoViewer.y3;
+                if (photoViewer.J) {
+                    int scrollY = getScrollY();
+                    float translationY = photoViewer.Q1.getTranslationY();
+                    float f7 = 0.0f;
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    if (!z10) {
+                        int b10 = ou0VarArr[0].b() + ou0VarArr[0].f42194j;
+                        if (D()) {
+                            i10 = AndroidUtilities.statusBarHeight;
+                        } else {
+                            i10 = 0;
+                        }
+                        int top = (((photoViewer.Z1.getTop() + ((int) translationY)) - scrollY) + (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10)) - AndroidUtilities.dp(12.0f);
+                        if (top > AndroidUtilities.dp(32.0f) + ((int) imageViewArr[0].getY())) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        if (top > b10) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        z11 = z12;
+                    }
+                    if (photoViewer.f35861z3) {
+                        if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z11) {
+                            imageViewArr[0].setTag(2);
+                            imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new k50(this, 13)).start();
+                        } else if (imageViewArr[0].getTag() == null && !z11) {
+                            imageViewArr[0].setTag(3);
+                            imageViewArr[0].animate().alpha(0.0f).setListener(null).setDuration(150L).start();
+                        }
+                    }
+                    ou0 ou0Var = ou0VarArr[0];
+                    if (z10) {
+                        f7 = 1.0f;
+                    }
+                    ou0Var.e(2, f7, true);
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
                 return;
         }
     }

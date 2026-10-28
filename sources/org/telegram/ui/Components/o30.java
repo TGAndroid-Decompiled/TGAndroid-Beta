@@ -19,27 +19,27 @@ import org.telegram.tgnet.TLRPC;
 public final class o30 extends LinearLayout implements VoIPService.StateListener, NotificationCenter.NotificationCenterDelegate {
     public float E;
     public float F;
-    public TextView f31138a;
-    public TextView f31139b;
-    public org.telegram.ui.Components.voip.w2 f31140c;
+    public TextView f31141a;
+    public TextView f31142b;
+    public org.telegram.ui.Components.voip.w2 f31143c;
     public org.telegram.ui.Components.voip.w2 d;
     public y9 e;
-    public RectF f31141f;
+    public RectF f31144f;
     public Paint h;
-    public LinearGradient f31142n;
-    public int f31143r;
-    public float f31144s;
+    public LinearGradient f31145n;
+    public int f31146r;
+    public float f31147s;
     public float v;
-    public boolean f31145w;
-    public int f31146x;
-    public boolean f31147y;
+    public boolean f31148w;
+    public int f31149x;
+    public boolean f31150y;
 
     public final void a(float f7, float f10, int i10) {
-        this.f31143r = i10;
-        this.f31144s = f7;
+        this.f31146r = i10;
+        this.f31147s = f7;
         this.v = f10;
         invalidate();
-        this.f31145w = true;
+        this.f31148w = true;
     }
 
     public final void b(boolean z10) {
@@ -49,7 +49,7 @@ public final class o30 extends LinearLayout implements VoIPService.StateListener
         float f7;
         int i10;
         org.telegram.ui.Components.voip.w2 w2Var = this.d;
-        org.telegram.ui.Components.voip.w2 w2Var2 = this.f31140c;
+        org.telegram.ui.Components.voip.w2 w2Var2 = this.f31143c;
         if (w2Var2 != null && w2Var != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
             boolean isBluetoothOn = sharedInstance.isBluetoothOn();
             if (!isBluetoothOn && sharedInstance.isSpeakerphoneOn()) {
@@ -94,7 +94,7 @@ public final class o30 extends LinearLayout implements VoIPService.StateListener
 
     public final void c() {
         String str;
-        TextView textView = this.f31139b;
+        TextView textView = this.f31142b;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && sharedInstance.groupCall != null) {
             int callState = sharedInstance.getCallState();
@@ -117,8 +117,8 @@ public final class o30 extends LinearLayout implements VoIPService.StateListener
         boolean mutedByAdmin;
         if (i10 == NotificationCenter.groupCallUpdated) {
             c();
-            if (VoIPService.getSharedInstance() != null && (mutedByAdmin = VoIPService.getSharedInstance().mutedByAdmin()) != this.f31147y) {
-                this.f31147y = mutedByAdmin;
+            if (VoIPService.getSharedInstance() != null && (mutedByAdmin = VoIPService.getSharedInstance().mutedByAdmin()) != this.f31150y) {
+                this.f31150y = mutedByAdmin;
                 invalidate();
             }
         }
@@ -130,23 +130,23 @@ public final class o30 extends LinearLayout implements VoIPService.StateListener
         String str;
         float f7;
         ChatObject.Call call;
-        int i10 = this.f31146x;
+        int i10 = this.f31149x;
         super.onAttachedToWindow();
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && sharedInstance.groupCall != null) {
             j9 j9Var = new j9((org.telegram.ui.ActionBar.u6) null);
             TLRPC.Chat chat = sharedInstance.getChat();
-            int[] iArr = org.telegram.ui.ActionBar.y6.f23582p8;
+            int[] iArr = org.telegram.ui.ActionBar.y6.f23583p8;
             long j11 = 0;
             if (chat != null) {
-                j10 = chat.f22027id;
+                j10 = chat.f22028id;
             } else {
                 j10 = 0;
             }
             int x02 = org.telegram.ui.ActionBar.y6.x0(null, iArr[j9.e(j10)], false);
-            int[] iArr2 = org.telegram.ui.ActionBar.y6.f23599q8;
+            int[] iArr2 = org.telegram.ui.ActionBar.y6.f23600q8;
             if (chat != null) {
-                j11 = chat.f22027id;
+                j11 = chat.f22028id;
             }
             j9Var.i(x02, org.telegram.ui.ActionBar.y6.x0(null, iArr2[j9.e(j11)], false));
             j9Var.k(i10, chat);
@@ -180,22 +180,22 @@ public final class o30 extends LinearLayout implements VoIPService.StateListener
             if (str != null) {
                 str = str.replace("\n", " ").replaceAll(" +", " ").trim();
             }
-            this.f31138a.setText(str);
+            this.f31141a.setText(str);
             c();
             sharedInstance.registerStateListener(this);
             if (VoIPService.getSharedInstance() != null) {
-                this.f31147y = VoIPService.getSharedInstance().mutedByAdmin();
+                this.f31150y = VoIPService.getSharedInstance().mutedByAdmin();
             }
             float f10 = 0.0f;
-            if (this.f31147y) {
+            if (this.f31150y) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
             this.F = f7;
-            this.E = (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().isMicMute() || this.f31147y) ? 1.0f : 1.0f;
+            this.E = (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().isMicMute() || this.f31150y) ? 1.0f : 1.0f;
         }
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.groupCallUpdated);
+        NotificationCenter.getInstance(i10).addWeakObserver(this, NotificationCenter.groupCallUpdated);
         b(false);
     }
 
@@ -221,7 +221,7 @@ public final class o30 extends LinearLayout implements VoIPService.StateListener
         if (sharedInstance != null) {
             sharedInstance.unregisterStateListener(this);
         }
-        NotificationCenter.getInstance(this.f31146x).removeObserver(this, NotificationCenter.groupCallUpdated);
+        NotificationCenter.getInstance(this.f31149x).removeObserver(this, NotificationCenter.groupCallUpdated);
     }
 
     @Override

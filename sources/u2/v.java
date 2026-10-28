@@ -1,15 +1,15 @@
 package u2;
 public final class v extends s {
-    public final int f49442f;
+    public final int f49477f;
 
     public v(b2.p1 p1Var, int i10) {
         super(p1Var);
-        this.f49442f = i10;
+        this.f49477f = i10;
     }
 
     @Override
     public int e(int i10, int i11, boolean z10) {
-        switch (this.f49442f) {
+        switch (this.f49477f) {
             case 0:
                 b2.p1 p1Var = this.e;
                 int e = p1Var.e(i10, i11, z10);
@@ -24,7 +24,7 @@ public final class v extends s {
 
     @Override
     public b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
-        switch (this.f49442f) {
+        switch (this.f49477f) {
             case 1:
                 super.f(i10, m1Var, z10);
                 m1Var.f3281f = true;
@@ -36,7 +36,7 @@ public final class v extends s {
 
     @Override
     public int k(int i10, int i11, boolean z10) {
-        switch (this.f49442f) {
+        switch (this.f49477f) {
             case 0:
                 b2.p1 p1Var = this.e;
                 int k10 = p1Var.k(i10, i11, z10);
@@ -51,7 +51,7 @@ public final class v extends s {
 
     @Override
     public b2.o1 m(int i10, b2.o1 o1Var, long j10) {
-        switch (this.f49442f) {
+        switch (this.f49477f) {
             case 1:
                 super.m(i10, o1Var, j10);
                 o1Var.f3332k = true;

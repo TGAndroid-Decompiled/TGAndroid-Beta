@@ -51,20 +51,20 @@ public final class a implements hf.a {
         } else {
             gVar = new g(3);
         }
-        for (p pVar = (p) sVar.f9939f; pVar != null && pVar != sVar2; pVar = (p) pVar.f9939f) {
+        for (p pVar = (p) sVar.f9938f; pVar != null && pVar != sVar2; pVar = (p) pVar.f9938f) {
             gVar.b(pVar);
         }
         gVar.g();
-        p pVar2 = (p) sVar.f9939f;
-        gVar.f9939f = pVar2;
+        p pVar2 = (p) sVar.f9938f;
+        gVar.f9938f = pVar2;
         if (pVar2 != null) {
             pVar2.e = gVar;
         }
         gVar.e = sVar;
-        sVar.f9939f = gVar;
-        p pVar3 = (p) sVar.f9937b;
-        gVar.f9937b = pVar3;
-        if (((p) gVar.f9939f) == null) {
+        sVar.f9938f = gVar;
+        p pVar3 = (p) sVar.f9936b;
+        gVar.f9936b = pVar3;
+        if (((p) gVar.f9938f) == null) {
             pVar3.d = gVar;
         }
     }

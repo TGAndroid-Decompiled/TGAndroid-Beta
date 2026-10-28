@@ -34,10 +34,10 @@ public final class e {
     public final void b(int i10) {
         s0 s0Var = this.f5937c;
         if (s0Var != null) {
-            i0 i0Var = s0Var.f13744n;
+            i0 i0Var = s0Var.f13743n;
             i0Var.getClass();
             h0 c10 = i0.c();
-            c10.f9668a = i0Var.f9672a.obtainMessage(33, i10, 0);
+            c10.f9667a = i0Var.f9671a.obtainMessage(33, i10, 0);
             c10.b();
         }
     }
@@ -55,7 +55,7 @@ public final class e {
                 this.f5939g = f7;
                 s0 s0Var = this.f5937c;
                 if (s0Var != null) {
-                    s0Var.f13744n.f(34);
+                    s0Var.f13743n.f(34);
                 }
             }
         }

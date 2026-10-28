@@ -3,47 +3,47 @@ package fi;
 import android.app.Activity;
 import android.app.Dialog;
 public final class wa extends org.telegram.ui.ActionBar.r2 {
-    public final int f11947a;
-    public final sb f11948b;
+    public final int f11946a;
+    public final sb f11947b;
 
     public wa(sb sbVar, int i10) {
         super(null);
-        this.f11947a = i10;
+        this.f11946a = i10;
         switch (i10) {
             case 1:
-                this.f11948b = sbVar;
+                this.f11947b = sbVar;
                 super(null);
-                this.currentAccount = sbVar.f11612c;
+                this.currentAccount = sbVar.f11611c;
                 return;
             default:
-                this.f11948b = sbVar;
+                this.f11947b = sbVar;
                 return;
         }
     }
 
     @Override
     public final Activity getParentActivity() {
-        switch (this.f11947a) {
+        switch (this.f11946a) {
             case 0:
-                return this.f11948b.f11608b;
+                return this.f11947b.f11607b;
             default:
-                return this.f11948b.f11608b;
+                return this.f11947b.f11607b;
         }
     }
 
     @Override
     public final org.telegram.ui.ActionBar.u6 getResourceProvider() {
-        switch (this.f11947a) {
+        switch (this.f11946a) {
             case 0:
-                return new di.s2(7, this.f11948b.f11605a);
+                return new di.s2(7, this.f11947b.f11604a);
             default:
-                return new di.s2(8, this.f11948b.f11605a);
+                return new di.s2(8, this.f11947b.f11604a);
         }
     }
 
     @Override
     public final boolean isLightStatusBar() {
-        switch (this.f11947a) {
+        switch (this.f11946a) {
             case 0:
                 return false;
             default:
@@ -53,9 +53,9 @@ public final class wa extends org.telegram.ui.ActionBar.r2 {
 
     @Override
     public boolean presentFragment(org.telegram.ui.ActionBar.r2 r2Var) {
-        switch (this.f11947a) {
+        switch (this.f11946a) {
             case 0:
-                this.f11948b.S();
+                this.f11947b.S();
                 return false;
             default:
                 return super.presentFragment(r2Var);
@@ -64,7 +64,7 @@ public final class wa extends org.telegram.ui.ActionBar.r2 {
 
     @Override
     public Dialog showDialog(Dialog dialog) {
-        switch (this.f11947a) {
+        switch (this.f11946a) {
             case 1:
                 dialog.show();
                 return dialog;

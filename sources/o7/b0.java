@@ -38,7 +38,7 @@ public final class b0 extends o {
     public final m s() {
         Object[] objArr = {this.d};
         for (int i10 = 0; i10 < 1; i10++) {
-            i iVar = m.f19234b;
+            i iVar = m.f19233b;
             if (objArr[i10] == null) {
                 throw new NullPointerException(ic.a.i(i10, "at index "));
             }

@@ -15,27 +15,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.ds;
 public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
-    public org.telegram.ui.Components.r5 f25437a;
-    public final Paint f25438b;
-    public final Path f25439c;
+    public org.telegram.ui.Components.r5 f25439a;
+    public final Paint f25440b;
+    public final Path f25441c;
     public final RectF d;
     public ValueAnimator e;
-    public float f25440f;
+    public float f25442f;
     public float h;
-    public float f25441n;
-    public boolean f25442r;
-    public int f25443s;
+    public float f25443n;
+    public boolean f25444r;
+    public int f25445s;
     public final u3 v;
 
     public t3(u3 u3Var, Context context) {
         super(context);
         this.v = u3Var;
-        this.f25438b = new Paint(1);
-        this.f25439c = new Path();
+        this.f25440b = new Paint(1);
+        this.f25441c = new Path();
         this.d = new RectF();
         this.h = -1.0f;
         int dp = AndroidUtilities.dp(14.0f);
-        int o12 = org.telegram.ui.ActionBar.y6.o1(0.25f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23540n6, u3Var.f25477a));
+        int o12 = org.telegram.ui.ActionBar.y6.o1(0.25f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23541n6, u3Var.f25479a));
         setForeground(org.telegram.ui.ActionBar.y6.j0(dp, dp, dp, dp, 0, o12, o12));
     }
 
@@ -53,12 +53,12 @@ public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
             if (z10) {
                 f7 = 1.0f;
             }
-            this.f25440f = f7;
+            this.f25442f = f7;
             b();
             invalidate();
             return;
         }
-        float f10 = this.f25440f;
+        float f10 = this.f25442f;
         if (z10) {
             f7 = 1.0f;
         }
@@ -71,10 +71,10 @@ public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
     }
 
     public final void b() {
-        this.f25442r = true;
-        int i10 = org.telegram.ui.ActionBar.y6.f23540n6;
+        this.f25444r = true;
+        int i10 = org.telegram.ui.ActionBar.y6.f23541n6;
         u3 u3Var = this.v;
-        int f7 = i0.a.f(this.f25440f, org.telegram.ui.ActionBar.y6.w0(i10, u3Var.f25477a), org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Sh, u3Var.f25477a));
+        int f7 = i0.a.f(this.f25442f, org.telegram.ui.ActionBar.y6.w0(i10, u3Var.f25479a), org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Sh, u3Var.f25479a));
         if (getCurrentTextColor() != f7) {
             setTextColor(f7);
         }
@@ -83,7 +83,7 @@ public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.ui.Components.r5 r5Var = this.f25437a;
+        org.telegram.ui.Components.r5 r5Var = this.f25439a;
         if (r5Var != null) {
             r5Var.a();
         }
@@ -101,9 +101,9 @@ public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
         } else {
             f7 = 0.0f;
         }
-        this.f25440f = f7;
+        this.f25442f = f7;
         b();
-        org.telegram.ui.Components.r5 r5Var = this.f25437a;
+        org.telegram.ui.Components.r5 r5Var = this.f25439a;
         if (r5Var != null) {
             r5Var.b();
         }
@@ -113,20 +113,20 @@ public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23540n6, this.v.f25477a);
+        int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23541n6, this.v.f25479a);
         RectF rectF = this.d;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        Path path = this.f25439c;
+        Path path = this.f25441c;
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), direction);
         canvas.save();
         canvas.clipPath(path);
         int o12 = org.telegram.ui.ActionBar.y6.o1(0.1f, w02);
-        Paint paint = this.f25438b;
+        Paint paint = this.f25440b;
         paint.setColor(o12);
         canvas.drawRect(rectF, paint);
-        if (this.f25440f > 0.0f) {
+        if (this.f25442f > 0.0f) {
             float f10 = this.h;
             if (f10 < 0.0f) {
                 f10 = getWidth() / 2.0f;
@@ -134,10 +134,10 @@ public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
             if (this.h < 0.0f) {
                 f7 = getHeight() / 2.0f;
             } else {
-                f7 = this.f25441n;
+                f7 = this.f25443n;
             }
             path.rewind();
-            path.addCircle(f10, f7, ((float) Math.hypot(Math.max(f10, getWidth() - f10), Math.max(f7, getHeight() - f7))) * this.f25440f, direction);
+            path.addCircle(f10, f7, ((float) Math.hypot(Math.max(f10, getWidth() - f10), Math.max(f7, getHeight() - f7))) * this.f25442f, direction);
             canvas.clipPath(path);
             paint.setColor(w02);
             canvas.drawRect(rectF, paint);
@@ -158,7 +158,7 @@ public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getActionMasked() == 0) {
             this.h = motionEvent.getX();
-            this.f25441n = motionEvent.getY();
+            this.f25443n = motionEvent.getY();
         }
         return super.onTouchEvent(motionEvent);
     }
@@ -166,12 +166,12 @@ public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void updateColors() {
         try {
-            if (this.f25442r) {
+            if (this.f25444r) {
                 b();
             }
-            int o12 = org.telegram.ui.ActionBar.y6.o1(0.25f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23540n6, this.v.f25477a));
-            if (o12 != this.f25443s) {
-                this.f25443s = o12;
+            int o12 = org.telegram.ui.ActionBar.y6.o1(0.25f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23541n6, this.v.f25479a));
+            if (o12 != this.f25445s) {
+                this.f25445s = o12;
                 org.telegram.ui.ActionBar.y6.E1(getForeground(), o12, true);
             }
             invalidate();
@@ -182,7 +182,7 @@ public final class t3 extends TextView implements org.telegram.ui.ActionBar.p6 {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f25437a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f25439a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

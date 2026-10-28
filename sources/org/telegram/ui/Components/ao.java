@@ -16,7 +16,7 @@ public final class ao extends org.telegram.ui.Cells.h6 {
         if (g6Var.isFocused() && g6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.un.r8(menu, ((org.telegram.ui.un) this.F.d.f30215b.f33021f0).h, false, true, true, true);
+                org.telegram.ui.wn.t8(menu, ((org.telegram.ui.wn) this.F.d.f30254b.f32990f0).h, false, true, true, true);
             }
         }
     }
@@ -33,6 +33,6 @@ public final class ao extends org.telegram.ui.Cells.h6 {
 
     @Override
     public final void k(org.telegram.ui.Cells.g6 g6Var) {
-        this.F.d.f30215b.y1(g6Var, true);
+        this.F.d.f30254b.z1(g6Var, true);
     }
 }

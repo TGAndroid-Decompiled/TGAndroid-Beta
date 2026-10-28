@@ -13,23 +13,23 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.y9;
 public final class s extends FrameLayout {
-    public final u6 f13250a;
-    public final y9 f13251b;
-    public final j9 f13252c;
+    public final u6 f13249a;
+    public final y9 f13250b;
+    public final j9 f13251c;
     public final r5 d;
     public final TextView e;
-    public final TextView f13253f;
+    public final TextView f13252f;
     public final ImageView h;
-    public final ImageView f13254n;
-    public boolean f13255r;
+    public final ImageView f13253n;
+    public boolean f13254r;
 
     public s(Context context, int i10, u6 u6Var) {
         super(context);
@@ -40,22 +40,22 @@ public final class s extends FrameLayout {
         float f10;
         int i14;
         j9 j9Var = new j9((u6) null);
-        this.f13252c = j9Var;
-        this.f13250a = u6Var;
+        this.f13251c = j9Var;
+        this.f13249a = u6Var;
         y9 y9Var = new y9(context);
-        this.f13251b = y9Var;
+        this.f13250b = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(8.0f));
-        j9Var.f29544r = AndroidUtilities.dp(8.0f);
+        j9Var.f29560r = AndroidUtilities.dp(8.0f);
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
             i11 = 3;
         }
-        addView(y9Var, gb1.h(28, 28.0f, i11 | 16, 15.0f, 0.0f, 15.0f, 0.0f));
+        addView(y9Var, kb1.h(28, 28.0f, i11 | 16, 15.0f, 0.0f, 15.0f, 0.0f));
         r5 r5Var = new r5(AndroidUtilities.dp(28.0f), 7, y9Var, false);
         this.d = r5Var;
-        r5Var.f32101x = Integer.valueOf(i10);
-        LinearLayout d = vh.d(context, 1);
+        r5Var.f32128x = Integer.valueOf(i10);
+        LinearLayout d = wh.d(context, 1);
         TextView textView = new TextView(context);
         this.e = textView;
         textView.setTextSize(1, 16.0f);
@@ -69,11 +69,11 @@ public final class s extends FrameLayout {
             i12 = 3;
         }
         textView.setGravity(i12);
-        d.addView(textView, gb1.r(-1, -2));
+        d.addView(textView, kb1.r(-1, -2));
         TextView textView2 = new TextView(context);
-        this.f13253f = textView2;
+        this.f13252f = textView2;
         textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(y6.w0(y6.f23748y6, u6Var));
+        textView2.setTextColor(y6.w0(y6.f23749y6, u6Var));
         textView2.setSingleLine();
         textView2.setEllipsize(truncateAt);
         if (LocaleController.isRTL) {
@@ -82,7 +82,7 @@ public final class s extends FrameLayout {
             i13 = 3;
         }
         textView2.setGravity(i13);
-        d.addView(textView2, gb1.o(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
+        d.addView(textView2, kb1.o(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             f7 = 56.0f;
@@ -94,7 +94,7 @@ public final class s extends FrameLayout {
         } else {
             f10 = 56.0f;
         }
-        addView(d, gb1.h(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
+        addView(d, kb1.h(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
         ImageView imageView = new ImageView(context);
         this.h = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
@@ -108,16 +108,16 @@ public final class s extends FrameLayout {
         } else {
             i14 = 5;
         }
-        addView(imageView, gb1.h(24, 24.0f, i14 | 16, 18.0f, 0.0f, 18.0f, 0.0f));
+        addView(imageView, kb1.h(24, 24.0f, i14 | 16, 18.0f, 0.0f, 18.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f13254n = imageView2;
+        this.f13253n = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.msg_arrowright);
-        imageView2.setColorFilter(new PorterDuffColorFilter(y6.w0(y6.f23520m6, u6Var), mode));
+        imageView2.setColorFilter(new PorterDuffColorFilter(y6.w0(y6.f23521m6, u6Var), mode));
         if (LocaleController.isRTL) {
             imageView2.setScaleX(-1.0f);
         }
-        addView(imageView2, gb1.h(24, 24.0f, (LocaleController.isRTL ? 3 : 5) | 16, 14.0f, 0.0f, 14.0f, 0.0f));
+        addView(imageView2, kb1.h(24, 24.0f, (LocaleController.isRTL ? 3 : 5) | 16, 14.0f, 0.0f, 14.0f, 0.0f));
         setWillNotDraw(false);
     }
 
@@ -142,7 +142,7 @@ public final class s extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f13255r) {
+        if (this.f13254r) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -156,12 +156,12 @@ public final class s extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, y6.V0("paintDivider", this.f13250a));
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, y6.V0("paintDivider", this.f13249a));
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.f13255r ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.f13254r ? 1 : 0), 1073741824));
     }
 }

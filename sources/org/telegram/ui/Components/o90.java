@@ -1,17 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class o90 extends ij0 {
-    public final r90 f31234s;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+public final class o90 implements PopupWindow.OnDismissListener {
+    public final int f31241a;
+    public final FrameLayout f31242b;
+    public final View f31243c;
+    public final ViewTreeObserver.OnPreDrawListener d;
+    public final ViewGroup e;
 
-    public o90(r90 r90Var, Context context, String str, String str2, String str3) {
-        super(context, str, str2, str3, false);
-        this.f31234s = r90Var;
+    public o90(ViewGroup viewGroup, View view, FrameLayout frameLayout, ViewTreeObserver.OnPreDrawListener onPreDrawListener, int i10) {
+        this.f31241a = i10;
+        this.e = viewGroup;
+        this.f31243c = view;
+        this.f31242b = frameLayout;
+        this.d = onPreDrawListener;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f31234s.E = null;
+    public final void onDismiss() {
+        switch (this.f31241a) {
+            case 0:
+                ((s90) this.e).f32526s = null;
+                fi.f6 f6Var = (fi.f6) this.f31243c;
+                f6Var.animate().cancel();
+                f6Var.animate().alpha(0.0f).setDuration(150L).setListener(new i10(this, 5));
+                return;
+            default:
+                ((org.telegram.ui.mz) this.e).f39729x = null;
+                fi.f6 f6Var2 = (fi.f6) this.f31243c;
+                f6Var2.animate().cancel();
+                f6Var2.animate().alpha(0.0f).setDuration(150L).setListener(new i31(this, 28));
+                return;
+        }
     }
 }

@@ -4,10 +4,10 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public class d extends c {
     public static final int v = 0;
-    public int f51777s;
+    public int f51835s;
 
     public d(Context context, u6 u6Var) {
         super(context, u6Var);
@@ -34,7 +34,7 @@ public class d extends c {
         } else {
             i10 = 3;
         }
-        this.f51763c.setLayoutParams(gb1.h(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        this.f51821c.setLayoutParams(kb1.h(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -52,7 +52,7 @@ public class d extends c {
         } else {
             f10 = 20.0f;
         }
-        this.d.setLayoutParams(gb1.h(-1, -2.0f, i14, f7, 0.0f, f10, 0.0f));
+        this.d.setLayoutParams(kb1.h(-1, -2.0f, i14, f7, 0.0f, f10, 0.0f));
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i12 = 5;
@@ -70,14 +70,14 @@ public class d extends c {
         } else {
             f12 = 20.0f;
         }
-        this.e.setLayoutParams(gb1.h(-1, -2.0f, i15, f11, 0.0f, f12, 0.0f));
+        this.e.setLayoutParams(kb1.h(-1, -2.0f, i15, f11, 0.0f, f12, 0.0f));
         if (LocaleController.isRTL) {
             i13 = 5;
         }
-        this.f51764f.setLayoutParams(gb1.h(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f51822f.setLayoutParams(kb1.h(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f51777s;
+        return this.f51835s;
     }
 }

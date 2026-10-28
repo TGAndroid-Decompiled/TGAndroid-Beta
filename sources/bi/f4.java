@@ -6,8 +6,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.aw0;
-import org.telegram.ui.ip;
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.kp;
 public final class f4 implements Utilities.Callback {
     public final int f4600a = 0;
     public final int f4601b;
@@ -51,10 +51,10 @@ public final class f4 implements Utilities.Callback {
                 } else {
                     string = LocaleController.getString(R.string.AddEmojiNotFound);
                 }
-                AndroidUtilities.runOnUIThread(new ip(7, qcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j10)));
+                AndroidUtilities.runOnUIThread(new kp(7, qcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j10)));
                 return;
             default:
-                ((aw0) obj2).getStoriesController().b(i11, j10, (ArrayList) obj);
+                ((bw0) obj2).getStoriesController().b(i11, j10, (ArrayList) obj);
                 return;
         }
     }
@@ -65,8 +65,8 @@ public final class f4 implements Utilities.Callback {
         this.f4602c = j10;
     }
 
-    public f4(aw0 aw0Var, long j10, int i10) {
-        this.d = aw0Var;
+    public f4(bw0 bw0Var, long j10, int i10) {
+        this.d = bw0Var;
         this.f4602c = j10;
         this.f4601b = i10;
     }

@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.SortedSet;
 import org.telegram.ui.Components.b10;
 public abstract class o {
-    public final int f10310a = 2;
+    public final int f10309a = 2;
 
     public static int c(int i10) {
         if (i10 < 3) {
@@ -103,16 +103,16 @@ public abstract class o {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof c2) {
                 c2 c2Var = (c2) sortedSet;
-                e9.l lVar2 = c2Var.f10270b;
+                e9.l lVar2 = c2Var.f10269b;
                 lVar2.getClass();
-                return new c2((SortedSet) c2Var.f10269a, new e9.m(Arrays.asList(lVar2, lVar)));
+                return new c2((SortedSet) c2Var.f10268a, new e9.m(Arrays.asList(lVar2, lVar)));
             }
             return new c2(sortedSet, lVar);
         } else if (set instanceof c2) {
             c2 c2Var2 = (c2) set;
-            e9.l lVar3 = c2Var2.f10270b;
+            e9.l lVar3 = c2Var2.f10269b;
             lVar3.getClass();
-            return new c2(c2Var2.f10269a, new e9.m(Arrays.asList(lVar3, lVar)));
+            return new c2(c2Var2.f10268a, new e9.m(Arrays.asList(lVar3, lVar)));
         } else {
             set.getClass();
             return new c2(set, lVar);
@@ -234,7 +234,7 @@ public abstract class o {
     public abstract Object h();
 
     public String toString() {
-        switch (this.f10310a) {
+        switch (this.f10309a) {
             case 2:
                 return h().toString();
             default:

@@ -1,79 +1,56 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.util.Locale;
+import android.text.Editable;
+import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.R;
-public final class fm0 implements x9 {
-    public final in0 f39422a;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class fm0 implements TextWatcher {
+    public boolean f39399a;
+    public final EditTextBoldCursor f39400b;
+    public final String f39401c;
+    public final kn0 d;
 
-    public fm0(in0 in0Var) {
-        this.f39422a = in0Var;
+    public fm0(kn0 kn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.d = kn0Var;
+        this.f39400b = editTextBoldCursor;
+        this.f39401c = str;
     }
 
     @Override
-    public final String H0() {
-        return null;
-    }
-
-    @Override
-    public final void R0(MrzRecognizer.Result result) {
-        boolean isEmpty = TextUtils.isEmpty(result.firstName);
-        in0 in0Var = this.f39422a;
-        if (!isEmpty) {
-            in0Var.Y[0].setText(result.firstName);
+    public final void afterTextChanged(Editable editable) {
+        if (this.f39399a) {
+            return;
         }
-        if (!TextUtils.isEmpty(result.middleName)) {
-            in0Var.Y[1].setText(result.middleName);
-        }
-        if (!TextUtils.isEmpty(result.lastName)) {
-            in0Var.Y[2].setText(result.lastName);
-        }
-        int i10 = result.gender;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 == 2) {
-                    in0Var.f40321w = "female";
-                    in0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
+        boolean z10 = true;
+        this.f39399a = true;
+        int i10 = 0;
+        while (true) {
+            if (i10 < editable.length()) {
+                char charAt = editable.charAt(i10);
+                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
+                    break;
                 }
+                i10++;
             } else {
-                in0Var.f40321w = "male";
-                in0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
+                z10 = false;
+                break;
             }
         }
-        if (!TextUtils.isEmpty(result.nationality)) {
-            String str = result.nationality;
-            in0Var.f40312s = str;
-            String str2 = (String) in0Var.Y0.get(str);
-            if (str2 != null) {
-                in0Var.Y[5].setText(str2);
-            }
-        }
-        if (!TextUtils.isEmpty(result.issuingCountry)) {
-            String str3 = result.issuingCountry;
-            in0Var.v = str3;
-            String str4 = (String) in0Var.Y0.get(str3);
-            if (str4 != null) {
-                in0Var.Y[6].setText(str4);
-            }
-        }
-        int i11 = result.birthDay;
-        if (i11 > 0 && result.birthMonth > 0 && result.birthYear > 0) {
-            in0Var.Y[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i11), Integer.valueOf(result.birthMonth), Integer.valueOf(result.birthYear)));
+        this.f39399a = false;
+        EditTextBoldCursor editTextBoldCursor = this.f39400b;
+        if (z10) {
+            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
+        } else {
+            kn0.J0(this.d, editTextBoldCursor, this.f39401c, editable, false);
         }
     }
 
     @Override
-    public final boolean d1(String str, p9 p9Var) {
-        return false;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final void onDismiss() {
-    }
-
-    @Override
-    public final void H(String str) {
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

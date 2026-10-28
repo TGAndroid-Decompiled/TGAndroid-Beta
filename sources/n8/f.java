@@ -6,19 +6,19 @@ import android.os.Parcelable;
 import n4.x;
 public final class f extends p6.a {
     public static final Parcelable.Creator<f> CREATOR = new x(6);
-    public final long f18736a;
-    public final a[] f18737b;
-    public final int f18738c;
+    public final long f18735a;
+    public final a[] f18736b;
+    public final int f18737c;
     public final boolean d;
 
     public f(long j10, a[] aVarArr, int i10, boolean z10) {
-        this.f18736a = j10;
-        this.f18737b = aVarArr;
+        this.f18735a = j10;
+        this.f18736b = aVarArr;
         this.d = z10;
         if (z10) {
-            this.f18738c = i10;
+            this.f18737c = i10;
         } else {
-            this.f18738c = -1;
+            this.f18737c = -1;
         }
     }
 
@@ -26,10 +26,10 @@ public final class f extends p6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
         df.s(parcel, 2, 8);
-        parcel.writeLong(this.f18736a);
-        df.o(parcel, 3, this.f18737b, i10);
+        parcel.writeLong(this.f18735a);
+        df.o(parcel, 3, this.f18736b, i10);
         df.s(parcel, 4, 4);
-        parcel.writeInt(this.f18738c);
+        parcel.writeInt(this.f18737c);
         df.s(parcel, 5, 4);
         parcel.writeInt(this.d ? 1 : 0);
         df.r(parcel, q5);

@@ -1,11 +1,11 @@
 package k8;
 public final class c extends h {
-    public final int f16438c;
+    public final int f16437c;
     public final float d;
 
     public c(float f7, int i10) {
         super(0, Float.valueOf(Math.max(f7, 0.0f)));
-        this.f16438c = i10;
+        this.f16437c = i10;
         switch (i10) {
             case 1:
                 super(2, Float.valueOf(Math.max(f7, 0.0f)));
@@ -19,7 +19,7 @@ public final class c extends h {
 
     @Override
     public final String toString() {
-        switch (this.f16438c) {
+        switch (this.f16437c) {
             case 0:
                 return "[Dash: length=" + this.d + "]";
             default:

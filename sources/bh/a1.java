@@ -16,7 +16,7 @@ import org.telegram.ui.LaunchActivity;
 public abstract class a1 {
     public static void a(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, s sVar, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
-        long j10 = document.f22033id;
+        long j10 = document.f22034id;
         c6 e = e(document, Long.valueOf(j10), fontMetricsInt);
         linkedHashMap.put(Long.valueOf(j10), e);
         arrayList.add(Long.valueOf(j10));
@@ -85,7 +85,7 @@ public abstract class a1 {
     public static c6 e(TLRPC.Document document, Long l4, Paint.FontMetricsInt fontMetricsInt) {
         c6 c6Var;
         if (document != null) {
-            c6Var = new c6(document.f22033id, 1.0f, fontMetricsInt);
+            c6Var = new c6(document.f22034id, 1.0f, fontMetricsInt);
             c6Var.document = document;
         } else {
             c6Var = new c6(l4.longValue(), 1.0f, fontMetricsInt);

@@ -4,16 +4,16 @@ import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.a01;
+import org.telegram.ui.c01;
 public final class i6 implements l2 {
-    public final org.telegram.ui.ActionBar.r2 f24240a;
-    public final Context f24241b;
-    public final a01 f24242c;
+    public final org.telegram.ui.ActionBar.r2 f24242a;
+    public final Context f24243b;
+    public final c01 f24244c;
 
-    public i6(a01 a01Var, org.telegram.ui.ActionBar.r2 r2Var, Context context) {
-        this.f24242c = a01Var;
-        this.f24240a = r2Var;
-        this.f24241b = context;
+    public i6(c01 c01Var, org.telegram.ui.ActionBar.r2 r2Var, Context context) {
+        this.f24244c = c01Var;
+        this.f24242a = r2Var;
+        this.f24243b = context;
     }
 
     @Override
@@ -24,13 +24,13 @@ public final class i6 implements l2 {
     @Override
     public final void c() {
         boolean z10;
-        org.telegram.ui.ActionBar.r2 r2Var = this.f24240a;
+        org.telegram.ui.ActionBar.r2 r2Var = this.f24242a;
         di.h7 storiesController = r2Var.getMessagesController().getStoriesController();
         ArrayList arrayList = storiesController.h;
         if (arrayList.isEmpty()) {
             return;
         }
-        if (storiesController.D(0, DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(0)).peer)) != 0) {
+        if (storiesController.E(0, DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(0)).peer)) != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -38,19 +38,19 @@ public final class i6 implements l2 {
         ArrayList arrayList2 = new ArrayList();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             long peerDialogId = DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(i10)).peer);
-            if (!z10 || storiesController.D(0, peerDialogId) != 0) {
+            if (!z10 || storiesController.E(0, peerDialogId) != 0) {
                 arrayList2.add(Long.valueOf(peerDialogId));
             }
         }
-        r2Var.getOrCreateStoryViewer().G(this.f24241b, null, arrayList2, 0, null, null, new di.q7(this.f24242c), false);
+        r2Var.getOrCreateStoryViewer().H(this.f24243b, null, arrayList2, 0, null, null, new di.q7(this.f24244c), false);
     }
 
     @Override
     public final void e(p2 p2Var) {
-        org.telegram.ui.ActionBar.r2 r2Var = this.f24240a;
-        if (r2Var.getMessagesController().getStoriesController().I(p2Var.getDialogId())) {
+        org.telegram.ui.ActionBar.r2 r2Var = this.f24242a;
+        if (r2Var.getMessagesController().getStoriesController().K(p2Var.getDialogId())) {
             r2Var.getOrCreateStoryViewer().getClass();
-            r2Var.getOrCreateStoryViewer().D(r2Var.getContext(), p2Var.getDialogId(), new di.q7(this.f24242c));
+            r2Var.getOrCreateStoryViewer().E(r2Var.getContext(), p2Var.getDialogId(), new di.q7(this.f24244c));
         }
     }
 

@@ -15,16 +15,16 @@ import org.telegram.ui.Components.h2;
 import org.telegram.ui.Components.p1;
 import org.telegram.ui.Components.wz;
 public class b {
-    public static final View.AccessibilityDelegate f47075c = new View.AccessibilityDelegate();
-    public final View.AccessibilityDelegate f47076a;
-    public final a f47077b;
+    public static final View.AccessibilityDelegate f47110c = new View.AccessibilityDelegate();
+    public final View.AccessibilityDelegate f47111a;
+    public final a f47112b;
 
     public b() {
-        this(f47075c);
+        this(f47110c);
     }
 
     public jg.i a(View view) {
-        AccessibilityNodeProvider accessibilityNodeProvider = this.f47076a.getAccessibilityNodeProvider(view);
+        AccessibilityNodeProvider accessibilityNodeProvider = this.f47111a.getAccessibilityNodeProvider(view);
         if (accessibilityNodeProvider != null) {
             return new jg.i(accessibilityNodeProvider);
         }
@@ -32,11 +32,11 @@ public class b {
     }
 
     public void b(View view, AccessibilityEvent accessibilityEvent) {
-        this.f47076a.onInitializeAccessibilityEvent(view, accessibilityEvent);
+        this.f47111a.onInitializeAccessibilityEvent(view, accessibilityEvent);
     }
 
     public void c(View view, s0.d dVar) {
-        this.f47076a.onInitializeAccessibilityNodeInfo(view, dVar.f47653a);
+        this.f47111a.onInitializeAccessibilityNodeInfo(view, dVar.f47688a);
     }
 
     public boolean d(View view, int i10, Bundle bundle) {
@@ -57,7 +57,7 @@ public class b {
             }
             s0.c cVar = (s0.c) list.get(i11);
             if (cVar.a() == i10) {
-                Class cls = cVar.f47651c;
+                Class cls = cVar.f47686c;
                 p1 p1Var = cVar.d;
                 if (p1Var != null) {
                     if (cls != null) {
@@ -70,9 +70,9 @@ public class b {
                             Log.e("A11yActionCompat", "Failed to execute command with argument class ViewCommandArgument: ".concat(cls.getName()), e);
                         }
                     }
-                    wz wzVar = (wz) p1Var.f31407b;
-                    h2 h2Var = (h2) p1Var.f31408c;
-                    if (!wzVar.f34567x) {
+                    wz wzVar = (wz) p1Var.f31425b;
+                    h2 h2Var = (h2) p1Var.f31426c;
+                    if (!wzVar.f34616x) {
                         wzVar.setRefreshing(true);
                         h2Var.run();
                     }
@@ -84,7 +84,7 @@ public class b {
         }
         z10 = false;
         if (!z10) {
-            z10 = this.f47076a.performAccessibilityAction(view, i10, bundle);
+            z10 = this.f47111a.performAccessibilityAction(view, i10, bundle);
         }
         if (!z10 && i10 == 2131296269 && bundle != null) {
             int i12 = bundle.getInt("ACCESSIBILITY_CLICKABLE_SPAN_ID", -1);
@@ -113,7 +113,7 @@ public class b {
     }
 
     public b(View.AccessibilityDelegate accessibilityDelegate) {
-        this.f47076a = accessibilityDelegate;
-        this.f47077b = new a(this);
+        this.f47111a = accessibilityDelegate;
+        this.f47112b = new a(this);
     }
 }

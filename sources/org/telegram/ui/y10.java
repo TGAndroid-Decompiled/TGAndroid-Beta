@@ -1,19 +1,76 @@
 package org.telegram.ui;
-public final class y10 extends tg.a1 {
-    public final int f45935r;
 
-    public y10(int i10, int i11, int i12, int i13, org.telegram.ui.ActionBar.u6 u6Var, int i14) {
-        super(i10, i11, i12, i13, u6Var);
-        this.f45935r = i14;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
+public final class y10 {
+    public LinearGradient f45823b;
+    public final Paint[] f45822a = new Paint[4];
+    public final Matrix f45824c = new Matrix();
+
+    public final void a(Canvas canvas, RectF rectF, float f7) {
+        Paint[] paintArr = this.f45822a;
+        if (paintArr[0] == null) {
+            Paint paint = new Paint(1);
+            paintArr[0] = paint;
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        paintArr[0].setShader(this.f45823b);
+        paintArr[0].setAlpha((int) (f7 * 255.0f));
+        canvas.drawRect(rectF, paintArr[0]);
     }
 
-    @Override
-    public final int c(int i10) {
-        switch (this.f45935r) {
-            case 0:
-                return org.telegram.ui.ActionBar.y6.E0(i10);
-            default:
-                return org.telegram.ui.ActionBar.y6.E0(i10);
+    public final void b(Canvas canvas, RectF rectF, int i10, float f7) {
+        if (f7 <= 0.0f) {
+            return;
         }
+        if (this.f45823b == null) {
+            this.f45823b = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        }
+        Paint[] paintArr = this.f45822a;
+        if (paintArr[i10] == null) {
+            paintArr[i10] = new Paint(1);
+            paintArr[i10].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        paintArr[i10].setShader(this.f45823b);
+        Matrix matrix = this.f45824c;
+        matrix.reset();
+        if (i10 == 0) {
+            matrix.postScale(1.0f, rectF.width() / 16.0f);
+            matrix.postRotate(-90.0f);
+            matrix.postTranslate(rectF.left, rectF.top);
+        } else if (i10 == 1) {
+            matrix.postScale(1.0f, rectF.height() / 16.0f);
+            matrix.postTranslate(rectF.left, rectF.top);
+        } else if (i10 == 2) {
+            matrix.postScale(1.0f, rectF.width() / 16.0f);
+            matrix.postRotate(90.0f);
+            matrix.postTranslate(rectF.right, rectF.top);
+        } else if (i10 == 3) {
+            matrix.postScale(1.0f, rectF.height() / 16.0f);
+            matrix.postScale(1.0f, -1.0f);
+            matrix.postTranslate(rectF.left, rectF.bottom);
+        }
+        this.f45823b.setLocalMatrix(matrix);
+        paintArr[i10].setAlpha((int) (f7 * 255.0f));
+        canvas.drawRect(rectF, paintArr[i10]);
+    }
+
+    public final Paint c(float f7, int i10) {
+        Paint[] paintArr = this.f45822a;
+        if (paintArr[i10] == null) {
+            Paint paint = new Paint(1);
+            paintArr[i10] = paint;
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        paintArr[i10].setShader(null);
+        paintArr[i10].setColor(-65536);
+        paintArr[i10].setAlpha((int) (f7 * 255.0f));
+        return paintArr[i10];
     }
 }

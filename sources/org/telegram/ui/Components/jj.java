@@ -3,25 +3,25 @@ package org.telegram.ui.Components;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class jj implements bm0, oj {
-    public final xj f29656a;
+public final class jj implements cm0, oj {
+    public final xj f29679a;
 
     public jj(xj xjVar) {
-        this.f29656a = xjVar;
+        this.f29679a = xjVar;
     }
 
     @Override
     public void a(TLRPC.User user, boolean z10, int i10, long j10) {
-        xj xjVar = this.f29656a;
-        xjVar.f30215b.dismiss(true);
+        xj xjVar = this.f29679a;
+        xjVar.f30254b.dismiss(true);
         xjVar.J.a(user, z10, i10, j10);
     }
 
     @Override
     public boolean c(int i10, View view) {
         Object O;
-        xj xjVar = this.f29656a;
-        s4.h0 adapter = xjVar.f34731s.getAdapter();
+        xj xjVar = this.f29679a;
+        s4.h0 adapter = xjVar.f34784s.getAdapter();
         tj tjVar = xjVar.F;
         if (adapter == tjVar) {
             O = tjVar.E(i10);

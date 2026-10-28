@@ -24,19 +24,19 @@ import java.util.Collection;
 import java.util.concurrent.TimeoutException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.s9;
-import org.telegram.ui.Components.kp0;
-import org.telegram.ui.Components.nf0;
+import org.telegram.ui.Components.lp0;
 import org.telegram.ui.Components.of0;
+import org.telegram.ui.Components.pf0;
 import org.telegram.ui.Components.u6;
-import org.telegram.ui.Components.u71;
+import org.telegram.ui.Components.v71;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.gs0;
-import org.telegram.ui.nt0;
-public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.e5, ng.o, pe.a, com.google.android.gms.common.api.internal.o, sg.x1, o5.b, androidx.lifecycle.s0, com.google.android.gms.common.api.internal.r {
-    public Object f17285a;
+import org.telegram.ui.is0;
+import org.telegram.ui.pt0;
+public final class h5 implements f1, m.k, o0.a, lp0, org.telegram.ui.Components.e5, ng.o, pe.a, com.google.android.gms.common.api.internal.o, sg.w1, o5.b, androidx.lifecycle.s0, com.google.android.gms.common.api.internal.r {
+    public Object f17284a;
 
     public h5(Object obj) {
-        this.f17285a = obj;
+        this.f17284a = obj;
     }
 
     public static float[] d(ArrayList arrayList) {
@@ -227,8 +227,8 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
     @Override
     public androidx.lifecycle.p0 B(Class cls, v1.b bVar) {
         androidx.lifecycle.m0 m0Var = null;
-        for (v1.c cVar : (v1.c[]) this.f17285a) {
-            if (cVar.f49986a.equals(cls)) {
+        for (v1.c cVar : (v1.c[]) this.f17284a) {
+            if (cVar.f50021a.equals(cls)) {
                 m0Var = new androidx.lifecycle.m0();
             }
         }
@@ -240,7 +240,7 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public Cursor D(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f17285a;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f17284a;
         if (contentProviderClient == null) {
             return null;
         }
@@ -256,8 +256,8 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
     public void E(g1 g1Var, int i10, int i11) {
         b3 b3Var;
         s9 textSelectionHelper;
-        p5 p5Var = (p5) this.f17285a;
-        if (!p5Var.G && i10 != i11 && (b3Var = p5Var.E) != null && (textSelectionHelper = b3Var.f17154a.getTextSelectionHelper()) != null) {
+        p5 p5Var = (p5) this.f17284a;
+        if (!p5Var.G && i10 != i11 && (b3Var = p5Var.E) != null && (textSelectionHelper = b3Var.f17153a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.x() || textSelectionHelper.W != p5Var) {
                 p5Var.post(new hi.v4(this, g1Var, i11, textSelectionHelper, i10, 4));
             }
@@ -266,46 +266,46 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void G(int i10, int i11, boolean z10) {
-        org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f17285a;
+        org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f17284a;
         e0Var.l0(i10, i11, z10);
         e0Var.dismiss();
     }
 
     @Override
     public void H(boolean z10) {
-        of0 of0Var = (of0) this.f17285a;
-        of0Var.getClass();
-        nf0 nf0Var = of0Var.f31284a;
-        if (nf0Var != null) {
-            ((gs0) nf0Var).d(z10);
+        pf0 pf0Var = (pf0) this.f17284a;
+        pf0Var.getClass();
+        of0 of0Var = pf0Var.f31596a;
+        if (of0Var != null) {
+            ((is0) of0Var).d(z10);
         }
     }
 
     @Override
     public void P() {
-        nf0 nf0Var = ((of0) this.f17285a).f31284a;
-        if (nf0Var != null) {
-            PhotoViewer photoViewer = ((gs0) nf0Var).f39777a;
-            if (photoViewer.f35630c2 == 1) {
+        of0 of0Var = ((pf0) this.f17284a).f31596a;
+        if (of0Var != null) {
+            PhotoViewer photoViewer = ((is0) of0Var).f40267a;
+            if (photoViewer.f35654c2 == 1) {
                 photoViewer.H2 = true;
-                photoViewer.s3();
+                photoViewer.t3();
             }
         }
     }
 
     @Override
     public void T(CharSequence charSequence) {
-        b3 b3Var = ((p5) this.f17285a).E;
+        b3 b3Var = ((p5) this.f17284a).E;
         if (b3Var != null && charSequence != null && charSequence.length() > 0) {
-            b3Var.f17154a.z4(charSequence.toString());
+            b3Var.f17153a.z4(charSequence.toString());
         }
     }
 
     @Override
     public void U(float f7, boolean z10) {
-        og.h hVar = (og.h) this.f17285a;
-        float f10 = hVar.f19404b;
-        float z11 = c3.h0.z(hVar.f19405c, f10, f7, f10);
+        og.h hVar = (og.h) this.f17284a;
+        float f10 = hVar.f19403b;
+        float z11 = c3.h0.z(hVar.f19404c, f10, f7, f10);
         hVar.d = z11;
         if (z10) {
             u6 u6Var = hVar.e;
@@ -317,24 +317,24 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void V(float f7) {
-        nt0 nt0Var = (nt0) this.f17285a;
-        rg.s0.e(nt0Var.E1).k(String.valueOf(rg.m.f47465a.indexOf(nt0Var.L0.getCurrentBrush())), f7);
-        rg.q1 q1Var = nt0Var.f48369z1;
-        q1Var.f47527c = f7;
-        nt0Var.r0(q1Var, null);
+        pt0 pt0Var = (pt0) this.f17284a;
+        rg.s0.e(pt0Var.E1).k(String.valueOf(rg.m.f47500a.indexOf(pt0Var.L0.getCurrentBrush())), f7);
+        rg.q1 q1Var = pt0Var.f48395z1;
+        q1Var.f47562c = f7;
+        pt0Var.r0(q1Var, null);
     }
 
     @Override
     public void Y(Editable editable) {
-        p5 p5Var = (p5) this.f17285a;
-        a aVar = p5Var.f17653a;
+        p5 p5Var = (p5) this.f17284a;
+        a aVar = p5Var.f17652a;
         if (aVar != null) {
-            aVar.f17068s = true;
-            aVar.f17067r = p5Var.f17412r.E;
+            aVar.f17067s = true;
+            aVar.f17066r = p5Var.f17411r.E;
         }
         p5Var.t();
         b3 b3Var = p5Var.E;
-        if (b3Var != null && p5Var.f17653a != null) {
+        if (b3Var != null && p5Var.f17652a != null) {
             b3Var.a();
         }
     }
@@ -346,7 +346,7 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void accept(Object obj, Object obj2) {
-        w8.j jVar = (w8.j) this.f17285a;
+        w8.j jVar = (w8.j) this.f17284a;
         f8.b bVar = (f8.b) obj;
         Bundle G = bVar.G();
         G.putBoolean("com.google.android.gms.wallet.EXTRA_USING_AUTO_RESOLVABLE_RESULT", true);
@@ -355,13 +355,13 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
             f8.i iVar = (f8.i) bVar.u();
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-            int i10 = f8.c.f10242a;
+            int i10 = f8.c.f10241a;
             obtain.writeInt(1);
             jVar.writeToParcel(obtain, 0);
             obtain.writeInt(1);
             G.writeToParcel(obtain, 0);
             obtain.writeStrongBinder(aVar);
-            iVar.f10250a.transact(19, obtain, null, 1);
+            iVar.f10249a.transact(19, obtain, null, 1);
             obtain.recycle();
         } catch (RemoteException e) {
             Log.e("WalletClientImpl", "RemoteException getting payment data", e);
@@ -372,22 +372,22 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void b(g1 g1Var) {
-        b3 b3Var = ((p5) this.f17285a).E;
+        b3 b3Var = ((p5) this.f17284a).E;
         if (b3Var != null) {
-            v3 v3Var = b3Var.f17154a;
+            v3 v3Var = b3Var.f17153a;
             v3.S1(v3Var, g1Var);
-            v3Var.f17557p3.s(g1Var, true);
+            v3Var.f17556p3.s(g1Var, true);
         }
     }
 
     public String c(Object obj) {
         StringWriter stringWriter = new StringWriter();
         try {
-            ma.d dVar = (ma.d) this.f17285a;
-            ma.e eVar = new ma.e(stringWriter, dVar.f18400a, dVar.f18401b, dVar.f18402c, dVar.d);
+            ma.d dVar = (ma.d) this.f17284a;
+            ma.e eVar = new ma.e(stringWriter, dVar.f18399a, dVar.f18400b, dVar.f18401c, dVar.d);
             eVar.h(obj);
             eVar.j();
-            eVar.f18404b.flush();
+            eVar.f18403b.flush();
         } catch (IOException unused) {
         }
         return stringWriter.toString();
@@ -395,7 +395,7 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f17285a;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f17284a;
         if (contentProviderClient != null) {
             contentProviderClient.release();
         }
@@ -403,25 +403,25 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public boolean e() {
-        p5 p5Var = (p5) this.f17285a;
+        p5 p5Var = (p5) this.f17284a;
         b3 b3Var = p5Var.E;
-        if (b3Var != null && p5Var.f17653a != null) {
-            return b3Var.f17154a.Y4();
+        if (b3Var != null && p5Var.f17652a != null) {
+            return b3Var.f17153a.Y4();
         }
         return false;
     }
 
     public void f(p4.p pVar, p4.m mVar, Collection collection) {
-        p4.e eVar = (p4.e) this.f17285a;
-        if (pVar == eVar.f46678y && mVar != null) {
-            p4.u uVar = eVar.f46677x.f46769a;
+        p4.e eVar = (p4.e) this.f17284a;
+        if (pVar == eVar.f46713y && mVar != null) {
+            p4.u uVar = eVar.f46712x.f46804a;
             String d = mVar.d();
             p4.v vVar = new p4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f46678y, 3, eVar.f46677x, collection);
-                eVar.f46677x = null;
-                eVar.f46678y = null;
+                eVar.h(eVar, vVar, eVar.f46713y, 3, eVar.f46712x, collection);
+                eVar.f46712x = null;
+                eVar.f46713y = null;
             }
         } else if (pVar == eVar.e) {
             if (mVar != null) {
@@ -448,14 +448,14 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public Object mo27get() {
-        return new t5.i((Context) ((id.a) this.f17285a).mo27get(), "com.google.android.datatransport.events", Integer.valueOf(t5.i.d).intValue());
+        return new t5.i((Context) ((id.a) this.f17284a).mo27get(), "com.google.android.datatransport.events", Integer.valueOf(t5.i.d).intValue());
     }
 
     @Override
     public CharSequence getContentDescription() {
-        og.h hVar = (og.h) this.f17285a;
-        float f7 = hVar.f19404b;
-        return String.valueOf(Math.round((hVar.f19403a.getProgress() * (hVar.f19405c - f7)) + f7));
+        og.h hVar = (og.h) this.f17284a;
+        float f7 = hVar.f19403b;
+        return String.valueOf(Math.round((hVar.f19402a.getProgress() * (hVar.f19404c - f7)) + f7));
     }
 
     @Override
@@ -464,7 +464,7 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
     }
 
     public void h(aa.b0 b0Var, Thread thread, Throwable th2) {
-        y9.n nVar = (y9.n) this.f17285a;
+        y9.n nVar = (y9.n) this.f17284a;
         synchronized (nVar) {
             String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
@@ -490,9 +490,9 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
     @Override
     public void k(int i10, int i11) {
         f2 f2Var;
-        p5 p5Var = (p5) this.f17285a;
+        p5 p5Var = (p5) this.f17284a;
         b3 b3Var = p5Var.E;
-        if (b3Var != null && p5Var.f17653a != null && (f2Var = b3Var.f17154a.R3) != null) {
+        if (b3Var != null && p5Var.f17652a != null && (f2Var = b3Var.f17153a.R3) != null) {
             f2Var.f(i10, i11);
         }
     }
@@ -510,12 +510,12 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
     @Override
     public boolean needClickAt(View view, float f7, float f10) {
         int dp = AndroidUtilities.dp(9.0f);
-        u71 u71Var = (u71) this.f17285a;
+        v71 v71Var = (v71) this.f17284a;
         float f11 = -dp;
-        u71Var.f33273g.inset(f11, f11);
-        boolean contains = u71Var.f33273g.contains(f7, f10);
+        v71Var.f33587g.inset(f11, f11);
+        boolean contains = v71Var.f33587g.contains(f7, f10);
         float f12 = dp;
-        u71Var.f33273g.inset(f12, f12);
+        v71Var.f33587g.inset(f12, f12);
         return contains;
     }
 
@@ -531,7 +531,7 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((u71) this.f17285a).f33275j;
+        Runnable runnable = ((v71) this.f17284a).f33589j;
         if (runnable != null) {
             runnable.run();
         }
@@ -539,12 +539,12 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void onClickTouchDown(View view, float f7, float f10) {
-        ((u71) this.f17285a).h.c(true);
+        ((v71) this.f17284a).h.c(true);
     }
 
     @Override
     public void onClickTouchUp(View view, float f7, float f10) {
-        ((u71) this.f17285a).h.c(false);
+        ((v71) this.f17284a).h.c(false);
     }
 
     @Override
@@ -554,31 +554,31 @@ public final class h5 implements f1, m.k, o0.a, kp0, org.telegram.ui.Components.
 
     @Override
     public void p(Object obj) {
-        ((h8.c) obj).onLocationResult((LocationResult) this.f17285a);
+        ((h8.c) obj).onLocationResult((LocationResult) this.f17284a);
     }
 
     @Override
     public void q() {
-        nf0 nf0Var = ((of0) this.f17285a).f31284a;
-        if (nf0Var != null) {
-            ((gs0) nf0Var).f39777a.f35646e0.invalidate();
+        of0 of0Var = ((pf0) this.f17284a).f31596a;
+        if (of0Var != null) {
+            ((is0) of0Var).f40267a.f35670e0.invalidate();
         }
     }
 
     @Override
     public void x(boolean z10) {
-        ((of0) this.f17285a).f31286c.setAspectLock(z10);
+        ((pf0) this.f17284a).f31598c.setAspectLock(z10);
     }
 
     @Override
     public float get() {
-        nt0 nt0Var = (nt0) this.f17285a;
-        int i10 = nt0Var.E1;
-        rg.m currentBrush = nt0Var.L0.getCurrentBrush();
+        pt0 pt0Var = (pt0) this.f17284a;
+        int i10 = pt0Var.E1;
+        rg.m currentBrush = pt0Var.L0.getCurrentBrush();
         if (currentBrush == null) {
-            return rg.s0.e(i10).f47548i;
+            return rg.s0.e(i10).f47583i;
         }
-        return rg.s0.e(i10).f(String.valueOf(rg.m.f47465a.indexOf(currentBrush)), currentBrush.d());
+        return rg.s0.e(i10).f(String.valueOf(rg.m.f47500a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override

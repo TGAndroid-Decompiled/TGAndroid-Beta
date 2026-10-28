@@ -1,42 +1,43 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class d40 extends LinearLayout {
-    public boolean f38730a;
-    public final org.telegram.ui.Components.md0 f38731b;
-    public final z30 f38732c;
-    public final a40 d;
+public final class d40 extends TextView {
+    public final RectF f38512a;
+    public final Paint f38513b;
 
-    public d40(LaunchActivity launchActivity, org.telegram.ui.Components.md0 md0Var, z30 z30Var, a40 a40Var) {
+    public d40(LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f38731b = md0Var;
-        this.f38732c = z30Var;
-        this.d = a40Var;
-        this.f38730a = false;
+        this.f38512a = new RectF();
+        Paint paint = new Paint(1);
+        this.f38513b = paint;
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(-16711936);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        RectF rectF = this.f38512a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f38513b);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.f38513b;
+        paint.setColor(-16711936);
+        RectF rectF = this.f38512a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        super.onDraw(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        this.f38730a = true;
-        org.telegram.ui.Components.md0 md0Var = this.f38731b;
-        md0Var.setItemCount(5);
-        z30 z30Var = this.f38732c;
-        z30Var.setItemCount(5);
-        a40 a40Var = this.d;
-        a40Var.setItemCount(5);
-        md0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        z30Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        a40Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        this.f38730a = false;
         super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f38730a) {
-            return;
-        }
-        super.requestLayout();
     }
 }

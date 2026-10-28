@@ -3,15 +3,15 @@ package y9;
 import aa.a0;
 import java.io.File;
 public final class b {
-    public final a0 f52415a;
-    public final String f52416b;
-    public final File f52417c;
+    public final a0 f52473a;
+    public final String f52474b;
+    public final File f52475c;
 
     public b(a0 a0Var, String str, File file) {
-        this.f52415a = a0Var;
+        this.f52473a = a0Var;
         if (str != null) {
-            this.f52416b = str;
-            this.f52417c = file;
+            this.f52474b = str;
+            this.f52475c = file;
             return;
         }
         throw new NullPointerException("Null sessionId");
@@ -21,7 +21,7 @@ public final class b {
         if (obj != this) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                if (this.f52415a.equals(bVar.f52415a) && this.f52416b.equals(bVar.f52416b) && this.f52417c.equals(bVar.f52417c)) {
+                if (this.f52473a.equals(bVar.f52473a) && this.f52474b.equals(bVar.f52474b) && this.f52475c.equals(bVar.f52475c)) {
                     return true;
                 }
                 return false;
@@ -32,10 +32,10 @@ public final class b {
     }
 
     public final int hashCode() {
-        return ((((this.f52415a.hashCode() ^ 1000003) * 1000003) ^ this.f52416b.hashCode()) * 1000003) ^ this.f52417c.hashCode();
+        return ((((this.f52473a.hashCode() ^ 1000003) * 1000003) ^ this.f52474b.hashCode()) * 1000003) ^ this.f52475c.hashCode();
     }
 
     public final String toString() {
-        return "CrashlyticsReportWithSessionId{report=" + this.f52415a + ", sessionId=" + this.f52416b + ", reportFile=" + this.f52417c + "}";
+        return "CrashlyticsReportWithSessionId{report=" + this.f52473a + ", sessionId=" + this.f52474b + ", reportFile=" + this.f52475c + "}";
     }
 }

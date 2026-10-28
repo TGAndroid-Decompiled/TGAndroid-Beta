@@ -28,10 +28,10 @@ import m4.v;
 import m4.w;
 import org.telegram.messenger.Utilities;
 public final class l implements ih.b, o, e9.k, e0, h1, e2.j, g1 {
-    public final int f15964a;
+    public final int f15963a;
 
     public l(int i10) {
-        this.f15964a = i10;
+        this.f15963a = i10;
     }
 
     public static AudioDescriptor e(Object obj) {
@@ -40,7 +40,7 @@ public final class l implements ih.b, o, e9.k, e0, h1, e2.j, g1 {
 
     @Override
     public Object a(Bitmap bitmap) {
-        switch (this.f15964a) {
+        switch (this.f15963a) {
             case 0:
                 int i10 = 0;
                 if (bitmap != null && !bitmap.isRecycled()) {
@@ -60,7 +60,7 @@ public final class l implements ih.b, o, e9.k, e0, h1, e2.j, g1 {
     @Override
     public void accept(Object obj) {
         n1 n1Var = (n1) obj;
-        switch (this.f15964a) {
+        switch (this.f15963a) {
             case 15:
                 n1Var.B0();
                 return;
@@ -98,12 +98,12 @@ public final class l implements ih.b, o, e9.k, e0, h1, e2.j, g1 {
 
     @Override
     public Object apply(Object obj) {
-        return i0.y(Integer.valueOf(((v2.i) obj).f50015a));
+        return i0.y(Integer.valueOf(((v2.i) obj).f50050a));
     }
 
     @Override
     public void b(n1 n1Var, w wVar, List list) {
-        switch (this.f15964a) {
+        switch (this.f15963a) {
             case 28:
                 n1Var.x0(list);
                 return;
@@ -115,7 +115,7 @@ public final class l implements ih.b, o, e9.k, e0, h1, e2.j, g1 {
 
     @Override
     public Object c(f0 f0Var, w wVar, int i10) {
-        switch (this.f15964a) {
+        switch (this.f15963a) {
             case 13:
                 f0Var.getClass();
                 throw new ClassCastException();
@@ -137,7 +137,7 @@ public final class l implements ih.b, o, e9.k, e0, h1, e2.j, g1 {
 
     @Override
     public void d(v vVar, int i10) {
-        switch (this.f15964a) {
+        switch (this.f15963a) {
             case 10:
                 vVar.getClass();
                 return;
@@ -154,54 +154,54 @@ public final class l implements ih.b, o, e9.k, e0, h1, e2.j, g1 {
     public void invoke(Object obj) {
         long j10;
         y yVar;
-        switch (this.f15964a) {
+        switch (this.f15963a) {
             case 3:
                 q0 q0Var = (q0) obj;
-                u0 u0Var = q0Var.f16259b;
-                if (q0Var.equals(u0Var.f16291j) && u0Var.f16295n != null) {
-                    r0 r0Var = u0Var.f16297p;
-                    int i10 = r0Var.f16264b;
+                u0 u0Var = q0Var.f16258b;
+                if (q0Var.equals(u0Var.f16290j) && u0Var.f16294n != null) {
+                    r0 r0Var = u0Var.f16296p;
+                    int i10 = r0Var.f16263b;
                     if (i10 != -1) {
-                        long j11 = ((p) r0Var.e).f16252f / i10;
-                        j0 j0Var = u0Var.f16301t;
+                        long j11 = ((p) r0Var.e).f16251f / i10;
+                        j0 j0Var = u0Var.f16300t;
                         j0Var.getClass();
-                        j10 = n0.Y(j0Var.f16177a.getSampleRate(), j11);
+                        j10 = n0.Y(j0Var.f16176a.getSampleRate(), j11);
                     } else {
                         j10 = -9223372036854775807L;
                     }
-                    u0Var.f16295n.m(((p) u0Var.f16297p.e).f16252f, n0.h0(j10), SystemClock.elapsedRealtime() - u0Var.W);
+                    u0Var.f16294n.m(((p) u0Var.f16296p.e).f16251f, n0.h0(j10), SystemClock.elapsedRealtime() - u0Var.W);
                     return;
                 }
                 return;
             case 4:
                 q0 q0Var2 = (q0) obj;
                 q0Var2.getClass();
-                u0.f16282c0.getAndDecrement();
-                y yVar2 = q0Var2.f16259b.f16295n;
+                u0.f16281c0.getAndDecrement();
+                y yVar2 = q0Var2.f16258b.f16294n;
                 if (yVar2 != 0) {
-                    int i11 = q0Var2.f16258a.f16249a;
+                    int i11 = q0Var2.f16257a.f16248a;
                     yVar2.J(new Object());
                     return;
                 }
                 return;
             case 5:
                 q0 q0Var3 = (q0) obj;
-                u0 u0Var2 = q0Var3.f16259b;
-                if (q0Var3.equals(u0Var2.f16291j) && (yVar = u0Var2.f16295n) != null && u0Var2.O) {
+                u0 u0Var2 = q0Var3.f16258b;
+                if (q0Var3.equals(u0Var2.f16290j) && (yVar = u0Var2.f16294n) != null && u0Var2.O) {
                     yVar.N();
                     return;
                 }
                 return;
             case 6:
                 q0 q0Var4 = (q0) obj;
-                u0 u0Var3 = q0Var4.f16259b;
-                if (q0Var4.equals(u0Var3.f16291j) && u0Var3.M) {
+                u0 u0Var3 = q0Var4.f16258b;
+                if (q0Var4.equals(u0Var3.f16290j) && u0Var3.M) {
                     u0Var3.N = true;
                     return;
                 }
                 return;
             default:
-                y yVar3 = ((p0) obj).f16257a.f16295n;
+                y yVar3 = ((p0) obj).f16256a.f16294n;
                 if (yVar3 != null) {
                     yVar3.n();
                     return;
@@ -211,18 +211,18 @@ public final class l implements ih.b, o, e9.k, e0, h1, e2.j, g1 {
     }
 
     public l(Object obj, int i10) {
-        this.f15964a = i10;
+        this.f15963a = i10;
     }
 
     public l(String str, int i10, int i11, r rVar) {
-        this.f15964a = 14;
+        this.f15963a = 14;
     }
 
     public l(String str, b2.h1 h1Var) {
-        this.f15964a = 26;
+        this.f15963a = 26;
     }
 
     public l(boolean z10, p1 p1Var, Bundle bundle) {
-        this.f15964a = 18;
+        this.f15963a = 18;
     }
 }

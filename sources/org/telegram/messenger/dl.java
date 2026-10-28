@@ -1,32 +1,23 @@
 package org.telegram.messenger;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
 public final class dl implements Runnable {
-    public final int f19938a;
-    public final Object f19939b;
-    public final Serializable f19940c;
-    public final Object d;
+    public final int f19933a;
+    public final TranslateController f19934b;
+    public final long f19935c;
 
-    public dl(Object obj, Serializable serializable, Object obj2, int i10) {
-        this.f19938a = i10;
-        this.f19939b = obj;
-        this.f19940c = serializable;
-        this.d = obj2;
+    public dl(TranslateController translateController, long j10, int i10) {
+        this.f19933a = i10;
+        this.f19934b = translateController;
+        this.f19935c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19938a) {
+        switch (this.f19933a) {
             case 0:
-                ((TranslateController) this.f19939b).lambda$checkDialogMessageSure$10((ArrayList) this.f19940c, (ArrayList) this.d);
-                return;
-            case 1:
-                Utilities.a((int[]) this.f19939b, (Utilities.Callback[]) this.f19940c, (Runnable) this.d);
+                TranslateController.G(this.f19934b, this.f19935c);
                 return;
             default:
-                WearAuthListenerService.a((String) this.f19939b, (String) this.f19940c, (byte[]) this.d);
+                TranslateController.p(this.f19934b, this.f19935c);
                 return;
         }
     }

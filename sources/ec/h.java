@@ -1,7 +1,7 @@
 package ec;
 public abstract class h extends Exception {
-    public static final boolean f9886a;
-    public static final StackTraceElement[] f9887b;
+    public static final boolean f9885a;
+    public static final StackTraceElement[] f9886b;
 
     static {
         boolean z10;
@@ -10,8 +10,8 @@ public abstract class h extends Exception {
         } else {
             z10 = false;
         }
-        f9886a = z10;
-        f9887b = new StackTraceElement[0];
+        f9885a = z10;
+        f9886b = new StackTraceElement[0];
     }
 
     @Override

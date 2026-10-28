@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.m91;
-import org.telegram.ui.Components.om0;
-import org.telegram.ui.Components.r71;
-import org.telegram.ui.Components.t61;
-public final class bd extends m91 {
+import org.telegram.ui.Components.n91;
+import org.telegram.ui.Components.pm0;
+import org.telegram.ui.Components.s71;
+import org.telegram.ui.Components.u61;
+public final class bd extends n91 {
     public final Context f4393a;
     public final int f4394b;
     public final boolean f4395c;
     public final int d;
     public final org.telegram.ui.ActionBar.u6 e;
     public final long f4396f;
-    public om0 f4397g;
+    public pm0 f4397g;
     public oi.q h;
     public final ArrayList f4398i = new ArrayList();
 
@@ -33,9 +33,9 @@ public final class bd extends m91 {
 
     @Override
     public final void b(View view, int i10, int i11) {
-        om0 om0Var = this.f4397g;
-        if (om0Var != null) {
-            om0Var.L(view);
+        pm0 pm0Var = this.f4397g;
+        if (pm0Var != null) {
+            pm0Var.L(view);
         }
     }
 
@@ -45,15 +45,15 @@ public final class bd extends m91 {
         if (this.f4397g != null) {
             adVar.setClipChildren(false);
             adVar.setClipToPadding(false);
-            r71 r71Var = adVar.f4289a;
-            r71Var.setClipToPadding(false);
-            r71Var.v1(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
-            r71Var.f32152g3.f29507r = false;
-            r71Var.setCaptureSectionsDecoratorAllowed(true);
-            r71Var.setOverScrollMode(0);
+            s71 s71Var = adVar.f4289a;
+            s71Var.setClipToPadding(false);
+            s71Var.v1(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
+            s71Var.f32504g3.f29878r = false;
+            s71Var.setCaptureSectionsDecoratorAllowed(true);
+            s71Var.setOverScrollMode(0);
             oi.q qVar = this.h;
             if (qVar != null) {
-                qVar.b(r71Var);
+                qVar.b(s71Var);
             }
         }
         return adVar;
@@ -84,7 +84,7 @@ public final class bd extends m91 {
         if (i10 >= 0) {
             ArrayList arrayList = this.f4398i;
             if (i10 < arrayList.size()) {
-                return ((t61) arrayList.get(i10)).f32888z;
+                return ((u61) arrayList.get(i10)).f33262z;
             }
             return 0;
         }
@@ -99,23 +99,23 @@ public final class bd extends m91 {
         int i11 = this.f4394b;
         if (i10 == 0) {
             ca y3 = ca.y(i11, this.f4395c);
-            arrayList.add(t61.D(0));
+            arrayList.add(u61.D(0));
             if (y3.O(1)) {
-                arrayList.add(t61.D(1));
+                arrayList.add(u61.D(1));
             }
             if (y3.O(2)) {
-                arrayList.add(t61.D(2));
+                arrayList.add(u61.D(2));
                 return;
             }
             return;
         }
         m0 g7 = m0.g(i11);
-        arrayList.add(t61.D(0));
+        arrayList.add(u61.D(0));
         if (!g7.k(j10).f5002a[1].isEmpty()) {
-            arrayList.add(t61.D(1));
+            arrayList.add(u61.D(1));
         }
         if (!g7.k(j10).f5002a[2].isEmpty()) {
-            arrayList.add(t61.D(2));
+            arrayList.add(u61.D(2));
         }
     }
 }

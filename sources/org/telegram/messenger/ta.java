@@ -1,25 +1,32 @@
 package org.telegram.messenger;
 
-import android.util.SparseArray;
+import j$.util.concurrent.ConcurrentHashMap;
 public final class ta implements Runnable {
-    public final int f21322a;
-    public final MessagesController f21323b;
-    public final SparseArray f21324c;
+    public final int f21288a;
+    public final MessagesController f21289b;
+    public final ag.y f21290c;
+    public final ConcurrentHashMap d;
+    public final ConcurrentHashMap e;
 
-    public ta(MessagesController messagesController, SparseArray sparseArray, int i10) {
-        this.f21322a = i10;
-        this.f21323b = messagesController;
-        this.f21324c = sparseArray;
+    public ta(MessagesController messagesController, ag.y yVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i10) {
+        this.f21288a = i10;
+        this.f21289b = messagesController;
+        this.f21290c = yVar;
+        this.d = concurrentHashMap;
+        this.e = concurrentHashMap2;
     }
 
     @Override
     public final void run() {
-        switch (this.f21322a) {
+        switch (this.f21288a) {
             case 0:
-                this.f21323b.lambda$getChannelDifference$340(this.f21324c);
+                this.f21289b.lambda$processUpdateArray$406(this.f21290c, this.d, this.e);
+                return;
+            case 1:
+                this.f21289b.lambda$processUpdateArray$407(this.f21290c, this.d, this.e);
                 return;
             default:
-                this.f21323b.lambda$getDifference$353(this.f21324c);
+                this.f21289b.lambda$processUpdateArray$411(this.f21290c, this.d, this.e);
                 return;
         }
     }

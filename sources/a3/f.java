@@ -136,7 +136,7 @@ public final class f implements p0 {
         }
         this.f82f = xVar;
         if (j10 != this.f83g) {
-            if (g0Var.f110f.f9721c == 0) {
+            if (g0Var.f110f.f9720c == 0) {
                 g0Var.f108b.e(i10);
                 g0Var.f115l = j10;
             } else {
@@ -156,7 +156,7 @@ public final class f implements p0 {
     @Override
     public final void m(b6.i iVar) {
         this.h = iVar;
-        this.f84i = k9.r.f16491a;
+        this.f84i = k9.r.f16490a;
     }
 
     @Override
@@ -176,9 +176,9 @@ public final class f implements p0 {
         g0 g0Var = this.f81c;
         e2.j0 j0Var = g0Var.d;
         e2.s sVar = g0Var.f110f;
-        sVar.f9719a = 0;
-        sVar.f9720b = -1;
-        sVar.f9721c = 0;
+        sVar.f9718a = 0;
+        sVar.f9719b = -1;
+        sVar.f9720c = 0;
         g0Var.h = -9223372036854775807L;
         g0Var.f112i = -9223372036854775807L;
         g0Var.f113j = -9223372036854775807L;
@@ -217,29 +217,29 @@ public final class f implements p0 {
         this.d.add(jVar);
         g0 g0Var = this.f81c;
         e2.s sVar = g0Var.f110f;
-        int i10 = sVar.f9721c;
+        int i10 = sVar.f9720c;
         long[] jArr = (long[]) sVar.e;
         if (i10 == jArr.length) {
             int length = jArr.length << 1;
             if (length >= 0) {
                 long[] jArr2 = new long[length];
                 int length2 = jArr.length;
-                int i11 = sVar.f9719a;
+                int i11 = sVar.f9718a;
                 int i12 = length2 - i11;
                 System.arraycopy(jArr, i11, jArr2, 0, i12);
                 System.arraycopy((long[]) sVar.e, 0, jArr2, i12, i11);
-                sVar.f9719a = 0;
-                sVar.f9720b = sVar.f9721c - 1;
+                sVar.f9718a = 0;
+                sVar.f9719b = sVar.f9720c - 1;
                 sVar.e = jArr2;
                 sVar.d = length - 1;
             } else {
                 throw new IllegalStateException();
             }
         }
-        int i13 = (sVar.f9720b + 1) & sVar.d;
-        sVar.f9720b = i13;
+        int i13 = (sVar.f9719b + 1) & sVar.d;
+        sVar.f9719b = i13;
         ((long[]) sVar.e)[i13] = j10;
-        sVar.f9721c++;
+        sVar.f9720c++;
         g0Var.h = j10;
         g0Var.f113j = -9223372036854775807L;
         this.f84i.execute(new d(this, 0));

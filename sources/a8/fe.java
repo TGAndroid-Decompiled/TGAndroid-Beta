@@ -6,6 +6,6 @@ public abstract class fe {
         dVar.getClass();
         he.e b10 = ce.f0.b(yd.c(dVar, j1Var));
         kotlin.jvm.internal.i.e(name, "name");
-        return new m1.c(name, m1.a.f17920b, b10);
+        return new m1.c(name, m1.a.f17919b, b10);
     }
 }

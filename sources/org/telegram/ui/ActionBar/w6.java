@@ -7,35 +7,35 @@ import android.util.SparseIntArray;
 import java.io.File;
 import java.util.Locale;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.TLRPC;
 public final class w6 {
-    public int f23215a;
-    public x6 f23216b;
-    public int f23217c;
+    public int f23216a;
+    public x6 f23217b;
+    public int f23218c;
     public int d;
     public int e;
-    public int f23218f;
-    public int f23219g;
+    public int f23219f;
+    public int f23220g;
     public int h;
-    public boolean f23220i;
-    public long f23221j;
-    public long f23222k;
-    public long f23223l;
-    public long f23224m;
-    public float f23227p;
-    public boolean f23228q;
-    public TLRPC.TL_theme f23229r;
-    public TLRPC.TL_wallPaper f23230s;
-    public int f23231t;
-    public String f23232u;
+    public boolean f23221i;
+    public long f23222j;
+    public long f23223k;
+    public long f23224l;
+    public long f23225m;
+    public float f23228p;
+    public boolean f23229q;
+    public TLRPC.TL_theme f23230r;
+    public TLRPC.TL_wallPaper f23231s;
+    public int f23232t;
+    public String f23233u;
     public String v;
-    public TLRPC.InputFile f23233w;
-    public TLRPC.InputFile f23234x;
-    public r6 f23235y;
-    public boolean f23236z;
-    public int f23225n = 45;
-    public String f23226o = "";
+    public TLRPC.InputFile f23234w;
+    public TLRPC.InputFile f23235x;
+    public r6 f23236y;
+    public boolean f23237z;
+    public int f23226n = 45;
+    public String f23227o = "";
     public final float[] A = new float[3];
 
     public static int a(SparseIntArray sparseIntArray, int... iArr) {
@@ -62,7 +62,7 @@ public final class w6 {
     }
 
     public static void g(SparseIntArray sparseIntArray) {
-        for (int i10 = y6.f23771za; i10 < y6.Ga; i10++) {
+        for (int i10 = y6.f23772za; i10 < y6.Ga; i10++) {
             sparseIntArray.delete(i10);
             sparseIntArray.put(i10, y6.ql[i10]);
         }
@@ -70,7 +70,7 @@ public final class w6 {
             sparseIntArray.delete(i11);
             sparseIntArray.put(i11, y6.ql[i11]);
         }
-        for (int i12 = y6.Ub; i12 < y6.f23343cc; i12++) {
+        for (int i12 = y6.Ub; i12 < y6.f23344cc; i12++) {
             sparseIntArray.delete(i12);
             sparseIntArray.put(i12, y6.ql[i12]);
         }
@@ -85,7 +85,7 @@ public final class w6 {
         if (f10 <= 0.0f) {
             fArr[0] = f7;
         }
-        fArr[1] = vh.A(f10, 0.6f, 1.0f, 0.0f);
+        fArr[1] = wh.A(f10, 0.6f, 1.0f, 0.0f);
         fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] - 0.05f));
         return Color.HSVToColor(30, fArr);
     }
@@ -95,24 +95,24 @@ public final class w6 {
     }
 
     public final File d() {
-        if (this.f23215a < 100) {
-            if (TextUtils.isEmpty(this.f23226o)) {
+        if (this.f23216a < 100) {
+            if (TextUtils.isEmpty(this.f23227o)) {
                 return null;
             }
             File filesDirFixed = ApplicationLoader.getFilesDirFixed();
             Locale locale = Locale.US;
-            String m10 = this.f23216b.m();
-            int i10 = this.f23215a;
-            String str = this.f23226o;
+            String m10 = this.f23217b.m();
+            int i10 = this.f23216a;
+            String str = this.f23227o;
             return new File(filesDirFixed, m10 + "_" + i10 + "_" + str + "_v5.jpg");
-        } else if (TextUtils.isEmpty(this.f23226o)) {
+        } else if (TextUtils.isEmpty(this.f23227o)) {
             return null;
         } else {
             File filesDirFixed2 = ApplicationLoader.getFilesDirFixed();
             Locale locale2 = Locale.US;
-            String m11 = this.f23216b.m();
-            int i11 = this.f23215a;
-            String str2 = this.f23226o;
+            String m11 = this.f23217b.m();
+            int i11 = this.f23216a;
+            String str2 = this.f23227o;
             return new File(filesDirFixed2, m11 + "_" + i11 + "_" + str2 + "_v8_debug.jpg");
         }
     }
@@ -127,7 +127,7 @@ public final class w6 {
         if (!z10) {
             f10 = 0.0f;
         }
-        fArr[2] = vh.A(f11, f10, 1.0f, 0.0f);
+        fArr[2] = wh.A(f11, f10, 1.0f, 0.0f);
         return Color.HSVToColor(51, fArr);
     }
 

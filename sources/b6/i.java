@@ -75,15 +75,15 @@ import org.telegram.messenger.t;
 import org.telegram.ui.Cells.r9;
 import org.telegram.ui.Cells.s9;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.iw0;
-import org.telegram.ui.Components.p81;
-import org.telegram.ui.Components.s81;
-import org.telegram.ui.Components.wo0;
-import org.telegram.ui.c20;
-import org.telegram.ui.lx;
-import org.telegram.ui.yu0;
-import sg.d2;
-public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0, yu0, OnSuccessListener, g1, o, p81, w, r, z1, y, i0 {
+import org.telegram.ui.Components.jw0;
+import org.telegram.ui.Components.q81;
+import org.telegram.ui.Components.t81;
+import org.telegram.ui.Components.xo0;
+import org.telegram.ui.av0;
+import org.telegram.ui.e20;
+import org.telegram.ui.ox;
+import sg.c2;
+public final class i implements n0, a0, androidx.activity.result.b, jw0, j0, u0, av0, OnSuccessListener, g1, o, q81, w, r, z1, y, i0 {
     public static i f3668c;
     public final int f3669a;
     public Object f3670b;
@@ -150,9 +150,9 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
                 if (bVar2 != null) {
                     bVar2.a(z10, true);
                 }
-                c20 c20Var = hVar.f38720s;
-                if (c20Var != null) {
-                    c20Var.invalidate();
+                e20 e20Var = hVar.f39135s;
+                if (e20Var != null) {
+                    e20Var.invalidate();
                     return;
                 }
                 return;
@@ -170,13 +170,13 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         if (q3Var == null) {
             return null;
         }
-        return q3Var.f17429a.getTextSelectionHelper();
+        return q3Var.f17428a.getTextSelectionHelper();
     }
 
     @Override
     public void D(v0 v0Var) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47335b;
+        Handler handler = (Handler) bVar.f47370b;
         if (handler != null) {
             handler.post(new u(bVar, v0Var, 1));
         }
@@ -203,7 +203,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         if (q3Var != null) {
             q3Var.getClass();
             if (charSequence != null && charSequence.length() > 0) {
-                q3Var.f17429a.z4(charSequence.toString());
+                q3Var.f17428a.z4(charSequence.toString());
             }
         }
     }
@@ -211,7 +211,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void J(v0 v0Var) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47335b;
+        Handler handler = (Handler) bVar.f47370b;
         if (handler != null) {
             handler.post(new u(bVar, v0Var, 0));
         }
@@ -224,7 +224,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
 
     @Override
     public li.a L() {
-        return ((y0) this.f3670b).f17653a;
+        return ((y0) this.f3670b).f17652a;
     }
 
     @Override
@@ -232,8 +232,8 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         y0 y0Var = (y0) this.f3670b;
         q3 q3Var = y0Var.S;
         if (q3Var != null) {
-            li.a aVar = y0Var.f17653a;
-            if (q3Var.f17429a.Y4()) {
+            li.a aVar = y0Var.f17652a;
+            if (q3Var.f17428a.Y4()) {
                 return true;
             }
             return false;
@@ -246,8 +246,8 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         y0 y0Var = (y0) this.f3670b;
         q3 q3Var = y0Var.S;
         if (q3Var != null) {
-            li.a aVar = y0Var.f17653a;
-            f2 f2Var = q3Var.f17429a.R3;
+            li.a aVar = y0Var.f17652a;
+            f2 f2Var = q3Var.f17428a.R3;
             if (f2Var != null) {
                 f2Var.f(i10, i11);
             }
@@ -281,13 +281,13 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         y0 y0Var = (y0) this.f3670b;
         q3 q3Var = y0Var.S;
         if (q3Var != null) {
-            li.a aVar = y0Var.f17653a;
-            v3 v3Var = q3Var.f17429a;
+            li.a aVar = y0Var.f17652a;
+            v3 v3Var = q3Var.f17428a;
             f2 f2Var = v3Var.R3;
             if (f2Var != null) {
                 f2Var.g();
             }
-            v3Var.f17557p3.onContentChanged();
+            v3Var.f17556p3.onContentChanged();
         }
     }
 
@@ -328,11 +328,11 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         int currentActionBarHeight;
         switch (this.f3669a) {
             case 7:
-                i10 = bi.y.b0((bi.y) this.f3670b).f13451b;
+                i10 = bi.y.b0((bi.y) this.f3670b).f13450b;
                 currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2;
                 break;
             default:
-                i10 = ((gi.h) this.f3670b).f12504b0;
+                i10 = ((gi.h) this.f3670b).f12503b0;
                 currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2;
                 break;
         }
@@ -407,7 +407,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f3670b;
         ffmpegAudioRenderer.f2872g0 = true;
         rf.b bVar = ffmpegAudioRenderer.I;
-        Handler handler = (Handler) bVar.f47335b;
+        Handler handler = (Handler) bVar.f47370b;
         if (handler != null) {
             handler.post(new r3(bVar, j10, 13));
         }
@@ -418,8 +418,8 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         y0 y0Var = (y0) this.f3670b;
         q3 q3Var = y0Var.S;
         if (q3Var != null) {
-            li.a aVar = y0Var.f17653a;
-            v3.U1(q3Var.f17429a);
+            li.a aVar = y0Var.f17652a;
+            v3.U1(q3Var.f17428a);
         }
     }
 
@@ -431,7 +431,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i10 = r7.a.f47304a;
+                int i10 = r7.a.f47339a;
                 obtain.writeStrongBinder(fVar);
                 r7.a.b(obtain, (h7.f) this.f3670b);
                 r7.a.b(obtain, gVar);
@@ -441,7 +441,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
                 l lVar = new l((TaskCompletionSource) obj2);
                 j7.i iVar = (j7.i) ((j7.c) obj).u();
                 Parcel J0 = iVar.J0();
-                int i11 = j7.f.f15538a;
+                int i11 = j7.f.f15537a;
                 J0.writeStrongBinder(lVar);
                 j7.f.c(J0, (y5.e) this.f3670b);
                 iVar.K0(J0, 1);
@@ -453,9 +453,9 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     public void b(li.g1 g1Var) {
         q3 q3Var = ((y0) this.f3670b).S;
         if (q3Var != null) {
-            v3 v3Var = q3Var.f17429a;
+            v3 v3Var = q3Var.f17428a;
             v3.S1(v3Var, g1Var);
-            v3Var.f17557p3.s(g1Var, true);
+            v3Var.f17556p3.s(g1Var, true);
         }
     }
 
@@ -477,7 +477,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
             case 7:
                 return bi.y.c0((bi.y) this.f3670b).d;
             default:
-                return ((gi.h) this.f3670b).f12505c0;
+                return ((gi.h) this.f3670b).f12504c0;
         }
     }
 
@@ -552,29 +552,29 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void f(int i10) {
         boolean z10;
-        wo0 wo0Var = (wo0) this.f3670b;
-        wo0Var.D0--;
-        wo0Var.f14077e0 = i10;
-        if (wo0Var.f14079f0 != i10) {
-            wo0Var.f14093s.clear();
+        xo0 xo0Var = (xo0) this.f3670b;
+        xo0Var.D0--;
+        xo0Var.f14076e0 = i10;
+        if (xo0Var.f14078f0 != i10) {
+            xo0Var.f14092s.clear();
         }
-        if (wo0Var.f14080g0 != i10) {
-            wo0Var.I.clear();
+        if (xo0Var.f14079g0 != i10) {
+            xo0Var.I.clear();
         }
-        wo0Var.N = true;
-        lx lxVar = wo0Var.U;
-        if (lxVar != null) {
-            if (wo0Var.D0 > 0) {
+        xo0Var.N = true;
+        ox oxVar = xo0Var.U;
+        if (oxVar != null) {
+            if (xo0Var.D0 > 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            lxVar.d(z10, true);
+            oxVar.d(z10, true);
         }
-        wo0Var.l();
-        lx lxVar2 = wo0Var.U;
-        if (lxVar2 != null) {
-            lxVar2.c();
+        xo0Var.l();
+        ox oxVar2 = xo0Var.U;
+        if (oxVar2 != null) {
+            oxVar2.c();
         }
     }
 
@@ -619,7 +619,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         }
         if (qVar != null) {
             if (z11) {
-                rVar.f(qVar.f12154a, qVar, k10);
+                rVar.f(qVar.f12153a, qVar, k10);
                 rVar.h(qVar, true);
                 return;
             }
@@ -642,7 +642,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         y0 y0Var = (y0) this.f3670b;
         q3 q3Var = y0Var.S;
         if (q3Var != null) {
-            v3.V1(q3Var.f17429a, y0Var.f17653a);
+            v3.V1(q3Var.f17428a, y0Var.f17652a);
         }
     }
 
@@ -666,7 +666,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
 
     @Override
     public boolean k0(int i10) {
-        if (i10 == ((wo0) this.f3670b).f14076d0) {
+        if (i10 == ((xo0) this.f3670b).f14075d0) {
             return true;
         }
         return false;
@@ -680,7 +680,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void m(int i10, long j10, long j11) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47335b;
+        Handler handler = (Handler) bVar.f47370b;
         if (handler != null) {
             handler.post(new k2.t(bVar, i10, j10, j11, 0));
         }
@@ -690,7 +690,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     public void n() {
         x2.o oVar;
         FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f3670b;
-        synchronized (ffmpegAudioRenderer.f13490a) {
+        synchronized (ffmpegAudioRenderer.f13489a) {
             oVar = ffmpegAudioRenderer.H;
         }
         if (oVar != null) {
@@ -701,7 +701,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void onAudioSessionIdChanged(int i10) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47335b;
+        Handler handler = (Handler) bVar.f47370b;
         if (handler != null) {
             handler.post(new r0(bVar, i10, 15));
         }
@@ -724,7 +724,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47335b;
+        Handler handler = (Handler) bVar.f47370b;
         if (handler != null) {
             handler.post(new bh.n(12, bVar, z10));
         }
@@ -734,11 +734,11 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     public void onStateChanged(boolean z10, int i10) {
         o6 o6Var = (o6) this.f3670b;
         m6 m6Var = o6Var.M;
-        s81 s81Var = o6Var.f11391x;
-        if (s81Var == null) {
+        t81 t81Var = o6Var.f11390x;
+        if (t81Var == null) {
             return;
         }
-        if (s81Var.y()) {
+        if (t81Var.y()) {
             AndroidUtilities.runOnUIThread(m6Var);
         } else {
             AndroidUtilities.cancelRunOnUIThread(m6Var);
@@ -754,9 +754,9 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
         e6.a aVar = (e6.a) this.f3670b;
         Bundle bundle = (Bundle) obj;
         if (com.google.android.gms.internal.cast.m0.f6825j) {
-            Context context = aVar.f9783a;
-            h6.r rVar = aVar.f9786f;
-            com.google.android.gms.internal.cast.m0 m0Var = new com.google.android.gms.internal.cast.m0(context, rVar, aVar.f9785c, aVar.f9789j, aVar.f9787g);
+            Context context = aVar.f9782a;
+            h6.r rVar = aVar.f9785f;
+            com.google.android.gms.internal.cast.m0 m0Var = new com.google.android.gms.internal.cast.m0(context, rVar, aVar.f9784c, aVar.f9788j, aVar.f9786g);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE")) {
                 i10 = bundle.getInt("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE", 0);
             } else if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED") && bundle.getBoolean("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED", false)) {
@@ -796,9 +796,9 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
                 b11.f6620a = 8426;
                 Task e = rVar.e(0, b11.a());
                 ?? obj2 = new Object();
-                obj2.f16424b = m0Var;
-                obj2.f16425c = packageName;
-                obj2.f16423a = i10;
+                obj2.f16423b = m0Var;
+                obj2.f16424c = packageName;
+                obj2.f16422a = i10;
                 obj2.d = sharedPreferences;
                 e.addOnSuccessListener(obj2);
             }
@@ -897,20 +897,20 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     @Override
     public void p0(ArrayList arrayList) {
         boolean z10;
-        wo0 wo0Var = (wo0) this.f3670b;
+        xo0 xo0Var = (xo0) this.f3670b;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            wo0Var.J.add(((y1) arrayList.get(i10)).f14305a);
+            xo0Var.J.add(((y1) arrayList.get(i10)).f14304a);
         }
-        lx lxVar = wo0Var.U;
-        if (lxVar != null) {
-            if (wo0Var.D0 > 0) {
+        ox oxVar = xo0Var.U;
+        if (oxVar != null) {
+            if (xo0Var.D0 > 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            lxVar.d(z10, false);
+            oxVar.d(z10, false);
         }
-        wo0Var.l();
+        xo0Var.l();
     }
 
     @Override
@@ -922,7 +922,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     public void r(Exception exc) {
         e2.a.d("DecoderAudioRenderer", "Audio sink error", exc);
         rf.b bVar = ((FfmpegAudioRenderer) this.f3670b).I;
-        Handler handler = (Handler) bVar.f47335b;
+        Handler handler = (Handler) bVar.f47370b;
         if (handler != null) {
             handler.post(new k2.r(bVar, exc, 1));
         }
@@ -944,7 +944,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     public boolean t(l.k kVar) {
         Window.Callback callback;
         g.r rVar = (g.r) this.f3670b;
-        if (kVar == kVar.k() && rVar.O && (callback = rVar.f12175f.getCallback()) != null && !rVar.Z) {
+        if (kVar == kVar.k() && rVar.O && (callback = rVar.f12174f.getCallback()) != null && !rVar.Z) {
             callback.onMenuOpened(108, kVar);
             return true;
         }
@@ -1001,12 +1001,12 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
-        d2 d2Var = ((o6) this.f3670b).f11389w;
-        if (d2Var != null) {
+        c2 c2Var = ((o6) this.f3670b).f11388w;
+        if (c2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(d2Var.f48188y0 - f10) >= 1.0E-4f) {
-                d2Var.f48188y0 = f10;
-                d2Var.requestLayout();
+            if (Math.abs(c2Var.f48212y0 - f10) >= 1.0E-4f) {
+                c2Var.f48212y0 = f10;
+                c2Var.requestLayout();
             }
         }
     }
@@ -1098,7 +1098,7 @@ public final class i implements n0, a0, androidx.activity.result.b, iw0, j0, u0,
     }
 
     @Override
-    public void onError(s81 s81Var, Exception exc) {
+    public void onError(t81 t81Var, Exception exc) {
     }
 
     @Override

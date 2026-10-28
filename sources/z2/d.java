@@ -18,9 +18,9 @@ import i2.h0;
 import j$.util.Objects;
 import java.util.List;
 public final class d {
-    public final Spatializer f52639a;
-    public final boolean f52640b;
-    public final Handler f52641c;
+    public final Spatializer f52697a;
+    public final boolean f52698b;
+    public final Handler f52699c;
     public final c d;
 
     public d(Context context, Runnable runnable, Boolean bool) {
@@ -32,25 +32,25 @@ public final class d {
         }
         if (e != null && (bool == null || !bool.booleanValue())) {
             Spatializer spatializer = e.getSpatializer();
-            this.f52639a = spatializer;
-            this.f52640b = spatializer.getImmersiveAudioLevel() != 0;
+            this.f52697a = spatializer;
+            this.f52698b = spatializer.getImmersiveAudioLevel() != 0;
             Looper myLooper = Looper.myLooper();
             myLooper.getClass();
             Handler handler = new Handler(myLooper);
-            this.f52641c = handler;
+            this.f52699c = handler;
             c cVar = new c(runnable);
             this.d = cVar;
             spatializer.addOnSpatializerStateChangedListener(new h0(handler, 1), cVar);
             return;
         }
-        this.f52639a = null;
-        this.f52640b = false;
-        this.f52641c = null;
+        this.f52697a = null;
+        this.f52698b = false;
+        this.f52699c = null;
         this.d = null;
     }
 
     public final boolean a(f fVar, x xVar) {
-        if (this.f52639a == null || !this.f52640b || !c() || !d()) {
+        if (this.f52697a == null || !this.f52698b || !c() || !d()) {
             return false;
         }
         String str = xVar.f3586s;
@@ -75,26 +75,26 @@ public final class d {
         if (i11 != -1) {
             channelMask.setSampleRate(i11);
         }
-        Spatializer spatializer = this.f52639a;
+        Spatializer spatializer = this.f52697a;
         spatializer.getClass();
         return spatializer.canBeSpatialized(fVar.b(), channelMask.build());
     }
 
     public final List b() {
-        if (this.f52639a != null && this.f52640b && c() && d()) {
+        if (this.f52697a != null && this.f52698b && c() && d()) {
             if (Build.VERSION.SDK_INT >= 36) {
-                Spatializer spatializer = this.f52639a;
+                Spatializer spatializer = this.f52697a;
                 spatializer.getClass();
                 return spatializer.getSpatializedChannelMasks();
             }
             return i0.y(252);
         }
-        g0 g0Var = i0.f10287b;
+        g0 g0Var = i0.f10286b;
         return s1.e;
     }
 
     public final boolean c() {
-        Spatializer spatializer = this.f52639a;
+        Spatializer spatializer = this.f52697a;
         if (spatializer != null && spatializer.isAvailable()) {
             return true;
         }
@@ -102,7 +102,7 @@ public final class d {
     }
 
     public final boolean d() {
-        Spatializer spatializer = this.f52639a;
+        Spatializer spatializer = this.f52697a;
         if (spatializer != null && spatializer.isEnabled()) {
             return true;
         }
@@ -112,8 +112,8 @@ public final class d {
     public final void e() {
         c cVar;
         Handler handler;
-        Spatializer spatializer = this.f52639a;
-        if (spatializer != null && (cVar = this.d) != null && (handler = this.f52641c) != null) {
+        Spatializer spatializer = this.f52697a;
+        if (spatializer != null && (cVar = this.d) != null && (handler = this.f52699c) != null) {
             spatializer.removeOnSpatializerStateChangedListener(cVar);
             handler.removeCallbacksAndMessages(null);
         }

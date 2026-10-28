@@ -8,14 +8,14 @@ public enum c implements na.b {
     INVALID_PAYLOD(5),
     SERVER_ERROR(6);
     
-    public final int f46806a;
+    public final int f46841a;
 
     c(int i10) {
-        this.f46806a = i10;
+        this.f46841a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f46806a;
+        return this.f46841a;
     }
 }

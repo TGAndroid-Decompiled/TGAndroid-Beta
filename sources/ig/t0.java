@@ -30,7 +30,7 @@ public abstract class t0 extends c {
     }
 
     public final TLRPC.TL_messageMediaVenue I(int i10) {
-        ArrayList arrayList = this.f14011r;
+        ArrayList arrayList = this.f14010r;
         if (!arrayList.isEmpty()) {
             i10--;
         }
@@ -43,7 +43,7 @@ public abstract class t0 extends c {
                 size--;
             }
             if (size >= 0) {
-                ArrayList arrayList2 = this.f14012s;
+                ArrayList arrayList2 = this.f14011s;
                 if (size < arrayList2.size()) {
                     return (TLRPC.TL_messageMediaVenue) arrayList2.get(size);
                 }
@@ -57,7 +57,7 @@ public abstract class t0 extends c {
     @Override
     public final int h() {
         int i10;
-        ArrayList arrayList = this.f14011r;
+        ArrayList arrayList = this.f14010r;
         if (!arrayList.isEmpty()) {
             i10 = arrayList.size() + 1;
         } else {
@@ -68,7 +68,7 @@ public abstract class t0 extends c {
                 return i10 + 3;
             }
             boolean isEmpty = arrayList.isEmpty();
-            ArrayList arrayList2 = this.f14012s;
+            ArrayList arrayList2 = this.f14011s;
             if (!isEmpty && !arrayList2.isEmpty()) {
                 i10++;
             }
@@ -79,7 +79,7 @@ public abstract class t0 extends c {
 
     @Override
     public final int j(int i10) {
-        ArrayList arrayList = this.f14011r;
+        ArrayList arrayList = this.f14010r;
         if ((i10 == 0 || i10 == arrayList.size() + 1) && !arrayList.isEmpty()) {
             return 1;
         }
@@ -91,10 +91,10 @@ public abstract class t0 extends c {
         int i11;
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         int i12;
-        int i13 = e1Var.f47741f;
-        View view = e1Var.f47738a;
+        int i13 = e1Var.f47776f;
+        View view = e1Var.f47773a;
         boolean z10 = true;
-        ArrayList arrayList = this.f14011r;
+        ArrayList arrayList = this.f14010r;
         if (i13 == 0) {
             if (!arrayList.isEmpty()) {
                 i11 = i10 - 1;
@@ -107,12 +107,12 @@ public abstract class t0 extends c {
             } else {
                 if (!this.J) {
                     int size = i11 - arrayList.size();
-                    if (!this.f14010n && !arrayList.isEmpty()) {
+                    if (!this.f14009n && !arrayList.isEmpty()) {
                         size--;
                     }
                     i12 = size;
                     if (i12 >= 0) {
-                        ArrayList arrayList2 = this.f14012s;
+                        ArrayList arrayList2 = this.f14011s;
                         if (i12 < arrayList2.size()) {
                             tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList2.get(i12);
                         }
@@ -122,7 +122,7 @@ public abstract class t0 extends c {
                 i12 = i10;
             }
             y4 y4Var = (y4) view;
-            if (i10 == h() - 1 || (!this.f14010n && !arrayList.isEmpty() && i10 == arrayList.size())) {
+            if (i10 == h() - 1 || (!this.f14009n && !arrayList.isEmpty() && i10 == arrayList.size())) {
                 z10 = false;
             }
             y4Var.b(tL_messageMediaVenue, i12, z10, false);

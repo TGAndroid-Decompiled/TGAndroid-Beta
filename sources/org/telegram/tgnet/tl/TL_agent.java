@@ -48,7 +48,7 @@ public class TL_agent {
         public static final int constructor = 1194491015;
         public int flags;
         public long icon_emoji_id;
-        public String f22237id;
+        public String f22238id;
         public String key_url;
         public boolean models_searchable;
         public String title;
@@ -67,7 +67,7 @@ public class TL_agent {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.flags = inputSerializedData.readInt32(z10);
-            this.f22237id = inputSerializedData.readString(z10);
+            this.f22238id = inputSerializedData.readString(z10);
             this.title = inputSerializedData.readString(z10);
             this.vendor = inputSerializedData.readString(z10);
             this.key_url = inputSerializedData.readString(z10);
@@ -81,7 +81,7 @@ public class TL_agent {
             int flag = TLObject.setFlag(this.flags, 1, this.models_searchable);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeString(this.f22237id);
+            outputSerializedData.writeString(this.f22238id);
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.vendor);
             outputSerializedData.writeString(this.key_url);

@@ -22,11 +22,11 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.h31;
-import org.telegram.ui.Components.uc0;
+import org.telegram.ui.Components.i31;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.Components.vc0;
 import org.webrtc.RendererCommon;
 public class t2 extends FrameLayout {
     public boolean E;
@@ -48,26 +48,26 @@ public class t2 extends FrameLayout {
     public float U;
     public float V;
     public float W;
-    public final boolean f34112a;
-    public int f34113a0;
-    public float f34114b;
-    public ValueAnimator f34115b0;
-    public boolean f34116c;
-    public boolean f34117c0;
+    public final boolean f34217a;
+    public int f34218a0;
+    public float f34219b;
+    public ValueAnimator f34220b0;
+    public boolean f34221c;
+    public boolean f34222c0;
     public final s2 d;
-    public float f34118d0;
+    public float f34223d0;
     public final TextureView e;
-    public boolean f34119e0;
-    public final ImageView f34120f;
-    public boolean f34121f0;
+    public boolean f34224e0;
+    public final ImageView f34225f;
+    public boolean f34226f0;
     public final View h;
-    public View f34122n;
-    public final FrameLayout f34123r;
-    public final ImageView f34124s;
+    public View f34227n;
+    public final FrameLayout f34228r;
+    public final ImageView f34229s;
     public final TextView v;
-    public Bitmap f34125w;
-    public final Bitmap f34126x;
-    public float f34127y;
+    public Bitmap f34230w;
+    public final Bitmap f34231x;
+    public float f34232y;
 
     public t2(Context context, boolean z10, boolean z11) {
         this(context, z10, z11, true, false);
@@ -77,7 +77,7 @@ public class t2 extends FrameLayout {
         if (!this.E && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
             this.H = getMeasuredHeight();
             this.I = getMeasuredWidth();
-            if (this.f34121f0 && getParent() != null) {
+            if (this.f34226f0 && getParent() != null) {
                 View view = (View) getParent();
                 this.J = view.getY();
                 this.K = view.getX();
@@ -123,17 +123,17 @@ public class t2 extends FrameLayout {
 
     public final void d(float f7, boolean z10) {
         float f10;
-        if (!this.f34116c) {
+        if (!this.f34221c) {
             return;
         }
         float scaleX = ((View) getParent()).getScaleX();
         this.v.setAlpha(1.0f - f7);
         if (!z10) {
-            f10 = vh.w(0.4f, scaleX, f7, 1.0f / scaleX);
+            f10 = wh.w(0.4f, scaleX, f7, 1.0f / scaleX);
         } else {
             f10 = 1.0f - (0.4f * f7);
         }
-        ImageView imageView = this.f34124s;
+        ImageView imageView = this.f34229s;
         imageView.setScaleX(f10);
         imageView.setScaleY(f10);
         imageView.setTranslationY(AndroidUtilities.dp(60.0f) * f7);
@@ -167,17 +167,17 @@ public class t2 extends FrameLayout {
                 canvas.restore();
             }
         }
-        ImageView imageView = this.f34120f;
+        ImageView imageView = this.f34225f;
         if (imageView.getVisibility() == 0 && s2Var.isFirstFrameRendered()) {
-            float f7 = this.f34127y - 0.10666667f;
-            this.f34127y = f7;
+            float f7 = this.f34232y - 0.10666667f;
+            this.f34232y = f7;
             if (f7 <= 0.0f) {
-                this.f34127y = 0.0f;
+                this.f34232y = 0.0f;
                 imageView.setVisibility(8);
                 return;
             }
             invalidate();
-            imageView.setAlpha(this.f34127y);
+            imageView.setAlpha(this.f34232y);
         }
     }
 
@@ -200,12 +200,12 @@ public class t2 extends FrameLayout {
     }
 
     public View getPlaceholderView() {
-        if (this.f34122n == null) {
+        if (this.f34227n == null) {
             View view = new View(getContext());
-            this.f34122n = view;
-            addView(view, gb1.k());
+            this.f34227n = view;
+            addView(view, kb1.k());
         }
-        return this.f34122n;
+        return this.f34227n;
     }
 
     @Override
@@ -217,12 +217,12 @@ public class t2 extends FrameLayout {
         if (textureView != null) {
             this.U = Math.max(getMeasuredHeight() / textureView.getMeasuredHeight(), getMeasuredWidth() / textureView.getMeasuredWidth());
         }
-        boolean z11 = this.f34112a;
+        boolean z11 = this.f34217a;
         s2 s2Var = this.d;
         if (!z11) {
             s2Var.updateRotation();
         }
-        if (this.f34113a0 == 3) {
+        if (this.f34218a0 == 3) {
             if (textureView != null) {
                 textureView.setScaleX(this.U);
                 textureView.setScaleY(this.U);
@@ -231,7 +231,7 @@ public class t2 extends FrameLayout {
             return;
         }
         if (s2Var.getMeasuredHeight() != 0 && s2Var.getMeasuredWidth() != 0 && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            int i14 = this.f34113a0;
+            int i14 = this.f34218a0;
             if (i14 == 0) {
                 this.T = Math.max(getMeasuredHeight() / s2Var.getMeasuredHeight(), getMeasuredWidth() / s2Var.getMeasuredWidth());
             } else if (i14 == 2) {
@@ -244,7 +244,7 @@ public class t2 extends FrameLayout {
                 }
             } else if (i14 == 1) {
                 this.T = Math.min(getMeasuredHeight() / s2Var.getMeasuredHeight(), getMeasuredWidth() / s2Var.getMeasuredWidth());
-                if (this.f34117c0 && !this.f34121f0 && this.f34115b0 == null && !this.E) {
+                if (this.f34222c0 && !this.f34226f0 && this.f34220b0 == null && !this.E) {
                     this.O = (getMeasuredWidth() - s2Var.getMeasuredWidth()) / 2.0f;
                     this.N = (getMeasuredHeight() - s2Var.getMeasuredHeight()) / 2.0f;
                     invalidateOutline();
@@ -252,19 +252,19 @@ public class t2 extends FrameLayout {
             }
         } else {
             this.T = 1.0f;
-            if (this.f34115b0 == null && !this.E) {
+            if (this.f34220b0 == null && !this.E) {
                 this.O = 0.0f;
                 this.N = 0.0f;
             }
         }
-        if (this.f34125w != null) {
-            this.V = Math.max(getMeasuredWidth() / this.f34125w.getWidth(), getMeasuredHeight() / this.f34125w.getHeight());
+        if (this.f34230w != null) {
+            this.V = Math.max(getMeasuredWidth() / this.f34230w.getWidth(), getMeasuredHeight() / this.f34230w.getHeight());
         }
         if (this.E) {
             this.P /= s2Var.getMeasuredWidth() / this.S;
             this.Q /= s2Var.getMeasuredWidth() / this.S;
             this.E = false;
-            if (this.f34121f0 && getParent() != null) {
+            if (this.f34226f0 && getParent() != null) {
                 View view = (View) getParent();
                 top = this.J - view.getTop();
                 left = this.K - view.getLeft();
@@ -287,10 +287,10 @@ public class t2 extends FrameLayout {
             }
             setTranslationY(f7);
             setTranslationX(left);
-            ValueAnimator valueAnimator = this.f34115b0;
+            ValueAnimator valueAnimator = this.f34220b0;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
-                this.f34115b0.cancel();
+                this.f34220b0.cancel();
             }
             s2Var.setScaleX(this.P);
             s2Var.setScaleY(this.P);
@@ -306,14 +306,14 @@ public class t2 extends FrameLayout {
             final float f11 = this.Q;
             final float f12 = this.R;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            this.f34115b0 = ofFloat;
+            this.f34220b0 = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                     float f13 = 1.0f - floatValue;
                     t2 t2Var = t2.this;
-                    t2Var.f34118d0 = f13;
+                    t2Var.f34223d0 = f13;
                     t2Var.N = t2Var.L * floatValue;
                     t2Var.O = t2Var.M * floatValue;
                     t2Var.invalidateOutline();
@@ -335,13 +335,13 @@ public class t2 extends FrameLayout {
             });
             long j10 = this.F;
             if (j10 != 0) {
-                this.f34115b0.setDuration(j10);
+                this.f34220b0.setDuration(j10);
             } else {
-                this.f34115b0.setDuration(350L);
+                this.f34220b0.setDuration(350L);
             }
-            this.f34115b0.setInterpolator(ds.f27586f);
-            this.f34115b0.addListener(new h31(this, 16));
-            this.f34115b0.start();
+            this.f34220b0.setInterpolator(ds.f27530f);
+            this.f34220b0.addListener(new i31(this, 16));
+            this.f34220b0.start();
             ArrayList arrayList = this.G;
             if (!arrayList.isEmpty()) {
                 for (int i15 = 0; i15 < arrayList.size(); i15++) {
@@ -350,7 +350,7 @@ public class t2 extends FrameLayout {
             }
             arrayList.clear();
             this.F = 0L;
-        } else if (this.f34115b0 == null) {
+        } else if (this.f34220b0 == null) {
             s2Var.setScaleX(this.T);
             s2Var.setScaleY(this.T);
             if (textureView != null) {
@@ -363,12 +363,12 @@ public class t2 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        boolean z10 = this.f34112a;
+        boolean z10 = this.f34217a;
         s2 s2Var = this.d;
         if (!z10) {
-            this.f34119e0 = true;
+            this.f34224e0 = true;
             s2Var.setScreenRotation(((WindowManager) getContext().getSystemService("window")).getDefaultDisplay().getRotation());
-            this.f34119e0 = false;
+            this.f34224e0 = false;
         }
         super.onMeasure(i10, i11);
         e();
@@ -378,7 +378,7 @@ public class t2 extends FrameLayout {
 
     @Override
     public void requestLayout() {
-        if (this.f34119e0) {
+        if (this.f34224e0) {
             return;
         }
         super.requestLayout();
@@ -389,19 +389,19 @@ public class t2 extends FrameLayout {
     }
 
     public void setAnimateWithParent(boolean z10) {
-        this.f34121f0 = z10;
+        this.f34226f0 = z10;
     }
 
     public void setIsScreencast(boolean z10) {
         int i10;
-        this.f34116c = z10;
+        this.f34221c = z10;
         if (z10) {
             i10 = 0;
         } else {
             i10 = 8;
         }
-        this.f34123r.setVisibility(i10);
-        boolean z11 = this.f34116c;
+        this.f34228r.setVisibility(i10);
+        boolean z11 = this.f34221c;
         TextureView textureView = this.e;
         s2 s2Var = this.d;
         if (z11) {
@@ -409,7 +409,7 @@ public class t2 extends FrameLayout {
             if (textureView != null) {
                 textureView.setVisibility(8);
             }
-            this.f34120f.setVisibility(8);
+            this.f34225f.setVisibility(8);
             return;
         }
         s2Var.setVisibility(0);
@@ -419,43 +419,43 @@ public class t2 extends FrameLayout {
     }
 
     public void setRoundCorners(float f7) {
-        if (this.f34114b != f7) {
-            this.f34114b = f7;
+        if (this.f34219b != f7) {
+            this.f34219b = f7;
             invalidateOutline();
         }
     }
 
     public void setStub(t2 t2Var) {
-        if (this.f34116c) {
+        if (this.f34221c) {
             return;
         }
         Bitmap bitmap = t2Var.d.getBitmap();
-        ImageView imageView = this.f34120f;
+        ImageView imageView = this.f34225f;
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
             imageView.setImageBitmap(bitmap);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         } else {
-            imageView.setImageDrawable(t2Var.f34120f.getDrawable());
+            imageView.setImageDrawable(t2Var.f34225f.getDrawable());
         }
-        this.f34127y = 1.0f;
+        this.f34232y = 1.0f;
         imageView.setVisibility(0);
         imageView.setAlpha(1.0f);
     }
 
     public void setThumb(Bitmap bitmap) {
-        this.f34125w = bitmap;
+        this.f34230w = bitmap;
     }
 
     public t2(Context context, boolean z10, boolean z11, boolean z12, boolean z13) {
         super(context);
-        this.f34127y = 1.0f;
+        this.f34232y = 1.0f;
         this.G = new ArrayList();
         this.P = 1.0f;
         this.Q = 1.0f;
         this.R = 1.0f;
-        this.f34112a = z11;
+        this.f34217a = z11;
         ImageView imageView = new ImageView(context);
-        this.f34120f = imageView;
+        this.f34225f = imageView;
         s2 s2Var = new s2(this, context);
         this.d = s2Var;
         s2Var.setFpsReduction(30.0f);
@@ -466,26 +466,26 @@ public class t2 extends FrameLayout {
             View view = new View(context);
             this.h = view;
             view.setBackgroundColor(-14999773);
-            addView(view, gb1.g(-1.0f, -1));
+            addView(view, kb1.g(-1.0f, -1));
             if (z13) {
                 TextureView textureView = new TextureView(context);
                 this.e = textureView;
-                addView(textureView, gb1.i(-1, -2, 17));
+                addView(textureView, kb1.i(-1, -2, 17));
             }
             s2Var.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
-            addView(s2Var, gb1.i(-1, -2, 17));
+            addView(s2Var, kb1.i(-1, -2, 17));
         } else if (!z10) {
             if (z13) {
                 TextureView textureView2 = new TextureView(context);
                 this.e = textureView2;
-                addView(textureView2, gb1.i(-1, -2, 17));
+                addView(textureView2, kb1.i(-1, -2, 17));
             }
-            addView(s2Var, gb1.i(-1, -2, 17));
+            addView(s2Var, kb1.i(-1, -2, 17));
         } else {
             if (z13) {
                 TextureView textureView3 = new TextureView(context);
                 this.e = textureView3;
-                addView(textureView3, gb1.i(-1, -2, 17));
+                addView(textureView3, kb1.i(-1, -2, 17));
             }
             addView(s2Var);
         }
@@ -495,15 +495,15 @@ public class t2 extends FrameLayout {
             textureView4.setOpaque(false);
         }
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f34123r = frameLayout;
-        frameLayout.setBackground(new uc0(true, -14602694, -13935795, -14395293, -14203560));
-        addView(frameLayout, gb1.g(-1.0f, -1));
+        this.f34228r = frameLayout;
+        frameLayout.setBackground(new vc0(true, -14602694, -13935795, -14395293, -14203560));
+        addView(frameLayout, kb1.g(-1.0f, -1));
         frameLayout.setVisibility(8);
         ImageView imageView2 = new ImageView(getContext());
-        this.f34124s = imageView2;
+        this.f34229s = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(R.drawable.screencast_big);
-        frameLayout.addView(imageView2, gb1.h(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
+        frameLayout.addView(imageView2, kb1.h(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
         TextView textView = new TextView(getContext());
         this.v = textView;
         textView.setText(LocaleController.getString(R.string.VoipVideoScreenSharing));
@@ -512,19 +512,19 @@ public class t2 extends FrameLayout {
         textView.setTextColor(-1);
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        frameLayout.addView(textView, gb1.h(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
+        frameLayout.addView(textView, kb1.h(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
         if (z12) {
             setOutlineProvider(new eh.b(this, 5));
             setClipToOutline(true);
         }
-        if (z10 && this.f34126x == null) {
+        if (z10 && this.f34231x == null) {
             try {
                 Bitmap decodeFile = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "voip_icthumb.jpg").getAbsolutePath());
-                this.f34126x = decodeFile;
+                this.f34231x = decodeFile;
                 if (decodeFile == null) {
-                    this.f34126x = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "icthumb.jpg").getAbsolutePath());
+                    this.f34231x = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "icthumb.jpg").getAbsolutePath());
                 }
-                imageView.setImageBitmap(this.f34126x);
+                imageView.setImageBitmap(this.f34231x);
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             } catch (Throwable unused) {
             }

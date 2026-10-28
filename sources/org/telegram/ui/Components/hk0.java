@@ -1,23 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class hk0 extends mm0 {
-    public final pk0 f29006f3;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLObject;
+public final class hk0 implements Runnable {
+    public final int f29008a;
+    public final qk0 f29009b;
+    public final TLObject f29010c;
 
-    public hk0(pk0 pk0Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var);
-        this.f29006f3 = pk0Var;
+    public hk0(qk0 qk0Var, TLObject tLObject, int i10) {
+        this.f29008a = i10;
+        this.f29009b = qk0Var;
+        this.f29010c = tLObject;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        pk0 pk0Var = this.f29006f3;
-        mb0 mb0Var = pk0Var.J;
-        if (mb0Var != null) {
-            mb0Var.measure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 0));
+    public final void run() {
+        switch (this.f29008a) {
+            case 0:
+                qk0 qk0Var = this.f29009b;
+                NotificationCenter.getInstance(qk0Var.f31921b).doOnIdle(new hk0(qk0Var, this.f29010c, 1));
+                return;
+            default:
+                qk0.a(this.f29009b, this.f29010c);
+                return;
         }
-        super.onMeasure(i10, i11);
-        pk0Var.j();
     }
 }

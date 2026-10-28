@@ -49,7 +49,7 @@ public final class w {
     public int f3540z;
 
     public w() {
-        f9.g0 g0Var = f9.i0.f10287b;
+        f9.g0 g0Var = f9.i0.f10286b;
         this.f3521c = f9.s1.e;
         this.h = -1;
         this.f3524i = -1;

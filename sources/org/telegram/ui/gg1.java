@@ -1,36 +1,33 @@
 package org.telegram.ui;
-public final class gg1 implements Runnable {
-    public final int f39683a;
-    public final UserInfoActivity f39684b;
 
-    public gg1(UserInfoActivity userInfoActivity, int i10) {
-        this.f39683a = i10;
-        this.f39684b = userInfoActivity;
-    }
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class gg1 extends FrameLayout {
+    public final tg.p0 f39613a;
 
-    @Override
-    public final void run() {
-        switch (this.f39683a) {
-            case 0:
-                this.f39684b.presentFragment(new PrivacyControlActivity(9, true));
-                return;
-            case 1:
-                org.telegram.ui.Components.l71 l71Var = this.f39684b.f36320x;
-                if (l71Var != null) {
-                    l71Var.f32152g3.O(true);
-                    return;
-                }
-                return;
-            case 2:
-                UserInfoActivity userInfoActivity = this.f39684b;
-                userInfoActivity.getClass();
-                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
-                return;
-            default:
-                UserInfoActivity userInfoActivity2 = this.f39684b;
-                userInfoActivity2.getClass();
-                userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
-                return;
-        }
+    public gg1(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context);
+        LinearLayout linearLayout = new LinearLayout(context);
+        addView(linearLayout, org.telegram.ui.Components.kb1.i(-1, -2, 80));
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(context);
+        org.telegram.ui.ActionBar.f7.W(textView, org.telegram.ui.ActionBar.f7.h(org.telegram.ui.ActionBar.y6.G6, 100), u6Var);
+        textView.setTextSize(1, 13.0f);
+        textView.setGravity(17);
+        textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
+        linearLayout.addView(textView, org.telegram.ui.Components.kb1.x(-1, -2, 0, 16, 17, 17, 16));
+        tg.p0 p0Var = new tg.p0(context, u6Var, false);
+        this.f39613a = p0Var;
+        String string = LocaleController.getString(R.string.UnlockPremiumStickers);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) "d ").setSpan(new org.telegram.ui.Components.zq(0, context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) string);
+        p0Var.f49016f.setText(spannableStringBuilder);
+        linearLayout.addView(p0Var, org.telegram.ui.Components.kb1.x(-1, 48, 0, 16, 0, 16, 16));
     }
 }

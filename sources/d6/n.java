@@ -85,7 +85,7 @@ public final class n extends p6.a {
             jSONObject.put("startIndex", this.f8108n);
             long j10 = this.f8109r;
             if (j10 != -1) {
-                Pattern pattern = h6.a.f12619a;
+                Pattern pattern = h6.a.f12618a;
                 jSONObject.put("startTime", j10 / 1000.0d);
             }
             jSONObject.put("shuffle", this.f8110s);

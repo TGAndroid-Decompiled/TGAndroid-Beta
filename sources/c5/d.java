@@ -67,7 +67,7 @@ public abstract class d {
     public static void C() {
         int i10 = f6139a;
         if (i10 == 0) {
-            PhotoViewer.u1().k3();
+            PhotoViewer.v1().l3();
         } else if (i10 == 1) {
             MediaController.getInstance().syncCastedPlayer();
         }
@@ -90,13 +90,13 @@ public abstract class d {
     }
 
     public static Person E(l0 l0Var) {
-        Person.Builder name = new Person.Builder().setName(l0Var.f9565a);
-        IconCompat iconCompat = l0Var.f9566b;
+        Person.Builder name = new Person.Builder().setName(l0Var.f9564a);
+        IconCompat iconCompat = l0Var.f9565b;
         Icon icon = null;
         if (iconCompat != null) {
             icon = iconCompat.m(null);
         }
-        return name.setIcon(icon).setUri(l0Var.f9567c).setKey(l0Var.d).setBot(l0Var.e).setImportant(l0Var.f9568f).build();
+        return name.setIcon(icon).setUri(l0Var.f9566c).setKey(l0Var.d).setBot(l0Var.e).setImportant(l0Var.f9567f).build();
     }
 
     public static void a(Notification.Builder builder, Person person) {
@@ -165,7 +165,7 @@ public abstract class d {
                 e6.a c11 = e6.a.c(f());
                 if (c11 != null && (c10 = c11.b().c()) != null && c10.b()) {
                     o6.l.e("Must be called from the main thread.");
-                    return c10.f9808j;
+                    return c10.f9807j;
                 }
             } catch (Exception e10) {
                 FileLog.e(e10);

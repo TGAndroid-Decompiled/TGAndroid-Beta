@@ -8,21 +8,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class na extends a8.x {
-    public final pb f52254b;
+    public final pb f52312b;
 
     public na(pb pbVar) {
         super(2);
-        this.f52254b = pbVar;
+        this.f52312b = pbVar;
     }
 
     @Override
     public final void clear() {
-        this.f52254b.clear();
+        this.f52312b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f52254b.f739b.entrySet();
+        Set entrySet = this.f52312b.f739b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -33,12 +33,12 @@ public final class na extends a8.x {
 
     @Override
     public final boolean isEmpty() {
-        return this.f52254b.isEmpty();
+        return this.f52312b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new ta(this.f52254b, (char) 0);
+        return new ta(this.f52312b, (char) 0);
     }
 
     @Override
@@ -49,9 +49,9 @@ public final class na extends a8.x {
         }
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
-        e eVar = (e) this.f52254b.e;
+        e eVar = (e) this.f52312b.e;
         Object key = entry.getKey();
-        i iVar = eVar.f52124c;
+        i iVar = eVar.f52182c;
         iVar.getClass();
         try {
             obj2 = iVar.remove(key);
@@ -72,7 +72,7 @@ public final class na extends a8.x {
     public final boolean removeAll(Collection collection) {
         try {
             if (collection != null) {
-                return w7.f5.a(this, collection);
+                return w7.g5.a(this, collection);
             }
             throw null;
         } catch (UnsupportedOperationException unused) {
@@ -111,11 +111,11 @@ public final class na extends a8.x {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            e eVar = (e) this.f52254b.e;
-            a aVar = eVar.f52107a;
+            e eVar = (e) this.f52312b.e;
+            a aVar = eVar.f52165a;
             if (aVar == null) {
-                aVar = new a(eVar, eVar.f52124c);
-                eVar.f52107a = aVar;
+                aVar = new a(eVar, eVar.f52182c);
+                eVar.f52165a = aVar;
             }
             return aVar.retainAll(hashSet);
         }
@@ -123,6 +123,6 @@ public final class na extends a8.x {
 
     @Override
     public final int size() {
-        return this.f52254b.f739b.size();
+        return this.f52312b.f739b.size();
     }
 }

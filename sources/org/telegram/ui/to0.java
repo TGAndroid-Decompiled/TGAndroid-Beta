@@ -1,47 +1,41 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class to0 implements r0.n, org.telegram.ui.ActionBar.b2 {
-    public final int f43877a;
-    public final rp0 f43878b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class to0 implements Utilities.Callback {
+    public final int f43684a = 0;
+    public final bg.b f43685b;
+    public final TL_stars.TL_starGiftUnique f43686c;
+    public final long d;
+    public final Object e;
+    public final Object f43687f;
 
-    public to0(rp0 rp0Var, int i10) {
-        this.f43877a = i10;
-        this.f43878b = rp0Var;
+    public to0(tp0 tp0Var, bg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, so0 so0Var) {
+        this.e = tp0Var;
+        this.f43685b = bVar;
+        this.f43686c = tL_starGiftUnique;
+        this.d = j10;
+        this.f43687f = so0Var;
     }
 
     @Override
-    public r0.k1 P0(View view, r0.k1 k1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        rp0 rp0Var = this.f43878b;
-        rp0Var.f43228b0 = defaultWindowInsets;
-        cp0 cp0Var = rp0Var.h.f41316b;
-        int i10 = defaultWindowInsets.f13450a;
-        int paddingTop = cp0Var.getPaddingTop();
-        i0.b bVar = rp0Var.f43228b0;
-        cp0Var.setPadding(i10, paddingTop, bVar.f13452c, AndroidUtilities.dp(72.0f) + bVar.d);
-        cp0 cp0Var2 = rp0Var.f43233n.f41316b;
-        int i11 = rp0Var.f43228b0.f13450a;
-        int paddingTop2 = cp0Var2.getPaddingTop();
-        i0.b bVar2 = rp0Var.f43228b0;
-        cp0Var2.setPadding(i11, paddingTop2, bVar2.f13452c, AndroidUtilities.dp(72.0f) + bVar2.d);
-        FrameLayout frameLayout = rp0Var.P;
-        i0.b bVar3 = rp0Var.f43228b0;
-        frameLayout.setPadding(bVar3.f13450a, 0, bVar3.f13452c, bVar3.d);
-        return r0.k1.f47117b;
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f43877a) {
-            case 1:
-                this.f43878b.finishFragment();
+    public final void run(Object obj) {
+        switch (this.f43684a) {
+            case 0:
+                tp0.W((tp0) this.e, this.f43685b, this.f43686c, this.d, (so0) this.f43687f, (TLRPC.TL_payments_paymentFormStarGift) obj);
                 return;
             default:
-                this.f43878b.z0();
+                zh.g4.U((zh.g4) this.e, (org.telegram.ui.ActionBar.e2) this.f43687f, this.f43685b, this.f43686c, this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
                 return;
         }
+    }
+
+    public to0(zh.g4 g4Var, org.telegram.ui.ActionBar.e2 e2Var, bg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10) {
+        this.e = g4Var;
+        this.f43687f = e2Var;
+        this.f43685b = bVar;
+        this.f43686c = tL_starGiftUnique;
+        this.d = j10;
     }
 }

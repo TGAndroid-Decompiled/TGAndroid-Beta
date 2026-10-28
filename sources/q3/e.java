@@ -2,14 +2,14 @@ package q3;
 
 import j$.util.Objects;
 public final class e extends i {
-    public final String f46937b;
-    public final String f46938c;
+    public final String f46972b;
+    public final String f46973c;
     public final String d;
 
     public e(String str, String str2, String str3) {
         super("COMM");
-        this.f46937b = str;
-        this.f46938c = str2;
+        this.f46972b = str;
+        this.f46973c = str2;
         this.d = str3;
     }
 
@@ -19,7 +19,7 @@ public final class e extends i {
         }
         if (obj != null && e.class == obj.getClass()) {
             e eVar = (e) obj;
-            if (Objects.equals(this.f46938c, eVar.f46938c) && Objects.equals(this.f46937b, eVar.f46937b) && Objects.equals(this.d, eVar.d)) {
+            if (Objects.equals(this.f46973c, eVar.f46973c) && Objects.equals(this.f46972b, eVar.f46972b) && Objects.equals(this.d, eVar.d)) {
                 return true;
             }
         }
@@ -30,14 +30,14 @@ public final class e extends i {
         int i10;
         int i11;
         int i12 = 0;
-        String str = this.f46937b;
+        String str = this.f46972b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (527 + i10) * 31;
-        String str2 = this.f46938c;
+        String str2 = this.f46973c;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
@@ -53,6 +53,6 @@ public final class e extends i {
 
     @Override
     public final String toString() {
-        return this.f46943a + ": language=" + this.f46937b + ", description=" + this.f46938c + ", text=" + this.d;
+        return this.f46978a + ": language=" + this.f46972b + ", description=" + this.f46973c + ", text=" + this.d;
     }
 }

@@ -28,7 +28,7 @@ public final class f implements l {
                 i e = (i) obj;
                 kotlin.jvm.internal.i.e(e, "e");
                 ((Executor) this.f3114b).execute(new h((v0.i) this.f3115c, e, 1));
-                return jd.i.f15580a;
+                return jd.i.f15579a;
             case 1:
                 CancellationSignal cancellationSignal = (CancellationSignal) this.f3114b;
                 c1.e eVar = (c1.e) this.f3115c;
@@ -38,7 +38,7 @@ public final class f implements l {
                 if (!a1.h.a(cancellationSignal)) {
                     Intent intent = new Intent(context, HiddenActivity.class);
                     d.a(eVar.f5925i, intent, "BEGIN_SIGN_IN");
-                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f52057a);
+                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f52115a);
                     try {
                         context.startActivity(intent);
                     } catch (Exception unused) {
@@ -48,7 +48,7 @@ public final class f implements l {
                         }
                     }
                 }
-                return jd.i.f15580a;
+                return jd.i.f15579a;
             default:
                 CancellationSignal cancellationSignal2 = (CancellationSignal) this.f3114b;
                 d1.e eVar2 = (d1.e) this.f3115c;
@@ -75,7 +75,7 @@ public final class f implements l {
                         }
                     }
                 }
-                return jd.i.f15580a;
+                return jd.i.f15579a;
         }
     }
 }

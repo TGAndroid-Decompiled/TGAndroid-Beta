@@ -1,10 +1,10 @@
 package h2;
 public final class k extends Thread {
-    public final l f12573a;
+    public final l f12572a;
 
     public k(l lVar) {
         super("ExoPlayer:SimpleDecoder");
-        this.f12573a = lVar;
+        this.f12572a = lVar;
     }
 
     @Override
@@ -14,6 +14,6 @@ public final class k extends Thread {
             } catch (InterruptedException e) {
                 throw new IllegalStateException(e);
             }
-        } while (this.f12573a.j());
+        } while (this.f12572a.j());
     }
 }

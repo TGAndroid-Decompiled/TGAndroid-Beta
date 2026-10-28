@@ -1,149 +1,70 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class tv0 extends FrameLayout {
-    public final int f43921a;
-    public final xv0 f43922b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class tv0 implements View.OnClickListener {
+    public final th0 f43789a;
+    public final wn f43790b;
+    public final org.telegram.ui.Components.nm0 f43791c;
+    public final LinearLayout d;
+    public final org.telegram.ui.Components.l80 e;
+    public final org.telegram.ui.Components.l80 f43792f;
+    public final zv0 h;
 
-    public tv0(xv0 xv0Var, Context context, int i10) {
-        super(context);
-        this.f43921a = i10;
-        this.f43922b = xv0Var;
+    public tv0(zv0 zv0Var, th0 th0Var, wn wnVar, org.telegram.ui.Components.nm0 nm0Var, LinearLayout linearLayout, org.telegram.ui.Components.l80 l80Var, org.telegram.ui.Components.l80 l80Var2) {
+        this.h = zv0Var;
+        this.f43789a = th0Var;
+        this.f43790b = wnVar;
+        this.f43791c = nm0Var;
+        this.d = linearLayout;
+        this.e = l80Var;
+        this.f43792f = l80Var2;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        org.telegram.ui.Cells.s1 s1Var;
-        switch (this.f43921a) {
-            case 0:
-                xv0 xv0Var = this.f43922b;
-                if (xv0Var.f45887y > 0.0f && xv0Var.f45885w != null) {
-                    xv0Var.f45886x.reset();
-                    float width = getWidth() / xv0Var.f45884s.getWidth();
-                    xv0Var.f45886x.postScale(width, width);
-                    xv0Var.v.setLocalMatrix(xv0Var.f45886x);
-                    xv0Var.f45885w.setAlpha((int) (xv0Var.f45887y * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), xv0Var.f45885w);
-                } else {
-                    canvas2 = canvas;
+    public final void onClick(View view) {
+        th0 th0Var = this.f43789a;
+        ArrayList arrayList = th0Var.f43647b;
+        ArrayList arrayList2 = th0Var.f43648c;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            zv0 zv0Var = this.h;
+            wn wnVar = this.f43790b;
+            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject == null) {
+                    return;
                 }
-                if (xv0Var.O && (s1Var = xv0Var.L) != null) {
-                    s1Var.L7 = xv0Var.P;
-                    s1Var.invalidate();
-                    xv0Var.O = false;
+                Bundle bundle = new Bundle();
+                if (tLObject instanceof TLRPC.User) {
+                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f22177id);
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f22028id);
                 }
-                super.dispatchDraw(canvas2);
+                wnVar.presentFragment(new ProfileActivity(bundle, null));
+                zv0Var.c(false);
                 return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f43921a) {
-            case 0:
-                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f43922b.c(true);
-                    return true;
-                }
-                return super.dispatchKeyEventPreIme(keyEvent);
-            default:
-                return super.dispatchKeyEventPreIme(keyEvent);
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f43921a) {
-            case 1:
-                xv0 xv0Var = this.f43922b;
-                if (view != xv0Var.K && view != xv0Var.J) {
-                    return super.drawChild(canvas, view, j10);
-                }
-                canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(xv0Var.M, 0.0f, xv0Var.f45887y), getWidth(), AndroidUtilities.lerp(xv0Var.N, getHeight(), xv0Var.f45887y));
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                canvas.restore();
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f43921a) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                this.f43922b.d();
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f43921a) {
-            case 2:
-                int size = View.MeasureSpec.getSize(i10);
-                int size2 = View.MeasureSpec.getSize(i11);
-                xv0 xv0Var = this.f43922b;
-                xv0Var.e();
-                for (int i12 = 0; i12 < getChildCount(); i12++) {
-                    View childAt = getChildAt(i12);
-                    ViewGroup viewGroup = xv0Var.T;
-                    if (childAt == viewGroup) {
-                        float f7 = xv0Var.U;
-                        if (f7 > 0.0f) {
-                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f7), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    ViewGroup viewGroup2 = xv0Var.R;
-                    if (childAt == viewGroup2) {
-                        float f10 = xv0Var.S;
-                        if (f10 > 0.0f) {
-                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    org.telegram.ui.Components.fl0 fl0Var = xv0Var.Q;
-                    if (childAt == fl0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(fl0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    }
-                }
-                setMeasuredDimension(size, size2);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f43921a) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                xv0 xv0Var = this.f43922b;
-                ih.d.c(xv0Var.F, xv0Var.f45875c);
-                xv0Var.G.d();
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
+            }
+            if (SharedConfig.messageSeenHintCount > 0 && wnVar.f45163j1.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
+                org.telegram.ui.Components.qc t10 = new org.telegram.ui.Components.wc(org.telegram.ui.Components.lb.a(zv0Var.getContext()), zv0Var.f46377b).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
+                wnVar.f45365z1 = t10;
+                t10.f31861j = 4000;
+                t10.j();
+                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
+            }
+            org.telegram.ui.Components.nm0 nm0Var = this.f43791c;
+            nm0Var.requestLayout();
+            this.d.requestLayout();
+            nm0Var.getAdapter().l();
+            this.e.K(this.f43792f);
         }
     }
 }

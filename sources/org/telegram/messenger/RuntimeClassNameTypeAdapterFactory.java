@@ -27,8 +27,8 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements fb.v {
     @Override
     public <R> fb.u create(final fb.g gVar, final mb.a<R> aVar) {
         fb.a aVar2 = this.exclusionStrategy;
-        Class cls = aVar.f18407a;
-        Class cls2 = aVar.f18407a;
+        Class cls = aVar.f18406a;
+        Class cls2 = aVar.f18406a;
         if (aVar2.shouldSkipClass(cls.getClass())) {
             return null;
         }
@@ -70,7 +70,7 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements fb.v {
                         hb.d.l(jsonTree, bVar);
                         return;
                     }
-                    hb.m mVar = jsonTree.h().f10397a;
+                    hb.m mVar = jsonTree.h().f10396a;
                     if (!mVar.containsKey(RuntimeClassNameTypeAdapterFactory.this.typeFieldName)) {
                         fb.l lVar = new fb.l();
                         lVar.n(RuntimeClassNameTypeAdapterFactory.this.typeFieldName, new fb.m(simpleName));

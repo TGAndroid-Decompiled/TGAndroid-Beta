@@ -6,40 +6,40 @@ import android.os.Parcelable;
 import com.google.android.gms.common.internal.BinderWrapper;
 import o6.f0;
 public final class x implements Parcelable.Creator {
-    public final int f18705a;
+    public final int f18704a;
 
     public x(int i10) {
-        this.f18705a = i10;
+        this.f18704a = i10;
     }
 
     public static void a(o6.f fVar, Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        int i11 = fVar.f19110a;
+        int i11 = fVar.f19109a;
         df.s(parcel, 1, 4);
         parcel.writeInt(i11);
-        int i12 = fVar.f19111b;
+        int i12 = fVar.f19110b;
         df.s(parcel, 2, 4);
         parcel.writeInt(i12);
-        int i13 = fVar.f19112c;
+        int i13 = fVar.f19111c;
         df.s(parcel, 3, 4);
         parcel.writeInt(i13);
         df.l(parcel, 4, fVar.d);
         df.f(parcel, 5, fVar.e);
-        df.o(parcel, 6, fVar.f19113f, i10);
+        df.o(parcel, 6, fVar.f19112f, i10);
         df.b(parcel, 7, fVar.h);
-        df.k(parcel, 8, fVar.f19114n, i10);
-        df.o(parcel, 10, fVar.f19115r, i10);
-        df.o(parcel, 11, fVar.f19116s, i10);
+        df.k(parcel, 8, fVar.f19113n, i10);
+        df.o(parcel, 10, fVar.f19114r, i10);
+        df.o(parcel, 11, fVar.f19115s, i10);
         boolean z10 = fVar.v;
         df.s(parcel, 12, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        int i14 = fVar.f19117w;
+        int i14 = fVar.f19116w;
         df.s(parcel, 13, 4);
         parcel.writeInt(i14);
-        boolean z11 = fVar.f19118x;
+        boolean z11 = fVar.f19117x;
         df.s(parcel, 14, 4);
         parcel.writeInt(z11 ? 1 : 0);
-        df.l(parcel, 15, fVar.f19119y);
+        df.l(parcel, 15, fVar.f19118y);
         df.r(parcel, q5);
     }
 
@@ -50,7 +50,7 @@ public final class x implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f18705a) {
+        switch (this.f18704a) {
             case 0:
                 return new z[i10];
             case 1:

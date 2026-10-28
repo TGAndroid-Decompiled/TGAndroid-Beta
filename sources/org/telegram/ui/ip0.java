@@ -1,15 +1,13 @@
 package org.telegram.ui;
-public final class ip0 extends t51 {
-    public final lp0 e;
 
-    public ip0(lp0 lp0Var, hp0 hp0Var) {
-        super(hp0Var);
-        this.e = lp0Var;
-    }
-
+import android.graphics.Canvas;
+public final class ip0 extends org.telegram.ui.Cells.ka {
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.e.f41332o0 = null;
+    public final void draw(Canvas canvas) {
+        if (canvas.isHardwareAccelerated()) {
+            super.draw(canvas);
+        } else {
+            ag.z0.a(canvas, this, new t3(this, 16));
+        }
     }
 }

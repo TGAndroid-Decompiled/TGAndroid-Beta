@@ -17,26 +17,26 @@ import java.util.concurrent.TimeUnit;
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
 public final class h implements androidx.emoji2.text.k {
-    public static h f16937b;
-    public final Context f16938a;
+    public static h f16936b;
+    public final Context f16937a;
 
     public h(Context context, int i10) {
         switch (i10) {
             case 1:
-                this.f16938a = context.getApplicationContext();
+                this.f16937a = context.getApplicationContext();
                 return;
             case 2:
-                this.f16938a = context.getApplicationContext();
+                this.f16937a = context.getApplicationContext();
                 return;
             case 3:
-                this.f16938a = context;
+                this.f16937a = context;
                 return;
             case 4:
                 context.getClass();
-                this.f16938a = context;
+                this.f16937a = context;
                 return;
             default:
-                this.f16938a = context.getApplicationContext();
+                this.f16937a = context.getApplicationContext();
                 return;
         }
     }
@@ -56,15 +56,15 @@ public final class h implements androidx.emoji2.text.k {
         o6.l.h(context);
         synchronized (h.class) {
             try {
-                if (f16937b == null) {
+                if (f16936b == null) {
                     o.a(context);
-                    f16937b = new h(context, 0);
+                    f16936b = new h(context, 0);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f16937b;
+        return f16936b;
     }
 
     public static int e(b2.x r5) {
@@ -121,7 +121,7 @@ public final class h implements androidx.emoji2.text.k {
         } else {
             cancellationSignal = null;
         }
-        FingerprintManager c10 = c(this.f16938a);
+        FingerprintManager c10 = c(this.f16937a);
         if (c10 != null) {
             if (h0Var != null) {
                 Mac mac = (Mac) h0Var.d;

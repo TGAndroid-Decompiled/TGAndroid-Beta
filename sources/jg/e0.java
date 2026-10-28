@@ -7,7 +7,7 @@ import org.telegram.ui.Components.dk;
 import org.telegram.ui.Components.jl;
 import org.telegram.ui.Components.li;
 import org.telegram.ui.Components.mj;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.sl;
 import org.telegram.ui.Components.tn;
 import org.telegram.ui.Components.yz;
@@ -15,8 +15,8 @@ public final class e0 extends yz {
     public final int U;
     public final li V;
 
-    public e0(li liVar, int i10, mm0 mm0Var, int i11) {
-        super(i10, 0, mm0Var);
+    public e0(li liVar, int i10, nm0 nm0Var, int i11) {
+        super(i10, 0, nm0Var);
         this.U = i11;
         this.V = liVar;
     }
@@ -25,7 +25,7 @@ public final class e0 extends yz {
     public int[] t(View view, Rect rect) {
         switch (this.U) {
             case 4:
-                int C = this.f47828n - C();
+                int C = this.f47863n - C();
                 int top = (view.getTop() + rect.top) - view.getScrollY();
                 int min = Math.min(0, top);
                 int max = Math.max(0, (rect.height() + top) - C);
@@ -43,27 +43,27 @@ public final class e0 extends yz {
         switch (this.U) {
             case 0:
                 d0 d0Var = new d0(this, recyclerView.getContext());
-                d0Var.f47680a = i10;
+                d0Var.f47715a = i10;
                 w0(d0Var);
                 return;
             case 1:
                 mj mjVar = new mj(this, recyclerView.getContext());
-                mjVar.f47680a = i10;
+                mjVar.f47715a = i10;
                 w0(mjVar);
                 return;
             case 2:
                 dk dkVar = new dk(this, recyclerView.getContext());
-                dkVar.f47680a = i10;
+                dkVar.f47715a = i10;
                 w0(dkVar);
                 return;
             case 3:
                 jl jlVar = new jl(this, recyclerView.getContext());
-                jlVar.f47680a = i10;
+                jlVar.f47715a = i10;
                 w0(jlVar);
                 return;
             default:
                 tn tnVar = new tn(this, recyclerView.getContext());
-                tnVar.f47680a = i10;
+                tnVar.f47715a = i10;
                 w0(tnVar);
                 return;
         }

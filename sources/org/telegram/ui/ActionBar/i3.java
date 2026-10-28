@@ -3,16 +3,16 @@ package org.telegram.ui.ActionBar;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.DrawableWrapper;
 public final class i3 extends DrawableWrapper {
-    public ColorFilter f22716a;
+    public ColorFilter f22717a;
 
     @Override
     public final ColorFilter getColorFilter() {
-        return this.f22716a;
+        return this.f22717a;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f22716a = colorFilter;
+        this.f22717a = colorFilter;
         super.setColorFilter(colorFilter);
     }
 }

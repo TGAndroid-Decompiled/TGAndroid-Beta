@@ -1,29 +1,27 @@
 package org.telegram.messenger;
-public final class di implements Runnable {
-    public final int f19922a;
-    public final SecretChatHelper f19923b;
-    public final long f19924c;
 
-    public di(SecretChatHelper secretChatHelper, long j10, int i10) {
-        this.f19922a = i10;
-        this.f19923b = secretChatHelper;
-        this.f19924c = j10;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class di implements RequestDelegate {
+    public final int f19924a;
+    public final SecretChatHelper f19925b;
+    public final TLRPC.EncryptedChat f19926c;
+
+    public di(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
+        this.f19924a = i10;
+        this.f19925b = secretChatHelper;
+        this.f19926c = encryptedChat;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19922a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19924a) {
             case 0:
-                SecretChatHelper.y(this.f19923b, this.f19924c);
-                return;
-            case 1:
-                SecretChatHelper.u(this.f19923b, this.f19924c);
-                return;
-            case 2:
-                SecretChatHelper.j(this.f19923b, this.f19924c);
+                this.f19925b.lambda$acceptSecretChat$22(this.f19926c, tLObject, tL_error);
                 return;
             default:
-                SecretChatHelper.x(this.f19923b, this.f19924c);
+                this.f19925b.lambda$acceptSecretChat$23(this.f19926c, tLObject, tL_error);
                 return;
         }
     }

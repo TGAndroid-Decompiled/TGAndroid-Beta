@@ -5,14 +5,14 @@ public enum c implements na.b {
     IOS(2),
     WEB(3);
     
-    public final int f52502a;
+    public final int f52560a;
 
     c(int i10) {
-        this.f52502a = i10;
+        this.f52560a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f52502a;
+        return this.f52560a;
     }
 }

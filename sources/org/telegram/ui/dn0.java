@@ -1,23 +1,43 @@
 package org.telegram.ui;
 
-import java.util.TimerTask;
+import android.content.Context;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class dn0 extends TimerTask {
-    public final en0 f38914a;
+public final class dn0 extends TextView {
+    public final int f38646a;
 
-    public dn0(en0 en0Var) {
-        this.f38914a = en0Var;
+    public dn0(Context context, int i10) {
+        super(context);
+        this.f38646a = i10;
     }
 
     @Override
-    public final void run() {
-        en0 en0Var = this.f38914a;
-        if (en0Var.v == null) {
-            return;
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f38646a) {
+            case 3:
+                return Button.class.getName();
+            default:
+                return super.getAccessibilityClassName();
         }
-        double currentTimeMillis = System.currentTimeMillis();
-        en0Var.f39150y = (int) (en0Var.f39150y - (currentTimeMillis - en0Var.F));
-        en0Var.F = currentTimeMillis;
-        AndroidUtilities.runOnUIThread(new lj0(this, 8));
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f38646a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

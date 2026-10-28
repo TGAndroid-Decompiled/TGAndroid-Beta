@@ -5,26 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.cy0;
+import org.telegram.ui.Components.dy0;
 public final class w0 implements Utilities.Callback {
-    public final int f50271a;
-    public final z0 f50272b;
+    public final int f50306a;
+    public final z0 f50307b;
 
     public w0(z0 z0Var, int i10) {
-        this.f50271a = i10;
-        this.f50272b = z0Var;
+        this.f50306a = i10;
+        this.f50307b = z0Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f50271a) {
+        switch (this.f50306a) {
             case 0:
                 String str = (String) obj;
-                z0 z0Var = this.f50272b;
-                ArrayList arrayList = z0Var.f50287g0;
-                cy0 cy0Var = z0Var.f50301v0;
-                z0Var.f50293n0 = str;
-                int i10 = z0Var.f50297r0;
+                z0 z0Var = this.f50307b;
+                ArrayList arrayList = z0Var.f50322g0;
+                dy0 dy0Var = z0Var.f50336v0;
+                z0Var.f50328n0 = str;
+                int i10 = z0Var.f50332r0;
                 if (i10 != 1) {
                     if (i10 != 2) {
                         if (i10 == 3) {
@@ -34,26 +34,26 @@ public final class w0 implements Utilities.Callback {
                         }
                         return;
                     } else if (TextUtils.isEmpty(str)) {
-                        AndroidUtilities.cancelRunOnUIThread(cy0Var);
+                        AndroidUtilities.cancelRunOnUIThread(dy0Var);
                         arrayList.clear();
-                        arrayList.addAll(s.e(z0Var.f50296q0.f22027id));
+                        arrayList.addAll(s.e(z0Var.f50331q0.f22028id));
                         z0Var.a0(false, true);
                         z0Var.X(true);
                         return;
                     } else {
-                        AndroidUtilities.cancelRunOnUIThread(cy0Var);
-                        AndroidUtilities.runOnUIThread(cy0Var, 350L);
+                        AndroidUtilities.cancelRunOnUIThread(dy0Var);
+                        AndroidUtilities.runOnUIThread(dy0Var, 350L);
                         return;
                     }
                 }
-                AndroidUtilities.cancelRunOnUIThread(cy0Var);
-                AndroidUtilities.runOnUIThread(cy0Var, 350L);
+                AndroidUtilities.cancelRunOnUIThread(dy0Var);
+                AndroidUtilities.runOnUIThread(dy0Var, 350L);
                 return;
             default:
                 List list = (List) obj;
-                z0 z0Var2 = this.f50272b;
-                ArrayList arrayList2 = z0Var2.f50287g0;
-                if (!TextUtils.isEmpty(z0Var2.f50293n0)) {
+                z0 z0Var2 = this.f50307b;
+                ArrayList arrayList2 = z0Var2.f50322g0;
+                if (!TextUtils.isEmpty(z0Var2.f50328n0)) {
                     arrayList2.clear();
                     arrayList2.addAll(list);
                     z0Var2.b0(true, true);

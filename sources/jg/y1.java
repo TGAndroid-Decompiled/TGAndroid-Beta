@@ -25,32 +25,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.aq;
 import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.p10;
-import org.telegram.ui.Components.q11;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.zp;
+import org.telegram.ui.Components.r11;
+import org.telegram.ui.Components.r61;
 public final class y1 extends FrameLayout {
-    public final j9 f15901a;
-    public final ImageReceiver f15902b;
-    public final xh.n f15903c;
-    public final zp d;
+    public final j9 f15900a;
+    public final ImageReceiver f15901b;
+    public final xh.n f15902c;
+    public final aq d;
     public final ImageView e;
-    public final u6 f15904f;
+    public final u6 f15903f;
     public boolean h;
-    public final int[] f15905n;
-    public boolean f15906r;
+    public final int[] f15904n;
+    public boolean f15905r;
 
     public y1(Context context, u6 u6Var, boolean z10) {
         super(context);
         int i10;
         float f7;
         int i11;
-        this.f15901a = new j9((u6) null);
-        this.f15902b = new ImageReceiver(this);
-        this.f15905n = new int[1];
-        this.f15904f = u6Var;
+        this.f15900a = new j9((u6) null);
+        this.f15901b = new ImageReceiver(this);
+        this.f15904n = new int[1];
+        this.f15903f = u6Var;
         setWillNotDraw(false);
         if (z10) {
             i10 = 42;
@@ -58,10 +58,10 @@ public final class y1 extends FrameLayout {
             i10 = 16;
         }
         xh.n nVar = new xh.n(context);
-        this.f15903c = nVar;
+        this.f15902c = nVar;
         nVar.setLines(2);
         nVar.setEllipsize(TextUtils.TruncateAt.END);
-        f7.V(nVar, y6.f23767z6, u6Var);
+        f7.V(nVar, y6.f23768z6, u6Var);
         nVar.setTextSize(1, 14.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -69,7 +69,7 @@ public final class y1 extends FrameLayout {
         } else {
             f7 = 64.0f;
         }
-        addView(nVar, gb1.h(-1, -2.0f, 7, f7, 7.0f, z11 ? 64.0f : i10, 0.0f));
+        addView(nVar, kb1.h(-1, -2.0f, 7, f7, 7.0f, z11 ? 64.0f : i10, 0.0f));
         if (z10) {
             ImageView imageView = new ImageView(context);
             this.e = imageView;
@@ -82,16 +82,16 @@ public final class y1 extends FrameLayout {
             } else {
                 i11 = 5;
             }
-            addView(imageView, gb1.i(50, 50, i11 | 112));
+            addView(imageView, kb1.i(50, 50, i11 | 112));
         } else {
             this.e = null;
         }
-        zp zpVar = new zp(getContext(), 21, u6Var);
-        this.d = zpVar;
-        zpVar.b(-1, y6.f23356d6, y6.f23485k7);
-        zpVar.setDrawUnchecked(false);
-        zpVar.setDrawBackgroundAsArc(3);
-        addView(zpVar, gb1.m(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        aq aqVar = new aq(getContext(), 21, u6Var);
+        this.d = aqVar;
+        aqVar.b(-1, y6.f23357d6, y6.f23486k7);
+        aqVar.setDrawUnchecked(false);
+        aqVar.setDrawBackgroundAsArc(3);
+        addView(aqVar, kb1.m(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
     }
 
     public final void a(b2 b2Var, String str, boolean z10) {
@@ -106,7 +106,7 @@ public final class y1 extends FrameLayout {
         int length;
         String str3 = str;
         if (b2Var != null) {
-            z11 = b2Var.f15644g;
+            z11 = b2Var.f15643g;
         } else {
             z11 = false;
         }
@@ -115,13 +115,13 @@ public final class y1 extends FrameLayout {
         if (str3 != null && str3.length() > 0 && !str3.startsWith("/")) {
             str3 = "/".concat(str3);
         }
-        spannableStringBuilder.append((CharSequence) "/").append((CharSequence) b2Var.f15641b);
-        spannableStringBuilder.setSpan(new q61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.append((CharSequence) "/").append((CharSequence) b2Var.f15640b);
+        spannableStringBuilder.setSpan(new r61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         int i10 = y6.G6;
-        u6 u6Var = this.f15904f;
+        u6 u6Var = this.f15903f;
         spannableStringBuilder.setSpan(new p10(i10, u6Var), 0, spannableStringBuilder.length(), 33);
         if (str3 != null) {
-            p10 p10Var = new p10(y6.f23560o6, u6Var);
+            p10 p10Var = new p10(y6.f23561o6, u6Var);
             if (str3.length() <= 0) {
                 length = 1;
             } else {
@@ -130,7 +130,7 @@ public final class y1 extends FrameLayout {
             spannableStringBuilder.setSpan(p10Var, 0, Math.min(length, spannableStringBuilder.length()), 33);
         }
         MessageObject messageObject = b2Var.e;
-        xh.n nVar = this.f15903c;
+        xh.n nVar = this.f15902c;
         if (messageObject != null) {
             spannableStringBuilder.append((CharSequence) " ");
             CharSequence charSequence = b2Var.e.caption;
@@ -150,7 +150,7 @@ public final class y1 extends FrameLayout {
             int i11 = x1.d;
             SpannableString spannableString = new SpannableString("+");
             x1 x1Var = new x1(b2Var.a() - 1);
-            this.f15905n[0] = (int) (((q11) x1Var.f15896c).f31790c + AndroidUtilities.dp(10.0f));
+            this.f15904n[0] = (int) (((r11) x1Var.f15895c).f32090c + AndroidUtilities.dp(10.0f));
             spannableString.setSpan(x1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, nVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
@@ -163,7 +163,7 @@ public final class y1 extends FrameLayout {
         int i12 = UserConfig.selectedAccount;
         TLRPC.MessageMedia media = MessageObject.getMedia(b2Var.e);
         long j11 = 0;
-        ImageReceiver imageReceiver = this.f15902b;
+        ImageReceiver imageReceiver = this.f15901b;
         if (media != null && (photo2 = media.photo) != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, AndroidUtilities.dp(36.0f), true, null, true);
             ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, media.photo);
@@ -202,12 +202,12 @@ public final class y1 extends FrameLayout {
             imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         } else {
             TLRPC.User currentUser = UserConfig.getInstance(i12).getCurrentUser();
-            j9 j9Var = this.f15901a;
+            j9 j9Var = this.f15900a;
             j9Var.r(currentUser);
             imageReceiver.setForUserOrChat(UserConfig.getInstance(i12).getCurrentUser(), j9Var);
             imageReceiver.setRoundRadius(AndroidUtilities.dp(36.0f));
         }
-        this.f15906r = z10;
+        this.f15905r = z10;
         invalidate();
     }
 
@@ -221,14 +221,14 @@ public final class y1 extends FrameLayout {
             dp = AndroidUtilities.dp(15.0f);
         }
         float f10 = dp;
-        ImageReceiver imageReceiver = this.f15902b;
+        ImageReceiver imageReceiver = this.f15901b;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        if (this.f15906r) {
-            Paint V0 = y6.V0("paintDivider", this.f15904f);
+        if (this.f15905r) {
+            Paint V0 = y6.V0("paintDivider", this.f15903f);
             if (V0 == null) {
-                V0 = y6.f23478k0;
+                V0 = y6.f23479k0;
             }
             Paint paint = V0;
             float f11 = 64.0f;
@@ -249,7 +249,7 @@ public final class y1 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f15906r ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f15905r ? 1 : 0), 1073741824));
     }
 
     public void setReorder(boolean z10) {

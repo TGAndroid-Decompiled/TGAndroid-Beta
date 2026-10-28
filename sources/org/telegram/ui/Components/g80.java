@@ -2,36 +2,26 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupWindow;
-public final class g80 implements PopupWindow.OnDismissListener {
-    public final ViewGroup f28485a;
-    public final k80 f28486b;
+public final class g80 extends org.telegram.ui.ActionBar.o1 {
+    public final ViewGroup f28462o;
+    public final l80 f28463p;
 
-    public g80(k80 k80Var, ViewGroup viewGroup) {
-        this.f28486b = k80Var;
-        this.f28485a = viewGroup;
+    public g80(l80 l80Var, View view, ViewGroup viewGroup) {
+        super(view, -2, -2);
+        this.f28463p = l80Var;
+        this.f28462o = viewGroup;
     }
 
     @Override
-    public final void onDismiss() {
-        View view;
-        k80 k80Var = this.f28486b;
-        k80Var.f29858m = null;
-        k80.a(k80Var, this.f28485a);
-        View view2 = k80Var.f29864p0;
-        if (view2 != null) {
-            view2.setPressed(false);
-            k80Var.f29864p0 = null;
-        }
-        if (k80Var.f29862o0 != null && (view = k80Var.f29845f) != null) {
-            view.setOnTouchListener(null);
-        }
-        k80Var.f29862o0 = null;
-        k80Var.N();
-        Runnable runnable = k80Var.f29863p;
+    public final void dismiss() {
+        d(true);
+        ViewGroup viewGroup = this.f28462o;
+        l80 l80Var = this.f28463p;
+        l80.a(l80Var, viewGroup);
+        Runnable runnable = l80Var.f30163p;
         if (runnable != null) {
             runnable.run();
-            k80Var.f29863p = null;
+            l80Var.f30163p = null;
         }
     }
 }

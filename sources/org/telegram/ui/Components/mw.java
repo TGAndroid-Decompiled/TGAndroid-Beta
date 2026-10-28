@@ -10,18 +10,18 @@ import org.telegram.messenger.CompoundEmoji;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.MessagesController;
-public final class mw implements oi.m, bm0, nn0, oe.d {
-    public final int f30762a;
-    public final sz f30763b;
+public final class mw implements oi.m, cm0, on0, oe.d {
+    public final int f30643a;
+    public final sz f30644b;
 
     public mw(sz szVar, int i10) {
-        this.f30762a = i10;
-        this.f30763b = szVar;
+        this.f30643a = i10;
+        this.f30644b = szVar;
     }
 
     @Override
     public void E(int i10, float f7, float f10, oe.e eVar) {
-        this.f30763b.R();
+        this.f30644b.S();
     }
 
     @Override
@@ -32,32 +32,32 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
         int i14;
         int i15;
         ez ezVar;
-        switch (this.f30762a) {
+        switch (this.f30643a) {
             case 2:
-                sz szVar = this.f30763b;
-                yy yyVar = szVar.f32737i0;
-                int i16 = szVar.f32719c1;
-                xy xyVar = szVar.f32751n0;
-                az azVar = szVar.f32743k0;
-                if (i10 != szVar.f32768s0 || !xyVar.f34854x.isEmpty()) {
-                    szVar.f32734h0.C0();
-                    szVar.f32757p0.k(i10, 0);
-                    if (i10 != szVar.f32764r0 && i10 != szVar.f32768s0) {
+                sz szVar = this.f30644b;
+                yy yyVar = szVar.f32731i0;
+                int i16 = szVar.f32713c1;
+                xy xyVar = szVar.f32745n0;
+                az azVar = szVar.f32737k0;
+                if (i10 != szVar.f32762s0 || !xyVar.f34881x.isEmpty()) {
+                    szVar.f32728h0.C0();
+                    szVar.f32751p0.k(i10, 0);
+                    if (i10 != szVar.f32758r0 && i10 != szVar.f32762s0) {
                         ArrayList<String> arrayList = MessagesController.getInstance(i16).gifSearchEmojies;
-                        szVar.f32740j0.H(arrayList.get(i10 - szVar.f32771t0));
-                        int i17 = i10 - szVar.f32771t0;
+                        szVar.f32734j0.H(arrayList.get(i10 - szVar.f32765t0));
+                        int i17 = i10 - szVar.f32765t0;
                         if (i17 > 0) {
                             azVar.a(arrayList.get(i17 - 1), true);
                         }
-                        if (i10 - szVar.f32771t0 < arrayList.size() - 1) {
-                            azVar.a(arrayList.get((i10 - szVar.f32771t0) + 1), true);
+                        if (i10 - szVar.f32765t0 < arrayList.size() - 1) {
+                            azVar.a(arrayList.get((i10 - szVar.f32765t0) + 1), true);
                         }
                     } else {
-                        szVar.f32754o0.d.setText("");
-                        if (i10 == szVar.f32768s0 && (i12 = xyVar.I) >= 1) {
+                        szVar.f32748o0.d.setText("");
+                        if (i10 == szVar.f32762s0 && (i12 = xyVar.I) >= 1) {
                             yyVar.h1(i12, -AndroidUtilities.dp(4.0f));
                         } else {
-                            ty tyVar = szVar.f32772t1;
+                            ty tyVar = szVar.f32766t1;
                             if (tyVar != null && tyVar.A()) {
                                 i11 = 0;
                             } else {
@@ -65,37 +65,37 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
                             }
                             yyVar.h1(i11, 0);
                         }
-                        if (i10 == szVar.f32768s0) {
+                        if (i10 == szVar.f32762s0) {
                             ArrayList<String> arrayList2 = MessagesController.getInstance(i16).gifSearchEmojies;
                             if (!arrayList2.isEmpty()) {
                                 azVar.a(arrayList2.get(0), true);
                             }
                         }
                     }
-                    szVar.F(2);
+                    szVar.G(2);
                     return;
                 }
                 return;
             default:
-                sz szVar2 = this.f30763b;
+                sz szVar2 = this.f30644b;
                 cx cxVar = szVar2.G0;
-                ArrayList arrayList3 = szVar2.f32722d1;
+                ArrayList arrayList3 = szVar2.f32716d1;
                 dx dxVar = szVar2.B0;
-                jz jzVar = szVar2.f32789y0;
+                jz jzVar = szVar2.f32783y0;
                 zw zwVar = szVar2.D0;
                 if (!szVar2.S0) {
                     if (i10 == szVar2.H1) {
-                        szVar2.f32772t1.o(new p61(szVar2.getContext(), new kx(szVar2), szVar2.f32786x1, szVar2.f32790y1, szVar2.f32793z1, null, szVar2.Z1));
+                        szVar2.f32766t1.o(new q61(szVar2.getContext(), new kx(szVar2), szVar2.f32780x1, szVar2.f32784y1, szVar2.f32787z1, null, szVar2.Z1));
                         return;
                     }
-                    if (cxVar != null && (ezVar = cxVar.f28341r) != null && ezVar.getSelectedCategory() != null) {
+                    if (cxVar != null && (ezVar = cxVar.f28327r) != null && ezVar.getSelectedCategory() != null) {
                         cxVar.c(null, false);
                         ezVar.L1(null);
                     }
                     if (i10 == szVar2.F1) {
                         zwVar.C0();
-                        szVar2.H(jzVar.E("recent"), 0);
-                        szVar2.F(0);
+                        szVar2.I(jzVar.E("recent"), 0);
+                        szVar2.G(0);
                         int i18 = szVar2.F1;
                         if (i18 > 0) {
                             i15 = i18;
@@ -106,8 +106,8 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
                         return;
                     } else if (i10 == szVar2.G1) {
                         zwVar.C0();
-                        szVar2.H(jzVar.E("fav"), 0);
-                        szVar2.F(0);
+                        szVar2.I(jzVar.E("fav"), 0);
+                        szVar2.G(0);
                         int i19 = szVar2.G1;
                         if (i19 > 0) {
                             i14 = i19;
@@ -118,8 +118,8 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
                         return;
                     } else if (i10 == szVar2.I1) {
                         zwVar.C0();
-                        szVar2.H(jzVar.E("premium"), 0);
-                        szVar2.F(0);
+                        szVar2.I(jzVar.E("premium"), 0);
+                        szVar2.G(0);
                         int i20 = szVar2.I1;
                         if (i20 > 0) {
                             i13 = i20;
@@ -136,8 +136,8 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
                             }
                             szVar2.I0 = false;
                             zwVar.C0();
-                            szVar2.H(jzVar.E(arrayList3.get(i21)), 0);
-                            szVar2.F(0);
+                            szVar2.I(jzVar.E(arrayList3.get(i21)), 0);
+                            szVar2.G(0);
                             szVar2.p(0);
                             int i22 = szVar2.G1;
                             if (i22 <= 0 && (i22 = szVar2.F1) <= 0) {
@@ -145,7 +145,7 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
                             }
                             dxVar.k(i10, i22);
                             szVar2.X1 = false;
-                            szVar2.Y();
+                            szVar2.Z();
                             return;
                         }
                         return;
@@ -168,7 +168,7 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
         int i15;
         float f10;
         boolean z11;
-        sz szVar = this.f30763b;
+        sz szVar = this.f30644b;
         int i16 = szVar.C1;
         dy dyVar = szVar.P;
         int[] iArr = szVar.D1;
@@ -177,19 +177,19 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
             bz bzVar = (bz) view;
             String str3 = null;
             s4.e1 e1Var = null;
-            if (bzVar.f27002c) {
+            if (bzVar.f27001c) {
                 View F = dyVar.F(view);
                 if (F != null) {
                     e1Var = dyVar.T(F);
                 }
                 if (e1Var != null && e1Var.b() <= szVar.getRecentEmoji().size()) {
-                    szVar.f32772t1.n();
+                    szVar.f32766t1.n();
                 }
                 dyVar.D1(view);
                 return true;
             } else if (bzVar.getSpan() == null && (str = (String) bzVar.getTag()) != null) {
                 String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
-                if (!bzVar.f27002c) {
+                if (!bzVar.f27001c) {
                     str3 = Emoji.emojiColor.get(replace);
                 }
                 boolean isCompound = CompoundEmoji.isCompound(replace);
@@ -201,15 +201,15 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
                         replace = sz.g(replace, str3);
                     } else {
                         int indexOf = CompoundEmoji.skinTones.indexOf(str3) + 1;
-                        ev evVar = fvVar.f28322c;
-                        int[] iArr2 = evVar.f27991n;
+                        ev evVar = fvVar.f28299c;
+                        int[] iArr2 = evVar.f27939n;
                         if (iArr2[0] != indexOf) {
                             iArr2[0] = indexOf;
                             evVar.invalidate();
                         }
                     }
                     fvVar.getClass();
-                    ev evVar2 = fvVar.f28322c;
+                    ev evVar2 = fvVar.f28299c;
                     int i17 = fvVar.e;
                     if (CompoundEmoji.getCompoundEmojiDrawable(replace) != null) {
                         z10 = true;
@@ -218,9 +218,9 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
                     }
                     fvVar.d = z10;
                     int i18 = 3;
-                    Drawable[] drawableArr = evVar2.f27988b;
-                    int[] iArr3 = evVar2.f27991n;
-                    evVar2.f27990f = z10;
+                    Drawable[] drawableArr = evVar2.f27936b;
+                    int[] iArr3 = evVar2.f27939n;
+                    evVar2.f27938f = z10;
                     evVar2.e = replace;
                     int i19 = 5;
                     if (z10) {
@@ -303,7 +303,7 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
                     int i23 = (i13 * i17) + dp3;
                     bzVar.getLocationOnScreen(iArr);
                     if (!fvVar.d) {
-                        int i24 = evVar2.f27991n[0];
+                        int i24 = evVar2.f27939n[0];
                         int i25 = i24 * i16;
                         int i26 = i24 * 4;
                         if (!AndroidUtilities.isTablet()) {
@@ -344,13 +344,13 @@ public final class mw implements oi.m, bm0, nn0, oe.d {
 
     @Override
     public void k(int i10) {
-        sz szVar = this.f30763b;
-        ch.f fVar = szVar.f32742j2;
+        sz szVar = this.f30644b;
+        ch.f fVar = szVar.f32736j2;
         if (Build.VERSION.SDK_INT >= 31 && fVar != null) {
             if (a8.pf.a(i10, 4)) {
-                fVar.h(szVar.f32753n2.e());
+                fVar.h(szVar.f32747n2.e());
             }
-            fVar.e(szVar.f32745k2, szVar.getWidth(), szVar.getHeight());
+            fVar.e(szVar.f32739k2, szVar.getWidth(), szVar.getHeight());
         }
     }
 

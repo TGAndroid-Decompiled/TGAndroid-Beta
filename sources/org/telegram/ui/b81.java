@@ -3,56 +3,81 @@ package org.telegram.ui;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.Emoji;
-public final class b81 extends org.telegram.ui.Components.s61 {
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class b81 extends org.telegram.ui.Components.t61 {
     static {
-        org.telegram.ui.Components.s61.setup(new org.telegram.ui.Components.s61());
+        org.telegram.ui.Components.t61.setup(new org.telegram.ui.Components.t61());
     }
 
-    public static org.telegram.ui.Components.t61 a(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
-        org.telegram.ui.Components.t61 K = org.telegram.ui.Components.t61.K(b81.class);
-        K.f32875l = str;
-        K.f32876m = charSequence;
-        K.f32877n = str2;
-        K.D = onClickListener;
-        K.f32878o = charSequence2;
-        K.E = onClickListener2;
+    public static org.telegram.ui.Components.u61 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+        org.telegram.ui.Components.u61 K = org.telegram.ui.Components.u61.K(b81.class);
+        K.d = i10;
+        K.f33248k = i13;
+        K.f33249l = charSequence;
+        K.f33250m = charSequence2;
+        K.f33251n = charSequence3;
+        K.B = (i11 & 4294967295L) | (i12 << 32);
         return K;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.t61 t61Var, boolean z10, org.telegram.ui.Components.j71 j71Var, org.telegram.ui.Components.r71 r71Var) {
+    public final void bindView(View view, org.telegram.ui.Components.u61 u61Var, boolean z10, org.telegram.ui.Components.k71 k71Var, org.telegram.ui.Components.s71 s71Var) {
+        boolean z11;
+        int i10;
+        float f7;
+        long j10 = u61Var.B;
+        int i11 = (int) j10;
+        int i12 = (int) (j10 >>> 32);
         c81 c81Var = (c81) view;
-        CharSequence charSequence = t61Var.f32875l;
-        CharSequence charSequence2 = t61Var.f32876m;
-        CharSequence charSequence3 = t61Var.f32877n;
-        View.OnClickListener onClickListener = t61Var.D;
-        CharSequence charSequence4 = t61Var.f32878o;
-        View.OnClickListener onClickListener2 = t61Var.E;
-        fi.d dVar = c81Var.e;
-        org.telegram.ui.Components.z90 z90Var = c81Var.f38373b;
-        int i10 = 0;
-        z90Var.setText(Emoji.replaceEmoji(charSequence, z90Var.getPaint().getFontMetricsInt(), false));
-        org.telegram.ui.Components.z90 z90Var2 = c81Var.f38374c;
-        z90Var2.setText(Emoji.replaceEmoji(charSequence2, z90Var2.getPaint().getFontMetricsInt(), false));
-        fi.d dVar2 = c81Var.d;
-        if (TextUtils.isEmpty(charSequence3)) {
+        int i13 = u61Var.f33248k;
+        CharSequence charSequence = u61Var.f33249l;
+        CharSequence charSequence2 = u61Var.f33250m;
+        CharSequence charSequence3 = u61Var.f33251n;
+        TextView textView = c81Var.e;
+        TextView textView2 = c81Var.f38218f;
+        int i14 = 0;
+        if (i11 == 0 && i12 == 0) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        c81Var.f38219n = z11;
+        FrameLayout frameLayout = c81Var.f38217c;
+        if (i13 != 0) {
+            i10 = 0;
+        } else {
             i10 = 8;
         }
-        dVar2.setVisibility(i10);
-        dVar2.setText(charSequence3);
-        dVar2.setOnClickListener(onClickListener);
-        dVar.setText(charSequence4);
-        dVar.setOnClickListener(onClickListener2);
+        frameLayout.setVisibility(i10);
+        float f10 = 0.0f;
+        if (i13 == 0) {
+            f7 = AndroidUtilities.dp(2.0f);
+        } else {
+            f7 = 0.0f;
+        }
+        textView.setTranslationX(f7);
+        if (i13 == 0) {
+            f10 = AndroidUtilities.dp(2.0f);
+        }
+        textView2.setTranslationX(f10);
+        c81Var.f38216b.b(i11, i12);
+        c81Var.d.setImageResource(i13);
+        textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        c81Var.f38220r = !isEmpty;
+        if (isEmpty) {
+            i14 = 8;
+        }
+        textView2.setVisibility(i14);
+        textView2.setText(charSequence2);
+        c81Var.setValue(charSequence3);
+        c81Var.updateColors();
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
+    public final View createView(Context context, org.telegram.ui.Components.nm0 nm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
         return new c81(context, u6Var);
-    }
-
-    @Override
-    public final boolean isClickable() {
-        return false;
     }
 }

@@ -8,7 +8,7 @@ public final class j3 extends LruCache {
         String str = (String) obj;
         Bitmap bitmap = (Bitmap) obj2;
         Bitmap bitmap2 = (Bitmap) obj3;
-        if (!bitmap.isRecycled() && !k3.f11092e0.containsKey(str)) {
+        if (!bitmap.isRecycled() && !k3.f11091e0.containsKey(str)) {
             bitmap.recycle();
         }
     }

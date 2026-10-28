@@ -1,81 +1,164 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class lo0 extends FrameLayout {
-    public final Paint f41307a;
-    public float f41308b;
-    public o1.j f41309c;
-    public final po0 d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class lo0 implements TextWatcher {
+    public final String[] f41223a = {"34", "37"};
+    public final String[] f41224b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+    public final String[] f41225c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
+    public int d = -1;
+    public int e;
+    public final ro0 f41226f;
 
-    public lo0(po0 po0Var, Context context) {
-        super(context);
-        this.d = po0Var;
-        this.f41307a = new Paint(1);
-        setWillNotDraw(false);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        float f7;
-        float f10;
-        o1.j jVar = this.f41309c;
-        if (jVar != null) {
-            jVar.c();
-        }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        if (z11) {
-            float f11 = this.f41308b;
-            if (f11 == f7) {
-                return;
-            }
-            o1.j jVar2 = new o1.j(new ac.a(f11 * 100.0f));
-            o1.k kVar = new o1.k(f7 * 100.0f);
-            if (z10) {
-                f10 = 500.0f;
-            } else {
-                f10 = 650.0f;
-            }
-            kVar.b(f10);
-            kVar.a(1.0f);
-            jVar2.f18969u = kVar;
-            this.f41309c = jVar2;
-            jVar2.b(new ad0(this, 1));
-            this.f41309c.a(new r9(this, 1));
-            this.f41309c.h();
-            return;
-        }
-        this.f41308b = f7;
-        TextView textView = this.d.U;
-        if (textView != null) {
-            textView.setAlpha((f7 * 0.2f) + 0.8f);
-        }
-        invalidate();
+    public lo0(ro0 ro0Var) {
+        this.f41226f = ro0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp;
-        super.onDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.y6.O6;
-        po0 po0Var = this.d;
-        canvas.drawColor(po0Var.getThemedColor(i10));
-        int themedColor = po0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23385ei);
-        Paint paint = this.f41307a;
-        paint.setColor(themedColor);
-        if (LocaleController.isRTL) {
-            dp = getWidth() - AndroidUtilities.dp(28.0f);
-        } else {
-            dp = AndroidUtilities.dp(28.0f);
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        boolean z10;
+        int i11;
+        int i12;
+        String[] strArr;
+        int i13;
+        String str;
+        ro0 ro0Var = this.f41226f;
+        if (ro0Var.f43121o0) {
+            return;
         }
-        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f41308b, paint);
+        int i14 = 0;
+        EditTextBoldCursor editTextBoldCursor = ro0Var.f43110f[0];
+        int selectionStart = editTextBoldCursor.getSelectionStart();
+        String obj = editTextBoldCursor.getText().toString();
+        int i15 = 3;
+        int i16 = 1;
+        if (this.d == 3) {
+            obj = obj.substring(0, this.e) + obj.substring(this.e + 1);
+            selectionStart--;
+        }
+        StringBuilder sb2 = new StringBuilder(obj.length());
+        int i17 = 0;
+        while (i17 < obj.length()) {
+            int i18 = i17 + 1;
+            String substring = obj.substring(i17, i18);
+            if ("0123456789".contains(substring)) {
+                sb2.append(substring);
+            }
+            i17 = i18;
+        }
+        ro0Var.f43121o0 = true;
+        String str2 = null;
+        int i19 = 100;
+        if (sb2.length() > 0) {
+            String sb3 = sb2.toString();
+            int i20 = 0;
+            while (true) {
+                if (i20 < i15) {
+                    if (i20 != 0) {
+                        if (i20 != i16) {
+                            strArr = this.f41224b;
+                            i13 = 14;
+                            str = "xxxx xxxx xxxx xx";
+                        } else {
+                            strArr = this.f41223a;
+                            i13 = 15;
+                            str = "xxxx xxxx xxxx xxx";
+                        }
+                    } else {
+                        strArr = this.f41225c;
+                        i13 = 16;
+                        str = "xxxx xxxx xxxx xxxx";
+                    }
+                    i10 = i16;
+                    for (int i21 = i14; i21 < strArr.length; i21++) {
+                        String str3 = strArr[i21];
+                        if (sb3.length() <= str3.length()) {
+                            if (str3.startsWith(sb3)) {
+                                i19 = i13;
+                                str2 = str;
+                                break;
+                            }
+                        } else if (sb3.startsWith(str3)) {
+                            i19 = i13;
+                            str2 = str;
+                            break;
+                        }
+                    }
+                    if (str2 != null) {
+                        break;
+                    }
+                    i20++;
+                    i16 = i10;
+                    i14 = 0;
+                    i15 = 3;
+                } else {
+                    i10 = i16;
+                    break;
+                }
+            }
+            if (sb2.length() > i19) {
+                sb2.setLength(i19);
+            }
+        } else {
+            i10 = 1;
+        }
+        if (str2 != null) {
+            if (sb2.length() == i19) {
+                ro0Var.f43110f[i10].requestFocus();
+            }
+            org.telegram.ui.ActionBar.f7.V(editTextBoldCursor, org.telegram.ui.ActionBar.y6.G6, ro0Var.Y0);
+            int i22 = 0;
+            while (true) {
+                if (i22 >= sb2.length()) {
+                    break;
+                } else if (i22 < str2.length()) {
+                    if (str2.charAt(i22) == ' ') {
+                        sb2.insert(i22, ' ');
+                        i22++;
+                        if (selectionStart == i22 && (i12 = this.d) != 2 && i12 != 3) {
+                            selectionStart++;
+                        }
+                    }
+                    i22++;
+                } else {
+                    sb2.insert(i22, ' ');
+                    if (selectionStart == i22 + 1 && (i11 = this.d) != 2 && i11 != 3) {
+                        selectionStart++;
+                    }
+                }
+            }
+        }
+        if (!sb2.toString().equals(editable.toString())) {
+            z10 = false;
+            editable.replace(0, editable.length(), sb2);
+        } else {
+            z10 = false;
+        }
+        if (selectionStart >= 0) {
+            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+        }
+        ro0Var.f43121o0 = z10;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        if (i11 == 0 && i12 == 1) {
+            this.d = 1;
+        } else if (i11 == 1 && i12 == 0) {
+            if (charSequence.charAt(i10) == ' ' && i10 > 0) {
+                this.d = 3;
+                this.e = i10 - 1;
+                return;
+            }
+            this.d = 2;
+        } else {
+            this.d = -1;
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

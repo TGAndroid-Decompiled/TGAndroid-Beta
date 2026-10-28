@@ -15,7 +15,7 @@ import kotlin.jvm.internal.i;
 import v0.c;
 import v0.o;
 import w0.d;
-import w7.l5;
+import w7.m5;
 import w7.t;
 import w7.u;
 public abstract class a {
@@ -26,7 +26,7 @@ public abstract class a {
         }
         String type = serializableExtra.getType();
         i.d(type, "getType(...)");
-        return l5.a(serializableExtra.getMessage(), type);
+        return m5.a(serializableExtra.getMessage(), type);
     }
 
     public static c b(String str, Intent intent) {
@@ -47,7 +47,7 @@ public abstract class a {
         }
         String type = serializableExtra.getType();
         i.d(type, "getType(...)");
-        return l5.b(serializableExtra.getMessage(), type);
+        return m5.b(serializableExtra.getMessage(), type);
     }
 
     public static o d(Intent intent) {

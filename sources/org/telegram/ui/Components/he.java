@@ -9,16 +9,16 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.af1;
-public final class he implements org.telegram.ui.bj0, org.telegram.ui.ux {
-    public final ChatActivityEnterView f28951a;
-    public final MessageObject f28952b;
-    public final TL_keyboard.TL_buttonTypeRequestPeer f28953c;
+import org.telegram.ui.cf1;
+public final class he implements org.telegram.ui.dj0, org.telegram.ui.xx {
+    public final ChatActivityEnterView f28978a;
+    public final MessageObject f28979b;
+    public final TL_keyboard.TL_buttonTypeRequestPeer f28980c;
 
     public he(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer) {
-        this.f28951a = chatActivityEnterView;
-        this.f28952b = messageObject;
-        this.f28953c = tL_buttonTypeRequestPeer;
+        this.f28978a = chatActivityEnterView;
+        this.f28979b = messageObject;
+        this.f28980c = tL_buttonTypeRequestPeer;
     }
 
     @Override
@@ -27,22 +27,22 @@ public final class he implements org.telegram.ui.bj0, org.telegram.ui.ux {
     }
 
     @Override
-    public boolean K(org.telegram.ui.cy cyVar) {
+    public boolean K(org.telegram.ui.ey eyVar) {
         return false;
     }
 
     @Override
     public void a(ArrayList arrayList) {
-        int i10 = ChatActivityEnterView.f25843r5;
+        int i10 = ChatActivityEnterView.f25845r5;
         if (!arrayList.isEmpty()) {
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            ChatActivityEnterView chatActivityEnterView = this.f28951a;
+            ChatActivityEnterView chatActivityEnterView = this.f28978a;
             MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
-            MessageObject messageObject = this.f28952b;
+            MessageObject messageObject = this.f28979b;
             tL_messages_sendBotRequestedPeer.peer = messagesController.getInputPeer(messageObject.messageOwner.peer_id);
             tL_messages_sendBotRequestedPeer.flags |= 1;
             tL_messages_sendBotRequestedPeer.msg_id = messageObject.getId();
-            tL_messages_sendBotRequestedPeer.button_id = this.f28953c.button_id;
+            tL_messages_sendBotRequestedPeer.button_id = this.f28980c.button_id;
             int size = arrayList.size();
             int i11 = 0;
             while (i11 < size) {
@@ -55,17 +55,17 @@ public final class he implements org.telegram.ui.bj0, org.telegram.ui.ux {
     }
 
     @Override
-    public boolean v(org.telegram.ui.cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, af1 af1Var) {
-        int i12 = ChatActivityEnterView.f25843r5;
+    public boolean v(org.telegram.ui.ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, cf1 cf1Var) {
+        int i12 = ChatActivityEnterView.f25845r5;
         if (!arrayList.isEmpty()) {
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            ChatActivityEnterView chatActivityEnterView = this.f28951a;
+            ChatActivityEnterView chatActivityEnterView = this.f28978a;
             MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
-            MessageObject messageObject = this.f28952b;
+            MessageObject messageObject = this.f28979b;
             tL_messages_sendBotRequestedPeer.peer = messagesController.getInputPeer(messageObject.messageOwner.peer_id);
             tL_messages_sendBotRequestedPeer.flags |= 1;
             tL_messages_sendBotRequestedPeer.msg_id = messageObject.getId();
-            tL_messages_sendBotRequestedPeer.button_id = this.f28953c.button_id;
+            tL_messages_sendBotRequestedPeer.button_id = this.f28980c.button_id;
             HashSet hashSet = new HashSet();
             int size = arrayList.size();
             int i13 = 0;
@@ -80,7 +80,7 @@ public final class he implements org.telegram.ui.bj0, org.telegram.ui.ux {
             }
             ConnectionsManager.getInstance(chatActivityEnterView.Q).sendRequest(tL_messages_sendBotRequestedPeer, null);
         }
-        cyVar.finishFragment();
+        eyVar.finishFragment();
         return true;
     }
 }

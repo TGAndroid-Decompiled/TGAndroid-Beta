@@ -30,13 +30,13 @@ public final class o implements TextView.OnEditorActionListener {
                 jg.m0 m0Var = t0Var.F;
                 boolean z10 = false;
                 if (i10 == 6) {
-                    t0Var.f15855x = false;
+                    t0Var.f15854x = false;
                     AndroidUtilities.cancelRunOnUIThread(m0Var);
                     z10 = true;
-                    if (TextUtils.isEmpty(t0Var.f15850f.getText())) {
-                        t0Var.f15856y = null;
+                    if (TextUtils.isEmpty(t0Var.f15849f.getText())) {
+                        t0Var.f15855y = null;
                         t0Var.d.b();
-                        t0Var.f15849c.f32152g3.O(true);
+                        t0Var.f15848c.f32504g3.O(true);
                     } else {
                         AndroidUtilities.runOnUIThread(m0Var);
                     }
@@ -45,8 +45,8 @@ public final class o implements TextView.OnEditorActionListener {
                 return z10;
             default:
                 li.g1 g1Var = (li.g1) this.f5161b;
-                if (i10 == 5 && (f1Var = g1Var.f17248c) != null && !g1Var.f17253w) {
-                    if (g1Var.f17251r) {
+                if (i10 == 5 && (f1Var = g1Var.f17247c) != null && !g1Var.f17252w) {
+                    if (g1Var.f17250r) {
                         g1Var.p();
                     } else {
                         f1Var.t(g1Var);

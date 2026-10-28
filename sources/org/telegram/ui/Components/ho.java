@@ -8,45 +8,45 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ho extends li {
-    public final uz f29030n;
-    public final mm0 f29031r;
-    public final int f29032s;
+    public final uz f29037n;
+    public final nm0 f29038r;
+    public final int f29039s;
     public final org.telegram.ui.c8 v;
-    public int f29033w;
+    public int f29040w;
 
     public ho(int i10, Context context, org.telegram.ui.ActionBar.u6 u6Var, ti tiVar) {
         super(context, u6Var, tiVar);
-        this.f29032s = i10;
+        this.f29039s = i10;
         uz uzVar = new uz(context, u6Var);
-        this.f29030n = uzVar;
+        this.f29037n = uzVar;
         uzVar.setText(LocaleController.getString(R.string.NoPhotos));
         uzVar.setOnTouchListener(null);
         uzVar.setTextSize(16);
-        addView(uzVar, gb1.g(-2.0f, -1));
+        addView(uzVar, kb1.g(-2.0f, -1));
         uzVar.a(R.raw.media_forbidden, 150, 150);
-        TLRPC.Chat p12 = this.f30215b.p1();
+        TLRPC.Chat q12 = this.f30254b.q1();
         if (i10 == 1) {
-            uzVar.setText(ChatObject.getRestrictedErrorText(p12, 7));
+            uzVar.setText(ChatObject.getRestrictedErrorText(q12, 7));
         } else if (i10 == 3) {
-            uzVar.setText(ChatObject.getRestrictedErrorText(p12, 18));
+            uzVar.setText(ChatObject.getRestrictedErrorText(q12, 18));
         } else if (i10 == 4) {
-            uzVar.setText(ChatObject.getRestrictedErrorText(p12, 19));
+            uzVar.setText(ChatObject.getRestrictedErrorText(q12, 19));
         } else {
-            uzVar.setText(ChatObject.getRestrictedErrorText(p12, 22));
+            uzVar.setText(ChatObject.getRestrictedErrorText(q12, 22));
         }
         uzVar.c();
-        mm0 mm0Var = new mm0(context, u6Var);
-        this.f29031r = mm0Var;
-        mm0Var.setSectionsType(2);
-        mm0Var.setVerticalScrollBarEnabled(false);
-        mm0Var.setLayoutManager(new s4.c0());
-        mm0Var.setClipToPadding(false);
+        nm0 nm0Var = new nm0(context, u6Var);
+        this.f29038r = nm0Var;
+        nm0Var.setSectionsType(2);
+        nm0Var.setVerticalScrollBarEnabled(false);
+        nm0Var.setLayoutManager(new s4.c0());
+        nm0Var.setClipToPadding(false);
         org.telegram.ui.c8 c8Var = new org.telegram.ui.c8(this, 4);
         this.v = c8Var;
-        mm0Var.setAdapter(c8Var);
-        mm0Var.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
-        mm0Var.setOnScrollListener(new ml(this, 2));
-        addView(mm0Var, gb1.g(-1.0f, -1));
+        nm0Var.setAdapter(c8Var);
+        nm0Var.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
+        nm0Var.setOnScrollListener(new ml(this, 2));
+        addView(nm0Var, kb1.g(-1.0f, -1));
     }
 
     @Override
@@ -56,22 +56,22 @@ public final class ho extends li {
 
     @Override
     public int getCurrentItemTop() {
-        mm0 mm0Var = this.f29031r;
-        if (mm0Var.getChildCount() <= 0) {
+        nm0 nm0Var = this.f29038r;
+        if (nm0Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
         int i10 = 0;
-        View childAt = mm0Var.getChildAt(0);
-        vl0 vl0Var = (vl0) mm0Var.G(childAt);
+        View childAt = nm0Var.getChildAt(0);
+        wl0 wl0Var = (wl0) nm0Var.G(childAt);
         int top = childAt.getTop() - AndroidUtilities.dp(8.0f);
-        if (top > 0 && vl0Var != null && vl0Var.b() == 0) {
+        if (top > 0 && wl0Var != null && wl0Var.b() == 0) {
             i10 = top;
         }
-        if (top < 0 || vl0Var == null || vl0Var.b() != 0) {
+        if (top < 0 || wl0Var == null || wl0Var.b() != 0) {
             top = i10;
         }
         int measuredHeight = (getMeasuredHeight() - top) - AndroidUtilities.dp(50.0f);
-        uz uzVar = this.f29030n;
+        uz uzVar = this.f29037n;
         uzVar.setTranslationY(((measuredHeight - uzVar.getMeasuredHeight()) / 2) + top);
         return AndroidUtilities.dp(12.0f) + top;
     }
@@ -83,12 +83,12 @@ public final class ho extends li {
 
     @Override
     public int getListTopPadding() {
-        return this.f29031r.getPaddingTop();
+        return this.f29038r.getPaddingTop();
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30215b.getSheetContainer().invalidate();
+        this.f30254b.getSheetContainer().invalidate();
     }
 }

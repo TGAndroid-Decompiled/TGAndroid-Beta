@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import o6.x;
 public abstract class l extends c8.b implements x {
-    public final int f16942b;
+    public final int f16941b;
 
     public l(byte[] bArr) {
         super("com.google.android.gms.common.internal.ICertData", 7);
@@ -18,7 +18,7 @@ public abstract class l extends c8.b implements x {
             z10 = false;
         }
         o6.l.b(z10);
-        this.f16942b = Arrays.hashCode(bArr);
+        this.f16941b = Arrays.hashCode(bArr);
     }
 
     public static byte[] K0(String str) {
@@ -36,7 +36,7 @@ public abstract class l extends c8.b implements x {
                 return false;
             }
             parcel2.writeNoException();
-            parcel2.writeInt(this.f16942b);
+            parcel2.writeInt(this.f16941b);
             return true;
         }
         y6.b bVar = new y6.b(L0());
@@ -51,7 +51,7 @@ public abstract class l extends c8.b implements x {
         if (obj != null && (obj instanceof x)) {
             try {
                 x xVar = (x) obj;
-                if (((l) xVar).f16942b == this.f16942b) {
+                if (((l) xVar).f16941b == this.f16941b) {
                     return Arrays.equals(L0(), (byte[]) y6.b.L0(new y6.b(((l) xVar).L0())));
                 }
             } catch (RemoteException e) {
@@ -62,6 +62,6 @@ public abstract class l extends c8.b implements x {
     }
 
     public final int hashCode() {
-        return this.f16942b;
+        return this.f16941b;
     }
 }

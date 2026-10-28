@@ -3,41 +3,41 @@ package n0;
 import android.os.LocaleList;
 import java.util.Locale;
 public final class f implements e {
-    public final LocaleList f18570a;
+    public final LocaleList f18569a;
 
     public f(Object obj) {
-        this.f18570a = (LocaleList) obj;
+        this.f18569a = (LocaleList) obj;
     }
 
     @Override
     public final String a() {
-        return this.f18570a.toLanguageTags();
+        return this.f18569a.toLanguageTags();
     }
 
     @Override
     public final Object b() {
-        return this.f18570a;
+        return this.f18569a;
     }
 
     public final boolean equals(Object obj) {
-        return this.f18570a.equals(((e) obj).b());
+        return this.f18569a.equals(((e) obj).b());
     }
 
     @Override
     public final Locale get(int i10) {
-        return this.f18570a.get(i10);
+        return this.f18569a.get(i10);
     }
 
     public final int hashCode() {
-        return this.f18570a.hashCode();
+        return this.f18569a.hashCode();
     }
 
     @Override
     public final int size() {
-        return this.f18570a.size();
+        return this.f18569a.size();
     }
 
     public final String toString() {
-        return this.f18570a.toString();
+        return this.f18569a.toString();
     }
 }

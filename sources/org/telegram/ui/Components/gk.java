@@ -7,21 +7,21 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class gk extends lm0 {
-    public final ArrayList f28584c = new ArrayList();
+public final class gk extends mm0 {
+    public final ArrayList f28595c = new ArrayList();
     public final ArrayList d = new ArrayList();
     public final ArrayList e = new ArrayList();
-    public final Context f28585f;
+    public final Context f28596f;
     public final nk h;
 
     public gk(nk nkVar, Context context) {
         this.h = nkVar;
-        this.f28585f = context;
+        this.f28596f = context;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47741f == 1) {
+        if (e1Var.f47776f == 1) {
             return true;
         }
         return false;
@@ -29,7 +29,7 @@ public final class gk extends lm0 {
 
     public final hk E(int i10) {
         int f7;
-        ArrayList arrayList = this.f28584c;
+        ArrayList arrayList = this.f28595c;
         int size = arrayList.size();
         if (i10 < size) {
             return (hk) arrayList.get(i10);
@@ -46,7 +46,7 @@ public final class gk extends lm0 {
 
     @Override
     public final int h() {
-        int size = this.f28584c.size();
+        int size = this.f28595c.size();
         if (this.d.isEmpty()) {
             ArrayList arrayList = this.e;
             if (!arrayList.isEmpty()) {
@@ -61,7 +61,7 @@ public final class gk extends lm0 {
         if (i10 == h() - 1) {
             return 3;
         }
-        int size = this.f28584c.size();
+        int size = this.f28595c.size();
         if (i10 == size) {
             return 2;
         }
@@ -80,8 +80,8 @@ public final class gk extends lm0 {
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         boolean z10;
-        int i11 = e1Var.f47741f;
-        View view = e1Var.f47738a;
+        int i11 = e1Var.f47776f;
+        View view = e1Var.f47773a;
         nk nkVar = this.h;
         if (i11 != 0) {
             if (i11 != 1) {
@@ -89,20 +89,20 @@ public final class gk extends lm0 {
             }
             hk E = E(i10);
             org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) view;
-            int i12 = E.f29002a;
+            int i12 = E.f29004a;
             if (i12 != 0) {
-                String str = E.f29003b;
-                String str2 = E.f29004c;
-                if (i10 != this.f28584c.size() - 1) {
+                String str = E.f29005b;
+                String str2 = E.f29006c;
+                if (i10 != this.f28595c.size() - 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 o7Var.d(str, str2, null, null, i12, z10);
             } else {
-                o7Var.d(E.f29003b, E.f29004c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.e, 0, false);
+                o7Var.d(E.f29005b, E.f29006c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.e, 0, false);
             }
-            File file = E.f29005f;
+            File file = E.f29007f;
             if (file != null) {
                 o7Var.b(nkVar.R.containsKey(file.toString()), !nkVar.U);
                 return;
@@ -112,7 +112,7 @@ public final class gk extends lm0 {
             }
         }
         org.telegram.ui.Cells.q4 q4Var = (org.telegram.ui.Cells.q4) view;
-        if (nkVar.f31029c0) {
+        if (nkVar.f30942c0) {
             q4Var.setText(LocaleController.getString(R.string.RecentFilesAZ));
         } else {
             q4Var.setText(LocaleController.getString(R.string.RecentFiles));
@@ -123,8 +123,8 @@ public final class gk extends lm0 {
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         View q4Var;
         View view;
-        org.telegram.ui.ActionBar.u6 u6Var = this.h.f30214a;
-        Context context = this.f28585f;
+        org.telegram.ui.ActionBar.u6 u6Var = this.h.f30253a;
+        Context context = this.f28596f;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

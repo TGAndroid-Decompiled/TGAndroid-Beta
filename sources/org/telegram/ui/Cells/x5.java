@@ -25,13 +25,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.vh;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.zp;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.aq;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.zq;
 import org.telegram.ui.PhotoViewer;
 public final class x5 extends FrameLayout {
-    public static final Rect f25698a0 = new Rect();
+    public static final Rect f25700a0 = new Rect();
     public boolean E;
     public final boolean F;
     public MediaController.PhotoEntry G;
@@ -51,20 +51,20 @@ public final class x5 extends FrameLayout {
     public v5 U;
     public SpannableString V;
     public SpannableString W;
-    public final t5 f25699a;
-    public final s5 f25700b;
-    public final FrameLayout f25701c;
-    public final zp d;
+    public final t5 f25701a;
+    public final s5 f25702b;
+    public final FrameLayout f25703c;
+    public final aq d;
     public final ImageView e;
-    public final TextView f25702f;
+    public final TextView f25704f;
     public final u5 h;
-    public AnimatorSet f25703n;
-    public boolean f25704r;
-    public boolean f25705s;
+    public AnimatorSet f25705n;
+    public boolean f25706r;
+    public boolean f25707s;
     public boolean v;
-    public w5 f25706w;
-    public boolean f25707x;
-    public int f25708y;
+    public w5 f25708w;
+    public boolean f25709x;
+    public int f25710y;
 
     public x5(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
@@ -75,59 +75,59 @@ public final class x5 extends FrameLayout {
         this.K = u6Var;
         setWillNotDraw(false);
         s5 s5Var = new s5(this, context);
-        this.f25700b = s5Var;
-        addView(s5Var, gb1.g(80.0f, 80));
+        this.f25702b = s5Var;
+        addView(s5Var, kb1.g(80.0f, 80));
         t5 t5Var = new t5(this, context);
-        this.f25699a = t5Var;
+        this.f25701a = t5Var;
         t5Var.setBlurAllowed(true);
-        s5Var.addView(t5Var, gb1.g(-1.0f, -1));
+        s5Var.addView(t5Var, kb1.g(-1.0f, -1));
         u5 u5Var = new u5(context, 0);
-        u5Var.f25485b = new RectF();
+        u5Var.f25487b = new RectF();
         this.h = u5Var;
         u5Var.setWillNotDraw(false);
         u5Var.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), 0);
-        s5Var.addView(u5Var, gb1.h(-2, 17.0f, 83, 4.0f, 0.0f, 0.0f, 4.0f));
+        s5Var.addView(u5Var, kb1.h(-2, 17.0f, 83, 4.0f, 0.0f, 0.0f, 4.0f));
         ImageView imageView = new ImageView(context);
         this.e = imageView;
         imageView.setImageResource(R.drawable.play_mini_video);
-        u5Var.addView(imageView, gb1.i(-2, -2, 19));
+        u5Var.addView(imageView, kb1.i(-2, -2, 19));
         TextView textView = new TextView(context);
-        this.f25702f = textView;
+        this.f25704f = textView;
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 12.0f);
         textView.setImportantForAccessibility(2);
-        u5Var.addView(textView, gb1.h(-2, -2.0f, 19, 13.0f, -0.7f, 0.0f, 0.0f));
-        zp zpVar = new zp(context, 24, u6Var);
-        this.d = zpVar;
-        zpVar.setDrawBackgroundAsArc(7);
-        zpVar.b(org.telegram.ui.ActionBar.y6.W9, org.telegram.ui.ActionBar.y6.X9, org.telegram.ui.ActionBar.y6.V9);
-        addView(zpVar, gb1.h(26, 26.0f, 51, 52.0f, 4.0f, 0.0f, 0.0f));
-        zpVar.setVisibility(0);
+        u5Var.addView(textView, kb1.h(-2, -2.0f, 19, 13.0f, -0.7f, 0.0f, 0.0f));
+        aq aqVar = new aq(context, 24, u6Var);
+        this.d = aqVar;
+        aqVar.setDrawBackgroundAsArc(7);
+        aqVar.b(org.telegram.ui.ActionBar.y6.W9, org.telegram.ui.ActionBar.y6.X9, org.telegram.ui.ActionBar.y6.V9);
+        addView(aqVar, kb1.h(26, 26.0f, 51, 52.0f, 4.0f, 0.0f, 0.0f));
+        aqVar.setVisibility(0);
         setFocusable(true);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f25701c = frameLayout;
-        addView(frameLayout, gb1.h(42, 42.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
-        this.f25708y = AndroidUtilities.dp(80.0f);
+        this.f25703c = frameLayout;
+        addView(frameLayout, kb1.h(42, 42.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
+        this.f25710y = AndroidUtilities.dp(80.0f);
     }
 
     public final boolean a() {
-        return this.d.f35382a.f26089q;
+        return this.d.f26634a.f26091q;
     }
 
     public final void b(int i10, boolean z10, boolean z11) {
         float f7;
         float f10;
-        this.d.f35382a.f(i10, z10, z11);
+        this.d.f26634a.f(i10, z10, z11);
         boolean z12 = false;
-        if (this.f25707x) {
+        if (this.f25709x) {
             AnimatorSet animatorSet = this.J;
             if (animatorSet != null) {
                 animatorSet.cancel();
                 this.J = null;
             }
             float f11 = 1.0f;
-            s5 s5Var = this.f25700b;
+            s5 s5Var = this.f25702b;
             if (z11) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.J = animatorSet2;
@@ -167,7 +167,7 @@ public final class x5 extends FrameLayout {
     public final void c(boolean z10, Float f7) {
         if (this.N != z10) {
             boolean isLaidOut = isLaidOut();
-            t5 t5Var = this.f25699a;
+            t5 t5Var = this.f25701a;
             if (isLaidOut) {
                 Bitmap bitmap = this.R;
                 this.R = AndroidUtilities.snapshotView(t5Var);
@@ -201,16 +201,16 @@ public final class x5 extends FrameLayout {
         if (animatorSet != null) {
             animatorSet.cancel();
             this.J = null;
-            zp zpVar = this.d;
+            aq aqVar = this.d;
             float f10 = 1.0f;
-            if (zpVar.f35382a.f26089q) {
+            if (aqVar.f26634a.f26091q) {
                 f7 = 0.787f;
             } else {
                 f7 = 1.0f;
             }
-            s5 s5Var = this.f25700b;
+            s5 s5Var = this.f25702b;
             s5Var.setScaleX(f7);
-            if (zpVar.f35382a.f26089q) {
+            if (aqVar.f26634a.f26091q) {
                 f10 = 0.787f;
             }
             s5Var.setScaleY(f10);
@@ -223,14 +223,14 @@ public final class x5 extends FrameLayout {
         boolean z15 = false;
         this.v = false;
         this.G = photoEntry;
-        this.f25704r = z12;
-        this.f25705s = z13;
+        this.f25706r = z12;
+        this.f25707s = z13;
         boolean z16 = photoEntry.isVideo;
         float f10 = 0.0f;
         ImageView imageView = this.e;
-        TextView textView = this.f25702f;
+        TextView textView = this.f25704f;
         u5 u5Var = this.h;
-        t5 t5Var = this.f25699a;
+        t5 t5Var = this.f25701a;
         if (z16 && !photoEntry.isLivePhoto()) {
             t5Var.q(0, true);
             u5Var.setVisibility(0);
@@ -266,7 +266,7 @@ public final class x5 extends FrameLayout {
                 t5Var.setImageDrawable(org.telegram.ui.ActionBar.y6.R4);
             }
         }
-        if (z11 && PhotoViewer.O1(this.G.path)) {
+        if (z11 && PhotoViewer.P1(this.G.path)) {
             z14 = true;
         } else {
             z14 = false;
@@ -327,30 +327,30 @@ public final class x5 extends FrameLayout {
         } else {
             spannableStringBuilder = null;
         }
-        t5 t5Var = this.f25699a;
+        t5 t5Var = this.f25701a;
         t5Var.setBlurredText(spannableStringBuilder);
         t5Var.invalidate();
-        this.f25700b.invalidate();
+        this.f25702b.invalidate();
     }
 
     public final void g(boolean z10) {
         float f7;
         float f10 = 1.0f;
-        zp zpVar = this.d;
-        if (!z10 || zpVar.getAlpha() != 1.0f) {
-            if (!z10 && zpVar.getAlpha() == 0.0f) {
+        aq aqVar = this.d;
+        if (!z10 || aqVar.getAlpha() != 1.0f) {
+            if (!z10 && aqVar.getAlpha() == 0.0f) {
                 return;
             }
-            AnimatorSet animatorSet = this.f25703n;
+            AnimatorSet animatorSet = this.f25705n;
             if (animatorSet != null) {
                 animatorSet.cancel();
-                this.f25703n = null;
+                this.f25705n = null;
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f25703n = animatorSet2;
+            this.f25705n = animatorSet2;
             animatorSet2.setInterpolator(new DecelerateInterpolator());
-            this.f25703n.setDuration(180L);
-            AnimatorSet animatorSet3 = this.f25703n;
+            this.f25705n.setDuration(180L);
+            AnimatorSet animatorSet3 = this.f25705n;
             if (z10) {
                 f7 = 1.0f;
             } else {
@@ -363,22 +363,22 @@ public final class x5 extends FrameLayout {
             if (!z10) {
                 f10 = 0.0f;
             }
-            animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(zpVar, property, f10));
-            this.f25703n.addListener(new kg.e(this, 15));
-            this.f25703n.start();
+            animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(aqVar, property, f10));
+            this.f25705n.addListener(new kg.e(this, 15));
+            this.f25705n.start();
         }
     }
 
-    public zp getCheckBox() {
+    public aq getCheckBox() {
         return this.d;
     }
 
     public FrameLayout getCheckFrame() {
-        return this.f25701c;
+        return this.f25703c;
     }
 
     public org.telegram.ui.Components.y9 getImageView() {
-        return this.f25699a;
+        return this.f25701a;
     }
 
     public MediaController.PhotoEntry getPhotoEntry() {
@@ -386,7 +386,7 @@ public final class x5 extends FrameLayout {
     }
 
     public float getScale() {
-        return this.f25700b.getScaleX();
+        return this.f25702b.getScaleX();
     }
 
     public View getVideoInfoContainer() {
@@ -395,8 +395,8 @@ public final class x5 extends FrameLayout {
 
     public final void h(boolean z10) {
         t5 t5Var;
-        s5 s5Var = this.f25700b;
-        if (s5Var != null && (t5Var = this.f25699a) != null && t5Var.getMeasuredHeight() > 0 && t5Var.getMeasuredWidth() > 0) {
+        s5 s5Var = this.f25702b;
+        if (s5Var != null && (t5Var = this.f25701a) != null && t5Var.getMeasuredHeight() > 0 && t5Var.getMeasuredWidth() > 0) {
             if (z10) {
                 if (this.M == null) {
                     this.M = xh.f.e(s5Var);
@@ -417,7 +417,7 @@ public final class x5 extends FrameLayout {
         super.onAttachedToWindow();
         xh.f fVar = this.M;
         if (fVar != null) {
-            if (fVar.f51855i) {
+            if (fVar.f51913i) {
                 this.M = xh.f.e(this);
             } else {
                 fVar.a(this);
@@ -438,9 +438,9 @@ public final class x5 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         MediaController.PhotoEntry photoEntry;
         MediaController.SearchImage searchImage;
-        boolean z10 = this.d.f35382a.f26089q;
-        t5 t5Var = this.f25699a;
-        if (!z10 && this.f25700b.getScaleX() == 1.0f && t5Var.getImageReceiver().hasNotThumb() && t5Var.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.G) == null || !PhotoViewer.O1(photoEntry.path)) && ((searchImage = this.H) == null || !PhotoViewer.O1(searchImage.getPathToAttach())))) {
+        boolean z10 = this.d.f26634a.f26091q;
+        t5 t5Var = this.f25701a;
+        if (!z10 && this.f25702b.getScaleX() == 1.0f && t5Var.getImageReceiver().hasNotThumb() && t5Var.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.G) == null || !PhotoViewer.P1(photoEntry.path)) && ((searchImage = this.H) == null || !PhotoViewer.P1(searchImage.getPathToAttach())))) {
             return;
         }
         int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.X9, this.K);
@@ -473,7 +473,7 @@ public final class x5 extends FrameLayout {
             sb2.append(LocaleController.getInstance().getFormatterStats().format(this.G.dateTaken * 1000));
         }
         accessibilityNodeInfo.setText(sb2);
-        if (this.d.f35382a.f26089q) {
+        if (this.d.f26634a.f26091q) {
             accessibilityNodeInfo.setSelected(true);
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_open_photo, LocaleController.getString(R.string.Open)));
@@ -481,20 +481,20 @@ public final class x5 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.f25707x) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f25708y, 1073741824), vh.D(2.0f, this.f25708y, 1073741824));
+        if (this.f25709x) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f25710y, 1073741824), wh.D(2.0f, this.f25710y, 1073741824));
             return;
         }
         int i12 = 6;
         if (this.E) {
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824);
-            if (this.f25704r) {
+            if (this.f25706r) {
                 i12 = 0;
             }
             super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(i12 + 80), 1073741824));
             return;
         }
-        if (this.f25704r) {
+        if (this.f25706r) {
             i12 = 0;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(i12 + 80), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
@@ -516,7 +516,7 @@ public final class x5 extends FrameLayout {
     }
 
     public void setDelegate(w5 w5Var) {
-        this.f25706w = w5Var;
+        this.f25708w = w5Var;
     }
 
     public void setFastScrollDelegate(v5 v5Var) {
@@ -541,9 +541,9 @@ public final class x5 extends FrameLayout {
                 boolean z12 = photoEntry.isVideo;
                 ImageView imageView = this.e;
                 u5 u5Var = this.h;
-                TextView textView = this.f25702f;
+                TextView textView = this.f25704f;
                 if (z12 && !photoEntry.isLivePhoto()) {
-                    this.f25699a.q(0, true);
+                    this.f25701a.q(0, true);
                     u5Var.setVisibility(0);
                     imageView.setVisibility(0);
                     ((FrameLayout.LayoutParams) textView.getLayoutParams()).leftMargin = AndroidUtilities.dp(13.0f);
@@ -566,23 +566,23 @@ public final class x5 extends FrameLayout {
     }
 
     public void setItemSize(int i10) {
-        this.f25708y = i10;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f25700b.getLayoutParams();
-        int i11 = this.f25708y;
+        this.f25710y = i10;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f25702b.getLayoutParams();
+        int i11 = this.f25710y;
         layoutParams.height = i11;
         layoutParams.width = i11;
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f25701c.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f25703c.getLayoutParams();
         layoutParams2.gravity = 53;
         layoutParams2.leftMargin = 0;
-        zp zpVar = this.d;
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) zpVar.getLayoutParams();
+        aq aqVar = this.d;
+        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) aqVar.getLayoutParams();
         layoutParams3.gravity = 53;
         layoutParams3.leftMargin = 0;
         int dp = AndroidUtilities.dp(5.0f);
         layoutParams3.topMargin = dp;
         layoutParams3.rightMargin = dp;
-        zpVar.setDrawBackgroundAsArc(6);
-        this.f25707x = true;
+        aqVar.setDrawBackgroundAsArc(6);
+        this.f25709x = true;
     }
 
     public void setNum(int i10) {
@@ -590,6 +590,6 @@ public final class x5 extends FrameLayout {
     }
 
     public void setOnCheckClickListener(View.OnClickListener onClickListener) {
-        this.f25701c.setOnClickListener(onClickListener);
+        this.f25703c.setOnClickListener(onClickListener);
     }
 }

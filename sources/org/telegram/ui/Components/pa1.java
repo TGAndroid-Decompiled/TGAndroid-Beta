@@ -1,70 +1,37 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.json.JSONObject;
-public final class pa1 implements xb1 {
-    public volatile JSONObject f31516a;
-    public volatile String f31517b;
-    public final ArrayList f31518c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public final Object e = new Object();
+import java.util.concurrent.CountDownLatch;
+public final class pa1 implements Runnable {
+    public final int f31559a;
+    public final Runnable f31560b;
+    public final CountDownLatch f31561c;
+
+    public pa1(Runnable runnable, CountDownLatch countDownLatch, int i10) {
+        this.f31559a = i10;
+        this.f31560b = runnable;
+        this.f31561c = countDownLatch;
+    }
 
     @Override
-    public final void c(String str) {
-        synchronized (this.e) {
-            this.f31517b = str;
-            this.e.notifyAll();
+    public final void run() {
+        CountDownLatch countDownLatch;
+        switch (this.f31559a) {
+            case 0:
+                Runnable runnable = this.f31560b;
+                countDownLatch = this.f31561c;
+                try {
+                    runnable.run();
+                    return;
+                } finally {
+                }
+            default:
+                Runnable runnable2 = this.f31560b;
+                countDownLatch = this.f31561c;
+                try {
+                    runnable2.run();
+                    return;
+                } finally {
+                }
         }
-    }
-
-    @Override
-    public final void e(JSONObject jSONObject) {
-        synchronized (this.f31518c) {
-            this.f31518c.add(jSONObject);
-        }
-    }
-
-    @Override
-    public final void f(JSONObject jSONObject) {
-        synchronized (this.e) {
-            this.f31516a = jSONObject;
-            this.e.notifyAll();
-        }
-    }
-
-    public final int h() {
-        int size;
-        synchronized (this.f31518c) {
-            size = this.f31518c.size();
-        }
-        return size;
-    }
-
-    public final String i() {
-        String obj;
-        synchronized (this.f31518c) {
-            obj = this.f31518c.toString();
-        }
-        return obj;
-    }
-
-    public final void j() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pa1.j():void");
-    }
-
-    @Override
-    public final void a(String str) {
-    }
-
-    @Override
-    public final void d(yb1 yb1Var) {
-    }
-
-    @Override
-    public final void g(String str, JSONObject jSONObject) {
-    }
-
-    @Override
-    public final void b(boolean z10, boolean z11, boolean z12) {
     }
 }

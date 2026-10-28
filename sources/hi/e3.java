@@ -29,7 +29,7 @@ public final class e3 extends org.telegram.ui.web.a1 {
                     m3Var.i();
                     org.telegram.ui.c3 c3Var = m3Var.Y0;
                     if (m3Var.m()) {
-                        userName = m3Var.f13130w0.e;
+                        userName = m3Var.f13129w0.e;
                     } else {
                         userName = UserObject.getUserName(MessagesController.getInstance(m3Var.H).getUser(Long.valueOf(m3Var.I)));
                     }
@@ -59,12 +59,12 @@ public final class e3 extends org.telegram.ui.web.a1 {
         switch (this.T0) {
             case 0:
                 m3 m3Var = (m3) this.U0;
-                m3Var.f13129w.setWebView(x0Var);
+                m3Var.f13128w.setWebView(x0Var);
                 f1 f1Var = m3Var.C0;
                 if (f1Var != null) {
-                    f1Var.f12971k = x0Var;
+                    f1Var.f12970k = x0Var;
                 }
-                m3Var.f13118n0.setWebView(x0Var);
+                m3Var.f13117n0.setWebView(x0Var);
                 m3Var.G();
                 return;
             default:
@@ -79,11 +79,11 @@ public final class e3 extends org.telegram.ui.web.a1 {
             case 0:
                 m3 m3Var = (m3) this.U0;
                 f1 f1Var = m3Var.C0;
-                if (f1Var != null && f1Var.f12971k == x0Var) {
-                    f1Var.f12971k = null;
+                if (f1Var != null && f1Var.f12970k == x0Var) {
+                    f1Var.f12970k = null;
                     f1Var.b();
                 }
-                m3Var.f13118n0.setWebView(null);
+                m3Var.f13117n0.setWebView(null);
                 return;
             default:
                 return;
@@ -98,7 +98,7 @@ public final class e3 extends org.telegram.ui.web.a1 {
                     o4 o4Var = (o4) this.U0;
                     if (!o4Var.P) {
                         o4Var.P = true;
-                        o4Var.f13180n.Q();
+                        o4Var.f13179n.Q();
                     }
                 }
                 return super.dispatchTouchEvent(motionEvent);

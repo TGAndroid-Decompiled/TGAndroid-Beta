@@ -6,36 +6,36 @@ import android.widget.FrameLayout;
 import org.telegram.tgnet.tl.TL_stories;
 public final class b9 extends FrameLayout {
     public final TL_stories.MediaArea f8439a;
-    public final sg.t0 f8440b;
+    public final sg.s0 f8440b;
 
-    public b9(Context context, sg.t0 t0Var, TL_stories.MediaArea mediaArea) {
+    public b9(Context context, sg.s0 s0Var, TL_stories.MediaArea mediaArea) {
         super(context);
         this.f8439a = mediaArea;
-        this.f8440b = t0Var;
-        addView(t0Var);
+        this.f8440b = s0Var;
+        addView(s0Var);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        sg.t0 t0Var = this.f8440b;
-        t0Var.measure(i10, i11);
-        int measuredWidth = (t0Var.getMeasuredWidth() - t0Var.getPaddingLeft()) - t0Var.getPaddingRight();
-        int measuredHeight = (t0Var.getMeasuredHeight() - t0Var.getPaddingTop()) - t0Var.getPaddingBottom();
+        sg.s0 s0Var = this.f8440b;
+        s0Var.measure(i10, i11);
+        int measuredWidth = (s0Var.getMeasuredWidth() - s0Var.getPaddingLeft()) - s0Var.getPaddingRight();
+        int measuredHeight = (s0Var.getMeasuredHeight() - s0Var.getPaddingTop()) - s0Var.getPaddingBottom();
         float f7 = measuredWidth;
         float f10 = f7 / 2.0f;
-        t0Var.setPivotX(t0Var.getPaddingLeft() + f10);
+        s0Var.setPivotX(s0Var.getPaddingLeft() + f10);
         float f11 = measuredHeight;
         float f12 = f11 / 2.0f;
-        t0Var.setPivotY(t0Var.getPaddingTop() + f12);
+        s0Var.setPivotY(s0Var.getPaddingTop() + f12);
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         setMeasuredDimension(size, size2);
         float f13 = size;
         float f14 = size2;
         float min = Math.min(f13 / f7, f14 / f11);
-        t0Var.setTranslationX((f13 / 2.0f) - (f10 + t0Var.getPaddingLeft()));
-        t0Var.setTranslationY((f14 / 2.0f) - (f12 + t0Var.getPaddingTop()));
-        t0Var.setScaleX(min);
-        t0Var.setScaleY(min);
+        s0Var.setTranslationX((f13 / 2.0f) - (f10 + s0Var.getPaddingLeft()));
+        s0Var.setTranslationY((f14 / 2.0f) - (f12 + s0Var.getPaddingTop()));
+        s0Var.setScaleX(min);
+        s0Var.setScaleY(min);
     }
 }

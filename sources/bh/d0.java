@@ -10,21 +10,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.r2;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.fl0;
+import org.telegram.ui.Components.gl0;
 import org.telegram.ui.Components.t5;
 import org.telegram.ui.Components.wc;
-import org.telegram.ui.c61;
-import org.telegram.ui.l51;
-import org.telegram.ui.un;
-public final class d0 extends c61 {
-    public final fl0 f4010e2;
+import org.telegram.ui.f61;
+import org.telegram.ui.o51;
+import org.telegram.ui.wn;
+public final class d0 extends f61 {
+    public final gl0 f4010e2;
     public final r2 f4011f2;
     public final i0 f4012g2;
 
-    public d0(i0 i0Var, r2 r2Var, Context context, int i10, boolean z10, u6 u6Var, fl0 fl0Var, r2 r2Var2) {
+    public d0(i0 i0Var, r2 r2Var, Context context, int i10, boolean z10, u6 u6Var, gl0 gl0Var, r2 r2Var2) {
         super(r2Var, context, false, null, i10, z10, u6Var, 16);
         this.f4012g2 = i0Var;
-        this.f4010e2 = fl0Var;
+        this.f4010e2 = gl0Var;
         this.f4011f2 = r2Var2;
     }
 
@@ -37,9 +37,9 @@ public final class d0 extends c61 {
     public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
         long longValue;
         p pVar = this.f4012g2.f4049c;
-        fl0 fl0Var = this.f4010e2;
+        gl0 gl0Var = this.f4010e2;
         r2 r2Var = this.f4011f2;
-        if (r2Var != null && !fl0Var.A0 && fl0Var.getWindowType() != 13 && !UserConfig.getInstance(r2Var.getCurrentAccount()).isPremium()) {
+        if (r2Var != null && !gl0Var.A0 && gl0Var.getWindowType() != 13 && !UserConfig.getInstance(r2Var.getCurrentAccount()).isPremium()) {
             try {
                 pVar.performHapticFeedback(3);
             } catch (Exception unused) {
@@ -51,14 +51,14 @@ public final class d0 extends c61 {
                 t5.h(UserConfig.selectedAccount).e(document);
             }
             if (l4 == null) {
-                longValue = document.f22033id;
+                longValue = document.f22034id;
             } else {
                 longValue = l4.longValue();
             }
             ?? obj = new Object();
             obj.f4209g = longValue;
             obj.h = longValue;
-            fl0Var.l(view, obj, false);
+            gl0Var.l(view, obj, false);
             AndroidUtilities.hideKeyboard(pVar);
         }
     }
@@ -72,27 +72,27 @@ public final class d0 extends c61 {
                 i0Var.f4048b.updateViewLayout(i0Var.f4049c, i0Var.b(true));
             }
             r2 r2Var = this.f4011f2;
-            if (r2Var instanceof un) {
-                ((un) r2Var).Z9();
+            if (r2Var instanceof wn) {
+                ((wn) r2Var).ca();
             }
-            fl0 fl0Var = this.f4010e2;
-            if (fl0Var.getDelegate() != null) {
-                fl0Var.getDelegate().i();
+            gl0 gl0Var = this.f4010e2;
+            if (gl0Var.getDelegate() != null) {
+                gl0Var.getDelegate().i();
             }
         }
     }
 
     @Override
-    public final void r(l51 l51Var, x0 x0Var) {
-        this.f4010e2.l(l51Var, x0Var, false);
+    public final void r(o51 o51Var, x0 x0Var) {
+        this.f4010e2.l(o51Var, x0Var, false);
         AndroidUtilities.hideKeyboard(this.f4012g2.f4049c);
     }
 
     @Override
     public final boolean u() {
-        fl0 fl0Var = this.f4010e2;
-        if (fl0Var.getDelegate() != null) {
-            return fl0Var.getDelegate().i();
+        gl0 gl0Var = this.f4010e2;
+        if (gl0Var.getDelegate() != null) {
+            return gl0Var.getDelegate().i();
         }
         return false;
     }

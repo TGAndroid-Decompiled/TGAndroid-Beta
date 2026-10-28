@@ -1,50 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gl implements Runnable {
-    public final int f20209a;
-    public final BaseController f20210b;
-    public final Object f20211c;
-    public final Object d;
-    public final Object e;
-    public final Runnable f20212f;
-    public final long h;
+import org.telegram.messenger.LanguageDetector;
+public final class gl implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final TranslateController f20202a;
+    public final MessageObject f20203b;
+    public final long f20204c;
+    public final int d;
 
-    public gl(TopicsController topicsController, TLObject tLObject, long j10, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, a0.h hVar, Runnable runnable) {
-        this.f20209a = 2;
-        this.f20210b = topicsController;
-        this.f20211c = tLObject;
-        this.h = j10;
-        this.d = tL_messages_forumTopics;
-        this.e = hVar;
-        this.f20212f = runnable;
+    public gl(TranslateController translateController, MessageObject messageObject, long j10, int i10) {
+        this.f20202a = translateController;
+        this.f20203b = messageObject;
+        this.f20204c = j10;
+        this.d = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20209a) {
-            case 0:
-                ((TranslateController) this.f20210b).lambda$translatePhoto$43((MessageObject) this.f20211c, (String) this.d, (TranslateController.MessageKey) this.e, this.f20212f, this.h);
-                return;
-            case 1:
-                ((TranslateController) this.f20210b).lambda$translatePhoto$45((MessageObject) this.f20211c, (String) this.d, (TranslateController.MessageKey) this.e, this.f20212f, this.h);
-                return;
-            default:
-                Runnable runnable = this.f20212f;
-                ((TopicsController) this.f20210b).lambda$reloadTopics$14((TLObject) this.f20211c, this.h, (TLRPC.TL_messages_forumTopics) this.d, (a0.h) this.e, runnable);
-                return;
-        }
+    public void run(Exception exc) {
+        this.f20202a.lambda$checkLanguage$15(this.f20203b, this.f20204c, this.d, exc);
     }
 
-    public gl(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j10, int i10) {
-        this.f20209a = i10;
-        this.f20210b = translateController;
-        this.f20211c = messageObject;
-        this.d = str;
-        this.e = messageKey;
-        this.f20212f = runnable;
-        this.h = j10;
+    @Override
+    public void run(String str) {
+        long j10 = this.f20204c;
+        int i10 = this.d;
+        this.f20202a.lambda$checkLanguage$13(this.f20203b, j10, i10, str);
     }
 }

@@ -2,8 +2,8 @@ package l5;
 
 import android.util.SparseArray;
 public final class u {
-    public static final SparseArray f16917a;
-    public static final u[] f16918b;
+    public static final SparseArray f16916a;
+    public static final u[] f16917b;
     u EF0;
 
     static {
@@ -26,9 +26,9 @@ public final class u {
         Enum r62 = new Enum("PROXY", 16);
         Enum r43 = new Enum("VPN", 17);
         Enum r23 = new Enum("NONE", 18);
-        f16918b = new u[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r14, r122, r10, r82, r6, r42, r22, r62, r43, r23};
+        f16917b = new u[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r14, r122, r10, r82, r6, r42, r22, r62, r43, r23};
         SparseArray sparseArray = new SparseArray();
-        f16917a = sparseArray;
+        f16916a = sparseArray;
         sparseArray.put(0, r02);
         sparseArray.put(1, r12);
         sparseArray.put(2, r32);
@@ -55,6 +55,6 @@ public final class u {
     }
 
     public static u[] values() {
-        return (u[]) f16918b.clone();
+        return (u[]) f16917b.clone();
     }
 }

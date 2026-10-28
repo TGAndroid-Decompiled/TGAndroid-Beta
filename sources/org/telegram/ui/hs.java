@@ -1,86 +1,61 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class hs extends org.telegram.ui.Cells.v8 {
-    public final int W = 2;
-    public final Object f40064a0;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class hs extends org.telegram.ui.ActionBar.j {
+    public final ls f39956a;
 
-    public hs(js jsVar, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var);
-        this.f40064a0 = jsVar;
+    public hs(ls lsVar) {
+        this.f39956a = lsVar;
     }
 
     @Override
-    public int e(int i10) {
-        switch (this.W) {
-            case 2:
-                ProfileActivity profileActivity = ((j01) this.f40064a0).e;
-                int i11 = ProfileActivity.R6;
-                profileActivity.getClass();
-                return i10;
-            default:
-                return i10;
+    public final void b(int i10) {
+        boolean z10;
+        int i11;
+        int i12;
+        ls lsVar = this.f39956a;
+        if (i10 == -1) {
+            lsVar.finishFragment();
+        } else if (i10 == 1 && lsVar.f41248b.getText().length() != 0) {
+            TLRPC.User user = lsVar.getMessagesController().getUser(Long.valueOf(lsVar.H));
+            TLRPC.UserFull userFull = lsVar.getMessagesController().getUserFull(lsVar.H);
+            user.first_name = lsVar.f41248b.getText().toString();
+            user.last_name = lsVar.f41249c.getText().toString();
+            user.contact = true;
+            TLRPC.TL_textWithEntities textWithEntities = lsVar.d.getTextWithEntities();
+            lsVar.getMessagesController().putUser(user, false);
+            ContactsController contactsController = lsVar.getContactsController();
+            if (lsVar.K && lsVar.X) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            contactsController.addContact(user, textWithEntities, z10);
+            i11 = ((org.telegram.ui.ActionBar.r2) lsVar).currentAccount;
+            MessagesController.getNotificationsSettings(i11).edit().putInt("dialog_bar_vis3" + lsVar.H, 3).commit();
+            lsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+            lsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(lsVar.H));
+            if (userFull != null) {
+                if (textWithEntities != null && textWithEntities.text.length() > 0) {
+                    userFull.flags2 |= 4194304;
+                    userFull.note = textWithEntities;
+                } else {
+                    userFull.flags2 &= -4194305;
+                    userFull.note = null;
+                }
+                i12 = ((org.telegram.ui.ActionBar.r2) lsVar).currentAccount;
+                MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
+                lsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f22178id), userFull);
+            }
+            lsVar.finishFragment();
+            ks ksVar = lsVar.O;
+            if (ksVar != null) {
+                ksVar.a();
+            }
         }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.W) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int dp = AndroidUtilities.dp(21.0f);
-                int measuredHeight = getMeasuredHeight();
-                js jsVar = (js) this.f40064a0;
-                int measuredHeight2 = (measuredHeight - jsVar.U.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.y9 y9Var = jsVar.U;
-                y9Var.layout(dp, measuredHeight2, y9Var.getMeasuredWidth() + dp, jsVar.U.getMeasuredHeight() + measuredHeight2);
-                return;
-            case 1:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int dp2 = AndroidUtilities.dp(21.0f);
-                int measuredHeight3 = getMeasuredHeight();
-                kx0 kx0Var = (kx0) this.f40064a0;
-                int measuredHeight4 = (measuredHeight3 - kx0Var.d.f35926u0.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.y9 y9Var2 = kx0Var.d.f35926u0;
-                y9Var2.layout(dp2, measuredHeight4, y9Var2.getMeasuredWidth() + dp2, kx0Var.d.f35926u0.getMeasuredHeight() + measuredHeight4);
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.W) {
-            case 0:
-                super.onMeasure(i10, i11);
-                js jsVar = (js) this.f40064a0;
-                jsVar.U.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                jsVar.U.setRoundRadius(AndroidUtilities.dp(30.0f));
-                return;
-            case 1:
-                super.onMeasure(i10, i11);
-                kx0 kx0Var = (kx0) this.f40064a0;
-                kx0Var.d.f35926u0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                kx0Var.d.f35926u0.setRoundRadius(AndroidUtilities.dp(30.0f));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    public hs(kx0 kx0Var, Activity activity) {
-        super(activity);
-        this.f40064a0 = kx0Var;
-    }
-
-    public hs(j01 j01Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(18, context, u6Var, false, false);
-        this.f40064a0 = j01Var;
     }
 }

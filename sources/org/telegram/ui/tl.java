@@ -1,21 +1,18 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class tl extends gu0 {
-    public final un f43866a;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+public final class tl extends fi.v3 {
+    public final wn L0;
 
-    public tl(un unVar) {
-        this.f43866a = unVar;
+    public tl(wn wnVar, Activity activity) {
+        super(activity, 3);
+        this.L0 = wnVar;
     }
 
     @Override
-    public final qu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return un.G1(this.f43866a, messageObject, fileLocation, i10, z10, false);
-    }
-
-    @Override
-    public final boolean L() {
-        return true;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + this.L0.O1);
     }
 }

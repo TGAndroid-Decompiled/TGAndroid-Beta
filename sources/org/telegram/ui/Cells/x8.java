@@ -7,15 +7,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.ClippingImageView;
 import org.telegram.ui.Components.PollVotesAlert$UserCell;
-import org.telegram.ui.Components.b81;
+import org.telegram.ui.Components.c81;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.PhotoViewer;
 public final class x8 extends org.telegram.ui.Components.u6 {
-    public final int f25726b;
+    public final int f25728b;
 
     public x8(String str, int i10) {
         super(str, 0);
-        this.f25726b = i10;
+        this.f25728b = i10;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class x8 extends org.telegram.ui.Components.u6 {
         double sqrt;
         boolean z10;
         float f10;
-        switch (this.f25726b) {
+        switch (this.f25728b) {
             case 0:
                 a9 a9Var = (a9) obj;
                 a9Var.setAnimationProgress(f7);
@@ -43,7 +43,7 @@ public final class x8 extends org.telegram.ui.Components.u6 {
                 org.telegram.ui.Components.k6 k6Var = (org.telegram.ui.Components.k6) obj;
                 if (k6Var.e != f7) {
                     k6Var.e = f7;
-                    k6Var.f29819g.invalidate();
+                    k6Var.f29866g.invalidate();
                     return;
                 }
                 return;
@@ -66,33 +66,33 @@ public final class x8 extends org.telegram.ui.Components.u6 {
                 ((PollVotesAlert$UserCell) obj).setPlaceholderAlpha(f7);
                 return;
             case 10:
-                ((b81) obj).H(f7);
+                ((c81) obj).H(f7);
                 return;
             case 11:
                 wh.h hVar = (wh.h) obj;
                 hVar.G = f7;
                 RectF rectF = hVar.v;
-                RectF rectF2 = hVar.f51260s;
-                float interpolation = 1.0f - wh.f.f51241p.getInterpolation(f7);
-                float interpolation2 = (wh.f.h.getInterpolation(hVar.G) - wh.f.f51234i.getInterpolation(hVar.G)) * AndroidUtilities.dp(13.0f);
-                RectF rectF3 = hVar.f51258n;
+                RectF rectF2 = hVar.f51318s;
+                float interpolation = 1.0f - wh.f.f51299p.getInterpolation(f7);
+                float interpolation2 = (wh.f.h.getInterpolation(hVar.G) - wh.f.f51292i.getInterpolation(hVar.G)) * AndroidUtilities.dp(13.0f);
+                RectF rectF3 = hVar.f51316n;
                 RectF rectF4 = hVar.h;
                 rectF3.set(rectF4);
                 rectF3.offset(0.0f, -interpolation2);
-                float g7 = wh.h.g(rectF3.height(), (AndroidUtilities.dp(2.0f) * interpolation) + AndroidUtilities.dp(wh.g.f51247b), wh.f.f51237l.getInterpolation(hVar.G)) / 2.0f;
-                wh.e eVar = wh.f.f51238m;
+                float g7 = wh.h.g(rectF3.height(), (AndroidUtilities.dp(2.0f) * interpolation) + AndroidUtilities.dp(wh.g.f51305b), wh.f.f51295l.getInterpolation(hVar.G)) / 2.0f;
+                wh.e eVar = wh.f.f51296m;
                 float g10 = wh.h.g(rectF3.width(), (AndroidUtilities.dp(10.0f) * interpolation) + hVar.h(), eVar.getInterpolation(hVar.G));
                 float f11 = g7 * 2.0f;
                 float max = Math.max(g10, f11);
                 float interpolation3 = (eVar.getInterpolation(hVar.G) * Math.min(AndroidUtilities.dp(-12.0f) + hVar.F, (max - Math.max(rectF3.width(), f11)) / 2.0f)) + rectF4.centerX() + g7;
-                float interpolation4 = ((rectF4.bottom - g7) - 1.0f) - (wh.f.f51239n.getInterpolation(hVar.G) * ((AndroidUtilities.dp(6.0f) * interpolation) + AndroidUtilities.dp(38.0f)));
-                RectF rectF5 = hVar.f51259r;
+                float interpolation4 = ((rectF4.bottom - g7) - 1.0f) - (wh.f.f51297n.getInterpolation(hVar.G) * ((AndroidUtilities.dp(6.0f) * interpolation) + AndroidUtilities.dp(38.0f)));
+                RectF rectF5 = hVar.f51317r;
                 rectF5.left = interpolation3 - max;
                 rectF5.top = interpolation4 - g7;
                 rectF5.right = interpolation3;
                 rectF5.bottom = interpolation4 + g7;
                 if (hVar.Q && !hVar.M) {
-                    float g11 = wh.h.g(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), wh.f.f51240o.getInterpolation(hVar.G));
+                    float g11 = wh.h.g(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), wh.f.f51298o.getInterpolation(hVar.G));
                     float f12 = rectF5.bottom + g11;
                     double width = (rectF3.width() / 2.0f) + g11;
                     double abs = Math.abs(f12 - rectF3.centerY());
@@ -157,7 +157,7 @@ public final class x8 extends org.telegram.ui.Components.u6 {
                         if (!z10) {
                             path.lineTo((rectF5.height() / 2.0f) + rectF5.left, rectF5.bottom);
                         }
-                        RectF rectF6 = wh.h.f51248b0;
+                        RectF rectF6 = wh.h.f51306b0;
                         float f19 = rectF5.left;
                         rectF6.set(f19, rectF5.top, rectF5.height() + f19, rectF5.bottom);
                         hVar.a(path, rectF6, wh.h.j(f18), -90.0f, false, false);
@@ -186,13 +186,13 @@ public final class x8 extends org.telegram.ui.Components.u6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f25726b) {
+        switch (this.f25728b) {
             case 0:
-                return Float.valueOf(((a9) obj).f23868s);
+                return Float.valueOf(((a9) obj).f23869s);
             case 1:
                 return Float.valueOf(((b9) obj).h);
             case 2:
-                return Float.valueOf(((k9) obj).f24356f);
+                return Float.valueOf(((k9) obj).f24358f);
             case 3:
                 return Float.valueOf(((org.telegram.ui.Components.k6) obj).e);
             case 4:
@@ -208,7 +208,7 @@ public final class x8 extends org.telegram.ui.Components.u6 {
             case 9:
                 return Float.valueOf(((PollVotesAlert$UserCell) obj).getPlaceholderAlpha());
             case 10:
-                return Float.valueOf(((b81) obj).E);
+                return Float.valueOf(((c81) obj).E);
             case 11:
                 return Float.valueOf(((wh.h) obj).G);
             default:

@@ -29,7 +29,7 @@ public abstract class qd {
 
     public static k9.w b(Object obj) {
         if (obj == null) {
-            return k9.w.f16496b;
+            return k9.w.f16495b;
         }
         return new k9.w(obj);
     }
@@ -37,9 +37,9 @@ public abstract class qd {
     public static k9.p c(k9.y yVar, e9.k kVar) {
         ?? obj = new Object();
         yVar.getClass();
-        obj.f16489n = yVar;
-        obj.f16490r = kVar;
-        yVar.a(obj, k9.r.f16491a);
+        obj.f16488n = yVar;
+        obj.f16489r = kVar;
+        yVar.a(obj, k9.r.f16490a);
         return obj;
     }
 }

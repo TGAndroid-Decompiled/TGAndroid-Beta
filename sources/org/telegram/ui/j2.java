@@ -8,15 +8,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class j2 extends View implements org.telegram.ui.ActionBar.p6 {
-    public final h70 f40395a;
-    public final org.telegram.ui.Components.ar f40396b;
+    public final j70 f40359a;
+    public final org.telegram.ui.Components.ar f40360b;
 
-    public j2(Context context, h70 h70Var) {
+    public j2(Context context, j70 j70Var) {
         super(context);
-        this.f40395a = h70Var;
+        this.f40359a = j70Var;
         org.telegram.ui.Components.ar arVar = new org.telegram.ui.Components.ar(new ColorDrawable(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Qk, false)), org.telegram.ui.ActionBar.y6.W0(context, R.drawable.greydivider_bottom, -16777216));
-        this.f40396b = arVar;
-        arVar.f26599w = true;
+        this.f40360b = arVar;
+        arVar.f26646w = true;
         setBackgroundDrawable(arVar);
         setImportantForAccessibility(2);
     }
@@ -30,18 +30,18 @@ public final class j2 extends View implements org.telegram.ui.ActionBar.p6 {
     public final void onMeasure(int i10, int i11) {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(12.0f));
         int i12 = org.telegram.ui.ActionBar.y6.Qk;
-        ((j4) this.f40395a).getClass();
-        org.telegram.ui.ActionBar.y6.y1(this.f40396b, org.telegram.ui.ActionBar.y6.x0(null, i12, false), false);
+        ((j4) this.f40359a).getClass();
+        org.telegram.ui.ActionBar.y6.y1(this.f40360b, org.telegram.ui.ActionBar.y6.x0(null, i12, false), false);
     }
 
     @Override
     public final void updateColors() {
-        h70 h70Var;
+        j70 j70Var;
         try {
-            org.telegram.ui.Components.ar arVar = this.f40396b;
-            if (arVar != null && (h70Var = this.f40395a) != null) {
+            org.telegram.ui.Components.ar arVar = this.f40360b;
+            if (arVar != null && (j70Var = this.f40359a) != null) {
                 int i10 = org.telegram.ui.ActionBar.y6.Qk;
-                ((j4) h70Var).getClass();
+                ((j4) j70Var).getClass();
                 org.telegram.ui.ActionBar.y6.y1(arVar, org.telegram.ui.ActionBar.y6.x0(null, i10, false), false);
                 invalidate();
             }

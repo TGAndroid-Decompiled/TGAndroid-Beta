@@ -3,22 +3,22 @@ package org.telegram.ui.web;
 import android.webkit.JavascriptInterface;
 import java.io.Serializable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ny0;
+import org.telegram.ui.Components.oy0;
 public class BotWebViewContainer$WebViewProxy {
-    public a1 f45144a;
-    public final x0 f45145b;
+    public a1 f44655a;
+    public final x0 f44656b;
 
     public BotWebViewContainer$WebViewProxy(x0 x0Var, a1 a1Var) {
-        this.f45145b = x0Var;
-        this.f45144a = a1Var;
+        this.f44656b = x0Var;
+        this.f44655a = a1Var;
     }
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        if (this.f45144a == null) {
+        if (this.f44655a == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new ny0(this, str, str2, 9));
+        AndroidUtilities.runOnUIThread(new oy0(this, str, str2, 9));
     }
 
     @JavascriptInterface

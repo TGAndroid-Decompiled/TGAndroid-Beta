@@ -3,25 +3,25 @@ package fi;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.Utilities;
 public final class d1 implements Utilities.Callback {
-    public final int f10715a;
-    public final l2 f10716b;
+    public final int f10714a;
+    public final l2 f10715b;
 
     public d1(l2 l2Var, int i10) {
-        this.f10715a = i10;
-        this.f10716b = l2Var;
+        this.f10714a = i10;
+        this.f10715b = l2Var;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f10715a;
-        l2 l2Var = this.f10716b;
+        int i10 = this.f10714a;
+        l2 l2Var = this.f10715b;
         Integer num = (Integer) obj;
         switch (i10) {
             case 0:
                 l2.m(l2Var);
                 return;
             case 1:
-                h1 h1Var = l2Var.f11158f;
+                h1 h1Var = l2Var.f11157f;
                 ValueAnimator valueAnimator = h1Var.S;
                 if ((valueAnimator == null || !valueAnimator.isRunning()) && h1Var.getCurrentPosition() != num.intValue()) {
                     h1Var.E(num.intValue());

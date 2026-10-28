@@ -4,16 +4,16 @@ import a8.bg;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 public final class r extends a8.y implements ListIterator {
-    public final int f47923b;
-    public int f47924c;
+    public final int f47958b;
+    public int f47959c;
     public final t d;
 
     public r(t tVar, int i10) {
         super(4);
         int size = tVar.size();
         if (i10 >= 0 && i10 <= size) {
-            this.f47923b = size;
-            this.f47924c = i10;
+            this.f47958b = size;
+            this.f47959c = i10;
             this.d = tVar;
             return;
         }
@@ -31,7 +31,7 @@ public final class r extends a8.y implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f47924c < this.f47923b) {
+        if (this.f47959c < this.f47958b) {
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public final class r extends a8.y implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f47924c > 0) {
+        if (this.f47959c > 0) {
             return true;
         }
         return false;
@@ -48,8 +48,8 @@ public final class r extends a8.y implements ListIterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i10 = this.f47924c;
-            this.f47924c = i10 + 1;
+            int i10 = this.f47959c;
+            this.f47959c = i10 + 1;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -57,14 +57,14 @@ public final class r extends a8.y implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f47924c;
+        return this.f47959c;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i10 = this.f47924c - 1;
-            this.f47924c = i10;
+            int i10 = this.f47959c - 1;
+            this.f47959c = i10;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -72,7 +72,7 @@ public final class r extends a8.y implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f47924c - 1;
+        return this.f47959c - 1;
     }
 
     @Override

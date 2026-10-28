@@ -98,13 +98,13 @@ public class Utilities {
         long nextLong = random.nextLong();
         ?? random2 = new Random(0L);
         long a2 = a8.vb.a(nextLong);
-        random2.f9778a = a2;
+        random2.f9777a = a2;
         long a10 = a8.vb.a(a2);
-        random2.f9779b = a10;
-        if (random2.f9778a == 0 && a10 == 0) {
+        random2.f9778b = a10;
+        if (random2.f9777a == 0 && a10 == 0) {
             long a11 = a8.vb.a(3735928559L);
-            random2.f9778a = a11;
-            random2.f9779b = a8.vb.a(a11);
+            random2.f9777a = a11;
+            random2.f9778b = a8.vb.a(a11);
         }
         fastRandom = random2;
         stageQueue = new DispatchQueue2("stageQueue");
@@ -478,9 +478,9 @@ public class Utilities {
 
     public static void raceCallbacks(Runnable runnable, Callback<Runnable>... callbackArr) {
         if (callbackArr != 0 && callbackArr.length != 0) {
-            dl dlVar = new dl(new int[]{0}, callbackArr, runnable, 1);
+            el elVar = new el(new int[]{0}, callbackArr, runnable, 1);
             for (bi.ea eaVar : callbackArr) {
-                eaVar.run(dlVar);
+                eaVar.run(elVar);
             }
         } else if (runnable != null) {
             runnable.run();
@@ -553,7 +553,7 @@ public class Utilities {
         if (callbackArr == null || callbackArr.length <= i10) {
             return;
         }
-        callbackArr[i10].run(new x6(i10, callbackArr, 11));
+        callbackArr[i10].run(new y6(i10, callbackArr, 11));
     }
 
     public static String generateRandomString(int i10) {

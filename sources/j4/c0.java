@@ -5,24 +5,24 @@ import b2.w0;
 import c3.j0;
 import java.util.List;
 public final class c0 {
-    public final int f15260a;
-    public final List f15261b;
-    public final j0[] f15262c;
+    public final int f15259a;
+    public final List f15260b;
+    public final j0[] f15261c;
     public final e2.c d;
 
     public c0(int i10, List list) {
-        this.f15260a = i10;
+        this.f15259a = i10;
         switch (i10) {
             case 1:
-                this.f15261b = list;
-                this.f15262c = new j0[list.size()];
+                this.f15260b = list;
+                this.f15261c = new j0[list.size()];
                 e2.c cVar = new e2.c(new e1.c(this, 29));
                 this.d = cVar;
                 cVar.k(3);
                 return;
             default:
-                this.f15261b = list;
-                this.f15262c = new j0[list.size()];
+                this.f15260b = list;
+                this.f15261c = new j0[list.size()];
                 this.d = new e2.c(new e1.c(this, 28));
                 return;
         }
@@ -42,16 +42,16 @@ public final class c0 {
     public final void b(c3.q qVar, f0 f0Var) {
         boolean z10;
         boolean z11;
-        switch (this.f15260a) {
+        switch (this.f15259a) {
             case 0:
                 int i10 = 0;
                 while (true) {
-                    j0[] j0VarArr = this.f15262c;
+                    j0[] j0VarArr = this.f15261c;
                     if (i10 < j0VarArr.length) {
                         f0Var.b();
                         f0Var.c();
-                        j0 F1 = qVar.F1(f0Var.f15315c, 3);
-                        b2.x xVar = (b2.x) this.f15261b.get(i10);
+                        j0 F1 = qVar.F1(f0Var.f15314c, 3);
+                        b2.x xVar = (b2.x) this.f15260b.get(i10);
                         String str = xVar.f3586s;
                         if (!"application/cea-608".equals(str) && !"application/cea-708".equals(str)) {
                             z10 = false;
@@ -83,12 +83,12 @@ public final class c0 {
             default:
                 int i11 = 0;
                 while (true) {
-                    j0[] j0VarArr2 = this.f15262c;
+                    j0[] j0VarArr2 = this.f15261c;
                     if (i11 < j0VarArr2.length) {
                         f0Var.b();
                         f0Var.c();
-                        j0 F12 = qVar.F1(f0Var.f15315c, 3);
-                        b2.x xVar2 = (b2.x) this.f15261b.get(i11);
+                        j0 F12 = qVar.F1(f0Var.f15314c, 3);
+                        b2.x xVar2 = (b2.x) this.f15260b.get(i11);
                         String str3 = xVar2.f3586s;
                         if (!"application/cea-608".equals(str3) && !"application/cea-708".equals(str3)) {
                             z11 = false;

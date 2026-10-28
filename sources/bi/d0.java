@@ -9,7 +9,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.rh0;
+import org.telegram.ui.th0;
 public final class d0 implements RequestDelegate {
     public final int f4476a;
     public final int f4477b;
@@ -50,7 +50,7 @@ public final class d0 implements RequestDelegate {
                 ((MessagesController) this.d).lambda$checkPromoInfoInternal$166(this.f4477b, (TLRPC.TL_help_promoData) this.e, j12, tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new a9((rh0) this.d, tL_error, tLObject, this.f4478c, this.f4477b, (TLRPC.Chat) this.e));
+                AndroidUtilities.runOnUIThread(new a9((th0) this.d, tL_error, tLObject, this.f4478c, this.f4477b, (TLRPC.Chat) this.e));
                 return;
         }
     }
@@ -63,9 +63,9 @@ public final class d0 implements RequestDelegate {
         this.f4478c = j10;
     }
 
-    public d0(rh0 rh0Var, long j10, int i10, TLRPC.Chat chat) {
+    public d0(th0 th0Var, long j10, int i10, TLRPC.Chat chat) {
         this.f4476a = 6;
-        this.d = rh0Var;
+        this.d = th0Var;
         this.f4478c = j10;
         this.f4477b = i10;
         this.e = chat;

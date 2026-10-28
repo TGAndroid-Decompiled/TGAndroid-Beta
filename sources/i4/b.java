@@ -2,23 +2,23 @@ package i4;
 
 import java.util.Set;
 public final class b {
-    public String f13838a;
-    public String f13839b;
-    public Set f13840c;
+    public String f13837a;
+    public String f13838b;
+    public Set f13839c;
     public String d;
     public String e;
-    public int f13841f;
-    public boolean f13842g;
+    public int f13840f;
+    public boolean f13841g;
     public int h;
-    public boolean f13843i;
-    public int f13844j;
-    public int f13845k;
-    public int f13846l;
-    public int f13847m;
-    public int f13848n;
-    public float f13849o;
-    public int f13850p;
-    public boolean f13851q;
+    public boolean f13842i;
+    public int f13843j;
+    public int f13844k;
+    public int f13845l;
+    public int f13846m;
+    public int f13847n;
+    public float f13848o;
+    public int f13849p;
+    public boolean f13850q;
 
     public static int a(int i10, int i11, String str, String str2) {
         if (!str.isEmpty() && i10 != -1) {

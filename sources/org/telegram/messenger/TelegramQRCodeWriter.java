@@ -149,12 +149,12 @@ public final class TelegramQRCodeWriter {
             }
         }
         int i14 = this.sideQuadSize;
-        if ((i10 < i14 || i10 >= this.input.f16970b - i14) && i11 < i14) {
+        if ((i10 < i14 || i10 >= this.input.f16969b - i14) && i11 < i14) {
             return false;
         }
-        if ((i10 >= i14 || i11 < this.input.f16971c - i14) && i10 >= 0 && i11 >= 0) {
+        if ((i10 >= i14 || i11 < this.input.f16970c - i14) && i10 >= 0 && i11 >= 0) {
             lc.b bVar = this.input;
-            if (i10 < bVar.f16970b && i11 < bVar.f16971c && bVar.a(i10, i11) == 1) {
+            if (i10 < bVar.f16969b && i11 < bVar.f16970c && bVar.a(i10, i11) == 1) {
                 return true;
             }
         }

@@ -15,22 +15,22 @@ public final class jx extends aw {
 
     @Override
     public final void dismiss() {
-        this.X.f32783w2 = false;
+        this.X.f32777w2 = false;
         super.dismiss();
     }
 
     @Override
     public final void h0(boolean z10) {
         sz szVar = this.X;
-        ArrayList arrayList = szVar.f32758p1;
+        ArrayList arrayList = szVar.f32752p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f22054id))) {
-                arrayList.add(Long.valueOf(stickerSet.f22054id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f22055id))) {
+                arrayList.add(Long.valueOf(stickerSet.f22055id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f22054id));
+            arrayList.remove(Long.valueOf(stickerSet.f22055id));
         }
-        szVar.T();
+        szVar.U();
     }
 }

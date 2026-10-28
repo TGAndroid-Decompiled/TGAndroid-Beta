@@ -9,18 +9,18 @@ public final class vc {
     public static final vc I;
     public static final vc[] J;
     public static final vc e;
-    public static final vc f33628f;
+    public static final vc f33665f;
     public static final vc h;
-    public static final vc f33629n;
-    public static final vc f33630r;
-    public static final vc f33631s;
+    public static final vc f33666n;
+    public static final vc f33667r;
+    public static final vc f33668s;
     public static final vc v;
-    public static final vc f33632w;
-    public static final vc f33633x;
-    public static final vc f33634y;
-    public final String f33635a;
-    public final int f33636b;
-    public final boolean f33637c;
+    public static final vc f33669w;
+    public static final vc f33670x;
+    public static final vc f33671y;
+    public final String f33672a;
+    public final int f33673b;
+    public final boolean f33674c;
     public final uc d;
 
     static {
@@ -29,25 +29,25 @@ public final class vc {
         vc vcVar = new vc("PHOTO", 0, "PhotoSavedHint", i10, ucVar);
         e = vcVar;
         vc vcVar2 = new vc("PHOTOS", 1, "PhotosSavedHint", ucVar);
-        f33628f = vcVar2;
+        f33665f = vcVar2;
         vc vcVar3 = new vc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, ucVar);
         h = vcVar3;
         vc vcVar4 = new vc("VIDEOS", 3, "VideosSavedHint", ucVar);
-        f33629n = vcVar4;
+        f33666n = vcVar4;
         vc vcVar5 = new vc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, ucVar);
-        f33630r = vcVar5;
+        f33667r = vcVar5;
         vc vcVar6 = new vc("LIVEPHOTOS", 5, "LivePhotosSavedHint", ucVar);
-        f33631s = vcVar6;
+        f33668s = vcVar6;
         vc vcVar7 = new vc("MEDIA", 6, "MediaSavedHint", ucVar);
         v = vcVar7;
         int i11 = R.string.PhotoSavedToDownloadsHintLinked;
         uc ucVar2 = uc.SAVED_TO_DOWNLOADS;
         vc vcVar8 = new vc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, ucVar2);
-        f33632w = vcVar8;
+        f33669w = vcVar8;
         vc vcVar9 = new vc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, ucVar2);
-        f33633x = vcVar9;
+        f33670x = vcVar9;
         vc vcVar10 = new vc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, uc.SAVED_TO_GIFS);
-        f33634y = vcVar10;
+        f33671y = vcVar10;
         vc vcVar11 = new vc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, ucVar2);
         E = vcVar11;
         int i12 = R.string.AudioSavedHint;
@@ -64,10 +64,10 @@ public final class vc {
     }
 
     public vc(String str, int i10, String str2, int i11, uc ucVar) {
-        this.f33635a = str2;
-        this.f33636b = i11;
+        this.f33672a = str2;
+        this.f33673b = i11;
         this.d = ucVar;
-        this.f33637c = false;
+        this.f33674c = false;
     }
 
     public static vc valueOf(String str) {
@@ -79,9 +79,9 @@ public final class vc {
     }
 
     public vc(String str, int i10, String str2, uc ucVar) {
-        this.f33635a = str2;
+        this.f33672a = str2;
         this.d = ucVar;
-        this.f33636b = 0;
-        this.f33637c = true;
+        this.f33673b = 0;
+        this.f33674c = true;
     }
 }

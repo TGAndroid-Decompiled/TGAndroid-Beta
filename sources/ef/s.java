@@ -2,10 +2,10 @@ package ef;
 
 import a8.bc;
 public final class s extends p {
-    public String f9941g;
+    public String f9940g;
 
     public s(String str) {
-        this.f9941g = str;
+        this.f9940g = str;
     }
 
     @Override
@@ -15,6 +15,6 @@ public final class s extends p {
 
     @Override
     public final String f() {
-        return "literal=" + this.f9941g;
+        return "literal=" + this.f9940g;
     }
 }

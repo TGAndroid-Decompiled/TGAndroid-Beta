@@ -9,21 +9,21 @@ import java.util.ArrayList;
 import n4.x;
 public final class i extends p6.a implements q {
     public static final Parcelable.Creator<i> CREATOR = new x(28);
-    public Status f46995a;
-    public ArrayList f46996b;
-    public String[] f46997c;
+    public Status f47030a;
+    public ArrayList f47031b;
+    public String[] f47032c;
 
     @Override
     public final Status h() {
-        return this.f46995a;
+        return this.f47030a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        df.k(parcel, 1, this.f46995a, i10);
-        df.p(parcel, 2, this.f46996b);
-        df.m(parcel, 3, this.f46997c);
+        df.k(parcel, 1, this.f47030a, i10);
+        df.p(parcel, 2, this.f47031b);
+        df.m(parcel, 3, this.f47032c);
         df.r(parcel, q5);
     }
 }

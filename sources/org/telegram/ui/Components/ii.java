@@ -6,29 +6,29 @@ import java.util.HashMap;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
-public final class ii implements org.telegram.ui.qq0 {
-    public boolean f29294a;
-    public final HashMap f29295b;
-    public final ArrayList f29296c;
+public final class ii implements org.telegram.ui.sq0 {
+    public boolean f29337a;
+    public final HashMap f29338b;
+    public final ArrayList f29339c;
     public final ti d;
 
     public ii(ti tiVar, HashMap hashMap, ArrayList arrayList) {
         this.d = tiVar;
-        this.f29295b = hashMap;
-        this.f29296c = arrayList;
+        this.f29338b = hashMap;
+        this.f29339c = arrayList;
     }
 
     @Override
     public final void d(int i10, boolean z10, boolean z11) {
         String str;
         if (!z10) {
-            HashMap hashMap = this.f29295b;
-            if (!hashMap.isEmpty() && !this.f29294a) {
-                this.f29294a = true;
+            HashMap hashMap = this.f29338b;
+            if (!hashMap.isEmpty() && !this.f29337a) {
+                this.f29337a = true;
                 ArrayList arrayList = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f29296c;
+                    ArrayList arrayList2 = this.f29339c;
                     if (i11 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i11));
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -60,7 +60,7 @@ public final class ii implements org.telegram.ui.qq0 {
                         searchImage.date = (int) (System.currentTimeMillis() / 1000);
                         i11++;
                     } else {
-                        ((org.telegram.ui.un) this.d.f33021f0).k8(i10, arrayList, z11);
+                        ((org.telegram.ui.wn) this.d.f32990f0).m8(i10, arrayList, z11);
                         return;
                     }
                 }

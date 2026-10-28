@@ -6,31 +6,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.r71;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.nm0;
+import org.telegram.ui.Components.s71;
 import org.telegram.ui.Components.t61;
-public final class f5 extends s61 {
-    public static final int f17237a = 0;
+import org.telegram.ui.Components.u61;
+public final class f5 extends t61 {
+    public static final int f17236a = 0;
 
     static {
-        s61.setup(new s61());
+        t61.setup(new t61());
     }
 
     @Override
-    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
         TL_iv.RichText richText;
         g5 g5Var = (g5) view;
-        a aVar = (a) t61Var.G;
-        e5 e5Var = (e5) t61Var.H;
-        g1 g1Var = g5Var.f17265r;
-        g5Var.f17653a = aVar;
-        g5Var.f17266s = e5Var;
+        a aVar = (a) u61Var.G;
+        e5 e5Var = (e5) u61Var.H;
+        g1 g1Var = g5Var.f17264r;
+        g5Var.f17652a = aVar;
+        g5Var.f17265s = e5Var;
         g5Var.f(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         g5Var.c(aVar);
         if (e5Var != null) {
-            richText = (TL_iv.RichText) ((a3) e5Var).f17080a.f17567u3.get(Long.valueOf(aVar.f17069t));
+            richText = (TL_iv.RichText) ((a3) e5Var).f17079a.f17566u3.get(Long.valueOf(aVar.f17068t));
         } else {
             richText = null;
         }
@@ -41,7 +41,7 @@ public final class f5 extends s61 {
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, u6 u6Var) {
+    public final View createView(Context context, nm0 nm0Var, int i10, int i11, u6 u6Var) {
         return new g5(context, u6Var);
     }
 

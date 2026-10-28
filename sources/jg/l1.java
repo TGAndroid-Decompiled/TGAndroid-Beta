@@ -20,13 +20,13 @@ import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.da0;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.d3;
 public final class l1 extends LinearLayout implements p6 {
-    public final u6 f15774a;
-    public final da0 f15775b;
-    public final ImageReceiver f15776c;
+    public final u6 f15773a;
+    public final ea0 f15774b;
+    public final ImageReceiver f15775c;
     public final TextView d;
     public boolean e;
 
@@ -38,16 +38,16 @@ public final class l1 extends LinearLayout implements p6 {
         int i13;
         int i14;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f15776c = imageReceiver;
-        this.f15774a = u6Var;
+        this.f15775c = imageReceiver;
+        this.f15773a = u6Var;
         setOrientation(1);
-        da0 da0Var = new da0();
-        this.f15775b = da0Var;
+        ea0 ea0Var = new ea0();
+        this.f15774b = ea0Var;
         int i15 = y6.G6;
         int w02 = y6.w0(i15, u6Var);
-        da0Var.g(y6.o1(0.05f, w02), y6.o1(0.15f, w02), y6.o1(0.1f, w02), y6.o1(0.3f, w02));
-        da0Var.k(4.0f);
-        da0Var.f27480x.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        ea0Var.g(y6.o1(0.05f, w02), y6.o1(0.15f, w02), y6.o1(0.1f, w02), y6.o1(0.3f, w02));
+        ea0Var.k(4.0f);
+        ea0Var.f27805x.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -70,10 +70,10 @@ public final class l1 extends LinearLayout implements p6 {
         } else {
             i12 = 70;
         }
-        addView(textView, gb1.x(-1, -2, 55, i11, 10, i12, 4));
+        addView(textView, kb1.x(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        f7.V(textView2, y6.f23767z6, u6Var);
+        f7.V(textView2, y6.f23768z6, u6Var);
         d3.o(R.string.BusinessProfileLocation, textView2, 1, 13.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -86,7 +86,7 @@ public final class l1 extends LinearLayout implements p6 {
         } else {
             i14 = 70;
         }
-        addView(textView2, gb1.x(-1, -2, 55, i13, 0, i14, 8));
+        addView(textView2, kb1.x(-1, -2, 55, i13, 0, i14, 8));
         setWillNotDraw(false);
     }
 
@@ -94,9 +94,9 @@ public final class l1 extends LinearLayout implements p6 {
         if (tL_businessLocation != null) {
             this.d.setText(tL_businessLocation.address);
             if (tL_businessLocation.geo_point != null) {
-                this.f15776c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f15775b, 0L, (String) null, (Object) null, 0);
+                this.f15775c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f15774b, 0L, (String) null, (Object) null, 0);
             } else {
-                this.f15776c.setImageBitmap((Drawable) null);
+                this.f15775c.setImageBitmap((Drawable) null);
             }
         }
         this.e = z10;
@@ -114,14 +114,14 @@ public final class l1 extends LinearLayout implements p6 {
             width = getWidth() - AndroidUtilities.dp(60.0f);
         }
         float f10 = width;
-        ImageReceiver imageReceiver = this.f15776c;
+        ImageReceiver imageReceiver = this.f15775c;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
         if (this.e) {
-            Paint V0 = y6.V0("paintDivider", this.f15774a);
+            Paint V0 = y6.V0("paintDivider", this.f15773a);
             if (V0 == null) {
-                V0 = y6.f23478k0;
+                V0 = y6.f23479k0;
             }
             Paint paint = V0;
             float f11 = 21.33f;
@@ -147,11 +147,11 @@ public final class l1 extends LinearLayout implements p6 {
 
     @Override
     public final void updateColors() {
-        da0 da0Var = this.f15775b;
-        if (da0Var != null) {
+        ea0 ea0Var = this.f15774b;
+        if (ea0Var != null) {
             try {
-                int w02 = y6.w0(y6.G6, this.f15774a);
-                da0Var.g(y6.o1(0.05f, w02), y6.o1(0.15f, w02), y6.o1(0.1f, w02), y6.o1(0.3f, w02));
+                int w02 = y6.w0(y6.G6, this.f15773a);
+                ea0Var.g(y6.o1(0.05f, w02), y6.o1(0.15f, w02), y6.o1(0.1f, w02), y6.o1(0.3f, w02));
                 invalidate();
             } catch (Exception e) {
                 FileLog.e(e);
@@ -161,7 +161,7 @@ public final class l1 extends LinearLayout implements p6 {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f15775b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f15774b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

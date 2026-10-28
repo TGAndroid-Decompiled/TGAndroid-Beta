@@ -1,46 +1,18 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class uj0 extends s4.u0 {
-    public final int f44153a;
-    public final org.telegram.ui.Components.r71 f44154b;
-    public final vj0 f44155c;
-    public final xj0 d;
+import android.view.View;
+public final class uj0 implements View.OnLayoutChangeListener {
+    public final float f44041a;
+    public final int f44042b;
 
-    public uj0(xj0 xj0Var, int i10, org.telegram.ui.Components.r71 r71Var, vj0 vj0Var) {
-        this.d = xj0Var;
-        this.f44153a = i10;
-        this.f44154b = r71Var;
-        this.f44155c = vj0Var;
+    public uj0(float f7, int i10) {
+        this.f44041a = f7;
+        this.f44042b = i10;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 1) {
-            int i11 = this.f44153a;
-            xj0 xj0Var = this.d;
-            if (i11 != 2) {
-                xj0.a0(xj0Var);
-            } else if (xj0Var.getParentActivity() != null) {
-                AndroidUtilities.hideKeyboard(xj0Var.getParentActivity().getCurrentFocus());
-            }
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12 = this.f44153a;
-        xj0 xj0Var = this.d;
-        vj0 vj0Var = this.f44155c;
-        if (i11 >= 0) {
-            org.telegram.ui.Components.r71 r71Var = this.f44154b;
-            if (r71Var.f32151f3.N0() >= r71Var.f32152g3.f29511y.size() - 5 && !vj0Var.f44845k) {
-                xj0Var.l0(i12, false);
-            }
-        }
-        if (i12 == 1) {
-            xj0Var.m0(vj0Var);
-        }
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        view.removeOnLayoutChangeListener(this);
+        view.setTranslationX((this.f44041a + this.f44042b) - i10);
     }
 }

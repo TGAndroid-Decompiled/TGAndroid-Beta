@@ -11,11 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class f extends FrameLayout {
-    public final ImageView f45227a;
-    public final TextView f45228b;
-    public final ImageView f45229c;
+    public final ImageView f44738a;
+    public final TextView f44739b;
+    public final ImageView f44740c;
     public final Paint d;
     public boolean e;
 
@@ -23,20 +23,20 @@ public final class f extends FrameLayout {
         super(context);
         this.d = new Paint(1);
         ImageView imageView = new ImageView(context);
-        this.f45227a = imageView;
+        this.f44738a = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.menu_clear_recent);
-        addView(imageView, gb1.h(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        addView(imageView, kb1.h(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         TextView textView = new TextView(context);
-        this.f45228b = textView;
+        this.f44739b = textView;
         textView.setTextSize(1, 16.0f);
-        addView(textView, gb1.h(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
+        addView(textView, kb1.h(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f45229c = imageView2;
+        this.f44740c = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.menu_browser_arrowup);
-        addView(imageView2, gb1.h(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
+        addView(imageView2, kb1.h(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class f extends FrameLayout {
 
     public void setAsShowMore(l lVar) {
         int i10 = R.drawable.arrow_more;
-        ImageView imageView = this.f45227a;
+        ImageView imageView = this.f44738a;
         imageView.setImageResource(i10);
         imageView.setColorFilter(new PorterDuffColorFilter(lVar.H, PorterDuff.Mode.SRC_IN));
     }

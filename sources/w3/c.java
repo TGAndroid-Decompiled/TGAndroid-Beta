@@ -7,15 +7,15 @@ import e2.x;
 import java.nio.charset.StandardCharsets;
 import u2.z0;
 public abstract class c {
-    public static final byte[] f50663a;
+    public static final byte[] f50721a;
 
     static {
-        String str = n0.f9692a;
-        f50663a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        String str = n0.f9691a;
+        f50721a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(x xVar) {
-        int i10 = xVar.f9733b;
+        int i10 = xVar.f9732b;
         xVar.O(4);
         if (xVar.m() != 1751411826) {
             i10 += 4;
@@ -111,7 +111,7 @@ public abstract class c {
         int i13;
         Integer num2;
         boolean z13;
-        int i14 = xVar.f9733b;
+        int i14 = xVar.f9732b;
         while (i14 - i10 < i11) {
             xVar.N(i14);
             int m10 = xVar.m();
@@ -207,7 +207,7 @@ public abstract class c {
                         z14 = true;
                     }
                     c3.b.b("tenc atom is mandatory", z14);
-                    String str2 = n0.f9692a;
+                    String str2 = n0.f9691a;
                     create = Pair.create(num, rVar);
                 }
                 if (create != null) {

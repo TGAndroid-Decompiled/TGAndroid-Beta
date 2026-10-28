@@ -107,7 +107,7 @@ public class a9 extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                xcVar.f34688f = new vu(1, view);
+                xcVar.f34723f = new vu(1, view);
             }
             xcVar.c(true);
             yVar.setHotspot(motionEvent.getX(), motionEvent.getY());

@@ -1,39 +1,39 @@
 package sg;
 public final class r implements o1.f {
-    public final int f48482a;
-    public final n0 f48483b;
-    public final boolean f48484c;
+    public final int f48519a;
+    public final m0 f48520b;
+    public final boolean f48521c;
 
-    public r(n0 n0Var, boolean z10, int i10) {
-        this.f48482a = i10;
-        this.f48483b = n0Var;
-        this.f48484c = z10;
+    public r(m0 m0Var, boolean z10, int i10) {
+        this.f48519a = i10;
+        this.f48520b = m0Var;
+        this.f48521c = z10;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f48482a) {
+        switch (this.f48519a) {
             case 0:
-                n0 n0Var = this.f48483b;
-                v1 v1Var = n0Var.f48344k1;
-                if (hVar == n0Var.f48359u1) {
-                    n0Var.f48359u1 = null;
-                    if (!this.f48484c) {
-                        v1Var.setVisibility(8);
+                m0 m0Var = this.f48520b;
+                u1 u1Var = m0Var.f48370k1;
+                if (hVar == m0Var.f48385u1) {
+                    m0Var.f48385u1 = null;
+                    if (!this.f48521c) {
+                        u1Var.setVisibility(8);
                     }
-                    v1Var.setMaskProvider(null);
+                    u1Var.setMaskProvider(null);
                     return;
                 }
                 return;
             default:
-                n0 n0Var2 = this.f48483b;
-                k0 k0Var = n0Var2.f48361v1;
-                if (hVar == n0Var2.B1) {
-                    n0Var2.B1 = null;
-                    if (!this.f48484c) {
-                        k0Var.setVisibility(8);
-                        rg.s0.e(n0Var2.E1).g();
-                        k0Var.getAdapter().l();
+                m0 m0Var2 = this.f48520b;
+                j0 j0Var = m0Var2.f48387v1;
+                if (hVar == m0Var2.B1) {
+                    m0Var2.B1 = null;
+                    if (!this.f48521c) {
+                        j0Var.setVisibility(8);
+                        rg.s0.e(m0Var2.E1).g();
+                        j0Var.getAdapter().l();
                         return;
                     }
                     return;

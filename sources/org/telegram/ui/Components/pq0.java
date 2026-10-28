@@ -1,48 +1,32 @@
 package org.telegram.ui.Components;
+public final class pq0 extends g.o {
+    public final int f31704c;
+    public final nr0 d;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class pq0 extends s4.u0 {
-    public final int f31699a;
-    public final mr0 f31700b;
-
-    public pq0(mr0 mr0Var, int i10) {
-        this.f31699a = i10;
-        this.f31700b = mr0Var;
+    public pq0(nr0 nr0Var, int i10) {
+        this.f31704c = i10;
+        this.d = nr0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ub ubVar;
-        switch (this.f31699a) {
+    public final int i(int i10) {
+        switch (this.f31704c) {
             case 0:
-                mr0 mr0Var = this.f31700b;
-                if (i11 != 0) {
-                    mr0.r0(mr0Var);
-                    mr0Var.f30720r0 = mr0Var.f30718q0;
+                if (i10 == 0) {
+                    return this.d.I.J;
                 }
-                qc qcVar = qc.f31882x;
-                if (qcVar != null && (ubVar = qcVar.e) != null && (ubVar.getParent() instanceof View) && ((View) qc.f31882x.e.getParent()).getParent() == mr0Var.f30728x) {
-                    qc.e();
-                    return;
-                }
-                return;
+                return 1;
             case 1:
-                if (i11 != 0) {
-                    mr0 mr0Var2 = this.f31700b;
-                    mr0.r0(mr0Var2);
-                    mr0Var2.f30720r0 = mr0Var2.f30718q0;
-                    return;
+                jr0 jr0Var = this.d.N;
+                if (i10 != jr0Var.f29754w && i10 != jr0Var.f29755x && i10 != jr0Var.f29756y && i10 != jr0Var.F && jr0Var.j(i10) != 0) {
+                    return 1;
                 }
-                return;
+                return 4;
             default:
-                if (i11 != 0) {
-                    mr0 mr0Var3 = this.f31700b;
-                    mr0.r0(mr0Var3);
-                    mr0Var3.f30720r0 = mr0Var3.f30718q0;
-                    return;
+                if (i10 == 0) {
+                    return this.d.J.J;
                 }
-                return;
+                return 1;
         }
     }
 }

@@ -17,16 +17,16 @@ public final class n0 {
         this.f3287a = 0;
         this.f3288b = 0;
         this.f3291g = new HashSet();
-        hashSet.add(s9.r.a(cls));
+        hashSet.add(s9.s.a(cls));
         for (Class cls2 : clsArr) {
             com.google.android.gms.internal.play_billing.s1.a(cls2, "Null interface");
-            ((HashSet) this.f3289c).add(s9.r.a(cls2));
+            ((HashSet) this.f3289c).add(s9.s.a(cls2));
         }
     }
 
-    public void a(s9.j jVar) {
-        if (!((HashSet) this.f3289c).contains(jVar.f48001a)) {
-            ((HashSet) this.e).add(jVar);
+    public void a(s9.k kVar) {
+        if (!((HashSet) this.f3289c).contains(kVar.f48039a)) {
+            ((HashSet) this.e).add(kVar);
             return;
         }
         throw new IllegalArgumentException("Components are not allowed to depend on interfaces they themselves provide.");

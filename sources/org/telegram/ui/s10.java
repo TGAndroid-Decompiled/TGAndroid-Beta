@@ -1,108 +1,65 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class s10 extends s4.w {
-    public final p00 d = new p00(this, 4);
-    public final FiltersSetupActivity e;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class s10 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
+    public TextView f43218a;
+    public TextView f43219b;
+    public org.telegram.ui.Components.xi0 f43220c;
+    public boolean d;
+    public TLRPC.TL_dialogFilterSuggested e;
 
-    public s10(FiltersSetupActivity filtersSetupActivity) {
-        this.e = filtersSetupActivity;
+    public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
+        return this.e;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.e1 e1Var) {
-        super.a(recyclerView, e1Var);
-        View view = e1Var.f47738a;
-        view.setPressed(false);
-        view.setTag(R.id.dragging, null);
-        if (view instanceof l10) {
-            ((l10) view).setDragging(false);
+    public final void onDraw(Canvas canvas) {
+        if (this.d) {
+            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
         }
     }
 
     @Override
-    public final int e(RecyclerView recyclerView, s4.e1 e1Var) {
-        if (e1Var.f47741f != 2) {
-            return s4.w.l(0, 0);
-        }
-        return s4.w.l(3, 0);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+        accessibilityNodeInfo.setText(this.f43220c.getText());
+        accessibilityNodeInfo.setClassName("android.widget.Button");
     }
 
     @Override
-    public final boolean k() {
-        return true;
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(64.0f));
+        measureChildWithMargins(this.f43220c, i10, 0, i11, 0);
+        TextView textView = this.f43218a;
+        org.telegram.ui.Components.xi0 xi0Var = this.f43220c;
+        measureChildWithMargins(textView, i10, xi0Var.getMeasuredWidth(), i11, 0);
+        measureChildWithMargins(this.f43219b, i10, xi0Var.getMeasuredWidth(), i11, 0);
+    }
+
+    public void setAddOnClickListener(View.OnClickListener onClickListener) {
+        this.f43220c.setOnClickListener(onClickListener);
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.e1 e1Var, s4.e1 e1Var2) {
-        MessagesController.DialogFilter dialogFilter;
-        MessagesController.DialogFilter dialogFilter2;
-        if (e1Var.f47741f != e1Var2.f47741f) {
-            return false;
-        }
-        p10 p10Var = this.e.f35509b;
-        int b10 = e1Var.b();
-        int b11 = e1Var2.b();
-        FiltersSetupActivity filtersSetupActivity = p10Var.e;
-        int i10 = filtersSetupActivity.f35513r;
-        ArrayList arrayList = filtersSetupActivity.f35512n;
-        if (b10 >= i10 && b11 >= i10) {
-            n10 n10Var = (n10) arrayList.get(b10);
-            n10 n10Var2 = (n10) arrayList.get(b11);
-            if (n10Var != null && n10Var2 != null && (dialogFilter = n10Var.d) != null && (dialogFilter2 = n10Var2.d) != null) {
-                int i11 = dialogFilter.order;
-                dialogFilter.order = dialogFilter2.order;
-                dialogFilter2.order = i11;
-                ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
-                try {
-                    arrayList2.set(b10 - filtersSetupActivity.f35513r, n10Var2.d);
-                    arrayList2.set(b11 - filtersSetupActivity.f35513r, n10Var.d);
-                } catch (Exception unused) {
-                }
-                filtersSetupActivity.e = true;
-                filtersSetupActivity.c0(true);
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final void p(s4.e1 e1Var, int i10) {
-        Boolean bool;
-        boolean z10 = true;
-        if (i10 != 0) {
-            this.e.f35508a.I0(false);
-            e1Var.f47738a.setPressed(true);
-        } else {
-            p00 p00Var = this.d;
-            AndroidUtilities.cancelRunOnUIThread(p00Var);
-            AndroidUtilities.runOnUIThread(p00Var, 320L);
-        }
-        if (e1Var != null) {
-            View view = e1Var.f47738a;
-            int i11 = R.id.dragging;
-            if (i10 == 2) {
-                bool = Boolean.TRUE;
-            } else {
-                bool = null;
-            }
-            view.setTag(i11, bool);
-            if (view instanceof l10) {
-                l10 l10Var = (l10) view;
-                if (i10 != 2) {
-                    z10 = false;
-                }
-                l10Var.setDragging(z10);
-            }
+    public final void updateColors() {
+        try {
+            this.f43220c.setProgressColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Nh, false));
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
     @Override
-    public final void q(s4.e1 e1Var) {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

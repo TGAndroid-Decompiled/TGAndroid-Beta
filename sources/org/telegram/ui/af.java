@@ -6,14 +6,14 @@ import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class af implements Runnable {
-    public final int f37727a;
-    public final un f37728b;
-    public final boolean f37729c;
+    public final int f37760a;
+    public final wn f37761b;
+    public final boolean f37762c;
 
-    public af(un unVar, boolean z10, int i10) {
-        this.f37727a = i10;
-        this.f37728b = unVar;
-        this.f37729c = z10;
+    public af(wn wnVar, boolean z10, int i10) {
+        this.f37760a = i10;
+        this.f37761b = wnVar;
+        this.f37762c = z10;
     }
 
     @Override
@@ -22,65 +22,65 @@ public final class af implements Runnable {
         String str;
         int i11;
         int i12;
-        switch (this.f37727a) {
+        switch (this.f37760a) {
             case 0:
-                un unVar = this.f37728b;
-                unVar.e = unVar.getMessagesController().getChat(Long.valueOf(unVar.e.f22027id));
-                if (unVar.G9()) {
-                    TLRPC.Chat chat = unVar.e;
+                wn wnVar = this.f37761b;
+                wnVar.e = wnVar.getMessagesController().getChat(Long.valueOf(wnVar.e.f22028id));
+                if (wnVar.J9()) {
+                    TLRPC.Chat chat = wnVar.e;
                     if (chat.in_news || !ChatObject.isNotInChat(chat)) {
-                        unVar.f44280hb = false;
-                        if (this.f37729c && !unVar.e.in_news) {
-                            unVar.L6(true, false, true);
+                        wnVar.f45196lb = false;
+                        if (this.f37762c && !wnVar.e.in_news) {
+                            wnVar.N6(true, false, true);
                             return;
                         }
-                        if (unVar.e.in_news) {
+                        if (wnVar.e.in_news) {
                             i10 = R.string.ChannelAddedToNewsBulletin;
                         } else {
                             i10 = R.string.ChannelAddedToChatsBulletin;
                         }
-                        unVar.Ib(i10);
+                        wnVar.Mb(i10);
                     }
                 }
-                unVar.uc(false);
+                wnVar.yc(false);
                 return;
             case 1:
-                if (this.f37729c) {
+                if (this.f37762c) {
                     str = "upload_speed";
                 } else {
                     str = "download_speed";
                 }
-                this.f37728b.presentFragment(new PremiumPreviewFragment(0, str));
+                this.f37761b.presentFragment(new PremiumPreviewFragment(0, str));
                 return;
             case 2:
-                un unVar2 = this.f37728b;
-                NotificationsController notificationsController = unVar2.getNotificationsController();
-                long j10 = unVar2.f44252f6;
-                boolean z10 = this.f37729c;
+                wn wnVar2 = this.f37761b;
+                NotificationsController notificationsController = wnVar2.getNotificationsController();
+                long j10 = wnVar2.f45168j6;
+                boolean z10 = this.f37762c;
                 notificationsController.muteDialog(j10, 0L, !z10);
-                unVar2.uc(false);
+                wnVar2.yc(false);
                 if (z10) {
                     i11 = R.string.ChannelNotifyBulletin;
                 } else {
                     i11 = R.string.ChannelDoNotNotifyBulletin;
                 }
-                unVar2.Ib(i11);
+                wnVar2.Mb(i11);
                 return;
             case 3:
-                un unVar3 = this.f37728b;
-                MessagesController messagesController = unVar3.getMessagesController();
-                long j11 = unVar3.f44252f6;
-                boolean z11 = this.f37729c;
+                wn wnVar3 = this.f37761b;
+                MessagesController messagesController = wnVar3.getMessagesController();
+                long j11 = wnVar3.f45168j6;
+                boolean z11 = this.f37762c;
                 messagesController.addDialogToFolder(j11, !z11 ? 1 : 0, 0, 0L);
                 if (z11) {
                     i12 = R.string.ChannelUnarchivedBulletin;
                 } else {
                     i12 = R.string.ChannelArchivedBulletin;
                 }
-                unVar3.Ib(i12);
+                wnVar3.Mb(i12);
                 return;
             default:
-                this.f37728b.Lc(0, this.f37729c);
+                this.f37761b.Pc(0, this.f37762c);
                 return;
         }
     }

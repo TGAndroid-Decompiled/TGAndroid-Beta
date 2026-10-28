@@ -1,37 +1,67 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class wt implements Runnable {
-    public final int f45551a;
-    public final DataSettingsActivity f45552b;
+import android.animation.AnimatorSet;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+public final class wt extends org.telegram.ui.Cells.h5 {
+    public final int e;
+    public final org.telegram.ui.Cells.i9 f45398f;
+    public final org.telegram.ui.Cells.a9[] h;
+    public final AnimatorSet[] f45399n;
+    public final DataAutoDownloadActivity f45400r;
 
-    public wt(DataSettingsActivity dataSettingsActivity, int i10) {
-        this.f45551a = i10;
-        this.f45552b = dataSettingsActivity;
-    }
-
-    @Override
-    public final void run() {
-        int i10;
-        switch (this.f45551a) {
-            case 0:
-                this.f45552b.getMediaDataController().clearAllDrafts(true);
-                return;
-            case 1:
-                DataSettingsActivity dataSettingsActivity = this.f45552b;
-                dataSettingsActivity.W = true;
-                if (dataSettingsActivity.f35488a != null && (i10 = dataSettingsActivity.f35494s) >= 0) {
-                    dataSettingsActivity.o0(i10);
-                    return;
-                }
-                return;
-            default:
-                c7.f38343k0 = null;
-                DataSettingsActivity dataSettingsActivity2 = this.f45552b;
-                wt wtVar = new wt(dataSettingsActivity2, 1);
-                AndroidUtilities.runOnUIThread(wtVar, 100L);
-                c7.i0(new bi.c2(dataSettingsActivity2, wtVar, System.currentTimeMillis(), 1));
-                return;
+    public wt(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.i9 i9Var, org.telegram.ui.Cells.a9[] a9VarArr, AnimatorSet[] animatorSetArr) {
+        super(activity);
+        int i11;
+        int i12;
+        int i13;
+        this.f45400r = dataAutoDownloadActivity;
+        this.e = i10;
+        this.f45398f = i9Var;
+        this.h = a9VarArr;
+        this.f45399n = animatorSetArr;
+        setWillNotDraw(false);
+        TextView textView = new TextView(activity);
+        this.f24196a = textView;
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23465j5, null);
+        org.telegram.messenger.wh.r(textView, 1, 16.0f, 1, 1);
+        textView.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
         }
+        textView.setGravity(i11 | 48);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setImportantForAccessibility(2);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        addView(textView, org.telegram.ui.Components.kb1.h(-1, -1.0f, i12 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+        TextView textView2 = new TextView(activity);
+        this.f24197b = textView2;
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23540n5, null);
+        org.telegram.messenger.wh.r(textView2, 1, 16.0f, 1, 1);
+        textView2.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i13 = 3;
+        } else {
+            i13 = 5;
+        }
+        textView2.setGravity(i13 | 48);
+        textView2.setImportantForAccessibility(2);
+        addView(textView2, org.telegram.ui.Components.kb1.h(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+        org.telegram.ui.Cells.i0 i0Var = new org.telegram.ui.Cells.i0(activity);
+        this.f24198c = i0Var;
+        i0Var.setReportChanges(true);
+        i0Var.setDelegate(new org.telegram.ui.Cells.g5(this));
+        i0Var.setImportantForAccessibility(2);
+        addView(i0Var, org.telegram.ui.Components.kb1.h(-1, 38.0f, 51, 6.0f, 36.0f, 6.0f, 0.0f));
+        setImportantForAccessibility(1);
+        setAccessibilityDelegate(i0Var.getSeekBarAccessibilityDelegate());
     }
 }

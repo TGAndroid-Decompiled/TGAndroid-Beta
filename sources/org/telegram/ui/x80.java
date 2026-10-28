@@ -1,48 +1,48 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
 public final class x80 implements Runnable {
-    public final int f45694a = 1;
-    public final LaunchActivity f45695b;
-    public final byte[] f45696c;
-    public final int d;
-    public final Integer e;
-    public final String f45697f;
-    public final int h;
-    public final long f45698n;
-    public final Object f45699r;
-    public final Object f45700s;
-    public final Object v;
+    public final int f45626a;
+    public final kz f45627b;
 
-    public x80(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i10, Integer num, String str, int i11, long j10, j0 j0Var, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f45695b = launchActivity;
-        this.f45699r = bundle;
-        this.f45696c = bArr;
-        this.d = i10;
-        this.e = num;
-        this.f45697f = str;
-        this.h = i11;
-        this.f45698n = j10;
-        this.f45700s = j0Var;
-        this.v = r2Var;
+    public x80(kz kzVar, int i10) {
+        this.f45626a = i10;
+        this.f45627b = kzVar;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.x80.run():void");
-    }
-
-    public x80(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j10, Runnable runnable, String str, int i10, int i11) {
-        this.f45695b = launchActivity;
-        this.f45699r = tLObject;
-        this.e = num;
-        this.f45700s = num2;
-        this.f45696c = bArr;
-        this.f45698n = j10;
-        this.v = runnable;
-        this.f45697f = str;
-        this.d = i10;
-        this.h = i11;
+        int i10 = this.f45626a;
+        kz kzVar = this.f45627b;
+        switch (i10) {
+            case 0:
+                Pattern pattern = LaunchActivity.D1;
+                try {
+                    kzVar.run();
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 1:
+                Pattern pattern2 = LaunchActivity.D1;
+                try {
+                    kzVar.run();
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
+            default:
+                Pattern pattern3 = LaunchActivity.D1;
+                try {
+                    kzVar.run();
+                    return;
+                } catch (Exception e11) {
+                    FileLog.e(e11);
+                    return;
+                }
+        }
     }
 }

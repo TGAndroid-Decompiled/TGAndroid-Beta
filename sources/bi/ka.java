@@ -2,10 +2,11 @@ package bi;
 
 import android.content.Context;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.k80;
-import org.telegram.ui.un;
+import org.telegram.ui.Components.l80;
+import org.telegram.ui.wn;
 public final class ka implements Runnable {
     public final int f4986a = 0;
     public final int f4987b;
@@ -56,16 +57,19 @@ public final class ka implements Runnable {
                     }
                     return;
                 } else {
-                    new org.telegram.ui.Components.wc(x0Var.f9342b, new di.b()).g0(tL_error, true);
+                    new org.telegram.ui.Components.wc(x0Var.f9341b, new di.b()).g0(tL_error, true);
                     return;
                 }
             case 2:
                 ((MessagesController) this.e).lambda$deleteSavedDialog$143(this.f4988c, this.d, (TLRPC.InputPeer) this.f4989f, this.f4987b, (int[]) this.h);
                 return;
+            case 3:
+                ((MessagesStorage) this.e).lambda$updateMessageWidgetData$107(this.f4987b, this.f4988c, (String) this.f4989f, this.d, (String) this.h);
+                return;
             default:
                 org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) this.f4989f;
                 org.telegram.ui.ActionBar.u6 u6Var = (org.telegram.ui.ActionBar.u6) this.h;
-                ((k80) this.e).u();
+                ((l80) this.e).u();
                 int i13 = this.f4987b;
                 MessagesController messagesController = MessagesController.getInstance(i13);
                 long j13 = this.f4988c;
@@ -108,12 +112,21 @@ public final class ka implements Runnable {
         this.h = iArr;
     }
 
-    public ka(k80 k80Var, int i10, long j10, long j11, un unVar, org.telegram.ui.ActionBar.u6 u6Var) {
-        this.e = k80Var;
+    public ka(MessagesStorage messagesStorage, int i10, long j10, String str, long j11, String str2) {
+        this.e = messagesStorage;
+        this.f4987b = i10;
+        this.f4988c = j10;
+        this.f4989f = str;
+        this.d = j11;
+        this.h = str2;
+    }
+
+    public ka(l80 l80Var, int i10, long j10, long j11, wn wnVar, org.telegram.ui.ActionBar.u6 u6Var) {
+        this.e = l80Var;
         this.f4987b = i10;
         this.f4988c = j10;
         this.d = j11;
-        this.f4989f = unVar;
+        this.f4989f = wnVar;
         this.h = u6Var;
     }
 }

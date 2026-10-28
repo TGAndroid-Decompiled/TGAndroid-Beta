@@ -20,16 +20,16 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.am0;
 import org.telegram.ui.Components.b10;
+import org.telegram.ui.Components.bm0;
 import org.telegram.ui.Components.zr;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.cy;
-import org.telegram.ui.qf1;
-import org.telegram.ui.rz0;
-import org.telegram.ui.v50;
-public final class i implements qf1, org.telegram.ui.ActionBar.b2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, am0, MessagesController.IsInChatCheckedCallback, u5.b, t5.e, ra.a {
+import org.telegram.ui.ey;
+import org.telegram.ui.sf1;
+import org.telegram.ui.tz0;
+import org.telegram.ui.x50;
+public final class i implements sf1, org.telegram.ui.ActionBar.b2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, bm0, MessagesController.IsInChatCheckedCallback, u5.b, t5.e, ra.a {
     public final int f4804a;
     public final long f4805b;
     public final Object f4806c;
@@ -47,7 +47,7 @@ public final class i implements qf1, org.telegram.ui.ActionBar.b2, ChatObject.Ca
         boolean z10;
         String str = (String) this.f4806c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((p5.c) this.d).f46806a;
+        int i10 = ((p5.c) this.d).f46841a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -105,7 +105,7 @@ public final class i implements qf1, org.telegram.ui.ActionBar.b2, ChatObject.Ca
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.o5.a(this, i10, str, drawable);
+        org.telegram.messenger.p5.a(this, i10, str, drawable);
     }
 
     @Override
@@ -138,19 +138,19 @@ public final class i implements qf1, org.telegram.ui.ActionBar.b2, ChatObject.Ca
                 while (i11 < size) {
                     Object obj = arrayList.get(i11);
                     i11++;
-                    g9Var.f10921b.k(Boolean.TRUE, ((Long) obj).longValue());
+                    g9Var.f10920b.k(Boolean.TRUE, ((Long) obj).longValue());
                 }
                 g9Var.i(true);
                 g9Var.e(true);
                 g9Var.f(true);
                 e2Var.dismiss();
-                g9Var.f10928x.L = true;
+                g9Var.f10927x.L = true;
                 return;
             case 3:
             case 4:
             default:
-                v50 v50Var = (v50) this.f4806c;
-                v50Var.d.getMessagesController().addUserToChat(v50Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.r2) v50Var.f44643i0.O().getFragmentStack().get(v50Var.f44643i0.O().getFragmentStack().size() - 1), new r3(v50Var, this.f4805b, 28));
+                x50 x50Var = (x50) this.f4806c;
+                x50Var.d.getMessagesController().addUserToChat(x50Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.r2) x50Var.f45524i0.O().getFragmentStack().get(x50Var.f45524i0.O().getFragmentStack().size() - 1), new r3(x50Var, this.f4805b, 28));
                 return;
             case 5:
                 zr.Q((zr) this.f4806c, (fi.d) this.d, this.f4805b);
@@ -170,7 +170,7 @@ public final class i implements qf1, org.telegram.ui.ActionBar.b2, ChatObject.Ca
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.o5.b(this, imageReceiver);
+        org.telegram.messenger.p5.b(this, imageReceiver);
     }
 
     @Override
@@ -180,7 +180,7 @@ public final class i implements qf1, org.telegram.ui.ActionBar.b2, ChatObject.Ca
 
     @Override
     public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new n((rz0) this.f4806c, this.f4805b, tL_chatAdminRights, str, z10, (cy) this.d));
+        AndroidUtilities.runOnUIThread(new n((tz0) this.f4806c, this.f4805b, tL_chatAdminRights, str, z10, (ey) this.d));
     }
 
     public i(Object obj, Object obj2, long j10, int i10) {

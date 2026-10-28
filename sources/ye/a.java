@@ -25,20 +25,20 @@ public final class a implements hf.a {
     @Override
     public final void d(s sVar, s sVar2, int i10) {
         p pVar = new p();
-        for (p pVar2 = (p) sVar.f9939f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f9939f) {
+        for (p pVar2 = (p) sVar.f9938f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f9938f) {
             pVar.b(pVar2);
         }
         pVar.g();
-        p pVar3 = (p) sVar.f9939f;
-        pVar.f9939f = pVar3;
+        p pVar3 = (p) sVar.f9938f;
+        pVar.f9938f = pVar3;
         if (pVar3 != null) {
             pVar3.e = pVar;
         }
         pVar.e = sVar;
-        sVar.f9939f = pVar;
-        p pVar4 = (p) sVar.f9937b;
-        pVar.f9937b = pVar4;
-        if (((p) pVar.f9939f) == null) {
+        sVar.f9938f = pVar;
+        p pVar4 = (p) sVar.f9936b;
+        pVar.f9936b = pVar4;
+        if (((p) pVar.f9938f) == null) {
             pVar4.d = pVar;
         }
     }

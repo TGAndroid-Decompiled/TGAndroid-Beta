@@ -18,27 +18,27 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.wc;
 public final class c implements Utilities.Callback2 {
-    public final int f17157a = 0;
-    public final boolean[] f17158b;
-    public final fi.d f17159c;
+    public final int f17156a = 0;
+    public final boolean[] f17157b;
+    public final fi.d f17158c;
     public final boolean d;
     public final u6 e;
-    public final Object f17160f;
-    public final Object f17161g;
+    public final Object f17159f;
+    public final Object f17160g;
     public final Object h;
-    public final Object f17162i;
-    public final KeyEvent.Callback f17163j;
+    public final Object f17161i;
+    public final KeyEvent.Callback f17162j;
 
     public c(String str, String[] strArr, ImageView imageView, u6 u6Var, boolean z10, int[] iArr, fi.d dVar, HorizontalScrollView horizontalScrollView, boolean[] zArr) {
-        this.f17160f = str;
-        this.f17161g = strArr;
+        this.f17159f = str;
+        this.f17160g = strArr;
         this.h = imageView;
         this.e = u6Var;
         this.d = z10;
-        this.f17162i = iArr;
-        this.f17159c = dVar;
-        this.f17163j = horizontalScrollView;
-        this.f17158b = zArr;
+        this.f17161i = iArr;
+        this.f17158c = dVar;
+        this.f17162j = horizontalScrollView;
+        this.f17157b = zArr;
     }
 
     @Override
@@ -46,16 +46,16 @@ public final class c implements Utilities.Callback2 {
         int i10;
         String string;
         CharSequence formatSpannable;
-        int i11 = this.f17157a;
+        int i11 = this.f17156a;
         u6 u6Var = this.e;
-        KeyEvent.Callback callback = this.f17163j;
-        Object obj3 = this.f17162i;
+        KeyEvent.Callback callback = this.f17162j;
+        Object obj3 = this.f17161i;
         Object obj4 = this.h;
         boolean z10 = this.d;
-        fi.d dVar = this.f17159c;
-        Object obj5 = this.f17161g;
-        Object obj6 = this.f17160f;
-        boolean[] zArr = this.f17158b;
+        fi.d dVar = this.f17158c;
+        Object obj5 = this.f17160g;
+        Object obj6 = this.f17159f;
+        boolean[] zArr = this.f17157b;
         switch (i11) {
             case 0:
                 ImageView imageView = (ImageView) obj4;
@@ -65,7 +65,7 @@ public final class c implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        f7.t(imageView, y6.f23598q7, u6Var, PorterDuff.Mode.SRC_IN);
+                        f7.t(imageView, y6.f23599q7, u6Var, PorterDuff.Mode.SRC_IN);
                         if (!z10) {
                             int i12 = -iArr[0];
                             iArr[0] = i12;
@@ -96,18 +96,18 @@ public final class c implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.i2 i2Var = (org.telegram.ui.Wallet.i2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !a2Var.f36346m && !a2Var.f36347n) {
-                    boolean z11 = a2Var.f36349p;
+                if (!zArr[0] && !a2Var.f36370m && !a2Var.f36371n) {
+                    boolean z11 = a2Var.f36373p;
                     zArr2[0] = z11;
                     dVar.setEnabled(z11);
                     boolean z12 = zArr2[0];
                     if (z12 && !z10) {
-                        SpannableStringBuilder m10 = org.telegram.ui.Wallet.l0.m(wallettransaction.fee, true);
-                        CharSequence l4 = l0Var.l(wallettransaction.fee, true);
-                        if (TextUtils.isEmpty(l4)) {
-                            formatSpannable = LocaleController.formatSpannable(R.string.WalletFeeAmount, m10);
+                        SpannableStringBuilder n10 = org.telegram.ui.Wallet.l0.n(wallettransaction.fee, true);
+                        CharSequence m10 = l0Var.m(wallettransaction.fee, true);
+                        if (TextUtils.isEmpty(m10)) {
+                            formatSpannable = LocaleController.formatSpannable(R.string.WalletFeeAmount, n10);
                         } else {
-                            formatSpannable = LocaleController.formatSpannable(R.string.WalletFeeAmountWithCurrency, m10, l4);
+                            formatSpannable = LocaleController.formatSpannable(R.string.WalletFeeAmountWithCurrency, n10, m10);
                         }
                         textView.setText(formatSpannable);
                         return;
@@ -131,14 +131,14 @@ public final class c implements Utilities.Callback2 {
     }
 
     public c(boolean[] zArr, org.telegram.ui.Wallet.a2 a2Var, boolean[] zArr2, fi.d dVar, boolean z10, org.telegram.ui.Wallet.l0 l0Var, TextView textView, org.telegram.ui.Wallet.i2 i2Var, u6 u6Var) {
-        this.f17158b = zArr;
-        this.f17160f = a2Var;
-        this.f17161g = zArr2;
-        this.f17159c = dVar;
+        this.f17157b = zArr;
+        this.f17159f = a2Var;
+        this.f17160g = zArr2;
+        this.f17158c = dVar;
         this.d = z10;
         this.h = l0Var;
-        this.f17162i = textView;
-        this.f17163j = i2Var;
+        this.f17161i = textView;
+        this.f17162j = i2Var;
         this.e = u6Var;
     }
 }

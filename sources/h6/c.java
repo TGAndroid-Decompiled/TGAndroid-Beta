@@ -6,10 +6,10 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class c extends p6.a {
     public static final Parcelable.Creator<c> CREATOR = new f6.i(11);
-    public final String f12624a;
+    public final String f12623a;
 
     public c(String str) {
-        this.f12624a = str;
+        this.f12623a = str;
     }
 
     public final boolean equals(Object obj) {
@@ -19,17 +19,17 @@ public final class c extends p6.a {
         if (!(obj instanceof c)) {
             return false;
         }
-        return a.d(this.f12624a, ((c) obj).f12624a);
+        return a.d(this.f12623a, ((c) obj).f12623a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f12624a});
+        return Arrays.hashCode(new Object[]{this.f12623a});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        df.l(parcel, 2, this.f12624a);
+        df.l(parcel, 2, this.f12623a);
         df.r(parcel, q5);
     }
 }

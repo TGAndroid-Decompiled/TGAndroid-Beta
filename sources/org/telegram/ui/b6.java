@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import org.telegram.messenger.CacheByChatsController;
 public final class b6 extends qg.a {
-    public final CacheByChatsController.KeepMediaException f37981c;
+    public final CacheByChatsController.KeepMediaException f37893c;
 
     public b6(int i10, CacheByChatsController.KeepMediaException keepMediaException) {
         super(i10, false);
-        this.f37981c = keepMediaException;
+        this.f37893c = keepMediaException;
     }
 
     public final boolean equals(Object obj) {
@@ -18,11 +18,11 @@ public final class b6 extends qg.a {
             return false;
         }
         b6 b6Var = (b6) obj;
-        if (this.f47040a != b6Var.f47040a) {
+        if (this.f47075a != b6Var.f47075a) {
             return false;
         }
-        CacheByChatsController.KeepMediaException keepMediaException2 = this.f37981c;
-        if (keepMediaException2 == null || (keepMediaException = b6Var.f37981c) == null || keepMediaException2.dialogId == keepMediaException.dialogId) {
+        CacheByChatsController.KeepMediaException keepMediaException2 = this.f37893c;
+        if (keepMediaException2 == null || (keepMediaException = b6Var.f37893c) == null || keepMediaException2.dialogId == keepMediaException.dialogId) {
             return true;
         }
         return false;

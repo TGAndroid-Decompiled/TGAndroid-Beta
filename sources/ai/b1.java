@@ -10,7 +10,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.v8;
 import org.telegram.ui.Components.wc;
-import org.telegram.ui.kr;
+import org.telegram.ui.mr;
 public final class b1 implements Utilities.Callback2 {
     public final int f1438a;
     public final boolean f1439b;
@@ -96,18 +96,18 @@ public final class b1 implements Utilities.Callback2 {
                 }
                 return;
             default:
-                kr krVar = (kr) this.f1440c;
+                mr mrVar = (mr) this.f1440c;
                 v8 v8Var = (v8) this.d;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (updates != null) {
-                    krVar.getMessagesController().lambda$processUpdates$379(updates, false);
+                    mrVar.getMessagesController().lambda$processUpdates$379(updates, false);
                     return;
                 }
-                krVar.getClass();
+                mrVar.getClass();
                 if (tL_error2 != null) {
                     v8Var.setChecked(this.f1439b);
-                    wc.b0(krVar).g0(tL_error2, false);
+                    wc.b0(mrVar).g0(tL_error2, false);
                     return;
                 }
                 return;

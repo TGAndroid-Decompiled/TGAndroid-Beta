@@ -17,32 +17,32 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import org.telegram.ui.Components.b10;
 public final class r extends c {
-    public final boolean f12276a;
-    public final int f12277b;
-    public final int f12278c;
+    public final boolean f12275a;
+    public final int f12276b;
+    public final int f12277c;
     public final String d;
     public final n4.s e;
-    public final n4.s f12279f;
+    public final n4.s f12278f;
     public m h;
-    public HttpURLConnection f12280n;
-    public InputStream f12281r;
-    public boolean f12282s;
+    public HttpURLConnection f12279n;
+    public InputStream f12280r;
+    public boolean f12281s;
     public int v;
-    public long f12283w;
-    public long f12284x;
+    public long f12282w;
+    public long f12283x;
 
     public r(String str, int i10, int i11, boolean z10, n4.s sVar) {
         super(true);
         this.d = str;
-        this.f12277b = i10;
-        this.f12278c = i11;
-        this.f12276a = z10;
+        this.f12276b = i10;
+        this.f12277c = i11;
+        this.f12275a = z10;
         this.e = sVar;
-        this.f12279f = new n4.s(19);
+        this.f12278f = new n4.s(19);
     }
 
     public final void a() {
-        HttpURLConnection httpURLConnection = this.f12280n;
+        HttpURLConnection httpURLConnection = this.f12279n;
         if (httpURLConnection != null) {
             try {
                 httpURLConnection.disconnect();
@@ -55,23 +55,23 @@ public final class r extends c {
     @Override
     public final void close() {
         try {
-            InputStream inputStream = this.f12281r;
+            InputStream inputStream = this.f12280r;
             if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    String str = n0.f9692a;
+                    String str = n0.f9691a;
                     throw new v(e, 2000, 3);
                 }
             }
         } finally {
-            this.f12281r = null;
+            this.f12280r = null;
             a();
-            if (this.f12282s) {
-                this.f12282s = false;
+            if (this.f12281s) {
+                this.f12281s = false;
                 transferEnded();
             }
-            this.f12280n = null;
+            this.f12279n = null;
             this.h = null;
             TrafficStats.clearThreadStatsTag();
         }
@@ -85,7 +85,7 @@ public final class r extends c {
                 if (!"https".equals(protocol) && !"http".equals(protocol)) {
                     throw new v(b10.j("Unsupported protocol redirect: ", protocol), 2001);
                 }
-                if (!this.f12276a && !protocol.equals(url.getProtocol())) {
+                if (!this.f12275a && !protocol.equals(url.getProtocol())) {
                     throw new v("Disallowed cross-protocol redirect (" + url.getProtocol() + " to " + protocol + ")", 2001);
                 }
                 return url2;
@@ -99,11 +99,11 @@ public final class r extends c {
     public final HttpURLConnection g(m mVar) {
         boolean z10;
         HttpURLConnection k10;
-        URL url = new URL(mVar.f12258a.toString());
-        int i10 = mVar.f12259b;
-        byte[] bArr = mVar.f12260c;
+        URL url = new URL(mVar.f12257a.toString());
+        int i10 = mVar.f12258b;
+        byte[] bArr = mVar.f12259c;
         long j10 = mVar.e;
-        long j11 = mVar.f12261f;
+        long j11 = mVar.f12260f;
         int i11 = 1;
         int i12 = 0;
         if ((mVar.h & 1) == 1) {
@@ -111,7 +111,7 @@ public final class r extends c {
         } else {
             z10 = false;
         }
-        if (!this.f12276a) {
+        if (!this.f12275a) {
             return k(url, i10, bArr, j10, j11, z10, true, mVar.d);
         }
         while (true) {
@@ -143,7 +143,7 @@ public final class r extends c {
 
     @Override
     public final Map getResponseHeaders() {
-        HttpURLConnection httpURLConnection = this.f12280n;
+        HttpURLConnection httpURLConnection = this.f12279n;
         if (httpURLConnection == null) {
             return x1.h;
         }
@@ -152,13 +152,13 @@ public final class r extends c {
 
     @Override
     public final Uri getUri() {
-        HttpURLConnection httpURLConnection = this.f12280n;
+        HttpURLConnection httpURLConnection = this.f12279n;
         if (httpURLConnection != null) {
             return Uri.parse(httpURLConnection.getURL().toString());
         }
         m mVar = this.h;
         if (mVar != null) {
-            return mVar.f12258a;
+            return mVar.f12257a;
         }
         return null;
     }
@@ -169,19 +169,19 @@ public final class r extends c {
         boolean z12;
         String str2;
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-        httpURLConnection.setConnectTimeout(this.f12277b);
-        httpURLConnection.setReadTimeout(this.f12278c);
+        httpURLConnection.setConnectTimeout(this.f12276b);
+        httpURLConnection.setReadTimeout(this.f12277c);
         HashMap hashMap = new HashMap();
         n4.s sVar = this.e;
         if (sVar != null) {
             hashMap.putAll(sVar.x());
         }
-        hashMap.putAll(this.f12279f.x());
+        hashMap.putAll(this.f12278f.x());
         hashMap.putAll(map);
         for (Map.Entry entry : hashMap.entrySet()) {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
-        Pattern pattern = y.f12290a;
+        Pattern pattern = y.f12289a;
         if (j10 == 0 && j11 == -1) {
             sb2 = null;
         } else {
@@ -211,7 +211,7 @@ public final class r extends c {
             z12 = false;
         }
         httpURLConnection.setDoOutput(z12);
-        int i11 = m.f12257i;
+        int i11 = m.f12256i;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {
@@ -242,8 +242,8 @@ public final class r extends c {
         if (j10 != 0) {
             byte[] bArr = new byte[4096];
             while (j10 > 0) {
-                InputStream inputStream = this.f12281r;
-                String str = n0.f9692a;
+                InputStream inputStream = this.f12280r;
+                String str = n0.f9691a;
                 int read = inputStream.read(bArr, 0, (int) Math.min(j10, 4096));
                 if (!Thread.currentThread().isInterrupted()) {
                     if (read != -1) {
@@ -270,25 +270,25 @@ public final class r extends c {
             return 0;
         }
         try {
-            long j10 = this.f12283w;
+            long j10 = this.f12282w;
             if (j10 != -1) {
-                long j11 = j10 - this.f12284x;
+                long j11 = j10 - this.f12283x;
                 if (j11 == 0) {
                     return -1;
                 }
                 i11 = (int) Math.min(i11, j11);
             }
-            InputStream inputStream = this.f12281r;
-            String str = n0.f9692a;
+            InputStream inputStream = this.f12280r;
+            String str = n0.f9691a;
             int read = inputStream.read(bArr, i10, i11);
             if (read != -1) {
-                this.f12284x += read;
+                this.f12283x += read;
                 bytesTransferred(read);
                 return read;
             }
             return -1;
         } catch (IOException e) {
-            String str2 = n0.f9692a;
+            String str2 = n0.f9691a;
             throw v.a(e, 2);
         }
     }

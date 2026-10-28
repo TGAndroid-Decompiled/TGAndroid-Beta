@@ -17,27 +17,27 @@ import java.lang.ref.WeakReference;
 import java.util.WeakHashMap;
 import org.xmlpull.v1.XmlPullParserException;
 public final class m2 {
-    public static m2 f17769i;
-    public WeakHashMap f17771a;
-    public a0.l f17772b;
-    public a0.m f17773c;
+    public static m2 f17768i;
+    public WeakHashMap f17770a;
+    public a0.l f17771b;
+    public a0.m f17772c;
     public final WeakHashMap d = new WeakHashMap(0);
     public TypedValue e;
-    public boolean f17774f;
-    public aa.m0 f17775g;
+    public boolean f17773f;
+    public aa.m0 f17774g;
     public static final PorterDuff.Mode h = PorterDuff.Mode.SRC_IN;
-    public static final k2 f17770j = new a0.j(6);
+    public static final k2 f17769j = new a0.j(6);
 
     public static synchronized m2 d() {
         m2 m2Var;
         synchronized (m2.class) {
             try {
-                if (f17769i == null) {
+                if (f17768i == null) {
                     m2 m2Var2 = new m2();
-                    f17769i = m2Var2;
+                    f17768i = m2Var2;
                     j(m2Var2);
                 }
-                m2Var = f17769i;
+                m2Var = f17768i;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -48,7 +48,7 @@ public final class m2 {
     public static synchronized PorterDuffColorFilter h(int i10, PorterDuff.Mode mode) {
         PorterDuffColorFilter porterDuffColorFilter;
         synchronized (m2.class) {
-            k2 k2Var = f17770j;
+            k2 k2Var = f17769j;
             k2Var.getClass();
             int i11 = (31 + i10) * 31;
             porterDuffColorFilter = (PorterDuffColorFilter) k2Var.a(Integer.valueOf(mode.hashCode() + i11));
@@ -70,10 +70,10 @@ public final class m2 {
     }
 
     public final void a(String str, l2 l2Var) {
-        if (this.f17772b == null) {
-            this.f17772b = new a0.l(0);
+        if (this.f17771b == null) {
+            this.f17771b = new a0.l(0);
         }
-        this.f17772b.put(str, l2Var);
+        this.f17771b.put(str, l2Var);
     }
 
     public final synchronized void b(Context context, long j10, Drawable drawable) {
@@ -104,7 +104,7 @@ public final class m2 {
             return e;
         }
         LayerDrawable layerDrawable = null;
-        if (this.f17775g != null) {
+        if (this.f17774g != null) {
             if (i10 == 2131230799) {
                 layerDrawable = new LayerDrawable(new Drawable[]{g(context, 2131230798), g(context, 2131230800)});
             } else if (i10 == 2131230834) {
@@ -141,11 +141,11 @@ public final class m2 {
     public final synchronized Drawable f(int i10, Context context, boolean z10) {
         Drawable k10;
         try {
-            if (!this.f17774f) {
-                this.f17774f = true;
+            if (!this.f17773f) {
+                this.f17773f = true;
                 Drawable g7 = g(context, 2131230861);
                 if (g7 == null || (!(g7 instanceof y4.o) && !"android.graphics.drawable.VectorDrawable".equals(g7.getClass().getName()))) {
-                    this.f17774f = false;
+                    this.f17773f = false;
                     throw new IllegalStateException("This app has been built with an incorrect configuration. Please configure your build for VectorDrawableCompat.");
                 }
             }
@@ -175,7 +175,7 @@ public final class m2 {
     public final synchronized ColorStateList i(Context context, int i10) {
         ColorStateList colorStateList;
         a0.m mVar;
-        WeakHashMap weakHashMap = this.f17771a;
+        WeakHashMap weakHashMap = this.f17770a;
         ColorStateList colorStateList2 = null;
         if (weakHashMap != null && (mVar = (a0.m) weakHashMap.get(context)) != null) {
             colorStateList = (ColorStateList) mVar.c(i10);
@@ -183,18 +183,18 @@ public final class m2 {
             colorStateList = null;
         }
         if (colorStateList == null) {
-            aa.m0 m0Var = this.f17775g;
+            aa.m0 m0Var = this.f17774g;
             if (m0Var != null) {
                 colorStateList2 = m0Var.r(context, i10);
             }
             if (colorStateList2 != null) {
-                if (this.f17771a == null) {
-                    this.f17771a = new WeakHashMap();
+                if (this.f17770a == null) {
+                    this.f17770a = new WeakHashMap();
                 }
-                a0.m mVar2 = (a0.m) this.f17771a.get(context);
+                a0.m mVar2 = (a0.m) this.f17770a.get(context);
                 if (mVar2 == null) {
                     mVar2 = new a0.m();
-                    this.f17771a.put(context, mVar2);
+                    this.f17770a.put(context, mVar2);
                 }
                 mVar2.a(i10, colorStateList2);
             }
@@ -205,20 +205,20 @@ public final class m2 {
 
     public final Drawable k(Context context, int i10) {
         int next;
-        a0.l lVar = this.f17772b;
+        a0.l lVar = this.f17771b;
         if (lVar != null && !lVar.isEmpty()) {
-            a0.m mVar = this.f17773c;
+            a0.m mVar = this.f17772c;
             if (mVar != null) {
                 String str = (String) mVar.c(i10);
                 if (!"appcompat_skip_skip".equals(str)) {
-                    if (str != null && this.f17772b.get(str) == null) {
+                    if (str != null && this.f17771b.get(str) == null) {
                         return null;
                     }
                 } else {
                     return null;
                 }
             } else {
-                this.f17773c = new a0.m();
+                this.f17772c = new a0.m();
             }
             if (this.e == null) {
                 this.e = new TypedValue();
@@ -244,8 +244,8 @@ public final class m2 {
                     }
                     if (next == 2) {
                         String name = xml.getName();
-                        this.f17773c.a(i10, name);
-                        l2 l2Var = (l2) this.f17772b.get(name);
+                        this.f17772c.a(i10, name);
+                        l2 l2Var = (l2) this.f17771b.get(name);
                         if (l2Var != null) {
                             e = l2Var.a(context, xml, asAttributeSet, context.getTheme());
                         }
@@ -261,7 +261,7 @@ public final class m2 {
                 }
             }
             if (e == null) {
-                this.f17773c.a(i10, "appcompat_skip_skip");
+                this.f17772c.a(i10, "appcompat_skip_skip");
             }
             return e;
         }
@@ -269,7 +269,7 @@ public final class m2 {
     }
 
     public final synchronized void l(aa.m0 m0Var) {
-        this.f17775g = m0Var;
+        this.f17774g = m0Var;
     }
 
     public final android.graphics.drawable.Drawable m(android.content.Context r10, int r11, boolean r12, android.graphics.drawable.Drawable r13) {

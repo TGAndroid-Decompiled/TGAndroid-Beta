@@ -8,10 +8,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ig implements Runnable {
-    public final ChatActivityEnterView f29288a;
+    public final ChatActivityEnterView f29328a;
 
     public ig(ChatActivityEnterView chatActivityEnterView) {
-        this.f29288a = chatActivityEnterView;
+        this.f29328a = chatActivityEnterView;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class ig implements Runnable {
         boolean z10;
         boolean z11;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f29288a;
+        ChatActivityEnterView chatActivityEnterView = this.f29328a;
         af afVar = chatActivityEnterView.H3;
         Activity activity = chatActivityEnterView.O2;
         og ogVar = chatActivityEnterView.Z2;
@@ -29,15 +29,15 @@ public final class ig implements Runnable {
             ogVar.z();
             chatActivityEnterView.J3 = true;
             chatActivityEnterView.I3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f25908k1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f25910k1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f25908k1.setTranslationY(0.0f);
+                chatActivityEnterView.f25910k1.setTranslationY(0.0f);
             }
             SendMessageChatArguments sendMessageChatArguments = null;
-            chatActivityEnterView.f25861c3 = null;
-            chatActivityEnterView.f25854b3 = null;
-            if (chatActivityEnterView.f25859c1) {
+            chatActivityEnterView.f25863c3 = null;
+            chatActivityEnterView.f25856b3 = null;
+            if (chatActivityEnterView.f25861c1) {
                 if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                     z10 = true;
                 } else {
@@ -64,12 +64,12 @@ public final class ig implements Runnable {
                         }
                         xg xgVar = chatActivityEnterView.Y0;
                         if (xgVar != null) {
-                            xgVar.f34707a = false;
+                            xgVar.f34752a = false;
                             xgVar.d = 0L;
                             xgVar.e = 0L;
                             xgVar.h = 0L;
-                            xgVar.f34711n = 0L;
-                            xgVar.f34708b = false;
+                            xgVar.f34756n = 0L;
+                            xgVar.f34753b = false;
                             return;
                         }
                         return;
@@ -108,9 +108,9 @@ public final class ig implements Runnable {
                 MessageObject messageObject = chatActivityEnterView.T2;
                 threadMessage = chatActivityEnterView.getThreadMessage();
                 int i12 = chatActivityEnterView.G2;
-                org.telegram.ui.un unVar = chatActivityEnterView.P2;
-                if (unVar != null) {
-                    sendMessageChatArguments = unVar.L8();
+                org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
+                if (wnVar != null) {
+                    sendMessageChatArguments = wnVar.O8();
                 }
                 mediaController.startRecording(i11, j10, messageObject, threadMessage, storyItem, i12, true, sendMessageChatArguments, chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
                 chatActivityEnterView.F2 = true;

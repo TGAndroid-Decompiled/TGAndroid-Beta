@@ -2,12 +2,12 @@ package i2;
 
 import android.util.Pair;
 public abstract class a extends b2.p1 {
-    public static final int f13472g = 0;
+    public static final int f13471g = 0;
     public final int e;
-    public final u2.i1 f13473f;
+    public final u2.i1 f13472f;
 
     public a(u2.i1 i1Var) {
-        this.f13473f = i1Var;
+        this.f13472f = i1Var;
         this.e = i1Var.getLength();
     }
 
@@ -18,7 +18,7 @@ public abstract class a extends b2.p1 {
             return -1;
         }
         if (z10) {
-            i10 = this.f13473f.b();
+            i10 = this.f13472f.b();
         } else {
             i10 = 0;
         }
@@ -54,7 +54,7 @@ public abstract class a extends b2.p1 {
         if (i11 == 0) {
             return -1;
         }
-        u2.i1 i1Var = this.f13473f;
+        u2.i1 i1Var = this.f13472f;
         if (z10) {
             i10 = i1Var.h();
         } else {
@@ -176,7 +176,7 @@ public abstract class a extends b2.p1 {
 
     public final int w(int i10, boolean z10) {
         if (z10) {
-            return this.f13473f.e(i10);
+            return this.f13472f.e(i10);
         }
         if (i10 < this.e - 1) {
             return i10 + 1;

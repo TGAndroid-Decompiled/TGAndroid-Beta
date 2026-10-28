@@ -5,15 +5,15 @@ import android.animation.ValueAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class z4 extends s4.u0 {
-    public final t5 f9485a;
+    public final t5 f9484a;
 
     public z4(t5 t5Var) {
-        this.f9485a = t5Var;
+        this.f9484a = t5Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
-        t5 t5Var = this.f9485a;
+        t5 t5Var = this.f9484a;
         if (i10 == 0) {
             t5Var.V = true;
             t5Var.invalidate();
@@ -33,7 +33,7 @@ public final class z4 extends s4.u0 {
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        t5 t5Var = this.f9485a;
+        t5 t5Var = this.f9484a;
         t5Var.c();
         t5Var.invalidate();
     }

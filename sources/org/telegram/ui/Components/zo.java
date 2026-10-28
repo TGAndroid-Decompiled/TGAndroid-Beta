@@ -51,8 +51,8 @@ public final class zo extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         int i12;
         switch (this.T) {
             case 2:
-                k80 k80Var = (k80) this.U;
-                if (this == k80Var.A && (i12 = k80Var.X) > 0) {
+                l80 l80Var = (l80) this.U;
+                if (this == l80Var.A && (i12 = l80Var.X) > 0) {
                     i11 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11));
                 }
                 super.onMeasure(i10, i11);
@@ -63,9 +63,9 @@ public final class zo extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         }
     }
 
-    public zo(k80 k80Var, Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var, int i11) {
+    public zo(l80 l80Var, Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var, int i11) {
         super(i10, i11, context, u6Var);
         this.T = 2;
-        this.U = k80Var;
+        this.U = l80Var;
     }
 }

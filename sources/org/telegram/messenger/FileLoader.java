@@ -170,7 +170,7 @@ public class FileLoader extends BaseController {
 
         public static void lambda$didPreFinishLoading$0(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue) {
             fileLoadOperation.preFinished = true;
-            fileLoaderPriorityQueue.checkLoadingOperations();
+            fileLoaderPriorityQueue.lambda$new$0();
         }
 
         @Override
@@ -239,8 +239,8 @@ public class FileLoader extends BaseController {
         public void saveFilePath(FilePathDatabase.PathData pathData, File file) {
             String str;
             FilePathDatabase fileDatabase = FileLoader.this.getFileDatabase();
-            long j10 = pathData.f19540id;
-            int i10 = pathData.f19539dc;
+            long j10 = pathData.f19539id;
+            int i10 = pathData.f19538dc;
             int i11 = pathData.type;
             if (file != null) {
                 str = file.toString();
@@ -706,7 +706,7 @@ public class FileLoader extends BaseController {
 
     public static long getPhotoId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.Photo) {
-            return ((TLRPC.Photo) tLObject).f22051id;
+            return ((TLRPC.Photo) tLObject).f22052id;
         }
         if (tLObject instanceof TLRPC.ChatPhoto) {
             return ((TLRPC.ChatPhoto) tLObject).photo_id;
@@ -840,7 +840,7 @@ public class FileLoader extends BaseController {
             FileLoaderPriorityQueue queue = fileLoadOperation.getQueue();
             queue.remove(fileLoadOperation);
             queue.add(fileLoadOperation);
-            queue.checkLoadingOperations();
+            queue.lambda$new$0();
             StringBuilder sb2 = new StringBuilder("update priority ");
             sb2.append(str);
             sb2.append(" position in queue ");
@@ -985,7 +985,7 @@ public class FileLoader extends BaseController {
             fileLoadOperation.setPriority(getPriorityValue(4));
             fileLoadOperation.getQueue().remove(fileLoadOperation);
             fileLoadOperation.getQueue().add(fileLoadOperation);
-            fileLoadOperation.getQueue().checkLoadingOperations();
+            fileLoadOperation.getQueue().lambda$new$0();
         }
     }
 
@@ -1119,7 +1119,7 @@ public class FileLoader extends BaseController {
         if (str == null) {
             return;
         }
-        fileLoaderQueue.postRunnable(new v6(this, z10, str, 1));
+        fileLoaderQueue.postRunnable(new w6(this, z10, str, 1));
     }
 
     public void cancelLoadAllFiles() {
@@ -1162,7 +1162,7 @@ public class FileLoader extends BaseController {
         } else if (webFile != null) {
             str2 = getAttachFileName(webFile);
         }
-        fileLoaderQueue.postRunnable(new x4(this, str2, i10, 3));
+        fileLoaderQueue.postRunnable(new y4(this, str2, i10, 3));
     }
 
     public void checkCurrentDownloadsFiles() {
@@ -1215,7 +1215,7 @@ public class FileLoader extends BaseController {
 
     public void deleteFiles(ArrayList<File> arrayList, int i10) {
         if (arrayList != null && !arrayList.isEmpty()) {
-            fileLoaderQueue.postRunnable(new x6(arrayList, i10, 5));
+            fileLoaderQueue.postRunnable(new y6(arrayList, i10, 5));
         }
     }
 
@@ -1475,7 +1475,7 @@ public class FileLoader extends BaseController {
                 }
             }
             int i11 = i10;
-            this.filePathDatabase.putPath(document.f22033id, document.dc_id, i11, 1, str);
+            this.filePathDatabase.putPath(document.f22034id, document.dc_id, i11, 1, str);
         } else if (tLObject instanceof TLRPC.PhotoSize) {
             TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) tLObject;
             if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -1589,21 +1589,21 @@ public class FileLoader extends BaseController {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(document.dc_id);
                 sb2.append("_");
-                return a1.g.r(sb2, document.f22033id, substring);
+                return a1.g.r(sb2, document.f22034id, substring);
             }
-            return document.dc_id + "_" + document.f22033id;
+            return document.dc_id + "_" + document.f22034id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
             StringBuilder sb3 = new StringBuilder();
             sb3.append(secureDocument.secureFile.dc_id);
             sb3.append("_");
-            return a1.g.r(sb3, secureDocument.secureFile.f22164id, ".jpg");
+            return a1.g.r(sb3, secureDocument.secureFile.f22165id, ".jpg");
         } else if (tLObject instanceof TLRPC.TL_secureFile) {
             TLRPC.TL_secureFile tL_secureFile = (TLRPC.TL_secureFile) tLObject;
             StringBuilder sb4 = new StringBuilder();
             sb4.append(tL_secureFile.dc_id);
             sb4.append("_");
-            return a1.g.r(sb4, tL_secureFile.f22164id, ".jpg");
+            return a1.g.r(sb4, tL_secureFile.f22165id, ".jpg");
         } else if (tLObject instanceof WebFile) {
             WebFile webFile = (WebFile) tLObject;
             return Utilities.MD5(webFile.url) + "." + ImageLoader.getHttpUrlExtension(webFile.url, getMimeTypePart(webFile.mime_type));
@@ -1895,7 +1895,7 @@ public class FileLoader extends BaseController {
                     return true;
                 }
             }
-            if ((-fileLocation.volume_id) == photo.f22051id) {
+            if ((-fileLocation.volume_id) == photo.f22052id) {
                 return true;
             }
         }

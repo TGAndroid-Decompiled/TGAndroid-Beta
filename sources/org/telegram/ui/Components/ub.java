@@ -55,7 +55,7 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         b();
         setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         setWillNotDraw(false);
-        gb1.c(this, 0.02f, 1.5f);
+        kb1.c(this, 0.02f, 1.5f);
     }
 
     public static boolean a() {
@@ -110,7 +110,7 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         this.inOutOffset = f7;
         updatePosition();
         qc qcVar = this.bulletin;
-        if (qcVar != null && qcVar.f31890k) {
+        if (qcVar != null && qcVar.f31862k) {
             invalidate();
         }
     }
@@ -126,7 +126,7 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
             if (this.top) {
                 i11 = 48;
             }
-            setLayoutParams(gb1.i(-2, -2, i11 | 1));
+            setLayoutParams(kb1.i(-2, -2, i11 | 1));
             return;
         }
         boolean a2 = a();
@@ -143,7 +143,7 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         } else if (this.top) {
             i11 = 48;
         }
-        setLayoutParams(gb1.i(i10, -2, i11));
+        setLayoutParams(kb1.i(i10, -2, i11));
     }
 
     public tb createTransition() {
@@ -153,15 +153,15 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
     @Override
     public void dispatchDraw(Canvas canvas) {
         qc qcVar = this.bulletin;
-        if (qcVar != null && qcVar.f31890k) {
+        if (qcVar != null && qcVar.f31862k) {
             if (this.blurVisibilityDrawable == null) {
                 this.blurVisibilityDrawable = new wh.b(new s(this, 16));
             }
             wh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f51207c == null) {
+            if (bVar.f51265c == null) {
                 bVar.b(getMeasuredWidth(), getMeasuredHeight(), 6.0f, AndroidUtilities.dp(10.0f));
             }
-            this.blurVisibilityDrawable.f51210i = a8.ee.b((int) org.telegram.messenger.vh.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f51268i = a8.ee.b((int) org.telegram.messenger.wh.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -178,9 +178,9 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         if (this.bulletin != null && i10 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (obVar = this.delegate) != null) {
-                float h = obVar.h(this.bulletin.f31883a) - getY();
+                float h = obVar.h(this.bulletin.f31855a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f31883a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f31855a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -255,14 +255,14 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         ob obVar;
         qc qcVar;
         o1.j jVar;
-        if (this.bulletin != null && (((obVar = this.delegate) == null || obVar.e()) && (jVar = (qcVar = this.bulletin).d) != null && jVar.f18963f)) {
-            f7 = qcVar.f31895p;
+        if (this.bulletin != null && (((obVar = this.delegate) == null || obVar.e()) && (jVar = (qcVar = this.bulletin).d) != null && jVar.f18962f)) {
+            f7 = qcVar.f31867p;
         } else {
             ob obVar2 = this.delegate;
             if (obVar2 != null) {
                 qc qcVar2 = this.bulletin;
                 if (qcVar2 != null) {
-                    i10 = qcVar2.f31883a;
+                    i10 = qcVar2.f31855a;
                 } else {
                     i10 = 0;
                 }
@@ -292,7 +292,7 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         if (obVar != null) {
             qc qcVar = this.bulletin;
             if (qcVar != null) {
-                i10 = qcVar.f31883a;
+                i10 = qcVar.f31855a;
             } else {
                 i10 = 0;
             }
@@ -429,7 +429,7 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
             if (this.top) {
                 qc qcVar = this.bulletin;
                 if (qcVar != null) {
-                    i11 = qcVar.f31883a;
+                    i11 = qcVar.f31855a;
                 } else {
                     i11 = 0;
                 }

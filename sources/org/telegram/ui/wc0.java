@@ -1,29 +1,42 @@
 package org.telegram.ui;
-public final class wc0 implements org.telegram.ui.ActionBar.b2 {
-    public final int f45100a;
-    public final gg0 f45101b;
 
-    public wc0(gg0 gg0Var, int i10) {
-        this.f45100a = i10;
-        this.f45101b = gg0Var;
+import android.os.Bundle;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import org.telegram.tgnet.TLRPC;
+public final class wc0 implements OnSuccessListener {
+    public final int f44629a = 0;
+    public final ig0 f44630b;
+    public final String f44631c;
+    public final TLRPC.auth_SentCode d;
+    public final Bundle e;
+    public final boolean f44632f;
+
+    public wc0(ig0 ig0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z10) {
+        this.f44630b = ig0Var;
+        this.e = bundle;
+        this.d = auth_sentcode;
+        this.f44631c = str;
+        this.f44632f = z10;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f45100a) {
+    public final void onSuccess(Object obj) {
+        switch (this.f44629a) {
             case 0:
-                gg0 gg0Var = this.f45101b;
-                gg0Var.f39653b[gg0Var.f39651a].d();
-                gg0Var.p1(true, true);
+                ig0.W(this.f44630b, this.e, this.d, this.f44631c, this.f44632f, (IntegrityTokenResponse) obj);
                 return;
             default:
-                gg0 gg0Var2 = this.f45101b;
-                gg0Var2.f39666l0 = true;
-                if (gg0Var2.f39651a != 0) {
-                    gg0Var2.z1(0, true, null, true);
-                    return;
-                }
+                ig0.Y(this.f44630b, this.f44631c, this.d, this.e, this.f44632f, (n8.d) obj);
                 return;
         }
+    }
+
+    public wc0(ig0 ig0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z10) {
+        this.f44630b = ig0Var;
+        this.f44631c = str;
+        this.d = auth_sentcode;
+        this.e = bundle;
+        this.f44632f = z10;
     }
 }

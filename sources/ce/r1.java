@@ -20,7 +20,7 @@ public final class r1 extends nd.h implements ud.p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((r1) create((zd.c) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+        return ((r1) create((zd.c) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
     }
 
     @Override

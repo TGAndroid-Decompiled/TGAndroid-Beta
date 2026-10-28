@@ -16,8 +16,8 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Cells.ab;
-import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.kb1;
 public final class b extends ab {
     public final TextView f1407b0;
     public final FrameLayout f1408c0;
@@ -34,11 +34,11 @@ public final class b extends ab {
         this.f1408c0 = new FrameLayout(getContext());
         TextView textView = new TextView(getContext());
         this.f1407b0 = textView;
-        textView.setTextColor(y6.w0(y6.G6, this.f23882y));
+        textView.setTextColor(y6.w0(y6.G6, this.f23883y));
         this.f1407b0.setTypeface(AndroidUtilities.bold());
         this.f1407b0.setTextSize(12.0f);
         this.f1407b0.setGravity(17);
-        this.f1408c0.addView(this.f1407b0, gb1.g(22.0f, -2));
+        this.f1408c0.addView(this.f1407b0, kb1.g(22.0f, -2));
         this.f1408c0.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         FrameLayout frameLayout = this.f1408c0;
         boolean z10 = LocaleController.isRTL;
@@ -53,7 +53,7 @@ public final class b extends ab {
         } else {
             i11 = 0;
         }
-        addView(frameLayout, gb1.h(-2, -2.0f, i12, i11, 9.0f, z10 ? 0 : 9, 0.0f));
+        addView(frameLayout, kb1.h(-2, -2.0f, i12, i11, 9.0f, z10 ? 0 : 9, 0.0f));
     }
 
     private void setAvatarColorByMonths(int i10) {
@@ -89,7 +89,7 @@ public final class b extends ab {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, y6.f23478k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, y6.f23479k0);
         }
     }
 
@@ -100,7 +100,7 @@ public final class b extends ab {
         FrameLayout frameLayout = this.f1408c0;
         TextView textView = this.f1407b0;
         int i11 = 0;
-        b6 b6Var = this.f23874b;
+        b6 b6Var = this.f23875b;
         if (!z10 && !boost.giveaway) {
             frameLayout.setVisibility(8);
         } else {
@@ -108,7 +108,7 @@ public final class b extends ab {
             int i12 = ((boost.expires - boost.date) / 30) / 86400;
             long j10 = boost.stars;
             int i13 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-            k4 k4Var = this.f23872a;
+            k4 k4Var = this.f23873a;
             j9 j9Var = this.E;
             if (i13 > 0) {
                 b6Var.l(LocaleController.formatPluralString("BoostingBoostStars", (int) j10, new Object[0]), false);
@@ -130,7 +130,7 @@ public final class b extends ab {
             }
             String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
             int i14 = (boost.stars > 0L ? 1 : (boost.stars == 0L ? 0 : -1));
-            b6 b6Var2 = this.f23875c;
+            b6 b6Var2 = this.f23876c;
             if (i14 > 0) {
                 b6Var2.l(LocaleController.formatString(R.string.BoostingStarsExpires, format), false);
             } else {

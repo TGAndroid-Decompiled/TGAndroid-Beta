@@ -1,28 +1,24 @@
 package org.telegram.ui.Components;
-public final class sp0 implements o1.g {
-    public final int f32657a;
-    public final bq0 f32658b;
 
-    public sp0(bq0 bq0Var, int i10) {
-        this.f32657a = i10;
-        this.f32658b = bq0Var;
-    }
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import org.telegram.messenger.FileLog;
+public final class sp0 extends cc {
+    public int f32655c;
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f32657a) {
-            case 0:
-                this.f32658b.f26940o.setScaleX(1.0f / f7);
-                return;
-            case 1:
-                this.f32658b.f26940o.setScaleY(1.0f / f7);
-                return;
-            case 2:
-                this.f32658b.f26940o.setScaleX(1.0f / f7);
-                return;
-            default:
-                this.f32658b.f26940o.setScaleY(1.0f / f7);
-                return;
+    public final void updateColors() {
+        super.updateColors();
+        try {
+            int themedColor = getThemedColor(org.telegram.ui.ActionBar.y6.Hi);
+            y9 y9Var = this.f27121a;
+            if (y9Var != null && themedColor != this.f32655c) {
+                this.f32655c = themedColor;
+                y9Var.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN));
+            }
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 }

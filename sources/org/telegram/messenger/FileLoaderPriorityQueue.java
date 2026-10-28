@@ -14,7 +14,44 @@ public class FileLoaderPriorityQueue {
     public ArrayList<FileLoadOperation> allOperations = new ArrayList<>();
     public ArrayList<FileLoadOperation> tmpListOperations = new ArrayList<>();
     boolean checkOperationsScheduled = false;
-    Runnable checkOperationsRunnable = new j1(this, 18);
+    private final Runnable checkVisibleStoryRunnable = new Runnable(this) {
+        public final FileLoaderPriorityQueue f20479b;
+
+        {
+            this.f20479b = this;
+        }
+
+        @Override
+        public final void run() {
+            switch (r2) {
+                case 0:
+                    this.f20479b.lambda$new$0();
+                    return;
+                default:
+                    this.f20479b.lambda$new$1();
+                    return;
+            }
+        }
+    };
+    Runnable checkOperationsRunnable = new Runnable(this) {
+        public final FileLoaderPriorityQueue f20479b;
+
+        {
+            this.f20479b = this;
+        }
+
+        @Override
+        public final void run() {
+            switch (r2) {
+                case 0:
+                    this.f20479b.lambda$new$0();
+                    return;
+                default:
+                    this.f20479b.lambda$new$1();
+                    return;
+            }
+        }
+    };
 
     public FileLoaderPriorityQueue(int i10, String str, int i11, DispatchQueue2 dispatchQueue2) {
         this.currentAccount = i10;
@@ -23,53 +60,11 @@ public class FileLoaderPriorityQueue {
         this.workerQueue = dispatchQueue2;
     }
 
-    public static void a(FileLoaderPriorityQueue fileLoaderPriorityQueue) {
-        fileLoaderPriorityQueue.lambda$new$0();
-    }
-
     private void checkLoadingOperationInternal() {
-        int i10;
-        FileLoadOperation fileLoadOperation;
-        if (this.type == 1) {
-            i10 = MessagesController.getInstance(this.currentAccount).largeQueueMaxActiveOperations;
-        } else {
-            i10 = MessagesController.getInstance(this.currentAccount).smallQueueMaxActiveOperations;
-        }
-        this.tmpListOperations.clear();
-        boolean z10 = false;
-        int i11 = 0;
-        for (int i12 = 0; i12 < this.allOperations.size(); i12++) {
-            if (i12 > 0) {
-                fileLoadOperation = this.allOperations.get(i12 - 1);
-            } else {
-                fileLoadOperation = null;
-            }
-            FileLoadOperation fileLoadOperation2 = this.allOperations.get(i12);
-            if (i12 > 0 && !z10) {
-                if (this.type == 1 && fileLoadOperation != null && fileLoadOperation.isStory && fileLoadOperation.getPriority() >= 1048576 && fileLoadOperation2.getPriority() <= 0) {
-                    z10 = true;
-                }
-                if (i11 > 0 && fileLoadOperation2.getPriority() == 0) {
-                    z10 = true;
-                }
-            }
-            if (fileLoadOperation2.preFinished) {
-                i10++;
-            } else {
-                if (!z10 && i12 < i10) {
-                    this.tmpListOperations.add(fileLoadOperation2);
-                } else if (fileLoadOperation2.wasStarted()) {
-                    fileLoadOperation2.pause();
-                }
-                i11 = fileLoadOperation2.getPriority();
-            }
-        }
-        for (int i13 = 0; i13 < this.tmpListOperations.size(); i13++) {
-            this.tmpListOperations.get(i13).start();
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoaderPriorityQueue.checkLoadingOperationInternal():void");
     }
 
-    public void lambda$new$0() {
+    public void lambda$new$1() {
         checkLoadingOperationInternal();
         this.checkOperationsScheduled = false;
     }
@@ -111,7 +106,7 @@ public class FileLoaderPriorityQueue {
         }
     }
 
-    public void checkLoadingOperations() {
+    public void lambda$new$0() {
         checkLoadingOperations(false);
     }
 

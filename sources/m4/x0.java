@@ -1,6 +1,7 @@
 package m4;
 
 import a8.qd;
+import android.graphics.BlendMode;
 import android.graphics.RectF;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,15 +14,15 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.e2;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.jw0;
-import org.telegram.ui.Components.yw0;
+import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.zw0;
 import org.telegram.ui.ee;
 import org.telegram.utils.code.highlight.PrismaHighlighter;
-public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, yw0, Utilities.Callback2Return, jw0, jh.i {
-    public final int f18298a;
+public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, zw0, Utilities.Callback2Return, kw0, jh.i {
+    public final int f18297a;
 
     public x0(int i10) {
-        this.f18298a = i10;
+        this.f18297a = i10;
     }
 
     public static ni.b a() {
@@ -52,10 +53,14 @@ public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, yw0, Utilities.
         }
     }
 
+    public static BlendMode e() {
+        return BlendMode.SOFT_LIGHT;
+    }
+
     @Override
     public void accept(Object obj) {
         n1 n1Var = (n1) obj;
-        switch (this.f18298a) {
+        switch (this.f18297a) {
             case 1:
                 n1Var.stop();
                 return;
@@ -79,7 +84,7 @@ public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, yw0, Utilities.
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.e();
-        return f9.i0.u(f9.o.x(qVar.Y.f49416b, new s0.b(20)));
+        return f9.i0.u(f9.o.x(qVar.Y.f49451b, new s0.b(20)));
     }
 
     @Override
@@ -89,7 +94,7 @@ public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, yw0, Utilities.
 
     @Override
     public Object c(f0 f0Var, w wVar, int i10) {
-        switch (this.f18298a) {
+        switch (this.f18297a) {
             case 0:
                 f0Var.getClass();
                 throw new ClassCastException();
@@ -112,7 +117,7 @@ public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, yw0, Utilities.
 
     @Override
     public void h(e2 e2Var, int i10) {
-        switch (this.f18298a) {
+        switch (this.f18297a) {
             case 23:
                 e2Var.dismiss();
                 return;
@@ -124,7 +129,7 @@ public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, yw0, Utilities.
 
     @Override
     public RecyclerView i(View view) {
-        return ((ee) view).f39091a;
+        return ((ee) view).f38846a;
     }
 
     @Override

@@ -1,195 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.PhotoViewer;
-public final class w80 implements View.OnClickListener {
-    public final int f34388a;
-    public final Object f34389b;
+public abstract class w80 extends org.telegram.ui.ActionBar.k3 {
+    public boolean f34471b;
 
-    public w80(Object obj, int i10) {
-        this.f34388a = i10;
-        this.f34389b = obj;
+    public w80(Context context, TLRPC.Chat chat) {
+        super(context, true);
+        setApplyBottomPadding(false);
+        setApplyTopPadding(false);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        setCustomView(linearLayout);
+        y9 y9Var = new y9(context);
+        y9Var.setRoundRadius(AndroidUtilities.dp(45.0f));
+        linearLayout.addView(y9Var, kb1.x(90, 90, 49, 0, 29, 0, 0));
+        y9Var.f(chat, new j9(chat));
+        TextView textView = new TextView(context);
+        org.telegram.messenger.wh.j(18.0f, 1, textView);
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23465j5, null);
+        textView.setGravity(1);
+        TextView e = org.telegram.messenger.wh.e(linearLayout, textView, kb1.x(-2, -2, 49, 17, 24, 17, 0), context);
+        e.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.f7.V(e, org.telegram.ui.ActionBar.y6.f23615r5, null);
+        e.setGravity(1);
+        linearLayout.addView(e, kb1.x(-2, -2, 49, 30, 8, 30, 0));
+        ChatObject.Call groupCall = AccountInstance.getInstance(this.currentAccount).getMessagesController().getGroupCall(chat.f22028id, false);
+        if (groupCall != null) {
+            if (TextUtils.isEmpty(groupCall.call.title)) {
+                textView.setText(chat.title);
+            } else {
+                textView.setText(groupCall.call.title);
+            }
+            int i10 = groupCall.call.participants_count;
+            if (i10 == 0) {
+                e.setText(LocaleController.getString(R.string.NoOneJoinedYet));
+            } else {
+                e.setText(LocaleController.formatPluralString("Participants", i10, new Object[0]));
+            }
+        } else {
+            textView.setText(chat.title);
+            e.setText(LocaleController.getString(R.string.NoOneJoinedYet));
+        }
+        ?? frameLayout = new FrameLayout(context);
+        View view = new View(context);
+        frameLayout.f33606a = view;
+        view.setBackground(org.telegram.ui.ActionBar.o6.f(new float[]{4.0f}, org.telegram.ui.ActionBar.y6.Oh));
+        frameLayout.addView(view, kb1.h(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        TextView textView2 = new TextView(context);
+        frameLayout.f33607b = textView2;
+        textView2.setLines(1);
+        textView2.setSingleLine(true);
+        textView2.setGravity(1);
+        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        textView2.setGravity(17);
+        org.telegram.messenger.t.r(textView2, org.telegram.ui.ActionBar.y6.Sh, null, 1, 14.0f);
+        frameLayout.addView(textView2, kb1.i(-2, -2, 17));
+        frameLayout.setBackground(null);
+        if (ChatObject.isChannelOrGiga(chat)) {
+            frameLayout.setText(LocaleController.getString(R.string.VoipChannelJoinVoiceChatUrl));
+        } else {
+            frameLayout.setText(LocaleController.getString(R.string.VoipGroupJoinVoiceChatUrl));
+        }
+        view.setOnClickListener(new f0(this, 29));
+        linearLayout.addView((View) frameLayout, kb1.x(-1, 50, 51, 0, 30, 0, 0));
     }
 
     @Override
-    public final void onClick(View view) {
-        TLRPC.Chat chat;
-        int i10;
-        switch (this.f34388a) {
-            case 0:
-                ((c90) this.f34389b).dismiss();
-                return;
-            case 1:
-                rc0 rc0Var = (rc0) this.f34389b;
-                rc0.b(rc0Var.getContext(), rc0Var.f32212a, rc0Var.f32216n, false, rc0Var.f32220x, new wa0(rc0Var, 2), rc0Var.f32214c);
-                return;
-            case 2:
-                ((sd0) this.f34389b).onBackPressed();
-                return;
-            case 3:
-                te0.m((te0) this.f34389b);
-                return;
-            case 4:
-                dg0 dg0Var = (dg0) this.f34389b;
-                dg0Var.getClass();
-                org.telegram.ui.Cells.y5 y5Var = (org.telegram.ui.Cells.y5) view;
-                int intValue = ((Integer) y5Var.getTag()).intValue();
-                eg0 eg0Var = dg0Var.d;
-                if (intValue == eg0Var.f27860y) {
-                    eg0Var.N = y5Var.getCurrentColor();
-                } else {
-                    eg0Var.O = y5Var.getCurrentColor();
-                }
-                e00 e00Var = eg0Var.f27843l0;
-                if (e00Var != null) {
-                    e00Var.d(false, false, false);
-                }
-                eg0Var.g();
-                return;
-            case 5:
-                view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((lg0) this.f34389b).f30208a.f30583y.url)));
-                return;
-            case 6:
-                ch0 ch0Var = (ch0) this.f34389b;
-                PhotoViewer photoViewer = ch0Var.V;
-                if (photoViewer != null) {
-                    mg0 mg0Var = ch0Var.f27177r;
-                    if (mg0Var != null) {
-                        if (mg0Var.G) {
-                            mg0Var.f();
-                        } else {
-                            mg0Var.g();
-                        }
-                    } else {
-                        s81 s81Var = photoViewer.F2;
-                        if (s81Var != null) {
-                            if (s81Var.y()) {
-                                s81Var.B();
-                            } else {
-                                s81Var.C();
-                            }
-                        } else {
-                            return;
-                        }
-                    }
-                    ch0.f27159p0.z();
-                    return;
-                }
-                return;
-            case 7:
-                lh0 lh0Var = (lh0) this.f34389b;
-                lh0Var.getClass();
-                ih0 ih0Var = (ih0) lh0Var;
-                jh0 jh0Var = ih0Var.e;
-                mh0 mh0Var = (mh0) ih0Var.getTag(R.id.object_tag);
-                if (mh0Var.f30587b.size() > 15) {
-                    boolean z10 = mh0Var.e;
-                    mh0Var.e = !z10;
-                    if (!z10) {
-                        mh0Var.f30589f = 10;
-                    }
-                    jh0Var.f29649s.Q(ih0Var);
-                    jh0Var.f29649s.f30976c.X(true);
-                    return;
-                }
-                return;
-            case 8:
-                ((hn0) this.f34389b).onBackPressed();
-                return;
-            case 9:
-                co0 co0Var = ((bo0) this.f34389b).f26923c;
-                pt.n(co0Var.F, co0Var.G);
-                return;
-            case 10:
-                fi.c2 c2Var = ((do0) this.f34389b).d;
-                c2Var.setText("");
-                AndroidUtilities.showKeyboard(c2Var);
-                return;
-            case 11:
-                oo0 oo0Var = (oo0) this.f34389b;
-                oo0Var.getClass();
-                new tg.y0(oo0Var.f31337b, 24, true).show();
-                return;
-            case 12:
-                ((ep0) this.f34389b).R(false);
-                return;
-            case 13:
-                qr0 qr0Var = ((or0) this.f34389b).f31371s;
-                ArrayList arrayList = qr0Var.f32011s;
-                if (!arrayList.isEmpty()) {
-                    qr0Var.f32010r = TextUtils.join(" ", arrayList).toString();
-                    qr0Var.f32009n = false;
-                    qr0Var.d();
-                    qr0Var.f32012w = null;
-                    if (qr0Var.f32006b != 0) {
-                        qr0Var.f32006b = 0;
-                        pr0 pr0Var = qr0Var.H;
-                        if (pr0Var != null) {
-                            ((org.telegram.ui.iv) pr0Var).i(0);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 14:
-                aw0 aw0Var = ((ju0) this.f34389b).f29725f;
-                org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26704x1;
-                if (r2Var != null && r2Var.getParentLayout() != null) {
-                    ((ActionBarLayout) aw0Var.f26704x1.getParentLayout()).r();
-                    return;
-                }
-                return;
-            case 15:
-                ((mp0) this.f34389b).run();
-                return;
-            case 16:
-                ((ey0) this.f34389b).f28015b.getImageReceiver().startAnimation();
-                return;
-            case 17:
-                AndroidUtilities.runOnUIThread((di.k5) this.f34389b, 100L);
-                return;
-            case 18:
-                ((EditTextBoldCursor) this.f34389b).setText("");
-                return;
-            case 19:
-                w21 w21Var = ((y21) this.f34389b).f34915b;
-                w21Var.setText("");
-                AndroidUtilities.showKeyboard(w21Var);
-                return;
-            case 20:
-                ((j31) this.f34389b).f29472b.getImageReceiver().startAnimation();
-                return;
-            case 21:
-                ((f51) this.f34389b).dismiss();
-                return;
-            case 22:
-                org.telegram.ui.un unVar = ((org.telegram.ui.tk) this.f34389b).f43855y;
-                if (!unVar.getUserConfig().isPremium() && ((chat = unVar.e) == null || !chat.autotranslation)) {
-                    i10 = ((org.telegram.ui.ActionBar.r2) unVar).currentAccount;
-                    SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i10).edit();
-                    edit.putInt("dialog_show_translate_count" + unVar.a(), 14).commit();
-                    unVar.showDialog(new tg.y0((org.telegram.ui.ActionBar.r2) unVar, 13, false));
-                } else {
-                    unVar.getMessagesController().getTranslateController().toggleTranslatingDialog(unVar.a());
-                }
-                unVar.dd(true);
-                return;
-            default:
-                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f34389b).getSwipeBack().b(true);
-                return;
+    public final void dismissInternal() {
+        super.dismissInternal();
+        if (this.f34471b) {
+            m();
         }
     }
+
+    public abstract void m();
 }

@@ -13,9 +13,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class pc extends FrameLayout {
     public final org.telegram.ui.ActionBar.u6 f5246a;
     public final Drawable f5247b;
@@ -34,25 +34,25 @@ public final class pc extends FrameLayout {
         this.f5246a = u6Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
         this.f5247b = mutate;
-        org.telegram.ui.ActionBar.f7.y(this, mutate, org.telegram.ui.ActionBar.y6.f23427h5, u6Var, PorterDuff.Mode.SRC_IN);
+        org.telegram.ui.ActionBar.f7.y(this, mutate, org.telegram.ui.ActionBar.y6.f23428h5, u6Var, PorterDuff.Mode.SRC_IN);
         this.f5248c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         TextView textView = new TextView(context);
         this.d = textView;
-        vh.j(15.0f, 1, textView);
+        wh.j(15.0f, 1, textView);
         org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, u6Var);
-        addView(textView, gb1.m(-2.0f, -2.0f, 8388627, 48.0f, 0.0f, 0.0f, 0.0f));
+        addView(textView, kb1.m(-2.0f, -2.0f, 8388627, 48.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.s6 s6Var = new org.telegram.ui.Components.s6(context, false, false, false);
         this.e = s6Var;
         s6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        org.telegram.ui.ActionBar.f7.Z(s6Var, org.telegram.ui.ActionBar.y6.f23767z6, u6Var);
+        org.telegram.ui.ActionBar.f7.Z(s6Var, org.telegram.ui.ActionBar.y6.f23768z6, u6Var);
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {
             i10 = 5;
         }
         s6Var.setGravity(i10);
-        addView(s6Var, gb1.m(-2.0f, 21.0f, 8388629, 0.0f, 0.0f, 19.0f, 0.0f));
+        addView(s6Var, kb1.m(-2.0f, 21.0f, 8388629, 0.0f, 0.0f, 19.0f, 0.0f));
     }
 
     @Override
@@ -109,7 +109,7 @@ public final class pc extends FrameLayout {
                 paint = null;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.y6.f23478k0;
+                paint = org.telegram.ui.ActionBar.y6.f23479k0;
             }
             Paint paint2 = paint;
             if (!LocaleController.isRTL) {

@@ -13,10 +13,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.gg0;
-import org.telegram.ui.in0;
-import org.telegram.ui.of0;
-import org.telegram.ui.sz;
+import org.telegram.ui.ig0;
+import org.telegram.ui.kn0;
+import org.telegram.ui.kz;
+import org.telegram.ui.qf0;
 public final class y8 implements Runnable {
     public final int f5768a;
     public final int f5769b;
@@ -68,7 +68,7 @@ public final class y8 implements Runnable {
                 LaunchActivity launchActivity = (LaunchActivity) obj8;
                 TLObject tLObject = (TLObject) obj7;
                 int[] iArr = (int[]) obj6;
-                sz szVar = (sz) obj5;
+                kz kzVar = (kz) obj5;
                 Integer num = (Integer) obj4;
                 Integer num2 = (Integer) obj3;
                 Long l4 = (Long) obj2;
@@ -78,12 +78,12 @@ public final class y8 implements Runnable {
                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject;
                     if (!tL_messages_chats.chats.isEmpty()) {
                         MessagesController.getInstance(launchActivity.O).putChats(tL_messages_chats.chats, false);
-                        iArr[0] = launchActivity.A0(this.f5769b, szVar, num, num2, l4, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
+                        iArr[0] = launchActivity.A0(this.f5769b, kzVar, num, num2, l4, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
                         return;
                     }
                 }
                 try {
-                    szVar.run();
+                    kzVar.run();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -91,7 +91,7 @@ public final class y8 implements Runnable {
                 return;
             case 3:
                 LaunchActivity launchActivity2 = (LaunchActivity) obj8;
-                sz szVar2 = (sz) obj7;
+                kz kzVar2 = (kz) obj7;
                 TLObject tLObject2 = (TLObject) obj6;
                 TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) obj5;
                 TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
@@ -100,18 +100,18 @@ public final class y8 implements Runnable {
                 String str3 = (String) obj;
                 Pattern pattern2 = LaunchActivity.D1;
                 try {
-                    szVar2.run();
+                    kzVar2.run();
                 } catch (Exception e10) {
                     FileLog.e(e10);
                 }
                 if (tLObject2 != null) {
                     MessagesController.getInstance(i11).putUsers(authorizationform.users, false);
-                    launchActivity2.u0(new in0(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, str3, authorizationform, (TL_account.Password) tLObject2));
+                    launchActivity2.u0(new kn0(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, str3, authorizationform, (TL_account.Password) tLObject2));
                     return;
                 }
                 return;
             default:
-                of0 of0Var = (of0) obj8;
+                qf0 qf0Var = (qf0) obj8;
                 TLObject tLObject3 = (TLObject) obj7;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj6;
                 d5.l lVar = (d5.l) obj5;
@@ -119,8 +119,8 @@ public final class y8 implements Runnable {
                 TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj3;
                 String str4 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
-                gg0 gg0Var = of0Var.v;
-                fi.d dVar = of0Var.f42177b;
+                ig0 ig0Var = qf0Var.v;
+                fi.d dVar = qf0Var.f42697b;
                 FileLog.d("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
                     dVar.i(LocaleController.formatString(R.string.SMSFeePurchaseTitle, lVar.f7989a), false, true);
@@ -131,15 +131,15 @@ public final class y8 implements Runnable {
                     }
                     dVar.g(formatPluralStringComma, false);
                     dVar.setLoading(false);
-                    dVar.setOnClickListener(new di.e0(of0Var, oVar, tL_inputStorePaymentAuthCode, str4, tL_payments_canPurchaseStore, 14));
+                    dVar.setOnClickListener(new di.e0(qf0Var, oVar, tL_inputStorePaymentAuthCode, str4, tL_payments_canPurchaseStore, 14));
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
-                    of0Var.e = "RESPONSE_FALSE";
-                    new org.telegram.ui.Components.wc(gg0Var.Z, null).H(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "RESPONSE_FALSE"));
+                    qf0Var.e = "RESPONSE_FALSE";
+                    new org.telegram.ui.Components.wc(ig0Var.Z, null).H(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "RESPONSE_FALSE"));
                     return;
                 } else if (tL_error != null) {
-                    of0Var.e = tL_error.text;
-                    new org.telegram.ui.Components.wc(gg0Var.Z, null).g0(tL_error, false);
+                    qf0Var.e = tL_error.text;
+                    new org.telegram.ui.Components.wc(ig0Var.Z, null).g0(tL_error, false);
                     return;
                 } else {
                     return;

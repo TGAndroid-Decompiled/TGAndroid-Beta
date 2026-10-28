@@ -27,7 +27,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.gg0;
+import org.telegram.ui.ig0;
 public class BillingController implements d5.q, d5.d {
     public static final r PREMIUM_PRODUCT;
     public static d5.o PREMIUM_PRODUCT_DETAILS = null;
@@ -284,15 +284,15 @@ public class BillingController implements d5.q, d5.d {
     }
 
     public static void lambda$onPurchasesUpdatedInternal$7(AccountInstance accountInstance, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TL_update.TL_updateSentPhoneCode tL_updateSentPhoneCode) {
-        gg0 gg0Var = (gg0) LaunchActivity.N();
-        if (gg0Var == null) {
-            gg0Var = new gg0(accountInstance.getCurrentAccount());
+        ig0 ig0Var = (ig0) LaunchActivity.N();
+        if (ig0Var == null) {
+            ig0Var = new ig0(accountInstance.getCurrentAccount());
             org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
             if (U != null) {
-                U.presentFragment(gg0Var);
+                U.presentFragment(ig0Var);
             }
         }
-        gg0Var.v1(((TLRPC.TL_inputStorePaymentAuthCode) tL_payments_assignPlayMarketTransaction.purpose).phone_number, tL_updateSentPhoneCode.sent_code);
+        ig0Var.v1(((TLRPC.TL_inputStorePaymentAuthCode) tL_payments_assignPlayMarketTransaction.purpose).phone_number, tL_updateSentPhoneCode.sent_code);
     }
 
     public static void lambda$onPurchasesUpdatedInternal$8(AtomicInteger atomicInteger, AtomicInteger atomicInteger2, Runnable runnable) {
@@ -558,9 +558,9 @@ public class BillingController implements d5.q, d5.d {
         boolean isClientActivated = accountInstance.getUserConfig().isClientActivated();
         boolean z11 = false;
         if (isClientActivated) {
-            encodeToString = Base64.encodeToString(String.valueOf(accountInstance.getUserConfig().getClientUserId()).getBytes(e9.j.f9845a), 0);
+            encodeToString = Base64.encodeToString(String.valueOf(accountInstance.getUserConfig().getClientUserId()).getBytes(e9.j.f9844a), 0);
         } else {
-            encodeToString = Base64.encodeToString(("account-" + accountInstance.getCurrentAccount()).getBytes(e9.j.f9845a), 0);
+            encodeToString = Base64.encodeToString(("account-" + accountInstance.getCurrentAccount()).getBytes(e9.j.f9844a), 0);
         }
         long nextLong = Utilities.random.nextLong();
         FileLog.d("BillingUtilities.savePurpose id=" + nextLong + " paymentPurpose=" + inputStorePaymentPurpose);

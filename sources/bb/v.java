@@ -31,9 +31,9 @@ public final class v extends nd.i implements ud.p {
         ld.c cVar = (ld.c) obj2;
         switch (this.f3824a) {
             case 0:
-                return ((v) create(c0Var, cVar)).invokeSuspend(jd.i.f15580a);
+                return ((v) create(c0Var, cVar)).invokeSuspend(jd.i.f15579a);
             default:
-                return ((v) create(c0Var, cVar)).invokeSuspend(jd.i.f15580a);
+                return ((v) create(c0Var, cVar)).invokeSuspend(jd.i.f15579a);
         }
     }
 
@@ -41,7 +41,7 @@ public final class v extends nd.i implements ud.p {
     public final Object invokeSuspend(Object obj) {
         switch (this.f3824a) {
             case 0:
-                md.a aVar = md.a.f18412a;
+                md.a aVar = md.a.f18411a;
                 int i10 = this.f3825b;
                 if (i10 != 0) {
                     if (i10 == 1) {
@@ -59,9 +59,9 @@ public final class v extends nd.i implements ud.p {
                         return aVar;
                     }
                 }
-                return jd.i.f15580a;
+                return jd.i.f15579a;
             default:
-                md.a aVar2 = md.a.f18412a;
+                md.a aVar2 = md.a.f18411a;
                 int i11 = this.f3825b;
                 if (i11 != 0) {
                     if (i11 == 1) {
@@ -86,16 +86,16 @@ public final class v extends nd.i implements ud.p {
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", str2, null);
                     }
-                    y9.i iVar = jVar.f52433b;
+                    y9.i iVar = jVar.f52491b;
                     synchronized (iVar) {
-                        if (!Objects.equals(iVar.f52431c, str)) {
-                            y9.i.a(iVar.f52429a, iVar.f52430b, str);
-                            iVar.f52431c = str;
+                        if (!Objects.equals(iVar.f52489c, str)) {
+                            y9.i.a(iVar.f52487a, iVar.f52488b, str);
+                            iVar.f52489c = str;
                         }
                     }
                     Log.d("SessionLifecycleClient", "Notified " + cb.d.f6181a + " of new session " + str);
                 }
-                return jd.i.f15580a;
+                return jd.i.f15579a;
         }
     }
 }

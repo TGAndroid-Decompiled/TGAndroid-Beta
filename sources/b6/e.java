@@ -19,7 +19,7 @@ public final class e extends o6.g {
     public e(Context context, Looper looper, r3 r3Var, GoogleSignInOptions googleSignInOptions, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
         super(context, looper, 91, r3Var, kVar, lVar, 0);
         a6.b bVar;
-        Set<Scope> set = (Set) r3Var.f17845b;
+        Set<Scope> set = (Set) r3Var.f17844b;
         if (googleSignInOptions != null) {
             ?? obj = new Object();
             obj.f329a = new HashSet();
@@ -68,7 +68,7 @@ public final class e extends o6.g {
 
     @Override
     public final Intent o() {
-        return h.a(this.f19127n, this.U);
+        return h.a(this.f19126n, this.U);
     }
 
     @Override

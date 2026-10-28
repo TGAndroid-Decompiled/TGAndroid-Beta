@@ -12,11 +12,11 @@ import hi.n4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.r2;
 import org.telegram.ui.Components.a8;
-import org.telegram.ui.Components.cz0;
+import org.telegram.ui.Components.dz0;
 import org.telegram.ui.Components.ob;
 import org.telegram.ui.Components.pm;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.ta0;
+import org.telegram.ui.Components.ua0;
 import org.telegram.ui.Components.ub;
 public final class c0 implements ob {
     public final int f3999a;
@@ -66,10 +66,10 @@ public final class c0 implements ob {
             case 0:
                 return;
             case 1:
-                if (qcVar.f31883a == 2 && (j4Var = ((q3) this.f4000b).f8964x.F1) != null) {
+                if (qcVar.f31855a == 2 && (j4Var = ((q3) this.f4000b).f8963x.F1) != null) {
                     y9 y9Var = ((p9) j4Var).d;
                     y9Var.Y0 = true;
-                    y9Var.P();
+                    y9Var.Q();
                     return;
                 }
                 return;
@@ -92,7 +92,7 @@ public final class c0 implements ob {
                 eVar.e = new gh.a(1);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
                 float dpf22 = AndroidUtilities.dpf2(0.5f);
-                eVar.f10484f = dpf2;
+                eVar.f10483f = dpf2;
                 eVar.h = dpf22;
                 c10.v(eVar);
                 c10.x(AndroidUtilities.dp(16.0f));
@@ -113,10 +113,10 @@ public final class c0 implements ob {
             case 0:
                 return;
             case 1:
-                if (qcVar.f31883a == 2 && (j4Var = ((q3) this.f4000b).f8964x.F1) != null) {
+                if (qcVar.f31855a == 2 && (j4Var = ((q3) this.f4000b).f8963x.F1) != null) {
                     y9 y9Var = ((p9) j4Var).d;
                     y9Var.Y0 = false;
-                    y9Var.P();
+                    y9Var.Q();
                     return;
                 }
                 return;
@@ -175,20 +175,20 @@ public final class c0 implements ob {
             case 0:
                 return (int) ((i0) ((p) this.f4000b).f4102c).f4064u;
             case 1:
-                if (((q3) this.f4000b).f8964x.f9001m2) {
+                if (((q3) this.f4000b).f8963x.f9000m2) {
                     return 0;
                 }
                 return AndroidUtilities.dp(64.0f);
             case 2:
-                return ((t5) this.f4000b).f9196r.getPaddingBottom();
+                return ((t5) this.f4000b).f9195r.getPaddingBottom();
             case 3:
                 return 0;
             case 4:
-                editTextHeight = ((sb) this.f4000b).f11614c1.getEditTextHeight();
+                editTextHeight = ((sb) this.f4000b).f11613c1.getEditTextHeight();
                 dp = AndroidUtilities.dp(12.0f);
                 break;
             case 5:
-                return ((a8) this.f4000b).e.f30453y.getHeight();
+                return ((a8) this.f4000b).e.f30460y.getHeight();
             case 6:
                 return ((r2) this.f4000b).getBottomInset();
             case 7:
@@ -199,14 +199,14 @@ public final class c0 implements ob {
                 return obVar.f(i10);
             case 8:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((pm) this.f4000b).f31606c.f30215b.getBottomInset();
+                dp = ((pm) this.f4000b).f31640c.f30254b.getBottomInset();
                 break;
             case 9:
-                editTextHeight = ta0.V((ta0) this.f4000b).d;
+                editTextHeight = ua0.V((ua0) this.f4000b).d;
                 dp = AndroidUtilities.dp(72.0f);
                 break;
             case 10:
-                FrameLayout frameLayout = ((cz0) this.f4000b).f27315w;
+                FrameLayout frameLayout = ((dz0) this.f4000b).f27605w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
@@ -273,7 +273,7 @@ public final class c0 implements ob {
             case 2:
                 return 0;
             case 3:
-                return (int) (((e6) this.f4000b).f8522a + AndroidUtilities.dp(58.0f));
+                return (int) (((e6) this.f4000b).f8521a + AndroidUtilities.dp(58.0f));
             case 4:
                 return 0;
             case 5:

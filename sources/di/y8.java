@@ -1,7 +1,7 @@
 package di;
 
-import org.telegram.ui.pc0;
-public final class y8 extends pc0 {
+import org.telegram.ui.rc0;
+public final class y8 extends rc0 {
     public final int R0;
 
     public y8(int i10, int i11) {

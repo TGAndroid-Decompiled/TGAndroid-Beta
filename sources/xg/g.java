@@ -17,15 +17,15 @@ import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.y9;
 public final class g extends c implements p6 {
-    public final ImageView f51781s;
+    public final ImageView f51839s;
     public f v;
-    public TLRPC.Chat f51782w;
-    public boolean f51783x;
-    public int f51784y;
+    public TLRPC.Chat f51840w;
+    public boolean f51841x;
+    public int f51842y;
 
     public g(Context context, u6 u6Var) {
         super(context, u6Var);
@@ -35,14 +35,14 @@ public final class g extends c implements p6 {
         float f11;
         this.d.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
-        this.f51781s = imageView;
+        this.f51839s = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         int x02 = y6.x0(null, y6.Vh, false);
-        this.f51784y = x02;
+        this.f51842y = x02;
         imageView.setBackground(y6.g0(x02, 1, -1));
         imageView.setImageResource(R.drawable.poll_remove);
-        f7.t(imageView, y6.f23520m6, null, PorterDuff.Mode.MULTIPLY);
+        f7.t(imageView, y6.f23521m6, null, PorterDuff.Mode.MULTIPLY);
         imageView.setContentDescription(LocaleController.getString(R.string.Delete));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -61,7 +61,7 @@ public final class g extends c implements p6 {
         } else {
             f10 = 3.0f;
         }
-        addView(imageView, gb1.h(48, 50.0f, i11, f7, 0.0f, f10, 0.0f));
+        addView(imageView, kb1.h(48, 50.0f, i11, f7, 0.0f, f10, 0.0f));
         l4 l4Var = this.d;
         if (LocaleController.isRTL) {
             f11 = 24.0f;
@@ -81,12 +81,12 @@ public final class g extends c implements p6 {
         int i12;
         String string;
         String str2;
-        this.f51783x = z10;
-        this.f51782w = chat;
-        j9 j9Var = this.f51762b;
+        this.f51841x = z10;
+        this.f51840w = chat;
+        j9 j9Var = this.f51820b;
         j9Var.q(chat);
         int dp = AndroidUtilities.dp(20.0f);
-        y9 y9Var = this.f51763c;
+        y9 y9Var = this.f51821c;
         y9Var.setRoundRadius(dp);
         y9Var.f(chat, j9Var);
         String str3 = chat.title;
@@ -118,9 +118,9 @@ public final class g extends c implements p6 {
             }
             setSubtitle(LocaleController.formatPluralString(str, i10, new Object[0]));
         }
-        f7.Y(this.e, y6.f23614r5, this.f51761a);
+        f7.Y(this.e, y6.f23615r5, this.f51819a);
         setDivider(true);
-        ImageView imageView = this.f51781s;
+        ImageView imageView = this.f51839s;
         if (z10) {
             imageView.setVisibility(0);
         } else {
@@ -130,13 +130,13 @@ public final class g extends c implements p6 {
     }
 
     public TLRPC.Chat getChat() {
-        return this.f51782w;
+        return this.f51840w;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f51781s.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        this.f51839s.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
     public void setChatDeleteListener(f fVar) {
@@ -147,9 +147,9 @@ public final class g extends c implements p6 {
     public final void updateColors() {
         try {
             int x02 = y6.x0(null, y6.Vh, false);
-            ImageView imageView = this.f51781s;
-            if (imageView != null && x02 != this.f51784y) {
-                this.f51784y = x02;
+            ImageView imageView = this.f51839s;
+            if (imageView != null && x02 != this.f51842y) {
+                this.f51842y = x02;
                 y6.E1(imageView.getBackground(), x02, true);
                 imageView.invalidate();
             }

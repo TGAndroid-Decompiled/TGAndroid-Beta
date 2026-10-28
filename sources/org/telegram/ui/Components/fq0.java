@@ -1,29 +1,34 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class fq0 implements o1.g {
-    public final int f28294a;
-    public final int[] f28295b;
-    public final NotificationCenter.NotificationCenterDelegate f28296c;
-    public final View d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class fq0 {
+    public final vu f28274a;
+    public final long f28275b;
+    public final float f28276c;
+    public final float d;
+    public final float e;
 
-    public fq0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, View view, int[] iArr, int i10) {
-        this.f28294a = i10;
-        this.f28296c = notificationCenterDelegate;
-        this.d = view;
-        this.f28295b = iArr;
+    public fq0(View view) {
+        vu vuVar = new vu(1, view);
+        this.f28275b = System.currentTimeMillis();
+        this.f28274a = vuVar;
+        this.f28276c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
     }
 
-    @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f28294a) {
-            case 0:
-                ((mr0) this.f28296c).S0((org.telegram.ui.Cells.k7) this.d, this.f28295b, f7 / 1000.0f);
-                return;
-            default:
-                ((tq0) this.f28296c).d.S0(this.d, this.f28295b, f7 / 1000.0f);
-                return;
+    public final void a(Canvas canvas, float f7) {
+        vu vuVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f28275b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f28276c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
+        canvas.translate(-0.0f, -0.0f);
+        if (f7 > 0.0f && (vuVar = this.f28274a) != null) {
+            vuVar.run();
         }
     }
 }

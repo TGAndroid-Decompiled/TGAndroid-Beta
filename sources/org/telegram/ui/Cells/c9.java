@@ -11,15 +11,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.vh;
-import org.telegram.ui.Components.gb1;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.kb1;
 public final class c9 extends FrameLayout {
     public static Paint d;
     public static final int[] e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
-    public static final int[] f23944f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
-    public final TextView f23945a;
-    public boolean f23946b;
-    public int f23947c;
+    public static final int[] f23945f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
+    public final TextView f23946a;
+    public boolean f23947b;
+    public int f23948c;
 
     public c9(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
@@ -28,9 +28,9 @@ public final class c9 extends FrameLayout {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f23945a = textView;
+        this.f23946a = textView;
         org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, u6Var);
-        vh.r(textView, 1, 16.0f, 1, 1);
+        wh.r(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -38,14 +38,14 @@ public final class c9 extends FrameLayout {
             i10 = 3;
         }
         textView.setGravity(i10 | 16);
-        addView(textView, gb1.h(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        addView(textView, kb1.h(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public final void a(ArrayList arrayList, boolean z10) {
         float f7;
         float f10;
         setEnabled(z10);
-        TextView textView = this.f23945a;
+        TextView textView = this.f23946a;
         float f11 = 0.5f;
         if (arrayList != null) {
             if (z10) {
@@ -76,9 +76,9 @@ public final class c9 extends FrameLayout {
 
     public final void b(int i10, String str, boolean z10) {
         boolean z11;
-        this.f23945a.setText(str);
-        this.f23946b = z10;
-        this.f23947c = i10;
+        this.f23946a.setText(str);
+        this.f23947b = z10;
+        this.f23948c = i10;
         if (!z10 && i10 == 0) {
             z11 = true;
         } else {
@@ -94,7 +94,7 @@ public final class c9 extends FrameLayout {
         int measuredWidth;
         float dp;
         int i10;
-        if (this.f23946b) {
+        if (this.f23947b) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -109,11 +109,11 @@ public final class c9 extends FrameLayout {
                 i10 = 0;
             }
             canvas2 = canvas;
-            canvas2.drawLine(f7, measuredHeight, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23478k0);
+            canvas2.drawLine(f7, measuredHeight, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
         } else {
             canvas2 = canvas;
         }
-        int i11 = this.f23947c;
+        int i11 = this.f23948c;
         if (i11 != 0) {
             d.setColor(i11);
             if (LocaleController.isRTL) {
@@ -127,6 +127,6 @@ public final class c9 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f23946b ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f23947b ? 1 : 0), 1073741824));
     }
 }

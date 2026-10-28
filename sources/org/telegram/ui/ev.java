@@ -1,31 +1,15 @@
 package org.telegram.ui;
+public final class ev implements Runnable {
+    public final int f38944a;
+    public final ey f38945b;
 
-import android.animation.ValueAnimator;
-public final class ev implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39185a;
-    public final cy f39186b;
-
-    public ev(cy cyVar, int i10) {
-        this.f39185a = i10;
-        this.f39186b = cyVar;
+    public ev(ey eyVar, int i10) {
+        this.f38944a = i10;
+        this.f38945b = eyVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39185a) {
-            case 0:
-                cy cyVar = this.f39186b;
-                cyVar.getClass();
-                cyVar.H4(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                this.f39186b.L4(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                cy cyVar2 = this.f39186b;
-                cyVar2.getClass();
-                cyVar2.N4(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ev.run():void");
     }
 }

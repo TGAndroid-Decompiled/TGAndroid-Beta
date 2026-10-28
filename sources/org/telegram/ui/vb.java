@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class vb extends org.telegram.ui.Components.gb1 {
-    public MessageObject f44760c;
+public final class vb extends org.telegram.ui.Components.kb1 {
+    public MessageObject f44226c;
     public int d = 0;
     public boolean e = true;
-    public int f44761f = 0;
-    public int f44762g;
+    public int f44227f = 0;
+    public int f44228g;
     public final wb h;
 
     public vb(wb wbVar) {
@@ -17,20 +17,20 @@ public final class vb extends org.telegram.ui.Components.gb1 {
 
     @Override
     public final void N() {
-        MessageObject messageObject = this.f44760c;
+        MessageObject messageObject = this.f44226c;
         wb wbVar = this.h;
         if (messageObject != null) {
-            int indexOf = wbVar.f45078o0.indexOf(messageObject) + wbVar.E.f43443f;
+            int indexOf = wbVar.f44604o0.indexOf(messageObject) + wbVar.E.f43287f;
             if (indexOf >= 0) {
-                wbVar.f45090x.i1(indexOf, this.f44762g, false);
+                wbVar.f44616x.i1(indexOf, this.f44228g, false);
             }
         } else {
-            wbVar.f45090x.i1(this.d, this.f44761f, this.e);
+            wbVar.f44616x.i1(this.d, this.f44227f, this.e);
         }
-        this.f44760c = null;
+        this.f44226c = null;
         wbVar.V = true;
         wbVar.e1();
-        AndroidUtilities.runOnUIThread(new zt0(this, 21));
+        AndroidUtilities.runOnUIThread(new bu0(this, 21));
     }
 
     @Override

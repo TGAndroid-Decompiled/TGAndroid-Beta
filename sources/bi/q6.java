@@ -23,7 +23,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.cr;
-import org.telegram.ui.Components.q11;
+import org.telegram.ui.Components.r11;
 public final class q6 extends cr {
     public final float E;
     public ag.t F;
@@ -41,8 +41,8 @@ public final class q6 extends cr {
     public final org.telegram.ui.Components.r5 f5275r;
     public RadialGradient f5276s;
     public final Matrix v;
-    public final q11 f5277w;
-    public final q11 f5278x;
+    public final r11 f5277w;
+    public final r11 f5278x;
     public org.telegram.ui.Components.r6 f5279y;
 
     public q6(View view, TL_stars.StarGift starGift, int i10, float f7) {
@@ -78,24 +78,24 @@ public final class q6 extends cr {
             float f13 = i10;
             dd.Y0(imageReceiver, starGift.sticker, (int) (0.75f * f13));
             String str = starGift.title;
-            q11 q11Var = new q11(str == null ? "Gift" : str, 16.0f, AndroidUtilities.bold());
-            this.f5277w = q11Var;
-            q11Var.o(-1);
+            r11 r11Var = new r11(str == null ? "Gift" : str, 16.0f, AndroidUtilities.bold());
+            this.f5277w = r11Var;
+            r11Var.o(-1);
             float f14 = i10 - 30;
-            q11Var.q(AndroidUtilities.dp(f14));
+            r11Var.q(AndroidUtilities.dp(f14));
             Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-            q11Var.a();
-            q11Var.n(1);
+            r11Var.a();
+            r11Var.n(1);
             if (starGift.sold_out) {
                 formatPluralString = LocaleController.getString(R.string.Gift2SoldOutTitle);
             } else {
                 formatPluralString = LocaleController.formatPluralString("Gift2SoldAuctionPreviewGifts", starGift.availability_total, new Object[0]);
             }
-            q11 q11Var2 = new q11(formatPluralString, 13.0f, null);
-            this.f5278x = q11Var2;
-            q11Var2.q(AndroidUtilities.dp(f14));
-            q11Var2.a();
-            q11Var2.n(1);
+            r11 r11Var2 = new r11(formatPluralString, 13.0f, null);
+            this.f5278x = r11Var2;
+            r11Var2.q(AndroidUtilities.dp(f14));
+            r11Var2.a();
+            r11Var2.n(1);
             td tdVar = new td(1, 40);
             this.e = tdVar;
             float f15 = 0.45f * f13;
@@ -224,7 +224,7 @@ public final class q6 extends cr {
                 float width2 = bitmap.getWidth();
                 float height2 = bitmap.getHeight();
                 int i30 = 0;
-                while (i30 < e0Var.f9529b) {
+                while (i30 < e0Var.f9528b) {
                     int i31 = i30;
                     e0.e0.c((float[]) e0Var.d, i31, 0.0f, 0.0f, width2, height2);
                     i30 = i31 + 1;
@@ -255,7 +255,7 @@ public final class q6 extends cr {
                 dd.Y0(imageReceiver, stargiftattributemodel.document, (int) (i10 * 0.75f));
             }
         }
-        ((Paint) this.f27245b).setShader(this.f5276s);
+        ((Paint) this.f27238b).setShader(this.f5276s);
         if (view.isAttachedToWindow()) {
             a();
         }
@@ -286,9 +286,9 @@ public final class q6 extends cr {
     }
 
     public final void c(int i10) {
-        q11 q11Var = this.f5278x;
-        if (q11Var != null) {
-            q11Var.o(i10 | (-16777216));
+        r11 r11Var = this.f5278x;
+        if (r11Var != null) {
+            r11Var.o(i10 | (-16777216));
         }
     }
 
@@ -318,8 +318,8 @@ public final class q6 extends cr {
 
     @Override
     public final void draw(Canvas canvas) {
-        q11 q11Var;
-        Paint paint = (Paint) this.f27245b;
+        r11 r11Var;
+        Paint paint = (Paint) this.f27238b;
         Rect bounds = getBounds();
         RectF rectF = this.d;
         rectF.set(bounds);
@@ -345,9 +345,9 @@ public final class q6 extends cr {
             tdVar.b(canvas, -1, 1.0f);
         }
         canvas.restore();
-        q11 q11Var2 = this.f5277w;
+        r11 r11Var2 = this.f5277w;
         ImageReceiver imageReceiver = this.f5274n;
-        if (q11Var2 != null && (q11Var = this.f5278x) != null) {
+        if (r11Var2 != null && (r11Var = this.f5278x) != null) {
             if (this.f5279y != null) {
                 Paint paint2 = this.I;
                 paint2.setColor(1342177280);
@@ -360,8 +360,8 @@ public final class q6 extends cr {
             float min = Math.min(rectF.width(), rectF.height()) * 0.6f;
             imageReceiver.setImageCoords(rectF.centerX() - (min / 2.0f), (rectF.height() * 0.12f) + rectF.top, min, min);
             imageReceiver.draw(canvas);
-            q11Var2.e(canvas, rectF.centerX() - (q11Var2.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(50.0f));
-            q11Var.e(canvas, rectF.centerX() - (q11Var.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(30.0f));
+            r11Var2.e(canvas, rectF.centerX() - (r11Var2.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(50.0f));
+            r11Var.e(canvas, rectF.centerX() - (r11Var.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(30.0f));
         } else {
             float min2 = Math.min(rectF.width(), rectF.height()) * 0.75f;
             float f10 = min2 / 2.0f;
@@ -374,7 +374,7 @@ public final class q6 extends cr {
     public final void e(int i10, int i11) {
         RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(this.f5273f) / 2.0f, new int[]{i10 | (-16777216), i11 | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.f5276s = radialGradient;
-        ((Paint) this.f27245b).setShader(radialGradient);
+        ((Paint) this.f27238b).setShader(radialGradient);
     }
 
     public final void f() {
@@ -396,7 +396,7 @@ public final class q6 extends cr {
     }
 
     public final void h() {
-        q11 q11Var;
+        r11 r11Var;
         int currentTime = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
         int i10 = this.G;
         if (currentTime > i10) {
@@ -409,8 +409,8 @@ public final class q6 extends cr {
                 this.f5279y.t(AndroidUtilities.formatDuration(i10 - currentTime, true), true, true);
             }
         }
-        if (currentTime > this.G && (q11Var = this.f5278x) != null) {
-            q11Var.r(LocaleController.getString(R.string.Gift2SoldOutTitle));
+        if (currentTime > this.G && (r11Var = this.f5278x) != null) {
+            r11Var.r(LocaleController.getString(R.string.Gift2SoldOutTitle));
         }
     }
 }

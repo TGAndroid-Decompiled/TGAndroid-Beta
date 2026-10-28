@@ -1,24 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class sp extends ak0 {
-    public final yp f32656r;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.mc1;
+public final class sp implements mc1 {
+    public final zp f32654a;
 
-    public sp(yp ypVar, Context context) {
-        super(context);
-        this.f32656r = ypVar;
+    public sp(zp zpVar) {
+        this.f32654a = zpVar;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f32656r.M) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
-        } else {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
+    public final boolean X0() {
+        return true;
+    }
+
+    @Override
+    public final boolean a() {
+        return this.f32654a.M;
+    }
+
+    @Override
+    public final void j1(boolean z10) {
+        TLRPC.WallPaper wallPaper;
+        zp zpVar = this.f32654a;
+        org.telegram.ui.wn wnVar = zpVar.v;
+        zpVar.M = !zpVar.M;
+        if (zpVar.L != null) {
+            zpVar.O = true;
+            wnVar.f45306u7 = true;
+            if (zpVar.A()) {
+                wallPaper = null;
+            } else {
+                wallPaper = zpVar.f35422n.f44060g;
+            }
+            TLRPC.WallPaper wallPaper2 = wallPaper;
+            org.telegram.ui.ActionBar.h4 h4Var = zpVar.L.f35124a;
+            if (h4Var.f22683a) {
+                zpVar.f35422n.q(null, wallPaper2, z10, Boolean.valueOf(zpVar.M), false);
+            } else {
+                zpVar.f35422n.q(h4Var, wallPaper2, z10, Boolean.valueOf(zpVar.M), false);
+            }
+            wnVar.f45306u7 = false;
         }
     }
 }

@@ -2,11 +2,11 @@ package k2;
 
 import java.nio.ByteBuffer;
 public final class c1 extends c2.p {
-    public static final int f16137i = Float.floatToIntBits(Float.NaN);
+    public static final int f16136i = Float.floatToIntBits(Float.NaN);
 
     public static void m(int i10, ByteBuffer byteBuffer) {
         int floatToIntBits = Float.floatToIntBits((float) (i10 * 4.656612875245797E-10d));
-        if (floatToIntBits == f16137i) {
+        if (floatToIntBits == f16136i) {
             floatToIntBits = Float.floatToIntBits(0.0f);
         }
         byteBuffer.putInt(floatToIntBits);

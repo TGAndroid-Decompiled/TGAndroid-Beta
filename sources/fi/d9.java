@@ -2,22 +2,22 @@ package fi;
 
 import android.animation.ValueAnimator;
 public final class d9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f10729a;
-    public final e9 f10730b;
+    public final int f10728a;
+    public final e9 f10729b;
 
     public d9(e9 e9Var, int i10) {
-        this.f10729a = i10;
-        this.f10730b = e9Var;
+        this.f10728a = i10;
+        this.f10729b = e9Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f10729a) {
+        switch (this.f10728a) {
             case 0:
-                e9.a(this.f10730b, valueAnimator);
+                e9.a(this.f10729b, valueAnimator);
                 return;
             default:
-                e9 e9Var = this.f10730b;
+                e9 e9Var = this.f10729b;
                 e9Var.getClass();
                 e9Var.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;

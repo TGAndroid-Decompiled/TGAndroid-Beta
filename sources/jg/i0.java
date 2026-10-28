@@ -20,55 +20,55 @@ import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.li;
 import org.telegram.ui.Components.pi;
 import org.telegram.ui.Components.si;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.uz;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.wl0;
 public final class i0 extends li implements p6, NotificationCenter.NotificationCenterDelegate, oe.d {
     public final uz E;
     public final pi F;
-    public final oe.b f15727n;
-    public final FrameLayout f15728r;
-    public final bi.r1 f15729s;
+    public final oe.b f15726n;
+    public final FrameLayout f15727r;
+    public final bi.r1 f15728s;
     public final e0 v;
-    public final HashSet f15730w;
-    public final f0 f15731x;
-    public final g0 f15732y;
+    public final HashSet f15729w;
+    public final f0 f15730x;
+    public final g0 f15731y;
 
     public i0(Context context, u6 u6Var, ti tiVar) {
         super(context, u6Var, tiVar);
-        this.f15727n = new oe.b(0, this, ds.h, 380L, false);
-        this.f15730w = new HashSet();
-        this.f15732y = new g0(this, context);
-        si siVar = new si(context, y6.f23356d6, u6Var);
+        this.f15726n = new oe.b(0, this, ds.h, 380L, false);
+        this.f15729w = new HashSet();
+        this.f15731y = new g0(this, context);
+        si siVar = new si(context, y6.f23357d6, u6Var);
         siVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f15728r = frameLayout;
-        pi piVar = new pi(context, u6Var, this.f30215b);
+        this.f15727r = frameLayout;
+        pi piVar = new pi(context, u6Var, this.f30254b);
         this.F = piVar;
         piVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         c0 c0Var = new c0(this);
-        fi.c2 c2Var = piVar.f30367r;
+        fi.c2 c2Var = piVar.f30347r;
         c2Var.addTextChangedListener(c0Var);
         c2Var.setHint(LocaleController.getString(R.string.BusinessRepliesSearch));
-        frameLayout.addView(siVar, gb1.k());
-        FrameLayout.LayoutParams h = gb1.h(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
+        frameLayout.addView(siVar, kb1.k());
+        FrameLayout.LayoutParams h = kb1.h(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
         ((ViewGroup.MarginLayoutParams) h).topMargin += AndroidUtilities.statusBarHeight;
         frameLayout.addView(piVar, h);
         uz uzVar = new uz(context, u6Var);
         this.E = uzVar;
         uzVar.c();
-        addView(uzVar, gb1.h(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
+        addView(uzVar, kb1.h(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
         bi.r1 r1Var = new bi.r1(this, context, u6Var, 4);
-        this.f15729s = r1Var;
+        this.f15728s = r1Var;
         r1Var.u1();
         setBlur3Capture(r1Var);
         this.d = r1Var;
         this.h = true;
-        this.f30217f = true;
+        this.f30256f = true;
         NotificationCenter.getGlobalInstance().listen(r1Var, NotificationCenter.emojiLoaded, new ig.o(this, 3));
         r1Var.setClipToPadding(false);
         getContext();
@@ -79,28 +79,28 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
         r1Var.setHorizontalScrollBarEnabled(false);
         r1Var.setVerticalScrollBarEnabled(false);
         r1Var.setClipToPadding(false);
-        addView(r1Var, gb1.h(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+        addView(r1Var, kb1.h(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         f0 f0Var = new f0(this, context);
-        this.f15731x = f0Var;
+        this.f15730x = f0Var;
         r1Var.setAdapter(f0Var);
         f7.m(r1Var, 21, y6.A5, u6Var);
         r1Var.setOnItemClickListener(new ai.k(this, 15));
         r1Var.setOnScrollListener(new ai.b(this, 18));
-        FrameLayout.LayoutParams i10 = gb1.i(-1, 60, 51);
+        FrameLayout.LayoutParams i10 = kb1.i(-1, 60, 51);
         ((ViewGroup.MarginLayoutParams) i10).height += AndroidUtilities.statusBarHeight;
         addView(frameLayout, i10);
         O();
     }
 
     public int getCurrentTop() {
-        bi.r1 r1Var = this.f15729s;
+        bi.r1 r1Var = this.f15728s;
         if (r1Var.getChildCount() != 0) {
             int i10 = 0;
             View childAt = r1Var.getChildAt(0);
-            vl0 vl0Var = (vl0) r1Var.G(childAt);
-            if (vl0Var != null) {
+            wl0 wl0Var = (wl0) r1Var.G(childAt);
+            if (wl0Var != null) {
                 int paddingTop = r1Var.getPaddingTop();
-                if (vl0Var.b() == 0 && childAt.getTop() >= 0) {
+                if (wl0Var.b() == 0 && childAt.getTop() >= 0) {
                     i10 = childAt.getTop();
                 }
                 return paddingTop - i10;
@@ -113,8 +113,8 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
     @Override
     public final void B(int i10, int i11) {
         int i12;
-        ti tiVar = this.f30215b;
-        if (tiVar.f33068u1.Q() > AndroidUtilities.dp(20.0f)) {
+        ti tiVar = this.f30254b;
+        if (tiVar.f33037u1.Q() > AndroidUtilities.dp(20.0f)) {
             i12 = AndroidUtilities.dp(8.0f);
             tiVar.setAllowNestedScroll(false);
         } else {
@@ -128,7 +128,7 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
             i12 = (i11 / 5) * 2;
             tiVar.setAllowNestedScroll(true);
         }
-        this.f15729s.t1(0, i12 + AndroidUtilities.statusBarHeight, 0, this.e);
+        this.f15728s.t1(0, i12 + AndroidUtilities.statusBarHeight, 0, this.e);
     }
 
     @Override
@@ -138,13 +138,13 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
 
     @Override
     public final void J() {
-        this.f15729s.y0(0);
+        this.f15728s.y0(0);
     }
 
     public final void O() {
         boolean z10;
         int i10 = 0;
-        if (this.f15729s.getAdapter().h() == 2) {
+        if (this.f15728s.getAdapter().h() == 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -159,7 +159,7 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
     public final void P() {
         View childAt;
         uz uzVar = this.E;
-        if (uzVar.getVisibility() != 0 || (childAt = this.f15729s.getChildAt(0)) == null) {
+        if (uzVar.getVisibility() != 0 || (childAt = this.f15728s.getChildAt(0)) == null) {
             return;
         }
         uzVar.setTranslationY((childAt.getTop() + (uzVar.getMeasuredHeight() - getMeasuredHeight())) / 2);
@@ -176,33 +176,33 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
         hashSet.add(Integer.valueOf(y6.O7));
         hashSet.add(Integer.valueOf(y6.J7));
         hashSet.add(Integer.valueOf(y6.q5));
-        hashSet.add(Integer.valueOf(y6.f23357d7));
-        hashSet.add(Integer.valueOf(y6.f23448i6));
+        hashSet.add(Integer.valueOf(y6.f23358d7));
+        hashSet.add(Integer.valueOf(y6.f23449i6));
     }
 
     @Override
     public int getCurrentItemTop() {
         int i10;
-        bi.r1 r1Var = this.f15729s;
+        bi.r1 r1Var = this.f15728s;
         if (r1Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
         View childAt = r1Var.getChildAt(0);
-        vl0 vl0Var = (vl0) r1Var.G(childAt);
+        wl0 wl0Var = (wl0) r1Var.G(childAt);
         int top = (childAt.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(8.0f);
-        if (top > 0 && vl0Var != null && vl0Var.b() == 0) {
+        if (top > 0 && wl0Var != null && wl0Var.b() == 0) {
             i10 = top;
         } else {
             i10 = 0;
         }
-        oe.b bVar = this.f15727n;
-        if (top >= 0 && vl0Var != null && vl0Var.b() == 0) {
+        oe.b bVar = this.f15726n;
+        if (top >= 0 && wl0Var != null && wl0Var.b() == 0) {
             bVar.a(false, true);
         } else {
             bVar.a(true, true);
             top = i10;
         }
-        this.f15728r.setTranslationY(top);
+        this.f15727r.setTranslationY(top);
         return AndroidUtilities.dp(12.0f) + top;
     }
 
@@ -213,7 +213,7 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
 
     @Override
     public int getListTopPadding() {
-        return this.f15729s.getPaddingTop();
+        return this.f15728s.getPaddingTop();
     }
 
     @Override
@@ -224,10 +224,10 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
     @Override
     public ArrayList<h7> getThemeDescriptions() {
         ArrayList<h7> arrayList = new ArrayList<>();
-        arrayList.add(new h7(this.E, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23338c7));
-        arrayList.add(new h7(this.E, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23428h6));
+        arrayList.add(new h7(this.E, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23339c7));
+        arrayList.add(new h7(this.E, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (g7) null, y6.f23429h6));
         int i10 = y6.q5;
-        arrayList.add(new h7(this.f15729s, 0, new Class[]{h0.class}, new String[]{"nameTextView"}, (Drawable[]) null, (g7) null, i10));
+        arrayList.add(new h7(this.f15728s, 0, new Class[]{h0.class}, new String[]{"nameTextView"}, (Drawable[]) null, (g7) null, i10));
         return arrayList;
     }
 
@@ -240,13 +240,13 @@ public final class i0 extends li implements p6, NotificationCenter.NotificationC
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30215b.getSheetContainer().invalidate();
+        this.f30254b.getSheetContainer().invalidate();
     }
 
     public void setupBlurredSearchField(ch.b bVar) {
         pi piVar = this.F;
         if (piVar != null) {
-            piVar.setupBlurredBackground(bVar.c(piVar, gh.c.a(this.f30214a), false));
+            piVar.setupBlurredBackground(bVar.c(piVar, gh.c.a(this.f30253a), false));
         }
     }
 

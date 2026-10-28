@@ -1,34 +1,34 @@
 package org.telegram.ui;
 public final class r9 implements o1.f {
-    public final int f43057a;
-    public final Object f43058b;
+    public final int f42892a;
+    public final Object f42893b;
 
     public r9(Object obj, int i10) {
-        this.f43057a = i10;
-        this.f43058b = obj;
+        this.f42892a = i10;
+        this.f42893b = obj;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f43057a) {
+        switch (this.f42892a) {
             case 0:
-                y9 y9Var = (y9) this.f43058b;
-                o1.j jVar = y9Var.f46008y;
+                y9 y9Var = (y9) this.f42893b;
+                o1.j jVar = y9Var.f45903y;
                 if (jVar != null) {
                     jVar.c();
-                    y9Var.f46008y = null;
+                    y9Var.f45903y = null;
                     return;
                 }
                 return;
             case 1:
-                lo0 lo0Var = (lo0) this.f43058b;
-                if (hVar == lo0Var.f41309c) {
-                    lo0Var.f41309c = null;
+                no0 no0Var = (no0) this.f42893b;
+                if (hVar == no0Var.f41832c) {
+                    no0Var.f41832c = null;
                     return;
                 }
                 return;
             default:
-                ((bu0) this.f43058b).E();
+                ((du0) this.f42893b).E();
                 return;
         }
     }

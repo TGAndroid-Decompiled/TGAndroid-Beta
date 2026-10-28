@@ -6,20 +6,20 @@ import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
 import android.graphics.RuntimeShader;
 import android.support.v4.media.session.x;
-import org.telegram.ui.Components.vc0;
+import org.telegram.ui.Components.wc0;
 public final class d extends lf {
-    public final RenderNode f46879a = x.o();
-    public final RuntimeShader f46880b = vc0.a();
-    public int f46881c = -1;
+    public final RenderNode f46914a = x.o();
+    public final RuntimeShader f46915b = wc0.a();
+    public int f46916c = -1;
     public int d = -1;
     public int e;
-    public RenderEffect[] f46882f;
-    public float[] f46883g;
+    public RenderEffect[] f46917f;
+    public float[] f46918g;
     public float[] h;
-    public final e f46884i;
+    public final e f46919i;
 
     public d(e eVar) {
-        this.f46884i = eVar;
+        this.f46919i = eVar;
     }
 
     @Override
@@ -29,22 +29,22 @@ public final class d extends lf {
 
     @Override
     public final void b() {
-        this.f46879a.discardDisplayList();
-        this.f46881c = -1;
+        this.f46914a.discardDisplayList();
+        this.f46916c = -1;
     }
 
     @Override
     public final void c(Canvas canvas) {
-        canvas.drawRenderNode(this.f46879a);
+        canvas.drawRenderNode(this.f46914a);
     }
 
     @Override
     public final boolean d() {
-        return this.f46879a.hasDisplayList();
+        return this.f46914a.hasDisplayList();
     }
 
     @Override
     public final void e(float f7) {
-        this.f46879a.setAlpha(f7);
+        this.f46914a.setAlpha(f7);
     }
 }

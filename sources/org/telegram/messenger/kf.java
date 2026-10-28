@@ -1,41 +1,30 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class kf implements Runnable {
-    public final int f20522a;
-    public final MessagesStorage f20523b;
-    public final int f20524c;
-    public final ArrayList d;
+    public final int f20518a;
+    public final MessagesStorage f20519b;
+    public final a0.h f20520c;
 
-    public kf(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f20522a = 2;
-        this.f20523b = messagesStorage;
-        this.d = arrayList;
-        this.f20524c = i10;
+    public kf(MessagesStorage messagesStorage, a0.h hVar, int i10) {
+        this.f20518a = i10;
+        this.f20519b = messagesStorage;
+        this.f20520c = hVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f20522a) {
+        switch (this.f20518a) {
             case 0:
-                this.f20523b.lambda$getDownloadQueue$188(this.f20524c, this.d);
+                this.f20519b.lambda$getDialogs$243(this.f20520c);
                 return;
             case 1:
-                this.f20523b.lambda$putWallpapers$81(this.f20524c, this.d);
+                this.f20519b.lambda$markMessagesAsDeletedInternal$229(this.f20520c);
                 return;
             case 2:
-                this.f20523b.lambda$unpinAllDialogsExceptNew$250(this.d, this.f20524c);
+                this.f20519b.lambda$deleteEphemeralMessages$209(this.f20520c);
                 return;
             default:
-                this.f20523b.lambda$putWidgetDialogs$169(this.f20524c, this.d);
+                this.f20519b.lambda$putWebPages$192(this.f20520c);
                 return;
         }
-    }
-
-    public kf(MessagesStorage messagesStorage, int i10, ArrayList arrayList, int i11) {
-        this.f20522a = i11;
-        this.f20523b = messagesStorage;
-        this.f20524c = i10;
-        this.d = arrayList;
     }
 }

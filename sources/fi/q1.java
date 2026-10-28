@@ -4,10 +4,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.k80;
+import org.telegram.ui.Components.l80;
 import org.telegram.ui.Components.oy;
-import org.telegram.ui.dt;
-public final class q1 implements dt {
+import org.telegram.ui.ft;
+public final class q1 implements ft {
     @Override
     public final boolean A() {
         return false;
@@ -94,7 +94,7 @@ public final class q1 implements dt {
     }
 
     @Override
-    public final k80 i(bh.p pVar) {
+    public final l80 i(bh.p pVar) {
         return null;
     }
 

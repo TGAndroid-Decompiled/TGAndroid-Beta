@@ -13,7 +13,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.oy;
+import org.telegram.ui.qy;
 public final class f9 extends a9 {
     public final bh.x0 I;
     public final e9 J;
@@ -23,7 +23,7 @@ public final class f9 extends a9 {
     public final org.telegram.ui.Components.r6 N;
     public boolean O;
 
-    public f9(Context context, c9 c9Var, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, oy oyVar) {
+    public f9(Context context, c9 c9Var, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, qy qyVar) {
         super(context, c9Var, tL_mediaAreaSuggestedReaction);
         TLRPC.TL_availableReaction tL_availableReaction;
         ArrayList arrayList;
@@ -41,20 +41,20 @@ public final class f9 extends a9 {
         }
         e9Var.c(getScaleX());
         n0Var.e(d);
-        oyVar.getClass();
+        qyVar.getClass();
         String str = d.f4208f;
-        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.t5.f(oyVar.f42305b, d.f4209g)) : str;
-        if (str != null && (arrayList = (ArrayList) oyVar.e.get(str)) != null && !arrayList.isEmpty()) {
+        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.t5.f(qyVar.f42807b, d.f4209g)) : str;
+        if (str != null && (arrayList = (ArrayList) qyVar.e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
-                oyVar.l((TLRPC.Document) arrayList.get(i10));
+                qyVar.l((TLRPC.Document) arrayList.get(i10));
             }
         }
         if (this.I.f4208f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f4208f)) != null) {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.r6 r6Var = this.N;
-        r6Var.f32121b = 17;
+        r6Var.f32142b = 17;
         r6Var.x(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.w(AndroidUtilities.dp(18.0f));
         this.N.M = AndroidUtilities.displaySize.x;
@@ -89,7 +89,7 @@ public final class f9 extends a9 {
         float d = this.M.d(f7, false);
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set((int) centerX, (int) AndroidUtilities.lerp(centerY, f10, d), (int) centerX2, (int) AndroidUtilities.lerp(centerY2, f11, d));
-        if (e9Var.f8529a == 1) {
+        if (e9Var.f8528a == 1) {
             i10 = -1;
         } else {
             i10 = -16777216;

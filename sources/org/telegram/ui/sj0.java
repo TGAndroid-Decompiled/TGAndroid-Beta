@@ -1,18 +1,40 @@
 package org.telegram.ui;
+public final class sj0 implements Runnable {
+    public final int f43349a;
+    public final zj0 f43350b;
 
-import android.view.View;
-public final class sj0 implements View.OnLayoutChangeListener {
-    public final float f43527a;
-    public final int f43528b;
-
-    public sj0(float f7, int i10) {
-        this.f43527a = f7;
-        this.f43528b = i10;
+    public sj0(zj0 zj0Var, int i10) {
+        this.f43349a = i10;
+        this.f43350b = zj0Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        view.removeOnLayoutChangeListener(this);
-        view.setTranslationX((this.f43527a + this.f43528b) - i10);
+    public final void run() {
+        rh.e eVar;
+        zj0 zj0Var;
+        int i10;
+        switch (this.f43349a) {
+            case 0:
+                LaunchActivity launchActivity = LaunchActivity.I1;
+                if (launchActivity != null) {
+                    eVar = launchActivity.f35562h1;
+                } else {
+                    eVar = null;
+                }
+                if ((eVar == null || eVar.f47651c <= 0) && zj0Var.J != (i10 = (zj0Var = this.f43350b).K)) {
+                    zj0Var.J = i10;
+                    zj0Var.p0(false);
+                    return;
+                }
+                return;
+            case 1:
+                this.f43350b.f46296y.setVisibility(8);
+                return;
+            default:
+                zj0 zj0Var2 = this.f43350b;
+                zj0Var2.O = null;
+                zj0Var2.l0(2, true);
+                return;
+        }
     }
 }

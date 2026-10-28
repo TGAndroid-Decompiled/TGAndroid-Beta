@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ei;
 import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.ti;
 public final class x4 extends AnimatorListenerAdapter {
     public final int f5674a;
@@ -71,23 +71,23 @@ public final class x4 extends AnimatorListenerAdapter {
                 ti tiVar = (ti) this.d;
                 tiVar.B0.setAlpha(0.0f);
                 tiVar.B0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f5675b);
-                ei eiVar = tiVar.f33017e0;
+                ei eiVar = tiVar.f32986e0;
                 li liVar = tiVar.B0;
                 Float valueOf = Float.valueOf(1.0f);
                 eiVar.getClass();
                 eiVar.a(liVar, valueOf);
-                tiVar.f33005a1.setAlpha(0.0f);
-                o1.j jVar = new o1.j(tiVar.C0, o1.h.f18953n, 0.0f);
-                jVar.f18969u.a(0.75f);
-                jVar.f18969u.b(500.0f);
+                tiVar.f32974a1.setAlpha(0.0f);
+                o1.j jVar = new o1.j(tiVar.C0, o1.h.f18952n, 0.0f);
+                jVar.f18968u.a(0.75f);
+                jVar.f18968u.b(500.0f);
                 jVar.b(new org.telegram.ui.Components.n7(this, 3));
                 jVar.a(new hi.k4(3, this, (gh) this.f5676c));
-                tiVar.f33075w1 = jVar;
+                tiVar.f33044w1 = jVar;
                 jVar.h();
                 return;
             default:
                 ng ngVar = (ng) this.d;
-                ((mm0) ngVar.d).scrollBy(0, this.f5675b - ((int[]) this.f5676c)[0]);
+                ((nm0) ngVar.d).scrollBy(0, this.f5675b - ((int[]) this.f5676c)[0]);
                 ngVar.f640c = null;
                 return;
         }

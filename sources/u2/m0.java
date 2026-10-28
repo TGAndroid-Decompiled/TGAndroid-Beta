@@ -7,59 +7,59 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 public final class m0 implements e0, d0 {
-    public final e0[] f49351a;
-    public final boolean[] f49352b;
-    public final IdentityHashMap f49353c;
+    public final e0[] f49386a;
+    public final boolean[] f49387b;
+    public final IdentityHashMap f49388c;
     public final pa.d d;
     public final ArrayList e = new ArrayList();
-    public final HashMap f49354f = new HashMap();
+    public final HashMap f49389f = new HashMap();
     public d0 h;
-    public r1 f49355n;
-    public e0[] f49356r;
-    public n f49357s;
+    public r1 f49390n;
+    public e0[] f49391r;
+    public n f49392s;
 
     public m0(pa.d dVar, long[] jArr, e0... e0VarArr) {
         this.d = dVar;
-        this.f49351a = e0VarArr;
+        this.f49386a = e0VarArr;
         dVar.getClass();
-        f9.g0 g0Var = f9.i0.f10287b;
+        f9.g0 g0Var = f9.i0.f10286b;
         f9.s1 s1Var = f9.s1.e;
-        this.f49357s = new n(s1Var, s1Var);
-        this.f49353c = new IdentityHashMap();
-        this.f49356r = new e0[0];
-        this.f49352b = new boolean[e0VarArr.length];
+        this.f49392s = new n(s1Var, s1Var);
+        this.f49388c = new IdentityHashMap();
+        this.f49391r = new e0[0];
+        this.f49387b = new boolean[e0VarArr.length];
         for (int i10 = 0; i10 < e0VarArr.length; i10++) {
             long j10 = jArr[i10];
             if (j10 != 0) {
-                this.f49352b[i10] = true;
-                this.f49351a[i10] = new p1(e0VarArr[i10], j10);
+                this.f49387b[i10] = true;
+                this.f49386a[i10] = new p1(e0VarArr[i10], j10);
             }
         }
     }
 
     @Override
     public final long b() {
-        return this.f49357s.b();
+        return this.f49392s.b();
     }
 
     @Override
     public final boolean c() {
-        return this.f49357s.c();
+        return this.f49392s.c();
     }
 
     @Override
     public final void g() {
-        for (e0 e0Var : this.f49351a) {
+        for (e0 e0Var : this.f49386a) {
             e0Var.g();
         }
     }
 
     @Override
     public final long h(long j10) {
-        long h = this.f49356r[0].h(j10);
+        long h = this.f49391r[0].h(j10);
         int i10 = 1;
         while (true) {
-            e0[] e0VarArr = this.f49356r;
+            e0[] e0VarArr = this.f49391r;
             if (i10 < e0VarArr.length) {
                 if (e0VarArr[i10].h(h) == h) {
                     i10++;
@@ -74,7 +74,7 @@ public final class m0 implements e0, d0 {
 
     @Override
     public final void i(long j10) {
-        for (e0 e0Var : this.f49356r) {
+        for (e0 e0Var : this.f49391r) {
             e0Var.i(j10);
         }
     }
@@ -83,7 +83,7 @@ public final class m0 implements e0, d0 {
     public final void k(d0 d0Var, long j10) {
         this.h = d0Var;
         ArrayList arrayList = this.e;
-        e0[] e0VarArr = this.f49351a;
+        e0[] e0VarArr = this.f49386a;
         Collections.addAll(arrayList, e0VarArr);
         for (e0 e0Var : e0VarArr) {
             e0Var.k(this, j10);
@@ -95,11 +95,11 @@ public final class m0 implements e0, d0 {
         e0[] e0VarArr;
         e0[] e0VarArr2;
         long j10 = -9223372036854775807L;
-        for (e0 e0Var : this.f49356r) {
+        for (e0 e0Var : this.f49391r) {
             long l4 = e0Var.l();
             if (l4 != -9223372036854775807L) {
                 if (j10 == -9223372036854775807L) {
-                    for (e0 e0Var2 : this.f49356r) {
+                    for (e0 e0Var2 : this.f49391r) {
                         if (e0Var2 == e0Var) {
                             break;
                         } else if (e0Var2.h(l4) != l4) {
@@ -127,7 +127,7 @@ public final class m0 implements e0, d0 {
             }
             return false;
         }
-        return this.f49357s.m(w0Var);
+        return this.f49392s.m(w0Var);
     }
 
     @Override
@@ -137,16 +137,16 @@ public final class m0 implements e0, d0 {
         if (!arrayList.isEmpty()) {
             return;
         }
-        e0[] e0VarArr = this.f49351a;
+        e0[] e0VarArr = this.f49386a;
         int i10 = 0;
         for (e0 e0Var2 : e0VarArr) {
-            i10 += e0Var2.p().f49415a;
+            i10 += e0Var2.p().f49450a;
         }
         b2.q1[] q1VarArr = new b2.q1[i10];
         int i11 = 0;
         for (int i12 = 0; i12 < e0VarArr.length; i12++) {
             r1 p10 = e0VarArr[i12].p();
-            int i13 = p10.f49415a;
+            int i13 = p10.f49450a;
             int i14 = 0;
             while (i14 < i13) {
                 b2.q1 a2 = p10.a(i14);
@@ -176,14 +176,14 @@ public final class m0 implements e0, d0 {
                 }
                 e0[] e0VarArr3 = e0VarArr;
                 b2.q1 q1Var = new b2.q1(i12 + ":" + a2.f3359b, xVarArr);
-                this.f49354f.put(q1Var, a2);
+                this.f49389f.put(q1Var, a2);
                 q1VarArr[i11] = q1Var;
                 i14++;
                 i11++;
                 e0VarArr = e0VarArr3;
             }
         }
-        this.f49355n = new r1(q1VarArr);
+        this.f49390n = new r1(q1VarArr);
         d0 d0Var = this.h;
         d0Var.getClass();
         d0Var.n(this);
@@ -202,7 +202,7 @@ public final class m0 implements e0, d0 {
         int i11 = 0;
         while (true) {
             int length = qVarArr.length;
-            identityHashMap = this.f49353c;
+            identityHashMap = this.f49388c;
             if (i11 >= length) {
                 break;
             }
@@ -232,7 +232,7 @@ public final class m0 implements e0, d0 {
         d1[] d1VarArr2 = new d1[length2];
         d1[] d1VarArr3 = new d1[qVarArr.length];
         x2.q[] qVarArr2 = new x2.q[qVarArr.length];
-        e0[] e0VarArr = this.f49351a;
+        e0[] e0VarArr = this.f49386a;
         ArrayList arrayList = new ArrayList(e0VarArr.length);
         long j11 = j10;
         int i12 = 0;
@@ -249,7 +249,7 @@ public final class m0 implements e0, d0 {
                     x2.q qVar2 = qVarArr[i13];
                     qVar2.getClass();
                     iArr = iArr2;
-                    b2.q1 q1Var = (b2.q1) this.f49354f.get(qVar2.b());
+                    b2.q1 q1Var = (b2.q1) this.f49389f.get(qVar2.b());
                     q1Var.getClass();
                     qVarArr2[i13] = new l0(qVar2, q1Var);
                 } else {
@@ -294,40 +294,40 @@ public final class m0 implements e0, d0 {
         }
         int i16 = i10;
         System.arraycopy(d1VarArr2, i16, d1VarArr, i16, length2);
-        this.f49356r = (e0[]) arrayList.toArray(new e0[i16]);
+        this.f49391r = (e0[]) arrayList.toArray(new e0[i16]);
         AbstractList x9 = f9.o.x(arrayList, new s0.b(18));
         this.d.getClass();
-        this.f49357s = new n(arrayList, x9);
+        this.f49392s = new n(arrayList, x9);
         return j11;
     }
 
     @Override
     public final r1 p() {
-        r1 r1Var = this.f49355n;
+        r1 r1Var = this.f49390n;
         r1Var.getClass();
         return r1Var;
     }
 
     @Override
     public final long q() {
-        return this.f49357s.q();
+        return this.f49392s.q();
     }
 
     @Override
     public final long r(long j10, i2.t1 t1Var) {
         e0 e0Var;
-        e0[] e0VarArr = this.f49356r;
+        e0[] e0VarArr = this.f49391r;
         if (e0VarArr.length > 0) {
             e0Var = e0VarArr[0];
         } else {
-            e0Var = this.f49351a[0];
+            e0Var = this.f49386a[0];
         }
         return e0Var.r(j10, t1Var);
     }
 
     @Override
     public final void s(long j10) {
-        this.f49357s.s(j10);
+        this.f49392s.s(j10);
     }
 
     @Override

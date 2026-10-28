@@ -6,17 +6,17 @@ import org.telegram.messenger.kh;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class s1 implements Utilities.Callback2 {
-    public final int f37211a;
-    public final e2 f37212b;
-    public final long f37213c;
+    public final int f37235a;
+    public final e2 f37236b;
+    public final long f37237c;
     public final int d;
     public final Object e;
 
     public s1(e2 e2Var, Object obj, long j10, int i10, int i11) {
-        this.f37211a = i11;
-        this.f37212b = e2Var;
+        this.f37235a = i11;
+        this.f37236b = e2Var;
         this.e = obj;
-        this.f37213c = j10;
+        this.f37237c = j10;
         this.d = i10;
     }
 
@@ -26,20 +26,20 @@ public final class s1 implements Utilities.Callback2 {
         final int i10;
         final TL_wallet.tonConnectRequest tonconnectrequest;
         TL_wallet.tonConnectSession tonconnectsession;
-        switch (this.f37211a) {
+        switch (this.f37235a) {
             case 0:
                 final kh khVar = (kh) this.e;
                 final TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                final e2 e2Var = this.f37212b;
-                l0 l0Var = e2Var.f36507b;
+                final e2 e2Var = this.f37236b;
+                l0 l0Var = e2Var.f36514b;
                 byte[] bArr = null;
                 if (tL_error == null && tonconnectpending != null) {
                     ArrayList<TL_wallet.tonConnectRequest> arrayList = tonconnectpending.requests;
                     int size = arrayList.size();
                     int i11 = 0;
                     while (true) {
-                        j10 = this.f37213c;
+                        j10 = this.f37237c;
                         i10 = this.d;
                         if (i11 < size) {
                             TL_wallet.tonConnectRequest tonconnectrequest2 = arrayList.get(i11);
@@ -52,20 +52,20 @@ public final class s1 implements Utilities.Callback2 {
                             tonconnectrequest = null;
                         }
                     }
-                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f22290id == j10 && tonconnectrequest.expires > e2Var.f36509f.getCurrentTime()) {
-                        final String s10 = l0Var.s();
-                        if (l0Var.x() != null) {
-                            bArr = (byte[]) l0Var.x().clone();
+                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f22291id == j10 && tonconnectrequest.expires > e2Var.f36516f.getCurrentTime()) {
+                        final String t10 = l0Var.t();
+                        if (l0Var.y() != null) {
+                            bArr = (byte[]) l0Var.y().clone();
                         }
                         final byte[] bArr2 = bArr;
-                        l0Var.y(new Utilities.Callback2() {
+                        l0Var.z(new Utilities.Callback2() {
                             @Override
                             public final void run(Object obj3, Object obj4) {
                                 e2 e2Var2 = e2.this;
                                 kh khVar2 = khVar;
                                 TL_wallet.tonConnectPending tonconnectpending2 = tonconnectpending;
                                 TL_wallet.tonConnectRequest tonconnectrequest4 = tonconnectrequest;
-                                String str = s10;
+                                String str = t10;
                                 byte[] bArr3 = bArr2;
                                 long j11 = j10;
                                 int i12 = i10;
@@ -97,10 +97,10 @@ public final class s1 implements Utilities.Callback2 {
                 Utilities.Callback callback = (Utilities.Callback) this.e;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                e2 e2Var2 = this.f37212b;
+                e2 e2Var2 = this.f37236b;
                 e2Var2.getClass();
                 if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
-                    e2Var2.d(this.f37213c, this.d, callback);
+                    e2Var2.d(this.f37237c, this.d, callback);
                     return;
                 } else {
                     callback.run(e2.x(tL_error2, "closeSession"));

@@ -3,14 +3,14 @@ package di;
 import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.qw;
+import org.telegram.ui.sw;
 public final class k extends org.telegram.ui.ActionBar.m {
     public final int d = 1;
     public final FrameLayout e;
 
-    public k(qw qwVar, Context context, c2.b bVar) {
+    public k(sw swVar, Context context, c2.b bVar) {
         super(context, null, bVar);
-        this.e = qwVar;
+        this.e = swVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class k extends org.telegram.ui.ActionBar.m {
         switch (this.d) {
             case 0:
                 super.b(lVar);
-                ((qw) this.e).invalidate();
+                ((sw) this.e).invalidate();
                 return;
             default:
                 super.b(lVar);

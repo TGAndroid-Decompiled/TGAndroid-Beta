@@ -53,15 +53,15 @@ public abstract class nb extends ub {
         this.button = mbVar;
         if (mbVar != null) {
             addCallback(mbVar);
-            addView(mbVar, 0, gb1.l(-2.0f, -2.0f, 8388629));
+            addView(mbVar, 0, kb1.l(-2.0f, -2.0f, 8388629));
         }
     }
 
     public void setTimer() {
         jc jcVar = new jc(getContext(), this.resourcesProvider);
         this.timerView = jcVar;
-        jcVar.f29603b = 5000L;
-        addView(jcVar, gb1.m(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
+        jcVar.f29634b = 5000L;
+        addView(jcVar, kb1.m(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public void setWrapWidth() {

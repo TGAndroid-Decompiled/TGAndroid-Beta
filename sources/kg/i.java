@@ -3,17 +3,17 @@ package kg;
 import android.animation.ValueAnimator;
 import fi.e4;
 public final class i {
-    public final int f16628a;
-    public int f16629b;
-    public float f16630c;
+    public final int f16627a;
+    public int f16628b;
+    public float f16629c;
     public float d;
     public ValueAnimator e;
-    public float f16631f = 0.0f;
-    public final k f16632g;
+    public float f16630f = 0.0f;
+    public final k f16631g;
 
     public i(k kVar, int i10) {
-        this.f16632g = kVar;
-        this.f16628a = i10;
+        this.f16631g = kVar;
+        this.f16627a = i10;
     }
 
     public final void a() {

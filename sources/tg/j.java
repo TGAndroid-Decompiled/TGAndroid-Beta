@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public final class j extends b {
     public final ArrayList d;
     public final Bitmap e;
-    public final int f48883f;
+    public final int f48918f;
 
     public j(android.content.Context r22, int r23, org.telegram.ui.ActionBar.u6 r24) {
         throw new UnsupportedOperationException("Method not decompiled: tg.j.<init>(android.content.Context, int, org.telegram.ui.ActionBar.u6):void");

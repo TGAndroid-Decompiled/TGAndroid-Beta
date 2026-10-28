@@ -6,9 +6,9 @@ public abstract class hd {
         kotlin.jvm.internal.i.e(th2, "<this>");
         kotlin.jvm.internal.i.e(exception, "exception");
         if (th2 != exception) {
-            Integer num = qd.a.f47031a;
+            Integer num = qd.a.f47066a;
             if (num != null && num.intValue() < 19) {
-                Method method = pd.a.f46835a;
+                Method method = pd.a.f46870a;
                 if (method != null) {
                     method.invoke(th2, exception);
                     return;

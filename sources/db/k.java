@@ -32,7 +32,7 @@ public final class k {
         if (!booleanValue) {
             hVar = a2;
         } else {
-            ld.i iVar = ld.i.f16988a;
+            ld.i iVar = ld.i.f16987a;
             if (booleanValue) {
                 obj = a2.fold(iVar, x.f6277c);
             } else {
@@ -42,7 +42,7 @@ public final class k {
             iVar.plus(hVar);
         }
         je.e eVar = n0.f6245a;
-        if (hVar != eVar && hVar.get(ld.d.f16987a) == null) {
+        if (hVar != eVar && hVar.get(ld.d.f16986a) == null) {
             hVar = hVar.plus(eVar);
         }
         ce.h hVar2 = new ce.h(hVar, currentThread, a2);

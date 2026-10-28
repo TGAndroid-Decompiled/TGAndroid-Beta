@@ -9,16 +9,17 @@ import android.os.Bundle;
 import j$.util.DesugarCollections;
 import java.util.HashSet;
 import java.util.Set;
-import s9.r;
+import s9.k;
+import s9.s;
 public final class d implements ra.b {
-    public final int f18371a;
-    public final Object f18372b;
-    public final Object f18373c;
+    public final int f18370a;
+    public final Object f18371b;
+    public final Object f18372c;
 
     public d(int i10, Object obj, Object obj2) {
-        this.f18371a = i10;
-        this.f18373c = obj;
-        this.f18372b = obj2;
+        this.f18370a = i10;
+        this.f18372c = obj;
+        this.f18371b = obj2;
     }
 
     @Override
@@ -26,10 +27,10 @@ public final class d implements ra.b {
         ApplicationInfo applicationInfo;
         Bundle bundle;
         boolean z10;
-        switch (this.f18371a) {
+        switch (this.f18370a) {
             case 0:
-                h hVar = (h) this.f18373c;
-                Context context = (Context) this.f18372b;
+                h hVar = (h) this.f18372c;
+                Context context = (Context) this.f18371b;
                 String d = hVar.d();
                 oa.a aVar = (oa.a) hVar.d.a(oa.a.class);
                 ?? obj = new Object();
@@ -54,61 +55,61 @@ public final class d implements ra.b {
                     } catch (PackageManager.NameNotFoundException unused) {
                     }
                 }
-                obj.f51145a = z11;
+                obj.f51203a = z11;
                 return obj;
             case 1:
-                return new pa.g((Context) this.f18372b, (String) this.f18373c);
+                return new pa.g((Context) this.f18371b, (String) this.f18372c);
             default:
-                s9.g gVar = (s9.g) this.f18373c;
-                s9.a aVar2 = (s9.a) this.f18372b;
-                s9.d dVar = aVar2.f47986f;
+                s9.h hVar2 = (s9.h) this.f18372c;
+                s9.a aVar2 = (s9.a) this.f18371b;
+                s9.d dVar = aVar2.f48021f;
                 ?? obj2 = new Object();
                 HashSet hashSet = new HashSet();
                 HashSet hashSet2 = new HashSet();
                 HashSet hashSet3 = new HashSet();
                 HashSet hashSet4 = new HashSet();
                 HashSet hashSet5 = new HashSet();
-                Set<s9.j> set = aVar2.f47985c;
-                Set set2 = aVar2.f47987g;
-                for (s9.j jVar : set) {
-                    int i11 = jVar.f48003c;
-                    int i12 = jVar.f48002b;
+                Set<k> set = aVar2.f48020c;
+                Set set2 = aVar2.f48022g;
+                for (k kVar : set) {
+                    int i11 = kVar.f48041c;
+                    int i12 = kVar.f48040b;
                     if (i11 == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    r rVar = jVar.f48001a;
+                    s sVar = kVar.f48039a;
                     if (z10) {
                         if (i12 == 2) {
-                            hashSet4.add(rVar);
+                            hashSet4.add(sVar);
                         } else {
-                            hashSet.add(rVar);
+                            hashSet.add(sVar);
                         }
                     } else if (i11 == 2) {
-                        hashSet3.add(rVar);
+                        hashSet3.add(sVar);
                     } else if (i12 == 2) {
-                        hashSet5.add(rVar);
+                        hashSet5.add(sVar);
                     } else {
-                        hashSet2.add(rVar);
+                        hashSet2.add(sVar);
                     }
                 }
                 if (!set2.isEmpty()) {
-                    hashSet.add(r.a(oa.a.class));
+                    hashSet.add(s.a(oa.a.class));
                 }
                 obj2.f614a = DesugarCollections.unmodifiableSet(hashSet);
                 obj2.f615b = DesugarCollections.unmodifiableSet(hashSet2);
                 obj2.f616c = DesugarCollections.unmodifiableSet(hashSet3);
                 obj2.d = DesugarCollections.unmodifiableSet(hashSet4);
                 DesugarCollections.unmodifiableSet(hashSet5);
-                obj2.e = gVar;
+                obj2.e = hVar2;
                 return dVar.d1(obj2);
         }
     }
 
     public d(Context context, String str) {
-        this.f18371a = 1;
-        this.f18372b = context;
-        this.f18373c = str;
+        this.f18370a = 1;
+        this.f18371b = context;
+        this.f18372c = str;
     }
 }

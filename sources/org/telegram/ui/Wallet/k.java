@@ -5,15 +5,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.z90;
-import org.telegram.ui.q80;
+import org.telegram.ui.Components.aa0;
+import org.telegram.ui.r80;
 public final class k implements Utilities.Callback {
-    public final int f36759a;
-    public final Object f36760b;
+    public final int f36785a;
+    public final Object f36786b;
 
     public k(Object obj, int i10) {
-        this.f36759a = i10;
-        this.f36760b = obj;
+        this.f36785a = i10;
+        this.f36786b = obj;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class k implements Utilities.Callback {
         String str;
         int i10;
         CharSequence formatSpannable;
-        int i11 = this.f36759a;
+        int i11 = this.f36785a;
         boolean z10 = false;
-        Object obj2 = this.f36760b;
+        Object obj2 = this.f36786b;
         switch (i11) {
             case 0:
                 bi.t8 t8Var = (bi.t8) obj2;
@@ -45,7 +45,7 @@ public final class k implements Utilities.Callback {
             case 2:
                 String str2 = (String) obj;
                 e2.k("approve session", str2);
-                ((q80) obj2).run(str2);
+                ((r80) obj2).run(str2);
                 return;
             case 3:
                 String str3 = (String) obj;
@@ -53,7 +53,7 @@ public final class k implements Utilities.Callback {
                 ((Utilities.Callback) obj2).run(str3);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new q6(1, (t7) obj2, (TLRPC.UserFull) obj));
+                AndroidUtilities.runOnUIThread(new a6(2, (t7) obj2, (TLRPC.UserFull) obj));
                 return;
             default:
                 w7 w7Var = (w7) obj2;
@@ -63,17 +63,17 @@ public final class k implements Utilities.Callback {
                 } else {
                     i10 = 24;
                 }
-                if (w7Var.f37442a != i10) {
-                    w7Var.f37442a = i10;
+                if (w7Var.f37466a != i10) {
+                    w7Var.f37466a = i10;
                     w7Var.X(w7Var.getParentActivity());
                     w7Var.Z();
-                    z90 z90Var = w7Var.h;
-                    if (w7Var.f37448s != null) {
+                    aa0 aa0Var = w7Var.h;
+                    if (w7Var.f37472s != null) {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i10));
                     } else {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i10));
                     }
-                    z90Var.setText(formatSpannable);
+                    aa0Var.setText(formatSpannable);
                     return;
                 }
                 return;

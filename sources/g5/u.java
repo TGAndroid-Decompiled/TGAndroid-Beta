@@ -3,14 +3,14 @@ package g5;
 import java.nio.ByteBuffer;
 import li.e3;
 public final class u extends com.googlecode.mp4parser.c {
-    public static final e3 f12338f;
+    public static final e3 f12337f;
     public static final e3 h;
     public long[] e;
 
     static {
         ue.a aVar = new ue.a(u.class, "SyncSampleBox.java");
         aVar.e(aVar.d("getSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "[J"));
-        f12338f = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "java.lang.String"));
+        f12337f = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "java.lang.String"));
         h = aVar.e(aVar.d("setSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "[J", "sampleNumber", "void"));
     }
 
@@ -39,7 +39,7 @@ public final class u extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        ti.e b10 = ue.a.b(f12338f, this, this);
+        ti.e b10 = ue.a.b(f12337f, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         return a1.g.n(this.e.length, "]", new StringBuilder("SyncSampleBox[entryCount="));

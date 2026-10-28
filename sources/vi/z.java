@@ -1,18 +1,60 @@
 package vi;
 
 import android.opengl.GLES20;
-public final class z extends w {
-    public final int f50636f;
-    public final int f50637g;
-    public final int h;
+import org.telegram.ui.Components.b10;
+public class z {
+    public final int f50693a;
+    public final int f50694b;
+    public final int f50695c;
+    public final int d;
 
-    public z() {
-        super("#extension GL_OES_EGL_image_external : require\nprecision mediump float;\nvarying vec2 vTextureCoord;\nvarying vec2 vScreenTextureCoord;\nuniform samplerExternalOES sTexture;\nuniform sampler2D hTexture;\nuniform vec2 sampleStepX;\nuniform vec2 sampleStepY;\nuniform float historyWeight;\nvoid main() {\n    vec3 current = texture2D(sTexture, vTextureCoord).rgb * 0.25;\n    current += (texture2D(sTexture, vTextureCoord + sampleStepX).rgb\n            + texture2D(sTexture, vTextureCoord - sampleStepX).rgb\n            + texture2D(sTexture, vTextureCoord + sampleStepY).rgb\n            + texture2D(sTexture, vTextureCoord - sampleStepY).rgb) * 0.125;\n    current += (texture2D(sTexture, vTextureCoord + sampleStepX + sampleStepY).rgb\n            + texture2D(sTexture, vTextureCoord + sampleStepX - sampleStepY).rgb\n            + texture2D(sTexture, vTextureCoord - sampleStepX + sampleStepY).rgb\n            + texture2D(sTexture, vTextureCoord - sampleStepX - sampleStepY).rgb) * 0.0625;\n    vec3 history = texture2D(hTexture, vScreenTextureCoord).rgb;\n    float difference = dot(abs(current - history), vec3(0.333333));\n    float motion = smoothstep(0.035, 0.18, difference);\n    float weight = mix(historyWeight, historyWeight * 0.65, motion);\n    gl_FragColor = vec4(mix(current, history, weight), 1.0);\n}\n", 0);
-        int glGetUniformLocation = GLES20.glGetUniformLocation(this.f50633a, "hTexture");
-        this.f50636f = GLES20.glGetUniformLocation(this.f50633a, "sampleStepX");
-        this.f50637g = GLES20.glGetUniformLocation(this.f50633a, "sampleStepY");
-        this.h = GLES20.glGetUniformLocation(this.f50633a, "historyWeight");
-        GLES20.glUseProgram(this.f50633a);
-        GLES20.glUniform1i(glGetUniformLocation, 1);
+    public z(int i10, int i11, int i12, int i13) {
+        this.f50693a = i10;
+        this.f50694b = i11;
+        this.f50695c = i12;
+        this.d = i13;
+    }
+
+    public boolean a(int i10) {
+        if (i10 == 1) {
+            if (this.f50693a - this.f50694b <= 1) {
+                return false;
+            }
+        } else if (this.f50695c - this.d <= 1) {
+            return false;
+        }
+        return true;
+    }
+
+    public void b() {
+        GLES20.glDeleteProgram(this.f50693a);
+        GLES20.glDeleteShader(this.f50694b);
+        GLES20.glDeleteShader(this.f50695c);
+    }
+
+    public z(String str, String str2) {
+        int a2 = d0.a(35633, str);
+        this.f50694b = a2;
+        int a10 = d0.a(35632, str2);
+        this.f50695c = a10;
+        int glCreateProgram = GLES20.glCreateProgram();
+        GLES20.glAttachShader(glCreateProgram, a2);
+        GLES20.glAttachShader(glCreateProgram, a10);
+        GLES20.glBindAttribLocation(glCreateProgram, 0, "aPosition");
+        GLES20.glBindAttribLocation(glCreateProgram, 1, "aTextureCoord");
+        GLES20.glLinkProgram(glCreateProgram);
+        int[] iArr = new int[1];
+        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
+        if (iArr[0] != 0) {
+            this.f50693a = glCreateProgram;
+            this.d = 1;
+            int glGetUniformLocation = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
+            GLES20.glUseProgram(glCreateProgram);
+            GLES20.glUniform1i(glGetUniformLocation, 0);
+            return;
+        }
+        String glGetProgramInfoLog = GLES20.glGetProgramInfoLog(glCreateProgram);
+        GLES20.glDeleteProgram(glCreateProgram);
+        throw new IllegalStateException(b10.j("Unable to link program: ", glGetProgramInfoLog));
     }
 }

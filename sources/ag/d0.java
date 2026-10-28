@@ -39,41 +39,41 @@ public final class d0 implements Choreographer.FrameCallback {
                 return;
             case 2:
                 sf.b bVar = (sf.b) this.f1269b;
-                vf.a aVar = bVar.f48113k;
-                vf.a aVar2 = bVar.f48112j;
-                if (bVar.f48116n) {
-                    ArrayList arrayList = bVar.f48107b;
+                vf.a aVar = bVar.f48151k;
+                vf.a aVar2 = bVar.f48150j;
+                if (bVar.f48154n) {
+                    ArrayList arrayList = bVar.f48145b;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        sf.e eVar = ((uf.e) ((tf.b) obj)).f49725f;
+                        sf.e eVar = ((uf.e) ((tf.b) obj)).f49760f;
                         if (eVar != null) {
                             eVar.invalidate();
                         }
                     }
-                    if (aVar2.f50112c != 0) {
+                    if (aVar2.f50147c != 0) {
                         bVar.d(ee.a(aVar2.b() / 0.95f, 0.0f, 1.0f));
-                    } else if (aVar.f50112c != 0) {
+                    } else if (aVar.f50147c != 0) {
                         bVar.d(ee.a(1.0f - (aVar.b() / 0.95f), 0.0f, 1.0f));
                     }
-                    bVar.f48114l.postFrameCallback(bVar.f48115m);
+                    bVar.f48152l.postFrameCallback(bVar.f48153m);
                     return;
                 }
                 return;
             default:
                 xh.i iVar = (xh.i) this.f1269b;
-                Rect rect = iVar.f51895m;
+                Rect rect = iVar.f51953m;
                 long currentTimeMillis = System.currentTimeMillis();
-                if (currentTimeMillis - iVar.h > 32 && !iVar.f51892j && !rect.isEmpty()) {
+                if (currentTimeMillis - iVar.h > 32 && !iVar.f51950j && !rect.isEmpty()) {
                     iVar.h = currentTimeMillis;
-                    iVar.f51892j = true;
-                    iVar.f51897o.set(rect);
-                    iVar.f51886a.postRunnable(new xh.h(iVar, (iVar.d + 1) % 2, 0));
+                    iVar.f51950j = true;
+                    iVar.f51955o.set(rect);
+                    iVar.f51944a.postRunnable(new xh.h(iVar, (iVar.d + 1) % 2, 0));
                 }
                 rect.set(0, 0, 0, 0);
-                iVar.f51894l = false;
+                iVar.f51952l = false;
                 return;
         }
     }

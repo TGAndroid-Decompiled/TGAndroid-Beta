@@ -1,59 +1,120 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class ll0 implements TextWatcher {
-    public final int f41297a;
-    public final PasscodeActivity f41298b;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class ll0 extends org.telegram.ui.Components.ww0 {
+    public final int f41199l0;
+    public final FrameLayout m0;
+    public final org.telegram.ui.ActionBar.r2 f41200n0;
 
-    public ll0(PasscodeActivity passcodeActivity, int i10) {
-        this.f41297a = i10;
-        this.f41298b = passcodeActivity;
+    public ll0(org.telegram.ui.ActionBar.r2 r2Var, Context context, FrameLayout frameLayout, int i10) {
+        super(context, null);
+        this.f41199l0 = i10;
+        this.f41200n0 = r2Var;
+        this.m0 = frameLayout;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10 = this.f41297a;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f41297a) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int measuredHeight;
+        org.telegram.ui.ActionBar.r5 r5Var;
+        int measuredHeight2;
+        switch (this.f41199l0) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f41298b;
-                fl0 fl0Var = passcodeActivity.S;
-                if (passcodeActivity.R) {
-                    passcodeActivity.f35597n.removeCallbacks(fl0Var);
-                    fl0Var.run();
-                    return;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f41200n0;
+                int visibility = passcodeActivity.v.getVisibility();
+                FrameLayout frameLayout = this.m0;
+                if (visibility != 8 && Q() >= AndroidUtilities.dp(20.0f)) {
+                    if (passcodeActivity.m0()) {
+                        int measuredWidth = getMeasuredWidth();
+                        measuredHeight = Q() + (getMeasuredHeight() - AndroidUtilities.dp(230.0f));
+                        frameLayout.layout(0, 0, measuredWidth, measuredHeight);
+                    } else {
+                        int measuredWidth2 = getMeasuredWidth();
+                        measuredHeight = getMeasuredHeight();
+                        frameLayout.layout(0, 0, measuredWidth2, measuredHeight);
+                    }
+                } else if (passcodeActivity.v.getVisibility() != 8) {
+                    int measuredWidth3 = getMeasuredWidth();
+                    measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(230.0f);
+                    frameLayout.layout(0, 0, measuredWidth3, measuredHeight);
+                } else {
+                    int measuredWidth4 = getMeasuredWidth();
+                    measuredHeight = getMeasuredHeight();
+                    frameLayout.layout(0, 0, measuredWidth4, measuredHeight);
                 }
+                r5Var = ((org.telegram.ui.ActionBar.r2) passcodeActivity).simpleActionBar;
+                View view = r5Var != null ? ((org.telegram.ui.ActionBar.r2) passcodeActivity).simpleActionBar : ((org.telegram.ui.ActionBar.r2) passcodeActivity).actionBar;
+                if (view != null && view.getParent() == this) {
+                    view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+                }
+                passcodeActivity.v.layout(0, measuredHeight, getMeasuredWidth(), AndroidUtilities.dp(230.0f) + measuredHeight);
+                R();
                 return;
             default:
-                PasscodeActivity passcodeActivity2 = this.f41298b;
-                fl0 fl0Var2 = passcodeActivity2.S;
-                if (passcodeActivity2.R) {
-                    passcodeActivity2.f35597n.removeCallbacks(fl0Var2);
-                    fl0Var2.run();
-                    return;
+                k0 k0Var = (k0) this.m0;
+                fg1 fg1Var = (fg1) this.f41200n0;
+                if (fg1Var.f39366e0.getVisibility() != 8 && Q() >= AndroidUtilities.dp(20.0f)) {
+                    if (fg1Var.w0()) {
+                        int measuredWidth5 = getMeasuredWidth();
+                        measuredHeight2 = Q() + (getMeasuredHeight() - AndroidUtilities.dp(230.0f));
+                        k0Var.layout(0, 0, measuredWidth5, measuredHeight2);
+                    } else {
+                        int measuredWidth6 = getMeasuredWidth();
+                        measuredHeight2 = getMeasuredHeight();
+                        k0Var.layout(0, 0, measuredWidth6, measuredHeight2);
+                    }
+                } else if (fg1Var.f39366e0.getVisibility() != 8) {
+                    int measuredWidth7 = getMeasuredWidth();
+                    measuredHeight2 = getMeasuredHeight() - AndroidUtilities.dp(230.0f);
+                    k0Var.layout(0, 0, measuredWidth7, measuredHeight2);
+                } else {
+                    int measuredWidth8 = getMeasuredWidth();
+                    measuredHeight2 = getMeasuredHeight();
+                    k0Var.layout(0, 0, measuredWidth8, measuredHeight2);
                 }
+                fg1Var.f39366e0.layout(0, measuredHeight2, getMeasuredWidth(), AndroidUtilities.dp(230.0f) + measuredHeight2);
                 return;
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f41297a;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        org.telegram.ui.ActionBar.r5 r5Var;
+        switch (this.f41199l0) {
+            case 0:
+                int size = View.MeasureSpec.getSize(i10);
+                int size2 = View.MeasureSpec.getSize(i11);
+                setMeasuredDimension(size, size2);
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f41200n0;
+                if (passcodeActivity.v.getVisibility() != 8 && Q() < AndroidUtilities.dp(20.0f)) {
+                    i12 = size2 - AndroidUtilities.dp(230.0f);
+                } else {
+                    i12 = size2;
+                }
+                this.m0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
+                passcodeActivity.v.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(230.0f), 1073741824));
+                r5Var = ((org.telegram.ui.ActionBar.r2) passcodeActivity).simpleActionBar;
+                View view = r5Var != null ? ((org.telegram.ui.ActionBar.r2) passcodeActivity).simpleActionBar : ((org.telegram.ui.ActionBar.r2) passcodeActivity).actionBar;
+                if (view != null && view.getParent() == this) {
+                    view.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    return;
+                }
+                return;
+            default:
+                int size3 = View.MeasureSpec.getSize(i10);
+                int size4 = View.MeasureSpec.getSize(i11);
+                setMeasuredDimension(size3, size4);
+                fg1 fg1Var = (fg1) this.f41200n0;
+                if (fg1Var.f39366e0.getVisibility() != 8 && Q() < AndroidUtilities.dp(20.0f)) {
+                    size4 -= AndroidUtilities.dp(230.0f);
+                }
+                ((k0) this.m0).measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 1073741824));
+                fg1Var.f39366e0.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(230.0f), 1073741824));
+                return;
+        }
     }
 }

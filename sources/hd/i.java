@@ -13,24 +13,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import n4.s;
 public final class i implements ff.a {
-    public static final Pattern f12776j = Pattern.compile("^[!\"#\\$%&'\\(\\)\\*\\+,\\-\\./:;<=>\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\\p{Pc}\\p{Pd}\\p{Pe}\\p{Pf}\\p{Pi}\\p{Po}\\p{Ps}]");
-    public static final Pattern f12777k = Pattern.compile("^ *(?:\n *)?");
-    public static final Pattern f12778l = Pattern.compile("^[\\p{Zs}\t\r\n\f]");
-    public static final Pattern f12779m = Pattern.compile("^[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]");
-    public static final Pattern f12780n = Pattern.compile("\\s+");
-    public final s f12781a;
-    public final BitSet f12782b;
-    public final HashMap f12783c;
+    public static final Pattern f12775j = Pattern.compile("^[!\"#\\$%&'\\(\\)\\*\\+,\\-\\./:;<=>\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\\p{Pc}\\p{Pd}\\p{Pe}\\p{Pf}\\p{Pi}\\p{Po}\\p{Ps}]");
+    public static final Pattern f12776k = Pattern.compile("^ *(?:\n *)?");
+    public static final Pattern f12777l = Pattern.compile("^[\\p{Zs}\t\r\n\f]");
+    public static final Pattern f12778m = Pattern.compile("^[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]");
+    public static final Pattern f12779n = Pattern.compile("\\s+");
+    public final s f12780a;
+    public final BitSet f12781b;
+    public final HashMap f12782c;
     public final HashMap d;
     public p e;
-    public String f12784f;
-    public int f12785g;
+    public String f12783f;
+    public int f12784g;
     public bf.e h;
-    public bf.d f12786i;
+    public bf.d f12785i;
 
     public i(s sVar, List list, List list2) {
         k kVar;
-        this.f12781a = sVar;
+        this.f12780a = sVar;
         HashMap hashMap = new HashMap(list.size());
         Iterator it = list.iterator();
         while (it.hasNext()) {
@@ -43,7 +43,7 @@ public final class i implements ff.a {
             }
             list3.add(hVar);
         }
-        this.f12783c = hashMap;
+        this.f12782c = hashMap;
         HashMap hashMap2 = new HashMap();
         Iterator it2 = list2.iterator();
         while (it2.hasNext()) {
@@ -71,7 +71,7 @@ public final class i implements ff.a {
             }
         }
         this.d = hashMap2;
-        Set<Character> keySet = this.f12783c.keySet();
+        Set<Character> keySet = this.f12782c.keySet();
         Set<Character> keySet2 = hashMap2.keySet();
         BitSet bitSet = new BitSet();
         for (Character ch2 : keySet) {
@@ -80,7 +80,7 @@ public final class i implements ff.a {
         for (Character ch3 : keySet2) {
             bitSet.set(ch3.charValue());
         }
-        this.f12782b = bitSet;
+        this.f12781b = bitSet;
     }
 
     public static void b(char c10, hf.a aVar, HashMap hashMap) {
@@ -96,21 +96,21 @@ public final class i implements ff.a {
     }
 
     public final String c(Pattern pattern) {
-        if (this.f12785g >= this.f12784f.length()) {
+        if (this.f12784g >= this.f12783f.length()) {
             return null;
         }
-        Matcher matcher = pattern.matcher(this.f12784f);
-        matcher.region(this.f12785g, this.f12784f.length());
+        Matcher matcher = pattern.matcher(this.f12783f);
+        matcher.region(this.f12784g, this.f12783f.length());
         if (!matcher.find()) {
             return null;
         }
-        this.f12785g = matcher.end();
+        this.f12784g = matcher.end();
         return matcher.group();
     }
 
     public final char d() {
-        if (this.f12785g < this.f12784f.length()) {
-            return this.f12784f.charAt(this.f12785g);
+        if (this.f12784g < this.f12783f.length()) {
+            return this.f12783f.charAt(this.f12784g);
         }
         return (char) 0;
     }
@@ -161,15 +161,15 @@ public final class i implements ff.a {
                     ef.s sVar2 = eVar4.f3912a;
                     eVar4.f3916g -= i10;
                     eVar2.f3916g -= i10;
-                    sVar2.f9941g = h0.l(i10, 0, sVar2.f9941g);
-                    sVar.f9941g = h0.l(i10, 0, sVar.f9941g);
+                    sVar2.f9940g = h0.l(i10, 0, sVar2.f9940g);
+                    sVar.f9940g = h0.l(i10, 0, sVar.f9940g);
                     bf.e eVar5 = eVar2.e;
                     while (eVar5 != null && eVar5 != eVar4) {
                         bf.e eVar6 = eVar5.e;
                         f(eVar5);
                         eVar5 = eVar6;
                     }
-                    if (sVar2 != sVar && (pVar = (p) sVar2.f9939f) != sVar) {
+                    if (sVar2 != sVar && (pVar = (p) sVar2.f9938f) != sVar) {
                         pc.b(pVar, (p) sVar.e);
                     }
                     aVar.d(sVar2, sVar, i10);

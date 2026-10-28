@@ -52,7 +52,7 @@ public class AppGlobalConfig {
     public final ConfigInt richMessageMaxMedia;
     public final ConfigInt richMessageMaxTableCols;
     public final ConfigString richMessagePosting;
-    public final ConfigBoolean roundVideoRecorder2Allowed;
+    public final ConfigBoolean roundVideoRecorderV2Disabled;
     public final ConfigBoolean settingsDisplayPasskeys;
     public final ConfigInt stargiftsCollectionGiftsLimit;
     public final ConfigInt stargiftsCollectionsLimit;
@@ -471,7 +471,6 @@ public class AppGlobalConfig {
         this.settingsDisplayPasskeys = ofBoolean("settings_display_passkeys", BuildVars.DEBUG_VERSION);
         this.disableBlurInLightTheme = ofBoolean("android_disable_blur_in_light_theme", false);
         this.disableBlurInDarkTheme = ofBoolean("android_disable_blur_in_dark_theme", false);
-        this.audioRecorderV2Disabled = ofBoolean("android_audio_recorder_v2_disabled", false);
         this.noForwardsRequestExpirePeriod = ofTime("no_forwards_request_expire_period", 86400L, timeUnit);
         this.pollClosePeriodMax = ofTime("poll_close_period_max", 2592000L, timeUnit);
         this.musicSearchUsername = ofString("music_search_username", null);
@@ -504,7 +503,8 @@ public class AppGlobalConfig {
         this.messageLengthLimitPremium = ofInt("message_length_limit_premium", 8192);
         this.quickReplyMessagesLimit = ofInt("quick_reply_messages_limit", 20);
         this.ephemeralWelcomeMessagesMax = ofInt("ephemeral_welcome_messages_max", 5);
-        this.roundVideoRecorder2Allowed = ofBoolean("round_video_recorder_2_allowed", true);
+        this.audioRecorderV2Disabled = ofBoolean("android_audio_recorder_v2_disabled", false);
+        this.roundVideoRecorderV2Disabled = ofBoolean("android_round_video_recorder_v2_disabled", false);
         this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
         this.botAllowedSuffixes = ofStringSet("bot_allowed_suffixes", Collections.singleton("bot"));
         this.walletAvailable = ofBoolean("wallet_available", BuildVars.DEBUG_VERSION);

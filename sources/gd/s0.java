@@ -8,13 +8,13 @@ public enum s0 extends a2 {
     public final void d(k kVar, a aVar) {
         String h = aVar.h(a2.H0);
         if (h.length() > 0) {
-            kVar.f12462i.f(h);
+            kVar.f12461i.f(h);
         }
         char d = aVar.d();
         if (d != 0) {
             if (d != ' ') {
                 if (d != '\"' && d != '`') {
-                    v vVar = a2.f12411a;
+                    v vVar = a2.f12410a;
                     if (d != 65535) {
                         if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
                             if (d != '&') {
@@ -25,38 +25,38 @@ public enum s0 extends a2 {
                                             break;
                                         case '>':
                                             kVar.k();
-                                            kVar.f12459c = vVar;
+                                            kVar.f12458c = vVar;
                                             return;
                                         default:
-                                            kVar.f12462i.e(d);
+                                            kVar.f12461i.e(d);
                                             return;
                                     }
                                 }
                             } else {
                                 int[] c10 = kVar.c('>', true);
                                 if (c10 != null) {
-                                    kVar.f12462i.g(c10);
+                                    kVar.f12461i.g(c10);
                                     return;
                                 } else {
-                                    kVar.f12462i.e('&');
+                                    kVar.f12461i.e('&');
                                     return;
                                 }
                             }
                         }
                     } else {
                         kVar.l(this);
-                        kVar.f12459c = vVar;
+                        kVar.f12458c = vVar;
                         return;
                     }
                 }
                 kVar.m(this);
-                kVar.f12462i.e(d);
+                kVar.f12461i.e(d);
                 return;
             }
-            kVar.f12459c = a2.W;
+            kVar.f12458c = a2.W;
             return;
         }
         kVar.m(this);
-        kVar.f12462i.e((char) 65533);
+        kVar.f12461i.e((char) 65533);
     }
 }

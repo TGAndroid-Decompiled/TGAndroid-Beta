@@ -7,13 +7,13 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class mn implements org.telegram.ui.dt {
-    public final int f30671a;
-    public final go f30672b;
+public final class mn implements org.telegram.ui.ft {
+    public final int f30561a;
+    public final go f30562b;
 
     public mn(go goVar, int i10) {
-        this.f30672b = goVar;
-        this.f30671a = i10;
+        this.f30562b = goVar;
+        this.f30561a = i10;
     }
 
     @Override
@@ -102,47 +102,47 @@ public final class mn implements org.telegram.ui.dt {
     }
 
     @Override
-    public final k80 i(bh.p pVar) {
-        k80 F = k80.F(pVar, null, new View(this.f30672b.getContext()));
-        F.f29868s = 0;
-        F.f29869t = false;
+    public final l80 i(bh.p pVar) {
+        l80 F = l80.F(pVar, null, new View(this.f30562b.getContext()));
+        F.f30168s = 0;
+        F.f30169t = false;
         int i10 = R.drawable.msg_replace;
         String string = LocaleController.getString(R.string.ReplaceAttachedPollMedia);
-        final int i11 = this.f30671a;
+        final int i11 = this.f30561a;
         F.c(i10, string, new Runnable(this) {
-            public final mn f30231b;
+            public final mn f30273b;
 
             {
-                this.f30231b = this;
+                this.f30273b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        this.f30231b.f30672b.e0(i11);
+                        this.f30273b.f30562b.e0(i11);
                         return;
                     default:
-                        this.f30231b.f30672b.h0(i11, null);
+                        this.f30273b.f30562b.h0(i11, null);
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable(this) {
-            public final mn f30231b;
+            public final mn f30273b;
 
             {
-                this.f30231b = this;
+                this.f30273b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        this.f30231b.f30672b.e0(i11);
+                        this.f30273b.f30562b.e0(i11);
                         return;
                     default:
-                        this.f30231b.f30672b.h0(i11, null);
+                        this.f30273b.f30562b.h0(i11, null);
                         return;
                 }
             }

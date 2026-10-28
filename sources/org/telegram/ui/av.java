@@ -1,56 +1,29 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class av implements Runnable {
-    public final int f37906a;
-    public final Context f37907b;
+import android.widget.FrameLayout;
+public final class av extends FrameLayout {
+    public org.telegram.ui.ActionBar.r2 f37828a;
+    public FrameLayout f37829b;
+    public org.telegram.ui.ActionBar.k f37830c;
+    public org.telegram.ui.Components.nm0 d;
+    public bi.r1 e;
+    public int f37831f;
+    public final bv h;
 
-    public av(Context context, int i10) {
-        this.f37906a = i10;
-        this.f37907b = context;
+    public av(bv bvVar, Context context) {
+        super(context);
+        this.h = bvVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37906a) {
-            case 0:
-                org.telegram.ui.ActionBar.y6.J(this.f37907b, false);
-                return;
-            case 1:
-                Activity findActivity = AndroidUtilities.findActivity(this.f37907b);
-                if (findActivity == null) {
-                    findActivity = LaunchActivity.I1;
-                }
-                if (findActivity != null && !findActivity.isFinishing()) {
-                    findActivity.moveTaskToBack(true);
-                    return;
-                }
-                return;
-            case 2:
-                qf.d.r(this.f37907b, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                qf.d.r(this.f37907b, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                qf.d.r(this.f37907b, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                qf.d.r(this.f37907b, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                qf.d.r(this.f37907b, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                qf.d.r(this.f37907b, "https://promote.telegram.org/guidelines");
-                return;
-            default:
-                qf.d.r(this.f37907b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
-                return;
+    public final void setTranslationX(float f7) {
+        av avVar;
+        super.setTranslationX(f7);
+        bv bvVar = this.h;
+        av[] avVarArr = bvVar.f38108f;
+        if (bvVar.f38109n && (avVar = avVarArr[0]) == this) {
+            bvVar.e.i(Math.abs(avVar.getTranslationX()) / avVarArr[0].getMeasuredWidth(), avVarArr[1].f37831f);
         }
     }
 }

@@ -22,7 +22,7 @@ public final class c7 extends cr {
         this.f4434f = System.currentTimeMillis();
         this.h = 1.0f;
         this.f4433c = dVar;
-        ((Paint) this.f27245b).setColor(-1);
+        ((Paint) this.f27238b).setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -36,7 +36,7 @@ public final class c7 extends cr {
     @Override
     public final void draw(Canvas canvas) {
         float f7;
-        Paint paint = (Paint) this.f27245b;
+        Paint paint = (Paint) this.f27238b;
         paint.setAlpha((int) (this.h * 255.0f));
         canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
         float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f4434f) % 400)) / 400.0f;

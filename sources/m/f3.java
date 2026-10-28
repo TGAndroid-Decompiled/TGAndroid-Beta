@@ -2,24 +2,24 @@ package m;
 
 import androidx.appcompat.widget.Toolbar;
 public final class f3 implements Runnable {
-    public final int f17712a;
-    public final Toolbar f17713b;
+    public final int f17711a;
+    public final Toolbar f17712b;
 
     public f3(Toolbar toolbar, int i10) {
-        this.f17712a = i10;
-        this.f17713b = toolbar;
+        this.f17711a = i10;
+        this.f17712b = toolbar;
     }
 
     @Override
     public final void run() {
         l.m mVar;
-        switch (this.f17712a) {
+        switch (this.f17711a) {
             case 0:
-                i3 i3Var = this.f17713b.f2247e0;
+                i3 i3Var = this.f17712b.f2247e0;
                 if (i3Var == null) {
                     mVar = null;
                 } else {
-                    mVar = i3Var.f17745b;
+                    mVar = i3Var.f17744b;
                 }
                 if (mVar != null) {
                     mVar.collapseActionView();
@@ -27,7 +27,7 @@ public final class f3 implements Runnable {
                 }
                 return;
             default:
-                this.f17713b.m();
+                this.f17712b.m();
                 return;
         }
     }

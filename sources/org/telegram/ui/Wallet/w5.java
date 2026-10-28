@@ -32,16 +32,16 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.mk;
-import org.telegram.ui.z10;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.b20;
+import org.telegram.ui.ok;
 public class w5 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public static Typeface f37418j0;
-    public static Typeface f37419k0;
+    public static Typeface f37442j0;
+    public static Typeface f37443k0;
     public final FrameLayout E;
     public View.OnClickListener F;
-    public final mk G;
-    public final z10 H;
+    public final ok G;
+    public final b20 H;
     public final Paint I;
     public float J;
     public final org.telegram.ui.Components.h6 K;
@@ -57,29 +57,29 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
     public float U;
     public int V;
     public l0 W;
-    public boolean f37420a;
-    public float[] f37421a0;
-    public float f37422b;
-    public int f37423b0;
-    public final Matrix f37424c;
-    public int f37425c0;
+    public boolean f37444a;
+    public float[] f37445a0;
+    public float f37446b;
+    public int f37447b0;
+    public final Matrix f37448c;
+    public int f37449c0;
     public final Matrix d;
-    public float f37426d0;
+    public float f37450d0;
     public final Matrix e;
-    public float f37427e0;
-    public final RectF f37428f;
-    public final org.telegram.ui.Components.h6 f37429f0;
-    public final org.telegram.ui.Components.h6 f37430g0;
+    public float f37451e0;
+    public final RectF f37452f;
+    public final org.telegram.ui.Components.h6 f37453f0;
+    public final org.telegram.ui.Components.h6 f37454g0;
     public float h;
-    public e6 f37431h0;
-    public boolean f37432i0;
-    public boolean f37433n;
-    public float f37434r;
-    public float f37435s;
+    public f6 f37455h0;
+    public boolean f37456i0;
+    public boolean f37457n;
+    public float f37458r;
+    public float f37459s;
     public final Matrix v;
-    public final Matrix f37436w;
-    public final Matrix f37437x;
-    public final r5 f37438y;
+    public final Matrix f37460w;
+    public final Matrix f37461x;
+    public final r5 f37462y;
 
     public w5(Context context) {
         this(context, R.drawable.wallet_card_qr, 46);
@@ -91,17 +91,17 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
         float width = w5Var.getFrontFace().getWidth() / 1640.0f;
         Paint paint = w5Var.I;
         Context context = w5Var.getContext();
-        if (f37418j0 == null) {
+        if (f37442j0 == null) {
             if (Build.VERSION.SDK_INT >= 26) {
-                f37418j0 = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 400").setWeight(400).build();
+                f37442j0 = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 400").setWeight(400).build();
             } else {
-                f37418j0 = AndroidUtilities.getTypeface("fonts/rmono.ttf");
+                f37442j0 = AndroidUtilities.getTypeface("fonts/rmono.ttf");
             }
         }
-        paint.setTypeface(f37418j0);
+        paint.setTypeface(f37442j0);
         paint.setTextSize(47.345238f * width);
         paint.setTextAlign(Paint.Align.CENTER);
-        float[] fArr = w5Var.f37421a0;
+        float[] fArr = w5Var.f37445a0;
         int b10 = h7.b(fArr, 0);
         int b11 = h7.b(fArr, 1);
         if (fArr != null && fArr.length >= 18) {
@@ -149,7 +149,7 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public static SpannableStringBuilder e(long j10) {
-        return l0.p(new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US)).format(new BigDecimal(l0.o(j10, false))), 0.8f);
+        return l0.q(new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US)).format(new BigDecimal(l0.p(j10, false))), 0.8f);
     }
 
     public static String f(String str) {
@@ -207,9 +207,9 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
             return;
         }
         n2Var.a(AndroidUtilities.dpf2(1.5f), 0.0f, Color.argb((int) (f7 * 140.0f), 0, 0, 0));
-        this.f37432i0 = true;
+        this.f37456i0 = true;
         runnable.run();
-        this.f37432i0 = false;
+        this.f37456i0 = false;
     }
 
     @Override
@@ -226,18 +226,18 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
     public final boolean g(View view, Matrix matrix) {
         if (isAttachedToWindow() && view.isAttachedToWindow() && getRootView() == view.getRootView()) {
             View view2 = (View) this.E.getParent();
-            r5 r5Var = this.f37438y;
+            r5 r5Var = this.f37462y;
             Matrix matrix2 = this.v;
-            matrix2.set((Matrix) r5Var.e.f32807c);
-            di.l1 l1Var = r5Var.f37174f;
+            matrix2.set((Matrix) r5Var.e.f32797c);
+            di.l1 l1Var = r5Var.f37198f;
             matrix2.preTranslate(l1Var.getLeft(), l1Var.getTop());
             k((View) view2.getParent(), matrix);
             matrix.preConcat(matrix2);
             matrix.preTranslate(this.E.getLeft() - view2.getScrollX(), this.E.getTop() - view2.getScrollY());
             matrix.preConcat(this.E.getMatrix());
-            Matrix matrix3 = this.f37436w;
+            Matrix matrix3 = this.f37460w;
             k(view, matrix3);
-            Matrix matrix4 = this.f37437x;
+            Matrix matrix4 = this.f37461x;
             if (matrix3.invert(matrix4)) {
                 matrix.postConcat(matrix4);
                 return true;
@@ -264,11 +264,11 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public float getCardRotationX() {
-        return this.f37438y.getCardRotationX();
+        return this.f37462y.getCardRotationX();
     }
 
     public float getCardRotationY() {
-        return this.f37438y.getCardRotationY();
+        return this.f37462y.getCardRotationY();
     }
 
     public FrameLayout getFrontFace() {
@@ -304,8 +304,8 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
         float bottom = ((u5Var2.getBottom() + u5Var2.getTop()) / 2.0f) + f10;
         float height = (u5Var2.getHeight() * b10) / 2.0f;
         arrayList.add(new RectF(f7, bottom - height, (u5Var2.getDrawable().c() * b10) + f7, bottom + height));
-        mk mkVar = this.G;
-        arrayList.add(new RectF(mkVar.getLeft(), mkVar.getTop(), mkVar.getLeft() + Math.min(mkVar.getWidth(), mkVar.getPaint().measureText(mkVar.getText().toString())), mkVar.getBottom()));
+        ok okVar = this.G;
+        arrayList.add(new RectF(okVar.getLeft(), okVar.getTop(), okVar.getLeft() + Math.min(okVar.getWidth(), okVar.getPaint().measureText(okVar.getText().toString())), okVar.getBottom()));
         arrayList.add(new RectF(this.E.getWidth() - (34.0f * width), 18.0f * width, this.E.getWidth() - (12.0f * width), width * 187.0f));
         Path path = new Path();
         h(path, this.E.getWidth(), this.E.getHeight());
@@ -313,8 +313,8 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
         path.computeBounds(rectF2, true);
         arrayList.add(rectF2);
         arrayList.add(new RectF(f7, u5Var.getTop() + f10, c10 + f7, f10 + u5Var.getBottom()));
-        if (this.f37420a) {
-            rectF = new RectF(this.f37428f);
+        if (this.f37444a) {
+            rectF = new RectF(this.f37452f);
         } else {
             rectF = new RectF();
         }
@@ -323,7 +323,7 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public float[] getStickerStyle() {
-        return this.f37421a0;
+        return this.f37445a0;
     }
 
     public org.telegram.ui.Components.s6 getUsdBalanceView() {
@@ -342,7 +342,7 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
         }
         this.T = f7;
         if (f7 == 0.0f) {
-            this.f37433n = false;
+            this.f37457n = false;
         }
         this.U = f10;
         this.N.invalidate();
@@ -371,13 +371,13 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
 
     public final void l(l0 l0Var) {
         if (l0Var != null) {
-            int i10 = l0Var.f36807a;
+            int i10 = l0Var.f36834a;
             setCardHolder(UserObject.getUserName(UserConfig.getInstance(i10).getCurrentUser()).toUpperCase());
-            if (l0Var.s() != null) {
-                setCardNumber(d(l0Var.s().toUpperCase()));
+            if (l0Var.t() != null) {
+                setCardNumber(d(l0Var.t().toUpperCase()));
             }
-            if (l0Var.E()) {
-                j(i10, l0Var.u());
+            if (l0Var.G()) {
+                j(i10, l0Var.v());
             }
         }
     }
@@ -391,8 +391,8 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
         float f12;
         float f13;
         float f14;
-        if (this.f37431h0 != null) {
-            float[] fArr = this.f37421a0;
+        if (this.f37455h0 != null) {
+            float[] fArr = this.f37445a0;
             char c10 = '\t';
             int i11 = 2;
             char c11 = 1;
@@ -401,7 +401,7 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
             if (fArr == null) {
                 fArr = new float[]{0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.5f, 0.5f, 1.0f, 1.0f};
             }
-            float[] fArr2 = h7.f36639c;
+            float[] fArr2 = h7.f36664c;
             float[] fArr3 = new float[42];
             int i12 = 0;
             while (true) {
@@ -414,7 +414,7 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
                 char c13 = c11;
                 if (fArr.length < 18 || fArr[i14] < f15) {
                     f11 = f15;
-                    System.arraycopy(h7.f36638b, 0, fArr3, i12 * 12, 12);
+                    System.arraycopy(h7.f36663b, 0, fArr3, i12 * 12, 12);
                     fArr3[i12 + 28] = 1.0f;
                     System.arraycopy(fArr2, 0, fArr3, (i12 * 3) + 30, 3);
                 } else {
@@ -490,32 +490,32 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
                 i26++;
             }
             System.arraycopy(fArr, 6, fArr3, 24, 4);
-            float[] fArr4 = this.f37421a0;
+            float[] fArr4 = this.f37445a0;
             if (fArr4 != null && fArr4.length > 8) {
                 f7 = Math.max(f21, Math.min(1.0f, fArr4[8]));
             } else {
                 f7 = 1.0f;
             }
-            e6 e6Var = this.f37431h0;
+            f6 f6Var = this.f37455h0;
             float lerp = AndroidUtilities.lerp(fArr3[30], fArr3[33], f7);
             float lerp2 = AndroidUtilities.lerp(fArr3[31], fArr3[34], f7);
             float lerp3 = AndroidUtilities.lerp(fArr3[32], fArr3[35], f7);
-            e6Var.getClass();
-            float[] fArr5 = e6.f36517j;
-            float[] a2 = e6.a(lerp, lerp2, lerp3);
+            f6Var.getClass();
+            float[] fArr5 = f6.f36588j;
+            float[] a2 = f6.a(lerp, lerp2, lerp3);
             float f22 = a2[0];
             float f23 = a2[c14];
             float f24 = a2[2];
-            if (f22 == e6Var.e && f23 == e6Var.f36526f && f24 == e6Var.f36527g) {
+            if (f22 == f6Var.e && f23 == f6Var.f36597f && f24 == f6Var.f36598g) {
                 return;
             }
-            e6Var.e = f22;
-            e6Var.f36526f = f23;
-            e6Var.f36527g = f24;
-            if (e6.f36518k == null) {
-                e6.f36518k = e6.a(0.0f, 0.47809f, 1.0f);
+            f6Var.e = f22;
+            f6Var.f36597f = f23;
+            f6Var.f36598g = f24;
+            if (f6.f36589k == null) {
+                f6.f36589k = f6.a(0.0f, 0.47809f, 1.0f);
             }
-            float[] fArr6 = e6.f36518k;
+            float[] fArr6 = f6.f36589k;
             double sqrt = (fArr6[0] - fArr6[c14]) / Math.sqrt(2.0d);
             double sqrt2 = ((fArr6[0] + fArr6[c14]) - (fArr6[2] * 2.0f)) / Math.sqrt(6.0d);
             double sqrt3 = (f22 - f23) / Math.sqrt(2.0d);
@@ -567,8 +567,8 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
                 i10 = 3;
             }
             fArr7[18] = f26;
-            e6Var.d.setColorFilter(new ColorMatrixColorFilter(fArr7));
-            e6Var.invalidateSelf();
+            f6Var.d.setColorFilter(new ColorMatrixColorFilter(fArr7));
+            f6Var.invalidateSelf();
         }
     }
 
@@ -590,7 +590,7 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
             }
         }
         if (this.W != null) {
-            NotificationCenter.getInstance(this.V).addObserver(this, NotificationCenter.walletUpdate);
+            NotificationCenter.getInstance(this.V).addWeakObserver(this, NotificationCenter.walletUpdate);
         }
     }
 
@@ -612,8 +612,8 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setAdditionalTilt(float f7) {
-        this.f37434r = f7;
-        this.f37438y.setAdditionalTilt(f7);
+        this.f37458r = f7;
+        this.f37462y.setAdditionalTilt(f7);
     }
 
     public void setCardHolder(CharSequence charSequence) {
@@ -622,24 +622,24 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
 
     public void setCardIcon(int i10) {
         this.R = i10;
-        this.f37438y.setCardIcon(i10);
+        this.f37462y.setCardIcon(i10);
     }
 
     public void setCardNumber(String str) {
         if (str != null && !str.equals(this.Q)) {
             this.Q = str;
-            this.f37438y.setHasCardNumber(true);
+            this.f37462y.setHasCardNumber(true);
             this.H.invalidate();
         }
     }
 
     public void setCardOnClickListener(View.OnClickListener onClickListener) {
         this.F = onClickListener;
-        this.f37438y.setOnClickListener(onClickListener);
+        this.f37462y.setOnClickListener(onClickListener);
     }
 
     public void setDiamondOnCard(boolean z10) {
-        this.f37420a = z10;
+        this.f37444a = z10;
         this.N.invalidate();
     }
 
@@ -650,58 +650,58 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setStickerImpact(float f7) {
-        this.f37438y.setScaleX(f7);
-        this.f37438y.setScaleY(f7);
+        this.f37462y.setScaleX(f7);
+        this.f37462y.setScaleY(f7);
     }
 
     public void setStickerStyle(float[] fArr) {
-        this.f37421a0 = fArr;
+        this.f37445a0 = fArr;
         m();
         this.N.invalidate();
         this.H.invalidate();
-        this.f37438y.setStickerStyle(fArr);
+        this.f37462y.setStickerStyle(fArr);
         this.O.setTextColor(i0.a.f(fArr[8], h7.p(fArr, -7868417, 0), h7.p(fArr, -7868417, 3)));
         this.G.invalidate();
     }
 
     public void setUseGyroscope(float f7) {
-        this.f37435s = f7;
-        this.f37438y.setUseGyroscope(f7);
+        this.f37459s = f7;
+        this.f37462y.setUseGyroscope(f7);
     }
 
     public w5(Context context, int i10, int i11) {
         super(context);
-        this.f37422b = 1.0f;
-        this.f37424c = new Matrix();
+        this.f37446b = 1.0f;
+        this.f37448c = new Matrix();
         this.d = new Matrix();
         this.e = new Matrix();
         new RectF();
-        this.f37428f = new RectF();
-        this.f37435s = 1.0f;
+        this.f37452f = new RectF();
+        this.f37459s = 1.0f;
         this.v = new Matrix();
-        this.f37436w = new Matrix();
-        this.f37437x = new Matrix();
+        this.f37460w = new Matrix();
+        this.f37461x = new Matrix();
         this.I = new Paint(193);
         Runnable runnable = new Runnable(this) {
-            public final w5 f37221b;
+            public final w5 f37245b;
 
             {
-                this.f37221b = this;
+                this.f37245b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f37221b.H.invalidate();
+                        this.f37245b.H.invalidate();
                         return;
                     case 1:
-                        w5 w5Var = this.f37221b;
+                        w5 w5Var = this.f37245b;
                         w5Var.N.invalidate();
                         w5Var.O.invalidate();
                         return;
                     default:
-                        this.f37221b.G.invalidate();
+                        this.f37245b.G.invalidate();
                         return;
                 }
             }
@@ -709,50 +709,50 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
         ds dsVar = ds.h;
         this.K = new org.telegram.ui.Components.h6(runnable, 240L, dsVar, 0);
         this.V = UserConfig.selectedAccount;
-        this.f37429f0 = new org.telegram.ui.Components.h6(new Runnable(this) {
-            public final w5 f37221b;
+        this.f37453f0 = new org.telegram.ui.Components.h6(new Runnable(this) {
+            public final w5 f37245b;
 
             {
-                this.f37221b = this;
+                this.f37245b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f37221b.H.invalidate();
+                        this.f37245b.H.invalidate();
                         return;
                     case 1:
-                        w5 w5Var = this.f37221b;
+                        w5 w5Var = this.f37245b;
                         w5Var.N.invalidate();
                         w5Var.O.invalidate();
                         return;
                     default:
-                        this.f37221b.G.invalidate();
+                        this.f37245b.G.invalidate();
                         return;
                 }
             }
         }, 240L, dsVar, 0);
-        this.f37430g0 = new org.telegram.ui.Components.h6(new Runnable(this) {
-            public final w5 f37221b;
+        this.f37454g0 = new org.telegram.ui.Components.h6(new Runnable(this) {
+            public final w5 f37245b;
 
             {
-                this.f37221b = this;
+                this.f37245b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f37221b.H.invalidate();
+                        this.f37245b.H.invalidate();
                         return;
                     case 1:
-                        w5 w5Var = this.f37221b;
+                        w5 w5Var = this.f37245b;
                         w5Var.N.invalidate();
                         w5Var.O.invalidate();
                         return;
                     default:
-                        this.f37221b.G.invalidate();
+                        this.f37245b.G.invalidate();
                         return;
                 }
             }
@@ -763,59 +763,59 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
         setClipToPadding(false);
         setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
         r5 r5Var = new r5(getContext(), this.R, i11);
-        this.f37438y = r5Var;
+        this.f37462y = r5Var;
         this.E = r5Var.getFrontFace();
-        float[] fArr = this.f37421a0;
+        float[] fArr = this.f37445a0;
         if (fArr != null) {
             setStickerStyle(fArr);
         }
-        setAdditionalTilt(this.f37434r);
-        setUseGyroscope(this.f37435s);
-        this.f37438y.setOnClickListener(this.F);
-        addView(this.f37438y, 0, gb1.g(-2.0f, -1));
-        mk mkVar = new mk(this, context, 6);
-        this.G = mkVar;
-        if (f37419k0 == null) {
+        setAdditionalTilt(this.f37458r);
+        setUseGyroscope(this.f37459s);
+        this.f37462y.setOnClickListener(this.F);
+        addView(this.f37462y, 0, kb1.g(-2.0f, -1));
+        ok okVar = new ok(this, context, 6);
+        this.G = okVar;
+        if (f37443k0 == null) {
             if (Build.VERSION.SDK_INT >= 26) {
-                f37419k0 = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
+                f37443k0 = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
             } else {
-                f37419k0 = AndroidUtilities.getTypeface("fonts/rmono.ttf");
+                f37443k0 = AndroidUtilities.getTypeface("fonts/rmono.ttf");
             }
         }
-        mkVar.setTypeface(f37419k0);
-        mkVar.setTextColor(-1);
-        mkVar.setTextSize(1, 13.0f);
-        mkVar.setEllipsize(TextUtils.TruncateAt.END);
-        mkVar.setMaxLines(1);
-        mkVar.setSingleLine();
-        this.E.addView(mkVar, gb1.h(-1, -2.0f, 83, 24.0f, 0.0f, 64.0f, 17.2f));
-        z10 z10Var = new z10(this, context, 11);
-        this.H = z10Var;
-        this.E.addView(z10Var, gb1.g(-1.0f, -1));
+        okVar.setTypeface(f37443k0);
+        okVar.setTextColor(-1);
+        okVar.setTextSize(1, 13.0f);
+        okVar.setEllipsize(TextUtils.TruncateAt.END);
+        okVar.setMaxLines(1);
+        okVar.setSingleLine();
+        this.E.addView(okVar, kb1.h(-1, -2.0f, 83, 24.0f, 0.0f, 64.0f, 17.2f));
+        b20 b20Var = new b20(this, context, 11);
+        this.H = b20Var;
+        this.E.addView(b20Var, kb1.g(-1.0f, -1));
         View view = new View(context);
         this.L = view;
-        this.E.addView(view, gb1.h(1, 1.0f, 19, 24.0f, 0.0f, 0.0f, 0.0f));
+        this.E.addView(view, kb1.h(1, 1.0f, 19, 24.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.M = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
-        FrameLayout.LayoutParams h = gb1.h(-1, -2.0f, 51, 24.0f, 71.0f, 24.0f, 0.0f);
+        FrameLayout.LayoutParams h = kb1.h(-1, -2.0f, 51, 24.0f, 71.0f, 24.0f, 0.0f);
         this.P = h;
         this.E.addView(linearLayout, h);
         u5 u5Var = new u5(this, context, 0);
         this.N = u5Var;
         u5Var.getDrawable().M = AndroidUtilities.dp(4096.0f);
-        u5Var.f32442c.m(0.35f, 320L, 3.5f, dsVar);
+        u5Var.f32490c.m(0.35f, 320L, 3.5f, dsVar);
         u5Var.setScaleProperty(0.6f);
         u5Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         u5Var.setTextSize(AndroidUtilities.dp(23.0f));
         u5Var.setTextColor(-1);
         u5Var.setIgnoreRTL(true);
-        linearLayout.addView(u5Var, gb1.r(-1, 28));
+        linearLayout.addView(u5Var, kb1.r(-1, 28));
         u5 u5Var2 = new u5(this, context, 1);
         this.O = u5Var2;
-        u5Var2.f32442c.m(0.35f, 320L, 3.5f, dsVar);
+        u5Var2.f32490c.m(0.35f, 320L, 3.5f, dsVar);
         u5Var2.setScaleProperty(0.6f);
         u5Var2.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         u5Var2.setTextSize(AndroidUtilities.dp(14.0f));
@@ -824,6 +824,6 @@ public class w5 extends FrameLayout implements NotificationCenter.NotificationCe
         u5Var2.setTextDirection(3);
         u5Var2.setGravity(19);
         u5Var2.setIgnoreRTL(true);
-        linearLayout.addView(u5Var2, gb1.o(0.0f, 2.0f, 0.0f, 0.0f, -1, 16));
+        linearLayout.addView(u5Var2, kb1.o(0.0f, 2.0f, 0.0f, 0.0f, -1, 16));
     }
 }

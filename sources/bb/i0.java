@@ -28,7 +28,7 @@ public final class i0 extends nd.i implements ud.p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((i0) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+        return ((i0) create((ce.c0) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
     }
 
     @Override

@@ -14,13 +14,13 @@ public final class d extends h {
                 if (c() == '[') {
                     this.d++;
                     s f7 = f("![");
-                    i iVar = this.f12773a;
-                    bf.d dVar = iVar.f12786i;
+                    i iVar = this.f12772a;
+                    bf.d dVar = iVar.f12785i;
                     bf.d dVar2 = new bf.d(f7, i10, dVar, iVar.h, true);
                     if (dVar != null) {
                         dVar.d = true;
                     }
-                    iVar.f12786i = dVar2;
+                    iVar.f12785i = dVar2;
                     return f7;
                 }
                 return null;
@@ -28,13 +28,13 @@ public final class d extends h {
                 int i11 = this.d;
                 this.d = i11 + 1;
                 s f10 = f("[");
-                i iVar2 = this.f12773a;
-                bf.d dVar3 = iVar2.f12786i;
+                i iVar2 = this.f12772a;
+                bf.d dVar3 = iVar2.f12785i;
                 bf.d dVar4 = new bf.d(f10, i11, dVar3, iVar2.h, false);
                 if (dVar3 != null) {
                     dVar3.d = true;
                 }
-                iVar2.f12786i = dVar4;
+                iVar2.f12785i = dVar4;
                 return f10;
         }
     }

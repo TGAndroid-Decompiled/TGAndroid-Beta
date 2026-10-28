@@ -278,15 +278,15 @@ public abstract class g {
     public static ka.c y(int i10, s sVar) {
         Map unmodifiableMap;
         z zVar = new z(i10);
-        if (((HashMap) sVar.f18697c) == null) {
-            sVar.f18697c = new HashMap();
+        if (((HashMap) sVar.f18696c) == null) {
+            sVar.f18696c = new HashMap();
         }
-        ((HashMap) sVar.f18697c).put(e0.class, zVar);
-        String str = (String) sVar.f18696b;
-        if (((HashMap) sVar.f18697c) == null) {
+        ((HashMap) sVar.f18696c).put(e0.class, zVar);
+        String str = (String) sVar.f18695b;
+        if (((HashMap) sVar.f18696c) == null) {
             unmodifiableMap = Collections.EMPTY_MAP;
         } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) sVar.f18697c));
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) sVar.f18696c));
         }
         return new ka.c(str, unmodifiableMap);
     }

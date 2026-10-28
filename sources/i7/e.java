@@ -17,7 +17,7 @@ public final class e extends o6.g {
     @Override
     public final IInterface q(IBinder iBinder) {
         i.e(iBinder, "iBinder");
-        int i10 = c.f13880b;
+        int i10 = c.f13879b;
         IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
         if (queryLocalInterface instanceof d) {
             return (d) queryLocalInterface;
@@ -27,7 +27,7 @@ public final class e extends o6.g {
 
     @Override
     public final l6.c[] r() {
-        return r7.b.f47307c;
+        return r7.b.f47342c;
     }
 
     @Override

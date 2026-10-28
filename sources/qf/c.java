@@ -1,16 +1,16 @@
 package qf;
 public class c {
-    public Runnable f47033a;
-    public Runnable f47034b;
-    public Runnable f47035c;
+    public Runnable f47068a;
+    public Runnable f47069b;
+    public Runnable f47070c;
 
     public c(Runnable runnable, Runnable runnable2) {
-        this.f47033a = runnable;
-        this.f47035c = runnable2;
+        this.f47068a = runnable;
+        this.f47070c = runnable2;
     }
 
     public final void a(boolean z10) {
-        Runnable runnable = this.f47034b;
+        Runnable runnable = this.f47069b;
         if (runnable != null) {
             runnable.run();
         }
@@ -22,21 +22,21 @@ public class c {
     }
 
     public void c(boolean z10) {
-        Runnable runnable = this.f47035c;
+        Runnable runnable = this.f47070c;
         if (runnable != null) {
             runnable.run();
         }
     }
 
     public void d() {
-        Runnable runnable = this.f47033a;
+        Runnable runnable = this.f47068a;
         if (runnable != null) {
             runnable.run();
-            this.f47033a = null;
+            this.f47068a = null;
         }
     }
 
     public final void e(Runnable runnable) {
-        this.f47034b = runnable;
+        this.f47069b = runnable;
     }
 }

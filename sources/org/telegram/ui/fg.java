@@ -1,39 +1,79 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class fg implements DialogInterface.OnCancelListener {
-    public final int f39359a;
-    public final Object f39360b;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
+public final class fg implements Runnable {
+    public final int f39353a = 0;
+    public final wn f39354b;
+    public final boolean f39355c;
+    public final long d;
 
-    public fg(Object obj, int i10) {
-        this.f39359a = i10;
-        this.f39360b = obj;
+    public fg(wn wnVar, long j10, boolean z10) {
+        this.f39354b = wnVar;
+        this.d = j10;
+        this.f39355c = z10;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f39359a) {
+    public final void run() {
+        long j10;
+        long j11;
+        switch (this.f39353a) {
             case 0:
-                un unVar = (un) this.f39360b;
-                unVar.f44352n9 = true;
-                unVar.f44326l9 = 0;
-                unVar.Mb = 0;
-                unVar.Z4 = 0;
-                unVar.z9();
-                unVar.Zb(false);
-                return;
-            case 1:
-                mo moVar = (mo) this.f39360b;
-                moVar.L0 = false;
-                moVar.f41599b = null;
-                moVar.M0 = false;
-                return;
-            case 2:
-                ((np) this.f39360b).f41965n = null;
+                wn.u0(this.f39354b, this.d, this.f39355c);
                 return;
             default:
-                ((lb0) this.f39360b).b();
+                jk jkVar = this.f39354b.Y;
+                if (jkVar != null) {
+                    MediaController mediaController = MediaController.getInstance();
+                    if (!jkVar.Y1 && !jkVar.F2 && mediaController.isRecordingAudio() && !mediaController.isRecordingPaused() && mediaController.getRecordingGuid() == jkVar.G2) {
+                        jkVar.f25861c1 = false;
+                        org.telegram.ui.Components.ve veVar = jkVar.f25854b1;
+                        if (veVar != null) {
+                            veVar.j(org.telegram.ui.Components.yg.f35047a, false);
+                        }
+                        jkVar.F2 = true;
+                        jkVar.I1(0, true);
+                        if (this.f39355c) {
+                            jkVar.O = true;
+                            org.telegram.ui.Components.sg sgVar = jkVar.O1;
+                            if (sgVar != null) {
+                                sgVar.f32591y.d(1, true, false);
+                            }
+                            MediaDataController mediaDataController = MediaDataController.getInstance(jkVar.Q);
+                            long j12 = jkVar.Q2;
+                            wn wnVar = jkVar.P2;
+                            if (wnVar != null && wnVar.f45290t4) {
+                                j11 = wnVar.b();
+                            } else {
+                                j11 = 0;
+                            }
+                            mediaDataController.toggleDraftVoiceOnce(j12, j11, true);
+                        }
+                        long j13 = this.d;
+                        if (j13 > 0) {
+                            j10 = System.currentTimeMillis() - j13;
+                        } else {
+                            j10 = mediaController.recordTimeCount;
+                        }
+                        jkVar.f25898i1 = j10;
+                        org.telegram.ui.Components.xg xgVar = jkVar.Y0;
+                        if (xgVar != null) {
+                            xgVar.a(j10);
+                        }
+                        jkVar.f25959s4 = true;
+                        jkVar.u1();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
+    }
+
+    public fg(wn wnVar, boolean z10, long j10) {
+        this.f39354b = wnVar;
+        this.f39355c = z10;
+        this.d = j10;
     }
 }

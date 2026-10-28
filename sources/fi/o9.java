@@ -13,7 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class o9 extends View {
-    public static final int f11422a = 0;
+    public static final int f11421a = 0;
 
     public static void a(int i10, w7 w7Var) {
         l9 l9Var;
@@ -26,11 +26,11 @@ public abstract class o9 extends View {
                     SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
                     l9Var = b(serializedData);
                     serializedData.cleanup();
-                    if (l9Var.f11184f.isEmpty() && l9Var.f11182b.isEmpty()) {
+                    if (l9Var.f11183f.isEmpty() && l9Var.f11181b.isEmpty()) {
                         l9Var = new l9();
                     } else {
                         HashSet hashSet = new HashSet();
-                        hashSet.addAll(l9Var.f11183c);
+                        hashSet.addAll(l9Var.f11182c);
                         for (ArrayList arrayList : l9Var.d.values()) {
                             hashSet.addAll(arrayList);
                         }
@@ -46,7 +46,7 @@ public abstract class o9 extends View {
             }
             w7Var.E0 = l9Var;
             w7Var.F0.clear();
-            w7Var.F0.addAll(w7Var.E0.f11182b);
+            w7Var.F0.addAll(w7Var.E0.f11181b);
             if (UserConfig.getInstance(i10).isPremium()) {
                 w7Var.I0 = MessagesController.getInstance(i10).getMainSettings().getInt("story_period", 86400);
             } else {
@@ -91,7 +91,7 @@ public abstract class o9 extends View {
                         hashSet.addAll(arrayList4);
                     }
                     l9 l9Var = new l9(readInt32, arrayList, 0);
-                    ArrayList arrayList5 = l9Var.f11183c;
+                    ArrayList arrayList5 = l9Var.f11182c;
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     HashMap hashMap2 = l9Var.d;
@@ -107,9 +107,9 @@ public abstract class o9 extends View {
     }
 
     public static void c(SerializedData serializedData, l9 l9Var) {
-        int i10 = l9Var.f11181a;
+        int i10 = l9Var.f11180a;
         HashMap hashMap = l9Var.d;
-        ArrayList arrayList = l9Var.f11183c;
+        ArrayList arrayList = l9Var.f11182c;
         serializedData.writeInt32(i10);
         serializedData.writeInt32(481674261);
         ArrayList arrayList2 = l9Var.e;

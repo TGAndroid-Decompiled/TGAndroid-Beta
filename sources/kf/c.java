@@ -1,8 +1,8 @@
 package kf;
 public final class c {
-    public int f16548a;
-    public int f16549b;
-    public int f16550c;
+    public int f16547a;
+    public int f16548b;
+    public int f16549c;
     public int d;
     public String e;
 

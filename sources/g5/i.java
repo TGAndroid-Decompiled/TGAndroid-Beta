@@ -7,9 +7,9 @@ import li.e3;
 public final class i extends com.googlecode.mp4parser.a {
     public static final e3 d;
     public static final e3 e;
-    public String f12302a;
-    public long f12303b;
-    public LinkedList f12304c;
+    public String f12301a;
+    public long f12302b;
+    public LinkedList f12303c;
 
     static {
         ue.a aVar = new ue.a(i.class, "FileTypeBox.java");
@@ -23,37 +23,37 @@ public final class i extends com.googlecode.mp4parser.a {
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
-        this.f12302a = f5.b.d(byteBuffer);
-        this.f12303b = f5.b.i(byteBuffer);
+        this.f12301a = f5.b.d(byteBuffer);
+        this.f12302b = f5.b.i(byteBuffer);
         int remaining = byteBuffer.remaining() / 4;
-        this.f12304c = new LinkedList();
+        this.f12303c = new LinkedList();
         for (int i10 = 0; i10 < remaining; i10++) {
-            this.f12304c.add(f5.b.d(byteBuffer));
+            this.f12303c.add(f5.b.d(byteBuffer));
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
-        byteBuffer.put(f5.c.d(this.f12302a));
-        byteBuffer.putInt((int) this.f12303b);
-        for (String str : this.f12304c) {
+        byteBuffer.put(f5.c.d(this.f12301a));
+        byteBuffer.putInt((int) this.f12302b);
+        for (String str : this.f12303c) {
             byteBuffer.put(f5.c.d(str));
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f12304c.size() * 4) + 8;
+        return (this.f12303c.size() * 4) + 8;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("FileTypeBox[majorBrand=");
         h0.s(ue.a.b(d, this, this));
-        sb2.append(this.f12302a);
+        sb2.append(this.f12301a);
         sb2.append(";minorVersion=");
         h0.s(ue.a.b(e, this, this));
-        sb2.append(this.f12303b);
-        for (String str : this.f12304c) {
+        sb2.append(this.f12302b);
+        for (String str : this.f12303c) {
             sb2.append(";compatibleBrand=");
             sb2.append(str);
         }

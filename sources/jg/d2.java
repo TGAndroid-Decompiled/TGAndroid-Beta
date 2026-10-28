@@ -17,11 +17,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class d2 extends LinearLayout implements p6 {
-    public final TextView f15676a;
-    public final md f15677b;
-    public final md f15678c;
+    public final TextView f15675a;
+    public final md f15676b;
+    public final md f15677c;
     public final u6 d;
 
     public d2(Activity activity, int i10, long j10, String str, u6 u6Var) {
@@ -30,14 +30,14 @@ public final class d2 extends LinearLayout implements p6 {
         setOrientation(1);
         this.d = u6Var;
         TextView textView = new TextView(activity);
-        this.f15676a = textView;
+        this.f15675a = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextAlignment(4);
         textView.setLineSpacing(AndroidUtilities.dp(1.66f), 1.0f);
         textView.setGravity(17);
         md mdVar = new md(activity, 4);
-        this.f15677b = mdVar;
+        this.f15676b = mdVar;
         mdVar.setTextAlignment(4);
         mdVar.setGravity(17);
         mdVar.setTextSize(1, 12.0f);
@@ -70,7 +70,7 @@ public final class d2 extends LinearLayout implements p6 {
                 if (c10 == null) {
                     str2 = str;
                 } else {
-                    str2 = c10.f15641b;
+                    str2 = c10.f15640b;
                 }
                 textView.setText(LocaleController.getString(R.string.BusinessRepliesIntroTitle));
                 mdVar.setMaxWidth(AndroidUtilities.dp(208.0f));
@@ -79,7 +79,7 @@ public final class d2 extends LinearLayout implements p6 {
                 mdVar.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessRepliesIntro1, str2)));
                 mdVar.setPadding(AndroidUtilities.dp(28.0f), 0, 0, 0);
                 md mdVar2 = new md(activity, 4);
-                this.f15678c = mdVar2;
+                this.f15677c = mdVar2;
                 mdVar2.setMaxWidth(AndroidUtilities.dp(208.0f));
                 mdVar2.setTextAlignment(2);
                 mdVar2.setGravity(3);
@@ -90,12 +90,12 @@ public final class d2 extends LinearLayout implements p6 {
             i11 = 12;
         }
         int i12 = i11;
-        addView(imageView, gb1.x(78, 78, 49, 20, 17, 20, 9));
-        addView(textView, gb1.x(-2, -2, 49, 20, 0, 20, 6));
-        addView(mdVar, gb1.x(-2, -2, 49, i12, 0, i12, this.f15678c == null ? 19 : 9));
-        View view = this.f15678c;
+        addView(imageView, kb1.x(78, 78, 49, 20, 17, 20, 9));
+        addView(textView, kb1.x(-2, -2, 49, 20, 0, 20, 6));
+        addView(mdVar, kb1.x(-2, -2, 49, i12, 0, i12, this.f15677c == null ? 19 : 9));
+        View view = this.f15677c;
         if (view != null) {
-            addView(view, gb1.x(-2, -2, 49, 12, 0, 12, 19));
+            addView(view, kb1.x(-2, -2, 49, 12, 0, 12, 19));
         }
         updateColors();
     }
@@ -103,13 +103,13 @@ public final class d2 extends LinearLayout implements p6 {
     @Override
     public final void updateColors() {
         md mdVar;
-        TextView textView = this.f15676a;
-        if (textView != null && (mdVar = this.f15677b) != null) {
-            int i10 = y6.f23453ic;
+        TextView textView = this.f15675a;
+        if (textView != null && (mdVar = this.f15676b) != null) {
+            int i10 = y6.f23454ic;
             u6 u6Var = this.d;
             textView.setTextColor(y6.w0(i10, u6Var));
             mdVar.setTextColor(y6.w0(i10, u6Var));
-            md mdVar2 = this.f15678c;
+            md mdVar2 = this.f15677c;
             if (mdVar2 != null) {
                 mdVar2.setTextColor(y6.w0(i10, u6Var));
             }

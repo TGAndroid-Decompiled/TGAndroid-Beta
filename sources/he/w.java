@@ -1,4 +1,4 @@
 package he;
 public abstract class w {
-    public static final int f12822a = Runtime.getRuntime().availableProcessors();
+    public static final int f12821a = Runtime.getRuntime().availableProcessors();
 }

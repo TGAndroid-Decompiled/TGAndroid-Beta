@@ -4,16 +4,16 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.TextView;
 public final class o implements TextWatcher {
-    public final q f13165a;
+    public final q f13164a;
 
     public o(q qVar) {
-        this.f13165a = qVar;
+        this.f13164a = qVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        q qVar = this.f13165a;
+        q qVar = this.f13164a;
         TextView textView = qVar.m0;
         if (editable != null && editable.length() != 0) {
             i10 = 8;

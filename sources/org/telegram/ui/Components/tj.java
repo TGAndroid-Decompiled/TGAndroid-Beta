@@ -7,22 +7,22 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.tgnet.TLRPC;
-public final class tj extends lm0 {
-    public final Context f33089c;
+public final class tj extends mm0 {
+    public final Context f33061c;
     public ArrayList d = new ArrayList();
     public ArrayList e = new ArrayList();
-    public sj f33090f;
+    public sj f33062f;
     public int h;
-    public final xj f33091n;
+    public final xj f33063n;
 
     public tj(xj xjVar, Context context) {
-        this.f33091n = xjVar;
-        this.f33089c = context;
+        this.f33063n = xjVar;
+        this.f33061c = context;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47741f == 0) {
+        if (e1Var.f47776f == 0) {
             return true;
         }
         return false;
@@ -55,15 +55,15 @@ public final class tj extends lm0 {
     @Override
     public final void l() {
         super.l();
-        this.f33091n.Q();
+        this.f33063n.Q();
     }
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         boolean z10;
         TLRPC.User user;
-        if (e1Var.f47741f == 0) {
-            wj wjVar = (wj) e1Var.f47738a;
+        if (e1Var.f47776f == 0) {
+            wj wjVar = (wj) e1Var.f47773a;
             if (i10 != h() - 2) {
                 z10 = true;
             } else {
@@ -84,19 +84,19 @@ public final class tj extends lm0 {
             if (user != null) {
                 wjVar.a(user, (CharSequence) this.e.get(i10 - 1), new qj(1, user), z10);
             }
-            boolean containsKey = this.f33091n.f34732w.containsKey(nj.a(E));
-            zp zpVar = wjVar.d;
-            if (zpVar.getVisibility() != 0) {
-                zpVar.setVisibility(0);
+            boolean containsKey = this.f33063n.f34785w.containsKey(nj.a(E));
+            aq aqVar = wjVar.d;
+            if (aqVar.getVisibility() != 0) {
+                aqVar.setVisibility(0);
             }
-            zpVar.a(containsKey, false);
+            aqVar.a(containsKey, false);
         }
     }
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         View wjVar;
-        Context context = this.f33089c;
+        Context context = this.f33061c;
         if (i10 != 0) {
             if (i10 != 1) {
                 wjVar = new View(context);
@@ -107,7 +107,7 @@ public final class tj extends lm0 {
                 wjVar.setTag(-33024);
             }
         } else {
-            wjVar = new wj(context, this.f33091n.f30214a);
+            wjVar = new wj(context, this.f33063n.f30253a);
         }
         return new s4.e1(wjVar);
     }

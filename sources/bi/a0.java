@@ -9,8 +9,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.ConferenceCall;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.kr;
-import org.telegram.ui.un;
+import org.telegram.ui.mr;
+import org.telegram.ui.wn;
 public final class a0 implements Runnable {
     public final int f4246a;
     public final Object f4247b;
@@ -51,13 +51,13 @@ public final class a0 implements Runnable {
         this.f4249f = runnable;
     }
 
-    public a0(be beVar, long j10, ca caVar, MessageObject messageObject, un unVar) {
+    public a0(be beVar, long j10, ca caVar, MessageObject messageObject, wn wnVar) {
         this.f4246a = 7;
         this.d = beVar;
         this.f4248c = j10;
         this.e = caVar;
         this.f4247b = messageObject;
-        this.f4249f = unVar;
+        this.f4249f = wnVar;
     }
 
     public a0(Object obj, Object obj2, long j10, Object obj3, Object obj4, int i10) {
@@ -96,9 +96,9 @@ public final class a0 implements Runnable {
         this.f4249f = booleanCallback;
     }
 
-    public a0(kr krVar, long j10, TLObject tLObject, String str, TLObject tLObject2, int i10) {
+    public a0(mr mrVar, long j10, TLObject tLObject, String str, TLObject tLObject2, int i10) {
         this.f4246a = i10;
-        this.d = krVar;
+        this.d = mrVar;
         this.f4248c = j10;
         this.e = tLObject;
         this.f4249f = str;
@@ -106,7 +106,7 @@ public final class a0 implements Runnable {
     }
 
     public a0(zh.p1 p1Var, t9 t9Var, long j10, Utilities.Callback callback, Context context) {
-        this.f4246a = 16;
+        this.f4246a = 17;
         this.d = p1Var;
         this.e = t9Var;
         this.f4248c = j10;

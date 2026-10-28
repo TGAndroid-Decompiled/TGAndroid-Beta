@@ -2,32 +2,32 @@ package org.telegram.utils.recorder.audio;
 
 import android.os.SystemClock;
 import java.nio.ByteBuffer;
-import org.telegram.ui.Components.ny0;
+import org.telegram.ui.Components.oy0;
 import ui.i;
 import ui.o;
 public final class c implements Runnable {
-    public final int f46404a;
-    public final Object f46405b;
-    public final Object f46406c;
+    public final int f46439a;
+    public final Object f46440b;
+    public final Object f46441c;
 
     public c(int i10, Object obj, Object obj2) {
-        this.f46404a = i10;
-        this.f46405b = obj;
-        this.f46406c = obj2;
+        this.f46439a = i10;
+        this.f46440b = obj;
+        this.f46441c = obj2;
     }
 
     @Override
     public final void run() {
         byte[] bArr;
-        switch (this.f46404a) {
+        switch (this.f46439a) {
             case 0:
-                d dVar = (d) this.f46405b;
-                ByteBuffer byteBuffer = (ByteBuffer) this.f46406c;
-                int andDecrement = dVar.f46416m.getAndDecrement();
+                d dVar = (d) this.f46440b;
+                ByteBuffer byteBuffer = (ByteBuffer) this.f46441c;
+                int andDecrement = dVar.f46451m.getAndDecrement();
                 try {
-                    if (dVar.v == null && !dVar.f46425w) {
-                        dVar.f46427y = Math.max(dVar.f46427y, andDecrement);
-                        ByteBuffer byteBuffer2 = dVar.f46422s;
+                    if (dVar.v == null && !dVar.f46460w) {
+                        dVar.f46462y = Math.max(dVar.f46462y, andDecrement);
+                        ByteBuffer byteBuffer2 = dVar.f46457s;
                         byteBuffer.position(0);
                         while (byteBuffer.hasRemaining()) {
                             int min = Math.min(byteBuffer.remaining(), byteBuffer2.remaining());
@@ -41,11 +41,11 @@ public final class c implements Runnable {
                             }
                         }
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        if (elapsedRealtime - dVar.f46426x >= 100) {
-                            long d = dVar.f46423t.d();
-                            dVar.f46426x = elapsedRealtime;
+                        if (elapsedRealtime - dVar.f46461x >= 100) {
+                            long d = dVar.f46458t.d();
+                            dVar.f46461x = elapsedRealtime;
                             if (d >= 0) {
-                                dc.e eVar = dVar.f46411g;
+                                dc.e eVar = dVar.f46446g;
                                 ((o) eVar.f8321c).a((i) eVar.f8320b, d);
                             }
                         }
@@ -53,9 +53,9 @@ public final class c implements Runnable {
                 } catch (Throwable th2) {
                     try {
                         if (dVar.v == null) {
-                            dVar.f46410f.a("encoding failed", th2);
+                            dVar.f46445f.a("encoding failed", th2);
                             dVar.v = d.a(th2);
-                            dVar.f46417n = true;
+                            dVar.f46452n = true;
                         }
                     } finally {
                         dVar.c(byteBuffer);
@@ -63,15 +63,15 @@ public final class c implements Runnable {
                 }
                 return;
             default:
-                o oVar = (o) this.f46405b;
-                i iVar = (i) this.f46406c;
+                o oVar = (o) this.f46440b;
+                i iVar = (i) this.f46441c;
                 try {
-                    bArr = AudioRecorderNative.e(iVar.f49933b.getAbsolutePath());
+                    bArr = AudioRecorderNative.e(iVar.f49968b.getAbsolutePath());
                 } catch (Throwable th3) {
                     oVar.h.a("waveform extraction failed", th3);
                     bArr = null;
                 }
-                oVar.f49954i.post(new ny0(oVar, iVar, bArr, 16));
+                oVar.f49989i.post(new oy0(oVar, iVar, bArr, 16));
                 return;
         }
     }

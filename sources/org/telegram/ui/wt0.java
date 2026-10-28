@@ -1,89 +1,57 @@
 package org.telegram.ui;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.util.Property;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.ViewTreeObserver;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.camera.Size;
-import org.telegram.ui.Components.AnimatedFileNative;
-public final class wt0 implements Runnable {
-    public final String f45553a;
-    public final long f45554b;
-    public final int f45555c;
-    public final PhotoViewer d;
+public final class wt0 implements ViewTreeObserver.OnPreDrawListener {
+    public final qu0 f45401a;
+    public final Integer f45402b;
+    public final PhotoViewer f45403c;
 
-    public wt0(PhotoViewer photoViewer, String str, long j10, int i10) {
-        this.d = photoViewer;
-        this.f45553a = str;
-        this.f45554b = j10;
-        this.f45555c = i10;
+    public wt0(PhotoViewer photoViewer, qu0 qu0Var, Integer num) {
+        this.f45403c = photoViewer;
+        this.f45401a = qu0Var;
+        this.f45402b = num;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        boolean z11;
-        if (this.d.f35824x8 == this) {
-            int videoBitrate = MediaController.getVideoBitrate(this.f45553a);
-            int[] iArr = new int[11];
-            AnimatedFileNative.d(this.f45553a, iArr, this.f45554b);
-            if (iArr[10] != 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            PhotoViewer photoViewer = this.d;
-            if (iArr[0] != 0 && (!z10 || iArr[9] != 0)) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            photoViewer.f35707k8 = z11;
-            PhotoViewer photoViewer2 = this.d;
-            if (videoBitrate == -1) {
-                videoBitrate = iArr[3];
-            }
-            photoViewer2.f35671g8 = videoBitrate;
-            photoViewer2.f35680h8 = videoBitrate;
-            if (this.d.f35707k8) {
-                PhotoViewer photoViewer3 = this.d;
-                int i10 = iArr[1];
-                photoViewer3.f35636c8 = i10;
-                photoViewer3.f35654e8 = i10;
-                PhotoViewer photoViewer4 = this.d;
-                int i11 = iArr[2];
-                photoViewer4.f35645d8 = i11;
-                photoViewer4.f35663f8 = i11;
-                PhotoViewer photoViewer5 = this.d;
-                int max = Math.max(photoViewer5.f35636c8, this.d.f35645d8);
-                if (max > 1280) {
-                    photoViewer5.Z7 = 4;
-                } else if (max > 854) {
-                    photoViewer5.Z7 = 3;
-                } else if (max > 640) {
-                    photoViewer5.Z7 = 2;
-                } else {
-                    photoViewer5.Z7 = 1;
-                }
-                PhotoViewer photoViewer6 = this.d;
-                int i12 = this.f45555c;
-                if (i12 == -1) {
-                    i12 = photoViewer6.x2();
-                }
-                photoViewer6.Y7 = i12;
-                PhotoViewer photoViewer7 = this.d;
-                if (photoViewer7.f35671g8 != 0 && photoViewer7.f35630c2 != 1) {
-                    Size q02 = photoViewer7.q0();
-                    if (q02.getWidth() == photoViewer7.f35636c8 && q02.getHeight() == photoViewer7.f35645d8) {
-                        MediaController.extractRealEncoderBitrate(q02.getWidth(), q02.getHeight(), photoViewer7.f35680h8, false);
-                    } else {
-                        MediaController.extractRealEncoderBitrate(q02.getWidth(), q02.getHeight(), MediaController.makeVideoBitrate(photoViewer7.f35645d8, photoViewer7.f35636c8, photoViewer7.f35680h8, q02.getHeight(), q02.getWidth()), false);
-                    }
-                }
-                this.d.f35714l8 = MediaController.isH264Video(this.f45553a);
-            }
-            if (this.d.f35824x8 != this) {
-                return;
-            }
-            AndroidUtilities.runOnUIThread(new oe0(this, this, iArr, 23));
-        }
+    public final boolean onPreDraw() {
+        PhotoViewer photoViewer = this.f45403c;
+        photoViewer.f35688g0.getViewTreeObserver().removeOnPreDrawListener(this);
+        photoViewer.F.setTranslationY(-AndroidUtilities.dp(32.0f));
+        ViewPropertyAnimator duration = photoViewer.F.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
+        org.telegram.ui.Components.ds dsVar = org.telegram.ui.Components.ds.f27530f;
+        duration.setInterpolator(dsVar).start();
+        photoViewer.N0.setTranslationY(-AndroidUtilities.dp(32.0f));
+        photoViewer.N0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(dsVar).start();
+        photoViewer.O0.setTranslationY(-AndroidUtilities.dp(32.0f));
+        photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(dsVar).start();
+        photoViewer.P0.setTranslationY(AndroidUtilities.dp(32.0f));
+        photoViewer.P0.animate().alpha(1.0f).setDuration(150L).setInterpolator(dsVar).start();
+        photoViewer.S0.setTranslationY(AndroidUtilities.dp(32.0f));
+        photoViewer.S0.setAlpha(0.0f);
+        photoViewer.S0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(dsVar).start();
+        photoViewer.f35796s3.setTranslationY(AndroidUtilities.dp(32.0f));
+        photoViewer.f35796s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(dsVar).start();
+        photoViewer.f35670e0.setAlpha(0.0f);
+        photoViewer.L0.setAlpha(0);
+        photoViewer.f35752n4 = 4;
+        photoViewer.f35670e0.invalidate();
+        AnimatorSet animatorSet = new AnimatorSet();
+        bi.j5 j5Var = photoViewer.P0;
+        ObjectAnimator duration2 = ObjectAnimator.ofFloat(j5Var, View.TRANSLATION_Y, j5Var.getTranslationY(), 0.0f).setDuration(220L);
+        duration2.setInterpolator(dsVar);
+        bi.j5 j5Var2 = photoViewer.P0;
+        Property property = View.ALPHA;
+        ObjectAnimator duration3 = ObjectAnimator.ofFloat(j5Var2, property, 1.0f).setDuration(220L);
+        duration3.setInterpolator(dsVar);
+        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f35670e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f35714j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
+        animatorSet.addListener(new vt0(this));
+        animatorSet.start();
+        return true;
     }
 }

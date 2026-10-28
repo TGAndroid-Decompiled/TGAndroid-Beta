@@ -7,12 +7,12 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class n4 implements DialogInterface.OnClickListener {
-    public final int f41753a;
-    public final Object f41754b;
+    public final int f41628a;
+    public final Object f41629b;
 
     public n4(Object obj, int i10) {
-        this.f41753a = i10;
-        this.f41754b = obj;
+        this.f41628a = i10;
+        this.f41629b = obj;
     }
 
     @Override
@@ -20,36 +20,36 @@ public final class n4 implements DialogInterface.OnClickListener {
         ui.h hVar;
         String str;
         int i11 = 0;
-        switch (this.f41753a) {
+        switch (this.f41628a) {
             case 0:
-                p4 p4Var = (p4) this.f41754b;
+                p4 p4Var = (p4) this.f41629b;
                 p4Var.getClass();
-                wi.b bVar = wi.e.f51278c;
+                wi.b bVar = wi.e.f51336c;
                 if (i10 == 0) {
-                    hVar = ui.h.f49929a;
+                    hVar = ui.h.f49964a;
                 } else {
-                    hVar = ui.h.f49930b;
+                    hVar = ui.h.f49965b;
                 }
                 bVar.b(hVar);
-                p4Var.f42350b.m(2);
+                p4Var.f42297b.m(2);
                 return;
             case 1:
-                cy cyVar = (cy) this.f41754b;
+                ey eyVar = (ey) this.f41629b;
                 if (i10 == 0) {
-                    cyVar.getMessagesStorage().readAllDialogs(1);
+                    eyVar.getMessagesStorage().readAllDialogs(1);
                     return;
-                } else if (i10 != 1 || cyVar.f38586e0 == null) {
+                } else if (i10 != 1 || eyVar.f38998e0 == null) {
                     return;
                 } else {
                     while (true) {
-                        ay[] ayVarArr = cyVar.f38586e0;
-                        if (i11 < ayVarArr.length) {
-                            ay ayVar = ayVarArr[i11];
-                            if (ayVar.f37919s == 0 && ayVar.getVisibility() == 0) {
-                                org.telegram.ui.Cells.p2 Y3 = cy.Y3(cyVar.f38586e0[i11]);
-                                wx wxVar = cyVar.f38586e0[i11].f37913a;
-                                int i12 = wx.C3;
-                                wxVar.F1(true, Y3);
+                        dy[] dyVarArr = eyVar.f38998e0;
+                        if (i11 < dyVarArr.length) {
+                            dy dyVar = dyVarArr[i11];
+                            if (dyVar.f38708s == 0 && dyVar.getVisibility() == 0) {
+                                org.telegram.ui.Cells.p2 Y3 = ey.Y3(eyVar.f38998e0[i11]);
+                                zx zxVar = eyVar.f38998e0[i11].f38702a;
+                                int i12 = zx.C3;
+                                zxVar.F1(true, Y3);
                             }
                             i11++;
                         } else {
@@ -59,11 +59,11 @@ public final class n4 implements DialogInterface.OnClickListener {
                 }
                 break;
             case 2:
-                fg0 fg0Var = (fg0) this.f41754b;
+                hg0 hg0Var = (hg0) this.f41629b;
                 if (i10 == 0) {
                     BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
                     ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
-                    org.telegram.ui.Components.wc b02 = org.telegram.ui.Components.wc.b0(fg0Var.f39362a0);
+                    org.telegram.ui.Components.wc b02 = org.telegram.ui.Components.wc.b0(hg0Var.f39882a0);
                     int i13 = R.raw.chats_infotip;
                     if (BuildVars.LOGS_ENABLED) {
                         str = "Logs enabled.";
@@ -83,24 +83,24 @@ public final class n4 implements DialogInterface.OnClickListener {
                     }
                     return;
                 }
-                ProfileActivity.P4(fg0Var.f39362a0.getParentActivity(), false);
+                ProfileActivity.P4(hg0Var.f39882a0.getParentActivity(), false);
                 return;
             case 3:
-                in0 in0Var = (in0) this.f41754b;
+                kn0 kn0Var = (kn0) this.f41629b;
                 if (i10 == 0) {
-                    in0Var.f40321w = "male";
-                    in0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
+                    kn0Var.f40884w = "male";
+                    kn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
                     return;
                 } else if (i10 == 1) {
-                    in0Var.f40321w = "female";
-                    in0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
+                    kn0Var.f40884w = "female";
+                    kn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
                     return;
                 } else {
-                    in0Var.getClass();
+                    kn0Var.getClass();
                     return;
                 }
             default:
-                d81.d0((d81) this.f41754b, i10);
+                f81.d0((f81) this.f41629b, i10);
                 return;
         }
     }

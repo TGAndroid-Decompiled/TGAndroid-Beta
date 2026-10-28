@@ -2,7 +2,7 @@ package bi;
 
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class ja implements Runnable {
     public final int f4910a;
     public final org.telegram.ui.ActionBar.k3[] f4911b;
@@ -37,7 +37,7 @@ public final class ja implements Runnable {
                 this.f4911b[0].dismiss();
                 org.telegram.ui.ActionBar.r2 U3 = LaunchActivity.U();
                 if (U3 != null) {
-                    U3.presentFragment(un.ba(this.f4912c));
+                    U3.presentFragment(wn.ea(this.f4912c));
                     return;
                 }
                 return;
@@ -48,7 +48,7 @@ public final class ja implements Runnable {
                 }
                 org.telegram.ui.ActionBar.r2 U4 = LaunchActivity.U();
                 if (U4 != null) {
-                    U4.presentFragment(un.ba(this.f4912c));
+                    U4.presentFragment(wn.ea(this.f4912c));
                     return;
                 }
                 return;
@@ -56,7 +56,7 @@ public final class ja implements Runnable {
                 this.f4911b[0].dismiss();
                 org.telegram.ui.ActionBar.r2 U5 = LaunchActivity.U();
                 if (U5 != null) {
-                    U5.presentFragment(un.ba(this.f4912c));
+                    U5.presentFragment(wn.ea(this.f4912c));
                     return;
                 }
                 return;

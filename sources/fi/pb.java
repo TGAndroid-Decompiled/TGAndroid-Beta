@@ -3,22 +3,22 @@ package fi;
 import android.animation.ValueAnimator;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fc1;
+import org.telegram.ui.Components.kc1;
 import org.telegram.ui.Components.w20;
 public final class pb extends w20 {
-    public final rb f11452a;
+    public final rb f11451a;
 
     public pb(rb rbVar) {
-        this.f11452a = rbVar;
+        this.f11451a = rbVar;
     }
 
     @Override
     public final boolean a() {
         va vaVar;
-        sb sbVar = this.f11452a.f11568t0;
-        if (sbVar.f11623f0 == 0 && (vaVar = sbVar.B0) != null && !sbVar.S1 && vaVar.isInited() && !sbVar.P1 && !sbVar.O0.f11884x0) {
+        sb sbVar = this.f11451a.f11567t0;
+        if (sbVar.f11622f0 == 0 && (vaVar = sbVar.B0) != null && !sbVar.S1 && vaVar.isInited() && !sbVar.P1 && !sbVar.O0.f11883x0) {
             g7 g7Var = sbVar.D0;
-            if ((g7Var == null || (!g7Var.f10916x.f34690i && !g7Var.L)) && !sbVar.I() && sbVar.f11654p2 == null) {
+            if ((g7Var == null || (!g7Var.f10915x.f34725i && !g7Var.L)) && !sbVar.I() && sbVar.f11653p2 == null) {
                 return true;
             }
             return false;
@@ -28,17 +28,17 @@ public final class pb extends w20 {
 
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
-        sb sbVar = this.f11452a.f11568t0;
+        sb sbVar = this.f11451a.f11567t0;
         va vaVar = sbVar.B0;
-        if (vaVar != null && !sbVar.S1 && !sbVar.P1 && vaVar.isInited() && sbVar.f11623f0 == 0 && sbVar.O1 != -1) {
+        if (vaVar != null && !sbVar.S1 && !sbVar.P1 && vaVar.isInited() && sbVar.f11622f0 == 0 && sbVar.O1 != -1) {
             sbVar.B0.switchCamera();
             sbVar.O0.d(180.0f);
             sb.Z(sbVar.B0.isFrontface());
             if (sbVar.p0()) {
-                sbVar.f11662s.c(null);
+                sbVar.f11661s.c(null);
                 return true;
             }
-            sbVar.f11662s.d();
+            sbVar.f11661s.d();
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ public final class pb extends w20 {
 
     @Override
     public final boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        va vaVar = this.f11452a.f11568t0.B0;
+        va vaVar = this.f11451a.f11567t0.B0;
         if (vaVar != null) {
             vaVar.N = null;
             vaVar.K = -1L;
@@ -57,9 +57,9 @@ public final class pb extends w20 {
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        rb rbVar = this.f11452a;
-        rbVar.f11566r0 = 0.0f;
-        rbVar.f11567s0 = 0.0f;
+        rb rbVar = this.f11451a;
+        rbVar.f11565r0 = 0.0f;
+        rbVar.f11566s0 = 0.0f;
         return false;
     }
 
@@ -67,20 +67,20 @@ public final class pb extends w20 {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         g7 g7Var;
         va vaVar;
-        fc1 fc1Var;
+        kc1 kc1Var;
         fb fbVar;
         boolean z10;
         boolean z11;
-        rb rbVar = this.f11452a;
-        sb sbVar = rbVar.f11568t0;
+        rb rbVar = this.f11451a;
+        sb sbVar = rbVar.f11567t0;
         ValueAnimator valueAnimator = sbVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((g7Var = sbVar.D0) != null && (g7Var.f10916x.f34690i || g7Var.L)) || sbVar.O0.f11884x0 || (((vaVar = sbVar.B0) != null && vaVar.f10600s) || rbVar.f11564p0 || (((fc1Var = sbVar.V0) != null && (fc1Var.F || fc1Var.G)) || sbVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((g7Var = sbVar.D0) != null && (g7Var.f10915x.f34725i || g7Var.L)) || sbVar.O0.f11883x0 || (((vaVar = sbVar.B0) != null && vaVar.f10599s) || rbVar.f11563p0 || (((kc1Var = sbVar.V0) != null && (kc1Var.F || kc1Var.G)) || sbVar.H())))) {
             return false;
         }
         boolean z12 = true;
-        rbVar.f11562n0 = true;
+        rbVar.f11561n0 = true;
         if (sbVar.W) {
-            if (Math.abs(sbVar.f11658r.f11135a) >= AndroidUtilities.dp(1.0f)) {
+            if (Math.abs(sbVar.f11657r.f11134a) >= AndroidUtilities.dp(1.0f)) {
                 if ((f10 > 0.0f && Math.abs(f10) > 2000.0f && Math.abs(f10) > Math.abs(f7)) || sbVar.K > 0.4f) {
                     sbVar.p(true);
                 } else {
@@ -128,7 +128,7 @@ public final class pb extends w20 {
 
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        va vaVar = this.f11452a.f11568t0.B0;
+        va vaVar = this.f11451a.f11567t0.B0;
         if (vaVar != null) {
             b1 b1Var = vaVar.N;
             if (b1Var != null) {
@@ -143,7 +143,7 @@ public final class pb extends w20 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        sb sbVar = this.f11452a.f11568t0;
+        sb sbVar = this.f11451a.f11567t0;
         sbVar.W = false;
         sbVar.X = false;
         if (!a() && onSingleTapConfirmed(motionEvent)) {

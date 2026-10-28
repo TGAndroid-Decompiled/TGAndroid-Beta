@@ -1,151 +1,60 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.dg1;
-import org.telegram.ui.i01;
-public final class i01 extends org.telegram.ui.Cells.e7 {
-    public final j01 h;
+public final class i01 extends View {
+    public int f40016a;
+    public int f40017b;
+    public final l01 f40018c;
 
-    public i01(j01 j01Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+    public i01(l01 l01Var, Context context) {
         super(context);
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        this.h = j01Var;
-        this.f24035f = UserConfig.selectedAccount;
-        setOrientation(1);
-        TextView textView = new TextView(context);
-        this.f24032a = textView;
-        ic.a.o(15.0f, 1, textView);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
+        this.f40018c = l01Var;
+        this.f40016a = 0;
+        this.f40017b = 0;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int measuredHeight;
+        int i12 = this.f40017b;
+        ProfileActivity profileActivity = this.f40018c.e;
+        int i13 = 0;
+        if (i12 != profileActivity.f35972a.getMeasuredHeight()) {
+            this.f40016a = 0;
         }
-        textView.setGravity(i10 | 16);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.L6, u6Var);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(textView, org.telegram.ui.Components.gb1.x(-1, -2, i11 | 48, 21, 15, 21, 0));
-        org.telegram.ui.Components.z90 z90Var = new org.telegram.ui.Components.z90(context, u6Var);
-        this.f24033b = z90Var;
-        org.telegram.ui.ActionBar.f7.V(z90Var, org.telegram.ui.ActionBar.y6.G6, u6Var);
-        z90Var.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.f7.H(z90Var, org.telegram.ui.ActionBar.y6.J6, u6Var);
-        org.telegram.ui.ActionBar.f7.D(z90Var, org.telegram.ui.ActionBar.y6.K6, u6Var);
-        z90Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        if (LocaleController.isRTL) {
-            i12 = 5;
-        } else {
-            i12 = 3;
-        }
-        z90Var.setGravity(i12);
-        if (LocaleController.isRTL) {
-            i13 = 5;
-        } else {
-            i13 = 3;
-        }
-        addView(z90Var, org.telegram.ui.Components.gb1.x(-2, -2, i13, 21, 14, 21, 0));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        addView(linearLayout, org.telegram.ui.Components.gb1.o(21.0f, 16.0f, 21.0f, 15.0f, -1, 44));
-        for (int i16 = 0; i16 < 2; i16++) {
-            TextView textView2 = new TextView(context);
-            textView2.setBackground(org.telegram.ui.ActionBar.o6.f(new float[]{8.0f}, org.telegram.ui.ActionBar.y6.Oh));
-            org.telegram.ui.Components.gb1.c(textView2, 0.02f, 1.5f);
-            textView2.setLines(1);
-            textView2.setSingleLine(true);
-            textView2.setGravity(1);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
-            textView2.setGravity(17);
-            org.telegram.messenger.t.r(textView2, org.telegram.ui.ActionBar.y6.Sh, u6Var, 1, 14.0f);
-            if (i16 == 0) {
-                i14 = 0;
-            } else {
-                i14 = 4;
+        this.f40017b = profileActivity.f35972a.getMeasuredHeight();
+        int childCount = profileActivity.f35972a.getChildCount();
+        if (childCount == profileActivity.d.e.N2) {
+            int i14 = 0;
+            for (int i15 = 0; i15 < childCount; i15++) {
+                View childAt = profileActivity.f35972a.getChildAt(i15);
+                profileActivity.f35972a.getClass();
+                int R = RecyclerView.R(childAt);
+                if (R >= 0 && R != profileActivity.C3) {
+                    i14 += profileActivity.f35972a.getChildAt(i15).getMeasuredHeight();
+                }
             }
-            if (i16 == 0) {
-                i15 = 4;
+            View view = profileActivity.fragmentView;
+            if (view == null) {
+                measuredHeight = 0;
             } else {
-                i15 = 0;
+                measuredHeight = view.getMeasuredHeight();
             }
-            linearLayout.addView(textView2, org.telegram.ui.Components.gb1.q(0.5f, 0, 44, i14, i15, 0));
-            if (i16 == 0) {
-                this.f24034c = textView2;
-                textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final i01 f24014b;
-
-                    {
-                        this.f24014b = this;
-                    }
-
-                    @Override
-                    public final void onClick(View view) {
-                        switch (r2) {
-                            case 0:
-                                i01 i01Var = this.f24014b;
-                                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.h2(i01Var, i01Var.e, 27));
-                                return;
-                            default:
-                                i01 i01Var2 = this.f24014b;
-                                int i17 = i01Var2.e;
-                                ProfileActivity profileActivity = i01Var2.h.e;
-                                if (i17 == 0) {
-                                    profileActivity.presentFragment(new org.telegram.ui.g(3));
-                                    return;
-                                } else {
-                                    profileActivity.presentFragment(new dg1(8, null));
-                                    return;
-                                }
-                        }
-                    }
-                });
-            } else {
-                this.d = textView2;
-                textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final i01 f24014b;
-
-                    {
-                        this.f24014b = this;
-                    }
-
-                    @Override
-                    public final void onClick(View view) {
-                        switch (r2) {
-                            case 0:
-                                i01 i01Var = this.f24014b;
-                                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.h2(i01Var, i01Var.e, 27));
-                                return;
-                            default:
-                                i01 i01Var2 = this.f24014b;
-                                int i17 = i01Var2.e;
-                                ProfileActivity profileActivity = i01Var2.h.e;
-                                if (i17 == 0) {
-                                    profileActivity.presentFragment(new org.telegram.ui.g(3));
-                                    return;
-                                } else {
-                                    profileActivity.presentFragment(new dg1(8, null));
-                                    return;
-                                }
-                        }
-                    }
-                });
+            int currentActionBarHeight = ((measuredHeight - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - i14;
+            if (currentActionBarHeight > profileActivity.c4()) {
+                currentActionBarHeight = 0;
             }
+            if (currentActionBarHeight > 0) {
+                i13 = currentActionBarHeight;
+            }
+            int measuredWidth = profileActivity.f35972a.getMeasuredWidth();
+            this.f40016a = i13;
+            setMeasuredDimension(measuredWidth, i13);
+            return;
         }
+        setMeasuredDimension(profileActivity.f35972a.getMeasuredWidth(), this.f40016a);
     }
 }

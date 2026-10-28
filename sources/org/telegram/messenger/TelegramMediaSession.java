@@ -270,7 +270,7 @@ public class TelegramMediaSession {
                     TLRPC.User user = arrayList4.get(i12);
                     i12++;
                     TLRPC.User user2 = user;
-                    hVar.k(user2, user2.f22176id);
+                    hVar.k(user2, user2.f22177id);
                 }
             }
             if (!arrayList3.isEmpty()) {
@@ -281,7 +281,7 @@ public class TelegramMediaSession {
                     TLRPC.Chat chat = arrayList5.get(i11);
                     i11++;
                     TLRPC.Chat chat2 = chat;
-                    hVar2.k(chat2, chat2.f22027id);
+                    hVar2.k(chat2, chat2.f22028id);
                 }
             }
         } catch (Exception e) {
@@ -322,7 +322,7 @@ public class TelegramMediaSession {
                     TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(i10).clientUserId);
                     byteBufferValue.reuse();
                     if (MessageObject.isMusicMessage(TLdeserialize)) {
-                        TLdeserialize.f22048id = queryFinalized.intValue(1);
+                        TLdeserialize.f22049id = queryFinalized.intValue(1);
                         TLdeserialize.dialog_id = j10;
                         i11 = i10;
                         try {
@@ -350,7 +350,7 @@ public class TelegramMediaSession {
 
     public void lambda$new$0(int i10, int i11, Object[] objArr) {
         if (i10 == NotificationCenter.activeAccountChanged) {
-            AndroidUtilities.runOnUIThread(new hh(this, 13));
+            AndroidUtilities.runOnUIThread(new lh(this, 12));
         }
     }
 
@@ -361,7 +361,7 @@ public class TelegramMediaSession {
         this.loadingChats = true;
         int i10 = this.currentAccount;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-        messagesStorage.getStorageQueue().postRunnable(new x4(this, messagesStorage, i10, 22));
+        messagesStorage.getStorageQueue().postRunnable(new y4(this, messagesStorage, i10, 22));
     }
 
     private java.util.List<android.media.browse.MediaBrowser.MediaItem> loadChildrenSync(java.lang.String r9) {
@@ -411,7 +411,7 @@ public class TelegramMediaSession {
     }
 
     public Bundle buildRootHints() {
-        Bundle c10 = vh.c(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
+        Bundle c10 = wh.c(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
         c10.putInt("android.media.browse.CONTENT_STYLE_PLAYABLE_HINT", 1);
         return c10;
     }
@@ -424,7 +424,7 @@ public class TelegramMediaSession {
             }
             return;
         }
-        loadBrowseChildren("__ROOT__", new o4(runnable));
+        loadBrowseChildren("__ROOT__", new p4(runnable));
     }
 
     public long getAvailableActions() {
@@ -465,10 +465,10 @@ public class TelegramMediaSession {
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (dialog != null) {
-                hashMap.put(Long.valueOf(dialog.f22031id), Integer.valueOf(i10));
+                hashMap.put(Long.valueOf(dialog.f22032id), Integer.valueOf(i10));
             }
         }
-        Collections.sort(arrayList, new rk(hashMap, 0));
+        Collections.sort(arrayList, new sk(hashMap, 0));
         return arrayList;
     }
 
@@ -519,7 +519,7 @@ public class TelegramMediaSession {
         }
         long dialogIdFromMediaId = getDialogIdFromMediaId(str);
         if (dialogIdFromMediaId != 0 && this.musicObjects.f(dialogIdFromMediaId) == null) {
-            loadMusicForDialog(dialogIdFromMediaId, new p8(this, browseChildrenCallback, str, 29));
+            loadMusicForDialog(dialogIdFromMediaId, new q8(this, browseChildrenCallback, str, 29));
         } else {
             browseChildrenCallback.onResult(loadChildrenSync(str));
         }
@@ -536,7 +536,7 @@ public class TelegramMediaSession {
         lVar.B((long) (messageObject.getDuration() * 1000.0d));
         lVar.F("android.media.metadata.TITLE", messageObject.getMusicTitle());
         if (aVar != null && messageObject.isMusic()) {
-            str = aVar.f18425f;
+            str = aVar.f18424f;
         } else {
             str = null;
         }

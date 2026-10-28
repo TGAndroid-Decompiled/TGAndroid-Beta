@@ -1,8 +1,98 @@
 package org.telegram.ui.Components;
-public interface yu0 {
-    org.telegram.ui.ActionBar.g1 Z(int i10, Runnable runnable, String str, boolean z10, boolean z11);
 
-    void v();
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class yu0 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
+    public final org.telegram.ui.ActionBar.u6 f35167a;
+    public final org.telegram.ui.Cells.m6 f35168b;
+    public final View f35169c;
 
-    org.telegram.ui.ActionBar.g1 x(String str);
+    public yu0(int i10, Context context, boolean z10, org.telegram.ui.ActionBar.u6 u6Var, np0 np0Var) {
+        super(context);
+        int i11;
+        int i12;
+        this.f35167a = u6Var;
+        org.telegram.ui.Cells.m6 m6Var = new org.telegram.ui.Cells.m6(context, u6Var);
+        this.f35168b = m6Var;
+        int i13 = org.telegram.ui.ActionBar.y6.f23449i6;
+        org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.w0(i13, u6Var), 2, -1);
+        org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i13);
+        m6Var.setBackground(g02);
+        org.telegram.ui.ActionBar.f7.k(m6Var, g02, null, N, u6Var);
+        addView(m6Var, kb1.g(-2.0f, -1));
+        View view = new View(context);
+        this.f35169c = view;
+        GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
+        int i14 = org.telegram.ui.ActionBar.y6.f23357d6;
+        view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.y6.o1(0.4f, org.telegram.ui.ActionBar.y6.w0(i14, u6Var)), org.telegram.ui.ActionBar.y6.w0(i14, u6Var)}));
+        addView(view, kb1.g(60.0f, -1));
+        fi.d dVar = new fi.d(context, u6Var, true);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (z10) {
+            i11 = R.string.MoreSimilarBotsButton;
+        } else {
+            i11 = R.string.MoreSimilarButton;
+        }
+        spannableStringBuilder.append((CharSequence) LocaleController.getString(i11));
+        spannableStringBuilder.append((CharSequence) " ");
+        SpannableString spannableString = new SpannableString("l");
+        spannableString.setSpan(new zq(R.drawable.msg_mini_lock2, 0), 0, 1, 33);
+        spannableStringBuilder.append((CharSequence) spannableString);
+        dVar.i(spannableStringBuilder, false, true);
+        addView(dVar, kb1.h(-1, 48.0f, 48, 14.0f, 38.0f, 14.0f, 0.0f));
+        dVar.setOnClickListener(new x80(np0Var, 15));
+        aa0 aa0Var = new aa0(context, u6Var);
+        aa0Var.setTextSize(1, 13.0f);
+        aa0Var.setTextAlignment(4);
+        aa0Var.setGravity(17);
+        org.telegram.ui.ActionBar.f7.V(aa0Var, org.telegram.ui.ActionBar.y6.G6, u6Var);
+        org.telegram.ui.ActionBar.f7.H(aa0Var, org.telegram.ui.ActionBar.y6.f23541n6, u6Var);
+        aa0Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
+        if (z10) {
+            i12 = R.string.MoreSimilarBotsText;
+        } else {
+            i12 = R.string.MoreSimilarText;
+        }
+        SpannableStringBuilder premiumText = AndroidUtilities.premiumText(LocaleController.getString(i12), new np0(np0Var, 8));
+        SpannableString spannableString2 = new SpannableString("" + MessagesController.getInstance(i10).recommendedChannelsLimitPremium);
+        spannableString2.setSpan(new r61(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
+        aa0Var.setText(AndroidUtilities.replaceCharSequence("%s", premiumText, spannableString2));
+        addView(aa0Var, kb1.h(-1, -2.0f, 49, 24.0f, 96.0f, 24.0f, 12.0f));
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23357d6));
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(145.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        org.telegram.ui.ActionBar.u6 u6Var = this.f35167a;
+        View view = this.f35169c;
+        if (view != null) {
+            try {
+                if (view.getBackground() instanceof GradientDrawable) {
+                    int i10 = org.telegram.ui.ActionBar.y6.f23357d6;
+                    ((GradientDrawable) view.getBackground()).setColors(new int[]{org.telegram.ui.ActionBar.y6.o1(0.4f, org.telegram.ui.ActionBar.y6.w0(i10, u6Var)), org.telegram.ui.ActionBar.y6.w0(i10, u6Var)});
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+    }
 }

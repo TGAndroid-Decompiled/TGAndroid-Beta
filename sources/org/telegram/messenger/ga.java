@@ -1,26 +1,40 @@
 package org.telegram.messenger;
-public final class ga implements Runnable {
-    public final int f20155a;
-    public final MessagesController f20156b;
-    public final ag.y f20157c;
 
-    public ga(MessagesController messagesController, ag.y yVar, int i10) {
-        this.f20155a = i10;
-        this.f20156b = messagesController;
-        this.f20157c = yVar;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class ga implements Utilities.Callback2 {
+    public final int f20156a;
+    public final MessagesController f20157b;
+
+    public ga(MessagesController messagesController, int i10) {
+        this.f20156a = i10;
+        this.f20157b = messagesController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20155a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f20156a) {
             case 0:
-                this.f20156b.lambda$processUpdateArray$409(this.f20157c);
+                this.f20157b.lambda$updateWebBrowserSettings$523((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                this.f20156b.lambda$processUpdateArray$404(this.f20157c);
+                this.f20157b.lambda$removeWebBrowserException$521((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 2:
+                this.f20157b.lambda$addWebBrowserException$519((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 3:
+                this.f20157b.lambda$loadStakeDiceInfo$513((TLRPC.EmojiGameInfo) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 4:
+                this.f20157b.lambda$deleteReactionsFromMessage$131((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 5:
+                this.f20157b.lambda$loadWebBrowserConfig$515((Long) obj, (TL_account.TL_webBrowserSettings) obj2);
                 return;
             default:
-                this.f20156b.lambda$processUpdateArray$407(this.f20157c);
+                this.f20157b.lambda$clearAllWebBrowserExceptions$522((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

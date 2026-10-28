@@ -4,26 +4,26 @@ import a8.pb;
 import java.util.Map;
 import java.util.Set;
 public abstract class d implements p {
-    public transient a f52107a;
-    public transient pb f52108b;
+    public transient a f52165a;
+    public transient pb f52166b;
 
     public final Map a() {
-        pb pbVar = this.f52108b;
+        pb pbVar = this.f52166b;
         if (pbVar == null) {
             e eVar = (e) this;
-            pb pbVar2 = new pb(eVar, eVar.f52124c, 2);
-            this.f52108b = pbVar2;
+            pb pbVar2 = new pb(eVar, eVar.f52182c, 2);
+            this.f52166b = pbVar2;
             return pbVar2;
         }
         return pbVar;
     }
 
     public final Set b() {
-        a aVar = this.f52107a;
+        a aVar = this.f52165a;
         if (aVar == null) {
             e eVar = (e) this;
-            a aVar2 = new a(eVar, eVar.f52124c);
-            this.f52107a = aVar2;
+            a aVar2 = new a(eVar, eVar.f52182c);
+            this.f52165a = aVar2;
             return aVar2;
         }
         return aVar;

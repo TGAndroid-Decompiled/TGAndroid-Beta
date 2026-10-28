@@ -5,16 +5,16 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 public final class fx extends a5.m {
-    public final sz f28324w0;
+    public final sz f28305w0;
 
     public fx(sz szVar, Context context) {
         super(context);
-        this.f28324w0 = szVar;
+        this.f28305w0 = szVar;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f28324w0.f32727f) {
+        if (this.f28305w0.f32721f) {
             return false;
         }
         if (getParent() != null) {
@@ -30,7 +30,7 @@ public final class fx extends a5.m {
     @Override
     public final void x(int i10, boolean z10) {
         boolean z11;
-        sz szVar = this.f28324w0;
+        sz szVar = this.f28305w0;
         ux uxVar = szVar.I;
         if (i10 == 1) {
             z11 = true;
@@ -45,14 +45,14 @@ public final class fx extends a5.m {
                 ofFloat.setDuration(150L);
                 ofFloat.setInterpolator(ds.h);
                 ofFloat.start();
-                szVar.G(1, 0);
+                szVar.H(1, 0);
                 if (uxVar != null) {
                     uxVar.j(0, true);
                     return;
                 }
                 return;
             } else if (i10 == 1) {
-                szVar.f32734h0.y0(0);
+                szVar.f32728h0.y0(0);
                 return;
             } else {
                 szVar.D0.y0(1);

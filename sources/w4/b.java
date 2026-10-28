@@ -4,41 +4,41 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 public final class b {
-    public final RectF f50777a = new RectF();
-    public final Paint f50778b;
-    public final Paint f50779c;
+    public final RectF f50835a = new RectF();
+    public final Paint f50836b;
+    public final Paint f50837c;
     public final Paint d;
     public float e;
-    public float f50780f;
-    public float f50781g;
+    public float f50838f;
+    public float f50839g;
     public float h;
-    public int[] f50782i;
-    public int f50783j;
-    public float f50784k;
-    public float f50785l;
-    public float f50786m;
-    public boolean f50787n;
-    public Path f50788o;
-    public float f50789p;
-    public float f50790q;
-    public int f50791r;
-    public int f50792s;
-    public int f50793t;
-    public int f50794u;
+    public int[] f50840i;
+    public int f50841j;
+    public float f50842k;
+    public float f50843l;
+    public float f50844m;
+    public boolean f50845n;
+    public Path f50846o;
+    public float f50847p;
+    public float f50848q;
+    public int f50849r;
+    public int f50850s;
+    public int f50851t;
+    public int f50852u;
 
     public b() {
         Paint paint = new Paint();
-        this.f50778b = paint;
+        this.f50836b = paint;
         Paint paint2 = new Paint();
-        this.f50779c = paint2;
+        this.f50837c = paint2;
         Paint paint3 = new Paint();
         this.d = paint3;
         this.e = 0.0f;
-        this.f50780f = 0.0f;
-        this.f50781g = 0.0f;
+        this.f50838f = 0.0f;
+        this.f50839g = 0.0f;
         this.h = 5.0f;
-        this.f50789p = 1.0f;
-        this.f50793t = 255;
+        this.f50847p = 1.0f;
+        this.f50851t = 255;
         paint.setStrokeCap(Paint.Cap.SQUARE);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
@@ -48,7 +48,7 @@ public final class b {
     }
 
     public final void a(int i10) {
-        this.f50783j = i10;
-        this.f50794u = this.f50782i[i10];
+        this.f50841j = i10;
+        this.f50852u = this.f50840i[i10];
     }
 }

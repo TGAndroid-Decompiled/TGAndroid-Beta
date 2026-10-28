@@ -2,14 +2,14 @@ package di;
 
 import org.telegram.messenger.Utilities;
 public final class h2 implements Utilities.Callback4 {
-    public final int f8614a;
-    public final Object f8615b;
-    public final Object f8616c;
+    public final int f8613a;
+    public final Object f8614b;
+    public final Object f8615c;
 
     public h2(int i10, Object obj, Object obj2) {
-        this.f8614a = i10;
-        this.f8615b = obj;
-        this.f8616c = obj2;
+        this.f8613a = i10;
+        this.f8614b = obj;
+        this.f8615c = obj2;
     }
 
     @Override

@@ -42,7 +42,7 @@ public class dh extends AbstractCollection implements List {
                 m();
                 boolean isEmpty2 = this.f412c.isEmpty();
                 ((List) this.f412c).add(i10, obj);
-                ((f9.k1) this.h).f10293f++;
+                ((f9.k1) this.h).f10292f++;
                 if (isEmpty2) {
                     h();
                     return;
@@ -87,7 +87,7 @@ public class dh extends AbstractCollection implements List {
                 boolean addAll2 = ((List) this.f412c).addAll(i10, collection);
                 if (addAll2) {
                     int size3 = this.f412c.size();
-                    ((f9.k1) this.h).f10293f += size3 - size2;
+                    ((f9.k1) this.h).f10292f += size3 - size2;
                     if (size2 == 0) {
                         h();
                         return addAll2;
@@ -128,7 +128,7 @@ public class dh extends AbstractCollection implements List {
                 int size = size();
                 if (size != 0) {
                     this.f412c.clear();
-                    ((f9.k1) this.f413f).f10293f -= size;
+                    ((f9.k1) this.f413f).f10292f -= size;
                     n();
                     return;
                 }
@@ -336,7 +336,7 @@ public class dh extends AbstractCollection implements List {
                     dhVar2.o();
                     return;
                 } else {
-                    ((y7.e) this.f413f).f52124c.put(this.f411b, this.f412c);
+                    ((y7.e) this.f413f).f52182c.put(this.f411b, this.f412c);
                     return;
                 }
         }
@@ -361,7 +361,7 @@ public class dh extends AbstractCollection implements List {
                     dhVar2.p();
                     return;
                 } else if (this.f412c.isEmpty()) {
-                    ((y7.e) this.f413f).f52124c.remove(this.f411b);
+                    ((y7.e) this.f413f).f52182c.remove(this.f411b);
                     return;
                 } else {
                     return;
@@ -381,7 +381,7 @@ public class dh extends AbstractCollection implements List {
                 m();
                 Object remove2 = ((List) this.f412c).remove(i10);
                 f9.k1 k1Var = (f9.k1) this.h;
-                k1Var.f10293f--;
+                k1Var.f10292f--;
                 n();
                 return remove2;
             default:
@@ -417,7 +417,7 @@ public class dh extends AbstractCollection implements List {
                 boolean removeAll2 = this.f412c.removeAll(collection);
                 if (removeAll2) {
                     int size2 = this.f412c.size();
-                    ((f9.k1) this.f413f).f10293f += size2 - size;
+                    ((f9.k1) this.f413f).f10292f += size2 - size;
                     n();
                     return removeAll2;
                 }
@@ -456,7 +456,7 @@ public class dh extends AbstractCollection implements List {
                 boolean retainAll2 = this.f412c.retainAll(collection);
                 if (retainAll2) {
                     int size2 = this.f412c.size();
-                    ((f9.k1) this.f413f).f10293f += size2 - size;
+                    ((f9.k1) this.f413f).f10292f += size2 - size;
                     n();
                 }
                 return retainAll2;
@@ -595,7 +595,7 @@ public class dh extends AbstractCollection implements List {
                         throw new ConcurrentModificationException();
                     }
                     return;
-                } else if (this.f412c.isEmpty() && (collection = (Collection) ((y7.e) this.f413f).f52124c.get(this.f411b)) != null) {
+                } else if (this.f412c.isEmpty() && (collection = (Collection) ((y7.e) this.f413f).f52182c.get(this.f411b)) != null) {
                     this.f412c = collection;
                     return;
                 } else {
@@ -652,7 +652,7 @@ public class dh extends AbstractCollection implements List {
                 boolean remove2 = this.f412c.remove(obj);
                 if (remove2) {
                     f9.k1 k1Var = (f9.k1) this.f413f;
-                    k1Var.f10293f--;
+                    k1Var.f10292f--;
                     n();
                 }
                 return remove2;
@@ -685,7 +685,7 @@ public class dh extends AbstractCollection implements List {
                 boolean isEmpty2 = this.f412c.isEmpty();
                 boolean add2 = this.f412c.add(obj);
                 if (add2) {
-                    ((f9.k1) this.f413f).f10293f++;
+                    ((f9.k1) this.f413f).f10292f++;
                     if (isEmpty2) {
                         h();
                     }
@@ -733,7 +733,7 @@ public class dh extends AbstractCollection implements List {
                 boolean addAll2 = this.f412c.addAll(collection);
                 if (addAll2) {
                     int size3 = this.f412c.size();
-                    ((f9.k1) this.f413f).f10293f += size3 - size2;
+                    ((f9.k1) this.f413f).f10292f += size3 - size2;
                     if (size2 == 0) {
                         h();
                         return addAll2;

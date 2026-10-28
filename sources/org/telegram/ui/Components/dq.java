@@ -8,21 +8,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class dq extends FrameLayout {
-    public TextView[] f27578a;
-    public ak0[] f27579b;
-    public ImageView f27580c;
+    public TextView[] f27517a;
+    public bk0[] f27518b;
+    public ImageView f27519c;
     public AnimatorSet d;
-    public bq e;
-    public float f27581f;
+    public cp e;
+    public float f27520f;
 
     public final void a() {
         if (getTag() == null) {
             return;
         }
         setTag(null);
-        bq bqVar = this.e;
-        if (bqVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(bqVar);
+        cp cpVar = this.e;
+        if (cpVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(cpVar);
             this.e = null;
         }
         AnimatorSet animatorSet = this.d;
@@ -39,6 +39,6 @@ public final class dq extends FrameLayout {
     }
 
     public float getBaseTranslationY() {
-        return this.f27581f;
+        return this.f27520f;
     }
 }

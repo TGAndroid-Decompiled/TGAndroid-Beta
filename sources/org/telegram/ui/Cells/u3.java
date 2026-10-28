@@ -11,18 +11,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class u3 extends ViewGroup implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.ActionBar.u6 f25477a;
-    public final TextView f25478b;
-    public final int f25479c;
+    public final org.telegram.ui.ActionBar.u6 f25479a;
+    public final TextView f25480b;
+    public final int f25481c;
     public ArrayList d;
 
     public u3(Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f25477a = u6Var;
-        this.f25479c = i10;
+        this.f25479a = u6Var;
+        this.f25481c = i10;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f25478b = textView;
+        this.f25480b = textView;
         textView.setText(LocaleController.getString(R.string.NewsInterests));
         textView.setTextSize(12.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -41,7 +41,7 @@ public final class u3 extends ViewGroup implements NotificationCenter.Notificati
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getGlobalInstance().addWeakObserver(this, NotificationCenter.emojiLoaded);
     }
 
     @Override
@@ -52,13 +52,13 @@ public final class u3 extends ViewGroup implements NotificationCenter.Notificati
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawLine(AndroidUtilities.dp(14.0f), getHeight() - 1, getWidth() - AndroidUtilities.dp(14.0f), getHeight() - 1, org.telegram.ui.ActionBar.y6.f23478k0);
+        canvas.drawLine(AndroidUtilities.dp(14.0f), getHeight() - 1, getWidth() - AndroidUtilities.dp(14.0f), getHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
-        this.f25478b.layout(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f), getWidth() - AndroidUtilities.dp(14.0f), AndroidUtilities.dp(24.0f));
+        this.f25480b.layout(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f), getWidth() - AndroidUtilities.dp(14.0f), AndroidUtilities.dp(24.0f));
         int dp = AndroidUtilities.dp(14.0f);
         int dp2 = AndroidUtilities.dp(32.0f);
         for (int i15 = 1; i15 < getChildCount(); i15++) {
@@ -81,7 +81,7 @@ public final class u3 extends ViewGroup implements NotificationCenter.Notificati
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int dp = size - AndroidUtilities.dp(28.0f);
-        this.f25478b.measure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(14.0f), 1073741824));
+        this.f25480b.measure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(14.0f), 1073741824));
         int dp2 = AndroidUtilities.dp(32.0f);
         int i12 = 0;
         int i13 = 0;

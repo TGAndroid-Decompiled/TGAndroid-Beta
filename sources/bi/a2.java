@@ -5,13 +5,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.yj0;
 import org.telegram.ui.Components.z00;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cy;
+import org.telegram.ui.ey;
 public final class a2 implements Runnable {
     public final int f4251a;
     public final h7 f4252b;
@@ -102,9 +102,9 @@ public final class a2 implements Runnable {
                 org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
                 TL_stars.TL_starGiftUnique e22 = h7Var.e2();
                 if (U != null && e22 != null) {
-                    cy cyVar = new cy(vh.c(4, "onlySelect", "dialogsType", true));
-                    cyVar.C2 = new androidx.car.app.utils.a(h7Var, e22, cyVar, 2);
-                    U.presentFragment(cyVar);
+                    ey eyVar = new ey(wh.c(4, "onlySelect", "dialogsType", true));
+                    eyVar.C2 = new androidx.car.app.utils.a(h7Var, e22, eyVar, 2);
+                    U.presentFragment(eyVar);
                     return;
                 }
                 return;
@@ -128,8 +128,8 @@ public final class a2 implements Runnable {
                 }
                 org.telegram.ui.Components.y9 y9Var = b7Var.d[0];
                 if (imageReceiver != null && y9Var != null && y9Var.getImageReceiver() != null) {
-                    xj0 lottieAnimation = imageReceiver.getLottieAnimation();
-                    xj0 lottieAnimation2 = y9Var.getImageReceiver().getLottieAnimation();
+                    yj0 lottieAnimation = imageReceiver.getLottieAnimation();
+                    yj0 lottieAnimation2 = y9Var.getImageReceiver().getLottieAnimation();
                     if (lottieAnimation2 != null && lottieAnimation != null) {
                         lottieAnimation2.T(lottieAnimation.t(), false);
                     } else if (lottieAnimation2 == null && lottieAnimation != null) {
@@ -169,8 +169,8 @@ public final class a2 implements Runnable {
                     str = "";
                 }
                 org.telegram.ui.Components.qc M = h7Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
-                M.f31889j = 5000;
-                M.f31900u = true;
+                M.f31861j = 5000;
+                M.f31872u = true;
                 M.j();
                 z00 z00Var = h7Var.f4727a0;
                 if (z00Var != null) {

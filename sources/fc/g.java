@@ -2,26 +2,26 @@ package fc;
 
 import c3.h0;
 public final class g {
-    public final float f10417a;
-    public final float f10418b;
-    public final float f10419c;
+    public final float f10416a;
+    public final float f10417b;
+    public final float f10418c;
     public final float d;
     public final float e;
-    public final float f10420f;
-    public final float f10421g;
+    public final float f10419f;
+    public final float f10420g;
     public final float h;
-    public final float f10422i;
+    public final float f10421i;
 
     public g(float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {
-        this.f10417a = f7;
-        this.f10418b = f12;
-        this.f10419c = f15;
+        this.f10416a = f7;
+        this.f10417b = f12;
+        this.f10418c = f15;
         this.d = f10;
         this.e = f13;
-        this.f10420f = f16;
-        this.f10421g = f11;
+        this.f10419f = f16;
+        this.f10420g = f11;
         this.h = f14;
-        this.f10422i = f17;
+        this.f10421i = f17;
     }
 
     public static g a(float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16) {

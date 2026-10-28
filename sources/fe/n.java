@@ -2,8 +2,8 @@ package fe;
 
 import he.v;
 public abstract class n {
-    public static final v f10464a = new v("NONE", 0);
-    public static final v f10465b = new v("PENDING", 0);
+    public static final v f10463a = new v("NONE", 0);
+    public static final v f10464b = new v("PENDING", 0);
 
     public static final java.io.Serializable a(fe.b r4, fe.c r5, nd.c r6) {
         throw new UnsupportedOperationException("Method not decompiled: fe.n.a(fe.b, fe.c, nd.c):java.io.Serializable");

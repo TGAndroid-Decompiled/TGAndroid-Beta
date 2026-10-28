@@ -8,20 +8,20 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 public final class gs extends View implements org.telegram.ui.ActionBar.p6 {
-    public final TextPaint f28705a;
-    public final TextPaint f28706b;
-    public final String f28707c;
+    public final TextPaint f28746a;
+    public final TextPaint f28747b;
+    public final String f28748c;
     public final String d;
     public final Rect e;
 
     public gs(Context context, String str, String str2) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
-        this.f28705a = textPaint;
+        this.f28746a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f28706b = textPaint2;
+        this.f28747b = textPaint2;
         this.e = new Rect();
-        this.f28707c = str;
+        this.f28748c = str;
         this.d = str2;
         textPaint.setTextSize(AndroidUtilities.dp(24.0f));
         textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
@@ -31,11 +31,11 @@ public final class gs extends View implements org.telegram.ui.ActionBar.p6 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f28706b;
+        TextPaint textPaint = this.f28747b;
         String str = this.d;
         float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f28705a;
-        String str2 = this.f28707c;
+        TextPaint textPaint2 = this.f28746a;
+        String str2 = this.f28748c;
         float measureText2 = textPaint2.measureText(str2);
         int length = str2.length();
         Rect rect = this.e;
@@ -47,8 +47,8 @@ public final class gs extends View implements org.telegram.ui.ActionBar.p6 {
 
     @Override
     public final void updateColors() {
-        this.f28705a.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.G6, false));
-        this.f28706b.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.H6, false));
+        this.f28746a.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.G6, false));
+        this.f28747b.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.H6, false));
         invalidate();
     }
 

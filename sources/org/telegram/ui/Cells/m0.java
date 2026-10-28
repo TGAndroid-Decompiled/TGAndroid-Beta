@@ -13,49 +13,49 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.q11;
+import org.telegram.ui.Components.r11;
 import org.telegram.ui.Components.xc;
 public final class m0 {
-    public final s1 f24406a;
-    public final org.telegram.ui.Components.j9[] f24407b;
-    public final ImageReceiver[] f24408c;
+    public final s1 f24408a;
+    public final org.telegram.ui.Components.j9[] f24409b;
+    public final ImageReceiver[] f24410c;
     public final TextPaint d;
     public final CharSequence e;
-    public StaticLayout f24409f;
-    public final boolean f24410g;
+    public StaticLayout f24411f;
+    public final boolean f24412g;
     public final Drawable h;
-    public final Paint f24411i;
-    public final Paint f24412j;
-    public final q11 f24413k;
-    public boolean f24414l;
-    public boolean f24415m;
-    public final xc f24416n;
-    public final TLObject f24417o;
+    public final Paint f24413i;
+    public final Paint f24414j;
+    public final r11 f24415k;
+    public boolean f24416l;
+    public boolean f24417m;
+    public final xc f24418n;
+    public final TLObject f24419o;
 
     public m0(int i10, s1 s1Var, TLObject[] tLObjectArr, int i11) {
         TLObject tLObject;
         this.d = new TextPaint(1);
-        this.f24411i = new Paint(1);
-        this.f24412j = new Paint(1);
+        this.f24413i = new Paint(1);
+        this.f24414j = new Paint(1);
         new Paint(1);
-        this.f24406a = s1Var;
-        this.f24417o = tLObjectArr[0];
-        this.f24416n = new k0(s1Var, s1Var, 0);
-        this.f24408c = new ImageReceiver[3];
-        this.f24407b = new org.telegram.ui.Components.j9[3];
+        this.f24408a = s1Var;
+        this.f24419o = tLObjectArr[0];
+        this.f24418n = new k0(s1Var, s1Var, 0);
+        this.f24410c = new ImageReceiver[3];
+        this.f24409b = new org.telegram.ui.Components.j9[3];
         for (int i12 = 0; i12 < 3; i12++) {
-            this.f24408c[i12] = new ImageReceiver(s1Var);
-            this.f24408c[i12].setParentView(s1Var);
-            this.f24408c[i12].setRoundRadius(AndroidUtilities.dp(54.0f));
-            this.f24407b[i12] = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.u6) null);
+            this.f24410c[i12] = new ImageReceiver(s1Var);
+            this.f24410c[i12].setParentView(s1Var);
+            this.f24410c[i12].setRoundRadius(AndroidUtilities.dp(54.0f));
+            this.f24409b[i12] = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.u6) null);
             if (i12 < tLObjectArr.length && (tLObject = tLObjectArr[i12]) != null) {
-                this.f24407b[i12].j(i10, tLObject);
-                this.f24408c[i12].setForUserOrChat(tLObjectArr[i12], this.f24407b[i12]);
+                this.f24409b[i12].j(i10, tLObject);
+                this.f24410c[i12].setForUserOrChat(tLObjectArr[i12], this.f24409b[i12]);
             } else {
                 Paint paint = new Paint(1);
-                int[] iArr = {org.telegram.ui.ActionBar.y6.v(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23618ra, s1Var.Id), org.telegram.ui.ActionBar.y6.o1(0.5f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23748y6, s1Var.Id)))};
+                int[] iArr = {org.telegram.ui.ActionBar.y6.v(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23619ra, s1Var.Id), org.telegram.ui.ActionBar.y6.o1(0.5f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23749y6, s1Var.Id)))};
                 paint.setColor(iArr[0]);
-                this.f24408c[i12].setImageBitmap(new l0(s1Var, iArr, paint));
+                this.f24410c[i12].setImageBitmap(new l0(s1Var, iArr, paint));
             }
         }
         if (s1Var.M0) {
@@ -64,13 +64,13 @@ public final class m0 {
         this.d.setTextSize(AndroidUtilities.dp(11.0f));
         boolean isPremium = UserConfig.getInstance(s1Var.I7).isPremium();
         this.e = LocaleController.getString(isPremium ? R.string.MoreSimilar : R.string.UnlockSimilar);
-        this.f24411i.setStyle(Paint.Style.STROKE);
-        this.f24410g = true;
+        this.f24413i.setStyle(Paint.Style.STROKE);
+        this.f24412g = true;
         this.h = isPremium ? null : s1Var.getContext().getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
-        if (b(this.f24417o) == null) {
-            this.f24413k = null;
+        if (b(this.f24419o) == null) {
+            this.f24415k = null;
         } else {
-            this.f24413k = new q11(ic.a.i(i11, "+"), 9.33f, AndroidUtilities.bold());
+            this.f24415k = new r11(ic.a.i(i11, "+"), 9.33f, AndroidUtilities.bold());
         }
     }
 
@@ -90,7 +90,7 @@ public final class m0 {
     public final void a() {
         int i10 = 0;
         while (true) {
-            ImageReceiver[] imageReceiverArr = this.f24408c;
+            ImageReceiver[] imageReceiverArr = this.f24410c;
             if (i10 < imageReceiverArr.length) {
                 imageReceiverArr[i10].onAttachedToWindow();
                 i10++;
@@ -104,13 +104,13 @@ public final class m0 {
         CharSequence charSequence;
         TextPaint textPaint = new TextPaint(1);
         this.d = textPaint;
-        this.f24411i = new Paint(1);
-        this.f24412j = new Paint(1);
+        this.f24413i = new Paint(1);
+        this.f24414j = new Paint(1);
         new Paint(1);
-        this.f24406a = s1Var;
-        this.f24417o = tLObject;
-        this.f24416n = new k0(s1Var, s1Var, 1);
-        this.f24408c = r2;
+        this.f24408a = s1Var;
+        this.f24419o = tLObject;
+        this.f24418n = new k0(s1Var, s1Var, 1);
+        this.f24410c = r2;
         ImageReceiver imageReceiver = new ImageReceiver(s1Var);
         ImageReceiver[] imageReceiverArr = {imageReceiver};
         imageReceiver.setParentView(s1Var);
@@ -118,7 +118,7 @@ public final class m0 {
         if (s1Var.M0) {
             a();
         }
-        this.f24407b = r1;
+        this.f24409b = r1;
         org.telegram.ui.Components.j9 j9Var = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.u6) null);
         org.telegram.ui.Components.j9[] j9VarArr = {j9Var};
         j9Var.j(i10, tLObject);
@@ -136,13 +136,13 @@ public final class m0 {
         } catch (Exception unused) {
         }
         this.e = charSequence;
-        this.f24411i.setStyle(Paint.Style.STROKE);
-        this.f24410g = false;
+        this.f24413i.setStyle(Paint.Style.STROKE);
+        this.f24412g = false;
         this.h = s1Var.getContext().getResources().getDrawable(R.drawable.mini_reply_user).mutate();
         if (b(tLObject) == null) {
-            this.f24413k = null;
+            this.f24415k = null;
         } else {
-            this.f24413k = new q11(b(tLObject), 9.33f, AndroidUtilities.bold());
+            this.f24415k = new r11(b(tLObject), 9.33f, AndroidUtilities.bold());
         }
     }
 }

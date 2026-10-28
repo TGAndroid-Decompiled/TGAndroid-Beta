@@ -1,11 +1,15 @@
 package vi;
-public final class u {
-    public long f50611a = Long.MIN_VALUE;
-    public long f50612b = Long.MIN_VALUE;
-    public long f50613c = Long.MIN_VALUE;
-    public long d;
 
-    public u(long j10) {
-        this.d = j10;
+import android.media.MediaCodec;
+import java.nio.ByteBuffer;
+public final class u {
+    public final boolean f50630a;
+    public final ByteBuffer f50631b;
+    public final MediaCodec.BufferInfo f50632c;
+
+    public u(boolean z10, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
+        this.f50630a = z10;
+        this.f50631b = byteBuffer;
+        this.f50632c = bufferInfo;
     }
 }

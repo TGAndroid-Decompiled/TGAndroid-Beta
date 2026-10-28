@@ -38,13 +38,13 @@ public final class j extends u1 {
     public final boolean C0;
     public final SparseArray D0;
     public final SparseBooleanArray E0;
-    public final boolean f51325w0;
-    public final boolean f51326x0;
-    public final boolean f51327y0;
-    public final boolean f51328z0;
+    public final boolean f51383w0;
+    public final boolean f51384x0;
+    public final boolean f51385y0;
+    public final boolean f51386z0;
 
     static {
-        String str = n0.f9692a;
+        String str = n0.f9691a;
         G0 = Integer.toString(1000, 36);
         H0 = Integer.toString(1001, 36);
         I0 = Integer.toString(1002, 36);
@@ -68,10 +68,10 @@ public final class j extends u1 {
 
     public j(i iVar) {
         super(iVar);
-        this.f51325w0 = iVar.J;
-        this.f51326x0 = iVar.K;
-        this.f51327y0 = iVar.L;
-        this.f51328z0 = iVar.M;
+        this.f51383w0 = iVar.J;
+        this.f51384x0 = iVar.K;
+        this.f51385y0 = iVar.L;
+        this.f51386z0 = iVar.M;
         this.A0 = iVar.N;
         this.B0 = iVar.O;
         this.C0 = iVar.P;
@@ -87,16 +87,16 @@ public final class j extends u1 {
     @Override
     public final Bundle c() {
         Bundle c10 = super.c();
-        c10.putBoolean(G0, this.f51325w0);
+        c10.putBoolean(G0, this.f51383w0);
         c10.putBoolean(H0, false);
-        c10.putBoolean(I0, this.f51326x0);
+        c10.putBoolean(I0, this.f51384x0);
         c10.putBoolean(U0, false);
-        c10.putBoolean(J0, this.f51327y0);
+        c10.putBoolean(J0, this.f51385y0);
         c10.putBoolean(K0, false);
         c10.putBoolean(L0, false);
         c10.putBoolean(M0, false);
         c10.putBoolean(V0, false);
-        c10.putBoolean(Y0, this.f51328z0);
+        c10.putBoolean(Y0, this.f51386z0);
         c10.putBoolean(W0, this.A0);
         c10.putBoolean(N0, this.B0);
         c10.putBoolean(O0, false);
@@ -146,7 +146,7 @@ public final class j extends u1 {
         if (this != obj) {
             if (obj != null && j.class == obj.getClass()) {
                 j jVar = (j) obj;
-                if (super.equals(jVar) && this.f51325w0 == jVar.f51325w0 && this.f51326x0 == jVar.f51326x0 && this.f51327y0 == jVar.f51327y0 && this.f51328z0 == jVar.f51328z0 && this.A0 == jVar.A0 && this.B0 == jVar.B0 && this.C0 == jVar.C0) {
+                if (super.equals(jVar) && this.f51383w0 == jVar.f51383w0 && this.f51384x0 == jVar.f51384x0 && this.f51385y0 == jVar.f51385y0 && this.f51386z0 == jVar.f51386z0 && this.A0 == jVar.A0 && this.B0 == jVar.B0 && this.C0 == jVar.C0) {
                     SparseBooleanArray sparseBooleanArray = jVar.E0;
                     SparseBooleanArray sparseBooleanArray2 = this.E0;
                     int size = sparseBooleanArray2.size();
@@ -193,6 +193,6 @@ public final class j extends u1 {
 
     @Override
     public final int hashCode() {
-        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f51325w0 ? 1 : 0)) * 961) + (this.f51326x0 ? 1 : 0)) * 961) + (this.f51327y0 ? 1 : 0)) * 28629151) + (this.f51328z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
+        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f51383w0 ? 1 : 0)) * 961) + (this.f51384x0 ? 1 : 0)) * 961) + (this.f51385y0 ? 1 : 0)) * 28629151) + (this.f51386z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
     }
 }

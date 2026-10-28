@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public abstract class jq extends a5.m {
-    public iq f29692w0;
+    public iq f29731w0;
 
     public jq(Context context) {
         super(context);
-        b(new hq((ni0) this));
+        b(new hq((oi0) this));
     }
 
     @Override
@@ -20,7 +20,7 @@ public abstract class jq extends a5.m {
     }
 
     public void setAdapter(iq iqVar) {
-        this.f29692w0 = iqVar;
+        this.f29731w0 = iqVar;
         super.setAdapter((a5.a) iqVar);
         if (iqVar != null) {
             x(iqVar.j(), false);

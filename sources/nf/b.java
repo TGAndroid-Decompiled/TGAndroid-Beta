@@ -7,15 +7,15 @@ import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 public final class b extends p {
-    public final int f18782g;
+    public final int f18781g;
 
     public b(d dVar, p pVar, String str, int i10) {
         super(dVar, pVar, str);
-        this.f18782g = i10;
+        this.f18781g = i10;
     }
 
     public static void h(StringBuffer stringBuffer, p pVar) {
-        p pVar2 = (p) pVar.f9938c;
+        p pVar2 = (p) pVar.f9937c;
         if (pVar2 != null) {
             h(stringBuffer, pVar2);
             stringBuffer.append("/");
@@ -24,12 +24,12 @@ public final class b extends p {
     }
 
     public long i() {
-        return ((pf.a) ((d) this.f9937b)).e();
+        return ((pf.a) ((d) this.f9936b)).e();
     }
 
     public boolean j() {
         long j10;
-        b bVar = (b) this.f9939f;
+        b bVar = (b) this.f9938f;
         if (bVar != null) {
             j10 = bVar.i();
         } else {
@@ -80,13 +80,13 @@ public final class b extends p {
 
     @Override
     public final String toString() {
-        switch (this.f18782g) {
+        switch (this.f18781g) {
             case 0:
                 StringBuffer stringBuffer = new StringBuffer();
                 h(stringBuffer, this);
                 stringBuffer.append("[off=");
-                long j10 = ((d) ((p) this.f9938c).f9937b).f7735b;
-                d dVar = (d) this.f9937b;
+                long j10 = ((d) ((p) this.f9937c).f9936b).f7735b;
+                d dVar = (d) this.f9936b;
                 stringBuffer.append(j10 - dVar.f7735b);
                 stringBuffer.append(",pos=");
                 stringBuffer.append(dVar.f7735b);
@@ -96,7 +96,7 @@ public final class b extends p {
                 stringBuffer.append("]");
                 return stringBuffer.toString();
             default:
-                return g.r(new StringBuilder("mp4[pos="), ((d) this.f9937b).f7735b, "]");
+                return g.r(new StringBuilder("mp4[pos="), ((d) this.f9936b).f7735b, "]");
         }
     }
 }

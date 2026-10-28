@@ -98,9 +98,9 @@ public final class b0 extends c {
             E = obj;
         }
         ?? obj3 = new Object();
-        obj3.f16423a = i10;
-        obj3.f16424b = aVar;
-        obj3.f16425c = runnable;
+        obj3.f16422a = i10;
+        obj3.f16423b = aVar;
+        obj3.f16424c = runnable;
         obj3.d = this;
         E.b(new q0(E, obj3), e());
     }
@@ -171,7 +171,7 @@ public final class b0 extends c {
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 rf.b bVar = this.h;
                 bVar.getClass();
-                bVar.b0(c10, (p3) bVar.f47335b);
+                bVar.b0(c10, (p3) bVar.f47370b);
             } else {
                 int i11 = 1;
                 if (this.D == 1) {

@@ -16,10 +16,10 @@ import org.telegram.ui.Cells.i9;
 import org.telegram.ui.Cells.z1;
 import org.telegram.ui.Cells.z3;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.k71;
 import org.telegram.ui.Wallet.m5;
 import org.telegram.ui.Wallet.r9;
-import org.telegram.ui.m10;
+import org.telegram.ui.o10;
 public final class d0 implements Utilities.CallbackReturn {
     public final int f1467a;
 
@@ -64,12 +64,12 @@ public final class d0 implements Utilities.CallbackReturn {
                 return LocaleController.formatPluralString("Minutes", ((Integer) obj).intValue(), new Object[0]);
             case 7:
                 View view = (View) obj;
-                if ((view instanceof i9) || (view instanceof f7) || (view instanceof m10) || (view instanceof z3) || (view instanceof z1) || Objects.equals(view.getTag(), -33024)) {
+                if ((view instanceof i9) || (view instanceof f7) || (view instanceof o10) || (view instanceof z3) || (view instanceof z1) || Objects.equals(view.getTag(), -33024)) {
                     z10 = false;
                 }
                 return Boolean.valueOf(z10);
             case 8:
-                return Boolean.valueOf(j71.K(((Integer) obj).intValue()));
+                return Boolean.valueOf(k71.K(((Integer) obj).intValue()));
             case 9:
                 return Boolean.valueOf(!"running".equals(((JSONObject) obj).optString("status")));
             case 10:

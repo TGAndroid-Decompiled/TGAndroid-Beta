@@ -1,52 +1,21 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class vd1 extends c61 {
-    public boolean f44776e2;
-    public final wd1 f44777f2;
-
-    public vd1(wd1 wd1Var, wd1 wd1Var2, Activity activity) {
-        super(wd1Var2, activity, false, null, 3, null);
-        this.f44777f2 = wd1Var;
-        this.f44776e2 = true;
-    }
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class vd1 extends org.telegram.ui.Components.ww0 {
+    public boolean f44322l0;
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f44776e2) {
-            this.f44776e2 = false;
-            this.f44777f2.f45111f.s(null);
+    public final void onMeasure(int i10, int i11) {
+        Q();
+        if (getKeyboardHeight() == 0 && !this.f44322l0) {
+            int i12 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
+            this.f34588f = i12;
+            setPadding(0, 0, 0, i12);
+        } else {
+            this.f44322l0 = true;
+            setPadding(0, 0, 0, 0);
         }
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        int i10;
-        int i11;
-        long j10;
-        wd1 wd1Var = this.f44777f2;
-        i10 = ((org.telegram.ui.ActionBar.r2) wd1Var).currentAccount;
-        boolean z10 = false;
-        if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {
-            MediaDataController mediaDataController = wd1Var.getMediaDataController();
-            i11 = ((org.telegram.ui.ActionBar.r2) wd1Var).currentAccount;
-            TLRPC.TL_messages_stickerSet stickerSetByEmojiOrName = mediaDataController.getStickerSetByEmojiOrName(UserConfig.getInstance(i11).defaultTopicIcons);
-            if (stickerSetByEmojiOrName == null) {
-                j10 = 0;
-            } else {
-                j10 = stickerSetByEmojiOrName.set.f22054id;
-            }
-            if (j10 == MediaDataController.getStickerSetId(document)) {
-                z10 = true;
-            }
-        }
-        wd1Var.c0(l4, z10);
+        super.onMeasure(i10, i11);
     }
 }

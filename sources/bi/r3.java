@@ -30,21 +30,21 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.al;
 import org.telegram.ui.Components.cg;
-import org.telegram.ui.Components.gb1;
 import org.telegram.ui.Components.gi;
-import org.telegram.ui.Components.hg0;
-import org.telegram.ui.Components.mg0;
-import org.telegram.ui.Components.th0;
+import org.telegram.ui.Components.ig0;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.Components.ng0;
 import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.wh0;
+import org.telegram.ui.Components.uh0;
+import org.telegram.ui.Components.xh0;
 import org.telegram.ui.Components.zk;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.cy;
-import org.telegram.ui.kb0;
-import org.telegram.ui.un;
-import org.telegram.ui.v50;
-import org.telegram.ui.w91;
+import org.telegram.ui.ey;
+import org.telegram.ui.nb0;
+import org.telegram.ui.wn;
+import org.telegram.ui.x50;
+import org.telegram.ui.y91;
 public final class r3 implements Runnable {
     public final int f5322a;
     public final long f5323b;
@@ -78,13 +78,13 @@ public final class r3 implements Runnable {
                 org.telegram.ui.Components.wc.b0((dd) obj).M(LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2Converted", (int) j10), R.raw.stars_topup).k(true);
                 return;
             case 1:
-                org.telegram.ui.Components.wc.b0((w91) obj).M(LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2ConvertedChannel", (int) j10), R.raw.stars_topup).k(true);
+                org.telegram.ui.Components.wc.b0((y91) obj).M(LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2ConvertedChannel", (int) j10), R.raw.stars_topup).k(true);
                 return;
             case 2:
-                ((di.r) obj).f9094s.e0(j10, false);
+                ((di.r) obj).f9093s.h0(j10, false);
                 return;
             case 3:
-                di.q4 q4Var = ((di.v2) obj).f9250a;
+                di.q4 q4Var = ((di.v2) obj).f9249a;
                 if (j10 <= 0) {
                     z12 = true;
                 }
@@ -94,13 +94,13 @@ public final class r3 implements Runnable {
                 AndroidUtilities.runOnUIThread((di.z3) obj, Math.max(0L, 500 - (System.currentTimeMillis() - j10)));
                 return;
             case 5:
-                org.telegram.ui.ActionBar.r2 c02 = w91.c0(MessagesController.getInstance(((di.h7) obj).f8630a).getChat(Long.valueOf(-j10)), true);
+                org.telegram.ui.ActionBar.r2 c02 = y91.c0(MessagesController.getInstance(((di.h7) obj).f8629a).getChat(Long.valueOf(-j10)), true);
                 org.telegram.ui.ActionBar.r2 R = LaunchActivity.R();
                 if (R != 0) {
                     fi.sb sbVar = fi.sb.F2;
                     if (sbVar != null && sbVar.d) {
                         ?? obj2 = new Object();
-                        obj2.f22928a = true;
+                        obj2.f22929a = true;
                         R.showAsSheet(c02, obj2);
                         return;
                     }
@@ -109,7 +109,7 @@ public final class r3 implements Runnable {
                 }
                 return;
             case 6:
-                MessagesStorage messagesStorage = ((di.u7) obj).f9235b;
+                MessagesStorage messagesStorage = ((di.u7) obj).f9234b;
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 try {
                     Locale locale = Locale.US;
@@ -132,7 +132,7 @@ public final class r3 implements Runnable {
                     nbVar2.f(true);
                     sbVar2.F = null;
                 }
-                fi.jb jbVar = sbVar2.f11679x;
+                fi.jb jbVar = sbVar2.f11678x;
                 if (jbVar != null) {
                     nbVar = jbVar.b(j10);
                 } else {
@@ -140,33 +140,33 @@ public final class r3 implements Runnable {
                 }
                 sbVar2.F = nbVar;
                 if (nbVar != null) {
-                    sbVar2.J = nbVar.f11322a;
-                    sbVar2.f11658r.c();
-                    fi.eb ebVar = sbVar2.f11629h0;
+                    sbVar2.J = nbVar.f11321a;
+                    sbVar2.f11657r.c();
+                    fi.eb ebVar = sbVar2.f11628h0;
                     int i15 = sbVar2.J;
                     if (i15 != 1 && i15 != 0) {
                         i14 = -14737633;
                     }
                     ebVar.setBackgroundColor(i14);
-                    sbVar2.H.set(sbVar2.F.f11324c);
+                    sbVar2.H.set(sbVar2.F.f11323c);
                     fi.nb nbVar3 = sbVar2.F;
-                    sbVar2.G = nbVar3.f11323b;
+                    sbVar2.G = nbVar3.f11322b;
                     nbVar3.e();
                     if (SharedConfig.getDevicePerformanceClass() > 1) {
                         LiteMode.isEnabled(360928);
                     }
                 }
-                sbVar2.f11679x = null;
-                Activity activity = sbVar2.f11608b;
+                sbVar2.f11678x = null;
+                Activity activity = sbVar2.f11607b;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f35571z0.post(new fi.p9(sbVar2, 5));
+                    ((LaunchActivity) activity).f35595z0.post(new fi.p9(sbVar2, 5));
                     return;
                 } else {
                     sbVar2.p(true);
                     return;
                 }
             case 9:
-                fi.wb wbVar = ((fi.cc) obj).f10622a;
+                fi.wb wbVar = ((fi.cc) obj).f10621a;
                 if (wbVar != null) {
                     wbVar.h(j10, false);
                     return;
@@ -176,7 +176,7 @@ public final class r3 implements Runnable {
                 ig.i0 i0Var = (ig.i0) obj;
                 i0Var.getClass();
                 try {
-                    MessagesStorage.getInstance(i0Var.f14094s0).getDatabase().executeFast("DELETE FROM search_recent WHERE did = " + j10).stepThis().dispose();
+                    MessagesStorage.getInstance(i0Var.f14093s0).getDatabase().executeFast("DELETE FROM search_recent WHERE did = " + j10).stepThis().dispose();
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -187,9 +187,9 @@ public final class r3 implements Runnable {
                 return;
             case 12:
                 ii.r0 r0Var = (ii.r0) obj;
-                r0Var.f14418i = null;
-                r0Var.f14417g.l(j10);
-                r0Var.f14421l++;
+                r0Var.f14417i = null;
+                r0Var.f14416g.l(j10);
+                r0Var.f14420l++;
                 r0Var.a();
                 ii.q0 q0Var = r0Var.h;
                 if (q0Var != null) {
@@ -198,14 +198,14 @@ public final class r3 implements Runnable {
                 }
                 return;
             case 13:
-                String str = e2.n0.f9692a;
-                j2.e eVar = ((i2.d0) ((k2.v) ((rf.b) obj).f47336c)).f13509a.f13614s;
+                String str = e2.n0.f9691a;
+                j2.e eVar = ((i2.d0) ((k2.v) ((rf.b) obj).f47371c)).f13508a.f13613s;
                 j2.a p10 = eVar.p();
                 eVar.q(p10, 1010, new j2.d(p10, j10));
                 return;
             case 14:
                 li.q qVar = (li.q) obj;
-                org.telegram.ui.Components.g5.L(qVar.f30215b.f33021f0.getParentActivity(), j10, new a4.l(qVar, 28), qVar.f30214a);
+                org.telegram.ui.Components.g5.L(qVar.f30254b.f32990f0.getParentActivity(), j10, new a4.l(qVar, 28), qVar.f30253a);
                 return;
             case 15:
                 li.b2 b2Var = (li.b2) obj;
@@ -233,32 +233,32 @@ public final class r3 implements Runnable {
                 }
                 org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
                 if (U != null) {
-                    U.presentFragment(new un(a1.g.h(j10, "user_id")));
+                    U.presentFragment(new wn(a1.g.h(j10, "user_id")));
                     return;
                 }
                 return;
             case 22:
                 org.telegram.ui.Components.qc R2 = org.telegram.ui.Components.wc.b0((org.telegram.ui.c7) obj).R(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j10)));
-                R2.f31898s = false;
+                R2.f31870s = false;
                 R2.j();
                 return;
             case 23:
                 cg cgVar = (cg) obj;
                 cgVar.getClass();
-                cgVar.presentFragment(un.ba(j10));
+                cgVar.presentFragment(wn.ea(j10));
                 return;
             case 24:
                 al alVar = (al) obj;
-                ti tiVar = alVar.f30215b;
+                ti tiVar = alVar.f30254b;
                 if (!alVar.K && alVar.L0 && alVar.isShown()) {
-                    gi giVar = tiVar.f33068u1;
-                    org.telegram.ui.ActionBar.r2 r2Var = tiVar.f33021f0;
+                    gi giVar = tiVar.f33037u1;
+                    org.telegram.ui.ActionBar.r2 r2Var = tiVar.f32990f0;
                     if ((giVar.Q() <= AndroidUtilities.dp(20.0f) || alVar.B0 || alVar.K0) && SystemClock.uptimeMillis() < j10) {
                         alVar.postDelayed(alVar.O0, 32L);
                         return;
                     }
                     alVar.O0 = null;
-                    org.telegram.ui.ActionBar.u6 u6Var2 = alVar.f30214a;
+                    org.telegram.ui.ActionBar.u6 u6Var2 = alVar.f30253a;
                     if (r2Var != null && r2Var.getParentActivity() != null) {
                         context = r2Var.getParentActivity();
                     } else {
@@ -267,29 +267,29 @@ public final class r3 implements Runnable {
                     if (context != null) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, u6Var2);
                         String string = LocaleController.getString(R.string.WalletAddComment);
-                        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
+                        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
                         e2Var.R = string;
                         jg.a1 a1Var = new jg.a1(alVar, context);
                         a1Var.setTextSize(1, 18.0f);
-                        org.telegram.ui.ActionBar.f7.V(a1Var, org.telegram.ui.ActionBar.y6.f23464j5, u6Var2);
-                        org.telegram.ui.ActionBar.f7.E(a1Var, org.telegram.ui.ActionBar.y6.f23653t5, u6Var2);
+                        org.telegram.ui.ActionBar.f7.V(a1Var, org.telegram.ui.ActionBar.y6.f23465j5, u6Var2);
+                        org.telegram.ui.ActionBar.f7.E(a1Var, org.telegram.ui.ActionBar.y6.f23654t5, u6Var2);
                         a1Var.setHint(LocaleController.getString(R.string.WalletCommentOptionalMessage));
-                        a1Var.setText(alVar.f26541s0);
+                        a1Var.setText(alVar.f26596s0);
                         a1Var.setSelection(a1Var.length());
                         a1Var.setInputType(147457);
                         a1Var.setMaxLines(5);
                         a1Var.setImeOptions(6);
-                        org.telegram.ui.ActionBar.f7.G(a1Var, org.telegram.ui.ActionBar.y6.f23484k6, org.telegram.ui.ActionBar.y6.f23502l6, org.telegram.ui.ActionBar.y6.f23581p7, u6Var2);
+                        org.telegram.ui.ActionBar.f7.G(a1Var, org.telegram.ui.ActionBar.y6.f23485k6, org.telegram.ui.ActionBar.y6.f23503l6, org.telegram.ui.ActionBar.y6.f23582p7, u6Var2);
                         a1Var.setBackground(null);
                         a1Var.setPadding(0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(48.0f), AndroidUtilities.dp(10.0f));
                         org.telegram.ui.Cells.y1 y1Var = new org.telegram.ui.Cells.y1(context, 1, u6Var2);
-                        int i16 = org.telegram.ui.ActionBar.y6.f23448i6;
+                        int i16 = org.telegram.ui.ActionBar.y6.f23449i6;
                         org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.y6.g0(org.telegram.ui.ActionBar.y6.w0(i16, u6Var2), 7, AndroidUtilities.dp(12.0f));
                         org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i16);
                         y1Var.setBackground(g02);
                         org.telegram.ui.ActionBar.f7.k(y1Var, g02, null, N, u6Var2);
                         String string2 = LocaleController.getString(R.string.WalletMakeCommentPublic);
-                        if (alVar.f26542t0 && alVar.getPublicKey() != null) {
+                        if (alVar.f26597t0 && alVar.getPublicKey() != null) {
                             z10 = false;
                         } else {
                             z10 = true;
@@ -326,15 +326,15 @@ public final class r3 implements Runnable {
                         y1Var.setOnClickListener(new org.telegram.ui.Components.i1(y1Var, 1));
                         LinearLayout linearLayout = new LinearLayout(context);
                         linearLayout.setOrientation(1);
-                        linearLayout.addView(a1Var, gb1.o(24.0f, 4.0f, 24.0f, 4.0f, -1, -2));
-                        linearLayout.addView(y1Var, gb1.x(-1, -2, 83, 8, 0, 8, 0));
+                        linearLayout.addView(a1Var, kb1.o(24.0f, 4.0f, 24.0f, 4.0f, -1, -2));
+                        linearLayout.addView(y1Var, kb1.x(-1, -2, 83, 8, 0, 8, 0));
                         e2Var.G = 6;
                         alertDialog$Builder.o(linearLayout);
-                        e2Var.f22555a = AndroidUtilities.dp(292.0f);
+                        e2Var.f22556a = AndroidUtilities.dp(292.0f);
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.f2(23));
                         alertDialog$Builder.k(LocaleController.getString(R.string.Add), new androidx.car.app.utils.a(alVar, a1Var, y1Var, 26));
                         alVar.T0 = e2Var;
-                        e2Var.f22577j0 = false;
+                        e2Var.f22578j0 = false;
                         e2Var.setOnShowListener(new org.telegram.ui.Components.l2(a1Var, 1));
                         e2Var.setOnDismissListener(new org.telegram.ui.Components.z0(alVar, 5));
                         e2Var.create();
@@ -360,7 +360,7 @@ public final class r3 implements Runnable {
                         }
                         e2Var.show();
                         View d = e2Var.d(-1);
-                        if ((d instanceof TextView) && !TextUtils.isEmpty(alVar.f26541s0)) {
+                        if ((d instanceof TextView) && !TextUtils.isEmpty(alVar.f26596s0)) {
                             a1Var.addTextChangedListener(new zk(a1Var, (TextView) d));
                             return;
                         }
@@ -371,37 +371,37 @@ public final class r3 implements Runnable {
                 alVar.O0 = null;
                 return;
             case 25:
-                mg0 mg0Var = (mg0) obj;
-                mg0Var.h("seekTo(" + Math.round(((float) j10) / 1000.0f) + ", true);");
-                AndroidUtilities.runOnUIThread(new hg0(mg0Var, 1), 100L);
+                ng0 ng0Var = (ng0) obj;
+                ng0Var.h("seekTo(" + Math.round(((float) j10) / 1000.0f) + ", true);");
+                AndroidUtilities.runOnUIThread(new ig0(ng0Var, 1), 100L);
                 return;
             case 26:
-                wh0 wh0Var = (wh0) obj;
+                xh0 xh0Var = (xh0) obj;
                 Activity activity2 = AndroidUtilities.getActivity();
                 org.telegram.ui.ActionBar.r2 U2 = LaunchActivity.U();
-                if (!PhotoViewer.u1().T1() && (U2 == null || !U2.hasShownSheet())) {
+                if (!PhotoViewer.v1().U1() && (U2 == null || !U2.hasShownSheet())) {
                     if (U2 != null) {
                         u6Var = U2.getResourceProvider();
                     }
                 } else {
                     u6Var = new di.b();
                 }
-                new tc(activity2, u6Var, this.f5323b, 15, "", new th0(wh0Var, 0), 0L).show();
+                new tc(activity2, u6Var, this.f5323b, 15, "", new uh0(xh0Var, 0), 0L).show();
                 return;
             case 27:
-                cy cyVar = (cy) obj;
-                cyVar.I4(true, true);
+                ey eyVar = (ey) obj;
+                eyVar.I4(true, true);
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(MessagesStorage.TopicKey.of(j10, 0L));
-                cyVar.C2.v(cyVar, arrayList, null, false, cyVar.J2, cyVar.K2, cyVar.L2, null);
+                eyVar.C2.v(eyVar, arrayList, null, false, eyVar.J2, eyVar.K2, eyVar.L2, null);
                 return;
             case 28:
-                ((v50) obj).m1(j10, false);
+                ((x50) obj).m1(j10, false);
                 return;
             default:
-                kb0 kb0Var = (kb0) obj;
-                kb0Var.getClass();
-                kb0Var.presentFragment(un.ba(j10));
+                nb0 nb0Var = (nb0) obj;
+                nb0Var.getClass();
+                nb0Var.presentFragment(wn.ea(j10));
                 return;
         }
     }

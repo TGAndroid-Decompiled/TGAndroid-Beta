@@ -5,7 +5,7 @@ import java.util.HashMap;
 import ka.g;
 public final class d implements la.a {
     public static final a e = new a(0);
-    public static final b f18398f = new ka.f() {
+    public static final b f18397f = new ka.f() {
         @Override
         public final void a(Object obj, Object obj2) {
             switch (r1) {
@@ -31,31 +31,31 @@ public final class d implements la.a {
             }
         }
     };
-    public static final c f18399n = new Object();
-    public final HashMap f18400a;
-    public final HashMap f18401b;
-    public final a f18402c;
+    public static final c f18398n = new Object();
+    public final HashMap f18399a;
+    public final HashMap f18400b;
+    public final a f18401c;
     public boolean d;
 
     public d() {
         HashMap hashMap = new HashMap();
-        this.f18400a = hashMap;
+        this.f18399a = hashMap;
         HashMap hashMap2 = new HashMap();
-        this.f18401b = hashMap2;
-        this.f18402c = e;
+        this.f18400b = hashMap2;
+        this.f18401c = e;
         this.d = false;
-        hashMap2.put(String.class, f18398f);
+        hashMap2.put(String.class, f18397f);
         hashMap.remove(String.class);
         hashMap2.put(Boolean.class, h);
         hashMap.remove(Boolean.class);
-        hashMap2.put(Date.class, f18399n);
+        hashMap2.put(Date.class, f18398n);
         hashMap.remove(Date.class);
     }
 
     @Override
     public final la.a d(Class cls, ka.d dVar) {
-        this.f18400a.put(cls, dVar);
-        this.f18401b.remove(cls);
+        this.f18399a.put(cls, dVar);
+        this.f18400b.remove(cls);
         return this;
     }
 }

@@ -7,17 +7,17 @@ import c3.i0;
 import c3.j0;
 import e2.n0;
 public final class c implements j0 {
-    public final int f49993a;
-    public final x f49994b;
-    public final c3.n f49995c = new c3.n();
+    public final int f50028a;
+    public final x f50029b;
+    public final c3.n f50030c = new c3.n();
     public final d d;
     public x e;
-    public j0 f49996f;
-    public long f49997g;
+    public j0 f50031f;
+    public long f50032g;
 
     public c(int i10, int i11, x xVar, d dVar) {
-        this.f49993a = i11;
-        this.f49994b = xVar;
+        this.f50028a = i11;
+        this.f50029b = xVar;
         this.d = dVar;
     }
 
@@ -29,24 +29,24 @@ public final class c implements j0 {
     @Override
     public final void b(x xVar) {
         this.d.getClass();
-        x xVar2 = this.f49994b;
+        x xVar2 = this.f50029b;
         if (xVar2 != null) {
             xVar = xVar.d(xVar2);
         }
         this.e = xVar;
-        j0 j0Var = this.f49996f;
-        String str = n0.f9692a;
+        j0 j0Var = this.f50031f;
+        String str = n0.f9691a;
         j0Var.b(xVar);
     }
 
     @Override
     public final void c(long j10, int i10, int i11, int i12, i0 i0Var) {
-        long j11 = this.f49997g;
+        long j11 = this.f50032g;
         if (j11 != -9223372036854775807L && j10 >= j11) {
-            this.f49996f = this.f49995c;
+            this.f50031f = this.f50030c;
         }
-        j0 j0Var = this.f49996f;
-        String str = n0.f9692a;
+        j0 j0Var = this.f50031f;
+        String str = n0.f9691a;
         j0Var.c(j10, i10, i11, i12, i0Var);
     }
 
@@ -57,15 +57,15 @@ public final class c implements j0 {
 
     @Override
     public final int f(p pVar, int i10, boolean z10) {
-        j0 j0Var = this.f49996f;
-        String str = n0.f9692a;
+        j0 j0Var = this.f50031f;
+        String str = n0.f9691a;
         return j0Var.a(pVar, i10, z10);
     }
 
     @Override
     public final void g(e2.x xVar, int i10, int i11) {
-        j0 j0Var = this.f49996f;
-        String str = n0.f9692a;
+        j0 j0Var = this.f50031f;
+        String str = n0.f9691a;
         j0Var.d(i10, xVar);
     }
 

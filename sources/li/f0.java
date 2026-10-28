@@ -20,46 +20,46 @@ import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class f0 extends z implements p6 {
     public d0 E;
     public int F;
     public int G;
     public final a5.d H;
-    public final int f17220n;
-    public final u6 f17221r;
-    public final HorizontalScrollView f17222s;
+    public final int f17219n;
+    public final u6 f17220r;
+    public final HorizontalScrollView f17221s;
     public final LinearLayout v;
-    public final x1 f17223w;
-    public final TextView f17224x;
-    public final ArrayList f17225y;
+    public final x1 f17222w;
+    public final TextView f17223x;
+    public final ArrayList f17224y;
 
     public f0(Context context, int i10, u6 u6Var) {
         super(context);
-        this.f17225y = new ArrayList();
+        this.f17224y = new ArrayList();
         this.H = new a5.d(this, 27);
-        this.f17220n = i10;
-        this.f17221r = u6Var;
+        this.f17219n = i10;
+        this.f17220r = u6Var;
         f(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f17222s = horizontalScrollView;
+        this.f17221s = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         LinearLayout linearLayout = new LinearLayout(context);
         this.v = linearLayout;
         linearLayout.setOrientation(0);
         horizontalScrollView.addView(linearLayout, new FrameLayout.LayoutParams(-2, -1));
-        addView(horizontalScrollView, gb1.i(-1, -1, 23));
+        addView(horizontalScrollView, kb1.i(-1, -1, 23));
         x1 x1Var = new x1(context, R.drawable.msg_add, u6Var);
         x1Var.e = 19;
         x1Var.updateColors();
-        this.f17223w = x1Var;
+        this.f17222w = x1Var;
         x1Var.setSelected(true);
         x1Var.setContentDescription(LocaleController.getString(R.string.Add));
         x1Var.setOnClickListener(new View.OnClickListener(this) {
-            public final f0 f17117b;
+            public final f0 f17116b;
 
             {
-                this.f17117b = this;
+                this.f17116b = this;
             }
 
             @Override
@@ -68,31 +68,31 @@ public final class f0 extends z implements p6 {
                 a aVar2;
                 switch (r2) {
                     case 0:
-                        f0 f0Var = this.f17117b;
+                        f0 f0Var = this.f17116b;
                         d0 d0Var = f0Var.E;
-                        if (d0Var != null && (aVar = f0Var.f17653a) != null) {
-                            v3 v3Var = ((n3) d0Var).f17380a;
+                        if (d0Var != null && (aVar = f0Var.f17652a) != null) {
+                            v3 v3Var = ((n3) d0Var).f17379a;
                             v3Var.u3(false);
-                            v3Var.f17557p3.B(new s3(v3Var, aVar, -1), view);
+                            v3Var.f17556p3.B(new s3(v3Var, aVar, -1), view);
                             return;
                         }
                         return;
                     default:
-                        f0 f0Var2 = this.f17117b;
+                        f0 f0Var2 = this.f17116b;
                         d0 d0Var2 = f0Var2.E;
-                        if (d0Var2 != null && (aVar2 = f0Var2.f17653a) != null) {
-                            v3 v3Var2 = ((n3) d0Var2).f17380a;
+                        if (d0Var2 != null && (aVar2 = f0Var2.f17652a) != null) {
+                            v3 v3Var2 = ((n3) d0Var2).f17379a;
                             v3Var2.u3(false);
-                            v3Var2.f17557p3.B(new s3(v3Var2, aVar2, -1), view);
+                            v3Var2.f17556p3.B(new s3(v3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
                 }
             }
         });
-        addView(x1Var, gb1.i(38, 38, 21));
+        addView(x1Var, kb1.i(38, 38, 21));
         TextView textView = new TextView(context);
-        this.f17224x = textView;
+        this.f17223x = textView;
         textView.setText(LocaleController.getString(R.string.RichEditorAddButton));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -100,10 +100,10 @@ public final class f0 extends z implements p6 {
         textView.setCompoundDrawablePadding(AndroidUtilities.dp(7.0f));
         textView.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final f0 f17117b;
+            public final f0 f17116b;
 
             {
-                this.f17117b = this;
+                this.f17116b = this;
             }
 
             @Override
@@ -112,32 +112,32 @@ public final class f0 extends z implements p6 {
                 a aVar2;
                 switch (r2) {
                     case 0:
-                        f0 f0Var = this.f17117b;
+                        f0 f0Var = this.f17116b;
                         d0 d0Var = f0Var.E;
-                        if (d0Var != null && (aVar = f0Var.f17653a) != null) {
-                            v3 v3Var = ((n3) d0Var).f17380a;
+                        if (d0Var != null && (aVar = f0Var.f17652a) != null) {
+                            v3 v3Var = ((n3) d0Var).f17379a;
                             v3Var.u3(false);
-                            v3Var.f17557p3.B(new s3(v3Var, aVar, -1), view);
+                            v3Var.f17556p3.B(new s3(v3Var, aVar, -1), view);
                             return;
                         }
                         return;
                     default:
-                        f0 f0Var2 = this.f17117b;
+                        f0 f0Var2 = this.f17116b;
                         d0 d0Var2 = f0Var2.E;
-                        if (d0Var2 != null && (aVar2 = f0Var2.f17653a) != null) {
-                            v3 v3Var2 = ((n3) d0Var2).f17380a;
+                        if (d0Var2 != null && (aVar2 = f0Var2.f17652a) != null) {
+                            v3 v3Var2 = ((n3) d0Var2).f17379a;
                             v3Var2.u3(false);
-                            v3Var2.f17557p3.B(new s3(v3Var2, aVar2, -1), view);
+                            v3Var2.f17556p3.B(new s3(v3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
                 }
             }
         });
-        addView(textView, gb1.i(-2, 38, 17));
+        addView(textView, kb1.i(-2, 38, 17));
         int i11 = y6.Oh;
         int w02 = y6.w0(i11, u6Var);
-        int v = y6.v(y6.w0(y6.f23356d6, u6Var), y6.o1(0.1f, w02));
+        int v = y6.v(y6.w0(y6.f23357d6, u6Var), y6.o1(0.1f, w02));
         f7.V(textView, i11, u6Var);
         textView.setBackground(y6.a0(v, y6.o1(0.16f, w02), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(19.0f)));
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_add).mutate();
@@ -163,7 +163,7 @@ public final class f0 extends z implements p6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23356d6));
+        hashSet.add(Integer.valueOf(y6.f23357d6));
     }
 
     public final void h() {
@@ -180,14 +180,14 @@ public final class f0 extends z implements p6 {
         int i15;
         int i16;
         int size = View.MeasureSpec.getSize(i10);
-        ArrayList arrayList = this.f17225y;
+        ArrayList arrayList = this.f17224y;
         int size2 = arrayList.size();
         if (size2 > 0 && size2 < 8) {
             i12 = AndroidUtilities.dp(45.0f);
         } else {
             i12 = 0;
         }
-        HorizontalScrollView horizontalScrollView = this.f17222s;
+        HorizontalScrollView horizontalScrollView = this.f17221s;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) horizontalScrollView.getLayoutParams();
         if (layoutParams.rightMargin != i12) {
             layoutParams.rightMargin = i12;
@@ -204,7 +204,7 @@ public final class f0 extends z implements p6 {
                 for (int i19 = 0; i19 < size3; i19++) {
                     c0 c0Var = (c0) arrayList.get(i19);
                     c0Var.getClass();
-                    int max3 = Math.max(AndroidUtilities.dp(34.0f), c0Var.f17164a.getPreferredWidth());
+                    int max3 = Math.max(AndroidUtilities.dp(34.0f), c0Var.f17163a.getPreferredWidth());
                     iArr[i19] = max3;
                     i18 += max3;
                 }
@@ -249,13 +249,13 @@ public final class f0 extends z implements p6 {
                         int i30 = iArr[i29];
                         c0 c0Var2 = (c0) arrayList.get(i29);
                         c0Var2.getClass();
-                        i28 += i30 - Math.max(AndroidUtilities.dp(34.0f), c0Var2.f17164a.getMinWidth());
+                        i28 += i30 - Math.max(AndroidUtilities.dp(34.0f), c0Var2.f17163a.getMinWidth());
                     }
                     if (i28 <= 0) {
                         for (int i31 = 0; i31 < size3; i31++) {
                             c0 c0Var3 = (c0) arrayList.get(i31);
                             c0Var3.getClass();
-                            iArr[i31] = Math.max(AndroidUtilities.dp(34.0f), c0Var3.f17164a.getMinWidth());
+                            iArr[i31] = Math.max(AndroidUtilities.dp(34.0f), c0Var3.f17163a.getMinWidth());
                         }
                     } else {
                         int min = Math.min(i18 - max2, i28);
@@ -265,7 +265,7 @@ public final class f0 extends z implements p6 {
                             int i34 = iArr[i32];
                             c0 c0Var4 = (c0) arrayList.get(i32);
                             c0Var4.getClass();
-                            int max4 = i34 - Math.max(AndroidUtilities.dp(34.0f), c0Var4.f17164a.getMinWidth());
+                            int max4 = i34 - Math.max(AndroidUtilities.dp(34.0f), c0Var4.f17163a.getMinWidth());
                             if (i32 == i17) {
                                 i14 = min - i33;
                                 i13 = min;
@@ -284,7 +284,7 @@ public final class f0 extends z implements p6 {
                 for (int i35 = 0; i35 < size3; i35++) {
                     c0 c0Var5 = (c0) arrayList.get(i35);
                     int i36 = iArr[i35];
-                    RichMessageLayout.RichButton richButton = c0Var5.f17164a;
+                    RichMessageLayout.RichButton richButton = c0Var5.f17163a;
                     richButton.width = Math.max(AndroidUtilities.dp(34.0f), i36);
                     LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) c0Var5.getLayoutParams();
                     if (layoutParams2 != null) {
@@ -299,7 +299,7 @@ public final class f0 extends z implements p6 {
             }
         }
         if (size2 > 0) {
-            dp = ((c0) arrayList.get(0)).f17164a.getHeight();
+            dp = ((c0) arrayList.get(0)).f17163a.getHeight();
             dp2 = AndroidUtilities.dp(8.0f);
         } else {
             dp = AndroidUtilities.dp(SharedConfig.fontSize + 18);
@@ -312,16 +312,16 @@ public final class f0 extends z implements p6 {
 
     @Override
     public final void updateColors() {
-        this.f17223w.updateColors();
+        this.f17222w.updateColors();
         int i10 = y6.Oh;
-        u6 u6Var = this.f17221r;
+        u6 u6Var = this.f17220r;
         int w02 = y6.w0(i10, u6Var);
-        int i11 = y6.f23356d6;
+        int i11 = y6.f23357d6;
         int w03 = y6.w0(i11, u6Var);
         if (w02 != this.F || w03 != this.G) {
             this.F = w02;
             this.G = w03;
-            TextView textView = this.f17224x;
+            TextView textView = this.f17223x;
             Drawable background = textView.getBackground();
             y6.E1(background, y6.v(w03, y6.o1(0.1f, w02)), false);
             y6.E1(background, y6.o1(0.16f, w02), true);

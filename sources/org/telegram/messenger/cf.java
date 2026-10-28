@@ -1,35 +1,34 @@
 package org.telegram.messenger;
-
-import org.telegram.ui.un;
-import org.webrtc.TextureViewRenderer;
 public final class cf implements Runnable {
     public final int f19828a;
-    public final int f19829b;
-    public final int f19830c;
-    public final int d;
-    public final int e;
-    public final Object f19831f;
+    public final MessagesStorage f19829b;
+    public final long f19830c;
+    public final long d;
 
-    public cf(Object obj, int i10, int i11, int i12, int i13, int i14) {
-        this.f19828a = i14;
-        this.f19831f = obj;
-        this.f19829b = i10;
-        this.f19830c = i11;
-        this.d = i12;
-        this.e = i13;
+    public cf(int i10, long j10, long j11, MessagesStorage messagesStorage) {
+        this.f19828a = i10;
+        this.f19829b = messagesStorage;
+        this.f19830c = j10;
+        this.d = j11;
     }
 
     @Override
     public final void run() {
         switch (this.f19828a) {
             case 0:
-                ((MessagesStorage) this.f19831f).lambda$saveDiffParams$35(this.f19829b, this.f19830c, this.d, this.e);
+                this.f19829b.lambda$saveChatInviter$136(this.f19830c, this.d);
                 return;
             case 1:
-                un.G0((un) this.f19831f, this.f19829b, this.f19830c, this.d, this.e);
+                this.f19829b.lambda$setDialogFlags$37(this.f19830c, this.d);
+                return;
+            case 2:
+                this.f19829b.lambda$removeTopic$60(this.f19830c, this.d);
+                return;
+            case 3:
+                this.f19829b.lambda$deleteUserChatHistory$90(this.f19830c, this.d);
                 return;
             default:
-                TextureViewRenderer.a((TextureViewRenderer) this.f19831f, this.f19829b, this.f19830c, this.d, this.e);
+                this.f19829b.lambda$clearUserPhoto$96(this.f19830c, this.d);
                 return;
         }
     }

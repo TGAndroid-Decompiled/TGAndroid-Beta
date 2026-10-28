@@ -1,13 +1,13 @@
 package org.scilab.forge.jlatexmath;
 public class UnderscoreAtom extends Atom {
-    public static SpaceAtom f19534w = new SpaceAtom(0, 0.7f, 0.0f, 0.0f);
-    public static SpaceAtom f19533s = new SpaceAtom(0, 0.06f, 0.0f, 0.0f);
+    public static SpaceAtom f19533w = new SpaceAtom(0, 0.7f, 0.0f, 0.0f);
+    public static SpaceAtom f19532s = new SpaceAtom(0, 0.06f, 0.0f, 0.0f);
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         float defaultRuleThickness = teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle());
-        HorizontalBox horizontalBox = new HorizontalBox(f19533s.createBox(teXEnvironment));
-        horizontalBox.add(new HorizontalRule(defaultRuleThickness, f19534w.createBox(teXEnvironment).getWidth(), 0.0f));
+        HorizontalBox horizontalBox = new HorizontalBox(f19532s.createBox(teXEnvironment));
+        horizontalBox.add(new HorizontalRule(defaultRuleThickness, f19533w.createBox(teXEnvironment).getWidth(), 0.0f));
         return horizontalBox;
     }
 }

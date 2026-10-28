@@ -35,7 +35,7 @@ public final class k implements ff.a {
     public k(s sVar) {
         HashMap hashMap = new HashMap();
         c(Arrays.asList(new cf.a(0), new cf.a(1)), hashMap);
-        c((List) sVar.f18696b, hashMap);
+        c((List) sVar.f18695b, hashMap);
         this.f3956c = hashMap;
         Set<Character> keySet = hashMap.keySet();
         BitSet bitSet = new BitSet();
@@ -96,13 +96,13 @@ public final class k implements ff.a {
     public static void e(ef.s sVar, ef.s sVar2, int i10) {
         if (sVar != null && sVar2 != null && sVar != sVar2) {
             StringBuilder sb2 = new StringBuilder(i10);
-            sb2.append(sVar.f9941g);
-            ef.p pVar = (ef.p) sVar2.f9939f;
-            for (ef.p pVar2 = (ef.p) sVar.f9939f; pVar2 != pVar; pVar2 = (ef.p) pVar2.f9939f) {
-                sb2.append(((ef.s) pVar2).f9941g);
+            sb2.append(sVar.f9940g);
+            ef.p pVar = (ef.p) sVar2.f9938f;
+            for (ef.p pVar2 = (ef.p) sVar.f9938f; pVar2 != pVar; pVar2 = (ef.p) pVar2.f9938f) {
+                sb2.append(((ef.s) pVar2).f9940g);
                 pVar2.g();
             }
-            sVar.f9941g = sb2.toString();
+            sVar.f9940g = sb2.toString();
         }
     }
 
@@ -116,7 +116,7 @@ public final class k implements ff.a {
                 if (sVar == null) {
                     sVar = sVar2;
                 }
-                i10 = sVar2.f9941g.length() + i10;
+                i10 = sVar2.f9940g.length() + i10;
             } else {
                 e(sVar, sVar2, i10);
                 sVar = null;
@@ -126,7 +126,7 @@ public final class k implements ff.a {
             if (pVar == pVar2) {
                 break;
             }
-            pVar = (ef.p) pVar.f9939f;
+            pVar = (ef.p) pVar.f9938f;
         }
         e(sVar, sVar2, i10);
     }
@@ -202,15 +202,15 @@ public final class k implements ff.a {
                     ef.s sVar2 = eVar4.f3912a;
                     eVar4.f3916g -= i10;
                     eVar2.f3916g -= i10;
-                    sVar2.f9941g = h0.l(i10, 0, sVar2.f9941g);
-                    sVar.f9941g = h0.l(i10, 0, sVar.f9941g);
+                    sVar2.f9940g = h0.l(i10, 0, sVar2.f9940g);
+                    sVar.f9940g = h0.l(i10, 0, sVar.f9940g);
                     e eVar5 = eVar2.e;
                     while (eVar5 != null && eVar5 != eVar4) {
                         e eVar6 = eVar5.e;
                         i(eVar5);
                         eVar5 = eVar6;
                     }
-                    if (sVar2 != sVar && (pVar = (ef.p) sVar2.f9939f) != sVar) {
+                    if (sVar2 != sVar && (pVar = (ef.p) sVar2.f9938f) != sVar) {
                         f(pVar, (ef.p) sVar.e);
                     }
                     aVar.d(sVar2, sVar, i10);

@@ -7,7 +7,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class o2 implements Runnable {
     public final int f5162a = 0;
     public final boolean f5163b;
@@ -35,21 +35,21 @@ public final class o2 implements Runnable {
                 h7.v0((h7) this.d, (TLObject) this.e, this.f5163b, (TLRPC.Document) this.f5165f, this.f5164c, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f5166n);
                 return;
             case 1:
-                un unVar = (un) this.d;
+                wn wnVar = (wn) this.d;
                 String str = (String) this.e;
                 CharacterStyle characterStyle = (CharacterStyle) this.f5165f;
                 MessageObject messageObject = (MessageObject) this.h;
                 org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) this.f5166n;
                 if (str.startsWith("video?")) {
-                    unVar.b8(characterStyle, false, messageObject, s1Var);
+                    wnVar.d8(characterStyle, false, messageObject, s1Var);
                     return;
                 } else if (this.f5163b && !this.f5164c) {
-                    unVar.getParentActivity();
+                    wnVar.getParentActivity();
                     qf.d.m(str);
                     return;
                 } else {
-                    unVar.T9(messageObject, false, false);
-                    unVar.ja(characterStyle, str, false, s1Var, messageObject);
+                    wnVar.W9(messageObject, false, false);
+                    wnVar.ma(characterStyle, str, false, s1Var, messageObject);
                     return;
                 }
             default:
@@ -58,14 +58,14 @@ public final class o2 implements Runnable {
                 String str2 = (String) this.f5166n;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
                 TLObject tLObject = (TLObject) this.e;
-                kVar.f52628w = false;
-                kVar.f52631z = true;
+                kVar.f52686w = false;
+                kVar.f52689z = true;
                 if (this.f5163b) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
                 }
-                yh.k.k(kVar.f52623q, false, false);
-                if (TextUtils.equals(str2, kVar.f52626t) && tL_error == null) {
-                    kVar.f52631z = true;
+                yh.k.k(kVar.f52681q, false, false);
+                if (TextUtils.equals(str2, kVar.f52684t) && tL_error == null) {
+                    kVar.f52689z = true;
                     kVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.f5164c, false);
                     return;
                 }
@@ -73,8 +73,8 @@ public final class o2 implements Runnable {
         }
     }
 
-    public o2(un unVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.s1 s1Var, boolean z10, boolean z11) {
-        this.d = unVar;
+    public o2(wn wnVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.s1 s1Var, boolean z10, boolean z11) {
+        this.d = wnVar;
         this.e = str;
         this.f5165f = characterStyle;
         this.h = messageObject;

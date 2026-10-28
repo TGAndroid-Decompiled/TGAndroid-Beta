@@ -1,30 +1,47 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.ui.Components.UndoView;
-public final class ql extends org.telegram.ui.Components.y20 {
-    public final un f42865b;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.VideoEditedInfo;
+public final class ql extends iu0 {
+    public final ArrayList f42743a;
+    public final boolean[] f42744b;
+    public final wn f42745c;
 
-    public ql(un unVar, Activity activity, org.telegram.ui.ActionBar.r2 r2Var) {
-        super(activity, r2Var);
-        this.f42865b = unVar;
+    public ql(wn wnVar, ArrayList arrayList, boolean[] zArr) {
+        this.f42745c = wnVar;
+        this.f42743a = arrayList;
+        this.f42744b = zArr;
     }
 
     @Override
-    public final void m() {
-        un unVar = this.f42865b;
-        unVar.X7();
-        UndoView undoView = unVar.K3;
-        if (undoView == null) {
-            return;
+    public final boolean T() {
+        return false;
+    }
+
+    @Override
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return null;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        ArrayList arrayList = this.f42743a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (!this.f42744b[size]) {
+                arrayList.remove(size);
+            }
         }
-        undoView.j(75, 0L, null);
-        unVar.getMessagesController().removeSuggestion(unVar.f44252f6, "CONVERT_GIGAGROUP");
+        this.f42745c.tb(arrayList, i11, z10, z11);
     }
 
     @Override
-    public final void n() {
-        un unVar = this.f42865b;
-        unVar.getMessagesController().convertToGigaGroup(unVar.getParentActivity(), unVar.e, unVar, new y0(this, 21));
+    public final boolean x(int i10) {
+        return this.f42744b[i10];
+    }
+
+    @Override
+    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
+        return i10;
     }
 }

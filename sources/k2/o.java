@@ -1,14 +1,14 @@
 package k2;
 public final class o {
-    public int f16239a;
-    public int f16240b;
-    public int f16241c;
+    public int f16238a;
+    public int f16239b;
+    public int f16240c;
     public boolean d;
     public boolean e;
-    public int f16242f;
-    public b2.f f16243g;
+    public int f16241f;
+    public b2.f f16242g;
     public int h;
-    public int f16244i;
-    public boolean f16245j;
-    public boolean f16246k;
+    public int f16243i;
+    public boolean f16244j;
+    public boolean f16245k;
 }

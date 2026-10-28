@@ -9,12 +9,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class y1 implements org.telegram.ui.ActionBar.b2, lh.a {
-    public final int f9393a;
-    public final q4 f9394b;
+    public final int f9392a;
+    public final q4 f9393b;
 
     public y1(q4 q4Var, int i10) {
-        this.f9393a = i10;
-        this.f9394b = q4Var;
+        this.f9392a = i10;
+        this.f9393b = q4Var;
     }
 
     @Override
@@ -26,13 +26,13 @@ public final class y1 implements org.telegram.ui.ActionBar.b2, lh.a {
         boolean z10;
         boolean z11;
         TL_stories.StoryItem storyItem;
-        int i11 = this.f9393a;
-        q4 q4Var = this.f9394b;
+        int i11 = this.f9392a;
+        q4 q4Var = this.f9393b;
         switch (i11) {
             case 0:
                 u2 u2Var = q4Var.Q1;
                 if (u2Var != null) {
-                    u2Var.x();
+                    u2Var.w();
                     return;
                 }
                 return;
@@ -41,7 +41,7 @@ public final class y1 implements org.telegram.ui.ActionBar.b2, lh.a {
                 int i12 = 0;
                 boolean z12 = true;
                 TLRPC.ChatFull chatFull2 = null;
-                if (o4Var.f8874f && (storyItem = o4Var.f8871a) != null) {
+                if (o4Var.f8873f && (storyItem = o4Var.f8870a) != null) {
                     TLRPC.MessageMedia messageMedia = storyItem.media;
                     if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
                         TLRPC.InputGroupCall inputGroupCall = ((TLRPC.TL_messageMediaVideoStream) messageMedia).call;
@@ -50,23 +50,23 @@ public final class y1 implements org.telegram.ui.ActionBar.b2, lh.a {
                             h1.W.e();
                             if (h1.W != null) {
                                 h1.W = null;
-                                NotificationCenter.getInstance(q4Var.f9021r2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(h1.W.g()));
+                                NotificationCenter.getInstance(q4Var.f9020r2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(h1.W.g()));
                             }
                         }
                     }
                 }
-                TL_stories.StoryItem storyItem2 = o4Var.f8871a;
+                TL_stories.StoryItem storyItem2 = o4Var.f8870a;
                 if (storyItem2 instanceof r6) {
-                    s6 s6Var = ((r6) storyItem2).f9122a;
+                    s6 s6Var = ((r6) storyItem2).f9121a;
                     TLRPC.MessageMedia messageMedia2 = storyItem2.media;
                     s6Var.getClass();
                     s6Var.F(new ArrayList(Arrays.asList(messageMedia2)));
                 } else if (storyItem2 != null) {
-                    q4 q4Var2 = o4Var.f8878k;
+                    q4 q4Var2 = o4Var.f8877k;
                     h7 h7Var = q4Var2.H1;
-                    long j11 = q4Var2.f9016q1;
-                    a0.h hVar = h7Var.f8635i;
-                    int i13 = h7Var.f8630a;
+                    long j11 = q4Var2.f9015q1;
+                    a0.h hVar = h7Var.f8634i;
+                    int i13 = h7Var.f8629a;
                     if (!(storyItem2 instanceof TL_stories.TL_storyItemDeleted)) {
                         int i14 = 0;
                         while (i14 < 2) {
@@ -107,12 +107,12 @@ public final class y1 implements org.telegram.ui.ActionBar.b2, lh.a {
                                 int i15 = i12;
                                 while (true) {
                                     if (i15 < peerStories.stories.size()) {
-                                        if (peerStories.stories.get(i15).f22266id == storyItem2.f22266id) {
+                                        if (peerStories.stories.get(i15).f22267id == storyItem2.f22267id) {
                                             peerStories.stories.remove(i15);
                                             if (peerStories.stories.size() == 0) {
-                                                if (!h7Var.K(j11)) {
+                                                if (!h7Var.M(j11)) {
                                                     hVar.l(j11);
-                                                    h7Var.f8634g.remove(peerStories);
+                                                    h7Var.f8633g.remove(peerStories);
                                                     h7Var.h.remove(peerStories);
                                                 }
                                                 if (j11 > j10) {
@@ -150,38 +150,38 @@ public final class y1 implements org.telegram.ui.ActionBar.b2, lh.a {
                         }
                         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
                         tL_stories_deleteStories.peer = MessagesController.getInstance(i13).getInputPeer(j11);
-                        tL_stories_deleteStories.f22269id.add(Integer.valueOf(storyItem2.f22266id));
+                        tL_stories_deleteStories.f22270id.add(Integer.valueOf(storyItem2.f22267id));
                         ConnectionsManager.getInstance(i13).sendRequest(tL_stories_deleteStories, new g6(h7Var, 5));
-                        u7 u7Var = h7Var.f8637k;
-                        u7Var.f9235b.getStorageQueue().postRunnable(new r7(u7Var, j11, storyItem2.f22266id, 1));
+                        u7 u7Var = h7Var.f8636k;
+                        u7Var.f9234b.getStorageQueue().postRunnable(new r7(u7Var, j11, storyItem2.f22267id, 1));
                         NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                         MessagesController.getInstance(i13).checkArchiveFolder();
-                        h7Var.k0(j11, Arrays.asList(storyItem2));
+                        h7Var.n0(j11, Arrays.asList(storyItem2));
                     }
                 } else {
-                    g7 g7Var = o4Var.f8872b;
+                    g7 g7Var = o4Var.f8871b;
                     if (g7Var != null) {
                         g7Var.a();
                     }
                 }
                 q4Var.h1();
-                if (q4Var.f9051z1 && q4Var.f9012p1 == 0) {
+                if (q4Var.f9050z1 && q4Var.f9011p1 == 0) {
                     ((p9) q4Var.F1).j();
                     return;
                 }
-                int i16 = q4Var.f9048y1;
-                int i17 = q4Var.f9012p1;
+                int i16 = q4Var.f9047y1;
+                int i17 = q4Var.f9011p1;
                 if (i16 >= i17) {
-                    q4Var.f9048y1 = i17 - 1;
+                    q4Var.f9047y1 = i17 - 1;
                     z11 = false;
                 } else {
                     z11 = false;
                     if (i16 < 0) {
-                        q4Var.f9048y1 = 0;
+                        q4Var.f9047y1 = 0;
                     }
                 }
                 q4Var.d1(z11);
-                y9 y9Var = q4Var.f9047y0;
+                y9 y9Var = q4Var.f9046y0;
                 if (y9Var != null) {
                     y9Var.p();
                     return;
@@ -193,7 +193,7 @@ public final class y1 implements org.telegram.ui.ActionBar.b2, lh.a {
     @Override
     public void i(int i10) {
         if (i10 == 0) {
-            this.f9394b.N0();
+            this.f9393b.N0();
         }
     }
 }

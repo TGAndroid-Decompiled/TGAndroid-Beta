@@ -8,19 +8,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.RandomAccess;
 public final class b extends AbstractList implements RandomAccess, Serializable {
-    public final int[] f15542a;
-    public final int f15543b;
-    public final int f15544c;
+    public final int[] f15541a;
+    public final int f15542b;
+    public final int f15543c;
 
     public b(int i10, int i11, int[] iArr) {
-        this.f15542a = iArr;
-        this.f15543b = i10;
-        this.f15544c = i11;
+        this.f15541a = iArr;
+        this.f15542b = i10;
+        this.f15543c = i11;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        if ((obj instanceof Integer) && ed.d(((Integer) obj).intValue(), this.f15543b, this.f15544c, this.f15542a) != -1) {
+        if ((obj instanceof Integer) && ed.d(((Integer) obj).intValue(), this.f15542b, this.f15543c, this.f15541a) != -1) {
             return true;
         }
         return false;
@@ -38,7 +38,7 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
                 return false;
             }
             for (int i10 = 0; i10 < size; i10++) {
-                if (this.f15542a[this.f15543b + i10] != bVar.f15542a[bVar.f15543b + i10]) {
+                if (this.f15541a[this.f15542b + i10] != bVar.f15541a[bVar.f15542b + i10]) {
                     return false;
                 }
             }
@@ -50,14 +50,14 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
     @Override
     public final Object get(int i10) {
         yb.j(i10, size());
-        return Integer.valueOf(this.f15542a[this.f15543b + i10]);
+        return Integer.valueOf(this.f15541a[this.f15542b + i10]);
     }
 
     @Override
     public final int hashCode() {
         int i10 = 1;
-        for (int i11 = this.f15543b; i11 < this.f15544c; i11++) {
-            i10 = (i10 * 31) + this.f15542a[i11];
+        for (int i11 = this.f15542b; i11 < this.f15543c; i11++) {
+            i10 = (i10 * 31) + this.f15541a[i11];
         }
         return i10;
     }
@@ -66,9 +66,9 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
     public final int indexOf(Object obj) {
         if (obj instanceof Integer) {
             int intValue = ((Integer) obj).intValue();
-            int i10 = this.f15544c;
-            int i11 = this.f15543b;
-            int d = ed.d(intValue, i11, i10, this.f15542a);
+            int i10 = this.f15543c;
+            int i11 = this.f15542b;
+            int d = ed.d(intValue, i11, i10, this.f15541a);
             if (d >= 0) {
                 return d - i11;
             }
@@ -87,12 +87,12 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
         int i10;
         if (obj instanceof Integer) {
             int intValue = ((Integer) obj).intValue();
-            int i11 = this.f15544c;
+            int i11 = this.f15543c;
             while (true) {
                 i11--;
-                i10 = this.f15543b;
+                i10 = this.f15542b;
                 if (i11 >= i10) {
-                    if (this.f15542a[i11] == intValue) {
+                    if (this.f15541a[i11] == intValue) {
                         break;
                     }
                 } else {
@@ -111,8 +111,8 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
     public final Object set(int i10, Object obj) {
         Integer num = (Integer) obj;
         yb.j(i10, size());
-        int i11 = this.f15543b + i10;
-        int[] iArr = this.f15542a;
+        int i11 = this.f15542b + i10;
+        int[] iArr = this.f15541a;
         int i12 = iArr[i11];
         num.getClass();
         iArr[i11] = num.intValue();
@@ -121,7 +121,7 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
 
     @Override
     public final int size() {
-        return this.f15544c - this.f15543b;
+        return this.f15543c - this.f15542b;
     }
 
     @Override
@@ -130,20 +130,20 @@ public final class b extends AbstractList implements RandomAccess, Serializable 
         if (i10 == i11) {
             return Collections.EMPTY_LIST;
         }
-        int i12 = this.f15543b;
-        return new b(i10 + i12, i12 + i11, this.f15542a);
+        int i12 = this.f15542b;
+        return new b(i10 + i12, i12 + i11, this.f15541a);
     }
 
     @Override
     public final String toString() {
         StringBuilder sb2 = new StringBuilder(size() * 5);
         sb2.append('[');
-        int[] iArr = this.f15542a;
-        int i10 = this.f15543b;
+        int[] iArr = this.f15541a;
+        int i10 = this.f15542b;
         sb2.append(iArr[i10]);
         while (true) {
             i10++;
-            if (i10 < this.f15544c) {
+            if (i10 < this.f15543c) {
                 sb2.append(", ");
                 sb2.append(iArr[i10]);
             } else {

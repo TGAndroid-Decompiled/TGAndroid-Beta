@@ -33,7 +33,7 @@ public final class b9 extends s4.l {
         viewGroup = ((org.telegram.ui.ActionBar.k3) g9Var.W).containerView;
         viewGroup.invalidate();
         g9Var.e.invalidate();
-        g9Var.f10923f.invalidate();
+        g9Var.f10922f.invalidate();
     }
 
     @Override

@@ -3,12 +3,12 @@ package di;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.c10;
-import org.telegram.ui.Components.ey0;
+import org.telegram.ui.Components.fy0;
 import org.telegram.ui.Components.nk;
-import org.telegram.ui.af1;
-public final class n5 extends ey0 {
+import org.telegram.ui.cf1;
+public final class n5 extends fy0 {
     public final int K = 0;
     public final Object L;
 
@@ -21,19 +21,19 @@ public final class n5 extends ey0 {
     public void e(boolean z10, boolean z11) {
         switch (this.K) {
             case 2:
-                af1 af1Var = (af1) this.L;
+                cf1 cf1Var = (cf1) this.L;
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = af1Var.f37762n.f42823a.animate();
+                    ViewPropertyAnimator animate = cf1Var.f38316n.f43310a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                af1Var.f37762n.f42823a.animate().cancel();
-                TextView textView = af1Var.f37762n.f42823a;
+                cf1Var.f38316n.f43310a.animate().cancel();
+                TextView textView = cf1Var.f38316n.f43310a;
                 if (z10) {
                     f7 = 0.0f;
                 }
@@ -60,7 +60,7 @@ public final class n5 extends ey0 {
         switch (this.K) {
             case 0:
                 t5 t5Var = ((o5) this.L).d;
-                super.onMeasure(i10, vh.x(t5Var.e, t5Var.f9195n - t5Var.f9196r.getPaddingTop(), 1073741824));
+                super.onMeasure(i10, wh.x(t5Var.e, t5Var.f9194n - t5Var.f9195r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -85,8 +85,8 @@ public final class n5 extends ey0 {
         this.L = o5Var;
     }
 
-    public n5(af1 af1Var, Context context, c10 c10Var) {
+    public n5(cf1 cf1Var, Context context, c10 c10Var) {
         super(context, c10Var, 0, null);
-        this.L = af1Var;
+        this.L = cf1Var;
     }
 }

@@ -12,20 +12,20 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.j2;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public class c extends FrameLayout implements p6 {
-    public int f52861a;
-    public final u6 f52862b;
-    public final ImageView f52863c;
+    public int f52919a;
+    public final u6 f52920b;
+    public final ImageView f52921c;
     public final TextView d;
     public Runnable e;
-    public final j2 f52864f;
+    public final j2 f52922f;
     public final Paint h;
 
     public c(Context context, u6 u6Var) {
@@ -34,17 +34,17 @@ public class c extends FrameLayout implements p6 {
         float f7;
         float f10;
         this.h = new Paint(1);
-        this.f52862b = u6Var;
+        this.f52920b = u6Var;
         TextView textView = new TextView(context);
         this.d = textView;
-        vh.j(20.0f, 1, textView);
+        wh.j(20.0f, 1, textView);
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView.setGravity(i10);
-        int i11 = y6.f23464j5;
+        int i11 = y6.f23465j5;
         f7.V(textView, i11, u6Var);
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -57,25 +57,25 @@ public class c extends FrameLayout implements p6 {
         } else {
             f10 = 16.0f;
         }
-        addView(textView, gb1.h(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
+        addView(textView, kb1.h(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f52863c = imageView;
+        this.f52921c = imageView;
         j2 j2Var = new j2(false);
-        this.f52864f = j2Var;
+        this.f52922f = j2Var;
         imageView.setImageDrawable(j2Var);
         int w02 = y6.w0(i11, u6Var);
-        this.f52861a = w02;
+        this.f52919a = w02;
         j2Var.a(w02);
         j2Var.b(y6.w0(i11, u6Var));
-        j2Var.f22738k = 220.0f;
-        addView(imageView, gb1.h(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        j2Var.f22739k = 220.0f;
+        addView(imageView, kb1.h(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new d0(this, 26));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int w02 = y6.w0(y6.f23357d7, this.f52862b);
+        int w02 = y6.w0(y6.f23358d7, this.f52920b);
         Paint paint = this.h;
         paint.setColor(w02);
         canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
@@ -91,7 +91,7 @@ public class c extends FrameLayout implements p6 {
     }
 
     public void setBackImage(int i10) {
-        this.f52863c.setImageResource(i10);
+        this.f52921c.setImageResource(i10);
     }
 
     public void setCloseImageVisible(boolean z10) {
@@ -103,7 +103,7 @@ public class c extends FrameLayout implements p6 {
         } else {
             i10 = 8;
         }
-        this.f52863c.setVisibility(i10);
+        this.f52921c.setVisibility(i10);
         boolean z11 = LocaleController.isRTL;
         if (!z11 && z10) {
             f7 = 53.0f;
@@ -115,7 +115,7 @@ public class c extends FrameLayout implements p6 {
         } else {
             f10 = 22.0f;
         }
-        this.d.setLayoutParams(gb1.h(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
+        this.d.setLayoutParams(kb1.h(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
     }
 
     public void setOnCloseClickListener(Runnable runnable) {
@@ -128,15 +128,15 @@ public class c extends FrameLayout implements p6 {
 
     @Override
     public final void updateColors() {
-        j2 j2Var = this.f52864f;
+        j2 j2Var = this.f52922f;
         if (j2Var != null) {
             try {
-                int w02 = y6.w0(y6.f23464j5, this.f52862b);
-                if (w02 != this.f52861a) {
-                    this.f52861a = w02;
+                int w02 = y6.w0(y6.f23465j5, this.f52920b);
+                if (w02 != this.f52919a) {
+                    this.f52919a = w02;
                     j2Var.a(w02);
                     j2Var.b(w02);
-                    ImageView imageView = this.f52863c;
+                    ImageView imageView = this.f52921c;
                     if (imageView != null) {
                         imageView.invalidate();
                     }

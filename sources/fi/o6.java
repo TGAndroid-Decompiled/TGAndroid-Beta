@@ -40,11 +40,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.b00;
 import org.telegram.ui.Components.ds;
 import org.telegram.ui.Components.e00;
-import org.telegram.ui.Components.eg0;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.h81;
-import org.telegram.ui.Components.s81;
-import org.telegram.ui.Components.uc0;
+import org.telegram.ui.Components.fg0;
+import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.Components.t81;
+import org.telegram.ui.Components.vc0;
 public abstract class o6 extends FrameLayout {
     public static final int B0 = 0;
     public j0 A0;
@@ -67,51 +67,51 @@ public abstract class o6 extends FrameLayout {
     public int U;
     public int V;
     public final Matrix W;
-    public Bitmap f11361a;
-    public final float[] f11362a0;
-    public final Rect f11363b;
-    public float f11364b0;
-    public final Rect f11365c;
-    public float f11366c0;
+    public Bitmap f11360a;
+    public final float[] f11361a0;
+    public final Rect f11362b;
+    public float f11363b0;
+    public final Rect f11364c;
+    public float f11365c0;
     public w7 d;
-    public float f11367d0;
-    public s81 e;
-    public boolean f11368e0;
-    public int f11369f;
-    public final org.telegram.ui.Components.h6 f11370f0;
-    public boolean f11371g0;
+    public float f11366d0;
+    public t81 e;
+    public boolean f11367e0;
+    public int f11368f;
+    public final org.telegram.ui.Components.h6 f11369f0;
+    public boolean f11370g0;
     public int h;
-    public final Matrix f11372h0;
-    public final Matrix f11373i0;
-    public final Matrix f11374j0;
-    public boolean f11375k0;
-    public final PointF f11376l0;
+    public final Matrix f11371h0;
+    public final Matrix f11372i0;
+    public final Matrix f11373j0;
+    public boolean f11374k0;
+    public final PointF f11375l0;
     public final PointF m0;
-    public h81 f11377n;
-    public float f11378n0;
-    public double f11379o0;
-    public boolean f11380p0;
-    public boolean f11381q0;
-    public TextureView f11382r;
-    public boolean f11383r0;
-    public eg0 f11384s;
-    public final Matrix f11385s0;
-    public final Matrix f11386t0;
-    public float f11387u0;
+    public i81 f11376n;
+    public float f11377n0;
+    public double f11378o0;
+    public boolean f11379p0;
+    public boolean f11380q0;
+    public TextureView f11381r;
+    public boolean f11382r0;
+    public fg0 f11383s;
+    public final Matrix f11384s0;
+    public final Matrix f11385t0;
+    public float f11386u0;
     public p9 v;
-    public boolean f11388v0;
-    public sg.d2 f11389w;
-    public boolean f11390w0;
-    public s81 f11391x;
-    public long f11392x0;
-    public s81 f11393y;
-    public Runnable f11394y0;
-    public final HashSet f11395z0;
+    public boolean f11387v0;
+    public sg.c2 f11388w;
+    public boolean f11389w0;
+    public t81 f11390x;
+    public long f11391x0;
+    public t81 f11392y;
+    public Runnable f11393y0;
+    public final HashSet f11394z0;
 
     public o6(Context context, org.telegram.ui.Components.la laVar, n6 n6Var) {
         super(context);
-        this.f11363b = new Rect();
-        this.f11365c = new Rect();
+        this.f11362b = new Rect();
+        this.f11364c = new Rect();
         Paint paint = new Paint(1);
         new m6(this, 2);
         this.K = new m6(this, 3);
@@ -121,19 +121,19 @@ public abstract class o6 extends FrameLayout {
         this.Q = new Paint(7);
         this.T = new Paint(1);
         this.W = new Matrix();
-        this.f11362a0 = new float[2];
-        this.f11368e0 = true;
-        this.f11370f0 = new org.telegram.ui.Components.h6(this, 0L, 320L, ds.f27587g);
-        this.f11371g0 = false;
-        this.f11372h0 = new Matrix();
-        this.f11373i0 = new Matrix();
-        this.f11374j0 = new Matrix();
-        this.f11375k0 = true;
-        this.f11376l0 = new PointF();
+        this.f11361a0 = new float[2];
+        this.f11367e0 = true;
+        this.f11369f0 = new org.telegram.ui.Components.h6(this, 0L, 320L, ds.f27531g);
+        this.f11370g0 = false;
+        this.f11371h0 = new Matrix();
+        this.f11372i0 = new Matrix();
+        this.f11373j0 = new Matrix();
+        this.f11374k0 = true;
+        this.f11375l0 = new PointF();
         this.m0 = new PointF();
-        this.f11385s0 = new Matrix();
-        this.f11386t0 = new Matrix();
-        this.f11395z0 = new HashSet();
+        this.f11384s0 = new Matrix();
+        this.f11385t0 = new Matrix();
+        this.f11394z0 = new HashSet();
         this.G = laVar;
         this.H = n6Var;
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
@@ -171,7 +171,7 @@ public abstract class o6 extends FrameLayout {
 
     public static Drawable g(int i10, final org.telegram.ui.ActionBar.h4 h4Var, final boolean z10) {
         if (h4Var.l()) {
-            org.telegram.ui.ActionBar.y6.H(org.telegram.ui.ActionBar.h4.d(z10), h4Var.g(i10, z10 ? 1 : 0), ((org.telegram.ui.ActionBar.g4) h4Var.f22685f.get(z10 ? 1 : 0)).f22654g, 0, false);
+            org.telegram.ui.ActionBar.y6.H(org.telegram.ui.ActionBar.h4.d(z10), h4Var.g(i10, z10 ? 1 : 0), ((org.telegram.ui.ActionBar.g4) h4Var.f22686f.get(z10 ? 1 : 0)).f22655g, 0, false);
             return new ColorDrawable(-16777216);
         }
         SparseIntArray g7 = h4Var.g(i10, z10 ? 1 : 0);
@@ -183,26 +183,26 @@ public abstract class o6 extends FrameLayout {
         int i16 = g7.get(i15, org.telegram.ui.ActionBar.y6.x0(null, i15, false));
         int i17 = org.telegram.ui.ActionBar.y6.Qd;
         int i18 = g7.get(i17, org.telegram.ui.ActionBar.y6.x0(null, i17, false));
-        final uc0 uc0Var = new uc0();
-        uc0Var.f33361g = false;
-        uc0Var.s(uc0Var.f33374u, h4Var.j(z10 ? 1 : 0).settings.intensity);
-        uc0Var.o(i12, i14, i16, i18, 0, true);
-        uc0Var.u(0);
-        final int f7 = uc0Var.f();
+        final vc0 vc0Var = new vc0();
+        vc0Var.f33685g = false;
+        vc0Var.s(vc0Var.f33698u, h4Var.j(z10 ? 1 : 0).settings.intensity);
+        vc0Var.o(i12, i14, i16, i18, 0, true);
+        vc0Var.u(0);
+        final int f7 = vc0Var.f();
         h4Var.n(z10 ? 1 : 0, new ResultCallback() {
             @Override
             public final void onComplete(Object obj) {
                 Pair pair = (Pair) obj;
                 if (pair != null) {
                     long longValue = ((Long) pair.first).longValue();
-                    Bitmap bitmap = ((fg.a) pair.second).f10468b;
+                    Bitmap bitmap = ((fg.a) pair.second).f10467b;
                     org.telegram.ui.ActionBar.h4 h4Var2 = org.telegram.ui.ActionBar.h4.this;
                     if (longValue == h4Var2.h(z10 ? 1 : 0) && bitmap != null) {
                         int i19 = h4Var2.j(z10 ? 1 : 0).settings.intensity;
-                        uc0 uc0Var2 = uc0Var;
-                        uc0Var2.s(bitmap, i19);
-                        uc0Var2.t(f7);
-                        uc0Var2.r(1.0f);
+                        vc0 vc0Var2 = vc0Var;
+                        vc0Var2.s(bitmap, i19);
+                        vc0Var2.t(f7);
+                        vc0Var2.r(1.0f);
                     }
                 }
             }
@@ -217,7 +217,7 @@ public abstract class o6 extends FrameLayout {
                 org.telegram.tgnet.k.b(this, tL_error);
             }
         });
-        return uc0Var;
+        return vc0Var;
     }
 
     private void setupCollage(w7 w7Var) {
@@ -243,9 +243,9 @@ public abstract class o6 extends FrameLayout {
         float f7;
         float f10;
         w7 w7Var;
-        s81 s81Var = this.e;
+        t81 t81Var = this.e;
         float f11 = 0.0f;
-        if (s81Var != null) {
+        if (t81Var != null) {
             if (!this.O && ((w7Var = this.d) == null || !w7Var.Y)) {
                 if (w7Var != null) {
                     f10 = w7Var.P;
@@ -255,24 +255,24 @@ public abstract class o6 extends FrameLayout {
             } else {
                 f10 = 0.0f;
             }
-            s81Var.W(f10);
+            t81Var.W(f10);
         }
-        s81 s81Var2 = this.f11391x;
-        if (s81Var2 != null) {
+        t81 t81Var2 = this.f11390x;
+        if (t81Var2 != null) {
             if (this.O) {
                 f7 = 0.0f;
             } else {
                 w7 w7Var2 = this.d;
                 if (w7Var2 != null) {
-                    f7 = w7Var2.f11930u0;
+                    f7 = w7Var2.f11929u0;
                 } else {
                     f7 = 1.0f;
                 }
             }
-            s81Var2.W(f7);
+            t81Var2.W(f7);
         }
-        s81 s81Var3 = this.f11393y;
-        if (s81Var3 != null) {
+        t81 t81Var3 = this.f11392y;
+        if (t81Var3 != null) {
             if (!this.O) {
                 w7 w7Var3 = this.d;
                 if (w7Var3 != null) {
@@ -281,7 +281,7 @@ public abstract class o6 extends FrameLayout {
                     f11 = 1.0f;
                 }
             }
-            s81Var3.W(f11);
+            t81Var3.W(f11);
         }
         e0 e0Var = this.E;
         if (e0Var != null) {
@@ -294,23 +294,23 @@ public abstract class o6 extends FrameLayout {
         if (w7Var == null) {
             return;
         }
-        float[] fArr = this.f11362a0;
-        fArr[0] = w7Var.f11911k0 / 2.0f;
-        fArr[1] = w7Var.f11913l0 / 2.0f;
+        float[] fArr = this.f11361a0;
+        fArr[0] = w7Var.f11910k0 / 2.0f;
+        fArr[1] = w7Var.f11912l0 / 2.0f;
         matrix.mapPoints(fArr);
-        this.f11364b0 = fArr[0];
-        this.f11366c0 = fArr[1];
+        this.f11363b0 = fArr[0];
+        this.f11365c0 = fArr[1];
         w7 w7Var2 = this.d;
-        fArr[0] = w7Var2.f11911k0;
-        fArr[1] = w7Var2.f11913l0 / 2.0f;
+        fArr[0] = w7Var2.f11910k0;
+        fArr[1] = w7Var2.f11912l0 / 2.0f;
         matrix.mapPoints(fArr);
-        this.f11367d0 = (float) Math.toDegrees(Math.atan2(fArr[1] - this.f11366c0, fArr[0] - this.f11364b0));
-        a8.ic.a(this.f11364b0, this.f11366c0, fArr[0], fArr[1]);
+        this.f11366d0 = (float) Math.toDegrees(Math.atan2(fArr[1] - this.f11365c0, fArr[0] - this.f11363b0));
+        a8.ic.a(this.f11363b0, this.f11365c0, fArr[0], fArr[1]);
         w7 w7Var3 = this.d;
-        fArr[0] = w7Var3.f11911k0 / 2.0f;
-        fArr[1] = w7Var3.f11913l0;
+        fArr[0] = w7Var3.f11910k0 / 2.0f;
+        fArr[1] = w7Var3.f11912l0;
         matrix.mapPoints(fArr);
-        a8.ic.a(this.f11364b0, this.f11366c0, fArr[0], fArr[1]);
+        a8.ic.a(this.f11363b0, this.f11365c0, fArr[0], fArr[1]);
     }
 
     @Override
@@ -321,7 +321,7 @@ public abstract class o6 extends FrameLayout {
         MediaController.CropState cropState;
         if (this.S != null) {
             float f7 = 0.0f;
-            if (this.f11371g0) {
+            if (this.f11370g0) {
                 Path path = new Path();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -330,7 +330,7 @@ public abstract class o6 extends FrameLayout {
                 canvas.clipPath(path);
             }
             Drawable drawable = this.S;
-            if (!(drawable instanceof uc0) || ((uc0) drawable).f33374u != null) {
+            if (!(drawable instanceof vc0) || ((vc0) drawable).f33698u != null) {
                 f7 = this.P.d(1.0f, false);
             }
             Drawable drawable2 = this.R;
@@ -340,7 +340,7 @@ public abstract class o6 extends FrameLayout {
             }
             this.S.setAlpha((int) (f7 * 255.0f));
             w7.j(canvas, this.S, getWidth(), getHeight());
-            if (this.f11371g0) {
+            if (this.f11370g0) {
                 canvas.restore();
             }
             canvas2 = canvas;
@@ -351,23 +351,23 @@ public abstract class o6 extends FrameLayout {
         j0 j0Var = this.A0;
         if (j0Var != null) {
             j0Var.d.b(canvas2, true);
-        } else if (this.f11368e0 && this.d != null && !j()) {
-            if (this.f11361a == null) {
+        } else if (this.f11367e0 && this.d != null && !j()) {
+            if (this.f11360a == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            float e = this.f11370f0.e(z10);
-            if (this.f11361a != null) {
+            float e = this.f11369f0.e(z10);
+            if (this.f11360a != null) {
                 canvas2.save();
-                canvas2.scale(getWidth() / this.d.f11907i0, getHeight() / this.d.f11909j0);
-                canvas2.concat(this.d.f11916n0);
+                canvas2.scale(getWidth() / this.d.f11906i0, getHeight() / this.d.f11908j0);
+                canvas2.concat(this.d.f11915n0);
                 if (this.d.m0 != null) {
-                    canvas2.translate(w7Var.f11911k0 / 2.0f, w7Var.f11913l0 / 2.0f);
+                    canvas2.translate(w7Var.f11910k0 / 2.0f, w7Var.f11912l0 / 2.0f);
                     canvas2.rotate(-this.d.Q);
                     w7 w7Var2 = this.d;
-                    int i10 = w7Var2.f11911k0;
-                    int i11 = w7Var2.f11913l0;
+                    int i10 = w7Var2.f11910k0;
+                    int i11 = w7Var2.f11912l0;
                     int i12 = w7Var2.Q;
                     MediaController.CropState cropState2 = w7Var2.m0;
                     if (((i12 + cropState2.transformRotation) / 90) % 2 == 1) {
@@ -389,20 +389,20 @@ public abstract class o6 extends FrameLayout {
                     }
                     canvas2.rotate(this.d.Q);
                     w7 w7Var3 = this.d;
-                    canvas2.translate((-w7Var3.f11911k0) / 2.0f, (-w7Var3.f11913l0) / 2.0f);
+                    canvas2.translate((-w7Var3.f11910k0) / 2.0f, (-w7Var3.f11912l0) / 2.0f);
                 }
                 Paint paint = this.Q;
                 paint.setAlpha((int) ((1.0f - e) * 255.0f));
-                int width = this.f11361a.getWidth();
-                int height = this.f11361a.getHeight();
-                Rect rect = this.f11363b;
+                int width = this.f11360a.getWidth();
+                int height = this.f11360a.getHeight();
+                Rect rect = this.f11362b;
                 rect.set(0, 0, width, height);
                 w7 w7Var4 = this.d;
-                int i13 = w7Var4.f11911k0;
-                int i14 = w7Var4.f11913l0;
-                Rect rect2 = this.f11365c;
+                int i13 = w7Var4.f11910k0;
+                int i14 = w7Var4.f11912l0;
+                Rect rect2 = this.f11364c;
                 rect2.set(0, 0, i13, i14);
-                canvas2.drawBitmap(this.f11361a, rect, rect2, paint);
+                canvas2.drawBitmap(this.f11360a, rect, rect2, paint);
                 canvas2.restore();
             }
         }
@@ -418,21 +418,21 @@ public abstract class o6 extends FrameLayout {
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         w7 w7Var;
         w7 w7Var2;
-        h81 h81Var = this.f11377n;
-        if (view == h81Var && (w7Var2 = this.d) != null && w7Var2.f11929u) {
+        i81 i81Var = this.f11376n;
+        if (view == i81Var && (w7Var2 = this.d) != null && w7Var2.f11928u) {
             return false;
         }
-        if ((view == h81Var || view == this.f11382r) && (w7Var = this.d) != null && w7Var.m0 != null) {
+        if ((view == i81Var || view == this.f11381r) && (w7Var = this.d) != null && w7Var.m0 != null) {
             canvas.save();
-            canvas.scale(getWidth() / this.d.f11907i0, getHeight() / this.d.f11909j0);
-            canvas.concat(this.d.f11916n0);
+            canvas.scale(getWidth() / this.d.f11906i0, getHeight() / this.d.f11908j0);
+            canvas.concat(this.d.f11915n0);
             w7 w7Var3 = this.d;
             if (w7Var3.m0 != null) {
-                canvas.translate(w7Var3.f11911k0 / 2.0f, w7Var3.f11913l0 / 2.0f);
+                canvas.translate(w7Var3.f11910k0 / 2.0f, w7Var3.f11912l0 / 2.0f);
                 canvas.rotate(-this.d.Q);
                 w7 w7Var4 = this.d;
-                int i10 = w7Var4.f11911k0;
-                int i11 = w7Var4.f11913l0;
+                int i10 = w7Var4.f11910k0;
+                int i11 = w7Var4.f11912l0;
                 int i12 = w7Var4.Q;
                 MediaController.CropState cropState = w7Var4.m0;
                 if (((i12 + cropState.transformRotation) / 90) % 2 == 1) {
@@ -444,10 +444,10 @@ public abstract class o6 extends FrameLayout {
                 canvas.clipRect(((-i10) * f7) / 2.0f, ((-i11) * f10) / 2.0f, (i10 * f7) / 2.0f, (i11 * f10) / 2.0f);
                 canvas.rotate(this.d.Q);
                 w7 w7Var5 = this.d;
-                canvas.translate((-w7Var5.f11911k0) / 2.0f, (-w7Var5.f11913l0) / 2.0f);
+                canvas.translate((-w7Var5.f11910k0) / 2.0f, (-w7Var5.f11912l0) / 2.0f);
             }
-            canvas.concat(this.f11372h0);
-            canvas.scale(1.0f / (getWidth() / this.d.f11907i0), 1.0f / (getHeight() / this.d.f11909j0));
+            canvas.concat(this.f11371h0);
+            canvas.scale(1.0f / (getWidth() / this.d.f11906i0), 1.0f / (getHeight() / this.d.f11908j0));
             boolean drawChild = super.drawChild(canvas, view, j10);
             canvas.restore();
             return drawChild;
@@ -460,7 +460,7 @@ public abstract class o6 extends FrameLayout {
         if (w7Var == null) {
             return 1;
         }
-        return w7Var.f11913l0;
+        return w7Var.f11912l0;
     }
 
     public int getContentWidth() {
@@ -468,21 +468,21 @@ public abstract class o6 extends FrameLayout {
         if (w7Var == null) {
             return 1;
         }
-        return w7Var.f11911k0;
+        return w7Var.f11910k0;
     }
 
     public long getCurrentPosition() {
-        s81 s81Var = this.e;
-        if (s81Var != null) {
-            return s81Var.n();
+        t81 t81Var = this.e;
+        if (t81Var != null) {
+            return t81Var.n();
         }
-        s81 s81Var2 = this.f11391x;
-        if (s81Var2 != null) {
-            return s81Var2.n();
+        t81 t81Var2 = this.f11390x;
+        if (t81Var2 != null) {
+            return t81Var2.n();
         }
-        s81 s81Var3 = this.f11393y;
-        if (s81Var3 != null) {
-            return s81Var3.n();
+        t81 t81Var3 = this.f11392y;
+        if (t81Var3 != null) {
+            return t81Var3.n();
         }
         return 0L;
     }
@@ -490,13 +490,13 @@ public abstract class o6 extends FrameLayout {
     public long getDuration() {
         w7 w7Var = this.d;
         if (w7Var != null) {
-            double d = w7Var.f11906i;
+            double d = w7Var.f11905i;
             if (d >= 0.0d) {
                 return (long) (d * 1000.0d);
             }
         }
-        s81 s81Var = this.e;
-        if (s81Var != null && s81Var.p() != -9223372036854775807L) {
+        t81 t81Var = this.e;
+        if (t81Var != null && t81Var.p() != -9223372036854775807L) {
             return this.e.p();
         }
         return 1L;
@@ -514,19 +514,19 @@ public abstract class o6 extends FrameLayout {
         if (this.d == null) {
             return new Pair<>(1080, 1920);
         }
-        return new Pair<>(Integer.valueOf(this.d.f11907i0), Integer.valueOf(this.d.f11909j0));
+        return new Pair<>(Integer.valueOf(this.d.f11906i0), Integer.valueOf(this.d.f11908j0));
     }
 
     public Bitmap getPhotoBitmap() {
-        return this.f11361a;
+        return this.f11360a;
     }
 
-    public h81 getTextureView() {
-        return this.f11377n;
+    public i81 getTextureView() {
+        return this.f11376n;
     }
 
     public final void h(Utilities.Callback callback, View... viewArr) {
-        h81 h81Var;
+        i81 i81Var;
         int dp = (int) (AndroidUtilities.dp(26.0f) * AndroidUtilities.density);
         int dp2 = (int) (AndroidUtilities.dp(30.33f) * AndroidUtilities.density);
         int dp3 = (int) (AndroidUtilities.dp(4.0f) * AndroidUtilities.density);
@@ -535,8 +535,8 @@ public abstract class o6 extends FrameLayout {
             View view = viewArr[i10];
             if (view != null && view.getWidth() >= 0 && viewArr[i10].getHeight() > 0) {
                 View view2 = viewArr[i10];
-                if (view2 == this && (h81Var = this.f11377n) != null) {
-                    bitmapArr[i10] = h81Var.getBitmap();
+                if (view2 == this && (i81Var = this.f11376n) != null) {
+                    bitmapArr[i10] = i81Var.getBitmap();
                 } else if (view2 instanceof TextureView) {
                     bitmapArr[i10] = ((TextureView) view2).getBitmap();
                 } else if ((view2 instanceof ViewGroup) && ((ViewGroup) view2).getChildCount() > 0) {
@@ -564,7 +564,7 @@ public abstract class o6 extends FrameLayout {
     }
 
     public final boolean k() {
-        return !this.f11395z0.contains(-9982);
+        return !this.f11394z0.contains(-9982);
     }
 
     public final void l(w7 w7Var) {
@@ -595,19 +595,19 @@ public abstract class o6 extends FrameLayout {
     }
 
     public final void m(long j10) {
-        s81 s81Var = this.e;
-        if (s81Var != null) {
-            s81Var.L(j10, false);
+        t81 t81Var = this.e;
+        if (t81Var != null) {
+            t81Var.L(j10, false);
         } else if (j()) {
             this.E.m(j10, false);
         } else {
-            s81 s81Var2 = this.f11391x;
-            if (s81Var2 != null) {
-                s81Var2.L(j10, false);
+            t81 t81Var2 = this.f11390x;
+            if (t81Var2 != null) {
+                t81Var2.L(j10, false);
             } else {
-                s81 s81Var3 = this.f11393y;
-                if (s81Var3 != null) {
-                    s81Var3.L(j10, false);
+                t81 t81Var3 = this.f11392y;
+                if (t81Var3 != null) {
+                    t81Var3.L(j10, false);
                 }
             }
         }
@@ -652,26 +652,26 @@ public abstract class o6 extends FrameLayout {
         s(w7Var, null, false);
     }
 
-    public final void o(TextureView textureView, eg0 eg0Var) {
-        TextureView textureView2 = this.f11382r;
+    public final void o(TextureView textureView, fg0 fg0Var) {
+        TextureView textureView2 = this.f11381r;
         if (textureView2 != null) {
             removeView(textureView2);
-            this.f11382r = null;
+            this.f11381r = null;
         }
-        this.f11384s = eg0Var;
-        this.f11382r = textureView;
-        if (eg0Var != null) {
+        this.f11383s = fg0Var;
+        this.f11381r = textureView;
+        if (fg0Var != null) {
             int i10 = this.U;
             int i11 = this.V;
-            e00 e00Var = eg0Var.f27843l0;
+            e00 e00Var = fg0Var.f28136l0;
             if (e00Var != null) {
                 e00Var.i(i10, i11);
             } else {
-                eg0Var.J0 = i10;
-                eg0Var.K0 = i11;
+                fg0Var.J0 = i10;
+                fg0Var.K0 = i11;
             }
         }
-        TextureView textureView3 = this.f11382r;
+        TextureView textureView3 = this.f11381r;
         if (textureView3 != null) {
             addView(textureView3);
         }
@@ -679,7 +679,7 @@ public abstract class o6 extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f11375k0) {
+        if (this.f11374k0) {
             v(motionEvent);
             return true;
         }
@@ -692,17 +692,17 @@ public abstract class o6 extends FrameLayout {
         float f7;
         float f10;
         float f11;
-        s81 s81Var = this.f11393y;
-        if (s81Var != null) {
-            s81Var.B();
-            this.f11393y.H();
-            this.f11393y = null;
+        t81 t81Var = this.f11392y;
+        if (t81Var != null) {
+            t81Var.B();
+            this.f11392y.H();
+            this.f11392y = null;
         }
         if (w7Var != null) {
             cc ccVar = this.F;
             boolean z12 = false;
             if (ccVar != null) {
-                String str2 = w7Var.f11936y;
+                String str2 = w7Var.f11935y;
                 String str3 = w7Var.A;
                 String str4 = w7Var.B;
                 long j10 = w7Var.C;
@@ -711,10 +711,10 @@ public abstract class o6 extends FrameLayout {
                 float f13 = w7Var.F;
                 float f14 = w7Var.G;
                 if (!TextUtils.equals(ccVar.O, str2)) {
-                    vb vbVar = ccVar.f10623a0;
+                    vb vbVar = ccVar.f10622a0;
                     if (vbVar != null) {
                         vbVar.a();
-                        ccVar.f10623a0 = null;
+                        ccVar.f10622a0 = null;
                         ccVar.U = false;
                     }
                     ccVar.O = str2;
@@ -782,7 +782,7 @@ public abstract class o6 extends FrameLayout {
                 }
                 if (!z10) {
                     z11 = true;
-                    ccVar.f10633e0.f(ccVar.N, true);
+                    ccVar.f10632e0.f(ccVar.N, true);
                 } else {
                     z11 = true;
                 }
@@ -790,12 +790,12 @@ public abstract class o6 extends FrameLayout {
             } else {
                 z11 = true;
             }
-            if (w7Var.f11936y != null) {
-                s81 s81Var2 = new s81();
-                this.f11393y = s81Var2;
-                s81Var2.f32475y = z11;
-                s81Var2.J = new rb.c(this, 21);
-                s81Var2.D(Uri.fromFile(new File(w7Var.f11936y)), "other");
+            if (w7Var.f11935y != null) {
+                t81 t81Var2 = new t81();
+                this.f11392y = t81Var2;
+                t81Var2.f32902y = z11;
+                t81Var2.J = new rb.c(this, 21);
+                t81Var2.D(Uri.fromFile(new File(w7Var.f11935y)), "other");
                 c();
                 if (this.e != null && getDuration() > 0) {
                     long duration = w7Var.Z * ((float) getDuration());
@@ -806,10 +806,10 @@ public abstract class o6 extends FrameLayout {
                 w(true);
             }
             sb sbVar = ((gb) this).C0;
-            ta taVar = sbVar.f11673v1;
+            ta taVar = sbVar.f11672v1;
             if (taVar != null) {
                 w7 w7Var2 = sbVar.K1;
-                if (w7Var2 != null && w7Var2.f11936y != null) {
+                if (w7Var2 != null && w7Var2.f11935y != null) {
                     z12 = z11;
                 }
                 taVar.setHasAudio(z12);
@@ -822,30 +822,30 @@ public abstract class o6 extends FrameLayout {
         int maxCount;
         w7 w7Var = this.d;
         if (w7Var != null) {
-            w7Var.f11908j = true;
+            w7Var.f11907j = true;
             float f7 = 1.0f;
             if (messageObject != null && messageObject.messageOwner != null) {
                 TLRPC.Document document = messageObject.getDocument();
-                if (document != null && document.f22033id != 0) {
-                    this.d.f11938z = new TLRPC.TL_inputDocument();
-                    TLRPC.InputDocument inputDocument = this.d.f11938z;
-                    inputDocument.f22039id = document.f22033id;
+                if (document != null && document.f22034id != 0) {
+                    this.d.f11937z = new TLRPC.TL_inputDocument();
+                    TLRPC.InputDocument inputDocument = this.d.f11937z;
+                    inputDocument.f22040id = document.f22034id;
                     inputDocument.file_reference = document.file_reference;
                     inputDocument.access_hash = document.access_hash;
                 }
                 int i10 = 0;
                 if (!TextUtils.isEmpty(messageObject.messageOwner.attachPath)) {
-                    this.d.f11936y = messageObject.messageOwner.attachPath;
+                    this.d.f11935y = messageObject.messageOwner.attachPath;
                 } else {
                     File pathToAttach = FileLoader.getInstance(messageObject.currentAccount).getPathToAttach(document, null, false, true);
                     if (pathToAttach == null || !pathToAttach.exists()) {
                         pathToAttach = FileLoader.getInstance(messageObject.currentAccount).getPathToAttach(document, null, true, true);
                         if (pathToAttach != null && pathToAttach.exists()) {
-                            this.d.f11936y = pathToAttach.getAbsolutePath();
+                            this.d.f11935y = pathToAttach.getAbsolutePath();
                         } else {
                             w7 w7Var2 = this.d;
-                            w7Var2.f11936y = null;
-                            w7Var2.f11938z = null;
+                            w7Var2.f11935y = null;
+                            w7Var2.f11937z = null;
                             w7Var2.A = null;
                             w7Var2.B = null;
                             w7Var2.D = 0L;
@@ -855,7 +855,7 @@ public abstract class o6 extends FrameLayout {
                             return;
                         }
                     }
-                    this.d.f11936y = pathToAttach.getAbsolutePath();
+                    this.d.f11935y = pathToAttach.getAbsolutePath();
                 }
                 w7 w7Var3 = this.d;
                 w7Var3.A = null;
@@ -894,7 +894,7 @@ public abstract class o6 extends FrameLayout {
                     while (i10 < size2) {
                         Object obj = arrayList2.get(i10);
                         i10++;
-                        w7 w7Var5 = ((d0) obj).f10712n;
+                        w7 w7Var5 = ((d0) obj).f10711n;
                         if (w7Var5 != null && w7Var5.K) {
                             j10 = this.E.getDuration();
                             break;
@@ -919,8 +919,8 @@ public abstract class o6 extends FrameLayout {
                 }
                 w7Var7.F = f7;
             } else {
-                w7Var.f11936y = null;
-                w7Var.f11938z = null;
+                w7Var.f11935y = null;
+                w7Var.f11937z = null;
                 w7Var.A = null;
                 w7Var.B = null;
                 w7Var.D = 0L;
@@ -953,32 +953,32 @@ public abstract class o6 extends FrameLayout {
             int i13 = w7Var2.B0;
             this.V = i13;
             paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, f7, new int[]{i12, i13}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            h81 h81Var = this.f11377n;
-            if (h81Var != null) {
+            i81 i81Var = this.f11376n;
+            if (i81Var != null) {
                 int i14 = this.U;
                 int i15 = this.V;
-                e00 e00Var = h81Var.f28862b;
+                e00 e00Var = i81Var.f29238b;
                 if (e00Var == null) {
-                    h81Var.f28865n = i14;
-                    h81Var.f28866r = i15;
+                    i81Var.f29241n = i14;
+                    i81Var.f29242r = i15;
                 } else {
                     e00Var.i(i14, i15);
                 }
             }
-            eg0 eg0Var = this.f11384s;
-            if (eg0Var != null) {
+            fg0 fg0Var = this.f11383s;
+            if (fg0Var != null) {
                 int i16 = this.U;
                 int i17 = this.V;
-                e00 e00Var2 = eg0Var.f27843l0;
+                e00 e00Var2 = fg0Var.f28136l0;
                 if (e00Var2 != null) {
                     e00Var2.i(i16, i17);
                 } else {
-                    eg0Var.J0 = i16;
-                    eg0Var.K0 = i17;
+                    fg0Var.J0 = i16;
+                    fg0Var.K0 = i17;
                 }
             }
         } else {
-            Bitmap bitmap = this.f11361a;
+            Bitmap bitmap = this.f11360a;
             if (bitmap != null) {
                 new c4(this, i10, 1).run(n0.b(bitmap, true));
             } else {
@@ -988,39 +988,39 @@ public abstract class o6 extends FrameLayout {
         invalidate();
     }
 
-    public final void s(w7 w7Var, sg.d2 d2Var, boolean z10) {
-        s81 s81Var;
-        if (w7Var != null && w7Var.f11918o0 != null) {
-            s81 s81Var2 = this.f11391x;
-            if (s81Var2 != null) {
-                s81Var2.H();
-                this.f11391x = null;
+    public final void s(w7 w7Var, sg.c2 c2Var, boolean z10) {
+        t81 t81Var;
+        if (w7Var != null && w7Var.f11917o0 != null) {
+            t81 t81Var2 = this.f11390x;
+            if (t81Var2 != null) {
+                t81Var2.H();
+                this.f11390x = null;
             }
-            s81 s81Var3 = new s81();
-            this.f11391x = s81Var3;
-            s81Var3.f32475y = true;
-            s81Var3.J = new b6.i(this, 21);
-            this.f11391x.D(Uri.fromFile(w7Var.f11918o0), "other");
+            t81 t81Var3 = new t81();
+            this.f11390x = t81Var3;
+            t81Var3.f32902y = true;
+            t81Var3.J = new b6.i(this, 21);
+            this.f11390x.D(Uri.fromFile(w7Var.f11917o0), "other");
             c();
-            this.f11389w = d2Var;
-            if (d2Var != null && (s81Var = this.f11391x) != null) {
-                s81Var.V(d2Var.f48184u0);
+            this.f11388w = c2Var;
+            if (c2Var != null && (t81Var = this.f11390x) != null) {
+                t81Var.V(c2Var.f48208u0);
             }
-            this.F.n(w7Var.f11918o0.getAbsolutePath(), w7Var.f11922q0, w7Var.f11924r0, w7Var.f11926s0, w7Var.f11928t0, w7Var.f11930u0, z10);
+            this.F.n(w7Var.f11917o0.getAbsolutePath(), w7Var.f11921q0, w7Var.f11923r0, w7Var.f11925s0, w7Var.f11927t0, w7Var.f11929u0, z10);
             y(true);
             return;
         }
-        s81 s81Var4 = this.f11391x;
-        if (s81Var4 != null) {
-            s81Var4.B();
-            this.f11391x.H();
-            this.f11391x = null;
+        t81 t81Var4 = this.f11390x;
+        if (t81Var4 != null) {
+            t81Var4.B();
+            this.f11390x.H();
+            this.f11390x = null;
         }
         cc ccVar = this.F;
         if (ccVar != null) {
             ccVar.setRoundNull(z10);
         }
-        this.f11389w = null;
+        this.f11388w = null;
         AndroidUtilities.cancelRunOnUIThread(this.K);
     }
 
@@ -1029,7 +1029,7 @@ public abstract class o6 extends FrameLayout {
     }
 
     public void setAllowCropping(boolean z10) {
-        this.f11375k0 = z10;
+        this.f11374k0 = z10;
     }
 
     public void setCollageView(e0 e0Var) {
@@ -1044,12 +1044,12 @@ public abstract class o6 extends FrameLayout {
     }
 
     public void setDraw(boolean z10) {
-        this.f11368e0 = z10;
+        this.f11367e0 = z10;
         invalidate();
     }
 
     public void setOnTapListener(Runnable runnable) {
-        this.f11394y0 = runnable;
+        this.f11393y0 = runnable;
     }
 
     public void setVideoTimelineView(cc ccVar) {
@@ -1074,70 +1074,70 @@ public abstract class o6 extends FrameLayout {
         org.telegram.ui.Components.ra raVar;
         float f7 = 0.0f;
         if (w7Var != null && !w7Var.v()) {
-            s81 s81Var = this.e;
-            if (s81Var != null) {
-                s81Var.H();
+            t81 t81Var = this.e;
+            if (t81Var != null) {
+                t81Var.H();
                 this.e = null;
             }
-            s81 s81Var2 = new s81();
-            this.e = s81Var2;
-            s81Var2.f32475y = true;
-            s81Var2.J = new a8.h0(this, w7Var, new Runnable[]{runnable});
-            h81 h81Var = this.f11377n;
-            if (h81Var != null) {
-                h81Var.clearAnimation();
-                h81 h81Var2 = this.f11377n;
-                e00 e00Var = h81Var2.f28862b;
+            t81 t81Var2 = new t81();
+            this.e = t81Var2;
+            t81Var2.f32902y = true;
+            t81Var2.J = new a8.h0(this, w7Var, new Runnable[]{runnable});
+            i81 i81Var = this.f11376n;
+            if (i81Var != null) {
+                i81Var.clearAnimation();
+                i81 i81Var2 = this.f11376n;
+                e00 e00Var = i81Var2.f29238b;
                 if (e00Var != null) {
                     e00Var.postRunnable(new b00(e00Var, 0));
                 }
-                h81Var2.f28861a = null;
-                removeView(this.f11377n);
-                this.f11377n = null;
+                i81Var2.f29237a = null;
+                removeView(this.f11376n);
+                this.f11376n = null;
             }
-            this.f11377n = new h81(getContext(), this.e);
+            this.f11376n = new i81(getContext(), this.e);
             this.G.e();
-            h81 h81Var3 = this.f11377n;
-            if (w7Var.f11929u) {
+            i81 i81Var3 = this.f11376n;
+            if (w7Var.f11928u) {
                 laVar = null;
             } else {
                 laVar = this.G;
             }
-            h81Var3.f28867s = laVar;
-            e00 e00Var2 = h81Var3.f28862b;
+            i81Var3.f29243s = laVar;
+            e00 e00Var2 = i81Var3.f29238b;
             if (e00Var2 != null && (raVar = e00Var2.I) != null) {
-                org.telegram.ui.Components.la laVar2 = raVar.f32202t;
-                if (laVar2 != null && laVar2.f30146m != null) {
-                    laVar2.f30146m = null;
+                org.telegram.ui.Components.la laVar2 = raVar.f32205t;
+                if (laVar2 != null && laVar2.f30210m != null) {
+                    laVar2.f30210m = null;
                 }
-                raVar.f32202t = laVar;
-                if (laVar != null && laVar.f30146m != raVar) {
-                    laVar.f30146m = raVar;
+                raVar.f32205t = laVar;
+                if (laVar != null && laVar.f30210m != raVar) {
+                    laVar.f30210m = raVar;
                     laVar.d();
                 }
             }
-            this.f11377n.setOpaque(false);
+            this.f11376n.setOpaque(false);
             b();
             n6 n6Var = this.H;
-            if (n6Var != null && n6Var.f11306g) {
-                n6Var.a(this.f11377n);
+            if (n6Var != null && n6Var.f11305g) {
+                n6Var.a(this.f11376n);
             } else {
-                h81 h81Var4 = this.f11377n;
+                i81 i81Var4 = this.f11376n;
                 if (runnable != null) {
                     f7 = 1.0f;
                 }
-                h81Var4.setAlpha(f7);
-                addView(this.f11377n, gb1.i(-2, -2, 51));
+                i81Var4.setAlpha(f7);
+                addView(this.f11376n, kb1.i(-2, -2, 51));
             }
             ai.i iVar = new ai.i(this, 23);
-            v7 v7Var = w7Var.f11898d1;
+            v7 v7Var = w7Var.f11897d1;
             if (v7Var != null) {
                 iVar.run(v7Var);
             } else if (w7Var.K && Build.VERSION.SDK_INT >= 24) {
                 Utilities.globalQueue.postRunnable(new r7(w7Var, iVar, 0));
             } else {
                 ?? obj = new Object();
-                w7Var.f11898d1 = obj;
+                w7Var.f11897d1 = obj;
                 iVar.run(obj);
             }
             File file = w7Var.Z0;
@@ -1145,10 +1145,10 @@ public abstract class o6 extends FrameLayout {
                 file = w7Var.L;
             }
             this.e.D(Uri.fromFile(file), "other");
-            this.e.P(this.f11395z0.isEmpty());
+            this.e.P(this.f11394z0.isEmpty());
             this.e.N(true);
             if (w7Var.h) {
-                j10 = (w7Var.Z * ((float) w7Var.f11905h0)) + ((float) j10);
+                j10 = (w7Var.Z * ((float) w7Var.f11904h0)) + ((float) j10);
             }
             int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
             if (i10 > 0) {
@@ -1156,7 +1156,7 @@ public abstract class o6 extends FrameLayout {
             }
             c();
             w(true);
-            if (w7Var.f11929u && (arrayList = w7Var.v) != null && arrayList.size() == 1 && ((MessageObject) w7Var.v.get(0)).type == 5) {
+            if (w7Var.f11928u && (arrayList = w7Var.v) != null && arrayList.size() == 1 && ((MessageObject) w7Var.v.get(0)).type == 5) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1168,7 +1168,7 @@ public abstract class o6 extends FrameLayout {
             }
             ccVar.o(z10, file2.getAbsolutePath(), getDuration(), w7Var.P);
             this.F.setVideoLeft(w7Var.Z);
-            this.F.setVideoRight(w7Var.f11889a0);
+            this.F.setVideoRight(w7Var.f11888a0);
             cc ccVar2 = this.F;
             if (ccVar2 != null && i10 > 0) {
                 ccVar2.setProgress(j10);
@@ -1176,20 +1176,20 @@ public abstract class o6 extends FrameLayout {
             }
             return;
         }
-        s81 s81Var3 = this.e;
-        if (s81Var3 != null) {
-            s81Var3.B();
+        t81 t81Var3 = this.e;
+        if (t81Var3 != null) {
+            t81Var3.B();
             this.e.H();
             this.e = null;
         }
         n6 n6Var2 = this.H;
-        if (n6Var2 != null && n6Var2.f11306g) {
+        if (n6Var2 != null && n6Var2.f11305g) {
             n6Var2.a(null);
         } else {
-            h81 h81Var5 = this.f11377n;
-            if (h81Var5 != null) {
-                h81Var5.clearAnimation();
-                this.f11377n.animate().alpha(0.0f).withEndAction(new m6(this, 6)).start();
+            i81 i81Var5 = this.f11376n;
+            if (i81Var5 != null) {
+                i81Var5.clearAnimation();
+                this.f11376n.animate().alpha(0.0f).withEndAction(new m6(this, 6)).start();
             }
         }
         cc ccVar3 = this.F;
@@ -1212,10 +1212,10 @@ public abstract class o6 extends FrameLayout {
             this.S = null;
             return;
         }
-        long j10 = w7Var.f11939z0;
+        long j10 = w7Var.f11938z0;
         if (j10 != Long.MIN_VALUE) {
-            Drawable e = e(this.S, w7Var.f11888a, j10, w7Var.f11937y0);
-            w7Var.f11935x0 = e;
+            Drawable e = e(this.S, w7Var.f11887a, j10, w7Var.f11936y0);
+            w7Var.f11934x0 = e;
             this.S = e;
             if (this.R != e) {
                 this.R = null;
@@ -1266,7 +1266,7 @@ public abstract class o6 extends FrameLayout {
         PointF pointF;
         boolean z11;
         boolean z12;
-        if (this.f11375k0) {
+        if (this.f11374k0) {
             if (motionEvent.getPointerCount() > 1) {
                 z10 = true;
             } else {
@@ -1284,91 +1284,91 @@ public abstract class o6 extends FrameLayout {
                 d = 0.0d;
                 f7 = 0.0f;
             }
-            boolean z13 = this.f11380p0;
-            PointF pointF3 = this.f11376l0;
+            boolean z13 = this.f11379p0;
+            PointF pointF3 = this.f11375l0;
             if (z13 != z10) {
                 pointF3.x = pointF2.x;
                 pointF3.y = pointF2.y;
-                this.f11378n0 = f7;
-                this.f11379o0 = d;
-                this.f11380p0 = z10;
+                this.f11377n0 = f7;
+                this.f11378o0 = d;
+                this.f11379p0 = z10;
             }
             if (this.d != null) {
-                float width = w7Var.f11907i0 / getWidth();
+                float width = w7Var.f11906i0 / getWidth();
                 int actionMasked = motionEvent.getActionMasked();
-                Matrix matrix = this.f11385s0;
+                Matrix matrix = this.f11384s0;
                 if (actionMasked == 0) {
-                    this.f11387u0 = 0.0f;
-                    this.f11388v0 = false;
+                    this.f11386u0 = 0.0f;
+                    this.f11387v0 = false;
                     invalidate();
-                    this.f11390w0 = true;
-                    matrix.set(this.d.f11916n0);
+                    this.f11389w0 = true;
+                    matrix.set(this.d.f11915n0);
                 }
-                if (motionEvent.getActionMasked() == 2 && this.f11390w0 && this.d != null) {
+                if (motionEvent.getActionMasked() == 2 && this.f11389w0 && this.d != null) {
                     float f10 = pointF2.x * width;
                     float f11 = pointF2.y * width;
                     float f12 = pointF3.x * width;
                     float f13 = pointF3.y * width;
                     if (motionEvent.getPointerCount() > 1) {
-                        float f14 = this.f11378n0;
+                        float f14 = this.f11377n0;
                         if (f14 != 0.0f) {
                             float f15 = f7 / f14;
                             matrix.postScale(f15, f15, f10, f11);
                         }
                         pointF = pointF2;
-                        float degrees = (float) Math.toDegrees(d - this.f11379o0);
-                        float f16 = this.f11387u0 + degrees;
-                        this.f11387u0 = f16;
-                        if (!this.f11383r0) {
+                        float degrees = (float) Math.toDegrees(d - this.f11378o0);
+                        float f16 = this.f11386u0 + degrees;
+                        this.f11386u0 = f16;
+                        if (!this.f11382r0) {
                             if (Math.abs(f16) > 20.0f) {
                                 z11 = true;
                             } else {
                                 z11 = false;
                             }
-                            this.f11383r0 = z11;
+                            this.f11382r0 = z11;
                             if (!z11) {
                                 d(matrix);
-                                if ((Math.round(this.f11367d0 / 90.0f) * 90.0f) - this.f11367d0 > 20.0f) {
+                                if ((Math.round(this.f11366d0 / 90.0f) * 90.0f) - this.f11366d0 > 20.0f) {
                                     z12 = true;
                                 } else {
                                     z12 = false;
                                 }
-                                this.f11383r0 = z12;
+                                this.f11382r0 = z12;
                             }
-                            if (!this.f11388v0) {
+                            if (!this.f11387v0) {
                                 AndroidUtilities.vibrateCursor(this);
-                                this.f11388v0 = true;
+                                this.f11387v0 = true;
                             }
                         }
-                        if (this.f11383r0) {
+                        if (this.f11382r0) {
                             matrix.postRotate(degrees, f10, f11);
                         }
-                        this.f11381q0 = true;
+                        this.f11380q0 = true;
                     } else {
                         pointF = pointF2;
                     }
-                    if (motionEvent.getPointerCount() > 1 || this.f11381q0) {
+                    if (motionEvent.getPointerCount() > 1 || this.f11380q0) {
                         matrix.postTranslate(f10 - f12, f11 - f13);
                     }
-                    Matrix matrix2 = this.f11386t0;
+                    Matrix matrix2 = this.f11385t0;
                     matrix2.set(matrix);
                     Matrix matrix3 = this.W;
                     matrix3.set(matrix);
                     d(matrix3);
-                    float round = (Math.round(this.f11367d0 / 90.0f) * 90.0f) - this.f11367d0;
-                    if (this.f11383r0) {
+                    float round = (Math.round(this.f11366d0 / 90.0f) * 90.0f) - this.f11366d0;
+                    if (this.f11382r0) {
                         if (Math.abs(round) < 3.5f) {
-                            matrix2.postRotate(round, this.f11364b0, this.f11366c0);
-                            if (!this.f11388v0) {
+                            matrix2.postRotate(round, this.f11363b0, this.f11365c0);
+                            if (!this.f11387v0) {
                                 AndroidUtilities.vibrateCursor(this);
-                                this.f11388v0 = true;
+                                this.f11387v0 = true;
                             }
                         } else {
-                            this.f11388v0 = false;
+                            this.f11387v0 = false;
                         }
                     }
-                    this.d.f11916n0.set(matrix2);
-                    this.d.f11908j = true;
+                    this.d.f11915n0.set(matrix2);
+                    this.d.f11907j = true;
                     b();
                     invalidate();
                 } else {
@@ -1376,22 +1376,22 @@ public abstract class o6 extends FrameLayout {
                 }
                 if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                     if (motionEvent.getPointerCount() <= 1) {
-                        this.f11381q0 = false;
+                        this.f11380q0 = false;
                         sb sbVar = ((gb) this).C0;
-                        sbVar.f11650o1.a(true, false, sbVar.f11632i0);
-                        sbVar.f11650o1.b(sbVar.f11614c1.getText());
+                        sbVar.f11649o1.a(true, false, sbVar.f11631i0);
+                        sbVar.f11649o1.b(sbVar.f11613c1.getText());
                     }
-                    this.f11390w0 = false;
-                    this.f11383r0 = false;
-                    this.f11387u0 = 0.0f;
-                    this.f11388v0 = false;
+                    this.f11389w0 = false;
+                    this.f11382r0 = false;
+                    this.f11386u0 = 0.0f;
+                    this.f11387v0 = false;
                     invalidate();
                 }
                 PointF pointF4 = pointF;
                 pointF3.x = pointF4.x;
                 pointF3.y = pointF4.y;
-                this.f11378n0 = f7;
-                this.f11379o0 = d;
+                this.f11377n0 = f7;
+                this.f11378o0 = d;
                 return true;
             }
         }
@@ -1411,15 +1411,15 @@ public abstract class o6 extends FrameLayout {
     }
 
     public final void x(int i10, boolean z10) {
-        HashSet hashSet = this.f11395z0;
+        HashSet hashSet = this.f11394z0;
         if (z10) {
             hashSet.add(Integer.valueOf(i10));
         } else {
             hashSet.remove(Integer.valueOf(i10));
         }
-        s81 s81Var = this.e;
-        if (s81Var != null) {
-            s81Var.P(hashSet.isEmpty());
+        t81 t81Var = this.e;
+        if (t81Var != null) {
+            t81Var.P(hashSet.isEmpty());
         }
         e0 e0Var = this.E;
         if (e0Var != null) {
@@ -1435,24 +1435,24 @@ public abstract class o6 extends FrameLayout {
         float f7;
         boolean z11;
         int i10;
-        if (this.f11391x != null && this.d != null) {
+        if (this.f11390x != null && this.d != null) {
             boolean z12 = true;
             if (this.e == null && !j()) {
-                this.f11391x.P(this.f11395z0.isEmpty());
-                this.f11391x.N(true);
-                sg.d2 d2Var = this.f11389w;
-                if (d2Var != null && !d2Var.B0) {
-                    d2Var.B0 = true;
-                    d2Var.C0.f(true, true);
-                    d2Var.invalidate();
+                this.f11390x.P(this.f11394z0.isEmpty());
+                this.f11390x.N(true);
+                sg.c2 c2Var = this.f11388w;
+                if (c2Var != null && !c2Var.B0) {
+                    c2Var.B0 = true;
+                    c2Var.C0.f(true, true);
+                    c2Var.invalidate();
                 }
-                long n11 = this.f11391x.n();
-                if (z10 && this.f11391x.p() != -9223372036854775807L) {
-                    float p10 = ((float) n11) / ((float) this.f11391x.p());
+                long n11 = this.f11390x.n();
+                if (z10 && this.f11390x.p() != -9223372036854775807L) {
+                    float p10 = ((float) n11) / ((float) this.f11390x.p());
                     w7 w7Var = this.d;
-                    if ((p10 < w7Var.f11926s0 || p10 > w7Var.f11928t0) && System.currentTimeMillis() - this.J > 500) {
+                    if ((p10 < w7Var.f11925s0 || p10 > w7Var.f11927t0) && System.currentTimeMillis() - this.J > 500) {
                         this.J = System.currentTimeMillis();
-                        this.f11391x.L(-this.d.f11924r0, false);
+                        this.f11390x.L(-this.d.f11923r0, false);
                         return;
                     }
                     return;
@@ -1461,16 +1461,16 @@ public abstract class o6 extends FrameLayout {
             }
             if (j()) {
                 n10 = this.E.getPositionWithOffset();
-                y3 = this.E.f10762q0;
+                y3 = this.E.f10761q0;
             } else {
                 n10 = this.e.n();
                 y3 = this.e.y();
             }
             w7 w7Var2 = this.d;
-            float f10 = w7Var2.f11928t0;
-            float f11 = w7Var2.f11926s0;
-            long j10 = (f10 - f11) * ((float) w7Var2.f11922q0);
-            long j11 = w7Var2.f11924r0;
+            float f10 = w7Var2.f11927t0;
+            float f11 = w7Var2.f11925s0;
+            long j10 = (f10 - f11) * ((float) w7Var2.f11921q0);
+            long j11 = w7Var2.f11923r0;
             if (n10 >= j11 && n10 <= j10 + j11) {
                 z11 = true;
             } else {
@@ -1480,23 +1480,23 @@ public abstract class o6 extends FrameLayout {
                 z12 = false;
             }
             long j12 = (n10 - j11) + (f11 * f7);
-            sg.d2 d2Var2 = this.f11389w;
-            if (d2Var2 != null && d2Var2.B0 != z11) {
-                d2Var2.B0 = z11;
-                d2Var2.invalidate();
+            sg.c2 c2Var2 = this.f11388w;
+            if (c2Var2 != null && c2Var2.B0 != z11) {
+                c2Var2.B0 = z11;
+                c2Var2.invalidate();
             }
-            if (this.f11391x.y() != z12) {
-                this.f11391x.P(z12);
-                this.f11391x.L(j12, false);
+            if (this.f11390x.y() != z12) {
+                this.f11390x.P(z12);
+                this.f11390x.L(j12, false);
             } else if (z10) {
-                long abs = Math.abs(this.f11391x.n() - j12);
+                long abs = Math.abs(this.f11390x.n() - j12);
                 if (j()) {
                     i10 = 300;
                 } else {
                     i10 = 120;
                 }
                 if (abs > i10) {
-                    this.f11391x.L(j12, false);
+                    this.f11390x.L(j12, false);
                 }
             }
         }

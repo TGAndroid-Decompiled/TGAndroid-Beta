@@ -1,29 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class yu extends FrameLayout {
-    public org.telegram.ui.ActionBar.r2 f46111a;
-    public FrameLayout f46112b;
-    public org.telegram.ui.ActionBar.k f46113c;
-    public org.telegram.ui.Components.mm0 d;
-    public bi.r1 e;
-    public int f46114f;
-    public final zu h;
+import java.util.ArrayList;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.TLRPC;
+public final class yu implements xx, ts {
+    public final bv f46084a;
 
-    public yu(zu zuVar, Context context) {
-        super(context);
-        this.h = zuVar;
+    public yu(bv bvVar) {
+        this.f46084a = bvVar;
     }
 
     @Override
-    public final void setTranslationX(float f7) {
-        yu yuVar;
-        super.setTranslationX(f7);
-        zu zuVar = this.h;
-        yu[] yuVarArr = zuVar.f46366f;
-        if (zuVar.f46367n && (yuVar = yuVarArr[0]) == this) {
-            zuVar.e.i(Math.abs(yuVar.getTranslationX()) / yuVarArr[0].getMeasuredWidth(), yuVarArr[1].f46114f);
+    public boolean C() {
+        return false;
+    }
+
+    @Override
+    public boolean K(ey eyVar) {
+        return false;
+    }
+
+    @Override
+    public void b(TLRPC.User user) {
+        this.f46084a.m0(user);
+    }
+
+    @Override
+    public boolean v(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, cf1 cf1Var) {
+        if (!arrayList.isEmpty()) {
+            long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            if (DialogObject.isUserDialog(j10)) {
+                bv bvVar = this.f46084a;
+                bvVar.m0(bvVar.getMessagesController().getUser(Long.valueOf(j10)));
+                return true;
+            }
+            return true;
         }
+        return true;
     }
 }

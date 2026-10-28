@@ -1,20 +1,29 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-public final class vn extends un {
-    public final wn f44863kd;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.NumberTextView;
+public final class vn extends org.telegram.ui.ActionBar.b6 {
+    public boolean M0;
+    public final wn N0;
 
-    public vn(wn wnVar, Bundle bundle) {
-        super(bundle);
-        this.f44863kd = wnVar;
+    public vn(wn wnVar, Activity activity) {
+        super(activity);
+        this.N0 = wnVar;
+        this.M0 = true;
     }
 
     @Override
-    public final void fa(boolean z10) {
-        this.f44863kd.b(z10);
-    }
-
-    @Override
-    public final void setNavigationBarColor(int i10) {
+    public final void d(int i10) {
+        super.d(i10);
+        if (this.M0 && getVisibility() == 0) {
+            int dp = AndroidUtilities.dp(4.0f) + getTextWidth();
+            wn wnVar = this.N0;
+            wnVar.S2 = dp;
+            NumberTextView numberTextView = wnVar.R2;
+            if (numberTextView != null) {
+                numberTextView.setTranslationX(dp);
+            }
+        }
     }
 }

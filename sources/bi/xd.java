@@ -38,7 +38,7 @@ public final class xd extends AnimatorListenerAdapter {
                     f7 = -this.f5713c;
                 }
                 q00Var.b(f7, i10 + 1);
-                q00Var.f31775y = 0.0f;
+                q00Var.f31764y = 0.0f;
                 q00Var.invalidate();
                 return;
             default:

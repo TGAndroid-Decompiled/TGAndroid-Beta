@@ -18,11 +18,11 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.af1;
-import org.telegram.ui.cy;
-import org.telegram.ui.of0;
-import org.telegram.ui.un;
-import org.telegram.ui.ux;
+import org.telegram.ui.cf1;
+import org.telegram.ui.ey;
+import org.telegram.ui.qf0;
+import org.telegram.ui.wn;
+import org.telegram.ui.xx;
 public final class d1 implements View.OnClickListener {
     public final int f4479a = 0;
     public final int f4480b;
@@ -32,7 +32,7 @@ public final class d1 implements View.OnClickListener {
     public final Object f4482f;
     public final Object h;
 
-    public d1(g1 g1Var, un unVar, int i10, Context context, org.telegram.ui.ActionBar.u6 u6Var, long j10, Utilities.Callback callback) {
+    public d1(g1 g1Var, wn wnVar, int i10, Context context, org.telegram.ui.ActionBar.u6 u6Var, long j10, Utilities.Callback callback) {
         this.d = g1Var;
         this.f4480b = i10;
         this.e = context;
@@ -52,7 +52,7 @@ public final class d1 implements View.OnClickListener {
                 Context context = (Context) this.e;
                 org.telegram.ui.ActionBar.u6 u6Var = (org.telegram.ui.ActionBar.u6) this.f4482f;
                 Utilities.Callback callback = (Utilities.Callback) this.h;
-                if (g1Var.f4638s.f10687c0) {
+                if (g1Var.f4638s.f10686c0) {
                     int i10 = this.f4480b;
                     if (MessagesController.getInstance(i10).isFrozen()) {
                         org.telegram.ui.b.b(i10);
@@ -91,7 +91,7 @@ public final class d1 implements View.OnClickListener {
                 org.telegram.ui.web.t tVar = (org.telegram.ui.web.t) this.h;
                 final org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
                 if (U != null) {
-                    s1Var.f13262b0 = true;
+                    s1Var.f13261b0 = true;
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("onlySelect", true);
                     bundle.putBoolean("canSelectTopics", true);
@@ -137,19 +137,19 @@ public final class d1 implements View.OnClickListener {
                     hi.q1 q1Var = new hi.q1(s1Var, bundle, t0Var);
                     final int i12 = this.f4480b;
                     final long j11 = this.f4481c;
-                    q1Var.C2 = new ux() {
+                    q1Var.C2 = new xx() {
                         @Override
                         public final boolean C() {
                             return false;
                         }
 
                         @Override
-                        public final boolean K(cy cyVar) {
+                        public final boolean K(ey eyVar) {
                             return false;
                         }
 
                         @Override
-                        public final boolean v(cy cyVar, ArrayList arrayList2, CharSequence charSequence, boolean z11, boolean z12, int i13, int i14, af1 af1Var) {
+                        public final boolean v(ey eyVar, ArrayList arrayList2, CharSequence charSequence, boolean z11, boolean z12, int i13, int i14, cf1 cf1Var) {
                             String str;
                             TLRPC.TL_forumTopic findTopic;
                             TLRPC.Message message;
@@ -182,7 +182,7 @@ public final class d1 implements View.OnClickListener {
                                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage4 = tL_messages_preparedInlineMessage3;
                                     sb2.append(tL_messages_preparedInlineMessage4.query_id);
                                     hashMap.put("query_id", sb2.toString());
-                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f22025id);
+                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f22026id);
                                     hashMap.put("bot", "" + j11);
                                     long j14 = j12;
                                     SendMessagesHelper.prepareSendingBotContextResult(U, AccountInstance.getInstance(i17), tL_messages_preparedInlineMessage4.result, hashMap, j14, messageObject2, messageObject2, null, null, z12, i13, 0, null, 0L, 0L);
@@ -196,19 +196,19 @@ public final class d1 implements View.OnClickListener {
                                 }
                             }
                             s1 s1Var2 = s1.this;
-                            if (!s1Var2.f13263c0) {
-                                s1Var2.f13263c0 = true;
+                            if (!s1Var2.f13262c0) {
+                                s1Var2.f13262c0 = true;
                                 if (arrayList3.size() <= 0) {
                                     str = "USER_DECLINED";
                                 }
                                 t0Var.run(str, arrayList3);
                             }
-                            if (af1Var != null) {
-                                af1Var.finishFragment();
-                                cyVar.removeSelfFromStack();
+                            if (cf1Var != null) {
+                                cf1Var.finishFragment();
+                                eyVar.removeSelfFromStack();
                                 return true;
                             }
-                            cyVar.finishFragment();
+                            eyVar.finishFragment();
                             return true;
                         }
                     };
@@ -219,11 +219,11 @@ public final class d1 implements View.OnClickListener {
                 }
                 return;
             default:
-                of0 of0Var = (of0) this.d;
+                qf0 qf0Var = (qf0) this.d;
                 String str = (String) this.e;
                 String str2 = (String) this.f4482f;
                 String str3 = (String) this.h;
-                fi.d dVar = of0Var.f42177b;
+                fi.d dVar = qf0Var.f42697b;
                 if (!dVar.Q) {
                     dVar.setLoading(true);
                     TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
@@ -246,7 +246,7 @@ public final class d1 implements View.OnClickListener {
                         tL_dataJSON.data = q5.toString();
                         tL_payments_getPaymentForm.flags |= 1;
                     }
-                    of0Var.v.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.ea(of0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
+                    qf0Var.v.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.ea(qf0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
                     return;
                 }
                 return;
@@ -262,8 +262,8 @@ public final class d1 implements View.OnClickListener {
         this.h = tVar;
     }
 
-    public d1(of0 of0Var, String str, long j10, String str2, String str3, int i10) {
-        this.d = of0Var;
+    public d1(qf0 qf0Var, String str, long j10, String str2, String str3, int i10) {
+        this.d = qf0Var;
         this.e = str;
         this.f4481c = j10;
         this.f4482f = str2;

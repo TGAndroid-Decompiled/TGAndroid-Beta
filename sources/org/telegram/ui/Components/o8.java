@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class o8 implements View.OnClickListener {
-    public final int f31222a;
-    public final sh0 f31223b;
+    public final int f31229a;
+    public final th0 f31230b;
 
-    public o8(sh0 sh0Var, int i10) {
-        this.f31222a = i10;
-        this.f31223b = sh0Var;
+    public o8(th0 th0Var, int i10) {
+        this.f31229a = i10;
+        this.f31230b = th0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f31222a) {
+        switch (this.f31229a) {
             case 0:
-                this.f31223b.b(true);
+                this.f31230b.b(true);
                 return;
             default:
-                this.f31223b.b(true);
+                this.f31230b.b(true);
                 return;
         }
     }

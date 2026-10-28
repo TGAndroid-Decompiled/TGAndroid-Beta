@@ -2,30 +2,30 @@ package s7;
 
 import a8.bg;
 public final class s extends t {
-    public final transient int f47925c;
+    public final transient int f47960c;
     public final transient int d;
     public final t e;
 
     public s(t tVar, int i10, int i11) {
         this.e = tVar;
-        this.f47925c = i10;
+        this.f47960c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
         bg.a(i10, this.d);
-        return this.e.get(i10 + this.f47925c);
+        return this.e.get(i10 + this.f47960c);
     }
 
     @Override
     public final int m() {
-        return this.e.n() + this.f47925c + this.d;
+        return this.e.n() + this.f47960c + this.d;
     }
 
     @Override
     public final int n() {
-        return this.e.n() + this.f47925c;
+        return this.e.n() + this.f47960c;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class s extends t {
     @Override
     public final t subList(int i10, int i11) {
         bg.b(i10, i11, this.d);
-        int i12 = this.f47925c;
+        int i12 = this.f47960c;
         return this.e.subList(i10 + i12, i11 + i12);
     }
 

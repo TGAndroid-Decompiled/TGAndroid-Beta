@@ -7,21 +7,21 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class az {
-    public final ArrayList f26710a = new ArrayList();
-    public final sz f26711b;
+    public final ArrayList f26695a = new ArrayList();
+    public final sz f26696b;
 
     public az(sz szVar) {
-        this.f26711b = szVar;
+        this.f26696b = szVar;
     }
 
     public final void a(String str, boolean z10) {
-        sz szVar = this.f26711b;
-        int i10 = szVar.f32719c1;
+        sz szVar = this.f26696b;
+        int i10 = szVar.f32713c1;
         String p10 = a1.g.p("gif_search_", str, "_");
-        if (!z10 || !szVar.f32746l0.containsKey(p10)) {
+        if (!z10 || !szVar.f32740l0.containsKey(p10)) {
             String str2 = str;
             bi.d4 d4Var = new bi.d4(this, str2, z10, p10, 5);
-            ArrayList arrayList = this.f26710a;
+            ArrayList arrayList = this.f26695a;
             if (z10) {
                 arrayList.add(p10);
                 MessagesStorage.getInstance(i10).getBotCache(p10, d4Var);

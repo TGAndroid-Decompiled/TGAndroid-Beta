@@ -15,19 +15,19 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ds;
 public final class w2 extends org.telegram.ui.ActionBar.s0 {
-    public AnimatorSet f11846a;
-    public final o3 f11847b;
+    public AnimatorSet f11845a;
+    public final o3 f11846b;
 
     public w2(o3 o3Var) {
-        this.f11847b = o3Var;
+        this.f11846b = o3Var;
     }
 
     @Override
     public final void h() {
-        o3 o3Var = this.f11847b;
+        o3 o3Var = this.f11846b;
         x2 x2Var = o3Var.d;
         d3 d3Var = o3Var.F;
-        AnimatorSet animatorSet = this.f11846a;
+        AnimatorSet animatorSet = this.f11845a;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
@@ -53,21 +53,21 @@ public final class w2 extends org.telegram.ui.ActionBar.s0 {
         ofFloat.addUpdateListener(new v2(this, 1));
         arrayList.add(ofFloat);
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f11846a = animatorSet2;
+        this.f11845a = animatorSet2;
         animatorSet2.setDuration(320L);
-        this.f11846a.setInterpolator(ds.h);
-        this.f11846a.playTogether(arrayList);
-        this.f11846a.addListener(new ce(3, this, searchField));
-        this.f11846a.start();
+        this.f11845a.setInterpolator(ds.h);
+        this.f11845a.playTogether(arrayList);
+        this.f11845a.addListener(new ce(3, this, searchField));
+        this.f11845a.start();
     }
 
     @Override
     public final void i() {
-        o3 o3Var = this.f11847b;
+        o3 o3Var = this.f11846b;
         x2 x2Var = o3Var.d;
         FrameLayout frameLayout = o3Var.h;
         d3 d3Var = o3Var.F;
-        AnimatorSet animatorSet = this.f11846a;
+        AnimatorSet animatorSet = this.f11845a;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
@@ -90,36 +90,36 @@ public final class w2 extends org.telegram.ui.ActionBar.s0 {
         arrayList.add(ObjectAnimator.ofFloat(x2Var, property3, 0.0f));
         x2Var.setFastScrollVisible(false);
         arrayList.add(ObjectAnimator.ofFloat(frameLayout, property3, 1.0f));
-        o3Var.f11351s.setVisibility(0);
+        o3Var.f11350s.setVisibility(0);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new v2(this, 0));
         arrayList.add(ofFloat);
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f11846a = animatorSet2;
+        this.f11845a = animatorSet2;
         animatorSet2.setDuration(320L);
-        this.f11846a.setInterpolator(ds.h);
-        this.f11846a.playTogether(arrayList);
-        this.f11846a.addListener(new bh.b(this, 19));
-        this.f11846a.start();
+        this.f11845a.setInterpolator(ds.h);
+        this.f11845a.playTogether(arrayList);
+        this.f11845a.addListener(new bh.b(this, 19));
+        this.f11845a.start();
     }
 
     @Override
     public final void l(EditText editText) {
         String obj = editText.getText().toString();
-        e3 e3Var = this.f11847b.f11350r;
+        e3 e3Var = this.f11846b.f11349r;
         di.s8 s8Var = e3Var.v;
-        if (!TextUtils.equals(e3Var.f11294f, obj)) {
+        if (!TextUtils.equals(e3Var.f11293f, obj)) {
             if (e3Var.e != -1) {
-                ConnectionsManager.getInstance(e3Var.f11298w.f11336a).cancelRequest(e3Var.e, true);
+                ConnectionsManager.getInstance(e3Var.f11297w.f11335a).cancelRequest(e3Var.e, true);
                 e3Var.e = -1;
             }
             e3Var.d = false;
             e3Var.h = null;
         }
-        e3Var.f11294f = obj;
+        e3Var.f11293f = obj;
         AndroidUtilities.cancelRunOnUIThread(s8Var);
         if (TextUtils.isEmpty(obj)) {
-            e3Var.f11293c.clear();
+            e3Var.f11292c.clear();
             e3Var.F(false);
             e3Var.l();
             return;

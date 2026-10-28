@@ -10,21 +10,21 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.pw0;
+import org.telegram.ui.Components.qw0;
 public class i4 extends View implements p6 {
-    public final pw0 f13034a;
-    public final Paint f13035b;
-    public float f13036c;
+    public final qw0 f13033a;
+    public final Paint f13034b;
+    public float f13035c;
     public o1.j d;
     public final u6 e;
 
     public i4(Context context, u6 u6Var) {
         super(context);
-        pw0 pw0Var = new pw0(new gh.a(14), new gh.a(15));
-        pw0Var.f31730c = 100.0f;
-        this.f13034a = pw0Var;
+        qw0 qw0Var = new qw0(new gh.a(14), new gh.a(15));
+        qw0Var.f32059c = 100.0f;
+        this.f13033a = qw0Var;
         Paint paint = new Paint(1);
-        this.f13035b = paint;
+        this.f13034b = paint;
         this.e = u6Var;
         paint.setColor(y6.w0(y6.Oh, u6Var));
         paint.setStyle(Paint.Style.STROKE);
@@ -35,21 +35,21 @@ public class i4 extends View implements p6 {
     @Override
     public final void draw(Canvas canvas) {
         super.draw(canvas);
-        if (this.f13036c > 0.0f) {
-            Paint paint = this.f13035b;
+        if (this.f13035c > 0.0f) {
+            Paint paint = this.f13034b;
             float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.f13036c, height, paint);
+            canvas.drawLine(0.0f, height, getWidth() * this.f13035c, height, paint);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        o1.j jVar = new o1.j(this, this.f13034a);
+        o1.j jVar = new o1.j(this, this.f13033a);
         o1.k kVar = new o1.k();
         kVar.b(400.0f);
         kVar.a(1.0f);
-        jVar.f18969u = kVar;
+        jVar.f18968u = kVar;
         this.d = jVar;
     }
 
@@ -61,7 +61,7 @@ public class i4 extends View implements p6 {
     }
 
     public void setLoadProgress(float f7) {
-        this.f13036c = f7;
+        this.f13035c = f7;
         invalidate();
     }
 
@@ -71,14 +71,14 @@ public class i4 extends View implements p6 {
             setLoadProgress(f7);
             return;
         }
-        jVar.f18969u.f18975i = f7 * 100.0f;
+        jVar.f18968u.f18974i = f7 * 100.0f;
         jVar.h();
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f13035b.setColor(y6.w0(y6.Oh, this.e));
+            this.f13034b.setColor(y6.w0(y6.Oh, this.e));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

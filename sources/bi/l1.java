@@ -61,7 +61,7 @@ public abstract class l1 {
         int i12 = 0;
         while (true) {
             e0Var = f5006b;
-            if (i12 >= e0Var.f9529b) {
+            if (i12 >= e0Var.f9528b) {
                 break;
             }
             e0.e0.c((float[]) e0Var.d, i12, 0.0f, 0.0f, width, height);
@@ -82,7 +82,7 @@ public abstract class l1 {
                 float f17 = f13 * 1.0f;
                 float f18 = f14 * 1.0f;
                 int i13 = i11 / 4;
-                e0.e0.c((float[]) e0Var.f9530c, i13, AndroidUtilities.dp(f16) - (AndroidUtilities.dp(f18) / 2.0f), AndroidUtilities.dp(f17) - (AndroidUtilities.dp(f18) / 2.0f), (AndroidUtilities.dp(f18) / 2.0f) + AndroidUtilities.dp(f16), (AndroidUtilities.dp(f18) / 2.0f) + AndroidUtilities.dp(f17));
+                e0.e0.c((float[]) e0Var.f9529c, i13, AndroidUtilities.dp(f16) - (AndroidUtilities.dp(f18) / 2.0f), AndroidUtilities.dp(f17) - (AndroidUtilities.dp(f18) / 2.0f), (AndroidUtilities.dp(f18) / 2.0f) + AndroidUtilities.dp(f16), (AndroidUtilities.dp(f18) / 2.0f) + AndroidUtilities.dp(f17));
                 e0Var.f(i13, i0.a.o(-1, (int) (255.0f * f11 * f15)));
                 i11 += 4;
             } else {
@@ -169,14 +169,14 @@ public abstract class l1 {
                 }
                 float f51 = f26;
                 if (i12 == 18 || i12 == 19 || i12 == 6 || i12 == 7) {
-                    clamp01 = ds.f27588i.getInterpolation(clamp01);
+                    clamp01 = ds.f27532i.getInterpolation(clamp01);
                 }
                 float[] fArr3 = fArr2;
                 float f52 = f45;
                 float d = ic.a.d(f52, f15, AndroidUtilities.dp(12.0f), f47);
                 int i14 = (clamp01 > f52 ? 1 : (clamp01 == f52 ? 0 : -1));
                 if (i14 < 0) {
-                    f46 = AndroidUtilities.lerp(f18, f46, ds.f27588i.getInterpolation(clamp01));
+                    f46 = AndroidUtilities.lerp(f18, f46, ds.f27532i.getInterpolation(clamp01));
                     d = AndroidUtilities.lerp(f19, d, clamp01);
                     dpf27 = AndroidUtilities.lerp(AndroidUtilities.dpf2(8.0f), dpf27, clamp01);
                 }

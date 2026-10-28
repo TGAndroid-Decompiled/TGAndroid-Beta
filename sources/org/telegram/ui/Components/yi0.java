@@ -1,55 +1,20 @@
 package org.telegram.ui.Components;
 
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class yi0 implements id0, kd0 {
-    public final int f35070a;
-    public final dj0 f35071b;
+import android.graphics.Paint;
+public final class yi0 {
+    public Paint f35060a;
+    public Paint f35061b;
+    public float f35062c;
+    public int d;
+    public int e;
+    public float f35063f;
 
-    public yi0(dj0 dj0Var, int i10) {
-        this.f35070a = i10;
-        this.f35071b = dj0Var;
-    }
-
-    @Override
-    public String f(int i10) {
-        int i11 = this.f35070a;
-        dj0 dj0Var = this.f35071b;
-        switch (i11) {
-            case 0:
-                if (dj0Var.O) {
-                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
-                }
-                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
-            default:
-                if (dj0Var.O) {
-                    if (i10 == 1) {
-                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
-                    }
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    Locale locale = Locale.US;
-                    return ic.a.i(i10, ".");
-                } else if (i10 == 1) {
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
-                } else {
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
-                }
+    public final void a(float f7) {
+        this.f35062c = f7;
+        if (f7 < 0.0f) {
+            this.f35062c = 0.0f;
+        } else if (f7 > 1.0f) {
+            this.f35062c = 1.0f;
         }
-    }
-
-    @Override
-    public void q(md0 md0Var, int i10) {
-        dj0 dj0Var = this.f35071b;
-        try {
-            dj0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        dj0Var.c(true);
     }
 }

@@ -77,7 +77,7 @@ public final class d implements Runnable {
                 }
                 return;
             default:
-                ((MessagesStorage) this.e).lambda$getWidgetDialogs$172(this.f1262b, this.f1263c, this.d, (a0.h) this.f1264f, (a0.h) this.h, (ArrayList) this.f1265n, (ArrayList) this.f1266r, (CountDownLatch) this.f1267s);
+                ((MessagesStorage) this.e).lambda$getWidgetDialogs$173(this.f1262b, this.f1263c, this.d, (a0.h) this.f1264f, (a0.h) this.h, (ArrayList) this.f1265n, (ArrayList) this.f1266r, (CountDownLatch) this.f1267s);
                 return;
         }
     }

@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.s1;
-import org.telegram.ui.Components.dl0;
+import org.telegram.ui.Components.el0;
 public final class s0 {
     public static s0 B;
     public static s0 C;
@@ -31,7 +31,7 @@ public final class s0 {
     public float f4138q;
     public float f4139r;
     public boolean f4140s;
-    public final dl0 f4141t;
+    public final el0 f4141t;
     public boolean f4142u;
     public final View v;
     public boolean f4143w;
@@ -40,8 +40,8 @@ public final class s0 {
     public final int[] f4131j = new int[2];
     public final ArrayList f4144x = new ArrayList();
 
-    public s0(android.content.Context r32, org.telegram.ui.ActionBar.r2 r33, org.telegram.ui.Components.fl0 r34, android.view.View r35, android.view.View r36, float r37, float r38, bh.x0 r39, int r40, int r41, boolean r42) {
-        throw new UnsupportedOperationException("Method not decompiled: bh.s0.<init>(android.content.Context, org.telegram.ui.ActionBar.r2, org.telegram.ui.Components.fl0, android.view.View, android.view.View, float, float, bh.x0, int, int, boolean):void");
+    public s0(android.content.Context r32, org.telegram.ui.ActionBar.r2 r33, org.telegram.ui.Components.gl0 r34, android.view.View r35, android.view.View r36, float r37, float r38, bh.x0 r39, int r40, int r41, boolean r42) {
+        throw new UnsupportedOperationException("Method not decompiled: bh.s0.<init>(android.content.Context, org.telegram.ui.ActionBar.r2, org.telegram.ui.Components.gl0, android.view.View, android.view.View, float, float, bh.x0, int, int, boolean):void");
     }
 
     public static String a() {
@@ -68,8 +68,8 @@ public final class s0 {
         B = null;
     }
 
-    public static void d(org.telegram.ui.ActionBar.r2 r14, org.telegram.ui.Components.fl0 r15, android.view.View r16, android.view.View r17, float r18, float r19, bh.x0 r20, int r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: bh.s0.d(org.telegram.ui.ActionBar.r2, org.telegram.ui.Components.fl0, android.view.View, android.view.View, float, float, bh.x0, int, int):void");
+    public static void d(org.telegram.ui.ActionBar.r2 r14, org.telegram.ui.Components.gl0 r15, android.view.View r16, android.view.View r17, float r18, float r19, bh.x0 r20, int r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: bh.s0.d(org.telegram.ui.ActionBar.r2, org.telegram.ui.Components.gl0, android.view.View, android.view.View, float, float, bh.x0, int, int):void");
     }
 
     public static int e() {

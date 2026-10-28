@@ -8,19 +8,19 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import d7.r0;
 public final class a extends p6.a {
-    public final String f10183a;
-    public final String f10184b;
-    public final l f10185c;
+    public final String f10182a;
+    public final String f10183b;
+    public final l f10184c;
     public final f d;
     public final boolean e;
-    public final boolean f10186f;
+    public final boolean f10185f;
     public static final h6.b h = new h6.b("CastMediaOptions", null);
     public static final Parcelable.Creator<a> CREATOR = new r0(29);
 
     public a(String str, String str2, IBinder iBinder, f fVar, boolean z10, boolean z11) {
         l aVar;
-        this.f10183a = str;
-        this.f10184b = str2;
+        this.f10182a = str;
+        this.f10183b = str2;
         if (iBinder == null) {
             aVar = 0;
         } else {
@@ -31,14 +31,14 @@ public final class a extends p6.a {
                 aVar = new a8.a(iBinder, "com.google.android.gms.cast.framework.media.IImagePicker", 2);
             }
         }
-        this.f10185c = aVar;
+        this.f10184c = aVar;
         this.d = fVar;
         this.e = z10;
-        this.f10186f = z11;
+        this.f10185f = z11;
     }
 
     public final void b() {
-        l lVar = this.f10185c;
+        l lVar = this.f10184c;
         if (lVar != null) {
             try {
                 Parcel P0 = lVar.P0(lVar.N0(), 2);
@@ -57,9 +57,9 @@ public final class a extends p6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         IBinder iBinder;
         int q5 = df.q(parcel, 20293);
-        df.l(parcel, 2, this.f10183a);
-        df.l(parcel, 3, this.f10184b);
-        l lVar = this.f10185c;
+        df.l(parcel, 2, this.f10182a);
+        df.l(parcel, 3, this.f10183b);
+        l lVar = this.f10184c;
         if (lVar == null) {
             iBinder = null;
         } else {
@@ -70,7 +70,7 @@ public final class a extends p6.a {
         df.s(parcel, 6, 4);
         parcel.writeInt(this.e ? 1 : 0);
         df.s(parcel, 7, 4);
-        parcel.writeInt(this.f10186f ? 1 : 0);
+        parcel.writeInt(this.f10185f ? 1 : 0);
         df.r(parcel, q5);
     }
 }

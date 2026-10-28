@@ -1,21 +1,25 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class iz0 extends org.telegram.ui.Components.mr0 {
-    public final ProfileActivity f40375a1;
+public final class iz0 extends iq {
+    public final boolean[] f40295c1;
+    public final TLRPC.User f40296d1;
+    public final ProfileActivity f40297e1;
 
-    public iz0(ProfileActivity profileActivity, Activity activity, String str, String str2) {
-        super(activity, null, str, false, str2, false, null);
-        this.f40375a1 = profileActivity;
+    public iz0(ProfileActivity profileActivity, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, TLRPC.User user) {
+        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
+        this.f40297e1 = profileActivity;
+        this.f40295c1 = zArr;
+        this.f40296d1 = user;
     }
 
     @Override
-    public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f40295c1[0]) {
+            ProfileActivity profileActivity = this.f40297e1;
+            if (org.telegram.ui.Components.wc.a(profileActivity)) {
+                org.telegram.ui.Components.wc.C(profileActivity, this.f40296d1.first_name).j();
+            }
         }
-        AndroidUtilities.runOnUIThread(new fy0(this, hVar, i10, 6), 250L);
     }
 }

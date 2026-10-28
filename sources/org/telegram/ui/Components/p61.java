@@ -1,380 +1,413 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.util.LongSparseArray;
-import android.view.MotionEvent;
+import android.util.SparseArray;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class p61 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public int E;
-    public boolean F;
-    public boolean G;
-    public boolean H;
-    public boolean I;
-    public boolean J;
-    public long K;
-    public ValueAnimator L;
-    public boolean M;
-    public boolean N;
-    public final TLRPC.StickerSetCovered O;
-    public final org.telegram.ui.ActionBar.u6 P;
-    public float Q;
-    public final Paint R;
-    public final int f31451a;
-    public final m61 f31452b;
-    public final TLRPC.StickerSetCovered[] f31453c;
-    public final LongSparseArray d;
-    public final LongSparseArray e;
-    public final View f31454f;
-    public final e61 h;
-    public final f61 f31455n;
-    public final g61 f31456r;
-    public final o61 f31457s;
-    public final ig.d2 v;
-    public final FrameLayout f31458w;
-    public org.telegram.ui.ActionBar.r2 f31459x;
-    public s4.u0 f31460y;
+public final class p61 extends mm0 {
+    public final Context f31510c;
+    public boolean f31513r;
+    public boolean f31514s;
+    public int f31515w;
+    public final q61 f31516x;
+    public final SparseArray d = new SparseArray();
+    public final ArrayList e = new ArrayList();
+    public final SparseArray f31511f = new SparseArray();
+    public final HashMap h = new HashMap();
+    public final ArrayList f31512n = new ArrayList();
+    public int v = 5;
 
-    public p61(Context context, final m61 m61Var, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, TLRPC.StickerSetCovered stickerSetCovered, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context);
-        int i10 = UserConfig.selectedAccount;
-        this.f31451a = i10;
-        this.Q = 1.0f;
-        this.R = new Paint();
-        this.f31452b = m61Var;
-        this.f31453c = stickerSetCoveredArr;
-        this.d = longSparseArray;
-        this.e = longSparseArray2;
-        this.O = stickerSetCovered;
-        this.P = u6Var;
-        o61 o61Var = new o61(this, context);
-        this.f31457s = o61Var;
-        this.v = new ig.d2(context, new d61(this, m61Var), stickerSetCoveredArr, longSparseArray, longSparseArray2, u6Var);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f31458w = frameLayout;
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23427h5, frameLayout, u6Var);
-        e61 e61Var = new e61(this, context, u6Var);
-        this.h = e61Var;
-        e61Var.setHint(LocaleController.getString(R.string.SearchTrendingStickersHint));
-        frameLayout.addView(e61Var, gb1.i(-1, -1, 48));
-        f61 f61Var = new f61(this, context, m61Var);
-        this.f31455n = f61Var;
-        final j jVar = new j(this, 19);
-        f61Var.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public final boolean onTouch(View view, MotionEvent motionEvent) {
-                j jVar2 = jVar;
-                return m61Var.e(p61.this.f31455n, jVar2, motionEvent);
-            }
-        });
-        f61Var.setOverScrollMode(2);
-        f61Var.setClipToPadding(false);
-        f61Var.setItemAnimator(null);
-        f61Var.setLayoutAnimation(null);
-        g61 g61Var = new g61(this, AndroidUtilities.dp(58.0f), f61Var);
-        this.f31456r = g61Var;
-        f61Var.setLayoutManager(g61Var);
-        g61Var.O = new h61(this);
-        f61Var.setOnScrollListener(new i61(this));
-        f61Var.setAdapter(o61Var);
-        f61Var.setOnItemClickListener(jVar);
-        addView(f61Var, gb1.h(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-        View view = new View(context);
-        this.f31454f = view;
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.V5, view, u6Var);
-        view.setAlpha(0.0f);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight());
-        layoutParams.topMargin = AndroidUtilities.dp(58.0f);
-        addView(view, layoutParams);
-        addView(frameLayout, gb1.i(-1, 58, 51));
-        d();
-        NotificationCenter notificationCenter = NotificationCenter.getInstance(i10);
-        notificationCenter.addObserver(this, NotificationCenter.stickersDidLoad);
-        notificationCenter.addObserver(this, NotificationCenter.featuredStickersDidLoad);
+    public p61(q61 q61Var, Context context) {
+        this.f31516x = q61Var;
+        this.f31510c = context;
     }
 
-    private void setShadowVisible(boolean z10) {
-        float f7;
-        if (this.G != z10) {
-            this.G = z10;
-            ViewPropertyAnimator animate = this.f31454f.animate();
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            org.telegram.messenger.vh.p(animate, f7, 200L);
-        }
-    }
-
-    public final void a(boolean z10) {
-        this.M = z10;
-        if (z10) {
-            if (getContentTopOffset() > 0 && this.L == null) {
-                int contentTopOffset = getContentTopOffset();
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.L = ofFloat;
-                ofFloat.addUpdateListener(new l61(this, contentTopOffset));
-                this.L.addListener(new h31(this, 3));
-                this.L.setDuration(250L);
-                this.L.setInterpolator(org.telegram.ui.ActionBar.q1.f22963w);
-                this.L.start();
-                return;
-            }
-            return;
-        }
-        ValueAnimator valueAnimator = this.L;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.L.cancel();
-            this.L = null;
-        }
-    }
-
-    public final void b(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet) {
-        j61 j61Var;
-        if (stickerSet != null) {
-            inputStickerSet = new TLRPC.TL_inputStickerSetID();
-            inputStickerSet.access_hash = stickerSet.access_hash;
-            inputStickerSet.f22047id = stickerSet.f22054id;
-        }
-        TLRPC.InputStickerSet inputStickerSet2 = inputStickerSet;
-        if (inputStickerSet2 != null) {
-            m61 m61Var = this.f31452b;
-            m61Var.getClass();
-            if (m61Var instanceof kx) {
-                j61Var = new j61(this);
-            } else {
-                j61Var = null;
-            }
-            cz0 cz0Var = new cz0(getContext(), this.f31459x, inputStickerSet2, null, j61Var, this.P);
-            cz0Var.f27300j0 = false;
-            cz0Var.f27292c0 = new k61(this, inputStickerSet2);
-            this.f31459x.showDialog(cz0Var);
-        }
-    }
-
-    public final boolean c() {
-        int i10;
-        boolean z10;
-        f61 f61Var = this.f31455n;
-        int childCount = f61Var.getChildCount();
-        View view = this.f31454f;
-        FrameLayout frameLayout = this.f31458w;
-        if (childCount <= 0) {
-            int paddingTop = f61Var.getPaddingTop();
-            this.E = paddingTop;
-            f61Var.setTopGlowOffset(paddingTop);
-            frameLayout.setTranslationY(this.E);
-            view.setTranslationY(this.E);
-            setShadowVisible(false);
+    @Override
+    public final boolean D(s4.e1 e1Var) {
+        if (e1Var.f47776f == 5) {
             return true;
         }
-        View childAt = f61Var.getChildAt(0);
-        for (int i11 = 1; i11 < f61Var.getChildCount(); i11++) {
-            View childAt2 = f61Var.getChildAt(i11);
-            if (childAt2.getTop() < childAt.getTop()) {
-                childAt = childAt2;
-            }
-        }
-        vl0 vl0Var = (vl0) f61Var.G(childAt);
-        int top = childAt.getTop() - AndroidUtilities.dp(58.0f);
-        if (top > 0 && vl0Var != null && vl0Var.b() == 0) {
-            i10 = top;
-        } else {
-            i10 = 0;
-        }
-        if (top < 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        setShadowVisible(z10);
-        if (this.E == i10) {
-            return false;
-        }
-        this.E = i10;
-        f61Var.setTopGlowOffset(AndroidUtilities.dp(58.0f) + i10);
-        frameLayout.setTranslationY(this.E);
-        view.setTranslationY(this.E);
-        return true;
+        return false;
     }
 
-    public final void d() {
-        f61 f61Var = this.f31455n;
-        s4.h0 adapter = f61Var.getAdapter();
-        o61 o61Var = this.f31457s;
-        if (adapter == o61Var) {
-            o61Var.getClass();
+    public final void E(View view, int i10, boolean z10) {
+        TLRPC.StickerSetCovered stickerSetCovered;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        boolean z15;
+        boolean z16;
+        boolean z17;
+        boolean z18;
+        q61 q61Var = this.f31516x;
+        LongSparseArray longSparseArray = q61Var.e;
+        LongSparseArray longSparseArray2 = q61Var.d;
+        TLRPC.StickerSetCovered[] stickerSetCoveredArr = q61Var.f31805c;
+        int i11 = q61Var.f31803a;
+        MediaDataController mediaDataController = MediaDataController.getInstance(i11);
+        int i12 = this.f31515w;
+        ArrayList arrayList = this.e;
+        SparseArray sparseArray = this.d;
+        if (i10 < i12) {
+            stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(((Integer) sparseArray.get(i10)).intValue());
+            ArrayList<Long> unreadStickerSets = mediaDataController.getUnreadStickerSets();
+            if (unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSetCovered.set.f22055id))) {
+                z18 = true;
+            } else {
+                z18 = false;
+            }
+            if (z18) {
+                mediaDataController.markFeaturedStickersByIdAsRead(false, stickerSetCovered.set.f22055id);
+            }
+            z11 = z18;
+        } else {
+            stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(((Integer) sparseArray.get(i10)).intValue());
+            z11 = false;
+        }
+        TLRPC.StickerSetCovered stickerSetCovered2 = stickerSetCovered;
+        mediaDataController.preloadStickerSetThumb(stickerSetCovered2);
+        int i13 = 0;
+        while (true) {
+            if (i13 < stickerSetCoveredArr.length) {
+                if (stickerSetCoveredArr[i13] != null) {
+                    z12 = true;
+                    TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(i11).getStickerSetById(stickerSetCoveredArr[i13].set.f22055id);
+                    if (stickerSetById != null && !stickerSetById.set.archived) {
+                        stickerSetCoveredArr[i13] = null;
+                    } else if (stickerSetCoveredArr[i13].set.f22055id == stickerSetCovered2.set.f22055id) {
+                        z13 = true;
+                        break;
+                    }
+                }
+                i13++;
+            } else {
+                z12 = true;
+                z13 = false;
+                break;
+            }
+        }
+        boolean isStickerPackInstalled = mediaDataController.isStickerPackInstalled(stickerSetCovered2.set.f22055id);
+        if (longSparseArray2.indexOfKey(stickerSetCovered2.set.f22055id) >= 0) {
+            z14 = z12;
+        } else {
+            z14 = false;
+        }
+        if (longSparseArray.indexOfKey(stickerSetCovered2.set.f22055id) >= 0) {
+            z15 = z12;
+        } else {
+            z15 = false;
+        }
+        if (z14 && isStickerPackInstalled) {
+            longSparseArray2.remove(stickerSetCovered2.set.f22055id);
+            z14 = false;
+        } else if (z15 && !isStickerPackInstalled) {
+            longSparseArray.remove(stickerSetCovered2.set.f22055id);
+        }
+        org.telegram.ui.Cells.q3 q3Var = (org.telegram.ui.Cells.q3) view;
+        q3Var.c(stickerSetCovered2, z11, z10, 0, 0, z13);
+        if (!z13 && z14) {
+            z16 = z12;
+        } else {
+            z16 = false;
+        }
+        q3Var.b(z16, z10);
+        if (i10 > 0) {
+            int i14 = i10 - 1;
+            if (sparseArray.get(i14) == null || !sparseArray.get(i14).equals(-1)) {
+                z17 = z12;
+                q3Var.setNeedDivider(z17);
+            }
+        }
+        z17 = false;
+        q3Var.setNeedDivider(z17);
+    }
+
+    public final void F(org.telegram.tgnet.TLRPC.StickerSetCovered r9, android.widget.FrameLayout r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p61.F(org.telegram.tgnet.TLRPC$StickerSetCovered, android.widget.FrameLayout):void");
+    }
+
+    public final void G() {
+        int i10;
+        q61 q61Var = this.f31516x;
+        int measuredWidth = q61Var.getMeasuredWidth();
+        int i11 = 0;
+        if (measuredWidth != 0) {
+            int max = Math.max(5, measuredWidth / AndroidUtilities.dp(72.0f));
+            this.v = max;
+            h61 h61Var = q61Var.f31808r;
+            if (h61Var.J != max) {
+                h61Var.z1(max);
+                q61Var.J = false;
+            }
+        }
+        if (q61Var.J) {
             return;
         }
-        this.v.getClass();
-        int childCount = f61Var.getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = f61Var.getChildAt(i10);
-            if (childAt instanceof org.telegram.ui.Cells.s8) {
-                org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) childAt;
-                s8Var.d();
-                s8Var.e();
+        SparseArray sparseArray = this.d;
+        sparseArray.clear();
+        SparseArray sparseArray2 = this.f31511f;
+        sparseArray2.clear();
+        HashMap hashMap = this.h;
+        hashMap.clear();
+        ArrayList arrayList = this.e;
+        arrayList.clear();
+        this.f31515w = 0;
+        MediaDataController mediaDataController = MediaDataController.getInstance(q61Var.f31803a);
+        ArrayList arrayList2 = new ArrayList(mediaDataController.getFeaturedStickerSets());
+        int size = arrayList2.size();
+        arrayList2.addAll(this.f31512n);
+        int i12 = 0;
+        int i13 = 0;
+        while (true) {
+            int i14 = 1;
+            if (i12 >= arrayList2.size()) {
+                break;
             }
+            TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList2.get(i12);
+            if (!stickerSetCovered.covers.isEmpty() || stickerSetCovered.cover != null) {
+                if (i12 == size) {
+                    int i15 = this.f31515w;
+                    this.f31515w = i15 + 1;
+                    sparseArray.put(i15, -1);
+                }
+                arrayList.add(stickerSetCovered);
+                sparseArray2.put(this.f31515w, stickerSetCovered);
+                hashMap.put(stickerSetCovered, Integer.valueOf(this.f31515w));
+                int i16 = this.f31515w;
+                this.f31515w = i16 + 1;
+                int i17 = i13 + 1;
+                sparseArray.put(i16, Integer.valueOf(i13));
+                if (!stickerSetCovered.covers.isEmpty()) {
+                    i14 = (int) Math.ceil(stickerSetCovered.covers.size() / this.v);
+                    for (int i18 = i11; i18 < stickerSetCovered.covers.size(); i18++) {
+                        sparseArray.put(this.f31515w + i18, stickerSetCovered.covers.get(i18));
+                    }
+                } else {
+                    sparseArray.put(this.f31515w, stickerSetCovered.cover);
+                }
+                int i19 = 0;
+                while (true) {
+                    i10 = this.v * i14;
+                    if (i19 >= i10) {
+                        break;
+                    }
+                    sparseArray2.put(this.f31515w + i19, stickerSetCovered);
+                    i19++;
+                }
+                this.f31515w = i10 + this.f31515w;
+                i13 = i17;
+            }
+            i12++;
+            i11 = 0;
         }
+        if (this.f31515w != 0) {
+            q61Var.J = true;
+            q61Var.K = mediaDataController.getFeaturedStickersHashWithoutUnread(false);
+        }
+        l();
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.stickersDidLoad;
-        f61 f61Var = this.f31455n;
-        o61 o61Var = this.f31457s;
-        if (i10 == i12) {
-            if (((Integer) objArr[0]).intValue() == 0) {
-                if (this.J) {
-                    s4.h0 adapter = f61Var.getAdapter();
-                    if (adapter != null) {
-                        adapter.r(0, adapter.h(), 0);
+    public final int h() {
+        return this.f31515w + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == this.f31515w) {
+            return 3;
+        }
+        Object obj = this.d.get(i10);
+        if (obj != null) {
+            if (obj instanceof TLRPC.Document) {
+                return 0;
+            }
+            if (obj.equals(-1)) {
+                return 4;
+            }
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        int i11 = e1Var.f47776f;
+        View view = e1Var.f47773a;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 != 2) {
+                    if (i11 != 4) {
+                        if (i11 != 5) {
+                            return;
+                        }
+                    } else {
+                        ((org.telegram.ui.Cells.z3) view).setText(LocaleController.getString(R.string.OtherStickers));
                         return;
                     }
-                    return;
                 }
-                o61Var.G();
-            }
-        } else if (i10 == NotificationCenter.featuredStickersDidLoad) {
-            if (this.K != MediaDataController.getInstance(this.f31451a).getFeaturedStickersHashWithoutUnread(false)) {
-                this.J = false;
-            }
-            if (this.J) {
-                s4.h0 adapter2 = f61Var.getAdapter();
-                if (adapter2 != null) {
-                    adapter2.r(0, adapter2.h(), 0);
-                    return;
-                }
+                E(view, i10, false);
                 return;
             }
-            o61Var.G();
+            ((org.telegram.ui.Cells.i3) view).setHeight(AndroidUtilities.dp(82.0f));
+            return;
         }
+        ((org.telegram.ui.Cells.i8) view).d((TLRPC.Document) this.d.get(i10), null, this.f31511f.get(i10), null, false, false);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        TLRPC.StickerSetCovered stickerSetCovered;
-        int i10;
-        int i11;
-        float f7;
-        float f10 = this.Q;
-        if (f10 != 0.0f && (stickerSetCovered = this.O) != null) {
-            float f11 = f10 - 0.0053333333f;
-            this.Q = f11;
-            if (f11 < 0.0f) {
-                this.Q = 0.0f;
-            } else {
-                invalidate();
+    public final void w(s4.e1 e1Var, int i10, List list) {
+        if (list.contains(0)) {
+            int i11 = e1Var.f47776f;
+            if (i11 != 2 && i11 != 5) {
+                return;
             }
-            Integer num = (Integer) this.f31457s.h.get(stickerSetCovered);
-            if (num != null) {
-                int intValue = num.intValue();
-                g61 g61Var = this.f31456r;
-                View m10 = g61Var.m(intValue);
-                if (m10 != null) {
-                    i10 = (int) m10.getY();
-                    i11 = m10.getMeasuredHeight() + ((int) m10.getY());
-                } else {
-                    i10 = -1;
-                    i11 = -1;
-                }
-                View m11 = g61Var.m(num.intValue() + 1);
-                if (m11 != null) {
-                    if (m10 == null) {
-                        i10 = (int) m11.getY();
-                    }
-                    i11 = m11.getMeasuredHeight() + ((int) m11.getY());
-                }
-                if (m10 != null || m11 != null) {
-                    int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false);
-                    Paint paint = this.R;
-                    paint.setColor(x02);
-                    float f12 = this.Q;
-                    if (f12 < 0.06f) {
-                        f7 = f12 / 0.06f;
+            E(e1Var.f47773a, i10, true);
+            return;
+        }
+        v(e1Var, i10);
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.m3 m3Var;
+        q61 q61Var = this.f31516x;
+        org.telegram.ui.ActionBar.u6 u6Var = q61Var.P;
+        Context context = this.f31510c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            if (i10 != 5) {
+                                m3Var = null;
+                            } else {
+                                org.telegram.ui.Cells.m3 m3Var2 = new org.telegram.ui.Cells.m3(context, u6Var);
+                                m3Var2.setAddOnClickListener(new View.OnClickListener(this) {
+                                    public final p61 f31205b;
+
+                                    {
+                                        this.f31205b = this;
+                                    }
+
+                                    @Override
+                                    public final void onClick(View view) {
+                                        switch (r2) {
+                                            case 0:
+                                                org.telegram.ui.Cells.q3 q3Var = (org.telegram.ui.Cells.q3) view.getParent();
+                                                TLRPC.StickerSetCovered stickerSet = q3Var.getStickerSet();
+                                                p61 p61Var = this.f31205b;
+                                                q61 q61Var2 = p61Var.f31516x;
+                                                LongSparseArray longSparseArray = q61Var2.d;
+                                                LongSparseArray longSparseArray2 = q61Var2.e;
+                                                if (longSparseArray.indexOfKey(stickerSet.set.f22055id) < 0 && longSparseArray2.indexOfKey(stickerSet.set.f22055id) < 0) {
+                                                    if (q3Var.f24826r) {
+                                                        longSparseArray2.put(stickerSet.set.f22055id, stickerSet);
+                                                        q61Var2.f31804b.h(stickerSet);
+                                                        return;
+                                                    }
+                                                    p61Var.F(stickerSet, q3Var);
+                                                    return;
+                                                }
+                                                return;
+                                            default:
+                                                org.telegram.ui.Cells.m3 m3Var3 = (org.telegram.ui.Cells.m3) view.getParent();
+                                                TLRPC.StickerSetCovered stickerSet2 = m3Var3.getStickerSet();
+                                                p61 p61Var2 = this.f31205b;
+                                                q61 q61Var3 = p61Var2.f31516x;
+                                                LongSparseArray longSparseArray3 = q61Var3.d;
+                                                LongSparseArray longSparseArray4 = q61Var3.e;
+                                                if (longSparseArray3.indexOfKey(stickerSet2.set.f22055id) < 0 && longSparseArray4.indexOfKey(stickerSet2.set.f22055id) < 0) {
+                                                    if (m3Var3.v) {
+                                                        longSparseArray4.put(stickerSet2.set.f22055id, stickerSet2);
+                                                        q61Var3.f31804b.h(stickerSet2);
+                                                        return;
+                                                    }
+                                                    p61Var2.F(stickerSet2, m3Var3);
+                                                    return;
+                                                }
+                                                return;
+                                        }
+                                    }
+                                });
+                                m3Var2.getImageView().setLayerNum(3);
+                                m3Var = m3Var2;
+                            }
+                        } else {
+                            m3Var = new org.telegram.ui.Cells.z3(context, u6Var);
+                        }
                     } else {
-                        f7 = 1.0f;
+                        m3Var = new View(context);
                     }
-                    paint.setAlpha((int) (f7 * 25.5f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, i10, getMeasuredWidth(), i11, paint);
-                    super.dispatchDraw(canvas2);
+                } else {
+                    org.telegram.ui.Cells.q3 q3Var = new org.telegram.ui.Cells.q3(17, this.f31510c, q61Var.P, true, true);
+                    q3Var.setAddOnClickListener(new View.OnClickListener(this) {
+                        public final p61 f31205b;
+
+                        {
+                            this.f31205b = this;
+                        }
+
+                        @Override
+                        public final void onClick(View view) {
+                            switch (r2) {
+                                case 0:
+                                    org.telegram.ui.Cells.q3 q3Var2 = (org.telegram.ui.Cells.q3) view.getParent();
+                                    TLRPC.StickerSetCovered stickerSet = q3Var2.getStickerSet();
+                                    p61 p61Var = this.f31205b;
+                                    q61 q61Var2 = p61Var.f31516x;
+                                    LongSparseArray longSparseArray = q61Var2.d;
+                                    LongSparseArray longSparseArray2 = q61Var2.e;
+                                    if (longSparseArray.indexOfKey(stickerSet.set.f22055id) < 0 && longSparseArray2.indexOfKey(stickerSet.set.f22055id) < 0) {
+                                        if (q3Var2.f24826r) {
+                                            longSparseArray2.put(stickerSet.set.f22055id, stickerSet);
+                                            q61Var2.f31804b.h(stickerSet);
+                                            return;
+                                        }
+                                        p61Var.F(stickerSet, q3Var2);
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    org.telegram.ui.Cells.m3 m3Var3 = (org.telegram.ui.Cells.m3) view.getParent();
+                                    TLRPC.StickerSetCovered stickerSet2 = m3Var3.getStickerSet();
+                                    p61 p61Var2 = this.f31205b;
+                                    q61 q61Var3 = p61Var2.f31516x;
+                                    LongSparseArray longSparseArray3 = q61Var3.d;
+                                    LongSparseArray longSparseArray4 = q61Var3.e;
+                                    if (longSparseArray3.indexOfKey(stickerSet2.set.f22055id) < 0 && longSparseArray4.indexOfKey(stickerSet2.set.f22055id) < 0) {
+                                        if (m3Var3.v) {
+                                            longSparseArray4.put(stickerSet2.set.f22055id, stickerSet2);
+                                            q61Var3.f31804b.h(stickerSet2);
+                                            return;
+                                        }
+                                        p61Var2.F(stickerSet2, m3Var3);
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                    m3Var = q3Var;
                 }
+            } else {
+                m3Var = new org.telegram.ui.Cells.i3(context);
             }
+        } else {
+            ig.c2 c2Var = new ig.c2(3, context, u6Var, false);
+            c2Var.getImageView().setLayerNum(3);
+            m3Var = c2Var;
         }
-        canvas2 = canvas;
-        super.dispatchDraw(canvas2);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        this.F = false;
-        boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
-        if (!this.F) {
-            MotionEvent obtain = MotionEvent.obtain(motionEvent);
-            this.f31455n.dispatchTouchEvent(obtain);
-            obtain.recycle();
-        }
-        return dispatchTouchEvent;
-    }
-
-    public int getContentTopOffset() {
-        return this.E;
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        s4.h0 adapter = this.f31455n.getAdapter();
-        adapter.m(adapter.h() - 1);
-        this.I = false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        Integer num;
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (!this.I) {
-            this.I = true;
-            o61 o61Var = this.f31457s;
-            o61Var.G();
-            TLRPC.StickerSetCovered stickerSetCovered = this.O;
-            if (stickerSetCovered != null && (num = (Integer) o61Var.h.get(stickerSetCovered)) != null) {
-                this.f31456r.h1(num.intValue(), AndroidUtilities.dp(58.0f) + (-this.f31455n.getPaddingTop()));
-            }
-        }
-    }
-
-    public void setContentViewPaddingTop(int i10) {
-        int dp = AndroidUtilities.dp(58.0f) + i10;
-        f61 f61Var = this.f31455n;
-        if (f61Var.getPaddingTop() != dp) {
-            this.H = true;
-            f61Var.setPadding(0, dp, 0, 0);
-            this.H = false;
-        }
-    }
-
-    public void setOnScrollListener(s4.u0 u0Var) {
-        this.f31460y = u0Var;
-    }
-
-    public void setParentFragment(org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f31459x = r2Var;
+        return new s4.e1(m3Var);
     }
 }

@@ -27,9 +27,9 @@ import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.e2;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.nw0;
 import org.telegram.ui.Components.ow0;
-public final class i implements Continuation, s9.d, j5.e, e9.k, NativeInstance.AudioLevelsCallback, nw0, ow0, b2, GenericProvider, Utilities.Callback2Return, fh.d {
+import org.telegram.ui.Components.pw0;
+public final class i implements Continuation, s9.d, j5.e, e9.k, NativeInstance.AudioLevelsCallback, ow0, pw0, b2, GenericProvider, Utilities.Callback2Return, fh.d {
     public final int f5949a;
 
     public i(int i10) {
@@ -77,7 +77,7 @@ public final class i implements Continuation, s9.d, j5.e, e9.k, NativeInstance.A
             case 9:
                 return Integer.valueOf(((d2.b) obj).f7871r);
             default:
-                ea.a.f9859b.getClass();
+                ea.a.f9858b.getClass();
                 return ba.a.f3719a.c((g2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
@@ -87,16 +87,16 @@ public final class i implements Continuation, s9.d, j5.e, e9.k, NativeInstance.A
         o1 o1Var = (o1) obj;
         switch (this.f5949a) {
             case 12:
-                WindowManager.LayoutParams layoutParams = o1Var.f8859c;
+                WindowManager.LayoutParams layoutParams = o1Var.f8858c;
                 o1Var.N = f7;
                 layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(o1Var.f8858b, o1Var.d, layoutParams);
+                AndroidUtilities.updateViewLayout(o1Var.f8857b, o1Var.d, layoutParams);
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = o1Var.f8859c;
+                WindowManager.LayoutParams layoutParams2 = o1Var.f8858c;
                 o1Var.O = f7;
                 layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(o1Var.f8858b, o1Var.d, layoutParams2);
+                AndroidUtilities.updateViewLayout(o1Var.f8857b, o1Var.d, layoutParams2);
                 return;
         }
     }
@@ -144,14 +144,14 @@ public final class i implements Continuation, s9.d, j5.e, e9.k, NativeInstance.A
                 } else {
                     f7 = 0.76f;
                 }
-                return gh.c.n(f7, y6.w0(y6.f23356d6, u6Var), y6.w0(y6.Sd, u6Var));
+                return gh.c.n(f7, y6.w0(y6.f23357d6, u6Var), y6.w0(y6.Sd, u6Var));
             case 27:
                 if (LiteMode.isEnabled(262144)) {
                     f10 = 0.85f;
                 } else {
                     f10 = 0.76f;
                 }
-                return y6.o1(f10, y6.w0(y6.f23356d6, u6Var));
+                return y6.o1(f10, y6.w0(y6.f23357d6, u6Var));
             case 28:
                 if (!LiteMode.isEnabled(256)) {
                     return y6.x0(null, y6.G8, false);
@@ -169,14 +169,14 @@ public final class i implements Continuation, s9.d, j5.e, e9.k, NativeInstance.A
                 } else {
                     f12 = 0.76f;
                 }
-                return gh.c.n(f12, y6.w0(y6.f23356d6, u6Var), y6.w0(y6.Zk, u6Var));
+                return gh.c.n(f12, y6.w0(y6.f23357d6, u6Var), y6.w0(y6.Zk, u6Var));
         }
     }
 
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        MediaController.AlbumEntry albumEntry = o3.f11335j0;
+        MediaController.AlbumEntry albumEntry = o3.f11334j0;
         return 0;
     }
 

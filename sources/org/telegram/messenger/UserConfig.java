@@ -99,40 +99,40 @@ public class UserConfig extends BaseController {
     private void checkPremiumSelf(TLRPC.User user, final TLRPC.User user2) {
         if (user != null && user2 != null && user.premium != user2.premium) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f21606b;
+                public final UserConfig f21796b;
 
                 {
-                    this.f21606b = this;
+                    this.f21796b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f21606b.lambda$checkPremiumSelf$1(user2);
+                            this.f21796b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f21606b.lambda$checkPremiumSelf$2(user2);
+                            this.f21796b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
             });
         } else if (user == null) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f21606b;
+                public final UserConfig f21796b;
 
                 {
-                    this.f21606b = this;
+                    this.f21796b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f21606b.lambda$checkPremiumSelf$1(user2);
+                            this.f21796b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f21606b.lambda$checkPremiumSelf$2(user2);
+                            this.f21796b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
@@ -237,7 +237,7 @@ public class UserConfig extends BaseController {
     }
 
     public void lambda$loadGlobalTTl$4(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new vg(15, this, tLObject));
+        AndroidUtilities.runOnUIThread(new wg(15, this, tLObject));
     }
 
     public void lambda$saveConfig$0(boolean z10) {
@@ -421,7 +421,7 @@ public class UserConfig extends BaseController {
             try {
                 TLRPC.User user = this.currentUser;
                 if (user != null) {
-                    j10 = user.f22176id;
+                    j10 = user.f22177id;
                 } else {
                     j10 = 0;
                 }
@@ -664,7 +664,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC.User user2 = this.currentUser;
             this.currentUser = user;
-            this.clientUserId = user.f22176id;
+            this.clientUserId = user.f22177id;
             checkPremiumSelf(user2, user);
         }
     }

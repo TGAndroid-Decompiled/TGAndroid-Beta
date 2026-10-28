@@ -3,14 +3,14 @@ package fb;
 import j$.util.Objects;
 import java.lang.reflect.Field;
 public final class b {
-    public final Field f10380a;
+    public final Field f10379a;
 
     public b(Field field) {
         Objects.requireNonNull(field);
-        this.f10380a = field;
+        this.f10379a = field;
     }
 
     public final String toString() {
-        return this.f10380a.toString();
+        return this.f10379a.toString();
     }
 }

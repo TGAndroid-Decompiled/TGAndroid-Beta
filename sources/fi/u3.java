@@ -9,34 +9,34 @@ import android.graphics.drawable.Drawable;
 import androidx.appcompat.widget.ActionBarContainer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.q11;
+import org.telegram.ui.Components.r11;
 public final class u3 extends Drawable {
-    public final int f11747a;
-    public Object f11748b;
+    public final int f11746a;
+    public Object f11747b;
 
     public u3() {
-        this.f11747a = 3;
+        this.f11746a = 3;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f11747a) {
+        switch (this.f11746a) {
             case 0:
                 canvas.save();
-                v3 v3Var = (v3) this.f11748b;
-                canvas.drawPath(v3Var.f11808t0, v3Var.f11786b0);
+                v3 v3Var = (v3) this.f11747b;
+                canvas.drawPath(v3Var.f11807t0, v3Var.f11785b0);
                 canvas.restore();
                 return;
             case 1:
                 canvas.save();
                 canvas.translate(0.0f, AndroidUtilities.dp(1.0f));
-                hi.m3 m3Var = (hi.m3) this.f11748b;
+                hi.m3 m3Var = (hi.m3) this.f11747b;
                 m3Var.M0.setBounds(getBounds());
                 m3Var.M0.draw(canvas);
                 canvas.restore();
                 return;
             case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f11748b;
+                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f11747b;
                 if (actionBarContainer.h) {
                     Drawable drawable = actionBarContainer.f2185f;
                     if (drawable != null) {
@@ -56,26 +56,26 @@ public final class u3 extends Drawable {
                 }
                 return;
             case 3:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - AndroidUtilities.dp(1.0f), (getBounds().width() - AndroidUtilities.dp(8.0f)) / 2.0f, (Paint) this.f11748b);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - AndroidUtilities.dp(1.0f), (getBounds().width() - AndroidUtilities.dp(8.0f)) / 2.0f, (Paint) this.f11747b);
                 return;
             case 4:
-                tg.a1 a1Var = (tg.a1) this.f11748b;
+                tg.a1 a1Var = (tg.a1) this.f11747b;
                 Rect bounds = getBounds();
                 a1Var.getClass();
                 a1Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, a1Var.f48797f);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, a1Var.f48832f);
                 return;
             case 5:
-                ImageReceiver imageReceiver = (ImageReceiver) this.f11748b;
+                ImageReceiver imageReceiver = (ImageReceiver) this.f11747b;
                 imageReceiver.setImageCoords(getBounds());
                 imageReceiver.draw(canvas);
                 return;
             case 6:
-                ((q11) this.f11748b).c(getBounds().centerX() - (((q11) this.f11748b).f31790c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.G6, false), canvas);
+                ((r11) this.f11747b).c(getBounds().centerX() - (((r11) this.f11747b).f32090c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.G6, false), canvas);
                 return;
             case 7:
                 canvas.save();
-                Drawable drawable4 = (Drawable) this.f11748b;
+                Drawable drawable4 = (Drawable) this.f11747b;
                 if (drawable4.getBounds() != null) {
                     canvas.scale(0.8333333f, 0.8333333f, drawable4.getBounds().centerX(), drawable4.getBounds().centerY());
                 }
@@ -85,7 +85,7 @@ public final class u3 extends Drawable {
             default:
                 canvas.save();
                 canvas.translate(getBounds().left, getBounds().top);
-                ((o6) this.f11748b).draw(canvas);
+                ((o6) this.f11747b).draw(canvas);
                 canvas.restore();
                 return;
         }
@@ -93,13 +93,13 @@ public final class u3 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f11747a) {
+        switch (this.f11746a) {
             case 1:
                 return AndroidUtilities.dp(20.0f);
             case 5:
                 return AndroidUtilities.dp(30.0f);
             case 8:
-                return ((o6) this.f11748b).getHeight();
+                return ((o6) this.f11747b).getHeight();
             default:
                 return super.getIntrinsicHeight();
         }
@@ -107,13 +107,13 @@ public final class u3 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f11747a) {
+        switch (this.f11746a) {
             case 1:
                 return AndroidUtilities.dp(20.0f);
             case 5:
                 return AndroidUtilities.dp(30.0f);
             case 8:
-                return ((o6) this.f11748b).getWidth();
+                return ((o6) this.f11747b).getWidth();
             default:
                 return super.getIntrinsicWidth();
         }
@@ -121,7 +121,7 @@ public final class u3 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f11747a) {
+        switch (this.f11746a) {
             case 0:
                 return -2;
             case 1:
@@ -137,7 +137,7 @@ public final class u3 extends Drawable {
             case 6:
                 return -2;
             case 7:
-                return ((Drawable) this.f11748b).getOpacity();
+                return ((Drawable) this.f11747b).getOpacity();
             default:
                 return -2;
         }
@@ -145,9 +145,9 @@ public final class u3 extends Drawable {
 
     @Override
     public void getOutline(Outline outline) {
-        switch (this.f11747a) {
+        switch (this.f11746a) {
             case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f11748b;
+                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f11747b;
                 if (actionBarContainer.h) {
                     if (actionBarContainer.f2185f != null) {
                         actionBarContainer.d.getOutline(outline);
@@ -169,26 +169,26 @@ public final class u3 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f11747a) {
+        switch (this.f11746a) {
             case 0:
                 return;
             case 1:
-                ((hi.m3) this.f11748b).M0.setAlpha(i10);
+                ((hi.m3) this.f11747b).M0.setAlpha(i10);
                 return;
             case 2:
                 return;
             case 3:
-                ((Paint) this.f11748b).setAlpha(i10);
+                ((Paint) this.f11747b).setAlpha(i10);
                 return;
             case 4:
                 return;
             case 5:
-                ((ImageReceiver) this.f11748b).setAlpha(i10 / 255.0f);
+                ((ImageReceiver) this.f11747b).setAlpha(i10 / 255.0f);
                 return;
             case 6:
                 return;
             case 7:
-                ((Drawable) this.f11748b).setAlpha(i10);
+                ((Drawable) this.f11747b).setAlpha(i10);
                 return;
             default:
                 return;
@@ -197,9 +197,9 @@ public final class u3 extends Drawable {
 
     @Override
     public void setBounds(Rect rect) {
-        switch (this.f11747a) {
+        switch (this.f11746a) {
             case 7:
-                ((Drawable) this.f11748b).setBounds(rect);
+                ((Drawable) this.f11747b).setBounds(rect);
                 return;
             default:
                 super.setBounds(rect);
@@ -209,23 +209,23 @@ public final class u3 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f11747a) {
+        switch (this.f11746a) {
             case 0:
                 return;
             case 1:
-                ((hi.m3) this.f11748b).M0.setColorFilter(colorFilter);
+                ((hi.m3) this.f11747b).M0.setColorFilter(colorFilter);
                 return;
             case 2:
             case 3:
             case 4:
                 return;
             case 5:
-                ((ImageReceiver) this.f11748b).setColorFilter(colorFilter);
+                ((ImageReceiver) this.f11747b).setColorFilter(colorFilter);
                 return;
             case 6:
                 return;
             case 7:
-                ((Drawable) this.f11748b).setColorFilter(colorFilter);
+                ((Drawable) this.f11747b).setColorFilter(colorFilter);
                 return;
             default:
                 return;
@@ -233,15 +233,15 @@ public final class u3 extends Drawable {
     }
 
     public u3(Object obj, int i10) {
-        this.f11747a = i10;
-        this.f11748b = obj;
+        this.f11746a = i10;
+        this.f11747b = obj;
     }
 
     @Override
     public void setBounds(int i10, int i11, int i12, int i13) {
-        switch (this.f11747a) {
+        switch (this.f11746a) {
             case 7:
-                ((Drawable) this.f11748b).setBounds(i10, i11, i12, i13);
+                ((Drawable) this.f11747b).setBounds(i10, i11, i12, i13);
                 return;
             default:
                 super.setBounds(i10, i11, i12, i13);
@@ -250,13 +250,13 @@ public final class u3 extends Drawable {
     }
 
     public u3(ActionBarContainer actionBarContainer) {
-        this.f11747a = 2;
-        this.f11748b = actionBarContainer;
+        this.f11746a = 2;
+        this.f11747b = actionBarContainer;
     }
 
     public u3(String str) {
-        this.f11747a = 6;
-        this.f11748b = new q11(str.substring(0, !str.isEmpty()), 14.0f, AndroidUtilities.bold());
+        this.f11746a = 6;
+        this.f11747b = new r11(str.substring(0, !str.isEmpty()), 14.0f, AndroidUtilities.bold());
     }
 
     private final void a(int i10) {

@@ -6,23 +6,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.aw;
 import org.telegram.ui.Components.dy;
 import org.telegram.ui.Components.iy;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.sz;
 import org.telegram.ui.Components.zv;
-import org.telegram.ui.cj0;
-import org.telegram.ui.lp0;
-import org.telegram.ui.rh0;
+import org.telegram.ui.ej0;
+import org.telegram.ui.np0;
+import org.telegram.ui.th0;
 public final class p1 extends s4.n0 {
-    public final int f11432a;
-    public final Object f11433b;
+    public final int f11431a;
+    public final Object f11432b;
 
     public p1(Object obj, int i10) {
-        this.f11432a = i10;
-        this.f11433b = obj;
+        this.f11431a = i10;
+        this.f11432b = obj;
     }
 
     @Override
@@ -34,9 +34,9 @@ public final class p1 extends s4.n0 {
         int i10;
         int i11;
         int i12;
-        switch (this.f11432a) {
+        switch (this.f11431a) {
             case 0:
-                if (((u1) this.f11433b).e.F1(RecyclerView.R(view))) {
+                if (((u1) this.f11432b).e.F1(RecyclerView.R(view))) {
                     dp = 0;
                 } else {
                     dp = AndroidUtilities.dp(4.0f);
@@ -45,7 +45,7 @@ public final class p1 extends s4.n0 {
                 rect.bottom = AndroidUtilities.dp(4.0f);
                 return;
             case 1:
-                org.telegram.ui.Cells.t tVar = (org.telegram.ui.Cells.t) this.f11433b;
+                org.telegram.ui.Cells.t tVar = (org.telegram.ui.Cells.t) this.f11432b;
                 int b10 = recyclerView.T(view).b();
                 if (b10 == 0) {
                     rect.left = AndroidUtilities.dp(18.0f);
@@ -56,14 +56,14 @@ public final class p1 extends s4.n0 {
                 }
                 int h = tVar.getAdapter().h();
                 if (h == 4) {
-                    rect.right = vh.C(58.0f, h, tVar.getWidth() - AndroidUtilities.dp(36.0f)) / (h - 1);
+                    rect.right = wh.C(58.0f, h, tVar.getWidth() - AndroidUtilities.dp(36.0f)) / (h - 1);
                     return;
                 } else {
                     rect.right = AndroidUtilities.dp(24.0f);
                     return;
                 }
             case 2:
-                v vVar = ((aw) this.f11433b).h;
+                v vVar = ((aw) this.f11432b).h;
                 if (view instanceof zv) {
                     rect.left = -vVar.getPaddingLeft();
                     rect.right = -vVar.getPaddingRight();
@@ -76,17 +76,17 @@ public final class p1 extends s4.n0 {
                 }
                 return;
             case 3:
-                sz szVar = (sz) this.f11433b;
+                sz szVar = (sz) this.f11432b;
                 dy dyVar = szVar.P;
                 if (view instanceof org.telegram.ui.Cells.s8) {
                     rect.left = AndroidUtilities.dp(5.0f);
                     rect.right = AndroidUtilities.dp(5.0f);
-                    if (RecyclerView.R(view) + 1 > szVar.R.E && !UserConfig.getInstance(szVar.f32719c1).isPremium() && !szVar.U0) {
+                    if (RecyclerView.R(view) + 1 > szVar.R.E && !UserConfig.getInstance(szVar.f32713c1).isPremium() && !szVar.U0) {
                         rect.top = AndroidUtilities.dp(10.0f);
                         return;
                     }
                     return;
-                } else if (!(view instanceof mm0) && !(view instanceof iy)) {
+                } else if (!(view instanceof nm0) && !(view instanceof iy)) {
                     if (view instanceof org.telegram.ui.Components.y9) {
                         rect.bottom = AndroidUtilities.dp(12.0f);
                         return;
@@ -102,13 +102,13 @@ public final class p1 extends s4.n0 {
                     return;
                 }
             case 4:
-                if (RecyclerView.R(view) == ((ArrayList) this.f11433b).size() - 1) {
+                if (RecyclerView.R(view) == ((ArrayList) this.f11432b).size() - 1) {
                     rect.bottom = AndroidUtilities.dp(4.0f);
                     return;
                 }
                 return;
             case 5:
-                if (RecyclerView.R(view) == ((rh0) this.f11433b).f43163c.size() - 1) {
+                if (RecyclerView.R(view) == ((th0) this.f11432b).f43648c.size() - 1) {
                     rect.bottom = AndroidUtilities.dp(4.0f);
                     return;
                 }
@@ -116,18 +116,18 @@ public final class p1 extends s4.n0 {
             case 6:
                 super.d(rect, view, recyclerView, b1Var);
                 int R = RecyclerView.R(view);
-                cj0 cj0Var = (cj0) this.f11433b;
-                if (R == cj0Var.f38477c0.size()) {
-                    rect.bottom = cj0Var.f38486l0;
+                ej0 ej0Var = (ej0) this.f11432b;
+                if (R == ej0Var.f38888c0.size()) {
+                    rect.bottom = ej0Var.f38897l0;
                     return;
                 }
                 return;
             case 7:
                 int R2 = RecyclerView.R(view);
-                lp0 lp0Var = (lp0) this.f11433b;
-                int i13 = lp0Var.f41317b0;
+                np0 np0Var = (np0) this.f11432b;
+                int i13 = np0Var.f41840b0;
                 if (R2 >= i13) {
-                    int i14 = lp0Var.f41323f0;
+                    int i14 = np0Var.f41846f0;
                     if (R2 < i13 + i14) {
                         int i15 = R2 - i13;
                         int i16 = i15 / 3;
@@ -182,9 +182,9 @@ public final class p1 extends s4.n0 {
             default:
                 super.d(rect, view, recyclerView, b1Var);
                 int R3 = RecyclerView.R(view);
-                vg.z0 z0Var = (vg.z0) this.f11433b;
-                if (R3 == z0Var.f50284d0.size()) {
-                    rect.bottom = z0Var.f50295p0;
+                vg.z0 z0Var = (vg.z0) this.f11432b;
+                if (R3 == z0Var.f50319d0.size()) {
+                    rect.bottom = z0Var.f50330p0;
                     return;
                 }
                 return;

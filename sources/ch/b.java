@@ -36,12 +36,12 @@ public final class b {
         eh.d f7 = this.f6298a.f();
         if (this.f6303i && Build.VERSION.SDK_INT >= 33 && (f7 instanceof eh.e)) {
             eh.e eVar = (eh.e) f7;
-            eVar.f9975h0 = new g(eVar.f9970c0);
+            eVar.f9974h0 = new g(eVar.f9969c0);
         }
         f7.v(aVar);
         int i10 = this.f6299b;
         int i11 = this.f6300c;
-        f7.f9964s = i10;
+        f7.f9963s = i10;
         f7.v = i11;
         se.b bVar = this.e;
         if (bVar != null && view != null) {
@@ -49,7 +49,7 @@ public final class b {
         }
         q qVar = this.h;
         if (qVar != null && view != null) {
-            qVar.f19484c.add(new p(view, f7));
+            qVar.f19483c.add(new p(view, f7));
         }
         if (this.f6301f != null && this.f6302g != null && view != null) {
             this.f6301f.d(view, this.f6302g, new f0(6, f7, new WeakReference(view)), z10);

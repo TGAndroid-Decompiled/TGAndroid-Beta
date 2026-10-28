@@ -4,8 +4,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import java.util.ArrayList;
 import org.telegram.ui.Components.cr;
-import org.telegram.ui.Components.jp0;
-import org.telegram.ui.Components.wm0;
+import org.telegram.ui.Components.kp0;
+import org.telegram.ui.Components.xm0;
 public final class i6 implements View.OnAttachStateChangeListener {
     public final int f4827a;
     public final Object f4828b;
@@ -32,7 +32,7 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 1:
-                ((di.v1) this.f4828b).f9246f.onAttachedToWindow();
+                ((di.v1) this.f4828b).f9245f.onAttachedToWindow();
                 return;
             case 2:
                 a8.h0 h0Var = (a8.h0) this.f4828b;
@@ -62,9 +62,9 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 return;
             case 6:
                 org.telegram.ui.Components.la laVar = (org.telegram.ui.Components.la) this.f4828b;
-                ArrayList arrayList2 = laVar.f30139c;
+                ArrayList arrayList2 = laVar.f30203c;
                 arrayList2.clear();
-                for (View view2 = laVar.f30138b; view2 != null; view2 = (View) view2.getParent()) {
+                for (View view2 = laVar.f30202b; view2 != null; view2 = (View) view2.getParent()) {
                     arrayList2.add(0, view2);
                     if (!(view2.getParent() instanceof View)) {
                         return;
@@ -78,12 +78,12 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 ((cr) this.f4828b).a();
                 return;
             case 10:
-                wm0 wm0Var = (wm0) this.f4828b;
-                org.telegram.ui.Components.r5 r5Var = wm0Var.f34499t;
+                xm0 xm0Var = (xm0) this.f4828b;
+                org.telegram.ui.Components.r5 r5Var = xm0Var.f34814t;
                 if (r5Var != null) {
                     r5Var.a();
                 }
-                org.telegram.ui.Components.r5 r5Var2 = wm0Var.f34500u;
+                org.telegram.ui.Components.r5 r5Var2 = xm0Var.f34815u;
                 if (r5Var2 != null) {
                     r5Var2.a();
                     return;
@@ -102,21 +102,21 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 14:
-                ((zh.d1) this.f4828b).f52941l.a();
+                ((zh.d1) this.f4828b).f52999l.a();
                 return;
             case 15:
                 zh.p3 p3Var = (zh.p3) this.f4828b;
-                zh.n3 n3Var = p3Var.f53213a0;
+                zh.n3 n3Var = p3Var.f53271a0;
                 if (n3Var != null) {
-                    n3Var.a(p3Var.f22638c);
+                    n3Var.a(p3Var.f22639c);
                     return;
                 }
                 return;
             default:
                 zh.s3 s3Var = (zh.s3) this.f4828b;
-                zh.q3 q3Var = s3Var.f53248a0;
+                zh.q3 q3Var = s3Var.f53306a0;
                 if (q3Var != null) {
-                    q3Var.a(s3Var.f22638c);
+                    q3Var.a(s3Var.f22639c);
                     return;
                 }
                 return;
@@ -137,7 +137,7 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 1:
-                ((di.v1) this.f4828b).f9246f.onDetachedFromWindow();
+                ((di.v1) this.f4828b).f9245f.onDetachedFromWindow();
                 return;
             case 2:
                 a8.h0 h0Var = (a8.h0) this.f4828b;
@@ -157,7 +157,7 @@ public final class i6 implements View.OnAttachStateChangeListener {
                     if (!viewTreeObserver2.isAlive()) {
                         eVar.N = view.getViewTreeObserver();
                     }
-                    eVar.N.removeGlobalOnLayoutListener(eVar.f16703r);
+                    eVar.N.removeGlobalOnLayoutListener(eVar.f16702r);
                 }
                 view.removeOnAttachStateChangeListener(this);
                 return;
@@ -168,7 +168,7 @@ public final class i6 implements View.OnAttachStateChangeListener {
                     if (!viewTreeObserver3.isAlive()) {
                         c0Var.E = view.getViewTreeObserver();
                     }
-                    c0Var.E.removeGlobalOnLayoutListener(c0Var.f16690r);
+                    c0Var.E.removeGlobalOnLayoutListener(c0Var.f16689r);
                 }
                 view.removeOnAttachStateChangeListener(this);
                 return;
@@ -176,7 +176,7 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 ((zh.k2) this.f4828b).o(view);
                 return;
             case 6:
-                ((org.telegram.ui.Components.la) this.f4828b).f30139c.clear();
+                ((org.telegram.ui.Components.la) this.f4828b).f30203c.clear();
                 return;
             case 7:
                 org.telegram.ui.Components.qc qcVar = (org.telegram.ui.Components.qc) this.f4828b;
@@ -190,19 +190,19 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 ((cr) this.f4828b).b();
                 return;
             case 10:
-                wm0 wm0Var = (wm0) this.f4828b;
-                org.telegram.ui.Components.r5 r5Var = wm0Var.f34499t;
+                xm0 xm0Var = (xm0) this.f4828b;
+                org.telegram.ui.Components.r5 r5Var = xm0Var.f34814t;
                 if (r5Var != null) {
                     r5Var.b();
                 }
-                org.telegram.ui.Components.r5 r5Var2 = wm0Var.f34500u;
+                org.telegram.ui.Components.r5 r5Var2 = xm0Var.f34815u;
                 if (r5Var2 != null) {
                     r5Var2.a();
                     return;
                 }
                 return;
             case 11:
-                view.removeCallbacks((Runnable) ((jp0) this.f4828b).f29690a.remove(view));
+                view.removeCallbacks((Runnable) ((kp0) this.f4828b).f30001a.remove(view));
                 view.removeOnAttachStateChangeListener(this);
                 return;
             case 12:
@@ -216,21 +216,21 @@ public final class i6 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 14:
-                ((zh.d1) this.f4828b).f52941l.b();
+                ((zh.d1) this.f4828b).f52999l.b();
                 return;
             case 15:
                 zh.p3 p3Var = (zh.p3) this.f4828b;
-                zh.n3 n3Var = p3Var.f53213a0;
+                zh.n3 n3Var = p3Var.f53271a0;
                 if (n3Var != null) {
-                    n3Var.o(p3Var.f22638c);
+                    n3Var.o(p3Var.f22639c);
                     return;
                 }
                 return;
             default:
                 zh.s3 s3Var = (zh.s3) this.f4828b;
-                zh.q3 q3Var = s3Var.f53248a0;
+                zh.q3 q3Var = s3Var.f53306a0;
                 if (q3Var != null) {
-                    q3Var.o(s3Var.f22638c);
+                    q3Var.o(s3Var.f22639c);
                     return;
                 }
                 return;

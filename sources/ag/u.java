@@ -2,62 +2,62 @@ package ag;
 
 import android.text.Spanned;
 import android.text.TextUtils;
+import org.telegram.ui.Components.a21;
+import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.sj0;
-import org.telegram.ui.Components.w61;
-import org.telegram.ui.Components.y11;
+import org.telegram.ui.Components.tj0;
+import org.telegram.ui.Components.x61;
 import org.telegram.ui.Components.z11;
-import org.telegram.ui.Components.z61;
 public abstract class u {
-    public static void a(y11 y11Var, StringBuilder sb2) {
-        if (y11Var != null) {
-            if ((y11Var.f34907a & 768) > 0) {
+    public static void a(z11 z11Var, StringBuilder sb2) {
+        if (z11Var != null) {
+            if ((z11Var.f35208a & 768) > 0) {
                 sb2.append("<spoiler>");
             }
-            if ((y11Var.f34907a & 1) > 0) {
+            if ((z11Var.f35208a & 1) > 0) {
                 sb2.append("<b>");
             }
-            if ((y11Var.f34907a & 2) > 0) {
+            if ((z11Var.f35208a & 2) > 0) {
                 sb2.append("<i>");
             }
-            if ((y11Var.f34907a & 16) > 0) {
+            if ((z11Var.f35208a & 16) > 0) {
                 sb2.append("<u>");
             }
-            if ((y11Var.f34907a & 8) > 0) {
+            if ((z11Var.f35208a & 8) > 0) {
                 sb2.append("<s>");
             }
-            if ((y11Var.f34907a & 4) > 0) {
+            if ((z11Var.f35208a & 4) > 0) {
                 sb2.append("<code>");
             }
-            if ((y11Var.f34907a & 128) > 0 && y11Var.d != null) {
+            if ((z11Var.f35208a & 128) > 0 && z11Var.d != null) {
                 sb2.append("<a href=\"");
-                sb2.append(y11Var.d.url);
+                sb2.append(z11Var.d.url);
                 sb2.append("\">");
             }
         }
     }
 
-    public static void b(y11 y11Var, StringBuilder sb2) {
-        if (y11Var != null) {
-            if ((y11Var.f34907a & 128) > 0 && y11Var.d != null) {
+    public static void b(z11 z11Var, StringBuilder sb2) {
+        if (z11Var != null) {
+            if ((z11Var.f35208a & 128) > 0 && z11Var.d != null) {
                 sb2.append("</a>");
             }
-            if ((y11Var.f34907a & 4) > 0) {
+            if ((z11Var.f35208a & 4) > 0) {
                 sb2.append("</code>");
             }
-            if ((y11Var.f34907a & 8) > 0) {
+            if ((z11Var.f35208a & 8) > 0) {
                 sb2.append("</s>");
             }
-            if ((y11Var.f34907a & 16) > 0) {
+            if ((z11Var.f35208a & 16) > 0) {
                 sb2.append("</u>");
             }
-            if ((y11Var.f34907a & 2) > 0) {
+            if ((z11Var.f35208a & 2) > 0) {
                 sb2.append("</i>");
             }
-            if ((y11Var.f34907a & 1) > 0) {
+            if ((z11Var.f35208a & 1) > 0) {
                 sb2.append("</b>");
             }
-            if ((y11Var.f34907a & 768) > 0) {
+            if ((z11Var.f35208a & 768) > 0) {
                 sb2.append("</spoiler>");
             }
         }
@@ -77,14 +77,14 @@ public abstract class u {
         int length = spanned.length();
         int i16 = 0;
         while (i16 < length) {
-            int nextSpanTransition = spanned.nextSpanTransition(i16, length, sj0.class);
+            int nextSpanTransition = spanned.nextSpanTransition(i16, length, tj0.class);
             if (nextSpanTransition < 0) {
                 nextSpanTransition = length;
             }
-            sj0[] sj0VarArr = (sj0[]) spanned.getSpans(i16, nextSpanTransition, sj0.class);
-            if (sj0VarArr != null) {
-                for (sj0 sj0Var : sj0VarArr) {
-                    if (sj0Var.e) {
+            tj0[] tj0VarArr = (tj0[]) spanned.getSpans(i16, nextSpanTransition, tj0.class);
+            if (tj0VarArr != null) {
+                for (tj0 tj0Var : tj0VarArr) {
+                    if (tj0Var.e) {
                         str3 = "<blockquote collapsed>";
                     } else {
                         str3 = "<blockquote>";
@@ -93,43 +93,43 @@ public abstract class u {
                 }
             }
             while (i16 < nextSpanTransition) {
-                int nextSpanTransition2 = spanned.nextSpanTransition(i16, nextSpanTransition, z11.class);
+                int nextSpanTransition2 = spanned.nextSpanTransition(i16, nextSpanTransition, a21.class);
                 if (nextSpanTransition2 < 0) {
                     nextSpanTransition2 = nextSpanTransition;
                 }
-                z11[] z11VarArr = (z11[]) spanned.getSpans(i16, nextSpanTransition2, z11.class);
+                a21[] a21VarArr = (a21[]) spanned.getSpans(i16, nextSpanTransition2, a21.class);
                 String str4 = "<pre>";
-                if (z11VarArr != null) {
-                    for (z11 z11Var : z11VarArr) {
-                        if (z11Var != null) {
-                            a(z11Var.f35181b, sb2);
+                if (a21VarArr != null) {
+                    for (a21 a21Var : a21VarArr) {
+                        if (a21Var != null) {
+                            a(a21Var.f26416b, sb2);
                         }
                     }
                 }
                 while (i16 < nextSpanTransition2) {
-                    int nextSpanTransition3 = spanned.nextSpanTransition(i16, nextSpanTransition2, z61.class);
+                    int nextSpanTransition3 = spanned.nextSpanTransition(i16, nextSpanTransition2, a71.class);
                     if (nextSpanTransition3 < 0) {
                         nextSpanTransition3 = nextSpanTransition2;
                     }
-                    z61[] z61VarArr = (z61[]) spanned.getSpans(i16, nextSpanTransition3, z61.class);
+                    a71[] a71VarArr = (a71[]) spanned.getSpans(i16, nextSpanTransition3, a71.class);
                     String str5 = "\">";
-                    if (z61VarArr != null) {
-                        for (z61 z61Var : z61VarArr) {
-                            a(z61Var.f35233a, sb2);
+                    if (a71VarArr != null) {
+                        for (a71 a71Var : a71VarArr) {
+                            a(a71Var.f26450a, sb2);
                             sb2.append("<a href=\"");
-                            sb2.append(z61Var.getURL());
+                            sb2.append(a71Var.getURL());
                             sb2.append("\">");
                         }
                     }
                     while (i16 < nextSpanTransition3) {
-                        int nextSpanTransition4 = spanned.nextSpanTransition(i16, nextSpanTransition3, w61.class);
+                        int nextSpanTransition4 = spanned.nextSpanTransition(i16, nextSpanTransition3, x61.class);
                         if (nextSpanTransition4 < 0) {
                             nextSpanTransition4 = nextSpanTransition3;
                         }
-                        w61[] w61VarArr = (w61[]) spanned.getSpans(i16, nextSpanTransition4, w61.class);
-                        if (w61VarArr != null) {
-                            for (w61 w61Var : w61VarArr) {
-                                if (w61Var != null) {
+                        x61[] x61VarArr = (x61[]) spanned.getSpans(i16, nextSpanTransition4, x61.class);
+                        if (x61VarArr != null) {
+                            for (x61 x61Var : x61VarArr) {
+                                if (x61Var != null) {
                                     sb2.append(str4);
                                 }
                             }
@@ -150,7 +150,7 @@ public abstract class u {
                                 while (i20 < hVarArr.length) {
                                     ni.h hVar = hVarArr[i20];
                                     if (hVar != null) {
-                                        String str6 = hVar.f18879a;
+                                        String str6 = hVar.f18878a;
                                         if (TextUtils.isEmpty(str6)) {
                                             sb2.append(str4);
                                         } else {
@@ -309,9 +309,9 @@ public abstract class u {
                         String str11 = str4;
                         int i36 = nextSpanTransition3;
                         String str12 = str5;
-                        if (w61VarArr != null) {
-                            for (w61 w61Var2 : w61VarArr) {
-                                if (w61Var2 != null) {
+                        if (x61VarArr != null) {
+                            for (x61 x61Var2 : x61VarArr) {
+                                if (x61Var2 != null) {
                                     sb2.append("</pre>");
                                 }
                             }
@@ -329,10 +329,10 @@ public abstract class u {
                     int i39 = nextSpanTransition2;
                     String str13 = str4;
                     int i40 = nextSpanTransition3;
-                    if (z61VarArr != null) {
-                        for (z61 z61Var2 : z61VarArr) {
+                    if (a71VarArr != null) {
+                        for (a71 a71Var2 : a71VarArr) {
                             sb2.append("</a>");
-                            b(z61Var2.f35233a, sb2);
+                            b(a71Var2.f26450a, sb2);
                         }
                     }
                     length = i37;
@@ -344,10 +344,10 @@ public abstract class u {
                 int i41 = length;
                 int i42 = nextSpanTransition;
                 int i43 = nextSpanTransition2;
-                if (z11VarArr != null) {
-                    for (z11 z11Var2 : z11VarArr) {
-                        if (z11Var2 != null) {
-                            b(z11Var2.f35181b, sb2);
+                if (a21VarArr != null) {
+                    for (a21 a21Var2 : a21VarArr) {
+                        if (a21Var2 != null) {
+                            b(a21Var2.f26416b, sb2);
                         }
                     }
                 }
@@ -357,8 +357,8 @@ public abstract class u {
             }
             int i44 = length;
             int i45 = nextSpanTransition;
-            if (sj0VarArr != null) {
-                for (int length2 = sj0VarArr.length - 1; length2 >= 0; length2--) {
+            if (tj0VarArr != null) {
+                for (int length2 = tj0VarArr.length - 1; length2 >= 0; length2--) {
                     sb2.append("</blockquote>");
                 }
             }

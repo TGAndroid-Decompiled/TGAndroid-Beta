@@ -2,9 +2,9 @@ package bh;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.fl0;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.un;
+import org.telegram.ui.Components.gl0;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.wn;
 public final class v implements Runnable {
     public final int f4161a;
     public final x f4162b;
@@ -28,9 +28,9 @@ public final class v implements Runnable {
                 xVar.e = xVar.b();
                 int i12 = xVar.f4198f;
                 int i13 = xVar.h;
-                un unVar = xVar.f4195a;
+                wn wnVar = xVar.f4195a;
                 if (xVar.f4196b == null) {
-                    if (unVar.getUserConfig().getClientUserId() == unVar.a()) {
+                    if (wnVar.getUserConfig().getClientUserId() == wnVar.a()) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -40,10 +40,10 @@ public final class v implements Runnable {
                     } else {
                         i10 = 0;
                     }
-                    ?? fl0Var = new fl0(i10, unVar.getCurrentAccount(), xVar.getContext(), xVar.f4195a, unVar.getResourceProvider());
-                    fl0Var.f4192m1 = 1.0f;
-                    fl0Var.setWillNotDraw(false);
-                    xVar.f4196b = fl0Var;
+                    ?? gl0Var = new gl0(i10, wnVar.getCurrentAccount(), xVar.getContext(), xVar.f4195a, wnVar.getResourceProvider());
+                    gl0Var.f4192m1 = 1.0f;
+                    gl0Var.setWillNotDraw(false);
+                    xVar.f4196b = gl0Var;
                     int dp = AndroidUtilities.dp(4.0f);
                     if (LocaleController.isRTL) {
                         i11 = 0;
@@ -56,16 +56,16 @@ public final class v implements Runnable {
                     if (!LocaleController.isRTL) {
                         i13 = 0;
                     }
-                    fl0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
+                    gl0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
                     xVar.f4196b.setDelegate(new rb.c(xVar, 9));
                     xVar.f4196b.setClipChildren(false);
                     xVar.f4196b.setClipToPadding(false);
-                    xVar.addView(xVar.f4196b, gb1.i(-2, i12 + 70, 5));
+                    xVar.addView(xVar.f4196b, kb1.i(-2, i12 + 70, 5));
                 }
                 xVar.c(false);
                 if (xVar.f4196b.isEnabled()) {
                     xVar.f4203x = true;
-                    xVar.f4196b.p(xVar.e, unVar.f44325l8, true);
+                    xVar.f4196b.p(xVar.e, wnVar.f45245p8, true);
                     xVar.f4196b.r(false);
                     return;
                 }

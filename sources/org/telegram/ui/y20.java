@@ -1,18 +1,20 @@
 package org.telegram.ui;
+public final class y20 extends g.o {
+    public final x50 f45826c;
 
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public final class y20 extends s4.u0 {
-    public final v50 f45936a;
-
-    public y20(v50 v50Var) {
-        this.f45936a = v50Var;
+    public y20(x50 x50Var) {
+        this.f45826c = x50Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.k3) this.f45936a).containerView;
-        viewGroup.invalidate();
+    public final int i(int i10) {
+        int size = this.f45826c.f45549o2.e.size();
+        if (size > 1 && size != 2) {
+            if (size != 3 || i10 == 0 || i10 == 1) {
+                return 3;
+            }
+            return 6;
+        }
+        return 6;
     }
 }

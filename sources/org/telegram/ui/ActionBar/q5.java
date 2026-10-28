@@ -5,34 +5,34 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.vq0;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.xq0;
 public final class q5 extends FrameLayout {
-    public final int f22988a = 0;
-    public int f22989b;
-    public Object f22990c;
+    public final int f22989a = 0;
+    public int f22990b;
+    public Object f22991c;
     public View d;
     public View e;
-    public Object f22991f;
+    public Object f22992f;
     public final Object h;
 
-    public q5(vq0 vq0Var, Context context) {
+    public q5(xq0 xq0Var, Context context) {
         super(context);
-        this.h = vq0Var;
+        this.h = xq0Var;
     }
 
     public b6 a() {
         b6 b6Var = new b6(getContext());
         b6Var.setGravity(17);
         b6Var.setTextSize(14);
-        b6Var.setTextColor(((r5) this.h).f23033c0);
-        addView(b6Var, gb1.i(-2, -2, 51));
+        b6Var.setTextColor(((r5) this.h).f23034c0);
+        addView(b6Var, kb1.i(-2, -2, 51));
         return b6Var;
     }
 
     public void b(int i10) {
         r5 r5Var = (r5) this.h;
-        b6[] b6VarArr = (b6[]) this.f22990c;
+        b6[] b6VarArr = (b6[]) this.f22991c;
         if (b6VarArr[i10] != null) {
             return;
         }
@@ -40,17 +40,17 @@ public final class q5 extends FrameLayout {
         b6Var.setGravity(17);
         b6Var.setTypeface(AndroidUtilities.bold());
         b6Var.setTextSize(17);
-        b6Var.setTextColor(r5Var.f23031b0);
-        b6Var.setEmojiColor(r5Var.f23031b0);
+        b6Var.setTextColor(r5Var.f23032b0);
+        b6Var.setEmojiColor(r5Var.f23032b0);
         b6Var.setDrawablePadding(AndroidUtilities.dp(4.0f));
         b6Var.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         b6Var.setRightDrawableTopPadding(-AndroidUtilities.dp(1.0f));
         b6VarArr[i10] = b6Var;
-        addView(b6Var, 0, gb1.i(-2, -2, 51));
+        addView(b6Var, 0, kb1.i(-2, -2, 51));
     }
 
     public void c(CharSequence charSequence) {
-        this.f22991f = charSequence;
+        this.f22992f = charSequence;
         b6 b6Var = (b6) this.e;
         int i10 = 8;
         if (b6Var != null) {
@@ -78,19 +78,19 @@ public final class q5 extends FrameLayout {
     public void d() {
         b6[] b6VarArr;
         r5 r5Var = (r5) this.h;
-        for (b6 b6Var : (b6[]) this.f22990c) {
+        for (b6 b6Var : (b6[]) this.f22991c) {
             if (b6Var != null) {
-                b6Var.setTextColor(r5Var.f23031b0);
-                b6Var.setEmojiColor(r5Var.f23031b0);
+                b6Var.setTextColor(r5Var.f23032b0);
+                b6Var.setEmojiColor(r5Var.f23032b0);
             }
         }
         b6 b6Var2 = (b6) this.d;
         if (b6Var2 != null) {
-            b6Var2.setTextColor(r5Var.f23033c0);
+            b6Var2.setTextColor(r5Var.f23034c0);
         }
         b6 b6Var3 = (b6) this.e;
         if (b6Var3 != null) {
-            b6Var3.setTextColor(r5Var.f23033c0);
+            b6Var3.setTextColor(r5Var.f23034c0);
         }
     }
 
@@ -98,7 +98,7 @@ public final class q5 extends FrameLayout {
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         boolean z11;
         int textHeight;
-        switch (this.f22988a) {
+        switch (this.f22989a) {
             case 0:
                 int i14 = i12 - i10;
                 int i15 = i13 - i11;
@@ -108,7 +108,7 @@ public final class q5 extends FrameLayout {
                 } else {
                     z11 = false;
                 }
-                b6[] b6VarArr = (b6[]) this.f22990c;
+                b6[] b6VarArr = (b6[]) this.f22991c;
                 for (b6 b6Var2 : b6VarArr) {
                     if (b6Var2 != null && b6Var2.getVisibility() != 8) {
                         if (z11) {
@@ -152,12 +152,12 @@ public final class q5 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f22988a) {
+        switch (this.f22989a) {
             case 0:
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
-                int max = Math.max(0, size - (this.f22989b * 2));
-                b6[] b6VarArr = (b6[]) this.f22990c;
+                int max = Math.max(0, size - (this.f22990b * 2));
+                b6[] b6VarArr = (b6[]) this.f22991c;
                 for (b6 b6Var : b6VarArr) {
                     if (b6Var != null && b6Var.getVisibility() != 8) {
                         b6Var.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(b6Var.getPaddingBottom() + b6Var.getPaddingTop() + AndroidUtilities.dp(24.0f), Integer.MIN_VALUE));
@@ -189,13 +189,13 @@ public final class q5 extends FrameLayout {
     @Override
     public void setTranslationX(float f7) {
         q5 q5Var;
-        switch (this.f22988a) {
+        switch (this.f22989a) {
             case 1:
                 super.setTranslationX(f7);
-                vq0 vq0Var = (vq0) this.h;
-                q5[] q5VarArr = vq0Var.f44889n;
-                if (vq0Var.f44891s && (q5Var = q5VarArr[0]) == this) {
-                    vq0Var.h.i(Math.abs(q5Var.getTranslationX()) / q5VarArr[0].getMeasuredWidth(), q5VarArr[1].f22989b);
+                xq0 xq0Var = (xq0) this.h;
+                q5[] q5VarArr = xq0Var.f45764n;
+                if (xq0Var.f45766s && (q5Var = q5VarArr[0]) == this) {
+                    xq0Var.h.i(Math.abs(q5Var.getTranslationX()) / q5VarArr[0].getMeasuredWidth(), q5VarArr[1].f22990b);
                     return;
                 }
                 return;
@@ -208,7 +208,7 @@ public final class q5 extends FrameLayout {
     public q5(r5 r5Var, Context context) {
         super(context);
         this.h = r5Var;
-        this.f22990c = new b6[2];
+        this.f22991c = new b6[2];
         setClipChildren(false);
     }
 }

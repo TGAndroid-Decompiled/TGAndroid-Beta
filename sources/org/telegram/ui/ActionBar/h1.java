@@ -4,21 +4,21 @@ import android.view.ViewTreeObserver;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import org.telegram.ui.Components.fv;
-import org.telegram.ui.t51;
+import org.telegram.ui.w51;
 public final class h1 implements ViewTreeObserver.OnScrollChangedListener {
-    public final int f22671a;
+    public final int f22672a;
 
     @Override
     public final void onScrollChanged() {
-        switch (this.f22671a) {
+        switch (this.f22672a) {
             case 0:
-                Method method = o1.f22903k;
+                Method method = o1.f22904k;
                 return;
             case 1:
-                Field field = fv.f28318f;
+                Field field = fv.f28295f;
                 return;
             default:
-                Field field2 = t51.f43685c;
+                Field field2 = w51.f44522c;
                 return;
         }
     }

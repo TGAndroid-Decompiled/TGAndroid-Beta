@@ -9,23 +9,23 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.VideoEditedInfo;
-public final class mg extends org.telegram.ui.gu0 {
-    public boolean f30571a;
-    public final MediaController.PhotoEntry f30572b;
-    public final File f30573c;
+public final class mg extends org.telegram.ui.iu0 {
+    public boolean f30534a;
+    public final MediaController.PhotoEntry f30535b;
+    public final File f30536c;
     public final ng d;
 
     public mg(ng ngVar, MediaController.PhotoEntry photoEntry, File file) {
         this.d = ngVar;
-        this.f30572b = photoEntry;
-        this.f30573c = file;
+        this.f30535b = photoEntry;
+        this.f30536c = file;
     }
 
     @Override
     public final void G() {
-        if (!this.f30571a) {
+        if (!this.f30534a) {
             try {
-                this.f30573c.delete();
+                this.f30536c.delete();
             } catch (Throwable unused) {
             }
         }
@@ -43,16 +43,16 @@ public final class mg extends org.telegram.ui.gu0 {
         int i13;
         SendMessageChatArguments sendMessageChatArguments;
         String str2;
-        org.telegram.ui.un unVar;
+        org.telegram.ui.wn wnVar;
         ChatActivityEnterView chatActivityEnterView = this.d.d;
-        org.telegram.ui.kn knVar = chatActivityEnterView.V2;
-        if (knVar != null && (unVar = chatActivityEnterView.P2) != null && knVar.f40982f) {
-            unVar.dc();
+        org.telegram.ui.mn mnVar = chatActivityEnterView.V2;
+        if (mnVar != null && (wnVar = chatActivityEnterView.P2) != null && mnVar.f41480f) {
+            wnVar.hc();
             return;
         }
         ArrayList arrayList = new ArrayList();
         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-        MediaController.PhotoEntry photoEntry = this.f30572b;
+        MediaController.PhotoEntry photoEntry = this.f30535b;
         if (!photoEntry.isVideo && (str2 = photoEntry.imagePath) != null) {
             sendingMediaInfo.path = str2;
         } else {
@@ -81,33 +81,33 @@ public final class mg extends org.telegram.ui.gu0 {
         sendingMediaInfo.canDeleteAfter = true;
         arrayList.add(sendingMediaInfo);
         photoEntry.reset();
-        this.f30571a = true;
+        this.f30534a = true;
         boolean checkUpdateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(sendingMediaInfo.caption);
         AccountInstance accountInstance = chatActivityEnterView.R;
         MessageSuggestionParams messageSuggestionParams = null;
         long j10 = chatActivityEnterView.Q2;
         MessageObject messageObject = chatActivityEnterView.T2;
         threadMessage = chatActivityEnterView.getThreadMessage();
-        org.telegram.ui.kn knVar2 = chatActivityEnterView.V2;
+        org.telegram.ui.mn mnVar2 = chatActivityEnterView.V2;
         MessageObject messageObject2 = chatActivityEnterView.Z1;
-        org.telegram.ui.un unVar2 = chatActivityEnterView.P2;
-        if (unVar2 == null) {
+        org.telegram.ui.wn wnVar2 = chatActivityEnterView.P2;
+        if (wnVar2 == null) {
             i13 = 0;
         } else {
-            i13 = unVar2.f44224d4;
+            i13 = wnVar2.f45091d4;
         }
         int i14 = i13;
-        if (unVar2 != null) {
-            sendMessageChatArguments = unVar2.L8();
+        if (wnVar2 != null) {
+            sendMessageChatArguments = wnVar2.O8();
         } else {
             sendMessageChatArguments = null;
         }
         long sendMonoForumPeerId = chatActivityEnterView.getSendMonoForumPeerId();
-        org.telegram.ui.un unVar3 = chatActivityEnterView.P2;
-        if (unVar3 != null) {
-            messageSuggestionParams = unVar3.f44410s5;
+        org.telegram.ui.wn wnVar3 = chatActivityEnterView.P2;
+        if (wnVar3 != null) {
+            messageSuggestionParams = wnVar3.f45330w5;
         }
-        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j10, messageObject, threadMessage, null, knVar2, false, false, messageObject2, z10, i11, i12, i14, checkUpdateStickersOrder, null, sendMessageChatArguments, 0L, false, 0L, sendMonoForumPeerId, messageSuggestionParams);
+        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j10, messageObject, threadMessage, null, mnVar2, false, false, messageObject2, z10, i11, i12, i14, checkUpdateStickersOrder, null, sendMessageChatArguments, 0L, false, 0L, sendMonoForumPeerId, messageSuggestionParams);
         og ogVar = chatActivityEnterView.Z2;
         if (ogVar != null) {
             ogVar.A(null, true, i11, i12, 0L);

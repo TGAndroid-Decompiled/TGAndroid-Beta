@@ -6,9 +6,9 @@ import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class i extends c {
-    public final b6 f51787s;
+    public final b6 f51845s;
     public Object v;
 
     public i(Context context, u6 u6Var) {
@@ -16,12 +16,12 @@ public final class i extends c {
         int i10;
         float f7;
         float f10;
-        this.f51763c.setVisibility(8);
+        this.f51821c.setVisibility(8);
         b6 b6Var = this.e;
         int i11 = y6.B6;
         f7.Y(b6Var, i11, u6Var);
         b6 b6Var2 = new b6(context);
-        this.f51787s = b6Var2;
+        this.f51845s = b6Var2;
         b6Var2.setTextSize(16);
         f7.Y(b6Var2, i11, u6Var);
         if (LocaleController.isRTL) {
@@ -43,7 +43,7 @@ public final class i extends c {
         } else {
             f10 = 20.0f;
         }
-        b6Var2.setLayoutParams(gb1.h(-1, -2.0f, i12, f7, 0.0f, f10, 0.0f));
+        b6Var2.setLayoutParams(kb1.h(-1, -2.0f, i12, f7, 0.0f, f10, 0.0f));
     }
 
     @Override

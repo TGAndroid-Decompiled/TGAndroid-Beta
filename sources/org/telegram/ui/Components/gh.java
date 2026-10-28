@@ -1,13 +1,14 @@
 package org.telegram.ui.Components;
 
 import android.text.TextUtils;
+import org.telegram.ui.PremiumPreviewFragment;
 public final class gh implements Runnable {
-    public final int f28569a;
-    public final ti f28570b;
+    public final int f28583a;
+    public final ti f28584b;
 
     public gh(ti tiVar, int i10) {
-        this.f28569a = i10;
-        this.f28570b = tiVar;
+        this.f28583a = i10;
+        this.f28584b = tiVar;
     }
 
     @Override
@@ -15,11 +16,11 @@ public final class gh implements Runnable {
         ru ruVar;
         boolean z10;
         long j10;
-        boolean M1;
-        switch (this.f28569a) {
+        boolean N1;
+        switch (this.f28583a) {
             case 0:
-                ti tiVar = this.f28570b;
-                if (tiVar.f33011c0) {
+                ti tiVar = this.f28584b;
+                if (tiVar.f32980c0) {
                     ruVar = tiVar.S0;
                 } else {
                     ruVar = tiVar.H0;
@@ -29,14 +30,14 @@ public final class gh implements Runnable {
                 } else {
                     z10 = false;
                 }
-                tiVar.T1(z10);
+                tiVar.U1(z10);
                 return;
             case 1:
-                ti.n(this.f28570b);
+                ti.w(this.f28584b);
                 return;
             case 2:
-                ti tiVar2 = this.f28570b;
-                mf mfVar = tiVar2.f33027h0;
+                ti tiVar2 = this.f28584b;
+                mf mfVar = tiVar2.f32996h0;
                 if (mfVar != null) {
                     j10 = mfVar.j();
                 } else {
@@ -47,26 +48,35 @@ public final class gh implements Runnable {
                 tiVar2.Q0 = j11;
                 biVar.setEffect(j11);
                 li liVar = tiVar2.B0;
-                if (liVar != tiVar2.f33033j0 && liVar != tiVar2.f33053q0) {
-                    if (!liVar.K(0, false, 0, tiVar2.w1(), j11)) {
+                if (liVar != tiVar2.f33002j0 && liVar != tiVar2.f33022q0) {
+                    if (!liVar.K(0, false, 0, tiVar2.x1(), j11)) {
                         tiVar2.dismiss();
                     }
-                    M1 = false;
+                    N1 = false;
                 } else {
-                    M1 = tiVar2.M1(0, false, 0, tiVar2.w1(), j11);
+                    N1 = tiVar2.N1(0, false, 0, tiVar2.x1(), j11);
                 }
-                mf mfVar2 = tiVar2.f33027h0;
+                mf mfVar2 = tiVar2.f32996h0;
                 if (mfVar2 != null) {
-                    mfVar2.g(!M1);
-                    tiVar2.f33027h0 = null;
+                    mfVar2.g(!N1);
+                    tiVar2.f32996h0 = null;
                     return;
                 }
                 return;
             case 3:
-                this.f28570b.L1();
+                ti tiVar3 = this.f28584b;
+                tiVar3.dismiss(true);
+                org.telegram.ui.ActionBar.r2 r2Var = tiVar3.f32990f0;
+                if (r2Var != null) {
+                    r2Var.presentFragment(new PremiumPreviewFragment(0, "caption_limit"));
+                    return;
+                }
+                return;
+            case 4:
+                this.f28584b.M1();
                 return;
             default:
-                ti.m(this.f28570b);
+                ti.y(this.f28584b);
                 return;
         }
     }

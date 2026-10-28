@@ -48,7 +48,7 @@ public class UserNameResolver {
                 }
                 String str3 = tL_error.text;
                 if (str3 != null && str3.contains("FLOOD_WAIT") && (R = LaunchActivity.R()) != null) {
-                    vh.n(R.string.FloodWait, org.telegram.ui.Components.wc.b0(R), null);
+                    wh.n(R.string.FloodWait, org.telegram.ui.Components.wc.b0(R), null);
                     return;
                 }
                 return;
@@ -67,7 +67,7 @@ public class UserNameResolver {
     }
 
     public void lambda$resolve$1(String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new xj(this, str, tL_error, tLObject, 3), 2L);
+        AndroidUtilities.runOnUIThread(new yj(this, str, tL_error, tLObject, 3), 2L);
     }
 
     public void lambda$resolve$2(String str, int i10) {
@@ -87,7 +87,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(user.username);
         String str2 = user2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(user2.f22176id));
+            this.resolvedCache.put(str2, new CachedPeer(user2.f22177id));
         }
     }
 
@@ -130,7 +130,7 @@ public class UserNameResolver {
             }
             tL_contacts_resolveUsername = tL_contacts_resolveUsername2;
         }
-        return new x4(this, str, ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new x1(11, this, str)), 23);
+        return new y4(this, str, ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new x1(11, this, str)), 23);
     }
 
     public void update(TLRPC.Chat chat, TLRPC.Chat chat2) {
@@ -141,7 +141,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(chat.username);
         String str2 = chat2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(-chat2.f22027id));
+            this.resolvedCache.put(str2, new CachedPeer(-chat2.f22028id));
         }
     }
 }

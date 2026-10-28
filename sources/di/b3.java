@@ -19,7 +19,7 @@ public final class b3 implements ri {
 
     @Override
     public final void A(gh ghVar) {
-        NotificationCenter.getInstance(this.f8418a.f9021r2).doOnIdle(ghVar);
+        NotificationCenter.getInstance(this.f8418a.f9020r2).doOnIdle(ghVar);
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class b3 implements ri {
 
     @Override
     public final void R() {
-        this.f8418a.Q1.M();
+        this.f8418a.Q1.L();
     }
 
     @Override
@@ -43,9 +43,9 @@ public final class b3 implements ri {
         String str;
         String str2;
         q4 q4Var = this.f8418a;
-        if (q4Var.f9047y0.m0 && (storyItem = q4Var.D1.f8871a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || q4Var.f9045x2.f33033j0.getSelectedPhotos().isEmpty())) {
-                a3 a3Var = q4Var.f9045x2;
+        if (q4Var.f9046y0.m0 && (storyItem = q4Var.D1.f8870a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || q4Var.f9044x2.f33002j0.getSelectedPhotos().isEmpty())) {
+                a3 a3Var = q4Var.f9044x2;
                 if (a3Var != null) {
                     a3Var.dismissWithButtonClick(i10);
                     return;
@@ -54,10 +54,10 @@ public final class b3 implements ri {
             }
             boolean z18 = true;
             if (i10 != 8) {
-                q4Var.f9045x2.dismiss(true);
+                q4Var.f9044x2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = q4Var.f9045x2.f33033j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = q4Var.f9045x2.f33033j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = q4Var.f9044x2.f33002j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = q4Var.f9044x2.f33002j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -109,7 +109,7 @@ public final class b3 implements ri {
                     accountInstance = q4Var.getAccountInstance();
                     ArrayList<Object> arrayList2 = selectedPhotosOrder;
                     int i18 = i13;
-                    long j12 = q4Var.f9016q1;
+                    long j12 = q4Var.f9015q1;
                     if (i10 != 4 && !z13) {
                         z16 = true;
                         z17 = i18;
@@ -148,7 +148,7 @@ public final class b3 implements ri {
         CharSequence charSequence2;
         boolean z12;
         q4 q4Var = this.f8418a;
-        TL_stories.StoryItem storyItem = q4Var.D1.f8871a;
+        TL_stories.StoryItem storyItem = q4Var.D1.f8870a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = q4Var.getAccountInstance();
             if (charSequence != null) {
@@ -156,7 +156,7 @@ public final class b3 implements ri {
             } else {
                 charSequence2 = null;
             }
-            SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, q4Var.f9016q1, null, null, storyItem, z10, i10, i11, null, null, j10, z11, j11);
+            SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, q4Var.f9015q1, null, null, storyItem, z10, i10, i11, null, null, j10, z11, j11);
             if (j11 <= 0) {
                 z12 = true;
             } else {

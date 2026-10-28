@@ -4,90 +4,90 @@ import android.animation.TimeInterpolator;
 import android.os.SystemClock;
 import android.view.View;
 public final class j5 {
-    public final View f29478a;
-    public final Runnable f29479b;
-    public int f29480c;
+    public final View f29505a;
+    public final Runnable f29506b;
+    public int f29507c;
     public int d;
     public boolean e;
-    public final long f29481f;
-    public final TimeInterpolator f29482g;
+    public final long f29508f;
+    public final TimeInterpolator f29509g;
     public boolean h;
-    public long f29483i;
-    public int f29484j;
+    public long f29510i;
+    public int f29511j;
 
     public j5(View view) {
-        this.f29481f = 200L;
-        this.f29482g = ds.f27586f;
-        this.f29478a = view;
+        this.f29508f = 200L;
+        this.f29509g = ds.f27530f;
+        this.f29505a = view;
         this.e = true;
     }
 
     public final int a(int i10, boolean z10) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = this.f29481f;
+        long j10 = this.f29508f;
         if (!z10 && j10 > 0 && !this.e) {
             if (this.d != i10) {
                 this.h = true;
                 this.d = i10;
-                this.f29484j = this.f29480c;
-                this.f29483i = elapsedRealtime;
+                this.f29511j = this.f29507c;
+                this.f29510i = elapsedRealtime;
             }
         } else {
             this.d = i10;
-            this.f29480c = i10;
+            this.f29507c = i10;
             this.h = false;
             this.e = false;
         }
         if (this.h) {
-            float a2 = a8.ee.a(((float) (elapsedRealtime - this.f29483i)) / ((float) j10), 0.0f, 1.0f);
-            if (elapsedRealtime - this.f29483i >= 0) {
-                TimeInterpolator timeInterpolator = this.f29482g;
+            float a2 = a8.ee.a(((float) (elapsedRealtime - this.f29510i)) / ((float) j10), 0.0f, 1.0f);
+            if (elapsedRealtime - this.f29510i >= 0) {
+                TimeInterpolator timeInterpolator = this.f29509g;
                 if (timeInterpolator == null) {
-                    this.f29480c = i0.a.f(a2, this.f29484j, this.d);
+                    this.f29507c = i0.a.f(a2, this.f29511j, this.d);
                 } else {
-                    this.f29480c = i0.a.f(timeInterpolator.getInterpolation(a2), this.f29484j, this.d);
+                    this.f29507c = i0.a.f(timeInterpolator.getInterpolation(a2), this.f29511j, this.d);
                 }
             }
             if (a2 >= 1.0f) {
                 this.h = false;
             } else {
-                View view = this.f29478a;
+                View view = this.f29505a;
                 if (view != null) {
                     view.invalidate();
                 }
-                Runnable runnable = this.f29479b;
+                Runnable runnable = this.f29506b;
                 if (runnable != null) {
                     runnable.run();
                 }
             }
         }
-        return this.f29480c;
+        return this.f29507c;
     }
 
     public j5(View view, long j10, TimeInterpolator timeInterpolator) {
-        this.f29481f = 200L;
-        ds dsVar = ds.f27586f;
-        this.f29478a = view;
-        this.f29481f = j10;
-        this.f29482g = timeInterpolator;
+        this.f29508f = 200L;
+        ds dsVar = ds.f27530f;
+        this.f29505a = view;
+        this.f29508f = j10;
+        this.f29509g = timeInterpolator;
         this.e = true;
     }
 
     public j5(View view, long j10, TimeInterpolator timeInterpolator, int i10) {
-        this.f29481f = 200L;
-        ds dsVar = ds.f27586f;
-        this.f29478a = view;
-        this.f29481f = j10;
-        this.f29482g = timeInterpolator;
+        this.f29508f = 200L;
+        ds dsVar = ds.f27530f;
+        this.f29505a = view;
+        this.f29508f = j10;
+        this.f29509g = timeInterpolator;
         this.e = true;
     }
 
     public j5(Runnable runnable, long j10, TimeInterpolator timeInterpolator) {
-        this.f29481f = 200L;
-        ds dsVar = ds.f27586f;
-        this.f29479b = runnable;
-        this.f29481f = j10;
-        this.f29482g = timeInterpolator;
+        this.f29508f = 200L;
+        ds dsVar = ds.f27530f;
+        this.f29506b = runnable;
+        this.f29508f = j10;
+        this.f29509g = timeInterpolator;
         this.e = true;
     }
 }

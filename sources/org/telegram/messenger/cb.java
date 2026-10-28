@@ -1,49 +1,48 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.FileLoadOperation;
+import java.util.Comparator;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class cb implements RequestDelegate {
+public final class cb implements Comparator {
     public final int f19815a;
-    public final int f19816b;
-    public final Object f19817c;
-    public final Object d;
+    public final MessagesController f19816b;
 
-    public cb(Object obj, int i10, Object obj2, int i11) {
-        this.f19815a = i11;
-        this.f19817c = obj;
-        this.f19816b = i10;
-        this.d = obj2;
+    public cb(MessagesController messagesController, int i10) {
+        this.f19815a = i10;
+        this.f19816b = messagesController;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$processUpdatesQueue$328;
+        int lambda$renameSavedReactionTag$490;
+        int lambda$updateSavedReactionTags$489;
+        int lambda$new$9;
+        int lambda$new$10;
+        int lambda$new$11;
+        int lambda$new$12;
         switch (this.f19815a) {
             case 0:
-                ((MessagesController) this.f19817c).lambda$checkChatlistFolderUpdate$483(this.f19816b, (MessagesController.ChatlistUpdatesStat) this.d, tLObject, tL_error);
-                return;
+                lambda$processUpdatesQueue$328 = this.f19816b.lambda$processUpdatesQueue$328((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
+                return lambda$processUpdatesQueue$328;
             case 1:
-                ((FileLoadOperation) this.f19817c).lambda$startDownloadRequest$29(this.f19816b, (FileLoadOperation.RequestInfo) this.d, tLObject, tL_error);
-                return;
+                lambda$renameSavedReactionTag$490 = this.f19816b.lambda$renameSavedReactionTag$490((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                return lambda$renameSavedReactionTag$490;
             case 2:
-                ((MediaDataController) this.f19817c).lambda$toggleStickerSetInternal$117((TLRPC.StickerSet) this.d, this.f19816b, tLObject, tL_error);
-                return;
+                lambda$updateSavedReactionTags$489 = this.f19816b.lambda$updateSavedReactionTags$489((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                return lambda$updateSavedReactionTags$489;
             case 3:
-                ((MediaDataController) this.f19817c).lambda$loadStickers$97(this.f19816b, (Utilities.Callback) this.d, tLObject, tL_error);
-                return;
+                lambda$new$9 = this.f19816b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                return lambda$new$9;
+            case 4:
+                lambda$new$10 = this.f19816b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                return lambda$new$10;
+            case 5:
+                lambda$new$11 = this.f19816b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
+                return lambda$new$11;
             default:
-                ((MessagesController) this.f19817c).lambda$registerForPush$325(this.f19816b, (String) this.d, tLObject, tL_error);
-                return;
+                lambda$new$12 = this.f19816b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
+                return lambda$new$12;
         }
-    }
-
-    public cb(MediaDataController mediaDataController, TLRPC.StickerSet stickerSet, int i10) {
-        this.f19815a = 2;
-        this.f19817c = mediaDataController;
-        this.d = stickerSet;
-        this.f19816b = i10;
     }
 }

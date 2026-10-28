@@ -22,7 +22,7 @@ public final class i extends Drawable {
     public final Paint f6355g = new Paint(1);
     public final Paint h = new Paint(1);
     public final Paint f6356i = new Paint(1);
-    public int f6357j = f7.f22628b;
+    public int f6357j = f7.f22629b;
 
     public final void a(fh.a aVar) {
         this.f6351a = aVar;
@@ -33,7 +33,7 @@ public final class i extends Drawable {
     }
 
     public final void b() {
-        this.f6357j = f7.f22628b;
+        this.f6357j = f7.f22629b;
         fh.a aVar = this.f6351a;
         if (aVar == null) {
             return;
@@ -53,7 +53,7 @@ public final class i extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Canvas canvas2;
-        if (this.f6357j != f7.f22628b) {
+        if (this.f6357j != f7.f22629b) {
             try {
                 b();
             } catch (Exception e) {

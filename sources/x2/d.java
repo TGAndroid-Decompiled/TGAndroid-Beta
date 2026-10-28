@@ -1,11 +1,11 @@
 package x2;
 public final class d implements e9.l {
-    public final o f51311a;
-    public final j f51312b;
+    public final o f51369a;
+    public final j f51370b;
 
     public d(o oVar, j jVar) {
-        this.f51311a = oVar;
-        this.f51312b = jVar;
+        this.f51369a = oVar;
+        this.f51370b = jVar;
     }
 
     @Override

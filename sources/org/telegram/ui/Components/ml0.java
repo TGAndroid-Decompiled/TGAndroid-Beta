@@ -1,211 +1,364 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.util.SparseArray;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.animation.OvershootInterpolator;
 import java.util.ArrayList;
-import java.util.HashMap;
-public final class ml0 implements View.OnLayoutChangeListener {
-    public final s4.h0 f30612a;
-    public final ArrayList f30613b;
-    public final boolean f30614c;
-    public final nl0 d;
-    public final pl0 e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.SecretMediaViewer;
+import org.telegram.ui.UsersSelectActivity;
+import org.telegram.ui.rh1;
+import org.telegram.ui.tg1;
+public final class ml0 extends AnimatorListenerAdapter {
+    public final int f30557a;
+    public final Object f30558b;
+    public final Object f30559c;
 
-    public ml0(pl0 pl0Var, s4.h0 h0Var, ArrayList arrayList, boolean z10, nl0 nl0Var) {
-        this.e = pl0Var;
-        this.f30612a = h0Var;
-        this.f30613b = arrayList;
-        this.f30614c = z10;
-        this.d = nl0Var;
+    public ml0(int i10, Object obj, Object obj2) {
+        this.f30557a = i10;
+        this.f30559c = obj;
+        this.f30558b = obj2;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        final ArrayList arrayList;
-        int height;
-        int i18;
-        long min;
-        View view2;
-        pl0 pl0Var = this.e;
-        HashMap hashMap = (HashMap) pl0Var.f31603k;
-        mm0 mm0Var = (mm0) pl0Var.e;
-        mm0Var.removeOnLayoutChangeListener(this);
-        final ArrayList arrayList2 = new ArrayList();
-        mm0Var.C0();
-        int childCount = mm0Var.getChildCount();
-        int i19 = 0;
-        int i20 = 0;
-        int i21 = 0;
-        int i22 = 0;
-        boolean z10 = false;
-        while (true) {
-            arrayList = this.f30613b;
-            if (i19 >= childCount) {
-                break;
-            }
-            View childAt = mm0Var.getChildAt(i19);
-            arrayList2.add(childAt);
-            if (childAt.getTop() < i20) {
-                i20 = childAt.getTop();
-            }
-            if (childAt.getBottom() > i21) {
-                i21 = childAt.getBottom();
-            }
-            if (childAt instanceof org.telegram.ui.Cells.s4) {
-                ((org.telegram.ui.Cells.s4) childAt).b(true, false);
-            }
-            s4.h0 h0Var = this.f30612a;
-            if (h0Var != null && (h0Var.f47769b || pl0Var.f31598c)) {
-                mm0Var.getClass();
-                long i23 = h0Var.i(RecyclerView.R(childAt));
-                if (hashMap.containsKey(Long.valueOf(i23)) && (view2 = (View) hashMap.get(Long.valueOf(i23))) != null) {
-                    if (view2 instanceof org.telegram.ui.Cells.s4) {
-                        ((org.telegram.ui.Cells.s4) view2).b(false, false);
-                    }
-                    arrayList.remove(view2);
-                    gb1 gb1Var = (gb1) pl0Var.f31601i;
-                    if (gb1Var != null) {
-                        gb1Var.S(view2);
-                    }
-                    int top = childAt.getTop() - view2.getTop();
-                    if (top != 0) {
-                        i22 = top;
-                    }
-                    z10 = true;
-                }
-            }
-            i19++;
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f30557a) {
+            case 17:
+                ((r0.m0) this.f30558b).a();
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        hashMap.clear();
-        int size = arrayList.size();
-        int i24 = 0;
-        int i25 = 0;
-        int i26 = Integer.MAX_VALUE;
-        while (i25 < size) {
-            Object obj = arrayList.get(i25);
-            i25++;
-            View view3 = (View) obj;
-            int bottom = view3.getBottom();
-            int top2 = view3.getTop();
-            if (bottom > i24) {
-                i24 = bottom;
-            }
-            if (top2 < i26) {
-                i26 = top2;
-            }
-            if (view3.getParent() == null) {
-                mm0Var.addView(view3);
-                ((s4.c0) pl0Var.f31599f).M(view3);
-            }
-            if (view3 instanceof org.telegram.ui.Cells.s4) {
-                ((org.telegram.ui.Cells.s4) view3).b(true, true);
-            }
-        }
-        if (i26 == Integer.MAX_VALUE) {
-            i26 = 0;
-        }
-        gb1 gb1Var2 = (gb1) pl0Var.f31601i;
-        if (gb1Var2 != null) {
-            gb1Var2.O();
-        }
-        if (arrayList.isEmpty()) {
-            i18 = Math.abs(i22);
-        } else {
-            boolean z11 = this.f30614c;
-            if (!z11) {
-                i24 = mm0Var.getHeight() - i26;
-            }
-            if (z11) {
-                height = -i20;
-            } else {
-                height = i21 - mm0Var.getHeight();
-            }
-            i18 = height + i24;
-        }
-        final int paddingBottom = mm0Var.getPaddingBottom();
-        ValueAnimator valueAnimator = (ValueAnimator) pl0Var.f31600g;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            ((ValueAnimator) pl0Var.f31600g).cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        pl0Var.f31600g = ofFloat;
-        final boolean z12 = this.f30614c;
-        final int i27 = i18;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                boolean z13;
-                int i28;
-                pl0 pl0Var2 = ml0.this.e;
-                mm0 mm0Var2 = (mm0) pl0Var2.e;
-                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                ArrayList arrayList3 = arrayList;
-                int size2 = arrayList3.size();
-                int i29 = 0;
-                while (true) {
-                    z13 = z12;
-                    i28 = i27;
-                    if (i29 >= size2) {
-                        break;
-                    }
-                    View view4 = (View) arrayList3.get(i29);
-                    float y3 = view4.getY();
-                    if (view4.getY() + view4.getMeasuredHeight() >= 0.0f && y3 <= mm0Var2.getMeasuredHeight()) {
-                        if (z13) {
-                            view4.setTranslationY((-i28) * floatValue);
-                        } else {
-                            view4.setTranslationY(i28 * floatValue);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        boolean z10;
+        int i10 = this.f30557a;
+        Object obj = this.f30558b;
+        Object obj2 = this.f30559c;
+        switch (i10) {
+            case 0:
+                nl0 nl0Var = (nl0) obj2;
+                ql0 ql0Var = nl0Var.e;
+                if (((ValueAnimator) ql0Var.f31937g) != null) {
+                    ((nm0) ql0Var.e).V1 = false;
+                    ArrayList arrayList = nl0Var.f30953b;
+                    int size = arrayList.size();
+                    int i11 = 0;
+                    while (i11 < size) {
+                        Object obj3 = arrayList.get(i11);
+                        i11++;
+                        View view = (View) obj3;
+                        if (view instanceof org.telegram.ui.Cells.s4) {
+                            ((org.telegram.ui.Cells.s4) view).b(false, true);
+                        }
+                        view.setTranslationY(0.0f);
+                        ((s4.c0) ql0Var.f31936f).getClass();
+                        s4.p0.x0(view);
+                        ((nm0) ql0Var.e).removeView(view);
+                        kb1 kb1Var = (kb1) ql0Var.f31938i;
+                        if (kb1Var != null) {
+                            kb1Var.S(view);
                         }
                     }
-                    i29++;
+                    ((nm0) ql0Var.e).setScrollEnabled(true);
+                    ((nm0) ql0Var.e).setVerticalScrollBarEnabled(true);
+                    if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                        if (((nm0) ql0Var.e).e.k() == ((nm0) ql0Var.e).getChildCount()) {
+                            if (((ArrayList) ((nm0) ql0Var.e).e.d).size() != 0) {
+                                throw new RuntimeException("hidden child count must be 0");
+                            }
+                        } else {
+                            throw new RuntimeException("views count in child helper must be quals views count in recycler view");
+                        }
+                    }
+                    int childCount = ((nm0) ql0Var.e).getChildCount();
+                    for (int i12 = 0; i12 < childCount; i12++) {
+                        View childAt = ((nm0) ql0Var.e).getChildAt(i12);
+                        if (childAt instanceof org.telegram.ui.Cells.s4) {
+                            ((org.telegram.ui.Cells.s4) childAt).b(false, false);
+                        }
+                        childAt.setTranslationY(0.0f);
+                    }
+                    ArrayList arrayList2 = (ArrayList) obj;
+                    int size2 = arrayList2.size();
+                    int i13 = 0;
+                    while (i13 < size2) {
+                        Object obj4 = arrayList2.get(i13);
+                        i13++;
+                        View view2 = (View) obj4;
+                        if (view2 instanceof org.telegram.ui.Cells.s4) {
+                            ((org.telegram.ui.Cells.s4) view2).b(false, false);
+                        }
+                        view2.setTranslationY(0.0f);
+                    }
+                    ol0 ol0Var = nl0Var.d;
+                    if (ol0Var != null) {
+                        ol0Var.E();
+                    }
+                    kb1 kb1Var2 = (kb1) ql0Var.f31938i;
+                    if (kb1Var2 != null) {
+                        kb1Var2.N();
+                    }
+                    ((SparseArray) ql0Var.f31939j).clear();
+                    ql0Var.f31937g = null;
+                    return;
                 }
-                int paddingBottom2 = paddingBottom - mm0Var2.getPaddingBottom();
-                ArrayList arrayList4 = arrayList2;
-                int size3 = arrayList4.size();
-                for (int i30 = 0; i30 < size3; i30++) {
-                    View view5 = (View) arrayList4.get(i30);
-                    if (z13) {
-                        view5.setTranslationY(((1.0f - floatValue) * i28) + paddingBottom2);
-                    } else {
-                        view5.setTranslationY((1.0f - floatValue) * (-i28));
+                return;
+            case 1:
+                c10 c10Var = (c10) obj;
+                c10Var.setAlpha(1.0f);
+                s4.p0.x0(c10Var);
+                rl0 rl0Var = (rl0) obj2;
+                rl0Var.f32276c.remove(c10Var);
+                rl0Var.f32274a.removeView(c10Var);
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                org.telegram.ui.tq tqVar = (org.telegram.ui.tq) obj2;
+                ((rl0) tqVar.d).f32278g.remove((AnimatorSet) obj);
+                if (((rl0) tqVar.d).f32278g.isEmpty()) {
+                    ((rl0) tqVar.d).f32275b.clear();
+                    rl0 rl0Var2 = (rl0) tqVar.d;
+                    rl0Var2.d = true;
+                    rl0Var2.f32274a.invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                cq0 cq0Var = (cq0) obj2;
+                try {
+                    ((WindowManager) obj).removeViewImmediate(cq0Var.B);
+                } catch (Exception unused) {
+                }
+                u90 u90Var = cq0Var.C;
+                if (u90Var != null) {
+                    AndroidUtilities.cancelRunOnUIThread(u90Var);
+                    return;
+                }
+                return;
+            case 4:
+                ky0 ky0Var = (ky0) obj2;
+                ky0Var.f30052b = 0.0f;
+                ky0Var.invalidate();
+                ((qn0) obj).invalidate();
+                return;
+            case 5:
+                org.telegram.ui.Components.voip.l3 l3Var = (org.telegram.ui.Components.voip.l3) obj2;
+                l3Var.d.setText((String) obj);
+                l3Var.d.setTranslationY(0.0f);
+                l3Var.d.setAlpha(1.0f);
+                return;
+            case 6:
+                ((org.telegram.ui.Components.voip.l3) obj2).removeView((org.telegram.ui.Components.voip.k3) obj);
+                return;
+            case 7:
+                View view3 = (View) obj;
+                if (view3.getParent() != null) {
+                    ((ViewGroup) view3.getParent()).removeView(view3);
+                }
+                ((org.telegram.ui.ey) obj2).R3 = null;
+                return;
+            case 8:
+                org.telegram.ui.x70 x70Var = (org.telegram.ui.x70) obj2;
+                x70Var.removeView((x30) obj);
+                x70Var.d = null;
+                x70Var.f45618a = null;
+                x70Var.f45619b = false;
+                return;
+            case 9:
+                bx0 bx0Var = (bx0) obj2;
+                bx0Var.setVisibility(8);
+                bx0Var.setX(0.0f);
+                return;
+            case 10:
+                PhotoViewer photoViewer = (PhotoViewer) obj2;
+                pf0 pf0Var = photoViewer.C1;
+                Bitmap bitmap = (Bitmap) obj;
+                ImageReceiver imageReceiver = pf0Var.e;
+                if (bitmap != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                pf0Var.f31599f = z10;
+                imageReceiver.setImageBitmap(bitmap);
+                imageReceiver.setOrientation(0, false);
+                AnimatorSet animatorSet = pf0Var.f31602s;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                }
+                AnimatorSet animatorSet2 = pf0Var.v;
+                if (animatorSet2 != null) {
+                    animatorSet2.cancel();
+                }
+                pf0Var.h = true;
+                pf0Var.f31600n = 1.0f;
+                AnimatorSet animatorSet3 = new AnimatorSet();
+                pf0Var.f31602s = animatorSet3;
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(pf0Var, pf0Var.E, 0.0f, 1.0f));
+                pf0Var.f31602s.setDuration(250L);
+                pf0Var.f31602s.setInterpolator(new OvershootInterpolator(1.01f));
+                pf0Var.f31602s.addListener(new nf0(pf0Var, 0));
+                pf0Var.f31602s.start();
+                AnimatorSet animatorSet4 = new AnimatorSet();
+                photoViewer.A2 = animatorSet4;
+                animatorSet4.playTogether(ObjectAnimator.ofFloat(photoViewer.f35860z2, photoViewer.f35665d4, 0.0f));
+                photoViewer.A2.setDuration(85L);
+                photoViewer.A2.setInterpolator(ds.f27531g);
+                photoViewer.A2.addListener(new org.telegram.ui.k50(this, 10));
+                photoViewer.A2.start();
+                return;
+            case 11:
+                org.telegram.ui.xw0 xw0Var = (org.telegram.ui.xw0) obj2;
+                PremiumPreviewFragment premiumPreviewFragment = xw0Var.f45792n;
+                ((View) obj).setVisibility(8);
+                for (int i14 = 0; i14 < premiumPreviewFragment.U.getChildCount(); i14++) {
+                    View childAt2 = premiumPreviewFragment.U.getChildAt(i14);
+                    if (childAt2 != xw0Var.e) {
+                        childAt2.setTranslationY(0.0f);
                     }
                 }
-                mm0Var2.invalidate();
-                ol0 ol0Var = (ol0) pl0Var2.h;
-                if (ol0Var != null) {
-                    ol0Var.d();
+                return;
+            case 12:
+                org.telegram.ui.g31 g31Var = (org.telegram.ui.g31) obj2;
+                if (g31Var.h != null) {
+                    g31Var.h = null;
+                    g31Var.f39489n.unlock();
+                    ((org.telegram.ui.cx) obj).onTransitionAnimationEnd(true, false);
+                    g31Var.e = 1.0f;
+                    g31Var.g();
+                    g31Var.d(false);
+                    return;
                 }
-            }
-        });
-        ((ValueAnimator) pl0Var.f31600g).addListener(new ll0(0, this, arrayList2));
-        long j10 = 300;
-        if (pl0Var.d) {
-            if (z10) {
-                ((ValueAnimator) pl0Var.f31600g).setDuration(150L);
-                ((ValueAnimator) pl0Var.f31600g).setInterpolator(ds.f27587g);
-            } else {
-                long measuredHeight = ((i27 / mm0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
-                if (measuredHeight >= 300) {
-                    j10 = measuredHeight;
+                return;
+            case 13:
+                org.telegram.ui.su0 su0Var = (org.telegram.ui.su0) obj;
+                if (su0Var != null) {
+                    su0Var.f43406a.setVisible(true, true);
                 }
-                ((ValueAnimator) pl0Var.f31600g).setDuration(Math.min(j10, 1300L));
-                ((ValueAnimator) pl0Var.f31600g).setInterpolator(ds.h);
-            }
-        } else {
-            if (z10) {
-                min = 600;
-            } else {
-                long measuredHeight2 = ((i27 / mm0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
-                if (measuredHeight2 >= 300) {
-                    j10 = measuredHeight2;
+                ((SecretMediaViewer) obj2).f36215s = false;
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.oy0(this, 14));
+                return;
+            case 14:
+                ((org.telegram.ui.v51) obj).run();
+                org.telegram.ui.f61 f61Var = (org.telegram.ui.f61) obj2;
+                org.telegram.ui.u41 u41Var = f61Var.X0;
+                if (u41Var != null) {
+                    u41Var.dismiss();
+                    f61Var.X0 = null;
+                    return;
                 }
-                min = Math.min(j10, 1300L);
-            }
-            ((ValueAnimator) pl0Var.f31600g).setDuration(min);
-            ((ValueAnimator) pl0Var.f31600g).setInterpolator(ds.h);
+                return;
+            case 15:
+                tg1 tg1Var = (tg1) obj2;
+                tg1Var.removeView((x30) obj);
+                tg1Var.e = null;
+                tg1Var.f43639a = null;
+                tg1Var.f43640b = false;
+                UsersSelectActivity usersSelectActivity = tg1Var.f43642f;
+                usersSelectActivity.f36348c.setAllowDrawCursor(true);
+                if (usersSelectActivity.O.isEmpty()) {
+                    usersSelectActivity.f36348c.setHintVisible(true, true);
+                    return;
+                }
+                return;
+            case 16:
+                ((Runnable) obj).run();
+                rh1 rh1Var = (rh1) obj2;
+                rh1Var.f43011e0.setScaleX(1.15f);
+                rh1Var.f43011e0.setScaleY(1.15f);
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) rh1Var.f43011e0.getLayoutParams();
+                marginLayoutParams.leftMargin = AndroidUtilities.dp(10.0f);
+                marginLayoutParams.rightMargin = AndroidUtilities.dp(10.0f);
+                rh1Var.f43011e0.setVisibility(8);
+                return;
+            case 17:
+                ((r0.m0) obj).c();
+                return;
+            case 18:
+                r0.v0 v0Var = (r0.v0) obj;
+                v0Var.f47177a.d(1.0f);
+                r0.q0.e((View) obj2, v0Var);
+                return;
+            case 19:
+                sg.b2 b2Var = (sg.b2) obj2;
+                boolean[] zArr = (boolean[]) obj;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    b2Var.f48194r0.b(b2Var.f48201y0, false);
+                }
+                b2Var.setRotationY(0.0f);
+                b2Var.f48202z0 = 1.0f;
+                return;
+            case 20:
+                ((tg.y0) obj2).f49168w = false;
+                ((tg.n0) obj).setOffset(0.0f);
+                super.onAnimationEnd(animator);
+                return;
+            case 21:
+                tg.m1 m1Var = (tg.m1) obj2;
+                m1Var.H0 = false;
+                m1Var.G0 = 1.0f;
+                m1Var.f48985s0.invalidate();
+                Drawable drawable = (Drawable) obj;
+                if (drawable != null) {
+                    ValueAnimator ofInt = ValueAnimator.ofInt(0, 255);
+                    ofInt.addUpdateListener(new tg.i1(0, this, drawable));
+                    ofInt.start();
+                }
+                super.onAnimationEnd(animator);
+                return;
+            default:
+                fi.j9 j9Var = (fi.j9) obj2;
+                j9Var.removeView((x30) obj);
+                j9Var.h.clear();
+                j9Var.f11065b = null;
+                j9Var.f11066c = false;
+                ((zg.i) j9Var.f11068n).f52935b.setAllowDrawCursor(true);
+                return;
         }
-        ((ValueAnimator) pl0Var.f31600g).start();
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f30557a) {
+            case 9:
+                ((bx0) this.f30558b).setVisibility(0);
+                return;
+            case 17:
+                ((r0.m0) this.f30558b).b();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
+    }
+
+    public ml0(Object obj, View view, int i10) {
+        this.f30557a = i10;
+        this.f30558b = obj;
+        this.f30559c = view;
+    }
+
+    public ml0(rl0 rl0Var, c10 c10Var, s4.p0 p0Var) {
+        this.f30557a = 1;
+        this.f30559c = rl0Var;
+        this.f30558b = c10Var;
     }
 }

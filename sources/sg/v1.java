@@ -1,72 +1,66 @@
 package sg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.vh;
-import org.telegram.ui.Components.mm0;
-public final class v1 extends mm0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Path f48534f3;
-    public q0.a f48535g3;
+import a8.ee;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+public final class v1 extends GestureDetector.SimpleOnGestureListener {
+    public float f48575a;
+    public boolean f48576b;
+    public float f48577c;
+    public final x1 d;
 
-    public v1(Context context) {
-        super(context, null);
-        this.f48534f3 = new Path();
-        setWillNotDraw(false);
-        setLayoutManager(new s4.c0());
-        setAdapter(new s4.h0());
-        setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        setClipToPadding(false);
+    public v1(x1 x1Var) {
+        this.d = x1Var;
     }
 
     @Override
-    public final Integer W0(int i10) {
-        return 285212671;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.customTypefacesLoaded) {
-            getAdapter().l();
+    public final boolean onDown(MotionEvent motionEvent) {
+        float f7;
+        x1 x1Var = this.d;
+        boolean contains = x1Var.e.contains(motionEvent.getX(), motionEvent.getY());
+        if (x1Var.f48608f != contains) {
+            x1Var.f48608f = contains;
+            x1Var.invalidate();
+            if (contains) {
+                w1 w1Var = x1Var.K;
+                if (w1Var != null) {
+                    f7 = w1Var.get();
+                } else {
+                    f7 = x1Var.H.f47562c;
+                }
+                this.f48575a = f7;
+                this.f48576b = false;
+            }
         }
+        return x1Var.f48608f;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        q0.a aVar = this.f48535g3;
-        if (aVar != null) {
-            Path path = this.f48534f3;
-            aVar.accept(path);
-            canvas.save();
-            canvas.clipPath(path);
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        x1 x1Var = this.d;
+        if (x1Var.f48608f) {
+            if (!this.f48576b) {
+                this.f48577c = motionEvent.getY() - motionEvent2.getY();
+                this.f48576b = true;
+            }
+            float f11 = this.f48575a;
+            float y3 = ((motionEvent.getY() - motionEvent2.getY()) - this.f48577c) / x1Var.e.height();
+            float f12 = x1Var.G;
+            float f13 = x1Var.F;
+            float a2 = ee.a(c3.h0.z(f12, f13, y3, f11), f13, f12);
+            w1 w1Var = x1Var.K;
+            if (w1Var != null) {
+                w1Var.V(a2);
+            } else {
+                x1Var.H.f47562c = a2;
+            }
+            x1Var.f48612w.d(a2, true);
+            Runnable runnable = x1Var.I;
+            if (runnable != null) {
+                runnable.run();
+            }
+            x1Var.invalidate();
         }
-        super.draw(canvas);
-        if (this.f48535g3 != null) {
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, vh.D(16.0f, AndroidUtilities.dp(48.0f) * Math.min(rg.j0.c().size(), 6), 1073741824));
-    }
-
-    public void setMaskProvider(q0.a aVar) {
-        this.f48535g3 = aVar;
-        invalidate();
+        return x1Var.f48608f;
     }
 }

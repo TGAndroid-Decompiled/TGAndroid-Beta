@@ -6,17 +6,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.vh;
-import org.telegram.ui.Components.gb1;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.kb1;
 public final class r5 extends FrameLayout {
-    public ImageView f24971a;
-    public ImageView f24972b;
-    public TextView f24973c;
+    public ImageView f24973a;
+    public ImageView f24974b;
+    public TextView f24975c;
     public int d;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.d, 1073741824), vh.D(2.0f, this.d, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.d, 1073741824), wh.D(2.0f, this.d, 1073741824));
     }
 
     public void setItemSize(int i10) {
@@ -24,21 +24,21 @@ public final class r5 extends FrameLayout {
     }
 
     public void setType(int i10) {
-        TextView textView = this.f24973c;
-        ImageView imageView = this.f24972b;
-        ImageView imageView2 = this.f24971a;
+        TextView textView = this.f24975c;
+        ImageView imageView = this.f24974b;
+        ImageView imageView2 = this.f24973a;
         if (i10 == 0) {
             imageView2.setImageResource(R.drawable.permissions_camera1);
             imageView.setImageResource(R.drawable.permissions_camera2);
             textView.setText(LocaleController.getString(R.string.CameraPermissionText));
-            imageView2.setLayoutParams(gb1.h(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
-            imageView.setLayoutParams(gb1.h(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
+            imageView2.setLayoutParams(kb1.h(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
+            imageView.setLayoutParams(kb1.h(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             return;
         }
         imageView2.setImageResource(R.drawable.permissions_gallery1);
         imageView.setImageResource(R.drawable.permissions_gallery2);
         textView.setText(LocaleController.getString(R.string.GalleryPermissionText));
-        imageView2.setLayoutParams(gb1.h(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
-        imageView.setLayoutParams(gb1.h(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
+        imageView2.setLayoutParams(kb1.h(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
+        imageView.setLayoutParams(kb1.h(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
     }
 }

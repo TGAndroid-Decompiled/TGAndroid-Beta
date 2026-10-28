@@ -14,24 +14,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.ui.Components.sl;
 public final class y7 implements Runnable {
-    public final int f25764a;
-    public final FrameLayout f25765b;
-    public final double f25766c;
+    public final int f25766a;
+    public final FrameLayout f25767b;
+    public final double f25768c;
     public final double d;
 
     public y7(FrameLayout frameLayout, double d, double d10, int i10) {
-        this.f25764a = i10;
-        this.f25765b = frameLayout;
-        this.f25766c = d;
+        this.f25766a = i10;
+        this.f25767b = frameLayout;
+        this.f25768c = d;
         this.d = d10;
     }
 
     @Override
     public final void run() {
-        switch (this.f25764a) {
+        switch (this.f25766a) {
             case 0:
-                z7 z7Var = (z7) this.f25765b;
-                double d = this.f25766c;
+                z7 z7Var = (z7) this.f25767b;
+                double d = this.f25768c;
                 double d10 = this.d;
                 try {
                     List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocation(d, d10, 1);
@@ -72,8 +72,8 @@ public final class y7 implements Runnable {
                 AndroidUtilities.runOnUIThread(new y7(z7Var, d, d10, 1));
                 return;
             case 1:
-                z7 z7Var2 = (z7) this.f25765b;
-                double d11 = this.f25766c;
+                z7 z7Var2 = (z7) this.f25767b;
+                double d11 = this.f25768c;
                 double d12 = this.d;
                 z7Var2.H = d11;
                 z7Var2.I = d12;
@@ -85,7 +85,7 @@ public final class y7 implements Runnable {
                 b6Var.l(replaceEmoji, false);
                 return;
             default:
-                ((sl) this.f25765b).e0(this.f25766c, this.d);
+                ((sl) this.f25767b).e0(this.f25768c, this.d);
                 return;
         }
     }

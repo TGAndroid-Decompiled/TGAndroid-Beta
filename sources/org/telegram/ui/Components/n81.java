@@ -1,46 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.util.Map;
-import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
-public final class n81 implements g2.h {
-    public final g2.h f30923a;
-    public final long f30924b;
+import android.content.Context;
+public final class n81 extends i2.k {
+    public final t81 d;
 
-    public n81(ExtendedDefaultDataSource extendedDefaultDataSource, long j10) {
-        this.f30923a = extendedDefaultDataSource;
-        this.f30924b = j10;
+    public n81(Context context, t81 t81Var) {
+        super(context);
+        this.d = t81Var;
     }
 
     @Override
-    public final void addTransferListener(g2.c0 c0Var) {
-        this.f30923a.addTransferListener(c0Var);
-    }
-
-    @Override
-    public final void close() {
-        this.f30923a.close();
-    }
-
-    @Override
-    public final Map getResponseHeaders() {
-        return this.f30923a.getResponseHeaders();
-    }
-
-    @Override
-    public final Uri getUri() {
-        return this.f30923a.getUri();
-    }
-
-    @Override
-    public final long open(g2.m mVar) {
-        g2.l a2 = mVar.a();
-        a2.f12253b = mVar.e + this.f30924b;
-        return this.f30923a.open(a2.d());
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        return this.f30923a.read(bArr, i10, i11);
+    public final k2.u0 a(Context context) {
+        di.p4 p4Var = new di.p4(context, 1);
+        p4Var.d = new a8.h0(new c2.o[]{new k2.b1(new s81(this.d))});
+        return p4Var.a();
     }
 }

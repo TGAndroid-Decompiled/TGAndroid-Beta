@@ -3,14 +3,14 @@ package z9;
 import li.h5;
 import org.json.JSONObject;
 public abstract class l {
-    public static final h5 f52837a;
+    public static final h5 f52895a;
 
     static {
         ma.d dVar = new ma.d();
-        a aVar = a.f52809a;
+        a aVar = a.f52867a;
         dVar.d(l.class, aVar);
         dVar.d(b.class, aVar);
-        f52837a = new h5(dVar);
+        f52895a = new h5(dVar);
     }
 
     public static b a(String str) {

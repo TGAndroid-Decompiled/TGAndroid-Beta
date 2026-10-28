@@ -56,19 +56,19 @@ public final class z0 implements Runnable {
                 ((MessagesStorage) this.f21950c).lambda$updateMessagePollResults$104(this.f21949b, (TLRPC.Poll) this.d, (TLRPC.PollResults) this.e);
                 return;
             case 10:
-                ((MessagesStorage) this.f21950c).lambda$onReactionsUpdate$109((TLRPC.TL_messageReactions) this.d, (TLRPC.TL_messageReactions) this.e, this.f21949b);
+                ((MessagesStorage) this.f21950c).lambda$onReactionsUpdate$110((TLRPC.TL_messageReactions) this.d, (TLRPC.TL_messageReactions) this.e, this.f21949b);
                 return;
             case 11:
-                ((MessagesStorage) this.f21950c).lambda$getUserSync$261((TLRPC.User[]) this.d, this.f21949b, (CountDownLatch) this.e);
+                ((MessagesStorage) this.f21950c).lambda$getUserSync$262((TLRPC.User[]) this.d, this.f21949b, (CountDownLatch) this.e);
                 return;
             case 12:
-                ((MessagesStorage) this.f21950c).lambda$containsLocalDialog$182(this.f21949b, (Boolean[]) this.d, (CountDownLatch) this.e);
+                ((MessagesStorage) this.f21950c).lambda$containsLocalDialog$183(this.f21949b, (Boolean[]) this.d, (CountDownLatch) this.e);
                 return;
             case 13:
-                ((MessagesStorage) this.f21950c).lambda$getChannelPtsSync$260(this.f21949b, (Integer[]) this.d, (CountDownLatch) this.e);
+                ((MessagesStorage) this.f21950c).lambda$getChannelPtsSync$261(this.f21949b, (Integer[]) this.d, (CountDownLatch) this.e);
                 return;
             case 14:
-                ((MessagesStorage) this.f21950c).lambda$getChatSync$262((TLRPC.Chat[]) this.d, this.f21949b, (CountDownLatch) this.e);
+                ((MessagesStorage) this.f21950c).lambda$getChatSync$263((TLRPC.Chat[]) this.d, this.f21949b, (CountDownLatch) this.e);
                 return;
             case 15:
                 ((MessagesStorage) this.f21950c).lambda$deleteUserChatHistory$88((ArrayList) this.d, this.f21949b, (ArrayList) this.e);
@@ -77,7 +77,7 @@ public final class z0 implements Runnable {
                 ((MessagesStorage) this.f21950c).lambda$loadPendingTasks$14((TLRPC.TL_dialog) this.d, (TLRPC.InputPeer) this.e, this.f21949b);
                 return;
             case 17:
-                ((MessagesStorage) this.f21950c).lambda$getEncryptedChat$180(this.f21949b, (ArrayList) this.d, (CountDownLatch) this.e);
+                ((MessagesStorage) this.f21950c).lambda$getEncryptedChat$181(this.f21949b, (ArrayList) this.d, (CountDownLatch) this.e);
                 return;
             case 18:
                 ((SavedMessagesController) this.f21950c).lambda$updateDialogsLastMessage$9((MessagesStorage) this.d, (ArrayList) this.e, this.f21949b);

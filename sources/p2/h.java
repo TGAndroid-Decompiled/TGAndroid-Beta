@@ -1,11 +1,11 @@
 package p2;
 public final class h extends k {
-    public final boolean f46546w;
-    public final boolean f46547x;
+    public final boolean f46581w;
+    public final boolean f46582x;
 
     public h(String str, j jVar, long j10, int i10, long j11, b2.t tVar, String str2, String str3, long j12, long j13, boolean z10, boolean z11, boolean z12) {
         super(str, jVar, j10, i10, j11, tVar, str2, str3, j12, j13, z10);
-        this.f46546w = z11;
-        this.f46547x = z12;
+        this.f46581w = z11;
+        this.f46582x = z12;
     }
 }

@@ -5,19 +5,19 @@ import android.os.Bundle;
 import android.os.SystemClock;
 public final class t1 {
     public static final String e;
-    public static final String f18254f;
-    public static final String f18255g;
+    public static final String f18253f;
+    public static final String f18254g;
     public static final String h;
-    public final int f18256a;
-    public final Bundle f18257b;
-    public final long f18258c;
+    public final int f18255a;
+    public final Bundle f18256b;
+    public final long f18257c;
     public final r1 d;
 
     static {
-        String str = e2.n0.f9692a;
+        String str = e2.n0.f9691a;
         e = Integer.toString(0, 36);
-        f18254f = Integer.toString(1, 36);
-        f18255g = Integer.toString(2, 36);
+        f18253f = Integer.toString(1, 36);
+        f18254g = Integer.toString(2, 36);
         h = Integer.toString(3, 36);
     }
 
@@ -28,13 +28,13 @@ public final class t1 {
     public static t1 a(Bundle bundle) {
         r1 r1Var;
         int i10 = bundle.getInt(e, -1);
-        Bundle o10 = e2.n0.o(bundle.getBundle(f18254f));
-        long j10 = bundle.getLong(f18255g, SystemClock.elapsedRealtime());
+        Bundle o10 = e2.n0.o(bundle.getBundle(f18253f));
+        long j10 = bundle.getLong(f18254g, SystemClock.elapsedRealtime());
         Bundle bundle2 = bundle.getBundle(h);
         if (bundle2 != null) {
             int i11 = bundle2.getInt(r1.d, 1000);
             String string = bundle2.getString(r1.e, "");
-            Bundle o11 = e2.n0.o(bundle2.getBundle(r1.f18213f));
+            Bundle o11 = e2.n0.o(bundle2.getBundle(r1.f18212f));
             if (o11 == null) {
                 o11 = Bundle.EMPTY;
             }
@@ -53,9 +53,9 @@ public final class t1 {
 
     public t1(int i10, Bundle bundle, long j10, r1 r1Var) {
         yb.g(r1Var == null || i10 < 0);
-        this.f18256a = i10;
-        this.f18257b = new Bundle(bundle);
-        this.f18258c = j10;
+        this.f18255a = i10;
+        this.f18256b = new Bundle(bundle);
+        this.f18257c = j10;
         if (r1Var == null && i10 < 0) {
             r1Var = new r1(i10);
         }

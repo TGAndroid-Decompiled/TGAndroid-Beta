@@ -7,10 +7,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.e2;
 public final class d implements o, b2, ih.b {
-    public final int f15196a;
+    public final int f15195a;
 
     public d(int i10) {
-        this.f15196a = i10;
+        this.f15195a = i10;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class d implements o, b2, ih.b {
 
     @Override
     public void h(e2 e2Var, int i10) {
-        switch (this.f15196a) {
+        switch (this.f15195a) {
             case 27:
                 e2Var.dismiss();
                 return;
@@ -38,7 +38,7 @@ public final class d implements o, b2, ih.b {
     @Override
     public void invoke(Object obj) {
         b bVar = (b) obj;
-        switch (this.f15196a) {
+        switch (this.f15195a) {
             case 0:
                 bVar.getClass();
                 return;
@@ -117,35 +117,35 @@ public final class d implements o, b2, ih.b {
         }
     }
 
-    public d(a aVar, float f7) {
-        this.f15196a = 24;
-    }
-
     public d(a aVar, int i10) {
-        this.f15196a = i10;
+        this.f15195a = i10;
     }
 
     public d(a aVar, int i10, int i11) {
-        this.f15196a = i11;
+        this.f15195a = i11;
+    }
+
+    public d(a aVar, int i10, long j10, long j11) {
+        this.f15195a = 13;
     }
 
     public d(a aVar, long j10) {
-        this.f15196a = 15;
+        this.f15195a = 15;
     }
 
     public d(a aVar, p0 p0Var, int i10) {
-        this.f15196a = 23;
+        this.f15195a = 24;
     }
 
     public d(a aVar, Object obj, int i10) {
-        this.f15196a = i10;
+        this.f15195a = i10;
     }
 
     public d(a aVar, Object obj, Object obj2, int i10) {
-        this.f15196a = i10;
+        this.f15195a = i10;
     }
 
     public d(a aVar, boolean z10, int i10) {
-        this.f15196a = i10;
+        this.f15195a = i10;
     }
 }

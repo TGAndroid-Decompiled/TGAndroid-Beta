@@ -10,18 +10,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.ic0;
+import org.telegram.ui.Components.jc0;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.x40;
 public final class e6 extends FrameLayout {
-    public final TextView f24028a;
-    public final TextView f24029b;
-    public final ImageView f24030c;
+    public final TextView f24030a;
+    public final TextView f24031b;
+    public final ImageView f24032c;
     public final Switch d;
     public boolean e;
-    public boolean f24031f;
+    public boolean f24033f;
     public final org.telegram.ui.ActionBar.u6 h;
 
     public e6(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
@@ -37,7 +37,7 @@ public final class e6 extends FrameLayout {
         float f12;
         this.h = u6Var;
         ImageView imageView = new ImageView(context);
-        this.f24030c = imageView;
+        this.f24032c = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         if (LocaleController.isRTL) {
@@ -45,11 +45,11 @@ public final class e6 extends FrameLayout {
         } else {
             i10 = 3;
         }
-        addView(imageView, gb1.h(28, 28.0f, i10 | 48, 18.0f, 16.0f, 18.0f, 9.0f));
+        addView(imageView, kb1.h(28, 28.0f, i10 | 48, 18.0f, 16.0f, 18.0f, 9.0f));
         TextView textView = new TextView(context);
-        this.f24028a = textView;
+        this.f24030a = textView;
         org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, u6Var);
-        vh.r(textView, 1, 16.0f, 1, 1);
+        wh.r(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         if (LocaleController.isRTL) {
             i11 = 5;
@@ -75,10 +75,10 @@ public final class e6 extends FrameLayout {
         } else {
             f10 = 66.0f;
         }
-        addView(textView, gb1.h(-1, -2.0f, i15, f7, 8.0f, f10, 0.0f));
+        addView(textView, kb1.h(-1, -2.0f, i15, f7, 8.0f, f10, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f24029b = textView2;
-        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23767z6, u6Var);
+        this.f24031b = textView2;
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23768z6, u6Var);
         textView2.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
             i13 = 5;
@@ -108,36 +108,36 @@ public final class e6 extends FrameLayout {
         } else {
             f12 = 66.0f;
         }
-        addView(textView2, gb1.h(-2, -2.0f, i16, f11, 31.0f, f12, 10.0f));
+        addView(textView2, kb1.h(-2, -2.0f, i16, f11, 31.0f, f12, 10.0f));
         Switch r32 = new Switch(context, u6Var);
         this.d = r32;
         int i17 = org.telegram.ui.ActionBar.y6.M6;
         int i18 = org.telegram.ui.ActionBar.y6.N6;
-        int i19 = org.telegram.ui.ActionBar.y6.f23356d6;
+        int i19 = org.telegram.ui.ActionBar.y6.f23357d6;
         r32.d(i17, i18, i19, i19);
-        addView(r32, gb1.h(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 10.0f, 19.0f, 0.0f));
+        addView(r32, kb1.h(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 10.0f, 19.0f, 0.0f));
         r32.setFocusable(false);
     }
 
     public final void a(String str, String str2, x40 x40Var, int i10, boolean z10) {
         boolean q5;
-        this.f24028a.setText(str);
+        this.f24030a.setText(str);
         org.telegram.ui.ActionBar.u6 u6Var = this.h;
         if (u6Var != null) {
             q5 = u6Var.a();
         } else {
             q5 = org.telegram.ui.ActionBar.y6.I.q();
         }
-        ic0 ic0Var = new ic0(1);
-        ic0Var.b(x40Var.f34621a, x40Var.f34622b);
-        ic0Var.f29278b = q5;
-        ImageView imageView = this.f24030c;
-        imageView.setBackground(ic0Var);
+        jc0 jc0Var = new jc0(1);
+        jc0Var.b(x40Var.f34668a, x40Var.f34669b);
+        jc0Var.f29642b = q5;
+        ImageView imageView = this.f24032c;
+        imageView.setBackground(jc0Var);
         imageView.setImageResource(i10);
         boolean z11 = this.e;
         Switch r02 = this.d;
         r02.b(0, z10, z11);
-        this.f24029b.setText(str2);
+        this.f24031b.setText(str2);
         r02.setContentDescription(str);
     }
 
@@ -147,15 +147,15 @@ public final class e6 extends FrameLayout {
         float dp;
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f24031f) {
+        if (this.f24033f) {
             org.telegram.ui.ActionBar.u6 u6Var = this.h;
             if (u6Var != null) {
                 paint = u6Var.d("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.y6.f23478k0;
+                paint = org.telegram.ui.ActionBar.y6.f23479k0;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.y6.f23478k0;
+                paint = org.telegram.ui.ActionBar.y6.f23479k0;
             }
             Paint paint2 = paint;
             if (paint2 != null) {
@@ -186,8 +186,8 @@ public final class e6 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f24028a.getText());
-        TextView textView = this.f24029b;
+        sb2.append(this.f24030a.getText());
+        TextView textView = this.f24031b;
         if (textView != null && !TextUtils.isEmpty(textView.getText())) {
             sb2.append("\n");
             sb2.append(textView.getText());
@@ -206,11 +206,11 @@ public final class e6 extends FrameLayout {
     }
 
     public void setDivider(boolean z10) {
-        this.f24031f = z10;
+        this.f24033f = z10;
         invalidate();
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f24029b.setText(charSequence);
+        this.f24031b.setText(charSequence);
     }
 }

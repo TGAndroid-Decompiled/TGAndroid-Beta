@@ -1,10 +1,10 @@
 package k9;
 public final class n {
-    public static final n f16482c = new Object();
-    public volatile Thread f16483a;
-    public volatile n f16484b;
+    public static final n f16481c = new Object();
+    public volatile Thread f16482a;
+    public volatile n f16483b;
 
     public n() {
-        o.f16485f.g(this, Thread.currentThread());
+        o.f16484f.g(this, Thread.currentThread());
     }
 }

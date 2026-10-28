@@ -39,21 +39,21 @@ import org.telegram.ui.Components.sb;
 import org.telegram.ui.Components.tb;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.yl;
-import org.telegram.ui.cv0;
 import org.telegram.ui.d3;
+import org.telegram.ui.ev0;
 public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0.r, OnFailureListener, ui.g, x3.g, z3.k {
-    public static b f48042b;
-    public final int f48043a;
+    public static b f48080b;
+    public final int f48081a;
 
     public b(int i10) {
-        this.f48043a = i10;
+        this.f48081a = i10;
     }
 
     public static Calendar R0() {
-        if (f48042b == null) {
-            f48042b = new b(29);
+        if (f48080b == null) {
+            f48080b = new b(29);
         }
-        f48042b.getClass();
+        f48080b.getClass();
         return Calendar.getInstance();
     }
 
@@ -88,7 +88,7 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
     }
 
     @Override
-    public cv0 E1() {
+    public ev0 E1() {
         return null;
     }
 
@@ -161,8 +161,8 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
         ubVar.setInOutOffset(ubVar.getMeasuredHeight());
         ylVar.accept(Float.valueOf(ubVar.getTranslationY()));
         o1.j jVar = new o1.j(ubVar, ub.IN_OUT_OFFSET_Y, 0.0f);
-        jVar.f18969u.a(0.8f);
-        jVar.f18969u.b(400.0f);
+        jVar.f18968u.a(0.8f);
+        jVar.f18968u.b(400.0f);
         jVar.a(new k4(1, ubVar, pgVar));
         jVar.b(new sb(ylVar, ubVar, 1));
         jVar.h();
@@ -195,7 +195,7 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
 
     @Override
     public Object U1() {
-        switch (this.f48043a) {
+        switch (this.f48081a) {
             case 9:
                 return new LinkedHashSet();
             default:
@@ -255,7 +255,7 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
 
     @Override
     public boolean d() {
-        switch (this.f48043a) {
+        switch (this.f48081a) {
             case 16:
                 return true;
             default:
@@ -265,7 +265,7 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
 
     @Override
     public Object d1(me meVar) {
-        switch (this.f48043a) {
+        switch (this.f48081a) {
             case 18:
                 return new h();
             case 19:
@@ -361,8 +361,8 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
     @Override
     public void o(ub ubVar, fb fbVar, db dbVar, gb gbVar) {
         o1.j jVar = new o1.j(ubVar, ub.IN_OUT_OFFSET_Y, ubVar.getHeight());
-        jVar.f18969u.a(0.8f);
-        jVar.f18969u.b(400.0f);
+        jVar.f18968u.a(0.8f);
+        jVar.f18968u.b(400.0f);
         jVar.a(new hb(dbVar, 1));
         jVar.b(new sb(gbVar, ubVar, 0));
         jVar.h();
@@ -430,7 +430,7 @@ public class b implements dg.a, eg.a, ff.b, hb.n, ri, o5.b, tb, j1, s0, s9.d, r0
     }
 
     public b() {
-        this.f48043a = 11;
+        this.f48081a = 11;
         if (Build.VERSION.SDK_INT >= 35) {
         }
     }

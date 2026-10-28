@@ -2,31 +2,40 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.MediaController;
 public final class a7 implements Runnable {
-    public final int f19596a;
-    public final MediaController.MediaLoader f19597b;
-    public final int f19598c;
+    public final int f19599a;
+    public final int f19600b;
+    public final int f19601c;
+    public final Object d;
 
-    public a7(MediaController.MediaLoader mediaLoader, int i10, int i11) {
-        this.f19596a = i11;
-        this.f19597b = mediaLoader;
-        this.f19598c = i10;
+    public a7(int i10, int i11, String str) {
+        this.f19599a = 3;
+        this.f19600b = i10;
+        this.f19601c = i11;
+        this.d = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f19596a) {
+        switch (this.f19599a) {
             case 0:
-                MediaController.MediaLoader.g(this.f19597b, this.f19598c);
+                MediaController.AnonymousClass8.a((MediaController.AnonymousClass8) this.d, this.f19600b, this.f19601c);
                 return;
             case 1:
-                MediaController.MediaLoader.i(this.f19597b, this.f19598c);
+                MediaDataController.J((MediaDataController) this.d, this.f19600b, this.f19601c);
                 return;
             case 2:
-                MediaController.MediaLoader.j(this.f19597b, this.f19598c);
+                NotificationsController.m((NotificationsController) this.d, this.f19600b, this.f19601c);
                 return;
             default:
-                MediaController.MediaLoader.e(this.f19597b, this.f19598c);
+                PushListenerController.d(this.f19600b, this.f19601c, (String) this.d);
                 return;
         }
+    }
+
+    public a7(Object obj, int i10, int i11, int i12) {
+        this.f19599a = i12;
+        this.d = obj;
+        this.f19600b = i10;
+        this.f19601c = i11;
     }
 }

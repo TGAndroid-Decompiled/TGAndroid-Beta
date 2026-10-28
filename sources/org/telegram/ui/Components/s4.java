@@ -10,7 +10,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class s4 extends ym0 {
+public final class s4 extends zm0 {
     public final ai.c1 d;
 
     public s4(Context context, int i10, di.b bVar, ai.c1 c1Var) {
@@ -23,14 +23,14 @@ public final class s4 extends ym0 {
         scrollView.setFillViewport(true);
         setCustomView(scrollView);
         FrameLayout frameLayout = new FrameLayout(context);
-        scrollView.addView(frameLayout, gb1.B(-1, -2, 51));
+        scrollView.addView(frameLayout, kb1.B(-1, -2, 51));
         ?? imageView = new ImageView(context);
         imageView.f(R.raw.report_police, 120, 120, null);
         imageView.d();
-        frameLayout.addView((View) imageView, gb1.h(160, 160.0f, 49, 17.0f, 14.0f, 17.0f, 0.0f));
+        frameLayout.addView((View) imageView, kb1.h(160, 160.0f, 49, 17.0f, 14.0f, 17.0f, 0.0f));
         TextView textView = new TextView(context);
-        org.telegram.messenger.vh.j(24.0f, 1, textView);
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23464j5, bVar);
+        org.telegram.messenger.wh.j(24.0f, 1, textView);
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23465j5, bVar);
         if (i10 == 0) {
             textView.setText(LocaleController.getString(R.string.ReportTitleSpam));
         } else if (i10 == 6) {
@@ -44,20 +44,20 @@ public final class s4 extends ym0 {
         } else if (i10 == 100) {
             textView.setText(LocaleController.getString(R.string.ReportChat));
         }
-        TextView k10 = org.telegram.ui.d3.k(frameLayout, textView, gb1.h(-2, -2.0f, 49, 17.0f, 197.0f, 17.0f, 0.0f), context);
+        TextView k10 = org.telegram.ui.d3.k(frameLayout, textView, kb1.h(-2, -2.0f, 49, 17.0f, 197.0f, 17.0f, 0.0f), context);
         k10.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.f7.V(k10, org.telegram.ui.ActionBar.y6.f23614r5, bVar);
+        org.telegram.ui.ActionBar.f7.V(k10, org.telegram.ui.ActionBar.y6.f23615r5, bVar);
         k10.setGravity(1);
         k10.setText(LocaleController.getString(R.string.ReportInfo));
-        frameLayout.addView(k10, gb1.h(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
+        frameLayout.addView(k10, kb1.h(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f35083c = editTextBoldCursor;
+        this.f35400c = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 18.0f);
         org.telegram.ui.ActionBar.f7.E(editTextBoldCursor, org.telegram.ui.ActionBar.y6.H6, bVar);
         int i12 = org.telegram.ui.ActionBar.y6.G6;
         org.telegram.ui.ActionBar.f7.V(editTextBoldCursor, i12, bVar);
         editTextBoldCursor.setBackgroundDrawable(null);
-        org.telegram.ui.ActionBar.f7.G(editTextBoldCursor, org.telegram.ui.ActionBar.y6.f23484k6, org.telegram.ui.ActionBar.y6.f23502l6, org.telegram.ui.ActionBar.y6.f23581p7, bVar);
+        org.telegram.ui.ActionBar.f7.G(editTextBoldCursor, org.telegram.ui.ActionBar.y6.f23485k6, org.telegram.ui.ActionBar.y6.f23503l6, org.telegram.ui.ActionBar.y6.f23582p7, bVar);
         editTextBoldCursor.setMaxLines(1);
         editTextBoldCursor.setLines(1);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
@@ -75,14 +75,14 @@ public final class s4 extends ym0 {
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
         editTextBoldCursor.setOnEditorActionListener(new d1(this, 5));
-        frameLayout.addView(editTextBoldCursor, gb1.h(-1, 36.0f, 51, 17.0f, 305.0f, 17.0f, 0.0f));
+        frameLayout.addView(editTextBoldCursor, kb1.h(-1, 36.0f, 51, 17.0f, 305.0f, 17.0f, 0.0f));
         ?? frameLayout2 = new FrameLayout(context);
         View view = new View(context);
-        frameLayout2.f34779a = view;
+        frameLayout2.f35111a = view;
         view.setBackground(org.telegram.ui.ActionBar.o6.f(new float[]{8.0f}, org.telegram.ui.ActionBar.y6.Oh));
-        frameLayout2.addView(view, gb1.h(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        frameLayout2.addView(view, kb1.h(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView2 = new TextView(context);
-        frameLayout2.f34780b = textView2;
+        frameLayout2.f35112b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);
@@ -91,13 +91,13 @@ public final class s4 extends ym0 {
         org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.Sh, bVar);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
-        frameLayout2.addView(textView2, gb1.i(-2, -2, 17));
-        this.f35082b = frameLayout2;
+        frameLayout2.addView(textView2, kb1.i(-2, -2, 17));
+        this.f35399b = frameLayout2;
         frameLayout2.setBackground(null);
         frameLayout2.setText(LocaleController.getString(R.string.ReportSend));
-        gb1.b(frameLayout2);
+        kb1.b(frameLayout2);
         view.setOnClickListener(new ai.w(this, i10, 17));
-        frameLayout.addView((View) frameLayout2, gb1.h(-1, 50.0f, 51, 0.0f, 357.0f, 0.0f, 0.0f));
+        frameLayout.addView((View) frameLayout2, kb1.h(-1, 50.0f, 51, 0.0f, 357.0f, 0.0f, 0.0f));
         this.smoothKeyboardAnimationEnabled = true;
     }
 }

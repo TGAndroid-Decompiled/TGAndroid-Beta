@@ -9,27 +9,27 @@ import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class v7 {
-    public final TextPaint f25588a;
-    public final Paint f25589b;
-    public final Drawable f25590c;
+    public final TextPaint f25590a;
+    public final Paint f25591b;
+    public final Drawable f25592c;
     public final Drawable d;
     public final Paint e;
-    public final SparseArray f25591f;
-    public final HashMap f25592g;
+    public final SparseArray f25593f;
+    public final HashMap f25594g;
 
     public v7(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         TextPaint textPaint = new TextPaint(1);
-        this.f25588a = textPaint;
+        this.f25590a = textPaint;
         Paint paint = new Paint();
-        this.f25589b = paint;
+        this.f25591b = paint;
         this.e = new Paint();
-        this.f25591f = new SparseArray();
-        this.f25592g = new HashMap();
+        this.f25593f = new SparseArray();
+        this.f25594g = new HashMap();
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setColor(-1);
         textPaint.setTypeface(AndroidUtilities.bold());
         Drawable mutate = context.getDrawable(R.drawable.play_mini_video).mutate();
-        this.f25590c = mutate;
+        this.f25592c = mutate;
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
         Drawable mutate2 = context.getDrawable(R.drawable.filled_views).mutate();
         this.d = mutate2;

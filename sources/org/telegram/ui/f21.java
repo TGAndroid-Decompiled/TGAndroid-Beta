@@ -1,73 +1,56 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.app.Activity;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class f21 extends FrameLayout {
-    public final org.telegram.ui.Components.r5 f39245a;
-    public final g21 f39246b;
+import org.telegram.tgnet.tl.TL_stars;
+public final class f21 extends f61 {
+    public final h21 f39139e2;
+    public final w51[] f39140f2;
+    public final i21 f39141g2;
 
-    public f21(g21 g21Var, Context context) {
-        super(context);
-        this.f39246b = g21Var;
-        TextView g7 = org.telegram.messenger.t.g(context, 1, 16.0f);
-        org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.G6, g21Var.getResourceProvider());
-        g7.setText(LocaleController.getString(R.string.DoubleTapSetting));
-        addView(g7, org.telegram.ui.Components.gb1.h(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
-        this.f39245a = new org.telegram.ui.Components.r5(AndroidUtilities.dp(24.0f), this);
+    public f21(i21 i21Var, i21 i21Var2, Activity activity, Integer num, h21 h21Var, w51[] w51VarArr) {
+        super(i21Var2, activity, false, num, 2, null);
+        this.f39141g2 = i21Var;
+        this.f39139e2 = h21Var;
+        this.f39140f2 = w51VarArr;
     }
 
-    public final void a(boolean z10) {
-        g21 g21Var = this.f39246b;
-        String doubleTapReaction = MediaDataController.getInstance(g21.Z(g21Var)).getDoubleTapReaction();
-        org.telegram.ui.Components.r5 r5Var = this.f39245a;
-        if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
-            try {
-                r5Var.j(Long.parseLong(doubleTapReaction.substring(9)), z10);
-                return;
-            } catch (Exception unused) {
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i10;
+        if (l4 != null) {
+            i21 i21Var = this.f39141g2;
+            i10 = ((org.telegram.ui.ActionBar.r2) i21Var).currentAccount;
+            MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+            mediaDataController.setDoubleTapReaction("animated_" + l4);
+            h21 h21Var = this.f39139e2;
+            if (h21Var != null) {
+                h21Var.a(true);
+            }
+            w51 w51Var = this.f39140f2[0];
+            if (w51Var != null) {
+                i21Var.f40032n = null;
+                w51Var.dismiss();
             }
         }
-        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(g21.a0(g21Var)).getReactionsMap().get(doubleTapReaction);
-        if (tL_availableReaction != null) {
-            r5Var.i(tL_availableReaction.static_icon, z10);
+    }
+
+    @Override
+    public final void r(o51 o51Var, bh.x0 x0Var) {
+        int i10;
+        i21 i21Var = this.f39141g2;
+        i10 = ((org.telegram.ui.ActionBar.r2) i21Var).currentAccount;
+        MediaDataController.getInstance(i10).setDoubleTapReaction(x0Var.f4208f);
+        h21 h21Var = this.f39139e2;
+        if (h21Var != null) {
+            h21Var.a(true);
         }
-    }
-
-    public final void b() {
-        int width = getWidth();
-        org.telegram.ui.Components.r5 r5Var = this.f39245a;
-        r5Var.setBounds((width - r5Var.f32099s) - AndroidUtilities.dp(21.0f), (getHeight() - r5Var.f32099s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + r5Var.f32099s) / 2);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        b();
-        this.f39245a.draw(canvas);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f39245a.a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f39245a.b();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        w51 w51Var = this.f39140f2[0];
+        if (w51Var != null) {
+            i21Var.f40032n = null;
+            w51Var.dismiss();
+        }
     }
 }

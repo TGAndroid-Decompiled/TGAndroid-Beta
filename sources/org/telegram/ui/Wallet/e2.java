@@ -29,29 +29,29 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.kh;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.hb0;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.jb0;
 public final class e2 {
-    public final int f36506a;
-    public final l0 f36507b;
-    public final HashSet f36508c = new HashSet();
+    public final int f36513a;
+    public final l0 f36514b;
+    public final HashSet f36515c = new HashSet();
     public final ArrayList d = new ArrayList();
     public int e;
-    public final ConnectionsManager f36509f;
-    public a2 f36510g;
+    public final ConnectionsManager f36516f;
+    public a2 f36517g;
     public boolean h;
 
     public e2(l0 l0Var) {
         this.e = -1;
-        int i10 = l0Var.f36807a;
-        this.f36506a = i10;
-        this.f36507b = l0Var;
+        int i10 = l0Var.f36834a;
+        this.f36513a = i10;
+        this.f36514b = l0Var;
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
-        this.f36509f = connectionsManager;
+        this.f36516f = connectionsManager;
         if (this.e >= 0) {
             return;
         }
@@ -68,21 +68,21 @@ public final class e2 {
         return str.substring(0, 4) + "…" + str.substring(str.length() - 4);
     }
 
-    public static org.telegram.ui.Wallet.j2 B(android.content.Context r27, final int r28, final org.telegram.ui.Wallet.z1 r29, final org.telegram.tgnet.TLRPC.TL_urlAuthResultRequest r30, final org.telegram.ui.ActionBar.u6 r31, final org.telegram.ui.q80 r32, final java.lang.Runnable r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.e2.B(android.content.Context, int, org.telegram.ui.Wallet.z1, org.telegram.tgnet.TLRPC$TL_urlAuthResultRequest, org.telegram.ui.ActionBar.u6, org.telegram.ui.q80, java.lang.Runnable):org.telegram.ui.Wallet.j2");
+    public static org.telegram.ui.Wallet.j2 B(android.content.Context r27, final int r28, final org.telegram.ui.Wallet.z1 r29, final org.telegram.tgnet.TLRPC.TL_urlAuthResultRequest r30, final org.telegram.ui.ActionBar.u6 r31, final org.telegram.ui.r80 r32, final java.lang.Runnable r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.e2.B(android.content.Context, int, org.telegram.ui.Wallet.z1, org.telegram.tgnet.TLRPC$TL_urlAuthResultRequest, org.telegram.ui.ActionBar.u6, org.telegram.ui.r80, java.lang.Runnable):org.telegram.ui.Wallet.j2");
     }
 
     public static LinearLayout D(Context context, String str, org.telegram.ui.ActionBar.u6 u6Var) {
-        LinearLayout d = vh.d(context, 1);
+        LinearLayout d = wh.d(context, 1);
         int dp = AndroidUtilities.dp(16.0f);
-        int i10 = org.telegram.ui.ActionBar.y6.f23356d6;
+        int i10 = org.telegram.ui.ActionBar.y6.f23357d6;
         ShapeDrawable c02 = org.telegram.ui.ActionBar.y6.c0(dp, org.telegram.ui.ActionBar.y6.w0(i10, u6Var));
         org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i10);
         d.setBackground(c02);
         org.telegram.ui.ActionBar.f7.k(d, c02, N, null, u6Var);
         org.telegram.ui.Cells.q4 q4Var = new org.telegram.ui.Cells.q4(context, u6Var);
         q4Var.setText(str);
-        d.addView(q4Var, gb1.r(-1, -2));
+        d.addView(q4Var, kb1.r(-1, -2));
         return d;
     }
 
@@ -145,12 +145,12 @@ public final class e2 {
     }
 
     public static void a(e2 e2Var, TL_wallet.tonConnectSession tonconnectsession, String str, k kVar) {
-        if (!e2Var.f36508c.remove(Long.valueOf(tonconnectsession.f22290id))) {
+        if (!e2Var.f36515c.remove(Long.valueOf(tonconnectsession.f22291id))) {
             return;
         }
         if (str == null) {
             Collection.EL.removeIf(e2Var.d, new a1(tonconnectsession, 0));
-            e2Var.f36507b.J();
+            e2Var.f36514b.L();
         }
         kVar.run(str);
     }
@@ -169,7 +169,7 @@ public final class e2 {
         imageView.setBackground(gradientDrawable);
         imageView.setImageResource(i10);
         imageView.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-        linearLayout.addView(imageView, gb1.t(46, 46, 0.0f, 16, 0, 0, 12, 0));
+        linearLayout.addView(imageView, kb1.t(46, 46, 0.0f, 16, 0, 0, 12, 0));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
         if (charSequence2 == null && str == null) {
@@ -179,7 +179,7 @@ public final class e2 {
         }
         linearLayout2.setGravity(i11);
         TextView textView = new TextView(context);
-        vh.j(16.0f, 1, textView);
+        wh.j(16.0f, 1, textView);
         int i12 = org.telegram.ui.ActionBar.y6.G6;
         org.telegram.ui.ActionBar.f7.V(textView, i12, u6Var);
         if (charSequence2 != null) {
@@ -194,34 +194,34 @@ public final class e2 {
         textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         textView.setText(charSequence);
         if (charSequence2 == null) {
-            r6 = gb1.u(-1, AndroidUtilities.dp(24.0f), 16);
+            r6 = kb1.u(-1, AndroidUtilities.dp(24.0f), 16);
         } else {
-            r6 = gb1.r(-1, -2);
+            r6 = kb1.r(-1, -2);
         }
         r6.weight = 0.0f;
         linearLayout2.addView(textView, r6);
         if (!TextUtils.isEmpty(charSequence2)) {
             TextView g7 = org.telegram.messenger.t.g(context, 1, 14.0f);
-            org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.f23767z6, u6Var);
+            org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.f23768z6, u6Var);
             g7.setSingleLine(true);
             g7.setEllipsize(TextUtils.TruncateAt.END);
             g7.setText(charSequence2);
-            linearLayout2.addView(g7, gb1.o(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
+            linearLayout2.addView(g7, kb1.o(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
         }
         if (!TextUtils.isEmpty(str)) {
             TextView textView2 = new TextView(context);
             org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(0, false, false, null);
-            l5Var.f22851x = false;
-            l5Var.f22850w = Integer.valueOf(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.jl, u6Var));
+            l5Var.f22852x = false;
+            l5Var.f22851w = Integer.valueOf(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.jl, u6Var));
             textView2.setBackground(l5Var);
             textView2.setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(8.0f));
             textView2.setTextSize(1, 15.0f);
             org.telegram.ui.ActionBar.f7.V(textView2, i12, u6Var);
             textView2.setMaxLines(2);
             textView2.setText(str);
-            linearLayout2.addView(textView2, gb1.o(0.0f, 6.0f, 0.0f, 0.0f, -2, -2));
+            linearLayout2.addView(textView2, kb1.o(0.0f, 6.0f, 0.0f, 0.0f, -2, -2));
         }
-        linearLayout.addView(linearLayout2, gb1.s(0, -2, 1.0f, 16));
+        linearLayout.addView(linearLayout2, kb1.s(0, -2, 1.0f, 16));
         if (!TextUtils.isEmpty(spannableStringBuilder)) {
             TextView textView3 = new TextView(context);
             textView3.setTypeface(AndroidUtilities.bold());
@@ -232,7 +232,7 @@ public final class e2 {
                 i12 = org.telegram.ui.ActionBar.y6.uj;
             }
             org.telegram.ui.ActionBar.f7.V(textView3, i12, u6Var);
-            linearLayout.addView(textView3, gb1.t(-2, -2, 0.0f, 16, 8, 0, 0, 0));
+            linearLayout.addView(textView3, kb1.t(-2, -2, 0.0f, 16, 8, 0, 0, 0));
         }
         return linearLayout;
     }
@@ -286,7 +286,7 @@ public final class e2 {
 
     public static TextView g(Context context, String str, org.telegram.ui.ActionBar.u6 u6Var) {
         TextView textView = new TextView(context);
-        vh.j(14.0f, 1, textView);
+        wh.j(14.0f, 1, textView);
         org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.Oh, u6Var);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) str);
@@ -323,12 +323,12 @@ public final class e2 {
         throw new IllegalArgumentException("Manifest URL must use HTTPS and include a host");
     }
 
-    public static void o(Context context, int i10, long j10, int i11, org.telegram.ui.ActionBar.u6 u6Var, hb0 hb0Var) {
-        l0 w10 = l0.w(i10);
-        e2 e2Var = w10.f36811g;
-        kh khVar = new kh(context, i10, w10, u6Var, hb0Var);
-        if (!e2Var.h && e2Var.f36510g == null) {
-            String string = MessagesController.getMainSettings(e2Var.f36506a).getString(j(j10, i11), null);
+    public static void o(Context context, int i10, long j10, int i11, org.telegram.ui.ActionBar.u6 u6Var, jb0 jb0Var) {
+        l0 x9 = l0.x(i10);
+        e2 e2Var = x9.f36838g;
+        kh khVar = new kh(context, i10, x9, u6Var, jb0Var);
+        if (!e2Var.h && e2Var.f36517g == null) {
+            String string = MessagesController.getMainSettings(e2Var.f36513a).getString(j(j10, i11), null);
             if (string != null) {
                 e2Var.h = true;
                 s sVar = new s(3, e2Var, khVar);
@@ -341,7 +341,7 @@ public final class e2 {
                 }
             }
             e2Var.h = true;
-            e2Var.f36507b.j0(new bi.da(e2Var, j10, khVar, i11, 18));
+            e2Var.f36514b.m0(new bi.da(e2Var, j10, khVar, i11, 18));
             return;
         }
         khVar.run(null, "A TON Connect request is already open");
@@ -492,7 +492,7 @@ public final class e2 {
     public static boolean u(z1 z1Var) {
         if (z1Var != null) {
             try {
-                JSONArray jSONArray = new JSONObject(z1Var.f37550a).getJSONArray("items");
+                JSONArray jSONArray = new JSONObject(z1Var.f37574a).getJSONArray("items");
                 for (int i10 = 0; i10 < jSONArray.length(); i10++) {
                     if ("ton_proof".equals(jSONArray.getJSONObject(i10).optString("name"))) {
                         return true;
@@ -542,7 +542,7 @@ public final class e2 {
         tonconnectsubmitresponse.msg_id = i10;
         tonconnectsubmitresponse.trace_id = jSONObject.optString("traceId", null);
         tonconnectsubmitresponse.body = Base64.decode(jSONObject.optString("body"), 2);
-        this.f36509f.sendRequestTyped(tonconnectsubmitresponse, new Object(), new ai.c1(this, callback, jSONObject, j10, i10));
+        this.f36516f.sendRequestTyped(tonconnectsubmitresponse, new Object(), new ai.c1(this, callback, jSONObject, j10, i10));
     }
 
     public final boolean c(z1 z1Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr) {
@@ -552,8 +552,8 @@ public final class e2 {
             TLRPC.WebDocument webDocument = z1Var.e.manifest.icon;
             TLRPC.WebDocument webDocument2 = tonconnectsession.manifest.icon;
             if ((webDocument == webDocument2 || (webDocument != null && webDocument2 != null && Objects.equals(webDocument.url, webDocument2.url))) && Arrays.equals(z1Var.e.nonce, tonconnectsession.nonce)) {
-                l0 l0Var = this.f36507b;
-                if (str.equals(l0Var.s()) && Arrays.equals(bArr, l0Var.x())) {
+                l0 l0Var = this.f36514b;
+                if (str.equals(l0Var.t()) && Arrays.equals(bArr, l0Var.y())) {
                     return true;
                 }
                 return false;
@@ -565,31 +565,31 @@ public final class e2 {
 
     public final void d(long j10, int i10, Utilities.Callback callback) {
         long j11;
-        MessagesController.getMainSettings(this.f36506a).edit().remove(j(j10, i10)).remove(j(j10, j11) + ".transfer").apply();
-        a2 a2Var = this.f36510g;
-        if (a2Var != null && a2Var.f36337a.f22290id == j10 && a2Var.f36338b == i10) {
-            a2Var.f36347n = true;
+        MessagesController.getMainSettings(this.f36513a).edit().remove(j(j10, i10)).remove(j(j10, j11) + ".transfer").apply();
+        a2 a2Var = this.f36517g;
+        if (a2Var != null && a2Var.f36361a.f22291id == j10 && a2Var.f36362b == i10) {
+            a2Var.f36371n = true;
         }
         callback.run(null);
     }
 
     public final void e(a2 a2Var, boolean z10, Utilities.Callback callback) {
-        boolean z11 = a2Var.f36346m;
-        TL_wallet.tonConnectSession tonconnectsession = a2Var.f36337a;
+        boolean z11 = a2Var.f36370m;
+        TL_wallet.tonConnectSession tonconnectsession = a2Var.f36361a;
         if (z11) {
             return;
         }
-        if (!a2Var.f36347n && !i(a2Var) && y(a2Var) && (z10 || a2Var.f36345l >= 0 || "disconnect".equals(a2Var.e) || a2Var.f36349p)) {
-            a2Var.f36346m = true;
+        if (!a2Var.f36371n && !i(a2Var) && y(a2Var) && (z10 || a2Var.f36369l >= 0 || "disconnect".equals(a2Var.e) || a2Var.f36373p)) {
+            a2Var.f36370m = true;
             o oVar = new o(this, a2Var, callback, 2);
-            String string = MessagesController.getMainSettings(this.f36506a).getString(j(tonconnectsession.f22290id, a2Var.f36338b), null);
+            String string = MessagesController.getMainSettings(this.f36513a).getString(j(tonconnectsession.f22291id, a2Var.f36362b), null);
             if (string != null) {
                 try {
                 } catch (Exception e) {
                     e = e;
                 }
                 try {
-                    C(tonconnectsession.f22290id, a2Var.f36338b, new JSONObject(string), oVar);
+                    C(tonconnectsession.f22291id, a2Var.f36362b, new JSONObject(string), oVar);
                     return;
                 } catch (Exception e10) {
                     e = e10;
@@ -598,18 +598,18 @@ public final class e2 {
                     return;
                 }
             }
-            this.f36507b.y(new w(this, oVar, a2Var, z10, 1), true, false);
+            this.f36514b.z(new w(this, oVar, a2Var, z10, 1), true, false);
             return;
         }
         callback.run("Request expired, was processed, or the wallet changed");
     }
 
     public final boolean i(a2 a2Var) {
-        long currentTime = this.f36509f.getCurrentTime();
-        if (a2Var.f36339c > currentTime) {
-            d2 d2Var = a2Var.f36340f;
+        long currentTime = this.f36516f.getCurrentTime();
+        if (a2Var.f36363c > currentTime) {
+            d2 d2Var = a2Var.f36364f;
             if (d2Var != null) {
-                long j10 = d2Var.f36455a;
+                long j10 = d2Var.f36479a;
                 if (j10 == 0 || j10 > currentTime) {
                     return false;
                 }
@@ -621,10 +621,10 @@ public final class e2 {
     }
 
     public final void m(int i10, long j10) {
-        a2 a2Var = this.f36510g;
-        if (a2Var != null && a2Var.f36337a.f22290id == j10 && a2Var.f36338b == i10 && !a2Var.f36346m) {
-            a2Var.f36347n = true;
-            Runnable runnable = a2Var.f36351r;
+        a2 a2Var = this.f36517g;
+        if (a2Var != null && a2Var.f36361a.f22291id == j10 && a2Var.f36362b == i10 && !a2Var.f36370m) {
+            a2Var.f36371n = true;
+            Runnable runnable = a2Var.f36375r;
             if (runnable != null) {
                 runnable.run();
             }
@@ -642,21 +642,21 @@ public final class e2 {
         if (!tonconnectsession.closed) {
             arrayList.add(tonconnectsession);
         }
-        a2 a2Var = this.f36510g;
+        a2 a2Var = this.f36517g;
         if (a2Var != null) {
-            TL_wallet.tonConnectSession tonconnectsession2 = a2Var.f36337a;
-            if (tonconnectsession2.f22290id == tonconnectsession.f22290id && (tonconnectsession.closed || tonconnectsession.closing || !Objects.equals(tonconnectsession.client_id, tonconnectsession2.client_id) || !Arrays.equals(tonconnectsession.nonce, tonconnectsession2.nonce) || (tonconnectmanifest = tonconnectsession.manifest) == null || (tonconnectmanifest2 = tonconnectsession2.manifest) == null || !Objects.equals(tonconnectmanifest.url, tonconnectmanifest2.url) || !Objects.equals(tonconnectsession.manifest.name, tonconnectsession2.manifest.name) || ((webDocument = tonconnectsession.manifest.icon) != (webDocument2 = tonconnectsession2.manifest.icon) && (webDocument == null || webDocument2 == null || !Objects.equals(webDocument.url, webDocument2.url))))) {
-                a2Var.f36350q = true;
-                m(a2Var.f36338b, tonconnectsession.f22290id);
+            TL_wallet.tonConnectSession tonconnectsession2 = a2Var.f36361a;
+            if (tonconnectsession2.f22291id == tonconnectsession.f22291id && (tonconnectsession.closed || tonconnectsession.closing || !Objects.equals(tonconnectsession.client_id, tonconnectsession2.client_id) || !Arrays.equals(tonconnectsession.nonce, tonconnectsession2.nonce) || (tonconnectmanifest = tonconnectsession.manifest) == null || (tonconnectmanifest2 = tonconnectsession2.manifest) == null || !Objects.equals(tonconnectmanifest.url, tonconnectmanifest2.url) || !Objects.equals(tonconnectsession.manifest.name, tonconnectsession2.manifest.name) || ((webDocument = tonconnectsession.manifest.icon) != (webDocument2 = tonconnectsession2.manifest.icon) && (webDocument == null || webDocument2 == null || !Objects.equals(webDocument.url, webDocument2.url))))) {
+                a2Var.f36374q = true;
+                m(a2Var.f36362b, tonconnectsession.f22291id);
             }
         }
-        NotificationCenter.getInstance(this.f36506a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.walletUpdate, this.f36507b, tonconnectsession);
+        NotificationCenter.getInstance(this.f36513a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.walletUpdate, this.f36514b, tonconnectsession);
     }
 
     public final void s(a2 a2Var) {
-        a2Var.f36351r = null;
-        if (!a2Var.f36346m && this.f36510g == a2Var) {
-            this.f36510g = null;
+        a2Var.f36375r = null;
+        if (!a2Var.f36370m && this.f36517g == a2Var) {
+            this.f36517g = null;
         }
     }
 
@@ -665,10 +665,10 @@ public final class e2 {
     }
 
     public final boolean y(a2 a2Var) {
-        if (!a2Var.f36350q) {
+        if (!a2Var.f36374q) {
             String str = a2Var.h;
-            l0 l0Var = this.f36507b;
-            if (Objects.equals(str, l0Var.s()) && Arrays.equals(a2Var.f36341g, l0Var.x())) {
+            l0 l0Var = this.f36514b;
+            if (Objects.equals(str, l0Var.t()) && Arrays.equals(a2Var.f36365g, l0Var.y())) {
                 return true;
             }
             return false;
@@ -677,14 +677,14 @@ public final class e2 {
     }
 
     public final void z(a2 a2Var, i0 i0Var, Utilities.Callback callback) {
-        WalletEngine2 walletEngine2 = this.f36507b.f36808b;
+        WalletEngine2 walletEngine2 = this.f36514b.f36835b;
         if (walletEngine2 != null) {
             boolean y3 = y(a2Var);
-            int i10 = a2Var.f36338b;
-            TL_wallet.tonConnectSession tonconnectsession = a2Var.f36337a;
+            int i10 = a2Var.f36362b;
+            TL_wallet.tonConnectSession tonconnectsession = a2Var.f36361a;
             if (y3 && !i(a2Var)) {
-                SharedPreferences mainSettings = MessagesController.getMainSettings(this.f36506a);
-                String string = mainSettings.getString(j(tonconnectsession.f22290id, i10) + ".transfer", null);
+                SharedPreferences mainSettings = MessagesController.getMainSettings(this.f36513a);
+                String string = mainSettings.getString(j(tonconnectsession.f22291id, i10) + ".transfer", null);
                 if (string != null) {
                     try {
                         JSONObject jSONObject = new JSONObject(string);
@@ -692,15 +692,15 @@ public final class e2 {
                         sendtransfer.user_id = new TLRPC.TL_inputUserEmpty();
                         sendtransfer.data_normal = Base64.decode(jSONObject.getString("boc"), 2);
                         sendtransfer.random_id = jSONObject.getLong("randomId");
-                        this.f36509f.sendRequestTyped(sendtransfer, new Object(), new bi.t3(this, callback, a2Var, i0Var, sendtransfer, 6));
+                        this.f36516f.sendRequestTyped(sendtransfer, new Object(), new bi.t3(this, callback, a2Var, i0Var, sendtransfer, 6));
                         return;
                     } catch (Exception e) {
                         callback.run(h("restore transfer", e));
                         return;
                     }
                 }
-                d2 d2Var = a2Var.f36340f;
-                walletEngine2.prepareTonConnectTransfer(i0Var, d2Var, "ton-connect:" + tonconnectsession.f22290id + ":" + i10, new p(this, a2Var, i0Var, callback, 7));
+                d2 d2Var = a2Var.f36364f;
+                walletEngine2.prepareTonConnectTransfer(i0Var, d2Var, "ton-connect:" + tonconnectsession.f22291id + ":" + i10, new p(this, a2Var, i0Var, callback, 7));
                 return;
             }
         }

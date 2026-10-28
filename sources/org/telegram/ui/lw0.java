@@ -1,33 +1,34 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class lw0 extends c61 {
-    public final bi.m5 f41384e2;
-    public final t51[] f41385f2;
-    public final PremiumPreviewFragment f41386g2;
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
+public final class lw0 implements Comparator {
+    public final int f41271a;
+    public final MessagesController f41272b;
 
-    public lw0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.u6 u6Var, int i11, bi.m5 m5Var, t51[] t51VarArr) {
-        super(premiumPreviewFragment2, activity, true, num, i10, true, u6Var, i11);
-        this.f41386g2 = premiumPreviewFragment;
-        this.f41384e2 = m5Var;
-        this.f41385f2 = t51VarArr;
+    public lw0(MessagesController messagesController, int i10) {
+        this.f41271a = i10;
+        this.f41272b = messagesController;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        this.f41384e2.run(l4, num);
-        t51 t51Var = this.f41385f2[0];
-        if (t51Var != null) {
-            this.f41386g2.f35892v0 = null;
-            t51Var.dismiss();
+    public final int compare(Object obj, Object obj2) {
+        int i10;
+        int i11;
+        yw0 yw0Var = (yw0) obj;
+        yw0 yw0Var2 = (yw0) obj2;
+        switch (this.f41271a) {
+            case 0:
+                MessagesController messagesController = this.f41272b;
+                i10 = messagesController.businessFeaturesTypesToPosition.get(yw0Var.f46094a, Integer.MAX_VALUE);
+                i11 = messagesController.businessFeaturesTypesToPosition.get(yw0Var2.f46094a, Integer.MAX_VALUE);
+                break;
+            default:
+                MessagesController messagesController2 = this.f41272b;
+                i10 = messagesController2.premiumFeaturesTypesToPosition.get(yw0Var.f46094a, Integer.MAX_VALUE);
+                i11 = messagesController2.premiumFeaturesTypesToPosition.get(yw0Var2.f46094a, Integer.MAX_VALUE);
+                break;
         }
+        return i10 - i11;
     }
 }

@@ -9,12 +9,12 @@ public final class sb {
     public final s1 f921g;
 
     public sb(m.r3 r3Var) {
-        this.f917a = (gf) r3Var.f17844a;
-        this.f918b = (rb) r3Var.f17845b;
-        this.f919c = (ob) r3Var.f17846c;
+        this.f917a = (gf) r3Var.f17843a;
+        this.f918b = (rb) r3Var.f17844b;
+        this.f919c = (ob) r3Var.f17845c;
         this.d = (ke) r3Var.d;
         this.e = (oe) r3Var.e;
-        this.f920f = (ne) r3Var.f17847f;
+        this.f920f = (ne) r3Var.f17846f;
         this.f921g = (s1) r3Var.h;
     }
 }

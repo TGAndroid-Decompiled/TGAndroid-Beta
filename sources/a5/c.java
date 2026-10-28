@@ -1,7 +1,7 @@
 package a5;
 
 import android.view.animation.Interpolator;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 public final class c implements Interpolator {
     public final int f283a;
 
@@ -25,7 +25,7 @@ public final class c implements Interpolator {
                 }
                 float f11 = f7 - 0.33f;
                 if (f11 < 0.33f) {
-                    return vh.w(f11, 0.34f, 0.15f, 0.1f);
+                    return wh.w(f11, 0.34f, 0.15f, 0.1f);
                 }
                 return (((f11 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
             case 3:

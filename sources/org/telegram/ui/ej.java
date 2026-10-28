@@ -1,46 +1,53 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
-public final class ej implements MessagesStorage.IntCallback {
-    public final int f39125a;
-    public final boolean f39126b;
-    public final Object f39127c;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class ej extends org.telegram.ui.Components.t40 {
+    public final int I;
 
-    public ej(int i10, Object obj, boolean z10) {
-        this.f39125a = i10;
-        this.f39127c = obj;
-        this.f39126b = z10;
+    public ej(int i10, int i11, Context context, org.telegram.ui.ActionBar.u6 u6Var, boolean z10) {
+        super(i10, context, u6Var, z10);
+        this.I = i11;
     }
 
     @Override
-    public final void run(int i10) {
-        org.telegram.ui.Components.vc vcVar;
-        switch (this.f39125a) {
+    public int c() {
+        switch (this.I) {
             case 0:
-                un unVar = ((gj) this.f39127c).f39709b;
-                if (i10 > 0 && unVar.getParentActivity() != null) {
-                    org.telegram.ui.Components.wc b02 = org.telegram.ui.Components.wc.b0(unVar);
-                    if (this.f39126b) {
-                        vcVar = org.telegram.ui.Components.vc.G;
-                    } else {
-                        vcVar = org.telegram.ui.Components.vc.I;
+                return AndroidUtilities.dp(56.0f) / 2;
+            default:
+                return super.c();
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.I) {
+            case 1:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused) {
+                        return;
                     }
-                    b02.m(vcVar, i10, 0, 0, unVar.f44388qa).j();
-                    return;
+                }
+                return;
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused2) {
+                        return;
+                    }
                 }
                 return;
             default:
-                fj fjVar = (fj) this.f39127c;
-                un unVar2 = fjVar.f39398b.f39709b;
-                if (i10 >= 50) {
-                    TLRPC.Chat chat = unVar2.e;
-                    TLRPC.User user = unVar2.f44245f;
-                    boolean z10 = this.f39126b;
-                    org.telegram.ui.Components.g5.r(unVar2, true, chat, user, false, false, false, z10, new y0(fjVar, z10));
-                    return;
-                }
-                unVar2.Aa(unVar2.f44373p4, true);
+                super.setVisibility(i10);
                 return;
         }
     }

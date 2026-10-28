@@ -255,7 +255,7 @@ public class LiteMode {
             onFlagsUpdate(PRESET_POWER_SAVER, getValue(true));
         }
         if (onPowerSaverAppliedListeners != null) {
-            AndroidUtilities.runOnUIThread(new e4(2, z10));
+            AndroidUtilities.runOnUIThread(new f4(2, z10));
         }
     }
 

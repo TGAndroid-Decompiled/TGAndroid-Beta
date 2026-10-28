@@ -6,9 +6,9 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.ti;
-import org.telegram.ui.hk;
-import org.telegram.ui.mm;
-import org.telegram.ui.un;
+import org.telegram.ui.jk;
+import org.telegram.ui.om;
+import org.telegram.ui.wn;
 public final class a3 extends ti {
     public final int O2;
     public final NotificationCenter.NotificationCenterDelegate P2;
@@ -34,19 +34,19 @@ public final class a3 extends ti {
                 super.dismissInternal();
                 return;
             case 2:
-                un unVar = (un) notificationCenterDelegate;
-                a3 a3Var2 = unVar.V1;
-                if (a3Var2 != null && (a3Var2.isShowing() || this.f33078x0)) {
-                    Activity parentActivity = unVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.r2) unVar).classGuid;
+                wn wnVar = (wn) notificationCenterDelegate;
+                a3 a3Var2 = wnVar.V1;
+                if (a3Var2 != null && (a3Var2.isShowing() || this.f33047x0)) {
+                    Activity parentActivity = wnVar.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.r2) wnVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
                 super.dismissInternal();
-                unVar.da(false, true);
-                mm mmVar = unVar.f44295j1;
-                if (mmVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f47108a;
-                    r0.y.c(mmVar);
+                wnVar.ga(false, true);
+                om omVar = wnVar.f45163j1;
+                if (omVar != null) {
+                    WeakHashMap weakHashMap = r0.i0.f47143a;
+                    r0.y.c(omVar);
                     return;
                 }
                 return;
@@ -59,13 +59,13 @@ public final class a3 extends ti {
     @Override
     public final void onDismissAnimationStart() {
         int i10;
-        hk hkVar;
+        jk jkVar;
         int i11 = this.O2;
         NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.P2;
         switch (i11) {
             case 0:
                 q4 q4Var = (q4) notificationCenterDelegate;
-                a3 a3Var = q4Var.f9045x2;
+                a3 a3Var = q4Var.f9044x2;
                 if (a3Var != null) {
                     a3Var.setFocusable(false);
                 }
@@ -88,40 +88,40 @@ public final class a3 extends ti {
                 }
                 return;
             default:
-                un unVar = (un) notificationCenterDelegate;
-                boolean z10 = this.f33078x0;
+                wn wnVar = (wn) notificationCenterDelegate;
+                boolean z10 = this.f33047x0;
                 boolean M = this.B0.M();
                 if (!M) {
-                    unVar.P3 = false;
-                    hk hkVar2 = unVar.Y;
-                    if (hkVar2 != null) {
+                    wnVar.P3 = false;
+                    jk jkVar2 = wnVar.Y;
+                    if (jkVar2 != null) {
                         if (!z10) {
-                            hkVar2.M();
+                            jkVar2.L();
                         }
-                        if (unVar.Y.getEditField() != null) {
-                            unVar.Y.getEditField().clearFocus();
+                        if (wnVar.Y.getEditField() != null) {
+                            wnVar.Y.getEditField().clearFocus();
                         }
                     }
                 }
                 if (!z10) {
-                    a3 a3Var4 = unVar.V1;
+                    a3 a3Var4 = wnVar.V1;
                     if (a3Var4 != null) {
                         a3Var4.setFocusable(false);
                     }
-                    if (M && (hkVar = unVar.Y) != null && hkVar.getEditField() != null) {
-                        unVar.Y.getEditField().requestFocus();
+                    if (M && (jkVar = wnVar.Y) != null && jkVar.getEditField() != null) {
+                        wnVar.Y.getEditField().requestFocus();
                     }
-                    a3 a3Var5 = unVar.V1;
+                    a3 a3Var5 = wnVar.V1;
                     if (a3Var5 != null && a3Var5.isShowing()) {
-                        Activity parentActivity = unVar.getParentActivity();
-                        i10 = ((org.telegram.ui.ActionBar.r2) unVar).classGuid;
+                        Activity parentActivity = wnVar.getParentActivity();
+                        i10 = ((org.telegram.ui.ActionBar.r2) wnVar).classGuid;
                         AndroidUtilities.requestAdjustResize(parentActivity, i10);
                     }
-                    unVar.da(false, false);
-                    mm mmVar = unVar.f44295j1;
-                    if (mmVar != null) {
-                        WeakHashMap weakHashMap = r0.i0.f47108a;
-                        r0.y.c(mmVar);
+                    wnVar.ga(false, false);
+                    om omVar = wnVar.f45163j1;
+                    if (omVar != null) {
+                        WeakHashMap weakHashMap = r0.i0.f47143a;
+                        r0.y.c(omVar);
                         return;
                     }
                     return;

@@ -43,10 +43,10 @@ public final class fg implements Runnable {
         this.e = new AtomicBoolean(false);
         this.f464b = handler;
         this.f465c = bVar;
-        sg.u uVar = new sg.u(18, this, bVar);
-        this.d = uVar;
+        s9.g gVar = new s9.g(19, this, bVar);
+        this.d = gVar;
         if (j10 > 0) {
-            handler.postDelayed(uVar, j10);
+            handler.postDelayed(gVar, j10);
         }
     }
 }

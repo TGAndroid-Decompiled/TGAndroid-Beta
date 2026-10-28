@@ -11,18 +11,18 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.y6;
 public final class e4 extends FrameLayout implements p6 {
-    public Path f12958a;
-    public float f12959b;
-    public int f12960c;
+    public Path f12957a;
+    public float f12958b;
+    public int f12959c;
     public boolean d;
     public int e;
-    public int f12961f;
+    public int f12960f;
     public View h;
-    public i0 f12962n;
+    public i0 f12961n;
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23346cf));
+        hashSet.add(Integer.valueOf(y6.f23347cf));
         hashSet.add(Integer.valueOf(y6.Oh));
     }
 
@@ -30,25 +30,25 @@ public final class e4 extends FrameLayout implements p6 {
     public final void draw(Canvas canvas) {
         canvas.save();
         float height = (getHeight() - AndroidUtilities.dp(32.0f)) / 2.0f;
-        float max = Math.max((getWidth() - this.f12961f) - AndroidUtilities.dp(4.0f), getHeight()) * this.f12959b;
+        float max = Math.max((getWidth() - this.f12960f) - AndroidUtilities.dp(4.0f), getHeight()) * this.f12958b;
         float dp = AndroidUtilities.dp(16.0f) + max;
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.dp(14.0f) - max, (AndroidUtilities.dp(4.0f) + height) - max, AndroidUtilities.dp(6.0f) + this.f12961f + max, (getHeight() - AndroidUtilities.dp(12.0f)) + max);
-        Path path = this.f12958a;
+        rectF.set(AndroidUtilities.dp(14.0f) - max, (AndroidUtilities.dp(4.0f) + height) - max, AndroidUtilities.dp(6.0f) + this.f12960f + max, (getHeight() - AndroidUtilities.dp(12.0f)) + max);
+        Path path = this.f12957a;
         path.rewind();
         path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
         canvas.clipPath(path);
         canvas.drawColor(this.e);
-        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f12959b) / 0.5f)) * 255.0f), 31);
+        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f12958b) / 0.5f)) * 255.0f), 31);
         canvas.translate(AndroidUtilities.dp(10.0f), height);
-        i0 i0Var = this.f12962n;
+        i0 i0Var = this.f12961n;
         if (i0Var != null) {
             i0Var.setDrawBackgroundDrawable(false);
-            this.f12962n.draw(canvas);
-            this.f12962n.setDrawBackgroundDrawable(true);
+            this.f12961n.draw(canvas);
+            this.f12961n.setDrawBackgroundDrawable(true);
         }
         canvas.restore();
-        canvas.translate((1.0f - this.f12959b) * (-AndroidUtilities.dp(8.0f)), 0.0f);
+        canvas.translate((1.0f - this.f12958b) * (-AndroidUtilities.dp(8.0f)), 0.0f);
         super.draw(canvas);
         canvas.restore();
     }
@@ -69,18 +69,18 @@ public final class e4 extends FrameLayout implements p6 {
     }
 
     public void setBotMenuButton(i0 i0Var) {
-        this.f12962n = i0Var;
+        this.f12961n = i0Var;
         invalidate();
     }
 
     public void setMeasuredButtonWidth(int i10) {
-        this.f12961f = i10;
+        this.f12960f = i10;
         invalidate();
     }
 
     public void setProgress(float f7) {
-        this.f12959b = f7;
-        this.e = i0.a.f(f7, y6.x0(null, y6.f23346cf, false), this.f12960c);
+        this.f12958b = f7;
+        this.e = i0.a.f(f7, y6.x0(null, y6.f23347cf, false), this.f12959c);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             getChildAt(i10).setAlpha(f7);
         }
@@ -91,10 +91,10 @@ public final class e4 extends FrameLayout implements p6 {
     public final void updateColors() {
         try {
             if (this.d) {
-                this.f12960c = y6.x0(null, y6.Oh, false);
+                this.f12959c = y6.x0(null, y6.Oh, false);
             }
             if (this.e != 0) {
-                this.e = i0.a.f(this.f12959b, y6.x0(null, y6.f23346cf, false), this.f12960c);
+                this.e = i0.a.f(this.f12958b, y6.x0(null, y6.f23347cf, false), this.f12959c);
                 invalidate();
             }
         } catch (Exception e) {

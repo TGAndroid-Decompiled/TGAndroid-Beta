@@ -58,17 +58,17 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.e2;
 import org.telegram.ui.Cells.v0;
-import org.telegram.ui.Components.am0;
 import org.telegram.ui.Components.bm0;
+import org.telegram.ui.Components.cm0;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Wallet.r1;
-import org.telegram.ui.oo0;
+import org.telegram.ui.qo0;
 import r0.k1;
 import r0.n;
 import s4.m0;
 import xh.k;
-public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5, e5, b2, s, oe.d, oo0, Continuation, OnCompleteListener, bm0, Utilities.Callback2Return, am0, p7, s9, k, n {
+public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5, e5, b2, s, oe.d, qo0, Continuation, OnCompleteListener, cm0, Utilities.Callback2Return, bm0, p7, s9, k, n {
     public final int f34a;
     public final Object f35b;
 
@@ -107,19 +107,19 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         int i10 = 0;
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) y9Var.v.getLayoutParams();
-        if (!y9Var.f9422c) {
+        if (!y9Var.f9421c) {
             i10 = k1Var.d();
         }
         marginLayoutParams.topMargin = i10;
-        if (y9Var.f9422c) {
-            a2 = k1Var.f47118a.f(2).d;
+        if (y9Var.f9421c) {
+            a2 = k1Var.f47153a.f(2).d;
         } else {
             a2 = k1Var.a();
         }
         marginLayoutParams.bottomMargin = a2;
-        marginLayoutParams.leftMargin = defaultWindowInsets.f13450a;
-        marginLayoutParams.rightMargin = defaultWindowInsets.f13452c;
-        m9 m9Var = y9Var.f9456s;
+        marginLayoutParams.leftMargin = defaultWindowInsets.f13449a;
+        marginLayoutParams.rightMargin = defaultWindowInsets.f13451c;
+        m9 m9Var = y9Var.f9455s;
         if (m9Var != null) {
             m9Var.requestLayout();
         }
@@ -127,7 +127,7 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         if (n9Var != null) {
             n9Var.requestLayout();
         }
-        return k1.f47117b;
+        return k1.f47152b;
     }
 
     @Override
@@ -218,9 +218,9 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         int i12;
         int i13;
         m2 m2Var = (m2) this.f35b;
-        bi.r1 r1Var = m2Var.f9344c;
-        ArrayList arrayList = m2Var.f9352r;
-        w0 w0Var = ((u0) view).f9220f;
+        bi.r1 r1Var = m2Var.f9343c;
+        ArrayList arrayList = m2Var.f9351r;
+        w0 w0Var = ((u0) view).f9219f;
         int i14 = m2Var.N;
         int currentTime = ConnectionsManager.getInstance(i14).getCurrentTime();
         HashSet hashSet = new HashSet();
@@ -228,13 +228,13 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         int i16 = 0;
         while (true) {
             j10 = 0;
-            if (i16 >= w0Var.f9287f.size()) {
+            if (i16 >= w0Var.f9286f.size()) {
                 break;
             }
-            di.v0 v0Var = (di.v0) w0Var.f9287f.get(i16);
-            long j12 = v0Var.f9242g;
+            di.v0 v0Var = (di.v0) w0Var.f9286f.get(i16);
+            long j12 = v0Var.f9241g;
             if (j12 > 0 && currentTime - v0Var.d <= u.b(i14, (int) j12, 0)) {
-                hashSet.add(Integer.valueOf(v0Var.f9238a));
+                hashSet.add(Integer.valueOf(v0Var.f9237a));
             }
             i16++;
         }
@@ -246,13 +246,13 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         int i18 = 0;
         while (i17 < arrayList.size()) {
             di.v0 v0Var2 = (di.v0) arrayList.get(i17);
-            if (!v0Var2.f9239b && v0Var2.e && v0Var2.f9242g < j10) {
+            if (!v0Var2.f9238b && v0Var2.e && v0Var2.f9241g < j10) {
                 j11 = j10;
             } else {
-                if (hashSet.contains(Integer.valueOf(v0Var2.f9238a))) {
+                if (hashSet.contains(Integer.valueOf(v0Var2.f9237a))) {
                     j11 = j10;
-                    if (m2Var.f9354w != w0Var.f9285b || (i13 = m2Var.f9355x) == 0 || v0Var2.f9238a < i13) {
-                        i11 = v0Var2.f9238a;
+                    if (m2Var.f9353w != w0Var.f9284b || (i13 = m2Var.f9354x) == 0 || v0Var2.f9237a < i13) {
+                        i11 = v0Var2.f9237a;
                         break;
                     }
                 } else {
@@ -270,9 +270,9 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
             while (true) {
                 if (i15 < arrayList.size()) {
                     di.v0 v0Var3 = (di.v0) arrayList.get(i15);
-                    if (v0Var3.f9239b || !v0Var3.e || v0Var3.f9242g >= j11) {
-                        if (hashSet.contains(Integer.valueOf(v0Var3.f9238a))) {
-                            i12 = v0Var3.f9238a;
+                    if (v0Var3.f9238b || !v0Var3.e || v0Var3.f9241g >= j11) {
+                        if (hashSet.contains(Integer.valueOf(v0Var3.f9237a))) {
+                            i12 = v0Var3.f9237a;
                             i18 = i19;
                             break;
                         }
@@ -291,9 +291,9 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         if (i12 < 0) {
             return;
         }
-        m2Var.f9354w = w0Var.f9285b;
-        m2Var.f9355x = i12;
-        m2Var.f9356y = true;
+        m2Var.f9353w = w0Var.f9284b;
+        m2Var.f9354x = i12;
+        m2Var.f9355y = true;
         m0 itemAnimator = r1Var.getItemAnimator();
         r1Var.setItemAnimator(null);
         m2Var.d.i1(i18, r1Var.getHeight() / 2, true);
@@ -329,10 +329,10 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
     public void o(xh.g gVar, float f7, float f10) {
         o8 o8Var;
         n8 n8Var = (n8) this.f35b;
-        if (!n8Var.v.f8891x) {
-            gVar.f51873q = new m8(n8Var, 2);
+        if (!n8Var.v.f8890x) {
+            gVar.f51931q = new m8(n8Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(o8Var.getHeight(), 2.0d) + Math.pow(o8Var.getWidth(), 2.0d));
-            ArrayList arrayList = n8Var.f8842i;
+            ArrayList arrayList = n8Var.f8841i;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -424,14 +424,14 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
         switch (this.f34a) {
             case 4:
                 x xVar = (x) this.f35b;
-                t61 t61Var = (t61) obj;
+                u61 u61Var = (u61) obj;
                 View view = (View) obj2;
                 Integer num = (Integer) obj3;
                 Float f7 = (Float) obj4;
                 Float f10 = (Float) obj5;
                 y yVar = xVar.f5639r;
-                if (t61Var.G instanceof TL_stars.StarsTransaction) {
-                    dd.g1(xVar.getContext(), true, yVar.f5716b, y.l0(yVar), (TL_stars.StarsTransaction) t61Var.G, y.m0(yVar));
+                if (u61Var.G instanceof TL_stars.StarsTransaction) {
+                    dd.g1(xVar.getContext(), true, yVar.f5716b, y.l0(yVar), (TL_stars.StarsTransaction) u61Var.G, y.m0(yVar));
                     return;
                 } else if (xVar.h) {
                     xVar.h = false;
@@ -445,14 +445,14 @@ public final class c implements OnSuccessListener, i, j5.e, Utilities.Callback5,
                 return;
             default:
                 ad adVar = (ad) this.f35b;
-                t61 t61Var2 = (t61) obj;
+                u61 u61Var2 = (u61) obj;
                 View view2 = (View) obj2;
                 ((Integer) obj3).intValue();
                 ((Float) obj4).floatValue();
                 ((Float) obj5).floatValue();
                 adVar.getClass();
-                if (t61Var2.G instanceof TL_stars.StarsTransaction) {
-                    dd.g1(adVar.getContext(), false, 0L, adVar.f4291c, (TL_stars.StarsTransaction) t61Var2.G, adVar.f4290b);
+                if (u61Var2.G instanceof TL_stars.StarsTransaction) {
+                    dd.g1(adVar.getContext(), false, 0L, adVar.f4291c, (TL_stars.StarsTransaction) u61Var2.G, adVar.f4290b);
                     return;
                 }
                 return;

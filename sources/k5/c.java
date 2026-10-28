@@ -22,42 +22,42 @@ import ma.d;
 import n5.e;
 import org.telegram.ui.Components.b10;
 public final class c implements e {
-    public final h5 f16391a;
-    public final ConnectivityManager f16392b;
-    public final Context f16393c;
+    public final h5 f16390a;
+    public final ConnectivityManager f16391b;
+    public final Context f16392c;
     public final URL d;
     public final v5.a e;
-    public final v5.a f16394f;
-    public final int f16395g;
+    public final v5.a f16393f;
+    public final int f16394g;
 
     public c(Context context, v5.a aVar, v5.a aVar2) {
         d dVar = new d();
-        l5.c cVar = l5.c.f16872a;
+        l5.c cVar = l5.c.f16871a;
         dVar.d(o.class, cVar);
         dVar.d(i.class, cVar);
-        f fVar = f.f16882a;
+        f fVar = f.f16881a;
         dVar.d(s.class, fVar);
         dVar.d(l.class, fVar);
-        l5.d dVar2 = l5.d.f16874a;
+        l5.d dVar2 = l5.d.f16873a;
         dVar.d(q.class, dVar2);
         dVar.d(j.class, dVar2);
-        l5.b bVar = l5.b.f16862a;
+        l5.b bVar = l5.b.f16861a;
         dVar.d(l5.a.class, bVar);
         dVar.d(h.class, bVar);
-        l5.e eVar = l5.e.f16877a;
+        l5.e eVar = l5.e.f16876a;
         dVar.d(r.class, eVar);
         dVar.d(k.class, eVar);
-        g gVar = g.f16887a;
+        g gVar = g.f16886a;
         dVar.d(v.class, gVar);
         dVar.d(n.class, gVar);
         dVar.d = true;
-        this.f16391a = new h5(dVar);
-        this.f16393c = context;
-        this.f16392b = (ConnectivityManager) context.getSystemService("connectivity");
-        this.d = b(a.f16384c);
+        this.f16390a = new h5(dVar);
+        this.f16392c = context;
+        this.f16391b = (ConnectivityManager) context.getSystemService("connectivity");
+        this.d = b(a.f16383c);
         this.e = aVar2;
-        this.f16394f = aVar;
-        this.f16395g = 130000;
+        this.f16393f = aVar;
+        this.f16394g = 130000;
     }
 
     public static URL b(String str) {

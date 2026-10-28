@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 public final class p extends p6.a {
     public static final Parcelable.Creator<p> CREATOR = new d(10);
-    public final int f52760a;
-    public final List f52761b;
+    public final int f52818a;
+    public final List f52819b;
 
     public p(int i10, ArrayList arrayList) {
-        this.f52760a = i10;
-        this.f52761b = arrayList;
+        this.f52818a = i10;
+        this.f52819b = arrayList;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
         df.s(parcel, 2, 4);
-        parcel.writeInt(this.f52760a);
-        df.p(parcel, 3, this.f52761b);
+        parcel.writeInt(this.f52818a);
+        df.p(parcel, 3, this.f52819b);
         df.r(parcel, q5);
     }
 }

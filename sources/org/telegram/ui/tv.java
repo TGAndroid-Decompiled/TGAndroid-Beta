@@ -1,108 +1,65 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class tv implements dh.a {
-    public final int f43918a;
-    public final org.telegram.ui.ActionBar.r2 f43919b;
-    public final FrameLayout f43920c;
-    public final Object d;
+import android.text.SpannableStringBuilder;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class tv implements Runnable {
+    public final int f43786a;
+    public final ey f43787b;
+    public final long f43788c;
+    public final boolean d;
 
-    public tv(org.telegram.ui.ActionBar.r2 r2Var, FrameLayout frameLayout, Object obj, int i10) {
-        this.f43918a = i10;
-        this.f43919b = r2Var;
-        this.f43920c = frameLayout;
-        this.d = obj;
+    public tv(ey eyVar, long j10, boolean z10, int i10) {
+        this.f43786a = i10;
+        this.f43787b = eyVar;
+        this.f43788c = j10;
+        this.d = z10;
     }
 
     @Override
-    public final void b(ch.a aVar, RectF rectF) {
-        switch (this.f43918a) {
+    public final void run() {
+        String str;
+        TLRPC.Chat chat;
+        SpannableStringBuilder replaceTags;
+        int i10 = this.f43786a;
+        boolean z10 = this.d;
+        long j10 = this.f43788c;
+        ey eyVar = this.f43787b;
+        switch (i10) {
             case 0:
-            default:
-                aVar.f6296a = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        int i10;
-        Canvas canvas2;
-        RectF rectF2;
-        switch (this.f43918a) {
-            case 0:
-                cy cyVar = (cy) this.f43919b;
-                tx txVar = (tx) this.f43920c;
-                PointF pointF = (PointF) this.d;
-                jx jxVar = cyVar.C0;
-                if (jxVar != null) {
-                    i10 = (int) (jxVar.getAlpha() * 255.0f);
+                ey eyVar2 = this.f43787b;
+                di.h7 storiesController = eyVar2.getMessagesController().getStoriesController();
+                long j11 = this.f43788c;
+                boolean z11 = this.d;
+                storiesController.l0(j11, z11, false);
+                m4.c cVar = new m4.c(9, false);
+                cVar.f18008b = new tv(eyVar2, j11, z11, 1);
+                cVar.f18009c = new tv(eyVar2, j11, z11, 2);
+                if (j11 >= 0) {
+                    TLRPC.User user = eyVar2.getMessagesController().getUser(Long.valueOf(j11));
+                    str = ContactsController.formatName(user.first_name, null, 15);
+                    chat = user;
                 } else {
-                    i10 = 0;
+                    TLRPC.Chat chat2 = eyVar2.getMessagesController().getChat(Long.valueOf(-j11));
+                    str = chat2.title;
+                    chat = chat2;
                 }
-                ay[] ayVarArr = cyVar.f38586e0;
-                int length = ayVarArr.length;
-                int i11 = 0;
-                while (i11 < length) {
-                    ay ayVar = ayVarArr[i11];
-                    if (ayVar != null && ayVar.getVisibility() == 0 && ayVar.getAlpha() > 0.0f) {
-                        float d42 = cyVar.d4();
-                        if (ayVar.F != null && d42 > 0.0f) {
-                            if (jh.k.b(ayVar.f37913a, txVar, pointF)) {
-                                canvas.save();
-                                canvas.clipRect(rectF);
-                                canvas.translate(pointF.x, pointF.y);
-                                ayVar.f37913a.dispatchDraw(canvas);
-                                canvas.restore();
-                            } else {
-                                return;
-                            }
-                        } else {
-                            wx wxVar = ayVar.f37913a;
-                            canvas2 = canvas;
-                            rectF2 = rectF;
-                            ih.d.b(wxVar, canvas2, rectF2, wxVar, txVar, 255 - i10);
-                            i11++;
-                            canvas = canvas2;
-                            rectF = rectF2;
-                        }
-                    }
-                    canvas2 = canvas;
-                    rectF2 = rectF;
-                    i11++;
-                    canvas = canvas2;
-                    rectF = rectF2;
+                if (eyVar2.m4()) {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, str));
+                } else {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 15)));
                 }
-                Canvas canvas3 = canvas;
-                RectF rectF3 = rectF;
-                jx jxVar2 = cyVar.C0;
-                if (jxVar2 != null && jxVar2.getVisibility() == 0 && cyVar.C0.getAlpha() > 0.0f) {
-                    jx jxVar3 = cyVar.C0;
-                    ih.d.b(jxVar3, canvas3, rectF3, jxVar3, txVar, i10);
-                    return;
-                }
+                eyVar2.S = org.telegram.ui.Components.wc.Y().W(Collections.singletonList(chat), replaceTags, null, cVar).j();
+                return;
+            case 1:
+                eyVar.getMessagesController().getStoriesController().l0(j10, !z10, false);
                 return;
             default:
-                w91 w91Var = (w91) this.f43919b;
-                e6 e6Var = (e6) this.d;
-                v81 v81Var = w91Var.S;
-                FrameLayout frameLayout = this.f43920c;
-                if (v81Var != null) {
-                    ih.d.a(v81Var, canvas, rectF, v81Var, frameLayout);
-                }
-                dc dcVar = w91Var.f45032i0;
-                if (dcVar != null) {
-                    org.telegram.ui.Components.mm0 mm0Var = dcVar.F;
-                    ih.d.a(mm0Var, canvas, rectF, mm0Var, frameLayout);
-                }
-                ke keVar = w91Var.f45033j0;
-                if (keVar != null && keVar.getParent() == w91Var.f45031h0 && w91Var.f45033j0.getVisibility() == 0) {
-                    w91Var.f45033j0.d(canvas, rectF, e6Var);
-                    return;
-                }
+                eyVar.getMessagesController().getStoriesController().l0(j10, z10, true);
                 return;
         }
     }

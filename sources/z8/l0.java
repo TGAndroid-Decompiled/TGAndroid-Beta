@@ -5,21 +5,21 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class l0 extends p6.a implements y8.g {
     public static final Parcelable.Creator<l0> CREATOR = new d(27);
-    public final int f52746a;
-    public final String f52747b;
-    public final byte[] f52748c;
+    public final int f52804a;
+    public final String f52805b;
+    public final byte[] f52806c;
     public final String d;
 
     public l0(int i10, String str, String str2, byte[] bArr) {
-        this.f52746a = i10;
-        this.f52747b = str;
-        this.f52748c = bArr;
+        this.f52804a = i10;
+        this.f52805b = str;
+        this.f52806c = bArr;
         this.d = str2;
     }
 
     public final String toString() {
         Object valueOf;
-        byte[] bArr = this.f52748c;
+        byte[] bArr = this.f52806c;
         if (bArr == null) {
             valueOf = "null";
         } else {
@@ -27,9 +27,9 @@ public final class l0 extends p6.a implements y8.g {
         }
         String obj = valueOf.toString();
         StringBuilder sb2 = new StringBuilder("MessageEventParcelable[");
-        sb2.append(this.f52746a);
+        sb2.append(this.f52804a);
         sb2.append(",");
-        sb2.append(this.f52747b);
+        sb2.append(this.f52805b);
         sb2.append(", size=");
         return a1.g.s(sb2, obj, "]");
     }
@@ -38,9 +38,9 @@ public final class l0 extends p6.a implements y8.g {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
         df.s(parcel, 2, 4);
-        parcel.writeInt(this.f52746a);
-        df.l(parcel, 3, this.f52747b);
-        df.c(parcel, 4, this.f52748c);
+        parcel.writeInt(this.f52804a);
+        df.l(parcel, 3, this.f52805b);
+        df.c(parcel, 4, this.f52806c);
         df.l(parcel, 5, this.d);
         df.r(parcel, q5);
     }

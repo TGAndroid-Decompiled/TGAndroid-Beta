@@ -172,7 +172,7 @@ public class f extends AbstractCollection {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused3) {
                     for (Map.Entry entry4 : pbVar2.entrySet()) {
-                        if (w7.g5.a(obj, entry4.getValue())) {
+                        if (w7.h5.a(obj, entry4.getValue())) {
                             pbVar2.remove(entry4.getKey());
                             return true;
                         }
@@ -300,7 +300,7 @@ public class f extends AbstractCollection {
             case 2:
                 return ((f9.l) this.f443b).size();
             case 3:
-                return ((f9.k1) this.f443b).f10293f;
+                return ((f9.k1) this.f443b).f10292f;
             case 4:
                 return ((f9.s) this.f443b).size();
             case 5:

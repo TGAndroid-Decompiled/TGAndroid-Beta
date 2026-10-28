@@ -1,125 +1,137 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Rect;
-import android.os.Build;
-import android.util.Property;
-import android.view.View;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
-public final class cg1 extends ScrollView {
-    public final int[] f38450a;
-    public final Rect f38451b;
-    public boolean f38452c;
-    public final dg1 d;
+import org.telegram.messenger.FileLog;
+public final class cg1 implements TextWatcher {
+    public final int f38342a;
+    public final fg1 f38343b;
 
-    public cg1(dg1 dg1Var, Context context) {
-        super(context);
-        this.d = dg1Var;
-        this.f38450a = new int[2];
-        this.f38451b = new Rect();
-        this.f38452c = true;
+    public cg1(fg1 fg1Var, int i10) {
+        this.f38342a = i10;
+        this.f38343b = fg1Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        this.f38452c = false;
-        super.onLayout(z10, i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        org.telegram.ui.ActionBar.k kVar;
-        boolean z10;
-        boolean z11;
-        Integer num;
-        float f7;
-        org.telegram.ui.ActionBar.k kVar2;
-        super.onScrollChanged(i10, i11, i12, i13);
-        dg1 dg1Var = this.d;
-        TextView textView = dg1Var.f38869c;
-        if (textView != null) {
-            int[] iArr = this.f38450a;
-            textView.getLocationOnScreen(iArr);
-            int measuredHeight = dg1Var.f38869c.getMeasuredHeight() + iArr[1];
-            kVar = ((org.telegram.ui.ActionBar.r2) dg1Var).actionBar;
-            if (measuredHeight < kVar.getBottom()) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (dg1Var.f38869c.getTag() == null) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            if (z10 != z11) {
-                TextView textView2 = dg1Var.f38869c;
-                if (z10) {
-                    num = null;
-                } else {
-                    num = 1;
+    public final void afterTextChanged(Editable editable) {
+        org.telegram.ui.Components.yj0 yj0Var;
+        switch (this.f38342a) {
+            case 0:
+                this.f38343b.getClass();
+                return;
+            case 1:
+                fg1 fg1Var = this.f38343b;
+                if (!fg1Var.M) {
+                    int i10 = fg1Var.O;
+                    if (i10 == 0) {
+                        org.telegram.ui.Components.yj0 animatedDrawable = fg1Var.f39359a.getAnimatedDrawable();
+                        if (fg1Var.f39373n.length() > 0) {
+                            if (fg1Var.f39373n.getTransformationMethod() == null) {
+                                org.telegram.ui.Components.yj0[] yj0VarArr = fg1Var.f39368f0;
+                                if (animatedDrawable != yj0VarArr[3] && animatedDrawable != (yj0Var = yj0VarArr[5])) {
+                                    fg1Var.f39359a.setAnimation(yj0Var);
+                                    fg1Var.f39368f0[5].T(0.0f, false);
+                                    fg1Var.f39359a.d();
+                                    return;
+                                }
+                                return;
+                            }
+                            org.telegram.ui.Components.yj0[] yj0VarArr2 = fg1Var.f39368f0;
+                            if (animatedDrawable != yj0VarArr2[3]) {
+                                org.telegram.ui.Components.yj0 yj0Var2 = yj0VarArr2[2];
+                                if (animatedDrawable != yj0Var2) {
+                                    fg1Var.f39359a.setAnimation(yj0Var2);
+                                    fg1Var.f39368f0[2].P(49);
+                                    fg1Var.f39368f0[2].T(0.0f, false);
+                                    fg1Var.f39359a.d();
+                                    return;
+                                } else if (yj0Var2.f35067a0 < 49) {
+                                    yj0Var2.P(49);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            }
+                            return;
+                        }
+                        if (animatedDrawable != fg1Var.f39368f0[3] || fg1Var.f39373n.getTransformationMethod() != null) {
+                            org.telegram.ui.Components.yj0[] yj0VarArr3 = fg1Var.f39368f0;
+                            if (animatedDrawable != yj0VarArr3[5]) {
+                                yj0VarArr3[2].P(-1);
+                                org.telegram.ui.Components.yj0 yj0Var3 = fg1Var.f39368f0[2];
+                                if (animatedDrawable != yj0Var3) {
+                                    fg1Var.f39359a.setAnimation(yj0Var3);
+                                    fg1Var.f39368f0[2].N(49, false, false);
+                                }
+                                fg1Var.f39359a.d();
+                                return;
+                            }
+                        }
+                        fg1Var.f39359a.setAnimation(fg1Var.f39368f0[4]);
+                        fg1Var.f39368f0[4].T(0.0f, false);
+                        fg1Var.f39359a.d();
+                        return;
+                    } else if (i10 == 1) {
+                        try {
+                            fg1Var.f39368f0[6].P((int) ((Math.min(1.0f, fg1Var.f39373n.getLayout().getLineWidth(0) / fg1Var.f39373n.getWidth()) * 142.0f) + 18.0f));
+                            fg1Var.f39359a.d();
+                            return;
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            return;
+                        }
+                    } else if (i10 == 8 && editable.length() > 0) {
+                        fg1Var.I0(true);
+                        return;
+                    } else {
+                        return;
+                    }
                 }
-                textView2.setTag(num);
-                AnimatorSet animatorSet = dg1Var.K;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    dg1Var.K = null;
+                return;
+            default:
+                fg1 fg1Var2 = this.f38343b;
+                if (fg1Var2.F) {
+                    if (fg1Var2.E.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
+                        AndroidUtilities.updateViewVisibilityAnimated(fg1Var2.E, true, 0.1f, true);
+                        return;
+                    } else if (fg1Var2.E.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
+                        AndroidUtilities.updateViewVisibilityAnimated(fg1Var2.E, false, 0.1f, true);
+                        return;
+                    } else {
+                        return;
+                    }
                 }
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                dg1Var.K = animatorSet2;
-                fi.f6 f6Var = dg1Var.f38884y;
-                float f10 = 0.0f;
-                if (z10) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                float[] fArr = {f7};
-                Property property = View.ALPHA;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(f6Var, property, fArr);
-                kVar2 = ((org.telegram.ui.ActionBar.r2) dg1Var).actionBar;
-                org.telegram.ui.ActionBar.b6 titleTextView = kVar2.getTitleTextView();
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(titleTextView, property, f10));
-                dg1Var.K.setDuration(150L);
-                dg1Var.K.addListener(new fc1(this, 3));
-                dg1Var.K.start();
-            }
+                return;
         }
     }
 
     @Override
-    public final void requestChildFocus(View view, View view2) {
-        if (Build.VERSION.SDK_INT < 29 && view2 != null && !this.f38452c) {
-            scrollToDescendant(view2);
-        }
-        super.requestChildFocus(view, view2);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f38342a;
     }
 
     @Override
-    public final void requestLayout() {
-        this.f38452c = true;
-        super.requestLayout();
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f38342a;
     }
 
-    @Override
-    public final void scrollToDescendant(View view) {
-        Rect rect = this.f38451b;
-        view.getDrawingRect(rect);
-        offsetDescendantRectToMyCoords(view, rect);
-        rect.bottom = AndroidUtilities.dp(120.0f) + rect.bottom;
-        int computeScrollDeltaToGetChildRectOnScreen = computeScrollDeltaToGetChildRectOnScreen(rect);
-        if (computeScrollDeltaToGetChildRectOnScreen < 0) {
-            computeScrollDeltaToGetChildRectOnScreen -= (getMeasuredHeight() - view.getMeasuredHeight()) / 2;
-        }
-        if (computeScrollDeltaToGetChildRectOnScreen != 0) {
-            smoothScrollBy(0, computeScrollDeltaToGetChildRectOnScreen);
-        }
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

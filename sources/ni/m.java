@@ -2,15 +2,15 @@ package ni;
 
 import com.google.android.gms.internal.play_billing.s0;
 public final class m {
-    public final m4.c f18892a;
-    public final long f18893b;
+    public final m4.c f18891a;
+    public final long f18892b;
 
     public m(o oVar, m4.c cVar) {
         long length;
         long j10;
-        this.f18892a = cVar;
-        long length2 = ((oVar.f18895b.length() + oVar.f18894a.length()) * 2) + 128;
-        s0 s0Var = (s0) cVar.f18009b;
+        this.f18891a = cVar;
+        long length2 = ((oVar.f18894b.length() + oVar.f18893a.length()) * 2) + 128;
+        s0 s0Var = (s0) cVar.f18008b;
         if (s0Var == null) {
             j10 = 1024;
         } else {
@@ -22,6 +22,6 @@ public final class m {
             }
             j10 = length + length3;
         }
-        this.f18893b = length2 + j10;
+        this.f18892b = length2 + j10;
     }
 }

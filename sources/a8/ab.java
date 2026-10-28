@@ -6,8 +6,8 @@ public final class ab {
     public final Integer f357b;
 
     public ab(n4.s sVar) {
-        this.f356a = (za) sVar.f18696b;
-        this.f357b = (Integer) sVar.f18697c;
+        this.f356a = (za) sVar.f18695b;
+        this.f357b = (Integer) sVar.f18696c;
     }
 
     public final boolean equals(Object obj) {

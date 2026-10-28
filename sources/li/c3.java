@@ -3,16 +3,16 @@ package li;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class c3 {
-    public final v3 f17172a;
+    public final v3 f17171a;
 
     public c3(v3 v3Var) {
-        this.f17172a = v3Var;
+        this.f17171a = v3Var;
     }
 
     public final void a(a aVar) {
         a aVar2;
-        v3 v3Var = this.f17172a;
-        ArrayList arrayList = v3Var.f17565t3;
+        v3 v3Var = this.f17171a;
+        ArrayList arrayList = v3Var.f17564t3;
         int indexOf = arrayList.indexOf(aVar);
         if (indexOf >= 0 && v3.D3(aVar)) {
             int V3 = v3Var.V3(indexOf);
@@ -33,14 +33,14 @@ public final class c3 {
             } else {
                 aVar2 = null;
             }
-            if (aVar2 != null && !aVar2.f17058i && !v3.D3(aVar2) && !v3.K3(aVar2.f17054b)) {
+            if (aVar2 != null && !aVar2.f17057i && !v3.D3(aVar2) && !v3.K3(aVar2.f17053b)) {
                 aVar3 = aVar2;
             }
             if (arrayList.isEmpty()) {
                 aVar3 = new a(new TL_iv.pageBlockParagraph(), 0, 0);
                 arrayList.add(aVar3);
             }
-            v3Var.f32152g3.O(false);
+            v3Var.f32504g3.O(false);
             f2 f2Var2 = v3Var.R3;
             if (f2Var2 != null) {
                 f2Var2.h();

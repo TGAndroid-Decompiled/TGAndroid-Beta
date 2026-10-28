@@ -10,9 +10,9 @@ public final class h extends gf.a {
         ?? pVar = new ef.p();
         this.f3933a = pVar;
         this.f3935c = new StringBuilder();
-        pVar.f9925g = c10;
+        pVar.f9924g = c10;
         pVar.h = i10;
-        pVar.f9926i = i11;
+        pVar.f9925i = i11;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class h extends gf.a {
     public final void d() {
         String a2 = df.a.a(this.f3934b.trim());
         ef.h hVar = this.f3933a;
-        hVar.f9927j = a2;
-        hVar.f9928k = this.f3935c.toString();
+        hVar.f9926j = a2;
+        hVar.f9927k = this.f3935c.toString();
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class h extends gf.a {
         int i12 = gVar.f3925g;
         ef.h hVar = this.f3933a;
         if (i12 < 4) {
-            char c10 = hVar.f9925g;
+            char c10 = hVar.f9924g;
             int i13 = hVar.h;
             int b10 = tb.b(c10, charSequence, i10, charSequence.length()) - i10;
             if (b10 >= i13 && tb.c(i10 + b10, charSequence.length(), charSequence) == charSequence.length()) {
@@ -55,7 +55,7 @@ public final class h extends gf.a {
             }
         }
         int length = charSequence.length();
-        for (int i14 = hVar.f9926i; i14 > 0 && i11 < length && charSequence.charAt(i11) == ' '; i14--) {
+        for (int i14 = hVar.f9925i; i14 > 0 && i11 < length && charSequence.charAt(i11) == ' '; i14--) {
             i11++;
         }
         return a.a(i11);

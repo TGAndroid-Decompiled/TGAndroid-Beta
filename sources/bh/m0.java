@@ -19,10 +19,10 @@ public abstract class m0 {
 
     public static void a() {
         jf.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
-        CountDownLatch countDownLatch = cacheOutQueue.f15617b;
+        CountDownLatch countDownLatch = cacheOutQueue.f15616b;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            cacheOutQueue.f15617b = null;
+            cacheOutQueue.f15616b = null;
         }
         f4082b = false;
         e = false;

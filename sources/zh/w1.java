@@ -14,24 +14,24 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.m91;
-import org.telegram.ui.Components.vs0;
-public final class w1 extends m91 {
-    public final int f53311a;
-    public final u6 f53312b;
-    public final vs0 f53313c;
+import org.telegram.ui.Components.n91;
+import org.telegram.ui.Components.ws0;
+public final class w1 extends n91 {
+    public final int f53369a;
+    public final u6 f53370b;
+    public final ws0 f53371c;
 
-    public w1(vs0 vs0Var, int i10, u6 u6Var) {
-        this.f53313c = vs0Var;
-        this.f53311a = i10;
-        this.f53312b = u6Var;
+    public w1(ws0 ws0Var, int i10, u6 u6Var) {
+        this.f53371c = ws0Var;
+        this.f53369a = i10;
+        this.f53370b = u6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        vs0 vs0Var = this.f53313c;
-        r1 r1Var = vs0Var.Q;
-        q9 q9Var = vs0Var.e;
+        ws0 ws0Var = this.f53371c;
+        r1 r1Var = ws0Var.Q;
+        q9 q9Var = ws0Var.e;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i10 = 0;
@@ -72,12 +72,12 @@ public final class w1 extends m91 {
         arrayList3.clear();
         arrayList3.addAll(arrayList4);
         q9Var.j();
-        m2 currentPage = vs0Var.getCurrentPage();
+        m2 currentPage = ws0Var.getCurrentPage();
         if (currentPage != null) {
             if (currentPage.d) {
                 i10 = q9Var.f(currentPage.e.d) + 1;
             }
-            vs0Var.f53234n.e(0.0f, i10, i10);
+            ws0Var.f53292n.e(0.0f, i10, i10);
         }
         AndroidUtilities.cancelRunOnUIThread(r1Var);
         AndroidUtilities.runOnUIThread(r1Var, 1000L);
@@ -87,12 +87,12 @@ public final class w1 extends m91 {
     public final void b(View view, int i10, int i11) {
         t9 t9Var;
         boolean z10;
-        vs0 vs0Var = this.f53313c;
-        q9 q9Var = vs0Var.e;
+        ws0 ws0Var = this.f53371c;
+        q9 q9Var = ws0Var.e;
         m2 m2Var = (m2) view;
         int i12 = 0;
         if (i11 == 0) {
-            t9Var = vs0Var.d;
+            t9Var = ws0Var.d;
             z10 = false;
         } else {
             int i13 = i10 - 1;
@@ -113,14 +113,14 @@ public final class w1 extends m91 {
             t9Var.b();
         }
         m2Var.f(false);
-        LinearLayout linearLayout = m2Var.f53152y;
+        LinearLayout linearLayout = m2Var.f53210y;
         if (linearLayout != null) {
-            if (!m2Var.f53143a.e.h()) {
+            if (!m2Var.f53201a.e.h()) {
                 i12 = 8;
             }
             linearLayout.setVisibility(i12);
         }
-        m2Var.setVisibleHeight(vs0Var.T);
+        m2Var.setVisibleHeight(ws0Var.T);
         m2Var.setHasTabs(!q9Var.d().isEmpty());
     }
 
@@ -137,20 +137,20 @@ public final class w1 extends m91 {
         if (i10 == -1) {
             return null;
         }
-        int i11 = this.f53311a;
-        u6 u6Var = this.f53312b;
-        vs0 vs0Var = this.f53313c;
-        m2 m2Var = new m2(vs0Var, i11, u6Var);
-        oi.q qVar = vs0Var.N;
+        int i11 = this.f53369a;
+        u6 u6Var = this.f53370b;
+        ws0 ws0Var = this.f53371c;
+        m2 m2Var = new m2(ws0Var, i11, u6Var);
+        oi.q qVar = ws0Var.N;
         if (qVar != null) {
-            qVar.b(m2Var.f53146f);
+            qVar.b(m2Var.f53204f);
         }
         return m2Var;
     }
 
     @Override
     public final int e() {
-        return this.f53313c.e.d().size() + 1;
+        return this.f53371c.e.d().size() + 1;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class w1 extends m91 {
         if (i10 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f53313c.e.d().get(i10 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f53371c.e.d().get(i10 - 1)).collection_id;
     }
 
     @Override
@@ -166,7 +166,7 @@ public final class w1 extends m91 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.Gift2CollectionAll);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f53313c.e.d().get(i10 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f53371c.e.d().get(i10 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }

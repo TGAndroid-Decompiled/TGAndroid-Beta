@@ -1,37 +1,62 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class iq0 implements Runnable {
-    public final int f29352a;
-    public final mr0 f29353b;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.WindowInsets;
+public final class iq0 implements oi.m, r0.n, org.telegram.ui.ActionBar.m1, oi.n {
+    public final int f29403a;
+    public final nr0 f29404b;
 
-    public iq0(mr0 mr0Var, int i10) {
-        this.f29352a = i10;
-        this.f29353b = mr0Var;
+    public iq0(nr0 nr0Var, int i10) {
+        this.f29403a = i10;
+        this.f29404b = nr0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29352a) {
-            case 0:
-                mr0 mr0Var = this.f29353b;
-                mr0Var.B0 = true;
-                m20 m20Var = mr0Var.f30732z0;
-                m20Var.f30367r.setText("");
-                AndroidUtilities.showKeyboard(m20Var.f30367r);
-                return;
-            default:
-                k5 k5Var = new k5(16);
-                mr0 mr0Var2 = this.f29353b;
-                if (mr0Var2.isKeyboardVisible()) {
-                    m20 m20Var2 = mr0Var2.f30732z0;
-                    if (m20Var2 != null) {
-                        AndroidUtilities.hideKeyboard(m20Var2.f30367r);
-                    }
-                    AndroidUtilities.runOnUIThread(k5Var, 300L);
+    public r0.k1 P0(View view, r0.k1 k1Var) {
+        WindowInsets g7 = k1Var.g();
+        nr0 nr0Var = this.f29404b;
+        nr0Var.processLegacyContainerInsets(g7);
+        i0.b f7 = k1Var.f47153a.f(519);
+        if (!nr0Var.H0.equals(f7)) {
+            nr0Var.H0 = f7;
+            nr0Var.container.requestLayout();
+        }
+        return r0.k1.f47152b;
+    }
+
+    @Override
+    public int f() {
+        nr0 nr0Var = this.f29404b;
+        nr0Var.getClass();
+        return nr0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23357d6);
+    }
+
+    @Override
+    public void k(int i10) {
+        nr0.m(this.f29404b, i10);
+    }
+
+    @Override
+    public void n(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.o1 o1Var;
+        org.telegram.ui.ActionBar.o1 o1Var2;
+        switch (this.f29403a) {
+            case 2:
+                nr0 nr0Var = this.f29404b;
+                nr0Var.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = nr0Var.K0) != null && o1Var.isShowing()) {
+                    nr0Var.K0.d(true);
                     return;
                 }
-                k5Var.run();
+                return;
+            default:
+                nr0 nr0Var2 = this.f29404b;
+                nr0Var2.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var2 = nr0Var2.K0) != null && o1Var2.isShowing()) {
+                    nr0Var2.K0.d(true);
+                    return;
+                }
                 return;
         }
     }

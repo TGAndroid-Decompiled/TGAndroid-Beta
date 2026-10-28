@@ -5,9 +5,9 @@ import f9.i0;
 import f9.s1;
 import org.xmlpull.v1.XmlPullParser;
 public abstract class d {
-    public static final String[] f16358a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
-    public static final String[] f16359b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
-    public static final String[] f16360c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
+    public static final String[] f16357a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
+    public static final String[] f16358b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
+    public static final String[] f16359c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
 
     public static a8.lg a(java.lang.String r20) {
         throw new UnsupportedOperationException("Method not decompiled: k3.d.a(java.lang.String):a8.lg");

@@ -3,9 +3,9 @@ package bi;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.rd0;
+import org.telegram.ui.Components.sd0;
 import org.telegram.ui.PasscodeActivity;
-import org.telegram.ui.xr;
+import org.telegram.ui.zr;
 public final class gb implements View.OnFocusChangeListener {
     public final int f4691a;
     public final Object f4692b;
@@ -21,17 +21,17 @@ public final class gb implements View.OnFocusChangeListener {
     public final void onFocusChange(View view, boolean z10) {
         switch (this.f4691a) {
             case 0:
-                ((rd0) this.f4692b).c(z10, !TextUtils.isEmpty(this.f4693c.getText()));
+                ((sd0) this.f4692b).c(z10, !TextUtils.isEmpty(this.f4693c.getText()));
                 return;
             case 1:
-                ((rd0) this.f4692b).c(z10, !TextUtils.isEmpty(this.f4693c.getText()));
+                ((sd0) this.f4692b).c(z10, !TextUtils.isEmpty(this.f4693c.getText()));
                 return;
             case 2:
-                ((rd0) this.f4692b).c(z10, !TextUtils.isEmpty(this.f4693c.getText()));
+                ((sd0) this.f4692b).c(z10, !TextUtils.isEmpty(this.f4693c.getText()));
                 return;
             default:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) this.f4692b;
-                passcodeActivity.v.setEditText((xr) this.f4693c);
+                passcodeActivity.v.setEditText((zr) this.f4693c);
                 passcodeActivity.v.setDispatchBackWhenEmpty(true);
                 return;
         }

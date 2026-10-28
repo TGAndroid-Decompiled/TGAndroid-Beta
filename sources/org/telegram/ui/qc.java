@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ViewGroup;
 import org.telegram.messenger.MessagesController;
-public final class qc extends org.telegram.ui.Components.lm0 {
-    public final Context f42806c;
+public final class qc extends org.telegram.ui.Components.mm0 {
+    public final Context f42664c;
     public final org.telegram.ui.ActionBar.u6 d;
     public final int e;
-    public final sc f42807f;
+    public final sc f42665f;
 
     public qc(sc scVar, Context context, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
-        this.f42807f = scVar;
-        this.f42806c = context;
+        this.f42665f = scVar;
+        this.f42664c = context;
         this.d = u6Var;
         this.e = i10;
     }
@@ -33,14 +33,14 @@ public final class qc extends org.telegram.ui.Components.lm0 {
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         boolean z10;
-        rc rcVar = (rc) e1Var.f47738a;
-        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23356d6, rcVar, this.d);
-        if (i10 == this.f42807f.e) {
+        rc rcVar = (rc) e1Var.f47773a;
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d6, rcVar, this.d);
+        if (i10 == this.f42665f.e) {
             z10 = true;
         } else {
             z10 = false;
         }
-        rcVar.f43112s = z10;
+        rcVar.f42919s = z10;
         rcVar.v.f(z10, true);
         rcVar.invalidate();
         MessagesController.PeerColors peerColors = MessagesController.getInstance(this.e).peerColors;
@@ -51,6 +51,6 @@ public final class qc extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        return new s4.e1(new rc(this.f42807f, this.f42806c));
+        return new s4.e1(new rc(this.f42665f, this.f42664c));
     }
 }

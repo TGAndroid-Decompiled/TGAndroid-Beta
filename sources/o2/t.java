@@ -18,20 +18,20 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class t implements c3.o {
-    public static final Pattern f19079i = Pattern.compile("LOCAL:([^,]+)");
-    public static final Pattern f19080j = Pattern.compile("MPEGTS:(-?\\d+)");
-    public final String f19081a;
-    public final k0 f19082b;
+    public static final Pattern f19078i = Pattern.compile("LOCAL:([^,]+)");
+    public static final Pattern f19079j = Pattern.compile("MPEGTS:(-?\\d+)");
+    public final String f19080a;
+    public final k0 f19081b;
     public final z3.k d;
     public final boolean e;
-    public c3.q f19084f;
+    public c3.q f19083f;
     public int h;
-    public final x f19083c = new x();
-    public byte[] f19085g = new byte[1024];
+    public final x f19082c = new x();
+    public byte[] f19084g = new byte[1024];
 
     public t(String str, k0 k0Var, z3.k kVar, boolean z10) {
-        this.f19081a = str;
-        this.f19082b = k0Var;
+        this.f19080a = str;
+        this.f19081b = k0Var;
         this.d = kVar;
         this.e = z10;
     }
@@ -39,15 +39,15 @@ public final class t implements c3.o {
     @Override
     public final boolean a(c3.p pVar) {
         c3.l lVar = (c3.l) pVar;
-        lVar.h(this.f19085g, 0, 6, false);
-        byte[] bArr = this.f19085g;
-        x xVar = this.f19083c;
+        lVar.h(this.f19084g, 0, 6, false);
+        byte[] bArr = this.f19084g;
+        x xVar = this.f19082c;
         xVar.L(6, bArr);
         if (i4.i.a(xVar)) {
             return true;
         }
-        lVar.h(this.f19085g, 6, 3, false);
-        xVar.L(9, this.f19085g);
+        lVar.h(this.f19084g, 6, 3, false);
+        xVar.L(9, this.f19084g);
         return i4.i.a(xVar);
     }
 
@@ -56,7 +56,7 @@ public final class t implements c3.o {
         if (this.e) {
             qVar = new c2.b(qVar, this.d);
         }
-        this.f19084f = qVar;
+        this.f19083f = qVar;
         qVar.D1(new c3.t(-9223372036854775807L));
     }
 
@@ -67,7 +67,7 @@ public final class t implements c3.o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f10287b;
+        g0 g0Var = i0.f10286b;
         return s1.e;
     }
 
@@ -75,19 +75,19 @@ public final class t implements c3.o {
     public final int f(c3.p pVar, c3.s sVar) {
         String n10;
         int length;
-        this.f19084f.getClass();
+        this.f19083f.getClass();
         int length2 = (int) pVar.getLength();
         int i10 = this.h;
-        byte[] bArr = this.f19085g;
+        byte[] bArr = this.f19084g;
         if (i10 == bArr.length) {
             if (length2 != -1) {
                 length = length2;
             } else {
                 length = bArr.length;
             }
-            this.f19085g = Arrays.copyOf(bArr, (length * 3) / 2);
+            this.f19084g = Arrays.copyOf(bArr, (length * 3) / 2);
         }
-        byte[] bArr2 = this.f19085g;
+        byte[] bArr2 = this.f19084g;
         int i11 = this.h;
         int read = pVar.read(bArr2, i11, bArr2.length - i11);
         if (read != -1) {
@@ -97,7 +97,7 @@ public final class t implements c3.o {
                 return 0;
             }
         }
-        x xVar = new x(this.f19085g);
+        x xVar = new x(this.f19084g);
         i4.i.d(xVar);
         String n11 = xVar.n(StandardCharsets.UTF_8);
         long j10 = 0;
@@ -106,9 +106,9 @@ public final class t implements c3.o {
             Matcher matcher = null;
             if (!TextUtils.isEmpty(n11)) {
                 if (n11.startsWith("X-TIMESTAMP-MAP")) {
-                    Matcher matcher2 = f19079i.matcher(n11);
+                    Matcher matcher2 = f19078i.matcher(n11);
                     if (matcher2.find()) {
-                        Matcher matcher3 = f19080j.matcher(n11);
+                        Matcher matcher3 = f19079j.matcher(n11);
                         if (matcher3.find()) {
                             String group = matcher2.group(1);
                             group.getClass();
@@ -116,7 +116,7 @@ public final class t implements c3.o {
                             String group2 = matcher3.group(1);
                             group2.getClass();
                             long parseLong = Long.parseLong(group2);
-                            String str = n0.f9692a;
+                            String str = n0.f9691a;
                             j10 = n0.a0(parseLong, 1000000L, 90000L, RoundingMode.DOWN);
                         } else {
                             throw x0.a(null, "X-TIMESTAMP-MAP doesn't contain media timestamp: ".concat(n11));
@@ -131,14 +131,14 @@ public final class t implements c3.o {
                     String n12 = xVar.n(StandardCharsets.UTF_8);
                     if (n12 == null) {
                         break;
-                    } else if (i4.i.f13874a.matcher(n12).matches()) {
+                    } else if (i4.i.f13873a.matcher(n12).matches()) {
                         do {
                             n10 = xVar.n(StandardCharsets.UTF_8);
                             if (n10 != null) {
                             }
                         } while (!n10.isEmpty());
                     } else {
-                        Matcher matcher4 = i4.h.f13871a.matcher(n12);
+                        Matcher matcher4 = i4.h.f13870a.matcher(n12);
                         if (matcher4.matches()) {
                             matcher = matcher4;
                             break;
@@ -152,12 +152,12 @@ public final class t implements c3.o {
                 String group3 = matcher.group(1);
                 group3.getClass();
                 long c10 = i4.i.c(group3);
-                String str2 = n0.f9692a;
-                long b10 = this.f19082b.b(n0.a0((j10 + c10) - j11, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
+                String str2 = n0.f9691a;
+                long b10 = this.f19081b.b(n0.a0((j10 + c10) - j11, 90000L, 1000000L, RoundingMode.DOWN) % 8589934592L);
                 j0 g7 = g(b10 - c10);
-                byte[] bArr3 = this.f19085g;
+                byte[] bArr3 = this.f19084g;
                 int i13 = this.h;
-                x xVar2 = this.f19083c;
+                x xVar2 = this.f19082c;
                 xVar2.L(i13, bArr3);
                 g7.d(this.h, xVar2);
                 g7.c(b10, 1, this.h, 0, null);
@@ -167,13 +167,13 @@ public final class t implements c3.o {
     }
 
     public final j0 g(long j10) {
-        j0 F1 = this.f19084f.F1(0, 3);
+        j0 F1 = this.f19083f.F1(0, 3);
         w wVar = new w();
         wVar.f3533r = w0.n("text/vtt");
-        wVar.d = this.f19081a;
+        wVar.d = this.f19080a;
         wVar.f3537w = j10;
         ic.a.u(wVar, F1);
-        this.f19084f.Q0();
+        this.f19083f.Q0();
         return F1;
     }
 

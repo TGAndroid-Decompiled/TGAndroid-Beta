@@ -3,19 +3,19 @@ package ig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class p0 {
-    public final int f14198a;
-    public final int f14199b;
-    public final String f14200c;
+    public final int f14197a;
+    public final int f14198b;
+    public final String f14199c;
     public final int d;
     public final TLRPC.MessagesFilter e;
-    public TLObject f14201f;
-    public n0 f14202g;
+    public TLObject f14200f;
+    public n0 f14201g;
     public boolean h;
 
     public p0(int i10, int i11, String str) {
         this.h = true;
-        this.f14198a = i10;
-        this.f14200c = str;
+        this.f14197a = i10;
+        this.f14199c = str;
         this.e = null;
         this.d = i11;
     }
@@ -40,8 +40,8 @@ public final class p0 {
 
     public p0(int i10, int i11, TLRPC.MessagesFilter messagesFilter, int i12) {
         this.h = true;
-        this.f14198a = i10;
-        this.f14199b = i11;
+        this.f14197a = i10;
+        this.f14198b = i11;
         this.e = messagesFilter;
         this.d = i12;
     }

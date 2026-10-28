@@ -5,8 +5,8 @@ import d5.z;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class r {
-    public static final HashMap f18907b;
-    public final int[] f18908a;
+    public static final HashMap f18906b;
+    public final int[] f18907a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -34,20 +34,20 @@ public final class r {
         a(hashMap, 256, "bold");
         a(hashMap, 512, "italic");
         a(hashMap, 257, "important");
-        f18907b = hashMap;
+        f18906b = hashMap;
     }
 
     public r(String[] strArr) {
-        this.f18908a = new int[strArr.length];
+        this.f18907a = new int[strArr.length];
         for (int i10 = 0; i10 < strArr.length; i10++) {
             int i11 = 0;
             for (String str : strArr[i10].split("\\s+")) {
-                Integer num = (Integer) f18907b.get(str);
+                Integer num = (Integer) f18906b.get(str);
                 if (num != null) {
                     i11 = ((i11 & 255) == 0 ? i11 | (num.intValue() & 255) : i11) | (num.intValue() & (-256));
                 }
             }
-            this.f18908a[i10] = i11;
+            this.f18907a[i10] = i11;
         }
     }
 
@@ -95,7 +95,7 @@ public final class r {
                 i10 = iArr2[i18];
             }
             int i19 = iArr[i14 + 2];
-            int[] iArr5 = this.f18908a;
+            int[] iArr5 = this.f18907a;
             int i20 = iArr5[i19];
             int i21 = iArr5[iArr[i14 + 3]];
             int i22 = i21 & 255;

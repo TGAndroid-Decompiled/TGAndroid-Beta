@@ -1,46 +1,42 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.ImageLoader;
+import org.telegram.tgnet.TLObject;
 public final class d5 implements Runnable {
-    public final int f19871a;
-    public final long f19872b;
-    public final long f19873c;
-    public final int d;
-    public final Object e;
+    public final int f19873a = 0;
+    public final boolean f19874b;
+    public final long f19875c;
+    public final long d;
+    public final int e;
+    public final Object f19876f;
 
-    public d5(int i10, String str, long j10, long j11) {
-        this.f19871a = 0;
-        this.d = i10;
-        this.e = str;
-        this.f19872b = j10;
-        this.f19873c = j11;
+    public d5(int i10, String str, long j10, long j11, boolean z10) {
+        this.e = i10;
+        this.f19876f = str;
+        this.f19875c = j10;
+        this.d = j11;
+        this.f19874b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19871a) {
+        switch (this.f19873a) {
             case 0:
-                long j10 = this.f19872b;
-                long j11 = this.f19873c;
-                ImageLoader.AnonymousClass5.lambda$fileLoadProgressChanged$8(this.d, (String) this.e, j10, j11);
-                return;
-            case 1:
-                ((MediaDataController) this.e).lambda$getMediaCounts$131(this.f19872b, this.f19873c, this.d);
-                return;
-            case 2:
-                ((NotificationsController) this.e).lambda$deleteNotificationChannel$43(this.f19872b, this.f19873c, this.d);
+                long j10 = this.d;
+                boolean z10 = this.f19874b;
+                ImageLoader.AnonymousClass5.lambda$fileUploadProgressChanged$0(this.e, (String) this.f19876f, this.f19875c, j10, z10);
                 return;
             default:
-                ((TopicsController) this.e).lambda$updateMentionsUnread$21(this.f19872b, this.f19873c, this.d);
+                FileLog.lambda$dumpUnparsedMessage$2((TLObject) this.f19876f, this.f19874b, this.f19875c, this.d, this.e);
                 return;
         }
     }
 
-    public d5(BaseController baseController, long j10, long j11, int i10, int i11) {
-        this.f19871a = i11;
-        this.e = baseController;
-        this.f19872b = j10;
-        this.f19873c = j11;
-        this.d = i10;
+    public d5(TLObject tLObject, boolean z10, long j10, long j11, int i10) {
+        this.f19876f = tLObject;
+        this.f19874b = z10;
+        this.f19875c = j10;
+        this.d = j11;
+        this.e = i10;
     }
 }

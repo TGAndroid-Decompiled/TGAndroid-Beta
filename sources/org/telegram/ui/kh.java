@@ -1,30 +1,62 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class kh implements RequestDelegate {
-    public final int f40944a;
-    public final un f40945b;
-    public final TLRPC.TL_attachMenuBot f40946c;
-    public final TLRPC.User d;
+public final class kh implements Runnable {
+    public final int f40797a;
+    public final wn f40798b;
+    public final int f40799c;
+    public final TLObject d;
+    public final TLRPC.TL_error e;
+    public final int f40800f;
+    public final MessageObject h;
+    public final TLRPC.TL_messages_getDiscussionMessage f40801n;
+    public final TLRPC.Chat f40802r;
+    public final int f40803s;
+    public final MessageObject v;
 
-    public kh(un unVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user, int i10) {
-        this.f40944a = i10;
-        this.f40945b = unVar;
-        this.f40946c = tL_attachMenuBot;
-        this.d = user;
+    public kh(wn wnVar, int i10, TLObject tLObject, TLRPC.TL_error tL_error, int i11, MessageObject messageObject, TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, TLRPC.Chat chat, int i12, MessageObject messageObject2, int i13) {
+        this.f40797a = i13;
+        this.f40798b = wnVar;
+        this.f40799c = i10;
+        this.d = tLObject;
+        this.e = tL_error;
+        this.f40800f = i11;
+        this.h = messageObject;
+        this.f40801n = tL_messages_getDiscussionMessage;
+        this.f40802r = chat;
+        this.f40803s = i12;
+        this.v = messageObject2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40944a) {
+    public final void run() {
+        switch (this.f40797a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new nh(this.f40945b, this.f40946c, tL_error, this.d));
+                wn wnVar = this.f40798b;
+                wnVar.q8(new kh(wnVar, this.f40799c, this.d, this.e, this.f40800f, this.h, this.f40801n, this.f40802r, this.f40803s, this.v, 1));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new nh(this.f40945b, tL_error, this.f40946c, this.d));
+                wn wnVar2 = this.f40798b;
+                if (this.f40799c == wnVar2.Fc) {
+                    wnVar2.Hc = -1;
+                    TLObject tLObject = this.d;
+                    if (tLObject != null) {
+                        wnVar2.Mc = (TLRPC.messages_Messages) tLObject;
+                    } else if ("CHANNEL_PRIVATE".equals(this.e.text)) {
+                        MessagesController.showCantOpenAlert(wnVar2, LocaleController.getString(R.string.ChannelCantOpenBannedByAdmin));
+                        wnVar2.Ic = 0;
+                        wnVar2.Jc = false;
+                        wnVar2.f45339x0.g1();
+                        return;
+                    }
+                    wnVar2.Ka(wnVar2.Lc, wnVar2.Mc, this.f40800f, this.h, this.f40801n, this.f40802r, this.f40803s, this.v);
+                    return;
+                }
                 return;
         }
     }

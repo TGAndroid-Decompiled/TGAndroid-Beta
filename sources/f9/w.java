@@ -2,9 +2,9 @@ package f9;
 
 import java.util.Comparator;
 public abstract class w {
-    public static final u f10352a = new Object();
-    public static final v f10353b = new v(-1);
-    public static final v f10354c = new v(1);
+    public static final u f10351a = new Object();
+    public static final v f10352b = new v(-1);
+    public static final v f10353c = new v(1);
 
     public abstract w a(int i10, int i11);
 

@@ -5,11 +5,11 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.my;
 import org.telegram.ui.LanguageSelectActivity;
-import org.telegram.ui.fn;
-import org.telegram.ui.mo;
-import org.telegram.ui.pc0;
-import org.telegram.ui.v50;
-import org.telegram.ui.xc1;
+import org.telegram.ui.ad1;
+import org.telegram.ui.hn;
+import org.telegram.ui.oo;
+import org.telegram.ui.rc0;
+import org.telegram.ui.x50;
 public final class f0 implements DialogInterface.OnCancelListener {
     public final int f4590a;
     public final int f4591b;
@@ -31,31 +31,31 @@ public final class f0 implements DialogInterface.OnCancelListener {
                 org.telegram.ui.ta.W((org.telegram.ui.ta) this.f4592c, this.f4591b);
                 return;
             case 2:
-                ((fn) this.f4592c).f39423a.getConnectionsManager().cancelRequest(this.f4591b, true);
+                ((hn) this.f4592c).f39938a.getConnectionsManager().cancelRequest(this.f4591b, true);
                 return;
             case 3:
-                mo moVar = (mo) this.f4592c;
-                moVar.M0 = false;
-                moVar.f41599b = null;
-                moVar.getConnectionsManager().cancelRequest(this.f4591b, true);
+                oo ooVar = (oo) this.f4592c;
+                ooVar.M0 = false;
+                ooVar.f42131b = null;
+                ooVar.getConnectionsManager().cancelRequest(this.f4591b, true);
                 return;
             case 4:
                 ((ChatActivityEnterView) this.f4592c).P2.getConnectionsManager().cancelRequest(this.f4591b, true);
                 return;
             case 5:
-                ConnectionsManager.getInstance(((my) this.f4592c).f30776c.f31090a.F.f32719c1).cancelRequest(this.f4591b, true);
+                ConnectionsManager.getInstance(((my) this.f4592c).f30674c.f31095a.F.f32713c1).cancelRequest(this.f4591b, true);
                 return;
             case 6:
-                ((v50) this.f4592c).d.getConnectionsManager().cancelRequest(this.f4591b, true);
+                ((x50) this.f4592c).d.getConnectionsManager().cancelRequest(this.f4591b, true);
                 return;
             case 7:
                 ConnectionsManager.getInstance(((LanguageSelectActivity) this.f4592c).currentAccount).cancelRequest(this.f4591b, true);
                 return;
             case 8:
-                ((pc0) this.f4592c).getConnectionsManager().cancelRequest(this.f4591b, true);
+                ((rc0) this.f4592c).getConnectionsManager().cancelRequest(this.f4591b, true);
                 return;
             default:
-                xc1.V((xc1) this.f4592c, this.f4591b);
+                ConnectionsManager.getInstance(((ad1) this.f4592c).currentAccount).cancelRequest(this.f4591b, true);
                 return;
         }
     }

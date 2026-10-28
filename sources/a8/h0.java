@@ -37,10 +37,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.a00;
 import org.telegram.ui.Components.b10;
 import org.telegram.ui.Components.e00;
-import org.telegram.ui.Components.h81;
-import org.telegram.ui.Components.p81;
-import org.telegram.ui.Components.s81;
-public final class h0 implements la.a, com.google.android.gms.common.api.internal.r, p81, z3.d, j4.a0 {
+import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.q81;
+import org.telegram.ui.Components.t81;
+public final class h0 implements la.a, com.google.android.gms.common.api.internal.r, q81, z3.d, j4.a0 {
     public static h0 e;
     public final int f510a;
     public Object f511b;
@@ -103,13 +103,13 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
         long d;
         long j10;
         ((e2.k0) this.f512c).getClass();
-        String str = e2.n0.f9692a;
+        String str = e2.n0.f9691a;
         e2.k0 k0Var = (e2.k0) this.f512c;
         synchronized (k0Var) {
             try {
-                long j11 = k0Var.f9681c;
+                long j11 = k0Var.f9680c;
                 if (j11 != -9223372036854775807L) {
-                    d = j11 + k0Var.f9680b;
+                    d = j11 + k0Var.f9679b;
                 } else {
                     d = k0Var.d();
                 }
@@ -169,7 +169,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
         this.f512c = k0Var;
         f0Var.b();
         f0Var.c();
-        c3.j0 F1 = qVar.F1(f0Var.f15315c, 5);
+        c3.j0 F1 = qVar.F1(f0Var.f15314c, 5);
         this.d = F1;
         F1.b((b2.x) this.f511b);
     }
@@ -219,7 +219,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
             int i11 = i10 * 2;
             if (jArr[i11] <= j10 && j10 < jArr[i11 + 1]) {
                 i4.c cVar = (i4.c) list.get(i10);
-                d2.b bVar = cVar.f13852a;
+                d2.b bVar = cVar.f13851a;
                 if (bVar.e == -3.4028235E38f) {
                     arrayList2.add(cVar);
                 } else {
@@ -229,7 +229,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
         }
         Collections.sort(arrayList2, new a4.d(19));
         for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-            d2.b bVar2 = ((i4.c) arrayList2.get(i12)).f13852a;
+            d2.b bVar2 = ((i4.c) arrayList2.get(i12)).f13851a;
             arrayList.add(new d2.b(bVar2.f7857a, bVar2.f7858b, bVar2.f7859c, bVar2.d, (-1) - i12, 1, bVar2.f7861g, bVar2.h, bVar2.f7862i, bVar2.f7867n, bVar2.f7868o, bVar2.f7863j, bVar2.f7864k, bVar2.f7865l, bVar2.f7866m, bVar2.f7869p, bVar2.f7870q, bVar2.f7871r));
         }
         return arrayList;
@@ -245,7 +245,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
             Log.e("BiometricManager", "Failure in canAuthenticate(). FingerprintManager was null.");
             return 1;
         }
-        Context context = hVar.f16938a;
+        Context context = hVar.f16937a;
         FingerprintManager c10 = l6.h.c(context);
         if (c10 != null && c10.isHardwareDetected()) {
             FingerprintManager c11 = l6.h.c(context);
@@ -326,7 +326,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
     }
 
     @Override
-    public void onError(s81 s81Var, Exception exc) {
+    public void onError(t81 t81Var, Exception exc) {
         fi.p9 p9Var = ((fi.o6) this.d).N;
         if (p9Var != null) {
             p9Var.run();
@@ -341,11 +341,11 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
     public void onStateChanged(boolean z10, int i10) {
         fi.o6 o6Var = (fi.o6) this.d;
         fi.m6 m6Var = o6Var.K;
-        s81 s81Var = o6Var.e;
-        if (s81Var == null) {
+        t81 t81Var = o6Var.e;
+        if (t81Var == null) {
             return;
         }
-        if (s81Var.y()) {
+        if (t81Var.y()) {
             AndroidUtilities.runOnUIThread(m6Var);
         } else {
             AndroidUtilities.cancelRunOnUIThread(m6Var);
@@ -367,30 +367,30 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
         fi.o6 o6Var = (fi.o6) this.d;
         fi.w7 w7Var = (fi.w7) this.f511b;
         if (w7Var != null) {
-            fi.v7 q5 = o6Var.e.q(w7Var.f11898d1);
-            w7Var.f11898d1 = q5;
-            h81 h81Var = o6Var.f11377n;
-            if (h81Var != null) {
-                h81Var.setHDRInfo(q5);
+            fi.v7 q5 = o6Var.e.q(w7Var.f11897d1);
+            w7Var.f11897d1 = q5;
+            i81 i81Var = o6Var.f11376n;
+            if (i81Var != null) {
+                i81Var.setHDRInfo(q5);
             }
         }
         int i13 = (int) (i10 * f7);
-        o6Var.f11369f = i13;
+        o6Var.f11368f = i13;
         int i14 = (int) (i11 * f7);
         o6Var.h = i14;
-        if (w7Var != null && (w7Var.f11911k0 != i13 || w7Var.f11913l0 != i14)) {
-            w7Var.f11911k0 = i13;
-            w7Var.f11913l0 = i14;
+        if (w7Var != null && (w7Var.f11910k0 != i13 || w7Var.f11912l0 != i14)) {
+            w7Var.f11910k0 = i13;
+            w7Var.f11912l0 = i14;
             w7Var.A();
         }
         o6Var.b();
-        h81 h81Var2 = o6Var.f11377n;
-        if (h81Var2 != null) {
-            int i15 = o6Var.f11369f;
+        i81 i81Var2 = o6Var.f11376n;
+        if (i81Var2 != null) {
+            int i15 = o6Var.f11368f;
             int i16 = o6Var.h;
-            h81Var2.d = i15;
-            h81Var2.e = i16;
-            e00 e00Var = h81Var2.f28862b;
+            i81Var2.d = i15;
+            i81Var2.e = i16;
+            e00 e00Var = i81Var2.f29238b;
             if (e00Var != null) {
                 e00Var.postRunnable(new a00(e00Var, i15, i16, 0));
             }
@@ -427,7 +427,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
     public void t(y2.a aVar) {
         j2.j jVar = (j2.j) ((HashMap) this.f511b).remove(aVar);
         jVar.getClass();
-        i2.h hVar = (i2.h) ((i2.i) this.d).f13571p.get(jVar);
+        i2.h hVar = (i2.h) ((i2.i) this.d).f13570p.get(jVar);
         if (hVar != null) {
             synchronized (hVar) {
                 hVar.d--;
@@ -461,9 +461,9 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
                 StringBuilder sb3 = new StringBuilder(32);
                 sb3.append((String) this.f511b);
                 sb3.append('{');
-                rf.b bVar = (rf.b) ((rf.b) this.f512c).f47336c;
+                rf.b bVar = (rf.b) ((rf.b) this.f512c).f47371c;
                 while (bVar != null) {
-                    Object obj2 = bVar.f47335b;
+                    Object obj2 = bVar.f47370b;
                     sb3.append(str);
                     if (obj2 != null && obj2.getClass().isArray()) {
                         String deepToString2 = Arrays.deepToString(new Object[]{obj2});
@@ -471,7 +471,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
                     } else {
                         sb3.append(obj2);
                     }
-                    bVar = (rf.b) bVar.f47336c;
+                    bVar = (rf.b) bVar.f47371c;
                     str = ", ";
                 }
                 sb3.append('}');
@@ -484,7 +484,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
     }
 
     public synchronized void u() {
-        ((i2.i) this.d).f13561c.e();
+        ((i2.i) this.d).f13560c.e();
     }
 
     public void v(int i10, String str, String str2) {
@@ -506,37 +506,37 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
         Runnable[] runnableArr = (Runnable[]) this.f512c;
         fi.o6 o6Var = (fi.o6) this.d;
         fi.n6 n6Var = o6Var.H;
-        if (n6Var != null && n6Var.f11306g) {
-            int i10 = o6Var.f11369f;
+        if (n6Var != null && n6Var.f11305g) {
+            int i10 = o6Var.f11368f;
             int i11 = o6Var.h;
             n6Var.d = true;
             n6Var.e = i10;
-            n6Var.f11305f = i11;
-            hi.e2 e2Var = n6Var.f11304c;
+            n6Var.f11304f = i11;
+            hi.e2 e2Var = n6Var.f11303c;
             if (e2Var != null) {
-                e2Var.run(Integer.valueOf(i10), Integer.valueOf(n6Var.f11305f));
+                e2Var.run(Integer.valueOf(i10), Integer.valueOf(n6Var.f11304f));
             }
         }
         Runnable runnable = runnableArr[0];
         if (runnable != null) {
             o6Var.post(runnable);
             runnableArr[0] = null;
-            Bitmap bitmap = o6Var.f11361a;
+            Bitmap bitmap = o6Var.f11360a;
             if (bitmap != null) {
                 bitmap.recycle();
-                if (w7Var.M0 == o6Var.f11361a) {
+                if (w7Var.M0 == o6Var.f11360a) {
                     w7Var.M0 = null;
                 }
-                o6Var.f11361a = null;
+                o6Var.f11360a = null;
                 o6Var.invalidate();
                 return;
             }
             return;
         }
-        h81 h81Var = o6Var.f11377n;
-        if (h81Var != null) {
-            if (n6Var == null || !n6Var.f11306g) {
-                h81Var.animate().alpha(1.0f).setDuration(180L).withEndAction(new e2.q0(11, this, w7Var)).start();
+        i81 i81Var = o6Var.f11376n;
+        if (i81Var != null) {
+            if (n6Var == null || !n6Var.f11305g) {
+                i81Var.animate().alpha(1.0f).setDuration(180L).withEndAction(new e2.q0(11, this, w7Var)).start();
             }
         }
     }
@@ -567,7 +567,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
     public h0(f6.h hVar) {
         this.f510a = 18;
         this.d = hVar;
-        this.f512c = new AtomicLong((h6.a.f12620b.nextLong() & 65535) * 10000);
+        this.f512c = new AtomicLong((h6.a.f12619b.nextLong() & 65535) * 10000);
     }
 
     public h0(i8.d dVar, j8.g gVar) {
@@ -630,8 +630,8 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
             i4.c cVar = (i4.c) arrayList.get(i10);
             int i11 = i10 * 2;
             long[] jArr = (long[]) this.f512c;
-            jArr[i11] = cVar.f13853b;
-            jArr[i11 + 1] = cVar.f13854c;
+            jArr[i11] = cVar.f13852b;
+            jArr[i11 + 1] = cVar.f13853c;
         }
         long[] jArr2 = (long[]) this.f512c;
         long[] copyOf = Arrays.copyOf(jArr2, jArr2.length);
@@ -665,7 +665,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
     }
 
     public h0(androidx.lifecycle.t0 store, androidx.lifecycle.s0 s0Var) {
-        this(store, s0Var, v1.a.f49985b);
+        this(store, s0Var, v1.a.f50020b);
         this.f510a = 7;
         kotlin.jvm.internal.i.e(store, "store");
     }
@@ -765,7 +765,7 @@ public final class h0 implements la.a, com.google.android.gms.common.api.interna
 
     public h0(l6.h hVar) {
         this.f510a = 6;
-        Context context = hVar.f16938a;
+        Context context = hVar.f16937a;
         this.f511b = hVar;
         int i10 = Build.VERSION.SDK_INT;
         this.f512c = i10 >= 29 ? androidx.biometric.q.b(context) : null;

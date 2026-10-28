@@ -1,14 +1,14 @@
 package fi;
 public final class ra implements wb {
-    public final ai.e f11560a;
+    public final ai.e f11559a;
 
     public ra(ai.e eVar) {
-        this.f11560a = eVar;
+        this.f11559a = eVar;
     }
 
     @Override
     public final void v(float f7, boolean z10) {
-        this.f11560a.run(Boolean.FALSE, Float.valueOf(f7));
+        this.f11559a.run(Boolean.FALSE, Float.valueOf(f7));
     }
 
     @Override

@@ -5,22 +5,22 @@ import java.util.function.Function;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.jt;
+import org.telegram.ui.lt;
 public final class g implements Function {
-    public final int f16164a;
+    public final int f16163a;
 
     public g(int i10) {
-        this.f16164a = i10;
+        this.f16163a = i10;
     }
 
     public Function andThen(Function function) {
-        int i10 = this.f16164a;
+        int i10 = this.f16163a;
         return Function$CC.$default$andThen(this, function);
     }
 
     @Override
     public final Object apply(Object obj) {
-        switch (this.f16164a) {
+        switch (this.f16163a) {
             case 0:
                 return Integer.valueOf(Integer.bitCount(((Integer) obj).intValue()));
             case 1:
@@ -40,14 +40,14 @@ public final class g implements Function {
             case 6:
                 return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
             case 7:
-                return ((jt) obj).f40743a;
+                return ((lt) obj).f41258a;
             default:
-                return ((jt) obj).f40743a;
+                return ((lt) obj).f41258a;
         }
     }
 
     public Function compose(Function function) {
-        int i10 = this.f16164a;
+        int i10 = this.f16163a;
         return Function$CC.$default$compose(this, function);
     }
 }

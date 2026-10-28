@@ -15,13 +15,13 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import w7.a0;
+import w7.b0;
 public abstract class c {
-    public static final a0.j f18924a = new a0.j(2);
-    public static final a4.d f18925b = new a4.d(28);
+    public static final a0.j f18923a = new a0.j(2);
+    public static final a4.d f18924b = new a4.d(28);
 
     public static j4.f a(Context context, List list) {
-        a0.a("FontProvider.getFontFamilyResult");
+        b0.a("FontProvider.getFontFamilyResult");
         try {
             ArrayList arrayList = new ArrayList();
             for (int i10 = 0; i10 < list.size(); i10++) {
@@ -39,20 +39,20 @@ public abstract class c {
     }
 
     public static ProviderInfo b(PackageManager packageManager, d dVar, Resources resources) {
-        a4.d dVar2 = f18925b;
-        a0.j jVar = f18924a;
-        a0.a("FontProvider.getProvider");
+        a4.d dVar2 = f18924b;
+        a0.j jVar = f18923a;
+        b0.a("FontProvider.getProvider");
         try {
             List list = dVar.d;
-            String str = dVar.f18926a;
-            String str2 = dVar.f18927b;
+            String str = dVar.f18925a;
+            String str2 = dVar.f18926b;
             if (list == null) {
                 list = h0.b.h(resources, 0);
             }
             ?? obj = new Object();
-            obj.f18921a = str;
-            obj.f18922b = str2;
-            obj.f18923c = list;
+            obj.f18920a = str;
+            obj.f18921b = str2;
+            obj.f18922c = list;
             ProviderInfo providerInfo = (ProviderInfo) jVar.a(obj);
             if (providerInfo != null) {
                 return providerInfo;
@@ -98,21 +98,21 @@ public abstract class c {
         Uri withAppendedId;
         int i12;
         boolean z10;
-        a0.a("FontProvider.query");
+        b0.a("FontProvider.query");
         try {
             ArrayList arrayList2 = new ArrayList();
             Uri build = new Uri.Builder().scheme("content").authority(str).build();
             Uri build2 = new Uri.Builder().scheme("content").authority(str).appendPath("file").build();
             if (Build.VERSION.SDK_INT < 24) {
                 ?? obj = new Object();
-                obj.f17285a = context.getContentResolver().acquireUnstableContentProviderClient(build);
+                obj.f17284a = context.getContentResolver().acquireUnstableContentProviderClient(build);
                 iVar = obj;
             } else {
                 iVar = new jg.i(context, build);
             }
             String[] strArr = {"_id", "file_id", "font_ttc_index", "font_variation_settings", "font_weight", "font_italic", "result_code"};
-            a0.a("ContentQueryWrapper.query");
-            Cursor D = iVar.D(build, strArr, new String[]{dVar.f18928c});
+            b0.a("ContentQueryWrapper.query");
+            Cursor D = iVar.D(build, strArr, new String[]{dVar.f18927c});
             Trace.endSection();
             if (D != null && D.getCount() > 0) {
                 int columnIndex = D.getColumnIndex("result_code");

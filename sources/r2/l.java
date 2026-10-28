@@ -8,7 +8,7 @@ import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import li.h5;
-import org.telegram.ui.Wallet.q6;
+import org.telegram.ui.Wallet.a6;
 public interface l {
     void d(long j10, int i10, int i11, int i12);
 
@@ -40,9 +40,9 @@ public interface l {
 
     void n(Surface surface);
 
-    void o(ArrayList arrayList);
+    void o(a6 a6Var);
 
-    void p(q6 q6Var);
+    void p(ArrayList arrayList);
 
     void q(ArrayList arrayList);
 

@@ -10,7 +10,7 @@ import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ek;
-import org.telegram.ui.kn;
+import org.telegram.ui.mn;
 public final class c3 implements ek {
     public final q4 f8451a;
 
@@ -23,10 +23,10 @@ public final class c3 implements ek {
         AccountInstance accountInstance;
         boolean z12;
         q4 q4Var = this.f8451a;
-        TL_stories.StoryItem storyItem = q4Var.D1.f8871a;
+        TL_stories.StoryItem storyItem = q4Var.D1.f8870a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = q4Var.getAccountInstance();
-            SendMessagesHelper.prepareSendingDocuments(accountInstance, (ArrayList<String>) arrayList, (ArrayList<String>) arrayList, (ArrayList<Uri>) null, str, (String) null, q4Var.f9016q1, (MessageObject) null, (MessageObject) null, storyItem, (kn) null, (MessageObject) null, z10, i10, (t0.i) null, (SendMessageChatArguments) null, 0L, false, j11);
+            SendMessagesHelper.prepareSendingDocuments(accountInstance, (ArrayList<String>) arrayList, (ArrayList<String>) arrayList, (ArrayList<Uri>) null, str, (String) null, q4Var.f9015q1, (MessageObject) null, (MessageObject) null, storyItem, (mn) null, (MessageObject) null, z10, i10, (t0.i) null, (SendMessageChatArguments) null, 0L, false, j11);
             if (j11 <= 0) {
                 z12 = true;
             } else {
@@ -42,7 +42,7 @@ public final class c3 implements ek {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
             intent.setType("*/*");
-            org.telegram.ui.ActionBar.r2 r2Var = this.f8451a.f9047y0.f9429f;
+            org.telegram.ui.ActionBar.r2 r2Var = this.f8451a.f9046y0.f9428f;
             if (r2Var.getParentActivity() == null) {
                 return;
             }

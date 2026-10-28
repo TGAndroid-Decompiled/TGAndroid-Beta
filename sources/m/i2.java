@@ -10,18 +10,18 @@ import androidx.appcompat.view.menu.ListMenuItemView;
 public final class i2 extends r1 {
     public e2 E;
     public l.m F;
-    public final int f17742x;
-    public final int f17743y;
+    public final int f17741x;
+    public final int f17742y;
 
     public i2(Context context, boolean z10) {
         super(context, z10);
         if (1 == h2.a(context.getResources().getConfiguration())) {
-            this.f17742x = 21;
-            this.f17743y = 22;
+            this.f17741x = 21;
+            this.f17742y = 22;
             return;
         }
-        this.f17742x = 22;
-        this.f17743y = 21;
+        this.f17741x = 22;
+        this.f17742y = 21;
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class i2 extends r1 {
             }
             l.m mVar2 = this.F;
             if (mVar2 != mVar) {
-                l.k kVar = hVar.f16714a;
+                l.k kVar = hVar.f16713a;
                 if (mVar2 != null) {
                     this.E.q(kVar, mVar2);
                 }
@@ -65,12 +65,12 @@ public final class i2 extends r1 {
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
         l.h hVar;
         ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i10 == this.f17742x) {
+        if (listMenuItemView != null && i10 == this.f17741x) {
             if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
                 performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
             }
             return true;
-        } else if (listMenuItemView != null && i10 == this.f17743y) {
+        } else if (listMenuItemView != null && i10 == this.f17742y) {
             setSelection(-1);
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {
@@ -78,7 +78,7 @@ public final class i2 extends r1 {
             } else {
                 hVar = (l.h) adapter;
             }
-            hVar.f16714a.c(false);
+            hVar.f16713a.c(false);
             return true;
         } else {
             return super.onKeyDown(i10, keyEvent);

@@ -2,25 +2,25 @@ package h0;
 
 import c3.h0;
 public final class k {
-    public static final k f12546k;
-    public final float f12547a;
-    public final float f12548b;
-    public final float f12549c;
+    public static final k f12545k;
+    public final float f12546a;
+    public final float f12547b;
+    public final float f12548c;
     public final float d;
     public final float e;
-    public final float f12550f;
-    public final float[] f12551g;
+    public final float f12549f;
+    public final float[] f12550g;
     public final float h;
-    public final float f12552i;
-    public final float f12553j;
+    public final float f12551i;
+    public final float f12552j;
 
     static {
         float f7;
         float[] fArr;
         float j10 = (float) ((b.j() * 63.66197723675813d) / 100.0d);
-        float[] fArr2 = b.f12528c;
+        float[] fArr2 = b.f12527c;
         float f10 = fArr2[0];
-        float[][] fArr3 = b.f12526a;
+        float[][] fArr3 = b.f12525a;
         float[] fArr4 = fArr3[0];
         float f11 = fArr2[1];
         float f12 = fArr4[1] * f11;
@@ -58,19 +58,19 @@ public final class k {
         float f23 = (f22 * 400.0f) / (f22 + 27.13f);
         float f24 = fArr7[2];
         float[] fArr8 = {f21, f23, (400.0f * f24) / (f24 + 27.13f)};
-        f12546k = new k(j11, h0.C(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * D) + 1.0f) - D, (((100.0f / f15) * D) + 1.0f) - D, (((100.0f / f16) * D) + 1.0f) - D}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
+        f12545k = new k(j11, h0.C(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * D) + 1.0f) - D, (((100.0f / f15) * D) + 1.0f) - D, (((100.0f / f16) * D) + 1.0f) - D}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
     }
 
     public k(float f7, float f10, float f11, float f12, float f13, float f14, float[] fArr, float f15, float f16, float f17) {
-        this.f12550f = f7;
-        this.f12547a = f10;
-        this.f12548b = f11;
-        this.f12549c = f12;
+        this.f12549f = f7;
+        this.f12546a = f10;
+        this.f12547b = f11;
+        this.f12548c = f12;
         this.d = f13;
         this.e = f14;
-        this.f12551g = fArr;
+        this.f12550g = fArr;
         this.h = f15;
-        this.f12552i = f16;
-        this.f12553j = f17;
+        this.f12551i = f16;
+        this.f12552j = f17;
     }
 }

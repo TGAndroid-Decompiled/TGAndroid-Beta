@@ -6,18 +6,18 @@ import android.view.View;
 import q7.m;
 public final class h extends View.BaseSavedState {
     public static final Parcelable.Creator<h> CREATOR = new m(21);
-    public int f49231a;
+    public int f49266a;
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("HorizontalScrollView.SavedState{");
         sb2.append(Integer.toHexString(System.identityHashCode(this)));
         sb2.append(" scrollPosition=");
-        return a1.g.n(this.f49231a, "}", sb2);
+        return a1.g.n(this.f49266a, "}", sb2);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         super.writeToParcel(parcel, i10);
-        parcel.writeInt(this.f49231a);
+        parcel.writeInt(this.f49266a);
     }
 }

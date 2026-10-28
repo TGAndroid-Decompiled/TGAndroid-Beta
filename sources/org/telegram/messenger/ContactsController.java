@@ -173,7 +173,7 @@ public class ContactsController extends BaseController {
     }
 
     public class PhoneBookContact {
-        String f19537id;
+        String f19536id;
         String lookup_key;
         String name;
         String phone;
@@ -250,7 +250,7 @@ public class ContactsController extends BaseController {
             str = user.phone;
         }
         newInsert.withValue("sync1", str);
-        newInsert.withValue("sync2", Long.valueOf(user.f22176id));
+        newInsert.withValue("sync2", Long.valueOf(user.f22177id));
         arrayList.add(newInsert.build());
         Uri uri = ContactsContract.Data.CONTENT_URI;
         ContentProviderOperation.Builder newInsert2 = ContentProviderOperation.newInsert(uri);
@@ -267,26 +267,26 @@ public class ContactsController extends BaseController {
         ContentProviderOperation.Builder newInsert3 = ContentProviderOperation.newInsert(uri);
         newInsert3.withValueBackReference("raw_contact_id", size);
         newInsert3.withValue("mimetype", "vnd.android.cursor.item/vnd.org.telegram.messenger.android.profile");
-        newInsert3.withValue("data1", Long.valueOf(user.f22176id));
+        newInsert3.withValue("data1", Long.valueOf(user.f22177id));
         newInsert3.withValue("data2", "Telegram Profile");
         newInsert3.withValue("data3", LocaleController.formatString("ContactShortcutMessage", R.string.ContactShortcutMessage, str2));
-        newInsert3.withValue("data4", Long.valueOf(user.f22176id));
+        newInsert3.withValue("data4", Long.valueOf(user.f22177id));
         arrayList.add(newInsert3.build());
         ContentProviderOperation.Builder newInsert4 = ContentProviderOperation.newInsert(uri);
         newInsert4.withValueBackReference("raw_contact_id", size);
         newInsert4.withValue("mimetype", "vnd.android.cursor.item/vnd.org.telegram.messenger.android.call");
-        newInsert4.withValue("data1", Long.valueOf(user.f22176id));
+        newInsert4.withValue("data1", Long.valueOf(user.f22177id));
         newInsert4.withValue("data2", "Telegram Voice Call");
         newInsert4.withValue("data3", LocaleController.formatString("ContactShortcutVoiceCall", R.string.ContactShortcutVoiceCall, str2));
-        newInsert4.withValue("data4", Long.valueOf(user.f22176id));
+        newInsert4.withValue("data4", Long.valueOf(user.f22177id));
         arrayList.add(newInsert4.build());
         ContentProviderOperation.Builder newInsert5 = ContentProviderOperation.newInsert(uri);
         newInsert5.withValueBackReference("raw_contact_id", size);
         newInsert5.withValue("mimetype", "vnd.android.cursor.item/vnd.org.telegram.messenger.android.call.video");
-        newInsert5.withValue("data1", Long.valueOf(user.f22176id));
+        newInsert5.withValue("data1", Long.valueOf(user.f22177id));
         newInsert5.withValue("data2", "Telegram Video Call");
         newInsert5.withValue("data3", LocaleController.formatString("ContactShortcutVideoCall", R.string.ContactShortcutVideoCall, str2));
-        newInsert5.withValue("data4", Long.valueOf(user.f22176id));
+        newInsert5.withValue("data4", Long.valueOf(user.f22177id));
         arrayList.add(newInsert5.build());
     }
 
@@ -471,6 +471,44 @@ public class ContactsController extends BaseController {
             synchronized (this.observerLock) {
                 this.ignoreChanges = false;
             }
+        }
+    }
+
+    private void deleteRawContactsFromPhoneBook(ContentResolver contentResolver, Account account, ArrayList<Long> arrayList, a0.h hVar, a0.h hVar2) {
+        synchronized (this.observerLock) {
+            this.ignoreChanges = true;
+        }
+        try {
+            Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").build();
+            if (arrayList.size() > (hVar.m() * 2) + 500) {
+                contentResolver.delete(build, "account_type=? AND account_name=? AND sync2 IS NOT NULL", new String[]{account.type, account.name});
+                for (int i10 = 0; i10 < hVar.m(); i10++) {
+                    long j10 = hVar.j(i10);
+                    if (((Long) hVar.n(i10)).equals(hVar2.f(j10))) {
+                        hVar2.l(j10);
+                    }
+                }
+            } else {
+                StringBuilder sb2 = new StringBuilder();
+                int i11 = 0;
+                while (i11 < arrayList.size()) {
+                    if (sb2.length() != 0) {
+                        sb2.append(',');
+                    }
+                    sb2.append(arrayList.get(i11));
+                    int i12 = i11 + 1;
+                    if (i12 % 500 == 0 || i11 == arrayList.size() - 1) {
+                        contentResolver.delete(build, "_id IN (" + ((Object) sb2) + ")", null);
+                        sb2.setLength(0);
+                    }
+                    i11 = i12;
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        synchronized (this.observerLock) {
+            this.ignoreChanges = false;
         }
     }
 
@@ -662,9 +700,9 @@ public class ContactsController extends BaseController {
                     z10 = true;
                 }
             }
-            if (user2.contact && this.contactsDict.get(Long.valueOf(user2.f22176id)) == null) {
+            if (user2.contact && this.contactsDict.get(Long.valueOf(user2.f22177id)) == null) {
                 TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
-                tL_contact.user_id = user2.f22176id;
+                tL_contact.user_id = user2.f22177id;
                 this.contacts.add(tL_contact);
                 this.contactsDict.put(Long.valueOf(tL_contact.user_id), tL_contact);
             }
@@ -685,7 +723,7 @@ public class ContactsController extends BaseController {
         TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
         if (userProfilePhoto != null && userProfilePhoto.personal) {
             for (int i10 = 0; i10 < updates.users.size(); i10++) {
-                if (updates.users.get(i10).f22176id == user.f22176id) {
+                if (updates.users.get(i10).f22177id == user.f22177id) {
                     updates.users.get(i10).photo = user.photo;
                 }
             }
@@ -693,10 +731,10 @@ public class ContactsController extends BaseController {
         getMessagesController().lambda$processUpdates$379(updates, false);
         for (int i11 = 0; i11 < updates.users.size(); i11++) {
             TLRPC.User user2 = updates.users.get(i11);
-            if (user2.f22176id == user.f22176id) {
+            if (user2.f22177id == user.f22177id) {
                 Utilities.phoneBookQueue.postRunnable(new j3(21, this, user2));
                 TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
-                tL_contact.user_id = user2.f22176id;
+                tL_contact.user_id = user2.f22177id;
                 ArrayList<TLRPC.TL_contact> arrayList = new ArrayList<>();
                 arrayList.add(tL_contact);
                 getMessagesStorage().putContacts(arrayList, false);
@@ -773,7 +811,7 @@ public class ContactsController extends BaseController {
                 while (true) {
                     if (i11 < 4) {
                         if (UserConfig.getInstance(i11).getCurrentUser() != null) {
-                            if (account.name.equals("" + currentUser.f22176id)) {
+                            if (account.name.equals("" + currentUser.f22177id)) {
                                 if (i11 == this.currentAccount) {
                                     this.systemAccount = account;
                                 }
@@ -850,7 +888,7 @@ public class ContactsController extends BaseController {
                         break;
                     }
                     if (UserConfig.getInstance(i10).getCurrentUser() != null) {
-                        if (account.name.equals("" + currentUser.f22176id)) {
+                        if (account.name.equals("" + currentUser.f22177id)) {
                             accountManager.removeAccount(account, null, null);
                             break;
                         }
@@ -909,7 +947,7 @@ public class ContactsController extends BaseController {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            deleteContactFromPhoneBook(((TLRPC.User) obj).f22176id);
+            deleteContactFromPhoneBook(((TLRPC.User) obj).f22177id);
         }
     }
 
@@ -921,10 +959,10 @@ public class ContactsController extends BaseController {
             Object obj = arrayList.get(i10);
             i10++;
             TLRPC.User user = (TLRPC.User) obj;
-            TLRPC.TL_contact tL_contact = this.contactsDict.get(Long.valueOf(user.f22176id));
+            TLRPC.TL_contact tL_contact = this.contactsDict.get(Long.valueOf(user.f22177id));
             if (tL_contact != null) {
                 this.contacts.remove(tL_contact);
-                this.contactsDict.remove(Long.valueOf(user.f22176id));
+                this.contactsDict.remove(Long.valueOf(user.f22177id));
                 z11 = true;
             }
         }
@@ -956,7 +994,7 @@ public class ContactsController extends BaseController {
                 }
             }
         }
-        AndroidUtilities.runOnUIThread(new ck(this, arrayList2, z10, str, 4));
+        AndroidUtilities.runOnUIThread(new dk(this, arrayList2, z10, str, 4));
     }
 
     public void lambda$deleteContactsUndoable$53(HashMap hashMap) {
@@ -965,7 +1003,7 @@ public class ContactsController extends BaseController {
             TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) entry.getValue();
             user.contact = true;
             this.contacts.add(tL_contact);
-            this.contactsDict.put(Long.valueOf(user.f22176id), tL_contact);
+            this.contactsDict.put(Long.valueOf(user.f22177id), tL_contact);
         }
         buildContactsSectionsArrays(true);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
@@ -1682,7 +1720,7 @@ public class ContactsController extends BaseController {
         for (int i12 = 0; i12 < arrayList2.size(); i12++) {
             TLRPC.User user = getMessagesController().getUser(Long.valueOf(((TLRPC.TL_contact) arrayList2.get(i12)).user_id));
             if (user != null) {
-                hVar.k(user, user.f22176id);
+                hVar.k(user, user.f22177id);
             }
         }
         Utilities.stageQueue.postRunnable(new li.p2(this, i10, arrayList2, arrayList, hVar, isEmpty));
@@ -1784,7 +1822,7 @@ public class ContactsController extends BaseController {
         Utilities.phoneBookQueue.postRunnable(new u1(this, new ArrayList(this.contacts), 1));
     }
 
-    public void lambda$performWriteContactsToPhoneBook$45(java.util.ArrayList<org.telegram.tgnet.TLRPC.TL_contact> r17) {
+    public void lambda$performWriteContactsToPhoneBook$45(java.util.ArrayList<org.telegram.tgnet.TLRPC.TL_contact> r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ContactsController.lambda$performWriteContactsToPhoneBook$45(java.util.ArrayList):void");
     }
 
@@ -1850,7 +1888,7 @@ public class ContactsController extends BaseController {
         if (z10) {
             try {
                 Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.systemAccount.name).appendQueryParameter("account_type", this.systemAccount.type).build();
-                contentResolver.delete(build, "sync2 = " + user.f22176id, null);
+                contentResolver.delete(build, "sync2 = " + user.f22177id, null);
             } catch (Exception unused) {
             }
         }
@@ -1940,7 +1978,7 @@ public class ContactsController extends BaseController {
         TLRPC.TL_contacts_deleteContacts tL_contacts_deleteContacts = new TLRPC.TL_contacts_deleteContacts();
         int size = this.contacts.size();
         for (int i10 = 0; i10 < size; i10++) {
-            tL_contacts_deleteContacts.f22071id.add(getMessagesController().getInputUser(this.contacts.get(i10).user_id));
+            tL_contacts_deleteContacts.f22072id.add(getMessagesController().getInputUser(this.contacts.get(i10).user_id));
         }
         getConnectionsManager().sendRequest(tL_contacts_deleteContacts, new x1(1, this, runnable));
     }
@@ -1980,10 +2018,10 @@ public class ContactsController extends BaseController {
             for (int i10 = 0; i10 < size; i10++) {
                 TLRPC.User user = arrayList.get(i10);
                 di.h7 storiesController = getMessagesController().getStoriesController();
-                long j10 = user.f22176id;
-                int i11 = storiesController.f8630a;
+                long j10 = user.f22177id;
+                int i11 = storiesController.f8629a;
                 ArrayList arrayList3 = storiesController.h;
-                ArrayList arrayList4 = storiesController.f8634g;
+                ArrayList arrayList4 = storiesController.f8633g;
                 int i12 = 0;
                 while (true) {
                     if (i12 >= arrayList4.size()) {
@@ -2006,15 +2044,15 @@ public class ContactsController extends BaseController {
                         i13++;
                     }
                 }
-                di.u7 u7Var = storiesController.f8637k;
-                u7Var.f9235b.getStorageQueue().postRunnable(new bi.r3(u7Var, j10, 6));
+                di.u7 u7Var = storiesController.f8636k;
+                u7Var.f9234b.getStorageQueue().postRunnable(new bi.r3(u7Var, j10, 6));
                 MessagesController.getInstance(i11).checkArchiveFolder();
                 NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                 TLRPC.InputUser inputUser = getMessagesController().getInputUser(user);
                 if (inputUser != null) {
                     user.contact = false;
-                    arrayList2.add(Long.valueOf(user.f22176id));
-                    tL_contacts_deleteContacts.f22071id.add(inputUser);
+                    arrayList2.add(Long.valueOf(user.f22177id));
+                    tL_contacts_deleteContacts.f22072id.add(inputUser);
                 }
             }
             getConnectionsManager().sendRequest(tL_contacts_deleteContacts, new jg.n0(this, arrayList2, arrayList, z10, arrayList.get(0).first_name));
@@ -2027,10 +2065,10 @@ public class ContactsController extends BaseController {
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 TLRPC.User user = arrayList.get(i10);
-                TLRPC.TL_contact tL_contact = this.contactsDict.get(Long.valueOf(user.f22176id));
+                TLRPC.TL_contact tL_contact = this.contactsDict.get(Long.valueOf(user.f22177id));
                 user.contact = false;
                 this.contacts.remove(tL_contact);
-                this.contactsDict.remove(Long.valueOf(user.f22176id));
+                this.contactsDict.remove(Long.valueOf(user.f22177id));
                 hashMap.put(user, tL_contact);
             }
             buildContactsSectionsArrays(false);
@@ -2038,10 +2076,10 @@ public class ContactsController extends BaseController {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.contactsDidLoad, new Object[0]);
             org.telegram.ui.Components.ic icVar = new org.telegram.ui.Components.ic(context, r2Var.getResourceProvider());
             icVar.setTimer();
-            icVar.f29276b.setText(LocaleController.formatPluralString("ContactsDeletedUndo", hashMap.size(), new Object[0]));
+            icVar.f29300b.setText(LocaleController.formatPluralString("ContactsDeletedUndo", hashMap.size(), new Object[0]));
             org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(context, r2Var.getResourceProvider(), true, true);
-            ocVar.f31255b = new j3(26, this, hashMap);
-            ocVar.f31256c = new u1(this, arrayList, 2);
+            ocVar.f31259b = new j3(26, this, hashMap);
+            ocVar.f31260c = new u1(this, arrayList, 2);
             icVar.setButton(ocVar);
             org.telegram.ui.Components.qc.g(r2Var, icVar, 5000).j();
         }
@@ -2059,7 +2097,7 @@ public class ContactsController extends BaseController {
                 while (true) {
                     if (i11 < 4) {
                         if (UserConfig.getInstance(i11).getCurrentUser() != null) {
-                            if (account.name.equals("" + currentUser.f22176id)) {
+                            if (account.name.equals("" + currentUser.f22177id)) {
                                 break;
                             }
                         }
@@ -2324,7 +2362,7 @@ public class ContactsController extends BaseController {
     }
 
     public void resetImportedContacts() {
-        getConnectionsManager().sendRequest(new TLRPC.TL_contacts_resetSaved(), new k5(2));
+        getConnectionsManager().sendRequest(new TLRPC.TL_contacts_resetSaved(), new l5(2));
     }
 
     public void setDeleteAccountTTL(int i10) {
@@ -2393,7 +2431,7 @@ public class ContactsController extends BaseController {
             return;
         }
         TLRPC.TL_contacts_addContact tL_contacts_addContact = new TLRPC.TL_contacts_addContact();
-        tL_contacts_addContact.f22069id = getMessagesController().getInputUser(user);
+        tL_contacts_addContact.f22070id = getMessagesController().getInputUser(user);
         tL_contacts_addContact.first_name = user.first_name;
         tL_contacts_addContact.last_name = user.last_name;
         String str = user.phone;

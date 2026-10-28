@@ -5,65 +5,65 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.IMapsProvider;
 public final class bl implements Runnable {
-    public final int f26900a;
-    public final sl f26901b;
+    public final int f26849a;
+    public final sl f26850b;
 
     public bl(sl slVar, int i10) {
-        this.f26900a = i10;
-        this.f26901b = slVar;
+        this.f26849a = i10;
+        this.f26850b = slVar;
     }
 
     @Override
     public final void run() {
         Location location;
-        switch (this.f26900a) {
+        switch (this.f26849a) {
             case 0:
-                sl slVar = this.f26901b;
-                double[] dArr = slVar.f30215b.D2;
+                sl slVar = this.f26850b;
+                double[] dArr = slVar.f30254b.D2;
                 slVar.e0(dArr[0], dArr[1]);
                 return;
             case 1:
-                sl.P(this.f26901b);
+                sl.P(this.f26850b);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new bl(this.f26901b, 3));
+                AndroidUtilities.runOnUIThread(new bl(this.f26850b, 3));
                 return;
             case 3:
-                View view = this.f26901b.K;
+                View view = this.f26850b.K;
                 view.setTag(1);
                 view.animate().alpha(0.0f).setDuration(180L).start();
                 return;
             case 4:
-                sl slVar2 = this.f26901b;
+                sl slVar2 = this.f26850b;
                 ig.s0 s0Var = slVar2.M;
-                if (slVar2.f32609q0) {
-                    slVar2.f32609q0 = false;
+                if (slVar2.f32630q0) {
+                    slVar2.f32630q0 = false;
                     return;
                 }
                 IMapsProvider.IMap iMap = slVar2.F;
-                if (iMap != null && (location = slVar2.f32607o0) != null) {
+                if (iMap != null && (location = slVar2.f32628o0) != null) {
                     location.setLatitude(iMap.getCameraPosition().target.latitude);
-                    slVar2.f32607o0.setLongitude(slVar2.F.getCameraPosition().target.longitude);
+                    slVar2.f32628o0.setLongitude(slVar2.F.getCameraPosition().target.longitude);
                 }
-                s0Var.L(slVar2.f32607o0);
+                s0Var.L(slVar2.f32628o0);
                 s0Var.I();
                 return;
             case 5:
-                pl plVar = this.f26901b.f32621y;
+                pl plVar = this.f26850b.f32642y;
                 if (plVar != null) {
                     plVar.a();
                     return;
                 }
                 return;
             case 6:
-                View view2 = this.f26901b.K;
+                View view2 = this.f26850b.K;
                 if (view2.getTag() == null) {
                     view2.animate().alpha(0.0f).setDuration(180L).start();
                     return;
                 }
                 return;
             default:
-                this.f26901b.e0(0.0d, 0.0d);
+                this.f26850b.e0(0.0d, 0.0d);
                 return;
         }
     }

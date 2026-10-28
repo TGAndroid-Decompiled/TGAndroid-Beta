@@ -4,24 +4,24 @@ import aa.m0;
 import java.util.HashMap;
 import java.util.Map;
 public final class h {
-    public final String f18329a;
-    public final Integer f18330b;
-    public final m f18331c;
+    public final String f18328a;
+    public final Integer f18329b;
+    public final m f18330c;
     public final long d;
     public final long e;
-    public final Map f18332f;
+    public final Map f18331f;
 
     public h(String str, Integer num, m mVar, long j10, long j11, HashMap hashMap) {
-        this.f18329a = str;
-        this.f18330b = num;
-        this.f18331c = mVar;
+        this.f18328a = str;
+        this.f18329b = num;
+        this.f18330c = mVar;
         this.d = j10;
         this.e = j11;
-        this.f18332f = hashMap;
+        this.f18331f = hashMap;
     }
 
     public final String a(String str) {
-        String str2 = (String) this.f18332f.get(str);
+        String str2 = (String) this.f18331f.get(str);
         if (str2 == null) {
             return "";
         }
@@ -29,7 +29,7 @@ public final class h {
     }
 
     public final int b(String str) {
-        String str2 = (String) this.f18332f.get(str);
+        String str2 = (String) this.f18331f.get(str);
         if (str2 == null) {
             return 0;
         }
@@ -38,16 +38,16 @@ public final class h {
 
     public final m0 c() {
         ?? obj = new Object();
-        String str = this.f18329a;
+        String str = this.f18328a;
         if (str != null) {
             obj.f1151b = str;
-            obj.f1152c = this.f18330b;
-            m mVar = this.f18331c;
+            obj.f1152c = this.f18329b;
+            m mVar = this.f18330c;
             if (mVar != null) {
                 obj.d = mVar;
                 obj.f1150a = Long.valueOf(this.d);
                 obj.e = Long.valueOf(this.e);
-                obj.f1153f = new HashMap(this.f18332f);
+                obj.f1153f = new HashMap(this.f18331f);
                 return obj;
             }
             throw new NullPointerException("Null encodedPayload");
@@ -62,8 +62,8 @@ public final class h {
         }
         if (obj instanceof h) {
             h hVar = (h) obj;
-            Integer num2 = hVar.f18330b;
-            if (this.f18329a.equals(hVar.f18329a) && ((num = this.f18330b) != null ? num.equals(num2) : num2 == null) && this.f18331c.equals(hVar.f18331c) && this.d == hVar.d && this.e == hVar.e && this.f18332f.equals(hVar.f18332f)) {
+            Integer num2 = hVar.f18329b;
+            if (this.f18328a.equals(hVar.f18328a) && ((num = this.f18329b) != null ? num.equals(num2) : num2 == null) && this.f18330c.equals(hVar.f18330c) && this.d == hVar.d && this.e == hVar.e && this.f18331f.equals(hVar.f18331f)) {
                 return true;
             }
         }
@@ -72,8 +72,8 @@ public final class h {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f18329a.hashCode() ^ 1000003) * 1000003;
-        Integer num = this.f18330b;
+        int hashCode2 = (this.f18328a.hashCode() ^ 1000003) * 1000003;
+        Integer num = this.f18329b;
         if (num == null) {
             hashCode = 0;
         } else {
@@ -81,10 +81,10 @@ public final class h {
         }
         long j10 = this.d;
         long j11 = this.e;
-        return ((((((((hashCode2 ^ hashCode) * 1000003) ^ this.f18331c.hashCode()) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f18332f.hashCode();
+        return ((((((((hashCode2 ^ hashCode) * 1000003) ^ this.f18330c.hashCode()) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f18331f.hashCode();
     }
 
     public final String toString() {
-        return "EventInternal{transportName=" + this.f18329a + ", code=" + this.f18330b + ", encodedPayload=" + this.f18331c + ", eventMillis=" + this.d + ", uptimeMillis=" + this.e + ", autoMetadata=" + this.f18332f + "}";
+        return "EventInternal{transportName=" + this.f18328a + ", code=" + this.f18329b + ", encodedPayload=" + this.f18330c + ", eventMillis=" + this.d + ", uptimeMillis=" + this.e + ", autoMetadata=" + this.f18331f + "}";
     }
 }

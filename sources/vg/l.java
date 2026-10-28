@@ -9,27 +9,27 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.u91;
-public final class l extends u91 {
+import org.telegram.ui.Components.v91;
+public final class l extends v91 {
     public final Path V;
     public final Paint W;
-    public boolean f50191a0;
-    public boolean f50192b0;
-    public final boolean f50193c0;
-    public final z0 f50194d0;
-    public final u6 f50195e0;
-    public final a0 f50196f0;
-    public final n f50197g0;
+    public boolean f50226a0;
+    public boolean f50227b0;
+    public final boolean f50228c0;
+    public final z0 f50229d0;
+    public final u6 f50230e0;
+    public final a0 f50231f0;
+    public final n f50232g0;
 
     public l(n nVar, Context context, z0 z0Var, u6 u6Var, a0 a0Var) {
         super(context, null);
-        this.f50197g0 = nVar;
-        this.f50194d0 = z0Var;
-        this.f50195e0 = u6Var;
-        this.f50196f0 = a0Var;
+        this.f50232g0 = nVar;
+        this.f50229d0 = z0Var;
+        this.f50230e0 = u6Var;
+        this.f50231f0 = a0Var;
         this.V = new Path();
         this.W = new Paint(1);
-        this.f50193c0 = AndroidUtilities.isTablet();
+        this.f50228c0 = AndroidUtilities.isTablet();
     }
 
     @Override
@@ -37,24 +37,24 @@ public final class l extends u91 {
         int i10;
         int i11;
         float f7;
-        n nVar = this.f50197g0;
-        l lVar = nVar.f50207b;
-        int w02 = y6.w0(y6.f23427h5, this.f50195e0);
+        n nVar = this.f50232g0;
+        l lVar = nVar.f50242b;
+        int w02 = y6.w0(y6.f23428h5, this.f50230e0);
         Paint paint = this.W;
         paint.setColor(w02);
-        if (this.f50191a0) {
+        if (this.f50226a0) {
             int i12 = -AndroidUtilities.dp(16.0f);
-            a0 a0Var = this.f50196f0;
-            int i13 = a0Var.f50135s0;
+            a0 a0Var = this.f50231f0;
+            int i13 = a0Var.f50170s0;
             if (a0Var.e.getVisibility() == 0) {
                 i10 = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
             } else {
                 i10 = 0;
             }
             int dp = AndroidUtilities.dp(10.0f) + Math.max(i12, i13 - i10);
-            z0 z0Var = this.f50194d0;
-            int i14 = z0Var.f50299t0;
-            if (z0Var.m0.f28811c == 1.0f) {
+            z0 z0Var = this.f50229d0;
+            int i14 = z0Var.f50334t0;
+            if (z0Var.m0.f28864c == 1.0f) {
                 i11 = AndroidUtilities.statusBarHeight;
             } else {
                 i11 = 0;
@@ -90,7 +90,7 @@ public final class l extends u91 {
             canvas.restore();
             return;
         }
-        if (this.f50193c0 || nVar.d) {
+        if (this.f50228c0 || nVar.d) {
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
         super.dispatchDraw(canvas);
@@ -98,7 +98,7 @@ public final class l extends u91 {
 
     @Override
     public final float getAvailableTranslationX() {
-        if (!this.f50193c0 && !this.f50197g0.d) {
+        if (!this.f50228c0 && !this.f50232g0.d) {
             return super.getAvailableTranslationX();
         }
         return getMeasuredWidth();
@@ -106,7 +106,7 @@ public final class l extends u91 {
 
     @Override
     public final boolean i(MotionEvent motionEvent) {
-        if (this.f50197g0.f50207b.getCurrentPosition() == 1) {
+        if (this.f50232g0.f50242b.getCurrentPosition() == 1) {
             return true;
         }
         return false;
@@ -115,37 +115,37 @@ public final class l extends u91 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        boolean z11 = this.f50192b0;
-        n nVar = this.f50197g0;
+        boolean z11 = this.f50227b0;
+        n nVar = this.f50232g0;
         if (z11 != nVar.isKeyboardVisible()) {
             boolean isKeyboardVisible = nVar.isKeyboardVisible();
-            this.f50192b0 = isKeyboardVisible;
+            this.f50227b0 = isKeyboardVisible;
             if (isKeyboardVisible) {
-                this.f50194d0.X(true);
+                this.f50229d0.X(true);
             }
         }
     }
 
     @Override
     public final void u() {
-        this.f50191a0 = false;
-        this.f50197g0.f50207b.invalidate();
+        this.f50226a0 = false;
+        this.f50232g0.f50242b.invalidate();
     }
 
     @Override
     public final void w(boolean z10) {
-        n nVar = this.f50197g0;
-        l lVar = nVar.f50207b;
+        n nVar = this.f50232g0;
+        l lVar = nVar.f50242b;
         float positionAnimated = lVar.getPositionAnimated();
         if (positionAnimated > 0.0f && positionAnimated < 1.0f) {
-            if (!this.f50191a0) {
-                this.f50191a0 = true;
+            if (!this.f50226a0) {
+                this.f50226a0 = true;
                 if (nVar.isKeyboardVisible()) {
-                    AndroidUtilities.hideKeyboard(nVar.f50208c.getContainerView());
+                    AndroidUtilities.hideKeyboard(nVar.f50243c.getContainerView());
                 }
             }
         } else {
-            this.f50191a0 = false;
+            this.f50226a0 = false;
         }
         lVar.invalidate();
     }

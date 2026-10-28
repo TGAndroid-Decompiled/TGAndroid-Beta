@@ -10,29 +10,29 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.BubbleActivity;
 public final class i0 extends View {
-    public final Paint f10975a;
-    public final Path f10976b;
-    public final RectF f10977c;
+    public final Paint f10974a;
+    public final Path f10975b;
+    public final RectF f10976c;
     public final Matrix d;
     public final Matrix e;
-    public final Matrix f10978f;
+    public final Matrix f10977f;
     public final Matrix h;
-    public final Matrix f10979n;
-    public final Matrix f10980r;
-    public final j0 f10981s;
+    public final Matrix f10978n;
+    public final Matrix f10979r;
+    public final j0 f10980s;
 
     public i0(j0 j0Var, Context context) {
         super(context);
-        this.f10981s = j0Var;
-        this.f10975a = new Paint(1);
-        this.f10976b = new Path();
-        this.f10977c = new RectF();
+        this.f10980s = j0Var;
+        this.f10974a = new Paint(1);
+        this.f10975b = new Path();
+        this.f10976c = new RectF();
         this.d = new Matrix();
         this.e = new Matrix();
-        this.f10978f = new Matrix();
+        this.f10977f = new Matrix();
         this.h = new Matrix();
-        this.f10979n = new Matrix();
-        this.f10980r = new Matrix();
+        this.f10978n = new Matrix();
+        this.f10979r = new Matrix();
     }
 
     private float getContainerHeight() {
@@ -42,7 +42,7 @@ public final class i0 extends View {
         } else {
             f7 = 0.0f;
         }
-        return ((getHeight() - f7) - this.f10981s.f11027f.f18852y) - AndroidUtilities.dp(32.0f);
+        return ((getHeight() - f7) - this.f10980s.f11026f.f18851y) - AndroidUtilities.dp(32.0f);
     }
 
     private float getContainerWidth() {
@@ -59,7 +59,7 @@ public final class i0 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f10981s.f11032x == null) {
+        if (this.f10980s.f11031x == null) {
             return;
         }
         b(canvas, false);

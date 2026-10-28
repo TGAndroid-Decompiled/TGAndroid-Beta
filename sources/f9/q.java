@@ -6,31 +6,31 @@ import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Map;
 public final class q extends AbstractSet {
-    public final int f10325a;
-    public final s f10326b;
+    public final int f10324a;
+    public final s f10325b;
 
     public q(s sVar, int i10) {
-        this.f10325a = i10;
-        this.f10326b = sVar;
+        this.f10324a = i10;
+        this.f10325b = sVar;
     }
 
     @Override
     public final void clear() {
-        switch (this.f10325a) {
+        switch (this.f10324a) {
             case 0:
-                this.f10326b.clear();
+                this.f10325b.clear();
                 return;
             default:
-                this.f10326b.clear();
+                this.f10325b.clear();
                 return;
         }
     }
 
     @Override
     public final boolean contains(Object obj) {
-        switch (this.f10325a) {
+        switch (this.f10324a) {
             case 0:
-                s sVar = this.f10326b;
+                s sVar = this.f10325b;
                 Map c10 = sVar.c();
                 if (c10 != null) {
                     return c10.entrySet().contains(obj);
@@ -44,22 +44,22 @@ public final class q extends AbstractSet {
                 }
                 return false;
             default:
-                return this.f10326b.containsKey(obj);
+                return this.f10325b.containsKey(obj);
         }
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f10325a) {
+        switch (this.f10324a) {
             case 0:
-                s sVar = this.f10326b;
+                s sVar = this.f10325b;
                 Map c10 = sVar.c();
                 if (c10 != null) {
                     return c10.entrySet().iterator();
                 }
                 return new p(sVar, 1);
             default:
-                s sVar2 = this.f10326b;
+                s sVar2 = this.f10325b;
                 Map c11 = sVar2.c();
                 if (c11 != null) {
                     return c11.keySet().iterator();
@@ -70,9 +70,9 @@ public final class q extends AbstractSet {
 
     @Override
     public final boolean remove(Object obj) {
-        switch (this.f10325a) {
+        switch (this.f10324a) {
             case 0:
-                s sVar = this.f10326b;
+                s sVar = this.f10325b;
                 Map c10 = sVar.c();
                 if (c10 != null) {
                     return c10.entrySet().remove(obj);
@@ -83,12 +83,12 @@ public final class q extends AbstractSet {
                         int d = sVar.d();
                         Object key = entry.getKey();
                         Object value = entry.getValue();
-                        Object obj2 = sVar.f10336a;
+                        Object obj2 = sVar.f10335a;
                         Objects.requireNonNull(obj2);
                         int r6 = o.r(key, value, d, obj2, sVar.i(), sVar.j(), sVar.k());
                         if (r6 != -1) {
                             sVar.f(r6, d);
-                            sVar.f10339f--;
+                            sVar.f10338f--;
                             sVar.e += 32;
                             return true;
                         }
@@ -96,12 +96,12 @@ public final class q extends AbstractSet {
                 }
                 return false;
             default:
-                s sVar2 = this.f10326b;
+                s sVar2 = this.f10325b;
                 Map c11 = sVar2.c();
                 if (c11 != null) {
                     return c11.keySet().remove(obj);
                 }
-                if (sVar2.h(obj) != s.f10335s) {
+                if (sVar2.h(obj) != s.f10334s) {
                     return true;
                 }
                 return false;
@@ -110,11 +110,11 @@ public final class q extends AbstractSet {
 
     @Override
     public final int size() {
-        switch (this.f10325a) {
+        switch (this.f10324a) {
             case 0:
-                return this.f10326b.size();
+                return this.f10325b.size();
             default:
-                return this.f10326b.size();
+                return this.f10325b.size();
         }
     }
 }

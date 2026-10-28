@@ -6,21 +6,21 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class da extends FrameLayout {
-    public final TextView f36493a;
-    public final ImageView f36494b;
-    public l6 f36495c;
+    public final TextView f36500a;
+    public final ImageView f36501b;
+    public m6 f36502c;
     public float d;
     public float e;
-    public boolean f36496f;
+    public boolean f36503f;
 
     public da(Context context) {
         super(context);
         setClipChildren(false);
         setClipToPadding(false);
         TextView textView = new TextView(context);
-        this.f36493a = textView;
+        this.f36500a = textView;
         textView.setSingleLine(true);
         textView.setIncludeFontPadding(false);
         textView.setGravity(21);
@@ -28,42 +28,42 @@ public final class da extends FrameLayout {
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         addView(textView);
         ImageView imageView = new ImageView(context);
-        this.f36494b = imageView;
+        this.f36501b = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setImportantForAccessibility(2);
-        addView(imageView, gb1.g(16.0f, 16));
+        addView(imageView, kb1.g(16.0f, 16));
     }
 
     public final void a() {
         float f7;
         float height = (((getHeight() * 0.5f) - AndroidUtilities.dp(19.0f)) * this.d) + AndroidUtilities.dp(19.0f);
         float width = getWidth() - (c() * 0.5f);
-        TextView textView = this.f36493a;
+        TextView textView = this.f36500a;
         textView.setPivotX(textView.getWidth());
         textView.setPivotY(textView.getHeight() * 0.5f);
         textView.setScaleX((this.d * 0.42857146f) + 1.0f);
         textView.setScaleY((this.d * 0.42857146f) + 1.0f);
         textView.setTranslationX(((getWidth() - c()) - b()) - textView.getWidth());
         textView.setTranslationY(height - (textView.getHeight() * 0.5f));
-        ImageView imageView = this.f36494b;
+        ImageView imageView = this.f36501b;
         imageView.setTranslationX(width - AndroidUtilities.dp(8.0f));
         imageView.setTranslationY(height - AndroidUtilities.dp(8.0f));
         imageView.setAlpha(1.0f - this.d);
-        l6 l6Var = this.f36495c;
-        if (l6Var != null) {
-            l6Var.setTranslationX(width - AndroidUtilities.dp(20.0f));
-            this.f36495c.setTranslationY(height - AndroidUtilities.dp(20.0f));
-            this.f36495c.setPivotX(AndroidUtilities.dp(20.0f));
-            this.f36495c.setPivotY(AndroidUtilities.dp(20.0f));
-            this.f36495c.setScaleX(((this.d * 0.4f) + 0.6f) * ((this.e * 0.12f) + 1.0f));
-            this.f36495c.setScaleY(((this.d * 0.4f) + 0.6f) * (1.0f - (this.e * 0.18f)));
-            l6 l6Var2 = this.f36495c;
-            if (this.f36496f) {
+        m6 m6Var = this.f36502c;
+        if (m6Var != null) {
+            m6Var.setTranslationX(width - AndroidUtilities.dp(20.0f));
+            this.f36502c.setTranslationY(height - AndroidUtilities.dp(20.0f));
+            this.f36502c.setPivotX(AndroidUtilities.dp(20.0f));
+            this.f36502c.setPivotY(AndroidUtilities.dp(20.0f));
+            this.f36502c.setScaleX(((this.d * 0.4f) + 0.6f) * ((this.e * 0.12f) + 1.0f));
+            this.f36502c.setScaleY(((this.d * 0.4f) + 0.6f) * (1.0f - (this.e * 0.18f)));
+            m6 m6Var2 = this.f36502c;
+            if (this.f36503f) {
                 f7 = 0.0f;
             } else {
                 f7 = this.d;
             }
-            l6Var2.setAlpha(f7);
+            m6Var2.setAlpha(f7);
         }
     }
 
@@ -77,12 +77,12 @@ public final class da extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        TextView textView = this.f36493a;
+        TextView textView = this.f36500a;
         textView.layout(0, 0, textView.getMeasuredWidth(), textView.getMeasuredHeight());
-        this.f36494b.layout(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        l6 l6Var = this.f36495c;
-        if (l6Var != null) {
-            l6Var.layout(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+        this.f36501b.layout(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        m6 m6Var = this.f36502c;
+        if (m6Var != null) {
+            m6Var.layout(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
         }
         a();
     }
@@ -91,12 +91,12 @@ public final class da extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) (Math.max(0, View.MeasureSpec.getSize(i10) - Math.round(b() + c())) / ((this.d * 0.42857146f) + 1.0f)), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824);
-        TextView textView = this.f36493a;
+        TextView textView = this.f36500a;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f36494b.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
-        l6 l6Var = this.f36495c;
-        if (l6Var != null) {
-            l6Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+        this.f36501b.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
+        m6 m6Var = this.f36502c;
+        if (m6Var != null) {
+            m6Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
         }
         setMeasuredDimension(View.resolveSize((int) Math.ceil(c() + b() + c3.h0.C(this.d, 0.42857146f, 1.0f, textView.getMeasuredWidth())), i10), View.resolveSize(AndroidUtilities.dp(40.0f), i11));
     }

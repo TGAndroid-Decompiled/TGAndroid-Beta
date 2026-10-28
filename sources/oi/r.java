@@ -2,12 +2,12 @@ package oi;
 
 import j$.util.Objects;
 public final class r {
-    public final boolean f19504a;
-    public final boolean f19505b;
+    public final boolean f19503a;
+    public final boolean f19504b;
 
     public r(boolean z10, boolean z11) {
-        this.f19504a = z10;
-        this.f19505b = z11;
+        this.f19503a = z10;
+        this.f19504b = z11;
     }
 
     public final boolean equals(Object obj) {
@@ -18,13 +18,13 @@ public final class r {
             return false;
         }
         r rVar = (r) obj;
-        if (this.f19504a == rVar.f19504a && this.f19505b == rVar.f19505b) {
+        if (this.f19503a == rVar.f19503a && this.f19504b == rVar.f19504b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f19504a), Boolean.valueOf(this.f19505b));
+        return Objects.hash(Boolean.valueOf(this.f19503a), Boolean.valueOf(this.f19504b));
     }
 }

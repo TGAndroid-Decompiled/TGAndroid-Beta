@@ -73,62 +73,62 @@ public final class w6 extends View implements p2 {
     public final v6 W;
     public final PointF W0;
     public boolean X0;
-    public u6 f11853a;
-    public boolean f11854a0;
-    public final ImageReceiver f11855b;
-    public boolean f11856b0;
-    public final ar f11857c;
-    public boolean f11858c0;
+    public u6 f11852a;
+    public boolean f11853a0;
+    public final ImageReceiver f11854b;
+    public boolean f11855b0;
+    public final ar f11856c;
+    public boolean f11857c0;
     public final Drawable d;
-    public boolean f11859d0;
+    public boolean f11858d0;
     public final Drawable e;
-    public boolean f11860e0;
-    public final Drawable f11861f;
-    public boolean f11862f0;
-    public float f11863g0;
+    public boolean f11859e0;
+    public final Drawable f11860f;
+    public boolean f11861f0;
+    public float f11862g0;
     public final Drawable h;
-    public final org.telegram.ui.Components.h6 f11864h0;
-    public float f11865i0;
-    public float f11866j0;
-    public float f11867k0;
-    public float f11868l0;
+    public final org.telegram.ui.Components.h6 f11863h0;
+    public float f11864i0;
+    public float f11865j0;
+    public float f11866k0;
+    public float f11867l0;
     public final org.telegram.ui.Components.h6 m0;
-    public final Drawable f11869n;
-    public float f11870n0;
-    public boolean f11871o0;
-    public final org.telegram.ui.Components.h6 f11872p0;
-    public final org.telegram.ui.Components.h6 f11873q0;
-    public final Paint f11874r;
-    public boolean f11875r0;
-    public final Paint f11876s;
-    public final float[] f11877s0;
-    public final org.telegram.ui.Components.h6 f11878t0;
-    public boolean f11879u0;
+    public final Drawable f11868n;
+    public float f11869n0;
+    public boolean f11870o0;
+    public final org.telegram.ui.Components.h6 f11871p0;
+    public final org.telegram.ui.Components.h6 f11872q0;
+    public final Paint f11873r;
+    public boolean f11874r0;
+    public final Paint f11875s;
+    public final float[] f11876s0;
+    public final org.telegram.ui.Components.h6 f11877t0;
+    public boolean f11878u0;
     public final Paint v;
-    public long f11880v0;
-    public final Paint f11881w;
-    public boolean f11882w0;
-    public final Paint f11883x;
-    public boolean f11884x0;
-    public final Paint f11885y;
-    public float f11886y0;
-    public boolean f11887z0;
+    public long f11879v0;
+    public final Paint f11880w;
+    public boolean f11881w0;
+    public final Paint f11882x;
+    public boolean f11883x0;
+    public final Paint f11884y;
+    public float f11885y0;
+    public boolean f11886z0;
 
     public w6(Activity activity) {
         super(activity);
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f11855b = imageReceiver;
-        this.f11874r = new Paint(1);
+        this.f11854b = imageReceiver;
+        this.f11873r = new Paint(1);
         Paint paint = new Paint(1);
-        this.f11876s = paint;
+        this.f11875s = paint;
         Paint paint2 = new Paint(1);
         this.v = paint2;
         Paint paint3 = new Paint(1);
-        this.f11881w = paint3;
+        this.f11880w = paint3;
         Paint paint4 = new Paint(1);
-        this.f11883x = paint4;
+        this.f11882x = paint4;
         Paint paint5 = new Paint(1);
-        this.f11885y = paint5;
+        this.f11884y = paint5;
         Paint paint6 = new Paint(1);
         this.E = paint6;
         Paint paint7 = new Paint(1);
@@ -147,17 +147,17 @@ public final class w6 extends View implements p2 {
         this.T = new PointF(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
         this.U = new PointF(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
         this.V = new PointF(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
-        this.f11864h0 = new org.telegram.ui.Components.h6(this, 0L, 200L, ds.f27586f);
+        this.f11863h0 = new org.telegram.ui.Components.h6(this, 0L, 200L, ds.f27530f);
         this.m0 = new org.telegram.ui.Components.h6(this, 0L, 350L, dsVar);
-        this.f11870n0 = -1.0f;
-        this.f11871o0 = true;
-        this.f11872p0 = new org.telegram.ui.Components.h6(this, 0L, 350L, dsVar);
-        this.f11873q0 = new org.telegram.ui.Components.h6(this, 0L, 850L, dsVar);
-        this.f11877s0 = new float[2];
-        this.f11878t0 = new org.telegram.ui.Components.h6(this, 0L, 350L, dsVar);
+        this.f11869n0 = -1.0f;
+        this.f11870o0 = true;
+        this.f11871p0 = new org.telegram.ui.Components.h6(this, 0L, 350L, dsVar);
+        this.f11872q0 = new org.telegram.ui.Components.h6(this, 0L, 850L, dsVar);
+        this.f11876s0 = new float[2];
+        this.f11877t0 = new org.telegram.ui.Components.h6(this, 0L, 350L, dsVar);
         this.B0 = new org.telegram.ui.Components.h6(this, 0L, 350L, dsVar);
         this.C0 = new org.telegram.ui.Components.h6(this, 0L, 650L, dsVar);
-        this.D0 = new org.telegram.ui.Components.h6(this, 0L, 160L, ds.f27588i);
+        this.D0 = new org.telegram.ui.Components.h6(this, 0L, 160L, ds.f27532i);
         this.E0 = new org.telegram.ui.Components.h6(this, 0L, 750L, dsVar);
         this.F0 = new org.telegram.ui.Components.h6(this, 0L, 650L, dsVar);
         this.G0 = new org.telegram.ui.Components.h6(this, 0L, 320L, dsVar);
@@ -215,12 +215,12 @@ public final class w6 extends View implements p2 {
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         ar arVar = new ar(org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
-        this.f11857c = arVar;
-        arVar.f26599w = false;
+        this.f11856c = arVar;
+        arVar.f26646w = false;
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
         arVar.e = dp;
-        arVar.f26595f = dp2;
+        arVar.f26642f = dp2;
         Drawable mutate2 = activity.getResources().getDrawable(R.drawable.msg_photo_switch2).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -228,13 +228,13 @@ public final class w6 extends View implements p2 {
         this.e = mutate3;
         mutate3.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
         Drawable mutate4 = activity.getResources().getDrawable(R.drawable.msg_filled_unlockedrecord).mutate();
-        this.f11861f = mutate4;
+        this.f11860f = mutate4;
         mutate4.setColorFilter(new PorterDuffColorFilter(-1, mode));
         Drawable mutate5 = activity.getResources().getDrawable(R.drawable.msg_filled_lockedrecord).mutate();
         this.h = mutate5;
         mutate5.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
         Drawable mutate6 = activity.getResources().getDrawable(R.drawable.msg_round_pause_m).mutate();
-        this.f11869n = mutate6;
+        this.f11868n = mutate6;
         mutate6.setColorFilter(new PorterDuffColorFilter(-1, mode));
         h();
     }
@@ -258,7 +258,7 @@ public final class w6 extends View implements p2 {
     }
 
     public final boolean c(float f7, float f10, float f11, float f12, float f13, boolean z10) {
-        if (this.f11875r0) {
+        if (this.f11874r0) {
             if ((!z10 || f12 - f10 <= AndroidUtilities.dp(100.0f)) && Math.abs(f11 - f7) <= f13) {
                 return true;
             }
@@ -277,7 +277,7 @@ public final class w6 extends View implements p2 {
         } else {
             j10 = 310;
         }
-        this.N.f28813g = j10;
+        this.N.f28866g = j10;
         this.M += f7;
         invalidate();
     }
@@ -298,7 +298,7 @@ public final class w6 extends View implements p2 {
         }
         this.H0 = f7;
         if (!z10) {
-            if (f7 > 0.0f && !this.f11875r0) {
+            if (f7 > 0.0f && !this.f11874r0) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -310,9 +310,9 @@ public final class w6 extends View implements p2 {
     }
 
     public final void g(boolean z10) {
-        this.f11879u0 = false;
+        this.f11878u0 = false;
         if (!z10) {
-            org.telegram.ui.Components.h6 h6Var = this.f11878t0;
+            org.telegram.ui.Components.h6 h6Var = this.f11877t0;
             h6Var.getClass();
             h6Var.d(0.0f, true);
         }
@@ -323,14 +323,14 @@ public final class w6 extends View implements p2 {
         MediaController.PhotoEntry photoEntry;
         String str;
         ArrayList<MediaController.PhotoEntry> arrayList;
-        u6 u6Var = this.f11853a;
-        ImageReceiver imageReceiver = this.f11855b;
+        u6 u6Var = this.f11852a;
+        ImageReceiver imageReceiver = this.f11854b;
         if (u6Var != null) {
             u6Var.getClass();
-            ArrayList arrayList2 = MessagesController.getInstance(imageReceiver.getCurrentAccount()).getStoriesController().f8648w.f10498b;
+            ArrayList arrayList2 = MessagesController.getInstance(imageReceiver.getCurrentAccount()).getStoriesController().f8647w.f10497b;
             imageReceiver.setOrientation(0, 0, true);
             if (arrayList2 != null && !arrayList2.isEmpty() && ((w7) arrayList2.get(0)).O0 != null) {
-                this.f11855b.setImage(ImageLocation.getForPath(((w7) arrayList2.get(0)).O0.getAbsolutePath()), "80_80", null, null, this.f11857c, 0L, null, null, 0);
+                this.f11854b.setImage(ImageLocation.getForPath(((w7) arrayList2.get(0)).O0.getAbsolutePath()), "80_80", null, null, this.f11856c, 0L, null, null, 0);
                 return;
             }
         }
@@ -341,28 +341,28 @@ public final class w6 extends View implements p2 {
             photoEntry = null;
         }
         if (photoEntry != null && (str = photoEntry.thumbPath) != null) {
-            this.f11855b.setImage(ImageLocation.getForPath(str), "80_80", null, null, this.f11857c, 0L, null, null, 0);
+            this.f11854b.setImage(ImageLocation.getForPath(str), "80_80", null, null, this.f11856c, 0L, null, null, 0);
         } else if (photoEntry != null && photoEntry.path != null) {
             if (photoEntry.isVideo) {
-                this.f11855b.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "80_80", null, null, this.f11857c, 0L, null, null, 0);
+                this.f11854b.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "80_80", null, null, this.f11856c, 0L, null, null, 0);
                 return;
             }
             imageReceiver.setOrientation(photoEntry.orientation, photoEntry.invert, true);
-            this.f11855b.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "80_80", null, null, this.f11857c, 0L, null, null, 0);
+            this.f11854b.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "80_80", null, null, this.f11856c, 0L, null, null, 0);
         } else {
-            imageReceiver.setImageBitmap(this.f11857c);
+            imageReceiver.setImageBitmap(this.f11856c);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f11855b.onAttachedToWindow();
+        this.f11854b.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f11855b.onDetachedFromWindow();
+        this.f11854b.onDetachedFromWindow();
         super.onDetachedFromWindow();
     }
 
@@ -376,27 +376,27 @@ public final class w6 extends View implements p2 {
         int size = View.MeasureSpec.getSize(i10);
         int dp = AndroidUtilities.dp(100.0f);
         float f7 = size;
-        this.f11865i0 = f7 / 2.0f;
-        this.f11866j0 = dp / 2.0f;
+        this.f11864i0 = f7 / 2.0f;
+        this.f11865j0 = dp / 2.0f;
         float min = Math.min(AndroidUtilities.dp(135.0f), f7 * 0.35f);
-        float f10 = this.f11865i0;
-        this.f11867k0 = f10 - min;
+        float f10 = this.f11864i0;
+        this.f11866k0 = f10 - min;
         float f11 = f10 + min;
-        this.f11868l0 = f11;
-        float f12 = this.f11866j0;
+        this.f11867l0 = f11;
+        float f12 = this.f11865j0;
         float dp2 = AndroidUtilities.dp(14.0f);
         this.d.setBounds((int) (f11 - dp2), (int) (f12 - dp2), (int) (f11 + dp2), (int) (f12 + dp2));
-        float f13 = this.f11868l0;
-        float f14 = this.f11866j0;
+        float f13 = this.f11867l0;
+        float f14 = this.f11865j0;
         float dp3 = AndroidUtilities.dp(14.0f);
         this.e.setBounds((int) (f13 - dp3), (int) (f14 - dp3), (int) (f13 + dp3), (int) (f14 + dp3));
-        f(this.f11861f, this.f11867k0, this.f11866j0);
-        f(this.h, this.f11867k0, this.f11866j0);
-        f(this.f11869n, this.f11867k0, this.f11866j0);
-        this.f11855b.setImageCoords(this.f11867k0 - AndroidUtilities.dp(20.0f), this.f11866j0 - AndroidUtilities.dp(20.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+        f(this.f11860f, this.f11866k0, this.f11865j0);
+        f(this.h, this.f11866k0, this.f11865j0);
+        f(this.f11868n, this.f11866k0, this.f11865j0);
+        this.f11854b.setImageCoords(this.f11866k0 - AndroidUtilities.dp(20.0f), this.f11865j0 - AndroidUtilities.dp(20.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
         Matrix matrix = this.H;
         matrix.reset();
-        matrix.postTranslate(this.f11865i0, this.f11866j0);
+        matrix.postTranslate(this.f11864i0, this.f11865j0);
         this.I.setLocalMatrix(matrix);
         setMeasuredDimension(size, dp);
         v6 v6Var = this.W;
@@ -410,10 +410,10 @@ public final class w6 extends View implements p2 {
         boolean z10;
         boolean z11;
         int action = motionEvent.getAction();
-        float clamp = Utilities.clamp(motionEvent.getX() + 0.0f, this.f11868l0, this.f11867k0);
+        float clamp = Utilities.clamp(motionEvent.getX() + 0.0f, this.f11867l0, this.f11866k0);
         float y3 = motionEvent.getY() + 0.0f;
-        boolean c10 = c(clamp, y3, this.f11868l0, this.f11866j0, AndroidUtilities.dp(7.0f), true);
-        boolean z12 = this.f11879u0;
+        boolean c10 = c(clamp, y3, this.f11867l0, this.f11865j0, AndroidUtilities.dp(7.0f), true);
+        boolean z12 = this.f11878u0;
         xc xcVar = this.L;
         xc xcVar2 = this.J;
         xc xcVar3 = this.K;
@@ -423,15 +423,15 @@ public final class w6 extends View implements p2 {
             xcVar2.c(false);
             xcVar3.c(false);
             xcVar.c(false);
-        } else if (action == 0 || this.f11882w0) {
-            xcVar2.c(c(clamp, y3, this.f11865i0, this.f11866j0, AndroidUtilities.dp(60.0f), false));
-            if (c(clamp, y3, this.f11868l0, this.f11866j0, AndroidUtilities.dp(30.0f), true) && !b()) {
+        } else if (action == 0 || this.f11881w0) {
+            xcVar2.c(c(clamp, y3, this.f11864i0, this.f11865j0, AndroidUtilities.dp(60.0f), false));
+            if (c(clamp, y3, this.f11867l0, this.f11865j0, AndroidUtilities.dp(30.0f), true) && !b()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             xcVar3.c(z10);
-            if (c(clamp, y3, this.f11867k0, this.f11866j0, AndroidUtilities.dp(30.0f), false) && !b()) {
+            if (c(clamp, y3, this.f11866k0, this.f11865j0, AndroidUtilities.dp(30.0f), false) && !b()) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -441,30 +441,30 @@ public final class w6 extends View implements p2 {
         t6 t6Var = this.M0;
         t6 t6Var2 = this.L0;
         if (action == 0) {
-            this.f11882w0 = true;
-            if (xcVar2.f34690i || xcVar3.f34690i) {
+            this.f11881w0 = true;
+            if (xcVar2.f34725i || xcVar3.f34725i) {
                 z14 = true;
             }
-            this.f11884x0 = z14;
+            this.f11883x0 = z14;
             System.currentTimeMillis();
-            this.f11886y0 = clamp;
-            if (Math.abs(clamp - this.f11865i0) < AndroidUtilities.dp(50.0f)) {
+            this.f11885y0 = clamp;
+            if (Math.abs(clamp - this.f11864i0) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(t6Var2, ViewConfiguration.getLongPressTimeout());
             }
-            if (xcVar3.f34690i) {
+            if (xcVar3.f34725i) {
                 AndroidUtilities.runOnUIThread(t6Var, ViewConfiguration.getLongPressTimeout());
             }
         } else if (action == 2) {
-            if (this.f11882w0) {
-                this.f11886y0 = Utilities.clamp(clamp, this.f11868l0, this.f11867k0);
+            if (this.f11881w0) {
+                this.f11885y0 = Utilities.clamp(clamp, this.f11867l0, this.f11866k0);
                 invalidate();
-                if (this.f11875r0 && !this.X0 && c10) {
+                if (this.f11874r0 && !this.X0 && c10) {
                     d(180.0f);
-                    ((ma) this.f11853a).b();
+                    ((ma) this.f11852a).b();
                 }
-                if (this.f11875r0 && this.f11887z0) {
-                    float clamp2 = Utilities.clamp(((this.f11866j0 - AndroidUtilities.dp(48.0f)) - y3) / (AndroidUtilities.displaySize.y / 2.0f), 1.0f, 0.0f);
-                    sb sbVar = ((ma) this.f11853a).f11270a;
+                if (this.f11874r0 && this.f11886z0) {
+                    float clamp2 = Utilities.clamp(((this.f11865j0 - AndroidUtilities.dp(48.0f)) - y3) / (AndroidUtilities.displaySize.y / 2.0f), 1.0f, 0.0f);
+                    sb sbVar = ((ma) this.f11852a).f11269a;
                     sbVar.V0.b(clamp2, true);
                     sbVar.i0(false);
                 }
@@ -473,50 +473,50 @@ public final class w6 extends View implements p2 {
         } else if (action != 1 && action != 3) {
             z13 = false;
         } else {
-            if (this.f11882w0) {
-                this.f11882w0 = false;
-                this.f11884x0 = false;
+            if (this.f11881w0) {
+                this.f11881w0 = false;
+                this.f11883x0 = false;
                 AndroidUtilities.cancelRunOnUIThread(t6Var2);
                 AndroidUtilities.cancelRunOnUIThread(t6Var);
-                boolean z15 = this.f11875r0;
-                if (!z15 && xcVar.f34690i) {
-                    ((ma) this.f11853a).c();
-                } else if (z15 && this.f11887z0) {
-                    if (xcVar.f34690i) {
-                        this.f11887z0 = false;
+                boolean z15 = this.f11874r0;
+                if (!z15 && xcVar.f34725i) {
+                    ((ma) this.f11852a).c();
+                } else if (z15 && this.f11886z0) {
+                    if (xcVar.f34725i) {
+                        this.f11886z0 = false;
                         this.G0.d(1.0f, true);
-                        t3 t3Var = ((ma) this.f11853a).f11270a.T0;
-                        t3Var.f11704a.t(LocaleController.getString(R.string.StoryHintPinchToZoom), true, true);
+                        t3 t3Var = ((ma) this.f11852a).f11269a.T0;
+                        t3Var.f11703a.t(LocaleController.getString(R.string.StoryHintPinchToZoom), true, true);
                         t3Var.invalidate();
                     } else {
-                        this.f11875r0 = false;
-                        this.f11880v0 = SystemClock.elapsedRealtime();
-                        this.f11879u0 = true;
-                        ((ma) this.f11853a).e(false);
+                        this.f11874r0 = false;
+                        this.f11879v0 = SystemClock.elapsedRealtime();
+                        this.f11878u0 = true;
+                        ((ma) this.f11852a).e(false);
                     }
-                } else if (xcVar2.f34690i) {
+                } else if (xcVar2.f34725i) {
                     if (b()) {
-                        ((ma) this.f11853a).a();
-                    } else if (!this.f11871o0 && !this.f11875r0 && !this.f11887z0) {
-                        ((ma) this.f11853a).d();
-                    } else if (!this.f11875r0) {
-                        if (sb.c(((ma) this.f11853a).f11270a)) {
+                        ((ma) this.f11852a).a();
+                    } else if (!this.f11870o0 && !this.f11874r0 && !this.f11886z0) {
+                        ((ma) this.f11852a).d();
+                    } else if (!this.f11874r0) {
+                        if (sb.c(((ma) this.f11852a).f11269a)) {
                             this.R = 0L;
                             this.Q = System.currentTimeMillis();
                             this.A0 = false;
-                            ((ma) this.f11853a).f(new t6(this, 1), false);
+                            ((ma) this.f11852a).f(new t6(this, 1), false);
                         }
                     } else {
-                        this.f11875r0 = false;
-                        this.f11880v0 = SystemClock.elapsedRealtime();
-                        this.f11879u0 = true;
-                        ((ma) this.f11853a).e(false);
+                        this.f11874r0 = false;
+                        this.f11879v0 = SystemClock.elapsedRealtime();
+                        this.f11878u0 = true;
+                        ((ma) this.f11852a).e(false);
                     }
                 }
-                this.f11887z0 = false;
-                if (xcVar3.f34690i) {
+                this.f11886z0 = false;
+                if (xcVar3.f34725i) {
                     d(180.0f);
-                    ((ma) this.f11853a).b();
+                    ((ma) this.f11852a).b();
                 }
                 xcVar2.c(false);
                 xcVar3.c(false);
@@ -530,7 +530,7 @@ public final class w6 extends View implements p2 {
     }
 
     public void setDelegate(u6 u6Var) {
-        this.f11853a = u6Var;
+        this.f11852a = u6Var;
     }
 
     public void setDual(boolean z10) {
@@ -542,13 +542,13 @@ public final class w6 extends View implements p2 {
 
     @Override
     public void setInvert(float f7) {
-        this.f11876s.setColor(i0.a.f(f7, -1, -16777216));
-        this.f11881w.setColor(i0.a.f(f7, 1677721600, 369098752));
+        this.f11875s.setColor(i0.a.f(f7, -1, -16777216));
+        this.f11880w.setColor(i0.a.f(f7, 1677721600, 369098752));
         this.E.setColor(i0.a.f(f7, 1493172223, 285212671));
         this.F.setColor(i0.a.f(f7, 402653184, 805306368));
         int f10 = i0.a.f(f7, -1, -16777216);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         this.d.setColorFilter(new PorterDuffColorFilter(f10, mode));
-        this.f11861f.setColorFilter(new PorterDuffColorFilter(i0.a.f(f7, -1, -16777216), mode));
+        this.f11860f.setColorFilter(new PorterDuffColorFilter(i0.a.f(f7, -1, -16777216), mode));
     }
 }

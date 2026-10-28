@@ -4,31 +4,31 @@ import j$.time.LocalDate;
 import j$.time.ZoneOffset;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.id0;
-import org.telegram.ui.Components.wl0;
-public final class w implements e2.o, e9.k, e2.j, wl0, id0 {
-    public final int f13781a;
-    public final int f13782b;
+import org.telegram.ui.Components.jd0;
+import org.telegram.ui.Components.xl0;
+public final class w implements e2.o, e9.k, e2.j, xl0, jd0 {
+    public final int f13780a;
+    public final int f13781b;
 
     public w(int i10, int i11) {
-        this.f13781a = i11;
-        this.f13782b = i10;
+        this.f13780a = i11;
+        this.f13781b = i10;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f13781a) {
+        switch (this.f13780a) {
             case 3:
-                ((m4.n1) obj).g0(this.f13782b);
+                ((m4.n1) obj).g0(this.f13781b);
                 return;
             case 4:
-                ((m4.n1) obj).M(this.f13782b);
+                ((m4.n1) obj).M(this.f13781b);
                 return;
             case 5:
-                ((m4.n1) obj).j(this.f13782b);
+                ((m4.n1) obj).j(this.f13781b);
                 return;
             default:
-                ((m4.n1) obj).G0(this.f13782b);
+                ((m4.n1) obj).G0(this.f13781b);
                 return;
         }
     }
@@ -36,13 +36,13 @@ public final class w implements e2.o, e9.k, e2.j, wl0, id0 {
     @Override
     public Object apply(Object obj) {
         Integer num = (Integer) obj;
-        return Integer.valueOf(this.f13782b);
+        return Integer.valueOf(this.f13781b);
     }
 
     @Override
     public String f(int i10) {
-        int i11 = this.f13781a;
-        int i12 = this.f13782b;
+        int i11 = this.f13780a;
+        int i12 = this.f13781b;
         switch (i11) {
             case 8:
                 if (i10 == 0) {
@@ -65,18 +65,18 @@ public final class w implements e2.o, e9.k, e2.j, wl0, id0 {
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f13781a) {
+        switch (this.f13780a) {
             case 0:
-                ((b2.e1) obj).onRepeatModeChanged(this.f13782b);
+                ((b2.e1) obj).onRepeatModeChanged(this.f13781b);
                 return;
             default:
-                ((b2.e1) obj).onAudioSessionIdChanged(this.f13782b);
+                ((b2.e1) obj).onAudioSessionIdChanged(this.f13781b);
                 return;
         }
     }
 
     @Override
     public int run() {
-        return this.f13782b;
+        return this.f13781b;
     }
 }

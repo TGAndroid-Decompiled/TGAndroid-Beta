@@ -13,10 +13,10 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class s implements Comparator {
-    public final int f21187a;
+    public final int f21160a;
 
     public s(int i10) {
-        this.f21187a = i10;
+        this.f21160a = i10;
     }
 
     @Override
@@ -43,13 +43,13 @@ public final class s implements Comparator {
         int lambda$processLoadedMessages$189;
         int lambda$processLoadedMessages$190;
         int lambda$processLoadedMessages$191;
-        int lambda$getMessagesInternal$162;
+        int lambda$getMessagesInternal$163;
         int lambda$processLoadedFilterPeersInternal$73;
         int lambda$loadDialogFilters$69;
-        int lambda$localSearch$263;
+        int lambda$localSearch$264;
         int lambda$quotesFor$0;
         int lambda$updatePinnedOrder$4;
-        switch (this.f21187a) {
+        switch (this.f21160a) {
             case 0:
                 lambda$pruneOverlaps$10 = AndroidUtilities.lambda$pruneOverlaps$10((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
                 return lambda$pruneOverlaps$10;
@@ -119,8 +119,8 @@ public final class s implements Comparator {
                 lambda$processLoadedMessages$191 = MessagesController.lambda$processLoadedMessages$191((MessageObject) obj, (MessageObject) obj2);
                 return lambda$processLoadedMessages$191;
             case 23:
-                lambda$getMessagesInternal$162 = MessagesStorage.lambda$getMessagesInternal$162((TLRPC.Message) obj, (TLRPC.Message) obj2);
-                return lambda$getMessagesInternal$162;
+                lambda$getMessagesInternal$163 = MessagesStorage.lambda$getMessagesInternal$163((TLRPC.Message) obj, (TLRPC.Message) obj2);
+                return lambda$getMessagesInternal$163;
             case 24:
                 lambda$processLoadedFilterPeersInternal$73 = MessagesStorage.lambda$processLoadedFilterPeersInternal$73((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
                 return lambda$processLoadedFilterPeersInternal$73;
@@ -128,8 +128,8 @@ public final class s implements Comparator {
                 lambda$loadDialogFilters$69 = MessagesStorage.lambda$loadDialogFilters$69((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
                 return lambda$loadDialogFilters$69;
             case 26:
-                lambda$localSearch$263 = MessagesStorage.lambda$localSearch$263((ig.c0) obj, (ig.c0) obj2);
-                return lambda$localSearch$263;
+                lambda$localSearch$264 = MessagesStorage.lambda$localSearch$264((ig.c0) obj, (ig.c0) obj2);
+                return lambda$localSearch$264;
             case 27:
                 return ProxyRotationController.a((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
             case 28:

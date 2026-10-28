@@ -8,12 +8,12 @@ public final class x1 extends l0 {
     public static final x1 h = new x1(null, new Object[0], 0);
     public final transient Object d;
     public final transient Object[] e;
-    public final transient int f10359f;
+    public final transient int f10358f;
 
     public x1(Object obj, Object[] objArr, int i10) {
         this.d = obj;
         this.e = objArr;
-        this.f10359f = i10;
+        this.f10358f = i10;
     }
 
     public static x1 f(int i10, Object[] objArr, ng ngVar) {
@@ -254,22 +254,22 @@ public final class x1 extends l0 {
 
     @Override
     public final u1 b() {
-        return new u1(this, this.e, 0, this.f10359f);
+        return new u1(this, this.e, 0, this.f10358f);
     }
 
     @Override
     public final v1 c() {
-        return new v1(this, new w1(0, this.f10359f, this.e));
+        return new v1(this, new w1(0, this.f10358f, this.e));
     }
 
     @Override
     public final d0 d() {
-        return new w1(1, this.f10359f, this.e);
+        return new w1(1, this.f10358f, this.e);
     }
 
     @Override
     public final Object get(Object obj) {
-        Object h10 = h(this.d, this.e, this.f10359f, 0, obj);
+        Object h10 = h(this.d, this.e, this.f10358f, 0, obj);
         if (h10 == null) {
             return null;
         }
@@ -278,6 +278,6 @@ public final class x1 extends l0 {
 
     @Override
     public final int size() {
-        return this.f10359f;
+        return this.f10358f;
     }
 }

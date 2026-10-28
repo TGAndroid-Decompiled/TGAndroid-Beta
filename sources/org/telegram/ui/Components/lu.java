@@ -44,7 +44,7 @@ public abstract class lu extends EditText {
     protected float offsetY;
     private Path path;
     private boolean postedSpoilerTimeout;
-    private ArrayList<oj0> quoteBlocks;
+    private ArrayList<pj0> quoteBlocks;
     private boolean quoteBlocksUpdating;
     public int quoteColor;
     private boolean[] quoteUpdateLayout;
@@ -58,7 +58,7 @@ public abstract class lu extends EditText {
     private Stack<xh.g> spoilersPool;
     public boolean suppressOnTextChanged;
     public boolean wrapCanvasToFixClipping;
-    private fd0 wrappedCanvas;
+    private gd0 wrappedCanvas;
 
     public lu(Context context) {
         super(context, null, 0, R.style.EditTextNoBackgroundStyle);
@@ -82,7 +82,7 @@ public abstract class lu extends EditText {
         luVar.isSpoilersRevealed = false;
         luVar.invalidateSpoilers();
         if (!luVar.spoilers.isEmpty()) {
-            luVar.spoilers.get(0).f51873q = new ku(luVar, 3);
+            luVar.spoilers.get(0).f51931q = new ku(luVar, 3);
             float sqrt = (float) Math.sqrt(Math.pow(luVar.getHeight(), 2.0d) + Math.pow(luVar.getWidth(), 2.0d));
             for (xh.g gVar : luVar.spoilers) {
                 gVar.j(luVar.lastRippleX, luVar.lastRippleY, sqrt, true);
@@ -107,7 +107,7 @@ public abstract class lu extends EditText {
 
     public final void b() {
         CharSequence charSequence;
-        z11[] z11VarArr;
+        a21[] a21VarArr;
         int i10;
         int i11;
         if (getLayout() != null) {
@@ -118,10 +118,10 @@ public abstract class lu extends EditText {
         boolean z10 = false;
         if (charSequence instanceof Spannable) {
             Spannable spannable = (Spannable) charSequence;
-            for (z11 z11Var : (z11[]) spannable.getSpans(0, spannable.length(), z11.class)) {
-                int spanStart = spannable.getSpanStart(z11Var);
-                int spanEnd = spannable.getSpanEnd(z11Var);
-                if (z11Var.c() && ((spanStart > (i10 = this.selStart) && spanEnd < this.selEnd) || ((i10 > spanStart && i10 < spanEnd) || ((i11 = this.selEnd) > spanStart && i11 < spanEnd)))) {
+            for (a21 a21Var : (a21[]) spannable.getSpans(0, spannable.length(), a21.class)) {
+                int spanStart = spannable.getSpanStart(a21Var);
+                int spanEnd = spannable.getSpanEnd(a21Var);
+                if (a21Var.c() && ((spanStart > (i10 = this.selStart) && spanEnd < this.selEnd) || ((i10 > spanStart && i10 < spanEnd) || ((i11 = this.selEnd) > spanStart && i11 < spanEnd)))) {
                     removeCallbacks(this.spoilerTimeout);
                     this.postedSpoilerTimeout = false;
                     z10 = true;
@@ -142,7 +142,7 @@ public abstract class lu extends EditText {
             this.postedSpoilerTimeout = false;
             removeCallbacks(this.spoilerTimeout);
             setSpoilersRevealed(true, false);
-            gVar.f51873q = new ku(this, 0);
+            gVar.f51931q = new ku(this, 0);
             float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
             for (xh.g gVar2 : this.spoilers) {
                 gVar2.j(f7, f10, sqrt, false);
@@ -154,11 +154,11 @@ public abstract class lu extends EditText {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         boolean z11;
-        sj0 sj0Var;
+        tj0 tj0Var;
         boolean z12;
         xh.l lVar;
         int paddingTop = getPaddingTop() - getScrollY();
-        ArrayList<oj0> arrayList = this.quoteBlocks;
+        ArrayList<pj0> arrayList = this.quoteBlocks;
         if (arrayList == null) {
             z10 = false;
         } else {
@@ -166,32 +166,32 @@ public abstract class lu extends EditText {
             z10 = false;
             int i10 = 0;
             while (i10 < size) {
-                oj0 oj0Var = arrayList.get(i10);
+                pj0 pj0Var = arrayList.get(i10);
                 i10++;
-                oj0 oj0Var2 = oj0Var;
-                jj0 jj0Var = oj0Var2.e.J;
-                if (oj0Var2.b() && oj0Var2.f31318g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
+                pj0 pj0Var2 = pj0Var;
+                kj0 kj0Var = pj0Var2.e.J;
+                if (pj0Var2.b() && pj0Var2.f31633g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 if (motionEvent.getAction() == 0) {
-                    if (jj0Var != null) {
-                        jj0Var.b(z11);
+                    if (kj0Var != null) {
+                        kj0Var.b(z11);
                     }
                 } else if (motionEvent.getAction() == 1) {
-                    if (jj0Var != null && jj0Var.h && z11) {
-                        oj0Var2.e.e = !sj0Var.e;
+                    if (kj0Var != null && kj0Var.h && z11) {
+                        pj0Var2.e.e = !tj0Var.e;
                         invalidateQuotes(true);
                         z10 = true;
                     }
-                    if (jj0Var != null) {
-                        jj0Var.b(false);
+                    if (kj0Var != null) {
+                        kj0Var.b(false);
                     }
-                } else if (motionEvent.getAction() == 3 && jj0Var != null) {
-                    jj0Var.b(false);
+                } else if (motionEvent.getAction() == 3 && kj0Var != null) {
+                    kj0Var.b(false);
                 }
-                if ((jj0Var != null && jj0Var.h) || z10) {
+                if ((kj0Var != null && kj0Var.h) || z10) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -199,7 +199,7 @@ public abstract class lu extends EditText {
             }
         }
         if (!z10) {
-            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f51902a.f15828b).onTouchEvent(motionEvent)) {
+            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f51960a.f15827b).onTouchEvent(motionEvent)) {
                 if (motionEvent.getActionMasked() == 1) {
                     MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                     super.dispatchTouchEvent(obtain);
@@ -230,29 +230,29 @@ public abstract class lu extends EditText {
             return null;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
-        qj0[] qj0VarArr = (qj0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), qj0.class);
-        for (int length = qj0VarArr.length - 1; length >= 0; length--) {
-            qj0 qj0Var = qj0VarArr[length];
-            int spanStart = spannableStringBuilder.getSpanStart(qj0Var);
-            int spanEnd = spannableStringBuilder.getSpanEnd(qj0Var);
-            spannableStringBuilder.removeSpan(qj0Var);
+        rj0[] rj0VarArr = (rj0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), rj0.class);
+        for (int length = rj0VarArr.length - 1; length >= 0; length--) {
+            rj0 rj0Var = rj0VarArr[length];
+            int spanStart = spannableStringBuilder.getSpanStart(rj0Var);
+            int spanEnd = spannableStringBuilder.getSpanEnd(rj0Var);
+            spannableStringBuilder.removeSpan(rj0Var);
             spannableStringBuilder.delete(spanStart, spanEnd);
         }
         return spannableStringBuilder;
     }
 
     public void invalidateEffects() {
-        z11[] z11VarArr;
+        a21[] a21VarArr;
         Editable text = getText();
         if (text != null) {
-            for (z11 z11Var : (z11[]) text.getSpans(0, text.length(), z11.class)) {
-                if (z11Var.c()) {
+            for (a21 a21Var : (a21[]) text.getSpans(0, text.length(), a21.class)) {
+                if (a21Var.c()) {
                     boolean z10 = this.isSpoilersRevealed;
-                    y11 y11Var = z11Var.f35181b;
+                    z11 z11Var = a21Var.f26416b;
                     if (z10) {
-                        y11Var.f34907a |= 512;
+                        z11Var.f35208a |= 512;
                     } else {
-                        y11Var.f34907a &= -513;
+                        z11Var.f35208a &= -513;
                     }
                 }
             }
@@ -283,9 +283,9 @@ public abstract class lu extends EditText {
             this.quoteUpdateLayout[0] = false;
             this.editedWhileQuoteUpdating = false;
             this.quoteBlocksUpdating = true;
-            this.quoteBlocks = sj0.d(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+            this.quoteBlocks = tj0.d(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
             if (this.editedWhileQuoteUpdating) {
-                this.quoteBlocks = sj0.d(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+                this.quoteBlocks = tj0.d(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
             }
             this.quoteBlocksUpdating = false;
             this.editedWhileQuoteUpdating = false;
@@ -316,14 +316,14 @@ public abstract class lu extends EditText {
         Layout layout = getLayout();
         if (layout != null && (layout.getText() instanceof Spannable)) {
             if (this.drawAnimatedEmojiDrawables && (y5Var2 = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList = y5Var2.f34928a;
+                ArrayList arrayList = y5Var2.f34961a;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     ((x5) arrayList.get(i10)).d.recordPositions = false;
                 }
             }
             Stack<xh.g> stack = this.spoilersPool;
             List<xh.g> list2 = this.spoilers;
-            ArrayList<oj0> arrayList2 = this.quoteBlocks;
+            ArrayList<pj0> arrayList2 = this.quoteBlocks;
             int i11 = xh.g.A;
             int measuredWidth = getMeasuredWidth();
             Layout layout2 = getLayout();
@@ -332,7 +332,7 @@ public abstract class lu extends EditText {
             }
             xh.g.a(this, layout2, 0, measuredWidth, (Spanned) getText(), stack, list2, arrayList2);
             if (this.drawAnimatedEmojiDrawables && (y5Var = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList3 = y5Var.f34928a;
+                ArrayList arrayList3 = y5Var.f34961a;
                 for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                     ((x5) arrayList3.get(i12)).d.recordPositions = true;
                 }
@@ -384,9 +384,9 @@ public abstract class lu extends EditText {
             if (this.wrappedCanvas == null) {
                 this.wrappedCanvas = new Canvas();
             }
-            fd0 fd0Var = this.wrappedCanvas;
-            fd0Var.f28167a = canvas;
-            super.onDraw(fd0Var);
+            gd0 gd0Var = this.wrappedCanvas;
+            gd0Var.f28564a = canvas;
+            super.onDraw(gd0Var);
         } else {
             super.onDraw(canvas);
         }
@@ -402,7 +402,7 @@ public abstract class lu extends EditText {
         canvas2.restore();
         if (!this.spoilers.isEmpty()) {
             xh.g gVar2 = this.spoilers.get(0);
-            if (gVar2.f51869m > 0.0f && gVar2.f51870n > 0.0f) {
+            if (gVar2.f51927m > 0.0f && gVar2.f51928n > 0.0f) {
                 canvas2.save();
                 canvas2.clipPath(this.path);
                 this.path.rewind();
@@ -413,9 +413,9 @@ public abstract class lu extends EditText {
                     if (this.wrappedCanvas == null) {
                         this.wrappedCanvas = new Canvas();
                     }
-                    fd0 fd0Var2 = this.wrappedCanvas;
-                    fd0Var2.f28167a = canvas2;
-                    super.onDraw(fd0Var2);
+                    gd0 gd0Var2 = this.wrappedCanvas;
+                    gd0Var2.f28564a = canvas2;
+                    super.onDraw(gd0Var2);
                 } else {
                     super.onDraw(canvas2);
                 }
@@ -431,7 +431,7 @@ public abstract class lu extends EditText {
                 int i12 = rect.top;
                 int i13 = bounds2.bottom;
                 if ((i12 <= i13 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i13 >= i12)) {
-                    if (gVar3.f51880y) {
+                    if (gVar3.f51938y) {
                         color = this.quoteColor;
                     } else {
                         color = getPaint().getColor();
@@ -508,17 +508,17 @@ public abstract class lu extends EditText {
     }
 
     public void setSpoilersRevealed(boolean z10, boolean z11) {
-        z11[] z11VarArr;
+        a21[] a21VarArr;
         this.isSpoilersRevealed = z10;
         Editable text = getText();
         if (text != null) {
-            for (z11 z11Var : (z11[]) text.getSpans(0, text.length(), z11.class)) {
-                if (z11Var.c()) {
-                    y11 y11Var = z11Var.f35181b;
+            for (a21 a21Var : (a21[]) text.getSpans(0, text.length(), a21.class)) {
+                if (a21Var.c()) {
+                    z11 z11Var = a21Var.f26416b;
                     if (z10) {
-                        y11Var.f34907a |= 512;
+                        z11Var.f35208a |= 512;
                     } else {
-                        y11Var.f34907a &= -513;
+                        z11Var.f35208a &= -513;
                     }
                 }
             }

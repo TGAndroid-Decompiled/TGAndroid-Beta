@@ -18,12 +18,13 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.bp;
-import org.telegram.ui.Components.l11;
+import org.telegram.ui.Components.m11;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.af1;
-import org.telegram.ui.cy;
-import org.telegram.ui.un;
-import vi.s0;
+import org.telegram.ui.cf1;
+import org.telegram.ui.ey;
+import org.telegram.ui.wn;
+import vi.q0;
+import vi.u0;
 public final class h0 implements Runnable {
     public final int f119a;
     public final long f120b;
@@ -46,8 +47,8 @@ public final class h0 implements Runnable {
                 String str = (String) this.e;
                 long j10 = this.f120b;
                 long j11 = this.f121c;
-                String str2 = e2.n0.f9692a;
-                j2.e eVar = ((i2.d0) ((m0) ((n4.s) this.d).f18697c)).f13509a.f13614s;
+                String str2 = e2.n0.f9691a;
+                j2.e eVar = ((i2.d0) ((m0) ((n4.s) this.d).f18696c)).f13508a.f13613s;
                 j2.a p10 = eVar.p();
                 eVar.q(p10, 1016, new ig.g(p10, str, j11, j10, 19));
                 return;
@@ -61,10 +62,10 @@ public final class h0 implements Runnable {
                 String str3 = (String) this.e;
                 long j12 = this.f120b;
                 long j13 = this.f121c;
-                String str4 = e2.n0.f9692a;
-                j2.e eVar2 = ((i2.d0) ((k2.v) ((rf.b) this.d).f47336c)).f13509a.f13614s;
+                String str4 = e2.n0.f9691a;
+                j2.e eVar2 = ((i2.d0) ((k2.v) ((rf.b) this.d).f47371c)).f13508a.f13613s;
                 j2.a p11 = eVar2.p();
-                eVar2.q(p11, 1008, new ig.g(p11, str3, j13, j12, 7));
+                eVar2.q(p11, 1008, new ig.g(p11, str3, j13, j12, 8));
                 return;
             case 4:
                 ((FileUploadOperation) this.d).lambda$checkNewDataAvailable$4((Float) this.e, this.f120b, this.f121c);
@@ -82,7 +83,7 @@ public final class h0 implements Runnable {
                 ((MessagesStorage) this.d).lambda$loadPendingTasks$21(this.f120b, (TLRPC.InputPeer) this.e, this.f121c);
                 return;
             case 9:
-                ((MessagesStorage) this.d).lambda$getUnreadMention$159(this.f120b, this.f121c, (MessagesStorage.IntCallback) this.e);
+                ((MessagesStorage) this.d).lambda$getUnreadMention$160(this.f120b, this.f121c, (MessagesStorage.IntCallback) this.e);
                 return;
             case 10:
                 NotificationsSettingsFacade.a((NotificationsSettingsFacade) this.d, this.f120b, this.f121c, (TLRPC.PeerNotifySettings) this.e);
@@ -97,27 +98,27 @@ public final class h0 implements Runnable {
                 ((bp) this.d).e(this.f120b, this.f121c, (HashSet) this.e);
                 return;
             case 14:
-                cy cyVar = (cy) this.d;
+                ey eyVar = (ey) this.d;
                 long j14 = this.f120b;
                 long j15 = this.f121c;
-                af1 af1Var = (af1) this.e;
-                if (cyVar.C2 != null) {
+                cf1 cf1Var = (cf1) this.e;
+                if (eyVar.C2 != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j14, j15));
-                    cyVar.C2.v(cyVar, arrayList, null, false, cyVar.J2, cyVar.K2, cyVar.L2, af1Var);
-                    if (cyVar.f38609i2) {
-                        cyVar.C2 = null;
+                    eyVar.C2.v(eyVar, arrayList, null, false, eyVar.J2, eyVar.K2, eyVar.L2, cf1Var);
+                    if (eyVar.f39021i2) {
+                        eyVar.C2 = null;
                         return;
                     }
                     return;
                 }
-                cyVar.finishFragment();
+                eyVar.finishFragment();
                 return;
             case 15:
                 LaunchActivity launchActivity = (LaunchActivity) this.d;
                 long j16 = this.f120b;
                 long j17 = this.f121c;
-                un unVar = (un) this.e;
+                wn wnVar = (wn) this.e;
                 Pattern pattern = LaunchActivity.D1;
                 TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(launchActivity.O).getTopicsController().findTopic(j16, j17);
                 StringBuilder t10 = a1.g.t(j16, "LaunchActivity openForum after load ", " ");
@@ -125,20 +126,20 @@ public final class h0 implements Runnable {
                 t10.append(" TL_forumTopic ");
                 t10.append(findTopic);
                 FileLog.d(t10.toString());
-                if (launchActivity.f35553q0 != null) {
-                    pg.d.a(unVar, MessagesStorage.TopicKey.of(-j16, j17));
-                    ((ActionBarLayout) launchActivity.O()).R(unVar);
+                if (launchActivity.f35577q0 != null) {
+                    pg.d.a(wnVar, MessagesStorage.TopicKey.of(-j16, j17));
+                    ((ActionBarLayout) launchActivity.O()).R(wnVar);
                     return;
                 }
                 return;
             default:
-                s0 s0Var = (s0) this.d;
-                vi.o0 o0Var = (vi.o0) this.e;
+                u0 u0Var = (u0) this.d;
+                q0 q0Var = (q0) this.e;
                 long j18 = this.f120b;
                 long j19 = this.f121c;
-                synchronized (s0Var.f50587g) {
-                    if (!o0Var.d && !o0Var.e) {
-                        ((l11) s0Var.e).a(o0Var.f50522a, o0Var.f50523b, j18, j19);
+                synchronized (u0Var.f50638g) {
+                    if (!q0Var.d && !q0Var.e) {
+                        ((m11) u0Var.e).a(q0Var.f50574a, q0Var.f50575b, j18, j19);
                         return;
                     }
                     return;

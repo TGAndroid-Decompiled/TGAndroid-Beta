@@ -14,13 +14,13 @@ import org.telegram.ui.Components.ar;
 public final class d0 extends i9 {
     public int E;
     public boolean F;
-    public final u6 f51778w;
-    public ColorDrawable f51779x;
-    public Drawable f51780y;
+    public final u6 f51836w;
+    public ColorDrawable f51837x;
+    public Drawable f51838y;
 
     public d0(Context context, u6 u6Var) {
         super(context, u6Var);
-        this.f51778w = u6Var;
+        this.f51836w = u6Var;
     }
 
     public void setBackground(boolean z10) {
@@ -31,14 +31,14 @@ public final class d0 extends i9 {
         } else {
             i10 = R.drawable.greydivider;
         }
-        int i11 = y6.f23318b7;
-        u6 u6Var = this.f51778w;
+        int i11 = y6.f23319b7;
+        u6 u6Var = this.f51836w;
         Drawable W0 = y6.W0(context, i10, y6.w0(i11, u6Var));
-        ColorDrawable colorDrawable = new ColorDrawable(y6.w0(y6.f23299a7, u6Var));
-        this.f51779x = colorDrawable;
-        this.f51780y = W0;
+        ColorDrawable colorDrawable = new ColorDrawable(y6.w0(y6.f23300a7, u6Var));
+        this.f51837x = colorDrawable;
+        this.f51838y = W0;
         ar arVar = new ar(colorDrawable, W0, 0, 0);
-        arVar.f26599w = true;
+        arVar.f26646w = true;
         setBackground(arVar);
     }
 
@@ -46,17 +46,17 @@ public final class d0 extends i9 {
     public final void updateColors() {
         super.updateColors();
         try {
-            ColorDrawable colorDrawable = this.f51779x;
-            u6 u6Var = this.f51778w;
+            ColorDrawable colorDrawable = this.f51837x;
+            u6 u6Var = this.f51836w;
             if (colorDrawable != null) {
-                colorDrawable.setColor(y6.w0(y6.f23299a7, u6Var));
+                colorDrawable.setColor(y6.w0(y6.f23300a7, u6Var));
             }
-            if (this.f51780y != null) {
-                int w02 = y6.w0(y6.f23318b7, u6Var);
+            if (this.f51838y != null) {
+                int w02 = y6.w0(y6.f23319b7, u6Var);
                 if (w02 != this.E || !this.F) {
                     this.E = w02;
                     this.F = true;
-                    this.f51780y.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
+                    this.f51838y.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
                 }
             }
         } catch (Exception e) {

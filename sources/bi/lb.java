@@ -9,7 +9,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class lb implements View.OnClickListener {
     public final int f5045a = 1;
     public final int f5046b;
@@ -22,10 +22,10 @@ public final class lb implements View.OnClickListener {
     public final Context f5050r;
     public final Object f5051s;
 
-    public lb(be beVar, MessageObject messageObject, un unVar, int i10, boolean z10, Context context, org.telegram.ui.ActionBar.u6 u6Var, long j10, TLRPC.Chat chat) {
+    public lb(be beVar, MessageObject messageObject, wn wnVar, int i10, boolean z10, Context context, org.telegram.ui.ActionBar.u6 u6Var, long j10, TLRPC.Chat chat) {
         this.f5048f = beVar;
         this.h = messageObject;
-        this.f5049n = unVar;
+        this.f5049n = wnVar;
         this.f5046b = i10;
         this.f5047c = z10;
         this.f5050r = context;
@@ -69,18 +69,18 @@ public final class lb implements View.OnClickListener {
             default:
                 be beVar = (be) this.f5048f;
                 MessageObject messageObject = (MessageObject) this.h;
-                un unVar = (un) this.f5049n;
+                wn wnVar = (wn) this.f5049n;
                 TLRPC.Chat chat = (TLRPC.Chat) this.f5051s;
                 if (!beVar.T) {
                     long value = beVar.f4403r.getValue();
-                    if ((beVar.R != null || (messageObject != null && unVar != null)) && beVar.X == null) {
+                    if ((beVar.R != null || (messageObject != null && wnVar != null)) && beVar.X == null) {
                         int i12 = this.f5046b;
                         if (MessagesController.getInstance(i12).isFrozen()) {
                             org.telegram.ui.b.b(i12);
                             return;
                         }
                         ca y10 = ca.y(i12, false);
-                        a0 a0Var = new a0(beVar, value, y10, messageObject, unVar);
+                        a0 a0Var = new a0(beVar, value, y10, messageObject, wnVar);
                         if (y10.e && y10.p().amount < value) {
                             boolean z10 = this.f5047c;
                             Context context = this.f5050r;

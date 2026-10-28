@@ -1,44 +1,28 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.UnconfirmedAuthController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public final class tl implements Runnable {
-    public final int f21370a;
-    public final UnconfirmedAuthController.UnconfirmedAuth f21371b;
-    public final TLObject f21372c;
-    public final Utilities.Callback d;
-    public final TLRPC.TL_error e;
+    public final int f21356a;
+    public final UnconfirmedAuthController f21357b;
 
-    public tl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f21370a = 1;
-        this.f21371b = unconfirmedAuth;
-        this.f21372c = tLObject;
-        this.d = callback;
-        this.e = tL_error;
+    public tl(UnconfirmedAuthController unconfirmedAuthController, int i10) {
+        this.f21356a = i10;
+        this.f21357b = unconfirmedAuthController;
     }
 
     @Override
     public final void run() {
-        switch (this.f21370a) {
+        switch (this.f21356a) {
             case 0:
-                this.f21371b.lambda$confirm$1(this.d, this.f21372c, this.e);
+                UnconfirmedAuthController.h(this.f21357b);
                 return;
             case 1:
-                this.f21371b.lambda$deny$3(this.f21372c, this.d, this.e);
+                UnconfirmedAuthController.a(this.f21357b);
+                return;
+            case 2:
+                UnconfirmedAuthController.d(this.f21357b);
                 return;
             default:
-                this.f21371b.lambda$deny$5(this.d, this.f21372c, this.e);
+                UnconfirmedAuthController.f(this.f21357b);
                 return;
         }
-    }
-
-    public tl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error, int i10) {
-        this.f21370a = i10;
-        this.f21371b = unconfirmedAuth;
-        this.d = callback;
-        this.f21372c = tLObject;
-        this.e = tL_error;
     }
 }

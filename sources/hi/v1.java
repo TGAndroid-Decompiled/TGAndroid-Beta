@@ -1,8 +1,8 @@
 package hi;
 public final class v1 {
-    public String f13333a;
-    public long f13334b;
-    public String f13335c;
+    public String f13332a;
+    public long f13333b;
+    public String f13334c;
     public long d;
     public long e;
 }

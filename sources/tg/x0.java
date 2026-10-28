@@ -11,59 +11,59 @@ import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.k3;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.z90;
+import org.telegram.ui.Components.aa0;
+import org.telegram.ui.Components.kb1;
 public final class x0 extends LinearLayout {
-    public int f49114a;
-    public final TextView f49115b;
-    public final z90 f49116c;
+    public int f49149a;
+    public final TextView f49150b;
+    public final aa0 f49151c;
     public LinearLayout d;
     public final l0 e;
-    public final ViewGroup f49117f;
+    public final ViewGroup f49152f;
     public boolean h;
-    public final y0 f49118n;
+    public final y0 f49153n;
 
     public x0(y0 y0Var, Context context, int i10) {
         super(context);
         u6 u6Var;
         u6 u6Var2;
-        this.f49118n = y0Var;
+        this.f49153n = y0Var;
         setOrientation(1);
         ViewGroup C = y0Var.C(context, i10);
-        this.f49117f = C;
+        this.f49152f = C;
         addView(C);
         this.e = (l0) C;
         TextView textView = new TextView(context);
-        this.f49115b = textView;
+        this.f49150b = textView;
         textView.setGravity(1);
-        int i11 = y6.f23464j5;
+        int i11 = y6.f23465j5;
         u6Var = ((k3) y0Var).resourcesProvider;
         f7.V(textView, i11, u6Var);
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, gb1.h(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
-        z90 z90Var = new z90(context, null);
-        this.f49116c = z90Var;
-        z90Var.setGravity(1);
-        z90Var.setTextSize(1, 15.0f);
+        addView(textView, kb1.h(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
+        aa0 aa0Var = new aa0(context, null);
+        this.f49151c = aa0Var;
+        aa0Var.setGravity(1);
+        aa0Var.setTextSize(1, 15.0f);
         u6Var2 = ((k3) y0Var).resourcesProvider;
-        f7.V(z90Var, i11, u6Var2);
+        f7.V(aa0Var, i11, u6Var2);
         if (!y0Var.E) {
-            z90Var.setLines(2);
+            aa0Var.setLines(2);
         }
-        addView(z90Var, gb1.x(-1, -2, 1, 21, 10, 21, 16));
+        addView(aa0Var, kb1.x(-1, -2, 1, 21, 10, 21, 16));
         setImportantForAccessibility(2);
         setClipChildren(false);
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f49117f) {
+        if (view == this.f49152f) {
             boolean z10 = view instanceof b;
             if (z10) {
                 setTranslationY(0.0f);
             } else {
-                setTranslationY(this.f49118n.L);
+                setTranslationY(this.f49153n.L);
             }
             if (z10) {
                 return super.drawChild(canvas, view, j10);
@@ -79,24 +79,24 @@ public final class x0 extends LinearLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        TextView textView = this.f49115b;
+        TextView textView = this.f49150b;
         textView.setVisibility(0);
-        ViewGroup viewGroup = this.f49117f;
+        ViewGroup viewGroup = this.f49152f;
         boolean z10 = viewGroup instanceof b;
-        y0 y0Var = this.f49118n;
+        y0 y0Var = this.f49153n;
         if (z10) {
             ((b) viewGroup).setTopOffset(y0Var.L);
         }
-        viewGroup.getLayoutParams().height = y0Var.f49132s;
-        z90 z90Var = this.f49116c;
-        z90Var.setVisibility(0);
+        viewGroup.getLayoutParams().height = y0Var.f49167s;
+        aa0 aa0Var = this.f49151c;
+        aa0Var.setVisibility(0);
         ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i10, i11);
         if (this.h) {
             viewGroup.getLayoutParams().height = getMeasuredHeight() - AndroidUtilities.dp(16.0f);
             ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
             textView.setVisibility(8);
-            z90Var.setVisibility(8);
+            aa0Var.setVisibility(8);
             super.onMeasure(i10, i11);
         }
     }

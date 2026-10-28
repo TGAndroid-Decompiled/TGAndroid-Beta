@@ -5,23 +5,23 @@ import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.da;
 public final class l5 implements da {
-    public final Layout f17348a;
-    public final int f17349b;
-    public final int f17350c;
+    public final Layout f17347a;
+    public final int f17348b;
+    public final int f17349c;
     public final int d;
     public final TL_iv.pageTableCell e;
 
     public l5(Layout layout, int i10, int i11, int i12, TL_iv.pageTableCell pagetablecell) {
-        this.f17348a = layout;
-        this.f17349b = i10;
-        this.f17350c = i11;
+        this.f17347a = layout;
+        this.f17348b = i10;
+        this.f17349c = i11;
         this.d = i12;
         this.e = pagetablecell;
     }
 
     @Override
     public final Layout getLayout() {
-        return this.f17348a;
+        return this.f17347a;
     }
 
     @Override
@@ -46,11 +46,11 @@ public final class l5 implements da {
 
     @Override
     public final int getX() {
-        return this.f17349b;
+        return this.f17348b;
     }
 
     @Override
     public final int getY() {
-        return this.f17350c;
+        return this.f17349c;
     }
 }

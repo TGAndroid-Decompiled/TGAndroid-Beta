@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import li.e3;
 public final class e extends com.googlecode.mp4parser.c {
-    public static final e3 f12300f;
+    public static final e3 f12299f;
     public List e;
 
     static {
         ue.a aVar = new ue.a(e.class, "CompositionTimeToSample.java");
         aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "", "", "java.util.List"));
-        f12300f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "java.util.List", "entries", "void"));
+        f12299f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "java.util.List", "entries", "void"));
     }
 
     @Override
@@ -29,8 +29,8 @@ public final class e extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         byteBuffer.putInt(this.e.size());
         for (d dVar : this.e) {
-            byteBuffer.putInt(dVar.f12298a);
-            byteBuffer.putInt(dVar.f12299b);
+            byteBuffer.putInt(dVar.f12297a);
+            byteBuffer.putInt(dVar.f12298b);
         }
     }
 

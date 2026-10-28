@@ -11,13 +11,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.q11;
+import org.telegram.ui.Components.r11;
 public final class nd extends View {
     public final LinearGradient f5156a;
     public final Matrix f5157b;
     public final Paint f5158c;
     public final Paint d;
-    public final q11 e;
+    public final r11 e;
     public final org.telegram.ui.ActionBar.u6 f5159f;
 
     public nd(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
@@ -27,7 +27,7 @@ public final class nd extends View {
         this.f5157b = new Matrix();
         this.f5158c = new Paint(1);
         this.d = new Paint(1);
-        this.e = new q11(LocaleController.getString(R.string.StarsReactionTopSenders), 14.16f, AndroidUtilities.bold());
+        this.e = new r11(LocaleController.getString(R.string.StarsReactionTopSenders), 14.16f, AndroidUtilities.bold());
     }
 
     @Override
@@ -40,9 +40,9 @@ public final class nd extends View {
         linearGradient.setLocalMatrix(matrix);
         Paint paint = this.f5158c;
         paint.setShader(linearGradient);
-        q11 q11Var = this.e;
-        float dp = q11Var.f31790c + AndroidUtilities.dp(30.0f);
-        int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23357d7, this.f5159f);
+        r11 r11Var = this.e;
+        float dp = r11Var.f32090c + AndroidUtilities.dp(30.0f);
+        int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23358d7, this.f5159f);
         Paint paint2 = this.d;
         paint2.setColor(w02);
         canvas.drawRect(AndroidUtilities.dp(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - dp) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint2);
@@ -50,6 +50,6 @@ public final class nd extends View {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getWidth() - dp) / 2.0f, 0.0f, (getWidth() + dp) / 2.0f, getHeight());
         canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, paint);
-        this.e.c((getWidth() - q11Var.f31790c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
+        this.e.c((getWidth() - r11Var.f32090c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
     }
 }

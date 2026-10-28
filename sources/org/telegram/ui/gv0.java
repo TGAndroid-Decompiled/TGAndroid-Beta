@@ -1,204 +1,213 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.SpannableString;
-import android.view.KeyEvent;
+import android.text.TextUtils;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class gv0 implements org.telegram.ui.Components.ty {
-    public final mv0 f39788a;
+public final class gv0 extends org.telegram.ui.ActionBar.j {
+    public final ov0 f39697a;
 
-    public gv0(mv0 mv0Var) {
-        this.f39788a = mv0Var;
+    public gv0(ov0 ov0Var) {
+        this.f39697a = ov0Var;
     }
 
     @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void i(int i10) {
-        boolean z10;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        mv0 mv0Var = this.f39788a;
-        mv0Var.B0 = z10;
-        mv0Var.e.requestLayout();
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        EditTextBoldCursor editField = this.f39788a.f41678b0.getEditField();
-        if (editField == null) {
-            return false;
-        }
-        editField.dispatchKeyEvent(new KeyEvent(0, 67));
-        return true;
-    }
-
-    @Override
-    public final void l(String str) {
-        EditTextBoldCursor editField = this.f39788a.f41678b0.getEditField();
-        if (editField == null) {
-            return;
-        }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(str, editField.getPaint().getFontMetricsInt(), false);
-            editField.setText(editField.getText().insert(selectionEnd, replaceEmoji));
-            int length = selectionEnd + replaceEmoji.length();
-            editField.setSelection(length, length);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public final void n() {
-        org.telegram.ui.ActionBar.u6 u6Var;
-        mv0 mv0Var = this.f39788a;
-        Activity parentActivity = mv0Var.getParentActivity();
-        u6Var = ((org.telegram.ui.ActionBar.r2) mv0Var).resourceProvider;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(parentActivity, 0, u6Var);
-        alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new hl0(this, 6));
-        ic.a.r(R.string.Cancel, alertDialog$Builder, null);
-    }
-
-    @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.c6 c6Var;
-        mv0 mv0Var = this.f39788a;
-        EditTextBoldCursor editField = mv0Var.f41678b0.getEditField();
-        if (editField == null) {
-            return;
-        }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            SpannableString spannableString = new SpannableString(str);
-            if (document != null) {
-                c6Var = new org.telegram.ui.Components.c6(document, editField.getPaint().getFontMetricsInt());
-            } else {
-                c6Var = new org.telegram.ui.Components.c6(j10, editField.getPaint().getFontMetricsInt());
+    public final void b(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        ov0 ov0Var = this.f39697a;
+        boolean[] zArr = ov0Var.f42235w;
+        CharSequence[] charSequenceArr = ov0Var.v;
+        wn wnVar = ov0Var.f42215f;
+        if (i10 == -1) {
+            if (ov0Var.i0(true)) {
+                ov0Var.finishFragment();
             }
-            c6Var.cacheType = mv0Var.R.f32717c;
-            spannableString.setSpan(c6Var, 0, spannableString.length(), 33);
-            editField.setText(editField.getText().insert(selectionEnd, spannableString));
-            int length = selectionEnd + spannableString.length();
-            editField.setSelection(length, length);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } else if (i10 == 1) {
+            int i18 = 0;
+            if (ov0Var.f42213d0) {
+                CharSequence[] charSequenceArr2 = {org.telegram.ui.Components.go.b0(ov0Var.E)};
+                i15 = ((org.telegram.ui.ActionBar.r2) ov0Var).currentAccount;
+                ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(i15).getEntities(charSequenceArr2, true);
+                CharSequence charSequence = charSequenceArr2[0];
+                int size = entities.size();
+                for (int i19 = 0; i19 < size; i19++) {
+                    TLRPC.MessageEntity messageEntity = entities.get(i19);
+                    if (messageEntity.offset + messageEntity.length > charSequence.length()) {
+                        messageEntity.length = charSequence.length() - messageEntity.offset;
+                    }
+                }
+                TLRPC.TL_messageMediaToDo tL_messageMediaToDo = new TLRPC.TL_messageMediaToDo();
+                TLRPC.TodoList todoList = new TLRPC.TodoList();
+                tL_messageMediaToDo.todo = todoList;
+                todoList.others_can_append = ov0Var.H;
+                todoList.others_can_complete = ov0Var.J;
+                todoList.title = new TLRPC.TL_textWithEntities();
+                tL_messageMediaToDo.todo.title.text = charSequence.toString();
+                tL_messageMediaToDo.todo.title.entities = entities;
+                if (ov0Var.f42228r != null) {
+                    int i20 = 0;
+                    i16 = 0;
+                    while (true) {
+                        int[] iArr = ov0Var.f42228r;
+                        if (i20 >= iArr.length) {
+                            break;
+                        }
+                        i16 = Math.max(i16, iArr[i20]);
+                        i20++;
+                    }
+                } else {
+                    i16 = 0;
+                }
+                for (int i21 = 0; i21 < charSequenceArr.length; i21++) {
+                    if (!TextUtils.isEmpty(org.telegram.ui.Components.go.b0(charSequenceArr[i21]))) {
+                        CharSequence[] charSequenceArr3 = {org.telegram.ui.Components.go.b0(charSequenceArr[i21])};
+                        i17 = ((org.telegram.ui.ActionBar.r2) ov0Var).currentAccount;
+                        ArrayList<TLRPC.MessageEntity> entities2 = MediaDataController.getInstance(i17).getEntities(charSequenceArr3, true);
+                        CharSequence charSequence2 = charSequenceArr3[0];
+                        int size2 = entities2.size();
+                        for (int i22 = 0; i22 < size2; i22++) {
+                            TLRPC.MessageEntity messageEntity2 = entities2.get(i22);
+                            if (messageEntity2.offset + messageEntity2.length > charSequence2.length()) {
+                                messageEntity2.length = charSequence2.length() - messageEntity2.offset;
+                            }
+                        }
+                        TLRPC.TodoItem todoItem = new TLRPC.TodoItem();
+                        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+                        todoItem.title = tL_textWithEntities;
+                        tL_textWithEntities.text = charSequence2.toString();
+                        todoItem.title.entities = entities2;
+                        int[] iArr2 = ov0Var.f42228r;
+                        if (iArr2 != null && i21 < iArr2.length) {
+                            todoItem.f22175id = iArr2[i21];
+                        } else {
+                            i16++;
+                            todoItem.f22175id = i16;
+                        }
+                        tL_messageMediaToDo.todo.list.add(todoItem);
+                    }
+                }
+                if (wnVar.c()) {
+                    org.telegram.ui.Components.g5.K(wnVar.getParentActivity(), wnVar.a(), new cf0(11, this, tL_messageMediaToDo));
+                    return;
+                }
+                ov0Var.f42214e0.a(tL_messageMediaToDo);
+                ov0Var.finishFragment();
+            } else if (!ov0Var.L || ov0Var.f42207a.getAlpha() == 1.0f) {
+                CharSequence[] charSequenceArr4 = {org.telegram.ui.Components.go.b0(ov0Var.E)};
+                i11 = ((org.telegram.ui.ActionBar.r2) ov0Var).currentAccount;
+                ArrayList<TLRPC.MessageEntity> entities3 = MediaDataController.getInstance(i11).getEntities(charSequenceArr4, true);
+                CharSequence charSequence3 = charSequenceArr4[0];
+                int size3 = entities3.size();
+                for (int i23 = 0; i23 < size3; i23++) {
+                    TLRPC.MessageEntity messageEntity3 = entities3.get(i23);
+                    if (messageEntity3.offset + messageEntity3.length > charSequence3.length()) {
+                        messageEntity3.length = charSequence3.length() - messageEntity3.offset;
+                    }
+                }
+                TLRPC.TL_messageMediaPoll tL_messageMediaPoll = new TLRPC.TL_messageMediaPoll();
+                TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
+                tL_messageMediaPoll.poll = tL_poll;
+                tL_poll.multiple_choice = ov0Var.K;
+                tL_poll.quiz = ov0Var.L;
+                tL_poll.public_voters = !ov0Var.G;
+                tL_poll.question = new TLRPC.TL_textWithEntities();
+                tL_messageMediaPoll.poll.question.text = charSequence3.toString();
+                tL_messageMediaPoll.poll.question.entities = entities3;
+                ArrayList arrayList = new ArrayList(ov0Var.f42223n);
+                int i24 = 0;
+                while (i24 < charSequenceArr.length) {
+                    if (TextUtils.isEmpty(org.telegram.ui.Components.go.b0(charSequenceArr[i24]))) {
+                        i14 = i18;
+                    } else {
+                        CharSequence[] charSequenceArr5 = new CharSequence[1];
+                        charSequenceArr5[i18] = org.telegram.ui.Components.go.b0(charSequenceArr[i24]);
+                        i13 = ((org.telegram.ui.ActionBar.r2) ov0Var).currentAccount;
+                        ArrayList<TLRPC.MessageEntity> entities4 = MediaDataController.getInstance(i13).getEntities(charSequenceArr5, true);
+                        CharSequence charSequence4 = charSequenceArr5[i18];
+                        int size4 = entities4.size();
+                        int i25 = i18;
+                        while (i25 < size4) {
+                            TLRPC.MessageEntity messageEntity4 = entities4.get(i25);
+                            int i26 = i18;
+                            if (messageEntity4.offset + messageEntity4.length > charSequence4.length()) {
+                                messageEntity4.length = charSequence4.length() - messageEntity4.offset;
+                            }
+                            i25++;
+                            i18 = i26;
+                        }
+                        i14 = i18;
+                        TLRPC.TL_pollAnswer tL_pollAnswer = new TLRPC.TL_pollAnswer();
+                        TLRPC.TL_textWithEntities tL_textWithEntities2 = new TLRPC.TL_textWithEntities();
+                        tL_pollAnswer.text = tL_textWithEntities2;
+                        tL_textWithEntities2.text = charSequence4.toString();
+                        tL_pollAnswer.text.entities = entities4;
+                        byte[] bArr = new byte[1];
+                        tL_pollAnswer.option = bArr;
+                        bArr[i14] = (byte) (tL_messageMediaPoll.poll.answers.size() + 48);
+                        if ((ov0Var.K || ov0Var.L) && zArr[i24]) {
+                            arrayList.add(Integer.valueOf(tL_messageMediaPoll.poll.answers.size()));
+                        }
+                        tL_messageMediaPoll.poll.answers.add(tL_pollAnswer);
+                    }
+                    i24++;
+                    i18 = i14;
+                }
+                int i27 = i18;
+                tL_messageMediaPoll.results = new TLRPC.TL_pollResults();
+                CharSequence b02 = org.telegram.ui.Components.go.b0(ov0Var.F);
+                if (b02 != null) {
+                    tL_messageMediaPoll.results.solution = b02.toString();
+                    CharSequence[] charSequenceArr6 = new CharSequence[1];
+                    charSequenceArr6[i27] = b02;
+                    i12 = ((org.telegram.ui.ActionBar.r2) ov0Var).currentAccount;
+                    ArrayList<TLRPC.MessageEntity> entities5 = MediaDataController.getInstance(i12).getEntities(charSequenceArr6, true);
+                    if (entities5 != null && !entities5.isEmpty()) {
+                        tL_messageMediaPoll.results.solution_entities = entities5;
+                    }
+                    if (!TextUtils.isEmpty(tL_messageMediaPoll.results.solution)) {
+                        tL_messageMediaPoll.results.flags |= 16;
+                    }
+                }
+                if (wnVar.c()) {
+                    org.telegram.ui.Components.g5.K(wnVar.getParentActivity(), wnVar.a(), new cf0(this, tL_messageMediaPoll, arrayList));
+                    return;
+                }
+                ov0Var.f42214e0.a(tL_messageMediaPoll);
+                ov0Var.finishFragment();
+            } else {
+                int i28 = 0;
+                while (i18 < zArr.length) {
+                    if (!TextUtils.isEmpty(org.telegram.ui.Components.go.b0(charSequenceArr[i18])) && zArr[i18]) {
+                        i28++;
+                    }
+                    i18++;
+                }
+                if (i28 <= 0) {
+                    for (int i29 = ov0Var.f42224n0; i29 < ov0Var.f42224n0 + ov0Var.f42239y; i29++) {
+                        s4.e1 K = ov0Var.f42211c.K(i29);
+                        if (K != null) {
+                            View view = K.f47773a;
+                            if (view instanceof org.telegram.ui.Cells.h6) {
+                                org.telegram.ui.Cells.h6 h6Var = (org.telegram.ui.Cells.h6) view;
+                                if (h6Var.getTop() > AndroidUtilities.dp(40.0f)) {
+                                    ov0Var.h.f(h6Var.getCheckBox(), true);
+                                    return;
+                                }
+                            } else {
+                                continue;
+                            }
+                        }
+                    }
+                }
+            }
         }
-    }
-
-    @Override
-    public final boolean z() {
-        return this.f39788a.B0;
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void o(org.telegram.ui.Components.p61 p61Var) {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i10) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void y(long j10) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11) {
     }
 }

@@ -4,11 +4,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ob;
 import org.telegram.ui.Components.qc;
 public final class l9 implements ob {
-    public final float[] f8769a = new float[2];
-    public final m9 f8770b;
+    public final float[] f8768a = new float[2];
+    public final m9 f8769b;
 
     public l9(m9 m9Var) {
-        this.f8770b = m9Var;
+        this.f8769b = m9Var;
     }
 
     @Override
@@ -23,15 +23,15 @@ public final class l9 implements ob {
 
     @Override
     public final int f(int i10) {
-        m9 m9Var = this.f8770b;
-        y9 y9Var = m9Var.f8807x0;
-        q4 t10 = y9Var.t();
-        if (t10 == null) {
+        m9 m9Var = this.f8769b;
+        y9 y9Var = m9Var.f8806x0;
+        q4 u10 = y9Var.u();
+        if (u10 == null) {
             return 0;
         }
-        q3 q3Var = t10.R0;
-        m9 m9Var2 = y9Var.f9456s;
-        float[] fArr = this.f8769a;
+        q3 q3Var = u10.R0;
+        m9 m9Var2 = y9Var.f9455s;
+        float[] fArr = this.f8768a;
         AndroidUtilities.getViewPositionInParent(q3Var, m9Var2, fArr);
         return (int) (m9Var.getMeasuredHeight() - (fArr[1] + q3Var.getMeasuredHeight()));
     }

@@ -8,7 +8,7 @@ import di.y2;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
@@ -17,35 +17,35 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.wc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cj0;
+import org.telegram.ui.ej0;
 public final class v implements Utilities.Callback2 {
-    public final int f45427a;
-    public final a1 f45428b;
-    public final x7 f45429c;
+    public final int f44938a;
+    public final a1 f44939b;
+    public final x7 f44940c;
     public final String d;
 
     public v(a1 a1Var, x7 x7Var, String str, int i10) {
-        this.f45427a = i10;
-        this.f45428b = a1Var;
-        this.f45429c = x7Var;
+        this.f44938a = i10;
+        this.f44939b = a1Var;
+        this.f44940c = x7Var;
         this.d = str;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         int i10;
-        cj0 cj0Var;
-        int i11 = this.f45427a;
+        ej0 ej0Var;
+        int i11 = this.f44938a;
         String str = this.d;
-        x7 x7Var = this.f45429c;
-        a1 a1Var = this.f45428b;
+        x7 x7Var = this.f44940c;
+        a1 a1Var = this.f44939b;
         switch (i11) {
             case 0:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                a1 a1Var2 = this.f45428b;
+                a1 a1Var2 = this.f44939b;
                 u6 u6Var = a1Var2.e;
                 TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) bg.c.a((TL_keyboard.KeyboardButton) obj, TL_keyboard.TL_buttonTypeRequestPeer.class);
-                x7 x7Var2 = this.f45429c;
+                x7 x7Var2 = this.f44940c;
                 String str2 = this.d;
                 if (tL_buttonTypeRequestPeer != null) {
                     TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
@@ -63,27 +63,27 @@ public final class v implements Utilities.Callback2 {
                         Boolean bool = tL_requestPeerTypeUser.bot;
                         Boolean bool2 = tL_requestPeerTypeUser.premium;
                         c0 c0Var = new c0(a1Var2, zArr, str2, tL_buttonTypeRequestPeer, x7Var2);
-                        cj0 cj0Var2 = cj0.f38474u0;
+                        ej0 ej0Var2 = ej0.f38885u0;
                         r2 R = LaunchActivity.R();
                         if (R == null) {
-                            cj0Var = null;
+                            ej0Var = null;
                         } else {
-                            cj0Var = cj0.f38474u0;
-                            if (cj0Var == null) {
-                                cj0 cj0Var3 = new cj0(R, i10, bool, bool2, c0Var);
-                                cj0Var3.show();
-                                cj0.f38474u0 = cj0Var3;
-                                cj0Var = cj0Var3;
+                            ej0Var = ej0.f38885u0;
+                            if (ej0Var == null) {
+                                ej0 ej0Var3 = new ej0(R, i10, bool, bool2, c0Var);
+                                ej0Var3.show();
+                                ej0.f38885u0 = ej0Var3;
+                                ej0Var = ej0Var3;
                             }
                         }
-                        if (cj0Var != null) {
-                            cj0Var.setOnDismissListener(new s7(a1Var2, zArr, x7Var2, str2));
+                        if (ej0Var != null) {
+                            ej0Var.setOnDismissListener(new s7(a1Var2, zArr, x7Var2, str2));
                             return;
                         }
                         return;
                     } else {
-                        Bundle c10 = vh.c(15, "onlySelect", "dialogsType", true);
-                        c10.putLong("requestPeerBotId", a1Var2.U.f22176id);
+                        Bundle c10 = wh.c(15, "onlySelect", "dialogsType", true);
+                        c10.putLong("requestPeerBotId", a1Var2.U.f22177id);
                         try {
                             SerializedData serializedData = new SerializedData(tL_buttonTypeRequestPeer.peer_type.getObjectSize());
                             tL_buttonTypeRequestPeer.peer_type.serializeToStream(serializedData);
@@ -98,7 +98,7 @@ public final class v implements Utilities.Callback2 {
                         r2 U = LaunchActivity.U();
                         if (U != 0) {
                             ?? obj3 = new Object();
-                            obj3.f22928a = true;
+                            obj3.f22929a = true;
                             U.showAsSheet(f0Var, obj3);
                             return;
                         }

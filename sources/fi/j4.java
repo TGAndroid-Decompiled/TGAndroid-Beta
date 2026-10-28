@@ -22,44 +22,44 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.xc;
 public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
     public final org.telegram.ui.Components.h6 E;
     public final org.telegram.ui.Components.h6 F;
-    public final org.telegram.ui.ActionBar.u6 f11045a;
-    public final ImageReceiver f11046b;
-    public final Paint f11047c;
+    public final org.telegram.ui.ActionBar.u6 f11044a;
+    public final ImageReceiver f11045b;
+    public final Paint f11046c;
     public final Paint d;
     public final org.telegram.ui.Components.r6 e;
-    public boolean f11048f;
+    public boolean f11047f;
     public boolean h;
-    public View.OnClickListener f11049n;
-    public final xc f11050r;
-    public int f11051s;
+    public View.OnClickListener f11048n;
+    public final xc f11049r;
+    public int f11050s;
     public String v;
-    public float f11052w;
-    public float f11053x;
-    public float f11054y;
+    public float f11051w;
+    public float f11052x;
+    public float f11053y;
 
     public j4(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f11046b = imageReceiver;
+        this.f11045b = imageReceiver;
         Paint paint = new Paint(1);
-        this.f11047c = paint;
+        this.f11046c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(false, false, false);
         this.e = r6Var;
-        this.f11050r = new xc(this);
-        this.f11051s = -1;
+        this.f11049r = new xc(this);
+        this.f11050s = -1;
         ds dsVar = ds.h;
         this.E = new org.telegram.ui.Components.h6(this, 0L, 320L, dsVar);
         this.F = new org.telegram.ui.Components.h6(this, 0L, 320L, dsVar);
         r6Var.setCallback(this);
         r6Var.u(-1);
-        r6Var.f32121b = 17;
+        r6Var.f32142b = 17;
         r6Var.w(AndroidUtilities.dp(16.0f));
         r6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         r6Var.M = AndroidUtilities.displaySize.x;
@@ -67,19 +67,19 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
         r6Var.A = 0.35f;
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(-1);
-        this.f11045a = u6Var;
+        this.f11044a = u6Var;
         paint2.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, u6Var));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-        gb1.b(this);
+        kb1.b(this);
     }
 
     public final void a(int i10, int i11, final w7 w7Var) {
         String str;
         Uri withAppendedId;
-        if (this.f11051s != i10) {
+        if (this.f11050s != i10) {
             this.v = null;
-            this.f11046b.clearImage();
-            this.f11051s = i10;
+            this.f11045b.clearImage();
+            this.f11050s = i10;
         }
         this.e.t(Integer.toString(i11 + 1), false, true);
         File file = w7Var.O0;
@@ -87,10 +87,10 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
             if (!TextUtils.equals(this.v, file.getPath())) {
                 this.v = w7Var.O0.getPath();
                 Utilities.searchQueue.postRunnable(new Runnable(this) {
-                    public final j4 f10901b;
+                    public final j4 f10900b;
 
                     {
-                        this.f10901b = this;
+                        this.f10900b = this;
                     }
 
                     @Override
@@ -108,16 +108,16 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
                                 options.inDither = true;
                                 options.inJustDecodeBounds = false;
                                 final Bitmap decodeFile = BitmapFactory.decodeFile(w7Var2.O0.getPath(), options);
-                                final j4 j4Var = this.f10901b;
+                                final j4 j4Var = this.f10900b;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                j4Var.f11046b.setImageBitmap(decodeFile);
+                                                j4Var.f11045b.setImageBitmap(decodeFile);
                                                 return;
                                             default:
-                                                j4Var.f11046b.setImageBitmap(decodeFile);
+                                                j4Var.f11045b.setImageBitmap(decodeFile);
                                                 return;
                                         }
                                     }
@@ -135,16 +135,16 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
                                 options2.inDither = true;
                                 options2.inJustDecodeBounds = false;
                                 final Bitmap decodeFile2 = BitmapFactory.decodeFile(w7Var3.L.getPath(), options2);
-                                final j4 j4Var2 = this.f10901b;
+                                final j4 j4Var2 = this.f10900b;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                j4Var2.f11046b.setImageBitmap(decodeFile2);
+                                                j4Var2.f11045b.setImageBitmap(decodeFile2);
                                                 return;
                                             default:
-                                                j4Var2.f11046b.setImageBitmap(decodeFile2);
+                                                j4Var2.f11045b.setImageBitmap(decodeFile2);
                                                 return;
                                         }
                                     }
@@ -179,16 +179,16 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
                     return;
                 }
             }
-            this.f11046b.setImageBitmap(bitmap);
+            this.f11045b.setImageBitmap(bitmap);
         } else {
             File file2 = w7Var.L;
             if (file2 != null && !TextUtils.equals(this.v, file2.getPath())) {
                 this.v = w7Var.L.getPath();
                 Utilities.searchQueue.postRunnable(new Runnable(this) {
-                    public final j4 f10901b;
+                    public final j4 f10900b;
 
                     {
-                        this.f10901b = this;
+                        this.f10900b = this;
                     }
 
                     @Override
@@ -206,16 +206,16 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
                                 options.inDither = true;
                                 options.inJustDecodeBounds = false;
                                 final Bitmap decodeFile = BitmapFactory.decodeFile(w7Var2.O0.getPath(), options);
-                                final j4 j4Var = this.f10901b;
+                                final j4 j4Var = this.f10900b;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                j4Var.f11046b.setImageBitmap(decodeFile);
+                                                j4Var.f11045b.setImageBitmap(decodeFile);
                                                 return;
                                             default:
-                                                j4Var.f11046b.setImageBitmap(decodeFile);
+                                                j4Var.f11045b.setImageBitmap(decodeFile);
                                                 return;
                                         }
                                     }
@@ -233,16 +233,16 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
                                 options2.inDither = true;
                                 options2.inJustDecodeBounds = false;
                                 final Bitmap decodeFile2 = BitmapFactory.decodeFile(w7Var3.L.getPath(), options2);
-                                final j4 j4Var2 = this.f10901b;
+                                final j4 j4Var2 = this.f10900b;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                j4Var2.f11046b.setImageBitmap(decodeFile2);
+                                                j4Var2.f11045b.setImageBitmap(decodeFile2);
                                                 return;
                                             default:
-                                                j4Var2.f11046b.setImageBitmap(decodeFile2);
+                                                j4Var2.f11045b.setImageBitmap(decodeFile2);
                                                 return;
                                         }
                                     }
@@ -256,10 +256,10 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
     }
 
     public final void b(boolean z10, boolean z11) {
-        if (this.f11048f == z10) {
+        if (this.f11047f == z10) {
             return;
         }
-        this.f11048f = z10;
+        this.f11047f = z10;
         if (!z11) {
             this.E.a(z10);
         }
@@ -269,38 +269,38 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        ImageReceiver imageReceiver = this.f11046b;
+        ImageReceiver imageReceiver = this.f11045b;
         imageReceiver.setImageCoords(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(94.0f), AndroidUtilities.dp(112.0f));
         imageReceiver.draw(canvas);
-        Paint paint = this.f11047c;
+        Paint paint = this.f11046c;
         paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        float e = this.E.e(this.f11048f);
+        float e = this.E.e(this.f11047f);
         if (e > 0.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(96.0f), AndroidUtilities.dp(116.0f));
             paint.setAlpha((int) (e * 255.0f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
         }
-        this.f11052w = (getWidth() - AndroidUtilities.dp(17.163f)) - AndroidUtilities.dp(3.0f);
-        this.f11053x = AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(17.833f);
-        this.f11054y = AndroidUtilities.dp(12.833f);
+        this.f11051w = (getWidth() - AndroidUtilities.dp(17.163f)) - AndroidUtilities.dp(3.0f);
+        this.f11052x = AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(17.833f);
+        this.f11053y = AndroidUtilities.dp(12.833f);
         float e10 = this.F.e(this.h);
-        float a2 = this.f11050r.a(0.075f);
+        float a2 = this.f11049r.a(0.075f);
         canvas.save();
-        canvas.scale(a2, a2, this.f11052w, this.f11053x);
+        canvas.scale(a2, a2, this.f11051w, this.f11052x);
         int i10 = (e10 > 0.0f ? 1 : (e10 == 0.0f ? 0 : -1));
         if (i10 > 0) {
             Paint paint2 = this.d;
             paint2.setAlpha((int) (e10 * 255.0f));
-            canvas.drawCircle(this.f11052w, this.f11053x, this.f11054y, paint2);
+            canvas.drawCircle(this.f11051w, this.f11052x, this.f11053y, paint2);
         }
         paint.setAlpha(255);
-        canvas.drawCircle(this.f11052w, this.f11053x, this.f11054y - AndroidUtilities.dp(1.0f), paint);
+        canvas.drawCircle(this.f11051w, this.f11052x, this.f11053y - AndroidUtilities.dp(1.0f), paint);
         if (i10 > 0) {
-            float f7 = this.f11052w;
-            float f10 = this.f11054y;
+            float f7 = this.f11051w;
+            float f10 = this.f11053y;
             float f11 = f7 - f10;
-            float f12 = this.f11053x;
+            float f12 = this.f11052x;
             float f13 = f7 + f10;
             org.telegram.ui.Components.r6 r6Var = this.e;
             r6Var.o(f11, f12, f13, f12);
@@ -313,13 +313,13 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f11046b.onAttachedToWindow();
+        this.f11045b.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f11046b.onDetachedFromWindow();
+        this.f11045b.onDetachedFromWindow();
     }
 
     @Override
@@ -331,31 +331,31 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         View.OnClickListener onClickListener;
-        if (motionEvent.getX() >= this.f11052w - AndroidUtilities.dp(14.0f) && motionEvent.getX() <= this.f11052w + AndroidUtilities.dp(14.0f) && motionEvent.getY() >= this.f11053x - AndroidUtilities.dp(14.0f) && motionEvent.getY() <= this.f11053x + AndroidUtilities.dp(14.0f)) {
+        if (motionEvent.getX() >= this.f11051w - AndroidUtilities.dp(14.0f) && motionEvent.getX() <= this.f11051w + AndroidUtilities.dp(14.0f) && motionEvent.getY() >= this.f11052x - AndroidUtilities.dp(14.0f) && motionEvent.getY() <= this.f11052x + AndroidUtilities.dp(14.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
         int action = motionEvent.getAction();
-        xc xcVar = this.f11050r;
+        xc xcVar = this.f11049r;
         if (action == 0) {
             xcVar.c(z10);
         } else if (motionEvent.getAction() == 1) {
-            if (xcVar.f34690i && z10 && (onClickListener = this.f11049n) != null) {
+            if (xcVar.f34725i && z10 && (onClickListener = this.f11048n) != null) {
                 onClickListener.onClick(this);
             }
             xcVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             xcVar.c(false);
         }
-        if (xcVar.f34690i || super.onTouchEvent(motionEvent)) {
+        if (xcVar.f34725i || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
     }
 
     public void setOnCheckboxClick(View.OnClickListener onClickListener) {
-        this.f11049n = onClickListener;
+        this.f11048n = onClickListener;
     }
 
     public void setPosition(int i10) {
@@ -371,7 +371,7 @@ public final class j4 extends View implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void updateColors() {
         try {
-            this.d.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f11045a));
+            this.d.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Oh, this.f11044a));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

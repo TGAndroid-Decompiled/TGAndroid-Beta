@@ -1,103 +1,73 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-public final class h21 implements Runnable {
-    public final int f39875a;
-    public final un f39876b;
-    public final Activity f39877c;
-    public final org.telegram.ui.ActionBar.u6 d;
-    public final MessageObject e;
+import org.telegram.tgnet.TLRPC;
+public final class h21 extends FrameLayout {
+    public final org.telegram.ui.Components.r5 f39759a;
+    public final i21 f39760b;
 
-    public h21(un unVar, Activity activity, org.telegram.ui.ActionBar.u6 u6Var, MessageObject messageObject, int i10) {
-        this.f39875a = i10;
-        this.f39876b = unVar;
-        this.f39877c = activity;
-        this.d = u6Var;
-        this.e = messageObject;
+    public h21(i21 i21Var, Context context) {
+        super(context);
+        this.f39760b = i21Var;
+        TextView g7 = org.telegram.messenger.t.g(context, 1, 16.0f);
+        org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.G6, i21Var.getResourceProvider());
+        g7.setText(LocaleController.getString(R.string.DoubleTapSetting));
+        addView(g7, org.telegram.ui.Components.kb1.h(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
+        this.f39759a = new org.telegram.ui.Components.r5(AndroidUtilities.dp(24.0f), this);
+    }
+
+    public final void a(boolean z10) {
+        i21 i21Var = this.f39760b;
+        String doubleTapReaction = MediaDataController.getInstance(i21.Z(i21Var)).getDoubleTapReaction();
+        org.telegram.ui.Components.r5 r5Var = this.f39759a;
+        if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
+            try {
+                r5Var.j(Long.parseLong(doubleTapReaction.substring(9)), z10);
+                return;
+            } catch (Exception unused) {
+            }
+        }
+        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i21.a0(i21Var)).getReactionsMap().get(doubleTapReaction);
+        if (tL_availableReaction != null) {
+            r5Var.i(tL_availableReaction.static_icon, z10);
+        }
+    }
+
+    public final void b() {
+        int width = getWidth();
+        org.telegram.ui.Components.r5 r5Var = this.f39759a;
+        r5Var.setBounds((width - r5Var.f32126s) - AndroidUtilities.dp(21.0f), (getHeight() - r5Var.f32126s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + r5Var.f32126s) / 2);
     }
 
     @Override
-    public final void run() {
-        switch (this.f39875a) {
-            case 0:
-                un unVar = this.f39876b;
-                org.telegram.ui.Components.wc b02 = org.telegram.ui.Components.wc.b0(unVar);
-                String string = LocaleController.getString(R.string.AdReported);
-                final Activity activity = this.f39877c;
-                b02.c(AndroidUtilities.replaceSingleTag(string, -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                qf.d.r(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                qf.d.r(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                qf.d.r(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, this.d)).j();
-                MessageObject messageObject = this.e;
-                unVar.Oa(messageObject);
-                unVar.Qa(messageObject);
-                return;
-            case 1:
-                un unVar2 = this.f39876b;
-                org.telegram.ui.Components.wc b03 = org.telegram.ui.Components.wc.b0(unVar2);
-                String string2 = LocaleController.getString(R.string.AdReported);
-                final Activity activity2 = this.f39877c;
-                b03.c(AndroidUtilities.replaceSingleTag(string2, -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                qf.d.r(activity2, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                qf.d.r(activity2, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                qf.d.r(activity2, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, this.d)).j();
-                MessageObject messageObject2 = this.e;
-                unVar2.Oa(messageObject2);
-                unVar2.Qa(messageObject2);
-                return;
-            default:
-                un unVar3 = this.f39876b;
-                org.telegram.ui.Components.wc b04 = org.telegram.ui.Components.wc.b0(unVar3);
-                String string3 = LocaleController.getString(R.string.AdReported);
-                final Activity activity3 = this.f39877c;
-                b04.c(AndroidUtilities.replaceSingleTag(string3, -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                qf.d.r(activity3, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                qf.d.r(activity3, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                qf.d.r(activity3, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, this.d)).j();
-                MessageObject messageObject3 = this.e;
-                unVar3.Oa(messageObject3);
-                unVar3.Qa(messageObject3);
-                return;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        b();
+        this.f39759a.draw(canvas);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f39759a.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f39759a.b();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
     }
 }

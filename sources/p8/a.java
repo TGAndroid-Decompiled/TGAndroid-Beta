@@ -38,7 +38,7 @@ public final class a extends o6.g implements com.google.android.gms.common.api.c
             this.V.getClass();
             Account account = new Account("<<default account>>", "com.google");
             if ("<<default account>>".equals(account.name)) {
-                googleSignInAccount = b6.b.a(this.f19127n).b();
+                googleSignInAccount = b6.b.a(this.f19126n).b();
             } else {
                 googleSignInAccount = null;
             }
@@ -86,7 +86,7 @@ public final class a extends o6.g implements com.google.android.gms.common.api.c
     @Override
     public final Bundle t() {
         r3 r3Var = this.V;
-        boolean equals = this.f19127n.getPackageName().equals((String) r3Var.d);
+        boolean equals = this.f19126n.getPackageName().equals((String) r3Var.d);
         Bundle bundle = this.W;
         if (!equals) {
             bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) r3Var.d);

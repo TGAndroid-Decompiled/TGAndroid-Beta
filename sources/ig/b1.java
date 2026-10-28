@@ -5,24 +5,24 @@ import java.util.Comparator;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class b1 implements Comparator {
-    public final ArrayList f14006a;
-    public final ArrayList f14007b;
+    public final ArrayList f14005a;
+    public final ArrayList f14006b;
 
     public b1(ArrayList arrayList, ArrayList arrayList2) {
-        this.f14006a = arrayList;
-        this.f14007b = arrayList2;
+        this.f14005a = arrayList;
+        this.f14006b = arrayList2;
     }
 
     public final int a(i1 i1Var) {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f14006a;
+            ArrayList arrayList = this.f14005a;
             if (i11 >= arrayList.size()) {
                 while (true) {
-                    ArrayList arrayList2 = this.f14007b;
+                    ArrayList arrayList2 = this.f14006b;
                     if (i10 < Math.min(20, arrayList2.size())) {
-                        if (((TLRPC.Document) arrayList2.get(i10)).f22033id == i1Var.f14105a.f22033id) {
+                        if (((TLRPC.Document) arrayList2.get(i10)).f22034id == i1Var.f14104a.f22034id) {
                             return (arrayList2.size() - i10) + 1000000;
                         }
                         i10++;
@@ -30,7 +30,7 @@ public final class b1 implements Comparator {
                         return -1;
                     }
                 }
-            } else if (((TLRPC.Document) arrayList.get(i11)).f22033id == i1Var.f14105a.f22033id) {
+            } else if (((TLRPC.Document) arrayList.get(i11)).f22034id == i1Var.f14104a.f22034id) {
                 return i11 + 2000000;
             } else {
                 i11++;
@@ -42,8 +42,8 @@ public final class b1 implements Comparator {
     public final int compare(Object obj, Object obj2) {
         i1 i1Var = (i1) obj;
         i1 i1Var2 = (i1) obj2;
-        boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(i1Var.f14105a, true);
-        if (isAnimatedStickerDocument == MessageObject.isAnimatedStickerDocument(i1Var2.f14105a, true)) {
+        boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(i1Var.f14104a, true);
+        if (isAnimatedStickerDocument == MessageObject.isAnimatedStickerDocument(i1Var2.f14104a, true)) {
             int a2 = a(i1Var);
             int a10 = a(i1Var2);
             if (a2 <= a10) {

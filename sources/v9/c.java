@@ -14,7 +14,7 @@ import kd.o;
 import kotlin.jvm.internal.i;
 import ti.e;
 public final class c {
-    public static final c f50101a = new Object();
+    public static final c f50136a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -32,7 +32,7 @@ public final class c {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = o.f16525a;
+            list = o.f16524a;
         }
         ArrayList f7 = g.f(list);
         ArrayList arrayList = new ArrayList();
@@ -55,8 +55,8 @@ public final class c {
             e eVar = new e(1, false);
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                eVar.f49184b = str2;
-                eVar.f49185c = Integer.valueOf(runningAppProcessInfo.pid);
+                eVar.f49219b = str2;
+                eVar.f49220c = Integer.valueOf(runningAppProcessInfo.pid);
                 eVar.d = Integer.valueOf(runningAppProcessInfo.importance);
                 eVar.e = Boolean.valueOf(i.a(runningAppProcessInfo.processName, str));
                 arrayList2.add(eVar.c());
@@ -98,8 +98,8 @@ public final class c {
             }
             i.e(processName, "processName");
             e eVar = new e(1, false);
-            eVar.f49184b = processName;
-            eVar.f49185c = Integer.valueOf(myPid);
+            eVar.f49219b = processName;
+            eVar.f49220c = Integer.valueOf(myPid);
             eVar.d = 0;
             eVar.e = false;
             return eVar.c();

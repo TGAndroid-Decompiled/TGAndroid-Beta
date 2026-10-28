@@ -1,67 +1,74 @@
 package sg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.h6;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
 public final class m2 {
-    public boolean f48314b;
-    public int f48315c;
-    public Bitmap d;
-    public Bitmap e;
-    public Bitmap f48316f;
-    public Bitmap f48317g;
-    public float f48319j;
-    public float f48320k;
-    public int f48323n;
-    public float[] f48324o;
-    public final Paint f48327r;
-    public final Paint f48328s;
-    public final p2 f48329t;
-    public final h6 f48313a = new h6(0.0f, (View) null, 0, 320, ds.h);
-    public final RectF h = new RectF();
-    public final RectF f48318i = new RectF();
-    public final Path f48321l = new Path();
-    public final Path f48322m = new Path();
-    public final Paint f48325p = new Paint(1);
-    public final Paint f48326q = new Paint(1);
+    public String f48399a;
+    public String f48400b;
+    public String f48401c;
+    public CharSequence d;
+    public TLRPC.TL_inputStickerSetItem e;
+    public TLRPC.TL_messageMediaDocument f48402f;
+    public TLRPC.InputFile f48403g;
+    public boolean h;
+    public long f48404i;
+    public TLRPC.StickerSet f48405j;
+    public TLRPC.Document f48406k;
+    public String f48407l;
+    public Utilities.Callback2 f48408m;
+    public Utilities.Callback f48409n;
+    public boolean f48410o;
+    public ArrayList f48411p;
+    public ArrayList f48412q;
+    public MessageObject f48413r;
+    public VideoEditedInfo f48414s;
+    public float f48415t;
+    public float f48416u;
 
-    public m2(p2 p2Var) {
-        this.f48329t = p2Var;
-        new Paint(1);
-        this.f48327r = new Paint(1);
-        this.f48328s = new Paint(1);
-    }
-
-    public final Bitmap a() {
-        Bitmap bitmap = this.f48317g;
-        if (bitmap != null) {
-            return bitmap;
+    public final void a() {
+        ArrayList arrayList = this.f48412q;
+        ArrayList arrayList2 = this.f48411p;
+        int size = arrayList2.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList2.get(i11);
+            i11++;
+            try {
+                ((File) obj).delete();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
         }
-        return this.f48316f;
-    }
-
-    public final Bitmap b() {
-        Bitmap bitmap = this.e;
-        if (bitmap != null) {
-            return bitmap;
+        arrayList2.clear();
+        int size2 = arrayList.size();
+        while (i10 < size2) {
+            Object obj2 = arrayList.get(i10);
+            i10++;
+            try {
+                ((File) obj2).delete();
+            } catch (Exception e10) {
+                FileLog.e(e10);
+            }
         }
-        return this.d;
+        arrayList.clear();
     }
 
-    public final Bitmap c() {
-        Bitmap createBitmap = Bitmap.createBitmap(b().getWidth(), b().getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        canvas.drawColor(-16777216);
-        Paint paint = new Paint(3);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        canvas.drawBitmap(b(), 0.0f, 0.0f, paint);
-        return createBitmap;
+    public final float b() {
+        float f7;
+        if (this.f48408m == null) {
+            f7 = 0.9f;
+        } else {
+            f7 = 1.0f;
+        }
+        if (this.f48414s == null) {
+            return f7 * this.f48416u;
+        }
+        return c3.h0.C(this.f48416u, 0.5f, this.f48415t * 0.5f, f7);
     }
 }

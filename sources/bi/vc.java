@@ -17,21 +17,21 @@ import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.r71;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.nm0;
+import org.telegram.ui.Components.s71;
 import org.telegram.ui.Components.t61;
-import org.telegram.ui.j70;
-public final class vc extends s61 {
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.l70;
+public final class vc extends t61 {
     public static final int f5579a = 0;
 
     static {
-        s61.setup(new s61());
+        t61.setup(new t61());
     }
 
     @Override
-    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
         String userName;
         boolean z11;
         boolean z12;
@@ -40,7 +40,7 @@ public final class vc extends s61 {
         int i11;
         org.telegram.ui.ActionBar.b6 b6Var;
         wc wcVar = (wc) view;
-        TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) t61Var.G;
+        TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) u61Var.G;
         org.telegram.ui.ActionBar.b6 b6Var2 = wcVar.d;
         org.telegram.ui.Components.y9 y9Var = wcVar.f5626c;
         org.telegram.ui.ActionBar.u6 u6Var = wcVar.f5625b;
@@ -76,14 +76,14 @@ public final class vc extends s61 {
             textView3.setVisibility(0);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (starsSubscription.photo != null) {
-                j70 j70Var = new j70(textView3, 14.0f, i12);
-                j70Var.a(4.0f);
-                j70Var.f40475f = false;
+                l70 l70Var = new l70(textView3, 14.0f, i12);
+                l70Var.a(4.0f);
+                l70Var.f40988f = false;
                 SpannableString spannableString = new SpannableString("x");
                 b6Var = b6Var2;
                 z12 = z11;
-                spannableString.setSpan(j70Var, 0, 1, 33);
-                j70Var.f40473b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                spannableString.setSpan(l70Var, 0, 1, 33);
+                l70Var.f40986b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
                 spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
             } else {
                 b6Var = b6Var2;
@@ -112,7 +112,7 @@ public final class vc extends s61 {
                 textView2.setText(LocaleController.formatString(R.string.StarsSubscriptionRenews, LocaleController.formatDateChat(j10)));
                 textView.setVisibility(0);
                 textView.setText(dd.W0(false, "⭐️ " + Long.toString(starsSubscription.pricing.amount), 0.8f, null));
-                org.telegram.ui.ActionBar.f7.V(textView4, org.telegram.ui.ActionBar.y6.f23767z6, u6Var);
+                org.telegram.ui.ActionBar.f7.V(textView4, org.telegram.ui.ActionBar.y6.f23768z6, u6Var);
                 int i13 = starsSubscription.pricing.period;
                 if (i13 == 2592000) {
                     textView4.setText(LocaleController.getString(R.string.StarsParticipantSubscriptionPerMonth));
@@ -148,7 +148,7 @@ public final class vc extends s61 {
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
+    public final View createView(Context context, nm0 nm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
         wc wcVar = (wc) getCached();
         if (wcVar != null) {
             return wcVar;
@@ -157,13 +157,13 @@ public final class vc extends s61 {
     }
 
     @Override
-    public final boolean equals(t61 t61Var, t61 t61Var2) {
-        if (t61Var2 != null) {
-            Object obj = t61Var.G;
+    public final boolean equals(u61 u61Var, u61 u61Var2) {
+        if (u61Var2 != null) {
+            Object obj = u61Var.G;
             if (obj instanceof TL_stars.StarsSubscription) {
-                Object obj2 = t61Var2.G;
+                Object obj2 = u61Var2.G;
                 if (obj2 instanceof TL_stars.StarsSubscription) {
-                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f22257id, ((TL_stars.StarsSubscription) obj2).f22257id);
+                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f22258id, ((TL_stars.StarsSubscription) obj2).f22258id);
                 }
                 return false;
             }

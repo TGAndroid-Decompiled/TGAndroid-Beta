@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.c6;
@@ -24,34 +24,34 @@ import org.telegram.ui.Components.h6;
 import org.telegram.ui.Components.j5;
 import org.telegram.ui.Components.r6;
 public abstract class d0 extends FrameLayout {
-    public final Paint f12932a;
-    public final Paint f12933b;
-    public final h6 f12934c;
+    public final Paint f12931a;
+    public final Paint f12932b;
+    public final h6 f12933c;
     public final j5 d;
     public ng e;
-    public final b0[] f12935f;
+    public final b0[] f12934f;
     public b0 h;
-    public Utilities.Callback f12936n;
-    public Runnable f12937r;
+    public Utilities.Callback f12935n;
+    public Runnable f12936r;
 
     public d0(Context context, u6 u6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f12932a = paint;
+        this.f12931a = paint;
         Paint paint2 = new Paint(1);
-        this.f12933b = paint2;
+        this.f12932b = paint2;
         ds dsVar = ds.h;
-        this.f12934c = new h6(this, 0L, 320L, dsVar);
+        this.f12933c = new h6(this, 0L, 320L, dsVar);
         this.d = new j5(this, 320L, dsVar, 0);
         ng ngVar = new ng((char) 0, 10);
         ngVar.f640c = new Object();
         ngVar.d = new Object();
         this.e = ngVar;
-        this.f12935f = r2;
+        this.f12934f = r2;
         setWillNotDraw(false);
         paint2.setColor(y6.o1(0.1f, -16777216));
         ng ngVar2 = this.e;
-        int w02 = y6.w0(y6.f23356d6, u6Var);
+        int w02 = y6.w0(y6.f23357d6, u6Var);
         ngVar2.f639b = w02;
         paint.setColor(w02);
         b0[] b0VarArr = {new b0(this), new b0(this)};
@@ -59,11 +59,11 @@ public abstract class d0 extends FrameLayout {
 
     public static void b(r6 r6Var, c0 c0Var, boolean z10) {
         r6Var.a();
-        if (c0Var.f12905f != 0) {
+        if (c0Var.f12904f != 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) c0Var.e);
-            spannableStringBuilder.setSpan(new c6(c0Var.f12905f, 1.4f, r6Var.f32119a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new c6(c0Var.f12904f, 1.4f, r6Var.f32140a.getFontMetricsInt()), 0, 1, 33);
             r6Var.t(spannableStringBuilder, z10, true);
             return;
         }
@@ -74,7 +74,7 @@ public abstract class d0 extends FrameLayout {
         Object obj;
         int i10 = 0;
         while (true) {
-            b0[] b0VarArr = this.f12935f;
+            b0[] b0VarArr = this.f12934f;
             if (i10 < b0VarArr.length) {
                 ng ngVar = this.e;
                 if (i10 == 0) {
@@ -83,7 +83,7 @@ public abstract class d0 extends FrameLayout {
                     obj = ngVar.d;
                 }
                 c0 c0Var = (c0) obj;
-                if (b0VarArr[i10].f12871a.contains(f7, f10) && c0Var.f12902a && c0Var.f12903b) {
+                if (b0VarArr[i10].f12870a.contains(f7, f10) && c0Var.f12901a && c0Var.f12902b) {
                     return b0VarArr[i10];
                 }
                 i10++;
@@ -112,17 +112,17 @@ public abstract class d0 extends FrameLayout {
         boolean z10;
         org.telegram.ui.Cells.y yVar;
         int i13;
-        float height = getHeight() - this.f12934c.d(getTotalHeight(), false);
-        canvas.drawRect(0.0f, height - 1.0f, getWidth(), height, this.f12933b);
+        float height = getHeight() - this.f12933c.d(getTotalHeight(), false);
+        canvas.drawRect(0.0f, height - 1.0f, getWidth(), height, this.f12932b);
         int a2 = this.d.a(this.e.f639b, false);
-        Paint paint = this.f12932a;
+        Paint paint = this.f12931a;
         paint.setColor(a2);
         canvas.drawRect(0.0f, height, getWidth(), getHeight(), paint);
         float f13 = height;
-        String str2 = ((c0) this.e.d).f12907i;
-        b0[] b0VarArr = this.f12935f;
+        String str2 = ((c0) this.e.d).f12906i;
+        b0[] b0VarArr = this.f12934f;
         int i14 = 1;
-        if (b0VarArr[1].f12872b.f28811c < b0VarArr[0].f12872b.f28811c) {
+        if (b0VarArr[1].f12871b.f28864c < b0VarArr[0].f12871b.f28864c) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -144,29 +144,29 @@ public abstract class d0 extends FrameLayout {
                 obj = ngVar.d;
             }
             c0 c0Var = (c0) obj;
-            h6 h6Var = b0Var.f12872b;
-            org.telegram.ui.Components.voip.h hVar = b0Var.f12883p;
-            Paint paint2 = b0Var.f12878k;
+            h6 h6Var = b0Var.f12871b;
+            org.telegram.ui.Components.voip.h hVar = b0Var.f12882p;
+            Paint paint2 = b0Var.f12877k;
             h6 h6Var2 = b0Var.e;
             h6 h6Var3 = b0Var.d;
-            h6 h6Var4 = b0Var.f12873c;
-            org.telegram.ui.Cells.y yVar2 = b0Var.f12881n;
+            h6 h6Var4 = b0Var.f12872c;
+            org.telegram.ui.Cells.y yVar2 = b0Var.f12880n;
             b0[] b0VarArr2 = b0VarArr;
-            gq gqVar = b0Var.f12882o;
+            gq gqVar = b0Var.f12881o;
             float f14 = f13;
-            j5 j5Var = b0Var.f12875g;
+            j5 j5Var = b0Var.f12874g;
             int i16 = i10;
-            r6 r6Var2 = b0Var.f12879l;
+            r6 r6Var2 = b0Var.f12878l;
             int i17 = i15;
-            RectF rectF = b0Var.f12871a;
-            float e = h6Var.e(c0Var.f12902a);
-            if (!c0Var.f12902a) {
-                d = h6Var4.f28811c;
+            RectF rectF = b0Var.f12870a;
+            float e = h6Var.e(c0Var.f12901a);
+            if (!c0Var.f12901a) {
+                d = h6Var4.f28864c;
                 r6Var = r6Var2;
             } else {
                 ng ngVar2 = this.e;
                 r6Var = r6Var2;
-                if (((c0) ngVar2.d).f12902a && ((c0) ngVar2.f640c).f12902a) {
+                if (((c0) ngVar2.d).f12901a && ((c0) ngVar2.f640c).f12901a) {
                     if (!"left".equalsIgnoreCase(str2) ? !(!"right".equalsIgnoreCase(str2) || i17 == 0) : i17 == 0) {
                         i11 = 1;
                     } else {
@@ -178,11 +178,11 @@ public abstract class d0 extends FrameLayout {
                 }
                 d = h6Var4.d(f7, false);
             }
-            if (!c0Var.f12902a) {
-                d10 = h6Var3.f28811c;
+            if (!c0Var.f12901a) {
+                d10 = h6Var3.f28864c;
             } else {
                 ng ngVar3 = this.e;
-                if (((c0) ngVar3.d).f12902a && ((c0) ngVar3.f640c).f12902a) {
+                if (((c0) ngVar3.d).f12901a && ((c0) ngVar3.f640c).f12901a) {
                     if (!"top".equalsIgnoreCase(str2) ? !(!"bottom".equalsIgnoreCase(str2) || i17 == 0) : i17 == 0) {
                         i12 = 1;
                     } else {
@@ -194,11 +194,11 @@ public abstract class d0 extends FrameLayout {
                 }
                 d10 = h6Var3.d(f10, false);
             }
-            if (!c0Var.f12902a) {
-                d11 = h6Var2.f28811c;
+            if (!c0Var.f12901a) {
+                d11 = h6Var2.f28864c;
             } else {
                 ng ngVar4 = this.e;
-                if (((c0) ngVar4.d).f12902a && ((c0) ngVar4.f640c).f12902a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
+                if (((c0) ngVar4.d).f12901a && ((c0) ngVar4.f640c).f12901a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
                     f11 = 0.0f;
                 } else {
                     f11 = 1.0f;
@@ -210,12 +210,12 @@ public abstract class d0 extends FrameLayout {
             float dp = AndroidUtilities.dp(44.0f) / 2.0f;
             float lerp3 = f14 + AndroidUtilities.lerp(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(58.0f), d10) + dp;
             rectF.set(lerp2 - lerp, lerp3 - dp, lerp + lerp2, dp + lerp3);
-            float e10 = b0Var.h.e(c0Var.f12904c);
-            float e11 = b0Var.f12876i.e(c0Var.d);
+            float e10 = b0Var.h.e(c0Var.f12903c);
+            float e11 = b0Var.f12875i.e(c0Var.d);
             canvas.save();
-            float lerp4 = AndroidUtilities.lerp(0.7f, 1.0f, e) * b0Var.f12877j.a(0.02f);
+            float lerp4 = AndroidUtilities.lerp(0.7f, 1.0f, e) * b0Var.f12876j.a(0.02f);
             canvas.scale(lerp4, lerp4, lerp2, lerp3);
-            paint2.setColor(y6.o1(e, b0Var.f12874f.a(c0Var.f12906g, false)));
+            paint2.setColor(y6.o1(e, b0Var.f12873f.a(c0Var.f12905g, false)));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
             if (e10 < 1.0f) {
                 canvas.save();
@@ -229,7 +229,7 @@ public abstract class d0 extends FrameLayout {
                 if (r6Var3.Z != o12) {
                     r6Var3.Z = o12;
                     str = str2;
-                    r6Var3.f32120a0 = new PorterDuffColorFilter(o12, PorterDuff.Mode.SRC_IN);
+                    r6Var3.f32141a0 = new PorterDuffColorFilter(o12, PorterDuff.Mode.SRC_IN);
                 } else {
                     str = str2;
                 }
@@ -262,9 +262,9 @@ public abstract class d0 extends FrameLayout {
             } else {
                 z10 = false;
             }
-            if (b0Var.f12880m != y6.o1(0.15f, c0Var.h)) {
+            if (b0Var.f12879m != y6.o1(0.15f, c0Var.h)) {
                 int o13 = y6.o1(0.15f, c0Var.h);
-                b0Var.f12880m = o13;
+                b0Var.f12879m = o13;
                 yVar = yVar2;
                 i14 = 1;
                 y6.E1(yVar, o13, true);
@@ -289,21 +289,21 @@ public abstract class d0 extends FrameLayout {
     }
 
     public float getAnimatedTotalHeight() {
-        return this.f12934c.f28811c;
+        return this.f12933c.f28864c;
     }
 
     public int getTotalHeight() {
         int i10;
         ng ngVar = this.e;
-        boolean z10 = ((c0) ngVar.f640c).f12902a;
-        if (!z10 && !((c0) ngVar.d).f12902a) {
+        boolean z10 = ((c0) ngVar.f640c).f12901a;
+        if (!z10 && !((c0) ngVar.d).f12901a) {
             i10 = 0;
         } else {
             i10 = 1;
         }
         if (z10) {
             c0 c0Var = (c0) ngVar.d;
-            if (c0Var.f12902a && ("top".equalsIgnoreCase(c0Var.f12907i) || "bottom".equalsIgnoreCase(((c0) this.e.d).f12907i))) {
+            if (c0Var.f12901a && ("top".equalsIgnoreCase(c0Var.f12906i) || "bottom".equalsIgnoreCase(((c0) this.e.d).f12906i))) {
                 i10++;
             }
         }
@@ -318,7 +318,7 @@ public abstract class d0 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), vh.D(109.0f, 1, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), wh.D(109.0f, 1, 1073741824));
     }
 
     @Override
@@ -329,16 +329,16 @@ public abstract class d0 extends FrameLayout {
             b0 a2 = a(motionEvent.getX(), motionEvent.getY());
             this.h = a2;
             if (a2 != null) {
-                a2.f12877j.c(true);
-                this.h.f12881n.setHotspot(motionEvent.getX(), motionEvent.getY());
-                this.h.f12881n.setState(new int[]{16842919, 16842910});
+                a2.f12876j.c(true);
+                this.h.f12880n.setHotspot(motionEvent.getX(), motionEvent.getY());
+                this.h.f12880n.setState(new int[]{16842919, 16842910});
             }
         } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.h != null) {
             if (motionEvent.getAction() == 1) {
                 b0 a10 = a(motionEvent.getX(), motionEvent.getY());
                 b0 b0Var = this.h;
-                if (a10 == b0Var && (callback = this.f12936n) != null) {
-                    if (b0Var == this.f12935f[0]) {
+                if (a10 == b0Var && (callback = this.f12935n) != null) {
+                    if (b0Var == this.f12934f[0]) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -346,8 +346,8 @@ public abstract class d0 extends FrameLayout {
                     callback.run(Boolean.valueOf(z10));
                 }
             }
-            this.h.f12877j.c(false);
-            this.h.f12881n.setState(new int[0]);
+            this.h.f12876j.c(false);
+            this.h.f12880n.setState(new int[0]);
             this.h = null;
         }
         if (this.h == null) {
@@ -357,20 +357,20 @@ public abstract class d0 extends FrameLayout {
     }
 
     public void setOnButtonClickListener(Utilities.Callback<Boolean> callback) {
-        this.f12936n = callback;
+        this.f12935n = callback;
     }
 
     public void setOnResizeListener(Runnable runnable) {
-        this.f12937r = runnable;
+        this.f12936r = runnable;
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        b0[] b0VarArr = this.f12935f;
+        b0[] b0VarArr = this.f12934f;
         b0 b0Var = b0VarArr[0];
-        if (b0Var.f12881n != drawable && b0Var.f12882o != drawable) {
+        if (b0Var.f12880n != drawable && b0Var.f12881o != drawable) {
             b0 b0Var2 = b0VarArr[1];
-            if (b0Var2.f12881n != drawable && b0Var2.f12882o != drawable && !super.verifyDrawable(drawable)) {
+            if (b0Var2.f12880n != drawable && b0Var2.f12881o != drawable && !super.verifyDrawable(drawable)) {
                 return false;
             }
         }

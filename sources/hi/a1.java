@@ -16,23 +16,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.a7;
-import org.telegram.ui.Components.ak0;
+import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.j9;
 public final class a1 extends Drawable implements a7 {
-    public final Paint f12851a;
-    public final Paint f12852b;
-    public final Paint f12853c;
+    public final Paint f12850a;
+    public final Paint f12851b;
+    public final Paint f12852c;
     public final ImageReceiver d;
     public final ImageReceiver e;
-    public final Drawable f12854f;
+    public final Drawable f12853f;
     public int h;
 
     public a1(Context context, TLRPC.User user, TLRPC.User user2) {
         Paint paint = new Paint(1);
-        this.f12851a = paint;
-        this.f12852b = new Paint(1);
+        this.f12850a = paint;
+        this.f12851b = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f12853c = paint2;
+        this.f12852c = paint2;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.d = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver();
@@ -45,7 +45,7 @@ public final class a1 extends Drawable implements a7 {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setColor(-1);
         Drawable mutate = context.getResources().getDrawable(R.drawable.filled_location).mutate();
-        this.f12854f = mutate;
+        this.f12853f = mutate;
         int x02 = y6.x0(null, y6.L5, false);
         this.h = x02;
         mutate.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
@@ -60,9 +60,9 @@ public final class a1 extends Drawable implements a7 {
     }
 
     @Override
-    public final void a(ak0 ak0Var) {
-        this.e.setParentView(ak0Var);
-        this.d.setParentView(ak0Var);
+    public final void a(bk0 bk0Var) {
+        this.e.setParentView(bk0Var);
+        this.d.setParentView(bk0Var);
     }
 
     @Override
@@ -82,7 +82,7 @@ public final class a1 extends Drawable implements a7 {
         Rect bounds = getBounds();
         int i10 = y6.L5;
         int x02 = y6.x0(null, i10, false);
-        Paint paint = this.f12852b;
+        Paint paint = this.f12851b;
         paint.setColor(x02);
         float dp = AndroidUtilities.dp(136.0f) / 2.0f;
         ImageReceiver imageReceiver = this.d;
@@ -91,10 +91,10 @@ public final class a1 extends Drawable implements a7 {
         float centerX = (bounds.centerX() - dp) + AndroidUtilities.dp(41.0f);
         float dp2 = AndroidUtilities.dp(16.0f) + bounds.centerY();
         canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(14.0f), paint);
-        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(12.0f), this.f12853c);
+        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(12.0f), this.f12852c);
         int x03 = y6.x0(null, i10, false);
         int i11 = this.h;
-        Drawable drawable = this.f12854f;
+        Drawable drawable = this.f12853f;
         if (x03 != i11) {
             this.h = x03;
             drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
@@ -102,7 +102,7 @@ public final class a1 extends Drawable implements a7 {
         drawable.setBounds((int) (centerX - AndroidUtilities.dp(9.0f)), (int) (dp2 - AndroidUtilities.dp(9.0f)), (int) (centerX + AndroidUtilities.dp(9.0f)), (int) (dp2 + AndroidUtilities.dp(9.0f)));
         drawable.draw(canvas);
         int centerX2 = bounds.centerX();
-        Paint paint2 = this.f12851a;
+        Paint paint2 = this.f12850a;
         canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), bounds.centerY() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(3.33f) + centerX2, bounds.centerY(), paint2);
         canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), AndroidUtilities.dp(7.0f) + bounds.centerY(), AndroidUtilities.dp(3.33f) + bounds.centerX(), bounds.centerY(), paint2);
         ImageReceiver imageReceiver2 = this.e;

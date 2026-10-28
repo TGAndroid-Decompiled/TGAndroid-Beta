@@ -1,34 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.widget.ImageView;
-public final class sm0 extends ic {
-    public final tm0 f32649c;
-
-    public sm0(Activity activity, String str) {
-        super(activity, null);
-        this.f29276b.setText(str);
-        this.f29276b.setTranslationY(-1.0f);
-        ImageView imageView = this.f29275a;
-        tm0 tm0Var = new tm0();
-        this.f32649c = tm0Var;
-        imageView.setImageDrawable(tm0Var);
-    }
+import android.view.View;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+public final class sm0 extends FrameLayout {
+    public View f32648a;
 
     @Override
-    public final void onEnterTransitionEnd() {
-        super.onEnterTransitionEnd();
-        tm0 tm0Var = this.f32649c;
-        tm0Var.getClass();
-        tm0Var.f33110g = System.currentTimeMillis();
-        tm0Var.invalidateSelf();
+    public final void onMeasure(int i10, int i11) {
+        View view = this.f32648a;
+        if (view == null) {
+            ViewParent parent = getParent();
+            while (true) {
+                if (parent instanceof View) {
+                    if (parent instanceof RecyclerView) {
+                        view = (RecyclerView) parent;
+                        break;
+                    }
+                    parent = parent.getParent();
+                } else {
+                    view = null;
+                    break;
+                }
+            }
+        }
+        int i12 = 0;
+        if (view != null) {
+            i12 = Math.max(0, (view.getMeasuredHeight() - view.getPaddingTop()) - view.getPaddingBottom());
+        }
+        if (i12 > 0) {
+            i11 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 
-    @Override
-    public final void onExitTransitionEnd() {
-        super.onExitTransitionEnd();
-        tm0 tm0Var = this.f32649c;
-        tm0Var.f33110g = -1L;
-        tm0Var.invalidateSelf();
+    public void setViewportView(View view) {
+        if (this.f32648a == view) {
+            return;
+        }
+        this.f32648a = view;
+        requestLayout();
     }
 }

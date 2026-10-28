@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.lm0;
-public final class o8 extends lm0 {
-    public final p8 f11421c;
+import org.telegram.ui.Components.mm0;
+public final class o8 extends mm0 {
+    public final p8 f11420c;
 
     public o8(p8 p8Var) {
-        this.f11421c = p8Var;
+        this.f11420c = p8Var;
     }
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47741f == 2) {
+        if (e1Var.f47776f == 2) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class o8 extends lm0 {
 
     @Override
     public final int h() {
-        return this.f11421c.f11445c.size() + 2;
+        return this.f11420c.f11444c.size() + 2;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class o8 extends lm0 {
         int dp;
         View view;
         org.telegram.ui.ActionBar.u6 u6Var;
-        p8 p8Var = this.f11421c;
+        p8 p8Var = this.f11420c;
         if (i10 != 0 && i10 != 1) {
             Context context = p8Var.getContext();
             u6Var = ((org.telegram.ui.ActionBar.k3) p8Var).resourcesProvider;

@@ -10,45 +10,45 @@ import android.support.v4.media.session.x;
 import ch.f;
 import ch.h;
 public final class d implements a {
-    public final a f12838a;
-    public h f12840c;
+    public final a f12837a;
+    public h f12839c;
     public f d;
     public int e;
-    public a f12841f;
+    public a f12840f;
     public oi.c h;
-    public boolean f12842n;
-    public boolean f12843r;
-    public RecordingCanvas f12844s;
+    public boolean f12841n;
+    public boolean f12842r;
+    public RecordingCanvas f12843s;
     public final se.b v = new se.b();
-    public final RenderNode f12839b = x.c();
+    public final RenderNode f12838b = x.c();
 
     public d(a aVar) {
-        this.f12838a = aVar;
+        this.f12837a = aVar;
     }
 
     public final RecordingCanvas a(int i10, int i11) {
-        if (!this.f12843r) {
-            this.f12843r = true;
-            this.f12839b.setPosition(0, 0, i10, i11);
-            RecordingCanvas beginRecording = this.f12839b.beginRecording(i10, i11);
-            this.f12844s = beginRecording;
+        if (!this.f12842r) {
+            this.f12842r = true;
+            this.f12838b.setPosition(0, 0, i10, i11);
+            RecordingCanvas beginRecording = this.f12838b.beginRecording(i10, i11);
+            this.f12843s = beginRecording;
             return beginRecording;
         }
         throw new IllegalStateException();
     }
 
     public final void b() {
-        if (this.f12843r) {
-            this.f12839b.endRecording();
-            this.f12843r = false;
-            this.f12844s = null;
+        if (this.f12842r) {
+            this.f12838b.endRecording();
+            this.f12842r = false;
+            this.f12843s = null;
             return;
         }
         throw new IllegalStateException();
     }
 
     public final boolean c(int i10, int i11) {
-        if (this.f12839b.hasDisplayList() && this.f12839b.getWidth() == i10 && this.f12839b.getHeight() == i11) {
+        if (this.f12838b.hasDisplayList() && this.f12838b.getWidth() == i10 && this.f12838b.getHeight() == i11) {
             return false;
         }
         return true;
@@ -56,7 +56,7 @@ public final class d implements a {
 
     public final void d(float f7) {
         RenderEffect renderEffect;
-        RenderNode renderNode = this.f12839b;
+        RenderNode renderNode = this.f12838b;
         if (f7 > 0.0f) {
             renderEffect = RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP);
         } else {
@@ -66,7 +66,7 @@ public final class d implements a {
     }
 
     public final void e(float f7, RenderEffect renderEffect) {
-        this.f12839b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP), renderEffect));
+        this.f12838b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP), renderEffect));
     }
 
     @Override
@@ -77,7 +77,7 @@ public final class d implements a {
     }
 
     public final void g(int i10, int i11) {
-        this.f12839b.setPosition(0, 0, i10, i11);
+        this.f12838b.setPosition(0, 0, i10, i11);
     }
 
     @Override
@@ -85,17 +85,17 @@ public final class d implements a {
         f fVar;
         oi.c cVar;
         if (!canvas.isHardwareAccelerated()) {
-            a aVar = this.f12838a;
+            a aVar = this.f12837a;
             if (aVar != null) {
                 aVar.w(canvas, f7, f10, f11, f12);
             }
-        } else if (!this.f12843r) {
-            a aVar2 = this.f12841f;
+        } else if (!this.f12842r) {
+            a aVar2 = this.f12840f;
             if (aVar2 != null) {
                 aVar2.w(canvas, f7, f10, f11, f12);
             }
             canvas.save();
-            if (!this.f12842n) {
+            if (!this.f12841n) {
                 canvas.clipRect(f7, f10, f11, f12);
             }
             int i10 = Build.VERSION.SDK_INT;
@@ -104,7 +104,7 @@ public final class d implements a {
             } else if (i10 >= 31 && (fVar = this.d) != null) {
                 fVar.c(canvas, this.e);
             } else {
-                canvas.drawRenderNode(this.f12839b);
+                canvas.drawRenderNode(this.f12838b);
             }
             canvas.restore();
         } else {

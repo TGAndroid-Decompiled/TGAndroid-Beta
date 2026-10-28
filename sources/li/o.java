@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.Components.ty;
 public final class o implements ty {
-    public final q f17383a;
+    public final q f17382a;
 
     public o(q qVar) {
-        this.f17383a = qVar;
+        this.f17382a = qVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class o implements ty {
     public final void i(int i10) {
         g1 focusedEditTextOrNull;
         boolean z10 = false;
-        q qVar = this.f17383a;
-        if (i10 != 0 && (focusedEditTextOrNull = qVar.f17418r.getFocusedEditTextOrNull()) != null) {
+        q qVar = this.f17382a;
+        if (i10 != 0 && (focusedEditTextOrNull = qVar.f17417r.getFocusedEditTextOrNull()) != null) {
             qVar.F = focusedEditTextOrNull;
             qVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        qVar.f17422y = z10;
+        qVar.f17421y = z10;
         qVar.V();
     }
 
@@ -69,7 +69,7 @@ public final class o implements ty {
 
     @Override
     public final boolean k() {
-        g1 P = q.P(this.f17383a);
+        g1 P = q.P(this.f17382a);
         if (P == null || P.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class o implements ty {
 
     @Override
     public final void l(String str) {
-        q qVar = this.f17383a;
+        q qVar = this.f17382a;
         g1 P = q.P(qVar);
         if (P != null) {
             int Q = q.Q(qVar, P);
@@ -104,7 +104,7 @@ public final class o implements ty {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.c6 c6Var;
-        q qVar = this.f17383a;
+        q qVar = this.f17382a;
         g1 P = q.P(qVar);
         if (P != null) {
             int Q = q.Q(qVar, P);
@@ -133,7 +133,7 @@ public final class o implements ty {
 
     @Override
     public final boolean z() {
-        return this.f17383a.f17422y;
+        return this.f17382a.f17421y;
     }
 
     @Override
@@ -141,7 +141,7 @@ public final class o implements ty {
     }
 
     @Override
-    public final void o(p61 p61Var) {
+    public final void o(q61 q61Var) {
     }
 
     @Override

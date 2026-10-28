@@ -1,26 +1,34 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class o81 implements RequestDelegate {
-    public final int f42123a;
-    public final w91 f42124b;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class o81 implements TextWatcher {
+    public boolean f42015a;
+    public final int f42016b;
+    public final EditTextBoldCursor f42017c;
+    public final org.telegram.ui.Components.sd0 d;
+    public final int[] e;
+    public final TextView f42018f;
 
-    public o81(w91 w91Var, int i10) {
-        this.f42123a = i10;
-        this.f42124b = w91Var;
+    public o81(int i10, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.Components.sd0 sd0Var, int[] iArr, TextView textView) {
+        this.f42016b = i10;
+        this.f42017c = editTextBoldCursor;
+        this.d = sd0Var;
+        this.e = iArr;
+        this.f42018f = textView;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f42123a) {
-            case 0:
-                w91.W(this.f42124b, tLObject);
-                return;
-            default:
-                w91.V(this.f42124b, tLObject);
-                return;
-        }
+    public final void afterTextChanged(android.text.Editable r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o81.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

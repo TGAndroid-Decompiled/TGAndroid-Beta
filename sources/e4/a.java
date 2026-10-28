@@ -18,9 +18,9 @@ import z3.m;
 public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f9775a = new StringBuilder();
-    public final ArrayList f9776b = new ArrayList();
-    public final x f9777c = new x();
+    public final StringBuilder f9774a = new StringBuilder();
+    public final ArrayList f9775b = new ArrayList();
+    public final x f9776c = new x();
 
     public static d2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.a(android.text.Spanned, java.lang.String):d2.b");
@@ -53,8 +53,8 @@ public final class a implements m {
         String n10;
         String str;
         a aVar = this;
-        long j10 = lVar.f52662a;
-        x xVar = aVar.f9777c;
+        long j10 = lVar.f52720a;
+        x xVar = aVar.f9776c;
         xVar.L(i10 + i11, bArr);
         xVar.N(i10);
         Charset J = xVar.J();
@@ -62,7 +62,7 @@ public final class a implements m {
             J = StandardCharsets.UTF_8;
         }
         long j11 = -9223372036854775807L;
-        if (j10 != -9223372036854775807L && lVar.f52663b) {
+        if (j10 != -9223372036854775807L && lVar.f52721b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -86,10 +86,10 @@ public final class a implements m {
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f9775a;
+                    StringBuilder sb2 = aVar.f9774a;
                     sb2.setLength(0);
                     long j12 = j11;
-                    ArrayList arrayList2 = aVar.f9776b;
+                    ArrayList arrayList2 = aVar.f9775b;
                     arrayList2.clear();
                     for (String n12 = xVar.n(J); !TextUtils.isEmpty(n12); n12 = xVar.n(J)) {
                         if (sb2.length() > 0) {

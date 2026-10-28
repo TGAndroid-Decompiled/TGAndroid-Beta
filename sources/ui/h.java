@@ -1,15 +1,15 @@
 package ui;
 public final class h {
-    public static final h f49929a;
-    public static final h f49930b;
-    public static final h[] f49931c;
+    public static final h f49964a;
+    public static final h f49965b;
+    public static final h[] f49966c;
 
     static {
         ?? r02 = new Enum("DISABLED", 0);
-        f49929a = r02;
+        f49964a = r02;
         ?? r12 = new Enum("RNNOISE", 1);
-        f49930b = r12;
-        f49931c = new h[]{r02, r12};
+        f49965b = r12;
+        f49966c = new h[]{r02, r12};
     }
 
     public static h valueOf(String str) {
@@ -17,6 +17,6 @@ public final class h {
     }
 
     public static h[] values() {
-        return (h[]) f49931c.clone();
+        return (h[]) f49966c.clone();
     }
 }

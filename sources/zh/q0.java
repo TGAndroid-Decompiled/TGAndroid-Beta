@@ -13,16 +13,16 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.vs0;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.ws0;
 public final class q0 implements Utilities.Callback2 {
-    public final int f53218a;
-    public final Object f53219b;
+    public final int f53276a;
+    public final Object f53277b;
 
     public q0(Object obj, int i10) {
-        this.f53218a = i10;
-        this.f53219b = obj;
+        this.f53276a = i10;
+        this.f53277b = obj;
     }
 
     @Override
@@ -38,19 +38,19 @@ public final class q0 implements Utilities.Callback2 {
         float f11;
         int i14;
         long j10;
-        int i15 = this.f53218a;
+        int i15 = this.f53276a;
         boolean z12 = false;
-        Object obj3 = this.f53219b;
+        Object obj3 = this.f53277b;
         switch (i15) {
             case 0:
-                ((p1) obj3).U((ArrayList) obj, (j71) obj2);
+                ((p1) obj3).U((ArrayList) obj, (k71) obj2);
                 return;
             case 1:
                 m2 m2Var = (m2) obj3;
                 ArrayList arrayList = (ArrayList) obj;
-                j71 j71Var = (j71) obj2;
-                u6 u6Var = m2Var.f53145c;
-                vs0 vs0Var = m2Var.f53143a;
+                k71 k71Var = (k71) obj2;
+                u6 u6Var = m2Var.f53203c;
+                ws0 ws0Var = m2Var.f53201a;
                 t9 t9Var = m2Var.e;
                 if (t9Var != null) {
                     if ((!t9Var.e || t9Var.f5467g != 783) && t9Var.f5471l.size() <= 0) {
@@ -79,15 +79,15 @@ public final class q0 implements Utilities.Callback2 {
                             i17++;
                             TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj4;
                             boolean z13 = m2Var.d;
-                            int i18 = f1.f52969a;
-                            t61 K = t61.K(f1.class);
-                            K.f32884u = 1;
-                            K.f32888z = 0;
+                            int i18 = f1.f53027a;
+                            u61 K = u61.K(f1.class);
+                            K.f33258u = 1;
+                            K.f33262z = 0;
                             K.G = savedStarGift;
-                            K.f32880q = true;
-                            K.f32870f = false;
-                            K.f32881r = z13;
-                            if (m2Var.h && (m2Var.e != vs0Var.d || savedStarGift.pinned_to_top)) {
+                            K.f33254q = true;
+                            K.f33244f = false;
+                            K.f33255r = z13;
+                            if (m2Var.h && (m2Var.e != ws0Var.d || savedStarGift.pinned_to_top)) {
                                 z10 = true;
                             } else {
                                 z10 = false;
@@ -110,36 +110,36 @@ public final class q0 implements Utilities.Callback2 {
                                 }
                                 if (i19 < i12) {
                                     i19++;
-                                    t61 q5 = t61.q(i19, 34);
-                                    q5.f32884u = 1;
+                                    u61 q5 = u61.q(i19, 34);
+                                    q5.f33258u = 1;
                                     arrayList.add(q5);
                                 }
                             }
                         }
                     }
-                    if (vs0Var.d == m2Var.e) {
-                        arrayList.add(t61.D(AndroidUtilities.dp(20.0f)));
-                        if (vs0Var.f53232c == UserConfig.getInstance(m2Var.f53144b).getClientUserId()) {
-                            int i20 = y6.f23767z6;
+                    if (ws0Var.d == m2Var.e) {
+                        arrayList.add(u61.D(AndroidUtilities.dp(20.0f)));
+                        if (ws0Var.f53290c == UserConfig.getInstance(m2Var.f53202b).getClientUserId()) {
+                            int i20 = y6.f23768z6;
                             int w02 = y6.w0(i20, u6Var);
                             String string = LocaleController.getString(R.string.ProfileGiftsInfo);
                             int dp = AndroidUtilities.dp(24.0f);
-                            int i21 = n2.f53162a;
-                            t61 K2 = t61.K(n2.class);
-                            K2.f32875l = string;
-                            K2.f32888z = 17;
+                            int i21 = n2.f53220a;
+                            u61 K2 = u61.K(n2.class);
+                            K2.f33249l = string;
+                            K2.f33262z = 17;
                             K2.B = w02;
                             K2.A = 14.0f;
-                            K2.f32872i = dp;
-                            K2.f32874k = 0;
-                            K2.f32880q = false;
+                            K2.f33246i = dp;
+                            K2.f33248k = 0;
+                            K2.f33254q = false;
                             K2.G = u6Var;
                             K2.H = Integer.valueOf(i20);
                             arrayList.add(K2);
                         }
-                        arrayList.add(t61.D(AndroidUtilities.dp(82.0f)));
+                        arrayList.add(u61.D(AndroidUtilities.dp(82.0f)));
                     } else if (!arrayList.isEmpty()) {
-                        arrayList.add(t61.D(AndroidUtilities.dp(82.0f)));
+                        arrayList.add(u61.D(AndroidUtilities.dp(82.0f)));
                     }
                     if (!arrayList.isEmpty()) {
                         if (m2Var.H) {
@@ -147,20 +147,20 @@ public final class q0 implements Utilities.Callback2 {
                         } else {
                             f7 = 12.0f;
                         }
-                        arrayList.add(0, t61.D(AndroidUtilities.dp(f7)));
+                        arrayList.add(0, u61.D(AndroidUtilities.dp(f7)));
                     }
-                    if (m2Var.f53146f.getSpanCount() != max) {
+                    if (m2Var.f53204f.getSpanCount() != max) {
                         AndroidUtilities.runOnUIThread(new q1(m2Var, max, 1));
                     }
-                    vs0Var.p();
-                    vs0Var.post(new ti.g(vs0Var, 23));
+                    ws0Var.p();
+                    ws0Var.post(new ti.g(ws0Var, 23));
                     return;
                 }
                 return;
             case 2:
                 h4 h4Var = (h4) obj3;
                 ArrayList arrayList3 = (ArrayList) obj;
-                j71 j71Var2 = (j71) obj2;
+                k71 k71Var2 = (k71) obj2;
                 u3 u3Var = h4Var.d;
                 ArrayList arrayList4 = u3Var.d;
                 int size2 = arrayList4.size();
@@ -170,64 +170,64 @@ public final class q0 implements Utilities.Callback2 {
                     i22++;
                     arrayList3.add(f1.a(0, (TL_stars.TL_starGiftUnique) obj5, false, false, false, true, false));
                 }
-                if (u3Var.f53281t || !u3Var.f53282u) {
-                    t61 q9 = t61.q(-1, 34);
-                    q9.f32884u = 1;
+                if (u3Var.f53339t || !u3Var.f53340u) {
+                    u61 q9 = u61.q(-1, 34);
+                    q9.f33258u = 1;
                     arrayList3.add(q9);
-                    t61 q10 = t61.q(-2, 34);
-                    q10.f32884u = 1;
+                    u61 q10 = u61.q(-2, 34);
+                    q10.f33258u = 1;
                     arrayList3.add(q10);
-                    t61 q11 = t61.q(-3, 34);
-                    q11.f32884u = 1;
+                    u61 q11 = u61.q(-3, 34);
+                    q11.f33258u = 1;
                     arrayList3.add(q11);
                     if (u3Var.d.isEmpty()) {
-                        t61 q12 = t61.q(-4, 34);
-                        q12.f32884u = 1;
+                        u61 q12 = u61.q(-4, 34);
+                        q12.f33258u = 1;
                         arrayList3.add(q12);
-                        t61 q13 = t61.q(-5, 34);
-                        q13.f32884u = 1;
+                        u61 q13 = u61.q(-5, 34);
+                        q13.f33258u = 1;
                         arrayList3.add(q13);
-                        t61 q14 = t61.q(-6, 34);
-                        q14.f32884u = 1;
+                        u61 q14 = u61.q(-6, 34);
+                        q14.f33258u = 1;
                         arrayList3.add(q14);
-                        t61 q15 = t61.q(-7, 34);
-                        q15.f32884u = 1;
+                        u61 q15 = u61.q(-7, 34);
+                        q15.f33258u = 1;
                         arrayList3.add(q15);
-                        t61 q16 = t61.q(-8, 34);
-                        q16.f32884u = 1;
+                        u61 q16 = u61.q(-8, 34);
+                        q16.f33258u = 1;
                         arrayList3.add(q16);
-                        t61 q17 = t61.q(-9, 34);
-                        q17.f32884u = 1;
+                        u61 q17 = u61.q(-9, 34);
+                        q17.f33258u = 1;
                         arrayList3.add(q17);
-                        t61 q18 = t61.q(-10, 34);
-                        q18.f32884u = 1;
+                        u61 q18 = u61.q(-10, 34);
+                        q18.f33258u = 1;
                         arrayList3.add(q18);
-                        t61 q19 = t61.q(-11, 34);
-                        q19.f32884u = 1;
+                        u61 q19 = u61.q(-11, 34);
+                        q19.f33258u = 1;
                         arrayList3.add(q19);
-                        t61 q20 = t61.q(-12, 34);
-                        q20.f32884u = 1;
+                        u61 q20 = u61.q(-12, 34);
+                        q20.f33258u = 1;
                         arrayList3.add(q20);
-                        t61 q21 = t61.q(-13, 34);
-                        q21.f32884u = 1;
+                        u61 q21 = u61.q(-13, 34);
+                        q21.f33258u = 1;
                         arrayList3.add(q21);
-                        t61 q22 = t61.q(-14, 34);
-                        q22.f32884u = 1;
+                        u61 q22 = u61.q(-14, 34);
+                        q22.f33258u = 1;
                         arrayList3.add(q22);
-                        t61 q23 = t61.q(-15, 34);
-                        q23.f32884u = 1;
+                        u61 q23 = u61.q(-15, 34);
+                        q23.f33258u = 1;
                         arrayList3.add(q23);
                     }
                 }
-                if (arrayList3.isEmpty() && !u3Var.f53281t) {
+                if (arrayList3.isEmpty() && !u3Var.f53339t) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (h4Var.f53035x != z11) {
-                    h4Var.f53035x = z11;
-                    h4Var.f53034w.setVisibility(0);
-                    ViewPropertyAnimator animate = h4Var.f53034w.animate();
+                if (h4Var.f53093x != z11) {
+                    h4Var.f53093x = z11;
+                    h4Var.f53092w.setVisibility(0);
+                    ViewPropertyAnimator animate = h4Var.f53092w.animate();
                     float f12 = 1.0f;
                     if (z11) {
                         f10 = 1.0f;
@@ -249,44 +249,44 @@ public final class q0 implements Utilities.Callback2 {
                 }
                 return;
             case 3:
-                j71 j71Var3 = (j71) obj2;
+                k71 k71Var3 = (k71) obj2;
                 g4.T((g4) obj3, (ArrayList) obj);
                 return;
             default:
                 l4 l4Var = (l4) obj3;
                 ArrayList arrayList5 = (ArrayList) obj;
-                j71 j71Var4 = (j71) obj2;
+                k71 k71Var4 = (k71) obj2;
                 t9 t9Var6 = l4Var.Y;
                 if (t9Var6 != null) {
                     ArrayList arrayList6 = t9Var6.f5471l;
-                    arrayList5.add(t61.D(AndroidUtilities.dp(16.0f)));
+                    arrayList5.add(u61.D(AndroidUtilities.dp(16.0f)));
                     if (t9Var6.f5468i && arrayList6.isEmpty()) {
-                        t61 q24 = t61.q(1, 34);
-                        q24.f32884u = 1;
+                        u61 q24 = u61.q(1, 34);
+                        q24.f33258u = 1;
                         arrayList5.add(q24);
-                        t61 q25 = t61.q(2, 34);
-                        q25.f32884u = 1;
+                        u61 q25 = u61.q(2, 34);
+                        q25.f33258u = 1;
                         arrayList5.add(q25);
-                        t61 q26 = t61.q(3, 34);
-                        q26.f32884u = 1;
+                        u61 q26 = u61.q(3, 34);
+                        q26.f33258u = 1;
                         arrayList5.add(q26);
-                        t61 q27 = t61.q(4, 34);
-                        q27.f32884u = 1;
+                        u61 q27 = u61.q(4, 34);
+                        q27.f33258u = 1;
                         arrayList5.add(q27);
-                        t61 q28 = t61.q(5, 34);
-                        q28.f32884u = 1;
+                        u61 q28 = u61.q(5, 34);
+                        q28.f33258u = 1;
                         arrayList5.add(q28);
-                        t61 q29 = t61.q(6, 34);
-                        q29.f32884u = 1;
+                        u61 q29 = u61.q(6, 34);
+                        q29.f33258u = 1;
                         arrayList5.add(q29);
-                        t61 q30 = t61.q(7, 34);
-                        q30.f32884u = 1;
+                        u61 q30 = u61.q(7, 34);
+                        q30.f33258u = 1;
                         arrayList5.add(q30);
-                        t61 q31 = t61.q(8, 34);
-                        q31.f32884u = 1;
+                        u61 q31 = u61.q(8, 34);
+                        q31.f33258u = 1;
                         arrayList5.add(q31);
-                        t61 q32 = t61.q(9, 34);
-                        q32.f32884u = 1;
+                        u61 q32 = u61.q(9, 34);
+                        q32.f33258u = 1;
                         arrayList5.add(q32);
                     } else {
                         int size3 = arrayList6.size();
@@ -297,14 +297,14 @@ public final class q0 implements Utilities.Callback2 {
                             i24++;
                             TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj6;
                             if (!savedStarGift2.collection_id.contains(Integer.valueOf(l4Var.X))) {
-                                int i25 = f1.f52969a;
-                                t61 K3 = t61.K(f1.class);
-                                K3.f32884u = 1;
-                                K3.f32888z = z12 ? 1 : 0;
+                                int i25 = f1.f53027a;
+                                u61 K3 = u61.K(f1.class);
+                                K3.f33258u = 1;
+                                K3.f33262z = z12 ? 1 : 0;
                                 K3.G = savedStarGift2;
-                                K3.f32880q = true;
-                                K3.f32870f = true;
-                                K3.f32881r = z12;
+                                K3.f33254q = true;
+                                K3.f33244f = true;
+                                K3.f33255r = z12;
                                 HashSet hashSet = l4Var.Z;
                                 int i26 = savedStarGift2.msg_id;
                                 if (i26 == 0) {
@@ -313,7 +313,7 @@ public final class q0 implements Utilities.Callback2 {
                                     j10 = i26;
                                 }
                                 K3.L(hashSet.contains(Long.valueOf(j10)));
-                                K3.f32884u = 1;
+                                K3.f33258u = 1;
                                 arrayList5.add(K3);
                                 i23--;
                                 if (i23 == 0) {
@@ -332,14 +332,14 @@ public final class q0 implements Utilities.Callback2 {
                                 }
                                 if (i27 < i14) {
                                     i27++;
-                                    t61 q33 = t61.q(i27, 34);
-                                    q33.f32884u = 1;
+                                    u61 q33 = u61.q(i27, 34);
+                                    q33.f33258u = 1;
                                     arrayList5.add(q33);
                                 }
                             }
                         }
                     }
-                    arrayList5.add(t61.D(AndroidUtilities.dp(68.0f)));
+                    arrayList5.add(u61.D(AndroidUtilities.dp(68.0f)));
                     return;
                 }
                 return;

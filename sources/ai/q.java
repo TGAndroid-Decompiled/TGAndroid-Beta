@@ -74,7 +74,7 @@ public final class q extends View {
             float width2 = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
             t5 t5Var = this.f1629b;
-            if (t5Var == null || (f3Var = t5Var.f32852k) == null || !f3Var.hasBitmapImage()) {
+            if (t5Var == null || (f3Var = t5Var.f32860k) == null || !f3Var.hasBitmapImage()) {
                 canvas.drawCircle(width2, height, 0.42f * width, this.f1630c);
             }
             t5 t5Var2 = this.f1629b;
@@ -93,7 +93,7 @@ public final class q extends View {
     }
 
     public void set(TLRPC.Document document) {
-        long j10 = document.f22033id;
+        long j10 = document.f22034id;
         if (j10 == 0) {
             if (this.f1629b != null && isAttachedToWindow()) {
                 this.f1629b.o(this);
@@ -108,14 +108,14 @@ public final class q extends View {
             if (this.f1629b != null && isAttachedToWindow()) {
                 this.f1629b.o(this);
             }
-            this.d = document.f22033id;
+            this.d = document.f22034id;
             this.e = document;
-            this.f1631f = "c:" + document.f22033id;
+            this.f1631f = "c:" + document.f22034id;
             this.f1629b = t5.m(this.f1628a, 2, document);
             if (isAttachedToWindow()) {
                 this.f1629b.a(this);
             }
-            setContentDescription(document.f22033id + "");
+            setContentDescription(document.f22034id + "");
             invalidate();
         }
     }

@@ -11,16 +11,16 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-public final class f2 implements id0, org.telegram.ui.ActionBar.b2, org.telegram.ui.ActionBar.c7, org.telegram.ui.ActionBar.d7, e5, ImageReceiver.ImageReceiverDelegate, GenericProvider, p.a, ih.b, nw0, ow0 {
-    public final int f28040a;
+public final class f2 implements jd0, org.telegram.ui.ActionBar.b2, org.telegram.ui.ActionBar.c7, org.telegram.ui.ActionBar.d7, e5, ImageReceiver.ImageReceiverDelegate, GenericProvider, p.a, ih.b, ow0, pw0 {
+    public final int f27981a;
 
     public f2(int i10) {
-        this.f28040a = i10;
+        this.f27981a = i10;
     }
 
     @Override
     public void G(int i10, int i11, boolean z10) {
-        switch (this.f28040a) {
+        switch (this.f27981a) {
             case 20:
                 MediaController.getInstance().stopRecording(1, z10, i10, false, 0L);
                 return;
@@ -40,13 +40,13 @@ public final class f2 implements id0, org.telegram.ui.ActionBar.b2, org.telegram
 
     @Override
     public void b(Object obj, float f7) {
-        rd0 rd0Var = (rd0) obj;
-        rd0Var.f32232f = f7;
-        if (!rd0Var.f32238y || rd0Var.F) {
-            rd0Var.f32231c.setStrokeWidth(AndroidUtilities.lerp(rd0Var.v, rd0Var.f32236w, f7));
-            rd0Var.f();
+        sd0 sd0Var = (sd0) obj;
+        sd0Var.f32568f = f7;
+        if (!sd0Var.f32574y || sd0Var.F) {
+            sd0Var.f32567c.setStrokeWidth(AndroidUtilities.lerp(sd0Var.v, sd0Var.f32572w, f7));
+            sd0Var.f();
         }
-        rd0Var.invalidate();
+        sd0Var.invalidate();
     }
 
     @Override
@@ -62,17 +62,17 @@ public final class f2 implements id0, org.telegram.ui.ActionBar.b2, org.telegram
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Drawable drawable = imageReceiver.getDrawable();
-        if (drawable instanceof xj0) {
-            xj0 xj0Var = (xj0) drawable;
-            xj0Var.P(0);
-            xj0Var.stop();
-            xj0Var.T(0.0f, false);
+        if (drawable instanceof yj0) {
+            yj0 yj0Var = (yj0) drawable;
+            yj0Var.P(0);
+            yj0Var.stop();
+            yj0Var.T(0.0f, false);
         }
     }
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.o5.a(this, i10, str, drawable);
+        org.telegram.messenger.p5.a(this, i10, str, drawable);
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class f2 implements id0, org.telegram.ui.ActionBar.b2, org.telegram
     @Override
     public String f(int i10) {
         int i11;
-        switch (this.f28040a) {
+        switch (this.f27981a) {
             case 0:
                 return LocaleController.formatPluralString("Minutes", i10 + 1, new Object[0]);
             case 1:
@@ -208,17 +208,17 @@ public final class f2 implements id0, org.telegram.ui.ActionBar.b2, org.telegram
 
     @Override
     public float get(Object obj) {
-        return ((rd0) obj).f32232f;
+        return ((sd0) obj).f32568f;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f28040a) {
+        switch (this.f27981a) {
             case 5:
                 e2Var.dismiss();
                 return;
             case 15:
-                Pattern pattern = g5.f28420a;
+                Pattern pattern = g5.f28387a;
                 return;
             default:
                 e2Var.dismiss();
@@ -228,18 +228,18 @@ public final class f2 implements id0, org.telegram.ui.ActionBar.b2, org.telegram
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.o5.b(this, imageReceiver);
+        org.telegram.messenger.p5.b(this, imageReceiver);
     }
 
     @Override
     public Object provide(Object obj) {
-        switch (this.f28040a) {
+        switch (this.f27981a) {
             case 24:
                 Void r22 = (Void) obj;
                 return CheckBoxBase.I;
             default:
                 Integer num = (Integer) obj;
-                int i10 = sz.S2;
+                int i10 = sz.U2;
                 return 0;
         }
     }

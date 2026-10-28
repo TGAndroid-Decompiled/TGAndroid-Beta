@@ -48,7 +48,7 @@ public final class vd implements ValueAnimator.AnimatorUpdateListener {
                 b30Var.M = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
                 b30Var.F.setColorFilter(new PorterDuffColorFilter(b30Var.L, PorterDuff.Mode.MULTIPLY));
                 b30Var.E.setColor(b30Var.L);
-                b30Var.f26735r.setColor(b30Var.M);
+                b30Var.f26719r.setColor(b30Var.M);
                 b30Var.J.d(i0.a.o(b30Var.M, 38));
                 b30Var.invalidate();
                 return;

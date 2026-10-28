@@ -12,23 +12,23 @@ import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.yj0;
 public final class x5 extends LinearLayout {
-    public final r5 f23247a;
-    public final boolean f23248b;
-    public final HashMap f23249c;
+    public final r5 f23248a;
+    public final boolean f23249b;
+    public final HashMap f23250c;
     public final ArrayList d;
     public final oe.j e;
-    public boolean f23250f;
+    public boolean f23251f;
 
     public x5(Context context, r5 r5Var, boolean z10) {
         super(context);
-        this.f23249c = new HashMap();
+        this.f23250c = new HashMap();
         this.d = new ArrayList();
         this.e = new oe.j(new v5(this), ds.h, 380L);
-        this.f23250f = true;
-        this.f23247a = r5Var;
-        this.f23248b = z10;
+        this.f23251f = true;
+        this.f23248a = r5Var;
+        this.f23249b = z10;
         setOrientation(0);
         setGravity(21);
     }
@@ -62,24 +62,24 @@ public final class x5 extends LinearLayout {
         boolean z10;
         LinearLayout.LayoutParams layoutParams;
         Context context = getContext();
-        r5 r5Var = this.f23247a;
-        boolean z11 = this.f23248b;
+        r5 r5Var = this.f23248a;
+        boolean z11 = this.f23249b;
         if (z11) {
-            i13 = r5Var.f23038g0;
+            i13 = r5Var.f23039g0;
         } else {
-            i13 = r5Var.f23037f0;
+            i13 = r5Var.f23038f0;
         }
         if (z11) {
-            i14 = r5Var.f23035e0;
+            i14 = r5Var.f23036e0;
         } else {
-            i14 = r5Var.f23034d0;
+            i14 = r5Var.f23035d0;
         }
         if (str != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        y5 y5Var = new y5(context, this, i13, i14, z10, r5Var.f23028a);
+        y5 y5Var = new y5(context, this, i13, i14, z10, r5Var.f23029a);
         y5Var.setTag(Integer.valueOf(i10));
         if (str != null) {
             y5Var.E.setText(str);
@@ -91,12 +91,12 @@ public final class x5 extends LinearLayout {
             layoutParams.rightMargin = dp;
             layoutParams.leftMargin = dp;
         } else {
-            if (drawable instanceof xj0) {
-                y5Var.f23204x.setAnimation((xj0) drawable);
+            if (drawable instanceof yj0) {
+                y5Var.f23205x.setAnimation((yj0) drawable);
             } else if (drawable != null) {
-                y5Var.f23204x.setImageDrawable(drawable);
+                y5Var.f23205x.setImageDrawable(drawable);
             } else if (i11 != 0) {
-                y5Var.f23204x.setImageResource(i11);
+                y5Var.f23205x.setImageResource(i11);
             }
             layoutParams = new LinearLayout.LayoutParams(i12, -1);
             int i15 = -AndroidUtilities.dp(5.0f);
@@ -117,28 +117,28 @@ public final class x5 extends LinearLayout {
 
     public final void d() {
         int i10;
-        Iterator it = this.f23249c.values().iterator();
+        Iterator it = this.f23250c.values().iterator();
         while (true) {
             i10 = 0;
             if (!it.hasNext()) {
                 break;
             }
-            ((w5) it.next()).f23213b = false;
+            ((w5) it.next()).f23214b = false;
         }
         float width = getWidth() - getPaddingRight();
         oe.j jVar = this.e;
-        float f7 = jVar.d.f19344f.f19351a;
+        float f7 = jVar.d.f19343f.f19350a;
         float min = Math.min(1.0f, getPillWidth() / AndroidUtilities.dp(46.0f));
-        ArrayList arrayList = jVar.f19347b;
+        ArrayList arrayList = jVar.f19346b;
         int size = arrayList.size();
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             oe.g gVar = (oe.g) obj;
-            w5 w5Var = (w5) gVar.f19337a;
-            View view = w5Var.f23212a;
+            w5 w5Var = (w5) gVar.f19336a;
+            View view = w5Var.f23213a;
             RectF b10 = gVar.b();
-            w5Var.f23213b = true;
+            w5Var.f23214b = true;
             view.setTranslationX((((width - Math.max(f7, b10.right)) + b10.left) + ((LinearLayout.LayoutParams) view.getLayoutParams()).leftMargin) - view.getLeft());
             w5Var.c(gVar.c(), min);
         }
@@ -156,7 +156,7 @@ public final class x5 extends LinearLayout {
 
     public float getPillWidth() {
         oe.i iVar = this.e.d;
-        return (AndroidUtilities.dp(8.0f) * iVar.f19343c.f19351a) + iVar.f19344f.f19351a;
+        return (AndroidUtilities.dp(8.0f) * iVar.f19342c.f19350a) + iVar.f19343f.f19350a;
     }
 
     public float getTargetPillWidth() {
@@ -178,17 +178,17 @@ public final class x5 extends LinearLayout {
         int i10;
         int i11;
         int i12;
-        r5 r5Var = this.f23247a;
-        boolean z10 = this.f23248b;
+        r5 r5Var = this.f23248a;
+        boolean z10 = this.f23249b;
         if (z10) {
-            i10 = r5Var.f23035e0;
+            i10 = r5Var.f23036e0;
         } else {
-            i10 = r5Var.f23034d0;
+            i10 = r5Var.f23035d0;
         }
         if (z10) {
-            i11 = r5Var.f23038g0;
+            i11 = r5Var.f23039g0;
         } else {
-            i11 = r5Var.f23037f0;
+            i11 = r5Var.f23038f0;
         }
         int childCount = getChildCount();
         for (int i13 = 0; i13 < childCount; i13++) {
@@ -220,7 +220,7 @@ public final class x5 extends LinearLayout {
         int childCount = getChildCount();
         int i14 = 0;
         while (true) {
-            hashMap = this.f23249c;
+            hashMap = this.f23250c;
             if (i14 >= childCount) {
                 break;
             }
@@ -231,19 +231,19 @@ public final class x5 extends LinearLayout {
             }
             i14++;
         }
-        if (!this.f23250f && isLaidOut()) {
+        if (!this.f23251f && isLaidOut()) {
             z11 = true;
         } else {
             z11 = false;
         }
         this.e.q(arrayList, z11);
-        this.f23250f = false;
+        this.f23251f = false;
         d();
         int childCount2 = getChildCount();
         for (int i15 = 0; i15 < childCount2; i15++) {
             View childAt2 = getChildAt(i15);
             w5 w5Var2 = (w5) hashMap.get(childAt2);
-            if (w5Var2 != null && !w5Var2.f23213b && childAt2.getVisibility() != 8 && !g(childAt2)) {
+            if (w5Var2 != null && !w5Var2.f23214b && childAt2.getVisibility() != 8 && !g(childAt2)) {
                 if (childAt2 instanceof y5) {
                     ((y5) childAt2).X();
                 } else {
@@ -251,18 +251,18 @@ public final class x5 extends LinearLayout {
                 }
             }
         }
-        this.f23247a.invalidate();
+        this.f23248a.invalidate();
     }
 
     @Override
     public final void onViewAdded(View view) {
         super.onViewAdded(view);
-        this.f23249c.put(view, new w5(view));
+        this.f23250c.put(view, new w5(view));
     }
 
     @Override
     public final void onViewRemoved(View view) {
         super.onViewRemoved(view);
-        this.f23249c.remove(view);
+        this.f23250c.remove(view);
     }
 }

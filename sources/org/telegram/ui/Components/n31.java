@@ -1,35 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class n31 implements Runnable {
-    public final int f30830a;
-    public final e41 f30831b;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class n31 implements oe.d, Utilities.Callback5, Utilities.Callback5Return {
+    public final f41 f30728a;
 
-    public n31(e41 e41Var, int i10) {
-        this.f30830a = i10;
-        this.f30831b = e41Var;
+    @Override
+    public void E(int i10, float f7, float f10, oe.e eVar) {
+        this.f30728a.h();
     }
 
     @Override
-    public final void run() {
-        switch (this.f30830a) {
-            case 0:
-                e41 e41Var = this.f30831b;
-                u31 u31Var = e41Var.G;
-                u31Var.C1(true);
-                s31 s31Var = e41Var.f27739s;
-                s31Var.C1(true);
-                e41Var.J.a(true, true);
-                AndroidUtilities.updateVisibleRows(s31Var);
-                AndroidUtilities.updateVisibleRows(u31Var);
-                return;
-            default:
-                e41 e41Var2 = this.f30831b;
-                if (e41Var2.l()) {
-                    e41Var2.m();
-                    return;
-                }
-                return;
-        }
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(f41.c(this.f30728a, (u61) obj, (View) obj2));
+    }
+
+    @Override
+    public void mo5run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        f41.a(this.f30728a, (u61) obj);
+    }
+
+    @Override
+    public void z(float f7, int i10) {
     }
 }

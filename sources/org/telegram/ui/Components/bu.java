@@ -4,46 +4,46 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class bu implements ViewTreeObserver.OnPreDrawListener {
-    public final int f26965a;
-    public final View f26966b;
+    public final int f26913a;
+    public final View f26914b;
 
     public bu(int i10, View view) {
-        this.f26965a = i10;
-        this.f26966b = view;
+        this.f26913a = i10;
+        this.f26914b = view;
     }
 
     @Override
     public final boolean onPreDraw() {
         RecyclerView recyclerView;
-        switch (this.f26965a) {
+        switch (this.f26913a) {
             case 0:
-                org.telegram.ui.ActionBar.m4 m4Var = ((EditTextBoldCursor) this.f26966b).floatingActionMode;
+                org.telegram.ui.ActionBar.m4 m4Var = ((EditTextBoldCursor) this.f26914b).floatingActionMode;
                 if (m4Var != null) {
                     m4Var.c();
                     return true;
                 }
                 return true;
             case 1:
-                ((i80) this.f26966b).invalidate();
+                ((j80) this.f26914b).invalidate();
                 return true;
             default:
-                lw0 lw0Var = (lw0) this.f26966b;
-                if (lw0Var.f30303a && lw0Var.f30305b > 0) {
-                    lw0Var.f("PRE_DRAW_BEFORE", null, 0, 0, true);
+                mw0 mw0Var = (mw0) this.f26914b;
+                if (mw0Var.f30646a && mw0Var.f30648b > 0) {
+                    mw0Var.f("PRE_DRAW_BEFORE", null, 0, 0, true);
                 }
-                lw0Var.l();
-                if (lw0Var.f30313g0 && (recyclerView = lw0Var.E) != null && !recyclerView.c0()) {
-                    float k10 = lw0Var.k();
+                mw0Var.l();
+                if (mw0Var.f30656g0 && (recyclerView = mw0Var.E) != null && !recyclerView.c0()) {
+                    float k10 = mw0Var.k();
                     if (!Float.isInfinite(k10)) {
-                        lw0Var.f30313g0 = false;
-                        lw0Var.r(lw0Var.E, Math.round(k10 - lw0Var.U));
-                        lw0Var.B();
+                        mw0Var.f30656g0 = false;
+                        mw0Var.r(mw0Var.E, Math.round(k10 - mw0Var.U));
+                        mw0Var.B();
                     }
                 }
-                if (lw0Var.f30303a && lw0Var.f30305b > 0) {
-                    lw0Var.f("PRE_DRAW_AFTER", null, 0, 0, true);
-                    lw0Var.f30305b--;
-                    lw0Var.f30307c++;
+                if (mw0Var.f30646a && mw0Var.f30648b > 0) {
+                    mw0Var.f("PRE_DRAW_AFTER", null, 0, 0, true);
+                    mw0Var.f30648b--;
+                    mw0Var.f30650c++;
                 }
                 return true;
         }

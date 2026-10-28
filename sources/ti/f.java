@@ -2,20 +2,20 @@ package ti;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class f implements Runnable {
-    public final int f49186a;
-    public final j f49187b;
+    public final int f49221a;
+    public final j f49222b;
 
     public f(j jVar, int i10) {
-        this.f49186a = i10;
-        this.f49187b = jVar;
+        this.f49221a = i10;
+        this.f49222b = jVar;
     }
 
     private final void a() {
-        j jVar = this.f49187b;
+        j jVar = this.f49222b;
         jVar.e();
-        synchronized (jVar.f49195a) {
+        synchronized (jVar.f49230a) {
             try {
-                if (jVar.f49212u) {
+                if (jVar.f49247u) {
                     return;
                 }
                 AndroidUtilities.runOnUIThread(new f(jVar, 2), 1000L);

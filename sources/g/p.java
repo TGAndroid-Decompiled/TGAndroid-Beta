@@ -5,16 +5,16 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import androidx.appcompat.widget.ContentFrameLayout;
 public final class p extends ContentFrameLayout {
-    public final r f12153r;
+    public final r f12152r;
 
     public p(r rVar, k.c cVar) {
         super(cVar);
-        this.f12153r = rVar;
+        this.f12152r = rVar;
     }
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (!this.f12153r.i(keyEvent) && !super.dispatchKeyEvent(keyEvent)) {
+        if (!this.f12152r.i(keyEvent) && !super.dispatchKeyEvent(keyEvent)) {
             return false;
         }
         return true;
@@ -26,7 +26,7 @@ public final class p extends ContentFrameLayout {
             int x9 = (int) motionEvent.getX();
             int y3 = (int) motionEvent.getY();
             if (x9 < -5 || y3 < -5 || x9 > getWidth() + 5 || y3 > getHeight() + 5) {
-                r rVar = this.f12153r;
+                r rVar = this.f12152r;
                 rVar.h(rVar.o(0), true);
                 return true;
             }

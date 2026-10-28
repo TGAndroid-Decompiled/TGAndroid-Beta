@@ -68,20 +68,20 @@ public abstract class a implements ld.c, d, Serializable {
             if (i10 >= 0) {
                 i12 = eVar.l()[i10];
             }
-            w2 w2Var = f.f18777b;
-            w2 w2Var2 = f.f18776a;
+            w2 w2Var = f.f18776b;
+            w2 w2Var2 = f.f18775a;
             if (w2Var == null) {
                 try {
                     w2 w2Var3 = new w2(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    f.f18777b = w2Var3;
+                    f.f18776b = w2Var3;
                     w2Var = w2Var3;
                 } catch (Exception unused2) {
-                    f.f18777b = w2Var2;
+                    f.f18776b = w2Var2;
                     w2Var = w2Var2;
                 }
             }
-            if (w2Var != w2Var2 && (method = w2Var.f17896a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = w2Var.f17897b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
-                Method method3 = w2Var.f17898c;
+            if (w2Var != w2Var2 && (method = w2Var.f17895a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = w2Var.f17896b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
+                Method method3 = w2Var.f17897c;
                 if (method3 != null) {
                     obj = method3.invoke(invoke2, null);
                 } else {
@@ -112,7 +112,7 @@ public abstract class a implements ld.c, d, Serializable {
             kotlin.jvm.internal.i.b(cVar2);
             try {
                 obj = aVar.invokeSuspend(obj);
-                if (obj == md.a.f18412a) {
+                if (obj == md.a.f18411a) {
                     return;
                 }
             } catch (Throwable th2) {

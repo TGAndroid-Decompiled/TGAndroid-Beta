@@ -3,21 +3,25 @@ package org.telegram.ui;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 public final class n40 implements ViewTreeObserver.OnPreDrawListener {
-    public final v50 f41755a;
+    public final ChatObject.VideoParticipant f41630a;
+    public final x50 f41631b;
 
-    public n40(v50 v50Var) {
-        this.f41755a = v50Var;
+    public n40(x50 x50Var, ChatObject.VideoParticipant videoParticipant) {
+        this.f41631b = x50Var;
+        this.f41630a = videoParticipant;
     }
 
     @Override
     public final boolean onPreDraw() {
         ViewGroup viewGroup;
-        v50 v50Var = this.f41755a;
-        v50Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
-        v50Var.a2.j(null);
-        AndroidUtilities.updateVisibleRows(v50Var.f44659m2);
-        viewGroup = ((org.telegram.ui.ActionBar.k3) v50Var).containerView;
+        x50 x50Var = this.f41631b;
+        x50Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
+        x50Var.f45557q2 = null;
+        x50Var.a2.j(this.f41630a);
+        AndroidUtilities.updateVisibleRows(x50Var.f45540m2);
+        viewGroup = ((org.telegram.ui.ActionBar.k3) x50Var).containerView;
         viewGroup.requestLayout();
         return false;
     }

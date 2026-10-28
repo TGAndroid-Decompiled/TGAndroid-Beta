@@ -8,11 +8,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.vh;
-import org.telegram.ui.Components.gb1;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.kb1;
 public final class j9 extends FrameLayout {
-    public final TextView f24299a;
-    public final TextView f24300b;
+    public final TextView f24301a;
+    public final TextView f24302b;
 
     public j9(Context context) {
         super(context);
@@ -21,8 +21,8 @@ public final class j9 extends FrameLayout {
         int i12;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f24299a = textView;
-        vh.r(textView, 1, 16.0f, 1, 1);
+        this.f24301a = textView;
+        wh.r(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -37,9 +37,9 @@ public final class j9 extends FrameLayout {
         } else {
             i11 = 3;
         }
-        addView(textView, gb1.h(-2, -1.0f, i11 | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        addView(textView, kb1.h(-2, -1.0f, i11 | 48, 21.0f, 0.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f24300b = textView2;
+        this.f24302b = textView2;
         textView2.setTextSize(1, 16.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setLines(1);
@@ -52,13 +52,13 @@ public final class j9 extends FrameLayout {
             i12 = 5;
         }
         textView2.setGravity(i12 | 16);
-        addView(textView2, gb1.h(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        addView(textView2, kb1.h(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public final void a(String str, String str2, boolean z10) {
-        TextView textView = this.f24299a;
+        TextView textView = this.f24301a;
         textView.setText(str);
-        TextView textView2 = this.f24300b;
+        TextView textView2 = this.f24302b;
         if (str2 != null) {
             textView2.setText(str2);
             textView2.setVisibility(0);
@@ -73,7 +73,7 @@ public final class j9 extends FrameLayout {
             textView.setTypeface(AndroidUtilities.bold());
             textView2.setTypeface(AndroidUtilities.bold());
         } else {
-            int i11 = org.telegram.ui.ActionBar.y6.f23767z6;
+            int i11 = org.telegram.ui.ActionBar.y6.f23768z6;
             setTag(Integer.valueOf(i11));
             org.telegram.ui.ActionBar.f7.V(textView, i11, null);
             org.telegram.ui.ActionBar.f7.V(textView2, i11, null);
@@ -90,16 +90,16 @@ public final class j9 extends FrameLayout {
         int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(34.0f);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredWidth / 2, Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        TextView textView = this.f24300b;
+        TextView textView = this.f24302b;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f24299a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f24301a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i10) {
-        this.f24299a.setTextColor(i10);
+        this.f24301a.setTextColor(i10);
     }
 
     public void setTextValueColor(int i10) {
-        this.f24300b.setTextColor(i10);
+        this.f24302b.setTextColor(i10);
     }
 }

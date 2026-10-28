@@ -1,55 +1,111 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class ol0 implements Utilities.Callback2 {
-    public final int f42245a;
-    public final PasskeysActivity f42246b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class ol0 extends org.telegram.ui.Components.mm0 {
+    public final Context f42107c;
+    public final PasscodeActivity d;
 
-    public ol0(PasskeysActivity passkeysActivity, int i10) {
-        this.f42245a = i10;
-        this.f42246b = passkeysActivity;
+    public ol0(PasscodeActivity passcodeActivity, Context context) {
+        this.d = passcodeActivity;
+        this.f42107c = context;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        int i10 = this.f42245a;
-        PasskeysActivity passkeysActivity = this.f42246b;
-        switch (i10) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.Components.j71 j71Var = (org.telegram.ui.Components.j71) obj2;
-                ArrayList arrayList2 = passkeysActivity.f35604b;
-                passkeysActivity.addPasskeyRow = -1;
-                String string = LocaleController.getString(R.string.PasskeyTopInfo);
-                int i11 = R.raw.passkey;
-                org.telegram.ui.Components.t61 t61Var = new org.telegram.ui.Components.t61(2);
-                t61Var.f32875l = string;
-                t61Var.f32874k = i11;
-                arrayList.add(t61Var);
-                for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                    x50 x50Var = new x50(passkeysActivity, 17);
-                    int i13 = pl0.f42572a;
-                    org.telegram.ui.Components.t61 K = org.telegram.ui.Components.t61.K(pl0.class);
-                    K.G = (TL_account.Passkey) arrayList2.get(i12);
-                    K.D = x50Var;
-                    arrayList.add(K);
+    public final boolean D(s4.e1 e1Var) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int b10 = e1Var.b();
+        PasscodeActivity passcodeActivity = this.d;
+        i10 = passcodeActivity.fingerprintRow;
+        if (b10 != i10) {
+            i11 = passcodeActivity.autoLockRow;
+            if (b10 != i11 && b10 != passcodeActivity.N) {
+                i12 = passcodeActivity.changePasscodeRow;
+                if (b10 != i12) {
+                    i13 = passcodeActivity.disablePasscodeRow;
+                    if (b10 != i13 && b10 != passcodeActivity.J && b10 != passcodeActivity.K) {
+                        return false;
+                    }
+                    return true;
                 }
-                if (arrayList2.size() + 1 <= passkeysActivity.getMessagesController().config.passkeysAccountPasskeysMax.get()) {
-                    passkeysActivity.addPasskeyRow = arrayList.size();
-                    org.telegram.ui.Components.t61 c10 = org.telegram.ui.Components.t61.c(-1, R.drawable.menu_passkey_add, LocaleController.getString(R.string.PasskeyAdd));
-                    c10.f32880q = true;
-                    arrayList.add(c10);
-                }
-                arrayList.add(org.telegram.ui.Components.t61.C(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PasskeyInfo), new lj0(passkeysActivity, 3)), true)));
-                return;
-            default:
-                PasskeysActivity.V(passkeysActivity, (TL_account.Passkey) obj, (String) obj2);
-                return;
+                return true;
+            }
+            return true;
         }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.P;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        PasscodeActivity passcodeActivity = this.d;
+        i11 = passcodeActivity.fingerprintRow;
+        if (i10 != i11 && i10 != passcodeActivity.N && i10 != passcodeActivity.K && i10 != passcodeActivity.J) {
+            i12 = passcodeActivity.changePasscodeRow;
+            if (i10 != i12) {
+                i13 = passcodeActivity.autoLockRow;
+                if (i10 != i13) {
+                    i14 = passcodeActivity.disablePasscodeRow;
+                    if (i10 != i14) {
+                        if (i10 != passcodeActivity.H && i10 != passcodeActivity.O && i10 != passcodeActivity.G && i10 != passcodeActivity.L) {
+                            if (i10 != passcodeActivity.M && i10 != passcodeActivity.I) {
+                                if (i10 == 0) {
+                                    return 4;
+                                }
+                                return 0;
+                            }
+                            return 3;
+                        }
+                        return 2;
+                    }
+                    return 1;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.e1 r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ol0.v(s4.e1, int):void");
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        View a9Var;
+        Context context = this.f42107c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        a9Var = new org.telegram.ui.Cells.i9(context);
+                    } else {
+                        a9Var = new pl0(context);
+                        a9Var.setTag(-33024);
+                    }
+                } else {
+                    a9Var = new org.telegram.ui.Cells.q4(context);
+                }
+            } else {
+                a9Var = new org.telegram.ui.Cells.ga(context);
+            }
+        } else {
+            a9Var = new org.telegram.ui.Cells.a9(context);
+        }
+        return new s4.e1(a9Var);
     }
 }

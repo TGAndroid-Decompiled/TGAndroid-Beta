@@ -8,25 +8,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 public final class d implements fb.v {
-    public final int f13916a;
-    public final rf.b f13917b;
+    public final int f13915a;
+    public final rf.b f13916b;
 
     public d(rf.b bVar, int i10) {
-        this.f13916a = i10;
-        this.f13917b = bVar;
+        this.f13915a = i10;
+        this.f13916b = bVar;
     }
 
     @Override
     public final fb.u create(fb.g gVar, mb.a aVar) {
         Type[] actualTypeArguments;
         fb.u uVar;
-        int i10 = this.f13916a;
-        rf.b bVar = this.f13917b;
+        int i10 = this.f13915a;
+        rf.b bVar = this.f13916b;
         Type type = Object.class;
         switch (i10) {
             case 0:
-                Type type2 = aVar.f18408b;
-                Class cls = aVar.f18407a;
+                Type type2 = aVar.f18407b;
+                Class cls = aVar.f18406a;
                 if (!Collection.class.isAssignableFrom(cls)) {
                     return null;
                 }
@@ -40,8 +40,8 @@ public final class d implements fb.v {
                 }
                 return new c(gVar, type, gVar.b(new mb.a(type)), bVar.K(aVar));
             default:
-                Type type3 = aVar.f18408b;
-                Class cls2 = aVar.f18407a;
+                Type type3 = aVar.f18407b;
+                Class cls2 = aVar.f18406a;
                 if (!Map.class.isAssignableFrom(cls2)) {
                     return null;
                 }
@@ -59,7 +59,7 @@ public final class d implements fb.v {
                 if (type4 != Boolean.TYPE && type4 != Boolean.class) {
                     uVar = gVar.b(new mb.a(type4));
                 } else {
-                    uVar = h1.f13925c;
+                    uVar = h1.f13924c;
                 }
                 fb.u b10 = gVar.b(new mb.a(actualTypeArguments[1]));
                 hb.n K = bVar.K(aVar);

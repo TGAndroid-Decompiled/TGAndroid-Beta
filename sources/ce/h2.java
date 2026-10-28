@@ -28,7 +28,7 @@ public final class h2 extends he.s {
         if (this.threadLocalIsSet) {
             jd.d dVar = (jd.d) this.e.get();
             if (dVar != null) {
-                he.a.f((ld.h) dVar.f15572a, dVar.f15573b);
+                he.a.f((ld.h) dVar.f15571a, dVar.f15572b);
             }
             this.e.remove();
         }
@@ -37,7 +37,7 @@ public final class h2 extends he.s {
         ld.h context = cVar.getContext();
         h2 h2Var = null;
         Object k10 = he.a.k(context, null);
-        if (k10 != he.a.f12793f) {
+        if (k10 != he.a.f12792f) {
             h2Var = f0.v(cVar, context, k10);
         }
         try {

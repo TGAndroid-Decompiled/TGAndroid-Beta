@@ -1,90 +1,59 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class yr extends Drawable {
-    public final Drawable f46096a;
-    public final Drawable f46097b;
-    public int d;
-    public int e;
-    public final ArrayList f46098c = new ArrayList();
-    public boolean f46099f = false;
-    public final org.telegram.ui.Components.h6 f46100g = new org.telegram.ui.Components.h6(new ui(this, 14), 420, org.telegram.ui.Components.ds.h);
-    public int h = 255;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+public final class yr implements ActionMode.Callback {
+    public final zr f46072a;
 
-    public yr(Drawable drawable, Drawable drawable2) {
-        this.f46096a = drawable;
-        this.f46097b = drawable2;
+    public yr(zr zrVar) {
+        this.f46072a = zrVar;
     }
 
-    public final void a(int i10, int i11) {
-        this.d = i10;
-        this.e = i11;
-    }
-
-    public final void b(boolean z10) {
-        if (this.f46099f == z10) {
-            return;
+    @Override
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        xr xrVar;
+        ClipboardManager clipboardManager;
+        ClipData primaryClip;
+        int i10;
+        if (menuItem.getItemId() != 16908322) {
+            return true;
         }
-        this.f46099f = z10;
-        ArrayList arrayList = this.f46098c;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((View) obj).invalidate();
+        zr zrVar = this.f46072a;
+        if (zrVar.getParent() instanceof xr) {
+            xrVar = (xr) zrVar.getParent();
+        } else {
+            xrVar = null;
         }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float e = this.f46100g.e(this.f46099f);
-        int i10 = this.h;
-        Drawable drawable = this.f46096a;
-        drawable.setAlpha(i10);
-        drawable.setBounds(getBounds());
-        drawable.draw(canvas);
-        if (e > 0.0f) {
-            Drawable drawable2 = this.f46097b;
-            drawable2.setAlpha((int) (this.h * e));
-            drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.e);
-            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, e);
-            canvas.save();
-            canvas.scale(lerp, lerp, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
-            drawable2.draw(canvas);
-            canvas.restore();
+        if (xrVar != null && (clipboardManager = (ClipboardManager) zrVar.getContext().getSystemService(ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
+            String charSequence = primaryClip.getItemAt(0).getText().toString();
+            try {
+                i10 = Integer.parseInt(charSequence);
+            } catch (Exception unused) {
+                i10 = -1;
+            }
+            if (i10 > 0) {
+                xrVar.c(charSequence, true);
+            }
         }
+        zrVar.hideActionMode();
+        return true;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.f46096a.getIntrinsicHeight();
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        menu.add(0, 16908322, 0, 17039371);
+        return true;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return this.f46096a.getIntrinsicWidth();
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        return true;
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.h = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f46096a.setColorFilter(colorFilter);
-        this.f46097b.setColorFilter(colorFilter);
+    public final void onDestroyActionMode(ActionMode actionMode) {
     }
 }

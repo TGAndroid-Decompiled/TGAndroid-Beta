@@ -5,9 +5,9 @@ import android.util.LruCache;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public abstract class h7 {
-    public static final LruCache f36637a = new LruCache(128);
-    public static final float[] f36638b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
-    public static final float[] f36639c = {0.0f, 0.47809f, 1.0f};
+    public static final LruCache f36662a = new LruCache(128);
+    public static final float[] f36663b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
+    public static final float[] f36664c = {0.0f, 0.47809f, 1.0f};
     public static final LruCache d = new LruCache(64);
     public static final int e;
 
@@ -268,7 +268,7 @@ public abstract class h7 {
         float[] fArr;
         float f7;
         String str = i10 + ":" + i11 + ":" + i12;
-        LruCache lruCache = f36637a;
+        LruCache lruCache = f36662a;
         Integer num = (Integer) lruCache.get(str);
         if (num != null) {
             return num.intValue();
@@ -367,7 +367,7 @@ public abstract class h7 {
                 for (int i17 = 0; i17 < 3; i17++) {
                     d18[i17] = Math.pow(d18[i17], 3.0d);
                 }
-                dArr = org.telegram.ui.ActionBar.m5.d(org.telegram.ui.ActionBar.m5.f22885f, org.telegram.ui.ActionBar.m5.d(org.telegram.ui.ActionBar.m5.f22883b, d18));
+                dArr = org.telegram.ui.ActionBar.m5.d(org.telegram.ui.ActionBar.m5.f22886f, org.telegram.ui.ActionBar.m5.d(org.telegram.ui.ActionBar.m5.f22884b, d18));
                 double d19 = dArr[0];
                 if (d19 >= 0.0d) {
                     double d20 = dArr[1];

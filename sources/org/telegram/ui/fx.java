@@ -1,27 +1,35 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage;
-public final class fx implements org.telegram.ui.Components.e5 {
-    public final cy f39491a;
+import org.telegram.messenger.Utilities;
+public final class fx implements Runnable {
+    public final int f39438a;
+    public final Object f39439b;
+    public final int f39440c;
+    public final Object d;
 
-    public fx(cy cyVar) {
-        this.f39491a = cyVar;
+    public fx(int i10, Utilities.Callback callback, org.telegram.ui.Wallet.l0 l0Var) {
+        this.f39438a = 16;
+        this.f39440c = i10;
+        this.d = callback;
+        this.f39439b = l0Var;
     }
 
     @Override
-    public final void G(int i10, int i11, boolean z10) {
-        cy cyVar = this.f39491a;
-        ArrayList arrayList = cyVar.I2;
-        cyVar.K2 = i10;
-        cyVar.L2 = i11;
-        cyVar.M2 = false;
-        if (cyVar.C2 != null && !arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList();
-            for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                arrayList2.add(MessagesStorage.TopicKey.of(((Long) arrayList.get(i12)).longValue(), 0L));
-            }
-            cyVar.C2.v(cyVar, arrayList2, cyVar.B1.getFieldText(), false, z10, i10, i11, null);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fx.run():void");
+    }
+
+    public fx(Object obj, int i10, Object obj2, int i11) {
+        this.f39438a = i11;
+        this.d = obj;
+        this.f39440c = i10;
+        this.f39439b = obj2;
+    }
+
+    public fx(Object obj, Object obj2, int i10, int i11) {
+        this.f39438a = i11;
+        this.d = obj;
+        this.f39439b = obj2;
+        this.f39440c = i10;
     }
 }

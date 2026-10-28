@@ -1,68 +1,70 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.webkit.WebView;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class jn0 implements Runnable {
-    public final int f40702a;
-    public final po0 f40703b;
-    public final TLObject f40704c;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class jn0 extends FrameLayout {
+    public TextView f40567a;
+    public TextView f40568b;
+    public ImageView f40569c;
+    public boolean d;
 
-    public jn0(po0 po0Var, TLObject tLObject, int i10) {
-        this.f40702a = i10;
-        this.f40703b = po0Var;
-        this.f40704c = tLObject;
+    public final void a(String str, boolean z10) {
+        this.f40567a.setText(str);
+        this.f40568b.setText("");
+        this.d = z10;
+        setWillNotDraw(!z10);
     }
 
     @Override
-    public final void run() {
-        switch (this.f40702a) {
-            case 0:
-                po0.f0(this.f40703b, this.f40704c);
-                return;
-            case 1:
-                po0 po0Var = this.f40703b;
-                Utilities.Callback callback = po0Var.f42596d1;
-                TLObject tLObject = this.f40704c;
-                if (callback != null) {
-                    callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
-                }
-                po0Var.E0(false);
-                po0Var.f42626z0 = true;
-                po0Var.I0(true, true);
-                org.telegram.ui.Components.er erVar = po0Var.f42613r;
-                if (erVar != null) {
-                    erVar.setVisibility(0);
-                }
-                org.telegram.ui.ActionBar.w0 w0Var = po0Var.f42608n;
-                if (w0Var != null) {
-                    w0Var.setEnabled(false);
-                    po0Var.f42608n.getContentView().setVisibility(4);
-                }
-                org.telegram.ui.ActionBar.j5 parentLayout = po0Var.getParentLayout();
-                Activity parentActivity = po0Var.getParentActivity();
-                po0Var.getMessagesController().newMessageCallback = new e7(po0Var, parentLayout, parentActivity, 17);
-                WebView webView = po0Var.f42620w;
-                if (webView != null) {
-                    webView.setVisibility(0);
-                    WebView webView2 = po0Var.f42620w;
-                    String str = ((TLRPC.TL_payments_paymentVerificationNeeded) tLObject).url;
-                    po0Var.f42622x = str;
-                    webView2.loadUrl(str);
-                }
-                po0Var.f42588a1 = true;
-                po0Var.f42601f1 = 3;
-                oo0 oo0Var = po0Var.Z0;
-                if (oo0Var != null) {
-                    oo0Var.a(3);
-                    return;
-                }
-                return;
-            default:
-                po0.d0(this.f40703b, this.f40704c);
-                return;
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (this.d) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(20.0f);
+            }
+            float f7 = dp;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23479k0);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
+    }
+
+    public void setChecked(boolean z10) {
+        int i10;
+        ImageView imageView = this.f40569c;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        imageView.setVisibility(i10);
+    }
+
+    public void setNeedDivider(boolean z10) {
+        this.d = z10;
+        setWillNotDraw(!z10);
+        invalidate();
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.f40568b.setText(charSequence);
     }
 }

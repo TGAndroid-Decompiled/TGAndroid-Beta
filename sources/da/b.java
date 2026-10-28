@@ -105,7 +105,7 @@ public final class b {
     public final void d(c2 c2Var, String str, boolean z10) {
         String str2;
         c cVar = this.f8271b;
-        int i10 = this.f8272c.d().f10370a.f1303a;
+        int i10 = this.f8272c.d().f10369a.f1303a;
         f8268g.getClass();
         String c10 = ba.a.f3719a.c(c2Var);
         String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f8270a.getAndIncrement()));

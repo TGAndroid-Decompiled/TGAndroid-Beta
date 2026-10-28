@@ -1,46 +1,37 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-public final class yt implements DialogInterface.OnClickListener {
-    public final DataSettingsActivity f46105a;
-    public final SharedPreferences f46106b;
-    public final int f46107c;
+import org.telegram.messenger.AndroidUtilities;
+public final class yt implements Runnable {
+    public final int f46079a;
+    public final DataSettingsActivity f46080b;
 
-    public yt(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i10) {
-        this.f46105a = dataSettingsActivity;
-        this.f46106b = sharedPreferences;
-        this.f46107c = i10;
+    public yt(DataSettingsActivity dataSettingsActivity, int i10) {
+        this.f46079a = i10;
+        this.f46080b = dataSettingsActivity;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        int i11;
-        DataSettingsActivity dataSettingsActivity = this.f46105a;
-        dataSettingsActivity.getClass();
-        if (i10 != 0) {
-            i11 = 3;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        i11 = -1;
-                    } else {
-                        i11 = 2;
-                    }
-                } else {
-                    i11 = 1;
+    public final void run() {
+        int i10;
+        switch (this.f46079a) {
+            case 0:
+                this.f46080b.getMediaDataController().clearAllDrafts(true);
+                return;
+            case 1:
+                DataSettingsActivity dataSettingsActivity = this.f46080b;
+                dataSettingsActivity.W = true;
+                if (dataSettingsActivity.f35512a != null && (i10 = dataSettingsActivity.f35518s) >= 0) {
+                    dataSettingsActivity.o0(i10);
+                    return;
                 }
-            }
-        } else {
-            i11 = 0;
-        }
-        if (i11 != -1) {
-            this.f46106b.edit().putInt("VoipDataSaving", i11).commit();
-            dataSettingsActivity.U = true;
-        }
-        zt ztVar = dataSettingsActivity.f35488a;
-        if (ztVar != null) {
-            ztVar.m(this.f46107c);
+                return;
+            default:
+                c7.f38186k0 = null;
+                DataSettingsActivity dataSettingsActivity2 = this.f46080b;
+                yt ytVar = new yt(dataSettingsActivity2, 1);
+                AndroidUtilities.runOnUIThread(ytVar, 100L);
+                c7.i0(new bi.c2(dataSettingsActivity2, ytVar, System.currentTimeMillis(), 1));
+                return;
         }
     }
 }

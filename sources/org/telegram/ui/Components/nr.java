@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class nr implements TextWatcher {
-    public final so f31066a;
-    public final lr f31067b;
+    public final so f31028a;
+    public final lr f31029b;
 
     public nr(so soVar, lr lrVar) {
-        this.f31066a = soVar;
-        this.f31067b = lrVar;
+        this.f31028a = soVar;
+        this.f31029b = lrVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f31066a.run();
-        this.f31067b.run();
+        this.f31028a.run();
+        this.f31029b.run();
     }
 
     @Override

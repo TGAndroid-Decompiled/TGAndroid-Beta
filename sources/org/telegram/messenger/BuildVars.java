@@ -83,7 +83,7 @@ public class BuildVars {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ArrayList arrayList2 = (ArrayList) ((d5.n) obj).f7998b.f52844b;
+                ArrayList arrayList2 = (ArrayList) ((d5.n) obj).f7998b.f52902b;
                 int size2 = arrayList2.size();
                 int i11 = 0;
                 while (i11 < size2) {

@@ -2,7 +2,7 @@ package n2;
 
 import android.os.Looper;
 public interface m {
-    public static final tb.a f18629z = new tb.a(13);
+    public static final tb.a f18628z = new tb.a(13);
 
     void a();
 

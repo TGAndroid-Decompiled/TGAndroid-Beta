@@ -5,19 +5,19 @@ import a8.yb;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class s implements Iterator {
-    public String f9850b;
-    public final CharSequence f9851c;
+    public String f9849b;
+    public final CharSequence f9850c;
     public final i d;
-    public int f9852f;
+    public int f9851f;
     public final za.c h;
-    public int f9849a = 2;
+    public int f9848a = 2;
     public int e = 0;
 
     public s(za.c cVar, ng ngVar, CharSequence charSequence) {
         this.h = cVar;
         this.d = (i) ngVar.f640c;
-        this.f9852f = ngVar.f639b;
-        this.f9851c = charSequence;
+        this.f9851f = ngVar.f639b;
+        this.f9850c = charSequence;
     }
 
     @Override
@@ -25,24 +25,24 @@ public final class s implements Iterator {
         boolean z10;
         String str;
         i iVar;
-        if (this.f9849a != 4) {
+        if (this.f9848a != 4) {
             z10 = true;
         } else {
             z10 = false;
         }
         yb.p(z10);
-        int c10 = m1.j.c(this.f9849a);
+        int c10 = m1.j.c(this.f9848a);
         if (c10 == 0) {
             return true;
         }
         if (c10 != 2) {
-            this.f9849a = 4;
+            this.f9848a = 4;
             int i10 = this.e;
             while (true) {
                 int i11 = this.e;
                 if (i11 != -1) {
-                    e eVar = (e) this.h.f52844b;
-                    CharSequence charSequence = this.f9851c;
+                    e eVar = (e) this.h.f52902b;
+                    CharSequence charSequence = this.f9850c;
                     int length = charSequence.length();
                     yb.m(i11, length);
                     while (true) {
@@ -80,7 +80,7 @@ public final class s implements Iterator {
                         while (i11 > i10 && iVar.c(charSequence.charAt(i11 - 1))) {
                             i11--;
                         }
-                        int i14 = this.f9852f;
+                        int i14 = this.f9851f;
                         if (i14 == 1) {
                             i11 = charSequence.length();
                             this.e = -1;
@@ -88,19 +88,19 @@ public final class s implements Iterator {
                                 i11--;
                             }
                         } else {
-                            this.f9852f = i14 - 1;
+                            this.f9851f = i14 - 1;
                         }
                         str = charSequence.subSequence(i10, i11).toString();
                     }
                 } else {
-                    this.f9849a = 3;
+                    this.f9848a = 3;
                     str = null;
                     break;
                 }
             }
-            this.f9850b = str;
-            if (this.f9849a != 3) {
-                this.f9849a = 1;
+            this.f9849b = str;
+            if (this.f9848a != 3) {
+                this.f9848a = 1;
                 return true;
             }
         }
@@ -110,9 +110,9 @@ public final class s implements Iterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            this.f9849a = 2;
-            String str = this.f9850b;
-            this.f9850b = null;
+            this.f9848a = 2;
+            String str = this.f9849b;
+            this.f9849b = null;
             return str;
         }
         throw new NoSuchElementException();

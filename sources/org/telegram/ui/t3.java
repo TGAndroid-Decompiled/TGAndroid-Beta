@@ -13,12 +13,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
 public final class t3 implements Utilities.Callback {
-    public final int f43666a;
-    public final Object f43667b;
+    public final int f43478a;
+    public final Object f43479b;
 
     public t3(Object obj, int i10) {
-        this.f43666a = i10;
-        this.f43667b = obj;
+        this.f43478a = i10;
+        this.f43479b = obj;
     }
 
     @Override
@@ -28,16 +28,16 @@ public final class t3 implements Utilities.Callback {
         float f11;
         float f12;
         float f13;
-        int i10 = this.f43666a;
+        int i10 = this.f43478a;
         boolean z10 = false;
-        Object obj2 = this.f43667b;
+        Object obj2 = this.f43479b;
         switch (i10) {
             case 0:
                 j4 j4Var = ((v3) obj2).K;
                 if (((Integer) obj).intValue() - AndroidUtilities.navigationBarHeight > AndroidUtilities.dp(20.0f)) {
                     z10 = true;
                 }
-                j4Var.f40443o0 = z10;
+                j4Var.f40408o0 = z10;
                 return;
             case 1:
                 AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.m0(25, (dc) obj2, (TL_stories.TL_premium_boostsStatus) obj));
@@ -46,111 +46,111 @@ public final class t3 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new ed(1, (ke) obj2, (TL_stories.TL_premium_boostsStatus) obj));
                 return;
             case 3:
-                ((fq) obj2).e.S = (String) obj;
+                ((hq) obj2).e.S = (String) obj;
                 return;
             case 4:
-                kr krVar = ((gr) obj2).d;
-                krVar.f41063z1 = ((Integer) obj).intValue();
-                AndroidUtilities.updateVisibleRow(krVar.f41010c, krVar.f41039q0);
+                mr mrVar = ((ir) obj2).d;
+                mrVar.f41561z1 = ((Integer) obj).intValue();
+                AndroidUtilities.updateVisibleRow(mrVar.f41508c, mrVar.f41537q0);
                 return;
             case 5:
-                js.V((js) obj2, (TL_account.TL_birthday) obj);
+                ls.V((ls) obj2, (TL_account.TL_birthday) obj);
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
-                ((p10) obj2).e.c0(true);
+                ((r10) obj2).e.c0(true);
                 return;
             case 7:
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                ((h50) obj2).c();
+                ((j50) obj2).c();
                 return;
             case 8:
                 Boolean bool2 = (Boolean) obj;
                 Pattern pattern = LaunchActivity.D1;
-                ((o90) obj2).run();
+                ((q90) obj2).run();
                 return;
             case 9:
                 Boolean bool3 = (Boolean) obj;
-                ((tb0) obj2).Z();
+                ((wb0) obj2).Z();
                 return;
             case 10:
-                of0 of0Var = (of0) obj2;
+                qf0 qf0Var = (qf0) obj2;
                 String str = (String) obj;
-                of0Var.getClass();
+                qf0Var.getClass();
                 FileLog.d("LoginBilling purchased done " + str);
                 if ("CANCELLED".equalsIgnoreCase(str)) {
-                    of0Var.f42177b.setLoading(false);
+                    qf0Var.f42697b.setLoading(false);
                     return;
                 }
                 return;
             case 11:
-                ni0 ni0Var = (ni0) obj2;
+                pi0 pi0Var = (pi0) obj2;
                 Integer num = (Integer) obj;
-                ni0Var.getClass();
-                if (num.intValue() - ni0Var.d.d > AndroidUtilities.dp(20.0f)) {
+                pi0Var.getClass();
+                if (num.intValue() - pi0Var.d.d > AndroidUtilities.dp(20.0f)) {
                     z10 = true;
                 }
-                ni0Var.f41905a0 = z10;
+                pi0Var.f42408a0 = z10;
                 if (z10) {
-                    f7 = Math.min(ni0Var.f41907b0, (ni0Var.E.getHeight() - num.intValue()) - ni0Var.f41909c0.getMeasuredHeight());
+                    f7 = Math.min(pi0Var.f42410b0, (pi0Var.E.getHeight() - num.intValue()) - pi0Var.f42412c0.getMeasuredHeight());
                 } else {
-                    f7 = ni0Var.f41907b0;
+                    f7 = pi0Var.f42410b0;
                 }
-                ni0Var.f41909c0.animate().translationY(f7 - ni0Var.f41909c0.getTop()).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.q1.f22963w).start();
+                pi0Var.f42412c0.animate().translationY(f7 - pi0Var.f42412c0.getTop()).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.q1.f22964w).start();
                 return;
             case 12:
-                cj0 cj0Var = (cj0) obj2;
-                cj0Var.f38484j0 = (String) obj;
-                y5 y5Var = cj0Var.f38493t0;
+                ej0 ej0Var = (ej0) obj2;
+                ej0Var.f38895j0 = (String) obj;
+                y5 y5Var = ej0Var.f38904t0;
                 AndroidUtilities.cancelRunOnUIThread(y5Var);
                 AndroidUtilities.runOnUIThread(y5Var, 100L);
                 return;
             case 13:
-                oj0 oj0Var = (oj0) obj2;
-                oj0Var.getClass();
+                qj0 qj0Var = (qj0) obj2;
+                qj0Var.getClass();
                 if (((Boolean) obj).booleanValue()) {
-                    oj0Var.s();
+                    qj0Var.s();
                     return;
                 }
                 return;
             case 14:
-                xj0 xj0Var = (xj0) obj2;
+                zj0 zj0Var = (zj0) obj2;
                 Integer num2 = (Integer) obj;
                 num2.getClass();
-                HashSet hashSet = xj0Var.d;
+                HashSet hashSet = zj0Var.d;
                 if (!hashSet.remove(num2)) {
                     hashSet.add(num2);
                 }
-                xj0.o0(xj0Var.f45784b[0]);
-                xj0Var.p0(true);
+                zj0.o0(zj0Var.f46288b[0]);
+                zj0Var.p0(true);
                 return;
             case 15:
-                lp0 lp0Var = (lp0) obj2;
+                np0 np0Var = (np0) obj2;
                 View view = (View) obj;
-                rp0 rp0Var = lp0Var.f41333p0;
-                if (view instanceof op0) {
-                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
-                    ((op0) view).updateColors();
+                tp0 tp0Var = np0Var.f41856p0;
+                if (view instanceof qp0) {
+                    view.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23357d6));
+                    ((qp0) view).updateColors();
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.v8) {
-                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
+                    view.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23357d6));
                     ((org.telegram.ui.Cells.v8) view).updateColors();
                     return;
-                } else if (view instanceof kp0) {
-                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
-                    ((kp0) view).updateColors();
+                } else if (view instanceof mp0) {
+                    view.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23357d6));
+                    ((mp0) view).updateColors();
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.q4) {
-                    view.setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
+                    view.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23357d6));
                     return;
-                } else if (view instanceof zo0) {
-                    ((zo0) view).d.invalidate();
+                } else if (view instanceof bp0) {
+                    ((bp0) view).d.invalidate();
                     return;
-                } else if (view instanceof qp0) {
-                    lp0Var.l((qp0) view);
+                } else if (view instanceof sp0) {
+                    np0Var.l((sp0) view);
                     return;
-                } else if (view instanceof jp0) {
-                    ((jp0) view).updateColors();
+                } else if (view instanceof lp0) {
+                    ((lp0) view).updateColors();
                     return;
                 } else {
                     return;
@@ -160,25 +160,25 @@ public final class t3 implements Utilities.Callback {
                 return;
             case 17:
                 Boolean bool4 = (Boolean) obj;
-                ((jp0) obj2).f40716c.e();
+                ((lp0) obj2).f41231c.e();
                 return;
             case 18:
                 ((fi.h1) obj2).E(((Integer) obj).intValue());
                 return;
             case 19:
-                fw0 fw0Var = (fw0) obj2;
-                fw0Var.f39489r = ((Integer) obj).intValue();
-                View E1 = fw0Var.d.E1(4);
+                hw0 hw0Var = (hw0) obj2;
+                hw0Var.f40004r = ((Integer) obj).intValue();
+                View E1 = hw0Var.d.E1(4);
                 if (E1 instanceof org.telegram.ui.Cells.i9) {
                     org.telegram.ui.Cells.i9 i9Var = (org.telegram.ui.Cells.i9) E1;
-                    if (i9Var.getFixedSize() <= 0 && fw0Var.f39489r > 0) {
-                        i9Var.setText(fw0Var.X());
-                        fw0Var.W(true);
+                    if (i9Var.getFixedSize() <= 0 && hw0Var.f40004r > 0) {
+                        i9Var.setText(hw0Var.X());
+                        hw0Var.W(true);
                         return;
                     }
                 }
-                fw0Var.d.f32152g3.O(true);
-                fw0Var.W(true);
+                hw0Var.d.f32504g3.O(true);
+                hw0Var.W(true);
                 return;
             case 20:
                 PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) obj2;
@@ -188,10 +188,10 @@ public final class t3 implements Utilities.Callback {
                 privacySettingsActivity.B0(true);
                 return;
             case 21:
-                org.telegram.ui.Components.z90[] z90VarArr = (org.telegram.ui.Components.z90[]) obj2;
+                org.telegram.ui.Components.aa0[] aa0VarArr = (org.telegram.ui.Components.aa0[]) obj2;
                 Boolean bool5 = (Boolean) obj;
                 int i11 = ProfileActivity.R6;
-                ViewPropertyAnimator animate = z90VarArr[0].animate();
+                ViewPropertyAnimator animate = aa0VarArr[0].animate();
                 float f14 = 0.0f;
                 float f15 = 1.0f;
                 if (bool5.booleanValue()) {
@@ -213,8 +213,8 @@ public final class t3 implements Utilities.Callback {
                 }
                 ViewPropertyAnimator scaleY = scaleX.scaleY(f12);
                 org.telegram.ui.Components.ds dsVar = org.telegram.ui.Components.ds.h;
-                org.telegram.messenger.vh.q(scaleY, dsVar, 600L);
-                ViewPropertyAnimator animate2 = z90VarArr[1].animate();
+                org.telegram.messenger.wh.q(scaleY, dsVar, 600L);
+                ViewPropertyAnimator animate2 = aa0VarArr[1].animate();
                 if (bool5.booleanValue()) {
                     f14 = 1.0f;
                 }
@@ -240,11 +240,11 @@ public final class t3 implements Utilities.Callback {
                 ((fi.h1) obj2).E(((Integer) obj).intValue());
                 return;
             case 25:
-                ((af1) obj2).X = (TL_stories.TL_premium_boostsStatus) obj;
+                ((cf1) obj2).X = (TL_stories.TL_premium_boostsStatus) obj;
                 return;
             default:
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) obj;
-                ((ph1) obj2).D(true);
+                ((rh1) obj2).D(true);
                 return;
         }
     }

@@ -14,7 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 public final class z5 extends FrameLayout {
     public float E;
     public float F;
@@ -27,24 +27,24 @@ public final class z5 extends FrameLayout {
     public final Path M;
     public final float[] N;
     public final int[] O;
-    public r5 f23789a;
-    public y5 f23790b;
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f23791c;
+    public r5 f23790a;
+    public y5 f23791b;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f23792c;
     public eh.d d;
     public r5 e;
-    public final Paint f23792f;
+    public final Paint f23793f;
     public final Paint h;
-    public boolean f23793n;
-    public boolean f23794r;
-    public boolean f23795s;
+    public boolean f23794n;
+    public boolean f23795r;
+    public boolean f23796s;
     public long v;
-    public Runnable f23796w;
-    public long f23797x;
-    public float f23798y;
+    public Runnable f23797w;
+    public long f23798x;
+    public float f23799y;
 
     public z5(Context context) {
         super(context);
-        this.f23792f = new Paint(1);
+        this.f23793f = new Paint(1);
         Paint paint = new Paint();
         this.h = paint;
         this.I = new RectF();
@@ -72,15 +72,15 @@ public final class z5 extends FrameLayout {
     }
 
     public final void a(boolean z10) {
-        boolean z11 = this.f23793n;
+        boolean z11 = this.f23794n;
         if (!z11 && !this.H) {
             return;
         }
         if (z11) {
-            this.f23793n = false;
+            this.f23794n = false;
             if (z10 && isAttachedToWindow() && isLaidOut()) {
-                this.f23798y = Math.max(this.E, this.F);
-                this.f23797x = 0L;
+                this.f23799y = Math.max(this.E, this.F);
+                this.f23798x = 0L;
                 this.H = true;
                 invalidate();
                 return;
@@ -119,11 +119,11 @@ public final class z5 extends FrameLayout {
 
     public final void c() {
         y5 y5Var;
-        r5 r5Var = this.f23789a;
-        if (r5Var != null && (y5Var = this.f23790b) != null) {
+        r5 r5Var = this.f23790a;
+        if (r5Var != null && (y5Var = this.f23791b) != null) {
             RectF rectF = this.I;
-            this.f23794r = r5Var.m(y5Var, rectF);
-            b(this.f23789a);
+            this.f23795r = r5Var.m(y5Var, rectF);
+            b(this.f23790a);
             float[] fArr = this.N;
             rectF.offset(fArr[0], fArr[1]);
         }
@@ -131,15 +131,15 @@ public final class z5 extends FrameLayout {
 
     public final void d() {
         this.H = false;
-        this.f23793n = false;
+        this.f23794n = false;
         this.G = 0.0f;
         this.F = 0.0f;
         this.E = 0.0f;
         clearFocus();
         setVisibility(8);
-        y5 y5Var = this.f23790b;
-        r5 r5Var = this.f23789a;
-        this.f23790b = null;
+        y5 y5Var = this.f23791b;
+        r5 r5Var = this.f23790a;
+        this.f23791b = null;
         if (r5Var != null) {
             r5Var.O = null;
             r5Var.P = null;
@@ -152,9 +152,9 @@ public final class z5 extends FrameLayout {
                 t0Var.a();
             }
         }
-        Runnable runnable = this.f23796w;
+        Runnable runnable = this.f23797w;
         if (runnable != null) {
-            this.f23796w = null;
+            this.f23797w = null;
             runnable.run();
         }
     }
@@ -175,11 +175,11 @@ public final class z5 extends FrameLayout {
         float f16;
         float e;
         float e10;
-        if (this.f23789a != null && this.f23790b != null && this.f23791c != null) {
+        if (this.f23790a != null && this.f23791b != null && this.f23792c != null) {
             if (this.H) {
                 long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-                if (this.f23797x == 0) {
-                    this.f23797x = currentAnimationTimeMillis;
+                if (this.f23798x == 0) {
+                    this.f23798x = currentAnimationTimeMillis;
                 }
                 if (Build.VERSION.SDK_INT >= 26) {
                     f14 = ValueAnimator.getDurationScale();
@@ -189,10 +189,10 @@ public final class z5 extends FrameLayout {
                 if (f14 <= 0.0f) {
                     f15 = 10.0f;
                 } else {
-                    f15 = (((float) (currentAnimationTimeMillis - this.f23797x)) / 1000.0f) / f14;
+                    f15 = (((float) (currentAnimationTimeMillis - this.f23798x)) / 1000.0f) / f14;
                 }
-                float f17 = this.f23798y;
-                if (this.f23793n) {
+                float f17 = this.f23799y;
+                if (this.f23794n) {
                     this.G = 0.0f;
                     int i10 = (f15 > 0.7f ? 1 : (f15 == 0.7f ? 0 : -1));
                     if (i10 > 0) {
@@ -217,13 +217,13 @@ public final class z5 extends FrameLayout {
                     this.F = (1.0f - ((3.0f - (clamp013 * 2.0f)) * (clamp013 * clamp013))) * f17;
                     float f18 = f15 - 0.2f;
                     int i11 = (f18 > 0.0f ? 1 : (f18 == 0.0f ? 0 : -1));
-                    if (i11 > 0 && this.f23794r) {
+                    if (i11 > 0 && this.f23795r) {
                         f16 = f17 * 0.07f * ((float) Math.exp((-f18) / 0.11f)) * ((float) Math.sin((f18 * 6.283185307179586d) / 0.17000000178813934d));
                     } else {
                         f16 = 0.0f;
                     }
                     this.G = f16;
-                    if (!this.f23794r ? i11 >= 0 : f18 > 0.45f) {
+                    if (!this.f23795r ? i11 >= 0 : f18 > 0.45f) {
                         this.G = 0.0f;
                         post(new q(this, 15));
                     }
@@ -231,7 +231,7 @@ public final class z5 extends FrameLayout {
             }
             c();
             RectF rectF = this.J;
-            rectF.set(this.f23791c.getLeft(), this.f23791c.getTop(), this.f23791c.getRight(), this.f23791c.getBottom());
+            rectF.set(this.f23792c.getLeft(), this.f23792c.getTop(), this.f23792c.getRight(), this.f23792c.getBottom());
             float f19 = this.E;
             float f20 = this.F;
             float clamp015 = Utilities.clamp01(Math.max(f19, f20));
@@ -259,7 +259,7 @@ public final class z5 extends FrameLayout {
             paint.setAlpha((int) (26.0f * clamp015));
             canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
             int dp = AndroidUtilities.dp(6.0f);
-            if (this.f23794r) {
+            if (this.f23795r) {
                 clamp01 = 1.0f;
             } else {
                 clamp01 = Utilities.clamp01(clamp015 / 0.25f);
@@ -271,8 +271,8 @@ public final class z5 extends FrameLayout {
                 this.d.setAlpha((int) (clamp01 * 255.0f));
                 this.d.draw(canvas);
             } else {
-                int w02 = y6.w0(y6.G8, this.f23789a.f23028a);
-                Paint paint2 = this.f23792f;
+                int w02 = y6.w0(y6.G8, this.f23790a.f23029a);
+                Paint paint2 = this.f23793f;
                 paint2.setColor(w02);
                 paint2.setAlpha((int) (paint2.getAlpha() * clamp01));
                 canvas.drawRoundRect(rectF3, min, min, paint2);
@@ -282,16 +282,16 @@ public final class z5 extends FrameLayout {
             path.rewind();
             path.addRoundRect(rectF3, min, min, Path.Direction.CW);
             canvas.clipPath(path);
-            if (this.f23793n) {
+            if (this.f23794n) {
                 f10 = 0.3f;
             } else {
                 f10 = 0.7f;
             }
             float clamp016 = 1.0f - Utilities.clamp01(clamp015 / f10);
-            if (this.f23794r) {
-                iconView = this.f23789a.getMenuView();
+            if (this.f23795r) {
+                iconView = this.f23790a.getMenuView();
             } else {
-                iconView = this.f23790b.getIconView();
+                iconView = this.f23791b.getIconView();
             }
             View view = iconView;
             if (clamp016 > 0.004f && view != null) {
@@ -312,7 +312,7 @@ public final class z5 extends FrameLayout {
             } else {
                 f11 = 0.004f;
             }
-            if (this.f23793n) {
+            if (this.f23794n) {
                 clamp012 = Utilities.clamp01((clamp015 - 0.25f) / 0.5f);
                 f13 = clamp012 * clamp012;
                 f12 = 3.0f;
@@ -339,7 +339,7 @@ public final class z5 extends FrameLayout {
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (this.f23793n && keyEvent.getAction() == 1 && keyEvent.getRepeatCount() == 0 && (keyEvent.getKeyCode() == 82 || keyEvent.getKeyCode() == 4)) {
+        if (this.f23794n && keyEvent.getAction() == 1 && keyEvent.getRepeatCount() == 0 && (keyEvent.getKeyCode() == 82 || keyEvent.getKeyCode() == 4)) {
             a(true);
             return true;
         }
@@ -352,13 +352,13 @@ public final class z5 extends FrameLayout {
     }
 
     public y5 getItem() {
-        return this.f23790b;
+        return this.f23791b;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (!this.f23793n && !this.H) {
+        if (!this.f23794n && !this.H) {
             return;
         }
         d();
@@ -366,14 +366,14 @@ public final class z5 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f23791c;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f23792c;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && actionBarPopupWindow$ActionBarPopupWindowLayout.getParent() == this) {
             c();
             RectF rectF = this.I;
             int i14 = (int) rectF.top;
-            int max = Math.max(AndroidUtilities.dp(8.0f), ((int) rectF.right) - this.f23791c.getMeasuredWidth());
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = this.f23791c;
-            actionBarPopupWindow$ActionBarPopupWindowLayout2.layout(max, i14, actionBarPopupWindow$ActionBarPopupWindowLayout2.getMeasuredWidth() + max, this.f23791c.getMeasuredHeight() + i14);
+            int max = Math.max(AndroidUtilities.dp(8.0f), ((int) rectF.right) - this.f23792c.getMeasuredWidth());
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = this.f23792c;
+            actionBarPopupWindow$ActionBarPopupWindowLayout2.layout(max, i14, actionBarPopupWindow$ActionBarPopupWindowLayout2.getMeasuredWidth() + max, this.f23792c.getMeasuredHeight() + i14);
         }
     }
 
@@ -382,14 +382,14 @@ public final class z5 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         setMeasuredDimension(size, size2);
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f23791c;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f23792c;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && actionBarPopupWindow$ActionBarPopupWindowLayout.getParent() == this) {
             c();
-            this.f23791c.measure(vh.x(16.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(48.0f), (int) (((size2 - this.I.top) - AndroidUtilities.dp(16.0f)) - AndroidUtilities.navigationBarHeight)), Integer.MIN_VALUE));
+            this.f23792c.measure(wh.x(16.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(48.0f), (int) (((size2 - this.I.top) - AndroidUtilities.dp(16.0f)) - AndroidUtilities.navigationBarHeight)), Integer.MIN_VALUE));
         }
     }
 
     public void setOnClosed(Runnable runnable) {
-        this.f23796w = runnable;
+        this.f23797w = runnable;
     }
 }

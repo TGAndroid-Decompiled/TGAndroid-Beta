@@ -9,26 +9,26 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.dx;
-import org.telegram.ui.Components.p11;
+import org.telegram.ui.Components.q11;
 import org.telegram.ui.Components.s00;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.en0;
-import org.telegram.ui.jf0;
-import org.telegram.ui.lj0;
-import org.telegram.ui.po0;
+import org.telegram.ui.bp;
+import org.telegram.ui.c71;
+import org.telegram.ui.gn0;
+import org.telegram.ui.lf0;
+import org.telegram.ui.nj0;
+import org.telegram.ui.ro0;
 import org.telegram.ui.ta;
-import org.telegram.ui.z61;
-import org.telegram.ui.zo;
 public final class d6 implements RequestDelegate {
-    public final int f8490a;
+    public final int f8489a;
 
     public d6(int i10) {
-        this.f8490a = i10;
+        this.f8489a = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f8490a) {
+        switch (this.f8489a) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ag.c(11));
                 return;
@@ -42,7 +42,7 @@ public final class d6 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ag.c(25));
                 return;
             case 4:
-                int[] iArr = fi.c1.f10593a0;
+                int[] iArr = fi.c1.f10592a0;
                 return;
             case 5:
                 AndroidUtilities.runOnUIThread(new ag.c(19));
@@ -59,13 +59,13 @@ public final class d6 implements RequestDelegate {
                 Paint paint = ta.H;
                 return;
             case 10:
-                int i10 = zo.f46337j3;
+                int i10 = bp.f38079j3;
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new ag.c(25));
                 return;
             case 12:
-                Pattern pattern = org.telegram.ui.Components.g5.f28420a;
+                Pattern pattern = org.telegram.ui.Components.g5.f28387a;
                 return;
             case 13:
                 int i11 = dx.H0;
@@ -77,25 +77,25 @@ public final class d6 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ag.c(25));
                 return;
             case 16:
-                int i13 = p11.e;
+                int i13 = q11.e;
                 return;
             case 17:
-                int i14 = jf0.f40592v0;
+                int i14 = lf0.f41107v0;
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new lj0(tLObject, 4));
+                AndroidUtilities.runOnUIThread(new nj0(tLObject, 4));
                 return;
             case 19:
-                int i15 = en0.R;
+                int i15 = gn0.R;
                 return;
             case 20:
-                List list = po0.f42584g1;
+                List list = ro0.f43095g1;
                 return;
             case 21:
                 int i16 = ProfileActivity.R6;
                 return;
             default:
-                int i17 = z61.e;
+                int i17 = c71.e;
                 return;
         }
     }

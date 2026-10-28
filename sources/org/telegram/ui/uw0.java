@@ -1,49 +1,79 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.ViewGroup;
-public final class uw0 extends org.telegram.ui.Components.lm0 {
-    public final Context f44544c;
-    public final vw0 d;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class uw0 extends org.telegram.ui.Components.nm0 {
+    public final Paint f44125f3;
+    public final Path f44126g3;
+    public final xw0 f44127h3;
 
-    public uw0(vw0 vw0Var, Context context) {
-        this.d = vw0Var;
-        this.f44544c = context;
+    public uw0(xw0 xw0Var, Context context) {
+        super(context, null);
+        this.f44127h3 = xw0Var;
+        Paint paint = new Paint(1);
+        this.f44125f3 = paint;
+        paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23428h5, false));
+        this.f44126g3 = new Path();
     }
 
     @Override
-    public final boolean D(s4.e1 e1Var) {
-        return !((xw0) this.d.f44917n.d.get(e1Var.b())).f45891a.current;
+    public final void dispatchDraw(Canvas canvas) {
+        Path path = this.f44126g3;
+        path.rewind();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+        int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23428h5, false);
+        Paint paint = this.f44125f3;
+        paint.setColor(x02);
+        canvas.drawPath(path, paint);
+        canvas.save();
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final int h() {
-        return this.d.f44917n.d.size();
-    }
-
-    @Override
-    public final void v(s4.e1 e1Var, int i10) {
-        boolean z10;
-        tg.r1 r1Var = (tg.r1) e1Var.f47738a;
-        PremiumPreviewFragment premiumPreviewFragment = this.d.f44917n;
-        xw0 xw0Var = (xw0) premiumPreviewFragment.d.get(i10);
-        boolean z11 = true;
-        if (i10 != h() - 1) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.f44127h3.f45792n.f35909q0 >= 1.0f) {
+            return false;
         }
-        r1Var.a(xw0Var, z10);
-        if (premiumPreviewFragment.e != i10) {
-            z11 = false;
-        }
-        r1Var.c(z11, false);
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        tw0 tw0Var = new tw0(this, this.f44544c);
-        tw0Var.setCirclePaintProvider(new af0(13, this, tw0Var));
-        return new s4.e1(tw0Var);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f44127h3.f45792n.f35909q0 >= 1.0f) {
+            return false;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        PremiumPreviewFragment premiumPreviewFragment = this.f44127h3.f45792n;
+        int i14 = 0;
+        int i15 = 0;
+        while (true) {
+            ArrayList arrayList = premiumPreviewFragment.d;
+            if (i14 < arrayList.size()) {
+                premiumPreviewFragment.M.a((zw0) arrayList.get(i14), false);
+                premiumPreviewFragment.M.measure(View.MeasureSpec.makeMeasureSpec(i10, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
+                ((zw0) arrayList.get(i14)).h = i15;
+                i15 += premiumPreviewFragment.M.getMeasuredHeight();
+                i14++;
+            } else {
+                premiumPreviewFragment.O = i15;
+                return;
+            }
+        }
     }
 }

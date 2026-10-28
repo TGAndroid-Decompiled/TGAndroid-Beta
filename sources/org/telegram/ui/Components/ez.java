@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.messenger.LiteMode;
-public final class ez extends by0 {
+public final class ez extends cy0 {
     public final int H3;
     public final fz I3;
 
@@ -25,15 +25,15 @@ public final class ez extends by0 {
         super.K1(i10);
         fz fzVar = this.I3;
         sz szVar = fzVar.G;
-        ez ezVar = fzVar.f28341r;
+        ez ezVar = fzVar.f28327r;
         boolean z11 = true;
         if (ezVar.getSelectedCategory() == null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        int i11 = sz.S2;
-        szVar.M(z10);
+        int i11 = sz.U2;
+        szVar.N(z10);
         int i12 = this.H3;
         if (i12 == 1 && (uxVar = szVar.I) != null) {
             if (ezVar.getSelectedCategory() != null) {
@@ -44,7 +44,7 @@ public final class ez extends by0 {
             if (ezVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            dxVar.f31629o0 = z11;
+            dxVar.f31965o0 = z11;
             dxVar.invalidate();
         }
         fzVar.g(false);

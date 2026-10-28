@@ -42,12 +42,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.wc;
 import org.telegram.ui.LaunchActivity;
 public class k3 extends Dialog implements n2 {
     private static final boolean AVOID_SYSTEM_CUTOUT_FULLSCREEN = false;
-    public static final int f22806a = 0;
+    public static final int f22807a = 0;
     private boolean allowCustomAnimation;
     protected boolean allowNestedScroll;
     private boolean applyBottomPadding;
@@ -289,7 +289,7 @@ public class k3 extends Dialog implements n2 {
                 k3Var.currentSheetAnimation.playTogether(arrayList);
                 if (k3Var.transitionFromRight) {
                     k3Var.currentSheetAnimation.setDuration(250L);
-                    k3Var.currentSheetAnimation.setInterpolator(ds.f27586f);
+                    k3Var.currentSheetAnimation.setInterpolator(ds.f27530f);
                 } else {
                     k3Var.currentSheetAnimation.setDuration(k3Var.openDuration);
                     k3Var.currentSheetAnimation.setInterpolator(k3Var.openInterpolator);
@@ -446,7 +446,7 @@ public class k3 extends Dialog implements n2 {
                 j10 = 180;
             }
             animatorSet.setDuration(j10);
-            this.currentSheetAnimation.setInterpolator(ds.f27587g);
+            this.currentSheetAnimation.setInterpolator(ds.f27531g);
             this.currentSheetAnimation.addListener(new b3(this, i10, 0));
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             this.currentSheetAnimation.start();
@@ -456,7 +456,7 @@ public class k3 extends Dialog implements n2 {
                 ValueAnimator ofArgb = ValueAnimator.ofArgb(currentTextColor, currentTextColor2);
                 ofArgb.addUpdateListener(new t2(this, 7));
                 ofArgb.setDuration(130L);
-                ds dsVar = ds.f27586f;
+                ds dsVar = ds.f27530f;
                 ofArgb.setInterpolator(dsVar);
                 ofArgb.start();
                 ValueAnimator ofArgb2 = ValueAnimator.ofArgb(currentTextColor2, currentTextColor);
@@ -482,7 +482,7 @@ public class k3 extends Dialog implements n2 {
     }
 
     public void fixNavigationBar() {
-        fixNavigationBarKey(y6.f23299a7);
+        fixNavigationBarKey(y6.f23300a7);
     }
 
     public void fixNavigationBarKey(int i10) {
@@ -706,7 +706,7 @@ public class k3 extends Dialog implements n2 {
             window.setWindowAnimations(R.style.DialogNoAnimation);
             setContentView(this.container, new ViewGroup.LayoutParams(-1, -1));
         }
-        if (this.useLightStatusBar && y6.x0(null, y6.f23636s8, true) == -1) {
+        if (this.useLightStatusBar && y6.x0(null, y6.f23637s8, true) == -1) {
             this.container.setSystemUiVisibility(this.container.getSystemUiVisibility() | 8192);
         }
         if (this.useLightNavBar && Build.VERSION.SDK_INT >= 26) {
@@ -733,19 +733,19 @@ public class k3 extends Dialog implements n2 {
             viewGroup.setPadding(i14, i15, i16, i13);
         }
         this.containerView.setVisibility(4);
-        this.container.addView(this.containerView, 0, gb1.i(-1, -2, 80));
+        this.container.addView(this.containerView, 0, kb1.i(-1, -2, 80));
         if (this.topBulletinContainer == null) {
             FrameLayout frameLayout = new FrameLayout(getContext());
             this.topBulletinContainer = frameLayout;
             h3 h3Var = this.container;
-            h3Var.addView(frameLayout, h3Var.indexOfChild(this.containerView) + 1, gb1.i(-1, -2, 80));
+            h3Var.addView(frameLayout, h3Var.indexOfChild(this.containerView) + 1, kb1.i(-1, -2, 80));
         }
         if (this.title != null) {
             y2 y2Var = new y2(this, getContext());
             this.titleView = y2Var;
             y2Var.setText(this.title);
             if (this.bigTitle) {
-                f7.V(this.titleView, y6.f23464j5, this.resourcesProvider);
+                f7.V(this.titleView, y6.f23465j5, this.resourcesProvider);
                 this.titleView.setTextSize(1, 20.0f);
                 this.titleView.setTypeface(AndroidUtilities.bold());
                 TextView textView = this.titleView;
@@ -786,7 +786,7 @@ public class k3 extends Dialog implements n2 {
             } else {
                 f10 = 48;
             }
-            viewGroup2.addView(textView3, gb1.g(f10, -1));
+            viewGroup2.addView(textView3, kb1.g(f10, -1));
             this.titleView.setOnTouchListener(new ei.d(1));
         } else {
             i10 = 0;
@@ -802,10 +802,10 @@ public class k3 extends Dialog implements n2 {
                 this.container.setClipToPadding(false);
                 this.container.setClipChildren(false);
                 float f12 = i10;
-                this.containerView.addView(this.customView, gb1.h(-1, -2.0f, this.customViewGravity, 0.0f, f12, 0.0f, 0.0f));
+                this.containerView.addView(this.customView, kb1.h(-1, -2.0f, this.customViewGravity, 0.0f, f12, 0.0f, 0.0f));
                 ((ViewGroup.MarginLayoutParams) this.customView.getLayoutParams()).topMargin = AndroidUtilities.dp(f12) + (-this.backgroundPaddingTop);
             } else {
-                this.containerView.addView(this.customView, gb1.h(-1, -2.0f, this.customViewGravity, 0.0f, i10, 0.0f, 0.0f));
+                this.containerView.addView(this.customView, kb1.h(-1, -2.0f, this.customViewGravity, 0.0f, i10, 0.0f, 0.0f));
             }
         } else if (this.items != null) {
             int i17 = 0;
@@ -824,7 +824,7 @@ public class k3 extends Dialog implements n2 {
                         i11 = 0;
                     }
                     c3Var.a(charSequence, i11, null, this.bigTitle);
-                    this.containerView.addView(c3Var, gb1.h(-1, 48.0f, 51, 0.0f, i10, 0.0f, 0.0f));
+                    this.containerView.addView(c3Var, kb1.h(-1, 48.0f, 51, 0.0f, i10, 0.0f, 0.0f));
                     i10 += 48;
                     c3Var.setTag(Integer.valueOf(i17));
                     c3Var.setOnClickListener(new x(this, 2));
@@ -874,7 +874,7 @@ public class k3 extends Dialog implements n2 {
                 this.attachedFragment = r2Var;
                 j3 j3Var = this.backDrawable;
                 if (j3Var != null) {
-                    j3Var.f22740a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
+                    j3Var.f22741a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
                 }
             }
         }
@@ -1011,7 +1011,7 @@ public class k3 extends Dialog implements n2 {
             if (h3Var != null) {
                 int measuredHeight = h3Var.getMeasuredHeight();
                 h3 h3Var2 = this.container;
-                h3Var.invalidate(0, measuredHeight - h3Var2.f22679w, h3Var2.getMeasuredWidth(), this.container.getMeasuredHeight());
+                h3Var.invalidate(0, measuredHeight - h3Var2.f22680w, h3Var2.getMeasuredWidth(), this.container.getMeasuredHeight());
             }
         }
     }
@@ -1090,7 +1090,7 @@ public class k3 extends Dialog implements n2 {
             f7 = 0.0f;
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f10, f7).setDuration(180L);
-        duration.setInterpolator(ds.f27586f);
+        duration.setInterpolator(ds.f27530f);
         duration.addUpdateListener(new t2(this, 5));
         duration.start();
     }
@@ -1103,14 +1103,14 @@ public class k3 extends Dialog implements n2 {
     public void setItemColor(int i10, int i11, int i12) {
         if (i10 >= 0 && i10 < this.itemViews.size()) {
             c3 c3Var = this.itemViews.get(i10);
-            c3Var.f22498a.setTextColor(i11);
-            c3Var.f22499b.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.MULTIPLY));
+            c3Var.f22499a.setTextColor(i11);
+            c3Var.f22500b.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.MULTIPLY));
         }
     }
 
     public void setItemText(int i10, CharSequence charSequence) {
         if (i10 >= 0 && i10 < this.itemViews.size()) {
-            this.itemViews.get(i10).f22498a.setText(charSequence);
+            this.itemViews.get(i10).f22499a.setText(charSequence);
         }
     }
 
@@ -1145,7 +1145,7 @@ public class k3 extends Dialog implements n2 {
         if (this.attachedFragment != null) {
             LaunchActivity.I1.H(true, true, true);
             View windowView = getWindowView();
-            if (AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(y6.f23299a7))) >= 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(y6.f23300a7))) >= 0.721f) {
                 z10 = true;
             }
             AndroidUtilities.setLightNavigationBar(windowView, z10);
@@ -1178,7 +1178,7 @@ public class k3 extends Dialog implements n2 {
     public void setUseLightStatusBar(boolean z10) {
         int i10;
         this.useLightStatusBar = z10;
-        int x02 = y6.x0(null, y6.f23636s8, true);
+        int x02 = y6.x0(null, y6.f23637s8, true);
         int systemUiVisibility = this.container.getSystemUiVisibility();
         if (this.useLightStatusBar && x02 == -1) {
             i10 = systemUiVisibility | 8192;
@@ -1293,7 +1293,7 @@ public class k3 extends Dialog implements n2 {
         this.useHardwareLayer = true;
         this.backDrawable = new j3();
         this.useLightStatusBar = true;
-        int i11 = y6.f23427h5;
+        int i11 = y6.f23428h5;
         this.behindKeyboardColorKey = i11;
         this.canDismissWithSwipe = true;
         this.canDismissWithTouchOutside = true;
@@ -1310,7 +1310,7 @@ public class k3 extends Dialog implements n2 {
         this.itemViews = new ArrayList<>();
         this.dismissRunnable = new s2(this, 2);
         this.navigationBarAlpha = 0.0f;
-        this.navBarColorKey = y6.f23299a7;
+        this.navBarColorKey = y6.f23300a7;
         this.pauseAllHeavyOperations = true;
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.useBackgroundTopPadding = true;
@@ -1370,7 +1370,7 @@ public class k3 extends Dialog implements n2 {
         this.backDrawable.setAlpha(0);
         if (i10 == 3) {
             p pVar = new p(this, 5);
-            WeakHashMap weakHashMap = r0.i0.f47108a;
+            WeakHashMap weakHashMap = r0.i0.f47143a;
             r0.a0.i(w2Var, pVar);
         }
     }

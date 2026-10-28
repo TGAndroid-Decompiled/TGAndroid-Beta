@@ -1,34 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class yp0 extends FrameLayout {
-    public final ef f35112a;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class yp0 extends s4.u0 {
+    public final ef f35127a;
 
-    public yp0(ef efVar, Context context) {
-        super(context);
-        this.f35112a = efVar;
+    public yp0(ef efVar) {
+        this.f35127a = efVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ef efVar = this.f35112a;
-        View contentView = efVar.getContentView();
-        contentView.getLocationInWindow(r3);
-        int[] iArr = {iArr[0] + efVar.E, iArr[1] + efVar.F};
-        int[] iArr2 = new int[2];
-        getLocationInWindow(iArr2);
-        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
-            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
-            return contentView.dispatchTouchEvent(motionEvent);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z10;
+        float f7;
+        ef efVar = this.f35127a;
+        View view = efVar.f27232u;
+        if (efVar.f27233w.I0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        if (!efVar.A && !efVar.D) {
-            efVar.D = true;
-            efVar.l(new o1.j[0]);
+        Boolean bool = efVar.f27234x;
+        if (bool != null && z10 == bool.booleanValue()) {
+            return;
         }
-        return true;
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        animate.alpha(f7).setDuration(150L).start();
+        efVar.f27234x = Boolean.valueOf(z10);
     }
 }

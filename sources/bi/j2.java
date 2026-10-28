@@ -35,7 +35,7 @@ public final class j2 implements Utilities.Callback3 {
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList = (ArrayList) obj2;
                 ArrayList arrayList2 = (ArrayList) obj3;
-                if (sbVar.f11623f0 == 0 && arrayList != null && !arrayList.isEmpty() && sbVar.f11654p2 == null && !sbVar.W && sbVar.I()) {
+                if (sbVar.f11622f0 == 0 && arrayList != null && !arrayList.isEmpty() && sbVar.f11653p2 == null && !sbVar.W && sbVar.I()) {
                     sbVar.H1 = null;
                     sbVar.I1 = null;
                     sbVar.J1 = null;
@@ -69,12 +69,12 @@ public final class j2 implements Utilities.Callback3 {
                                 return;
                             }
                             fi.fb fbVar = sbVar.A0;
-                            sbVar.f11687z0 = tVar;
+                            sbVar.f11686z0 = tVar;
                             fbVar.o(tVar);
                             sbVar.I0.setSelected(tVar);
                             int indexOf = fi.t.a().indexOf(tVar);
                             if (indexOf >= 0) {
-                                sbVar.I0.f11977a.v0(indexOf);
+                                sbVar.I0.f11976a.v0(indexOf);
                             }
                             fi.va vaVar2 = sbVar.B0;
                             if (vaVar2 != null) {
@@ -97,8 +97,8 @@ public final class j2 implements Utilities.Callback3 {
                         if (i12 < arrayList.size()) {
                             fi.w7 l4 = fi.w7.l((MediaController.PhotoEntry) arrayList.get(i12));
                             l4.M0 = (Bitmap) arrayList2.get(i12);
-                            l4.J0 = sbVar.f11672v0;
-                            l4.K0 = sbVar.f11676w0;
+                            l4.J0 = sbVar.f11671v0;
+                            l4.K0 = sbVar.f11675w0;
                             l4.A();
                             if (bool.booleanValue()) {
                                 if (sbVar.A0.l(l4)) {
@@ -132,8 +132,8 @@ public final class j2 implements Utilities.Callback3 {
                         } else {
                             z10 = false;
                         }
-                        w6Var2.f11870n0 = -1.0f;
-                        w6Var2.f11871o0 = z10;
+                        w6Var2.f11869n0 = -1.0f;
+                        w6Var2.f11870o0 = z10;
                         w6Var2.invalidate();
                         sbVar.I1 = new ArrayList();
                         sbVar.J1 = new ArrayList();
@@ -145,7 +145,7 @@ public final class j2 implements Utilities.Callback3 {
                         sbVar.l0(true);
                         sbVar.e(false);
                         sbVar.J(1, true);
-                        fi.ia iaVar = sbVar.f11617d1;
+                        fi.ia iaVar = sbVar.f11616d1;
                         if (iaVar != null) {
                             di.s8 s8Var = iaVar.h;
                             if (!iaVar.I && !iaVar.M && (i10 = MessagesController.getGlobalMainSettings().getInt("multistorieshint", 0)) < 3) {
@@ -158,8 +158,8 @@ public final class j2 implements Utilities.Callback3 {
                         }
                         fi.qa qaVar = sbVar.M0;
                         if (qaVar != null) {
-                            sbVar.f11642l2 = qaVar.e.e0();
-                            sbVar.f11644m2 = sbVar.M0.getSelectedAlbum();
+                            sbVar.f11641l2 = qaVar.e.e0();
+                            sbVar.f11643m2 = sbVar.M0.getSelectedAlbum();
                             return;
                         }
                         return;
@@ -173,8 +173,8 @@ public final class j2 implements Utilities.Callback3 {
                     sbVar.e(false);
                     fi.qa qaVar2 = sbVar.M0;
                     if (qaVar2 != null) {
-                        sbVar.f11642l2 = qaVar2.e.e0();
-                        sbVar.f11644m2 = sbVar.M0.getSelectedAlbum();
+                        sbVar.f11641l2 = qaVar2.e.e0();
+                        sbVar.f11643m2 = sbVar.M0.getSelectedAlbum();
                         return;
                     }
                     return;

@@ -30,7 +30,7 @@ public final class b0 implements Runnable {
                 return;
             case 1:
                 m2 m2Var2 = this.f8413b;
-                AndroidUtilities.cancelRunOnUIThread(m2Var2.f9346d0);
+                AndroidUtilities.cancelRunOnUIThread(m2Var2.f9345d0);
                 qc qcVar = m2Var2.W;
                 if (qcVar != null) {
                     qcVar.b();
@@ -48,7 +48,7 @@ public final class b0 implements Runnable {
             default:
                 m2 m2Var3 = this.f8413b;
                 m2Var3.e.O(true);
-                m2Var3.f9351n.O(true);
+                m2Var3.f9350n.O(true);
                 return;
         }
     }

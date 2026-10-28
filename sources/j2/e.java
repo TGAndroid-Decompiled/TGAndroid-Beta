@@ -39,28 +39,28 @@ import u2.c0;
 import u2.k0;
 import u2.u;
 public final class e implements e1, k0, k {
-    public final g0 f15197a;
-    public final m1 f15198b;
-    public final o1 f15199c;
+    public final g0 f15196a;
+    public final m1 f15197b;
+    public final o1 f15198c;
     public final m0 d;
     public final SparseArray e;
-    public r f15200f;
+    public r f15199f;
     public g1 h;
-    public i0 f15201n;
-    public boolean f15202r;
+    public i0 f15200n;
+    public boolean f15201r;
 
     public e(g0 g0Var) {
         g0Var.getClass();
-        this.f15197a = g0Var;
-        String str = n0.f9692a;
+        this.f15196a = g0Var;
+        String str = n0.f9691a;
         Looper myLooper = Looper.myLooper();
-        this.f15200f = new r((myLooper == null ? Looper.getMainLooper() : myLooper).getThread());
+        this.f15199f = new r((myLooper == null ? Looper.getMainLooper() : myLooper).getThread());
         m1 m1Var = new m1();
-        this.f15198b = m1Var;
-        this.f15199c = new o1();
+        this.f15197b = m1Var;
+        this.f15198c = new o1();
         ?? obj = new Object();
         obj.f1150a = m1Var;
-        f9.g0 g0Var2 = f9.i0.f10287b;
+        f9.g0 g0Var2 = f9.i0.f10286b;
         obj.f1151b = s1.e;
         obj.f1152c = x1.h;
         this.d = obj;
@@ -145,7 +145,7 @@ public final class e implements e1, k0, k {
         } else {
             g0Var2 = g0Var;
         }
-        this.f15197a.getClass();
+        this.f15196a.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (p1Var.equals(this.h.y0()) && i10 == this.h.n0()) {
             z10 = true;
@@ -154,13 +154,13 @@ public final class e implements e1, k0, k {
         }
         long j10 = 0;
         if (g0Var2 != null && g0Var2.b()) {
-            if (z10 && this.h.m0() == g0Var2.f49298b && this.h.N() == g0Var2.f49299c) {
+            if (z10 && this.h.m0() == g0Var2.f49333b && this.h.N() == g0Var2.f49334c) {
                 j10 = this.h.M0();
             }
         } else if (z10) {
             j10 = this.h.a0();
         } else if (!p1Var.p()) {
-            j10 = n0.h0(p1Var.m(i10, this.f15199c, 0L).f3333l);
+            j10 = n0.h0(p1Var.m(i10, this.f15198c, 0L).f3333l);
         }
         return new a(elapsedRealtime, p1Var, i10, g0Var2, j10, this.h.y0(), this.h.n0(), (u2.g0) this.d.d, this.h.M0(), this.h.q());
     }
@@ -174,7 +174,7 @@ public final class e implements e1, k0, k {
             p1Var = (p1) ((x1) this.d.f1152c).get(g0Var);
         }
         if (g0Var != null && p1Var != null) {
-            return m(p1Var, p1Var.g(g0Var.f49297a, this.f15198b).f3280c, g0Var);
+            return m(p1Var, p1Var.g(g0Var.f49332a, this.f15197b).f3280c, g0Var);
         }
         int n02 = this.h.n0();
         p1 y02 = this.h.y0();
@@ -202,7 +202,7 @@ public final class e implements e1, k0, k {
     @Override
     public final void onAudioAttributesChanged(b2.f fVar) {
         a p10 = p();
-        q(p10, 20, new ig.g(p10, fVar, 4));
+        q(p10, 20, new ig.g(p10, fVar, 5));
     }
 
     @Override
@@ -214,7 +214,7 @@ public final class e implements e1, k0, k {
     @Override
     public final void onAvailableCommandsChanged(c1 c1Var) {
         a l4 = l();
-        q(l4, 13, new d(l4, c1Var, 21));
+        q(l4, 13, new d(l4, c1Var, 22));
     }
 
     @Override
@@ -226,7 +226,7 @@ public final class e implements e1, k0, k {
     @Override
     public final void onIsLoadingChanged(boolean z10) {
         a l4 = l();
-        q(l4, 3, new d(l4, z10, 5));
+        q(l4, 3, new d(l4, z10, 14));
     }
 
     @Override
@@ -244,13 +244,13 @@ public final class e implements e1, k0, k {
     @Override
     public final void onMediaMetadataChanged(s0 s0Var) {
         a l4 = l();
-        q(l4, 14, new ig.g(l4, s0Var, 24));
+        q(l4, 14, new d(l4, s0Var, 5));
     }
 
     @Override
     public final void onMetadata(u0 u0Var) {
         a l4 = l();
-        q(l4, 28, new ig.g(l4, u0Var, 5));
+        q(l4, 28, new ig.g(l4, u0Var, 6));
     }
 
     @Override
@@ -274,7 +274,7 @@ public final class e implements e1, k0, k {
     @Override
     public final void onPlaybackSuppressionReasonChanged(int i10) {
         a l4 = l();
-        q(l4, 6, new ig.g(l4, i10, 8, (char) 0));
+        q(l4, 6, new ig.g(l4, i10, 9, (char) 0));
     }
 
     @Override
@@ -298,13 +298,13 @@ public final class e implements e1, k0, k {
         } else {
             l4 = l();
         }
-        q(l4, 10, new ig.g(l4, z0Var, 10));
+        q(l4, 10, new ig.g(l4, z0Var, 11));
     }
 
     @Override
     public final void onPlayerStateChanged(boolean z10, int i10) {
         a l4 = l();
-        q(l4, -1, new ig.g(l4, z10, i10, 3));
+        q(l4, -1, new ig.g(l4, z10, i10, 4));
     }
 
     @Override
@@ -320,7 +320,7 @@ public final class e implements e1, k0, k {
     @Override
     public final void onRepeatModeChanged(int i10) {
         a l4 = l();
-        q(l4, 8, new ig.g(l4, i10, 16, (char) 0));
+        q(l4, 8, new ig.g(l4, i10, 17, (char) 0));
     }
 
     @Override
@@ -349,7 +349,7 @@ public final class e implements e1, k0, k {
         m0Var.d = m0.n(g1Var, (f9.i0) m0Var.f1151b, (u2.g0) m0Var.e, (m1) m0Var.f1150a);
         m0Var.D(g1Var.y0());
         a l4 = l();
-        q(l4, 0, new d(l4, i10, 22));
+        q(l4, 0, new d(l4, i10, 23));
     }
 
     @Override
@@ -361,7 +361,7 @@ public final class e implements e1, k0, k {
     @Override
     public final void onTracksChanged(w1 w1Var) {
         a l4 = l();
-        q(l4, 2, new ig.g(l4, w1Var, 11));
+        q(l4, 2, new ig.g(l4, w1Var, 16));
     }
 
     @Override
@@ -373,7 +373,7 @@ public final class e implements e1, k0, k {
     @Override
     public final void onVolumeChanged(float f7) {
         a p10 = p();
-        q(p10, 22, new d(p10, f7));
+        q(p10, 22, new ig.g(p10, f7));
     }
 
     public final a p() {
@@ -382,7 +382,7 @@ public final class e implements e1, k0, k {
 
     public final void q(a aVar, int i10, o oVar) {
         this.e.put(i10, aVar);
-        this.f15200f.e(i10, oVar);
+        this.f15199f.e(i10, oVar);
     }
 
     public final void r(j0 j0Var, Looper looper) {
@@ -396,22 +396,22 @@ public final class e implements e1, k0, k {
         yb.p(z10);
         j0Var.getClass();
         this.h = j0Var;
-        this.f15201n = this.f15197a.a(looper, null);
-        r rVar = this.f15200f;
+        this.f15200n = this.f15196a.a(looper, null);
+        r rVar = this.f15199f;
         f0 f0Var = new f0(18, this, j0Var);
         rVar.getClass();
-        g0 g0Var = this.f15197a;
+        g0 g0Var = this.f15196a;
         if (g0Var == null) {
             z11 = false;
         }
         yb.p(z11);
-        this.f15200f = new r(rVar.d, looper, looper.getThread(), g0Var, f0Var, rVar.f9718i);
+        this.f15199f = new r(rVar.d, looper, looper.getThread(), g0Var, f0Var, rVar.f9717i);
     }
 
     @Override
     public final void onPositionDiscontinuity(f1 f1Var, f1 f1Var2, int i10) {
         if (i10 == 1) {
-            this.f15202r = false;
+            this.f15201r = false;
         }
         g1 g1Var = this.h;
         g1Var.getClass();
@@ -424,7 +424,7 @@ public final class e implements e1, k0, k {
     @Override
     public final void onCues(d2.c cVar) {
         a l4 = l();
-        q(l4, 27, new ig.g(l4, cVar, 17));
+        q(l4, 27, new ig.g(l4, cVar, 24));
     }
 
     @Override

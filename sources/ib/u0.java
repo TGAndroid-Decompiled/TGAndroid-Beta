@@ -12,7 +12,7 @@ public class u0 extends fb.u {
                 if (c10 != 7) {
                     if (c10 == 8) {
                         aVar.t();
-                        return fb.k.f10396a;
+                        return fb.k.f10395a;
                     }
                     throw new IllegalStateException("Unexpected token: ".concat(ic.a.C(i10)));
                 }
@@ -29,7 +29,7 @@ public class u0 extends fb.u {
             if (z10) {
                 if (z10) {
                     fb.m mVar = (fb.m) iVar;
-                    Serializable serializable = mVar.f10398a;
+                    Serializable serializable = mVar.f10397a;
                     if (serializable instanceof Number) {
                         bVar.q(mVar.q());
                         return;
@@ -47,7 +47,7 @@ public class u0 extends fb.u {
             if (z11) {
                 bVar.b();
                 if (z11) {
-                    ArrayList arrayList = ((fb.h) iVar).f10395a;
+                    ArrayList arrayList = ((fb.h) iVar).f10394a;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
@@ -61,7 +61,7 @@ public class u0 extends fb.u {
                 throw new IllegalStateException("Not a JSON Array: " + iVar);
             } else if (iVar instanceof fb.l) {
                 bVar.c();
-                Iterator it = ((hb.k) iVar.h().f10397a.entrySet()).iterator();
+                Iterator it = ((hb.k) iVar.h().f10396a.entrySet()).iterator();
                 while (((hb.j) it).hasNext()) {
                     hb.l b10 = ((hb.j) it).b();
                     bVar.g((String) b10.getKey());
@@ -138,7 +138,7 @@ public class u0 extends fb.u {
                     hVar2 = a(aVar, x11);
                 }
                 if (hVar instanceof fb.h) {
-                    ((fb.h) hVar).f10395a.add(hVar2);
+                    ((fb.h) hVar).f10394a.add(hVar2);
                 } else {
                     ((fb.l) hVar).n(str, hVar2);
                 }

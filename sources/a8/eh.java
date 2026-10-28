@@ -21,7 +21,7 @@ public abstract class eh implements Map.Entry {
                     return false;
                 }
                 Map.Entry entry2 = (Map.Entry) obj;
-                if (!w7.g5.a(getKey(), entry2.getKey()) || !w7.g5.a(getValue(), entry2.getValue())) {
+                if (!w7.h5.a(getKey(), entry2.getKey()) || !w7.h5.a(getValue(), entry2.getValue())) {
                     return false;
                 }
                 return true;

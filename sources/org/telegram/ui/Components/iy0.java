@@ -1,38 +1,144 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class iy0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29404a;
-    public final Object f29405b;
-    public final Object f29406c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class iy0 extends Drawable {
+    public final int f29444a;
+    public final int f29445b;
+    public final t5[] f29446c;
+    public final boolean e;
+    public int d = 255;
+    public final RectF f29447f = new RectF();
+    public boolean f29448g = false;
 
-    public iy0(int i10, Object obj, Object obj2) {
-        this.f29404a = i10;
-        this.f29406c = obj;
-        this.f29405b = obj2;
+    public iy0(int i10, ArrayList arrayList, boolean z10) {
+        int i11;
+        this.e = z10;
+        int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
+        this.f29444a = max;
+        int min = Math.min(max * max, arrayList.size());
+        this.f29445b = min;
+        this.f29446c = new t5[min];
+        if (!arrayList.isEmpty()) {
+            MessageObject.isAnimatedEmoji((TLRPC.Document) arrayList.get(0));
+        }
+        if (max < 2) {
+            i11 = 1;
+        } else {
+            i11 = 0;
+        }
+        for (int i12 = 0; i12 < this.f29445b; i12++) {
+            this.f29446c[i12] = t5.m(i10, i11, (TLRPC.Document) arrayList.get(i12));
+        }
+    }
+
+    public final void a(org.telegram.ui.Cells.s1 s1Var) {
+        for (int i10 = 0; i10 < this.f29445b; i10++) {
+            this.f29446c[i10].o(s1Var);
+        }
+    }
+
+    public final boolean b() {
+        return this.f29448g;
+    }
+
+    public final boolean c(ArrayList arrayList) {
+        long j10;
+        t5[] t5VarArr = this.f29446c;
+        if (t5VarArr.length == arrayList.size()) {
+            for (int i10 = 0; i10 < t5VarArr.length; i10++) {
+                TLRPC.Document document = t5VarArr[i10].e;
+                if (document == null) {
+                    j10 = 0;
+                } else {
+                    j10 = document.f22034id;
+                }
+                if (j10 == ((TLRPC.Document) arrayList.get(i10)).f22034id) {
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        this.f29448g = false;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29404a) {
-            case 0:
-                jy0 jy0Var = (jy0) this.f29406c;
-                jy0Var.f29737b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jy0Var.invalidate();
-                ((pn0) this.f29405b).invalidate();
-                return;
-            case 1:
-                ((u91) this.f29406c).F((View) this.f29405b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                w4.c cVar = (w4.c) this.f29406c;
-                w4.b bVar = (w4.b) this.f29405b;
-                w4.c.b(floatValue, bVar);
-                cVar.a(floatValue, bVar, false);
-                cVar.invalidateSelf();
-                return;
+    public final void draw(Canvas canvas) {
+        t5 t5Var;
+        PorterDuffColorFilter porterDuffColorFilter;
+        if (this.d <= 0) {
+            return;
         }
+        Rect bounds = getBounds();
+        RectF rectF = this.f29447f;
+        rectF.set(bounds);
+        float centerX = rectF.centerX() - (AndroidUtilities.dp(48.0f) / 2.0f);
+        float centerY = rectF.centerY() - (AndroidUtilities.dp(48.0f) / 2.0f);
+        int dp = AndroidUtilities.dp(48.0f);
+        int i10 = this.f29444a;
+        float f7 = dp / i10;
+        float dp2 = AndroidUtilities.dp(48.0f) / i10;
+        canvas.save();
+        canvas.clipRect(centerX, centerY, AndroidUtilities.dp(48.0f) + centerX, AndroidUtilities.dp(48.0f) + centerY);
+        for (int i11 = 0; i11 < i10; i11++) {
+            for (int i12 = 0; i12 < i10; i12++) {
+                int i13 = (i11 * i10) + i12;
+                if (i13 >= 0) {
+                    t5[] t5VarArr = this.f29446c;
+                    if (i13 < t5VarArr.length && (t5Var = t5VarArr[i13]) != null) {
+                        t5Var.setBounds((int) ((i12 * f7) + centerX), (int) ((i11 * dp2) + centerY), (int) (((i12 + 1) * f7) + centerX), (int) (((i11 + 1) * dp2) + centerY));
+                        t5VarArr[i13].setAlpha(this.d);
+                        t5 t5Var2 = t5VarArr[i13];
+                        if (this.e) {
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.y6.f23709w3;
+                        } else {
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.y6.f23690v3;
+                        }
+                        t5Var2.setColorFilter(porterDuffColorFilter);
+                        t5VarArr[i13].draw(canvas);
+                    }
+                }
+            }
+        }
+        canvas.restore();
+    }
+
+    public final void e() {
+        this.f29448g = true;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(48.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(48.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

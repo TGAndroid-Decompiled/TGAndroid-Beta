@@ -11,15 +11,15 @@ import java.util.concurrent.Executor;
 import org.telegram.ui.web.h1;
 public final class t {
     public static volatile k e;
-    public final v5.a f18355a;
-    public final v5.a f18356b;
-    public final r5.b f18357c;
+    public final v5.a f18354a;
+    public final v5.a f18355b;
+    public final r5.b f18356c;
     public final b0 d;
 
     public t(v5.a aVar, v5.a aVar2, r5.b bVar, b0 b0Var, com.google.firebase.messaging.q qVar) {
-        this.f18355a = aVar;
-        this.f18356b = aVar2;
-        this.f18357c = bVar;
+        this.f18354a = aVar;
+        this.f18355b = aVar2;
+        this.f18356c = bVar;
         this.d = b0Var;
         ((Executor) qVar.f7757a).execute(new h1(qVar, 15));
     }
@@ -27,7 +27,7 @@ public final class t {
     public static t a() {
         k kVar = e;
         if (kVar != null) {
-            return (t) kVar.f18340f.mo27get();
+            return (t) kVar.f18339f.mo27get();
         }
         throw new IllegalStateException("Not initialized!");
     }
@@ -39,7 +39,7 @@ public final class t {
                     if (e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f18336a = context;
+                        obj.f18335a = context;
                         e = obj.a();
                     }
                 } catch (Throwable th2) {
@@ -59,10 +59,10 @@ public final class t {
         }
         k6.c a2 = i.a();
         lVar.getClass();
-        a2.f16407c = "cct";
+        a2.f16406c = "cct";
         k5.a aVar = (k5.a) lVar;
-        String str = aVar.f16386a;
-        String str2 = aVar.f16387b;
+        String str = aVar.f16385a;
+        String str2 = aVar.f16386b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {
@@ -71,7 +71,7 @@ public final class t {
             }
             bytes = h0.m("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
         }
-        a2.f16406b = bytes;
+        a2.f16405b = bytes;
         return new r(singleton, a2.j(), this);
     }
 }

@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 public class f implements Iterable {
-    public c f18918a;
-    public c f18919b;
-    public final WeakHashMap f18920c = new WeakHashMap();
+    public c f18917a;
+    public c f18918b;
+    public final WeakHashMap f18919c = new WeakHashMap();
     public int d = 0;
 
     public final boolean equals(java.lang.Object r7) {
@@ -14,9 +14,9 @@ public class f implements Iterable {
     }
 
     public c h(Object obj) {
-        c cVar = this.f18918a;
-        while (cVar != null && !cVar.f18912a.equals(obj)) {
-            cVar = cVar.f18914c;
+        c cVar = this.f18917a;
+        while (cVar != null && !cVar.f18911a.equals(obj)) {
+            cVar = cVar.f18913c;
         }
         return cVar;
     }
@@ -36,8 +36,8 @@ public class f implements Iterable {
 
     @Override
     public final Iterator iterator() {
-        b bVar = new b(this.f18918a, this.f18919b, 0);
-        this.f18920c.put(bVar, Boolean.FALSE);
+        b bVar = new b(this.f18917a, this.f18918b, 0);
+        this.f18919c.put(bVar, Boolean.FALSE);
         return bVar;
     }
 
@@ -47,7 +47,7 @@ public class f implements Iterable {
             return null;
         }
         this.d--;
-        WeakHashMap weakHashMap = this.f18920c;
+        WeakHashMap weakHashMap = this.f18919c;
         if (!weakHashMap.isEmpty()) {
             for (e eVar : weakHashMap.keySet()) {
                 eVar.a(h);
@@ -55,19 +55,19 @@ public class f implements Iterable {
         }
         c cVar = h.d;
         if (cVar != null) {
-            cVar.f18914c = h.f18914c;
+            cVar.f18913c = h.f18913c;
         } else {
-            this.f18918a = h.f18914c;
+            this.f18917a = h.f18913c;
         }
-        c cVar2 = h.f18914c;
+        c cVar2 = h.f18913c;
         if (cVar2 != null) {
             cVar2.d = cVar;
         } else {
-            this.f18919b = cVar;
+            this.f18918b = cVar;
         }
-        h.f18914c = null;
+        h.f18913c = null;
         h.d = null;
-        return h.f18913b;
+        return h.f18912b;
     }
 
     public final String toString() {

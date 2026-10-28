@@ -3,11 +3,11 @@ package oe;
 import android.view.View;
 import org.telegram.ui.Components.ca;
 public final class a implements d, ca {
-    public final View f19323a;
+    public final View f19322a;
 
     @Override
     public void E(int i10, float f7, float f10, e eVar) {
-        this.f19323a.invalidate();
+        this.f19322a.invalidate();
     }
 
     @Override

@@ -20,17 +20,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.vh;
-import org.telegram.ui.Components.ea0;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.fa0;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.xe0;
+import org.telegram.ui.Components.ye0;
 public final class j2 extends View {
-    public final Paint f11041a;
-    public final TextPaint f11042b;
-    public final ArrayList f11043c;
+    public final Paint f11040a;
+    public final TextPaint f11041b;
+    public final ArrayList f11042c;
     public float[] d;
     public d1 e;
-    public final l2 f11044f;
+    public final l2 f11043f;
 
     public j2(l2 l2Var, Context context) {
         super(context);
@@ -38,27 +38,27 @@ public final class j2 extends View {
         String a2;
         int i10;
         int i11;
-        this.f11044f = l2Var;
+        this.f11043f = l2Var;
         Paint paint = new Paint(1);
-        this.f11041a = paint;
+        this.f11040a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f11042b = textPaint;
+        this.f11041b = textPaint;
         paint.setColor(436207615);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         textPaint.setTextSize(AndroidUtilities.dpf2(21.3f));
         textPaint.setColor(-1);
         ArrayList arrayList = new ArrayList();
-        this.f11043c = arrayList;
+        this.f11042c = arrayList;
         setPadding(0, 0, 0, 0);
         if (l2Var.o0(4)) {
             h2 h2Var = new h2(this, 4, R.drawable.msg_limit_links, LocaleController.getString(R.string.StoryWidgetLink));
             i11 = ((org.telegram.ui.ActionBar.k3) l2Var).currentAccount;
             if (!UserConfig.getInstance(i11).isPremium()) {
                 Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
-                h2Var.f10942j = mutate;
+                h2Var.f10941j = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.y6.o1(0.6f, -1), PorterDuff.Mode.SRC_IN));
                 Paint paint2 = new Paint(1);
-                h2Var.f10946n = paint2;
+                h2Var.f10945n = paint2;
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             }
             arrayList.add(h2Var);
@@ -67,13 +67,13 @@ public final class j2 extends View {
             arrayList.add(new h2(this, 0, R.drawable.map_pin3, LocaleController.getString(R.string.StoryWidgetLocation)));
         }
         if (l2Var.o0(5)) {
-            pc pcVar = qc.f11507b;
+            pc pcVar = qc.f11506b;
             h2[] h2VarArr = {null};
             StringBuilder sb2 = new StringBuilder();
             if (pcVar == null) {
                 str = "🌤";
             } else {
-                str = pcVar.f11455c;
+                str = pcVar.f11454c;
             }
             sb2.append(str);
             sb2.append(" ");
@@ -93,9 +93,9 @@ public final class j2 extends View {
             if (MessagesController.getInstance(i10).storyWeatherPreload) {
                 spannableStringBuilder = replaceEmoji;
                 spannableStringBuilder = replaceEmoji;
-                if (xe0.d("android.permission.ACCESS_COARSE_LOCATION") && pcVar == null) {
+                if (ye0.d("android.permission.ACCESS_COARSE_LOCATION") && pcVar == null) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
-                    spannableStringBuilder2.setSpan(new ea0(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
+                    spannableStringBuilder2.setSpan(new fa0(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
                     h2VarArr[0] = new h2(this, spannableStringBuilder2);
                     qc.a(false, new ai.n1(8, this, h2VarArr));
                     spannableStringBuilder = spannableStringBuilder2;
@@ -117,7 +117,7 @@ public final class j2 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.f11043c;
+        ArrayList arrayList = this.f11042c;
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -145,21 +145,21 @@ public final class j2 extends View {
                 fArr2[i13] = f7 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i13] = fArr3[i13] + g2Var.h.d(g2Var.f10893b, false);
+            fArr3[i13] = fArr3[i13] + g2Var.h.d(g2Var.f10892b, false);
         }
         int size2 = arrayList.size();
         while (i10 < size2) {
             Object obj2 = arrayList.get(i10);
             i10++;
             g2 g2Var2 = (g2) obj2;
-            g2Var2.a(canvas, c3.h0.B((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[g2Var2.e - 1], 2.0f, getPaddingLeft()) + g2Var2.d, vh.b(48.0f, g2Var2.e - 1, AndroidUtilities.dp(12.0f)));
+            g2Var2.a(canvas, c3.h0.B((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[g2Var2.e - 1], 2.0f, getPaddingLeft()) + g2Var2.d, wh.b(48.0f, g2Var2.e - 1, AndroidUtilities.dp(12.0f)));
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ArrayList arrayList = this.f11043c;
+        ArrayList arrayList = this.f11042c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -172,7 +172,7 @@ public final class j2 extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ArrayList arrayList = this.f11043c;
+        ArrayList arrayList = this.f11042c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -186,7 +186,7 @@ public final class j2 extends View {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        ArrayList arrayList = this.f11043c;
+        ArrayList arrayList = this.f11042c;
         int size2 = arrayList.size();
         int i12 = 0;
         int i13 = 1;
@@ -197,11 +197,11 @@ public final class j2 extends View {
             i14++;
             g2 g2Var = (g2) obj;
             g2Var.d = f7;
-            float dp = g2Var.f10893b + AndroidUtilities.dp(10.0f) + f7;
+            float dp = g2Var.f10892b + AndroidUtilities.dp(10.0f) + f7;
             if (dp > paddingLeft) {
                 i13++;
                 g2Var.d = 0.0f;
-                f7 = g2Var.f10893b + AndroidUtilities.dp(10.0f) + 0.0f;
+                f7 = g2Var.f10892b + AndroidUtilities.dp(10.0f) + 0.0f;
             } else {
                 f7 = dp;
             }
@@ -225,9 +225,9 @@ public final class j2 extends View {
                 fArr2[i15] = f10 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i15] = fArr3[i15] + g2Var2.f10893b;
+            fArr3[i15] = fArr3[i15] + g2Var2.f10892b;
         }
-        setMeasuredDimension(size, vh.b(12.0f, i13 - 1, vh.b(36.0f, i13, AndroidUtilities.dp(24.0f))));
+        setMeasuredDimension(size, wh.b(12.0f, i13 - 1, wh.b(36.0f, i13, AndroidUtilities.dp(24.0f))));
     }
 
     @Override
@@ -235,7 +235,7 @@ public final class j2 extends View {
         g2 g2Var;
         d1 d1Var;
         boolean z10;
-        ArrayList arrayList = this.f11043c;
+        ArrayList arrayList = this.f11042c;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -243,7 +243,7 @@ public final class j2 extends View {
                 Object obj = arrayList.get(i10);
                 i10++;
                 g2Var = (g2) obj;
-                if (g2Var.f10895f.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (g2Var.f10894f.contains(motionEvent.getX(), motionEvent.getY())) {
                     break;
                 }
             } else {
@@ -258,11 +258,11 @@ public final class j2 extends View {
             i11++;
             g2 g2Var2 = (g2) obj2;
             if (g2Var2 != g2Var) {
-                g2Var2.f10896g.c(false);
+                g2Var2.f10895g.c(false);
             }
         }
         if (g2Var != null) {
-            xc xcVar = g2Var.f10896g;
+            xc xcVar = g2Var.f10895g;
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 z10 = true;
             } else {
@@ -271,7 +271,7 @@ public final class j2 extends View {
             xcVar.c(z10);
         }
         if (motionEvent.getAction() == 1 && g2Var != null && (d1Var = this.e) != null) {
-            d1Var.run(Integer.valueOf(g2Var.f10892a));
+            d1Var.run(Integer.valueOf(g2Var.f10891a));
         }
         if (g2Var == null) {
             return false;

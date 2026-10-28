@@ -1,45 +1,45 @@
 package org.telegram.messenger;
 public final class k1 implements Runnable {
-    public final int f20476a;
-    public final ContactsController f20477b;
+    public final int f20473a;
+    public final ContactsController f20474b;
 
     public k1(ContactsController contactsController, int i10) {
-        this.f20476a = i10;
-        this.f20477b = contactsController;
+        this.f20473a = i10;
+        this.f20474b = contactsController;
     }
 
     @Override
     public final void run() {
-        switch (this.f20476a) {
+        switch (this.f20473a) {
             case 0:
-                ContactsController.e0(this.f20477b);
+                ContactsController.e0(this.f20474b);
                 return;
             case 1:
-                ContactsController.G(this.f20477b);
+                ContactsController.G(this.f20474b);
                 return;
             case 2:
-                ContactsController.n(this.f20477b);
+                ContactsController.n(this.f20474b);
                 return;
             case 3:
-                ContactsController.N(this.f20477b);
+                ContactsController.N(this.f20474b);
                 return;
             case 4:
-                ContactsController.b(this.f20477b);
+                ContactsController.b(this.f20474b);
                 return;
             case 5:
-                ContactsController.B(this.f20477b);
+                ContactsController.B(this.f20474b);
                 return;
             case 6:
-                ContactsController.k(this.f20477b);
+                ContactsController.k(this.f20474b);
                 return;
             case 7:
-                ContactsController.a(this.f20477b);
+                ContactsController.a(this.f20474b);
                 return;
             case 8:
-                ContactsController.s(this.f20477b);
+                ContactsController.s(this.f20474b);
                 return;
             default:
-                ContactsController.t(this.f20477b);
+                ContactsController.t(this.f20474b);
                 return;
         }
     }

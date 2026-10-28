@@ -6,19 +6,19 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.un;
-public final class o5 extends un {
-    public final Utilities.Callback2 f11359kd;
-    public final e6 f11360ld;
+import org.telegram.ui.wn;
+public final class o5 extends wn {
+    public final Utilities.Callback2 f11358od;
+    public final e6 f11359pd;
 
     public o5(e6 e6Var, Utilities.Callback2 callback2) {
         super(null);
-        this.f11360ld = e6Var;
-        this.f11359kd = callback2;
+        this.f11359pd = e6Var;
+        this.f11358od = callback2;
     }
 
     @Override
-    public final boolean F9() {
+    public final boolean I9() {
         return false;
     }
 
@@ -57,17 +57,17 @@ public final class o5 extends un {
         } else {
             return;
         }
-        this.f11359kd.run(messageMedia, tL_mediaAreaGeoPoint2);
+        this.f11358od.run(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
     public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.f11360ld.getContext());
+        return AndroidUtilities.findActivity(this.f11359pd.getContext());
     }
 
     @Override
     public final org.telegram.ui.ActionBar.u6 getResourceProvider() {
-        return this.f11360ld.f10819v1;
+        return this.f11359pd.f10818v1;
     }
 
     @Override

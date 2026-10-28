@@ -24,11 +24,11 @@ public final class l1 extends st {
         if (t5Var != null) {
             t5Var.setAlpha((int) (f7 * 255.0f));
             t5Var.draw(canvas);
-        } else if (m1Var.f11239f != null) {
+        } else if (m1Var.f11238f != null) {
             canvas.save();
-            canvas.clipRect(m1Var.f11239f.getImageX(), m1Var.f11239f.getImageY(), m1Var.f11239f.getImageX2(), m1Var.f11239f.getImageY2());
-            m1Var.f11239f.setAlpha(f7);
-            m1Var.f11239f.draw(canvas);
+            canvas.clipRect(m1Var.f11238f.getImageX(), m1Var.f11238f.getImageY(), m1Var.f11238f.getImageX2(), m1Var.f11238f.getImageY2());
+            m1Var.f11238f.setAlpha(f7);
+            m1Var.f11238f.draw(canvas);
             canvas.restore();
         }
     }
@@ -72,9 +72,9 @@ public final class l1 extends st {
                 m1Var.getClass();
                 org.telegram.ui.Components.t5 t5Var = m1Var.d;
                 if (t5Var != null) {
-                    t5Var.setColorFilter(this.R.f11290p3);
+                    t5Var.setColorFilter(this.R.f11289p3);
                 }
-                m1Var.f11241r.draw(canvas, m1Var.f11240n[this.K]);
+                m1Var.f11240r.draw(canvas, m1Var.f11239n[this.K]);
                 i10++;
             } else {
                 return;
@@ -99,11 +99,11 @@ public final class l1 extends st {
                 if (t5Var2 != null) {
                     t5Var2.setBounds(rect);
                 }
-                ImageReceiver imageReceiver = m1Var.f11239f;
+                ImageReceiver imageReceiver = m1Var.f11238f;
                 if (imageReceiver != null) {
                     imageReceiver.setImageCoords(rect);
                 }
-                PorterDuffColorFilter porterDuffColorFilter = this.R.f11290p3;
+                PorterDuffColorFilter porterDuffColorFilter = this.R.f11289p3;
                 if (porterDuffColorFilter != null && (t5Var = m1Var.d) != null) {
                     t5Var.setColorFilter(porterDuffColorFilter);
                 }
@@ -126,7 +126,7 @@ public final class l1 extends st {
         while (true) {
             ArrayList arrayList = this.P;
             if (i10 < arrayList.size()) {
-                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = ((m1) arrayList.get(i10)).f11240n[this.K];
+                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = ((m1) arrayList.get(i10)).f11239n[this.K];
                 if (backgroundThreadDrawHolder != null) {
                     backgroundThreadDrawHolder.release();
                 }

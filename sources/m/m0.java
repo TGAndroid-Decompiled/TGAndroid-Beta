@@ -46,13 +46,13 @@ public final class m0 extends d2 implements o0 {
         r();
         xVar.setInputMethodMode(2);
         h();
-        r1 r1Var = this.f17697c;
+        r1 r1Var = this.f17696c;
         r1Var.setChoiceMode(1);
         g0.d(r1Var, i10);
         g0.c(r1Var, i11);
         p0 p0Var = this.W;
         int selectedItemPosition = p0Var.getSelectedItemPosition();
-        r1 r1Var2 = this.f17697c;
+        r1 r1Var2 = this.f17696c;
         if (xVar.isShowing() && r1Var2 != null) {
             r1Var2.setListSelectionHidden(false);
             r1Var2.setSelection(selectedItemPosition);
@@ -77,7 +77,7 @@ public final class m0 extends d2 implements o0 {
         int i10;
         int i11;
         p0 p0Var = this.W;
-        Rect rect = p0Var.f17814n;
+        Rect rect = p0Var.f17813n;
         x xVar = this.O;
         Drawable background = xVar.getBackground();
         if (background != null) {
@@ -113,6 +113,6 @@ public final class m0 extends d2 implements o0 {
         } else {
             i11 = paddingLeft + this.V + i10;
         }
-        this.f17698f = i11;
+        this.f17697f = i11;
     }
 }

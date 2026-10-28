@@ -9,24 +9,24 @@ import android.graphics.RectF;
 import android.graphics.RenderNode;
 import android.support.v4.media.session.x;
 public final class b extends lf {
-    public final RenderNode f46869a = x.n();
-    public final Paint f46870b = new Paint(1);
-    public final e f46871c;
+    public final RenderNode f46904a = x.n();
+    public final Paint f46905b = new Paint(1);
+    public final e f46906c;
 
     public b(e eVar) {
-        this.f46871c = eVar;
+        this.f46906c = eVar;
     }
 
     @Override
     public final void a(Rect rect, RectF rectF) {
         float f7;
-        e eVar = this.f46871c;
-        if (!eVar.v && this.f46869a.hasDisplayList()) {
+        e eVar = this.f46906c;
+        if (!eVar.v && this.f46904a.hasDisplayList()) {
             return;
         }
         int width = rect.width();
         int height = rect.height();
-        int i10 = eVar.f46889w;
+        int i10 = eVar.f46924w;
         if (i10 != 1 && i10 != 4) {
             f7 = width;
         } else {
@@ -36,32 +36,32 @@ public final class b extends lf {
         f fVar = eVar.E;
         fVar.getClass();
         LinearGradient l4 = e.l(eVar, fVar, f10, 0, eVar.I, 1);
-        Paint paint = this.f46870b;
+        Paint paint = this.f46905b;
         paint.setShader(l4);
-        this.f46869a.setPosition(0, 0, width, height);
-        this.f46869a.beginRecording().drawRect(0.0f, 0.0f, width, height, paint);
-        this.f46869a.endRecording();
+        this.f46904a.setPosition(0, 0, width, height);
+        this.f46904a.beginRecording().drawRect(0.0f, 0.0f, width, height, paint);
+        this.f46904a.endRecording();
         paint.setShader(null);
         eVar.v = false;
     }
 
     @Override
     public final void b() {
-        this.f46869a.discardDisplayList();
+        this.f46904a.discardDisplayList();
     }
 
     @Override
     public final void c(Canvas canvas) {
-        canvas.drawRenderNode(this.f46869a);
+        canvas.drawRenderNode(this.f46904a);
     }
 
     @Override
     public final boolean d() {
-        return this.f46869a.hasDisplayList();
+        return this.f46904a.hasDisplayList();
     }
 
     @Override
     public final void e(float f7) {
-        this.f46869a.setAlpha(f7);
+        this.f46904a.setAlpha(f7);
     }
 }

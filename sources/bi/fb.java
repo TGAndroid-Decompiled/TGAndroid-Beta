@@ -1,7 +1,7 @@
 package bi;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.g21;
+import org.telegram.ui.Components.h21;
 public final class fb implements Runnable {
     public final int f4619a;
     public final Runnable f4620b;
@@ -21,7 +21,7 @@ public final class fb implements Runnable {
                 this.f4621c.run();
                 return;
             default:
-                g21.b(this.f4620b);
+                h21.b(this.f4620b);
                 Runnable runnable = this.f4621c;
                 if (runnable != null) {
                     AndroidUtilities.runOnUIThread(runnable);

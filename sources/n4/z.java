@@ -12,30 +12,30 @@ import java.util.AbstractCollection;
 import java.util.ArrayList;
 public final class z implements Parcelable {
     public static final Parcelable.Creator<z> CREATOR = new x(0);
-    public final int f18709a;
-    public final long f18710b;
-    public final long f18711c;
+    public final int f18708a;
+    public final long f18709b;
+    public final long f18710c;
     public final float d;
     public final long e;
-    public final int f18712f;
+    public final int f18711f;
     public final CharSequence h;
-    public final long f18713n;
-    public final AbstractCollection f18714r;
-    public final long f18715s;
+    public final long f18712n;
+    public final AbstractCollection f18713r;
+    public final long f18714s;
     public final Bundle v;
-    public PlaybackState f18716w;
+    public PlaybackState f18715w;
 
     public z(int i10, long j10, long j11, float f7, long j12, int i11, CharSequence charSequence, long j13, ArrayList arrayList, long j14, Bundle bundle) {
-        this.f18709a = i10;
-        this.f18710b = j10;
-        this.f18711c = j11;
+        this.f18708a = i10;
+        this.f18709b = j10;
+        this.f18710c = j11;
         this.d = f7;
         this.e = j12;
-        this.f18712f = i11;
+        this.f18711f = i11;
         this.h = charSequence;
-        this.f18713n = j13;
-        this.f18714r = new ArrayList(arrayList);
-        this.f18715s = j14;
+        this.f18712n = j13;
+        this.f18713r = new ArrayList(arrayList);
+        this.f18714s = j14;
         this.v = bundle;
     }
 
@@ -46,58 +46,58 @@ public final class z implements Parcelable {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("PlaybackState {state=");
-        sb2.append(this.f18709a);
+        sb2.append(this.f18708a);
         sb2.append(", position=");
-        sb2.append(this.f18710b);
+        sb2.append(this.f18709b);
         sb2.append(", buffered position=");
-        sb2.append(this.f18711c);
+        sb2.append(this.f18710c);
         sb2.append(", speed=");
         sb2.append(this.d);
         sb2.append(", updated=");
-        sb2.append(this.f18713n);
+        sb2.append(this.f18712n);
         sb2.append(", actions=");
         sb2.append(this.e);
         sb2.append(", error code=");
-        sb2.append(this.f18712f);
+        sb2.append(this.f18711f);
         sb2.append(", error message=");
         sb2.append(this.h);
         sb2.append(", custom actions=");
-        sb2.append(this.f18714r);
+        sb2.append(this.f18713r);
         sb2.append(", active item id=");
-        return a1.g.r(sb2, this.f18715s, "}");
+        return a1.g.r(sb2, this.f18714s, "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f18709a);
-        parcel.writeLong(this.f18710b);
+        parcel.writeInt(this.f18708a);
+        parcel.writeLong(this.f18709b);
         parcel.writeFloat(this.d);
-        parcel.writeLong(this.f18713n);
-        parcel.writeLong(this.f18711c);
+        parcel.writeLong(this.f18712n);
+        parcel.writeLong(this.f18710c);
         parcel.writeLong(this.e);
         TextUtils.writeToParcel(this.h, parcel, i10);
-        parcel.writeTypedList(this.f18714r);
-        parcel.writeLong(this.f18715s);
+        parcel.writeTypedList(this.f18713r);
+        parcel.writeLong(this.f18714s);
         parcel.writeBundle(this.v);
-        parcel.writeInt(this.f18712f);
+        parcel.writeInt(this.f18711f);
     }
 
     public z(Parcel parcel) {
-        this.f18709a = parcel.readInt();
-        this.f18710b = parcel.readLong();
+        this.f18708a = parcel.readInt();
+        this.f18709b = parcel.readLong();
         this.d = parcel.readFloat();
-        this.f18713n = parcel.readLong();
-        this.f18711c = parcel.readLong();
+        this.f18712n = parcel.readLong();
+        this.f18710c = parcel.readLong();
         this.e = parcel.readLong();
         this.h = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
         AbstractCollection createTypedArrayList = parcel.createTypedArrayList(y.CREATOR);
         if (createTypedArrayList == null) {
-            g0 g0Var = i0.f10287b;
+            g0 g0Var = i0.f10286b;
             createTypedArrayList = s1.e;
         }
-        this.f18714r = createTypedArrayList;
-        this.f18715s = parcel.readLong();
+        this.f18713r = createTypedArrayList;
+        this.f18714s = parcel.readLong();
         this.v = parcel.readBundle(s.class.getClassLoader());
-        this.f18712f = parcel.readInt();
+        this.f18711f = parcel.readInt();
     }
 }

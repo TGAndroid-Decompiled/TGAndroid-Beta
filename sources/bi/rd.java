@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.oa0;
+import org.telegram.ui.qa0;
 public final class rd extends AnimatorListenerAdapter {
     public final bh.v0 f5377a;
     public final View f5378b;
@@ -27,7 +27,7 @@ public final class rd extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        oa0 oa0Var;
+        qa0 qa0Var;
         be beVar = this.h;
         qd qdVar = beVar.K;
         qdVar.setVisibility(4);
@@ -60,8 +60,8 @@ public final class rd extends AnimatorListenerAdapter {
             }
         }
         LaunchActivity launchActivity = LaunchActivity.I1;
-        if (launchActivity != null && (oa0Var = launchActivity.f35567x0) != null) {
-            oa0Var.c(true);
+        if (launchActivity != null && (qa0Var = launchActivity.f35591x0) != null) {
+            qa0Var.c(true);
         }
     }
 }

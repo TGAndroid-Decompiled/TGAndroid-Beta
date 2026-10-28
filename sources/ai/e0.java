@@ -52,11 +52,11 @@ public final class e0 implements Runnable {
         VideoEditedInfo videoEditedInfo = new VideoEditedInfo();
         char c10 = 1;
         videoEditedInfo.isStory = true;
-        videoEditedInfo.fromCamera = w7Var.f11896c1;
-        videoEditedInfo.originalWidth = w7Var.f11911k0;
-        videoEditedInfo.originalHeight = w7Var.f11913l0;
-        videoEditedInfo.resultWidth = w7Var.f11907i0;
-        videoEditedInfo.resultHeight = w7Var.f11909j0;
+        videoEditedInfo.fromCamera = w7Var.f11895c1;
+        videoEditedInfo.originalWidth = w7Var.f11910k0;
+        videoEditedInfo.originalHeight = w7Var.f11912l0;
+        videoEditedInfo.resultWidth = w7Var.f11906i0;
+        videoEditedInfo.resultHeight = w7Var.f11908j0;
         File file = w7Var.P0;
         if (file == null) {
             path = null;
@@ -112,19 +112,19 @@ public final class e0 implements Runnable {
             sb2.append(" => ");
             org.telegram.messenger.t.o(videoEditedInfo.bitrate, sb2);
             long j13 = iArr2[0][4];
-            w7Var.f11905h0 = j13;
+            w7Var.f11904h0 = j13;
             videoEditedInfo.originalDuration = j13 * 1000;
             float f11 = (float) j13;
             long j14 = w7Var.Z * f11 * 1000;
             videoEditedInfo.startTime = j14;
-            long j15 = w7Var.f11889a0 * f11 * 1000;
+            long j15 = w7Var.f11888a0 * f11 * 1000;
             videoEditedInfo.endTime = j15;
             videoEditedInfo.estimatedDuration = j15 - j14;
             videoEditedInfo.volume = w7Var.P;
             videoEditedInfo.muted = w7Var.Y;
             videoEditedInfo.estimatedSize = a1.g.C(i12 / 1000.0f, extractRealEncoderBitrate, 8.0f, iArr[5]);
             videoEditedInfo.estimatedSize = Math.max(w7Var.L.length(), videoEditedInfo.estimatedSize);
-            videoEditedInfo.filterState = w7Var.f11890a1;
+            videoEditedInfo.filterState = w7Var.f11889a1;
             File file5 = w7Var.Q0;
             if (file5 == null) {
                 path5 = null;
@@ -148,10 +148,10 @@ public final class e0 implements Runnable {
                 while (i14 < w7Var.T.size()) {
                     w7 w7Var2 = (w7) w7Var.T.get(i14);
                     if (w7Var2.K) {
-                        w7Var2.f11911k0 = Math.max(w7Var2.f11911k0, iArr2[i14][c10]);
-                        w7Var2.f11913l0 = Math.max(w7Var2.f11913l0, iArr2[i14][2]);
+                        w7Var2.f11910k0 = Math.max(w7Var2.f11910k0, iArr2[i14][c10]);
+                        w7Var2.f11912l0 = Math.max(w7Var2.f11912l0, iArr2[i14][2]);
                         i11 = extractRealEncoderBitrate;
-                        w7Var2.f11905h0 = Math.max(w7Var2.f11905h0, iArr2[i14][4]);
+                        w7Var2.f11904h0 = Math.max(w7Var2.f11904h0, iArr2[i14][4]);
                         z10 = true;
                     } else {
                         i11 = extractRealEncoderBitrate;
@@ -165,7 +165,7 @@ public final class e0 implements Runnable {
                 videoEditedInfo.collageParts = parts;
                 if (!z10) {
                     long j16 = w7Var.S0;
-                    w7Var.f11905h0 = j16;
+                    w7Var.f11904h0 = j16;
                     videoEditedInfo.originalDuration = j16;
                     videoEditedInfo.estimatedDuration = j16;
                 } else {
@@ -187,7 +187,7 @@ public final class e0 implements Runnable {
                     }
                     if (part != null) {
                         long j19 = (part.right - part.left) * ((float) part.duration);
-                        w7Var.f11905h0 = j19;
+                        w7Var.f11904h0 = j19;
                         videoEditedInfo.originalDuration = j19;
                         videoEditedInfo.estimatedDuration = j19;
                         j10 = -(part.offset + (f10 * f7));
@@ -210,25 +210,25 @@ public final class e0 implements Runnable {
                         videoEditedInfo.volume = 1.0f;
                         videoEditedInfo.bitrate = -1;
                         videoEditedInfo.framerate = 30;
-                        videoEditedInfo.estimatedSize = ((((float) w7Var.f11905h0) / 1000.0f) * i10) / 8.0f;
+                        videoEditedInfo.estimatedSize = ((((float) w7Var.f11904h0) / 1000.0f) * i10) / 8.0f;
                         videoEditedInfo.filterState = null;
                     }
                 }
             } else {
                 i10 = extractRealEncoderBitrate;
-                if (w7Var.f11918o0 != null) {
-                    long j20 = (w7Var.f11928t0 - w7Var.f11926s0) * ((float) w7Var.f11922q0);
-                    w7Var.f11905h0 = j20;
+                if (w7Var.f11917o0 != null) {
+                    long j20 = (w7Var.f11927t0 - w7Var.f11925s0) * ((float) w7Var.f11921q0);
+                    w7Var.f11904h0 = j20;
                     videoEditedInfo.originalDuration = j20;
                     videoEditedInfo.estimatedDuration = j20;
-                } else if (w7Var.f11936y != null) {
+                } else if (w7Var.f11935y != null) {
                     long j21 = (w7Var.F - w7Var.E) * ((float) w7Var.C);
-                    w7Var.f11905h0 = j21;
+                    w7Var.f11904h0 = j21;
                     videoEditedInfo.originalDuration = j21;
                     videoEditedInfo.estimatedDuration = j21;
                 } else {
                     long j22 = w7Var.S0;
-                    w7Var.f11905h0 = j22;
+                    w7Var.f11904h0 = j22;
                     videoEditedInfo.originalDuration = j22;
                     videoEditedInfo.estimatedDuration = j22;
                 }
@@ -241,12 +241,12 @@ public final class e0 implements Runnable {
             videoEditedInfo.volume = 1.0f;
             videoEditedInfo.bitrate = -1;
             videoEditedInfo.framerate = 30;
-            videoEditedInfo.estimatedSize = ((((float) w7Var.f11905h0) / 1000.0f) * i10) / 8.0f;
+            videoEditedInfo.estimatedSize = ((((float) w7Var.f11904h0) / 1000.0f) * i10) / 8.0f;
             videoEditedInfo.filterState = null;
         }
-        videoEditedInfo.account = w7Var.f11888a;
-        videoEditedInfo.wallpaperPeerId = w7Var.f11939z0;
-        videoEditedInfo.isDark = w7Var.f11937y0;
+        videoEditedInfo.account = w7Var.f11887a;
+        videoEditedInfo.wallpaperPeerId = w7Var.f11938z0;
+        videoEditedInfo.isDark = w7Var.f11936y0;
         videoEditedInfo.avatarStartTime = -1L;
         MediaController.CropState cropState = w7Var.m0;
         if (cropState != null) {
@@ -255,12 +255,12 @@ public final class e0 implements Runnable {
             videoEditedInfo.cropState = new MediaController.CropState();
         }
         videoEditedInfo.cropState.useMatrix = new Matrix();
-        videoEditedInfo.cropState.useMatrix.set(w7Var.f11916n0);
+        videoEditedInfo.cropState.useMatrix.set(w7Var.f11915n0);
         videoEditedInfo.mediaEntities = w7Var.T0;
         videoEditedInfo.gradientTopColor = Integer.valueOf(w7Var.A0);
         videoEditedInfo.gradientBottomColor = Integer.valueOf(w7Var.B0);
         videoEditedInfo.forceFragmenting = true;
-        videoEditedInfo.hdrInfo = w7Var.f11898d1;
+        videoEditedInfo.hdrInfo = w7Var.f11897d1;
         videoEditedInfo.mixedSoundInfos.clear();
         if (w7Var.v() && !w7Var.Y) {
             ArrayList<VideoEditedInfo.Part> arrayList3 = videoEditedInfo.collageParts;
@@ -282,16 +282,16 @@ public final class e0 implements Runnable {
                 }
             }
         }
-        File file7 = w7Var.f11918o0;
+        File file7 = w7Var.f11917o0;
         if (file7 != null) {
             MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo2 = new MediaCodecVideoConvertor.MixedSoundInfo(file7.getAbsolutePath());
-            mixedSoundInfo2.volume = w7Var.f11930u0;
-            float f14 = w7Var.f11926s0;
-            float f15 = (float) w7Var.f11922q0;
+            mixedSoundInfo2.volume = w7Var.f11929u0;
+            float f14 = w7Var.f11925s0;
+            float f15 = (float) w7Var.f11921q0;
             long j23 = f14 * f15 * 1000;
             mixedSoundInfo2.audioOffset = j23;
             if (w7Var.K) {
-                mixedSoundInfo2.startTime = (((float) w7Var.f11924r0) - (w7Var.Z * ((float) w7Var.f11905h0))) * 1000;
+                mixedSoundInfo2.startTime = (((float) w7Var.f11923r0) - (w7Var.Z * ((float) w7Var.f11904h0))) * 1000;
                 j12 = 0;
             } else {
                 j12 = 0;
@@ -303,10 +303,10 @@ public final class e0 implements Runnable {
                 mixedSoundInfo2.audioOffset = j23 - j24;
                 mixedSoundInfo2.startTime = j12;
             }
-            mixedSoundInfo2.duration = (w7Var.f11928t0 - f14) * f15 * 1000;
+            mixedSoundInfo2.duration = (w7Var.f11927t0 - f14) * f15 * 1000;
             videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo2);
         }
-        String str2 = w7Var.f11936y;
+        String str2 = w7Var.f11935y;
         if (str2 != null) {
             MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo3 = new MediaCodecVideoConvertor.MixedSoundInfo(str2);
             mixedSoundInfo3.volume = w7Var.G;
@@ -315,7 +315,7 @@ public final class e0 implements Runnable {
             long j25 = f16 * f17 * 1000;
             mixedSoundInfo3.audioOffset = j25;
             if (w7Var.K) {
-                mixedSoundInfo3.startTime = (((float) w7Var.D) - (w7Var.Z * ((float) w7Var.f11905h0))) * 1000;
+                mixedSoundInfo3.startTime = (((float) w7Var.D) - (w7Var.Z * ((float) w7Var.f11904h0))) * 1000;
                 j11 = 0;
             } else {
                 j11 = 0;

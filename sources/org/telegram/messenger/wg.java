@@ -1,21 +1,79 @@
 package org.telegram.messenger;
-public final class wg implements Runnable {
-    public final int f21766a;
-    public final NotificationCenter f21767b;
 
-    public wg(NotificationCenter notificationCenter, int i10) {
-        this.f21766a = i10;
-        this.f21767b = notificationCenter;
+import android.net.Uri;
+import android.os.Bundle;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.function.Consumer;
+import org.telegram.messenger.NotificationBadge;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class wg implements Runnable {
+    public final int f21779a;
+    public final Object f21780b;
+    public final Object f21781c;
+
+    public wg(int i10, Object obj, Object obj2) {
+        this.f21779a = i10;
+        this.f21780b = obj;
+        this.f21781c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f21766a) {
+        switch (this.f21779a) {
             case 0:
-                NotificationCenter.g(this.f21767b);
+                ((NotificationBadge.ZukHomeBadger) this.f21780b).lambda$executeBadge$0((Bundle) this.f21781c);
+                return;
+            case 1:
+                NotificationsController.lambda$loadTopicsNotificationsExceptions$54((Consumer) this.f21780b, (HashSet) this.f21781c);
+                return;
+            case 2:
+                NotificationsController.lambda$showExtraNotifications$46((Uri) this.f21780b, (File) this.f21781c);
+                return;
+            case 3:
+                ((NotificationsController) this.f21780b).lambda$didReceivedNotification$39((String) this.f21781c);
+                return;
+            case 4:
+                ((NotificationsController) this.f21780b).lambda$processEditedMessages$23((a0.h) this.f21781c);
+                return;
+            case 5:
+                PasskeysController.lambda$create$2((Utilities.Callback2) this.f21780b, (Throwable) this.f21781c);
+                return;
+            case 6:
+                ((SavedMessagesController) this.f21780b).lambda$deleteCache$13((MessagesStorage) this.f21781c);
+                return;
+            case 7:
+                ((SecretChatHelper) this.f21780b).lambda$performSendEncryptedRequest$6((TLRPC.Message) this.f21781c);
+                return;
+            case 8:
+                ((SendMessagesHelper) this.f21780b).lambda$performSendMessageRequest$93((TLRPC.TL_updateShortSentMessage) this.f21781c);
+                return;
+            case 9:
+                ((SendMessagesHelper) this.f21780b).lambda$sendMessage$19((ArrayList) this.f21781c);
+                return;
+            case 10:
+                ((SendMessagesHelper.ImportingStickers) this.f21780b).lambda$onMediaImport$0((String) this.f21781c);
+                return;
+            case 11:
+                ((TopicsController) this.f21780b).lambda$processUpdate$22((List) this.f21781c);
+                return;
+            case 12:
+                ((TopicsController) this.f21780b).lambda$pinTopic$19((org.telegram.ui.ActionBar.r2) this.f21781c);
+                return;
+            case 13:
+                ((TopicsController) this.f21780b).lambda$onTopicsDeletedServerSide$23((ArrayList) this.f21781c);
+                return;
+            case 14:
+                ((TopicsController) this.f21780b).lambda$updateReadOutbox$26((HashMap) this.f21781c);
                 return;
             default:
-                NotificationCenter.b(this.f21767b);
+                ((UserConfig) this.f21780b).lambda$loadGlobalTTl$3((TLObject) this.f21781c);
                 return;
         }
     }

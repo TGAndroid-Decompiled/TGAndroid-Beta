@@ -1,17 +1,55 @@
 package org.telegram.ui;
-public final class qm0 extends org.telegram.ui.ActionBar.j {
-    public final in0 f42875a;
 
-    public qm0(in0 in0Var) {
-        this.f42875a = in0Var;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class qm0 implements Comparator {
+    public final kn0 f42751a;
+
+    public qm0(kn0 kn0Var) {
+        this.f42751a = kn0Var;
+    }
+
+    public final int a(TLRPC.SecureValueError secureValueError) {
+        if (secureValueError instanceof TLRPC.TL_secureValueError) {
+            return 0;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
+            return 1;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
+            return 2;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
+            return 3;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
+            return 4;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
+            return 5;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
+            return 6;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
+            return 7;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
+            return kn0.C0(this.f42751a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
+        }
+        return 100;
     }
 
     @Override
-    public final void b(int r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qm0.b(int):void");
-    }
-
-    public final boolean c(org.telegram.ui.lj0 r33, m4.w1 r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qm0.c(org.telegram.ui.lj0, m4.w1):boolean");
+    public final int compare(Object obj, Object obj2) {
+        int a2 = a((TLRPC.SecureValueError) obj);
+        int a10 = a((TLRPC.SecureValueError) obj2);
+        if (a2 < a10) {
+            return -1;
+        }
+        if (a2 > a10) {
+            return 1;
+        }
+        return 0;
     }
 }

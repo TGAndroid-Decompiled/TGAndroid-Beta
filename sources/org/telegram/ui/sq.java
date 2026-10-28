@@ -1,37 +1,30 @@
 package org.telegram.ui;
 
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class sq extends gq {
-    public final boolean[] f43573c1;
-    public final long f43574d1;
-    public final kr f43575e1;
+public final class sq implements fq {
+    public final TLObject f43383a;
+    public final mr f43384b;
 
-    public sq(kr krVar, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, long j12) {
-        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
-        this.f43575e1 = krVar;
-        this.f43573c1 = zArr;
-        this.f43574d1 = j12;
+    public sq(mr mrVar, TLObject tLObject) {
+        this.f43384b = mrVar;
+        this.f43383a = tLObject;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f43573c1[0]) {
-            kr krVar = this.f43575e1;
-            if (org.telegram.ui.Components.wc.a(krVar)) {
-                long j10 = this.f43574d1;
-                if (j10 > 0) {
-                    TLRPC.User user = getMessagesController().getUser(Long.valueOf(j10));
-                    if (user != null) {
-                        org.telegram.ui.Components.wc.C(krVar, user.first_name).j();
-                        return;
-                    }
-                    return;
-                }
-                TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-j10));
-                if (chat != null) {
-                    org.telegram.ui.Components.wc.C(krVar, chat.title).j();
-                }
-            }
+    public final void a(TLRPC.User user) {
+        mr.d0(this.f43384b, user);
+    }
+
+    @Override
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLObject tLObject = this.f43383a;
+        if (tLObject instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+            channelParticipant.admin_rights = tL_chatAdminRights;
+            channelParticipant.banned_rights = tL_chatBannedRights;
+            channelParticipant.rank = str;
+            mr.X(this.f43384b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
         }
     }
 }

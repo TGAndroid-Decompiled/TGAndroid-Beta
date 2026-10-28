@@ -1,240 +1,276 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PathMeasure;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
+import android.content.Context;
+import android.widget.ImageView;
+import java.util.HashMap;
+import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-public final class bk0 {
-    public static DecelerateInterpolator A;
-    public final View f26883i;
-    public boolean f26885k;
-    public boolean f26886l;
-    public Drawable f26887m;
-    public Drawable f26888n;
-    public final Paint f26890p;
-    public boolean f26895u;
-    public long f26878a = 0;
-    public float f26879b = 0.0f;
-    public float f26880c = 0.0f;
-    public float d = 0.0f;
-    public long e = 0;
-    public float f26881f = 0.0f;
-    public final RectF f26882g = new RectF();
-    public final RectF h = new RectF();
-    public float f26884j = 1.0f;
-    public int f26889o = -1;
-    public int f26891q = AndroidUtilities.dp(4.0f);
-    public final boolean f26892r = true;
-    public final float f26893s = 1.0f;
-    public Paint f26894t = null;
-    public float v = 3000.0f;
-    public final Path f26896w = new Path();
-    public final Matrix f26897x = new Matrix();
-    public final PathMeasure f26898y = new PathMeasure();
-    public final Path f26899z = new Path();
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.tgnet.TLRPC;
+public class bk0 extends ImageView {
+    public HashMap f26844a;
+    public yj0 f26845b;
+    public zj0 f26846c;
+    public boolean d;
+    public boolean e;
+    public boolean f26847f;
+    public Integer h;
+    public boolean f26848n;
 
-    public bk0(View view) {
-        if (A == null) {
-            A = new DecelerateInterpolator();
-        }
-        Paint paint = new Paint(1);
-        this.f26890p = paint;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        Paint paint2 = new Paint(1);
-        paint2.setStyle(style);
-        paint2.setStrokeCap(cap);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        new Paint(1);
-        this.f26883i = view;
+    public bk0(Context context) {
+        super(context);
     }
 
-    public final void a(Canvas canvas) {
-        Paint paint;
-        Drawable drawable = this.f26888n;
-        RectF rectF = this.f26882g;
-        float f7 = this.f26893s;
-        if (drawable != null) {
-            if (this.f26892r) {
-                drawable.setAlpha((int) (this.f26884j * 255.0f * f7));
-            } else {
-                drawable.setAlpha((int) (f7 * 255.0f));
-            }
-            this.f26888n.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            this.f26888n.draw(canvas);
+    public final void a() {
+        yj0 yj0Var = this.f26845b;
+        if (yj0Var != null) {
+            yj0Var.stop();
         }
-        Drawable drawable2 = this.f26887m;
-        if (drawable2 != null) {
-            if (this.f26888n != null) {
-                drawable2.setAlpha((int) org.telegram.messenger.t.A(1.0f, this.f26884j, 255.0f, f7));
-            } else {
-                drawable2.setAlpha((int) (f7 * 255.0f));
-            }
-            this.f26887m.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            this.f26887m.draw(canvas);
+        zj0 zj0Var = this.f26846c;
+        if (zj0Var != null) {
+            zj0Var.onDetachedFromWindow();
+            this.f26846c = null;
         }
-        if (!this.f26885k && !this.f26886l) {
-            g(false);
+        this.f26845b = null;
+        setImageDrawable(null);
+    }
+
+    public final boolean b() {
+        yj0 yj0Var = this.f26845b;
+        if (yj0Var != null && yj0Var.f35080k0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        yj0 yj0Var = this.f26845b;
+        if (yj0Var != null || this.f26846c != null) {
+            this.f26847f = true;
+            if (this.e) {
+                if (yj0Var != null) {
+                    yj0Var.start();
+                }
+                zj0 zj0Var = this.f26846c;
+                if (zj0Var != null) {
+                    zj0Var.startAnimation();
+                }
+            }
+        }
+    }
+
+    public final void e(int i10, int i11, int i12) {
+        f(i10, i11, i12, null);
+    }
+
+    public final void f(int i10, int i11, int i12, int[] iArr) {
+        setAnimation(new yj0(i10, AndroidUtilities.dp(i11), AndroidUtilities.dp(i12), false, iArr));
+    }
+
+    public final void g(int i10, int i11, TLRPC.Document document) {
+        ImageLocation imageLocation;
+        String str;
+        int i12;
+        zj0 zj0Var = this.f26846c;
+        if (zj0Var != null) {
+            zj0Var.onDetachedFromWindow();
+            this.f26846c = null;
+        }
+        if (document != null) {
+            zj0 zj0Var2 = new zj0(this);
+            this.f26846c = zj0Var2;
+            zj0Var2.setAllowLoadingOnAttachedOnly(true);
+            String str2 = document.localThumbPath;
+            if (str2 != null) {
+                ImageLocation forPath = ImageLocation.getForPath(str2);
+                str = a1.g.k(i10, i11, "_");
+                imageLocation = forPath;
+            } else {
+                imageLocation = null;
+                str = null;
+            }
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+            if (this.f26848n) {
+                this.f26846c.setImage(ImageLocation.getForDocument(document), i10 + "_" + i11 + "_lastframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), a1.g.k(i10, i11, "_"), imageLocation, str, null, 0L, null, document, 1);
+            } else if ("video/webm".equals(document.mime_type)) {
+                zj0 zj0Var3 = this.f26846c;
+                ImageLocation forDocument = ImageLocation.getForDocument(document);
+                String str3 = i10 + "_" + i11 + "_g";
+                if (imageLocation == null) {
+                    imageLocation = ImageLocation.getForDocument(closestPhotoSizeWithSize, document);
+                }
+                zj0Var3.setImage(forDocument, str3, imageLocation, str, null, document.size, null, document, 1);
+            } else {
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.y6.f23521m6, 0.2f);
+                if (svgThumb != null) {
+                    svgThumb.overrideWidthAndHeight(512, 512);
+                }
+                this.f26846c.setImage(ImageLocation.getForDocument(document), i10 + "_" + i11 + "", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), a1.g.k(i10, i11, "_"), imageLocation, str, svgThumb, 0L, null, document, 1);
+            }
+            this.f26846c.setAspectFit(true);
+            this.f26846c.setParentView(this);
+            if (this.d) {
+                this.f26846c.setAutoRepeat(1);
+                this.f26846c.setAllowStartLottieAnimation(true);
+                this.f26846c.setAllowStartAnimation(true);
+            } else {
+                this.f26846c.setAutoRepeat(0);
+            }
+            zj0 zj0Var4 = this.f26846c;
+            Integer num = this.h;
+            if (num != null) {
+                i12 = num.intValue();
+            } else {
+                i12 = 7;
+            }
+            zj0Var4.setLayerNum(i12);
+            this.f26846c.clip = false;
+            setImageDrawable(new ak0(this, i10, i11));
+            if (this.e) {
+                this.f26846c.onAttachedToWindow();
+            }
+        }
+    }
+
+    public yj0 getAnimatedDrawable() {
+        return this.f26845b;
+    }
+
+    public ImageReceiver getImageReceiver() {
+        return this.f26846c;
+    }
+
+    public final void h(int i10, String str) {
+        if (this.f26844a == null) {
+            this.f26844a = new HashMap();
+        }
+        this.f26844a.put(str, Integer.valueOf(i10));
+        yj0 yj0Var = this.f26845b;
+        if (yj0Var != null) {
+            yj0Var.Q(i10, str);
+        }
+    }
+
+    public final void i() {
+        yj0 yj0Var = this.f26845b;
+        if (yj0Var != null || this.f26846c != null) {
+            this.f26847f = false;
+            if (this.e) {
+                if (yj0Var != null) {
+                    yj0Var.stop();
+                }
+                zj0 zj0Var = this.f26846c;
+                if (zj0Var != null) {
+                    zj0Var.stopAnimation();
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.e = true;
+        zj0 zj0Var = this.f26846c;
+        if (zj0Var != null) {
+            zj0Var.onAttachedToWindow();
+            if (this.f26847f) {
+                this.f26846c.startAnimation();
+            }
+        }
+        yj0 yj0Var = this.f26845b;
+        if (yj0Var != null) {
+            yj0Var.setCallback(this);
+            if (this.f26847f) {
+                this.f26845b.start();
+            }
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.e = false;
+        yj0 yj0Var = this.f26845b;
+        if (yj0Var != null) {
+            yj0Var.stop();
+        }
+        zj0 zj0Var = this.f26846c;
+        if (zj0Var != null) {
+            zj0Var.onDetachedFromWindow();
+        }
+    }
+
+    public void setAnimation(yj0 yj0Var) {
+        if (this.f26845b == yj0Var) {
             return;
         }
-        Paint paint2 = this.f26894t;
-        if (paint2 != null) {
-            paint = paint2;
-        } else {
-            int i10 = this.f26889o;
-            Paint paint3 = this.f26890p;
-            paint3.setColor(i10);
-            if (this.f26886l) {
-                paint3.setAlpha((int) (this.f26884j * 255.0f * f7));
-            } else {
-                paint3.setAlpha((int) (f7 * 255.0f));
-            }
-            paint = paint3;
+        zj0 zj0Var = this.f26846c;
+        if (zj0Var != null) {
+            zj0Var.onDetachedFromWindow();
+            this.f26846c = null;
         }
-        float f10 = rectF.left;
-        float f11 = this.f26891q;
-        RectF rectF2 = this.h;
-        rectF2.set(f10 + f11, rectF.top + f11, rectF.right - f11, rectF.bottom - f11);
-        b(this.f26879b - 90.0f, Math.max(4.0f, this.f26881f * 360.0f), canvas, paint, rectF2);
-        g(true);
+        this.f26845b = yj0Var;
+        yj0Var.R(this);
+        if (this.d) {
+            this.f26845b.K(1);
+        }
+        HashMap hashMap = this.f26844a;
+        if (hashMap != null) {
+            this.f26845b.Z = true;
+            for (Map.Entry entry : hashMap.entrySet()) {
+                yj0 yj0Var2 = this.f26845b;
+                Integer num = (Integer) entry.getValue();
+                num.getClass();
+                yj0Var2.f35089s.put((String) entry.getKey(), num);
+                yj0Var2.G();
+            }
+            this.f26845b.o();
+        }
+        this.f26845b.J(true);
+        setImageDrawable(this.f26845b);
     }
 
-    public final void b(float f7, float f10, Canvas canvas, Paint paint, RectF rectF) {
-        if (this.f26895u) {
-            float height = rectF.height() * 0.32f;
-            if (Math.abs(f10) == 360.0f) {
-                canvas.drawRoundRect(rectF, height, height, paint);
-                return;
-            }
-            float f11 = ((((int) f7) / 90) * 90) + 90;
-            float f12 = (-199.0f) + f11;
-            float f13 = ((f7 + f10) - f12) / 360.0f;
-            Path path = this.f26896w;
-            path.rewind();
-            path.addRoundRect(rectF, height, height, Path.Direction.CW);
-            Matrix matrix = this.f26897x;
-            matrix.reset();
-            matrix.postRotate(f11, rectF.centerX(), rectF.centerY());
-            path.transform(matrix);
-            PathMeasure pathMeasure = this.f26898y;
-            pathMeasure.setPath(path, false);
-            float length = pathMeasure.getLength();
-            Path path2 = this.f26899z;
-            path2.reset();
-            pathMeasure.getSegment(((f7 - f12) / 360.0f) * length, length * f13, path2, true);
-            path2.rLineTo(0.0f, 0.0f);
-            canvas.drawPath(path2, paint);
-            if (f13 > 1.0f) {
-                b(f7 + 90.0f, f10 - 90.0f, canvas, paint, rectF);
-                return;
-            }
-            return;
-        }
-        canvas.drawArc(rectF, f7, f10, false, paint);
+    public void setAutoRepeat(boolean z10) {
+        this.d = z10;
     }
 
-    public final void c() {
-        int dp = AndroidUtilities.dp(2.0f);
-        RectF rectF = this.f26882g;
-        int i10 = ((int) rectF.left) - dp;
-        int i11 = ((int) rectF.top) - dp;
-        int i12 = dp * 2;
-        this.f26883i.invalidate(i10, i11, ((int) rectF.right) + i12, ((int) rectF.bottom) + i12);
+    @Override
+    public void setImageResource(int i10) {
+        super.setImageResource(i10);
+        this.f26845b = null;
     }
 
-    public final void d(Drawable drawable, boolean z10, boolean z11) {
-        Drawable drawable2;
-        this.f26878a = System.currentTimeMillis();
-        if (z11 && (drawable2 = this.f26887m) != drawable) {
-            this.f26888n = drawable2;
-            this.f26886l = this.f26885k;
-            this.f26884j = 1.0f;
-            e(1.0f, z11);
-        } else {
-            this.f26888n = null;
-            this.f26886l = false;
-        }
-        this.f26885k = z10;
-        this.f26887m = drawable;
-        if (!z11) {
-            this.f26883i.invalidate();
-        } else {
-            c();
+    public void setLayerNum(Integer num) {
+        this.h = num;
+        zj0 zj0Var = this.f26846c;
+        if (zj0Var != null) {
+            zj0Var.setLayerNum(num.intValue());
         }
     }
 
-    public final void e(float f7, boolean z10) {
-        if (f7 != 1.0f && this.f26884j != 0.0f && this.f26888n != null) {
-            this.f26884j = 0.0f;
-            this.f26888n = null;
+    public void setOnAnimationEndListener(Runnable runnable) {
+        yj0 yj0Var = this.f26845b;
+        if (yj0Var != null) {
+            yj0Var.f35091t0 = runnable;
         }
-        if (!z10) {
-            this.f26881f = f7;
-            this.d = f7;
-        } else {
-            if (this.f26881f > f7) {
-                this.f26881f = f7;
-            }
-            this.d = this.f26881f;
-        }
-        this.f26880c = f7;
-        this.e = 0L;
-        c();
     }
 
-    public final void f(int i10, int i11, int i12, int i13) {
-        this.f26882g.set(i10, i11, i12, i13);
+    public void setOnlyLastFrame(boolean z10) {
+        this.f26848n = z10;
     }
 
-    public final void g(boolean z10) {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f26878a;
-        this.f26878a = currentTimeMillis;
-        if (z10) {
-            if (this.f26881f != 1.0f) {
-                this.f26879b = (((float) (360 * j10)) / this.v) + this.f26879b;
-                float f7 = this.f26880c;
-                float f10 = this.d;
-                float f11 = f7 - f10;
-                if (f11 > 0.0f) {
-                    long j11 = this.e + j10;
-                    this.e = j11;
-                    if (j11 >= 300) {
-                        this.f26881f = f7;
-                        this.d = f7;
-                        this.e = 0L;
-                    } else {
-                        this.f26881f = (A.getInterpolation(((float) j11) / 300.0f) * f11) + f10;
-                    }
-                }
-                c();
-            }
-            if (this.f26881f >= 1.0f && this.f26888n != null) {
-                float f12 = this.f26884j - (((float) j10) / 200.0f);
-                this.f26884j = f12;
-                if (f12 <= 0.0f) {
-                    this.f26884j = 0.0f;
-                    this.f26888n = null;
-                }
-                c();
-            }
-        } else if (this.f26888n != null) {
-            float f13 = this.f26884j - (((float) j10) / 200.0f);
-            this.f26884j = f13;
-            if (f13 <= 0.0f) {
-                this.f26884j = 0.0f;
-                this.f26888n = null;
-            }
-            c();
+    public void setProgress(float f7) {
+        yj0 yj0Var = this.f26845b;
+        if (yj0Var != null) {
+            yj0Var.T(f7, true);
         }
+    }
+
+    public void c() {
     }
 }

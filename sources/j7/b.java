@@ -7,12 +7,12 @@ import android.os.Parcelable;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.j;
 public final class b extends j {
-    public static final com.google.android.gms.common.api.e f15533l = new com.google.android.gms.common.api.e("Auth.Api.Identity.SignIn.API", new b8.d(6), new Object());
-    public final String f15534k;
+    public static final com.google.android.gms.common.api.e f15532l = new com.google.android.gms.common.api.e("Auth.Api.Identity.SignIn.API", new b8.d(6), new Object());
+    public final String f15533k;
 
     public b(Context context, y5.h hVar) {
-        super(context, f15533l, hVar, com.google.android.gms.common.api.i.f6478c);
-        this.f15534k = e.a();
+        super(context, f15532l, hVar, com.google.android.gms.common.api.i.f6478c);
+        this.f15533k = e.a();
     }
 
     public final y5.g f(Intent intent) {

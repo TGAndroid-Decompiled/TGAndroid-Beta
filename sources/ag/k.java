@@ -19,7 +19,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.yj0;
 public final class k {
     public static int A;
     public static ng B;
@@ -159,7 +159,7 @@ public final class k {
         A = i10;
         if (i10 <= 0) {
             A = 0;
-            xj0.T0.postRunnable(new c(0));
+            yj0.T0.postRunnable(new c(0));
         }
     }
 

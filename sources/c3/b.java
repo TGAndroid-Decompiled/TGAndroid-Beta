@@ -115,14 +115,14 @@ public abstract class b {
                 }
             }
             int A = xVar.A();
-            int i16 = xVar.f9733b;
-            byte[] bArr = xVar.f9732a;
+            int i16 = xVar.f9732b;
+            byte[] bArr = xVar.f9731a;
             int i17 = i16 - 1;
             int i18 = 0;
-            for (int i19 = xVar.f9733b; i19 < i17; i19++) {
-                i18 = n0.f9700l[i18 ^ (bArr[i19] & 255)];
+            for (int i19 = xVar.f9732b; i19 < i17; i19++) {
+                i18 = n0.f9699l[i18 ^ (bArr[i19] & 255)];
             }
-            String str = n0.f9692a;
+            String str = n0.f9691a;
             if (A != i18) {
                 return false;
             }
@@ -182,7 +182,7 @@ public abstract class b {
                         break;
                     }
                 }
-                int i14 = xVar.f9733b + i13;
+                int i14 = xVar.f9732b + i13;
                 if (i13 != -1 && i13 <= xVar.a()) {
                     if (i10 == 4 && i13 >= 8) {
                         int A3 = xVar.A();
@@ -213,7 +213,7 @@ public abstract class b {
                     }
                 } else {
                     e2.a.l("CeaUtil", "Skipping remainder of malformed SEI NAL unit.");
-                    i14 = xVar.f9734c;
+                    i14 = xVar.f9733c;
                 }
                 xVar.N(i14);
             } else {
@@ -228,7 +228,7 @@ public abstract class b {
         if ((A & 64) != 0) {
             xVar.O(1);
             int i10 = (A & 31) * 3;
-            int i11 = xVar.f9733b;
+            int i11 = xVar.f9732b;
             for (j0 j0Var : j0VarArr) {
                 xVar.N(i11);
                 j0Var.d(i10, xVar);
@@ -261,7 +261,7 @@ public abstract class b {
 
     public static void f(int i10, e2.x xVar) {
         xVar.K(7);
-        byte[] bArr = xVar.f9732a;
+        byte[] bArr = xVar.f9731a;
         bArr[0] = -84;
         bArr[1] = 64;
         bArr[2] = -1;
@@ -588,7 +588,7 @@ public abstract class b {
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < list.size(); i10++) {
             String str = (String) list.get(i10);
-            String str2 = n0.f9692a;
+            String str2 = n0.f9691a;
             String[] split = str.split("=", 2);
             if (split.length != 2) {
                 e2.a.l("VorbisUtil", "Failed to parse Vorbis comment: ".concat(str));
@@ -638,7 +638,7 @@ public abstract class b {
     public static rf.b t(e2.x xVar) {
         xVar.O(1);
         int D = xVar.D();
-        long j10 = xVar.f9733b + D;
+        long j10 = xVar.f9732b + D;
         int i10 = D / 18;
         long[] jArr = new long[i10];
         long[] jArr2 = new long[i10];
@@ -658,7 +658,7 @@ public abstract class b {
             xVar.O(2);
             i11++;
         }
-        xVar.O((int) (j10 - xVar.f9733b));
+        xVar.O((int) (j10 - xVar.f9732b));
         return new rf.b(10, jArr, jArr2);
     }
 

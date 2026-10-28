@@ -15,10 +15,10 @@ import androidx.versionedparcelable.ParcelImpl;
 import e2.n0;
 import java.util.List;
 public final class k extends MediaSession.Callback {
-    public final l f18673a;
+    public final l f18672a;
 
     public k(l lVar) {
-        this.f18673a = lVar;
+        this.f18672a = lVar;
     }
 
     public static void b(n nVar) {
@@ -26,7 +26,7 @@ public final class k extends MediaSession.Callback {
         if (i10 >= 28) {
             return;
         }
-        MediaSession mediaSession = nVar.f18679a;
+        MediaSession mediaSession = nVar.f18678a;
         String str = null;
         if (i10 >= 24) {
             try {
@@ -43,10 +43,10 @@ public final class k extends MediaSession.Callback {
 
     public final n a() {
         n nVar;
-        synchronized (this.f18673a.f18674a) {
-            nVar = (n) this.f18673a.d.get();
+        synchronized (this.f18672a.f18673a) {
+            nVar = (n) this.f18672a.d.get();
         }
-        if (nVar != null && this.f18673a == nVar.b()) {
+        if (nVar != null && this.f18672a == nVar.b()) {
             return nVar;
         }
         return null;
@@ -67,7 +67,7 @@ public final class k extends MediaSession.Callback {
             if (str.equals("android.support.v4.media.session.command.GET_EXTRA_BINDER")) {
                 if (resultReceiver != null) {
                     Bundle bundle2 = new Bundle();
-                    r rVar = a2.f18681c;
+                    r rVar = a2.f18680c;
                     d a10 = rVar.a();
                     if (a10 == null) {
                         asBinder = null;
@@ -75,7 +75,7 @@ public final class k extends MediaSession.Callback {
                         asBinder = a10.asBinder();
                     }
                     bundle2.putBinder("android.support.v4.media.session.EXTRA_BINDER", asBinder);
-                    synchronized (rVar.f18692a) {
+                    synchronized (rVar.f18691a) {
                         dVar = rVar.d;
                     }
                     if (dVar != null) {
@@ -87,15 +87,15 @@ public final class k extends MediaSession.Callback {
                 }
             } else if (str.equals("android.support.v4.media.session.command.ADD_QUEUE_ITEM")) {
                 if (o10 != null) {
-                    this.f18673a.b((h) ue.a(o10.getParcelable("android.support.v4.media.session.command.ARGUMENT_MEDIA_DESCRIPTION"), h.CREATOR));
+                    this.f18672a.b((h) ue.a(o10.getParcelable("android.support.v4.media.session.command.ARGUMENT_MEDIA_DESCRIPTION"), h.CREATOR));
                 }
             } else if (str.equals("android.support.v4.media.session.command.ADD_QUEUE_ITEM_AT")) {
                 if (o10 != null) {
-                    this.f18673a.c((h) ue.a(o10.getParcelable("android.support.v4.media.session.command.ARGUMENT_MEDIA_DESCRIPTION"), h.CREATOR), o10.getInt("android.support.v4.media.session.command.ARGUMENT_INDEX"));
+                    this.f18672a.c((h) ue.a(o10.getParcelable("android.support.v4.media.session.command.ARGUMENT_MEDIA_DESCRIPTION"), h.CREATOR), o10.getInt("android.support.v4.media.session.command.ARGUMENT_INDEX"));
                 }
             } else if (str.equals("android.support.v4.media.session.command.REMOVE_QUEUE_ITEM")) {
                 if (o10 != null) {
-                    this.f18673a.q((h) ue.a(o10.getParcelable("android.support.v4.media.session.command.ARGUMENT_MEDIA_DESCRIPTION"), h.CREATOR));
+                    this.f18672a.q((h) ue.a(o10.getParcelable("android.support.v4.media.session.command.ARGUMENT_MEDIA_DESCRIPTION"), h.CREATOR));
                 }
             } else if (str.equals("android.support.v4.media.session.command.REMOVE_QUEUE_ITEM_AT")) {
                 List list = a2.h;
@@ -107,11 +107,11 @@ public final class k extends MediaSession.Callback {
                         qVar = null;
                     }
                     if (qVar != null) {
-                        this.f18673a.q(qVar.f18689a);
+                        this.f18672a.q(qVar.f18688a);
                     }
                 }
             } else {
-                this.f18673a.d(str, o10, resultReceiver);
+                this.f18672a.d(str, o10, resultReceiver);
             }
         } catch (BadParcelableException unused) {
             e2.a.c("MediaSessionCompat", "Could not unparcel the extra data.");
@@ -129,7 +129,7 @@ public final class k extends MediaSession.Callback {
         b(a2);
         try {
             boolean equals = str.equals("android.support.v4.media.session.action.PLAY_FROM_URI");
-            l lVar = this.f18673a;
+            l lVar = this.f18672a;
             if (equals) {
                 if (o10 != null) {
                     lVar.l((Uri) o10.getParcelable("android.support.v4.media.session.action.ARGUMENT_URI"), n0.o(o10.getBundle("android.support.v4.media.session.action.ARGUMENT_EXTRAS")));
@@ -185,7 +185,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.f();
+        this.f18672a.f();
         a2.d(null);
     }
 
@@ -194,7 +194,7 @@ public final class k extends MediaSession.Callback {
         n a2 = a();
         if (a2 != null) {
             b(a2);
-            boolean g7 = this.f18673a.g(intent);
+            boolean g7 = this.f18672a.g(intent);
             a2.d(null);
             if (!g7 && !super.onMediaButtonEvent(intent)) {
                 return false;
@@ -211,7 +211,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.h();
+        this.f18672a.h();
         a2.d(null);
     }
 
@@ -222,7 +222,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.i();
+        this.f18672a.i();
         a2.d(null);
     }
 
@@ -234,7 +234,7 @@ public final class k extends MediaSession.Callback {
         }
         Bundle o10 = n0.o(bundle);
         b(a2);
-        this.f18673a.j(str, o10);
+        this.f18672a.j(str, o10);
         a2.d(null);
     }
 
@@ -246,7 +246,7 @@ public final class k extends MediaSession.Callback {
         }
         Bundle o10 = n0.o(bundle);
         b(a2);
-        this.f18673a.k(str, o10);
+        this.f18672a.k(str, o10);
         a2.d(null);
     }
 
@@ -258,7 +258,7 @@ public final class k extends MediaSession.Callback {
         }
         Bundle o10 = n0.o(bundle);
         b(a2);
-        this.f18673a.l(uri, o10);
+        this.f18672a.l(uri, o10);
         a2.d(null);
     }
 
@@ -269,7 +269,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.m();
+        this.f18672a.m();
         a2.d(null);
     }
 
@@ -281,7 +281,7 @@ public final class k extends MediaSession.Callback {
         }
         Bundle o10 = n0.o(bundle);
         b(a2);
-        this.f18673a.n(str, o10);
+        this.f18672a.n(str, o10);
         a2.d(null);
     }
 
@@ -293,7 +293,7 @@ public final class k extends MediaSession.Callback {
         }
         Bundle o10 = n0.o(bundle);
         b(a2);
-        this.f18673a.o(str, o10);
+        this.f18672a.o(str, o10);
         a2.d(null);
     }
 
@@ -305,7 +305,7 @@ public final class k extends MediaSession.Callback {
         }
         Bundle o10 = n0.o(bundle);
         b(a2);
-        this.f18673a.p(uri, o10);
+        this.f18672a.p(uri, o10);
         a2.d(null);
     }
 
@@ -316,7 +316,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.r();
+        this.f18672a.r();
         a2.d(null);
     }
 
@@ -327,7 +327,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.s(j10);
+        this.f18672a.s(j10);
         a2.d(null);
     }
 
@@ -338,7 +338,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.t(f7);
+        this.f18672a.t(f7);
         a2.d(null);
     }
 
@@ -379,7 +379,7 @@ public final class k extends MediaSession.Callback {
                         a0Var = a0.c(rating.getPercentRating());
                         break;
                 }
-                this.f18673a.u(a0Var);
+                this.f18672a.u(a0Var);
                 a2.d(null);
             }
             switch (ratingStyle) {
@@ -396,12 +396,12 @@ public final class k extends MediaSession.Callback {
                     break;
             }
             a0Var.getClass();
-            a0Var.f18656c = rating;
-            this.f18673a.u(a0Var);
+            a0Var.f18655c = rating;
+            this.f18672a.u(a0Var);
             a2.d(null);
         }
         a0Var = null;
-        this.f18673a.u(a0Var);
+        this.f18672a.u(a0Var);
         a2.d(null);
     }
 
@@ -412,7 +412,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.y();
+        this.f18672a.y();
         a2.d(null);
     }
 
@@ -423,7 +423,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.z();
+        this.f18672a.z();
         a2.d(null);
     }
 
@@ -434,7 +434,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.A(j10);
+        this.f18672a.A(j10);
         a2.d(null);
     }
 
@@ -445,7 +445,7 @@ public final class k extends MediaSession.Callback {
             return;
         }
         b(a2);
-        this.f18673a.B();
+        this.f18672a.B();
         a2.d(null);
     }
 }

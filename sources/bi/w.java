@@ -4,18 +4,18 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.m91;
-import org.telegram.ui.Components.om0;
-public final class w extends m91 {
+import org.telegram.ui.Components.n91;
+import org.telegram.ui.Components.pm0;
+public final class w extends n91 {
     public final x[] f5584a = new x[3];
     public final Context f5585b;
-    public final om0 f5586c;
+    public final pm0 f5586c;
     public final y d;
 
-    public w(y yVar, Context context, om0 om0Var) {
+    public w(y yVar, Context context, pm0 pm0Var) {
         this.d = yVar;
         this.f5585b = context;
-        this.f5586c = om0Var;
+        this.f5586c = pm0Var;
     }
 
     @Override

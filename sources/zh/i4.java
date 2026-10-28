@@ -6,18 +6,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.ak;
+import org.telegram.messenger.bk;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.k80;
+import org.telegram.ui.Components.l80;
 public final class i4 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.w0 f53047a;
-    public final long f53048b;
-    public final l4 f53049c;
+    public final org.telegram.ui.ActionBar.w0 f53105a;
+    public final long f53106b;
+    public final l4 f53107c;
 
     public i4(l4 l4Var, org.telegram.ui.ActionBar.w0 w0Var, long j10) {
-        this.f53049c = l4Var;
-        this.f53047a = w0Var;
-        this.f53048b = j10;
+        this.f53107c = l4Var;
+        this.f53105a = w0Var;
+        this.f53106b = j10;
     }
 
     @Override
@@ -28,20 +28,20 @@ public final class i4 extends org.telegram.ui.ActionBar.j {
         boolean canUserDoAction;
         org.telegram.ui.ActionBar.g1 g1Var;
         org.telegram.ui.ActionBar.g1 g1Var2;
-        l4 l4Var = this.f53049c;
+        l4 l4Var = this.f53107c;
         t9 t9Var = l4Var.Y;
         if (i10 == 1) {
-            k80 k80Var = l4Var.f53105d0;
-            if (k80Var != null) {
-                k80Var.u();
+            l80 l80Var = l4Var.f53163d0;
+            if (l80Var != null) {
+                l80Var.u();
             }
             org.telegram.ui.ActionBar.h3 h3Var = l4Var.container;
             u6Var = ((org.telegram.ui.ActionBar.k3) l4Var).resourcesProvider;
-            k80 F = k80.F(h3Var, u6Var, this.f53047a);
-            l4Var.f53105d0 = F;
+            l80 F = l80.F(h3Var, u6Var, this.f53105a);
+            l4Var.f53163d0 = F;
             i11 = ((org.telegram.ui.ActionBar.k3) l4Var).currentAccount;
             long clientUserId = UserConfig.getInstance(i11).getClientUserId();
-            long j10 = this.f53048b;
+            long j10 = this.f53106b;
             if (j10 == clientUserId) {
                 canUserDoAction = true;
             } else if (j10 < 0) {
@@ -73,20 +73,20 @@ public final class i4 extends org.telegram.ui.ActionBar.j {
                 g1Var = null;
                 g1Var2 = null;
             }
-            ak akVar = new ak(this, g1Var3, h, h10, h11, h12, canUserDoAction, g1Var, g1Var2, 4);
-            akVar.run();
-            g1Var3.setOnClickListener(new org.telegram.ui.web.c(16, this, akVar));
-            r2.j(h, t9Var, akVar, 1);
-            r2.j(h10, t9Var, akVar, 2);
-            r2.j(h11, t9Var, akVar, 4);
-            r2.j(h12, t9Var, akVar, 8);
+            bk bkVar = new bk(this, g1Var3, h, h10, h11, h12, canUserDoAction, g1Var, g1Var2, 4);
+            bkVar.run();
+            g1Var3.setOnClickListener(new org.telegram.ui.web.c(16, this, bkVar));
+            r2.j(h, t9Var, bkVar, 1);
+            r2.j(h10, t9Var, bkVar, 2);
+            r2.j(h11, t9Var, bkVar, 4);
+            r2.j(h12, t9Var, bkVar, 8);
             if (canUserDoAction) {
-                r2.j(g1Var, t9Var, akVar, 256);
-                r2.j(g1Var2, t9Var, akVar, 512);
+                r2.j(g1Var, t9Var, bkVar, 256);
+                r2.j(g1Var2, t9Var, bkVar, 512);
             }
             F.Y = true;
             F.J = false;
-            F.f29868s = 0;
+            F.f30168s = 0;
             F.Z();
         } else if (i10 == -1) {
             l4Var.dismiss();

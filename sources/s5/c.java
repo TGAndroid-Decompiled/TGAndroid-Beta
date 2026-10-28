@@ -1,17 +1,17 @@
 package s5;
 public final class c {
-    public static final c f47881a;
-    public static final c f47882b;
-    public static final c f47883c;
+    public static final c f47916a;
+    public static final c f47917b;
+    public static final c f47918c;
     public static final c[] d;
 
     static {
         ?? r02 = new Enum("NETWORK_UNMETERED", 0);
-        f47881a = r02;
+        f47916a = r02;
         ?? r12 = new Enum("DEVICE_IDLE", 1);
-        f47882b = r12;
+        f47917b = r12;
         ?? r32 = new Enum("DEVICE_CHARGING", 2);
-        f47883c = r32;
+        f47918c = r32;
         d = new c[]{r02, r12, r32};
     }
 

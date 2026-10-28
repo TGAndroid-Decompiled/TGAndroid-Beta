@@ -1,19 +1,145 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-public final class x70 extends c6 {
-    public final cy f45688f;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class x70 extends ViewGroup {
+    public AnimatorSet f45618a;
+    public boolean f45619b;
+    public final ArrayList f45620c;
+    public org.telegram.ui.Components.x30 d;
+    public int e;
+    public final y70 f45621f;
 
-    public x70(Bundle bundle, cy cyVar) {
-        super(bundle);
-        this.f45688f = cyVar;
+    public x70(y70 y70Var, Context context) {
+        super(context);
+        this.f45621f = y70Var;
+        this.f45620c = new ArrayList();
+    }
+
+    public final void a(org.telegram.ui.Components.x30 x30Var) {
+        y70 y70Var = this.f45621f;
+        y70Var.f45875y.remove(x30Var.getKey());
+        y70Var.E.remove(x30Var);
+        x30Var.setOnClickListener(null);
+        AnimatorSet animatorSet = this.f45618a;
+        if (animatorSet != null && animatorSet.isRunning()) {
+            this.f45618a.setupEndValues();
+            this.f45618a.cancel();
+        }
+        this.f45619b = false;
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f45618a = animatorSet2;
+        animatorSet2.addListener(new org.telegram.ui.Components.ml0(8, this, x30Var));
+        this.f45618a.setInterpolator(org.telegram.ui.Components.ds.h);
+        this.f45618a.setDuration(320L);
+        this.d = x30Var;
+        ArrayList arrayList = this.f45620c;
+        arrayList.clear();
+        arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_X, 1.0f, 0.75f));
+        arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 1.0f, 0.75f));
+        arrayList.add(ObjectAnimator.ofFloat(this.d, View.ALPHA, 1.0f, 0.0f));
+        requestLayout();
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        super.onTransitionAnimationEnd(z10, z11);
-        if (z10 && !z11) {
-            this.f45688f.removeSelfFromStack();
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        ArrayList arrayList;
+        float min;
+        int i12;
+        int childCount = getChildCount();
+        int size = View.MeasureSpec.getSize(i10);
+        int dp = AndroidUtilities.dp(8.0f);
+        int i13 = size - (dp * 2);
+        int i14 = dp;
+        int i15 = i14;
+        int i16 = 0;
+        int i17 = 0;
+        int i18 = 0;
+        int i19 = 0;
+        while (true) {
+            arrayList = this.f45620c;
+            if (i16 >= childCount) {
+                break;
+            }
+            View childAt = getChildAt(i16);
+            if (childAt instanceof org.telegram.ui.Components.x30) {
+                childAt.measure(View.MeasureSpec.makeMeasureSpec(i13, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
+                if (childAt != this.d && childAt.getMeasuredWidth() + i18 > i13) {
+                    i15 += AndroidUtilities.dp(34.0f);
+                    i18 = 0;
+                }
+                if (childAt.getMeasuredWidth() + i19 > i13) {
+                    i14 += AndroidUtilities.dp(34.0f);
+                    i19 = 0;
+                }
+                int i20 = dp + i18;
+                if (!this.f45619b) {
+                    org.telegram.ui.Components.x30 x30Var = this.d;
+                    if (childAt == x30Var) {
+                        childAt.setTranslationX(dp + i19);
+                        childAt.setTranslationY(i14);
+                    } else if (x30Var != null) {
+                        float f7 = i20;
+                        if (childAt.getTranslationX() != f7) {
+                            i12 = 1;
+                            arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_X, f7));
+                        } else {
+                            i12 = 1;
+                        }
+                        float f10 = i15;
+                        if (childAt.getTranslationY() != f10) {
+                            float[] fArr = new float[i12];
+                            fArr[0] = f10;
+                            arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_Y, fArr));
+                        }
+                    } else {
+                        childAt.setTranslationX(i20);
+                        childAt.setTranslationY(i15);
+                    }
+                }
+                if (childAt != this.d) {
+                    int D = org.telegram.messenger.t.D(6.0f, childAt.getMeasuredWidth(), i18);
+                    i17 = Math.max(i17, i15);
+                    i18 = D;
+                }
+                i19 = org.telegram.messenger.t.D(6.0f, childAt.getMeasuredWidth(), i19);
+            }
+            i16++;
+        }
+        int D2 = org.telegram.messenger.t.D(28.0f, i17, dp);
+        if (!this.f45619b) {
+            AnimatorSet animatorSet = this.f45618a;
+            if (animatorSet != null) {
+                this.e = D2;
+                animatorSet.playTogether(arrayList);
+                this.f45618a.start();
+                this.f45619b = true;
+            } else {
+                this.e = Math.max(D2, AndroidUtilities.dp(28.0f) + i14 + dp);
+            }
+        }
+        y70 y70Var = this.f45621f;
+        oe.e eVar = y70Var.f45866a;
+        if (y70Var.E.isEmpty()) {
+            min = 0.0f;
+        } else {
+            min = Math.min(D2, y70Var.f45873w);
+        }
+        eVar.a(min);
+        setMeasuredDimension(size, this.e);
     }
 }

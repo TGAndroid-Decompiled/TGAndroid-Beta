@@ -21,13 +21,13 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.rd0;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.Components.sd0;
 import org.telegram.ui.Components.w40;
 import org.telegram.ui.Components.zq;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class g1 extends org.telegram.ui.ActionBar.k3 {
     public final bg.a E;
     public final bg.a F;
@@ -43,7 +43,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
     public final boolean f4634c;
     public final int d;
     public final w40 e;
-    public final rd0 f4635f;
+    public final sd0 f4635f;
     public final EditTextBoldCursor h;
     public final TextView f4636n;
     public final e1 f4637r;
@@ -53,7 +53,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
     public final ImageView f4640x;
     public final bg.a f4641y;
 
-    public g1(final Context context, int i10, long j10, MessageSuggestionParams messageSuggestionParams, un unVar, final org.telegram.ui.ActionBar.u6 u6Var, int i11, Utilities.Callback callback) {
+    public g1(final Context context, int i10, long j10, MessageSuggestionParams messageSuggestionParams, wn wnVar, final org.telegram.ui.ActionBar.u6 u6Var, int i11, Utilities.Callback callback) {
         super(1, context, u6Var, true);
         boolean z10;
         int i12;
@@ -89,8 +89,8 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
             cVar.setAlpha(0.0f);
             cVar.setEnabled(false);
             cVar.setClickable(false);
-            this.container.addView(cVar, gb1.h(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
-            gb1.b(cVar);
+            this.container.addView(cVar, kb1.h(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
+            kb1.b(cVar);
             cVar.setOnClickListener(new View.OnClickListener(this) {
                 public final g1 f4416b;
 
@@ -109,7 +109,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
                             return;
                         default:
                             g1 g1Var = this.f4416b;
-                            org.telegram.ui.Components.g5.S(context, g1Var.I, new a1.c(g1Var, 5), u6Var, 0).f22601a.show();
+                            org.telegram.ui.Components.g5.S(context, g1Var.I, new a1.c(g1Var, 5), u6Var, 0).f22602a.show();
                             return;
                     }
                 }
@@ -117,11 +117,11 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         } else {
             this.f4633b = null;
         }
-        fixNavigationBarKey(org.telegram.ui.ActionBar.y6.f23427h5);
+        fixNavigationBarKey(org.telegram.ui.ActionBar.y6.f23428h5);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        LinearLayout d = vh.d(context, 0);
-        linearLayout.addView(d, gb1.x(-1, 56, 55, 0, 0, 0, 0));
+        LinearLayout d = wh.d(context, 0);
+        linearLayout.addView(d, kb1.x(-1, 56, 55, 0, 0, 0, 0));
         TextView textView = new TextView(context);
         int i13 = org.telegram.ui.ActionBar.y6.G6;
         org.telegram.ui.ActionBar.f7.V(textView, i13, null);
@@ -135,16 +135,16 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         textView.setText(LocaleController.getString(i12));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        d.addView(textView, gb1.t(-1, -1, 1.0f, 119, 22, 0, 22, 0));
+        d.addView(textView, kb1.t(-1, -1, 1.0f, 119, 22, 0, 22, 0));
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_close_white);
         int i14 = org.telegram.ui.ActionBar.y6.W5;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         org.telegram.ui.ActionBar.f7.t(imageView, i14, u6Var, mode);
-        gb1.b(imageView);
+        kb1.b(imageView);
         imageView.setOnClickListener(new ai.s(this, 4));
-        d.addView(imageView, gb1.t(48, 48, 0.0f, 21, 0, 0, 6, 0));
+        d.addView(imageView, kb1.t(48, 48, 0.0f, 21, 0, 0, 6, 0));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.h = editTextBoldCursor;
         if (z10) {
@@ -154,14 +154,14 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferStars));
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferTON));
             w40Var.b(arrayList, new x0(this, 1));
-            linearLayout.addView(w40Var, gb1.o(18.0f, 0.0f, 18.0f, 12.0f, -1, -2));
+            linearLayout.addView(w40Var, kb1.o(18.0f, 0.0f, 18.0f, 12.0f, -1, -2));
         } else {
             this.e = null;
         }
-        LinearLayout d10 = vh.d(context, 1);
-        linearLayout.addView(d10, gb1.p(1.0f, -1, -2));
-        rd0 rd0Var = new rd0(context, null);
-        this.f4635f = rd0Var;
+        LinearLayout d10 = wh.d(context, 1);
+        linearLayout.addView(d10, kb1.p(1.0f, -1, -2));
+        sd0 sd0Var = new sd0(context, null);
+        this.f4635f = sd0Var;
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
         editTextBoldCursor.setImeOptions(268435462);
@@ -171,8 +171,8 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         editTextBoldCursor.setPadding(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
         org.telegram.ui.ActionBar.f7.V(editTextBoldCursor, i13, null);
         editTextBoldCursor.requestFocus();
-        rd0Var.setLeftPadding(AndroidUtilities.dp(28.0f));
-        rd0Var.e(editTextBoldCursor);
+        sd0Var.setLeftPadding(AndroidUtilities.dp(28.0f));
+        sd0Var.e(editTextBoldCursor);
         bg.a aVar = messageSuggestionParams.amount;
         if (aVar != null && !aVar.k()) {
             z11 = true;
@@ -184,31 +184,31 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         } else {
             f7 = 0.0f;
         }
-        rd0Var.b(1.0f, f7, false);
-        rd0Var.setForceUseCenter2(true);
+        sd0Var.b(1.0f, f7, false);
+        sd0Var.setForceUseCenter2(true);
         editTextBoldCursor.setOnFocusChangeListener(new bh.j0(this, 3));
-        rd0Var.addView(editTextBoldCursor, gb1.i(-1, -2, 48));
-        d10.addView(rd0Var, gb1.o(18.0f, 0.0f, 18.0f, 0.0f, -1, 58));
+        sd0Var.addView(editTextBoldCursor, kb1.i(-1, -2, 48));
+        d10.addView(sd0Var, kb1.o(18.0f, 0.0f, 18.0f, 0.0f, -1, 58));
         ImageView imageView2 = new ImageView(context);
         this.f4639w = imageView2;
         imageView2.setImageResource(R.drawable.star_small_inner);
-        rd0Var.addView(imageView2, gb1.h(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
+        sd0Var.addView(imageView2, kb1.h(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView3 = new ImageView(context);
         this.f4640x = imageView3;
         imageView3.setImageResource(R.drawable.mini_gram_72);
-        rd0Var.addView(imageView3, gb1.h(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
+        sd0Var.addView(imageView3, kb1.h(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.s6 s6Var = new org.telegram.ui.Components.s6(context, false, false, false);
         this.v = s6Var;
-        int i15 = org.telegram.ui.ActionBar.y6.f23748y6;
+        int i15 = org.telegram.ui.ActionBar.y6.f23749y6;
         org.telegram.ui.ActionBar.f7.Z(s6Var, i15, null);
         s6Var.setTextSize(AndroidUtilities.dp(13.0f));
         s6Var.setGravity(5);
-        rd0Var.addView(s6Var, gb1.h(-2, -1.0f, 21, 0.0f, 0.0f, 16.0f, 0.0f));
+        sd0Var.addView(s6Var, kb1.h(-2, -1.0f, 21, 0.0f, 0.0f, 16.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.f4636n = textView2;
         org.telegram.ui.ActionBar.f7.V(textView2, i15, null);
         textView2.setTextSize(1, 13.0f);
-        d10.addView(textView2, gb1.x(-1, -2, 55, 33, 4, 33, 0));
+        d10.addView(textView2, kb1.x(-1, -2, 55, 33, 4, 33, 0));
         ?? editTextBoldCursor2 = new EditTextBoldCursor(context);
         this.f4637r = editTextBoldCursor2;
         editTextBoldCursor2.setCursorSize(AndroidUtilities.dp(20.0f));
@@ -221,12 +221,12 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         editTextBoldCursor2.setFocusable(false);
         editTextBoldCursor2.setClickable(false);
         editTextBoldCursor2.setEnabled(false);
-        rd0 rd0Var2 = new rd0(context, null);
-        rd0Var2.setText(LocaleController.getString(R.string.PostSuggestionsOfferTitleTime));
-        rd0Var2.e(editTextBoldCursor2);
-        rd0Var2.addView((View) editTextBoldCursor2, gb1.h(-1, -2.0f, 48, 0.0f, 0.0f, 48.0f, 0.0f));
-        gb1.c(rd0Var2, 0.02f, 1.2f);
-        rd0Var2.setOnClickListener(new View.OnClickListener(this) {
+        sd0 sd0Var2 = new sd0(context, null);
+        sd0Var2.setText(LocaleController.getString(R.string.PostSuggestionsOfferTitleTime));
+        sd0Var2.e(editTextBoldCursor2);
+        sd0Var2.addView((View) editTextBoldCursor2, kb1.h(-1, -2.0f, 48, 0.0f, 0.0f, 48.0f, 0.0f));
+        kb1.c(sd0Var2, 0.02f, 1.2f);
+        sd0Var2.setOnClickListener(new View.OnClickListener(this) {
             public final g1 f4416b;
 
             {
@@ -244,16 +244,16 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
                         return;
                     default:
                         g1 g1Var = this.f4416b;
-                        org.telegram.ui.Components.g5.S(context, g1Var.I, new a1.c(g1Var, 5), u6Var, 0).f22601a.show();
+                        org.telegram.ui.Components.g5.S(context, g1Var.I, new a1.c(g1Var, 5), u6Var, 0).f22602a.show();
                         return;
                 }
             }
         });
-        d10.addView(rd0Var2, gb1.o(18.0f, 24.0f, 18.0f, 0.0f, -1, 58));
+        d10.addView(sd0Var2, kb1.o(18.0f, 24.0f, 18.0f, 0.0f, -1, 58));
         ImageView imageView4 = new ImageView(context);
         imageView4.setImageResource(R.drawable.arrow_more);
         org.telegram.ui.ActionBar.f7.t(imageView4, i14, u6Var, mode);
-        rd0Var2.addView(imageView4, gb1.h(24, 24.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
+        sd0Var2.addView(imageView4, kb1.h(24, 24.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
         TextView textView3 = new TextView(context);
         org.telegram.ui.ActionBar.f7.V(textView3, i15, null);
         textView3.setTextSize(1, 13.0f);
@@ -262,17 +262,17 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         spannableStringBuilder.append(' ');
         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PostSuggestionsAddTimeHint2, Long.valueOf(MessagesController.getInstance(i10).config.starsSuggestedPostAgeMin.get(TimeUnit.HOURS)))));
         textView3.setText(spannableStringBuilder);
-        d10.addView(textView3, gb1.x(-1, -2, 55, 33, 4, 33, 24));
+        d10.addView(textView3, kb1.x(-1, -2, 55, 33, 4, 33, 24));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
-        linearLayout.addView(linearLayout2, gb1.u(-1, -2, 80));
+        linearLayout.addView(linearLayout2, kb1.u(-1, -2, 80));
         fi.d dVar = new fi.d(context, u6Var, true);
         this.f4638s = dVar;
-        dVar.setOnClickListener(new d1(this, unVar, i10, context, u6Var, j10, callback));
+        dVar.setOnClickListener(new d1(this, wnVar, i10, context, u6Var, j10, callback));
         if (i11 == 1) {
             dVar.i(LocaleController.getString(R.string.PostSuggestionsOfferChangeUpdateTerms), false, true);
         }
-        linearLayout2.addView(dVar, gb1.o(18.0f, 0.0f, 18.0f, 8.0f, -1, 48));
+        linearLayout2.addView(dVar, kb1.o(18.0f, 0.0f, 18.0f, 8.0f, -1, 48));
         bg.a aVar2 = messageSuggestionParams.amount;
         if (aVar2 != null) {
             z12 = false;
@@ -342,7 +342,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
                 if (!z10) {
                     f11 = 0.0f;
                 }
-                vh.p(scaleY, f11, 180L);
+                wh.p(scaleY, f11, 180L);
             }
         }
     }
@@ -355,7 +355,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
             z11 = false;
         }
         fi.d dVar = this.f4638s;
-        if (dVar.f10687c0 != z11) {
+        if (dVar.f10686c0 != z11) {
             dVar.setEnabled(z11);
             dVar.setClickable(z11);
             float f7 = 0.6f;
@@ -364,7 +364,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
                 if (z11) {
                     f7 = 1.0f;
                 }
-                vh.p(animate, f7, 180L);
+                wh.p(animate, f7, 180L);
                 return;
             }
             if (z11) {
@@ -461,14 +461,14 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         } else {
             z15 = true;
         }
-        rd0 rd0Var = this.f4635f;
+        sd0 sd0Var = this.f4635f;
         if (z15) {
             if ((this.J & (-9)) == 0) {
                 f17 = 0.0f;
             } else {
                 f17 = 1.0f;
             }
-            rd0Var.a(f17);
+            sd0Var.a(f17);
         }
         bg.b bVar3 = bg.b.f3980a;
         EditTextBoldCursor editTextBoldCursor = this.h;
@@ -561,7 +561,7 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
         if (z13 || z15) {
             int i13 = this.J;
             if ((i13 & 4) != 0) {
-                rd0Var.setText(LocaleController.formatString(R.string.SuggestAPostTooMuch, p().f()));
+                sd0Var.setText(LocaleController.formatString(R.string.SuggestAPostTooMuch, p().f()));
             } else if ((i13 & 2) != 0) {
                 int i14 = R.string.SuggestAPostTooSmall;
                 if (this.H.f3978a == bVar2) {
@@ -569,14 +569,14 @@ public final class g1 extends org.telegram.ui.ActionBar.k3 {
                 } else {
                     aVar3 = aVar2;
                 }
-                rd0Var.setText(LocaleController.formatString(i14, aVar3.f()));
+                sd0Var.setText(LocaleController.formatString(i14, aVar3.f()));
             } else {
                 if (this.H.f3978a == bVar3) {
                     i10 = R.string.PostSuggestionsOfferTitlePriceStars;
                 } else {
                     i10 = R.string.PostSuggestionsOfferTitlePriceTON;
                 }
-                rd0Var.setText(LocaleController.getString(i10));
+                sd0Var.setText(LocaleController.getString(i10));
             }
         }
         if (z13 || z14 || z15) {

@@ -10,18 +10,18 @@ import android.util.Log;
 import com.google.android.gms.internal.cast.y;
 import java.util.regex.Matcher;
 public final class d extends y {
-    public final a f16408a;
+    public final a f16407a;
 
     public d(a aVar, Looper looper) {
         super(looper);
-        this.f16408a = aVar;
+        this.f16407a = aVar;
         Looper.getMainLooper();
     }
 
     @Override
     public final void handleMessage(Message message) {
         String str;
-        a aVar = this.f16408a;
+        a aVar = this.f16407a;
         if (message != null) {
             Object obj = message.obj;
             if (obj instanceof Intent) {
@@ -30,10 +30,10 @@ public final class d extends y {
                 if (intent.hasExtra("google.messenger")) {
                     Parcelable parcelableExtra = intent.getParcelableExtra("google.messenger");
                     if (parcelableExtra instanceof g) {
-                        aVar.f16402g = (g) parcelableExtra;
+                        aVar.f16401g = (g) parcelableExtra;
                     }
                     if (parcelableExtra instanceof Messenger) {
-                        aVar.f16401f = (Messenger) parcelableExtra;
+                        aVar.f16400f = (Messenger) parcelableExtra;
                     }
                 }
                 Intent intent2 = (Intent) message.obj;
@@ -72,11 +72,11 @@ public final class d extends y {
                         Log.w("Rpc", "Unexpected structured response ".concat(stringExtra2));
                         return;
                     }
-                    synchronized (aVar.f16398a) {
+                    synchronized (aVar.f16397a) {
                         int i10 = 0;
                         while (true) {
                             try {
-                                a0.l lVar = aVar.f16398a;
+                                a0.l lVar = aVar.f16397a;
                                 if (i10 < lVar.f27c) {
                                     aVar.d((String) lVar.e(i10), intent2.getExtras());
                                     i10++;
@@ -88,7 +88,7 @@ public final class d extends y {
                     }
                     return;
                 }
-                Matcher matcher = a.f16397j.matcher(stringExtra);
+                Matcher matcher = a.f16396j.matcher(stringExtra);
                 if (!matcher.matches()) {
                     if (Log.isLoggable("Rpc", 3)) {
                         Log.d("Rpc", "Unexpected response string: ".concat(stringExtra));

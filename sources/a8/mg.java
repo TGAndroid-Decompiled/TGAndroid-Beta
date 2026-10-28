@@ -10,11 +10,11 @@ public final class mg {
         switch (i10) {
             case 1:
                 this.f618b = new AtomicLong(-1L);
-                this.f617a = new com.google.android.gms.common.api.j(context, q6.b.f46980k, new o6.p("mlkit:vision"), com.google.android.gms.common.api.i.f6478c);
+                this.f617a = new com.google.android.gms.common.api.j(context, q6.b.f47015k, new o6.p("mlkit:vision"), com.google.android.gms.common.api.i.f6478c);
                 return;
             default:
                 this.f618b = new AtomicLong(-1L);
-                this.f617a = new com.google.android.gms.common.api.j(context, q6.b.f46980k, new o6.p("mlkit:vision"), com.google.android.gms.common.api.i.f6478c);
+                this.f617a = new com.google.android.gms.common.api.j(context, q6.b.f47015k, new o6.p("mlkit:vision"), com.google.android.gms.common.api.i.f6478c);
                 return;
         }
     }

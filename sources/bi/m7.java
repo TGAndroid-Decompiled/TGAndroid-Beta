@@ -16,9 +16,9 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.yj0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class m7 extends View {
     public ValueAnimator E;
     public long F;
@@ -27,7 +27,7 @@ public final class m7 extends View {
     public boolean I;
     public final ArrayList J;
     public final int[] K;
-    public final un f5087a;
+    public final wn f5087a;
     public org.telegram.ui.Cells.z f5088b;
     public int f5089c;
     public final int[] d;
@@ -42,8 +42,8 @@ public final class m7 extends View {
     public final f2 f5095x;
     public float f5096y;
 
-    public m7(un unVar) {
-        super(unVar.getParentActivity());
+    public m7(wn wnVar) {
+        super(wnVar.getParentActivity());
         this.d = new int[2];
         this.e = new int[2];
         this.f5090f = new RectF();
@@ -56,7 +56,7 @@ public final class m7 extends View {
         new Matrix();
         this.J = new ArrayList();
         this.K = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
-        this.f5087a = unVar;
+        this.f5087a = wnVar;
         r6Var.setCallback(this);
         r6Var.r(false, true);
         r6Var.w(AndroidUtilities.dp(40.0f));
@@ -64,9 +64,9 @@ public final class m7 extends View {
         r6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
         r6Var.M = AndroidUtilities.displaySize.x;
         r6Var.u(-1);
-        r6Var.f32121b = 17;
+        r6Var.f32142b = 17;
         this.H = new k7(this, 0);
-        this.f5095x = new f2(9, this, unVar);
+        this.f5095x = new f2(9, this, wnVar);
     }
 
     private MessageObject getMessageObject() {
@@ -84,26 +84,26 @@ public final class m7 extends View {
         String str;
         if (getMessageObject() != null) {
             MessageObject messageObject = getMessageObject();
-            un unVar = this.f5087a;
-            ca y3 = ca.y(unVar.getCurrentAccount(), false);
+            wn wnVar = this.f5087a;
+            ca y3 = ca.y(wnVar.getCurrentAccount(), false);
             long E = y3.E(messageObject);
             if (y3.e && y3.q(false, false, null).amount < E) {
-                aa aaVar = ca.y(unVar.getCurrentAccount(), false).B;
+                aa aaVar = ca.y(wnVar.getCurrentAccount(), false).B;
                 if (aaVar != null) {
                     aaVar.a();
                 }
-                long a2 = unVar.a();
+                long a2 = wnVar.a();
                 if (a2 >= 0) {
-                    str = UserObject.getForcedFirstName(unVar.getMessagesController().getUser(Long.valueOf(a2)));
+                    str = UserObject.getForcedFirstName(wnVar.getMessagesController().getUser(Long.valueOf(a2)));
                 } else {
-                    TLRPC.Chat chat = unVar.getMessagesController().getChat(Long.valueOf(-a2));
+                    TLRPC.Chat chat = wnVar.getMessagesController().getChat(Long.valueOf(-a2));
                     if (chat == null) {
                         str = "";
                     } else {
                         str = chat.title;
                     }
                 }
-                new tc(unVar.getParentActivity(), unVar.getResourceProvider(), E, 5, str, new y2(this, y3, messageObject, E, 3), 0L).show();
+                new tc(wnVar.getParentActivity(), wnVar.getResourceProvider(), E, 5, str, new y2(this, y3, messageObject, E, 3), 0L).show();
             }
         }
     }
@@ -138,23 +138,23 @@ public final class m7 extends View {
             MessageObject messageObject = getMessageObject();
             bh.y0 reactionsLayoutInBubble = getReactionsLayoutInBubble();
             if (messageObject != null && reactionsLayoutInBubble != null) {
-                un unVar = this.f5087a;
-                ca y3 = ca.y(unVar.getCurrentAccount(), false);
+                wn wnVar = this.f5087a;
+                ca y3 = ca.y(wnVar.getCurrentAccount(), false);
                 while (true) {
                     arrayList = this.J;
                     if (arrayList.size() <= 4) {
                         break;
                     }
-                    ((xj0) arrayList.remove(0)).C(true);
+                    ((yj0) arrayList.remove(0)).C(true);
                 }
                 Random random = Utilities.fastRandom;
                 int[] iArr = this.K;
-                xj0 xj0Var = new xj0(iArr[random.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
-                xj0Var.R(this);
-                xj0Var.J(true);
-                xj0Var.K(0);
-                xj0Var.start();
-                arrayList.add(xj0Var);
+                yj0 yj0Var = new yj0(iArr[random.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+                yj0Var.R(this);
+                yj0Var.J(true);
+                yj0Var.K(0);
+                yj0Var.start();
+                arrayList.add(yj0Var);
                 invalidate();
                 bh.v0 m10 = reactionsLayoutInBubble.m("stars");
                 if (m10 != null) {
@@ -165,7 +165,7 @@ public final class m7 extends View {
                         performHapticFeedback(3, 1);
                     } catch (Exception unused) {
                     }
-                    ca.y(unVar.getCurrentAccount(), false).d0(messageObject, this.f5087a, 1L, true, false, null);
+                    ca.y(wnVar.getCurrentAccount(), false).d0(messageObject, this.f5087a, 1L, true, false, null);
                 }
                 org.telegram.ui.Components.r6 r6Var = this.v;
                 r6Var.a();
@@ -183,8 +183,8 @@ public final class m7 extends View {
                 this.G = Utilities.clamp(1.0f - (((float) (j10 - 100)) / 200.0f), 1.0f, 0.0f) * this.G;
                 int measuredWidth = getMeasuredWidth();
                 int[] iArr2 = this.e;
-                if (measuredWidth == 0 && unVar.getLayoutContainer() != null) {
-                    unVar.getLayoutContainer().getLocationInWindow(iArr2);
+                if (measuredWidth == 0 && wnVar.getLayoutContainer() != null) {
+                    wnVar.getLayoutContainer().getLocationInWindow(iArr2);
                 } else {
                     getLocationInWindow(iArr2);
                 }

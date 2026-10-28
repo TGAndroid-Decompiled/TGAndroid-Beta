@@ -7,18 +7,18 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 public final class w10 implements View.OnLongClickListener {
-    public final int f34337a;
-    public final Object f34338b;
+    public final int f34423a;
+    public final Object f34424b;
 
     public w10(Object obj, int i10) {
-        this.f34337a = i10;
-        this.f34338b = obj;
+        this.f34423a = i10;
+        this.f34424b = obj;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        int i10 = this.f34337a;
-        Object obj = this.f34338b;
+        int i10 = this.f34423a;
+        Object obj = this.f34424b;
         switch (i10) {
             case 0:
                 final FragmentContextView fragmentContextView = (FragmentContextView) obj;
@@ -27,15 +27,15 @@ public final class w10 implements View.OnLongClickListener {
                 fragmentContextView.I.e(playbackSpeed, false);
                 org.telegram.ui.ActionBar.c1 c1Var = fragmentContextView.I;
                 int i11 = org.telegram.ui.ActionBar.y6.G8;
-                org.telegram.ui.ActionBar.f7.i(i11, c1Var, fragmentContextView.f26170q0);
+                org.telegram.ui.ActionBar.f7.i(i11, c1Var, fragmentContextView.f26172q0);
                 org.telegram.ui.ActionBar.c1 c1Var2 = fragmentContextView.I;
-                c1Var2.N = fragmentContextView.h instanceof org.telegram.ui.un;
+                c1Var2.N = fragmentContextView.h instanceof org.telegram.ui.wn;
                 c1Var2.F.setShader(null);
                 c1Var2.h = null;
-                Bitmap bitmap = c1Var2.f22530f;
+                Bitmap bitmap = c1Var2.f22531f;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    c1Var2.f22530f = null;
+                    c1Var2.f22531f = null;
                 }
                 fragmentContextView.G.H(org.telegram.ui.ActionBar.y6.x0(null, i11, false));
                 fragmentContextView.G.V();
@@ -56,16 +56,16 @@ public final class w10 implements View.OnLongClickListener {
                 MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
                 return true;
             case 1:
-                le0 le0Var = (le0) obj;
-                le0Var.f30198r.setText("");
-                fi.t8.a(le0Var.f30199s, true);
-                Drawable drawable = le0Var.f30185a;
-                if (drawable instanceof uc0) {
-                    ((uc0) drawable).x();
+                me0 me0Var = (me0) obj;
+                me0Var.f30526r.setText("");
+                fi.t8.a(me0Var.f30527s, true);
+                Drawable drawable = me0Var.f30513a;
+                if (drawable instanceof vc0) {
+                    ((vc0) drawable).x();
                 }
                 return true;
             default:
-                return mr0.q((mr0) obj);
+                return nr0.q((nr0) obj);
         }
     }
 }

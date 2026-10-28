@@ -15,9 +15,9 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class p1 extends AccessibilityNodeProvider {
-    public final Path f24626a = new Path();
-    public final RectF f24627b = new RectF();
-    public final Rect f24628c = new Rect();
+    public final Path f24628a = new Path();
+    public final RectF f24629b = new RectF();
+    public final Rect f24630c = new Rect();
     public final s1 d;
 
     public p1(s1 s1Var) {
@@ -31,7 +31,7 @@ public final class p1 extends AccessibilityNodeProvider {
         s1 s1Var = this.d;
         if (z10) {
             int i11 = i10 - 3000;
-            CharSequence charSequence = s1Var.f25365y7.caption;
+            CharSequence charSequence = s1Var.f25367y7.caption;
             if (!(charSequence instanceof Spannable) || i11 < 0) {
                 return null;
             }
@@ -43,7 +43,7 @@ public final class p1 extends AccessibilityNodeProvider {
             return clickableSpanArr[i11];
         }
         int i12 = i10 - 2000;
-        CharSequence charSequence2 = s1Var.f25365y7.messageText;
+        CharSequence charSequence2 = s1Var.f25367y7.messageText;
         if (!(charSequence2 instanceof Spannable) || i12 < 0) {
             return null;
         }
@@ -58,7 +58,7 @@ public final class p1 extends AccessibilityNodeProvider {
     public final RichMessageLayout.RichBlock b(int i10, int[] iArr) {
         RichMessageLayout richMessageLayout;
         int i11;
-        MessageObject messageObject = this.d.f25365y7;
+        MessageObject messageObject = this.d.f25367y7;
         if (messageObject != null && (richMessageLayout = messageObject.richLayout) != null && i10 - 6000 >= 0) {
             int i12 = 0;
             for (int i13 = 0; i13 < richMessageLayout.blocks.size(); i13++) {
@@ -90,7 +90,7 @@ public final class p1 extends AccessibilityNodeProvider {
         TLRPC.MessageReplyHeader messageReplyHeader;
         s1 s1Var = this.d;
         ArrayList arrayList = s1Var.Y5;
-        ArrayList arrayList2 = s1Var.f25220o7;
+        ArrayList arrayList2 = s1Var.f25222o7;
         if (i10 == -1) {
             s1Var.performAccessibilityAction(i11, bundle);
             return true;
@@ -134,12 +134,12 @@ public final class p1 extends AccessibilityNodeProvider {
                         if (i12 < arrayList2.size()) {
                             d0 d0Var = (d0) arrayList2.get(i12);
                             j1 j1Var3 = s1Var.Jc;
-                            if (j1Var3 != null && !d0Var.f23971m) {
-                                BotInlineKeyboard.ButtonCustom buttonCustom = d0Var.f23968j;
+                            if (j1Var3 != null && !d0Var.f23972m) {
+                                BotInlineKeyboard.ButtonCustom buttonCustom = d0Var.f23969j;
                                 if (buttonCustom != null) {
                                     j1Var3.C(s1Var, buttonCustom);
                                 } else {
-                                    TL_keyboard.KeyboardInlineButton keyboardInlineButton = d0Var.f23967i;
+                                    TL_keyboard.KeyboardInlineButton keyboardInlineButton = d0Var.f23968i;
                                     if (keyboardInlineButton != null) {
                                         j1Var3.W0(s1Var, keyboardInlineButton);
                                     }
@@ -154,7 +154,7 @@ public final class p1 extends AccessibilityNodeProvider {
                             q1 q1Var = (q1) arrayList.get(i13);
                             if (s1Var.Jc != null) {
                                 ArrayList arrayList3 = new ArrayList();
-                                arrayList3.add(q1Var.f24805s);
+                                arrayList3.add(q1Var.f24807s);
                                 s1Var.Jc.i(s1Var, arrayList3, -1, 0, 0);
                             }
                             s1Var.K3(i10, 1, null);
@@ -166,7 +166,7 @@ public final class p1 extends AccessibilityNodeProvider {
                     } else if (i10 == 499) {
                         j1 j1Var4 = s1Var.Jc;
                         if (j1Var4 != null) {
-                            j1Var4.E0(s1Var.f25030b3, s1Var);
+                            j1Var4.E0(s1Var.f25032b3, s1Var);
                             return true;
                         }
                     } else if (i10 == 492) {
@@ -200,23 +200,23 @@ public final class p1 extends AccessibilityNodeProvider {
                             return true;
                         }
                     } else if (i10 == 497) {
-                        if (s1Var.Jc != null && ((!s1Var.W7 || s1Var.U7 || s1Var.f25365y7.getReplyTopMsgId() != 0) && (s1Var.f25365y7.hasValidReplyMessageObject() || s1Var.f25367y9 || ((message = s1Var.f25365y7.messageOwner) != null && (messageReplyHeader = message.reply_to) != null && messageReplyHeader.reply_from != null)))) {
-                            s1Var.Jc.H1(s1Var, s1Var.f25365y7.getReplyMsgId(), 0.0f, 0.0f, false);
+                        if (s1Var.Jc != null && ((!s1Var.W7 || s1Var.U7 || s1Var.f25367y7.getReplyTopMsgId() != 0) && (s1Var.f25367y7.hasValidReplyMessageObject() || s1Var.f25369y9 || ((message = s1Var.f25367y7.messageOwner) != null && (messageReplyHeader = message.reply_to) != null && messageReplyHeader.reply_from != null)))) {
+                            s1Var.Jc.H1(s1Var, s1Var.f25367y7.getReplyMsgId(), 0.0f, 0.0f, false);
                             return true;
                         }
                     } else if (i10 == 494) {
                         j1 j1Var10 = s1Var.Jc;
                         if (j1Var10 != null) {
-                            TLRPC.Chat chat = s1Var.f25152jc;
+                            TLRPC.Chat chat = s1Var.f25154jc;
                             if (chat != null) {
-                                j1Var10.P(s1Var, chat, s1Var.f25365y7.messageOwner.fwd_from.channel_post, s1Var.f25101g1, s1Var.f25114h1, false);
+                                j1Var10.P(s1Var, chat, s1Var.f25367y7.messageOwner.fwd_from.channel_post, s1Var.f25103g1, s1Var.f25116h1, false);
                                 return true;
                             }
-                            TLRPC.User user = s1Var.f25125hc;
+                            TLRPC.User user = s1Var.f25127hc;
                             if (user != null) {
-                                j1Var10.m0(s1Var, user, s1Var.f25101g1, s1Var.f25114h1);
+                                j1Var10.m0(s1Var, user, s1Var.f25103g1, s1Var.f25116h1);
                                 return true;
-                            } else if (s1Var.f25167kc != null) {
+                            } else if (s1Var.f25169kc != null) {
                                 j1Var10.m(s1Var);
                                 return true;
                             }
@@ -224,7 +224,7 @@ public final class p1 extends AccessibilityNodeProvider {
                     } else if (i10 == 496) {
                         j1 j1Var11 = s1Var.Jc;
                         if (j1Var11 != null) {
-                            if (s1Var.f25050c8) {
+                            if (s1Var.f25052c8) {
                                 j1Var11.p(s1Var);
                                 return true;
                             }

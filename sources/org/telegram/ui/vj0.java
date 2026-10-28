@@ -1,27 +1,32 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.IdentityHashMap;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_feed;
-public final class vj0 {
-    public org.telegram.ui.Components.r71 d;
-    public org.telegram.ui.Components.wz e;
-    public ViewGroup f44841f;
-    public boolean h;
-    public boolean f44843i;
-    public boolean f44844j;
-    public boolean f44845k;
-    public boolean f44846l;
-    public boolean f44847m;
-    public boolean f44848n;
-    public TL_feed.FeedPosition f44849o;
-    public TL_feed.FeedPosition f44850p;
-    public rj0 f44851q;
-    public final ArrayList f44838a = new ArrayList();
-    public final HashSet f44839b = new HashSet();
-    public final IdentityHashMap f44840c = new IdentityHashMap();
-    public int f44842g = Utilities.random.nextInt(3);
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.view.View;
+public final class vj0 extends View {
+    public final Paint f44364a;
+    public int f44365b;
+    public int f44366c;
+    public final zj0 d;
+
+    public vj0(zj0 zj0Var, Context context) {
+        super(context);
+        this.d = zj0Var;
+        this.f44364a = new Paint();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.y6.f23357d6);
+        Paint paint = this.f44364a;
+        if (paint.getShader() == null || this.f44365b != themedColor || this.f44366c != getHeight()) {
+            this.f44365b = themedColor;
+            this.f44366c = getHeight();
+            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, getHeight(), themedColor, themedColor & 16777215, Shader.TileMode.CLAMP));
+        }
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+    }
 }

@@ -1,72 +1,113 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ShapeDrawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class a00 extends FrameLayout {
-    public final b00 f37610a;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class a00 extends j00 {
+    public final b00 E;
 
-    public a00(b00 b00Var, Context context) {
-        super(context);
-        String string;
-        this.f37610a = b00Var;
-        ImageView imageView = new ImageView(context);
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.msg_limit_links);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        int dp = AndroidUtilities.dp(22.0f);
-        int i10 = org.telegram.ui.ActionBar.y6.Oh;
-        int i11 = 0;
-        ShapeDrawable c02 = org.telegram.ui.ActionBar.y6.c0(dp, org.telegram.ui.ActionBar.y6.x0(null, i10, false));
-        org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i10);
-        imageView.setBackground(c02);
-        org.telegram.ui.ActionBar.f7.k(imageView, c02, N, null, null);
-        addView(imageView, org.telegram.ui.Components.gb1.h(54, 44.0f, 49, 0.0f, 22.0f, 0.0f, 0.0f));
-        xh.n nVar = new xh.n(context);
-        nVar.setTypeface(AndroidUtilities.bold());
-        nVar.setTextSize(1, 20.0f);
-        int i12 = org.telegram.ui.ActionBar.y6.f23464j5;
-        org.telegram.ui.ActionBar.f7.V(nVar, i12, null);
-        nVar.setGravity(1);
-        nVar.setText(b00Var.R(nVar));
-        MessagesController.DialogFilter dialogFilter = b00Var.Y;
-        if (dialogFilter != null && dialogFilter.title_noanimate) {
-            i11 = 26;
-        }
-        nVar.f51914s = i11;
-        addView(nVar, org.telegram.ui.Components.gb1.h(-2, -2.0f, 49, 20.0f, 84.0f, 20.0f, 0.0f));
-        TextView textView = new TextView(context);
-        if (b00Var.Z.isEmpty()) {
-            string = LocaleController.getString(R.string.FolderLinkShareSubtitleEmpty);
-        } else {
-            string = LocaleController.getString(R.string.FolderLinkShareSubtitle);
-        }
-        textView.setText(string);
-        textView.setLines(2);
-        textView.setGravity(1);
-        textView.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.f7.V(textView, i12, null);
-        addView(textView, org.telegram.ui.Components.gb1.h(-2, -2.0f, 49, 30.0f, 117.0f, 30.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(R.drawable.msg_close);
-        org.telegram.ui.ActionBar.f7.t(imageView2, org.telegram.ui.ActionBar.y6.C6, null, PorterDuff.Mode.MULTIPLY);
-        imageView2.setOnClickListener(new a(this, 23));
-        addView(imageView2, org.telegram.ui.Components.gb1.h(48, 48.0f, 53, 0.0f, -4.0f, 2.0f, 0.0f));
+    public a00(b00 b00Var, Context context, int i10, int i11) {
+        super(context, null, i10, i11);
+        this.E = b00Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(171.0f), 1073741824));
+    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
+        b00 b00Var = this.E;
+        b00Var.d.Z.remove(tL_exportedChatlistInvite);
+        b00Var.d.T();
+        b00Var.d.U(true);
+    }
+
+    @Override
+    public final void c() {
+        org.telegram.ui.Components.l80 F = org.telegram.ui.Components.l80.F(this.E.d.container, null, this);
+        F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
+            public final a00 f46422b;
+
+            {
+                this.f46422b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        a00 a00Var = this.f46422b;
+                        String str = a00Var.f40308x;
+                        if (str != null && AndroidUtilities.addToClipboard(str)) {
+                            new org.telegram.ui.Components.wc(a00Var.E.d.f38481a0, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f46422b.d();
+                        return;
+                    default:
+                        this.f46422b.a();
+                        return;
+                }
+            }
+        }, false);
+        F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
+            public final a00 f46422b;
+
+            {
+                this.f46422b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        a00 a00Var = this.f46422b;
+                        String str = a00Var.f40308x;
+                        if (str != null && AndroidUtilities.addToClipboard(str)) {
+                            new org.telegram.ui.Components.wc(a00Var.E.d.f38481a0, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f46422b.d();
+                        return;
+                    default:
+                        this.f46422b.a();
+                        return;
+                }
+            }
+        }, false);
+        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
+            public final a00 f46422b;
+
+            {
+                this.f46422b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        a00 a00Var = this.f46422b;
+                        String str = a00Var.f40308x;
+                        if (str != null && AndroidUtilities.addToClipboard(str)) {
+                            new org.telegram.ui.Components.wc(a00Var.E.d.f38481a0, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f46422b.d();
+                        return;
+                    default:
+                        this.f46422b.a();
+                        return;
+                }
+            }
+        }, true);
+        if (LocaleController.isRTL) {
+            F.f30150i = 3;
+        }
+        F.Z();
     }
 }

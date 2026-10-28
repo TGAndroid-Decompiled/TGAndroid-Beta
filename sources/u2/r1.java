@@ -2,19 +2,19 @@ package u2;
 public final class r1 {
     public static final r1 d = new r1(new b2.q1[0]);
     public static final String e;
-    public final int f49415a;
-    public final f9.s1 f49416b;
-    public int f49417c;
+    public final int f49450a;
+    public final f9.s1 f49451b;
+    public int f49452c;
 
     static {
-        String str = e2.n0.f9692a;
+        String str = e2.n0.f9691a;
         e = Integer.toString(0, 36);
     }
 
     public r1(b2.q1... q1VarArr) {
         f9.s1 v = f9.i0.v(q1VarArr);
-        this.f49416b = v;
-        this.f49415a = q1VarArr.length;
+        this.f49451b = v;
+        this.f49450a = q1VarArr.length;
         int i10 = 0;
         while (i10 < v.d) {
             int i11 = i10 + 1;
@@ -28,11 +28,11 @@ public final class r1 {
     }
 
     public final b2.q1 a(int i10) {
-        return (b2.q1) this.f49416b.get(i10);
+        return (b2.q1) this.f49451b.get(i10);
     }
 
     public final int b(b2.q1 q1Var) {
-        int indexOf = this.f49416b.indexOf(q1Var);
+        int indexOf = this.f49451b.indexOf(q1Var);
         if (indexOf >= 0) {
             return indexOf;
         }
@@ -43,7 +43,7 @@ public final class r1 {
         if (this != obj) {
             if (obj != null && r1.class == obj.getClass()) {
                 r1 r1Var = (r1) obj;
-                if (this.f49415a == r1Var.f49415a && this.f49416b.equals(r1Var.f49416b)) {
+                if (this.f49450a == r1Var.f49450a && this.f49451b.equals(r1Var.f49451b)) {
                     return true;
                 }
                 return false;
@@ -54,13 +54,13 @@ public final class r1 {
     }
 
     public final int hashCode() {
-        if (this.f49417c == 0) {
-            this.f49417c = this.f49416b.hashCode();
+        if (this.f49452c == 0) {
+            this.f49452c = this.f49451b.hashCode();
         }
-        return this.f49417c;
+        return this.f49452c;
     }
 
     public final String toString() {
-        return this.f49416b.toString();
+        return this.f49451b.toString();
     }
 }

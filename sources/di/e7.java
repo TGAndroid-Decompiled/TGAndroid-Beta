@@ -1,21 +1,21 @@
 package di;
 public final class e7 implements Runnable {
-    public final int f8524a;
-    public final g7 f8525b;
+    public final int f8523a;
+    public final g7 f8524b;
 
     public e7(g7 g7Var, int i10) {
-        this.f8524a = i10;
-        this.f8525b = g7Var;
+        this.f8523a = i10;
+        this.f8524b = g7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f8524a) {
+        switch (this.f8523a) {
             case 0:
-                this.f8525b.e();
+                this.f8524b.e();
                 return;
             default:
-                this.f8525b.b();
+                this.f8524b.b();
                 return;
         }
     }

@@ -30,49 +30,49 @@ public final class x30 extends View implements org.telegram.ui.ActionBar.p6 {
     public final int J;
     public boolean K;
     public int L;
-    public final String f34600a;
-    public final long f34601b;
-    public final String f34602c;
+    public final String f34646a;
+    public final long f34647b;
+    public final String f34648c;
     public final boolean d;
     public final Drawable e;
-    public final RectF f34603f;
+    public final RectF f34649f;
     public final ImageReceiver h;
-    public final StaticLayout f34604n;
-    public final j9 f34605r;
-    public final ContactsController.Contact f34606s;
+    public final StaticLayout f34650n;
+    public final j9 f34651r;
+    public final ContactsController.Contact f34652s;
     public final int v;
-    public final float f34607w;
-    public float f34608x;
-    public boolean f34609y;
+    public final float f34653w;
+    public float f34654x;
+    public boolean f34655y;
 
     public x30(Context context, Object obj) {
         this(context, obj, null, false, null);
     }
 
     public final void a() {
-        if (!this.f34609y) {
+        if (!this.f34655y) {
             return;
         }
-        this.f34609y = false;
+        this.f34655y = false;
         this.E = System.currentTimeMillis();
         invalidate();
     }
 
     public final void b() {
-        if (this.f34609y) {
+        if (this.f34655y) {
             return;
         }
-        this.f34609y = true;
+        this.f34655y = true;
         this.E = System.currentTimeMillis();
         invalidate();
     }
 
     public final void c() {
-        int b10 = this.f34605r.b();
+        int b10 = this.f34651r.b();
         int i10 = org.telegram.ui.ActionBar.y6.G6;
         org.telegram.ui.ActionBar.u6 u6Var = this.G;
         int o12 = org.telegram.ui.ActionBar.y6.o1(0.05f, org.telegram.ui.ActionBar.y6.w0(i10, u6Var));
-        int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23368di, u6Var);
+        int w02 = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23369di, u6Var);
         int red = Color.red(o12);
         int[] iArr = this.F;
         iArr[0] = red;
@@ -92,19 +92,19 @@ public final class x30 extends View implements org.telegram.ui.ActionBar.p6 {
     }
 
     public ContactsController.Contact getContact() {
-        return this.f34606s;
+        return this.f34652s;
     }
 
     public String getCountryIso2() {
-        return this.f34600a;
+        return this.f34646a;
     }
 
     public String getKey() {
-        return this.f34602c;
+        return this.f34648c;
     }
 
     public long getUid() {
-        return this.f34601b;
+        return this.f34647b;
     }
 
     @Override
@@ -122,23 +122,23 @@ public final class x30 extends View implements org.telegram.ui.ActionBar.p6 {
         float f14;
         float f15;
         float f16;
-        boolean z10 = this.f34609y;
-        if ((z10 && this.f34608x != 1.0f) || (!z10 && this.f34608x != 0.0f)) {
+        boolean z10 = this.f34655y;
+        if ((z10 && this.f34654x != 1.0f) || (!z10 && this.f34654x != 0.0f)) {
             long currentTimeMillis = System.currentTimeMillis() - this.E;
             if (currentTimeMillis < 0 || currentTimeMillis > 17) {
                 currentTimeMillis = 17;
             }
-            if (this.f34609y) {
-                float f17 = (((float) currentTimeMillis) / 120.0f) + this.f34608x;
-                this.f34608x = f17;
+            if (this.f34655y) {
+                float f17 = (((float) currentTimeMillis) / 120.0f) + this.f34654x;
+                this.f34654x = f17;
                 if (f17 >= 1.0f) {
-                    this.f34608x = 1.0f;
+                    this.f34654x = 1.0f;
                 }
             } else {
-                float f18 = this.f34608x - (((float) currentTimeMillis) / 120.0f);
-                this.f34608x = f18;
+                float f18 = this.f34654x - (((float) currentTimeMillis) / 120.0f);
+                this.f34654x = f18;
                 if (f18 < 0.0f) {
-                    this.f34608x = 0.0f;
+                    this.f34654x = 0.0f;
                 }
             }
             invalidate();
@@ -151,11 +151,11 @@ public final class x30 extends View implements org.telegram.ui.ActionBar.p6 {
         } else {
             f7 = 32.0f;
         }
-        RectF rectF = this.f34603f;
+        RectF rectF = this.f34649f;
         rectF.set(0.0f, 0.0f, measuredWidth, AndroidUtilities.dp(f7));
         int[] iArr = this.F;
         int i14 = iArr[6];
-        float f19 = this.f34608x;
+        float f19 = this.f34654x;
         int argb = Color.argb(i14 + ((int) ((iArr[7] - i14) * f19)), iArr[0] + ((int) ((iArr[1] - i10) * f19)), iArr[2] + ((int) ((iArr[3] - i11) * f19)), iArr[4] + ((int) ((iArr[5] - i12) * f19)));
         Paint paint = N;
         paint.setColor(argb);
@@ -172,12 +172,12 @@ public final class x30 extends View implements org.telegram.ui.ActionBar.p6 {
             f11 = 16.0f;
         }
         canvas.drawRoundRect(rectF, dp, AndroidUtilities.dp(f11), paint);
-        if (this.f34608x != 1.0f) {
+        if (this.f34654x != 1.0f) {
             this.h.draw(canvas);
         }
-        if (this.f34608x != 0.0f) {
-            paint.setColor(this.f34605r.b());
-            paint.setAlpha((int) (this.f34608x * 255.0f * (Color.alpha(b10) / 255.0f)));
+        if (this.f34654x != 0.0f) {
+            paint.setColor(this.f34651r.b());
+            paint.setAlpha((int) (this.f34654x * 255.0f * (Color.alpha(b10) / 255.0f)));
             if (z11) {
                 f13 = 14.0f;
             } else {
@@ -195,7 +195,7 @@ public final class x30 extends View implements org.telegram.ui.ActionBar.p6 {
             }
             canvas.drawCircle(dp2, dp3, AndroidUtilities.dp(f20), paint);
             canvas.save();
-            canvas.rotate((1.0f - this.f34608x) * 45.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+            canvas.rotate((1.0f - this.f34654x) * 45.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
             float f21 = 11.0f;
             if (z11) {
                 f15 = 9.0f;
@@ -220,7 +220,7 @@ public final class x30 extends View implements org.telegram.ui.ActionBar.p6 {
             int dp7 = AndroidUtilities.dp(f22);
             Drawable drawable = this.e;
             drawable.setBounds(dp4, dp5, dp6, dp7);
-            drawable.setAlpha((int) (this.f34608x * 255.0f));
+            drawable.setAlpha((int) (this.f34654x * 255.0f));
             drawable.draw(canvas);
             canvas.restore();
         }
@@ -229,25 +229,25 @@ public final class x30 extends View implements org.telegram.ui.ActionBar.p6 {
         } else {
             i13 = 32;
         }
-        float dp8 = this.f34607w + AndroidUtilities.dp(i13 + 9);
+        float dp8 = this.f34653w + AndroidUtilities.dp(i13 + 9);
         if (z11) {
             f12 = 6.0f;
         } else {
             f12 = 8.0f;
         }
         canvas.translate(dp8, AndroidUtilities.dp(f12));
-        int i15 = org.telegram.ui.ActionBar.y6.f23329bi;
+        int i15 = org.telegram.ui.ActionBar.y6.f23330bi;
         org.telegram.ui.ActionBar.u6 u6Var = this.G;
-        M.setColor(i0.a.f(this.f34608x, org.telegram.ui.ActionBar.y6.w0(i15, u6Var), org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.J7, u6Var)));
-        this.f34604n.draw(canvas);
+        M.setColor(i0.a.f(this.f34654x, org.telegram.ui.ActionBar.y6.w0(i15, u6Var), org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.J7, u6Var)));
+        this.f34650n.draw(canvas);
         canvas.restore();
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setText(this.f34604n.getText());
-        if (this.f34609y) {
+        accessibilityNodeInfo.setText(this.f34650n.getText());
+        if (this.f34655y) {
             accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), LocaleController.getString(R.string.Delete)));
         }
     }
@@ -274,16 +274,16 @@ public final class x30 extends View implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void updateColors() {
         try {
-            j9 j9Var = this.f34605r;
+            j9 j9Var = this.f34651r;
             if (j9Var != null) {
                 int i10 = this.J;
                 org.telegram.ui.ActionBar.u6 u6Var = this.G;
                 if (i10 == 1) {
                     j9Var.h(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Qj, u6Var));
                 } else if (i10 == 2) {
-                    j9Var.i(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.T7, u6Var), org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23300a8, u6Var));
+                    j9Var.i(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.T7, u6Var), org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23301a8, u6Var));
                 } else if (i10 == 3) {
-                    j9Var.h(org.telegram.ui.ActionBar.y6.o1(0.7f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23581p7, u6Var)));
+                    j9Var.h(org.telegram.ui.ActionBar.y6.o1(0.7f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23582p7, u6Var)));
                 }
             }
             c();

@@ -114,8 +114,8 @@ public abstract class d3 {
         arrayList2.add(num);
     }
 
-    public static void s(int i10, org.telegram.ui.Components.z90 z90Var) {
-        z90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void s(int i10, org.telegram.ui.Components.aa0 aa0Var) {
+        aa0Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
     public static void t(FrameLayout frameLayout, org.telegram.ui.ActionBar.u6 u6Var, TLRPC.TL_error tL_error, boolean z10) {

@@ -9,44 +9,44 @@ import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.telegram.ui.ActionBar.b2, Utilities.Callback2Return, org.telegram.ui.Components.nw0, org.telegram.ui.Components.ow0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.id0, org.telegram.ui.Components.kd0 {
-    public final int f38449a;
+public final class cg implements org.telegram.ui.Components.zl0, fh.d, org.telegram.ui.ActionBar.b2, Utilities.Callback2Return, org.telegram.ui.Components.ow0, org.telegram.ui.Components.pw0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.jd0, org.telegram.ui.Components.ld0 {
+    public final int f38338a;
 
     public cg(int i10) {
-        this.f38449a = i10;
+        this.f38338a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
-        xr xrVar = (xr) obj;
-        switch (this.f38449a) {
+        zr zrVar = (zr) obj;
+        switch (this.f38338a) {
             case 5:
-                xrVar.f45837b = f7;
-                if (xrVar.getParent() != null) {
-                    ((View) xrVar.getParent()).invalidate();
+                zrVar.f46341b = f7;
+                if (zrVar.getParent() != null) {
+                    ((View) zrVar.getParent()).invalidate();
                     return;
                 }
                 return;
             case 6:
             case 8:
             default:
-                xrVar.e = f7;
-                if (xrVar.getParent() != null) {
-                    ((View) xrVar.getParent()).invalidate();
+                zrVar.e = f7;
+                if (zrVar.getParent() != null) {
+                    ((View) zrVar.getParent()).invalidate();
                     return;
                 }
                 return;
             case 7:
-                xrVar.f45838c = f7;
-                if (xrVar.getParent() != null) {
-                    ((View) xrVar.getParent()).invalidate();
+                zrVar.f46342c = f7;
+                if (zrVar.getParent() != null) {
+                    ((View) zrVar.getParent()).invalidate();
                     return;
                 }
                 return;
             case 9:
-                xrVar.d = f7;
-                if (xrVar.getParent() != null) {
-                    ((View) xrVar.getParent()).invalidate();
+                zrVar.d = f7;
+                if (zrVar.getParent() != null) {
+                    ((View) zrVar.getParent()).invalidate();
                     return;
                 }
                 return;
@@ -55,7 +55,7 @@ public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.teleg
 
     @Override
     public String f(int i10) {
-        switch (this.f38449a) {
+        switch (this.f38338a) {
             case 14:
                 return ic.a.i(i10, "");
             case 15:
@@ -141,24 +141,24 @@ public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.teleg
 
     @Override
     public float get(Object obj) {
-        xr xrVar = (xr) obj;
-        switch (this.f38449a) {
+        zr zrVar = (zr) obj;
+        switch (this.f38338a) {
             case 4:
-                return xrVar.f45837b;
+                return zrVar.f46341b;
             case 5:
             case 7:
             default:
-                return xrVar.e;
+                return zrVar.e;
             case 6:
-                return xrVar.f45838c;
+                return zrVar.f46342c;
             case 8:
-                return xrVar.d;
+                return zrVar.d;
         }
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f38449a) {
+        switch (this.f38338a) {
             case 2:
                 e2Var.dismiss();
                 return;
@@ -177,13 +177,13 @@ public final class cg implements org.telegram.ui.Components.yl0, fh.d, org.teleg
     }
 
     @Override
-    public void q(org.telegram.ui.Components.md0 md0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.g5.f28420a;
+    public void q(org.telegram.ui.Components.nd0 nd0Var, int i10) {
+        Pattern pattern = org.telegram.ui.Components.g5.f28387a;
     }
 
     @Override
     public void run(Exception exc) {
-        switch (this.f38449a) {
+        switch (this.f38338a) {
             case 12:
                 FileLog.e(exc);
                 return;

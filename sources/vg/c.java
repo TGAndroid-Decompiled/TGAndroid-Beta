@@ -12,15 +12,15 @@ import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.wc;
 public final class c implements Runnable {
-    public final int f50150a = 0;
-    public final boolean f50151b;
-    public final Object f50152c;
+    public final int f50185a = 0;
+    public final boolean f50186b;
+    public final Object f50187c;
     public final Object d;
     public final Object e;
 
     public c(wc wcVar, boolean z10, TLRPC.Chat chat, u6 u6Var) {
-        this.f50152c = wcVar;
-        this.f50151b = z10;
+        this.f50187c = wcVar;
+        this.f50186b = z10;
         this.d = chat;
         this.e = u6Var;
     }
@@ -31,19 +31,16 @@ public final class c implements Runnable {
         int i10;
         String string2;
         int i11;
-        File file;
         boolean z10;
-        long j10;
+        File file;
         int i12;
-        File file2;
-        int i13;
-        switch (this.f50150a) {
+        switch (this.f50185a) {
             case 0:
-                wc wcVar = (wc) this.f50152c;
+                wc wcVar = (wc) this.f50187c;
+                boolean z11 = this.f50186b;
                 TLRPC.Chat chat = (TLRPC.Chat) this.d;
                 u6 u6Var = (u6) this.e;
-                int i14 = R.raw.star_premium_2;
-                boolean z11 = this.f50151b;
+                int i13 = R.raw.star_premium_2;
                 if (z11) {
                     string = LocaleController.getString("BoostingGiveawayCreated", R.string.BoostingGiveawayCreated);
                 } else {
@@ -64,75 +61,78 @@ public final class c implements Runnable {
                     }
                     string2 = LocaleController.getString(i10);
                 }
-                qc M = wcVar.M(string, AndroidUtilities.replaceSingleTag(string2, y6.Gi, 0, new k3(chat), u6Var), i14);
-                M.f31889j = 5000;
+                qc M = wcVar.M(string, AndroidUtilities.replaceSingleTag(string2, y6.Gi, 0, new k3(chat), u6Var), i13);
+                M.f31861j = 5000;
                 M.j();
                 return;
             default:
-                vi.s0 s0Var = (vi.s0) this.f50152c;
-                vi.v vVar = (vi.v) this.d;
-                vi.o0 o0Var = (vi.o0) this.e;
+                vi.u0 u0Var = (vi.u0) this.f50187c;
+                vi.w wVar = (vi.w) this.d;
+                boolean z12 = this.f50186b;
+                vi.q0 q0Var = (vi.q0) this.e;
+                long j10 = u0Var.f50647q;
                 long nanoTime = System.nanoTime();
                 try {
-                    vVar.g();
-                    long e = w7.x.e(vVar.f50614a) / 1000;
-                    s0Var.f50592m.b("active output finalized: size=" + file.length() + ", durationMs=" + e + ", elapsedMs=" + vi.s0.f(nanoTime));
-                    s0Var.g();
-                    long j11 = s0Var.f50594o;
-                    if (e > j11) {
+                    wVar.g();
+                    long h = wVar.h();
+                    u0Var.f50643m.b("active output finalized: size=" + wVar.f50662a.length() + ", durationMs=" + h + ", elapsedMs=" + vi.u0.f(nanoTime));
+                    u0Var.g();
+                    int i14 = (h > j10 ? 1 : (h == j10 ? 0 : -1));
+                    int i15 = 1;
+                    if (i14 > 0) {
                         z10 = true;
-                        j10 = j11;
-                        i12 = 1;
                     } else {
                         z10 = false;
-                        j10 = j11;
-                        i12 = 1;
                     }
-                    long j12 = j10;
-                    boolean z12 = this.f50151b;
                     if (z12 && !z10) {
                         try {
-                            s0Var.f50590k.execute(new vi.f0(s0Var, o0Var, vVar.f50614a, e, true));
+                            u0Var.f50641k.execute(new vi.g0(u0Var, q0Var, wVar.f50662a, h, true));
                             return;
-                        } catch (Exception e10) {
-                            e = e10;
-                            s0Var = s0Var;
-                            s0Var.f50588i.post(new vi.d0(s0Var, e, 2));
+                        } catch (Exception e) {
+                            e = e;
+                            u0Var = u0Var;
+                            u0Var.f50639i.post(new vi.e0(u0Var, e, 2));
                             return;
                         }
                     }
-                    File file3 = vVar.f50614a;
+                    File file2 = wVar.f50662a;
                     try {
-                        long min = Math.min(j12, e);
-                        if (z10) {
-                            i13 = i12;
-                        } else {
-                            i13 = 2;
+                        synchronized (wVar) {
+                            file = file2;
+                            try {
+                                i12 = wVar.f50677s;
+                            } catch (Throwable th2) {
+                                th = th2;
+                            }
                         }
-                        file2 = file3;
+                        long min = Math.min(j10, h);
+                        if (!z10) {
+                            i15 = 2;
+                        }
                         try {
-                            s0Var.s(file2, 0L, min, z12, i13);
-                            w7.x.c(file2);
+                            u0Var.t(file, i12, 0L, min, z12, i15);
+                            w7.x.c(file);
                             return;
-                        } catch (Throwable th2) {
-                            th = th2;
-                            w7.x.c(file2);
+                        } catch (Throwable th3) {
+                            th = th3;
+                            file = file;
+                            w7.x.c(file);
                             throw th;
                         }
-                    } catch (Throwable th3) {
-                        th = th3;
-                        file2 = file3;
+                    } catch (Throwable th4) {
+                        th = th4;
+                        file = file2;
                     }
-                } catch (Exception e11) {
-                    e = e11;
+                } catch (Exception e10) {
+                    e = e10;
                 }
         }
     }
 
-    public c(vi.s0 s0Var, vi.v vVar, boolean z10, vi.o0 o0Var) {
-        this.f50152c = s0Var;
-        this.d = vVar;
-        this.f50151b = z10;
-        this.e = o0Var;
+    public c(vi.u0 u0Var, vi.w wVar, boolean z10, vi.q0 q0Var) {
+        this.f50187c = u0Var;
+        this.d = wVar;
+        this.f50186b = z10;
+        this.e = q0Var;
     }
 }

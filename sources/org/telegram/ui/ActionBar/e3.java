@@ -3,29 +3,29 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.view.ViewGroup;
 public final class e3 {
-    public final k3 f22601a;
+    public final k3 f22602a;
 
     public e3(Context context, u6 u6Var) {
         k3 k3Var = new k3(1, context, u6Var, false);
-        this.f22601a = k3Var;
+        this.f22602a = k3Var;
         k3Var.fixNavigationBar();
     }
 
     public final void a() {
-        this.f22601a.applyBottomPadding = false;
+        this.f22602a.applyBottomPadding = false;
     }
 
     public final void b(ViewGroup viewGroup) {
-        this.f22601a.customView = viewGroup;
+        this.f22602a.customView = viewGroup;
     }
 
     public final void c(org.telegram.ui.Components.y6 y6Var) {
-        k3 k3Var = this.f22601a;
+        k3 k3Var = this.f22602a;
         k3Var.customView = y6Var;
         k3Var.customViewGravity = 49;
     }
 
     public final void d() {
-        this.f22601a.dimBehind = false;
+        this.f22602a.dimBehind = false;
     }
 }

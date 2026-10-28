@@ -1,23 +1,23 @@
 package fi;
 public final class l4 implements Runnable {
-    public final int f11167a;
-    public final e6 f11168b;
-    public final sg.d2 f11169c;
+    public final int f11166a;
+    public final e6 f11167b;
+    public final sg.c2 f11168c;
 
-    public l4(e6 e6Var, sg.d2 d2Var, int i10) {
-        this.f11167a = i10;
-        this.f11168b = e6Var;
-        this.f11169c = d2Var;
+    public l4(e6 e6Var, sg.c2 c2Var, int i10) {
+        this.f11166a = i10;
+        this.f11167b = e6Var;
+        this.f11168c = c2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f11167a) {
+        switch (this.f11166a) {
             case 0:
-                this.f11168b.A0(this.f11169c, true);
+                this.f11167b.A0(this.f11168c, true);
                 return;
             default:
-                this.f11168b.z0(this.f11169c);
+                this.f11167b.z0(this.f11168c);
                 return;
         }
     }

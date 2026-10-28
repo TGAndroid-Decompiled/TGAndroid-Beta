@@ -2,10 +2,10 @@ package o7;
 
 import java.util.Arrays;
 public final class y0 extends c1 {
-    public final long f19270a;
+    public final long f19269a;
 
     public y0(long j10) {
-        this.f19270a = j10;
+        this.f19269a = j10;
     }
 
     @Override
@@ -14,7 +14,7 @@ public final class y0 extends c1 {
         if (zza() != c1Var.zza()) {
             return zza() - c1Var.zza();
         }
-        int i10 = (Math.abs(this.f19270a) > Math.abs(((y0) c1Var).f19270a) ? 1 : (Math.abs(this.f19270a) == Math.abs(((y0) c1Var).f19270a) ? 0 : -1));
+        int i10 = (Math.abs(this.f19269a) > Math.abs(((y0) c1Var).f19269a) ? 1 : (Math.abs(this.f19269a) == Math.abs(((y0) c1Var).f19269a) ? 0 : -1));
         if (i10 < 0) {
             return -1;
         }
@@ -28,24 +28,24 @@ public final class y0 extends c1 {
         if (this == obj) {
             return true;
         }
-        if (obj != null && y0.class == obj.getClass() && this.f19270a == ((y0) obj).f19270a) {
+        if (obj != null && y0.class == obj.getClass() && this.f19269a == ((y0) obj).f19269a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(zza()), Long.valueOf(this.f19270a)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(zza()), Long.valueOf(this.f19269a)});
     }
 
     public final String toString() {
-        return Long.toString(this.f19270a);
+        return Long.toString(this.f19269a);
     }
 
     @Override
     public final int zza() {
         byte b10;
-        if (this.f19270a >= 0) {
+        if (this.f19269a >= 0) {
             b10 = 0;
         } else {
             b10 = 32;

@@ -8,13 +8,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import java.util.Locale;
 public abstract class q {
-    public static final a0.l f19170a = new a0.l(0);
-    public static Locale f19171b;
+    public static final a0.l f19169a = new a0.l(0);
+    public static Locale f19170b;
 
     public static String a(Context context) {
         String packageName = context.getPackageName();
         try {
-            Context context2 = (Context) x6.b.a(context).f48718a;
+            Context context2 = (Context) x6.b.a(context).f48753a;
             return context2.getPackageManager().getApplicationLabel(context2.getPackageManager().getApplicationInfo(packageName, 0)).toString();
         } catch (PackageManager.NameNotFoundException | NullPointerException unused) {
             String str = context.getApplicationInfo().name;
@@ -140,13 +140,13 @@ public abstract class q {
 
     public static String f(Context context, String str) {
         Resources resources;
-        a0.l lVar = f19170a;
+        a0.l lVar = f19169a;
         synchronized (lVar) {
             try {
-                Locale locale = se.a(context.getResources().getConfiguration()).f18566a.get(0);
-                if (!locale.equals(f19171b)) {
+                Locale locale = se.a(context.getResources().getConfiguration()).f18565a.get(0);
+                if (!locale.equals(f19170b)) {
                     lVar.clear();
-                    f19171b = locale;
+                    f19170b = locale;
                 }
                 String str2 = (String) lVar.get(str);
                 if (str2 != null) {
@@ -167,7 +167,7 @@ public abstract class q {
                         if (TextUtils.isEmpty(string)) {
                             Log.w("GoogleApiAvailability", "Got empty resource: ".concat(str));
                         } else {
-                            f19170a.put(str, string);
+                            f19169a.put(str, string);
                             return string;
                         }
                     }

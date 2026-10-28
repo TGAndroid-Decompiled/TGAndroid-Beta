@@ -16,14 +16,14 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ds;
 public final class ec extends View implements p2 {
-    public final Drawable f10843a;
-    public final int f10844b;
-    public Bitmap f10845c;
+    public final Drawable f10842a;
+    public final int f10843b;
+    public Bitmap f10844c;
     public final Paint d;
     public final Paint e;
-    public float f10846f;
+    public float f10845f;
     public final org.telegram.ui.Components.h6 h;
-    public final Path f10847n;
+    public final Path f10846n;
 
     public ec(Activity activity, int i10, int i11) {
         super(activity);
@@ -32,9 +32,9 @@ public final class ec extends View implements p2 {
         Paint paint2 = new Paint(3);
         this.e = paint2;
         this.h = new org.telegram.ui.Components.h6(this, 0L, 350L, ds.h);
-        this.f10847n = new Path();
-        this.f10843a = activity.getResources().getDrawable(i10).mutate();
-        this.f10844b = i11;
+        this.f10846n = new Path();
+        this.f10842a = activity.getResources().getDrawable(i10).mutate();
+        this.f10843b = i11;
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
@@ -42,26 +42,26 @@ public final class ec extends View implements p2 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f10845c == null) {
-            this.f10845c = BitmapFactory.decodeResource(getResources(), this.f10844b);
+        if (this.f10844c == null) {
+            this.f10844c = BitmapFactory.decodeResource(getResources(), this.f10843b);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Bitmap bitmap = this.f10845c;
+        Bitmap bitmap = this.f10844c;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f10845c = null;
+            this.f10844c = null;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float d = this.h.d(this.f10846f, false);
-        Drawable drawable = this.f10843a;
+        float d = this.h.d(this.f10845f, false);
+        Drawable drawable = this.f10842a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         Rect rect = AndroidUtilities.rectTmp2;
@@ -71,7 +71,7 @@ public final class ec extends View implements p2 {
             drawable.draw(canvas);
         } else if (d < 1.0f) {
             canvas.save();
-            Path path = this.f10847n;
+            Path path = this.f10846n;
             path.rewind();
             path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * d, Path.Direction.CW);
             canvas.clipPath(path, Region.Op.DIFFERENCE);
@@ -83,7 +83,7 @@ public final class ec extends View implements p2 {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * d, this.d);
             canvas.save();
-            Bitmap bitmap = this.f10845c;
+            Bitmap bitmap = this.f10844c;
             if (bitmap != null) {
                 canvas.drawBitmap(bitmap, (Rect) null, rect, this.e);
             }
@@ -94,7 +94,7 @@ public final class ec extends View implements p2 {
 
     @Override
     public void setInvert(float f7) {
-        this.f10843a.setColorFilter(new PorterDuffColorFilter(i0.a.f(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        this.f10842a.setColorFilter(new PorterDuffColorFilter(i0.a.f(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
         this.d.setColor(i0.a.f(f7, -1, -16777216));
     }
 
@@ -105,7 +105,7 @@ public final class ec extends View implements p2 {
         } else {
             f7 = 0.0f;
         }
-        this.f10846f = f7;
+        this.f10845f = f7;
         invalidate();
     }
 }

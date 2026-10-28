@@ -16,30 +16,17 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.NumberTextView;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class u2 extends ChatActivityEnterView {
-    public ValueAnimator f9223s5;
-    public int f9224t5;
-    public int f9225u5;
-    public int f9226v5;
-    public final q4 f9227w5;
+    public ValueAnimator f9222s5;
+    public int f9223t5;
+    public int f9224u5;
+    public int f9225v5;
+    public final q4 f9226w5;
 
     public u2(q4 q4Var, Activity activity, q4 q4Var2, s2 s2Var) {
         super(activity, q4Var2, null, true, s2Var);
-        this.f9227w5 = q4Var;
-    }
-
-    @Override
-    public final void A0(int i10, int i11) {
-        q4 q4Var = this.f9227w5;
-        if (q4Var.Q1 != null) {
-            this.f25926n3 = true;
-            this.f9225u5 = this.E0.getMeasuredHeight();
-            this.f9226v5 = this.E0.getScrollY();
-            invalidate();
-            q4Var.invalidate();
-            this.f9224t5 = q4Var.Q1.getBackgroundTop();
-        }
+        this.f9226w5 = q4Var;
     }
 
     @Override
@@ -51,8 +38,8 @@ public final class u2 extends ChatActivityEnterView {
     @Override
     public final void M1(boolean z10) {
         boolean z11;
-        q4 q4Var = this.f9227w5;
-        if (!q4Var.f9032u1 && !q4Var.f9036v1) {
+        q4 q4Var = this.f9226w5;
+        if (!q4Var.f9031u1 && !q4Var.f9035v1) {
             z11 = false;
         } else {
             z11 = true;
@@ -61,34 +48,34 @@ public final class u2 extends ChatActivityEnterView {
     }
 
     @Override
-    public final boolean Q0() {
+    public final boolean P0() {
         long messageMinPrice;
         int i10;
         int i11;
         if (this.A1.getAlpha() < 0.5f) {
-            F0();
+            E0();
             return false;
         }
-        q4 q4Var = this.f9227w5;
-        if (q4Var.D1.f8874f) {
+        q4 q4Var = this.f9226w5;
+        if (q4Var.D1.f8873f) {
             long j10 = q4Var.A3;
             messageMinPrice = q4Var.getMessageMinPrice();
             long max = Math.max(j10, messageMinPrice);
             TLRPC.TL_textWithEntities textWithEntities = getTextWithEntities();
             CharSequence formatTextWithEntities = MessageObject.formatTextWithEntities(textWithEntities, false, new TextPaint());
             int length = formatTextWithEntities.length();
-            int[] iArr = MessagesController.getInstance(q4Var.f9021r2).starsGroupcallMessageLimits;
+            int[] iArr = MessagesController.getInstance(q4Var.f9020r2).starsGroupcallMessageLimits;
             if (iArr != null && iArr.length > 2) {
                 i10 = iArr[2];
             } else {
                 i10 = 400;
             }
             if (length > i10) {
-                NumberTextView numberTextView = this.f25851b0;
+                NumberTextView numberTextView = this.f25853b0;
                 if (numberTextView != null) {
                     AndroidUtilities.shakeViewSpring(numberTextView, 3.5f);
                     try {
-                        this.f25851b0.performHapticFeedback(3, 2);
+                        this.f25853b0.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }
@@ -102,7 +89,7 @@ public final class u2 extends ChatActivityEnterView {
                     i11 = 0;
                 }
                 int i12 = (int) max;
-                if (i11 > u.b(q4Var.f9021r2, i12, 2) || formatTextWithEntities.length() > u.b(q4Var.f9021r2, i12, 1)) {
+                if (i11 > u.b(q4Var.f9020r2, i12, 2) || formatTextWithEntities.length() > u.b(q4Var.f9020r2, i12, 1)) {
                     q4Var.M0();
                     return false;
                 }
@@ -112,10 +99,20 @@ public final class u2 extends ChatActivityEnterView {
             AndroidUtilities.hideKeyboard(this);
             q4Var.A3 = 0L;
             q4Var.p0(true);
-            G(true);
+            F(true);
             return true;
         }
-        return super.Q0();
+        return super.P0();
+    }
+
+    @Override
+    public final boolean Q0(int i10, boolean z10, int i11, boolean z11, long j10) {
+        q4 q4Var = this.f9226w5;
+        if (MessagesController.getInstance(q4Var.f9020r2).isFrozen()) {
+            org.telegram.ui.b.b(q4Var.f9020r2);
+            return false;
+        }
+        return super.Q0(i10, z10, i11, z11, j10);
     }
 
     public final void Q1() {
@@ -123,13 +120,17 @@ public final class u2 extends ChatActivityEnterView {
     }
 
     @Override
-    public final boolean R0(int i10, boolean z10, int i11, boolean z11, long j10) {
-        q4 q4Var = this.f9227w5;
-        if (MessagesController.getInstance(q4Var.f9021r2).isFrozen()) {
-            org.telegram.ui.b.b(q4Var.f9021r2);
-            return false;
+    public final void d0(Menu menu) {
+        wn.t8(menu, null, false, !this.f9226w5.D1.f8873f, true, true);
+    }
+
+    @Override
+    public final void d1(float f7, float f10, float f11, boolean z10) {
+        LinearLayout linearLayout = this.f9226w5.V1;
+        if (linearLayout != null) {
+            linearLayout.setTranslationX((1.0f - f11) * f7);
         }
-        return super.R0(i10, z10, i11, z11, j10);
+        super.d1(f7, f10, f11, z10);
     }
 
     @Override
@@ -140,9 +141,9 @@ public final class u2 extends ChatActivityEnterView {
         if (!isEnabled()) {
             RectF rectF = AndroidUtilities.rectTmp;
             float width = getWidth();
-            q4 q4Var = this.f9227w5;
+            q4 q4Var = this.f9226w5;
             if (q4Var.X1 != null) {
-                f7 = this.f25985y * 1.5f;
+                f7 = this.f25987y * 1.5f;
             } else {
                 f7 = 0.0f;
             }
@@ -173,22 +174,8 @@ public final class u2 extends ChatActivityEnterView {
     }
 
     @Override
-    public final void e0(Menu menu) {
-        un.r8(menu, null, false, !this.f9227w5.D1.f8874f, true, true);
-    }
-
-    @Override
-    public final void e1(float f7, float f10, float f11, boolean z10) {
-        LinearLayout linearLayout = this.f9227w5.V1;
-        if (linearLayout != null) {
-            linearLayout.setTranslationX((1.0f - f11) * f7);
-        }
-        super.e1(f7, f10, f11, z10);
-    }
-
-    @Override
     public final int getMessagesCount() {
-        if (this.f9227w5.D1.f8874f) {
+        if (this.f9226w5.D1.f8873f) {
             return 1;
         }
         return super.getMessagesCount();
@@ -197,8 +184,8 @@ public final class u2 extends ChatActivityEnterView {
     @Override
     public final long getStarsPrice() {
         long messageMinPrice;
-        q4 q4Var = this.f9227w5;
-        if (q4Var.D1.f8874f) {
+        q4 q4Var = this.f9226w5;
+        if (q4Var.D1.f8873f) {
             messageMinPrice = q4Var.getMessageMinPrice();
             return Math.max(messageMinPrice, q4Var.A3);
         }
@@ -206,18 +193,31 @@ public final class u2 extends ChatActivityEnterView {
     }
 
     @Override
-    public final boolean o1(Runnable runnable) {
-        this.f9227w5.l0(runnable);
+    public final boolean n1(Runnable runnable) {
+        this.f9226w5.l0(runnable);
         return true;
     }
 
     @Override
-    public final boolean q() {
-        return this.f9227w5.B0(true);
+    public final boolean p() {
+        return this.f9226w5.B0(true);
     }
 
     @Override
-    public final void u0() {
+    public final void t0() {
         Q1();
+    }
+
+    @Override
+    public final void z0(int i10, int i11) {
+        q4 q4Var = this.f9226w5;
+        if (q4Var.Q1 != null) {
+            this.f25928n3 = true;
+            this.f9224u5 = this.E0.getMeasuredHeight();
+            this.f9225v5 = this.E0.getScrollY();
+            invalidate();
+            q4Var.invalidate();
+            this.f9223t5 = q4Var.Q1.getBackgroundTop();
+        }
     }
 }

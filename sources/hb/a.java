@@ -5,11 +5,11 @@ import java.io.Serializable;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Type;
 public final class a implements GenericArrayType, Serializable {
-    public final Type f12724a;
+    public final Type f12723a;
 
     public a(Type type) {
         Objects.requireNonNull(type);
-        this.f12724a = d.a(type);
+        this.f12723a = d.a(type);
     }
 
     public final boolean equals(Object obj) {
@@ -21,14 +21,14 @@ public final class a implements GenericArrayType, Serializable {
 
     @Override
     public final Type getGenericComponentType() {
-        return this.f12724a;
+        return this.f12723a;
     }
 
     public final int hashCode() {
-        return this.f12724a.hashCode();
+        return this.f12723a.hashCode();
     }
 
     public final String toString() {
-        return d.k(this.f12724a) + "[]";
+        return d.k(this.f12723a) + "[]";
     }
 }

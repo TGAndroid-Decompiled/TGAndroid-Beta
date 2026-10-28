@@ -11,19 +11,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Cells.h2;
 import org.telegram.ui.Cells.r4;
-import org.telegram.ui.Components.lm0;
-public class b0 extends lm0 {
-    public final Context f14004c;
+import org.telegram.ui.Components.mm0;
+public class b0 extends mm0 {
+    public final Context f14003c;
     public final int d;
     public final boolean e;
-    public final boolean f14005f;
+    public final boolean f14004f;
     public final u6 h;
 
     public b0(int i10, Context context, u6 u6Var, boolean z10, boolean z11) {
         this.e = z10;
-        this.f14004c = context;
+        this.f14003c = context;
         this.d = i10;
-        this.f14005f = z11;
+        this.f14004f = z11;
         this.h = u6Var;
     }
 
@@ -41,7 +41,7 @@ public class b0 extends lm0 {
     public void v(s4.e1 e1Var, int i10) {
         TLRPC.Chat chat;
         String str;
-        r4 r4Var = (r4) e1Var.f47738a;
+        r4 r4Var = (r4) e1Var.f47773a;
         int i11 = this.d;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
         new TLRPC.TL_dialog();
@@ -85,9 +85,9 @@ public class b0 extends lm0 {
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         boolean z10 = this.e;
-        r4 r4Var = new r4(this.f14004c, this.h, z10);
-        if (this.f14005f && !r4Var.f24969x) {
-            r4Var.f24969x = true;
+        r4 r4Var = new r4(this.f14003c, this.h, z10);
+        if (this.f14004f && !r4Var.f24971x) {
+            r4Var.f24971x = true;
             NotificationCenter.getInstance(r4Var.h).listen(r4Var, NotificationCenter.userIsPremiumBlockedUpadted, new h2(r4Var, 1));
         }
         r4Var.setLayoutParams(new s4.q0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));

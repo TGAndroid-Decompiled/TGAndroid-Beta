@@ -13,7 +13,7 @@ public final class o extends gf.a {
     @Override
     public final boolean b(ef.a aVar) {
         if (this.f3972c) {
-            ef.a aVar2 = (ef.a) ((ef.p) this.f3970a.f9937b);
+            ef.a aVar2 = (ef.a) ((ef.p) this.f3970a.f9936b);
             return true;
         }
         return true;
@@ -33,7 +33,7 @@ public final class o extends gf.a {
     public final a h(g gVar) {
         boolean z10 = false;
         if (gVar.h) {
-            if (((ef.p) this.f3970a.f9938c) != null) {
+            if (((ef.p) this.f3970a.f9937c) != null) {
                 ef.a e = gVar.h().e();
                 this.f3972c = ((e instanceof r) || (e instanceof ef.o)) ? true : true;
                 return a.a(gVar.e);

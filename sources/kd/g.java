@@ -66,7 +66,7 @@ public abstract class g extends m {
         Object next;
         kotlin.jvm.internal.i.e(iterable, "<this>");
         if (i10 >= 0) {
-            o oVar = o.f16525a;
+            o oVar = o.f16524a;
             if (i10 == 0) {
                 return oVar;
             }
@@ -154,7 +154,7 @@ public abstract class g extends m {
         Object next;
         kotlin.jvm.internal.i.e(iterable, "<this>");
         boolean z10 = iterable instanceof Collection;
-        o oVar = o.f16525a;
+        o oVar = o.f16524a;
         if (z10) {
             Collection collection = (Collection) iterable;
             int size = collection.size();
@@ -239,6 +239,6 @@ public abstract class g extends m {
                 return singleton2;
             }
         }
-        return q.f16527a;
+        return q.f16526a;
     }
 }

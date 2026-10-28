@@ -1,58 +1,25 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class lv implements org.telegram.ui.Components.zl0 {
-    public final int f41380a;
-    public final cy f41381b;
+import android.animation.ValueAnimator;
+public final class lv implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41267a;
+    public final ey f41268b;
+    public final float f41269c;
 
-    public lv(cy cyVar, int i10) {
-        this.f41380a = i10;
-        this.f41381b = cyVar;
+    public lv(ey eyVar, float f7, int i10) {
+        this.f41267a = i10;
+        this.f41268b = eyVar;
+        this.f41269c = f7;
     }
 
     @Override
-    public final void c(int i10, View view) {
-        ig.p0 p0Var;
-        switch (this.f41380a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41267a) {
             case 0:
-                cy cyVar = this.f41381b;
-                Object obj = cyVar.C0.f27955x0.G(i10).G;
-                if (obj instanceof MessageObject) {
-                    MessageObject messageObject = (MessageObject) obj;
-                    Bundle bundle = new Bundle();
-                    if (messageObject.getDialogId() >= 0) {
-                        bundle.putLong("user_id", messageObject.getDialogId());
-                    } else {
-                        bundle.putLong("chat_id", -messageObject.getDialogId());
-                    }
-                    bundle.putInt("message_id", messageObject.getId());
-                    un unVar = new un(bundle);
-                    cy.l4(unVar, messageObject);
-                    cyVar.presentFragment(unVar);
-                    return;
-                } else if (obj instanceof di.t6) {
-                    di.t6 t6Var = (di.t6) obj;
-                    Bundle g7 = org.telegram.ui.Components.b10.g(3, "type");
-                    g7.putString("hashtag", t6Var.C);
-                    g7.putInt("storiesCount", t6Var.J);
-                    cyVar.presentFragment(new org.telegram.ui.Components.ta0(g7, null));
-                    return;
-                } else {
-                    return;
-                }
+                ey.W(this.f41268b, this.f41269c, valueAnimator);
+                return;
             default:
-                cy cyVar2 = this.f41381b;
-                cyVar2.f38570b0.I0(true);
-                ArrayList arrayList = cyVar2.f38570b0.f14220f3;
-                if (arrayList.isEmpty()) {
-                    p0Var = ig.r0.f14213k3[i10];
-                } else {
-                    p0Var = (ig.p0) arrayList.get(i10);
-                }
-                cyVar2.q3(p0Var);
+                ey.D0(this.f41268b, this.f41269c, valueAnimator);
                 return;
         }
     }

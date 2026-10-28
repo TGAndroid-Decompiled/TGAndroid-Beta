@@ -13,12 +13,12 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class f implements a {
-    public final i0 f9771a;
-    public final int f9772b;
+    public final i0 f9770a;
+    public final int f9771b;
 
     public f(int i10, s1 s1Var) {
-        this.f9772b = i10;
-        this.f9771a = s1Var;
+        this.f9771b = i10;
+        this.f9770a = s1Var;
     }
 
     public static f b(int i10, x xVar) {
@@ -29,12 +29,12 @@ public final class f implements a {
         int i12 = 4;
         o.f(4, "initialCapacity");
         Object[] objArr = new Object[4];
-        int i13 = xVar.f9734c;
+        int i13 = xVar.f9733c;
         int i14 = -2;
         int i15 = 0;
         while (xVar.a() > 8) {
             int o10 = xVar.o();
-            int o11 = xVar.f9733b + xVar.o();
+            int o11 = xVar.f9732b + xVar.o();
             xVar.M(o11);
             if (o10 == 1414744396) {
                 gVar = b(xVar.o(), xVar);
@@ -116,7 +116,7 @@ public final class f implements a {
                                     int o15 = xVar.o();
                                     xVar.O(6);
                                     int t12 = xVar.t();
-                                    String str3 = n0.f9692a;
+                                    String str3 = n0.f9691a;
                                     int D = n0.D(t12, ByteOrder.LITTLE_ENDIAN);
                                     if (xVar.a() > 0) {
                                         i11 = xVar.t();
@@ -194,7 +194,7 @@ public final class f implements a {
     }
 
     public final a a(Class cls) {
-        g0 listIterator = this.f9771a.listIterator(0);
+        g0 listIterator = this.f9770a.listIterator(0);
         while (listIterator.hasNext()) {
             a aVar = (a) listIterator.next();
             if (aVar.getClass() == cls) {
@@ -206,6 +206,6 @@ public final class f implements a {
 
     @Override
     public final int getType() {
-        return this.f9772b;
+        return this.f9771b;
     }
 }

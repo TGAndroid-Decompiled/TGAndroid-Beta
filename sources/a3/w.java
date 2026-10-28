@@ -31,7 +31,7 @@ public final class w {
         uVar.getClass();
         this.f194b = uVar;
         this.f195c = new SparseArray();
-        f9.g0 g0Var = f9.i0.f10287b;
+        f9.g0 g0Var = f9.i0.f10286b;
         s1 s1Var = s1.e;
         this.d = qVar.d;
         e2.g0 g0Var2 = qVar.e;

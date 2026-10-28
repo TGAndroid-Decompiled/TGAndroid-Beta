@@ -10,7 +10,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public class yc extends z90 {
+public class yc extends aa0 {
     public final Path L;
     public final RectF M;
     public zc N;

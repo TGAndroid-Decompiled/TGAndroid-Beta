@@ -1,98 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class bt0 extends vz {
-    public final qw0 X;
-    public final at0 Y;
-    public final aw0 Z;
+import android.content.Context;
+import android.widget.ImageView;
+public final class bt0 extends uu0 {
+    public final bw0 P;
 
-    public bt0(aw0 aw0Var, at0 at0Var) {
-        super(100, false);
-        this.Z = aw0Var;
-        this.Y = at0Var;
-        this.X = new Object();
+    public bt0(bw0 bw0Var, Context context) {
+        super(context);
+        this.P = bw0Var;
     }
 
     @Override
-    public final int A() {
-        if (this.Y.h.getAdapter() != this.Z.Q) {
-            return 0;
-        }
-        return B();
-    }
-
-    @Override
-    public final qw0 E1(int i10) {
-        TLRPC.Document document;
-        int i11;
-        int i12;
-        s4.h0 adapter = this.Y.h.getAdapter();
-        aw0 aw0Var = this.Z;
-        pv0[] pv0VarArr = aw0Var.f26698v1;
-        if (adapter == aw0Var.Q && !pv0VarArr[5].f31706a.isEmpty()) {
-            document = ((MessageObject) pv0VarArr[5].f31706a.get(i10)).getDocument();
-        } else {
-            document = null;
-        }
-        qw0 qw0Var = this.X;
-        qw0Var.f32055b = 100.0f;
-        qw0Var.f32054a = 100.0f;
-        if (document != null) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f22052w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-                qw0Var.f32054a = i11;
-                qw0Var.f32055b = i12;
-            }
-            ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
-            for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    qw0Var.f32054a = documentAttribute.f22034w;
-                    qw0Var.f32055b = documentAttribute.h;
-                    break;
+    public final void setTranslationX(float f7) {
+        uu0 uu0Var;
+        int i10;
+        float translationX = getTranslationX();
+        super.setTranslationX(f7);
+        bw0 bw0Var = this.P;
+        uu0[] uu0VarArr = bw0Var.m0;
+        if (uu0VarArr[0] == this) {
+            float f10 = translationX - f7;
+            oi.q qVar = bw0Var.f26947g2;
+            if (qVar != null) {
+                float f11 = bw0Var.f26950h2 + f10;
+                bw0Var.f26950h2 = f11;
+                int i11 = (int) f11;
+                if (i11 != 0) {
+                    bw0Var.f26950h2 = f11 - i11;
+                    qVar.h(i11, 0);
                 }
             }
         }
-        return qw0Var;
-    }
-
-    @Override
-    public final void U(rf.e eVar, s4.b1 b1Var, View view, s0.d dVar) {
-        ke.c cVar;
-        super.U(eVar, b1Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47653a;
-        AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-        if (collectionItemInfo != null) {
-            cVar = new ke.c(collectionItemInfo);
-        } else {
-            cVar = null;
-        }
-        if (cVar != null) {
-            Object obj = cVar.f16537a;
-            if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
+        if (bw0Var.f26952i1 && (uu0Var = uu0VarArr[0]) == this) {
+            float abs = Math.abs(uu0Var.getTranslationX()) / uu0VarArr[0].getMeasuredWidth();
+            bw0Var.f1(abs, uu0VarArr[1].E);
+            if (bw0Var.G()) {
+                int i12 = bw0Var.f26996z0;
+                if (i12 == 2) {
+                    bw0Var.f26973q0 = 1.0f - abs;
+                } else if (i12 == 1) {
+                    bw0Var.f26973q0 = abs;
+                }
+                bw0Var.G1(abs);
+                float h02 = bw0Var.h0(abs);
+                bw0Var.f26976r0 = h02;
+                ImageView imageView = bw0Var.f26981t0;
+                if (h02 != 0.0f && bw0Var.G() && !bw0Var.x0()) {
+                    i10 = 0;
+                } else {
+                    i10 = 4;
+                }
+                imageView.setVisibility(i10);
+            } else {
+                bw0Var.f26973q0 = 0.0f;
             }
+            bw0Var.C1(false);
         }
-    }
-
-    @Override
-    public final void z0(s4.b1 b1Var, int[] iArr) {
-        super.z0(b1Var, iArr);
-        at0 at0Var = this.Y;
-        int i10 = at0Var.E;
-        if (i10 != 0 && !aw0.w0(i10)) {
-            if (at0Var.E == 1) {
-                iArr[1] = Math.max(iArr[1], AndroidUtilities.dp(56.0f) * 2);
-                return;
-            }
-            return;
-        }
-        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.x7.a(1) * 2);
+        bw0Var.P();
+        bw0Var.R();
     }
 }

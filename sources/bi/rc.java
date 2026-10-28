@@ -14,8 +14,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ea0;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.zq;
 public final class rc extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
     public long f5371a;
@@ -44,17 +44,17 @@ public final class rc extends LinearLayout implements NotificationCenter.Notific
         textView.setText(LocaleController.getString(R.string.StarsBalance));
         textView.setGravity(5);
         textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, gb1.u(-2, -2, 5));
+        addView(textView, kb1.u(-2, -2, 5));
         qc qcVar = new qc(this, context, context.getResources().getDrawable(R.drawable.star_small_inner).mutate());
         this.f5373c = qcVar;
-        qcVar.f32444n = true;
+        qcVar.f32492n = true;
         qcVar.getDrawable().r(false, true);
         qcVar.setTypeface(AndroidUtilities.bold());
         org.telegram.ui.ActionBar.f7.Z(qcVar, i11, u6Var);
         qcVar.setTextSize(AndroidUtilities.dp(13.0f));
         qcVar.setGravity(5);
         qcVar.setPadding(AndroidUtilities.dp(19.0f), 0, 0, 0);
-        addView(qcVar, gb1.x(-2, 20, 5, 0, -2, 0, 0));
+        addView(qcVar, kb1.x(-2, 20, 5, 0, -2, 0, 0));
         a(false);
         setPadding(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(4.0f));
     }
@@ -112,7 +112,7 @@ public final class rc extends LinearLayout implements NotificationCenter.Notific
             if (this.e == null) {
                 SpannableString spannableString = new SpannableString("x");
                 this.e = spannableString;
-                spannableString.setSpan(new ea0(AndroidUtilities.dp(48.0f), qcVar), 0, this.e.length(), 33);
+                spannableString.setSpan(new fa0(AndroidUtilities.dp(48.0f), qcVar), 0, this.e.length(), 33);
             }
             qcVar.c(this.e, z10, true);
             this.f5374f = -1L;
@@ -152,8 +152,8 @@ public final class rc extends LinearLayout implements NotificationCenter.Notific
         super.onAttachedToWindow();
         a(false);
         int i10 = this.f5372b;
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.starBalanceUpdated);
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.botStarsUpdated);
+        NotificationCenter.getInstance(i10).addWeakObserver(this, NotificationCenter.starBalanceUpdated);
+        NotificationCenter.getInstance(i10).addWeakObserver(this, NotificationCenter.botStarsUpdated);
     }
 
     @Override

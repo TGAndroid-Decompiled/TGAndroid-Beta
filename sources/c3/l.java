@@ -144,7 +144,7 @@ public final class l implements p {
 
     @Override
     public final boolean h(byte[] bArr, int i10, int i11, boolean z10) {
-        if (!s(i11, z10)) {
+        if (!u(i11, z10)) {
             return false;
         }
         System.arraycopy(this.e, this.f6081f - i11, bArr, i10, i11);
@@ -158,7 +158,7 @@ public final class l implements p {
 
     @Override
     public final void j(int i10) {
-        s(i10, false);
+        u(i10, false);
     }
 
     @Override
@@ -167,7 +167,7 @@ public final class l implements p {
     }
 
     @Override
-    public final void q(int i10) {
+    public final void r(int i10) {
         f(i10, false);
     }
 
@@ -200,25 +200,6 @@ public final class l implements p {
     }
 
     @Override
-    public final boolean s(int i10, boolean z10) {
-        a(i10);
-        int i11 = this.h - this.f6081f;
-        while (i11 < i10) {
-            int i12 = i10;
-            boolean z11 = z10;
-            i11 = e(this.e, this.f6081f, i12, i11, z11);
-            if (i11 == -1) {
-                return false;
-            }
-            this.h = this.f6081f + i11;
-            i10 = i12;
-            z10 = z11;
-        }
-        this.f6081f += i10;
-        return true;
-    }
-
-    @Override
     public final int skip(int i10) {
         l lVar;
         int min = Math.min(this.h, i10);
@@ -234,5 +215,24 @@ public final class l implements p {
             lVar.d += min;
         }
         return min;
+    }
+
+    @Override
+    public final boolean u(int i10, boolean z10) {
+        a(i10);
+        int i11 = this.h - this.f6081f;
+        while (i11 < i10) {
+            int i12 = i10;
+            boolean z11 = z10;
+            i11 = e(this.e, this.f6081f, i12, i11, z11);
+            if (i11 == -1) {
+                return false;
+            }
+            this.h = this.f6081f + i11;
+            i10 = i12;
+            z10 = z11;
+        }
+        this.f6081f += i10;
+        return true;
     }
 }

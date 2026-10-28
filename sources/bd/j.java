@@ -35,7 +35,7 @@ public final class j implements Runnable {
                             accept.setSoTimeout(5000);
                             InputStream inputStream = accept.getInputStream();
                             k kVar = (k) this.d;
-                            kVar.f3890c.y(new a(kVar, inputStream, accept));
+                            kVar.f3890c.A(new a(kVar, inputStream, accept));
                         } catch (IOException e) {
                             k.d.log(Level.FINE, "Communication with the client broken", (Throwable) e);
                         }
@@ -54,10 +54,10 @@ public final class j implements Runnable {
                     Object obj = arrayList.get(i10);
                     i10++;
                     s4.k kVar2 = (s4.k) obj;
-                    mVar.T(kVar2.f47781a, kVar2, this.f3886b);
+                    mVar.T(kVar2.f47816a, kVar2, this.f3886b);
                 }
                 arrayList.clear();
-                mVar.f47793u.remove(arrayList);
+                mVar.f47828u.remove(arrayList);
                 return;
             default:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;

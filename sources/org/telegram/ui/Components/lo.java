@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.af1;
+import org.telegram.ui.cf1;
 public final class lo extends y9 {
     public final org.telegram.ui.Cells.q6 G;
     public final org.telegram.ui.ActionBar.r2 H;
@@ -27,28 +27,28 @@ public final class lo extends y9 {
     public final void onDraw(Canvas canvas) {
         long j10;
         po poVar = this.K;
-        if (poVar.f31641b && this.e == null) {
+        if (poVar.f31651b && this.e == null) {
             org.telegram.ui.Cells.q6 q6Var = this.G;
             q6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            q6Var.f9312a = true;
+            q6Var.f9311a = true;
             q6Var.v = true;
             q6Var.J = this.J;
-            Integer num = poVar.f31643c;
+            Integer num = poVar.f31653c;
             if (num != null) {
-                q6Var.f9333z = num.intValue();
+                q6Var.f9332z = num.intValue();
             }
-            org.telegram.ui.un unVar = poVar.G;
-            if (unVar != null) {
-                j10 = unVar.a();
+            org.telegram.ui.wn wnVar = poVar.G;
+            if (wnVar != null) {
+                j10 = wnVar.a();
             } else {
                 org.telegram.ui.ActionBar.r2 r2Var = this.H;
-                if (r2Var instanceof af1) {
-                    j10 = -((af1) r2Var).f37734a;
+                if (r2Var instanceof cf1) {
+                    j10 = -((cf1) r2Var).f38288a;
                 } else {
                     j10 = 0;
                 }
             }
-            di.a8.h(j10, canvas, this.f34984a, q6Var);
+            di.a8.h(j10, canvas, this.f35004a, q6Var);
             return;
         }
         super.onDraw(canvas);
@@ -67,7 +67,7 @@ public final class lo extends y9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.K.f31641b && this.G.a(motionEvent, this)) {
+        if (this.K.f31651b && this.G.a(motionEvent, this)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

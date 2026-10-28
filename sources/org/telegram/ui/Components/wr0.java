@@ -1,133 +1,133 @@
 package org.telegram.ui.Components;
 
 import android.os.Bundle;
-import android.util.SparseArray;
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.af1;
-public final class wr0 implements g20, MessagesStorage.StringCallback, org.telegram.ui.ux {
-    public final aw0 f34526a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+public final class wr0 implements Runnable {
+    public final int f34568a;
+    public final bw0 f34569b;
 
-    public wr0(aw0 aw0Var) {
-        this.f34526a = aw0Var;
+    public wr0(bw0 bw0Var, int i10) {
+        this.f34568a = i10;
+        this.f34569b = bw0Var;
     }
 
     @Override
-    public boolean C() {
-        return false;
-    }
-
-    @Override
-    public boolean K(org.telegram.ui.cy cyVar) {
-        return false;
-    }
-
-    public void a(boolean z10) {
-        aw0 aw0Var = this.f34526a;
-        if (!z10) {
-            aw0Var.requestLayout();
-        }
-        aw0Var.setVisibleHeight(aw0Var.P1);
-    }
-
-    @Override
-    public void run(String str) {
-        aw0.i(this.f34526a, str);
-    }
-
-    @Override
-    public boolean v(org.telegram.ui.cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, af1 af1Var) {
-        int i12;
-        UndoView undoView;
-        aw0 aw0Var = this.f34526a;
-        SparseArray[] sparseArrayArr = aw0Var.f26641b1;
-        org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26704x1;
-        ArrayList<MessageObject> arrayList2 = new ArrayList<>();
-        boolean z12 = true;
-        int i13 = 1;
-        while (true) {
-            i12 = 0;
-            if (i13 < 0) {
-                break;
-            }
-            ArrayList arrayList3 = new ArrayList();
-            for (int i14 = 0; i14 < sparseArrayArr[i13].size(); i14++) {
-                arrayList3.add(Integer.valueOf(sparseArrayArr[i13].keyAt(i14)));
-            }
-            Collections.sort(arrayList3);
-            int size = arrayList3.size();
-            while (i12 < size) {
-                Object obj = arrayList3.get(i12);
-                i12++;
-                Integer num = (Integer) obj;
-                if (num.intValue() > 0) {
-                    arrayList2.add((MessageObject) sparseArrayArr[i13].get(num.intValue()));
+    public final void run() {
+        switch (this.f34568a) {
+            case 0:
+                bw0 bw0Var = this.f34569b;
+                bw0Var.f26963m2 = (int) bw0Var.R0.c(AndroidUtilities.dp(14.0f));
+                if (bw0Var.f26925a0 != null) {
+                    bw0Var.B1();
                 }
-            }
-            sparseArrayArr[i13].clear();
-            i13--;
-        }
-        aw0Var.f26645c1 = 0;
-        aw0Var.k1(false);
-        lv0 lv0Var = aw0Var.T;
-        if (lv0Var != null) {
-            lv0Var.f30298w.clear();
-        }
-        if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != r2Var.getUserConfig().getClientUserId() && charSequence == null) {
-            long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-            Bundle i15 = a1.g.i("scrollToTopOnResume", true);
-            if (DialogObject.isEncryptedDialog(j10)) {
-                i15.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
-            } else {
-                if (DialogObject.isUserDialog(j10)) {
-                    i15.putLong("user_id", j10);
+                uu0[] uu0VarArr = bw0Var.m0;
+                if (uu0VarArr != null) {
+                    for (uu0 uu0Var : uu0VarArr) {
+                        if (uu0Var != null) {
+                            int paddingTop = uu0Var.h.getPaddingTop();
+                            et0 et0Var = uu0Var.h;
+                            int paddingLeft = et0Var.getPaddingLeft();
+                            int g02 = bw0Var.g0(uu0Var.E);
+                            int paddingRight = uu0Var.h.getPaddingRight();
+                            et0 et0Var2 = uu0Var.h;
+                            int f02 = bw0Var.f0(bw0Var.D0());
+                            et0Var2.f33153i3 = f02;
+                            et0Var.setPadding(paddingLeft, g02, paddingRight, f02);
+                            AndroidUtilities.doOnLayout(uu0Var.h, new fs0(uu0Var, paddingTop - uu0Var.h.getPaddingTop(), 0));
+                        }
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                bw0 bw0Var2 = this.f34569b;
+                g5.R(bw0Var2.getContext(), bw0Var2.f26992x1, bw0Var2.H1, new xr0(bw0Var2));
+                return;
+            case 2:
+                bw0 bw0Var3 = this.f34569b;
+                bw0Var3.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putInt("type", 2);
+                bundle.putLong("dialog_id", -bw0Var3.f26943f1.f22029id);
+                ua0 ua0Var = new ua0(bundle, null);
+                ua0Var.f33325c = bw0Var3.f26943f1;
+                bw0Var3.f26992x1.presentFragment(ua0Var);
+                return;
+            case 3:
+                bw0 bw0Var4 = this.f34569b;
+                org.telegram.ui.ActionBar.r2 r2Var = bw0Var4.f26992x1;
+                fi.sb D = fi.sb.D(r2Var.getParentActivity(), r2Var.getCurrentAccount());
+                long j10 = bw0Var4.l1;
+                String currentLang = bw0Var4.W.getCurrentLang();
+                D.f11671v0 = j10;
+                D.f11675w0 = currentLang;
+                D.Q(null);
+                D.f11671v0 = j10;
+                D.f11675w0 = currentLang;
+                return;
+            case 4:
+                this.f34569b.W.f();
+                return;
+            case 5:
+                vs0 vs0Var = this.f34569b.W;
+                if (vs0Var.d()) {
+                    vs0Var.h();
+                    return;
                 } else {
-                    i15.putLong("chat_id", -j10);
+                    vs0Var.f();
+                    return;
                 }
-                if (!r2Var.getMessagesController().checkCanOpenChat(i15, cyVar)) {
-                    return true;
+            case 6:
+                vs0 vs0Var2 = this.f34569b.W;
+                vs0Var2.b(vs0Var2.getCurrentLang());
+                return;
+            case 7:
+                org.telegram.ui.ActionBar.r2 r2Var2 = this.f34569b.f26992x1;
+                r2Var2.getMessagesController().setSavedViewAs(false);
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", r2Var2.getUserConfig().getClientUserId());
+                r2Var2.presentFragment(new org.telegram.ui.wn(bundle2), true);
+                return;
+            case 8:
+                org.telegram.ui.ActionBar.r2 r2Var3 = this.f34569b.f26992x1;
+                try {
+                    r2Var3.getMediaDataController().installShortcut(r2Var3.getUserConfig().getClientUserId(), MediaDataController.SHORTCUT_TYPE_USER_OR_CHAT);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
                 }
-            }
-            r2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-            org.telegram.ui.un unVar = new org.telegram.ui.un(i15);
-            pg.d.a(unVar, (MessagesStorage.TopicKey) arrayList.get(0));
-            cyVar.presentFragment(unVar, true);
-            unVar.Mb(arrayList2);
-            return true;
+            case 9:
+                bw0 bw0Var5 = this.f34569b;
+                org.telegram.ui.ActionBar.r2 r2Var4 = bw0Var5.f26992x1;
+                TLRPC.User currentUser = r2Var4.getUserConfig().getCurrentUser();
+                g5.r(r2Var4, false, null, currentUser, false, true, false, true, new p1(25, bw0Var5, currentUser));
+                return;
+            case 10:
+                ws0 ws0Var = this.f34569b.f26925a0;
+                ws0Var.getClass();
+                ws0Var.h(null, new zh.t1(ws0Var, 1));
+                return;
+            case 11:
+                this.f34569b.f26925a0.setReordering(true);
+                return;
+            case 12:
+                bw0 bw0Var6 = this.f34569b;
+                bw0Var6.k1(false);
+                org.telegram.ui.ActionBar.r5 r5Var = bw0Var6.H;
+                if (r5Var != null) {
+                    r5Var.f(true);
+                } else {
+                    bw0Var6.G.g(true);
+                }
+                bw0Var6.f26933c1 = 0;
+                return;
+            default:
+                this.f34569b.t0();
+                return;
         }
-        aw0Var.F1(true);
-        int i16 = 0;
-        while (i16 < arrayList.size()) {
-            long j11 = ((MessagesStorage.TopicKey) arrayList.get(i16)).dialogId;
-            if (charSequence != null) {
-                r2Var.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j11, null, null, null, true, null, null, null, true, 0, 0, null, false));
-            }
-            r2Var.getSendMessagesHelper().sendMessage(arrayList2, j11, false, false, true, 0, 0L);
-            i16++;
-            z12 = z12;
-            i12 = 0;
-        }
-        boolean z13 = z12;
-        cyVar.finishFragment();
-        if (r2Var instanceof ProfileActivity) {
-            undoView = ((ProfileActivity) r2Var).L;
-        } else {
-            undoView = null;
-        }
-        if (undoView != null) {
-            if (arrayList.size() == z13) {
-                undoView.m(((MessagesStorage.TopicKey) arrayList.get(0)).dialogId, Integer.valueOf(arrayList2.size()), 53);
-                return z13;
-            }
-            undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);
-            return z13;
-        }
-        return z13;
     }
 }

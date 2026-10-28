@@ -20,11 +20,11 @@ public interface p extends b2.p {
 
     void p();
 
-    void q(int i10);
+    void r(int i10);
 
     void readFully(byte[] bArr, int i10, int i11);
 
-    boolean s(int i10, boolean z10);
-
     int skip(int i10);
+
+    boolean u(int i10, boolean z10);
 }

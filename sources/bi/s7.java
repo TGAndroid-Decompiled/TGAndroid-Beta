@@ -4,7 +4,7 @@ import android.content.DialogInterface;
 import java.util.Arrays;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.dl0;
+import org.telegram.ui.fl0;
 public final class s7 implements DialogInterface.OnDismissListener {
     public final int f5407a;
     public final Object f5408b;
@@ -66,7 +66,7 @@ public final class s7 implements DialogInterface.OnDismissListener {
                     k3Var.dismiss();
                     k3VarArr[0] = null;
                 }
-                dl0.f38906a = null;
+                fl0.f39397a = null;
                 org.telegram.ui.ActionBar.k3 k3Var2 = k3VarArr2[0];
                 if (k3Var2 != null) {
                     k3Var2.dismiss();

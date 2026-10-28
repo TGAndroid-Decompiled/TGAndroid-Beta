@@ -18,19 +18,19 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class b3 implements Utilities.Callback {
-    public final int f26728a;
-    public final Object f26729b;
+    public final int f26712a;
+    public final Object f26713b;
 
     public b3(Object obj, int i10) {
-        this.f26728a = i10;
-        this.f26729b = obj;
+        this.f26712a = i10;
+        this.f26713b = obj;
     }
 
     private final void a(Object obj) {
-        pa1 pa1Var = (pa1) this.f26729b;
+        qa1 qa1Var = (qa1) this.f26713b;
         String str = (String) obj;
-        synchronized (pa1Var.d) {
-            pa1Var.d.add(str);
+        synchronized (qa1Var.d) {
+            qa1Var.d.add(str);
         }
     }
 
@@ -42,30 +42,30 @@ public final class b3 implements Utilities.Callback {
         float f10;
         float f11;
         TL_account.TL_birthday tL_birthday;
-        switch (this.f26728a) {
+        switch (this.f26712a) {
             case 0:
                 Object[] objArr = (Object[]) obj;
-                ((h2) this.f26729b).run();
+                ((h2) this.f26713b).run();
                 return;
             case 1:
                 CharSequence charSequence = (CharSequence) obj;
-                fi.g gVar = ((jd) this.f26729b).f11199f;
+                fi.g gVar = ((jd) this.f26713b).f11198f;
                 gVar.setText(charSequence);
                 gVar.w(charSequence.length(), charSequence.length());
                 return;
             case 2:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((tm) this.f26729b).v;
-                chatAttachAlertPhotoLayout.r0(null, null, ((Long) obj).longValue());
-                chatAttachAlertPhotoLayout.f30215b.dismiss();
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((tm) this.f26713b).v;
+                chatAttachAlertPhotoLayout.s0(null, null, ((Long) obj).longValue());
+                chatAttachAlertPhotoLayout.f30254b.dismiss();
                 return;
             case 3:
-                MessagesController.getInstance(((ct) this.f26729b).P).openApp((TLRPC.User) obj, 0);
+                MessagesController.getInstance(((ct) this.f26713b).P).openApp((TLRPC.User) obj, 0);
                 return;
             case 4:
-                ((ju) this.f26729b).performMenuAction(((Integer) obj).intValue());
+                ((ju) this.f26713b).performMenuAction(((Integer) obj).intValue());
                 return;
             case 5:
-                Runnable runnable = (Runnable) this.f26729b;
+                Runnable runnable = (Runnable) this.f26713b;
                 ArrayList arrayList = (ArrayList) obj;
                 if (runnable != null) {
                     runnable.run();
@@ -73,39 +73,39 @@ public final class b3 implements Utilities.Callback {
                 }
                 return;
             case 6:
-                nc0 nc0Var = (nc0) this.f26729b;
+                oc0 oc0Var = (oc0) this.f26713b;
                 Integer num = (Integer) obj;
-                ArrayList arrayList2 = nc0Var.e.f30165a;
-                ob0 ob0Var = nc0Var.f30959f;
-                if (((kc0) arrayList2.get(ob0Var.getCurrentPosition())).f29901a != num.intValue()) {
+                ArrayList arrayList2 = oc0Var.e.f30495a;
+                pb0 pb0Var = oc0Var.f31266f;
+                if (((lc0) arrayList2.get(pb0Var.getCurrentPosition())).f30227a != num.intValue()) {
                     int i10 = 0;
                     int i11 = 0;
                     while (true) {
                         if (i11 < arrayList2.size()) {
-                            if (((kc0) arrayList2.get(i11)).f29901a == num.intValue()) {
+                            if (((lc0) arrayList2.get(i11)).f30227a == num.intValue()) {
                                 i10 = i11;
                             } else {
                                 i11++;
                             }
                         }
                     }
-                    if (ob0Var.getCurrentPosition() != i10) {
-                        ob0Var.E(i10);
+                    if (pb0Var.getCurrentPosition() != i10) {
+                        pb0Var.E(i10);
                         return;
                     }
                     return;
                 }
                 return;
             case 7:
-                hc0 hc0Var = (hc0) this.f26729b;
-                hc0Var.f28921n.y(hc0Var.f28920f.T((View) obj));
+                ic0 ic0Var = (ic0) this.f26713b;
+                ic0Var.f29308n.y(ic0Var.f29307f.T((View) obj));
                 return;
             case 8:
-                le0 le0Var = (le0) this.f26729b;
+                me0 me0Var = (me0) this.f26713b;
                 Integer num2 = (Integer) obj;
-                FrameLayout frameLayout = le0Var.h;
-                if (le0Var.getContext() != null) {
-                    if (le0Var.getContext().getResources().getConfiguration().orientation == 2) {
+                FrameLayout frameLayout = me0Var.h;
+                if (me0Var.getContext() != null) {
+                    if (me0Var.getContext().getResources().getConfiguration().orientation == 2) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -118,7 +118,7 @@ public final class b3 implements Utilities.Callback {
                             top = 0.0f;
                         } else {
                             float f13 = 2.0f;
-                            float height = (le0Var.getHeight() - intValue) / 2.0f;
+                            float height = (me0Var.getHeight() - intValue) / 2.0f;
                             float height2 = frameLayout.getHeight();
                             if (z10) {
                                 f13 = 1.0f;
@@ -128,7 +128,7 @@ public final class b3 implements Utilities.Callback {
                         ViewPropertyAnimator duration = animate.translationY(top).setDuration(320L);
                         ds dsVar = ds.h;
                         duration.setInterpolator(dsVar).start();
-                        ViewPropertyAnimator animate2 = le0Var.M.animate();
+                        ViewPropertyAnimator animate2 = me0Var.M.animate();
                         if (intValue > AndroidUtilities.dp(20.0f)) {
                             f12 = 0.0f;
                         }
@@ -139,12 +139,12 @@ public final class b3 implements Utilities.Callback {
                 }
                 return;
             case 9:
-                jf0 jf0Var = (jf0) this.f26729b;
-                jf0Var.K.a(jf0Var.N, true, 0, ((Long) obj).longValue());
-                jf0Var.dismiss();
+                kf0 kf0Var = (kf0) this.f26713b;
+                kf0Var.K.a(kf0Var.N, true, 0, ((Long) obj).longValue());
+                kf0Var.dismiss();
                 return;
             case 10:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f26729b;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f26713b;
                 Bitmap bitmap = (Bitmap) obj;
                 ColorMatrix colorMatrix = new ColorMatrix();
                 if (org.telegram.ui.ActionBar.y6.I.q()) {
@@ -181,12 +181,12 @@ public final class b3 implements Utilities.Callback {
                 callback2.run(applyColorMatrix, applyColorMatrix2);
                 return;
             case 11:
-                nz0 nz0Var = (nz0) this.f26729b;
+                oz0 oz0Var = (oz0) this.f26713b;
                 TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
                 updatebirthday.birthday = tL_birthday2;
-                int i12 = nz0Var.f31102a;
+                int i12 = oz0Var.f31403a;
                 TLRPC.UserFull userFull = MessagesController.getInstance(i12).getUserFull(UserConfig.getInstance(i12).getClientUserId());
                 if (userFull != null) {
                     tL_birthday = userFull.birthday;
@@ -198,27 +198,27 @@ public final class b3 implements Utilities.Callback {
                     userFull.birthday = tL_birthday2;
                     MessagesStorage.getInstance(i12).updateUserInfo(userFull, false);
                 }
-                ConnectionsManager.getInstance(i12).sendRequest(updatebirthday, new bi.h2(nz0Var, userFull, tL_birthday, 18), 1024);
+                ConnectionsManager.getInstance(i12).sendRequest(updatebirthday, new bi.h2(oz0Var, userFull, tL_birthday, 18), 1024);
                 MessagesController.getInstance(i12).invalidateContentSettings();
                 MessagesController.getInstance(i12).removeSuggestion(0L, "BIRTHDAY_SETUP");
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
                 return;
             case 12:
-                r71 r71Var = (r71) this.f26729b;
-                r71Var.f32152g3.R(r71Var.T((View) obj), r71Var.f32156k3);
+                s71 s71Var = (s71) this.f26713b;
+                s71Var.f32504g3.R(s71Var.T((View) obj), s71Var.f32508k3);
                 return;
             case 13:
                 a(obj);
                 return;
             default:
-                ya1 ya1Var = (ya1) this.f26729b;
+                za1 za1Var = (za1) this.f26713b;
                 String str = (String) obj;
-                ya1Var.getClass();
+                za1Var.getClass();
                 try {
                     JSONObject jSONObject = new JSONObject(str);
-                    synchronized (ya1Var.d) {
-                        ya1Var.f34997a = jSONObject;
-                        ya1Var.d.notifyAll();
+                    synchronized (za1Var.f35308f) {
+                        za1Var.f35305a = jSONObject;
+                        za1Var.f35308f.notifyAll();
                     }
                     return;
                 } catch (Exception unused) {

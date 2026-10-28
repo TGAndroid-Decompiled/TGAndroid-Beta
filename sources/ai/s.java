@@ -31,7 +31,7 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ae;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.kf;
+import org.telegram.ui.jf;
 public final class s implements View.OnClickListener {
     public final int f1668a;
     public final Object f1669b;
@@ -98,17 +98,17 @@ public final class s implements View.OnClickListener {
             case 12:
                 if (((rc) ((sc) this.f1669b).d).f5374f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f22928a = true;
+                    obj.f22929a = true;
                     R.showAsSheet(new dd(), obj);
                     return;
                 }
                 return;
             case 13:
                 m2 m2Var = (m2) this.f1669b;
-                m2Var.q(!m2Var.f9349f0, true);
+                m2Var.q(!m2Var.f9348f0, true);
                 return;
             case 14:
-                ((y9) this.f1669b).N();
+                ((y9) this.f1669b).O();
                 return;
             case 15:
                 ((f6) this.f1669b).dismiss();
@@ -120,21 +120,21 @@ public final class s implements View.OnClickListener {
                 return;
             case 16:
                 c9 c9Var = (c9) this.f1669b;
-                c9Var.onClick(c9Var.f8464b);
+                c9Var.onClick(c9Var.f8463b);
                 return;
             case 17:
                 h9 h9Var = (h9) this.f1669b;
-                h9Var.f8656b.f9462u1.animate().alpha(0.0f).setDuration(150L).setListener(new r9(h9Var, 0)).start();
+                h9Var.f8655b.f9461u1.animate().alpha(0.0f).setDuration(150L).setListener(new r9(h9Var, 0)).start();
                 return;
             case 18:
                 ((s8) this.f1669b).run();
                 return;
             case 19:
                 fi.m mVar = (fi.m) this.f1669b;
-                fi.g gVar = mVar.f11199f;
+                fi.g gVar = mVar.f11198f;
                 gVar.d();
                 gVar.k(true);
-                fi.e eVar = mVar.f11196c0;
+                fi.e eVar = mVar.f11195c0;
                 AndroidUtilities.cancelRunOnUIThread(eVar);
                 eVar.run();
                 return;
@@ -148,8 +148,8 @@ public final class s implements View.OnClickListener {
                 ((h0) this.f1669b).run();
                 return;
             case 23:
-                i6 i6Var = ((h6) this.f1669b).f10961x;
-                if (i6Var.f11002r && (callback = i6Var.f11000f) != null) {
+                i6 i6Var = ((h6) this.f1669b).f10960x;
+                if (i6Var.f11001r && (callback = i6Var.f10999f) != null) {
                     callback.run(5);
                     return;
                 }
@@ -162,13 +162,13 @@ public final class s implements View.OnClickListener {
                 }
                 return;
             case 25:
-                ((kf) this.f1669b).run();
+                ((jf) this.f1669b).run();
                 return;
             case 26:
-                ((kf) this.f1669b).run();
+                ((jf) this.f1669b).run();
                 return;
             case 27:
-                ChatActivityEnterView.f(((ae) ((hi.u0) this.f1669b).d).f26490a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.e(((ae) ((hi.u0) this.f1669b).d).f26541a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 28:
                 ((e0) this.f1669b).run();

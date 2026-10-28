@@ -1,17 +1,45 @@
 package sg;
 
-import android.content.Context;
-public final class t2 extends p0 {
-    public final v2 f48522t0;
+import android.graphics.Insets;
+import android.graphics.Rect;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowInsets;
+import org.telegram.ui.Wallet.p5;
+public final class t2 implements View.OnApplyWindowInsetsListener {
+    public final u2 f48557a;
 
-    public t2(v2 v2Var, Context context, float f7) {
-        super(context, f7);
-        this.f48522t0 = v2Var;
+    public t2(u2 u2Var) {
+        this.f48557a = u2Var;
     }
 
     @Override
-    public final void invalidate() {
-        this.f48522t0.d.invalidate();
-        super.invalidate();
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        WindowInsets windowInsets2;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        u2 u2Var = this.f48557a;
+        p5 p5Var = u2Var.f48562b;
+        Rect rect = u2Var.h;
+        int i14 = Build.VERSION.SDK_INT;
+        if (i14 >= 30) {
+            Insets insets = windowInsets.getInsets(647);
+            i10 = insets.left;
+            i11 = insets.top;
+            i12 = insets.right;
+            i13 = insets.bottom;
+            rect.set(i10, i11, i12, i13);
+        } else {
+            rect.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
+        }
+        p5Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+        p5Var.requestLayout();
+        if (i14 >= 30) {
+            windowInsets2 = WindowInsets.CONSUMED;
+            return windowInsets2;
+        }
+        return windowInsets.consumeSystemWindowInsets();
     }
 }

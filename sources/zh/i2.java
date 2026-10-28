@@ -1,11 +1,11 @@
 package zh;
 
-import org.telegram.ui.Components.vs0;
+import org.telegram.ui.Components.ws0;
 public final class i2 extends s4.l {
-    public final vs0 F;
+    public final ws0 F;
 
-    public i2(vs0 vs0Var) {
-        this.F = vs0Var;
+    public i2(ws0 ws0Var) {
+        this.F = ws0Var;
     }
 
     @Override

@@ -4,40 +4,40 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kg implements Runnable {
-    public final int f29916a;
-    public final Object f29917b;
-    public final Object f29918c;
+    public final int f29953a;
+    public final Object f29954b;
+    public final Object f29955c;
     public final Object d;
 
     public kg(Object obj, Object obj2, Object obj3, int i10) {
-        this.f29916a = i10;
-        this.f29917b = obj;
+        this.f29953a = i10;
+        this.f29954b = obj;
         this.d = obj2;
-        this.f29918c = obj3;
+        this.f29955c = obj3;
     }
 
     private final void a() {
-        cz0 cz0Var = (cz0) this.f29917b;
+        dz0 dz0Var = (dz0) this.f29954b;
         String str = (String) this.d;
-        SendMessagesHelper.ImportingSticker importingSticker = (SendMessagesHelper.ImportingSticker) this.f29918c;
-        if (!cz0Var.isDismissed()) {
-            cz0Var.Z.remove(str);
+        SendMessagesHelper.ImportingSticker importingSticker = (SendMessagesHelper.ImportingSticker) this.f29955c;
+        if (!dz0Var.isDismissed()) {
+            dz0Var.Z.remove(str);
             if (!"application/x-tgsticker".equals(importingSticker.mimeType)) {
-                cz0Var.w0(importingSticker);
+                dz0Var.w0(importingSticker);
             } else {
                 importingSticker.validated = true;
-                int indexOf = cz0Var.Y.indexOf(importingSticker);
+                int indexOf = dz0Var.Y.indexOf(importingSticker);
                 if (indexOf >= 0) {
-                    s4.e1 K = cz0Var.f27291c.K(indexOf);
+                    s4.e1 K = dz0Var.f27581c.K(indexOf);
                     if (K != null) {
-                        ((org.telegram.ui.Cells.i8) K.f47738a).setSticker(importingSticker);
+                        ((org.telegram.ui.Cells.i8) K.f47773a).setSticker(importingSticker);
                     }
                 } else {
-                    cz0Var.d.l();
+                    dz0Var.d.l();
                 }
             }
-            if (cz0Var.Z.isEmpty()) {
-                cz0Var.D0();
+            if (dz0Var.Z.isEmpty()) {
+                dz0Var.D0();
             }
         }
     }
@@ -47,10 +47,10 @@ public final class kg implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kg.run():void");
     }
 
-    public kg(te0 te0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
-        this.f29916a = 16;
-        this.f29917b = te0Var;
+    public kg(ue0 ue0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
+        this.f29953a = 16;
+        this.f29954b = ue0Var;
         this.d = tL_error;
-        this.f29918c = tLObject;
+        this.f29955c = tLObject;
     }
 }

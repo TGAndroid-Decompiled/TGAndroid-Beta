@@ -9,26 +9,26 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.r71;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.nm0;
+import org.telegram.ui.Components.s71;
 import org.telegram.ui.Components.t61;
-public final class x0 extends s61 {
-    public static final int f17610a = 0;
+import org.telegram.ui.Components.u61;
+public final class x0 extends t61 {
+    public static final int f17609a = 0;
 
     static {
-        s61.setup(new s61());
+        t61.setup(new t61());
     }
 
     @Override
-    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+    public final void bindView(View view, u61 u61Var, boolean z10, k71 k71Var, s71 s71Var) {
         MessageObject messageObject;
         t tVar;
         y0 y0Var = (y0) view;
-        a aVar = (a) t61Var.G;
-        y0Var.f17653a = aVar;
-        y0Var.S = (q3) t61Var.H;
+        a aVar = (a) u61Var.G;
+        y0Var.f17652a = aVar;
+        y0Var.S = (q3) u61Var.H;
         y0Var.M = LocaleController.isRTL;
         y0Var.c(aVar);
         y0Var.F.b();
@@ -40,12 +40,12 @@ public final class x0 extends s61 {
             } else {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f22048id = -Long.valueOf(h.f22033id).hashCode();
+                tL_message.f22049id = -Long.valueOf(h.f22034id).hashCode();
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
                 TLRPC.Peer peer = tL_message.peer_id;
-                int i10 = y0Var.f17635n;
+                int i10 = y0Var.f17634n;
                 long clientUserId = UserConfig.getInstance(i10).getClientUserId();
                 peer.user_id = clientUserId;
                 tL_peerUser.user_id = clientUserId;
@@ -56,9 +56,9 @@ public final class x0 extends s61 {
                 tL_messageMediaDocument.flags |= 3;
                 tL_messageMediaDocument.document = h;
                 tL_message.flags |= 768;
-                a aVar2 = y0Var.f17653a;
-                if (aVar2 != null && (tVar = aVar2.f17057g) != null && !TextUtils.isEmpty(tVar.e)) {
-                    tL_message.attachPath = y0Var.f17653a.f17057g.e;
+                a aVar2 = y0Var.f17652a;
+                if (aVar2 != null && (tVar = aVar2.f17056g) != null && !TextUtils.isEmpty(tVar.e)) {
+                    tL_message.attachPath = y0Var.f17652a.f17056g.e;
                 }
                 messageObject = new MessageObject(i10, tL_message, false, true);
             }
@@ -74,9 +74,9 @@ public final class x0 extends s61 {
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, u6 u6Var) {
+    public final View createView(Context context, nm0 nm0Var, int i10, int i11, u6 u6Var) {
         y0 y0Var = new y0(context, i10, u6Var);
-        y0Var.setBackground(new y1(y6.w0(y6.f23356d6, u6Var)));
+        y0Var.setBackground(new y1(y6.w0(y6.f23357d6, u6Var)));
         y0Var.W = true;
         return y0Var;
     }

@@ -1,28 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import org.telegram.ui.tc1;
-public final class np extends tc1 {
-    public final int f31056l2;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.uc1;
+public final class np implements uc1 {
+    public final int f31018a;
+    public final ti f31019b;
+    public final org.telegram.ui.gc f31020c;
 
-    public np(Object obj, Bitmap bitmap, boolean z10, int i10) {
-        super(obj, bitmap, z10);
-        this.f31056l2 = i10;
+    public np(ti tiVar, org.telegram.ui.gc gcVar, int i10) {
+        this.f31018a = i10;
+        this.f31019b = tiVar;
+        this.f31020c = gcVar;
     }
 
     @Override
-    public final boolean V0() {
-        switch (this.f31056l2) {
+    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        switch (this.f31018a) {
             case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
+                this.f31019b.dismissInternal();
+                this.f31020c.run(tL_wallPaper);
+                return;
             default:
-                return true;
+                this.f31019b.dismissInternal();
+                this.f31020c.run(tL_wallPaper);
+                return;
         }
     }
 }

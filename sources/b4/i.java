@@ -356,7 +356,7 @@ public final class i implements m {
         int g10 = gVar.g(2);
         boolean f7 = gVar.f();
         gVar.o(1);
-        byte[] bArr2 = n0.f9693b;
+        byte[] bArr2 = n0.f9692b;
         if (g10 == 1) {
             gVar.o(gVar.g(8) * 16);
         } else if (g10 == 0) {
@@ -545,7 +545,7 @@ public final class i implements m {
         }
         d dVar4 = hVar.f3638i;
         if (dVar4 == null) {
-            g0 g0Var = i0.f10287b;
+            g0 g0Var = i0.f10286b;
             aVar = new z3.a(-9223372036854775807L, -9223372036854775807L, s1.e);
         } else {
             b bVar2 = hVar.h;

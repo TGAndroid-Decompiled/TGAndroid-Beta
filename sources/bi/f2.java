@@ -26,7 +26,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -34,11 +34,11 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.zp;
+import org.telegram.ui.Components.aq;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class f2 implements Runnable {
     public final int f4594a;
     public final Object f4595b;
@@ -92,7 +92,7 @@ public final class f2 implements Runnable {
                 h7 h7Var = (h7) this.f4595b;
                 if (!((ca) this.f4596c).e) {
                     org.telegram.ui.Components.qc R = h7Var.getBulletinFactory().R(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    R.f31900u = true;
+                    R.f31872u = true;
                     R.j();
                     return;
                 }
@@ -107,7 +107,7 @@ public final class f2 implements Runnable {
                 return;
             case 5:
                 h7 h7Var2 = (h7) this.f4595b;
-                org.telegram.ui.Components.wc.b0((un) this.f4596c).K(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(h7Var2.X))), LocaleController.getString(R.string.StarsGiftUpgradeCompletedMoreButton), new a2(h7Var2, 8)).k(true);
+                org.telegram.ui.Components.wc.b0((wn) this.f4596c).K(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(h7Var2.X))), LocaleController.getString(R.string.StarsGiftUpgradeCompletedMoreButton), new a2(h7Var2, 8)).k(true);
                 return;
             case 6:
                 h7 h7Var3 = (h7) this.f4595b;
@@ -125,7 +125,7 @@ public final class f2 implements Runnable {
                 return;
             case 9:
                 m7 m7Var = (m7) this.f4595b;
-                un unVar = (un) this.f4596c;
+                wn wnVar = (wn) this.f4596c;
                 org.telegram.ui.Cells.z zVar = m7Var.f5088b;
                 if (zVar != null) {
                     try {
@@ -160,19 +160,19 @@ public final class f2 implements Runnable {
                     if (aaVar != null) {
                         aaVar.b();
                     }
-                    TLRPC.ChatFull chatFull = unVar.f44325l8;
+                    TLRPC.ChatFull chatFull = wnVar.f45245p8;
                     Context context = m7Var.getContext();
-                    int currentAccount = unVar.getCurrentAccount();
-                    long a2 = unVar.a();
+                    int currentAccount = wnVar.getCurrentAccount();
+                    long a2 = wnVar.a();
                     if (chatFull != null && !chatFull.paid_reactions_available) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    be beVar = new be(context, currentAccount, a2, unVar, messageObject2, arrayList2, z10, false, 0L, unVar.getResourceProvider());
+                    be beVar = new be(context, currentAccount, a2, wnVar, messageObject2, arrayList2, z10, false, 0L, wnVar.getResourceProvider());
                     messageObject2.getId();
                     org.telegram.ui.Cells.z zVar3 = m7Var.f5088b;
-                    beVar.V = unVar;
+                    beVar.V = wnVar;
                     beVar.W = zVar3;
                     beVar.show();
                     return;
@@ -232,7 +232,7 @@ public final class f2 implements Runnable {
                 AndroidUtilities.runOnUIThread(new ed(beVar2, 1), 240L);
                 return;
             case 16:
-                ((c1.e) this.f4595b).e().onError(((kotlin.jvm.internal.p) this.f4596c).f16669a);
+                ((c1.e) this.f4595b).e().onError(((kotlin.jvm.internal.p) this.f4596c).f16668a);
                 return;
             case 17:
                 ((c1.e) this.f4595b).e().onError((w0.h) this.f4596c);
@@ -277,7 +277,7 @@ public final class f2 implements Runnable {
                     throw null;
                 }
             case 23:
-                ((di.y9) this.f4595b).H(ProfileActivity.t4(((di.v0) this.f4596c).f9240c));
+                ((di.y9) this.f4595b).I(ProfileActivity.t4(((di.v0) this.f4596c).f9239c));
                 return;
             case 24:
                 di.m2 m2Var = (di.m2) this.f4595b;
@@ -290,9 +290,9 @@ public final class f2 implements Runnable {
             case 25:
                 di.m2 m2Var2 = (di.m2) this.f4595b;
                 di.v0 v0Var = (di.v0) this.f4596c;
-                long j11 = v0Var.f9240c;
-                di.q4 q4Var = m2Var2.f8775i0;
-                if (j11 != UserConfig.getInstance(q4Var.f9021r2).getClientUserId() && ((h1Var = m2Var2.f8774h0.A0) == null || j11 != DialogObject.getPeerDialogId(h1Var.i()))) {
+                long j11 = v0Var.f9239c;
+                di.q4 q4Var = m2Var2.f8774i0;
+                if (j11 != UserConfig.getInstance(q4Var.f9020r2).getClientUserId() && ((h1Var = m2Var2.f8773h0.A0) == null || j11 != DialogObject.getPeerDialogId(h1Var.i()))) {
                     if (q4Var.D3 != null) {
                         for (int i16 = 0; i16 < q4Var.D3.peers.size(); i16++) {
                             if (j11 != DialogObject.getPeerDialogId(q4Var.D3.peers.get(i16).peer)) {
@@ -300,25 +300,25 @@ public final class f2 implements Runnable {
                         }
                     }
                     Context context2 = m2Var2.getContext();
-                    long j12 = v0Var.f9240c;
+                    long j12 = v0Var.f9239c;
                     di.c0 c0Var = new di.c0(0, m2Var2, v0Var);
                     di.b bVar = new di.b();
                     org.telegram.ui.ActionBar.k3 k3Var = new org.telegram.ui.ActionBar.k3(1, context2, (org.telegram.ui.ActionBar.u6) bVar, false);
                     k3Var.fixNavigationBar();
-                    LinearLayout d = vh.d(context2, 1);
+                    LinearLayout d = wh.d(context2, 1);
                     TextView g7 = org.telegram.messenger.t.g(context2, 1, 20.0f);
-                    org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.f23464j5, bVar);
+                    org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.f23465j5, bVar);
                     g7.setTypeface(AndroidUtilities.bold());
                     g7.setText(LocaleController.getString(R.string.DeleteSingleMessagesTitle));
-                    d.addView(g7, gb1.o(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
+                    d.addView(g7, kb1.o(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
                     org.telegram.ui.Cells.q4 q4Var2 = new org.telegram.ui.Cells.q4(context2, bVar);
                     q4Var2.setText(LocaleController.getString(R.string.DeleteAdditionalActions));
-                    d.addView(q4Var2, gb1.o(0.0f, 0.0f, 0.0f, 4.0f, -1, -2));
+                    d.addView(q4Var2, kb1.o(0.0f, 0.0f, 0.0f, 4.0f, -1, -2));
                     final org.telegram.ui.Cells.y1 y1Var = new org.telegram.ui.Cells.y1(4, 21, context2, bVar, true);
-                    zp checkBoxRound = y1Var.getCheckBoxRound();
+                    aq checkBoxRound = y1Var.getCheckBoxRound();
                     int i17 = org.telegram.ui.ActionBar.y6.V6;
                     int i18 = org.telegram.ui.ActionBar.y6.g7;
-                    int i19 = org.telegram.ui.ActionBar.y6.f23485k7;
+                    int i19 = org.telegram.ui.ActionBar.y6.f23486k7;
                     checkBoxRound.b(i17, i18, i19);
                     y1Var.e(LocaleController.getString(R.string.DeleteReportSpam), null, false, true, false);
                     y1Var.setOnClickListener(new View.OnClickListener() {
@@ -340,12 +340,12 @@ public final class f2 implements Runnable {
                             }
                         }
                     });
-                    int i20 = org.telegram.ui.ActionBar.y6.f23448i6;
+                    int i20 = org.telegram.ui.ActionBar.y6.f23449i6;
                     org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.y6.g0(bVar.g(i20), 2, -1);
                     org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i20);
                     y1Var.setBackground(g02);
                     org.telegram.ui.ActionBar.f7.k(y1Var, g02, null, N, bVar);
-                    d.addView(y1Var, gb1.r(-1, -2));
+                    d.addView(y1Var, kb1.r(-1, -2));
                     final org.telegram.ui.Cells.y1 y1Var2 = new org.telegram.ui.Cells.y1(4, 21, context2, bVar, true);
                     y1Var2.getCheckBoxRound().b(i17, i18, i19);
                     y1Var2.e(LocaleController.formatString(R.string.DeleteAllFrom, DialogObject.getName(j12)), null, false, true, false);
@@ -372,7 +372,7 @@ public final class f2 implements Runnable {
                     org.telegram.ui.ActionBar.b7 N2 = org.telegram.ui.ActionBar.f7.N(i20);
                     y1Var2.setBackground(g03);
                     org.telegram.ui.ActionBar.f7.k(y1Var2, g03, null, N2, bVar);
-                    d.addView(y1Var2, gb1.r(-1, -2));
+                    d.addView(y1Var2, kb1.r(-1, -2));
                     final org.telegram.ui.Cells.y1 y1Var3 = new org.telegram.ui.Cells.y1(4, 21, context2, bVar, true);
                     y1Var3.getCheckBoxRound().b(i17, i18, i19);
                     y1Var3.e(LocaleController.formatString(R.string.DeleteBan, DialogObject.getName(j12)), null, false, false, false);
@@ -399,26 +399,26 @@ public final class f2 implements Runnable {
                     org.telegram.ui.ActionBar.b7 N3 = org.telegram.ui.ActionBar.f7.N(i20);
                     y1Var3.setBackground(g04);
                     org.telegram.ui.ActionBar.f7.k(y1Var3, g04, null, N3, bVar);
-                    d.addView(y1Var3, gb1.r(-1, -2));
+                    d.addView(y1Var3, kb1.r(-1, -2));
                     org.telegram.ui.Cells.i9 i9Var = new org.telegram.ui.Cells.i9(context2, bVar);
                     i9Var.setBackgroundColor(-16777216);
                     i9Var.setFixedSize(12);
-                    d.addView(i9Var, gb1.r(-1, -2));
+                    d.addView(i9Var, kb1.r(-1, -2));
                     FrameLayout frameLayout = new FrameLayout(context2);
                     fi.d dVar = new fi.d(context2, bVar, true);
                     dVar.i(LocaleController.getString(R.string.DeleteProceedBtn), false, true);
                     dVar.setOnClickListener(new di.e0(y1Var, y1Var2, y1Var3, c0Var, k3Var, 0));
-                    frameLayout.addView(dVar, gb1.h(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
-                    d.addView(frameLayout, gb1.r(-1, -2));
+                    frameLayout.addView(dVar, kb1.h(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
+                    d.addView(frameLayout, kb1.r(-1, -2));
                     k3Var.setCustomView(d);
                     k3Var.show();
                     return;
                 }
                 TL_phone.deleteGroupCallMessages deletegroupcallmessages = new TL_phone.deleteGroupCallMessages();
                 deletegroupcallmessages.call = m2Var2.O;
-                deletegroupcallmessages.messages.add(Integer.valueOf(v0Var.f9238a));
+                deletegroupcallmessages.messages.add(Integer.valueOf(v0Var.f9237a));
                 ConnectionsManager.getInstance(m2Var2.N).sendRequest(deletegroupcallmessages, null);
-                m2Var2.c(v0Var.f9238a);
+                m2Var2.c(v0Var.f9237a);
                 return;
             case 26:
                 di.h1 h1Var2 = (di.h1) this.f4595b;
@@ -430,7 +430,7 @@ public final class f2 implements Runnable {
                     Object obj = arrayList4.get(i21);
                     i21++;
                     TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) obj;
-                    NotificationCenter.getInstance(h1Var2.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryMessageUpdate, Long.valueOf(tL_updateGroupCallMessage.call.f22044id), tL_updateGroupCallMessage, Boolean.TRUE);
+                    NotificationCenter.getInstance(h1Var2.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryMessageUpdate, Long.valueOf(tL_updateGroupCallMessage.call.f22045id), tL_updateGroupCallMessage, Boolean.TRUE);
                 }
                 return;
             case 27:
@@ -447,26 +447,26 @@ public final class f2 implements Runnable {
                 return;
             default:
                 di.q4 q4Var4 = (di.q4) this.f4595b;
-                fi.sb D = fi.sb.D((Activity) this.f4596c, q4Var4.f9021r2);
+                fi.sb D = fi.sb.D((Activity) this.f4596c, q4Var4.f9020r2);
                 di.p4 p4Var = q4Var4.B2;
-                if (p4Var != null && (x9Var = (di.x9) p4Var.f8902c) != null) {
+                if (p4Var != null && (x9Var = (di.x9) p4Var.f8901c) != null) {
                     j10 = x9Var.currentPosition;
                 } else {
                     j10 = 0;
                 }
                 File h = q4Var4.D1.h();
-                TL_stories.StoryItem storyItem = q4Var4.D1.f8871a;
+                TL_stories.StoryItem storyItem = q4Var4.D1.f8870a;
                 fi.w7 w7Var = new fi.w7();
-                w7Var.f11915n = true;
-                w7Var.f11927t = storyItem.media;
-                int i22 = w7Var.f11888a;
-                w7Var.f11921q = MessagesController.getInstance(i22).getPeer(storyItem.dialogId);
-                w7Var.f11923r = storyItem.f22266id;
-                w7Var.f11925s = storyItem.caption;
+                w7Var.f11914n = true;
+                w7Var.f11926t = storyItem.media;
+                int i22 = w7Var.f11887a;
+                w7Var.f11920q = MessagesController.getInstance(i22).getPeer(storyItem.dialogId);
+                w7Var.f11922r = storyItem.f22267id;
+                w7Var.f11924s = storyItem.caption;
                 w7Var.L = h;
                 w7Var.M = false;
-                w7Var.f11911k0 = 720;
-                w7Var.f11913l0 = 1280;
+                w7Var.f11910k0 = 720;
+                w7Var.f11912l0 = 1280;
                 TLRPC.MessageMedia messageMedia = storyItem.media;
                 if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
                     w7Var.K = false;
@@ -482,9 +482,9 @@ public final class f2 implements Runnable {
                             if (i23 < storyItem.media.document.attributes.size()) {
                                 TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i23);
                                 if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                                    w7Var.f11911k0 = documentAttribute.f22034w;
-                                    w7Var.f11913l0 = documentAttribute.h;
-                                    w7Var.f11906i = documentAttribute.duration;
+                                    w7Var.f11910k0 = documentAttribute.f22035w;
+                                    w7Var.f11912l0 = documentAttribute.h;
+                                    w7Var.f11905i = documentAttribute.duration;
                                 } else {
                                     i23++;
                                 }
@@ -513,21 +513,21 @@ public final class f2 implements Runnable {
                 }
                 w7Var.A();
                 w7Var.e(storyItem);
-                fi.lb d10 = fi.nb.d(q4Var4.f9047y0);
+                fi.lb d10 = fi.nb.d(q4Var4.f9046y0);
                 RectF rectF = D.H;
                 WindowManager.LayoutParams layoutParams = D.h;
-                WindowManager windowManager = D.f11622f;
-                int i25 = D.f11612c;
+                WindowManager windowManager = D.f11621f;
+                int i25 = D.f11611c;
                 if (!D.d) {
                     if (MessagesController.getInstance(i25).isFrozen()) {
                         org.telegram.ui.b.b(i25);
                     } else {
-                        D.f11669u0 = false;
+                        D.f11668u0 = false;
                         D.e = false;
                         D.B2 = false;
-                        if (windowManager != null && (rbVar = D.f11645n) != null && rbVar.getParent() == null) {
-                            AndroidUtilities.setPreferredMaxRefreshRate(windowManager, D.f11645n, layoutParams);
-                            windowManager.addView(D.f11645n, layoutParams);
+                        if (windowManager != null && (rbVar = D.f11644n) != null && rbVar.getParent() == null) {
+                            AndroidUtilities.setPreferredMaxRefreshRate(windowManager, D.f11644n, layoutParams);
+                            windowManager.addView(D.f11644n, layoutParams);
                             D.f0();
                         }
                         D.K1 = w7Var;
@@ -539,20 +539,20 @@ public final class f2 implements Runnable {
                             i12 = 0;
                         }
                         D.O1 = i12;
-                        D.f11663s0.f11306g = false;
+                        D.f11662s0.f11305g = false;
                         if (d10 != null) {
                             D.F = d10;
-                            D.J = d10.f11322a;
-                            rectF.set(d10.f11324c);
-                            D.G = d10.f11323b;
+                            D.J = d10.f11321a;
+                            rectF.set(d10.f11323c);
+                            D.G = d10.f11322b;
                             D.F.e();
                         } else {
                             D.J = 0;
                             rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
                             D.G = AndroidUtilities.dp(8.0f);
                         }
-                        D.f11658r.c();
-                        fi.eb ebVar = D.f11629h0;
+                        D.f11657r.c();
+                        fi.eb ebVar = D.f11628h0;
                         int i26 = D.J;
                         if (i26 != 1 && i26 != 0) {
                             i13 = -14737633;
@@ -560,24 +560,24 @@ public final class f2 implements Runnable {
                             i13 = 0;
                         }
                         ebVar.setBackgroundColor(i13);
-                        D.f11658r.setTranslationX(0.0f);
-                        D.f11658r.setTranslationY(0.0f);
-                        D.f11658r.b(0.0f);
-                        D.f11658r.setScaleX(1.0f);
-                        D.f11658r.setScaleY(1.0f);
+                        D.f11657r.setTranslationX(0.0f);
+                        D.f11657r.setTranslationY(0.0f);
+                        D.f11657r.b(0.0f);
+                        D.f11657r.setScaleX(1.0f);
+                        D.f11657r.setScaleY(1.0f);
                         D.K = 0.0f;
-                        AndroidUtilities.lockOrientation(D.f11608b, 1);
+                        AndroidUtilities.lockOrientation(D.f11607b, 1);
                         fi.w7 w7Var3 = D.K1;
                         if (w7Var3 != null) {
-                            D.f11614c1.setText(w7Var3.C0);
+                            D.f11613c1.setText(w7Var3.C0);
                         }
                         D.K(new fi.p9(D, 7), j10);
-                        D.f11610b1.b(true, false);
+                        D.f11609b1.b(true, false);
                         D.J(1, false);
                         D.k0(-1, false, false);
                         D.d();
-                        D.f11672v0 = 0L;
-                        D.f11676w0 = "";
+                        D.f11671v0 = 0L;
+                        D.f11675w0 = "";
                     }
                 }
                 D.Q = new di.c2(q4Var4, 12);

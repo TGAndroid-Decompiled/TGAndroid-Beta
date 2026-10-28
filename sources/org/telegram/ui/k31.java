@@ -1,47 +1,71 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-import org.telegram.messenger.SaveToGallerySettingsHelper;
-public final class k31 extends qg.a {
-    public final SaveToGallerySettingsHelper.DialogException f40795c;
-    public final String d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class k31 implements org.telegram.ui.Components.lp0 {
+    public final org.telegram.ui.Components.mp0 f40652a;
+    public final n31 f40653b;
+    public final n31 f40654c;
+    public final n31 d;
+    public final l31 e;
 
-    public k31(int i10) {
-        super(i10, false);
-        this.f40795c = null;
+    public k31(l31 l31Var, org.telegram.ui.Components.mp0 mp0Var, n31 n31Var, n31 n31Var2, n31 n31Var3) {
+        this.e = l31Var;
+        this.f40652a = mp0Var;
+        this.f40653b = n31Var;
+        this.f40654c = n31Var2;
+        this.d = n31Var3;
     }
 
-    public final boolean equals(Object obj) {
-        SaveToGallerySettingsHelper.DialogException dialogException;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void U(float f7, boolean z10) {
+        long j10;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.e.d;
+        boolean isAttachedToWindow = this.f40652a.isAttachedToWindow();
+        if (f7 > 0.7f) {
+            j10 = (((float) 4089446400L) * ((f7 - 0.7f) / 0.3f)) + ((float) 104857600);
+        } else {
+            j10 = (((float) 104333312) * (f7 / 0.7f)) + 524288.0f;
         }
-        if (obj == null || k31.class != obj.getClass()) {
-            return false;
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        n31 n31Var = this.d;
+        n31 n31Var2 = this.f40653b;
+        n31 n31Var3 = this.f40654c;
+        if (i10 >= 0) {
+            n31Var2.e(false, isAttachedToWindow);
+            n31Var3.e(false, isAttachedToWindow);
+            n31Var.e(true, isAttachedToWindow);
+            AndroidUtilities.updateViewVisibilityAnimated(n31Var3, false, 0.8f, isAttachedToWindow);
+        } else if (f7 == 0.0f) {
+            n31Var2.e(true, isAttachedToWindow);
+            n31Var3.e(false, isAttachedToWindow);
+            n31Var.e(false, isAttachedToWindow);
+            AndroidUtilities.updateViewVisibilityAnimated(n31Var3, false, 0.8f, isAttachedToWindow);
+        } else {
+            n31Var3.c(LocaleController.formatString("UpToFileSize", R.string.UpToFileSize, AndroidUtilities.formatFileSize(j10, true, false)), false, true);
+            n31Var2.e(false, isAttachedToWindow);
+            n31Var3.e(true, isAttachedToWindow);
+            n31Var.e(false, isAttachedToWindow);
+            AndroidUtilities.updateViewVisibilityAnimated(n31Var3, true, 0.8f, isAttachedToWindow);
         }
-        k31 k31Var = (k31) obj;
-        if (this.f47040a != k31Var.f47040a) {
-            return false;
+        if (z10) {
+            saveToGallerySettingsActivity.Z().limitVideo = j10;
+            saveToGallerySettingsActivity.a0();
         }
-        String str = this.d;
-        if (str != null) {
-            return Objects.equals(str, k31Var.d);
-        }
-        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f40795c;
-        if (dialogException2 == null || (dialogException = k31Var.f40795c) == null || dialogException2.dialogId == dialogException.dialogId) {
-            return true;
-        }
-        return false;
     }
 
-    public k31(SaveToGallerySettingsHelper.DialogException dialogException) {
-        super(2, false);
-        this.f40795c = dialogException;
+    @Override
+    public final CharSequence getContentDescription() {
+        return null;
     }
 
-    public k31(int i10, String str) {
-        super(i10, false);
-        this.d = str;
-        this.f40795c = null;
+    @Override
+    public final int k0() {
+        return 0;
+    }
+
+    @Override
+    public final void y() {
     }
 }

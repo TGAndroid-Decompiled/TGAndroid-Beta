@@ -30,9 +30,9 @@ import com.google.android.gms.common.api.internal.o0;
 import com.google.android.gms.common.api.internal.w;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import di.g8;
-import di.o9;
 import di.p9;
 import di.q4;
+import di.x;
 import di.y9;
 import fi.ta;
 import h6.o;
@@ -48,7 +48,7 @@ import li.g1;
 import m.r3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.y6;
-import sg.x2;
+import sg.w2;
 public final class d implements Runnable {
     public final int f284a;
     public final Object f285b;
@@ -61,7 +61,7 @@ public final class d implements Runnable {
 
     private final void a() {
         o oVar = (o) this.f285b;
-        synchronized (o.f12645i) {
+        synchronized (o.f12644i) {
             try {
                 if (!oVar.d()) {
                     return;
@@ -131,13 +131,13 @@ public final class d implements Runnable {
                         va vaVar = new va(obj3);
                         int size2 = arrayList.size();
                         ?? obj5 = new Object();
-                        obj5.f17846c = ob.TYPE_THIN;
+                        obj5.f17845c = ob.TYPE_THIN;
                         h0 h0Var = new h0(1, false);
                         h0Var.f512c = Integer.valueOf(size2 & Integer.MAX_VALUE);
                         h0Var.f511b = (r1) next;
                         h0Var.d = vaVar;
                         obj5.h = new s1(h0Var);
-                        sb.m.f48064a.execute(new fg(kgVar, new ng((r3) obj5, 0), rbVar, kgVar.c(), 0));
+                        sb.m.f48102a.execute(new fg(kgVar, new ng((r3) obj5, 0), rbVar, kgVar.c(), 0));
                         dhVar2 = null;
                     }
                     hashMap.remove(rbVar);
@@ -233,7 +233,7 @@ public final class d implements Runnable {
                 l6.e eVar = f0Var.d;
                 Context context = f0Var.f6522c;
                 eVar.getClass();
-                if (!l6.g.f16934a.getAndSet(true)) {
+                if (!l6.g.f16933a.getAndSet(true)) {
                     try {
                         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
                         if (notificationManager != null) {
@@ -251,7 +251,7 @@ public final class d implements Runnable {
                 ((o0) this.f285b).f();
                 return;
             case 14:
-                com.google.android.gms.common.api.c cVar = ((o0) ((rb.c) this.f285b).f47323b).f6584b;
+                com.google.android.gms.common.api.c cVar = ((o0) ((rb.c) this.f285b).f47358b).f6584b;
                 cVar.c(cVar.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 15:
@@ -278,25 +278,25 @@ public final class d implements Runnable {
                 return;
             case 19:
                 q4 q4Var = (q4) this.f285b;
-                if (q4Var.f9051z1 && q4Var.Q0) {
+                if (q4Var.f9050z1 && q4Var.Q0) {
                     y9 y9Var = ((p9) q4Var.F1).d;
                     y9Var.l1 = false;
-                    y9Var.P();
+                    y9Var.Q();
                     return;
                 }
                 return;
             case 20:
-                ((o9) this.f285b).L0 = false;
+                ((x) this.f285b).L0 = false;
                 return;
             case 21:
                 g8 g8Var = (g8) this.f285b;
-                g8Var.f8594b = false;
+                g8Var.f8593b = false;
                 g8Var.invalidate();
                 return;
             case 22:
-                sg.j jVar = ((ta) this.f285b).f10824y0;
-                if (jVar instanceof x2) {
-                    ((x2) jVar).getEditText();
+                sg.j jVar = ((ta) this.f285b).f10823y0;
+                if (jVar instanceof w2) {
+                    ((w2) jVar).getEditText();
                     return;
                 }
                 return;
@@ -331,7 +331,7 @@ public final class d implements Runnable {
                 }
             default:
                 m.r1 r1Var = (m.r1) this.f285b;
-                r1Var.f17841w = null;
+                r1Var.f17840w = null;
                 r1Var.drawableStateChanged();
                 return;
         }

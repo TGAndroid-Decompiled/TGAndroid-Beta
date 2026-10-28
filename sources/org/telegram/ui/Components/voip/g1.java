@@ -8,14 +8,14 @@ import android.view.View;
 import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 public final class g1 extends GestureDetector.SimpleOnGestureListener {
-    public float f33810a;
-    public float f33811b;
-    public final int f33812c;
+    public float f33915a;
+    public float f33916b;
+    public final int f33917c;
     public final i1 d;
 
     public g1(i1 i1Var, int i10) {
         this.d = i1Var;
-        this.f33812c = i10;
+        this.f33917c = i10;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class g1 extends GestureDetector.SimpleOnGestureListener {
                 }
             }
         }
-        this.f33810a = i1Var.Q;
-        this.f33811b = i1Var.R;
+        this.f33915a = i1Var.Q;
+        this.f33916b = i1Var.R;
         return true;
     }
 
@@ -42,11 +42,11 @@ public final class g1 extends GestureDetector.SimpleOnGestureListener {
         i1 i1Var = this.d;
         if (i1Var.H && !i1Var.I) {
             o1.j jVar = i1Var.S;
-            jVar.f18960a = f7;
+            jVar.f18959a = f7;
             float f12 = i1Var.Q;
-            jVar.f18961b = f12;
-            jVar.f18962c = true;
-            o1.k kVar = jVar.f18969u;
+            jVar.f18960b = f12;
+            jVar.f18961c = true;
+            o1.k kVar = jVar.f18968u;
             int i10 = i1Var.M;
             float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
             int i11 = AndroidUtilities.displaySize.x;
@@ -55,13 +55,13 @@ public final class g1 extends GestureDetector.SimpleOnGestureListener {
             } else {
                 dp = AndroidUtilities.dp(16.0f);
             }
-            kVar.f18975i = dp;
+            kVar.f18974i = dp;
             i1Var.S.h();
             o1.j jVar2 = i1Var.T;
-            jVar2.f18960a = f7;
-            jVar2.f18961b = i1Var.R;
-            jVar2.f18962c = true;
-            jVar2.f18969u.f18975i = ee.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - i1Var.N) - AndroidUtilities.dp(16.0f));
+            jVar2.f18959a = f7;
+            jVar2.f18960b = i1Var.R;
+            jVar2.f18961c = true;
+            jVar2.f18968u.f18974i = ee.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - i1Var.N) - AndroidUtilities.dp(16.0f));
             i1Var.T.h();
             return true;
         }
@@ -73,7 +73,7 @@ public final class g1 extends GestureDetector.SimpleOnGestureListener {
         i1 i1Var = this.d;
         if (!i1Var.H && i1Var.L == null && !i1Var.I) {
             float abs = Math.abs(f7);
-            float f11 = this.f33812c;
+            float f11 = this.f33917c;
             if (abs >= f11 || Math.abs(f10) >= f11) {
                 i1Var.H = true;
                 i1Var.S.c();
@@ -81,15 +81,15 @@ public final class g1 extends GestureDetector.SimpleOnGestureListener {
             }
         }
         if (i1Var.H) {
-            WindowManager.LayoutParams layoutParams = i1Var.f33848c;
-            float rawX = (motionEvent2.getRawX() + this.f33810a) - motionEvent.getRawX();
+            WindowManager.LayoutParams layoutParams = i1Var.f33953c;
+            float rawX = (motionEvent2.getRawX() + this.f33915a) - motionEvent.getRawX();
             i1Var.Q = rawX;
             layoutParams.x = (int) rawX;
-            WindowManager.LayoutParams layoutParams2 = i1Var.f33848c;
-            float rawY = (motionEvent2.getRawY() + this.f33811b) - motionEvent.getRawY();
+            WindowManager.LayoutParams layoutParams2 = i1Var.f33953c;
+            float rawY = (motionEvent2.getRawY() + this.f33916b) - motionEvent.getRawY();
             i1Var.R = rawY;
             layoutParams2.y = (int) rawY;
-            AndroidUtilities.updateViewLayout(i1Var.f33847b, i1Var.d, i1Var.f33848c);
+            AndroidUtilities.updateViewLayout(i1Var.f33952b, i1Var.d, i1Var.f33953c);
         }
         return true;
     }

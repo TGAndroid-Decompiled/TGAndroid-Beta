@@ -8,23 +8,23 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 public final class er extends View implements org.telegram.ui.ActionBar.p6 {
-    public final Paint f27966a;
-    public final Paint f27967b;
-    public final RectF f27968c;
+    public final Paint f27911a;
+    public final Paint f27912b;
+    public final RectF f27913c;
     public int d;
     public long e;
-    public int f27969f;
+    public int f27914f;
     public int h;
-    public int f27970n;
-    public int f27971r;
+    public int f27915n;
+    public int f27916r;
 
     public er(Context context, int i10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f27966a = paint;
+        this.f27911a = paint;
         Paint paint2 = new Paint(1);
-        this.f27967b = paint2;
-        this.f27968c = new RectF();
+        this.f27912b = paint2;
+        this.f27913c = new RectF();
         this.d = 0;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
@@ -33,26 +33,26 @@ public final class er extends View implements org.telegram.ui.ActionBar.p6 {
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setStrokeCap(Paint.Cap.ROUND);
         if (i10 == 0) {
-            this.f27969f = org.telegram.ui.ActionBar.y6.B7;
+            this.f27914f = org.telegram.ui.ActionBar.y6.B7;
             this.h = org.telegram.ui.ActionBar.y6.C7;
         } else if (i10 == 1) {
-            this.f27969f = org.telegram.ui.ActionBar.y6.D7;
+            this.f27914f = org.telegram.ui.ActionBar.y6.D7;
             this.h = org.telegram.ui.ActionBar.y6.E7;
         } else if (i10 == 2) {
-            this.f27969f = org.telegram.ui.ActionBar.y6.F7;
+            this.f27914f = org.telegram.ui.ActionBar.y6.F7;
             this.h = org.telegram.ui.ActionBar.y6.G7;
         } else if (i10 == 3) {
-            this.f27969f = org.telegram.ui.ActionBar.y6.H7;
+            this.f27914f = org.telegram.ui.ActionBar.y6.H7;
             this.h = org.telegram.ui.ActionBar.y6.I7;
         }
         updateColors();
     }
 
     public final void a(int i10, int i11) {
-        this.f27969f = -1;
+        this.f27914f = -1;
         this.h = -1;
-        this.f27970n = i10;
-        this.f27971r = i11;
+        this.f27915n = i10;
+        this.f27916r = i11;
         updateColors();
     }
 
@@ -74,10 +74,10 @@ public final class er extends View implements org.telegram.ui.ActionBar.p6 {
         this.d = (int) ((((float) (j10 * 360)) / 1000.0f) + this.d);
         int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
         int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        RectF rectF = this.f27968c;
+        RectF rectF = this.f27913c;
         rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f27966a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f27967b);
+        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f27911a);
+        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f27912b);
         invalidate();
     }
 
@@ -90,19 +90,19 @@ public final class er extends View implements org.telegram.ui.ActionBar.p6 {
 
     @Override
     public final void updateColors() {
-        int i10 = this.f27969f;
-        Paint paint = this.f27966a;
+        int i10 = this.f27914f;
+        Paint paint = this.f27911a;
         if (i10 >= 0) {
             paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
         } else {
-            paint.setColor(this.f27970n);
+            paint.setColor(this.f27915n);
         }
         int i11 = this.h;
-        Paint paint2 = this.f27967b;
+        Paint paint2 = this.f27912b;
         if (i11 >= 0) {
             paint2.setColor(org.telegram.ui.ActionBar.y6.x0(null, i11, false));
         } else {
-            paint2.setColor(this.f27971r);
+            paint2.setColor(this.f27916r);
         }
         invalidate();
     }

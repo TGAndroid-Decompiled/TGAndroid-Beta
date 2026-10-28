@@ -1,23 +1,50 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.WindowInsets;
-public final class p31 implements View.OnApplyWindowInsetsListener {
-    public final int f42347a;
-    public final Object f42348b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+public final class p31 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
+    public final Path f42294a;
+    public eh.d f42295b;
 
-    public p31(Object obj, int i10) {
-        this.f42347a = i10;
-        this.f42348b = obj;
+    public p31(Activity activity) {
+        super(activity);
+        this.f42294a = new Path();
     }
 
     @Override
-    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f42347a) {
-            case 0:
-                return SecretMediaViewer.a((SecretMediaViewer) this.f42348b, windowInsets);
-            default:
-                return y51.b((r41) this.f42348b, view, windowInsets);
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f42294a);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        Path path = this.f42294a;
+        path.rewind();
+        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+    }
+
+    public void setBlurredBackground(eh.d dVar) {
+        this.f42295b = dVar;
+        setBackground(dVar);
+    }
+
+    @Override
+    public final void updateColors() {
+        eh.d dVar = this.f42295b;
+        if (dVar != null) {
+            dVar.updateColors();
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

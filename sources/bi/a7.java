@@ -25,7 +25,7 @@ public final class a7 extends AnimatorListenerAdapter {
         TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) b7Var.f4349d0.f4245f;
         if (stargiftattributepattern != null) {
             org.telegram.ui.Components.t5 m10 = org.telegram.ui.Components.t5.m(UserConfig.selectedAccount, 7, stargiftattributepattern.document);
-            m10.f32854m = true;
+            m10.f32862m = true;
             m10.v();
         }
         AndroidUtilities.cancelRunOnUIThread(u6Var);

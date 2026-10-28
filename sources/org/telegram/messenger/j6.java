@@ -1,48 +1,32 @@
 package org.telegram.messenger;
-public final class j6 implements Runnable {
-    public final int f20395a;
-    public final MediaController f20396b;
 
-    public j6(MediaController mediaController, int i10) {
-        this.f20395a = i10;
-        this.f20396b = mediaController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.l80;
+public final class j6 implements Runnable {
+    public final int f20410a;
+    public final float f20411b;
+    public final NotificationCenter.NotificationCenterDelegate f20412c;
+    public final Object d;
+
+    public j6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, float f7, int i10) {
+        this.f20410a = i10;
+        this.f20412c = notificationCenterDelegate;
+        this.d = obj;
+        this.f20411b = f7;
     }
 
     @Override
     public final void run() {
-        switch (this.f20395a) {
+        switch (this.f20410a) {
             case 0:
-                this.f20396b.lambda$playMessage$20();
-                return;
-            case 1:
-                this.f20396b.lambda$setTextureView$15();
-                return;
-            case 2:
-                this.f20396b.lambda$stopRaiseToEarSensors$9();
-                return;
-            case 3:
-                this.f20396b.lambda$toggleRecordingPause$31();
-                return;
-            case 4:
-                this.f20396b.lambda$toggleRecordingPause$32();
-                return;
-            case 5:
-                this.f20396b.lambda$new$2();
-                return;
-            case 6:
-                this.f20396b.lambda$new$3();
-                return;
-            case 7:
-                this.f20396b.lambda$new$4();
-                return;
-            case 8:
-                this.f20396b.lambda$setCurrentVideoVisible$14();
-                return;
-            case 9:
-                this.f20396b.lambda$toggleRecordingPause$33();
+                ((MediaController) this.f20412c).lambda$setPlaybackSpeed$16((MessageObject) this.d, this.f20411b);
                 return;
             default:
-                this.f20396b.lambda$startRaiseToEarSensors$8();
+                org.telegram.ui.j4 j4Var = (org.telegram.ui.j4) this.f20412c;
+                l80 l80Var = (l80) this.d;
+                j4Var.f40402h0.M.c(0.0f, true);
+                l80Var.f30163p = new org.telegram.ui.b0(j4Var, this.f20411b, 0);
+                l80Var.Z();
                 return;
         }
     }

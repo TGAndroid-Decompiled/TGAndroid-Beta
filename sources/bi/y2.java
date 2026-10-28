@@ -21,10 +21,10 @@ import org.telegram.ui.Components.c40;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.ia0;
-import org.telegram.ui.ja0;
-import org.telegram.ui.v50;
-import org.telegram.ui.yl0;
+import org.telegram.ui.am0;
+import org.telegram.ui.ka0;
+import org.telegram.ui.la0;
+import org.telegram.ui.x50;
 public final class y2 implements Runnable {
     public final int f5750a;
     public final Object f5751b;
@@ -41,14 +41,14 @@ public final class y2 implements Runnable {
     }
 
     private final void a() {
-        v50 v50Var = (v50) this.f5751b;
+        x50 x50Var = (x50) this.f5751b;
         org.telegram.ui.ActionBar.e2[] e2VarArr = (org.telegram.ui.ActionBar.e2[]) this.d;
         TLRPC.User user = (TLRPC.User) this.e;
-        ChatObject.Call call = v50Var.f44610a1;
-        if (call != null && !v50Var.f44684s0) {
+        ChatObject.Call call = x50Var.f45491a1;
+        if (call != null && !x50Var.f45565s0) {
             call.addInvitedUser(this.f5752c);
-            v50Var.O0(true);
-            c40 c40Var = v50Var.E1;
+            x50Var.O0(true);
+            c40 c40Var = x50Var.E1;
             if (c40Var != null) {
                 c40Var.dismiss();
             }
@@ -57,13 +57,13 @@ public final class y2 implements Runnable {
             } catch (Throwable unused) {
             }
             e2VarArr[0] = null;
-            v50Var.k1().k(0L, 34, user, v50Var.Z0, null, null);
+            x50Var.k1().k(0L, 34, user, x50Var.Z0, null, null);
         }
     }
 
     private final void b() {
-        ja0 ja0Var = (ja0) this.f5751b;
-        LaunchActivity launchActivity = ja0Var.f40545g;
+        la0 la0Var = (la0) this.f5751b;
+        LaunchActivity launchActivity = la0Var.f41066g;
         String str = (String) this.d;
         org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) this.e;
         if (str != null) {
@@ -87,7 +87,7 @@ public final class y2 implements Runnable {
                     }
                     return;
                 }
-                accountInstance.getMessagesController().getGroupCall(j11, true, new ia0(ja0Var, accountInstance, j10, r2Var, 0));
+                accountInstance.getMessagesController().getGroupCall(j11, true, new ka0(la0Var, accountInstance, j10, r2Var, 0));
             }
         }
     }
@@ -101,7 +101,7 @@ public final class y2 implements Runnable {
         t2 t2Var = new t2(photoViewer, str, photoEntry, j10, 6);
         if (photoViewer.D2) {
             Bitmap createBitmap = Bitmap.createBitmap(photoViewer.C2.getWidth(), photoViewer.C2.getHeight(), Bitmap.Config.ARGB_8888);
-            AndroidUtilities.getBitmapFromSurface(photoViewer.C2, createBitmap, new yl0(9, t2Var, createBitmap));
+            AndroidUtilities.getBitmapFromSurface(photoViewer.C2, createBitmap, new am0(10, t2Var, createBitmap));
             return;
         }
         TextureView textureView = photoViewer.B2;
@@ -143,7 +143,7 @@ public final class y2 implements Runnable {
                                 if (bArr4 == null) {
                                     bArr4 = (byte[]) bArr6.clone();
                                 } else if (bArr6.length != bArr4.length) {
-                                    org.telegram.ui.Wallet.l0.i("getSecretPhrase: part " + i10 + " has length " + mnemonic_decryptedkeypart.share.length + " while other had " + bArr4.length);
+                                    org.telegram.ui.Wallet.l0.j("getSecretPhrase: part " + i10 + " has length " + mnemonic_decryptedkeypart.share.length + " while other had " + bArr4.length);
                                     jVar.run(null, "WALLET_PART_SHARE_UNEQUAL_LENGHTS");
                                     byte[] bArr7 = mnemonic_decryptedkeypart.share;
                                     if (bArr7 != null) {
@@ -175,7 +175,7 @@ public final class y2 implements Runnable {
                             throw th;
                         }
                     }
-                    org.telegram.ui.Wallet.l0.i("getSecretPhrase: couldn't decrypt " + i10 + " part");
+                    org.telegram.ui.Wallet.l0.j("getSecretPhrase: couldn't decrypt " + i10 + " part");
                     jVar.run(null, "WALLET_PART_" + i10 + "_CANT_DECRYPT");
                     if (mnemonic_decryptedkeypart != null && (bArr3 = mnemonic_decryptedkeypart.share) != null) {
                         Arrays.fill(bArr3, (byte) 0);
@@ -197,7 +197,7 @@ public final class y2 implements Runnable {
             }
         }
         if (bArr4 == null) {
-            org.telegram.ui.Wallet.l0.i("getSecretPhrase: no parts???");
+            org.telegram.ui.Wallet.l0.j("getSecretPhrase: no parts???");
             jVar.run(null, "WALLET_NO_PARTS");
             if (bArr4 != null) {
                 Arrays.fill(bArr4, (byte) 0);
@@ -217,11 +217,11 @@ public final class y2 implements Runnable {
             }
             if (secretPhraseToPublicKey != null && bArr != null && Arrays.equals(secretPhraseToPublicKey, bArr)) {
                 Arrays.fill(bArr4, (byte) 0);
-                org.telegram.ui.Wallet.l0.F("getSecretPhrase, received the phrase!");
+                org.telegram.ui.Wallet.l0.H("getSecretPhrase, received the phrase!");
                 jVar.run(i0Var, null);
                 return;
             }
-            org.telegram.ui.Wallet.l0.i("getSecretPhrase: mnemonic public key doesn't match one from server: server=" + Utilities.bytesToHex(bArr) + " derived=" + Utilities.bytesToHex(secretPhraseToPublicKey));
+            org.telegram.ui.Wallet.l0.j("getSecretPhrase: mnemonic public key doesn't match one from server: server=" + Utilities.bytesToHex(bArr) + " derived=" + Utilities.bytesToHex(secretPhraseToPublicKey));
             i0Var.close();
             jVar.run(null, "WALLET_WORDS_DONT_MATCH");
             Arrays.fill(bArr4, (byte) 0);
@@ -243,7 +243,7 @@ public final class y2 implements Runnable {
                 message = th.getMessage();
             }
             jVar.run(null, message);
-            org.telegram.ui.Wallet.l0.j("getSecretPhrase: encryption error", th);
+            org.telegram.ui.Wallet.l0.k("getSecretPhrase: encryption error", th);
             if (bArr4 != null) {
                 Arrays.fill(bArr4, (byte) 0);
             }

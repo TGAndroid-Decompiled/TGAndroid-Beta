@@ -17,65 +17,65 @@ public final class ad {
     public float C;
     public float D;
     public final cd E;
-    public final Paint f26468a;
-    public Bitmap f26469b;
-    public float f26470c;
+    public final Paint f26510a;
+    public Bitmap f26511b;
+    public float f26512c;
     public float d;
     public final h6 e;
-    public final h6 f26471f;
-    public float f26472g;
+    public final h6 f26513f;
+    public float f26514g;
     public final h6 h;
-    public float f26473i;
-    public final h6 f26474j;
-    public final r6 f26475k;
-    public float f26476l;
-    public final h6 f26477m;
-    public boolean f26478n;
-    public final h6 f26479o;
-    public final Path f26480p;
-    public final Paint f26481q;
-    public final RectF f26482r;
-    public final Paint f26483s;
-    public final Paint f26484t;
-    public final RectF f26485u;
+    public float f26515i;
+    public final h6 f26516j;
+    public final r6 f26517k;
+    public float f26518l;
+    public final h6 f26519m;
+    public boolean f26520n;
+    public final h6 f26521o;
+    public final Path f26522p;
+    public final Paint f26523q;
+    public final RectF f26524r;
+    public final Paint f26525s;
+    public final Paint f26526t;
+    public final RectF f26527u;
     public RadialGradient v;
-    public Matrix f26486w;
-    public float f26487x;
-    public float f26488y;
-    public float f26489z;
+    public Matrix f26528w;
+    public float f26529x;
+    public float f26530y;
+    public float f26531z;
 
     public ad(cd cdVar) {
         this.E = cdVar;
         Paint paint = new Paint(3);
-        this.f26468a = paint;
+        this.f26510a = paint;
         paint.setColor(-1);
         ds dsVar = ds.h;
         this.e = new h6(cdVar, 650L, dsVar);
-        this.f26471f = new h6(cdVar, 650L, dsVar);
-        ds dsVar2 = ds.f27587g;
+        this.f26513f = new h6(cdVar, 650L, dsVar);
+        ds dsVar2 = ds.f27531g;
         this.h = new h6(cdVar, 0L, 150L, dsVar2);
-        this.f26473i = 1.0f;
-        this.f26474j = new h6(cdVar, 0L, 150L, dsVar2);
+        this.f26515i = 1.0f;
+        this.f26516j = new h6(cdVar, 0L, 150L, dsVar2);
         r6 r6Var = new r6(false, true, true);
-        this.f26475k = r6Var;
-        this.f26477m = new h6(cdVar, 0L, 150L, dsVar2);
-        this.f26479o = new h6(cdVar, 0L, 200L, dsVar);
+        this.f26517k = r6Var;
+        this.f26519m = new h6(cdVar, 0L, 150L, dsVar2);
+        this.f26521o = new h6(cdVar, 0L, 200L, dsVar);
         r6Var.u(-1);
         r6Var.n(0.35f, 200L, dsVar);
         r6Var.x(AndroidUtilities.bold());
         r6Var.w(AndroidUtilities.dp(15.0f));
-        r6Var.f32121b = 17;
-        this.f26480p = new Path();
+        r6Var.f32142b = 17;
+        this.f26522p = new Path();
         Paint paint2 = new Paint(1);
-        this.f26481q = paint2;
-        this.f26482r = new RectF();
-        this.f26483s = new Paint(1);
+        this.f26523q = paint2;
+        this.f26524r = new RectF();
+        this.f26525s = new Paint(1);
         Paint paint3 = new Paint(1);
-        this.f26484t = paint3;
+        this.f26526t = paint3;
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-        this.f26485u = new RectF();
+        this.f26527u = new RectF();
     }
 
     public final void a(Canvas canvas, float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18) {
@@ -83,11 +83,11 @@ public final class ad {
         if (f18 > 0.0f && LiteMode.isEnabled(360928)) {
             long currentTimeMillis = System.currentTimeMillis();
             float sqrt = (float) Math.sqrt(2.0d);
-            if (cd.f27117b0 < 0) {
-                cd.f27117b0 = currentTimeMillis;
+            if (cd.f27126b0 < 0) {
+                cd.f27126b0 = currentTimeMillis;
             }
-            float f19 = ((float) (currentTimeMillis - cd.f27117b0)) / 10000.0f;
-            Bitmap bitmap = this.f26469b;
+            float f19 = ((float) (currentTimeMillis - cd.f27126b0)) / 10000.0f;
+            Bitmap bitmap = this.f26511b;
             if (bitmap != null) {
                 int width = bitmap.getWidth();
                 float f20 = width;
@@ -106,7 +106,7 @@ public final class ad {
                     float sin2 = (float) ((Math.sin(cd.a(f22)) * lerp) + f10);
                     float abs = (Math.abs(sin - 0.5f) * (-1.75f)) + 1.0f;
                     float C = c3.h0.C((float) (Math.sin(sin * 3.141592653589793d) - 1.0d), 0.25f, 1.0f, abs * 0.65f * f18);
-                    Paint paint = this.f26468a;
+                    Paint paint = this.f26510a;
                     paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, AndroidUtilities.lerp(1.0f, Math.min(a8.ic.a(a2, sin2, f11, f12) / AndroidUtilities.dpf2(64.0f), 1.0f), f17) * C)) * 255.0f));
                     float f25 = dpf2;
                     float sin3 = f25 * ((float) ((((Math.sin(f22) + 1.0d) * 0.25d) + 0.800000011920929d) * c3.h0.C((float) (Math.sin(d) - 1.0d), 0.25f, 1.0f, 0.75f)));
@@ -114,7 +114,7 @@ public final class ad {
                     canvas.translate(a2, sin2);
                     canvas.scale(sin3, sin3);
                     float f26 = -(i10 >> 1);
-                    canvas.drawBitmap(this.f26469b, f26, f26, paint);
+                    canvas.drawBitmap(this.f26511b, f26, f26, paint);
                     canvas.restore();
                     floor++;
                     sqrt = sqrt;

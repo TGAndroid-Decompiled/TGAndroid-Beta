@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class h8 implements Runnable {
-    public final int f20235a;
-    public final MediaDataController f20236b;
-    public final int f20237c;
+    public final int f20230a;
+    public final MediaDataController f20231b;
+    public final boolean f20232c;
 
-    public h8(MediaDataController mediaDataController, int i10, int i11) {
-        this.f20235a = i11;
-        this.f20236b = mediaDataController;
-        this.f20237c = i10;
+    public h8(MediaDataController mediaDataController, boolean z10, int i10) {
+        this.f20230a = i10;
+        this.f20231b = mediaDataController;
+        this.f20232c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20235a) {
+        switch (this.f20230a) {
             case 0:
-                this.f20236b.lambda$fetchEmojiStatuses$232(this.f20237c);
+                this.f20231b.lambda$loadFeaturedStickers$55(this.f20232c);
                 return;
             default:
-                this.f20236b.lambda$processLoadedStickers$103(this.f20237c);
+                this.f20231b.lambda$processLoadedFeaturedStickers$59(this.f20232c);
                 return;
         }
     }

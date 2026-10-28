@@ -4,19 +4,19 @@ import a8.xb;
 import a8.yb;
 import java.util.Arrays;
 public final class p1 {
-    public transient Object[] f10320a;
-    public transient int[] f10321b;
-    public transient int f10322c;
+    public transient Object[] f10319a;
+    public transient int[] f10320b;
+    public transient int f10321c;
     public transient int[] d;
     public transient long[] e;
-    public transient float f10323f;
-    public transient int f10324g;
+    public transient float f10322f;
+    public transient int f10323g;
 
     public final void a(int i10) {
         if (i10 > this.e.length) {
             f(i10);
         }
-        if (i10 >= this.f10324g) {
+        if (i10 >= this.f10323g) {
             g(Math.max(2, Integer.highestOneBit(i10 - 1) << 1));
         }
     }
@@ -26,7 +26,7 @@ public final class p1 {
         if (c10 == -1) {
             return 0;
         }
-        return this.f10321b[c10];
+        return this.f10320b[c10];
     }
 
     public final int c(Object obj) {
@@ -35,7 +35,7 @@ public final class p1 {
         int i10 = iArr[(iArr.length - 1) & u10];
         while (i10 != -1) {
             long j10 = this.e[i10];
-            if (((int) (j10 >>> 32)) == u10 && xb.a(obj, this.f10320a[i10])) {
+            if (((int) (j10 >>> 32)) == u10 && xb.a(obj, this.f10319a[i10])) {
                 return i10;
             }
             i10 = (int) j10;
@@ -59,25 +59,25 @@ public final class p1 {
         int[] iArr = new int[highestOneBit];
         Arrays.fill(iArr, -1);
         this.d = iArr;
-        this.f10323f = 1.0f;
-        this.f10320a = new Object[i10];
-        this.f10321b = new int[i10];
+        this.f10322f = 1.0f;
+        this.f10319a = new Object[i10];
+        this.f10320b = new int[i10];
         long[] jArr = new long[i10];
         Arrays.fill(jArr, -1L);
         this.e = jArr;
-        this.f10324g = Math.max(1, (int) (highestOneBit * 1.0f));
+        this.f10323g = Math.max(1, (int) (highestOneBit * 1.0f));
     }
 
     public final void e(int i10, Object obj) {
         long j10;
         if (i10 > 0) {
             long[] jArr = this.e;
-            Object[] objArr = this.f10320a;
-            int[] iArr = this.f10321b;
+            Object[] objArr = this.f10319a;
+            int[] iArr = this.f10320b;
             int u10 = o.u(obj);
             int[] iArr2 = this.d;
             int length = (iArr2.length - 1) & u10;
-            int i11 = this.f10322c;
+            int i11 = this.f10321c;
             int i12 = iArr2[length];
             if (i12 == -1) {
                 iArr2[length] = i11;
@@ -113,10 +113,10 @@ public final class p1 {
                     }
                 }
                 this.e[i11] = (u10 << 32) | j10;
-                this.f10320a[i11] = obj;
-                this.f10321b[i11] = i10;
-                this.f10322c = i16;
-                if (i11 >= this.f10324g) {
+                this.f10319a[i11] = obj;
+                this.f10320b[i11] = i10;
+                this.f10321c = i16;
+                if (i11 >= this.f10323g) {
                     g(this.d.length * 2);
                     return;
                 }
@@ -128,8 +128,8 @@ public final class p1 {
     }
 
     public final void f(int i10) {
-        this.f10320a = Arrays.copyOf(this.f10320a, i10);
-        this.f10321b = Arrays.copyOf(this.f10321b, i10);
+        this.f10319a = Arrays.copyOf(this.f10319a, i10);
+        this.f10320b = Arrays.copyOf(this.f10320b, i10);
         long[] jArr = this.e;
         int length = jArr.length;
         long[] copyOf = Arrays.copyOf(jArr, i10);
@@ -141,22 +141,22 @@ public final class p1 {
 
     public final void g(int i10) {
         if (this.d.length >= 1073741824) {
-            this.f10324g = Integer.MAX_VALUE;
+            this.f10323g = Integer.MAX_VALUE;
             return;
         }
-        int i11 = ((int) (i10 * this.f10323f)) + 1;
+        int i11 = ((int) (i10 * this.f10322f)) + 1;
         int[] iArr = new int[i10];
         Arrays.fill(iArr, -1);
         long[] jArr = this.e;
         int i12 = i10 - 1;
-        for (int i13 = 0; i13 < this.f10322c; i13++) {
+        for (int i13 = 0; i13 < this.f10321c; i13++) {
             int i14 = (int) (jArr[i13] >>> 32);
             int i15 = i14 & i12;
             int i16 = iArr[i15];
             iArr[i15] = i13;
             jArr[i13] = (i14 << 32) | (i16 & 4294967295L);
         }
-        this.f10324g = i11;
+        this.f10323g = i11;
         this.d = iArr;
     }
 }

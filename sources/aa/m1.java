@@ -18,39 +18,39 @@ public abstract class m1 {
             Object obj = arrayList.get(i11);
             i11++;
             s9.a aVar = (s9.a) obj;
-            s9.h hVar = new s9.h(aVar);
-            for (s9.r rVar : aVar.f47984b) {
+            s9.i iVar = new s9.i(aVar);
+            for (s9.s sVar : aVar.f48019b) {
                 if (aVar.e == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                s9.i iVar = new s9.i(rVar, !z11);
-                if (!hashMap.containsKey(iVar)) {
-                    hashMap.put(iVar, new HashSet());
+                s9.j jVar = new s9.j(sVar, !z11);
+                if (!hashMap.containsKey(jVar)) {
+                    hashMap.put(jVar, new HashSet());
                 }
-                Set set = (Set) hashMap.get(iVar);
+                Set set = (Set) hashMap.get(jVar);
                 if (!set.isEmpty() && z11) {
-                    throw new IllegalArgumentException("Multiple components provide " + rVar + ".");
+                    throw new IllegalArgumentException("Multiple components provide " + sVar + ".");
                 }
-                set.add(hVar);
+                set.add(iVar);
             }
         }
-        for (Set<s9.h> set2 : hashMap.values()) {
-            for (s9.h hVar2 : set2) {
-                for (s9.j jVar : hVar2.f47996a.f47985c) {
-                    if (jVar.f48003c == 0) {
-                        s9.r rVar2 = jVar.f48001a;
-                        if (jVar.f48002b == 2) {
+        for (Set<s9.i> set2 : hashMap.values()) {
+            for (s9.i iVar2 : set2) {
+                for (s9.k kVar : iVar2.f48034a.f48020c) {
+                    if (kVar.f48041c == 0) {
+                        s9.s sVar2 = kVar.f48039a;
+                        if (kVar.f48040b == 2) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        Set<s9.h> set3 = (Set) hashMap.get(new s9.i(rVar2, z10));
+                        Set<s9.i> set3 = (Set) hashMap.get(new s9.j(sVar2, z10));
                         if (set3 != null) {
-                            for (s9.h hVar3 : set3) {
-                                hVar2.f47997b.add(hVar3);
-                                hVar3.f47998c.add(hVar2);
+                            for (s9.i iVar3 : set3) {
+                                iVar2.f48035b.add(iVar3);
+                                iVar3.f48036c.add(iVar2);
                             }
                         }
                     }
@@ -64,21 +64,21 @@ public abstract class m1 {
         HashSet hashSet2 = new HashSet();
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
-            s9.h hVar4 = (s9.h) it.next();
-            if (hVar4.f47998c.isEmpty()) {
-                hashSet2.add(hVar4);
+            s9.i iVar4 = (s9.i) it.next();
+            if (iVar4.f48036c.isEmpty()) {
+                hashSet2.add(iVar4);
             }
         }
         while (!hashSet2.isEmpty()) {
-            s9.h hVar5 = (s9.h) hashSet2.iterator().next();
-            hashSet2.remove(hVar5);
+            s9.i iVar5 = (s9.i) hashSet2.iterator().next();
+            hashSet2.remove(iVar5);
             i10++;
-            Iterator it2 = hVar5.f47997b.iterator();
+            Iterator it2 = iVar5.f48035b.iterator();
             while (it2.hasNext()) {
-                s9.h hVar6 = (s9.h) it2.next();
-                hVar6.f47998c.remove(hVar5);
-                if (hVar6.f47998c.isEmpty()) {
-                    hashSet2.add(hVar6);
+                s9.i iVar6 = (s9.i) it2.next();
+                iVar6.f48036c.remove(iVar5);
+                if (iVar6.f48036c.isEmpty()) {
+                    hashSet2.add(iVar6);
                 }
             }
         }
@@ -88,9 +88,9 @@ public abstract class m1 {
         ArrayList arrayList2 = new ArrayList();
         Iterator it3 = hashSet.iterator();
         while (it3.hasNext()) {
-            s9.h hVar7 = (s9.h) it3.next();
-            if (!hVar7.f47998c.isEmpty() && !hVar7.f47997b.isEmpty()) {
-                arrayList2.add(hVar7.f47996a);
+            s9.i iVar7 = (s9.i) it3.next();
+            if (!iVar7.f48036c.isEmpty() && !iVar7.f48035b.isEmpty()) {
+                arrayList2.add(iVar7.f48034a);
             }
         }
         throw new RuntimeException("Dependency cycle detected: " + Arrays.toString(arrayList2.toArray()));

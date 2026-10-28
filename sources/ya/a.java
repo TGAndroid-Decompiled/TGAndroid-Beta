@@ -4,14 +4,14 @@ public enum a implements na.b {
     MESSAGE_DELIVERED(1),
     MESSAGE_OPEN(2);
     
-    public final int f52496a;
+    public final int f52554a;
 
     a(int i10) {
-        this.f52496a = i10;
+        this.f52554a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f52496a;
+        return this.f52554a;
     }
 }

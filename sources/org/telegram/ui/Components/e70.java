@@ -1,23 +1,43 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-public final class e70 extends r90 {
-    public final i70 M;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class e70 implements View.OnClickListener {
+    public final int f27729a;
+    public final TLRPC.User f27730b;
+    public final String f27731c;
+    public final boolean d;
+    public final boolean e;
+    public final boolean f27732f;
+    public final mm0 h;
 
-    public e70(i70 i70Var, Context context, org.telegram.ui.ActionBar.r2 r2Var, org.telegram.ui.ActionBar.k3 k3Var, boolean z10) {
-        super(context, r2Var, k3Var, false, z10);
-        this.M = i70Var;
+    public e70(mm0 mm0Var, TLRPC.User user, String str, boolean z10, boolean z11, boolean z12, int i10) {
+        this.f27729a = i10;
+        this.h = mm0Var;
+        this.f27730b = user;
+        this.f27731c = str;
+        this.d = z10;
+        this.e = z11;
+        this.f27732f = z12;
     }
 
     @Override
-    public final void e(int i10, SpannableStringBuilder spannableStringBuilder) {
+    public final void onClick(View view) {
+        int i10;
         org.telegram.ui.ActionBar.u6 u6Var;
-        n70 n70Var = this.M.f29206c;
-        org.telegram.ui.ActionBar.h3 h3Var = n70Var.container;
-        u6Var = ((org.telegram.ui.ActionBar.k3) n70Var).resourcesProvider;
-        qc R = new wc(h3Var, u6Var).R(i10, 36, spannableStringBuilder);
-        R.f31898s = false;
-        R.k(true);
+        switch (this.f27729a) {
+            case 0:
+                o70 o70Var = ((j70) this.h).f29532c;
+                Context context = o70Var.getContext();
+                i10 = ((org.telegram.ui.ActionBar.k3) o70Var).currentAccount;
+                u6Var = ((org.telegram.ui.ActionBar.k3) o70Var).resourcesProvider;
+                j11.b(context, i10, -o70Var.f31217g0, this.f27730b, this.f27731c, this.d, this.e, this.f27732f, u6Var);
+                return;
+            default:
+                bw0 bw0Var = ((lu0) this.h).f30307f;
+                j11.b(bw0Var.getContext(), bw0Var.f26992x1.getCurrentAccount(), bw0Var.l1, this.f27730b, this.f27731c, this.d, this.e, this.f27732f, bw0Var.H1);
+                return;
+        }
     }
 }

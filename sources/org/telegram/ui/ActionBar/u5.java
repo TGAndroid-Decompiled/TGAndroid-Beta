@@ -17,44 +17,44 @@ import org.telegram.ui.Components.gq;
 public final class u5 extends View implements oe.d {
     public int E;
     public int F;
-    public final r5 f23131a;
-    public final int f23132b;
-    public final t5 f23133c;
+    public final r5 f23132a;
+    public final int f23133b;
+    public final t5 f23134c;
     public final s5 d;
     public final Drawable e;
-    public final gq f23134f;
+    public final gq f23135f;
     public final TextPaint h;
-    public final Paint f23135n;
-    public final RectF f23136r;
-    public CharSequence f23137s;
+    public final Paint f23136n;
+    public final RectF f23137r;
+    public CharSequence f23138s;
     public float v;
-    public final oe.b f23138w;
-    public final oe.b f23139x;
-    public int f23140y;
+    public final oe.b f23139w;
+    public final oe.b f23140x;
+    public int f23141y;
 
     public u5(Context context, r5 r5Var, CharSequence charSequence) {
         super(context);
         float f7;
         TextPaint textPaint = new TextPaint(1);
         this.h = textPaint;
-        this.f23135n = new Paint(1);
-        this.f23136r = new RectF();
+        this.f23136n = new Paint(1);
+        this.f23137r = new RectF();
         ds dsVar = ds.h;
-        this.f23138w = new oe.b(0, this, dsVar, 380L, true);
-        this.f23139x = new oe.b(1, this, dsVar, 250L, false);
-        this.f23131a = r5Var;
-        this.f23132b = 1;
-        this.f23133c = (t5) wi.e.f51283k.a();
-        this.d = (s5) wi.e.f51284l.a();
-        this.f23137s = charSequence;
+        this.f23139w = new oe.b(0, this, dsVar, 380L, true);
+        this.f23140x = new oe.b(1, this, dsVar, 250L, false);
+        this.f23132a = r5Var;
+        this.f23133b = 1;
+        this.f23134c = (t5) wi.e.f51341k.a();
+        this.d = (s5) wi.e.f51342l.a();
+        this.f23138s = charSequence;
         this.e = context.getDrawable(R.drawable.ic_ab_done).mutate();
         gq gqVar = new gq(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(2.0f), -1);
-        this.f23134f = gqVar;
+        this.f23135f = gqVar;
         gqVar.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         c();
-        CharSequence charSequence2 = this.f23137s;
+        CharSequence charSequence2 = this.f23138s;
         if (charSequence2 != null) {
             f7 = textPaint.measureText(charSequence2, 0, charSequence2.length());
         } else {
@@ -68,7 +68,7 @@ public final class u5 extends View implements oe.d {
     @Override
     public final void E(int i10, float f7, float f10, oe.e eVar) {
         if (i10 == 0) {
-            this.f23131a.c();
+            this.f23132a.c();
         }
         invalidate();
     }
@@ -76,11 +76,11 @@ public final class u5 extends View implements oe.d {
     public final void a(boolean z10, boolean z11) {
         boolean z12;
         oe.e eVar;
-        oe.b bVar = this.f23138w;
-        if (bVar.f19327f == z10 && (z11 || (eVar = bVar.h) == null || !eVar.h)) {
+        oe.b bVar = this.f23139w;
+        if (bVar.f19326f == z10 && (z11 || (eVar = bVar.h) == null || !eVar.h)) {
             return;
         }
-        r5 r5Var = this.f23131a;
+        r5 r5Var = this.f23132a;
         if (z11 && r5Var.p()) {
             z12 = true;
         } else {
@@ -92,42 +92,42 @@ public final class u5 extends View implements oe.d {
     }
 
     public final void b(boolean z10) {
-        this.f23139x.a(z10, this.f23131a.p());
+        this.f23140x.a(z10, this.f23132a.p());
         invalidate();
     }
 
     public final void c() {
         int i10;
-        r5 r5Var = this.f23131a;
-        u6 u6Var = r5Var.f23028a;
-        this.f23140y = y6.w0(y6.Oh, u6Var);
-        this.E = i0.a.f(0.5f, y6.w0(y6.f23299a7, u6Var), this.f23140y);
+        r5 r5Var = this.f23132a;
+        u6 u6Var = r5Var.f23029a;
+        this.f23141y = y6.w0(y6.Oh, u6Var);
+        this.E = i0.a.f(0.5f, y6.w0(y6.f23300a7, u6Var), this.f23141y);
         int w02 = y6.w0(y6.Sh, u6Var);
         this.F = w02;
-        int i11 = r5Var.f23034d0;
-        t5 t5Var = this.f23133c;
-        t5 t5Var2 = t5.f23103b;
+        int i11 = r5Var.f23035d0;
+        t5 t5Var = this.f23134c;
+        t5 t5Var2 = t5.f23104b;
         if (t5Var != t5Var2) {
             w02 = i11;
         }
         this.e.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
-        this.f23134f.b(w02);
+        this.f23135f.b(w02);
         this.h.setColor(w02);
         if (t5Var == t5Var2) {
             i10 = y6.o1(0.2f, this.F);
         } else {
-            i10 = r5Var.f23037f0;
+            i10 = r5Var.f23038f0;
         }
         setBackground(y6.Z(i10, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(23.0f)));
         invalidate();
     }
 
     public int getButtonId() {
-        return this.f23132b;
+        return this.f23133b;
     }
 
     public int getButtonWidth() {
-        if (this.d != s5.f23085a && !TextUtils.isEmpty(this.f23137s)) {
+        if (this.d != s5.f23086a && !TextUtils.isEmpty(this.f23138s)) {
             return org.telegram.messenger.t.z(32.0f, (int) Math.ceil(this.v), AndroidUtilities.dp(46.0f));
         }
         return AndroidUtilities.dp(46.0f);
@@ -138,21 +138,21 @@ public final class u5 extends View implements oe.d {
     }
 
     public t5 getStyle() {
-        return this.f23133c;
+        return this.f23134c;
     }
 
     public float getTargetVisibleFactor() {
-        if (this.f23133c != t5.f23103b && !this.f23138w.f19327f) {
+        if (this.f23134c != t5.f23104b && !this.f23139w.f19326f) {
             return 0.0f;
         }
         return 1.0f;
     }
 
     public float getVisibleFactor() {
-        if (this.f23133c == t5.f23103b) {
+        if (this.f23134c == t5.f23104b) {
             return 1.0f;
         }
-        return this.f23138w.e;
+        return this.f23139w.e;
     }
 
     @Override
@@ -160,23 +160,23 @@ public final class u5 extends View implements oe.d {
         float f7;
         float width = getWidth();
         float height = getHeight();
-        if (this.f23133c == t5.f23103b) {
-            int f10 = i0.a.f(this.f23138w.e, this.E, this.f23140y);
-            Paint paint = this.f23135n;
+        if (this.f23134c == t5.f23104b) {
+            int f10 = i0.a.f(this.f23139w.e, this.E, this.f23141y);
+            Paint paint = this.f23136n;
             paint.setColor(f10);
-            RectF rectF = this.f23136r;
+            RectF rectF = this.f23137r;
             rectF.set(0.0f, 0.0f, width, height);
             float f11 = height / 2.0f;
             canvas.drawRoundRect(rectF, f11, f11, paint);
         }
-        float f12 = this.f23139x.e;
+        float f12 = this.f23140x.e;
         if (f12 < 1.0f) {
             float lerp = AndroidUtilities.lerp(1.0f, 0.6f, f12);
             canvas.save();
             canvas.scale(lerp, lerp, width / 2.0f, height / 2.0f);
             float f13 = 1.0f - f12;
             int i10 = (int) (f13 * 255.0f);
-            if (this.d == s5.f23085a || TextUtils.isEmpty(this.f23137s)) {
+            if (this.d == s5.f23086a || TextUtils.isEmpty(this.f23138s)) {
                 f7 = 0.0f;
                 Drawable drawable = this.e;
                 float intrinsicWidth = drawable.getIntrinsicWidth();
@@ -189,7 +189,7 @@ public final class u5 extends View implements oe.d {
                 int alpha = textPaint.getAlpha();
                 textPaint.setAlpha((int) (alpha * f13));
                 float descent = ((height - textPaint.descent()) - textPaint.ascent()) / 2.0f;
-                CharSequence charSequence = this.f23137s;
+                CharSequence charSequence = this.f23138s;
                 f7 = 0.0f;
                 canvas.drawText(charSequence, 0, charSequence.length(), (width - this.v) / 2.0f, descent, textPaint);
                 textPaint.setAlpha(alpha);
@@ -202,7 +202,7 @@ public final class u5 extends View implements oe.d {
             float lerp2 = AndroidUtilities.lerp(0.6f, 1.0f, f12);
             canvas.save();
             canvas.scale(lerp2, lerp2, width / 2.0f, height / 2.0f);
-            gq gqVar = this.f23134f;
+            gq gqVar = this.f23135f;
             gqVar.setBounds(0, 0, (int) width, (int) height);
             gqVar.setAlpha((int) (f12 * 255.0f));
             gqVar.draw(canvas);
@@ -217,12 +217,12 @@ public final class u5 extends View implements oe.d {
 
     public void setText(CharSequence charSequence) {
         float f7;
-        if (TextUtils.equals(this.f23137s, charSequence)) {
+        if (TextUtils.equals(this.f23138s, charSequence)) {
             return;
         }
-        this.f23137s = charSequence;
+        this.f23138s = charSequence;
         setContentDescription(charSequence);
-        CharSequence charSequence2 = this.f23137s;
+        CharSequence charSequence2 = this.f23138s;
         if (charSequence2 != null) {
             f7 = this.h.measureText(charSequence2, 0, charSequence2.length());
         } else {
@@ -230,18 +230,18 @@ public final class u5 extends View implements oe.d {
         }
         this.v = f7;
         requestLayout();
-        this.f23131a.requestLayout();
+        this.f23132a.requestLayout();
     }
 
     @Override
     public void setTranslationX(float f7) {
         super.setTranslationX(f7);
-        this.f23131a.invalidate();
+        this.f23132a.invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f23134f && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f23135f && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

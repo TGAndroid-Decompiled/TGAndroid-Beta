@@ -1,9 +1,9 @@
 package ai;
 
 import android.view.ViewGroup;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.c61;
-public final class m extends gb1 {
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.f61;
+public final class m extends kb1 {
     public final int f1571c;
     public final ViewGroup d;
 
@@ -19,10 +19,10 @@ public final class m extends gb1 {
                 ((x0) this.d).v = false;
                 return;
             case 1:
-                ((fi.n1) this.d).f11284j3 = false;
+                ((fi.n1) this.d).f11283j3 = false;
                 return;
             default:
-                ((c61) this.d).f38335x1 = false;
+                ((f61) this.d).f39238x1 = false;
                 return;
         }
     }
@@ -31,10 +31,10 @@ public final class m extends gb1 {
     public void O() {
         switch (this.f1571c) {
             case 1:
-                ((fi.n1) this.d).f11284j3 = true;
+                ((fi.n1) this.d).f11283j3 = true;
                 return;
             case 2:
-                ((c61) this.d).f38335x1 = true;
+                ((f61) this.d).f39238x1 = true;
                 return;
             default:
                 return;

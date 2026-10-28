@@ -3,13 +3,13 @@ package fi;
 import java.util.TimeZone;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.xe0;
+import org.telegram.ui.Components.ye0;
 public abstract class qc {
-    public static String f11506a;
-    public static pc f11507b;
+    public static String f11505a;
+    public static pc f11506b;
 
     public static void a(boolean z10, Utilities.Callback callback) {
-        xe0.c(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new bi.t8(3, new bi.t8(2, callback, z10), z10));
+        ye0.c(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new bi.t8(3, new bi.t8(2, callback, z10), z10));
     }
 
     public static boolean b() {

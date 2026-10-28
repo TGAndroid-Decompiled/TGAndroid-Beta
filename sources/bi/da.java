@@ -23,7 +23,7 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class da implements Runnable {
     public final int f4502a;
     public final long f4503b;
@@ -57,7 +57,7 @@ public final class da implements Runnable {
                 ca.y(i11, false).S();
                 org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
                 if (U != null) {
-                    U.presentFragment(un.ba(j10));
+                    U.presentFragment(wn.ea(j10));
                     return;
                 }
                 return;
@@ -77,10 +77,10 @@ public final class da implements Runnable {
                 ((MessagesController) obj2).lambda$processUpdateArray$394(j10, i11, (TLRPC.TL_sendMessageRichMessageDraftAction) obj);
                 return;
             case 6:
-                ((MessagesStorage) obj2).lambda$updateMessageVoiceTranscriptionOpen$110(i11, j10, (TLRPC.Message) obj);
+                ((MessagesStorage) obj2).lambda$updateMessageVoiceTranscriptionOpen$111(i11, j10, (TLRPC.Message) obj);
                 return;
             case 7:
-                ((MessagesStorage) obj2).lambda$updateMessageReactions$107(i11, j10, (TLRPC.TL_messageReactions) obj);
+                ((MessagesStorage) obj2).lambda$updateMessageReactions$108(i11, j10, (TLRPC.TL_messageReactions) obj);
                 return;
             case 8:
                 ((MessagesStorage) obj2).lambda$putWidgetStorage$43((String) obj, j10, i11);
@@ -89,7 +89,7 @@ public final class da implements Runnable {
                 ((MessagesStorage) obj2).lambda$updateTopicData$51(j10, (TLRPC.TL_forumTopic) obj, i11);
                 return;
             case 10:
-                ((MessagesStorage) obj2).lambda$updateChatDefaultBannedRights$183(j10, i11, (TLRPC.TL_chatBannedRights) obj);
+                ((MessagesStorage) obj2).lambda$updateChatDefaultBannedRights$184(j10, i11, (TLRPC.TL_chatBannedRights) obj);
                 return;
             case 11:
                 ((SendMessagesHelper) obj2).lambda$sendNotificationCallback$33(j10, i11, (byte[]) obj);
@@ -134,22 +134,22 @@ public final class da implements Runnable {
                 return;
             case 17:
                 uc.u uVar = (uc.u) obj;
-                org.telegram.ui.Wallet.z0 z0Var = ((org.telegram.ui.Wallet.y0) obj2).f37492c;
+                org.telegram.ui.Wallet.z0 z0Var = ((org.telegram.ui.Wallet.y0) obj2).f37516c;
                 if (!z0Var.c(uVar, i11)) {
                     z0Var.d("closing stale connected websocket; attempt=" + i11);
                     uVar.c();
                     return;
                 }
                 z0Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j10) + " ms");
-                org.telegram.ui.Wallet.w0 w0Var = z0Var.f37548o;
+                org.telegram.ui.Wallet.w0 w0Var = z0Var.f37572o;
                 try {
-                    JSONArray put = new JSONArray().put(z0Var.f37538b);
+                    JSONArray put = new JSONArray().put(z0Var.f37562b);
                     StringBuilder sb2 = new StringBuilder("wallet-");
-                    int i13 = z0Var.f37541g + 1;
-                    z0Var.f37541g = i13;
+                    int i13 = z0Var.f37565g + 1;
+                    z0Var.f37565g = i13;
                     sb2.append(i13);
-                    z0Var.f37540f = sb2.toString();
-                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", z0Var.f37540f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    z0Var.f37564f = sb2.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", z0Var.f37564f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
                     AndroidUtilities.cancelRunOnUIThread(w0Var);
                     AndroidUtilities.runOnUIThread(w0Var, 30000L);
                     z0Var.g(put2.toString());
@@ -165,14 +165,14 @@ public final class da implements Runnable {
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
                 long j11 = this.f4503b;
                 tonconnectgetpending.session_id = Long.valueOf(j11);
-                e2Var.f36509f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.s1(e2Var, khVar, j11, this.f4504c, 0));
+                e2Var.f36516f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.s1(e2Var, khVar, j11, this.f4504c, 0));
                 return;
             default:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) obj2, 0, (org.telegram.ui.ActionBar.u6) obj);
                 String string = LocaleController.getString(R.string.WalletNetworkFee);
-                org.telegram.ui.ActionBar.e2 e2Var2 = alertDialog$Builder.f22368a;
+                org.telegram.ui.ActionBar.e2 e2Var2 = alertDialog$Builder.f22369a;
                 e2Var2.R = string;
-                e2Var2.T = AndroidUtilities.replaceTags(LocaleController.formatSpannable(R.string.WalletNetworkFeeInfo, org.telegram.ui.Wallet.l0.w(i11).l(j10, true)));
+                e2Var2.T = AndroidUtilities.replaceTags(LocaleController.formatSpannable(R.string.WalletNetworkFeeInfo, org.telegram.ui.Wallet.l0.x(i11).m(j10, true)));
                 org.telegram.messenger.t.p(R.string.WalletOK, alertDialog$Builder, null);
                 return;
         }

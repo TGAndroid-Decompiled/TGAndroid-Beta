@@ -1,9 +1,9 @@
 package g;
 public final class x {
     public static x d;
-    public long f12201a;
-    public long f12202b;
-    public int f12203c;
+    public long f12200a;
+    public long f12201b;
+    public int f12202c;
 
     public final void a(double d10, double d11, long j10) {
         float f7;
@@ -16,22 +16,22 @@ public final class x {
         double d14 = 0.01745329238474369d * d10;
         double sin3 = (Math.sin(-0.10471975803375244d) - (Math.sin(asin) * Math.sin(d14))) / (Math.cos(asin) * Math.cos(d14));
         if (sin3 >= 1.0d) {
-            this.f12203c = 1;
-            this.f12201a = -1L;
-            this.f12202b = -1L;
+            this.f12202c = 1;
+            this.f12200a = -1L;
+            this.f12201b = -1L;
         } else if (sin3 <= -1.0d) {
-            this.f12203c = 0;
-            this.f12201a = -1L;
-            this.f12202b = -1L;
+            this.f12202c = 0;
+            this.f12200a = -1L;
+            this.f12201b = -1L;
         } else {
             double acos = (float) (Math.acos(sin3) / 6.283185307179586d);
-            this.f12201a = Math.round((sin2 + acos) * 8.64E7d) + 946728000000L;
+            this.f12200a = Math.round((sin2 + acos) * 8.64E7d) + 946728000000L;
             long round = Math.round((sin2 - acos) * 8.64E7d) + 946728000000L;
-            this.f12202b = round;
-            if (round < j10 && this.f12201a > j10) {
-                this.f12203c = 0;
+            this.f12201b = round;
+            if (round < j10 && this.f12200a > j10) {
+                this.f12202c = 0;
             } else {
-                this.f12203c = 1;
+                this.f12202c = 1;
             }
         }
     }

@@ -4,11 +4,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.hw0;
-import org.telegram.ui.Components.jw0;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.dg1;
-public final class e implements oe.d, hw0, jw0, org.telegram.ui.ActionBar.b2, Utilities.Callback5, Utilities.Callback5Return {
+import org.telegram.ui.Components.iw0;
+import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.fg1;
+public final class e implements oe.d, iw0, kw0, org.telegram.ui.ActionBar.b2, Utilities.Callback5, Utilities.Callback5Return {
     public final y f4536a;
 
     public e(y yVar) {
@@ -34,7 +34,7 @@ public final class e implements oe.d, hw0, jw0, org.telegram.ui.ActionBar.b2, Ut
     public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
         y yVar = this.f4536a;
         yVar.getClass();
-        yVar.presentFragment(new dg1(6, null));
+        yVar.presentFragment(new fg1(6, null));
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class e implements oe.d, hw0, jw0, org.telegram.ui.ActionBar.b2, Ut
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        t61 t61Var = (t61) obj;
+        u61 u61Var = (u61) obj;
         View view = (View) obj2;
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
@@ -69,7 +69,7 @@ public final class e implements oe.d, hw0, jw0, org.telegram.ui.ActionBar.b2, Ut
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        y.W(this.f4536a, (t61) obj);
+        y.W(this.f4536a, (u61) obj);
     }
 
     @Override

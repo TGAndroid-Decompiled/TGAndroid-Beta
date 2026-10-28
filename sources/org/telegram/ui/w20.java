@@ -1,20 +1,40 @@
 package org.telegram.ui;
-public final class w20 extends g.o {
-    public final v50 f44958c;
 
-    public w20(v50 v50Var) {
-        this.f44958c = v50Var;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class w20 extends s4.n0 {
+    public final x50 f44498a;
+
+    public w20(x50 x50Var) {
+        this.f44498a = x50Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int size = this.f44958c.f44668o2.e.size();
-        if (size > 1 && size != 2) {
-            if (size != 3 || i10 == 0 || i10 == 1) {
-                return 3;
+    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
+        int i10;
+        int R = RecyclerView.R(view);
+        if (R >= 0) {
+            rect.setEmpty();
+            r50 r50Var = this.f44498a.P;
+            int i11 = r50Var.G;
+            if (R >= i11 && R < r50Var.H) {
+                int i12 = R - i11;
+                if (x50.F3) {
+                    i10 = 6;
+                } else {
+                    i10 = 2;
+                }
+                int i13 = i12 % i10;
+                if (i13 == 0) {
+                    rect.right = AndroidUtilities.dp(2.0f);
+                } else if (i13 == i10 - 1) {
+                    rect.left = AndroidUtilities.dp(2.0f);
+                } else {
+                    rect.left = AndroidUtilities.dp(1.0f);
+                }
             }
-            return 6;
         }
-        return 6;
     }
 }

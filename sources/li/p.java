@@ -4,18 +4,18 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import bi.i8;
 public final class p implements TextWatcher {
-    public final String[] f17400a;
-    public final i8 f17401b;
+    public final String[] f17399a;
+    public final i8 f17400b;
 
     public p(String[] strArr, i8 i8Var) {
-        this.f17400a = strArr;
-        this.f17401b = i8Var;
+        this.f17399a = strArr;
+        this.f17400b = i8Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f17400a[0] = editable.toString();
-        this.f17401b.run();
+        this.f17399a[0] = editable.toString();
+        this.f17400b.run();
     }
 
     @Override

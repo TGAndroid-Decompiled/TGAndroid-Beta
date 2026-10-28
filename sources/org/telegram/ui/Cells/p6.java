@@ -7,13 +7,13 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class p6 extends FrameLayout {
-    public final TextView f24765a;
-    public final TextView f24766b;
-    public final RadioButton f24767c;
+    public final TextView f24767a;
+    public final TextView f24768b;
+    public final RadioButton f24769c;
     public int d;
 
     public p6(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
@@ -28,7 +28,7 @@ public final class p6 extends FrameLayout {
         int i17;
         this.d = 50;
         RadioButton radioButton = new RadioButton(context);
-        this.f24767c = radioButton;
+        this.f24769c = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
         org.telegram.ui.ActionBar.f7.P(radioButton, org.telegram.ui.ActionBar.y6.D5, org.telegram.ui.ActionBar.y6.E5, u6Var);
         boolean z10 = LocaleController.isRTL;
@@ -43,11 +43,11 @@ public final class p6 extends FrameLayout {
         } else {
             i11 = 18;
         }
-        addView(radioButton, gb1.h(22, 22.0f, i18, i11, 14.0f, z10 ? 18 : 0, 0.0f));
+        addView(radioButton, kb1.h(22, 22.0f, i18, i11, 14.0f, z10 ? 18 : 0, 0.0f));
         TextView textView = new TextView(context);
-        this.f24765a = textView;
-        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23464j5, u6Var);
-        vh.r(textView, 1, 16.0f, 1, 1);
+        this.f24767a = textView;
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23465j5, u6Var);
+        wh.r(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         if (LocaleController.isRTL) {
             i12 = 5;
@@ -73,10 +73,10 @@ public final class p6 extends FrameLayout {
         } else {
             i15 = 21;
         }
-        addView(textView, gb1.h(-2, -2.0f, i19, f7, 13.0f, i15, 0.0f));
+        addView(textView, kb1.h(-2, -2.0f, i19, f7, 13.0f, i15, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f24766b = textView2;
-        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23748y6, u6Var);
+        this.f24768b = textView2;
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23749y6, u6Var);
         textView2.setTextSize(1, 14.0f);
         if (LocaleController.isRTL) {
             i16 = 5;
@@ -92,17 +92,17 @@ public final class p6 extends FrameLayout {
         } else {
             i17 = 51;
         }
-        addView(textView2, gb1.h(-2, -2.0f, i20, i17, 37.0f, z12 ? 51 : 21, 0.0f));
+        addView(textView2, kb1.h(-2, -2.0f, i20, i17, 37.0f, z12 ? 51 : 21, 0.0f));
     }
 
     public final void a(int i10, int i11) {
-        this.f24767c.b(i10, i11);
+        this.f24769c.b(i10, i11);
     }
 
     public final void b(CharSequence charSequence, boolean z10) {
-        this.f24765a.setText(charSequence);
-        this.f24766b.setVisibility(8);
-        this.f24767c.a(z10, false);
+        this.f24767a.setText(charSequence);
+        this.f24768b.setVisibility(8);
+        this.f24769c.a(z10, false);
     }
 
     @Override
@@ -110,13 +110,13 @@ public final class p6 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f24767c.f26280f);
+        accessibilityNodeInfo.setChecked(this.f24769c.f26282f);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        TextView textView = this.f24766b;
+        TextView textView = this.f24768b;
         if (textView.getVisibility() == 0) {
             textView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(72.0f), 1073741824), i11);
         }

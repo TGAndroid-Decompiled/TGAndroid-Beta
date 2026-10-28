@@ -7,27 +7,27 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ds;
 import org.telegram.ui.Components.h6;
-import org.telegram.ui.Components.hl0;
+import org.telegram.ui.Components.il0;
 public abstract class i extends FrameLayout {
-    public final Paint f48233a;
-    public final Paint f48234b;
-    public final Paint f48235c;
+    public final Paint f48266a;
+    public final Paint f48267b;
+    public final Paint f48268c;
     public int d;
     public final h6 e;
-    public boolean f48236f;
+    public boolean f48269f;
     public final j h;
 
     public i(j jVar, Context context) {
         super(context);
         this.h = jVar;
         Paint paint = new Paint(1);
-        this.f48233a = paint;
+        this.f48266a = paint;
         Paint paint2 = new Paint(1);
-        this.f48234b = paint2;
+        this.f48267b = paint2;
         Paint paint3 = new Paint(1);
-        this.f48235c = paint3;
+        this.f48268c = paint3;
         this.e = new h6(this, 0L, 250L, ds.h);
-        this.f48236f = true;
+        this.f48269f = true;
         setWillNotDraw(false);
         paint.setColor(-1);
         Paint.Style style = Paint.Style.STROKE;
@@ -47,18 +47,18 @@ public abstract class i extends FrameLayout {
 
     public final void b() {
         j jVar = this.h;
-        hl0 selectionBounds = jVar.getSelectionBounds();
+        il0 selectionBounds = jVar.getSelectionBounds();
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
-        layoutParams.leftMargin = (int) selectionBounds.f29009a;
-        layoutParams.topMargin = (int) selectionBounds.f29010b;
-        layoutParams.width = (int) selectionBounds.f29011c;
+        layoutParams.leftMargin = (int) selectionBounds.f29381a;
+        layoutParams.topMargin = (int) selectionBounds.f29382b;
+        layoutParams.width = (int) selectionBounds.f29383c;
         layoutParams.height = (int) selectionBounds.d;
         setLayoutParams(layoutParams);
         setRotation(jVar.getRotation());
     }
 
     public float getShowAlpha() {
-        return this.e.e(this.f48236f);
+        return this.e.e(this.f48269f);
     }
 
     @Override

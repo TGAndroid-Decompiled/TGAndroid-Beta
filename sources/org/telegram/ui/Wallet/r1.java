@@ -10,43 +10,43 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.wc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.oa0;
-import org.telegram.ui.q80;
-import org.telegram.ui.un;
-import org.telegram.ui.yo0;
+import org.telegram.ui.ap0;
+import org.telegram.ui.qa0;
+import org.telegram.ui.r80;
+import org.telegram.ui.wn;
 public final class r1 implements Utilities.Callback2 {
-    public final int f37156a;
-    public final Object f37157b;
-    public final Object f37158c;
+    public final int f37180a;
+    public final Object f37181b;
+    public final Object f37182c;
 
     public r1(int i10, Object obj, Object obj2) {
-        this.f37156a = i10;
-        this.f37157b = obj;
-        this.f37158c = obj2;
+        this.f37180a = i10;
+        this.f37181b = obj;
+        this.f37182c = obj2;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         boolean z10;
-        int i10 = this.f37156a;
+        int i10 = this.f37180a;
         Object obj3 = null;
         int i11 = 0;
-        Object obj4 = this.f37158c;
-        Object obj5 = this.f37157b;
+        Object obj4 = this.f37182c;
+        Object obj5 = this.f37181b;
         switch (i10) {
             case 0:
                 TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) obj5;
-                q80 q80Var = (q80) obj4;
+                r80 r80Var = (r80) obj4;
                 TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = (TL_wallet.inputTonConnectOauthSession) obj;
                 String str = (String) obj2;
                 if (str == null) {
                     inputtonconnectoauthsessionArr[0] = inputtonconnectoauthsession;
                 }
-                q80Var.run(str);
+                r80Var.run(str);
                 return;
             case 1:
                 ((i0) obj5).close();
@@ -77,7 +77,7 @@ public final class r1 implements Utilities.Callback2 {
                 String str2 = (String) obj4;
                 TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i12 = rVar.f48672a;
+                int i12 = rVar.f48707a;
                 if (webpagepreview != null) {
                     MessagesController.getInstance(i12).putUsers(webpagepreview.users, false);
                     MessagesController.getInstance(i12).putChats(webpagepreview.chats, false);
@@ -86,8 +86,8 @@ public final class r1 implements Utilities.Callback2 {
                         obj3 = messageMedia.webpage;
                     }
                 }
-                rVar.f48673b.put(str2, obj3);
-                ArrayList arrayList = (ArrayList) rVar.f48674c.remove(str2);
+                rVar.f48708b.put(str2, obj3);
+                ArrayList arrayList = (ArrayList) rVar.f48709c.remove(str2);
                 if (arrayList != null) {
                     int size = arrayList.size();
                     while (i11 < size) {
@@ -103,18 +103,18 @@ public final class r1 implements Utilities.Callback2 {
                 TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) obj4;
                 Boolean bool = (Boolean) obj;
                 String str3 = (String) obj2;
-                a0Var.f50133q0.f51751a.setLoading(false);
+                a0Var.f50168q0.f51809a.setLoading(false);
                 if (a0Var.getContext() != null) {
                     org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
-                    oa0 oa0Var = LaunchActivity.I1.f35567x0;
+                    qa0 qa0Var = LaunchActivity.I1.f35591x0;
                     if (U != null) {
                         if (bool.booleanValue()) {
                             a0Var.dismiss();
-                            un ba2 = un.ba(-a0Var.f50119b0.f22027id);
-                            U.presentFragment(ba2);
-                            U.whenFullyVisible(new sg.u(23, ba2, tL_starsGiveawayOption));
-                            if (oa0Var != null) {
-                                oa0Var.c(true);
+                            wn ea2 = wn.ea(-a0Var.f50154b0.f22028id);
+                            U.presentFragment(ea2);
+                            U.whenFullyVisible(new s9.g(24, ea2, tL_starsGiveawayOption));
+                            if (qa0Var != null) {
+                                qa0Var.c(true);
                                 return;
                             }
                             return;
@@ -132,7 +132,7 @@ public final class r1 implements Utilities.Callback2 {
             default:
                 zh.q2 q2Var = (zh.q2) obj5;
                 ArrayList arrayList2 = (ArrayList) obj;
-                j71 j71Var = (j71) obj2;
+                k71 k71Var = (k71) obj2;
                 ArrayList arrayList3 = ((bi.t9) obj4).f5471l;
                 int size2 = arrayList3.size();
                 int i13 = 0;
@@ -141,16 +141,16 @@ public final class r1 implements Utilities.Callback2 {
                     i13++;
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj7;
                     if (savedStarGift.pinned_to_top) {
-                        int i14 = yo0.f46089a;
-                        t61 K = t61.K(yo0.class);
+                        int i14 = ap0.f37806a;
+                        u61 K = u61.K(ap0.class);
                         K.G = savedStarGift;
-                        if (q2Var.f53223b == savedStarGift.gift.f22256id) {
+                        if (q2Var.f53281b == savedStarGift.gift.f22257id) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         K.L(z10);
-                        K.f32884u = 1;
+                        K.f33258u = 1;
                         arrayList2.add(K);
                     }
                 }

@@ -7,22 +7,22 @@ import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import jh.k;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.i60;
-import org.telegram.ui.ye1;
+import org.telegram.ui.af1;
+import org.telegram.ui.k60;
 public final class j implements dh.a {
     public final ViewGroup f6362c;
-    public final i60 d;
+    public final k60 d;
     public final ViewGroup e;
     public boolean h;
     public final RectF f6360a = new RectF();
     public final PointF f6361b = new PointF();
     public final RectF f6363f = new RectF();
 
-    public j(ViewGroup viewGroup, ViewGroup viewGroup2, i60 i60Var) {
+    public j(ViewGroup viewGroup, ViewGroup viewGroup2, k60 k60Var) {
         this.f6362c = viewGroup;
-        this.d = i60Var;
+        this.d = k60Var;
         this.e = viewGroup2;
     }
 
@@ -69,23 +69,23 @@ public final class j implements dh.a {
                 View childAt = viewGroup.getChildAt(i10);
                 RectF rectF3 = this.f6360a;
                 if (k.c(childAt, viewGroup2, rectF3) && rectF3.intersect(rectF)) {
-                    i60 i60Var = this.d;
-                    int i11 = i60Var.f40156a;
-                    Object obj = i60Var.f40157b;
+                    k60 k60Var = this.d;
+                    int i11 = k60Var.f40667a;
+                    Object obj = k60Var.f40668b;
                     switch (i11) {
                         case 0:
-                            ((mm0) obj).drawChild(canvas, childAt, uptimeMillis);
+                            ((nm0) obj).drawChild(canvas, childAt, uptimeMillis);
                             continue;
                         case 1:
                             ProfileActivity profileActivity = (ProfileActivity) obj;
                             if (childAt == profileActivity.N) {
                                 break;
                             } else {
-                                profileActivity.f35948a.drawChild(canvas, childAt, uptimeMillis);
+                                profileActivity.f35972a.drawChild(canvas, childAt, uptimeMillis);
                                 continue;
                             }
                         default:
-                            ((ye1) obj).drawChild(canvas, childAt, uptimeMillis);
+                            ((af1) obj).drawChild(canvas, childAt, uptimeMillis);
                             continue;
                     }
                 }

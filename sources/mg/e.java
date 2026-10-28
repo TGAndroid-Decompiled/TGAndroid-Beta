@@ -18,7 +18,7 @@ import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Cells.y;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.ar;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public class e extends FrameLayout {
     public boolean E;
     public boolean F;
@@ -28,34 +28,34 @@ public class e extends FrameLayout {
     public final u6 J;
     public final g3 K;
     public DecimalFormat L;
-    public boolean f18455a;
-    public final LinearLayout f18456b;
-    public ti.e[] f18457c;
+    public boolean f18454a;
+    public final LinearLayout f18455b;
+    public ti.e[] f18456c;
     public final TextView d;
     public final TextView e;
-    public final ImageView f18458f;
+    public final ImageView f18457f;
     public final RadialProgressView h;
-    public final SimpleDateFormat f18459n;
-    public final SimpleDateFormat f18460r;
-    public final SimpleDateFormat f18461s;
+    public final SimpleDateFormat f18458n;
+    public final SimpleDateFormat f18459r;
+    public final SimpleDateFormat f18460s;
     public final SimpleDateFormat v;
-    public final SimpleDateFormat f18462w;
-    public boolean f18463x;
-    public boolean f18464y;
+    public final SimpleDateFormat f18461w;
+    public boolean f18462x;
+    public boolean f18463y;
 
     public e(Context context, u6 u6Var) {
         super(context);
-        this.f18459n = new SimpleDateFormat("E, ");
-        this.f18460r = new SimpleDateFormat("MMM dd");
-        this.f18461s = new SimpleDateFormat("d MMM yyyy");
+        this.f18458n = new SimpleDateFormat("E, ");
+        this.f18459r = new SimpleDateFormat("MMM dd");
+        this.f18460s = new SimpleDateFormat("d MMM yyyy");
         this.v = new SimpleDateFormat("d MMM");
-        this.f18462w = new SimpleDateFormat(" HH:mm");
+        this.f18461w = new SimpleDateFormat(" HH:mm");
         this.G = true;
         this.K = new g3(this, 1);
         this.J = u6Var;
         setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         LinearLayout linearLayout = new LinearLayout(getContext());
-        this.f18456b = linearLayout;
+        this.f18455b = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
         this.d = textView;
@@ -66,18 +66,18 @@ public class e extends FrameLayout {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
-        this.f18458f = imageView;
+        this.f18457f = imageView;
         imageView.setImageResource(R.drawable.ic_chevron_right_black_18dp);
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
         this.h = radialProgressView;
         radialProgressView.setSize(AndroidUtilities.dp(12.0f));
         radialProgressView.setStrokeWidth(AndroidUtilities.dp(0.5f));
         radialProgressView.setVisibility(8);
-        addView(linearLayout, gb1.h(-2, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
-        addView(textView, gb1.h(-2, -2.0f, 8388611, 4.0f, 0.0f, 4.0f, 0.0f));
-        addView(textView2, gb1.h(-2, -2.0f, 8388613, 4.0f, 0.0f, 4.0f, 0.0f));
-        addView(imageView, gb1.h(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
-        addView(radialProgressView, gb1.h(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
+        addView(linearLayout, kb1.h(-2, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
+        addView(textView, kb1.h(-2, -2.0f, 8388611, 4.0f, 0.0f, 4.0f, 0.0f));
+        addView(textView2, kb1.h(-2, -2.0f, 8388613, 4.0f, 0.0f, 4.0f, 0.0f));
+        addView(imageView, kb1.h(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
+        addView(radialProgressView, kb1.h(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
         b();
     }
 
@@ -89,19 +89,19 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i10 = y6.f23464j5;
+        int i10 = y6.f23465j5;
         TextView textView = this.d;
         u6 u6Var = this.J;
         f7.V(textView, i10, u6Var);
         f7.V(this.e, i10, u6Var);
         int i11 = y6.gj;
-        f7.t(this.f18458f, i11, u6Var, PorterDuff.Mode.SRC_ATOP);
+        f7.t(this.f18457f, i11, u6Var, PorterDuff.Mode.SRC_ATOP);
         this.h.setProgressColor(y6.w0(i11, u6Var));
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
-        this.I = y6.j0(dp, dp, dp, dp, y6.w0(y6.f23427h5, u6Var), y6.w0(y6.f23448i6, u6Var), -16777216);
+        this.I = y6.j0(dp, dp, dp, dp, y6.w0(y6.f23428h5, u6Var), y6.w0(y6.f23449i6, u6Var), -16777216);
         ar arVar = new ar(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        arVar.f26599w = true;
+        arVar.f26646w = true;
         setBackground(arVar);
     }
 
@@ -121,23 +121,23 @@ public class e extends FrameLayout {
             radialProgressView.setVisibility(8);
             return;
         }
-        this.f18458f.animate().setDuration(80L).alpha(1.0f).start();
+        this.f18457f.animate().setDuration(80L).alpha(1.0f).start();
         if (radialProgressView.getVisibility() == 0) {
             radialProgressView.animate().setDuration(80L).alpha(0.0f).setListener(new kg.e(this, 2)).start();
         }
     }
 
     public void setSize(int i10) {
-        LinearLayout linearLayout = this.f18456b;
+        LinearLayout linearLayout = this.f18455b;
         linearLayout.removeAllViews();
-        this.f18457c = new ti.e[i10];
+        this.f18456c = new ti.e[i10];
         for (int i11 = 0; i11 < i10; i11++) {
-            this.f18457c[i11] = new ti.e(this);
-            linearLayout.addView((LinearLayout) this.f18457c[i11].e);
+            this.f18456c[i11] = new ti.e(this);
+            linearLayout.addView((LinearLayout) this.f18456c[i11].e);
         }
     }
 
     public void setUseWeek(boolean z10) {
-        this.f18463x = z10;
+        this.f18462x = z10;
     }
 }

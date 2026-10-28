@@ -4,36 +4,36 @@ import android.graphics.Rect;
 import android.text.Layout;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.ui.Cells.da;
-import org.telegram.ui.Components.an0;
-import org.telegram.ui.Components.bc1;
-import org.telegram.ui.Components.cc1;
+import org.telegram.ui.Components.bn0;
+import org.telegram.ui.Components.gc1;
+import org.telegram.ui.Components.hc1;
 public final class a0 implements da {
-    public final int f17070a = 0;
-    public final Object f17071b;
-    public final Object f17072c;
+    public final int f17069a = 0;
+    public final Object f17070b;
+    public final Object f17071c;
 
     public a0(Layout layout, Rect rect) {
-        this.f17071b = layout;
-        this.f17072c = rect;
+        this.f17070b = layout;
+        this.f17071c = rect;
     }
 
     @Override
     public final Layout getLayout() {
-        switch (this.f17070a) {
+        switch (this.f17069a) {
             case 0:
-                return (Layout) this.f17071b;
+                return (Layout) this.f17070b;
             default:
-                bc1 bc1Var = (bc1) this.f17071b;
-                if (bc1Var.h == null) {
-                    bc1Var.h = new cc1(bc1Var);
+                gc1 gc1Var = (gc1) this.f17070b;
+                if (gc1Var.h == null) {
+                    gc1Var.h = new hc1(gc1Var);
                 }
-                return bc1Var.h;
+                return gc1Var.h;
         }
     }
 
     @Override
     public final CharSequence getPrefix() {
-        switch (this.f17070a) {
+        switch (this.f17069a) {
             case 0:
                 return null;
             default:
@@ -44,20 +44,20 @@ public final class a0 implements da {
     @Override
     public final int getRow() {
         int i10;
-        switch (this.f17070a) {
+        switch (this.f17069a) {
             case 0:
                 return 0;
             default:
-                i10 = ((RichMessageLayout.RichBlock) ((an0) this.f17072c)).layoutRow;
+                i10 = ((RichMessageLayout.RichBlock) ((bn0) this.f17071c)).layoutRow;
                 return i10;
         }
     }
 
     @Override
     public final Rect getSelectionBounds() {
-        switch (this.f17070a) {
+        switch (this.f17069a) {
             case 0:
-                return (Rect) this.f17072c;
+                return (Rect) this.f17071c;
             default:
                 return null;
         }
@@ -65,7 +65,7 @@ public final class a0 implements da {
 
     @Override
     public final CharSequence getText() {
-        switch (this.f17070a) {
+        switch (this.f17069a) {
             case 0:
                 Layout layout = getLayout();
                 if (layout == null) {
@@ -84,30 +84,30 @@ public final class a0 implements da {
     @Override
     public final int getX() {
         int i10;
-        switch (this.f17070a) {
+        switch (this.f17069a) {
             case 0:
                 return 0;
             default:
-                an0 an0Var = (an0) this.f17072c;
-                i10 = ((RichMessageLayout.RichBlock) an0Var).layoutX;
-                return (i10 - an0Var.f26587y) + ((bc1) this.f17071b).f26825b;
+                bn0 bn0Var = (bn0) this.f17071c;
+                i10 = ((RichMessageLayout.RichBlock) bn0Var).layoutX;
+                return (i10 - bn0Var.f26875y) + ((gc1) this.f17070b).f28539b;
         }
     }
 
     @Override
     public final int getY() {
         int i10;
-        switch (this.f17070a) {
+        switch (this.f17069a) {
             case 0:
                 return 0;
             default:
-                i10 = ((RichMessageLayout.RichBlock) ((an0) this.f17072c)).layoutY;
-                return i10 + ((bc1) this.f17071b).f26826c;
+                i10 = ((RichMessageLayout.RichBlock) ((bn0) this.f17071c)).layoutY;
+                return i10 + ((gc1) this.f17070b).f28540c;
         }
     }
 
-    public a0(an0 an0Var, bc1 bc1Var) {
-        this.f17072c = an0Var;
-        this.f17071b = bc1Var;
+    public a0(bn0 bn0Var, gc1 gc1Var) {
+        this.f17071c = bn0Var;
+        this.f17070b = gc1Var;
     }
 }

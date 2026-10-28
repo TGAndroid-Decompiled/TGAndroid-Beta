@@ -12,15 +12,15 @@ import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.s6;
-import org.telegram.ui.fc1;
-import org.telegram.ui.kn;
+import org.telegram.ui.hc1;
+import org.telegram.ui.mn;
 public final class g0 implements og {
-    public final TL_stars.TL_starGiftUnique f52978a;
-    public final i0 f52979b;
+    public final TL_stars.TL_starGiftUnique f53036a;
+    public final i0 f53037b;
 
     public g0(i0 i0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f52979b = i0Var;
-        this.f52978a = tL_starGiftUnique;
+        this.f53037b = i0Var;
+        this.f53036a = tL_starGiftUnique;
     }
 
     @Override
@@ -64,11 +64,11 @@ public final class g0 implements og {
         boolean z10;
         u6 u6Var;
         u6 u6Var2;
-        i0 i0Var = this.f52979b;
-        s6 s6Var = i0Var.f53043w;
-        z4 z4Var = i0Var.f53037b;
+        i0 i0Var = this.f53037b;
+        s6 s6Var = i0Var.f53101w;
+        z4 z4Var = i0Var.f53095b;
         i10 = ((org.telegram.ui.ActionBar.k3) i0Var).currentAccount;
-        z4Var.a(this.f52978a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f53040n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        z4Var.a(this.f53036a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f53098n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         i0Var.F = codePointCount;
         int i12 = i0Var.E;
@@ -92,17 +92,17 @@ public final class g0 implements og {
             s6Var.animate().setListener(null).cancel();
             s6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                int i13 = y6.f23581p7;
+                int i13 = y6.f23582p7;
                 u6Var2 = ((org.telegram.ui.ActionBar.k3) i0Var).resourcesProvider;
                 f7.Z(s6Var, i13, u6Var2);
                 return;
             }
-            int i14 = y6.f23748y6;
+            int i14 = y6.f23749y6;
             u6Var = ((org.telegram.ui.ActionBar.k3) i0Var).resourcesProvider;
             f7.Z(s6Var, i14, u6Var);
             return;
         }
-        s6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new fc1(this, 25));
+        s6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new hc1(this, 25));
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class g0 implements og {
     }
 
     @Override
-    public final kn i0() {
+    public final mn i0() {
         return null;
     }
 

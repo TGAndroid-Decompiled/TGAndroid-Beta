@@ -15,7 +15,7 @@ public final class u5 extends w4 {
         super(context);
         this.O = b6Var;
         this.N = y9Var;
-        this.f9305w = -1;
+        this.f9304w = -1;
         this.E = new ArrayList();
         this.F = new ArrayList();
         this.G = new ArrayList();
@@ -40,11 +40,11 @@ public final class u5 extends w4 {
                 }
             }
             y9 y9Var = this.N;
-            if (y9Var.O0 != null && (u9Var = y9Var.f9459t0) != null) {
+            if (y9Var.O0 != null && (u9Var = y9Var.f9458t0) != null) {
                 if (i10 < 10) {
                     u9Var.b(false);
                 } else if (i10 >= this.E.size() - 10) {
-                    y9Var.f9459t0.b(true);
+                    y9Var.f9458t0.b(true);
                 }
             }
         }

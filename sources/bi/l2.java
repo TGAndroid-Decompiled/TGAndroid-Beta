@@ -9,11 +9,11 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.mv0;
+import org.telegram.ui.Components.nv0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ei;
-import org.telegram.ui.ei1;
-import org.telegram.ui.yx;
+import org.telegram.ui.fx;
+import org.telegram.ui.gi1;
+import org.telegram.ui.hi;
 public final class l2 implements RequestDelegate {
     public final int f5007a;
     public final int f5008b;
@@ -60,7 +60,7 @@ public final class l2 implements RequestDelegate {
                 ((VoIPService) obj).lambda$startScreenCapture$60(i11, tLObject, tL_error);
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.g4((mv0) obj, tLObject, i11, 20));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.g4((nv0) obj, tLObject, i11, 20));
                 return;
             case 7:
                 LaunchActivity launchActivity = (LaunchActivity) obj;
@@ -68,7 +68,7 @@ public final class l2 implements RequestDelegate {
                 SharedConfig.lastUpdateCheckTime = System.currentTimeMillis();
                 SharedConfig.saveConfig();
                 if (tLObject instanceof TLRPC.TL_help_appUpdate) {
-                    AndroidUtilities.runOnUIThread(new yx(launchActivity, (TLRPC.TL_help_appUpdate) tLObject, i11, 2));
+                    AndroidUtilities.runOnUIThread(new fx(launchActivity, (TLRPC.TL_help_appUpdate) tLObject, i11, 3));
                     return;
                 } else if (tLObject instanceof TLRPC.TL_help_noAppUpdate) {
                     AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.k5(28));
@@ -80,10 +80,10 @@ public final class l2 implements RequestDelegate {
                     return;
                 }
             case 8:
-                AndroidUtilities.runOnUIThread(new yx((ei) obj, tLObject, i11, 3));
+                AndroidUtilities.runOnUIThread(new fx((hi) obj, tLObject, i11, 4));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new yx((ei1) obj, i11, tLObject, 20));
+                AndroidUtilities.runOnUIThread(new fx((gi1) obj, i11, tLObject, 21));
                 return;
         }
     }

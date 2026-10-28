@@ -19,8 +19,8 @@ public class r extends h {
         this.D1 = new Matrix();
         this.E1 = new float[2];
         this.F1 = new Path();
-        this.f16622w0 = true;
-        this.f16624x0 = true;
+        this.f16621w0 = true;
+        this.f16623x0 = true;
         this.e = false;
     }
 
@@ -66,16 +66,16 @@ public class r extends h {
         F();
         k(canvas);
         i(canvas);
-        ArrayList arrayList = this.f16586b;
+        ArrayList arrayList = this.f16585b;
         this.m0 = arrayList.size();
         int i10 = 0;
         while (true) {
-            this.f16610n0 = i10;
-            int i11 = this.f16610n0;
+            this.f16609n0 = i10;
+            int i11 = this.f16609n0;
             if (i11 < this.m0) {
                 l(canvas, (mg.d) arrayList.get(i11));
-                p(canvas, (mg.d) arrayList.get(this.f16610n0));
-                i10 = this.f16610n0 + 1;
+                p(canvas, (mg.d) arrayList.get(this.f16609n0));
+                i10 = this.f16609n0 + 1;
             } else {
                 j(canvas);
                 m(canvas);

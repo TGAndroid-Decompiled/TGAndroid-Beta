@@ -93,14 +93,14 @@ public final class c extends Drawable implements p6 {
             eh.d dVar = this.f6305b;
             hh.a s10 = dVar.s();
             while (s10 instanceof hh.e) {
-                s10 = ((hh.e) s10).f12845a;
+                s10 = ((hh.e) s10).f12844a;
             }
             boolean z11 = this.F;
             Matrix matrix = this.f6306c;
             int i11 = 0;
             Matrix matrix2 = this.e;
             if (!z11 && (s10 instanceof hh.c)) {
-                int i12 = ((hh.c) s10).f12837b;
+                int i12 = ((hh.c) s10).f12836b;
                 int i13 = this.E;
                 Paint paint = this.f6313y;
                 if (i13 != i12 || this.f6307f == null) {
@@ -152,10 +152,10 @@ public final class c extends Drawable implements p6 {
                     matrix2.set(matrix);
                     matrix2.postTranslate(bounds.left, bounds.top + i11);
                     this.f6307f.setLocalMatrix(matrix2);
-                    Matrix matrix3 = bVar.f12832b;
+                    Matrix matrix3 = bVar.f12831b;
                     Matrix matrix4 = this.f6309r;
                     matrix4.set(matrix3);
-                    matrix4.postTranslate(-dVar.f19462c, -dVar.d);
+                    matrix4.postTranslate(-dVar.f19461c, -dVar.d);
                     this.h.setLocalMatrix(matrix4);
                     paint2.setAlpha(this.G);
                     canvas.drawRect(bounds, paint2);

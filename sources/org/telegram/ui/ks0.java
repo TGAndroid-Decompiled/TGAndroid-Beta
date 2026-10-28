@@ -1,11 +1,23 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class ks0 extends mu0 {
-    public final PhotoViewer f41067t;
+import org.telegram.messenger.ImageReceiver;
+public final class ks0 implements org.telegram.ui.Components.f40 {
+    public final PhotoViewer f40912a;
 
-    public ks0(PhotoViewer photoViewer, View view) {
-        super(photoViewer, view);
-        this.f41067t = photoViewer;
+    public ks0(PhotoViewer photoViewer) {
+        this.f40912a = photoViewer;
+    }
+
+    public final void a(int i10) {
+        PhotoViewer photoViewer = this.f40912a;
+        photoViewer.P4 = -1;
+        ImageReceiver.BitmapHolder bitmapHolder = photoViewer.f35719j5;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            photoViewer.f35719j5 = null;
+        }
+        photoViewer.f35735l5 = true;
+        photoViewer.E2(i10);
+        photoViewer.f35735l5 = false;
     }
 }

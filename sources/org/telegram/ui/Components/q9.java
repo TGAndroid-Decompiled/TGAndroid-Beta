@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public abstract class q9 {
-    public static void a(org.telegram.ui.un unVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j10, int i11, int i12) {
+    public static void a(org.telegram.ui.wn wnVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j10, int i11, int i12) {
         org.telegram.ui.ActionBar.j5 parentLayout;
         TLRPC.TL_forumTopic tL_forumTopic2;
-        if ((chat != null || user != null) && (parentLayout = unVar.getParentLayout()) != null) {
+        if ((chat != null || user != null) && (parentLayout = wnVar.getParentLayout()) != null) {
             if (parentLayout.getPulledDialogs() == null) {
                 parentLayout.setPulledDialogs(new ArrayList());
             }
             for (p9 p9Var : parentLayout.getPulledDialogs()) {
-                if (tL_forumTopic != null || p9Var.f31474f != j10) {
-                    if (tL_forumTopic != null && (tL_forumTopic2 = p9Var.e) != null && tL_forumTopic2.f22079id == tL_forumTopic.f22079id) {
+                if (tL_forumTopic != null || p9Var.f31530f != j10) {
+                    if (tL_forumTopic != null && (tL_forumTopic2 = p9Var.e) != null && tL_forumTopic2.f22080id == tL_forumTopic.f22080id) {
                         return;
                     }
                 } else {
@@ -20,12 +20,12 @@ public abstract class q9 {
                 }
             }
             ?? obj = new Object();
-            obj.f31471a = org.telegram.ui.un.class;
-            obj.f31472b = i10;
-            obj.f31474f = j10;
+            obj.f31527a = org.telegram.ui.wn.class;
+            obj.f31528b = i10;
+            obj.f31530f = j10;
             obj.h = i12;
-            obj.f31475g = i11;
-            obj.f31473c = chat;
+            obj.f31531g = i11;
+            obj.f31529c = chat;
             obj.d = user;
             obj.e = tL_forumTopic;
             parentLayout.getPulledDialogs().add(obj);

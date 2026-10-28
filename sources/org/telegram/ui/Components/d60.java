@@ -16,18 +16,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.gd1;
+import org.telegram.ui.bd1;
 import org.telegram.ui.id1;
-import org.telegram.ui.yc1;
+import org.telegram.ui.kd1;
 public final class d60 implements Runnable {
-    public final int f27409a;
-    public final boolean f27410b;
-    public final Object f27411c;
+    public final int f27350a;
+    public final boolean f27351b;
+    public final Object f27352c;
 
     public d60(int i10, Object obj, boolean z10) {
-        this.f27409a = i10;
-        this.f27411c = obj;
-        this.f27410b = z10;
+        this.f27350a = i10;
+        this.f27352c = obj;
+        this.f27351b = z10;
     }
 
     @Override
@@ -42,47 +42,47 @@ public final class d60 implements Runnable {
         CheckBoxBase checkBoxBase2;
         TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
         boolean z10;
-        int i11 = this.f27409a;
+        int i11 = this.f27350a;
         yh.e eVar = null;
         int i12 = 8;
         int i13 = 0;
-        boolean z11 = this.f27410b;
-        Object obj = this.f27411c;
+        boolean z11 = this.f27351b;
+        Object obj = this.f27352c;
         switch (i11) {
             case 0:
-                o60 o60Var = ((h60) obj).H0;
-                if (!o60Var.f31191l0) {
+                p60 p60Var = ((h60) obj).H0;
+                if (!p60Var.f31488k0) {
                     try {
-                        o60Var.performHapticFeedback(3, 2);
+                        p60Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    AndroidUtilities.lockOrientation(o60Var.f31192n.getParentActivity());
+                    AndroidUtilities.lockOrientation(p60Var.h.getParentActivity());
                     if (z11) {
-                        j10 = o60Var.f31189k0;
+                        j10 = p60Var.f31486j0;
                     } else {
                         j10 = 0;
                     }
-                    o60Var.f31185i0 = j10;
-                    o60Var.f31183h0 = System.currentTimeMillis();
-                    o60Var.f31187j0 = true;
-                    o60Var.v();
-                    o60Var.invalidate();
-                    NotificationCenter.getInstance(o60Var.f31178f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(o60Var.V), Boolean.FALSE);
+                    p60Var.f31482h0 = j10;
+                    p60Var.f31480g0 = System.currentTimeMillis();
+                    p60Var.f31484i0 = true;
+                    p60Var.w();
+                    p60Var.invalidate();
+                    NotificationCenter.getInstance(p60Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(p60Var.U), Boolean.FALSE);
                     return;
                 }
                 return;
             case 1:
-                an0 an0Var = (an0) obj;
-                an0Var.getClass();
+                bn0 bn0Var = (bn0) obj;
+                bn0Var.getClass();
                 if (z11) {
                     str = "shown after a change away";
                 } else {
                     str = "shown, height differs";
                 }
-                an0Var.m(str, false);
+                bn0Var.r(str, false);
                 return;
             case 2:
-                org.telegram.ui.ActionBar.r2 r2Var = ((co0) obj).G;
+                org.telegram.ui.ActionBar.r2 r2Var = ((do0) obj).G;
                 if (z11) {
                     str2 = "upload_speed";
                 } else {
@@ -91,53 +91,53 @@ public final class d60 implements Runnable {
                 r2Var.presentFragment(new PremiumPreviewFragment(0, str2));
                 return;
             case 3:
-                aw0 aw0Var = (aw0) obj;
+                bw0 bw0Var = (bw0) obj;
                 if (!z11) {
-                    aw0Var.f26680o0.setVisibility(8);
+                    bw0Var.f26968o0.setVisibility(8);
                     return;
                 } else {
-                    aw0Var.getClass();
+                    bw0Var.getClass();
                     return;
                 }
             case 4:
-                vs0 vs0Var = (vs0) obj;
+                ws0 ws0Var = (ws0) obj;
                 if (!z11) {
-                    vs0Var.W.f26691s0.setVisibility(0);
+                    ws0Var.W.f26979s0.setVisibility(0);
                     return;
                 } else {
-                    vs0Var.getClass();
+                    ws0Var.getClass();
                     return;
                 }
             case 5:
-                zs0 zs0Var = (zs0) obj;
+                at0 at0Var = (at0) obj;
                 if (!z11) {
-                    zs0Var.f35400w.f26691s0.setVisibility(0);
+                    at0Var.f26662w.f26979s0.setVisibility(0);
                     return;
                 } else {
-                    zs0Var.getClass();
+                    at0Var.getClass();
                     return;
                 }
             case 6:
-                vw0 vw0Var = (vw0) obj;
-                ArrayList arrayList = vw0Var.f34290r;
-                uw0 uw0Var = vw0Var.f34289n;
-                if (uw0Var != null) {
-                    uw0Var.I(vw0Var.f34283f, z11);
+                ww0 ww0Var = (ww0) obj;
+                ArrayList arrayList = ww0Var.f34595r;
+                vw0 vw0Var = ww0Var.f34594n;
+                if (vw0Var != null) {
+                    vw0Var.I(ww0Var.f34588f, z11);
                 }
                 while (i13 < arrayList.size()) {
-                    ((uw0) arrayList.get(i13)).I(vw0Var.f34283f, z11);
+                    ((vw0) arrayList.get(i13)).I(ww0Var.f34588f, z11);
                     i13++;
                 }
                 return;
             case 7:
-                ww0 ww0Var = (ww0) obj;
-                ArrayList arrayList2 = ww0Var.f34290r;
-                uw0 uw0Var2 = ww0Var.f34289n;
-                if (uw0Var2 != null) {
-                    uw0Var2.I(ww0Var.f34544n0, z11);
+                xw0 xw0Var = (xw0) obj;
+                ArrayList arrayList2 = xw0Var.f34595r;
+                vw0 vw0Var2 = xw0Var.f34594n;
+                if (vw0Var2 != null) {
+                    vw0Var2.I(xw0Var.f34862n0, z11);
                 }
                 while (i13 < arrayList2.size()) {
-                    ((uw0) arrayList2.get(i13)).I(ww0Var.f34544n0, z11);
+                    ((vw0) arrayList2.get(i13)).I(xw0Var.f34862n0, z11);
                     i13++;
                 }
                 return;
@@ -145,35 +145,35 @@ public final class d60 implements Runnable {
                 ((Utilities.Callback2) obj).run(null, Boolean.valueOf(z11));
                 return;
             case 9:
-                ((j71) obj).Q(z11);
+                ((k71) obj).Q(z11);
                 return;
             case 10:
-                org.telegram.ui.cy cyVar = (org.telegram.ui.cy) obj;
-                Activity parentActivity = cyVar.getParentActivity();
+                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) obj;
+                Activity parentActivity = eyVar.getParentActivity();
                 if (z11) {
-                    j11 = cyVar.getUserConfig().getClientUserId();
+                    j11 = eyVar.getUserConfig().getClientUserId();
                 } else {
                     j11 = -1;
                 }
-                g5.L(parentActivity, j11, new org.telegram.ui.fx(cyVar), cyVar.getResourceProvider());
+                g5.L(parentActivity, j11, new org.telegram.ui.ix(eyVar), eyVar.getResourceProvider());
                 return;
             case 11:
-                org.telegram.ui.lz lzVar = (org.telegram.ui.lz) obj;
-                lzVar.a0(lzVar.O, z11);
+                org.telegram.ui.oz ozVar = (org.telegram.ui.oz) obj;
+                ozVar.a0(ozVar.O, z11);
                 return;
             case 12:
-                org.telegram.ui.pc0 pc0Var = (org.telegram.ui.pc0) obj;
+                org.telegram.ui.rc0 rc0Var = (org.telegram.ui.rc0) obj;
                 if (!z11) {
-                    pc0Var.f42430b.setVisibility(8);
+                    rc0Var.f42923b.setVisibility(8);
                     return;
                 } else {
-                    pc0Var.getClass();
+                    rc0Var.getClass();
                     return;
                 }
             case 13:
-                org.telegram.ui.gg0 gg0Var = (org.telegram.ui.gg0) obj;
+                org.telegram.ui.ig0 ig0Var = (org.telegram.ui.ig0) obj;
                 if (!z11) {
-                    gg0Var.W.setVisibility(8);
+                    ig0Var.W.setVisibility(8);
                     return;
                 }
                 return;
@@ -198,7 +198,7 @@ public final class d60 implements Runnable {
                 frameLayout.setVisibility(i13);
                 return;
             case 17:
-                Activity parentActivity2 = ((org.telegram.ui.j01) obj).e.getParentActivity();
+                Activity parentActivity2 = ((org.telegram.ui.l01) obj).e.getParentActivity();
                 if (z11) {
                     i10 = R.string.ProfileBotOpenAppInfoOwnerLink;
                 } else {
@@ -207,34 +207,34 @@ public final class d60 implements Runnable {
                 qf.d.r(parentActivity2, LocaleController.getString(i10));
                 return;
             case 18:
-                id1 id1Var = (id1) obj;
-                AndroidUtilities.runOnUIThread(new yc1(id1Var, 1));
-                org.telegram.ui.Cells.s1 s1Var = id1Var.K;
+                kd1 kd1Var = (kd1) obj;
+                AndroidUtilities.runOnUIThread(new bd1(kd1Var, 1));
+                org.telegram.ui.Cells.s1 s1Var = kd1Var.K;
                 if (s1Var != null) {
                     s1Var.setVisibility(0);
                     if (!z11) {
-                        org.telegram.ui.Cells.s1 s1Var2 = id1Var.K;
-                        int O2 = s1Var2.O2(id1Var.O);
-                        gd1 gd1Var = id1Var.I;
+                        org.telegram.ui.Cells.s1 s1Var2 = kd1Var.K;
+                        int O2 = s1Var2.O2(kd1Var.O);
+                        id1 id1Var = kd1Var.I;
                         CheckBoxBase[] checkBoxBaseArr2 = s1Var2.R8;
-                        if (checkBoxBaseArr2 != null && O2 >= 0 && O2 < checkBoxBaseArr2.length && (checkBoxBase = checkBoxBaseArr2[O2]) != null && gd1Var != null && (checkBoxBaseArr = gd1Var.R8) != null && O2 >= 0 && O2 < checkBoxBaseArr.length && (checkBoxBase2 = checkBoxBaseArr[O2]) != null) {
-                            ObjectAnimator objectAnimator = checkBoxBase.f26088p;
+                        if (checkBoxBaseArr2 != null && O2 >= 0 && O2 < checkBoxBaseArr2.length && (checkBoxBase = checkBoxBaseArr2[O2]) != null && id1Var != null && (checkBoxBaseArr = id1Var.R8) != null && O2 >= 0 && O2 < checkBoxBaseArr.length && (checkBoxBase2 = checkBoxBaseArr[O2]) != null) {
+                            ObjectAnimator objectAnimator = checkBoxBase.f26090p;
                             if (objectAnimator != null) {
                                 objectAnimator.cancel();
-                                checkBoxBase.f26088p = null;
+                                checkBoxBase.f26090p = null;
                             }
                             checkBoxBase.setProgress(checkBoxBase2.getProgress());
-                            checkBoxBase.f(-1, checkBoxBase2.f26089q, true);
+                            checkBoxBase.f(-1, checkBoxBase2.f26091q, true);
                         }
                     }
-                    org.telegram.ui.Cells.s1 s1Var3 = id1Var.K;
+                    org.telegram.ui.Cells.s1 s1Var3 = kd1Var.K;
                     s1Var3.K7 = -1;
                     s1Var3.invalidate();
                 }
-                org.telegram.ui.qm qmVar = id1Var.f40220c0;
-                if (qmVar != null) {
-                    AndroidUtilities.runOnUIThread(qmVar);
-                    id1Var.f40220c0 = null;
+                org.telegram.ui.sm smVar = kd1Var.f40743c0;
+                if (smVar != null) {
+                    AndroidUtilities.runOnUIThread(smVar);
+                    kd1Var.f40743c0 = null;
                     return;
                 }
                 return;
@@ -251,15 +251,15 @@ public final class d60 implements Runnable {
                 jVar.Q = jVar.F();
                 jVar.R = 0;
                 jVar.S = 0;
-                jVar.f50428j.b("torch requested: enabled=" + z11 + ", available=" + jVar.F() + ", cameraId=" + jVar.f50441o + ", facing=" + jVar.G);
+                jVar.f50463j.b("torch requested: enabled=" + z11 + ", available=" + jVar.F() + ", cameraId=" + jVar.f50476o + ", facing=" + jVar.G);
                 jVar.g();
                 return;
             default:
                 yh.k kVar = (yh.k) obj;
-                ArrayList arrayList3 = kVar.f52612c;
-                boolean isEmpty = TextUtils.isEmpty(kVar.f52626t);
-                String str3 = kVar.f52626t;
-                kVar.f52628w = true;
+                ArrayList arrayList3 = kVar.f52670c;
+                boolean isEmpty = TextUtils.isEmpty(kVar.f52684t);
+                String str3 = kVar.f52684t;
+                kVar.f52686w = true;
                 kVar.A = false;
                 if (isEmpty && !arrayList3.isEmpty()) {
                     tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) ic.a.g(1, arrayList3);
@@ -278,7 +278,7 @@ public final class d60 implements Runnable {
                 if (isEmpty) {
                     AndroidUtilities.runOnUIThread(eVar2, 300L);
                 }
-                kVar.v = kVar.f52615i.getImporters(kVar.f52616j, str3, tL_chatInviteImporter, kVar.d, new bi.s4(kVar, isEmpty, eVar2, str3, z10));
+                kVar.v = kVar.f52673i.getImporters(kVar.f52674j, str3, tL_chatInviteImporter, kVar.d, new bi.s4(kVar, isEmpty, eVar2, str3, z10));
                 return;
         }
     }

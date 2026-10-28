@@ -9,28 +9,28 @@ import java.util.zip.GZIPOutputStream;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class b implements Callable {
-    public final int f46829a;
-    public final c f46830b;
+    public final int f46864a;
+    public final c f46865b;
 
     public b(c cVar, int i10) {
-        this.f46829a = i10;
-        this.f46830b = cVar;
+        this.f46864a = i10;
+        this.f46865b = cVar;
     }
 
     private final Object a() {
         String byteArrayOutputStream;
-        c cVar = this.f46830b;
+        c cVar = this.f46865b;
         synchronized (cVar) {
             try {
-                g gVar = (g) cVar.f46831a.get();
+                g gVar = (g) cVar.f46866a.get();
                 ArrayList c10 = gVar.c();
                 gVar.b();
                 JSONArray jSONArray = new JSONArray();
                 for (int i10 = 0; i10 < c10.size(); i10++) {
                     a aVar = (a) c10.get(i10);
                     JSONObject jSONObject = new JSONObject();
-                    jSONObject.put("agent", aVar.f46827a);
-                    jSONObject.put("dates", new JSONArray((Collection) aVar.f46828b));
+                    jSONObject.put("agent", aVar.f46862a);
+                    jSONObject.put("dates", new JSONArray((Collection) aVar.f46863b));
                     jSONArray.put(jSONObject);
                 }
                 JSONObject jSONObject2 = new JSONObject();
@@ -52,13 +52,13 @@ public final class b implements Callable {
 
     @Override
     public final Object call() {
-        switch (this.f46829a) {
+        switch (this.f46864a) {
             case 0:
                 return a();
             default:
-                c cVar = this.f46830b;
+                c cVar = this.f46865b;
                 synchronized (cVar) {
-                    ((g) cVar.f46831a.get()).k(System.currentTimeMillis(), ((za.b) cVar.f46833c.get()).a());
+                    ((g) cVar.f46866a.get()).k(System.currentTimeMillis(), ((za.b) cVar.f46868c.get()).a());
                 }
                 return null;
         }

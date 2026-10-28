@@ -8,25 +8,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class q6 implements Utilities.Callback2 {
-    public final int f42750a;
-    public final Object f42751b;
-    public final Object f42752c;
+    public final int f42618a;
+    public final Object f42619b;
+    public final Object f42620c;
     public final Object d;
 
     public q6(Object obj, Object obj2, Object obj3, int i10) {
-        this.f42750a = i10;
-        this.f42751b = obj;
-        this.f42752c = obj2;
+        this.f42618a = i10;
+        this.f42619b = obj;
+        this.f42620c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f42750a;
+        int i10 = this.f42618a;
         int i11 = 0;
         Object obj3 = this.d;
-        Object obj4 = this.f42752c;
-        Object obj5 = this.f42751b;
+        Object obj4 = this.f42620c;
+        Object obj5 = this.f42619b;
         switch (i10) {
             case 0:
                 m4.v0 v0Var = (m4.v0) obj3;
@@ -36,40 +36,40 @@ public final class q6 implements Utilities.Callback2 {
                 AndroidUtilities.runOnUIThread(v0Var);
                 return;
             case 1:
-                un unVar = (un) obj5;
+                wn wnVar = (wn) obj5;
                 TL_account.getWebPagePreview getwebpagepreview = (TL_account.getWebPagePreview) obj4;
-                lg lgVar = (lg) obj3;
+                dg dgVar = (dg) obj3;
                 Boolean bool = (Boolean) obj;
                 TLRPC.WebPage webPage = (TLRPC.WebPage) obj2;
                 if (bool.booleanValue() && !(webPage instanceof TLRPC.TL_webPagePending)) {
-                    Iterator it = unVar.Ib.keySet().iterator();
-                    while (it.hasNext() && unVar.Ib.size() > 5) {
+                    Iterator it = wnVar.Mb.keySet().iterator();
+                    while (it.hasNext() && wnVar.Mb.size() > 5) {
                         it.next();
                         it.remove();
                     }
-                    unVar.Ib.put(getwebpagepreview.message, webPage);
+                    wnVar.Mb.put(getwebpagepreview.message, webPage);
                 }
-                lgVar.run(bool, webPage);
+                dgVar.run(bool, webPage);
                 return;
             case 2:
-                final cy cyVar = (cy) obj5;
+                final ey eyVar = (ey) obj5;
                 nd ndVar = (nd) obj4;
                 org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) obj3;
                 org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) obj;
                 final Long l4 = (Long) obj2;
-                Utilities.doCallbacks(new di.y2(cyVar, l4, ndVar, r2Var, 11), new y(cyVar, e2Var, l4, 7), new Utilities.Callback() {
+                Utilities.doCallbacks(new di.y2(eyVar, l4, ndVar, r2Var, 11), new y(eyVar, e2Var, l4, 7), new Utilities.Callback() {
                     @Override
                     public final void run(Object obj6) {
                         boolean z10;
                         switch (r3) {
                             case 0:
                                 Runnable runnable = (Runnable) obj6;
-                                cy cyVar2 = cyVar;
-                                if (cyVar2.G.bot_admin_rights != null) {
-                                    TLRPC.User user = cyVar2.getMessagesController().getUser(Long.valueOf(cyVar2.H));
-                                    MessagesController messagesController = cyVar2.getMessagesController();
+                                ey eyVar2 = eyVar;
+                                if (eyVar2.G.bot_admin_rights != null) {
+                                    TLRPC.User user = eyVar2.getMessagesController().getUser(Long.valueOf(eyVar2.H));
+                                    MessagesController messagesController = eyVar2.getMessagesController();
                                     long longValue = l4.longValue();
-                                    TLRPC.RequestPeerType requestPeerType = cyVar2.G;
+                                    TLRPC.RequestPeerType requestPeerType = eyVar2.G;
                                     TLRPC.TL_chatAdminRights tL_chatAdminRights = requestPeerType.bot_admin_rights;
                                     Boolean bool2 = requestPeerType.bot_participant;
                                     if (bool2 != null && bool2.booleanValue()) {
@@ -77,18 +77,18 @@ public final class q6 implements Utilities.Callback2 {
                                     } else {
                                         z10 = true;
                                     }
-                                    messagesController.setUserAdminRole(longValue, user, tL_chatAdminRights, null, false, cyVar2, z10, true, null, runnable, new ff(5, runnable));
+                                    messagesController.setUserAdminRole(longValue, user, tL_chatAdminRights, null, false, eyVar2, z10, true, null, runnable, new ef(5, runnable));
                                     return;
                                 }
                                 runnable.run();
                                 return;
                             default:
                                 Runnable runnable2 = (Runnable) obj6;
-                                cy cyVar3 = cyVar;
-                                if (cyVar3.G.user_admin_rights != null) {
-                                    MessagesController messagesController2 = cyVar3.getMessagesController();
+                                ey eyVar3 = eyVar;
+                                if (eyVar3.G.user_admin_rights != null) {
+                                    MessagesController messagesController2 = eyVar3.getMessagesController();
                                     Long l10 = l4;
-                                    cyVar3.getMessagesController().setUserAdminRole(l10.longValue(), cyVar3.getAccountInstance().getUserConfig().getCurrentUser(), gq.t0(messagesController2.getChat(l10).admin_rights, cyVar3.G.user_admin_rights), null, true, cyVar3, false, true, null, runnable2, new ff(4, runnable2));
+                                    eyVar3.getMessagesController().setUserAdminRole(l10.longValue(), eyVar3.getAccountInstance().getUserConfig().getCurrentUser(), iq.t0(messagesController2.getChat(l10).admin_rights, eyVar3.G.user_admin_rights), null, true, eyVar3, false, true, null, runnable2, new ef(4, runnable2));
                                     return;
                                 }
                                 runnable2.run();
@@ -102,12 +102,12 @@ public final class q6 implements Utilities.Callback2 {
                         switch (r3) {
                             case 0:
                                 Runnable runnable = (Runnable) obj6;
-                                cy cyVar2 = cyVar;
-                                if (cyVar2.G.bot_admin_rights != null) {
-                                    TLRPC.User user = cyVar2.getMessagesController().getUser(Long.valueOf(cyVar2.H));
-                                    MessagesController messagesController = cyVar2.getMessagesController();
+                                ey eyVar2 = eyVar;
+                                if (eyVar2.G.bot_admin_rights != null) {
+                                    TLRPC.User user = eyVar2.getMessagesController().getUser(Long.valueOf(eyVar2.H));
+                                    MessagesController messagesController = eyVar2.getMessagesController();
                                     long longValue = l4.longValue();
-                                    TLRPC.RequestPeerType requestPeerType = cyVar2.G;
+                                    TLRPC.RequestPeerType requestPeerType = eyVar2.G;
                                     TLRPC.TL_chatAdminRights tL_chatAdminRights = requestPeerType.bot_admin_rights;
                                     Boolean bool2 = requestPeerType.bot_participant;
                                     if (bool2 != null && bool2.booleanValue()) {
@@ -115,25 +115,25 @@ public final class q6 implements Utilities.Callback2 {
                                     } else {
                                         z10 = true;
                                     }
-                                    messagesController.setUserAdminRole(longValue, user, tL_chatAdminRights, null, false, cyVar2, z10, true, null, runnable, new ff(5, runnable));
+                                    messagesController.setUserAdminRole(longValue, user, tL_chatAdminRights, null, false, eyVar2, z10, true, null, runnable, new ef(5, runnable));
                                     return;
                                 }
                                 runnable.run();
                                 return;
                             default:
                                 Runnable runnable2 = (Runnable) obj6;
-                                cy cyVar3 = cyVar;
-                                if (cyVar3.G.user_admin_rights != null) {
-                                    MessagesController messagesController2 = cyVar3.getMessagesController();
+                                ey eyVar3 = eyVar;
+                                if (eyVar3.G.user_admin_rights != null) {
+                                    MessagesController messagesController2 = eyVar3.getMessagesController();
                                     Long l10 = l4;
-                                    cyVar3.getMessagesController().setUserAdminRole(l10.longValue(), cyVar3.getAccountInstance().getUserConfig().getCurrentUser(), gq.t0(messagesController2.getChat(l10).admin_rights, cyVar3.G.user_admin_rights), null, true, cyVar3, false, true, null, runnable2, new ff(4, runnable2));
+                                    eyVar3.getMessagesController().setUserAdminRole(l10.longValue(), eyVar3.getAccountInstance().getUserConfig().getCurrentUser(), iq.t0(messagesController2.getChat(l10).admin_rights, eyVar3.G.user_admin_rights), null, true, eyVar3, false, true, null, runnable2, new ef(4, runnable2));
                                     return;
                                 }
                                 runnable2.run();
                                 return;
                         }
                     }
-                }, new bi.b3(cyVar, e2Var, l4, ndVar, r2Var, 5));
+                }, new bi.b3(eyVar, e2Var, l4, ndVar, r2Var, 5));
                 return;
             default:
                 org.telegram.ui.ActionBar.k3 k3Var = (org.telegram.ui.ActionBar.k3) obj5;
@@ -144,7 +144,7 @@ public final class q6 implements Utilities.Callback2 {
                 if (passkeys != null) {
                     k3Var.dismiss();
                     while (i11 < passkeys.passkeys.size()) {
-                        if (TextUtils.equals(passkeys.passkeys.get(i11).f22231id, passkey.f22231id)) {
+                        if (TextUtils.equals(passkeys.passkeys.get(i11).f22232id, passkey.f22232id)) {
                             passkeys.passkeys.remove(i11);
                             i11--;
                         }
@@ -154,7 +154,7 @@ public final class q6 implements Utilities.Callback2 {
                     if (U != null) {
                         PasskeysActivity passkeysActivity = new PasskeysActivity(passkeys.passkeys);
                         U.presentFragment(passkeysActivity);
-                        AndroidUtilities.runOnUIThread(new wb0(28, passkeysActivity, passkey), 150L);
+                        AndroidUtilities.runOnUIThread(new kb0(29, passkeysActivity, passkey), 150L);
                         return;
                     }
                     return;

@@ -1,13 +1,13 @@
 package y9;
 public final class t extends d {
-    public final Runnable f52483a;
+    public final Runnable f52541a;
 
     public t(Runnable runnable) {
-        this.f52483a = runnable;
+        this.f52541a = runnable;
     }
 
     @Override
     public final void a() {
-        this.f52483a.run();
+        this.f52541a.run();
     }
 }

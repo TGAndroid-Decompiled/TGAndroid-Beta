@@ -1,69 +1,56 @@
 package org.telegram.ui;
+public final class hr implements org.telegram.ui.Cells.e5, org.telegram.ui.Components.zw0 {
+    public final int f39953a;
+    public final ir f39954b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC;
-public final class hr implements Runnable {
-    public final int f40057a;
-    public final jr f40058b;
-    public final String f40059c;
-
-    public hr(jr jrVar, String str, int i10) {
-        this.f40057a = i10;
-        this.f40058b = jrVar;
-        this.f40059c = str;
+    public hr(ir irVar, int i10) {
+        this.f39953a = i10;
+        this.f39954b = irVar;
     }
 
     @Override
-    public final void run() {
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        m4.v0 v0Var;
+    public boolean b(org.telegram.ui.Cells.f5 f5Var, boolean z10) {
+        mr mrVar = this.f39954b.d;
+        return mrVar.i0(mrVar.f41502a.E(((Integer) f5Var.getTag()).intValue()), !z10, f5Var);
+    }
+
+    @Override
+    public void j(int i10) {
         boolean z10;
-        long j10;
-        switch (this.f40057a) {
-            case 0:
-                jr jrVar = this.f40058b;
-                jrVar.getClass();
-                AndroidUtilities.runOnUIThread(new hr(jrVar, this.f40059c, 1));
+        switch (this.f39953a) {
+            case 1:
+                mr mrVar = this.f39954b.d;
+                if (mrVar.f41539r != null) {
+                    int i11 = mrVar.f41534o1;
+                    if ((i11 > 0 && i10 == 0) || (i11 == 0 && i10 > 0)) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    mrVar.f41534o1 = i10;
+                    if (z10) {
+                        gr x02 = mrVar.x0();
+                        mrVar.C0();
+                        mrVar.B0(x02);
+                    }
+                    mrVar.f41502a.m(mrVar.O0);
+                    return;
+                }
                 return;
             default:
-                jr jrVar2 = this.f40058b;
-                jrVar2.f40724n = null;
-                kr krVar = jrVar2.f40729y;
-                TLRPC.Chat chat = krVar.f41032n;
-                int i10 = krVar.f41014d1;
-                if (!ChatObject.isChannel(chat) && krVar.f41041r != null) {
-                    arrayList = new ArrayList(krVar.f41041r.participants.participants);
-                } else {
-                    arrayList = null;
-                }
-                if (i10 == 1) {
-                    arrayList2 = new ArrayList(krVar.getContactsController().contacts);
-                } else {
-                    arrayList2 = null;
-                }
-                String str = this.f40059c;
-                if (arrayList == null && arrayList2 == null) {
-                    jrVar2.f40726s = false;
-                    v0Var = null;
-                } else {
-                    v0Var = new m4.v0(jrVar2, str, arrayList, arrayList2, 21);
-                }
-                ig.a2 a2Var = jrVar2.h;
-                if (i10 != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (ChatObject.isChannel(krVar.f41032n)) {
-                    j10 = krVar.M;
-                } else {
-                    j10 = 0;
-                }
-                a2Var.h(str, z10, false, true, false, false, j10, false, krVar.N, 1, 0L, v0Var);
+                this.f39954b.d.f41541r1 = i10 + 1;
                 return;
         }
+    }
+
+    @Override
+    public void m() {
+        int i10 = this.f39953a;
+    }
+
+    private final void a() {
+    }
+
+    private final void c() {
     }
 }

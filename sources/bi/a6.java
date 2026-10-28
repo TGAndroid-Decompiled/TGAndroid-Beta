@@ -28,7 +28,7 @@ public final class a6 extends View {
         imageReceiver.setForUserOrChat(tLObject, j9Var);
         Drawable mutate = context.getDrawable(R.drawable.chats_undo).mutate();
         this.f4262c = mutate;
-        org.telegram.ui.ActionBar.f7.y(this, mutate, org.telegram.ui.ActionBar.y6.f23767z6, null, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.f7.y(this, mutate, org.telegram.ui.ActionBar.y6.f23768z6, null, PorterDuff.Mode.MULTIPLY);
         mutate.setBounds(AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
     }
 

@@ -30,7 +30,7 @@ public final class t6 extends z6 {
     @Override
     public final MessageObject f(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f9493i;
+            ArrayList arrayList = this.f9492i;
             if (i10 < arrayList.size()) {
                 return (MessageObject) arrayList.get(i10);
             }
@@ -51,7 +51,7 @@ public final class t6 extends z6 {
 
     @Override
     public final int i() {
-        return this.f9493i.size();
+        return this.f9492i.size();
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class t6 extends z6 {
         this.G = true;
         String str2 = this.D;
         boolean isEmpty = TextUtils.isEmpty(str2);
-        int i11 = this.f9490c;
+        int i11 = this.f9489c;
         if (!isEmpty) {
             tLObject = MessagesController.getInstance(i11).getUserOrChat(str2);
             if (tLObject == null) {

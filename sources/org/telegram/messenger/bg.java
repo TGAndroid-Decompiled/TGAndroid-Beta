@@ -2,26 +2,26 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class bg implements Runnable {
-    public final int f19715a;
-    public final MessagesStorage f19716b;
-    public final ArrayList f19717c;
+    public final int f19717a;
+    public final MessagesStorage f19718b;
+    public final ArrayList f19719c;
     public final ArrayList d;
 
     public bg(MessagesStorage messagesStorage, ArrayList arrayList, ArrayList arrayList2, int i10) {
-        this.f19715a = i10;
-        this.f19716b = messagesStorage;
-        this.f19717c = arrayList;
+        this.f19717a = i10;
+        this.f19718b = messagesStorage;
+        this.f19719c = arrayList;
         this.d = arrayList2;
     }
 
     @Override
     public final void run() {
-        switch (this.f19715a) {
+        switch (this.f19717a) {
             case 0:
-                this.f19716b.lambda$loadTopics$53(this.f19717c, this.d);
+                MessagesStorage.y1(this.f19718b, this.f19719c, this.d);
                 return;
             default:
-                this.f19716b.lambda$setDialogsPinned$255(this.f19717c, this.d);
+                MessagesStorage.N0(this.f19718b, this.f19719c, this.d);
                 return;
         }
     }

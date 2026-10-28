@@ -11,7 +11,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.oa0;
+import org.telegram.ui.qa0;
 public final class k8 implements Runnable {
     public final int f4968a = 1;
     public final ca f4969b;
@@ -43,10 +43,10 @@ public final class k8 implements Runnable {
     @Override
     public final void run() {
         org.telegram.ui.Components.wc Y;
-        oa0 oa0Var;
+        qa0 qa0Var;
         String str;
         org.telegram.ui.Components.wc Y2;
-        oa0 oa0Var2;
+        qa0 qa0Var2;
         String str2 = "FAILED_SEND_STARS";
         switch (this.f4968a) {
             case 0:
@@ -111,8 +111,8 @@ public final class k8 implements Runnable {
                 SharedPreferences.Editor putBoolean = edit2.putBoolean("show_gift_for_" + j11, true);
                 putBoolean.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j11, true).apply();
                 LaunchActivity launchActivity = LaunchActivity.I1;
-                if (launchActivity != null && (oa0Var = launchActivity.f35567x0) != null) {
-                    oa0Var.c(true);
+                if (launchActivity != null && (qa0Var = launchActivity.f35591x0) != null) {
+                    qa0Var.c(true);
                     return;
                 }
                 return;
@@ -171,8 +171,8 @@ public final class k8 implements Runnable {
                 SharedPreferences.Editor putBoolean2 = edit4.putBoolean("show_gift_for_" + j13, true);
                 putBoolean2.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j13, true).apply();
                 LaunchActivity launchActivity2 = LaunchActivity.I1;
-                if (launchActivity2 != null && (oa0Var2 = launchActivity2.f35567x0) != null) {
-                    oa0Var2.c(true);
+                if (launchActivity2 != null && (qa0Var2 = launchActivity2.f35591x0) != null) {
+                    qa0Var2.c(true);
                     return;
                 }
                 return;

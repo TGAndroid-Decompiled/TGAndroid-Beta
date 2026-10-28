@@ -7,7 +7,7 @@ public final class f0 extends b0 {
     }
 
     public final s1 f() {
-        this.f10260c = true;
-        return i0.s(this.f10259b, this.f10258a);
+        this.f10259c = true;
+        return i0.s(this.f10258b, this.f10257a);
     }
 }

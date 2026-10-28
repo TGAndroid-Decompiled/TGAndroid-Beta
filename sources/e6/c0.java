@@ -12,19 +12,19 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 public final class c0 extends f6.g {
-    public final int f9811a;
-    public final Object f9812b;
+    public final int f9810a;
+    public final Object f9811b;
 
     public c0(Object obj, int i10) {
-        this.f9811a = i10;
-        this.f9812b = obj;
+        this.f9810a = i10;
+        this.f9811b = obj;
     }
 
     @Override
     public void a() {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 2:
-                ((g6.h) this.f9812b).b();
+                ((g6.h) this.f9811b).b();
                 return;
             default:
                 return;
@@ -33,9 +33,9 @@ public final class c0 extends f6.g {
 
     @Override
     public void c() {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 2:
-                ((g6.h) this.f9812b).b();
+                ((g6.h) this.f9811b).b();
                 return;
             default:
                 return;
@@ -44,9 +44,9 @@ public final class c0 extends f6.g {
 
     @Override
     public void d() {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 2:
-                ((g6.h) this.f9812b).b();
+                ((g6.h) this.f9811b).b();
                 return;
             default:
                 return;
@@ -55,9 +55,9 @@ public final class c0 extends f6.g {
 
     @Override
     public void e() {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 2:
-                ((g6.h) this.f9812b).b();
+                ((g6.h) this.f9811b).b();
                 return;
             default:
                 return;
@@ -66,14 +66,14 @@ public final class c0 extends f6.g {
 
     @Override
     public void g() {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 1:
-                f6.c cVar = (f6.c) this.f9812b;
+                f6.c cVar = (f6.c) this.f9811b;
                 long e = cVar.e();
-                if (e != cVar.f10191b) {
-                    cVar.f10191b = e;
+                if (e != cVar.f10190b) {
+                    cVar.f10190b = e;
                     cVar.c();
-                    if (cVar.f10191b != 0) {
+                    if (cVar.f10190b != 0) {
                         cVar.d();
                         return;
                     }
@@ -81,7 +81,7 @@ public final class c0 extends f6.g {
                 }
                 return;
             case 2:
-                ((g6.h) this.f9812b).b();
+                ((g6.h) this.f9811b).b();
                 return;
             default:
                 return;
@@ -90,9 +90,9 @@ public final class c0 extends f6.g {
 
     @Override
     public void h(String str, long j10, int i10, long j11, long j12) {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 0:
-                l4 l4Var = ((c) this.f9812b).f9810l;
+                l4 l4Var = ((c) this.f9811b).f9809l;
                 if (l4Var != null) {
                     s6 F = l4Var.f6819a.F();
                     p2 p2Var = new p2(str);
@@ -113,14 +113,14 @@ public final class c0 extends f6.g {
 
     @Override
     public void i(int[] iArr) {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 1:
-                f6.c cVar = (f6.c) this.f9812b;
+                f6.c cVar = (f6.c) this.f9811b;
                 ArrayList c10 = h6.a.c(iArr);
                 if (!cVar.d.equals(c10)) {
                     cVar.h();
-                    cVar.f10193f.evictAll();
-                    cVar.f10194g.clear();
+                    cVar.f10192f.evictAll();
+                    cVar.f10193g.clear();
                     cVar.d = c10;
                     f6.c.b(cVar);
                     cVar.g();
@@ -136,23 +136,23 @@ public final class c0 extends f6.g {
     @Override
     public void j(int[] iArr, int i10) {
         int i11;
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 1:
                 if (i10 == 0) {
-                    i11 = ((f6.c) this.f9812b).d.size();
+                    i11 = ((f6.c) this.f9811b).d.size();
                 } else {
-                    i11 = ((f6.c) this.f9812b).e.get(i10, -1);
+                    i11 = ((f6.c) this.f9811b).e.get(i10, -1);
                     if (i11 == -1) {
-                        ((f6.c) this.f9812b).d();
+                        ((f6.c) this.f9811b).d();
                         return;
                     }
                 }
-                ((f6.c) this.f9812b).h();
-                ((f6.c) this.f9812b).d.addAll(i11, h6.a.c(iArr));
-                f6.c.b((f6.c) this.f9812b);
-                f6.c cVar = (f6.c) this.f9812b;
-                synchronized (cVar.f10199m) {
-                    Iterator it = cVar.f10199m.iterator();
+                ((f6.c) this.f9811b).h();
+                ((f6.c) this.f9811b).d.addAll(i11, h6.a.c(iArr));
+                f6.c.b((f6.c) this.f9811b);
+                f6.c cVar = (f6.c) this.f9811b;
+                synchronized (cVar.f10198m) {
+                    Iterator it = cVar.f10198m.iterator();
                     if (it.hasNext()) {
                         if (it.next() == null) {
                             throw null;
@@ -160,7 +160,7 @@ public final class c0 extends f6.g {
                         throw new ClassCastException();
                     }
                 }
-                ((f6.c) this.f9812b).f();
+                ((f6.c) this.f9811b).f();
                 return;
             default:
                 return;
@@ -169,17 +169,17 @@ public final class c0 extends f6.g {
 
     @Override
     public void k(d6.o[] oVarArr) {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 1:
                 HashSet hashSet = new HashSet();
-                f6.c cVar = (f6.c) this.f9812b;
+                f6.c cVar = (f6.c) this.f9811b;
                 SparseIntArray sparseIntArray = cVar.e;
-                ArrayList arrayList = cVar.f10194g;
+                ArrayList arrayList = cVar.f10193g;
                 arrayList.clear();
                 int i10 = 0;
                 for (d6.o oVar : oVarArr) {
                     int i11 = oVar.f8112b;
-                    cVar.f10193f.put(Integer.valueOf(i11), oVar);
+                    cVar.f10192f.put(Integer.valueOf(i11), oVar);
                     int i12 = sparseIntArray.get(i11, -1);
                     if (i12 == -1) {
                         cVar.d();
@@ -211,28 +211,28 @@ public final class c0 extends f6.g {
 
     @Override
     public void l(int[] iArr) {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 1:
                 ArrayList arrayList = new ArrayList();
                 for (int i10 : iArr) {
-                    ((f6.c) this.f9812b).f10193f.remove(Integer.valueOf(i10));
-                    int i11 = ((f6.c) this.f9812b).e.get(i10, -1);
+                    ((f6.c) this.f9811b).f10192f.remove(Integer.valueOf(i10));
+                    int i11 = ((f6.c) this.f9811b).e.get(i10, -1);
                     if (i11 == -1) {
-                        ((f6.c) this.f9812b).d();
+                        ((f6.c) this.f9811b).d();
                         return;
                     }
-                    ((f6.c) this.f9812b).e.delete(i10);
+                    ((f6.c) this.f9811b).e.delete(i10);
                     arrayList.add(Integer.valueOf(i11));
                 }
                 if (!arrayList.isEmpty()) {
                     Collections.sort(arrayList);
-                    ((f6.c) this.f9812b).h();
-                    ((f6.c) this.f9812b).d.removeAll(h6.a.c(iArr));
-                    f6.c.b((f6.c) this.f9812b);
-                    f6.c cVar = (f6.c) this.f9812b;
+                    ((f6.c) this.f9811b).h();
+                    ((f6.c) this.f9811b).d.removeAll(h6.a.c(iArr));
+                    f6.c.b((f6.c) this.f9811b);
+                    f6.c cVar = (f6.c) this.f9811b;
                     h6.a.e(arrayList);
-                    synchronized (cVar.f10199m) {
-                        Iterator it = cVar.f10199m.iterator();
+                    synchronized (cVar.f10198m) {
+                        Iterator it = cVar.f10198m.iterator();
                         if (it.hasNext()) {
                             if (it.next() == null) {
                                 throw null;
@@ -240,7 +240,7 @@ public final class c0 extends f6.g {
                             throw new ClassCastException();
                         }
                     }
-                    ((f6.c) this.f9812b).f();
+                    ((f6.c) this.f9811b).f();
                     return;
                 }
                 return;
@@ -251,36 +251,36 @@ public final class c0 extends f6.g {
 
     @Override
     public void m(ArrayList arrayList, ArrayList arrayList2, int i10) {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 1:
                 ArrayList arrayList3 = new ArrayList();
                 int i11 = 0;
                 if (i10 == 0) {
-                    ((f6.c) this.f9812b).d.size();
+                    ((f6.c) this.f9811b).d.size();
                 } else if (arrayList2.isEmpty()) {
-                    h6.b bVar = ((f6.c) this.f9812b).f10190a;
-                    Log.w(bVar.f12621a, bVar.d("Received a Queue Reordered message with an empty reordered items IDs list.", new Object[0]));
-                } else if (((f6.c) this.f9812b).e.get(i10, -1) == -1) {
-                    ((f6.c) this.f9812b).e.get(((Integer) arrayList2.get(0)).intValue(), -1);
+                    h6.b bVar = ((f6.c) this.f9811b).f10189a;
+                    Log.w(bVar.f12620a, bVar.d("Received a Queue Reordered message with an empty reordered items IDs list.", new Object[0]));
+                } else if (((f6.c) this.f9811b).e.get(i10, -1) == -1) {
+                    ((f6.c) this.f9811b).e.get(((Integer) arrayList2.get(0)).intValue(), -1);
                 }
                 int size = arrayList2.size();
                 while (i11 < size) {
                     Object obj = arrayList2.get(i11);
                     i11++;
-                    int i12 = ((f6.c) this.f9812b).e.get(((Integer) obj).intValue(), -1);
+                    int i12 = ((f6.c) this.f9811b).e.get(((Integer) obj).intValue(), -1);
                     if (i12 == -1) {
-                        ((f6.c) this.f9812b).d();
+                        ((f6.c) this.f9811b).d();
                         return;
                     }
                     arrayList3.add(Integer.valueOf(i12));
                 }
-                ((f6.c) this.f9812b).h();
-                f6.c cVar = (f6.c) this.f9812b;
+                ((f6.c) this.f9811b).h();
+                f6.c cVar = (f6.c) this.f9811b;
                 cVar.d = arrayList;
                 f6.c.b(cVar);
-                f6.c cVar2 = (f6.c) this.f9812b;
-                synchronized (cVar2.f10199m) {
-                    Iterator it = cVar2.f10199m.iterator();
+                f6.c cVar2 = (f6.c) this.f9811b;
+                synchronized (cVar2.f10198m) {
+                    Iterator it = cVar2.f10198m.iterator();
                     if (it.hasNext()) {
                         if (it.next() == null) {
                             throw null;
@@ -288,7 +288,7 @@ public final class c0 extends f6.g {
                         throw new ClassCastException();
                     }
                 }
-                ((f6.c) this.f9812b).f();
+                ((f6.c) this.f9811b).f();
                 return;
             default:
                 return;
@@ -297,14 +297,14 @@ public final class c0 extends f6.g {
 
     @Override
     public void n(int[] iArr) {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 1:
-                f6.c cVar = (f6.c) this.f9812b;
+                f6.c cVar = (f6.c) this.f9811b;
                 ArrayList arrayList = new ArrayList();
                 int i10 = 0;
                 while (i10 < iArr.length) {
                     int i11 = iArr[i10];
-                    cVar.f10193f.remove(Integer.valueOf(i11));
+                    cVar.f10192f.remove(Integer.valueOf(i11));
                     int i12 = cVar.e.get(i11, -1);
                     if (i12 == -1) {
                         cVar.d();
@@ -325,9 +325,9 @@ public final class c0 extends f6.g {
 
     @Override
     public void o() {
-        switch (this.f9811a) {
+        switch (this.f9810a) {
             case 1:
-                ((f6.c) this.f9812b).d();
+                ((f6.c) this.f9811b).d();
                 return;
             default:
                 return;

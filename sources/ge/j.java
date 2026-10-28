@@ -5,11 +5,11 @@ import ce.g1;
 import he.s;
 import ud.p;
 public final class j extends kotlin.jvm.internal.j implements p {
-    public final g f12485b;
+    public final g f12484b;
 
     public j(g gVar) {
         super(2);
-        this.f12485b = gVar;
+        this.f12484b = gVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class j extends kotlin.jvm.internal.j implements p {
         int intValue = ((Number) obj).intValue();
         ld.f fVar = (ld.f) obj2;
         ld.g key = fVar.getKey();
-        ld.f fVar2 = this.f12485b.f12481b.get(key);
+        ld.f fVar2 = this.f12484b.f12480b.get(key);
         if (key != b0.f6205b) {
             if (fVar != fVar2) {
                 i10 = Integer.MIN_VALUE;

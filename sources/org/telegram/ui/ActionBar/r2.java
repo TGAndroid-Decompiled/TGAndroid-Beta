@@ -47,14 +47,14 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.gp0;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.hp0;
+import org.telegram.ui.Components.kb1;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.ob;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.e31;
-import org.telegram.ui.hl0;
-import org.telegram.ui.py;
+import org.telegram.ui.g31;
+import org.telegram.ui.jl0;
+import org.telegram.ui.ry;
 public abstract class r2 {
     protected k actionBar;
     protected Bundle arguments;
@@ -96,7 +96,7 @@ public abstract class r2 {
     }
 
     public static boolean hasFullyVisibleSheets(r2 r2Var) {
-        py w10;
+        ry w10;
         if (r2Var != null) {
             if (!r2Var.hasShownFullyVisibleSheet()) {
                 if ((r2Var.getParentLayout() instanceof ActionBarLayout) && (w10 = ((ActionBarLayout) r2Var.getParentLayout()).w()) != null && w10.hasShownFullyVisibleSheet()) {
@@ -110,7 +110,7 @@ public abstract class r2 {
     }
 
     public static boolean hasSheets(r2 r2Var) {
-        py w10;
+        ry w10;
         if (r2Var != null) {
             if (!r2Var.hasShownSheet()) {
                 if ((r2Var.getParentLayout() instanceof ActionBarLayout) && (w10 = ((ActionBarLayout) r2Var.getParentLayout()).w()) != null && w10.hasShownSheet()) {
@@ -133,7 +133,7 @@ public abstract class r2 {
         }
         y9 lastStoryViewer = getLastStoryViewer();
         if (lastStoryViewer != null) {
-            lastStoryViewer.f9463v0 = n2Var;
+            lastStoryViewer.f9462v0 = n2Var;
             n2Var.setOnDismissListener(new di.s3(lastStoryViewer, 3));
         }
         this.sheetsStack.add(n2Var);
@@ -236,11 +236,11 @@ public abstract class r2 {
     public k createActionBar(Context context) {
         j5 j5Var;
         k kVar = new k(context, getResourceProvider());
-        f7.i(y6.f23636s8, kVar, this.themedColors);
-        f7.m(kVar, 3, y6.f23656t8, this.themedColors);
-        f7.a(kVar, y6.f23769z8, this.themedColors, true);
-        f7.m(kVar, 1, y6.f23694v8, this.themedColors);
-        f7.b(kVar, y6.f23750y8, this.themedColors, true);
+        f7.i(y6.f23637s8, kVar, this.themedColors);
+        f7.m(kVar, 3, y6.f23657t8, this.themedColors);
+        f7.a(kVar, y6.f23770z8, this.themedColors, true);
+        f7.m(kVar, 1, y6.f23695v8, this.themedColors);
+        f7.b(kVar, y6.f23751y8, this.themedColors, true);
         if (!this.inPreviewMode && !this.inBubbleMode && ((j5Var = this.parentLayout) == null || !((ActionBarLayout) j5Var).S0)) {
             return kVar;
         }
@@ -277,8 +277,8 @@ public abstract class r2 {
         }
         y9 y9Var = new y9(this);
         j5 j5Var = this.parentLayout;
-        if (j5Var != null && ((ActionBarLayout) j5Var).f22306b) {
-            y9Var.f9455r1 = true;
+        if (j5Var != null && ((ActionBarLayout) j5Var).f22307b) {
+            y9Var.f9454r1 = true;
         }
         this.sheetsStack.add(y9Var);
         updateSheetsVisibility();
@@ -345,7 +345,7 @@ public abstract class r2 {
         if (dialog != null) {
             dialog.dismiss();
         } else if (this.inPreviewMode && (q2Var = this.previewDelegate) != null) {
-            ((e31) ((hl0) q2Var).f40035b).a();
+            ((g31) ((jl0) q2Var).f40560b).a();
         } else {
             finishFragment(true);
         }
@@ -355,7 +355,7 @@ public abstract class r2 {
         j5 j5Var = this.parentLayout;
         if (j5Var != null) {
             ActionBarLayout actionBarLayout = (ActionBarLayout) j5Var;
-            if (actionBarLayout.h || actionBarLayout.f22304a0) {
+            if (actionBarLayout.h || actionBarLayout.f22305a0) {
                 Runnable runnable = actionBarLayout.e;
                 if (runnable != null) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -450,9 +450,9 @@ public abstract class r2 {
 
     public e4 getEdgeToEdgeSupportMode() {
         if (isSupportEdgeToEdge()) {
-            return e4.f22603b;
+            return e4.f22604b;
         }
-        return e4.f22602a;
+        return e4.f22603a;
     }
 
     public FileLoader getFileLoader() {
@@ -483,7 +483,7 @@ public abstract class r2 {
         j5 j5Var = this.parentLayout;
         if (j5Var != null) {
             ActionBarLayout actionBarLayout = (ActionBarLayout) j5Var;
-            if ((actionBarLayout.h && actionBarLayout.J == null) || actionBarLayout.f22304a0) {
+            if ((actionBarLayout.h && actionBarLayout.J == null) || actionBarLayout.f22305a0) {
                 return true;
             }
             return false;
@@ -529,7 +529,7 @@ public abstract class r2 {
         return null;
     }
 
-    public mm0 getListViewForSimpleGlass() {
+    public nm0 getListViewForSimpleGlass() {
         return null;
     }
 
@@ -554,7 +554,7 @@ public abstract class r2 {
     }
 
     public int getNavigationBarColor() {
-        int w02 = y6.w0(y6.f23299a7, getResourceProvider());
+        int w02 = y6.w0(y6.f23300a7, getResourceProvider());
         if (this.sheetsStack != null) {
             for (int i10 = 0; i10 < this.sheetsStack.size(); i10++) {
                 n2 n2Var = this.sheetsStack.get(i10);
@@ -586,8 +586,8 @@ public abstract class r2 {
         if (y9Var == null) {
             y9Var = new y9(this);
             j5 j5Var = this.parentLayout;
-            if (j5Var != null && ((ActionBarLayout) j5Var).f22306b) {
-                y9Var.f9455r1 = true;
+            if (j5Var != null && ((ActionBarLayout) j5Var).f22307b) {
+                y9Var.f9454r1 = true;
             }
             this.sheetsStack.add(y9Var);
             updateSheetsVisibility();
@@ -615,7 +615,7 @@ public abstract class r2 {
         return this.resourceProvider;
     }
 
-    public gp0 getScrollViewForSimpleGlass() {
+    public hp0 getScrollViewForSimpleGlass() {
         return null;
     }
 
@@ -787,12 +787,12 @@ public abstract class r2 {
         if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
             if (!hasForceLightStatusBar() || y6.C0().q()) {
                 u6 resourceProvider = getResourceProvider();
-                int i10 = y6.f23636s8;
+                int i10 = y6.f23637s8;
                 k kVar = this.actionBar;
                 if (kVar != null && kVar.q()) {
-                    i10 = y6.f23713w8;
+                    i10 = y6.f23714w8;
                 } else if (this.simpleActionBar != null) {
-                    i10 = y6.f23299a7;
+                    i10 = y6.f23300a7;
                 }
                 if (resourceProvider != null) {
                     x02 = resourceProvider.e(i10);
@@ -820,7 +820,7 @@ public abstract class r2 {
         if (this.sheetsStack != null) {
             for (int i10 = 0; i10 < this.sheetsStack.size(); i10++) {
                 n2 n2Var = this.sheetsStack.get(i10);
-                if ((n2Var instanceof y9) && view == ((y9) n2Var).f9456s) {
+                if ((n2Var instanceof y9) && view == ((y9) n2Var).f9455s) {
                     return true;
                 }
             }
@@ -934,7 +934,7 @@ public abstract class r2 {
         }
         if (hasForceLightStatusBar() && !AndroidUtilities.isTablet() && getParentLayout().getLastFragment() == this && getParentActivity() != null && !this.finishing) {
             Activity parentActivity = getParentActivity();
-            if (y6.x0(null, y6.f23636s8, false) == -1) {
+            if (y6.x0(null, y6.f23637s8, false) == -1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -958,7 +958,7 @@ public abstract class r2 {
         this.mSystemInsets = defaultWindowInsets;
         ViewGroup viewGroup = this.listViewForSimpleGlass;
         if (viewGroup != null) {
-            oi.a.d(viewGroup, defaultWindowInsets.f13451b, defaultWindowInsets.d, k.getCurrentActionBarHeight(), 0);
+            oi.a.d(viewGroup, defaultWindowInsets.f13450b, defaultWindowInsets.d, k.getCurrentActionBarHeight(), 0);
         }
         if (this.navigationBarFadeView != null) {
             if (this.mSystemInsets.d < AndroidUtilities.dp(40.0f)) {
@@ -967,13 +967,13 @@ public abstract class r2 {
             this.navigationBarFadeView.getLayoutParams().height = this.mSystemInsets.d;
             this.navigationBarFadeView.setVisibility(i10);
         }
-        int i11 = defaultWindowInsets.f13450a;
-        int i12 = defaultWindowInsets.f13451b;
-        int i13 = defaultWindowInsets.f13452c;
+        int i11 = defaultWindowInsets.f13449a;
+        int i12 = defaultWindowInsets.f13450b;
+        int i13 = defaultWindowInsets.f13451c;
         int i14 = defaultWindowInsets.d;
         this.bottomInset = i14;
         onInsets(i11, i12, i13, i14);
-        return r0.k1.f47117b;
+        return r0.k1.f47152b;
     }
 
     public void onPause() {
@@ -1008,11 +1008,11 @@ public abstract class r2 {
         }
         if (getLastStoryViewer() != null) {
             y9 lastStoryViewer = getLastStoryViewer();
-            lastStoryViewer.f9458s1 = true;
-            x9 x9Var = lastStoryViewer.f9472z0;
+            lastStoryViewer.f9457s1 = true;
+            x9 x9Var = lastStoryViewer.f9471z0;
             if (x9Var != null) {
                 x9Var.release(null);
-                lastStoryViewer.f9472z0 = null;
+                lastStoryViewer.f9471z0 = null;
             }
             if (lastStoryViewer.E0 == null) {
                 fi.b4 b4Var = lastStoryViewer.D0;
@@ -1021,7 +1021,7 @@ public abstract class r2 {
                 }
                 di.h1 h1Var = lastStoryViewer.A0;
                 if (h1Var != null) {
-                    if (h1Var.f8608n) {
+                    if (h1Var.f8607n) {
                         h1Var.s(null);
                     } else {
                         h1Var.e();
@@ -1029,11 +1029,11 @@ public abstract class r2 {
                     lastStoryViewer.A0 = null;
                 }
             }
-            l7 l7Var = lastStoryViewer.f9462u1;
+            l7 l7Var = lastStoryViewer.f9461u1;
             if (l7Var != null) {
                 l7Var.b();
             }
-            getLastStoryViewer().P();
+            getLastStoryViewer().Q();
         }
     }
 
@@ -1053,18 +1053,18 @@ public abstract class r2 {
         }
         if (getLastStoryViewer() != null) {
             y9 lastStoryViewer = getLastStoryViewer();
-            lastStoryViewer.f9458s1 = false;
-            if (!org.telegram.ui.j4.x().V && lastStoryViewer.t() != null) {
-                lastStoryViewer.t().d1(false);
+            lastStoryViewer.f9457s1 = false;
+            if (!org.telegram.ui.j4.x().V && lastStoryViewer.u() != null) {
+                lastStoryViewer.u().d1(false);
             }
-            l7 l7Var = lastStoryViewer.f9462u1;
+            l7 l7Var = lastStoryViewer.f9461u1;
             if (l7Var != null) {
                 l7Var.a(false);
             }
             if (di.o1.Z.S) {
                 di.o1.j();
             }
-            getLastStoryViewer().P();
+            getLastStoryViewer().Q();
         }
     }
 
@@ -1084,17 +1084,17 @@ public abstract class r2 {
     }
 
     public View performCreateView(Context context) {
-        mm0 mm0Var;
+        nm0 nm0Var;
         View createView = createView(context);
-        mm0 listViewForSimpleGlass = getListViewForSimpleGlass();
-        gp0 scrollViewForSimpleGlass = getScrollViewForSimpleGlass();
+        nm0 listViewForSimpleGlass = getListViewForSimpleGlass();
+        hp0 scrollViewForSimpleGlass = getScrollViewForSimpleGlass();
         if (listViewForSimpleGlass != null) {
-            mm0Var = listViewForSimpleGlass;
+            nm0Var = listViewForSimpleGlass;
         } else {
-            mm0Var = scrollViewForSimpleGlass;
+            nm0Var = scrollViewForSimpleGlass;
         }
-        this.listViewForSimpleGlass = mm0Var;
-        if (mm0Var != null && (createView instanceof FrameLayout)) {
+        this.listViewForSimpleGlass = nm0Var;
+        if (nm0Var != null && (createView instanceof FrameLayout)) {
             oi.a baseSimpleGlass = getBaseSimpleGlass();
             View view = this.simpleActionBar;
             if (view == null) {
@@ -1105,10 +1105,10 @@ public abstract class r2 {
             } else if (scrollViewForSimpleGlass != null) {
                 FrameLayout frameLayout = (FrameLayout) createView;
                 u6 u6Var = this.resourceProvider;
-                baseSimpleGlass.f19423g = frameLayout;
+                baseSimpleGlass.f19422g = frameLayout;
                 baseSimpleGlass.h = scrollViewForSimpleGlass;
-                baseSimpleGlass.f19424i = new bi.g(3, scrollViewForSimpleGlass, frameLayout);
-                oi.q qVar = baseSimpleGlass.f19419a;
+                baseSimpleGlass.f19423i = new bi.g(3, scrollViewForSimpleGlass, frameLayout);
+                oi.q qVar = baseSimpleGlass.f19418a;
                 qVar.getClass();
                 scrollViewForSimpleGlass.L.add(new oi.k(qVar, scrollViewForSimpleGlass));
                 oi.l lVar = new oi.l(qVar);
@@ -1126,12 +1126,12 @@ public abstract class r2 {
             }
             ViewGroup viewGroup = this.listViewForSimpleGlass;
             i0.b bVar = this.mSystemInsets;
-            oi.a.d(viewGroup, bVar.f13451b, bVar.d, k.getCurrentActionBarHeight(), 0);
+            oi.a.d(viewGroup, bVar.f13450b, bVar.d, k.getCurrentActionBarHeight(), 0);
             if (drawEdgeNavigationBar()) {
                 View view2 = new View(context);
                 this.navigationBarFadeView = view2;
                 view2.setBackground(baseSimpleGlass.b(view2));
-                FrameLayout.LayoutParams i10 = gb1.i(-1, 0, 80);
+                FrameLayout.LayoutParams i10 = kb1.i(-1, 0, 80);
                 i10.height = this.mSystemInsets.d;
                 ((FrameLayout) createView).addView(this.navigationBarFadeView, i10);
             }
@@ -1167,7 +1167,7 @@ public abstract class r2 {
             actionBarLayout.getClass();
             g5 g5Var = new g5(r2Var);
             g5Var.e = true;
-            g5Var.f22665f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+            g5Var.f22666f = actionBarPopupWindow$ActionBarPopupWindowLayout;
             if (actionBarLayout.T(g5Var)) {
                 return true;
             }
@@ -1317,7 +1317,7 @@ public abstract class r2 {
         if (this.parentLayout != j5Var) {
             this.parentLayout = j5Var;
             boolean z11 = false;
-            if (j5Var != null && ((ActionBarLayout) j5Var).f22316f) {
+            if (j5Var != null && ((ActionBarLayout) j5Var).f22317f) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1380,7 +1380,7 @@ public abstract class r2 {
                 k createActionBar = createActionBar(j5Var5.getView().getContext());
                 this.actionBar = createActionBar;
                 if (createActionBar != null) {
-                    createActionBar.f22788t0 = this;
+                    createActionBar.f22789t0 = this;
                 }
             }
         }
@@ -1455,7 +1455,7 @@ public abstract class r2 {
                 } else if (actionBarLayout.F0 != null) {
                     actionBarLayout.M();
                 }
-                actionBarLayout.f22343s.invalidate();
+                actionBarLayout.f22344s.invalidate();
             }
             if (intent != null) {
                 activity.startActivityForResult(intent, i10);
@@ -1518,7 +1518,7 @@ public abstract class r2 {
         k3[] k3VarArr = {m2Var};
         if (p2Var != null) {
             m2Var.setAllowNestedScroll(false);
-            k3VarArr[0].transitionFromRight(p2Var.f22928a);
+            k3VarArr[0].transitionFromRight(p2Var.f22929a);
         }
         k3 k3Var = k3VarArr[0];
         r2Var.parentDialog = k3Var;
@@ -1537,11 +1537,11 @@ public abstract class r2 {
             ActionBarLayout actionBarLayout = (ActionBarLayout) j5Var;
             actionBarLayout.getClass();
             g5 g5Var = new g5(r2Var);
-            g5Var.f22663b = z10;
-            g5Var.f22664c = z11;
+            g5Var.f22664b = z10;
+            g5Var.f22665c = z11;
             g5Var.d = true;
             g5Var.e = false;
-            g5Var.f22665f = null;
+            g5Var.f22666f = null;
             if (actionBarLayout.T(g5Var)) {
                 return true;
             }
@@ -1615,8 +1615,8 @@ public abstract class r2 {
         if (y9Var == null) {
             y9 y9Var3 = new y9(this);
             j5 j5Var = this.parentLayout;
-            if (j5Var != null && ((ActionBarLayout) j5Var).f22306b) {
-                y9Var3.f9455r1 = true;
+            if (j5Var != null && ((ActionBarLayout) j5Var).f22307b) {
+                y9Var3.f9454r1 = true;
             }
             this.sheetsStack.add(y9Var3);
             updateSheetsVisibility();

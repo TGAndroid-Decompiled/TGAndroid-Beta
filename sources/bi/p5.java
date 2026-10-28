@@ -33,22 +33,22 @@ public final class p5 implements Comparator {
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
             case 1:
                 di.h7 h7Var = (di.h7) this.f5229b;
-                int i11 = h7Var.f8630a;
+                int i11 = h7Var.f8629a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
                 long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
                 long peerDialogId2 = DialogObject.getPeerDialogId(peerStories2.peer);
-                boolean K = h7Var.K(peerDialogId);
-                boolean K2 = h7Var.K(peerDialogId2);
-                boolean J = h7Var.J(peerDialogId);
-                boolean J2 = h7Var.J(peerDialogId2);
-                boolean F = h7Var.F(peerDialogId);
-                boolean F2 = h7Var.F(peerDialogId2);
-                if (F != F2) {
-                    return (F2 ? 1 : 0) - (F ? 1 : 0);
+                boolean M = h7Var.M(peerDialogId);
+                boolean M2 = h7Var.M(peerDialogId2);
+                boolean L = h7Var.L(peerDialogId);
+                boolean L2 = h7Var.L(peerDialogId2);
+                boolean H = h7Var.H(peerDialogId);
+                boolean H2 = h7Var.H(peerDialogId2);
+                if (H != H2) {
+                    return (H2 ? 1 : 0) - (H ? 1 : 0);
                 }
-                if (K == K2) {
-                    if (J == J2) {
+                if (M == M2) {
+                    if (L == L2) {
                         boolean isService = UserObject.isService(peerDialogId);
                         boolean isService2 = UserObject.isService(peerDialogId2);
                         if (isService == isService2) {
@@ -80,9 +80,9 @@ public final class p5 implements Comparator {
                         }
                         return (isService2 ? 1 : 0) - (isService ? 1 : 0);
                     }
-                    return (J2 ? 1 : 0) - (J ? 1 : 0);
+                    return (L2 ? 1 : 0) - (L ? 1 : 0);
                 }
-                return (K2 ? 1 : 0) - (K ? 1 : 0);
+                return (M2 ? 1 : 0) - (M ? 1 : 0);
             case 2:
                 ArrayList arrayList = (ArrayList) this.f5229b;
                 MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;

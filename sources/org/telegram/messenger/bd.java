@@ -1,31 +1,27 @@
 package org.telegram.messenger;
+public final class bd implements Runnable {
+    public final int f19702a;
+    public final org.telegram.ui.ActionBar.r2 f19703b;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class bd implements Utilities.Callback2 {
-    public final int f19707a;
-    public final MessagesController f19708b;
-    public final long f19709c;
-    public final Utilities.Callback2 d;
-
-    public bd(MessagesController messagesController, long j10, Utilities.Callback2 callback2, int i10) {
-        this.f19707a = i10;
-        this.f19708b = messagesController;
-        this.f19709c = j10;
-        this.d = callback2;
+    public bd(int i10, org.telegram.ui.ActionBar.r2 r2Var) {
+        this.f19702a = i10;
+        this.f19703b = r2Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f19707a) {
+    public final void run() {
+        switch (this.f19702a) {
             case 0:
-                this.f19708b.lambda$resolveCommunityAllJoinPendingRequests$249(this.f19709c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                MessagesController.lambda$checkSensitive$453(this.f19703b);
                 return;
             case 1:
-                this.f19708b.lambda$resolveCommunityJoinPendingRequest$248(this.f19709c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                org.telegram.ui.Components.g5.s0(7, this.f19703b, null);
+                return;
+            case 2:
+                org.telegram.ui.Components.g5.s0(8, this.f19703b, null);
                 return;
             default:
-                this.f19708b.lambda$toggleCommunityParticipantBanned$247(this.f19709c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                TranslateController.lambda$pushToSummarize$18(this.f19703b);
                 return;
         }
     }

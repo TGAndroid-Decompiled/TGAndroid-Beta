@@ -10,18 +10,18 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 public final class a1 {
-    public final int f10497a;
-    public final ArrayList f10498b = new ArrayList();
-    public boolean f10499c;
+    public final int f10496a;
+    public final ArrayList f10497b = new ArrayList();
+    public boolean f10498c;
     public boolean d;
     public boolean e;
-    public boolean f10500f;
-    public File f10501g;
+    public boolean f10499f;
+    public File f10500g;
 
     public a1(int i10) {
-        this.f10497a = i10;
-        if (!this.e && !this.f10500f) {
-            this.f10500f = true;
+        this.f10496a = i10;
+        if (!this.e && !this.f10499f) {
+            this.f10499f = true;
             x0 x0Var = new x0(this, 0);
             MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
             messagesStorage.getStorageQueue().postRunnable(new bi.u7((Object) messagesStorage, true, (Object) x0Var, 3));
@@ -32,10 +32,10 @@ public final class a1 {
         String str;
         StringBuilder sb2;
         long j10;
-        int i10 = this.f10497a;
+        int i10 = this.f10496a;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
         StringBuilder sb3 = new StringBuilder("StoryDraft append ");
-        sb3.append(z0Var.f12017a);
+        sb3.append(z0Var.f12016a);
         sb3.append(" (edit=");
         sb3.append(z0Var.G);
         if (z0Var.G) {
@@ -82,12 +82,12 @@ public final class a1 {
                 w7 w7Var = (w7) arrayList.get(i10);
                 if (w7Var != null) {
                     StringBuilder sb3 = new StringBuilder("StoryDraft delete ");
-                    sb3.append(w7Var.f11891b);
+                    sb3.append(w7Var.f11890b);
                     sb3.append(" (edit=");
-                    sb3.append(w7Var.f11903g);
-                    if (w7Var.f11903g) {
+                    sb3.append(w7Var.f11902g);
+                    if (w7Var.f11902g) {
                         StringBuilder sb4 = new StringBuilder(", storyId=");
-                        sb4.append(w7Var.f11901f);
+                        sb4.append(w7Var.f11900f);
                         sb4.append(", ");
                         if (w7Var.H != 0) {
                             sb2 = new StringBuilder("documentId=");
@@ -109,15 +109,15 @@ public final class a1 {
                     sb3.append(System.currentTimeMillis());
                     sb3.append(")");
                     FileLog.d(sb3.toString());
-                    arrayList2.add(Long.valueOf(w7Var.f11891b));
+                    arrayList2.add(Long.valueOf(w7Var.f11890b));
                     w7Var.i(true);
                 }
             }
             if (arrayList2.isEmpty()) {
                 return;
             }
-            this.f10498b.removeAll(arrayList);
-            int i11 = this.f10497a;
+            this.f10497b.removeAll(arrayList);
+            int i11 = this.f10496a;
             MessagesStorage messagesStorage = MessagesStorage.getInstance(i11);
             messagesStorage.getStorageQueue().postRunnable(new w0(0, arrayList2, messagesStorage));
             NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
@@ -129,13 +129,13 @@ public final class a1 {
             return;
         }
         e(w7Var);
-        ArrayList arrayList = this.f10498b;
+        ArrayList arrayList = this.f10497b;
         arrayList.remove(w7Var);
-        if (!w7Var.f11932w) {
+        if (!w7Var.f11931w) {
             arrayList.add(0, w7Var);
         }
         z0 z0Var = new z0(w7Var);
-        int i10 = this.f10497a;
+        int i10 = this.f10496a;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
         messagesStorage.getStorageQueue().postRunnable(new y0(messagesStorage, z0Var, 0));
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
@@ -145,15 +145,15 @@ public final class a1 {
         if (w7Var == null) {
             return;
         }
-        if (w7Var.f11891b == 0) {
-            w7Var.f11891b = Utilities.random.nextLong();
+        if (w7Var.f11890b == 0) {
+            w7Var.f11890b = Utilities.random.nextLong();
         }
         w7Var.d = System.currentTimeMillis();
-        w7Var.f11894c = true;
+        w7Var.f11893c = true;
         if (w7Var.M) {
             w7Var.L = f(w7Var.L);
         } else if (w7Var.L != null) {
-            File x9 = w7.x(this.f10497a, w7Var.K);
+            File x9 = w7.x(this.f10496a, w7Var.K);
             try {
                 AndroidUtilities.copyFile(w7Var.L, x9);
                 w7Var.L = f(x9);
@@ -171,15 +171,15 @@ public final class a1 {
         if (file == null) {
             return null;
         }
-        if (this.f10501g == null) {
+        if (this.f10500g == null) {
             File file2 = new File(FileLoader.getDirectory(4), "drafts");
-            this.f10501g = file2;
+            this.f10500g = file2;
             if (!file2.exists()) {
-                this.f10501g.mkdir();
+                this.f10500g.mkdir();
             }
         }
-        if (!file.getAbsolutePath().startsWith(this.f10501g.getAbsolutePath())) {
-            File file3 = new File(this.f10501g, file.getName());
+        if (!file.getAbsolutePath().startsWith(this.f10500g.getAbsolutePath())) {
+            File file3 = new File(this.f10500g, file.getName());
             if (file.renameTo(file3)) {
                 return file3;
             }

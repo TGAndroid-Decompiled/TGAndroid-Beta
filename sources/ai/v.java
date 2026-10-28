@@ -72,7 +72,7 @@ public final class v extends View {
             this.f1950c = f7;
             invalidate();
         }
-        float interpolation = (1.0f - (ds.f27587g.getInterpolation(this.f1950c) * 0.15f)) * AndroidUtilities.dp(26.0f);
+        float interpolation = (1.0f - (ds.f27531g.getInterpolation(this.f1950c) * 0.15f)) * AndroidUtilities.dp(26.0f);
         float f12 = interpolation / 2.0f;
         int width = (int) ((getWidth() / 2.0f) - f12);
         int height = (int) ((getHeight() / 2.0f) - f12);

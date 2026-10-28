@@ -15,35 +15,35 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class d extends FrameLayout implements p6 {
-    public final u6 f46861a;
-    public final ImageView f46862b;
-    public final TextView f46863c;
+    public final u6 f46896a;
+    public final ImageView f46897b;
+    public final TextView f46898c;
     public int d;
     public boolean e;
 
     public d(Context context, u6 u6Var) {
         super(context);
-        this.f46861a = u6Var;
+        this.f46896a = u6Var;
         ImageView imageView = new ImageView(context);
-        this.f46862b = imageView;
+        this.f46897b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_arrow_back);
-        addView(imageView, gb1.h(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
+        addView(imageView, kb1.h(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f46863c = textView;
+        this.f46898c = textView;
         textView.setText(LocaleController.getString(R.string.EmojiSearchBackToSearch));
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, gb1.h(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, kb1.h(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
         updateColors();
     }
 
     public final int a(float f7) {
-        return i0.a.o(y6.w0(y6.Wk, this.f46861a), (int) (f7 * 255.0f));
+        return i0.a.o(y6.w0(y6.Wk, this.f46896a), (int) (f7 * 255.0f));
     }
 
     @Override
@@ -52,12 +52,12 @@ public final class d extends FrameLayout implements p6 {
     }
 
     public void setOnBackClickListener(View.OnClickListener onClickListener) {
-        this.f46862b.setOnClickListener(onClickListener);
+        this.f46897b.setOnClickListener(onClickListener);
     }
 
     @Override
     public final void updateColors() {
-        this.f46863c.setTextColor(a(0.6f));
+        this.f46898c.setTextColor(a(0.6f));
         int a2 = a(1.0f);
         if (this.e && a2 == this.d) {
             return;
@@ -65,7 +65,7 @@ public final class d extends FrameLayout implements p6 {
         this.e = true;
         this.d = a2;
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(a(0.6f), PorterDuff.Mode.MULTIPLY);
-        ImageView imageView = this.f46862b;
+        ImageView imageView = this.f46897b;
         imageView.setColorFilter(porterDuffColorFilter);
         if (imageView.getBackground() != null) {
             y6.E1(imageView.getBackground(), a(0.1f), true);

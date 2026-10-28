@@ -2,10 +2,10 @@ package l5;
 
 import java.util.ArrayList;
 public final class i extends o {
-    public final ArrayList f16899a;
+    public final ArrayList f16898a;
 
     public i(ArrayList arrayList) {
-        this.f16899a = arrayList;
+        this.f16898a = arrayList;
     }
 
     public final boolean equals(Object obj) {
@@ -13,16 +13,16 @@ public final class i extends o {
             return true;
         }
         if (obj instanceof o) {
-            return this.f16899a.equals(((i) ((o) obj)).f16899a);
+            return this.f16898a.equals(((i) ((o) obj)).f16898a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f16899a.hashCode() ^ 1000003;
+        return this.f16898a.hashCode() ^ 1000003;
     }
 
     public final String toString() {
-        return "BatchedLogRequest{logRequests=" + this.f16899a + "}";
+        return "BatchedLogRequest{logRequests=" + this.f16898a + "}";
     }
 }

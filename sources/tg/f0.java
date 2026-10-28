@@ -13,14 +13,14 @@ import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.k3;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class f0 extends FrameLayout {
-    public final ImageView f48858a;
-    public final b6 f48859b;
-    public final j5 f48860c;
+    public final ImageView f48893a;
+    public final b6 f48894b;
+    public final j5 f48895c;
     public final b6 d;
     public e0 e;
-    public d0 f48861f;
+    public d0 f48896f;
 
     public f0(j0 j0Var, Context context, u6 u6Var) {
         super(context);
@@ -33,7 +33,7 @@ public final class f0 extends FrameLayout {
         i11 = ((k3) j0Var).backgroundPaddingLeft;
         setPadding(i10, 0, i11, 0);
         ImageView imageView = new ImageView(context);
-        this.f48858a = imageView;
+        this.f48893a = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         f7.t(imageView, y6.Lj, u6Var, PorterDuff.Mode.SRC_IN);
         if (LocaleController.isRTL) {
@@ -41,11 +41,11 @@ public final class f0 extends FrameLayout {
         } else {
             i12 = 3;
         }
-        addView(imageView, gb1.h(24, 24.0f, i12 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
+        addView(imageView, kb1.h(24, 24.0f, i12 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
         b6 b6Var = new b6(context);
-        this.f48859b = b6Var;
+        this.f48894b = b6Var;
         b6Var.setWidthWrapContent(true);
-        f7.Y(b6Var, y6.f23464j5, u6Var);
+        f7.Y(b6Var, y6.f23465j5, u6Var);
         b6Var.setTextSize(14);
         boolean z10 = LocaleController.isRTL;
         int i13 = (z10 ? 5 : 3) | 16;
@@ -59,7 +59,7 @@ public final class f0 extends FrameLayout {
         } else {
             f10 = 30.0f;
         }
-        addView(b6Var, gb1.h(-2, -2.0f, i13, f7, 0.0f, f10, 0.0f));
+        addView(b6Var, kb1.h(-2, -2.0f, i13, f7, 0.0f, f10, 0.0f));
         b6 b6Var2 = new b6(context);
         this.d = b6Var2;
         b6Var2.setTextColor(-1);
@@ -67,16 +67,16 @@ public final class f0 extends FrameLayout {
         b6Var2.setTypeface(AndroidUtilities.bold());
         b6Var2.setTextSize(14);
         j5 j5Var = new j5(this, context, u6Var);
-        this.f48860c = j5Var;
+        this.f48895c = j5Var;
         j5Var.setWillNotDraw(false);
-        j5Var.addView(b6Var2, gb1.i(-2, -2, 17));
-        addView(j5Var, gb1.g(-1.0f, -1));
+        j5Var.addView(b6Var2, kb1.i(-2, -2, 17));
+        addView(j5Var, kb1.g(-1.0f, -1));
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        if (this.f48861f != null) {
+        if (this.f48896f != null) {
             f7 = 49.0f;
         } else {
             f7 = 36.0f;

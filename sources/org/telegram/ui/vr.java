@@ -1,157 +1,81 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class vr extends LinearLayout {
-    public final Paint f44894a;
-    public final Paint f44895b;
-    public float f44896c;
-    public boolean d;
-    public boolean e;
-    public xr[] f44897f;
+import android.view.KeyEvent;
+public final class vr extends zr {
+    public final int M;
+    public final int N;
+    public final xr O;
 
-    public vr(Context context) {
+    public vr(xr xrVar, Context context, int i10, int i11) {
         super(context);
-        Paint paint = new Paint(1);
-        this.f44894a = paint;
-        this.f44895b = new Paint(1);
-        paint.setStyle(Paint.Style.STROKE);
-        setOrientation(0);
+        this.O = xrVar;
+        this.M = i10;
+        this.N = i11;
+        this.e = 1.0f;
+        this.f46343f = new o1.j(this, zr.I);
+        this.h = new o1.j(this, zr.J);
+        this.f46344n = new o1.j(this, zr.K);
+        this.f46345r = new o1.j(this, zr.L);
+        this.f46346s = true;
+        this.v = 1.0f;
+        this.f46347w = 1.0f;
+        this.H = false;
+        setBackground(null);
+        org.telegram.ui.ActionBar.f7.V(this, org.telegram.ui.ActionBar.y6.G6, null);
+        setMovementMethod(null);
+        addTextChangedListener(new m0(this, 5));
     }
 
-    public abstract void a();
-
-    public final void b(int r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vr.b(int, int):void");
-    }
-
-    public final void c(String str, boolean z10) {
-        if (this.f44897f != null) {
-            int i10 = 0;
-            if (z10) {
-                int i11 = 0;
-                while (true) {
-                    xr[] xrVarArr = this.f44897f;
-                    if (i11 >= xrVarArr.length) {
-                        break;
-                    } else if (xrVarArr[i11].isFocused()) {
-                        i10 = i11;
-                        break;
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4) {
+            return false;
+        }
+        int keyCode = keyEvent.getKeyCode();
+        xr xrVar = this.O;
+        int length = xrVar.f45772f.length;
+        int i10 = this.M;
+        if (i10 >= length) {
+            return false;
+        }
+        if (keyEvent.getAction() == 1) {
+            if (keyCode == 67 && xrVar.f45772f[i10].length() == 1) {
+                xrVar.f45772f[i10].m();
+                xrVar.f45772f[i10].setText("");
+                return true;
+            } else if (keyCode == 67 && xrVar.f45772f[i10].length() == 0 && i10 > 0) {
+                zr[] zrVarArr = xrVar.f45772f;
+                zrVarArr[i10 - 1].setSelection(zrVarArr[i10 - 1].length());
+                for (int i11 = 0; i11 < i10; i11++) {
+                    if (i11 == i10 - 1) {
+                        xrVar.f45772f[i10 - 1].requestFocus();
                     } else {
-                        i11++;
+                        xrVar.f45772f[i11].clearFocus();
                     }
                 }
-            }
-            for (int i12 = i10; i12 < Math.min(this.f44897f.length, str.length() + i10); i12++) {
-                this.f44897f[i12].setText(Character.toString(str.charAt(i12 - i10)));
-            }
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        for (int i10 = 0; i10 < getChildCount(); i10++) {
-            View childAt = getChildAt(i10);
-            if (childAt instanceof xr) {
-                xr xrVar = (xr) childAt;
-                if (!this.e) {
-                    if (childAt.isFocused()) {
-                        xrVar.j(1.0f);
-                    } else if (!childAt.isFocused()) {
-                        xrVar.j(0.0f);
-                    }
-                }
-                float successProgress = xrVar.getSuccessProgress();
-                int f7 = i0.a.f(successProgress, i0.a.f(xrVar.getErrorProgress(), i0.a.f(xrVar.getFocusedProgress(), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23484k6, false), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23502l6, false)), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23598q7, false)), org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23449i7, false));
-                Paint paint = this.f44894a;
-                paint.setColor(f7);
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
-                float f10 = this.f44896c;
-                rectF.inset(f10, f10);
-                if (successProgress != 0.0f) {
-                    float f11 = -Math.max(0.0f, (xrVar.getSuccessScaleProgress() - 1.0f) * this.f44896c);
-                    rectF.inset(f11, f11);
-                }
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
-            }
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view instanceof xr) {
-            xr xrVar = (xr) view;
-            canvas.save();
-            float f7 = xrVar.v;
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
-            float f10 = this.f44896c;
-            rectF.inset(f10, f10);
-            canvas.clipRect(rectF);
-            if (xrVar.f45844x) {
-                float f11 = (f7 * 0.5f) + 0.5f;
-                view.setAlpha(f7);
-                canvas.scale(f11, f11, (xrVar.getMeasuredWidth() / 2.0f) + xrVar.getX(), (xrVar.getMeasuredHeight() / 2.0f) + xrVar.getY());
+                xrVar.f45772f[i10 - 1].m();
+                xrVar.f45772f[i10 - 1].setText("");
+                return true;
             } else {
-                view.setAlpha(1.0f);
-                canvas.translate(0.0f, (1.0f - f7) * view.getMeasuredHeight());
-            }
-            super.drawChild(canvas, view, j10);
-            canvas.restore();
-            float f12 = xrVar.f45843w;
-            if (f12 < 1.0f) {
-                canvas.save();
-                float f13 = 1.0f - f12;
-                float f14 = (f13 * 0.5f) + 0.5f;
-                canvas.scale(f14, f14, (xrVar.getMeasuredWidth() / 2.0f) + xrVar.getX(), (xrVar.getMeasuredHeight() / 2.0f) + xrVar.getY());
-                Paint paint = this.f44895b;
-                paint.setAlpha((int) (f13 * 255.0f));
-                canvas.drawBitmap(xrVar.f45845y, xrVar.getX(), xrVar.getY(), paint);
-                canvas.restore();
+                if (keyCode >= 7 && keyCode <= 16) {
+                    String num = Integer.toString(keyCode - 7);
+                    if (xrVar.f45772f[i10].getText() != null && num.equals(xrVar.f45772f[i10].getText().toString())) {
+                        if (i10 >= this.N - 1) {
+                            xrVar.a();
+                        } else {
+                            xrVar.f45772f[i10 + 1].requestFocus();
+                        }
+                        return true;
+                    }
+                    if (xrVar.f45772f[i10].length() > 0) {
+                        xrVar.f45772f[i10].m();
+                    }
+                    xrVar.f45772f[i10].setText(num);
+                }
                 return true;
             }
-            return true;
         }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    public String getCode() {
-        if (this.f44897f == null) {
-            return "";
-        }
-        StringBuilder sb2 = new StringBuilder();
-        int i10 = 0;
-        while (true) {
-            xr[] xrVarArr = this.f44897f;
-            if (i10 < xrVarArr.length) {
-                sb2.append(kf.b.d(xrVarArr[i10].getText().toString(), false));
-                i10++;
-            } else {
-                return sb2.toString();
-            }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        float dp = AndroidUtilities.dp(1.5f);
-        this.f44896c = dp;
-        this.f44894a.setStrokeWidth(dp);
-    }
-
-    public void setCode(String str) {
-        this.f44897f[0].setText(str);
-    }
-
-    public void setText(String str) {
-        c(str, false);
+        return isFocused();
     }
 }

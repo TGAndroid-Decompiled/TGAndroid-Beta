@@ -8,15 +8,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class fy extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public int f28333a;
-    public boolean f28334b;
-    public final FrameLayout f28335c;
+    public int f28309a;
+    public boolean f28310b;
+    public final FrameLayout f28311c;
     public final sz d;
 
     public fy(sz szVar, Context context) {
         super(context);
         this.d = szVar;
-        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22627a;
+        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22628a;
         s6 s6Var = new s6(getContext(), false, false, false);
         s6Var.b(0.3f, 250L, ds.h);
         s6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -26,13 +26,13 @@ public final class fy extends FrameLayout implements org.telegram.ui.ActionBar.p
         org.telegram.ui.ActionBar.f7.Z(s6Var, i10, u6Var);
         s6Var.setGravity(17);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f28335c = frameLayout;
+        this.f28311c = frameLayout;
         frameLayout.setBackground(org.telegram.ui.ActionBar.o6.e(new float[]{8.0f}, szVar.A(org.telegram.ui.ActionBar.y6.Oh)));
-        frameLayout.addView(s6Var, gb1.i(-1, -2, 17));
-        addView(frameLayout, gb1.g(-1.0f, -1));
+        frameLayout.addView(s6Var, kb1.i(-1, -2, 17));
+        addView(frameLayout, kb1.g(-1.0f, -1));
         tg.p0 p0Var = new tg.p0(getContext(), u6Var, false);
         p0Var.setIcon(R.raw.unlock_icon);
-        addView(p0Var, gb1.g(-1.0f, -1));
+        addView(p0Var, kb1.g(-1.0f, -1));
     }
 
     @Override
@@ -45,14 +45,14 @@ public final class fy extends FrameLayout implements org.telegram.ui.ActionBar.p
     public final void updateColors() {
         try {
             int A = this.d.A(org.telegram.ui.ActionBar.y6.Oh);
-            FrameLayout frameLayout = this.f28335c;
+            FrameLayout frameLayout = this.f28311c;
             if (frameLayout != null) {
-                if (A == this.f28333a) {
-                    if (this.f28334b != org.telegram.ui.ActionBar.y6.I.q()) {
+                if (A == this.f28309a) {
+                    if (this.f28310b != org.telegram.ui.ActionBar.y6.I.q()) {
                     }
                 }
-                this.f28334b = org.telegram.ui.ActionBar.y6.I.q();
-                this.f28333a = A;
+                this.f28310b = org.telegram.ui.ActionBar.y6.I.q();
+                this.f28309a = A;
                 org.telegram.ui.ActionBar.y6.E1(frameLayout.getBackground(), A, false);
                 org.telegram.ui.ActionBar.y6.E1(frameLayout.getBackground(), org.telegram.ui.ActionBar.o6.b(A), true);
                 frameLayout.invalidate();

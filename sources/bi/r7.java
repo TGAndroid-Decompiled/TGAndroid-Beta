@@ -6,10 +6,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.km0;
-import org.telegram.ui.lm0;
-import org.telegram.ui.un;
-import org.telegram.ui.wm0;
+import org.telegram.ui.mm0;
+import org.telegram.ui.nm0;
+import org.telegram.ui.wn;
+import org.telegram.ui.ym0;
 public final class r7 implements Runnable {
     public final int f5346a;
     public final Object f5347b;
@@ -80,9 +80,9 @@ public final class r7 implements Runnable {
         this.f5350n = callback2;
     }
 
-    public r7(un unVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, t3 t3Var, String str, qf.c cVar) {
+    public r7(wn wnVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, t3 t3Var, String str, qf.c cVar) {
         this.f5346a = 5;
-        this.f5347b = unVar;
+        this.f5347b = wnVar;
         this.d = tL_error;
         this.e = tLObject;
         this.h = tLObject2;
@@ -91,14 +91,14 @@ public final class r7 implements Runnable {
         this.f5348c = cVar;
     }
 
-    public r7(km0 km0Var, TLObject tLObject, String str, TLRPC.TL_secureRequiredType tL_secureRequiredType, lm0 lm0Var, TLRPC.TL_error tL_error, wm0 wm0Var) {
+    public r7(mm0 mm0Var, TLObject tLObject, String str, TLRPC.TL_secureRequiredType tL_secureRequiredType, nm0 nm0Var, TLRPC.TL_error tL_error, ym0 ym0Var) {
         this.f5346a = 10;
-        this.f5347b = km0Var;
+        this.f5347b = mm0Var;
         this.d = tLObject;
         this.f5349f = str;
         this.e = tL_secureRequiredType;
-        this.h = lm0Var;
+        this.h = nm0Var;
         this.f5350n = tL_error;
-        this.f5348c = wm0Var;
+        this.f5348c = ym0Var;
     }
 }

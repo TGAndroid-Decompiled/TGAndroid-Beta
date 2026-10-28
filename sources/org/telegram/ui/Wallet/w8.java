@@ -3,15 +3,15 @@ package org.telegram.ui.Wallet;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class w8 implements Utilities.Callback3 {
-    public final int f37449a;
-    public final i9 f37450b;
-    public final l0 f37451c;
+    public final int f37473a;
+    public final i9 f37474b;
+    public final l0 f37475c;
     public final long d;
 
     public w8(i9 i9Var, l0 l0Var, long j10, int i10) {
-        this.f37449a = i10;
-        this.f37450b = i9Var;
-        this.f37451c = l0Var;
+        this.f37473a = i10;
+        this.f37474b = i9Var;
+        this.f37475c = l0Var;
         this.d = j10;
     }
 
@@ -19,12 +19,12 @@ public final class w8 implements Utilities.Callback3 {
     public final void run(Object obj, Object obj2, Object obj3) {
         byte[] bArr;
         byte[] bArr2;
-        switch (this.f37449a) {
+        switch (this.f37473a) {
             case 0:
                 String str = (String) obj;
                 final Utilities.Callback callback = (Utilities.Callback) obj3;
-                final i9 i9Var = this.f37450b;
-                TLRPC.User user = i9Var.f36696f;
+                final i9 i9Var = this.f37474b;
+                TLRPC.User user = i9Var.f36721f;
                 String str2 = i9Var.h;
                 if (((Boolean) obj2).booleanValue()) {
                     bArr = i9Var.n0();
@@ -32,7 +32,7 @@ public final class w8 implements Utilities.Callback3 {
                     bArr = null;
                 }
                 byte[] bArr3 = bArr;
-                this.f37451c.b0(user, str2, this.d, str, bArr3, null, i9Var.f36704n, new Utilities.Callback() {
+                this.f37475c.d0(user, str2, this.d, str, bArr3, null, i9Var.f36729n, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj4) {
                         String str3 = (String) obj4;
@@ -66,8 +66,8 @@ public final class w8 implements Utilities.Callback3 {
             default:
                 String str3 = (String) obj;
                 final Utilities.Callback callback2 = (Utilities.Callback) obj3;
-                final i9 i9Var2 = this.f37450b;
-                TLRPC.User user2 = i9Var2.f36696f;
+                final i9 i9Var2 = this.f37474b;
+                TLRPC.User user2 = i9Var2.f36721f;
                 String str4 = i9Var2.h;
                 if (((Boolean) obj2).booleanValue()) {
                     bArr2 = i9Var2.n0();
@@ -75,7 +75,7 @@ public final class w8 implements Utilities.Callback3 {
                     bArr2 = null;
                 }
                 byte[] bArr4 = bArr2;
-                this.f37451c.b0(user2, str4, this.d, str3, bArr4, null, i9Var2.f36704n, new Utilities.Callback() {
+                this.f37475c.d0(user2, str4, this.d, str3, bArr4, null, i9Var2.f36729n, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj4) {
                         String str32 = (String) obj4;

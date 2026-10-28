@@ -4,7 +4,7 @@ import android.os.BadParcelableException;
 import android.os.Parcel;
 import android.os.Parcelable;
 public abstract class a {
-    public static final int f12396a = 0;
+    public static final int f12395a = 0;
 
     static {
         a.class.getClassLoader();

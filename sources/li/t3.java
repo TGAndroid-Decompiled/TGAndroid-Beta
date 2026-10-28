@@ -1,7 +1,7 @@
 package li;
 
 import android.view.View;
-import org.telegram.ui.Components.k80;
+import org.telegram.ui.Components.l80;
 public interface t3 {
     void A(int i10);
 
@@ -9,7 +9,7 @@ public interface t3 {
 
     void H();
 
-    k80 P(View view);
+    l80 P(View view);
 
     void Q();
 

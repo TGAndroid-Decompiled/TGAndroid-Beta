@@ -7,7 +7,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.un;
 public final class kd implements Runnable {
     public final int f4994a;
     public final boolean f4995b;
@@ -23,6 +22,8 @@ public final class kd implements Runnable {
 
     @Override
     public final void run() {
+        int i10;
+        int i11;
         switch (this.f4994a) {
             case 0:
                 be beVar = (be) this.d;
@@ -31,7 +32,7 @@ public final class kd implements Runnable {
                 beVar.E = j10;
                 if (this.f4995b) {
                     di.v0 v0Var = beVar.G;
-                    v0Var.f9240c = j10;
+                    v0Var.f9239c = j10;
                     beVar.H.set(v0Var);
                 }
                 beVar.r();
@@ -48,23 +49,24 @@ public final class kd implements Runnable {
                 boolean z10 = this.f4995b;
                 long j11 = this.f4996c;
                 if (z10) {
-                    MessagesController.getInstance(fi.n9.Z(n9Var)).loadChannelParticipants(Long.valueOf(j11), new fi.y8(g9Var, j11, 0), 200);
-                    return;
-                } else {
-                    MessagesController.getInstance(fi.n9.b0(n9Var)).loadFullChat(j11, 0, true);
+                    i11 = ((org.telegram.ui.ActionBar.k3) n9Var).currentAccount;
+                    MessagesController.getInstance(i11).loadChannelParticipants(Long.valueOf(j11), new fi.y8(g9Var, j11, 0), 200);
                     return;
                 }
+                i10 = ((org.telegram.ui.ActionBar.k3) n9Var).currentAccount;
+                MessagesController.getInstance(i10).loadFullChat(j11, 0, true);
+                return;
             case 2:
                 ii.r0 r0Var = (ii.r0) this.d;
-                r0Var.f14418i = null;
-                a0.h hVar = r0Var.f14417g;
+                r0Var.f14417i = null;
+                a0.h hVar = r0Var.f14416g;
                 long j12 = this.f4996c;
                 hVar.l(j12);
-                ArrayList arrayList = r0Var.f14419j;
+                ArrayList arrayList = r0Var.f14418j;
                 if (arrayList != null) {
                     for (int size = arrayList.size() - 1; size >= 0; size--) {
-                        if (DialogObject.getPeerDialogId(((TL_communities.CommunityPeerRequest) r0Var.f14419j.get(size)).peer) == j12) {
-                            r0Var.f14419j.remove(size);
+                        if (DialogObject.getPeerDialogId(((TL_communities.CommunityPeerRequest) r0Var.f14418j.get(size)).peer) == j12) {
+                            r0Var.f14418j.remove(size);
                         }
                     }
                 }
@@ -81,11 +83,8 @@ public final class kd implements Runnable {
             case 4:
                 ((NotificationsController) this.d).lambda$setOpenedInBubble$5(this.f4995b, this.f4996c);
                 return;
-            case 5:
-                ((TopicsController) this.d).lambda$reloadTopics$24(this.f4996c, this.f4995b);
-                return;
             default:
-                un.s0((un) this.d, this.f4996c, this.f4995b);
+                ((TopicsController) this.d).lambda$reloadTopics$24(this.f4996c, this.f4995b);
                 return;
         }
     }

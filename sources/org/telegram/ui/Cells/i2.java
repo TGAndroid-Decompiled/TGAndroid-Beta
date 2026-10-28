@@ -2,7 +2,7 @@ package org.telegram.ui.Cells;
 
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.cy;
+import org.telegram.ui.ey;
 public final class i2 extends di.w7 {
     public final p2 S;
 
@@ -23,19 +23,19 @@ public final class i2 extends di.w7 {
     public final boolean d(long j10) {
         p2 p2Var = this.S;
         int i10 = p2Var.F0;
-        cy cyVar = p2Var.D4;
-        if (cyVar != null && !p2Var.O0) {
+        ey eyVar = p2Var.D4;
+        if (eyVar != null && !p2Var.O0) {
             if (j10 > 0) {
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
                 if (user != null && user.linked_community_id != 0) {
-                    cyVar.showDialog(new ii.j0(cyVar, user.linked_community_id));
+                    eyVar.showDialog(new ii.j0(eyVar, user.linked_community_id));
                     return true;
                 }
                 return false;
             }
             TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
             if (chat != null && chat.linked_community_id != 0) {
-                cyVar.showDialog(new ii.j0(cyVar, chat.linked_community_id));
+                eyVar.showDialog(new ii.j0(eyVar, chat.linked_community_id));
                 return true;
             }
             return false;
@@ -46,7 +46,7 @@ public final class i2 extends di.w7 {
     @Override
     public final void e() {
         p2 p2Var = this.S;
-        l2 l2Var = p2Var.f24643d0;
+        l2 l2Var = p2Var.f24645d0;
         if (l2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class i2 extends di.w7 {
     @Override
     public final void f(long j10) {
         p2 p2Var = this.S;
-        l2 l2Var = p2Var.f24643d0;
+        l2 l2Var = p2Var.f24645d0;
         if (l2Var == null) {
             return;
         }

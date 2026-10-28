@@ -28,18 +28,18 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.m20;
 import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.si;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
 public final class o7 extends org.telegram.ui.Components.bb implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener, oe.d {
     public boolean A0;
     public boolean B0;
@@ -55,60 +55,60 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
     public final oe.b X;
     public final int Y;
     public boolean Z;
-    public final o7 f11396a0;
-    public final ArrayList f11397b0;
-    public final ArrayList f11398c0;
-    public final ArrayList f11399d0;
-    public final MessagesController.SavedMusicList f11400e0;
-    public final Utilities.Callback f11401f0;
-    public MessageObject f11402g0;
-    public boolean f11403h0;
-    public boolean f11404i0;
-    public final FrameLayout f11405j0;
-    public final si f11406k0;
-    public final ch.f f11407l0;
+    public final o7 f11395a0;
+    public final ArrayList f11396b0;
+    public final ArrayList f11397c0;
+    public final ArrayList f11398d0;
+    public final MessagesController.SavedMusicList f11399e0;
+    public final Utilities.Callback f11400f0;
+    public MessageObject f11401g0;
+    public boolean f11402h0;
+    public boolean f11403i0;
+    public final FrameLayout f11404j0;
+    public final si f11405k0;
+    public final ch.f f11406l0;
     public final hh.c m0;
-    public final ch.b f11408n0;
-    public final k7 f11409o0;
-    public j71 f11410p0;
-    public MessageObject f11411q0;
-    public String f11412r0;
-    public int f11413s0;
-    public boolean f11414t0;
-    public boolean f11415u0;
-    public boolean f11416v0;
-    public String f11417w0;
-    public int f11418x0;
-    public final i7 f11419y0;
-    public String f11420z0;
+    public final ch.b f11407n0;
+    public final k7 f11408o0;
+    public k71 f11409p0;
+    public MessageObject f11410q0;
+    public String f11411r0;
+    public int f11412s0;
+    public boolean f11413t0;
+    public boolean f11414u0;
+    public boolean f11415v0;
+    public String f11416w0;
+    public int f11417x0;
+    public final i7 f11418y0;
+    public String f11419z0;
 
     public o7(Context context, boolean z10, o7 o7Var, Utilities.Callback callback, org.telegram.ui.ActionBar.u6 u6Var) {
         super(2, context, u6Var, true);
         int dp;
         ds dsVar = ds.h;
         this.X = new oe.b(0, this, dsVar, 380L, false);
-        this.f11397b0 = new ArrayList();
-        this.f11398c0 = new ArrayList();
-        this.f11399d0 = new ArrayList();
-        this.f11418x0 = -1;
-        this.f11419y0 = new Runnable(this) {
-            public final o7 f11005b;
+        this.f11396b0 = new ArrayList();
+        this.f11397c0 = new ArrayList();
+        this.f11398d0 = new ArrayList();
+        this.f11417x0 = -1;
+        this.f11418y0 = new Runnable(this) {
+            public final o7 f11004b;
 
             {
-                this.f11005b = this;
+                this.f11004b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        o7.S(this.f11005b);
+                        o7.S(this.f11004b);
                         return;
                     case 1:
-                        this.f11005b.b0();
+                        this.f11004b.b0();
                         return;
                     default:
-                        this.f11005b.a0();
+                        this.f11004b.a0();
                         return;
                 }
             }
@@ -116,23 +116,23 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
         this.G0 = -1;
         this.I0 = -2000000000;
         this.J0 = new Runnable(this) {
-            public final o7 f11005b;
+            public final o7 f11004b;
 
             {
-                this.f11005b = this;
+                this.f11004b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        o7.S(this.f11005b);
+                        o7.S(this.f11004b);
                         return;
                     case 1:
-                        this.f11005b.b0();
+                        this.f11004b.b0();
                         return;
                     default:
-                        this.f11005b.a0();
+                        this.f11004b.a0();
                         return;
                 }
             }
@@ -144,20 +144,20 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
         this.J = AndroidUtilities.dp(-20.0f);
         this.Z = z10;
         this.Y = DownloadController.getInstance(this.currentAccount).generateObserverTag();
-        this.f11396a0 = o7Var;
-        this.f11401f0 = callback;
+        this.f11395a0 = o7Var;
+        this.f11400f0 = callback;
         hh.c d = this.glassEngine.d(new j7(this));
         this.m0 = d;
         if (Build.VERSION.SDK_INT >= 31 && SharedConfig.chatBlurEnabled()) {
             ch.f fVar = new ch.f();
-            this.f11407l0 = fVar;
+            this.f11406l0 = fVar;
             this.glassEngine.a(fVar);
             hh.d dVar = new hh.d(d);
-            dVar.f12841f = d;
+            dVar.f12840f = d;
             dVar.d = fVar;
             dVar.e = -2;
             ch.b bVar = new ch.b(dVar);
-            this.f11408n0 = bVar;
+            this.f11407n0 = bVar;
             bVar.f6303i = LiteMode.isEnabled(262144);
             if (LiteMode.isEnabled(262144)) {
                 dp = AndroidUtilities.dp(8.0f);
@@ -168,10 +168,10 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             bVar.f6300c = dp;
             bVar.h = this.glassEngine;
         } else {
-            this.f11407l0 = null;
-            this.f11408n0 = new ch.b(d);
+            this.f11406l0 = null;
+            this.f11407n0 = new ch.b(d);
         }
-        this.f11409o0 = new dh.a() {
+        this.f11408o0 = new dh.a() {
             @Override
             public final void b(ch.a aVar, RectF rectF) {
                 aVar.f6296a = true;
@@ -180,36 +180,36 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             @Override
             public final void f(Canvas canvas, RectF rectF) {
                 o7 o7Var2 = o7.this;
-                mm0 mm0Var = o7Var2.d;
-                ih.d.b(mm0Var, canvas, rectF, mm0Var, o7Var2.getContainerView(), 255);
+                nm0 nm0Var = o7Var2.d;
+                ih.d.b(nm0Var, canvas, rectF, nm0Var, o7Var2.getContainerView(), 255);
             }
         };
-        int i10 = org.telegram.ui.ActionBar.y6.f23299a7;
+        int i10 = org.telegram.ui.ActionBar.y6.f23300a7;
         si siVar = new si(context, i10, u6Var);
-        this.f11406k0 = siVar;
+        this.f11405k0 = siVar;
         siVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f11405j0 = frameLayout;
+        this.f11404j0 = frameLayout;
         m20 m20Var = new m20(context, u6Var);
-        m20Var.f30367r.setOnFocusChangeListener(new l7(this));
-        m20Var.f30369w = true;
+        m20Var.f30347r.setOnFocusChangeListener(new l7(this));
+        m20Var.f30349w = true;
         m20Var.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         m20Var.updateColors();
         m20Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        m20Var.f30367r.addTextChangedListener(new m7(this));
-        m20Var.f30367r.setHint(LocaleController.getString(R.string.Search));
-        frameLayout.addView(siVar, gb1.k());
-        frameLayout.addView(m20Var, gb1.h(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
-        m20Var.setupBlurredBackground(this.f11408n0.c(m20Var, gh.c.o(u6Var), false));
+        m20Var.f30347r.addTextChangedListener(new m7(this));
+        m20Var.f30347r.setHint(LocaleController.getString(R.string.Search));
+        frameLayout.addView(siVar, kb1.k());
+        frameLayout.addView(m20Var, kb1.h(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
+        m20Var.setupBlurredBackground(this.f11407n0.c(m20Var, gh.c.o(u6Var), false));
         frameLayout.setPadding(AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0);
-        this.containerView.addView(frameLayout, gb1.i(-1, -2, 55));
+        this.containerView.addView(frameLayout, kb1.i(-1, -2, 55));
         setBackgroundColorKey(i10);
-        mm0 mm0Var = this.d;
+        nm0 nm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i11, 0, i11, 0);
+        nm0Var.setPadding(i11, 0, i11, 0);
         this.d.u1();
         s4.l lVar = new s4.l();
-        lVar.f47763m = false;
+        lVar.f47798m = false;
         lVar.C = false;
         lVar.o(dsVar);
         lVar.n(350L);
@@ -217,32 +217,32 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
         if (!z10) {
             int i12 = this.currentAccount;
             MessagesController.SavedMusicList savedMusicList = new MessagesController.SavedMusicList(i12, UserConfig.getInstance(i12).getClientUserId());
-            this.f11400e0 = savedMusicList;
+            this.f11399e0 = savedMusicList;
             savedMusicList.load();
             b0();
             a0();
         } else {
-            this.f11400e0 = null;
+            this.f11399e0 = null;
             if (this.Z && !this.K0) {
                 this.K0 = true;
                 Utilities.globalQueue.postRunnable(new Runnable(this) {
-                    public final o7 f11005b;
+                    public final o7 f11004b;
 
                     {
-                        this.f11005b = this;
+                        this.f11004b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                o7.S(this.f11005b);
+                                o7.S(this.f11004b);
                                 return;
                             case 1:
-                                this.f11005b.b0();
+                                this.f11004b.b0();
                                 return;
                             default:
-                                this.f11005b.a0();
+                                this.f11004b.a0();
                                 return;
                         }
                     }
@@ -254,7 +254,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
         this.glassEngine.b(this.d);
         this.glassEngine.i(this.containerView);
         oi.q qVar = this.glassEngine;
-        qVar.f19482a = new j7(this);
+        qVar.f19481a = new j7(this);
         qVar.d = new qi.b(AndroidUtilities.dp(48.0f));
     }
 
@@ -282,22 +282,22 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             MessageObject message = ((org.telegram.ui.Cells.n7) view).getMessage();
             if (message != null) {
                 DownloadController.getInstance(o7Var.currentAccount).removeLoadingFileObserver(o7Var);
-                if (o7Var.f11402g0 != null) {
-                    FileLoader.getInstance(o7Var.currentAccount).cancelLoadFile(o7Var.f11402g0.getDocument());
-                    o7Var.f11402g0 = null;
+                if (o7Var.f11401g0 != null) {
+                    FileLoader.getInstance(o7Var.currentAccount).cancelLoadFile(o7Var.f11401g0.getDocument());
+                    o7Var.f11401g0 = null;
                 }
                 if (!message.attachPathExists && !message.mediaExists) {
                     String fileName = message.getFileName();
                     if (!TextUtils.isEmpty(fileName)) {
-                        o7Var.f11402g0 = message;
+                        o7Var.f11401g0 = message;
                         DownloadController.getInstance(o7Var.currentAccount).addLoadingFileObserver(fileName, message, o7Var);
                         FileLoader.getInstance(o7Var.currentAccount).loadFile(message.getDocument(), message, 1, 0);
                         return;
                     }
                     return;
                 }
-                o7Var.f11401f0.run(message);
-                o7 o7Var2 = o7Var.f11396a0;
+                o7Var.f11400f0.run(message);
+                o7 o7Var2 = o7Var.f11395a0;
                 if (o7Var2 != null) {
                     o7Var2.dismiss();
                 }
@@ -306,11 +306,11 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             }
             return;
         }
-        t61 G = o7Var.f11410p0.G(i10 - 1);
+        u61 G = o7Var.f11409p0.G(i10 - 1);
         if (G != null && G.d == 1) {
             new o7(o7Var.getContext(), true, o7Var, callback, u6Var).show();
         } else if (G != null && G.d == 2) {
-            o7Var.f11400e0.load();
+            o7Var.f11399e0.load();
         } else if (G != null && G.d == 3) {
             o7Var.b0();
         } else if (G != null && G.d == 4) {
@@ -319,7 +319,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
     }
 
     public static void R(o7 o7Var, TLRPC.messages_BotResults messages_botresults) {
-        ArrayList arrayList = o7Var.f11399d0;
+        ArrayList arrayList = o7Var.f11398d0;
         boolean z10 = false;
         o7Var.B0 = false;
         o7Var.C0 = false;
@@ -339,7 +339,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                         tL_message.out = true;
                         int i11 = o7Var.I0;
                         o7Var.I0 = i11 - 1;
-                        tL_message.f22048id = i11;
+                        tL_message.f22049id = i11;
                         tL_message.peer_id = new TLRPC.TL_peerUser();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                         tL_message.from_id = tL_peerUser;
@@ -358,15 +358,15 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                     }
                 }
             }
-            o7Var.f11420z0 = messages_botresults.next_offset;
-            if (!arrayList.isEmpty() && !TextUtils.isEmpty(o7Var.f11420z0)) {
+            o7Var.f11419z0 = messages_botresults.next_offset;
+            if (!arrayList.isEmpty() && !TextUtils.isEmpty(o7Var.f11419z0)) {
                 z10 = true;
             }
             o7Var.A0 = z10;
-            o7Var.f11410p0.O(true);
+            o7Var.f11409p0.O(true);
             return;
         }
-        o7Var.f11410p0.O(true);
+        o7Var.f11409p0.O(true);
     }
 
     public static void S(o7 o7Var) {
@@ -377,7 +377,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             int i10 = -2000000000;
             while (query.moveToNext()) {
                 MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                audioEntry.f19542id = query.getInt(0);
+                audioEntry.f19541id = query.getInt(0);
                 audioEntry.author = query.getString(1);
                 audioEntry.title = query.getString(2);
                 audioEntry.path = query.getString(3);
@@ -386,7 +386,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                 File file = new File(audioEntry.path);
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f22048id = i10;
+                tL_message.f22049id = i10;
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
@@ -404,7 +404,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                 tL_message.flags |= 768;
                 String fileExtension = FileLoader.getFileExtension(file);
                 TLRPC.Document document = tL_message.media.document;
-                document.f22033id = 0L;
+                document.f22034id = 0L;
                 document.access_hash = 0L;
                 document.file_reference = new byte[0];
                 document.date = tL_message.date;
@@ -439,10 +439,10 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
     }
 
     public static void T(o7 o7Var, TLObject tLObject) {
-        ArrayList arrayList = o7Var.f11398c0;
+        ArrayList arrayList = o7Var.f11397c0;
         boolean z10 = false;
-        o7Var.f11416v0 = false;
-        o7Var.f11415u0 = false;
+        o7Var.f11415v0 = false;
+        o7Var.f11414u0 = false;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             MessagesController.getInstance(o7Var.currentAccount).putUsers(messages_messages.users, false);
@@ -458,31 +458,31 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             if ((messages_messages instanceof TLRPC.TL_messages_messagesSlice) && arrayList.size() < messages_messages.count) {
                 z10 = true;
             }
-            o7Var.f11414t0 = z10;
-            o7Var.f11413s0 = messages_messages.next_rate;
+            o7Var.f11413t0 = z10;
+            o7Var.f11412s0 = messages_messages.next_rate;
         } else {
-            o7Var.f11414t0 = false;
-            o7Var.f11413s0 = 0;
+            o7Var.f11413t0 = false;
+            o7Var.f11412s0 = 0;
         }
-        o7Var.f11410p0.O(true);
+        o7Var.f11409p0.O(true);
     }
 
     public static void U(o7 o7Var, int i10) {
-        ch.f fVar = o7Var.f11407l0;
+        ch.f fVar = o7Var.f11406l0;
         if (Build.VERSION.SDK_INT >= 31 && fVar != null) {
             if (pf.a(i10, 4)) {
                 fVar.h(o7Var.glassEngine.e());
             }
-            fVar.e(o7Var.f11409o0, o7Var.containerView.getWidth(), o7Var.containerView.getHeight());
+            fVar.e(o7Var.f11408o0, o7Var.containerView.getWidth(), o7Var.containerView.getHeight());
         }
     }
 
     public static boolean c0(String str, String str2, String str3) {
         if (str3 != null) {
             String lowerCase = str3.toLowerCase();
-            if (!lowerCase.startsWith(str) && !vh.u(" ", str, lowerCase)) {
+            if (!lowerCase.startsWith(str) && !wh.u(" ", str, lowerCase)) {
                 String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                if (!translitSafe.startsWith(str2) && !vh.u(" ", str2, translitSafe)) {
+                if (!translitSafe.startsWith(str2) && !wh.u(" ", str2, translitSafe)) {
                     return false;
                 }
                 return true;
@@ -496,7 +496,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
     public final void E(int i10, float f7, float f10, oe.e eVar) {
         int i11;
         if (i10 == 0) {
-            si siVar = this.f11406k0;
+            si siVar = this.f11405k0;
             siVar.setAlpha(f7);
             if (f7 > 0.0f) {
                 i11 = 0;
@@ -519,7 +519,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
         int i12 = 0;
         if (arrayList2 != null && (!arrayList2.isEmpty() || z11)) {
             ArrayList arrayList3 = new ArrayList();
-            String str2 = this.f11412r0;
+            String str2 = this.f11411r0;
             if (str2 == null) {
                 lowerCase = null;
             } else {
@@ -533,13 +533,13 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                 i13++;
                 MessageObject messageObject = (MessageObject) obj;
                 if (!z10) {
-                    messageObject.setQuery(this.f11412r0);
+                    messageObject.setQuery(this.f11411r0);
                     arrayList3.add(messageObject);
-                } else if (!TextUtils.isEmpty(lowerCase) && arrayList2 != this.f11398c0) {
+                } else if (!TextUtils.isEmpty(lowerCase) && arrayList2 != this.f11397c0) {
                     String musicTitle = messageObject.getMusicTitle();
                     String musicAuthor = messageObject.getMusicAuthor();
                     if (c0(lowerCase, translitSafe, musicTitle) || c0(lowerCase, translitSafe, musicAuthor)) {
-                        messageObject.setQuery(this.f11412r0);
+                        messageObject.setQuery(this.f11411r0);
                         arrayList3.add(messageObject);
                     }
                 } else {
@@ -549,38 +549,38 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             }
             if (!arrayList3.isEmpty() || z11) {
                 if (!arrayList.isEmpty() && arrayList.size() > 1) {
-                    arrayList.add(t61.C(null));
+                    arrayList.add(u61.C(null));
                     i11 = AndroidUtilities.dp(12.0f);
                 } else {
                     i11 = 0;
                 }
-                this.f11410p0.V();
-                arrayList.add(t61.u(str));
+                this.f11409p0.V();
+                arrayList.add(u61.u(str));
                 int size2 = arrayList3.size();
                 while (i12 < size2) {
                     Object obj2 = arrayList3.get(i12);
                     i12++;
                     bi.dc dcVar = new bi.dc(this, 1);
-                    int i14 = org.telegram.ui.Cells.m7.f24484a;
-                    t61 K = t61.K(org.telegram.ui.Cells.m7.class);
+                    int i14 = org.telegram.ui.Cells.m7.f24486a;
+                    u61 K = u61.K(org.telegram.ui.Cells.m7.class);
                     K.G = (MessageObject) obj2;
                     K.H = dcVar;
                     arrayList.add(K);
                     i11 += AndroidUtilities.dp(56.0f);
                 }
                 if (z11) {
-                    arrayList.add(t61.p(4));
-                    arrayList.add(t61.p(4));
-                    arrayList.add(t61.p(4));
+                    arrayList.add(u61.p(4));
+                    arrayList.add(u61.p(4));
+                    arrayList.add(u61.p(4));
                     i11 += AndroidUtilities.dp(56.0f) * 3;
                 }
                 if (z12 && !z11) {
-                    t61 c10 = t61.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
-                    c10.f32880q = true;
+                    u61 c10 = u61.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
+                    c10.f33254q = true;
                     arrayList.add(c10);
                     i11 += AndroidUtilities.dp(50.0f);
                 }
-                this.f11410p0.U();
+                this.f11409p0.U();
                 return i11;
             }
         }
@@ -592,29 +592,29 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.G0, true);
         }
         this.G0 = -1;
-        this.f11420z0 = "";
+        this.f11419z0 = "";
         this.A0 = false;
-        this.f11399d0.clear();
+        this.f11398d0.clear();
         this.B0 = false;
         this.C0 = false;
     }
 
     public final void Z() {
-        if (this.f11418x0 >= 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f11418x0, true);
+        if (this.f11417x0 >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f11417x0, true);
         }
-        this.f11418x0 = -1;
-        this.f11413s0 = 0;
-        this.f11398c0.clear();
-        this.f11415u0 = false;
-        this.f11416v0 = false;
+        this.f11417x0 = -1;
+        this.f11412s0 = 0;
+        this.f11397c0.clear();
+        this.f11414u0 = false;
+        this.f11415v0 = false;
     }
 
     public final void a0() {
         String str = MessagesController.getInstance(this.currentAccount).config.musicSearchUsername.get();
         if (!TextUtils.isEmpty(str)) {
             String str2 = this.H0;
-            String str3 = this.f11412r0;
+            String str3 = this.f11411r0;
             String str4 = "";
             if (str3 == null) {
                 str3 = "";
@@ -622,8 +622,8 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             if (!TextUtils.equals(str2, str3)) {
                 Y();
             }
-            if (!this.B0 && !TextUtils.isEmpty(this.f11412r0) && this.f11412r0.length() >= 3) {
-                ArrayList arrayList = this.f11399d0;
+            if (!this.B0 && !TextUtils.isEmpty(this.f11411r0) && this.f11411r0.length() >= 3) {
+                ArrayList arrayList = this.f11398d0;
                 if (arrayList.isEmpty() || this.A0) {
                     if (this.D0 == null) {
                         this.D0 = MessagesController.getInstance(this.currentAccount).getUser(str);
@@ -641,15 +641,15 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
                     TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
                     tL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.D0);
                     tL_messages_getInlineBotResults.peer = MessagesController.getInputPeer(currentUser);
-                    tL_messages_getInlineBotResults.offset = (arrayList.isEmpty() || (r0 = this.f11420z0) == null) ? "" : "";
-                    String str5 = this.f11412r0;
+                    tL_messages_getInlineBotResults.offset = (arrayList.isEmpty() || (r0 = this.f11419z0) == null) ? "" : "";
+                    String str5 = this.f11411r0;
                     if (str5 != null) {
                         str4 = str5;
                     }
                     this.H0 = str4;
                     tL_messages_getInlineBotResults.query = str4;
                     this.G0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_getInlineBotResults, new Object(), new h7(this, 1));
-                    this.f11410p0.O(true);
+                    this.f11409p0.O(true);
                 }
             }
         }
@@ -657,8 +657,8 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
 
     public final void b0() {
         if (!this.Z) {
-            String str = this.f11417w0;
-            String str2 = this.f11412r0;
+            String str = this.f11416w0;
+            String str2 = this.f11411r0;
             String str3 = "";
             if (str2 == null) {
                 str2 = "";
@@ -666,33 +666,33 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             if (!TextUtils.equals(str, str2)) {
                 Z();
             }
-            if (!this.f11415u0) {
-                ArrayList arrayList = this.f11398c0;
-                if (!arrayList.isEmpty() && !this.f11414t0) {
+            if (!this.f11414u0) {
+                ArrayList arrayList = this.f11397c0;
+                if (!arrayList.isEmpty() && !this.f11413t0) {
                     return;
                 }
-                this.f11415u0 = true;
+                this.f11414u0 = true;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
                 tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterMusic();
-                String str4 = this.f11412r0;
+                String str4 = this.f11411r0;
                 if (str4 != null) {
                     str3 = str4;
                 }
-                this.f11417w0 = str3;
-                tL_messages_searchGlobal.f22140q = str3;
+                this.f11416w0 = str3;
+                tL_messages_searchGlobal.f22141q = str3;
                 tL_messages_searchGlobal.limit = 20;
                 if (arrayList.size() > 0) {
                     MessageObject messageObject = (MessageObject) ic.a.g(1, arrayList);
                     tL_messages_searchGlobal.offset_id = messageObject.getId();
-                    tL_messages_searchGlobal.offset_rate = this.f11413s0;
+                    tL_messages_searchGlobal.offset_rate = this.f11412s0;
                     tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
                 } else {
                     tL_messages_searchGlobal.offset_rate = 0;
                     tL_messages_searchGlobal.offset_id = 0;
                     tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
                 }
-                this.f11418x0 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new bi.i0(this, 9));
-                this.f11410p0.O(true);
+                this.f11417x0 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new bi.i0(this, 9));
+                this.f11409p0.O(true);
             }
         }
     }
@@ -702,17 +702,17 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
         boolean z10 = false;
         int i10 = 0;
         while (true) {
-            mm0 mm0Var = this.d;
-            if (i10 >= mm0Var.getChildCount()) {
+            nm0 nm0Var = this.d;
+            if (i10 >= nm0Var.getChildCount()) {
                 break;
             }
-            View childAt = mm0Var.getChildAt(i10);
+            View childAt = nm0Var.getChildAt(i10);
             if (RecyclerView.R(childAt) >= 1 && childAt.getY() < f7) {
                 f7 = childAt.getY();
             }
             i10++;
         }
-        this.f11405j0.setTranslationY(Math.max(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f7));
+        this.f11404j0.setTranslationY(Math.max(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f7));
         if (f7 <= org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) {
             z10 = true;
         }
@@ -722,17 +722,17 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.musicListLoaded) {
-            this.f11410p0.O(true);
+            this.f11409p0.O(true);
         }
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        if (this.f11411q0 != null && MediaController.getInstance().isPlayingMessage(this.f11411q0)) {
+        if (this.f11410q0 != null && MediaController.getInstance().isPlayingMessage(this.f11410q0)) {
             MediaController.getInstance().cleanupPlayer(true, true);
         }
-        this.f11411q0 = null;
+        this.f11410q0 = null;
     }
 
     @Override
@@ -743,7 +743,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.musicListLoaded);
+        NotificationCenter.getInstance(this.currentAccount).addWeakObserver(this, NotificationCenter.musicListLoaded);
     }
 
     @Override
@@ -754,10 +754,10 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
 
     @Override
     public final void onSuccessDownload(String str) {
-        MessageObject messageObject = this.f11402g0;
+        MessageObject messageObject = this.f11401g0;
         if (messageObject != null && TextUtils.equals(messageObject.getFileName(), str)) {
-            this.f11401f0.run(this.f11402g0);
-            o7 o7Var = this.f11396a0;
+            this.f11400f0.run(this.f11401g0);
+            o7 o7Var = this.f11395a0;
             if (o7Var != null) {
                 o7Var.dismiss();
             }
@@ -771,7 +771,7 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
             super.onThemeColorsChanged();
             hh.c cVar = this.m0;
             if (cVar != null) {
-                cVar.a(getThemedColor(org.telegram.ui.ActionBar.y6.f23356d6));
+                cVar.a(getThemedColor(org.telegram.ui.ActionBar.y6.f23357d6));
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -779,11 +779,11 @@ public final class o7 extends org.telegram.ui.Components.bb implements Notificat
     }
 
     @Override
-    public final lm0 v(mm0 mm0Var) {
-        j71 j71Var = new j71(mm0Var, getContext(), this.currentAccount, 0, false, new h7(this, 0), this.resourcesProvider);
-        this.f11410p0 = j71Var;
-        j71Var.f29507r = false;
-        return j71Var;
+    public final mm0 v(nm0 nm0Var) {
+        k71 k71Var = new k71(nm0Var, getContext(), this.currentAccount, 0, false, new h7(this, 0), this.resourcesProvider);
+        this.f11409p0 = k71Var;
+        k71Var.f29878r = false;
+        return k71Var;
     }
 
     @Override

@@ -51,7 +51,7 @@ public final class f extends i implements NavigableSet {
 
     @Override
     public final NavigableMap h() {
-        return (NavigableMap) ((SortedMap) this.f10271b);
+        return (NavigableMap) ((SortedMap) this.f10270b);
     }
 
     @Override

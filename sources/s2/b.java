@@ -38,11 +38,11 @@ public final class b extends i2.b implements Handler.Callback {
         if (looper == null) {
             handler = null;
         } else {
-            String str = n0.f9692a;
+            String str = n0.f9691a;
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f47657a;
+        this.I = a.f47692a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }
@@ -76,7 +76,7 @@ public final class b extends i2.b implements Handler.Callback {
                         l3.a aVar2 = this.L;
                         aVar2.clear();
                         aVar2.b(c10.length);
-                        aVar2.f12570c.put(c10);
+                        aVar2.f12569c.put(c10);
                         aVar2.d();
                         u0 a11 = a10.a(aVar2);
                         if (a11 != null) {
@@ -111,9 +111,9 @@ public final class b extends i2.b implements Handler.Callback {
 
     public final void H(u0 u0Var) {
         d0 d0Var = this.J;
-        j0 j0Var = d0Var.f13509a;
-        s0 s0Var = j0Var.f13607o0;
-        r rVar = j0Var.f13603m;
+        j0 j0Var = d0Var.f13508a;
+        s0 s0Var = j0Var.f13606o0;
+        r rVar = j0Var.f13602m;
         r0 a2 = s0Var.a();
         int i10 = 0;
         while (true) {
@@ -124,7 +124,7 @@ public final class b extends i2.b implements Handler.Callback {
             t0VarArr[i10].b(a2);
             i10++;
         }
-        j0Var.f13607o0 = new s0(a2);
+        j0Var.f13606o0 = new s0(a2);
         s0 f12 = j0Var.f1();
         if (!f12.equals(j0Var.Q)) {
             j0Var.Q = f12;
@@ -194,17 +194,17 @@ public final class b extends i2.b implements Handler.Callback {
             if (!this.N && this.Q == null) {
                 l3.a aVar = this.L;
                 aVar.clear();
-                s sVar = this.f13492c;
+                s sVar = this.f13491c;
                 sVar.d();
                 int w10 = w(sVar, aVar, 0);
                 if (w10 == -4) {
                     if (aVar.isEndOfStream()) {
                         this.N = true;
-                    } else if (aVar.e >= this.f13497w) {
-                        aVar.f16857r = this.P;
+                    } else if (aVar.e >= this.f13496w) {
+                        aVar.f16856r = this.P;
                         aVar.d();
                         wd wdVar = this.M;
-                        String str = n0.f9692a;
+                        String str = n0.f9691a;
                         u0 a2 = wdVar.a(aVar);
                         if (a2 != null) {
                             ArrayList arrayList = new ArrayList(a2.f3465a.length);
@@ -215,7 +215,7 @@ public final class b extends i2.b implements Handler.Callback {
                         }
                     }
                 } else if (w10 == -5) {
-                    x xVar = (x) sVar.f18697c;
+                    x xVar = (x) sVar.f18696c;
                     xVar.getClass();
                     this.P = xVar.f3590x;
                 }

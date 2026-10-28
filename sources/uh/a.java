@@ -20,22 +20,22 @@ import org.telegram.ui.Components.ds;
 public final class a extends c implements oe.d {
     public final oe.b d;
     public final int[] e;
-    public final Drawable f49898f;
+    public final Drawable f49933f;
     public final TextPaint h;
-    public StaticLayout f49899n;
-    public int f49900r;
-    public int f49901s;
+    public StaticLayout f49934n;
+    public int f49935r;
+    public int f49936s;
 
     public a(Context context, u6 u6Var) {
         super(u6Var);
         this.d = new oe.b(0, this, ds.h, 320L, false);
         this.e = new int[]{16842910, 16842919};
-        this.f49898f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
+        this.f49933f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
         this.h = new TextPaint(y6.P2);
-        int w02 = y6.w0(y6.f23448i6, u6Var);
-        if (this.f49913b != w02) {
-            y6.E1(this.f49912a, w02, false);
-            this.f49913b = w02;
+        int w02 = y6.w0(y6.f23449i6, u6Var);
+        if (this.f49948b != w02) {
+            y6.E1(this.f49947a, w02, false);
+            this.f49948b = w02;
         }
         b();
         c();
@@ -50,19 +50,19 @@ public final class a extends c implements oe.d {
 
     @Override
     public final void a(int i10) {
-        this.f49912a.setAlpha(i10);
+        this.f49947a.setAlpha(i10);
         b();
         c();
     }
 
     public final void b() {
-        Drawable drawable = this.f49898f;
-        drawable.setAlpha((int) ((1.0f - this.d.e) * this.f49914c));
+        Drawable drawable = this.f49933f;
+        drawable.setAlpha((int) ((1.0f - this.d.e) * this.f49949c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.e) * this.f49914c));
+        textPaint.setAlpha((int) ((1.0f - this.d.e) * this.f49949c));
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -72,21 +72,21 @@ public final class a extends c implements oe.d {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.f49912a.draw(canvas);
-        v.b(canvas, this.f49898f, 1.0f - this.d.e);
-        if (this.f49899n != null) {
+        this.f49947a.draw(canvas);
+        v.b(canvas, this.f49933f, 1.0f - this.d.e);
+        if (this.f49934n != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(44.0f) + bounds.left, AndroidUtilities.dp(13.66f) + bounds.top);
-            this.f49899n.draw(canvas);
+            this.f49934n.draw(canvas);
             canvas.restore();
         }
     }
 
     public final void e(int i10) {
-        if (this.f49901s != i10) {
-            this.f49901s = i10;
+        if (this.f49936s != i10) {
+            this.f49936s = i10;
             this.h.setColor(i10);
-            this.f49898f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+            this.f49933f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
             c();
         }
     }
@@ -98,13 +98,13 @@ public final class a extends c implements oe.d {
         float dp = AndroidUtilities.dp(22.33f) + rect.left;
         AndroidUtilities.dp(27.0f);
         AndroidUtilities.dp(44.0f);
-        v.d(this.f49898f, dp, exactCenterY, 17);
+        v.d(this.f49933f, dp, exactCenterY, 17);
         int width = rect.width() - AndroidUtilities.dp(56.0f);
-        if (this.f49899n != null && this.f49900r == width) {
+        if (this.f49934n != null && this.f49935r == width) {
             return;
         }
-        this.f49900r = width;
-        this.f49899n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f49935r = width;
+        this.f49934n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override

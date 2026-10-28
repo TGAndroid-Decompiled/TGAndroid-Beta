@@ -10,12 +10,12 @@ import java.lang.ref.WeakReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.VideoEditedInfo;
 public final class rk implements View.OnTouchListener {
-    public final int f32260a;
-    public final Object f32261b;
+    public final int f32262a;
+    public final Object f32263b;
 
     public rk(Object obj, int i10) {
-        this.f32260a = i10;
-        this.f32261b = obj;
+        this.f32262a = i10;
+        this.f32263b = obj;
     }
 
     @Override
@@ -23,10 +23,10 @@ public final class rk implements View.OnTouchListener {
         float f7;
         i2.j0 j0Var;
         float f10;
-        f80 f80Var;
-        switch (this.f32260a) {
+        g80 g80Var;
+        switch (this.f32262a) {
             case 0:
-                al alVar = (al) this.f32261b;
+                al alVar = (al) this.f32263b;
                 alVar.getClass();
                 if (motionEvent.getActionMasked() == 1 && !view.hasFocus()) {
                     alVar.c0();
@@ -34,7 +34,7 @@ public final class rk implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.ActionBar.o1 o1Var = ((js) this.f32261b).f29712a;
+                org.telegram.ui.ActionBar.o1 o1Var = ((js) this.f32263b).f29757a;
                 if (motionEvent.getActionMasked() == 1 && o1Var != null && o1Var.isShowing()) {
                     Rect rect = AndroidUtilities.rectTmp2;
                     view.getHitRect(rect);
@@ -46,29 +46,29 @@ public final class rk implements View.OnTouchListener {
                 }
                 return false;
             case 2:
-                n60 n60Var = (n60) this.f32261b;
+                o60 o60Var = (o60) this.f32263b;
                 boolean z10 = false;
-                if (n60Var.P == null || n60Var.R == null) {
+                if (o60Var.O == null || o60Var.Q == null) {
                     return false;
                 }
                 float f11 = 0.0f;
                 if (motionEvent.getActionMasked() == 0) {
-                    ValueAnimator valueAnimator = n60Var.f30849a0;
+                    ValueAnimator valueAnimator = o60Var.f31172a0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    n60Var.B0 = false;
-                    n60Var.f30880z0 = motionEvent.getPointerId(0);
-                    n60Var.A0 = -1;
-                    int i10 = n60Var.R.f50534a;
+                    o60Var.B0 = false;
+                    o60Var.f31203z0 = motionEvent.getPointerId(0);
+                    o60Var.A0 = -1;
+                    int i10 = o60Var.Q.f50625a;
                     if (i10 == 5) {
-                        ImageView imageView = n60Var.I;
-                        vi.s0 s0Var = n60Var.P;
-                        if (s0Var != null && i10 == 5) {
-                            boolean z11 = n60Var.f30858i0;
-                            n60Var.f30858i0 = !z11;
-                            vi.s0.t();
-                            if (s0Var.W == 5 && (j0Var = s0Var.S) != null) {
+                        ImageView imageView = o60Var.H;
+                        vi.u0 u0Var = o60Var.O;
+                        if (u0Var != null && i10 == 5) {
+                            boolean z11 = o60Var.f31181i0;
+                            o60Var.f31181i0 = !z11;
+                            vi.u0.u();
+                            if (u0Var.Z == 5 && (j0Var = u0Var.V) != null) {
                                 if (!z11) {
                                     f10 = 0.0f;
                                 } else {
@@ -76,108 +76,108 @@ public final class rk implements View.OnTouchListener {
                                 }
                                 j0Var.U(f10);
                             }
-                            VideoEditedInfo videoEditedInfo = n60Var.U;
+                            VideoEditedInfo videoEditedInfo = o60Var.T;
                             if (videoEditedInfo != null) {
-                                videoEditedInfo.muted = n60Var.f30858i0;
+                                videoEditedInfo.muted = o60Var.f31181i0;
                             }
                             imageView.animate().cancel();
                             ViewPropertyAnimator animate = imageView.animate();
-                            if (n60Var.f30858i0) {
+                            if (o60Var.f31181i0) {
                                 f11 = 1.0f;
                             }
-                            org.telegram.messenger.vh.p(animate, f11, 180L);
+                            org.telegram.messenger.wh.p(animate, f11, 180L);
                         }
                     }
                 } else {
                     if (motionEvent.getActionMasked() == 5 && motionEvent.getPointerCount() == 2) {
-                        vi.r0 r0Var = n60Var.R;
-                        if (r0Var.f50534a == 3 && !r0Var.e) {
-                            n60Var.f30880z0 = motionEvent.getPointerId(0);
-                            n60Var.A0 = motionEvent.getPointerId(1);
+                        vi.t0 t0Var = o60Var.Q;
+                        if (t0Var.f50625a == 3 && !t0Var.f50628f) {
+                            o60Var.f31203z0 = motionEvent.getPointerId(0);
+                            o60Var.A0 = motionEvent.getPointerId(1);
                             float hypot = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
-                            n60Var.f30877x0 = hypot;
+                            o60Var.f31200x0 = hypot;
                             if (hypot > 0.0f) {
                                 z10 = true;
                             }
-                            n60Var.B0 = z10;
-                            n60Var.f30879y0 = 0.0f;
+                            o60Var.B0 = z10;
+                            o60Var.f31202y0 = 0.0f;
                         }
                     }
-                    if (motionEvent.getActionMasked() == 2 && n60Var.B0) {
-                        int findPointerIndex = motionEvent.findPointerIndex(n60Var.f30880z0);
-                        int findPointerIndex2 = motionEvent.findPointerIndex(n60Var.A0);
+                    if (motionEvent.getActionMasked() == 2 && o60Var.B0) {
+                        int findPointerIndex = motionEvent.findPointerIndex(o60Var.f31203z0);
+                        int findPointerIndex2 = motionEvent.findPointerIndex(o60Var.A0);
                         if (findPointerIndex >= 0 && findPointerIndex2 >= 0) {
-                            float hypot2 = ((float) Math.hypot(motionEvent.getX(findPointerIndex2) - motionEvent.getX(findPointerIndex), motionEvent.getY(findPointerIndex2) - motionEvent.getY(findPointerIndex))) / n60Var.f30877x0;
-                            vi.k0 k0Var = n60Var.S;
-                            if (k0Var == null) {
+                            float hypot2 = ((float) Math.hypot(motionEvent.getX(findPointerIndex2) - motionEvent.getX(findPointerIndex), motionEvent.getY(findPointerIndex2) - motionEvent.getY(findPointerIndex))) / o60Var.f31200x0;
+                            vi.m0 m0Var = o60Var.R;
+                            if (m0Var == null) {
                                 f7 = 1.0f;
                             } else {
-                                f7 = k0Var.f50483c;
+                                f7 = m0Var.f50553c;
                             }
                             float max = (Math.max(0.0f, hypot2 - 1.0f) / 1.5f) + 1.0f;
                             if (f7 > 1.0f) {
                                 f11 = Math.max(0.0f, Math.min(1.0f, (max - 1.0f) / (f7 - 1.0f)));
                             }
-                            n60Var.f30879y0 = f11;
-                            n60Var.P.w(f11);
+                            o60Var.f31202y0 = f11;
+                            o60Var.O.x(f11);
                         } else {
-                            n60Var.s();
+                            o60Var.u();
                         }
-                    } else if (motionEvent.getActionMasked() == 6 && n60Var.B0) {
+                    } else if (motionEvent.getActionMasked() == 6 && o60Var.B0) {
                         int pointerId = motionEvent.getPointerId(motionEvent.getActionIndex());
-                        if (pointerId == n60Var.f30880z0 || pointerId == n60Var.A0) {
-                            n60Var.s();
+                        if (pointerId == o60Var.f31203z0 || pointerId == o60Var.A0) {
+                            o60Var.u();
                         }
-                    } else if ((motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) && n60Var.B0) {
-                        n60Var.s();
+                    } else if ((motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) && o60Var.B0) {
+                        o60Var.u();
                     }
                 }
                 return true;
             case 3:
-                k80 k80Var = (k80) ((WeakReference) this.f32261b).get();
-                if (k80Var != null && (f80Var = k80Var.f29858m) != null && f80Var.isShowing()) {
+                l80 l80Var = (l80) ((WeakReference) this.f32263b).get();
+                if (l80Var != null && (g80Var = l80Var.f30158m) != null && g80Var.isShowing()) {
                     if (view.getParent() != null) {
                         view.getParent().requestDisallowInterceptTouchEvent(true);
                     }
                     int actionMasked = motionEvent.getActionMasked();
                     if (actionMasked == 2) {
-                        k80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+                        l80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
                     } else if (actionMasked == 1) {
-                        k80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
-                        View view2 = k80Var.f29864p0;
+                        l80Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+                        View view2 = l80Var.f30164p0;
                         if (view2 != null) {
-                            k80Var.f29864p0 = null;
+                            l80Var.f30164p0 = null;
                             view2.setPressed(false);
                             view2.performClick();
                         }
                         view.setOnTouchListener(null);
-                        k80Var.f29862o0 = null;
+                        l80Var.f30162o0 = null;
                     } else if (actionMasked == 3) {
-                        View view3 = k80Var.f29864p0;
+                        View view3 = l80Var.f30164p0;
                         if (view3 != null) {
                             view3.setPressed(false);
-                            k80Var.f29864p0 = null;
+                            l80Var.f30164p0 = null;
                         }
                         view.setOnTouchListener(null);
-                        k80Var.f29862o0 = null;
+                        l80Var.f30162o0 = null;
                     }
                     return true;
                 }
                 view.setOnTouchListener(null);
                 return false;
             case 4:
-                gb0 gb0Var = (gb0) this.f32261b;
-                gb0Var.getClass();
-                return org.telegram.ui.ft.o().q(motionEvent, gb0Var.getListView(), gb0Var.f28526w, null, gb0Var.f28519a);
+                hb0 hb0Var = (hb0) this.f32263b;
+                hb0Var.getClass();
+                return org.telegram.ui.ht.o().q(motionEvent, hb0Var.getListView(), hb0Var.f28947w, null, hb0Var.f28940a);
             case 5:
-                hc0 hc0Var = (hc0) this.f32261b;
-                hc0Var.getClass();
+                ic0 ic0Var = (ic0) this.f32263b;
+                ic0Var.getClass();
                 if (motionEvent.getAction() == 1) {
-                    hc0Var.f28919c0.a(true);
+                    ic0Var.f29306c0.a(true);
                 }
                 return true;
             default:
-                return cz0.x((cz0) this.f32261b, motionEvent);
+                return dz0.x((dz0) this.f32263b, motionEvent);
         }
     }
 }

@@ -15,7 +15,7 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.r2;
 import org.telegram.ui.Cells.y1;
 import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.ch0;
+import org.telegram.ui.Components.dh0;
 import org.telegram.ui.Components.dv;
 import org.telegram.ui.Components.hs;
 import org.telegram.ui.Components.voip.i1;
@@ -52,10 +52,10 @@ public final class f implements View.OnClickListener {
                 int i12 = a4.d;
                 return;
             case 4:
-                PhotoViewer.u1().k0(1.0f, 0.0f, 0.0f, false);
+                PhotoViewer.v1().k0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 5:
-                int i13 = hi.u.f13297n;
+                int i13 = hi.u.f13296n;
                 return;
             case 6:
                 int i14 = lh.c.e;
@@ -84,28 +84,28 @@ public final class f implements View.OnClickListener {
                 }
                 return;
             case 11:
-                int i16 = yq.f35113f0;
+                int i16 = yq.f35128f0;
                 return;
             case 12:
-                int i17 = hs.f29042w;
+                int i17 = hs.f29061w;
                 return;
             case 13:
                 float[] fArr = FragmentContextView.W0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 14:
-                ch0 ch0Var = ch0.f27159p0;
-                dv dvVar = ch0Var.U;
+                dh0 dh0Var = dh0.f27444p0;
+                dv dvVar = dh0Var.U;
                 if (dvVar != null) {
                     dvVar.G();
                 } else {
-                    PhotoViewer photoViewer = ch0Var.V;
+                    PhotoViewer photoViewer = dh0Var.V;
                     if (photoViewer != null) {
                         photoViewer.Q0();
                         MediaController.getInstance().tryResumePausedAudio();
                     }
                 }
-                ch0.j(false);
+                dh0.j(false);
                 return;
             case 15:
                 i1.j();
@@ -127,7 +127,7 @@ public final class f implements View.OnClickListener {
                 n1.e0(0, null);
                 return;
             case 19:
-                ArrayList arrayList = ExternalActionActivity.f35498x;
+                ArrayList arrayList = ExternalActionActivity.f35522x;
                 return;
             case 20:
                 return;
@@ -149,7 +149,7 @@ public final class f implements View.OnClickListener {
                 int i19 = y2.W;
                 return;
             case 25:
-                PhotoViewer.u1().k0(1.0f, 0.0f, 0.0f, false);
+                PhotoViewer.v1().k0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 26:
                 try {
@@ -163,10 +163,10 @@ public final class f implements View.OnClickListener {
                 int i20 = zh.m.A0;
                 return;
             case 28:
-                yc[] ycVarArr = zh.v.f53283p0;
+                yc[] ycVarArr = zh.v.f53341p0;
                 return;
             default:
-                int i21 = zh.c0.f52913g0;
+                int i21 = zh.c0.f52971g0;
                 return;
         }
     }

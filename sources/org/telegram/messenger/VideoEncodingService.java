@@ -99,9 +99,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             this.builder.f(LocaleController.getString(R.string.SendingVideo));
         }
         e0.q qVar = this.builder;
-        qVar.f9586n = 100;
-        qVar.f9587o = 0;
-        qVar.f9588p = true;
+        qVar.f9585n = 100;
+        qVar.f9586o = 0;
+        qVar.f9587p = true;
     }
 
     public void updateNotification() {
@@ -130,15 +130,15 @@ public class VideoEncodingService extends Service implements NotificationCenter.
                 if (i12 == 0) {
                     z10 = true;
                 }
-                qVar.f9586n = 100;
-                qVar.f9587o = i12;
-                qVar.f9588p = z10;
+                qVar.f9585n = 100;
+                qVar.f9586o = i12;
+                qVar.f9587p = z10;
                 updateNotification();
             }
         } else if (i10 == NotificationCenter.fileUploaded || i10 == NotificationCenter.fileUploadFailed) {
             String str4 = (String) objArr[0];
             if (i11 == this.currentAccount && (str = this.currentPath) != null && str.equals(str4)) {
-                AndroidUtilities.runOnUIThread(new wl(this, 0));
+                AndroidUtilities.runOnUIThread(new xl(this, 0));
             }
         }
     }
@@ -180,7 +180,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
             e0.q qVar2 = this.builder;
-            qVar2.f9596y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            qVar2.f9595y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             qVar2.g(LocaleController.getString(R.string.AppName));
         }
         setCurrentMessage(currentForegroundConverMessage);
@@ -189,7 +189,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         } catch (Throwable th2) {
             FileLog.e(th2);
         }
-        AndroidUtilities.runOnUIThread(new wl(this, 1));
+        AndroidUtilities.runOnUIThread(new xl(this, 1));
         return 2;
     }
 

@@ -5,17 +5,17 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 public final class a8 extends FrameLayout {
-    public final RectF f26430a;
-    public boolean f26431b;
-    public int f26432c;
+    public final RectF f26452a;
+    public boolean f26453b;
+    public int f26454c;
     public int d;
     public final m8 e;
 
     public a8(m8 m8Var, Context context) {
         super(context);
         this.e = m8Var;
-        this.f26430a = new RectF();
-        this.f26431b = false;
+        this.f26452a = new RectF();
+        this.f26453b = false;
     }
 
     @Override
@@ -63,7 +63,7 @@ public final class a8 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f26431b) {
+        if (this.f26453b) {
             return;
         }
         super.requestLayout();

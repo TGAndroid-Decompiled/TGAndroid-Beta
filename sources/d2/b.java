@@ -53,7 +53,7 @@ public final class b {
 
     static {
         new b("", null, null, null, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f, 0);
-        String str = n0.f9692a;
+        String str = n0.f9691a;
         f7850s = Integer.toString(0, 36);
         f7851t = Integer.toString(17, 36);
         f7852u = Integer.toString(1, 36);

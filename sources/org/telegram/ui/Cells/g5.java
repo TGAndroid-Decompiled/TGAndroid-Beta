@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.h31;
-import org.telegram.ui.Components.kp0;
-import org.telegram.ui.ut;
-public final class g5 implements kp0 {
-    public final ut f24162a;
+import org.telegram.ui.Components.i31;
+import org.telegram.ui.Components.lp0;
+import org.telegram.ui.wt;
+public final class g5 implements lp0 {
+    public final wt f24164a;
 
-    public g5(ut utVar) {
-        this.f24162a = utVar;
+    public g5(wt wtVar) {
+        this.f24164a = wtVar;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class g5 implements kp0 {
             }
         }
         int i11 = (int) c10;
-        ut utVar = this.f24162a;
+        wt wtVar = this.f24164a;
         long j10 = i11;
         boolean z11 = true;
-        utVar.f24195b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
-        utVar.d = j10;
-        a9[] a9VarArr = utVar.h;
-        AnimatorSet[] animatorSetArr = utVar.f44531n;
-        int i12 = utVar.e;
-        i10 = utVar.f44532r.videosRow;
+        wtVar.f24197b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        wtVar.d = j10;
+        a9[] a9VarArr = wtVar.h;
+        AnimatorSet[] animatorSetArr = wtVar.f45399n;
+        int i12 = wtVar.e;
+        i10 = wtVar.f45400r.videosRow;
         if (i12 == i10) {
-            utVar.f44530f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
+            wtVar.f45398f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -60,7 +60,7 @@ public final class g5 implements kp0 {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new h31(utVar, 22));
+                animatorSetArr[0].addListener(new i31(wtVar, 22));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }
@@ -70,10 +70,10 @@ public final class g5 implements kp0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        ut utVar = this.f24162a;
-        sb2.append((Object) utVar.f24194a.getText());
+        wt wtVar = this.f24164a;
+        sb2.append((Object) wtVar.f24196a.getText());
         sb2.append(" ");
-        sb2.append((Object) utVar.f24195b.getText());
+        sb2.append((Object) wtVar.f24197b.getText());
         return sb2.toString();
     }
 

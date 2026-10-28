@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class j3 extends hi.n4 {
-    public boolean f40403c0;
-    public final m3 f40404d0;
+    public boolean f40366c0;
+    public final m3 f40367d0;
 
     public j3(m3 m3Var, Context context) {
         super(context);
-        this.f40404d0 = m3Var;
+        this.f40367d0 = m3Var;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        this.f40403c0 = true;
+        this.f40366c0 = true;
         setOffsetY(View.MeasureSpec.getSize(i11) * 0.4f);
-        this.f40403c0 = false;
+        this.f40366c0 = false;
         int size = View.MeasureSpec.getSize(i11);
-        v3 v3Var = this.f40404d0.L.K;
+        v3 v3Var = this.f40367d0.L.K;
         if (v3Var != null) {
             v3Var.getClass();
         }
@@ -27,7 +27,7 @@ public final class j3 extends hi.n4 {
 
     @Override
     public final void requestLayout() {
-        if (!this.f40403c0) {
+        if (!this.f40366c0) {
             super.requestLayout();
         }
     }

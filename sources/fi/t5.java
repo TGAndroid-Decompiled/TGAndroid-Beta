@@ -12,13 +12,13 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.Components.ty;
 public final class t5 implements ty {
-    public final e6 f11708a;
+    public final e6 f11707a;
 
     public t5(e6 e6Var) {
-        this.f11708a = e6Var;
+        this.f11707a = e6Var;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class t5 implements ty {
 
     @Override
     public final boolean k() {
-        sg.b editText = ((sg.x2) this.f11708a.f10824y0).getEditText();
+        sg.b editText = ((sg.w2) this.f11707a.f10823y0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -68,17 +68,17 @@ public final class t5 implements ty {
 
     @Override
     public final void l(String str) {
-        sg.x2 x2Var;
+        sg.w2 w2Var;
         sg.b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        sg.j jVar = this.f11708a.f10824y0;
-        if ((jVar instanceof sg.x2) && (editText = (x2Var = (sg.x2) jVar).getEditText()) != null) {
+        sg.j jVar = this.f11707a.f10823y0;
+        if ((jVar instanceof sg.w2) && (editText = (w2Var = (sg.w2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
                 selectionEnd = 0;
             }
             try {
-                CharSequence replaceEmoji = Emoji.replaceEmoji(str, x2Var.getFontMetricsInt(), false);
+                CharSequence replaceEmoji = Emoji.replaceEmoji(str, w2Var.getFontMetricsInt(), false);
                 if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
                     for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                         emojiSpan.scale = 0.85f;
@@ -97,10 +97,10 @@ public final class t5 implements ty {
 
     @Override
     public final void n() {
-        e6 e6Var = this.f11708a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e6Var.getContext(), 0, e6Var.f10819v1);
-        alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        e6 e6Var = this.f11707a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e6Var.getContext(), 0, e6Var.f10818v1);
+        alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new e1.c(this, 10));
         ic.a.r(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -113,7 +113,7 @@ public final class t5 implements ty {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.c6 c6Var;
-        sg.b editText = ((sg.x2) this.f11708a.f10824y0).getEditText();
+        sg.b editText = ((sg.w2) this.f11707a.f10823y0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -122,7 +122,7 @@ public final class t5 implements ty {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    c6Var = new org.telegram.ui.Components.c6(document.f22033id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    c6Var = new org.telegram.ui.Components.c6(document.f22034id, 1.0f, editText.getPaint().getFontMetricsInt());
                     c6Var.document = document;
                 } else {
                     c6Var = new org.telegram.ui.Components.c6(j10, 1.0f, editText.getPaint().getFontMetricsInt());
@@ -153,7 +153,7 @@ public final class t5 implements ty {
     }
 
     @Override
-    public final void o(p61 p61Var) {
+    public final void o(q61 q61Var) {
     }
 
     @Override

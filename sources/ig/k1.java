@@ -4,13 +4,13 @@ import di.q7;
 import org.telegram.messenger.MessagesController;
 import org.telegram.ui.Cells.l2;
 import org.telegram.ui.Cells.p2;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.un;
+import org.telegram.ui.Components.nm0;
+import org.telegram.ui.wn;
 public final class k1 implements l2 {
-    public final n1 f14149a;
+    public final n1 f14148a;
 
     public k1(n1 n1Var) {
-        this.f14149a = n1Var;
+        this.f14148a = n1Var;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class k1 implements l2 {
 
     @Override
     public final void e(p2 p2Var) {
-        n1 n1Var = this.f14149a;
-        un unVar = n1Var.f14182f;
-        if (MessagesController.getInstance(n1Var.f14184r).getStoriesController().I(p2Var.getDialogId())) {
-            unVar.getOrCreateStoryViewer().getClass();
-            unVar.getOrCreateStoryViewer().D(n1Var.f14181c, p2Var.getDialogId(), q7.a((mm0) p2Var.getParent()));
+        n1 n1Var = this.f14148a;
+        wn wnVar = n1Var.f14181f;
+        if (MessagesController.getInstance(n1Var.f14183r).getStoriesController().K(p2Var.getDialogId())) {
+            wnVar.getOrCreateStoryViewer().getClass();
+            wnVar.getOrCreateStoryViewer().E(n1Var.f14180c, p2Var.getDialogId(), q7.a((nm0) p2Var.getParent()));
         }
     }
 

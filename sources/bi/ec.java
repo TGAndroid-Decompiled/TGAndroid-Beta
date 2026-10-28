@@ -25,7 +25,7 @@ public final class ec extends tg.x1 {
         int i11;
         int i12;
         tg.w1 w1Var = new tg.w1(this.f4577s);
-        this.f49119a = w1Var;
+        this.f49154a = w1Var;
         w1Var.O = 105;
         int i13 = 0;
         w1Var.M = false;
@@ -33,11 +33,11 @@ public final class ec extends tg.x1 {
         w1Var.K = true;
         w1Var.H = true;
         w1Var.J = false;
-        w1Var.f49099m = true;
+        w1Var.f49134m = true;
         w1Var.h = true;
         int i14 = this.v;
         if (i14 == 1) {
-            w1Var.f49097k = AndroidUtilities.dp(24.0f);
+            w1Var.f49132k = AndroidUtilities.dp(24.0f);
         }
         if (i14 == 2) {
             i10 = 40;
@@ -70,19 +70,19 @@ public final class ec extends tg.x1 {
             this.f4576r[i13].setColorFilter(new PorterDuffColorFilter(f7, PorterDuff.Mode.SRC_IN));
             i13++;
         }
-        tg.w1 w1Var2 = this.f49119a;
-        w1Var2.f49098l = new dc(this, 0);
-        w1Var2.f49104r = 17;
-        w1Var2.f49105s = 18;
-        w1Var2.f49106t = 19;
+        tg.w1 w1Var2 = this.f49154a;
+        w1Var2.f49133l = new dc(this, 0);
+        w1Var2.f49139r = 17;
+        w1Var2.f49140s = 18;
+        w1Var2.f49141t = 19;
         if (i14 == 2) {
             w1Var2.N = true;
-            w1Var2.f49104r = 9;
-            w1Var2.f49105s = 11;
-            w1Var2.f49106t = 13;
-            w1Var2.f49101o = 1.6f;
-            w1Var2.f49109x = 1400L;
-            w1Var2.f49110y = 1600;
+            w1Var2.f49139r = 9;
+            w1Var2.f49140s = 11;
+            w1Var2.f49141t = 13;
+            w1Var2.f49136o = 1.6f;
+            w1Var2.f49144x = 1400L;
+            w1Var2.f49145y = 1600;
             w1Var2.L = true;
         }
         w1Var2.Q = org.telegram.ui.ActionBar.y6.G6;

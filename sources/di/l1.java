@@ -11,16 +11,16 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class l1 extends FrameLayout {
-    public final int f8751a;
-    public Path f8752b;
+    public final int f8750a;
+    public Path f8751b;
 
     public l1(Context context, int i10) {
         super(context);
-        this.f8751a = i10;
+        this.f8750a = i10;
         switch (i10) {
             case 1:
                 super(context);
-                this.f8752b = new Path();
+                this.f8751b = new Path();
                 setClipChildren(false);
                 setClipToPadding(false);
                 return;
@@ -31,10 +31,10 @@ public final class l1 extends FrameLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f8751a) {
+        switch (this.f8750a) {
             case 1:
                 int save = canvas.save();
-                canvas.clipPath(this.f8752b);
+                canvas.clipPath(this.f8751b);
                 super.dispatchDraw(canvas);
                 canvas.restoreToCount(save);
                 return;
@@ -49,7 +49,7 @@ public final class l1 extends FrameLayout {
         boolean z10;
         float f7;
         int dp;
-        switch (this.f8751a) {
+        switch (this.f8750a) {
             case 0:
                 int action = motionEvent.getAction();
                 o1 o1Var = o1.Z;
@@ -67,9 +67,9 @@ public final class l1 extends FrameLayout {
                 }
                 MotionEvent obtain2 = MotionEvent.obtain(motionEvent);
                 obtain2.offsetLocation(motionEvent.getRawX() - motionEvent.getX(), motionEvent.getRawY() - motionEvent.getY());
-                boolean onTouchEvent = o1Var.f8865x.onTouchEvent(obtain2);
+                boolean onTouchEvent = o1Var.f8864x.onTouchEvent(obtain2);
                 obtain2.recycle();
-                if (!o1Var.f8865x.isInProgress() && ((GestureDetector) o1Var.f8866y.f15828b).onTouchEvent(motionEvent)) {
+                if (!o1Var.f8864x.isInProgress() && ((GestureDetector) o1Var.f8865y.f15827b).onTouchEvent(motionEvent)) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -78,11 +78,11 @@ public final class l1 extends FrameLayout {
                     o1Var.E = false;
                     o1Var.F = false;
                     o1.j jVar = o1Var.P;
-                    if (!jVar.f18963f) {
+                    if (!jVar.f18962f) {
                         float f10 = o1Var.N;
-                        jVar.f18961b = f10;
-                        jVar.f18962c = true;
-                        o1.k kVar = jVar.f18969u;
+                        jVar.f18960b = f10;
+                        jVar.f18961c = true;
+                        o1.k kVar = jVar.f18968u;
                         int i10 = o1Var.J;
                         float f11 = (i10 / 2.0f) + f10;
                         int i11 = AndroidUtilities.displaySize.x;
@@ -91,14 +91,14 @@ public final class l1 extends FrameLayout {
                         } else {
                             dp = AndroidUtilities.dp(16.0f);
                         }
-                        kVar.f18975i = dp;
+                        kVar.f18974i = dp;
                         o1Var.P.h();
                     }
                     o1.j jVar2 = o1Var.Q;
-                    if (!jVar2.f18963f) {
-                        jVar2.f18961b = o1Var.O;
-                        jVar2.f18962c = true;
-                        jVar2.f18969u.f18975i = ee.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - o1Var.K) - AndroidUtilities.dp(16.0f));
+                    if (!jVar2.f18962f) {
+                        jVar2.f18960b = o1Var.O;
+                        jVar2.f18961c = true;
+                        jVar2.f18968u.f18974i = ee.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - o1Var.K) - AndroidUtilities.dp(16.0f));
                         o1Var.Q.h();
                     }
                 }
@@ -113,11 +113,11 @@ public final class l1 extends FrameLayout {
 
     @Override
     public void onConfigurationChanged(Configuration configuration) {
-        switch (this.f8751a) {
+        switch (this.f8750a) {
             case 0:
                 AndroidUtilities.checkDisplaySize(getContext(), configuration);
                 o1 o1Var = o1.Z;
-                AndroidUtilities.setPreferredMaxRefreshRate(o1Var.f8858b, o1Var.d, o1Var.f8859c);
+                AndroidUtilities.setPreferredMaxRefreshRate(o1Var.f8857b, o1Var.d, o1Var.f8858c);
                 o1Var.i();
                 return;
             default:
@@ -128,10 +128,10 @@ public final class l1 extends FrameLayout {
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f8751a) {
+        switch (this.f8750a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
-                Path path = this.f8752b;
+                Path path = this.f8751b;
                 path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, i10, i11);
@@ -139,7 +139,7 @@ public final class l1 extends FrameLayout {
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
-                Path path2 = this.f8752b;
+                Path path2 = this.f8751b;
                 float paddingLeft = (i10 - getPaddingLeft()) - getPaddingRight();
                 float paddingTop = (i11 - getPaddingTop()) - getPaddingBottom();
                 path2.rewind();

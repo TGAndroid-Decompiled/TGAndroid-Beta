@@ -1,10 +1,10 @@
 package fb;
 public final class d extends u {
-    public final int f10384a;
+    public final int f10383a;
 
     @Override
     public final Object read(nb.a aVar) {
-        switch (this.f10384a) {
+        switch (this.f10383a) {
             case 0:
                 if (aVar.x() == 9) {
                     aVar.t();
@@ -24,7 +24,7 @@ public final class d extends u {
     }
 
     public String toString() {
-        switch (this.f10384a) {
+        switch (this.f10383a) {
             case 2:
                 return "AnonymousOrNonStaticLocalClassAdapter";
             default:
@@ -34,7 +34,7 @@ public final class d extends u {
 
     @Override
     public final void write(nb.b bVar, Object obj) {
-        switch (this.f10384a) {
+        switch (this.f10383a) {
             case 0:
                 Number number = (Number) obj;
                 if (number == null) {

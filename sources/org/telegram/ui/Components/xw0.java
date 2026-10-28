@@ -1,34 +1,75 @@
 package org.telegram.ui.Components;
-public final class xw0 extends u60 {
-    public final zw0 d;
 
-    public xw0(zw0 zw0Var) {
-        this.d = zw0Var;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class xw0 extends ww0 {
+    public Activity f34861l0;
+    public final Rect m0;
+    public int f34862n0;
+    public boolean f34863o0;
+
+    public xw0(Context context, Activity activity) {
+        super(context, null);
+        this.m0 = new Rect();
+        setActivity(activity);
     }
 
     @Override
-    public final CharSequence d() {
-        zw0 zw0Var = this.d;
-        int i10 = zw0Var.I;
-        String[] strArr = zw0Var.F;
-        if (i10 < strArr.length) {
-            return strArr[i10];
+    public int Q() {
+        View rootView = getRootView();
+        Rect rect = this.m0;
+        getWindowVisibleDisplayFrame(rect);
+        int i10 = 0;
+        if (this.f34863o0) {
+            int height = rootView.getHeight();
+            if (rect.top != 0) {
+                i10 = AndroidUtilities.statusBarHeight;
+            }
+            return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
         }
-        return null;
+        int height2 = (this.f34861l0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
+        if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
+            return 0;
+        }
+        return height2;
     }
 
     @Override
-    public final int i() {
-        return this.d.F.length - 1;
+    public void R() {
+        boolean z10;
+        if (this.f34594n == null && this.f34595r.isEmpty()) {
+            return;
+        }
+        this.f34862n0 = Q();
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        post(new d60(7, this, z10));
     }
 
     @Override
-    public final int j() {
-        return this.d.I;
+    public int getKeyboardHeight() {
+        return this.f34862n0;
     }
 
     @Override
-    public final void k(int i10) {
-        this.d.setOption(i10);
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        R();
+    }
+
+    public void setActivity(Activity activity) {
+        this.f34861l0 = activity;
+    }
+
+    public void setWithoutWindow(boolean z10) {
+        this.f34863o0 = z10;
     }
 }

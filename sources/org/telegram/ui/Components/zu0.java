@@ -1,7 +1,8 @@
 package org.telegram.ui.Components;
-public final class zu0 {
-    public String f35409a;
-    public int f35410b;
-    public int f35411c;
-    public int d;
+public interface zu0 {
+    org.telegram.ui.ActionBar.g1 Z(int i10, Runnable runnable, String str, boolean z10, boolean z11);
+
+    void v();
+
+    org.telegram.ui.ActionBar.g1 x(String str);
 }

@@ -1,57 +1,76 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class ag0 {
-    public final bg0 f26499a = new bg0();
-    public final bg0 f26500b = new bg0();
-    public final bg0 f26501c = new bg0();
-    public final bg0 d = new bg0();
-    public final ByteBuffer e;
-    public int f26502f;
+import android.graphics.Matrix;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+public final class ag0 implements TextureView.SurfaceTextureListener {
+    public final boolean f26550a;
+    public final la f26551b;
+    public final fg0 f26552c;
 
-    public ag0() {
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-        this.e = allocateDirect;
-        allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
+    public ag0(fg0 fg0Var, boolean z10, la laVar) {
+        this.f26552c = fg0Var;
+        this.f26550a = z10;
+        this.f26551b = laVar;
     }
 
-    public final void a() {
-        ByteBuffer byteBuffer = this.e;
-        byteBuffer.position(0);
-        bg0 bg0Var = this.f26499a;
-        if (bg0Var.f26853f == null) {
-            bg0Var.a();
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
+        fg0 fg0Var = this.f26552c;
+        TextureView textureView = fg0Var.f28133i0;
+        if (fg0Var.f28136l0 == null && surfaceTexture != null) {
+            e00 e00Var = new e00(surfaceTexture, fg0Var.C0, fg0Var.H0, fg0Var.f28150w0, this.f26550a, this.f26551b, i10, i11);
+            fg0Var.f28136l0 = e00Var;
+            if (!this.f26550a) {
+                e00Var.i(fg0Var.J0, fg0Var.K0);
+                e00 e00Var2 = fg0Var.f28136l0;
+                Matrix transform = textureView.getTransform(null);
+                int width = textureView.getWidth();
+                int height = textureView.getHeight();
+                ra raVar = e00Var2.I;
+                if (raVar != null) {
+                    Matrix matrix = raVar.v;
+                    transform.invert(matrix);
+                    float f7 = width;
+                    float f10 = height;
+                    matrix.preScale(f7, f10);
+                    matrix.postScale(1.0f / f7, 1.0f / f10);
+                    raVar.c(matrix);
+                    e00Var2.d(false, false, false);
+                }
+            }
+            fg0Var.f28136l0.f(fg0Var);
+            e00 e00Var3 = fg0Var.f28136l0;
+            e00Var3.getClass();
+            e00Var3.postRunnable(new a00(e00Var3, i10, i11, 1));
+            fg0Var.f28136l0.d(true, true, false);
         }
-        float[] fArr = bg0Var.f26853f;
-        bg0 bg0Var2 = this.f26500b;
-        if (bg0Var2.f26853f == null) {
-            bg0Var2.a();
-        }
-        float[] fArr2 = bg0Var2.f26853f;
-        bg0 bg0Var3 = this.f26501c;
-        if (bg0Var3.f26853f == null) {
-            bg0Var3.a();
-        }
-        float[] fArr3 = bg0Var3.f26853f;
-        bg0 bg0Var4 = this.d;
-        if (bg0Var4.f26853f == null) {
-            bg0Var4.a();
-        }
-        float[] fArr4 = bg0Var4.f26853f;
-        for (int i10 = 0; i10 < 200; i10++) {
-            byteBuffer.put((byte) (fArr2[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr3[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr4[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr[i10] * 255.0f));
-        }
-        byteBuffer.position(0);
     }
 
-    public final boolean b() {
-        if (this.f26499a.b() && this.f26500b.b() && this.f26501c.b() && this.d.b()) {
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        fg0 fg0Var = this.f26552c;
+        e00 e00Var = fg0Var.f28136l0;
+        if (e00Var != null) {
+            e00Var.postRunnable(new b00(e00Var, 0));
+            fg0Var.f28136l0 = null;
             return true;
         }
-        return false;
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
+        fg0 fg0Var = this.f26552c;
+        e00 e00Var = fg0Var.f28136l0;
+        if (e00Var != null) {
+            e00Var.postRunnable(new a00(e00Var, i10, i11, 1));
+            fg0Var.f28136l0.d(false, true, false);
+            fg0Var.f28136l0.postRunnable(new xa0(this, 8));
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

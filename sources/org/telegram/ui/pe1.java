@@ -1,96 +1,68 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-public final class pe1 extends qg.b {
-    public final af1 d;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class pe1 extends s4.l {
+    public Runnable F;
+    public int G;
+    public final cf1 H;
 
-    public pe1(af1 af1Var) {
-        this.d = af1Var;
+    public pe1(cf1 cf1Var) {
+        this.H = cf1Var;
     }
 
     @Override
-    public final boolean D(s4.e1 e1Var) {
-        int i10 = e1Var.f47741f;
-        if (i10 != 0 && i10 != 3) {
-            return false;
-        }
-        return true;
-    }
-
-    public final ArrayList F() {
-        af1 af1Var = this.d;
-        af1Var.getClass();
-        return af1Var.f37737b;
-    }
-
-    @Override
-    public final int h() {
-        return F().size() + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == h() - 1) {
-            return 2;
-        }
-        return ((re1) this.d.f37737b.get(i10)).f47040a;
-    }
-
-    @Override
-    public final void l() {
-        this.d.f37740c = h();
-        super.l();
-    }
-
-    @Override
-    public final void v(s4.e1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pe1.v(s4.e1, int):void");
-    }
-
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        boolean z10;
-        int i11;
-        int i12;
-        int i13;
-        af1 af1Var = this.d;
-        if (i10 != 0 && i10 != 3) {
-            if (i10 == 2) {
-                oe1 oe1Var = new oe1(this, af1Var.getParentActivity());
-                af1Var.E0 = oe1Var;
-                return new s4.e1(oe1Var);
+    public final void F() {
+        if (this.G == -1) {
+            this.G = this.H.getNotificationCenter().setAnimationInProgress(this.G, null, false);
+            Runnable runnable = this.F;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                this.F = null;
             }
-            org.telegram.ui.Components.c10 c10Var = new org.telegram.ui.Components.c10(viewGroup.getContext(), null);
-            c10Var.setViewType(24);
-            c10Var.setIsSingleCell(true);
-            c10Var.f27031w = true;
-            return new s4.e1(c10Var);
         }
-        xe1 xe1Var = new xe1(af1Var, viewGroup.getContext(), false);
-        if (i10 == 3) {
-            i11 = ((org.telegram.ui.ActionBar.r2) af1Var).currentAccount;
-            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -af1Var.f37734a);
-            xe1Var.setForumIcon(pg.d.d(pg.a.f46842k[0], ""));
-            if (!isBotForumWithEditableTopics) {
-                i12 = R.string.BotForumAskForStartOffNewChatTitle;
-            } else {
-                i12 = R.string.BotForumAskForStartNewChatTitle;
-            }
-            xe1Var.setTitleOverride(LocaleController.getString(i12));
-            if (!isBotForumWithEditableTopics) {
-                i13 = R.string.BotForumAskForStartOffNewChatForward;
-            } else {
-                i13 = R.string.BotForumAskForStartNewChatForward;
-            }
-            xe1Var.setCustomMessage(LocaleController.getString(i13));
+    }
+
+    @Override
+    public final void N() {
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.F = null;
         }
-        z10 = ((org.telegram.ui.ActionBar.r2) af1Var).inPreviewMode;
-        xe1Var.f24679k0 = z10;
-        xe1Var.setArchivedPullAnimation(af1Var.f37777w);
-        return new s4.e1(xe1Var);
+        oe1 oe1Var = new oe1(this, 0);
+        this.F = oe1Var;
+        AndroidUtilities.runOnUIThread(oe1Var);
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        oe1 oe1Var = new oe1(this, 1);
+        this.F = oe1Var;
+        AndroidUtilities.runOnUIThread(oe1Var);
+    }
+
+    @Override
+    public final void z(s4.e1 e1Var) {
+        cf1 cf1Var = this.H;
+        View view = cf1Var.f38296c1;
+        if (view == e1Var.f47773a) {
+            view.setTranslationX(0.0f);
+            ge1 ge1Var = cf1Var.O;
+            if (ge1Var != null) {
+                ge1Var.F.clear();
+            }
+            View view2 = cf1Var.f38296c1;
+            if (view2 instanceof ze1) {
+                ze1 ze1Var = (ze1) view2;
+                ze1Var.setTopicIcon(ze1Var.f46245c5);
+            }
+            cf1Var.f38296c1 = null;
+        }
     }
 }

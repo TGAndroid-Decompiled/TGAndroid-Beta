@@ -1,20 +1,12 @@
 package vi;
-
-import java.nio.ByteBuffer;
-public final class b0 {
-    public final int f50338a;
-    public final int f50339b;
-    public final int f50340c;
-    public final int d;
+public final class b0 extends z {
     public final int e;
-    public final ByteBuffer f50341f;
+    public final int f50372f;
+    public final int f50373g;
+    public final int h;
+    public final int f50374i;
 
-    public b0(int i10, int i11, int i12, int i13, int i14, ByteBuffer byteBuffer) {
-        this.f50338a = i10;
-        this.f50339b = i11;
-        this.f50340c = i12;
-        this.d = i13;
-        this.e = i14;
-        this.f50341f = byteBuffer;
+    public b0(boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: vi.b0.<init>(boolean, boolean):void");
     }
 }

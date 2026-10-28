@@ -2,10 +2,10 @@ package f2;
 
 import e2.x;
 public final class a implements hb.n {
-    public final String f10055a;
+    public final String f10054a;
 
     public a(String str) {
-        this.f10055a = str;
+        this.f10054a = str;
     }
 
     public static a a(x xVar) {
@@ -45,6 +45,6 @@ public final class a implements hb.n {
 
     @Override
     public Object U1() {
-        throw new RuntimeException(this.f10055a);
+        throw new RuntimeException(this.f10054a);
     }
 }

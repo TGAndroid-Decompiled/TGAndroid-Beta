@@ -3,7 +3,7 @@ package o8;
 import java.util.Arrays;
 import o6.l;
 public final class a implements com.google.android.gms.common.api.b {
-    public static final a f19274a = new Object();
+    public static final a f19273a = new Object();
 
     public final boolean equals(Object obj) {
         if (obj == this) {

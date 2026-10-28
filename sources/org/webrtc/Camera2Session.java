@@ -119,7 +119,7 @@ public class Camera2Session implements CameraSession {
             Camera2Session.this.surface = new Surface(Camera2Session.this.surfaceTextureHelper.getSurfaceTexture());
             try {
                 cameraDevice.createCaptureSession(Arrays.asList(Camera2Session.this.surface), new CaptureSessionCallback(), Camera2Session.this.cameraThreadHandler);
-            } catch (CameraAccessException e) {
+            } catch (CameraAccessException | IllegalStateException | SecurityException e) {
                 Camera2Session camera2Session = Camera2Session.this;
                 camera2Session.reportError("Failed to create capture session. " + e);
             }
@@ -204,7 +204,7 @@ public class Camera2Session implements CameraSession {
                 Camera2Session.this.surfaceTextureHelper.startListening(new a(this, 1));
                 Logging.d("Camera2Session", "Camera device successfully started.");
                 Camera2Session.this.callback.onDone(Camera2Session.this);
-            } catch (CameraAccessException e) {
+            } catch (CameraAccessException | IllegalStateException | SecurityException e) {
                 Camera2Session camera2Session = Camera2Session.this;
                 camera2Session.reportError("Failed to start capture request. " + e);
             }

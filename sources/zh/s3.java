@@ -10,7 +10,7 @@ import org.telegram.ui.ActionBar.y6;
 public final class s3 extends org.telegram.ui.ActionBar.g1 {
     public final int V;
     public long W;
-    public q3 f53248a0;
+    public q3 f53306a0;
 
     public s3(Context context, int i10, u6 u6Var) {
         super(0, context, u6Var, false, false);
@@ -20,10 +20,10 @@ public final class s3 extends org.telegram.ui.ActionBar.g1 {
         int i12 = y6.F8;
         c(i11, i12);
         g(y6.w0(i12, u6Var), PorterDuff.Mode.SRC_IN);
-        this.f22638c.setTranslationX(AndroidUtilities.dp(2.0f));
+        this.f22639c.setTranslationX(AndroidUtilities.dp(2.0f));
         a(2);
         setBackground(null);
-        this.f22638c.addOnAttachStateChangeListener(new i6(this, 16));
+        this.f22639c.addOnAttachStateChangeListener(new i6(this, 16));
     }
 
     @Override

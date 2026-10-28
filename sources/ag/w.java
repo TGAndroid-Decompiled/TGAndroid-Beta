@@ -25,9 +25,9 @@ import org.telegram.ui.ActionBar.c7;
 import org.telegram.ui.ActionBar.d7;
 import org.telegram.ui.ActionBar.e2;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.jw0;
-import org.telegram.ui.dg1;
-public final class w implements Vector.TLDeserializer, e9.k, s9.d, b2, c7, d7, jw0 {
+import org.telegram.ui.Components.kw0;
+import org.telegram.ui.fg1;
+public final class w implements Vector.TLDeserializer, e9.k, s9.d, b2, c7, d7, kw0 {
     public final int f1386a;
 
     public w(int i10) {
@@ -115,7 +115,7 @@ public final class w implements Vector.TLDeserializer, e9.k, s9.d, b2, c7, d7, j
                 b2.w wVar = new b2.w();
                 if (bundle4 != null) {
                     ClassLoader classLoader = e2.e.class.getClassLoader();
-                    String str5 = e2.n0.f9692a;
+                    String str5 = e2.n0.f9691a;
                     bundle4.setClassLoader(classLoader);
                 }
                 String string5 = bundle4.getString(b2.x.W);
@@ -223,7 +223,7 @@ public final class w implements Vector.TLDeserializer, e9.k, s9.d, b2, c7, d7, j
                 bundle8.getClass();
                 ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(q1.f3356f);
                 if (parcelableArrayList2 == null) {
-                    f9.g0 g0Var = f9.i0.f10287b;
+                    f9.g0 g0Var = f9.i0.f10286b;
                     b10 = s1.e;
                 } else {
                     b10 = e2.e.b(new w(9), parcelableArrayList2);
@@ -301,7 +301,7 @@ public final class w implements Vector.TLDeserializer, e9.k, s9.d, b2, c7, d7, j
                 int i11 = h7.A1;
                 return;
             default:
-                h7.D2(new dg1(6, null));
+                h7.D2(new fg1(6, null));
                 return;
         }
     }

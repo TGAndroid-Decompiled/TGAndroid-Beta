@@ -1,27 +1,29 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class ma implements Runnable {
-    public final int f20678a;
-    public final MessagesController f20679b;
-    public final TLRPC.Updates f20680c;
-    public final boolean d;
+    public final int f20675a;
+    public final MessagesController f20676b;
+    public final int f20677c;
 
-    public ma(MessagesController messagesController, TLRPC.Updates updates, boolean z10, int i10) {
-        this.f20678a = i10;
-        this.f20679b = messagesController;
-        this.f20680c = updates;
-        this.d = z10;
+    public ma(MessagesController messagesController, int i10, int i11) {
+        this.f20675a = i11;
+        this.f20676b = messagesController;
+        this.f20677c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20678a) {
+        switch (this.f20675a) {
             case 0:
-                this.f20679b.lambda$processUpdates$380(this.f20680c, this.d);
+                this.f20676b.lambda$updateTimerProc$156(this.f20677c);
+                return;
+            case 1:
+                this.f20676b.lambda$onFolderEmpty$196(this.f20677c);
+                return;
+            case 2:
+                this.f20676b.lambda$ensureMessagesLoaded$468(this.f20677c);
                 return;
             default:
-                this.f20679b.lambda$processUpdates$379(this.f20680c, this.d);
+                this.f20676b.lambda$didAddedNewTask$80(this.f20677c);
                 return;
         }
     }

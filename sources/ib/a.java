@@ -6,7 +6,7 @@ public class a implements fb.v {
     @Override
     public final fb.u create(fb.g gVar, mb.a aVar) {
         Type componentType;
-        Type type = aVar.f18408b;
+        Type type = aVar.f18407b;
         boolean z10 = type instanceof GenericArrayType;
         if (!z10 && (!(type instanceof Class) || !((Class) type).isArray())) {
             return null;

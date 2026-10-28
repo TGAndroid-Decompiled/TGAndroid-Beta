@@ -114,10 +114,10 @@ public final class ob implements View.OnClickListener {
                         pVar.run(wallettransaction.comment, null);
                         return;
                     }
-                    org.telegram.ui.Wallet.l0 w10 = org.telegram.ui.Wallet.l0.w(i11);
+                    org.telegram.ui.Wallet.l0 x9 = org.telegram.ui.Wallet.l0.x(i11);
                     String str2 = wallettransaction.comment;
-                    org.telegram.ui.Wallet.l0.F("decrypting transaction comment");
-                    w10.y(new org.telegram.ui.Wallet.j(w10, pVar, str, str2), true, false);
+                    org.telegram.ui.Wallet.l0.H("decrypting transaction comment");
+                    x9.z(new org.telegram.ui.Wallet.j(x9, pVar, str, str2), true, false);
                     return;
                 }
                 return;

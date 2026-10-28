@@ -10,8 +10,8 @@ import android.util.Log;
 import java.util.Date;
 import o6.l;
 public abstract class e {
-    public static boolean f13887a = false;
-    public static int f13888b = 1;
+    public static boolean f13886a = false;
+    public static int f13887b = 1;
 
     public static long a(Date date) {
         return (date.getTime() / 1000) + 2082844800;
@@ -27,7 +27,7 @@ public abstract class e {
             try {
                 l.i(context, "Context is null");
                 Log.d("e", "preferredRenderer: ".concat("null"));
-                if (f13887a) {
+                if (f13886a) {
                     return 0;
                 }
                 try {
@@ -41,13 +41,13 @@ public abstract class e {
                             l.i(X0, "delegate must not be null");
                             od.f654a = X0;
                         }
-                        f13887a = true;
+                        f13886a = true;
                         try {
                             Parcel M0 = a2.M0(a2.N0(), 9);
                             int readInt = M0.readInt();
                             M0.recycle();
                             if (readInt == 2) {
-                                f13888b = 2;
+                                f13887b = 2;
                             }
                             y6.b bVar = new y6.b(context);
                             Parcel N0 = a2.N0();
@@ -57,7 +57,7 @@ public abstract class e {
                         } catch (RemoteException e) {
                             Log.e("e", "Failed to retrieve renderer type or log initialization.", e);
                         }
-                        int i10 = f13888b;
+                        int i10 = f13887b;
                         if (i10 != 1) {
                             if (i10 != 2) {
                                 str = "null";
@@ -73,7 +73,7 @@ public abstract class e {
                         throw new RuntimeException(e10);
                     }
                 } catch (l6.f e11) {
-                    return e11.f16933a;
+                    return e11.f16932a;
                 }
             } catch (Throwable th2) {
                 throw th2;

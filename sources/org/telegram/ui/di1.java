@@ -1,63 +1,128 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class di1 extends org.telegram.ui.Components.lm0 {
-    public final Context f38897c;
-    public final WallpapersListActivity d;
+import android.graphics.Bitmap;
+import java.io.File;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class di1 {
+    public String f38622a;
+    public final int f38623b;
+    public final int f38624c;
+    public final int d;
+    public final int e;
+    public int f38625f;
+    public TLRPC.TL_wallPaper f38626g;
+    public float h;
+    public final File f38627i;
+    public final boolean f38628j;
+    public final boolean f38629k;
+    public TLRPC.WallPaper f38630l;
+    public Bitmap f38631m;
 
-    public di1(WallpapersListActivity wallpapersListActivity, Context context) {
-        this.d = wallpapersListActivity;
-        this.f38897c = context;
+    public di1(int i10, int i11, String str, int i12) {
+        this.f38622a = str;
+        this.f38623b = i10 | (-16777216);
+        int i13 = i11 == 0 ? 0 : i11 | (-16777216);
+        this.f38624c = i13;
+        this.f38625f = i13 == 0 ? 0 : i12;
+        this.h = 1.0f;
     }
 
-    @Override
-    public final boolean D(s4.e1 e1Var) {
-        if (e1Var.f47741f == 0) {
-            return true;
+    public final String a() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(String.valueOf(this.f38623b));
+        sb2.append(this.f38624c);
+        sb2.append(this.d);
+        sb2.append(this.e);
+        sb2.append(this.f38625f);
+        sb2.append(this.h);
+        String str = this.f38622a;
+        if (str == null) {
+            str = "";
         }
-        return false;
+        sb2.append(str);
+        return Utilities.MD5(sb2.toString());
     }
 
-    @Override
-    public final int h() {
-        return this.d.f37587a;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        WallpapersListActivity wallpapersListActivity = this.d;
-        i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.h && i10 != wallpapersListActivity.f37589b && i10 != wallpapersListActivity.e) {
-            if (i10 != wallpapersListActivity.f37595f && i10 != wallpapersListActivity.f37597n) {
-                return 2;
-            }
-            return 3;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.e1 r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.di1.v(s4.e1, int):void");
-    }
-
-    @Override
-    public final s4.e1 x(ViewGroup viewGroup, int i10) {
-        View v8Var;
-        Context context = this.f38897c;
+    public final String b() {
+        String str;
+        String str2;
+        String str3 = null;
+        int i10 = this.f38624c;
         if (i10 != 0) {
-            if (i10 != 3) {
-                v8Var = new org.telegram.ui.Components.hj(this, context, 1);
-                v8Var.setTag(-33024);
-            } else {
-                v8Var = new org.telegram.ui.Cells.i9(context);
-            }
+            str = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i10 >> 16)) & 255), Integer.valueOf(((byte) (i10 >> 8)) & 255), Byte.valueOf((byte) (i10 & 255))).toLowerCase();
         } else {
-            v8Var = new org.telegram.ui.Cells.v8(context);
+            str = null;
         }
-        return new s4.e1(v8Var);
+        int i11 = this.f38623b;
+        String lowerCase = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i11 >> 16)) & 255), Integer.valueOf(((byte) (i11 >> 8)) & 255), Byte.valueOf((byte) (i11 & 255))).toLowerCase();
+        int i12 = this.d;
+        if (i12 != 0) {
+            str2 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i12 >> 16)) & 255), Integer.valueOf(((byte) (i12 >> 8)) & 255), Byte.valueOf((byte) (i12 & 255))).toLowerCase();
+        } else {
+            str2 = null;
+        }
+        int i13 = this.e;
+        if (i13 != 0) {
+            str3 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i13 >> 16)) & 255), Integer.valueOf(((byte) (i13 >> 8)) & 255), Byte.valueOf((byte) (i13 & 255))).toLowerCase();
+        }
+        if (str != null && str2 != null) {
+            if (str3 != null) {
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append(lowerCase);
+                sb2.append("~");
+                sb2.append(str);
+                sb2.append("~");
+                sb2.append(str2);
+                lowerCase = a1.g.s(sb2, "~", str3);
+            } else {
+                lowerCase = lowerCase + "~" + str + "~" + str2;
+            }
+        } else if (str != null) {
+            String D = a1.g.D(lowerCase, "-", str);
+            if (this.f38626g != null) {
+                StringBuilder l4 = org.telegram.ui.Components.b10.l(D, "&rotation=");
+                l4.append(AndroidUtilities.getWallpaperRotation(this.f38625f, true));
+                lowerCase = l4.toString();
+            } else {
+                StringBuilder l10 = org.telegram.ui.Components.b10.l(D, "?rotation=");
+                l10.append(AndroidUtilities.getWallpaperRotation(this.f38625f, true));
+                lowerCase = l10.toString();
+            }
+        }
+        if (this.f38626g != null) {
+            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f38626g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
+            if (this.f38628j) {
+                return org.telegram.ui.Components.b10.u(str4, "&mode=motion");
+            }
+            return str4;
+        }
+        return a1.g.q(MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix, "/bg/", lowerCase, new StringBuilder("https://"));
+    }
+
+    public di1(String str, int i10, int i11, int i12, int i13) {
+        this.f38622a = str;
+        this.f38623b = i10 | (-16777216);
+        this.f38624c = i11 == 0 ? 0 : i11 | (-16777216);
+        this.d = i12 == 0 ? 0 : i12 | (-16777216);
+        this.e = i13 != 0 ? i13 | (-16777216) : 0;
+        this.h = 1.0f;
+        this.f38629k = true;
+    }
+
+    public di1(String str, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, File file) {
+        this.f38622a = str;
+        this.f38623b = i10 | (-16777216);
+        int i15 = i11 == 0 ? 0 : i11 | (-16777216);
+        this.f38624c = i15;
+        this.d = i12 == 0 ? 0 : i12 | (-16777216);
+        this.e = i13 != 0 ? i13 | (-16777216) : 0;
+        this.f38625f = i15 == 0 ? 45 : i14;
+        this.h = f7;
+        this.f38627i = file;
+        this.f38628j = z10;
     }
 }

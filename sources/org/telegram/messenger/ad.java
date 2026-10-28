@@ -2,27 +2,30 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ad implements Utilities.Callback {
-    public final int f19625a;
-    public final MessagesController f19626b;
+public final class ad implements Utilities.Callback2 {
+    public final int f19620a;
+    public final MessagesController f19621b;
+    public final long f19622c;
+    public final Utilities.Callback2 d;
 
-    public ad(MessagesController messagesController, int i10) {
-        this.f19625a = i10;
-        this.f19626b = messagesController;
+    public ad(MessagesController messagesController, long j10, Utilities.Callback2 callback2, int i10) {
+        this.f19620a = i10;
+        this.f19621b = messagesController;
+        this.f19622c = j10;
+        this.d = callback2;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f19625a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f19620a) {
             case 0:
-                this.f19626b.lambda$loadAppConfig$32((TLRPC.TL_help_appConfig) obj);
+                this.f19621b.lambda$resolveCommunityAllJoinPendingRequests$249(this.f19622c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                this.f19626b.lambda$loadWebBrowserConfig$516((TL_account.TL_webBrowserSettings) obj);
+                this.f19621b.lambda$resolveCommunityJoinPendingRequest$248(this.f19622c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                this.f19626b.lambda$getAvailableEffects$501((TLRPC.messages_AvailableEffects) obj);
+                this.f19621b.lambda$toggleCommunityParticipantBanned$247(this.f19622c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

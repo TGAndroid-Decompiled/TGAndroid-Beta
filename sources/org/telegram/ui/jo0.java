@@ -2,160 +2,87 @@ package org.telegram.ui;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import java.util.HashMap;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class jo0 implements TextWatcher {
-    public final String[] f40708a = {"34", "37"};
-    public final String[] f40709b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
-    public final String[] f40710c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
-    public int d = -1;
-    public int e;
-    public final po0 f40711f;
+    public final ro0 f40573a;
 
-    public jo0(po0 po0Var) {
-        this.f40711f = po0Var;
+    public jo0(ro0 ro0Var) {
+        this.f40573a = ro0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        int i10;
         boolean z10;
-        int i11;
-        int i12;
-        String[] strArr;
-        int i13;
         String str;
-        po0 po0Var = this.f40711f;
-        if (po0Var.f42610o0) {
+        String str2;
+        ro0 ro0Var = this.f40573a;
+        HashMap hashMap = ro0Var.f43103c;
+        if (ro0Var.m0) {
             return;
         }
-        int i14 = 0;
-        EditTextBoldCursor editTextBoldCursor = po0Var.f42599f[0];
-        int selectionStart = editTextBoldCursor.getSelectionStart();
-        String obj = editTextBoldCursor.getText().toString();
-        int i15 = 3;
-        int i16 = 1;
-        if (this.d == 3) {
-            obj = obj.substring(0, this.e) + obj.substring(this.e + 1);
-            selectionStart--;
-        }
-        StringBuilder sb2 = new StringBuilder(obj.length());
-        int i17 = 0;
-        while (i17 < obj.length()) {
-            int i18 = i17 + 1;
-            String substring = obj.substring(i17, i18);
-            if ("0123456789".contains(substring)) {
-                sb2.append(substring);
-            }
-            i17 = i18;
-        }
-        po0Var.f42610o0 = true;
-        String str2 = null;
-        int i19 = 100;
-        if (sb2.length() > 0) {
-            String sb3 = sb2.toString();
-            int i20 = 0;
-            while (true) {
-                if (i20 < i15) {
-                    if (i20 != 0) {
-                        if (i20 != i16) {
-                            strArr = this.f40709b;
-                            i13 = 14;
-                            str = "xxxx xxxx xxxx xx";
-                        } else {
-                            strArr = this.f40708a;
-                            i13 = 15;
-                            str = "xxxx xxxx xxxx xxx";
-                        }
-                    } else {
-                        strArr = this.f40710c;
-                        i13 = 16;
-                        str = "xxxx xxxx xxxx xxxx";
-                    }
-                    i10 = i16;
-                    for (int i21 = i14; i21 < strArr.length; i21++) {
-                        String str3 = strArr[i21];
-                        if (sb3.length() <= str3.length()) {
-                            if (str3.startsWith(sb3)) {
-                                i19 = i13;
-                                str2 = str;
-                                break;
-                            }
-                        } else if (sb3.startsWith(str3)) {
-                            i19 = i13;
-                            str2 = str;
+        ro0Var.m0 = true;
+        String d = kf.b.d(ro0Var.f43110f[8].getText().toString(), false);
+        ro0Var.f43110f[8].setText(d);
+        org.telegram.ui.Components.q40 q40Var = (org.telegram.ui.Components.q40) ro0Var.f43110f[9];
+        if (d.length() == 0) {
+            q40Var.setHintText((String) null);
+            q40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+        } else {
+            int i10 = 4;
+            if (d.length() > 4) {
+                while (true) {
+                    if (i10 >= 1) {
+                        String substring = d.substring(0, i10);
+                        if (((String) hashMap.get(substring)) != null) {
+                            ro0Var.f43110f[8].setText(substring);
+                            str = d.substring(i10) + ro0Var.f43110f[9].getText().toString();
+                            d = substring;
+                            z10 = true;
                             break;
                         }
-                    }
-                    if (str2 != null) {
+                        i10--;
+                    } else {
+                        z10 = false;
+                        str = null;
                         break;
                     }
-                    i20++;
-                    i16 = i10;
-                    i14 = 0;
-                    i15 = 3;
-                } else {
-                    i10 = i16;
-                    break;
                 }
-            }
-            if (sb2.length() > i19) {
-                sb2.setLength(i19);
-            }
-        } else {
-            i10 = 1;
-        }
-        if (str2 != null) {
-            if (sb2.length() == i19) {
-                po0Var.f42599f[i10].requestFocus();
-            }
-            org.telegram.ui.ActionBar.f7.V(editTextBoldCursor, org.telegram.ui.ActionBar.y6.G6, po0Var.Y0);
-            int i22 = 0;
-            while (true) {
-                if (i22 >= sb2.length()) {
-                    break;
-                } else if (i22 < str2.length()) {
-                    if (str2.charAt(i22) == ' ') {
-                        sb2.insert(i22, ' ');
-                        i22++;
-                        if (selectionStart == i22 && (i12 = this.d) != 2 && i12 != 3) {
-                            selectionStart++;
-                        }
-                    }
-                    i22++;
-                } else {
-                    sb2.insert(i22, ' ');
-                    if (selectionStart == i22 + 1 && (i11 = this.d) != 2 && i11 != 3) {
-                        selectionStart++;
-                    }
+                if (!z10) {
+                    str = d.substring(1) + ro0Var.f43110f[9].getText().toString();
+                    EditTextBoldCursor editTextBoldCursor = ro0Var.f43110f[8];
+                    d = d.substring(0, 1);
+                    editTextBoldCursor.setText(d);
                 }
+            } else {
+                z10 = false;
+                str = null;
+            }
+            String str3 = (String) hashMap.get(d);
+            if (str3 != null && ro0Var.f43097a.indexOf(str3) != -1 && (str2 = (String) ro0Var.d.get(d)) != null) {
+                q40Var.setHintText(str2.replace('X', (char) 8211));
+                q40Var.setHint((CharSequence) null);
+            } else {
+                q40Var.setHintText((String) null);
+                q40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+            }
+            if (!z10) {
+                EditTextBoldCursor editTextBoldCursor2 = ro0Var.f43110f[8];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+            }
+            if (str != null) {
+                q40Var.requestFocus();
+                q40Var.setText(str);
+                q40Var.setSelection(q40Var.length());
             }
         }
-        if (!sb2.toString().equals(editable.toString())) {
-            z10 = false;
-            editable.replace(0, editable.length(), sb2);
-        } else {
-            z10 = false;
-        }
-        if (selectionStart >= 0) {
-            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
-        }
-        po0Var.f42610o0 = z10;
+        ro0Var.m0 = false;
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (i11 == 0 && i12 == 1) {
-            this.d = 1;
-        } else if (i11 == 1 && i12 == 0) {
-            if (charSequence.charAt(i10) == ' ' && i10 > 0) {
-                this.d = 3;
-                this.e = i10 - 1;
-                return;
-            }
-            this.d = 2;
-        } else {
-            this.d = -1;
-        }
     }
 
     @Override

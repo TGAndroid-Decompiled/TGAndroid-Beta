@@ -16,10 +16,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.d80;
+import org.telegram.ui.f80;
 public abstract class r2 {
     public static void a(final int i10, final Utilities.CallbackReturn callbackReturn, final Utilities.Callback2 callback2, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity, final Utilities.Callback3 callback3, final boolean z10, final boolean z11, final ag.b1 b1Var) {
         if (!b1Var.f1255b) {
@@ -103,8 +103,8 @@ public abstract class r2 {
                                                                     i13 = i14;
                                                                     m2 m2Var = new m2(i13, callbackReturn4, callback24, q2Var2, callback34, z17, z18, b1Var4, 1);
                                                                     q2Var2.Z = 1;
-                                                                    q2Var2.f36305b0 = m2Var;
-                                                                    q2Var2.t0(new d80(b1Var4, z17, q2Var2, 13));
+                                                                    q2Var2.f36329b0 = m2Var;
+                                                                    q2Var2.t0(new f80(b1Var4, z17, q2Var2, 13));
                                                                     q2Var = q2Var2;
                                                                 } else {
                                                                     callback24 = callback25;
@@ -170,14 +170,14 @@ public abstract class r2 {
                                                         boolean z17 = z15;
                                                         m2 m2Var = new m2(i20, callbackReturn4, callback24, q2Var, callback34, z17, z16, b1Var4, 0);
                                                         q2Var.Z = 1;
-                                                        q2Var.f36305b0 = m2Var;
+                                                        q2Var.f36329b0 = m2Var;
                                                         q2Var.I = password;
                                                         q2Var.J = false;
                                                         org.telegram.ui.ActionBar.r2 U2 = LaunchActivity.U();
                                                         if (U2 != 0 && U2.getContext() != null) {
                                                             if (z17) {
                                                                 ?? obj8 = new Object();
-                                                                obj8.f22928a = true;
+                                                                obj8.f22929a = true;
                                                                 U2.showAsSheet(q2Var, obj8);
                                                                 return;
                                                             }
@@ -190,13 +190,13 @@ public abstract class r2 {
                                                     b1Var4.b();
                                                     Activity activity3 = activity2;
                                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity3);
-                                                    alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
+                                                    alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
                                                     LinearLayout linearLayout = new LinearLayout(activity3);
                                                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                                                     linearLayout.setOrientation(1);
                                                     alertDialog$Builder.o(linearLayout);
                                                     TextView textView = new TextView(activity3);
-                                                    int i21 = org.telegram.ui.ActionBar.y6.f23464j5;
+                                                    int i21 = org.telegram.ui.ActionBar.y6.f23465j5;
                                                     org.telegram.ui.ActionBar.f7.V(textView, i21, null);
                                                     textView.setTextSize(1, 16.0f);
                                                     if (LocaleController.isRTL) {
@@ -206,10 +206,10 @@ public abstract class r2 {
                                                     }
                                                     textView.setGravity(i13 | 48);
                                                     textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.WithdrawChannelAlertText)));
-                                                    linearLayout.addView(textView, gb1.r(-1, -2));
+                                                    linearLayout.addView(textView, kb1.r(-1, -2));
                                                     LinearLayout linearLayout2 = new LinearLayout(activity3);
                                                     linearLayout2.setOrientation(0);
-                                                    linearLayout.addView(linearLayout2, gb1.o(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                                                    linearLayout.addView(linearLayout2, kb1.o(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                                     ImageView imageView = new ImageView(activity3);
                                                     imageView.setImageResource(R.drawable.list_circle);
                                                     if (LocaleController.isRTL) {
@@ -237,14 +237,14 @@ public abstract class r2 {
                                                     textView2.setGravity(i15 | 48);
                                                     org.telegram.messenger.t.n(R.string.EditAdminTransferAlertText1, textView2);
                                                     if (LocaleController.isRTL) {
-                                                        linearLayout2.addView(textView2, gb1.r(-1, -2));
-                                                        linearLayout2.addView(imageView, gb1.u(-2, -2, 5));
+                                                        linearLayout2.addView(textView2, kb1.r(-1, -2));
+                                                        linearLayout2.addView(imageView, kb1.u(-2, -2, 5));
                                                     } else {
-                                                        linearLayout2.addView(imageView, gb1.r(-2, -2));
-                                                        linearLayout2.addView(textView2, gb1.r(-1, -2));
+                                                        linearLayout2.addView(imageView, kb1.r(-2, -2));
+                                                        linearLayout2.addView(textView2, kb1.r(-1, -2));
                                                     }
                                                     LinearLayout f7 = org.telegram.messenger.t.f(activity3, 0);
-                                                    linearLayout.addView(f7, gb1.o(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                                                    linearLayout.addView(f7, kb1.o(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                                     ImageView imageView2 = new ImageView(activity3);
                                                     imageView2.setImageResource(R.drawable.list_circle);
                                                     if (LocaleController.isRTL) {
@@ -271,13 +271,13 @@ public abstract class r2 {
                                                     textView3.setGravity(i17 | 48);
                                                     org.telegram.messenger.t.n(R.string.EditAdminTransferAlertText2, textView3);
                                                     if (LocaleController.isRTL) {
-                                                        f7.addView(textView3, gb1.r(-1, -2));
+                                                        f7.addView(textView3, kb1.r(-1, -2));
                                                         i18 = 5;
-                                                        f7.addView(imageView2, gb1.u(-2, -2, 5));
+                                                        f7.addView(imageView2, kb1.u(-2, -2, 5));
                                                     } else {
                                                         i18 = 5;
-                                                        f7.addView(imageView2, gb1.r(-2, -2));
-                                                        f7.addView(textView3, gb1.r(-1, -2));
+                                                        f7.addView(imageView2, kb1.r(-2, -2));
+                                                        f7.addView(textView3, kb1.r(-1, -2));
                                                     }
                                                     boolean equals2 = "PASSWORD_MISSING".equals(tL_error.text);
                                                     org.telegram.ui.ActionBar.r2 r2Var3 = r2Var2;
@@ -295,14 +295,14 @@ public abstract class r2 {
                                                         }
                                                         textView4.setGravity(i19 | 48);
                                                         textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
-                                                        linearLayout.addView(textView4, gb1.o(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                                                        linearLayout.addView(textView4, kb1.o(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                                         alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
                                                     }
                                                     TwoStepVerificationActivity twoStepVerificationActivity4 = twoStepVerificationActivity3;
                                                     if (twoStepVerificationActivity4 != null) {
-                                                        twoStepVerificationActivity4.showDialog(alertDialog$Builder.f22368a);
+                                                        twoStepVerificationActivity4.showDialog(alertDialog$Builder.f22369a);
                                                     } else {
-                                                        r2Var3.showDialog(alertDialog$Builder.f22368a);
+                                                        r2Var3.showDialog(alertDialog$Builder.f22369a);
                                                     }
                                                 }
                                             }, 8);

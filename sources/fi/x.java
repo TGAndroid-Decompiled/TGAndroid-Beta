@@ -1,4 +1,4 @@
 package fi;
 public final class x extends dc {
-    public int f11949s;
+    public int f11948s;
 }

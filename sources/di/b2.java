@@ -3,7 +3,7 @@ package di;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.k80;
+import org.telegram.ui.Components.l80;
 public final class b2 implements View.OnLongClickListener {
     public final int f8416a;
     public final q4 f8417b;
@@ -22,7 +22,7 @@ public final class b2 implements View.OnLongClickListener {
                 if (q4Var.B0(true)) {
                     return false;
                 }
-                k80 F = k80.F(q4Var.f9047y0.v, q4Var.f9015q0, view);
+                l80 F = l80.F(q4Var.f9046y0.v, q4Var.f9014q0, view);
                 F.c(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new c2(q4Var, 6), false);
                 if (q4Var.A3 > 0) {
                     z10 = true;

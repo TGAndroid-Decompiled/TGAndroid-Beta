@@ -1,44 +1,37 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class uq implements dq {
-    public final TLObject f44514a;
-    public final long f44515b;
-    public final boolean f44516c;
-    public final kr d;
+public final class uq extends iq {
+    public final boolean[] f44087c1;
+    public final long f44088d1;
+    public final mr f44089e1;
 
-    public uq(kr krVar, TLObject tLObject, long j10, boolean z10) {
-        this.d = krVar;
-        this.f44514a = tLObject;
-        this.f44515b = j10;
-        this.f44516c = z10;
+    public uq(mr mrVar, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, long j12) {
+        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
+        this.f44089e1 = mrVar;
+        this.f44087c1 = zArr;
+        this.f44088d1 = j12;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        kr.d0(this.d, user);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f44514a;
-        if (tLObject instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
-            channelParticipant.admin_rights = tL_chatAdminRights;
-            channelParticipant.banned_rights = tL_chatBannedRights;
-            channelParticipant.rank = str;
-        }
-        kr krVar = this.d;
-        dr drVar = krVar.l1;
-        long j10 = this.f44515b;
-        if (drVar != null && i10 == 1) {
-            drVar.b(j10);
-        } else if (drVar != null) {
-            drVar.c(j10, tLObject);
-        }
-        if (this.f44516c) {
-            krVar.removeSelfFromStack();
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f44087c1[0]) {
+            mr mrVar = this.f44089e1;
+            if (org.telegram.ui.Components.wc.a(mrVar)) {
+                long j10 = this.f44088d1;
+                if (j10 > 0) {
+                    TLRPC.User user = getMessagesController().getUser(Long.valueOf(j10));
+                    if (user != null) {
+                        org.telegram.ui.Components.wc.C(mrVar, user.first_name).j();
+                        return;
+                    }
+                    return;
+                }
+                TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-j10));
+                if (chat != null) {
+                    org.telegram.ui.Components.wc.C(mrVar, chat.title).j();
+                }
+            }
         }
     }
 }

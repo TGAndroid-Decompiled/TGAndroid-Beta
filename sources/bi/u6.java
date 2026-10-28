@@ -18,11 +18,11 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.w90;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.x90;
+import org.telegram.ui.Components.yj0;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.cy;
-import org.telegram.ui.qw;
+import org.telegram.ui.ey;
+import org.telegram.ui.sw;
 public final class u6 implements Runnable {
     public final int f5517a;
     public final Object f5518b;
@@ -51,8 +51,8 @@ public final class u6 implements Runnable {
                         }
                         int i10 = 1 - b7Var.f4369u0;
                         b7Var.f4369u0 = i10;
-                        xj0 lottieAnimation = y9VarArr[2 - i10].getImageReceiver().getLottieAnimation();
-                        xj0 lottieAnimation2 = y9VarArr[b7Var.f4369u0 + 1].getImageReceiver().getLottieAnimation();
+                        yj0 lottieAnimation = y9VarArr[2 - i10].getImageReceiver().getLottieAnimation();
+                        yj0 lottieAnimation2 = y9VarArr[b7Var.f4369u0 + 1].getImageReceiver().getLottieAnimation();
                         if (lottieAnimation2 != null && lottieAnimation != null) {
                             lottieAnimation2.T(lottieAnimation.t(), false);
                         }
@@ -112,7 +112,7 @@ public final class u6 implements Runnable {
             case 9:
                 c2.a aVar = (c2.a) this.f5518b;
                 if (aVar.f5928c.f5929a) {
-                    aVar.f5926a.f13509a.C1(3, false);
+                    aVar.f5926a.f13508a.C1(3, false);
                     return;
                 }
                 return;
@@ -139,19 +139,19 @@ public final class u6 implements Runnable {
                 b0Var.f7728b.trySetResult(null);
                 return;
             case 13:
-                cy cyVar = ((qw) this.f5518b).O0;
-                if (cyVar.L && cyVar.f4().G()) {
-                    cyVar.E0.h();
+                ey eyVar = ((sw) this.f5518b).O0;
+                if (eyVar.L && eyVar.f4().I()) {
+                    eyVar.E0.h();
                     return;
                 } else {
-                    cyVar.F4(true, true);
+                    eyVar.F4(true, true);
                     return;
                 }
             case 14:
-                ((di.f1) this.f5518b).f8547a.t(false);
+                ((di.f1) this.f5518b).f8546a.t(false);
                 return;
             case 15:
-                di.h1 h1Var = ((di.g1) this.f5518b).f8573a;
+                di.h1 h1Var = ((di.g1) this.f5518b).f8572a;
                 NotificationCenter.getInstance(h1Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(h1Var.g()));
                 return;
             case 16:
@@ -161,21 +161,21 @@ public final class u6 implements Runnable {
                 o1Var.T = false;
                 return;
             case 17:
-                ((di.l3) this.f5518b).f8756a.O0();
+                ((di.l3) this.f5518b).f8755a.O0();
                 return;
             case 18:
-                di.q4 q4Var = ((di.q3) this.f5518b).f8964x;
+                di.q4 q4Var = ((di.q3) this.f5518b).f8963x;
                 di.j4 j4Var = q4Var.F1;
                 if (j4Var != null) {
                     if (!q4Var.I1 && !q4Var.J1 && !q4Var.K1) {
                         di.y9 y9Var = ((di.p9) j4Var).d;
-                        if (!y9Var.f9445n0.getCurrentPeerView().b1(true) && !y9Var.f9445n0.E(true)) {
+                        if (!y9Var.f9444n0.getCurrentPeerView().b1(true) && !y9Var.f9444n0.E(true)) {
                             y9Var.q(true);
                             return;
                         }
                         return;
                     } else if (q4Var.D1.e) {
-                        ((di.x9) q4Var.B2.f8902c).loopBack();
+                        ((di.x9) q4Var.B2.f8901c).loopBack();
                         return;
                     } else {
                         q4Var.L0 = 0L;
@@ -192,7 +192,7 @@ public final class u6 implements Runnable {
                 return;
             case 20:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f5518b;
-                int i12 = ProfileStoriesView.f36232s0;
+                int i12 = ProfileStoriesView.f36256s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -211,8 +211,8 @@ public final class u6 implements Runnable {
                 return;
             case 24:
                 fi.a1 a1Var = (fi.a1) this.f5518b;
-                a1Var.c(a1Var.f10498b);
-                a1Var.f10499c = false;
+                a1Var.c(a1Var.f10497b);
+                a1Var.f10498c = false;
                 return;
             case 25:
                 di.l7 l7Var = (di.l7) this.f5518b;
@@ -227,20 +227,20 @@ public final class u6 implements Runnable {
                 return;
             case 28:
                 di.e8 e8Var = (di.e8) this.f5518b;
-                ArrayList arrayList = e8Var.f8528c;
+                ArrayList arrayList = e8Var.f8527c;
                 if (arrayList != null) {
-                    e8Var.f8526a.f9008o1 = arrayList;
+                    e8Var.f8525a.f9007o1 = arrayList;
                 }
-                di.q4 q4Var2 = e8Var.f8526a;
-                long j10 = e8Var.f8527b;
-                if (q4Var2.f9016q1 != j10 || q4Var2.f9008o1 != null) {
-                    q4Var2.f9016q1 = j10;
+                di.q4 q4Var2 = e8Var.f8525a;
+                long j10 = e8Var.f8526b;
+                if (q4Var2.f9015q1 != j10 || q4Var2.f9007o1 != null) {
+                    q4Var2.f9015q1 = j10;
                     q4Var2.h1();
                     q4Var2.g1();
                     q4Var2.d1(true);
-                    TL_stories.PeerStories peerStories = q4Var2.f9047y0.Q0;
+                    TL_stories.PeerStories peerStories = q4Var2.f9046y0.Q0;
                     if (peerStories != null) {
-                        q4Var2.H1.S(peerStories, true);
+                        q4Var2.H1.V(peerStories, true);
                         return;
                     }
                     di.h7 h7Var = q4Var2.H1;
@@ -249,12 +249,12 @@ public final class u6 implements Runnable {
                         y3 = h7Var.z(j10);
                         z10 = true;
                     }
-                    h7Var.S(y3, z10);
+                    h7Var.V(y3, z10);
                     return;
                 }
                 return;
             default:
-                ((w90) this.f5518b).d(true);
+                ((x90) this.f5518b).d(true);
                 return;
         }
     }

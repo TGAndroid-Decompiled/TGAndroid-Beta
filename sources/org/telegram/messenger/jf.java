@@ -1,41 +1,27 @@
 package org.telegram.messenger;
-public final class jf implements Runnable {
-    public final int f20436a;
-    public final MessagesStorage f20437b;
-    public final int f20438c;
 
-    public jf(MessagesStorage messagesStorage, int i10, int i11) {
-        this.f20436a = i11;
-        this.f20437b = messagesStorage;
-        this.f20438c = i10;
+import org.telegram.tgnet.TLRPC;
+public final class jf implements Runnable {
+    public final int f20438a;
+    public final MessagesStorage f20439b;
+    public final TLRPC.Message f20440c;
+    public final long d;
+
+    public jf(int i10, long j10, MessagesStorage messagesStorage, TLRPC.Message message) {
+        this.f20438a = i10;
+        this.f20439b = messagesStorage;
+        this.f20440c = message;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20436a) {
+        switch (this.f20438a) {
             case 0:
-                this.f20437b.lambda$readAllDialogs$68(this.f20438c);
-                return;
-            case 1:
-                this.f20437b.lambda$checkIfFolderEmptyInternal$248(this.f20438c);
-                return;
-            case 2:
-                this.f20437b.lambda$clearDownloadQueue$187(this.f20438c);
-                return;
-            case 3:
-                this.f20437b.lambda$putMessagesInternal$199(this.f20438c);
-                return;
-            case 4:
-                this.f20437b.lambda$getDownloadQueue$189(this.f20438c);
-                return;
-            case 5:
-                this.f20437b.lambda$getUnsentMessages$155(this.f20438c);
-                return;
-            case 6:
-                this.f20437b.lambda$checkIfFolderEmpty$249(this.f20438c);
+                this.f20439b.lambda$markMessageAsSendErrorWithParams$214(this.f20440c, this.d);
                 return;
             default:
-                this.f20437b.lambda$clearWidgetDialogs$170(this.f20438c);
+                this.f20439b.lambda$updateMessageCustomParams$114(this.f20440c, this.d);
                 return;
         }
     }

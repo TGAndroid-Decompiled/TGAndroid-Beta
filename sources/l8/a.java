@@ -13,24 +13,24 @@ import java.util.Collections;
 import java.util.List;
 public final class a extends p6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(19);
-    public final String f16952a;
-    public final byte[] f16953b;
-    public final byte[][] f16954c;
+    public final String f16951a;
+    public final byte[] f16952b;
+    public final byte[][] f16953c;
     public final byte[][] d;
     public final byte[][] e;
-    public final byte[][] f16955f;
+    public final byte[][] f16954f;
     public final int[] h;
-    public final byte[][] f16956n;
+    public final byte[][] f16955n;
 
     public a(String str, byte[] bArr, byte[][] bArr2, byte[][] bArr3, byte[][] bArr4, byte[][] bArr5, int[] iArr, byte[][] bArr6) {
-        this.f16952a = str;
-        this.f16953b = bArr;
-        this.f16954c = bArr2;
+        this.f16951a = str;
+        this.f16952b = bArr;
+        this.f16953c = bArr2;
         this.d = bArr3;
         this.e = bArr4;
-        this.f16955f = bArr5;
+        this.f16954f = bArr5;
         this.h = iArr;
-        this.f16956n = bArr6;
+        this.f16955n = bArr6;
     }
 
     public static List b(int[] iArr) {
@@ -89,7 +89,7 @@ public final class a extends p6.a {
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (xd.a(this.f16952a, aVar.f16952a) && Arrays.equals(this.f16953b, aVar.f16953b) && xd.a(c(this.f16954c), c(aVar.f16954c)) && xd.a(c(this.d), c(aVar.d)) && xd.a(c(this.e), c(aVar.e)) && xd.a(c(this.f16955f), c(aVar.f16955f)) && xd.a(b(this.h), b(aVar.h)) && xd.a(c(this.f16956n), c(aVar.f16956n))) {
+            if (xd.a(this.f16951a, aVar.f16951a) && Arrays.equals(this.f16952b, aVar.f16952b) && xd.a(c(this.f16953c), c(aVar.f16953c)) && xd.a(c(this.d), c(aVar.d)) && xd.a(c(this.e), c(aVar.e)) && xd.a(c(this.f16954f), c(aVar.f16954f)) && xd.a(b(this.h), b(aVar.h)) && xd.a(c(this.f16955n), c(aVar.f16955n))) {
                 return true;
             }
         }
@@ -100,7 +100,7 @@ public final class a extends p6.a {
         String sb2;
         StringBuilder sb3 = new StringBuilder("ExperimentTokens");
         sb3.append("(");
-        String str = this.f16952a;
+        String str = this.f16951a;
         if (str == null) {
             sb2 = "null";
         } else {
@@ -112,7 +112,7 @@ public final class a extends p6.a {
         }
         sb3.append(sb2);
         sb3.append(", direct=");
-        byte[] bArr = this.f16953b;
+        byte[] bArr = this.f16952b;
         if (bArr == null) {
             sb3.append("null");
         } else {
@@ -121,13 +121,13 @@ public final class a extends p6.a {
             sb3.append("'");
         }
         sb3.append(", ");
-        d(sb3, "GAIA", this.f16954c);
+        d(sb3, "GAIA", this.f16953c);
         sb3.append(", ");
         d(sb3, "PSEUDO", this.d);
         sb3.append(", ");
         d(sb3, "ALWAYS", this.e);
         sb3.append(", ");
-        d(sb3, "OTHER", this.f16955f);
+        d(sb3, "OTHER", this.f16954f);
         sb3.append(", ");
         sb3.append("weak");
         sb3.append("=");
@@ -151,7 +151,7 @@ public final class a extends p6.a {
             sb3.append(")");
         }
         sb3.append(", ");
-        d(sb3, "directs", this.f16956n);
+        d(sb3, "directs", this.f16955n);
         sb3.append(")");
         return sb3.toString();
     }
@@ -159,14 +159,14 @@ public final class a extends p6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        df.l(parcel, 2, this.f16952a);
-        df.c(parcel, 3, this.f16953b);
-        df.d(parcel, 4, this.f16954c);
+        df.l(parcel, 2, this.f16951a);
+        df.c(parcel, 3, this.f16952b);
+        df.d(parcel, 4, this.f16953c);
         df.d(parcel, 5, this.d);
         df.d(parcel, 6, this.e);
-        df.d(parcel, 7, this.f16955f);
+        df.d(parcel, 7, this.f16954f);
         df.g(parcel, 8, this.h);
-        df.d(parcel, 9, this.f16956n);
+        df.d(parcel, 9, this.f16955n);
         df.r(parcel, q5);
     }
 }

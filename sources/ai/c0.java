@@ -8,7 +8,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class c0 implements Runnable {
     public final int f1444a;
     public final o0 f1445b;
@@ -62,7 +62,7 @@ public final class c0 implements Runnable {
                     cameraView.setAlpha(0.0f);
                     cameraView.setDelegate(new f0(0, o0Var4, cameraView));
                     o0Var4.f1583b = cameraView;
-                    o0Var4.addView(cameraView, 0, gb1.g(-1.0f, -1));
+                    o0Var4.addView(cameraView, 0, kb1.g(-1.0f, -1));
                     return;
                 }
                 return;

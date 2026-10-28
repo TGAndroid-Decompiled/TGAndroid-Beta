@@ -30,7 +30,7 @@ public final class q1 extends he.b {
             kVar = this.f6255c;
         }
         if (kVar != null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = he.k.f12806a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = he.k.f12805a;
             while (!atomicReferenceFieldUpdater.compareAndSet(kVar2, this, kVar)) {
                 if (atomicReferenceFieldUpdater.get(kVar2) != this) {
                     return;

@@ -13,7 +13,7 @@ import org.telegram.ui.ActionBar.b7;
 import org.telegram.ui.ActionBar.f7;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class h extends FrameLayout {
     public static final int e = 0;
     public final g f4034a;
@@ -33,10 +33,10 @@ public final class h extends FrameLayout {
         gVar.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
         gVar.setFocusable(true);
         gVar.setOnClickListener(new f(0));
-        addView(gVar, gb1.i(36, 36, 17));
-        int x03 = y6.x0(null, y6.f23448i6, false);
+        addView(gVar, kb1.i(36, 36, 17));
+        int x03 = y6.x0(null, y6.f23449i6, false);
         int dp = AndroidUtilities.dp(36.0f);
-        int i10 = y6.f23356d6;
+        int i10 = y6.f23357d6;
         if (u6Var != null) {
             x02 = u6Var.g(i10);
         } else {

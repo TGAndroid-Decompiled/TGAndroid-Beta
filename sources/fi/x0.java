@@ -6,12 +6,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 public final class x0 implements Utilities.Callback {
-    public final int f11950a;
-    public final a1 f11951b;
+    public final int f11949a;
+    public final a1 f11950b;
 
     public x0(a1 a1Var, int i10) {
-        this.f11950a = i10;
-        this.f11951b = a1Var;
+        this.f11949a = i10;
+        this.f11950b = a1Var;
     }
 
     @Override
@@ -19,9 +19,9 @@ public final class x0 implements Utilities.Callback {
         File file;
         File file2;
         ArrayList arrayList = (ArrayList) obj;
-        switch (this.f11950a) {
+        switch (this.f11949a) {
             case 0:
-                a1 a1Var = this.f11951b;
+                a1 a1Var = this.f11950b;
                 a1Var.getClass();
                 long currentTimeMillis = System.currentTimeMillis();
                 ArrayList arrayList2 = new ArrayList();
@@ -33,13 +33,13 @@ public final class x0 implements Utilities.Callback {
                         arrayList3.add(a2);
                     } else {
                         arrayList4.add(a2);
-                        arrayList2.add(Long.valueOf(a2.f11891b));
+                        arrayList2.add(Long.valueOf(a2.f11890b));
                     }
                 }
                 a1Var.c(arrayList3);
-                a1Var.f10500f = false;
+                a1Var.f10499f = false;
                 a1Var.e = true;
-                di.h7 storiesController = MessagesController.getInstance(a1Var.f10497a).getStoriesController();
+                di.h7 storiesController = MessagesController.getInstance(a1Var.f10496a).getStoriesController();
                 storiesController.getClass();
                 int size = arrayList4.size();
                 int i11 = 0;
@@ -47,29 +47,29 @@ public final class x0 implements Utilities.Callback {
                     Object obj2 = arrayList4.get(i11);
                     i11++;
                     di.g7 g7Var = new di.g7(storiesController, (w7) obj2);
-                    storiesController.d(g7Var.J, g7Var, storiesController.f8631b, false);
+                    storiesController.d(g7Var.J, g7Var, storiesController.f8630b, false);
                 }
-                NotificationCenter.getInstance(storiesController.f8630a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                NotificationCenter.getInstance(storiesController.f8629a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                 return;
             default:
-                a1 a1Var2 = this.f11951b;
+                a1 a1Var2 = this.f11950b;
                 a1Var2.getClass();
                 long currentTimeMillis2 = System.currentTimeMillis();
                 ArrayList arrayList5 = new ArrayList();
                 ArrayList arrayList6 = new ArrayList();
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     w7 a10 = ((z0) arrayList.get(i12)).a();
-                    if ((!a10.v() && ((file2 = a10.L) == null || !file2.exists())) || (!a10.f11903g ? currentTimeMillis2 - a10.d > 604800000 : currentTimeMillis2 > a10.J)) {
+                    if ((!a10.v() && ((file2 = a10.L) == null || !file2.exists())) || (!a10.f11902g ? currentTimeMillis2 - a10.d > 604800000 : currentTimeMillis2 > a10.J)) {
                         arrayList6.add(a10);
                     } else {
-                        a1Var2.f10498b.add(a10);
-                        arrayList5.add(Long.valueOf(a10.f11891b));
+                        a1Var2.f10497b.add(a10);
+                        arrayList5.add(Long.valueOf(a10.f11890b));
                     }
                 }
                 a1Var2.c(arrayList6);
                 a1Var2.d = false;
-                a1Var2.f10499c = true;
-                NotificationCenter.getInstance(a1Var2.f10497a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
+                a1Var2.f10498c = true;
+                NotificationCenter.getInstance(a1Var2.f10496a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
                 return;
         }
     }

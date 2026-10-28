@@ -2,6 +2,6 @@ package jf;
 
 import java.util.concurrent.CountDownLatch;
 public final class c {
-    public a f15616a;
-    public volatile CountDownLatch f15617b;
+    public a f15615a;
+    public volatile CountDownLatch f15616b;
 }

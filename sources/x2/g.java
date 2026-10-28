@@ -5,7 +5,7 @@ import b2.x;
 import c3.h0;
 public final class g extends m implements Comparable {
     public final int e;
-    public final int f51322f;
+    public final int f51380f;
 
     public g(int i10, q1 q1Var, int i11, j jVar, int i12) {
         super(i10, q1Var, i11);
@@ -17,7 +17,7 @@ public final class g extends m implements Comparable {
         if (i14 != -1 && (i13 = xVar.A) != -1) {
             i15 = i14 * i13;
         }
-        this.f51322f = i15;
+        this.f51380f = i15;
     }
 
     @Override
@@ -33,6 +33,6 @@ public final class g extends m implements Comparable {
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f51322f, ((g) obj).f51322f);
+        return Integer.compare(this.f51380f, ((g) obj).f51380f);
     }
 }

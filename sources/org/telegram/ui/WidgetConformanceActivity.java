@@ -13,9 +13,9 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
 public final class WidgetConformanceActivity extends Activity {
-    public TextView f37603a;
-    public ScrollView f37604b;
-    public Thread f37605c;
+    public TextView f37627a;
+    public ScrollView f37628b;
+    public Thread f37629c;
 
     public static boolean a(Intent intent) {
         if (!intent.getBooleanExtra("clearHeights", false)) {
@@ -33,16 +33,16 @@ public final class WidgetConformanceActivity extends Activity {
     public final void b(Intent intent) {
         String str;
         WidgetConformanceActivity widgetConformanceActivity;
-        vh1 vh1Var;
-        if (this.f37604b == null) {
-            this.f37603a.setTypeface(Typeface.MONOSPACE);
-            this.f37603a.setTextSize(11.0f);
+        xh1 xh1Var;
+        if (this.f37628b == null) {
+            this.f37627a.setTypeface(Typeface.MONOSPACE);
+            this.f37627a.setTextSize(11.0f);
             int dp = AndroidUtilities.dp(12.0f);
-            this.f37603a.setPadding(dp, dp, dp, dp);
+            this.f37627a.setPadding(dp, dp, dp, dp);
             ScrollView scrollView = new ScrollView(this);
-            this.f37604b = scrollView;
-            scrollView.addView(this.f37603a);
-            setContentView(this.f37604b);
+            this.f37628b = scrollView;
+            scrollView.addView(this.f37627a);
+            setContentView(this.f37628b);
         }
         int intExtra = intent.getIntExtra("width", 390);
         String str2 = "dark";
@@ -50,7 +50,7 @@ public final class WidgetConformanceActivity extends Activity {
         String stringExtra = intent.getStringExtra("filter");
         String str3 = "attacks";
         boolean booleanExtra2 = intent.getBooleanExtra("attacks", false);
-        TextView textView = this.f37603a;
+        TextView textView = this.f37627a;
         StringBuilder sb2 = new StringBuilder();
         if (!booleanExtra2) {
             StringBuilder k10 = ic.a.k(intExtra, "conformance · width ", " · ");
@@ -69,16 +69,16 @@ public final class WidgetConformanceActivity extends Activity {
         sb2.append(str);
         sb2.append("\n");
         textView.setText(sb2.toString());
-        hl0 hl0Var = new hl0(this, 27);
+        jl0 jl0Var = new jl0(this, 27);
         if (booleanExtra2) {
-            vh1Var = new vh1(new org.telegram.ui.Components.qa1(this, stringExtra, hl0Var), 1);
+            xh1Var = new xh1(new org.telegram.ui.Components.ra1(this, stringExtra, jl0Var), 1);
             widgetConformanceActivity = this;
         } else {
             widgetConformanceActivity = this;
-            vh1Var = new vh1(new org.telegram.ui.Components.za1(widgetConformanceActivity, intExtra, booleanExtra, stringExtra, hl0Var), 2);
+            xh1Var = new xh1(new org.telegram.ui.Components.ab1(widgetConformanceActivity, intExtra, booleanExtra, stringExtra, jl0Var), 2);
         }
-        Thread thread = new Thread(vh1Var, "WidgetConformance");
-        widgetConformanceActivity.f37605c = thread;
+        Thread thread = new Thread(xh1Var, "WidgetConformance");
+        widgetConformanceActivity.f37629c = thread;
         thread.start();
     }
 
@@ -91,14 +91,14 @@ public final class WidgetConformanceActivity extends Activity {
         } else if (a(getIntent())) {
             finish();
         } else {
-            this.f37603a = new TextView(this);
+            this.f37627a = new TextView(this);
             b(getIntent());
         }
     }
 
     @Override
     public final void onDestroy() {
-        Thread thread = this.f37605c;
+        Thread thread = this.f37629c;
         if (thread != null) {
             thread.interrupt();
         }
@@ -108,8 +108,8 @@ public final class WidgetConformanceActivity extends Activity {
     @Override
     public final void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (!a(intent) && this.f37603a != null) {
-            Thread thread = this.f37605c;
+        if (!a(intent) && this.f37627a != null) {
+            Thread thread = this.f37629c;
             if (thread == null || !thread.isAlive()) {
                 b(intent);
             }

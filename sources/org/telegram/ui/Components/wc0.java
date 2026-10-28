@@ -1,31 +1,15 @@
 package org.telegram.ui.Components;
 
 import android.graphics.RuntimeShader;
-import java.util.Arrays;
-import org.telegram.messenger.AndroidUtilities;
-public final class wc0 {
-    public final RuntimeShader f34411a;
-    public final float[] f34412b = {1.0f, 1.0f, 0.0f, 0.0f};
-    public final float[] f34413c = {1.0f, 1.0f, 0.0f, 0.0f};
-
-    public wc0(int i10) {
-        vc0.c();
-        this.f34411a = vc0.b(AndroidUtilities.readRes(i10));
+public abstract class wc0 {
+    public static RuntimeShader a() {
+        return new RuntimeShader("uniform shader content;\nuniform shader alphaMask;\nuniform shader overlay;\nuniform float4 background_color_premultiplied;\nuniform float2 shader_offset;\nhalf4 main(float2 coord) {\n    half4 source = content.eval(coord);\n    half4 background = half4(background_color_premultiplied);\n    half4 base = source + background * (1.0 - source.a);\n    float2 shaderCoord = coord + shader_offset;\n    base *= alphaMask.eval(shaderCoord).a;\n    half4 top = overlay.eval(shaderCoord);\n    return top + base * (1.0 - top.a);\n}");
     }
 
-    public final void a(float[] fArr) {
-        float[] fArr2 = this.f34412b;
-        if (!Arrays.equals(fArr, fArr2)) {
-            System.arraycopy(fArr, 0, fArr2, 0, 4);
-            this.f34411a.setFloatUniform("transformGradient", fArr2);
-        }
+    public static RuntimeShader b(String str) {
+        return new RuntimeShader(str);
     }
 
-    public final void b(float[] fArr) {
-        float[] fArr2 = this.f34413c;
-        if (!Arrays.equals(fArr, fArr2)) {
-            System.arraycopy(fArr, 0, fArr2, 0, 4);
-            this.f34411a.setFloatUniform("transformPattern", fArr2);
-        }
+    public static void c() {
     }
 }

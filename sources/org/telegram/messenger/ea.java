@@ -1,29 +1,75 @@
 package org.telegram.messenger;
-public final class ea implements Runnable {
+
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ea implements RequestDelegate {
     public final int f19985a;
     public final MessagesController f19986b;
-    public final int f19987c;
+    public final long f19987c;
 
-    public ea(MessagesController messagesController, int i10, int i11) {
-        this.f19985a = i11;
+    public ea(MessagesController messagesController, long j10, int i10) {
+        this.f19985a = i10;
         this.f19986b = messagesController;
-        this.f19987c = i10;
+        this.f19987c = j10;
     }
 
     @Override
-    public final void run() {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.f19985a) {
             case 0:
-                this.f19986b.lambda$updateTimerProc$156(this.f19987c);
+                this.f19986b.lambda$markMessageAsRead2$234(this.f19987c, tLObject, tL_error);
                 return;
             case 1:
-                this.f19986b.lambda$onFolderEmpty$196(this.f19987c);
+                this.f19986b.lambda$markMessageAsRead2$235(this.f19987c, tLObject, tL_error);
                 return;
             case 2:
-                this.f19986b.lambda$ensureMessagesLoaded$467(this.f19987c);
+                this.f19986b.lambda$pinDialog$365(this.f19987c, tLObject, tL_error);
+                return;
+            case 3:
+                this.f19986b.lambda$saveWallpaperToServer$120(this.f19987c, tLObject, tL_error);
+                return;
+            case 4:
+                this.f19986b.lambda$updateTimerProc$159(this.f19987c, tLObject, tL_error);
+                return;
+            case 5:
+                this.f19986b.lambda$deleteUserPhoto$114(this.f19987c, tLObject, tL_error);
+                return;
+            case 6:
+                this.f19986b.lambda$reorderPinnedDialogs$364(this.f19987c, tLObject, tL_error);
+                return;
+            case 7:
+                this.f19986b.lambda$loadPeerSettings$79(this.f19987c, tLObject, tL_error);
+                return;
+            case 8:
+                this.f19986b.lambda$setChannelSlowMode$93(this.f19987c, tLObject, tL_error);
+                return;
+            case 9:
+                this.f19986b.lambda$loadChannelAdmins$64(this.f19987c, tLObject, tL_error);
+                return;
+            case 10:
+                this.f19986b.lambda$deleteDialog$140(this.f19987c, tLObject, tL_error);
+                return;
+            case 11:
+                this.f19986b.lambda$addDialogToFolder$197(this.f19987c, tLObject, tL_error);
+                return;
+            case 12:
+                this.f19986b.lambda$setDefaultSendAs$274(this.f19987c, tLObject, tL_error);
+                return;
+            case 13:
+                this.f19986b.lambda$deleteMessages$121(this.f19987c, tLObject, tL_error);
+                return;
+            case 14:
+                this.f19986b.lambda$deleteMessages$122(this.f19987c, tLObject, tL_error);
+                return;
+            case 15:
+                this.f19986b.lambda$deleteMessages$124(this.f19987c, tLObject, tL_error);
+                return;
+            case 16:
+                this.f19986b.lambda$setBoostsToUnblockRestrictions$95(this.f19987c, tLObject, tL_error);
                 return;
             default:
-                this.f19986b.lambda$didAddedNewTask$80(this.f19987c);
+                this.f19986b.lambda$markDialogAsUnread$361(this.f19987c, tLObject, tL_error);
                 return;
         }
     }

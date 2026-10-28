@@ -3,34 +3,34 @@ package i;
 import a8.qc;
 import android.graphics.drawable.Animatable;
 public final class a extends qc {
-    public final int f13410a;
-    public final Animatable f13411b;
+    public final int f13409a;
+    public final Animatable f13410b;
 
     public a(Animatable animatable, int i10) {
-        this.f13410a = i10;
-        this.f13411b = animatable;
+        this.f13409a = i10;
+        this.f13410b = animatable;
     }
 
     @Override
     public final void c() {
-        switch (this.f13410a) {
+        switch (this.f13409a) {
             case 0:
-                this.f13411b.start();
+                this.f13410b.start();
                 return;
             default:
-                ((y4.d) this.f13411b).start();
+                ((y4.d) this.f13410b).start();
                 return;
         }
     }
 
     @Override
     public final void d() {
-        switch (this.f13410a) {
+        switch (this.f13409a) {
             case 0:
-                this.f13411b.stop();
+                this.f13410b.stop();
                 return;
             default:
-                ((y4.d) this.f13411b).stop();
+                ((y4.d) this.f13410b).stop();
                 return;
         }
     }

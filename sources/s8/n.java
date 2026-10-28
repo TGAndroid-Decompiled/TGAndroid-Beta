@@ -10,17 +10,17 @@ import com.google.android.gms.internal.vision.f3;
 import com.google.android.gms.internal.vision.t2;
 import java.nio.ByteBuffer;
 public final class n extends b2.h {
-    public final t2 f47982b;
+    public final t2 f48017b;
 
     public n(t2 t2Var) {
         super(5);
-        this.f47982b = t2Var;
+        this.f48017b = t2Var;
     }
 
     @Override
     public final void X0() {
         super.X0();
-        this.f47982b.l();
+        this.f48017b.l();
     }
 
     public final SparseArray e1(k6.c cVar) {
@@ -28,7 +28,7 @@ public final class n extends b2.h {
         if (cVar != null) {
             f3 b10 = f3.b(cVar);
             Bitmap bitmap = (Bitmap) cVar.d;
-            t2 t2Var = this.f47982b;
+            t2 t2Var = this.f48017b;
             if (bitmap != null) {
                 if (!t2Var.k()) {
                     mVarArr = new m[0];
@@ -79,7 +79,7 @@ public final class n extends b2.h {
             }
             SparseArray sparseArray = new SparseArray(mVarArr.length);
             for (m mVar : mVarArr) {
-                sparseArray.append(mVar.f47973b.hashCode(), mVar);
+                sparseArray.append(mVar.f48008b.hashCode(), mVar);
             }
             return sparseArray;
         }

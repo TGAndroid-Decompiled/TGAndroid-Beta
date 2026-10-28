@@ -32,8 +32,8 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.la;
-import org.telegram.ui.Components.qw0;
 import org.telegram.ui.Components.ra;
+import org.telegram.ui.Components.rw0;
 public final class q0 {
     public final Bitmap A;
     public final int B;
@@ -47,58 +47,58 @@ public final class q0 {
     public ValueAnimator K;
     public ValueAnimator L;
     public Paint M;
-    public e3 f47503a;
-    public r0 f47504b;
-    public f1 f47505c;
+    public e3 f47538a;
+    public r0 f47539b;
+    public f1 f47540c;
     public f1 d;
-    public c1 f47506f;
-    public final qw0 f47507g;
+    public c1 f47541f;
+    public final rw0 f47542g;
     public RectF h;
-    public m f47508i;
-    public r1 f47510k;
-    public r1 f47511l;
-    public final ByteBuffer f47512m;
-    public final ByteBuffer f47513n;
-    public int f47514o;
-    public int f47515p;
-    public int f47516q;
-    public Map f47517r;
-    public int f47518s;
-    public final ByteBuffer f47520u;
+    public m f47543i;
+    public r1 f47545k;
+    public r1 f47546l;
+    public final ByteBuffer f47547m;
+    public final ByteBuffer f47548n;
+    public int f47549o;
+    public int f47550p;
+    public int f47551q;
+    public Map f47552r;
+    public int f47553s;
+    public final ByteBuffer f47555u;
     public boolean v;
-    public ng f47521w;
-    public final float[] f47522x;
-    public float[] f47523y;
-    public r1 f47524z;
-    public final HashMap f47509j = new HashMap();
-    public final int[] f47519t = new int[1];
+    public ng f47556w;
+    public final float[] f47557x;
+    public float[] f47558y;
+    public r1 f47559z;
+    public final HashMap f47544j = new HashMap();
+    public final int[] f47554t = new int[1];
     public boolean G = false;
     public final v0 e = new Object();
 
-    public q0(qw0 qw0Var, Bitmap bitmap, int i10, la laVar) {
+    public q0(rw0 rw0Var, Bitmap bitmap, int i10, la laVar) {
         this.F = laVar;
-        this.f47507g = qw0Var;
+        this.f47542g = rw0Var;
         this.A = bitmap;
         this.B = i10;
-        this.f47520u = ByteBuffer.allocateDirect(((int) qw0Var.f32054a) * ((int) qw0Var.f32055b) * 4);
-        this.f47522x = wf.b(qw0Var.f32054a, qw0Var.f32055b);
-        if (this.f47512m == null) {
+        this.f47555u = ByteBuffer.allocateDirect(((int) rw0Var.f32392a) * ((int) rw0Var.f32393b) * 4);
+        this.f47557x = wf.b(rw0Var.f32392a, rw0Var.f32393b);
+        if (this.f47547m == null) {
             ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
-            this.f47512m = allocateDirect;
+            this.f47547m = allocateDirect;
             allocateDirect.order(ByteOrder.nativeOrder());
         }
-        this.f47512m.putFloat(0.0f);
-        this.f47512m.putFloat(0.0f);
-        this.f47512m.putFloat(qw0Var.f32054a);
-        this.f47512m.putFloat(0.0f);
-        this.f47512m.putFloat(0.0f);
-        this.f47512m.putFloat(qw0Var.f32055b);
-        this.f47512m.putFloat(qw0Var.f32054a);
-        this.f47512m.putFloat(qw0Var.f32055b);
-        this.f47512m.rewind();
-        if (this.f47513n == null) {
+        this.f47547m.putFloat(0.0f);
+        this.f47547m.putFloat(0.0f);
+        this.f47547m.putFloat(rw0Var.f32392a);
+        this.f47547m.putFloat(0.0f);
+        this.f47547m.putFloat(0.0f);
+        this.f47547m.putFloat(rw0Var.f32393b);
+        this.f47547m.putFloat(rw0Var.f32392a);
+        this.f47547m.putFloat(rw0Var.f32393b);
+        this.f47547m.rewind();
+        if (this.f47548n == null) {
             ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
-            this.f47513n = allocateDirect2;
+            this.f47548n = allocateDirect2;
             allocateDirect2.order(ByteOrder.nativeOrder());
             allocateDirect2.putFloat(0.0f);
             allocateDirect2.putFloat(0.0f);
@@ -113,14 +113,14 @@ public final class q0 {
     }
 
     public final void a(boolean z10) {
-        int i10 = this.f47514o;
-        int[] iArr = this.f47519t;
+        int i10 = this.f47549o;
+        int[] iArr = this.f47554t;
         if (i10 != 0) {
             iArr[0] = i10;
             GLES20.glDeleteFramebuffers(1, iArr, 0);
-            this.f47514o = 0;
+            this.f47549o = 0;
         }
-        r1 r1Var = this.f47510k;
+        r1 r1Var = this.f47545k;
         if (r1Var != null) {
             r1Var.a(z10);
         }
@@ -128,42 +128,42 @@ public final class q0 {
         if (r1Var2 != null) {
             r1Var2.a(z10);
         }
-        int i11 = this.f47515p;
+        int i11 = this.f47550p;
         if (i11 != 0) {
             iArr[0] = i11;
             GLES20.glDeleteTextures(1, iArr, 0);
-            this.f47515p = 0;
+            this.f47550p = 0;
         }
-        HashMap hashMap = this.f47509j;
+        HashMap hashMap = this.f47544j;
         for (r1 r1Var3 : hashMap.values()) {
             if (r1Var3 != null) {
                 r1Var3.a(true);
             }
         }
         hashMap.clear();
-        int i12 = this.f47516q;
+        int i12 = this.f47551q;
         if (i12 != 0) {
             iArr[0] = i12;
             GLES20.glDeleteTextures(1, iArr, 0);
-            this.f47516q = 0;
+            this.f47551q = 0;
         }
-        r1 r1Var4 = this.f47524z;
+        r1 r1Var4 = this.f47559z;
         if (r1Var4 != null) {
             r1Var4.a(true);
         }
-        r1 r1Var5 = this.f47511l;
+        r1 r1Var5 = this.f47546l;
         if (r1Var5 != null) {
             r1Var5.a(true);
         }
-        Map map = this.f47517r;
+        Map map = this.f47552r;
         if (map != null) {
             for (d1 d1Var : map.values()) {
-                if (d1Var.f47389a != 0) {
+                if (d1Var.f47424a != 0) {
                     GLES20.glDeleteProgram(0);
-                    d1Var.f47389a = 0;
+                    d1Var.f47424a = 0;
                 }
             }
-            this.f47517r = null;
+            this.f47552r = null;
         }
     }
 
@@ -172,31 +172,31 @@ public final class q0 {
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, g(), 0);
         yf.a();
         if (GLES20.glCheckFramebufferStatus(36160) == 36053) {
-            qw0 qw0Var = this.f47507g;
-            GLES20.glViewport(0, 0, (int) qw0Var.f32054a, (int) qw0Var.f32055b);
+            rw0 rw0Var = this.f47542g;
+            GLES20.glViewport(0, 0, (int) rw0Var.f32392a, (int) rw0Var.f32393b);
             GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             GLES20.glClear(16384);
         }
         GLES20.glBindFramebuffer(36160, 0);
-        e3 e3Var = this.f47503a;
+        e3 e3Var = this.f47538a;
         if (e3Var != null) {
             e3Var.v0();
         }
         v0 v0Var = this.e;
         v0Var.h = 0;
-        v0Var.f47578g = 0.0d;
-        ByteBuffer byteBuffer = v0Var.f47580j;
+        v0Var.f47613g = 0.0d;
+        ByteBuffer byteBuffer = v0Var.f47615j;
         if (byteBuffer != null) {
             byteBuffer.position(0);
         }
         this.h = null;
-        this.f47504b = null;
+        this.f47539b = null;
         this.J = 0.0f;
     }
 
     public final void c(r0 r0Var, int i10, boolean z10, a0 a0Var) {
-        if (this.f47517r != null && this.f47508i != null) {
-            this.f47506f.f(new db(this, r0Var, i10, z10, a0Var, 6));
+        if (this.f47552r != null && this.f47543i != null) {
+            this.f47541f.f(new db(this, r0Var, i10, z10, a0Var, 6));
         }
     }
 
@@ -206,9 +206,9 @@ public final class q0 {
 
     public final ng e(f1 f1Var, int i10, RectF rectF) {
         boolean z10;
-        m mVar = f1Var.f47415a;
+        m mVar = f1Var.f47450a;
         if (mVar == null) {
-            mVar = this.f47508i;
+            mVar = this.f47543i;
         }
         if (this.F != null && (mVar instanceof b)) {
             z10 = true;
@@ -216,17 +216,17 @@ public final class q0 {
             z10 = false;
         }
         ng m10 = m(rectF, z10);
-        this.f47518s++;
+        this.f47553s++;
         GLES20.glBindFramebuffer(36160, i());
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, j(), 0);
-        qw0 qw0Var = this.f47507g;
-        GLES20.glViewport(0, 0, (int) qw0Var.f32054a, (int) qw0Var.f32055b);
-        d1 d1Var = (d1) this.f47517r.get(mVar.i(1));
+        rw0 rw0Var = this.f47542g;
+        GLES20.glViewport(0, 0, (int) rw0Var.f32392a, (int) rw0Var.f32393b);
+        d1 d1Var = (d1) this.f47552r.get(mVar.i(1));
         if (d1Var == null) {
             return null;
         }
-        GLES20.glUseProgram(d1Var.f47389a);
-        GLES20.glUniformMatrix4fv(d1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(this.f47522x));
+        GLES20.glUseProgram(d1Var.f47424a);
+        GLES20.glUniformMatrix4fv(d1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(this.f47557x));
         GLES20.glUniform1i(d1Var.d("texture"), 0);
         GLES20.glUniform1i(d1Var.d("mask"), 1);
         d1.a(d1Var.d("color"), i10);
@@ -235,43 +235,43 @@ public final class q0 {
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glActiveTexture(33985);
         GLES20.glBindTexture(3553, g());
-        if ((mVar instanceof b) && this.f47524z != null) {
+        if ((mVar instanceof b) && this.f47559z != null) {
             GLES20.glUniform1i(d1Var.d("blured"), 2);
             GLES20.glActiveTexture(33986);
-            GLES20.glBindTexture(3553, this.f47524z.c());
+            GLES20.glBindTexture(3553, this.f47559z.c());
         }
         if (mVar instanceof l) {
-            GLES20.glUniform1i(d1Var.d("type"), f1Var.f47415a.o());
-            GLES20.glUniform2f(d1Var.d("resolution"), qw0Var.f32054a, qw0Var.f32055b);
-            GLES20.glUniform2f(d1Var.d("center"), f1Var.f47416b, f1Var.f47417c);
+            GLES20.glUniform1i(d1Var.d("type"), f1Var.f47450a.o());
+            GLES20.glUniform2f(d1Var.d("resolution"), rw0Var.f32392a, rw0Var.f32393b);
+            GLES20.glUniform2f(d1Var.d("center"), f1Var.f47451b, f1Var.f47452c);
             GLES20.glUniform2f(d1Var.d("radius"), f1Var.d, f1Var.e);
-            GLES20.glUniform1f(d1Var.d("thickness"), f1Var.f47418f);
-            GLES20.glUniform1f(d1Var.d("rounding"), f1Var.f47419g);
-            GLES20.glUniform2f(d1Var.d("middle"), f1Var.f47420i, f1Var.f47421j);
+            GLES20.glUniform1f(d1Var.d("thickness"), f1Var.f47453f);
+            GLES20.glUniform1f(d1Var.d("rounding"), f1Var.f47454g);
+            GLES20.glUniform2f(d1Var.d("middle"), f1Var.f47455i, f1Var.f47456j);
             GLES20.glUniform1f(d1Var.d("rotation"), f1Var.h);
-            GLES20.glUniform1i(d1Var.d("fill"), f1Var.f47423l ? 1 : 0);
-            GLES20.glUniform1f(d1Var.d("arrowTriangleLength"), f1Var.f47422k);
+            GLES20.glUniform1i(d1Var.d("fill"), f1Var.f47458l ? 1 : 0);
+            GLES20.glUniform1f(d1Var.d("arrowTriangleLength"), f1Var.f47457k);
             GLES20.glUniform1i(d1Var.d("composite"), 1);
             GLES20.glUniform1i(d1Var.d("clear"), 0);
         }
         GLES20.glBlendFunc(1, 0);
-        GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f47512m);
+        GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f47547m);
         GLES20.glEnableVertexAttribArray(0);
-        GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f47513n);
+        GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f47548n);
         GLES20.glEnableVertexAttribArray(1);
         GLES20.glDrawArrays(5, 0, 4);
         GLES20.glBindTexture(3553, j());
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glBindFramebuffer(36160, 0);
-        e3 e3Var = this.f47503a;
-        if (e3Var != null && this.f47518s <= 0) {
+        e3 e3Var = this.f47538a;
+        if (e3Var != null && this.f47553s <= 0) {
             e3Var.v0();
         }
-        this.f47518s--;
+        this.f47553s--;
         v0 v0Var = this.e;
         v0Var.h = 0;
-        v0Var.f47578g = 0.0d;
-        ByteBuffer byteBuffer = v0Var.f47580j;
+        v0Var.f47613g = 0.0d;
+        ByteBuffer byteBuffer = v0Var.f47615j;
         if (byteBuffer != null) {
             byteBuffer.position(0);
         }
@@ -279,21 +279,21 @@ public final class q0 {
         this.H = false;
         this.I = 0.0f;
         this.d = null;
-        this.f47504b = null;
-        this.f47505c = null;
+        this.f47539b = null;
+        this.f47540c = null;
         return m10;
     }
 
     public final RectF f() {
-        qw0 qw0Var = this.f47507g;
-        return new RectF(0.0f, 0.0f, qw0Var.f32054a, qw0Var.f32055b);
+        rw0 rw0Var = this.f47542g;
+        return new RectF(0.0f, 0.0f, rw0Var.f32392a, rw0Var.f32393b);
     }
 
     public final int g() {
-        if (this.f47515p == 0) {
-            this.f47515p = r1.b(this.f47507g);
+        if (this.f47550p == 0) {
+            this.f47550p = r1.b(this.f47542g);
         }
-        return this.f47515p;
+        return this.f47550p;
     }
 
     public final w1 h(RectF rectF, boolean z10, boolean z11, boolean z12) {
@@ -309,11 +309,11 @@ public final class q0 {
         int i12 = (int) rectF.top;
         int width = (int) rectF.width();
         int height = (int) rectF.height();
-        GLES20.glGenFramebuffers(1, this.f47519t, 0);
-        int i13 = this.f47519t[0];
+        GLES20.glGenFramebuffers(1, this.f47554t, 0);
+        int i13 = this.f47554t[0];
         GLES20.glBindFramebuffer(36160, i13);
-        GLES20.glGenTextures(1, this.f47519t, 0);
-        int i14 = this.f47519t[0];
+        GLES20.glGenTextures(1, this.f47554t, 0);
+        int i14 = this.f47554t[0];
         GLES20.glBindTexture(3553, i14);
         GLES20.glTexParameteri(3553, 10242, 33071);
         GLES20.glTexParameteri(3553, 10243, 33071);
@@ -321,9 +321,9 @@ public final class q0 {
         GLES20.glTexParameteri(3553, 10240, 9728);
         GLES20.glTexImage2D(3553, 0, 6408, width, height, 0, 6408, 5121, null);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, i14, 0);
-        qw0 qw0Var = this.f47507g;
-        GLES20.glViewport(0, 0, (int) qw0Var.f32054a, (int) qw0Var.f32055b);
-        Map map = this.f47517r;
+        rw0 rw0Var = this.f47542g;
+        GLES20.glViewport(0, 0, (int) rw0Var.f32392a, (int) rw0Var.f32393b);
+        Map map = this.f47552r;
         if (map != null) {
             if (z10) {
                 str = "nonPremultipliedBlit";
@@ -334,10 +334,10 @@ public final class q0 {
             }
             d1 d1Var2 = (d1) map.get(str);
             if (d1Var2 != null) {
-                GLES20.glUseProgram(d1Var2.f47389a);
+                GLES20.glUseProgram(d1Var2.f47424a);
                 Matrix matrix = new Matrix();
                 matrix.preTranslate(-i11, -i12);
-                float[] c10 = wf.c(this.f47522x, wf.a(matrix));
+                float[] c10 = wf.c(this.f47557x, wf.a(matrix));
                 GLES20.glUniformMatrix4fv(d1Var2.d("mvpMatrix"), 1, false, FloatBuffer.wrap(c10));
                 if (!z10 && this.G) {
                     GLES20.glUniform1i(d1Var2.d("texture"), 1);
@@ -351,7 +351,7 @@ public final class q0 {
                     }
                     GLES20.glBindTexture(3553, j11);
                     GLES20.glActiveTexture(33985);
-                    GLES20.glBindTexture(3553, this.f47511l.c());
+                    GLES20.glBindTexture(3553, this.f47546l.c());
                 } else {
                     GLES20.glUniform1i(d1Var2.d("texture"), 0);
                     GLES20.glActiveTexture(33984);
@@ -365,13 +365,13 @@ public final class q0 {
                 GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
                 GLES20.glClear(16384);
                 GLES20.glBlendFunc(1, 0);
-                GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f47512m);
+                GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f47547m);
                 GLES20.glEnableVertexAttribArray(0);
-                GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f47513n);
+                GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f47548n);
                 GLES20.glEnableVertexAttribArray(1);
                 GLES20.glDrawArrays(5, 0, 4);
-                if (z12 && !z11 && (d1Var = (d1) this.f47517r.get("videoBlur")) != null && this.F != null) {
-                    GLES20.glUseProgram(d1Var.f47389a);
+                if (z12 && !z11 && (d1Var = (d1) this.f47552r.get("videoBlur")) != null && this.F != null) {
+                    GLES20.glUseProgram(d1Var.f47424a);
                     GLES20.glUniformMatrix4fv(d1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(c10));
                     GLES20.glUniform1f(d1Var.d("flipy"), 0.0f);
                     GLES20.glUniform1i(d1Var.d("texture"), 0);
@@ -380,9 +380,9 @@ public final class q0 {
                     GLES20.glTexParameteri(3553, 10241, 9729);
                     GLES20.glUniform1i(d1Var.d("blured"), 1);
                     GLES20.glActiveTexture(33985);
-                    ra raVar = this.F.f30146m;
+                    ra raVar = this.F.f30210m;
                     if (raVar != null) {
-                        i10 = raVar.f32201s[2];
+                        i10 = raVar.f32204s[2];
                     } else {
                         i10 = -1;
                     }
@@ -392,28 +392,28 @@ public final class q0 {
                     GLES20.glActiveTexture(33986);
                     GLES20.glBindTexture(3553, j());
                     GLES20.glBlendFunc(1, 771);
-                    GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f47512m);
+                    GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f47547m);
                     GLES20.glEnableVertexAttribArray(0);
-                    GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f47513n);
+                    GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f47548n);
                     GLES20.glEnableVertexAttribArray(1);
                     synchronized (this.F.h) {
                         GLES20.glDrawArrays(5, 0, 4);
                     }
                 }
-                this.f47520u.limit(width * height * 4);
-                GLES20.glReadPixels(0, 0, width, height, 6408, 5121, this.f47520u);
+                this.f47555u.limit(width * height * 4);
+                GLES20.glReadPixels(0, 0, width, height, 6408, 5121, this.f47555u);
                 if (z10) {
-                    w1Var = new w1(18, (Object) null, this.f47520u);
+                    w1Var = new w1(18, (Object) null, this.f47555u);
                 } else {
                     Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-                    createBitmap.copyPixelsFromBuffer(this.f47520u);
+                    createBitmap.copyPixelsFromBuffer(this.f47555u);
                     w1Var = new w1(18, createBitmap, (Object) null);
                 }
-                this.f47520u.rewind();
-                int[] iArr = this.f47519t;
+                this.f47555u.rewind();
+                int[] iArr = this.f47554t;
                 iArr[0] = i13;
                 GLES20.glDeleteFramebuffers(1, iArr, 0);
-                int[] iArr2 = this.f47519t;
+                int[] iArr2 = this.f47554t;
                 iArr2[0] = i14;
                 GLES20.glDeleteTextures(1, iArr2, 0);
                 return w1Var;
@@ -423,17 +423,17 @@ public final class q0 {
     }
 
     public final int i() {
-        if (this.f47514o == 0) {
+        if (this.f47549o == 0) {
             int[] iArr = new int[1];
             GLES20.glGenFramebuffers(1, iArr, 0);
-            this.f47514o = iArr[0];
+            this.f47549o = iArr[0];
             yf.a();
         }
-        return this.f47514o;
+        return this.f47549o;
     }
 
     public final int j() {
-        r1 r1Var = this.f47510k;
+        r1 r1Var = this.f47545k;
         if (r1Var != null) {
             return r1Var.c();
         }
@@ -444,7 +444,7 @@ public final class q0 {
         if (f1Var == null) {
             return;
         }
-        this.f47506f.f(new m0(this, f1Var, 0));
+        this.f47541f.f(new m0(this, f1Var, 0));
     }
 
     public final void l(r0 r0Var, boolean z10, boolean z11) {
@@ -467,21 +467,21 @@ public final class q0 {
         char c10;
         char c11;
         float f14;
-        this.f47504b = r0Var;
+        this.f47539b = r0Var;
         if (r0Var != null) {
             GLES20.glBindFramebuffer(36160, i());
             GLES20.glFramebufferTexture2D(36160, 36064, 3553, g(), 0);
             yf.a();
             RectF rectF = null;
             if (GLES20.glCheckFramebufferStatus(36160) == 36053) {
-                qw0 qw0Var = this.f47507g;
-                GLES20.glViewport(0, 0, (int) qw0Var.f32054a, (int) qw0Var.f32055b);
+                rw0 rw0Var = this.f47542g;
+                GLES20.glViewport(0, 0, (int) rw0Var.f32392a, (int) rw0Var.f32393b);
                 float f15 = 0.0f;
                 if (z10) {
                     GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
                     GLES20.glClear(16384);
                 }
-                Map map = this.f47517r;
+                Map map = this.f47552r;
                 if (map != null) {
                     m mVar = r0Var.e;
                     int i12 = 2;
@@ -489,35 +489,35 @@ public final class q0 {
                     if (d1Var == null) {
                         return;
                     }
-                    GLES20.glUseProgram(d1Var.f47389a);
-                    r1 r1Var = (r1) this.f47509j.get(Integer.valueOf(mVar.l()));
+                    GLES20.glUseProgram(d1Var.f47424a);
+                    r1 r1Var = (r1) this.f47544j.get(Integer.valueOf(mVar.l()));
                     if (r1Var == null) {
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inScaled = false;
                         r1Var = new r1(BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), mVar.l(), options));
-                        this.f47509j.put(Integer.valueOf(mVar.l()), r1Var);
+                        this.f47544j.put(Integer.valueOf(mVar.l()), r1Var);
                     }
                     GLES20.glActiveTexture(33984);
                     GLES20.glBindTexture(3553, r1Var.c());
-                    GLES20.glUniformMatrix4fv(d1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(this.f47522x));
+                    GLES20.glUniformMatrix4fv(d1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(this.f47557x));
                     GLES20.glUniform1i(d1Var.d("texture"), 0);
                     if (!z11) {
-                        this.e.f47577f = this.f47506f.getScaleX();
+                        this.e.f47612f = this.f47541f.getScaleX();
                     } else {
-                        this.e.f47577f = 1.0f;
+                        this.e.f47612f = 1.0f;
                     }
                     v0 v0Var = this.e;
-                    v0Var.f47574a = r0Var.d;
-                    v0Var.f47575b = r0Var.e.k();
+                    v0Var.f47609a = r0Var.d;
+                    v0Var.f47610b = r0Var.e.k();
                     if (z11) {
                         a2 = 1.0f;
                     } else {
                         a2 = r0Var.e.a();
                     }
-                    v0Var.f47576c = a2;
+                    v0Var.f47611c = a2;
                     v0Var.d = r0Var.e.b();
                     v0Var.e = r0Var.e.h();
-                    Vector vector = r0Var.f47530b;
+                    Vector vector = r0Var.f47565b;
                     if (vector == null) {
                         size = 0;
                     } else {
@@ -527,24 +527,24 @@ public final class q0 {
                         i10 = 0;
                     } else {
                         if (size == 1) {
-                            Vector vector2 = r0Var.f47530b;
+                            Vector vector2 = r0Var.f47565b;
                             u0[] u0VarArr2 = new u0[vector2.size()];
                             vector2.toArray(u0VarArr2);
                             u0 u0Var3 = u0VarArr2[0];
-                            float f16 = ((v0Var.f47574a * v0Var.e) * 1.0f) / v0Var.f47577f;
+                            float f16 = ((v0Var.f47609a * v0Var.e) * 1.0f) / v0Var.f47612f;
                             u0Var3.getClass();
-                            PointF pointF = new PointF((float) u0Var3.f47571a, (float) u0Var3.f47572b);
+                            PointF pointF = new PointF((float) u0Var3.f47606a, (float) u0Var3.f47607b);
                             if (Math.abs(v0Var.d) > 0.0f) {
                                 f14 = v0Var.d;
                             } else {
                                 f14 = 0.0f;
                             }
-                            float f17 = v0Var.f47576c;
+                            float f17 = v0Var.f47611c;
                             v0Var.c();
                             v0Var.b(1);
                             v0Var.a(pointF, f16, f14, f17, 0);
                         } else {
-                            Vector vector3 = r0Var.f47530b;
+                            Vector vector3 = r0Var.f47565b;
                             int size2 = vector3.size();
                             u0[] u0VarArr3 = new u0[size2];
                             vector3.toArray(u0VarArr3);
@@ -557,42 +557,42 @@ public final class q0 {
                                 double a10 = u0Var4.a(u0Var5);
                                 int i15 = size2;
                                 float f18 = f15;
-                                double d11 = u0Var5.f47571a - u0Var4.f47571a;
+                                double d11 = u0Var5.f47606a - u0Var4.f47606a;
                                 int i16 = i12;
-                                double d12 = u0Var5.f47572b - u0Var4.f47572b;
-                                double d13 = u0Var5.f47573c;
-                                double d14 = d13 - u0Var4.f47573c;
+                                double d12 = u0Var5.f47607b - u0Var4.f47607b;
+                                double d13 = u0Var5.f47608c;
+                                double d14 = d13 - u0Var4.f47608c;
                                 u0 u0Var6 = new u0(1.0d, 1.0d, 0.0d);
                                 if (Math.abs(v0Var.d) > f18) {
                                     atan2 = v0Var.d;
                                 } else {
                                     atan2 = (float) Math.atan2(d12, d11);
                                 }
-                                float f19 = (float) ((((v0Var.f47574a * d13) * v0Var.e) * 1.0d) / v0Var.f47577f);
-                                double max = Math.max(1.0f, v0Var.f47575b * f19);
+                                float f19 = (float) ((((v0Var.f47609a * d13) * v0Var.e) * 1.0d) / v0Var.f47612f);
+                                double max = Math.max(1.0f, v0Var.f47610b * f19);
                                 if (a10 > 0.0d) {
                                     double d15 = 1.0d / a10;
                                     u0Var = new u0(d11 * d15, d12 * d15, d14 * d15);
                                 } else {
                                     u0Var = u0Var6;
                                 }
-                                float min = Math.min(1.0f, v0Var.f47576c * 1.15f);
+                                float min = Math.min(1.0f, v0Var.f47611c * 1.15f);
                                 boolean z13 = u0Var4.d;
                                 boolean z14 = u0Var5.d;
                                 float f20 = atan2;
                                 int i17 = v0Var.h;
-                                v0Var.b((int) Math.ceil((a10 - v0Var.f47578g) / max));
-                                ByteBuffer byteBuffer = v0Var.f47580j;
+                                v0Var.b((int) Math.ceil((a10 - v0Var.f47613g) / max));
+                                ByteBuffer byteBuffer = v0Var.f47615j;
                                 if (byteBuffer != null && i17 >= 0) {
                                     f7 = f19;
-                                    if (i17 < v0Var.f47579i) {
+                                    if (i17 < v0Var.f47614i) {
                                         byteBuffer.position(i17 * 20);
                                     }
                                 } else {
                                     f7 = f19;
                                 }
-                                double d16 = v0Var.f47578g;
-                                u0 u0Var7 = new u0(u0Var4.f47571a + (u0Var.f47571a * d16), u0Var4.f47572b + (u0Var.f47572b * d16), u0Var4.f47573c + (u0Var.f47573c * d16));
+                                double d16 = v0Var.f47613g;
+                                u0 u0Var7 = new u0(u0Var4.f47606a + (u0Var.f47606a * d16), u0Var4.f47607b + (u0Var.f47607b * d16), u0Var4.f47608c + (u0Var.f47608c * d16));
                                 double d17 = d16;
                                 u0 u0Var8 = u0Var7;
                                 boolean z15 = true;
@@ -601,7 +601,7 @@ public final class q0 {
                                         if (z13) {
                                             f12 = min;
                                         } else {
-                                            f12 = v0Var.f47576c;
+                                            f12 = v0Var.f47611c;
                                         }
                                         d = d17;
                                         z12 = z14;
@@ -612,13 +612,13 @@ public final class q0 {
                                         u0 u0Var9 = u0Var8;
                                         u0Var2 = u0Var5;
                                         f10 = f7;
-                                        boolean a11 = v0Var.a(new PointF((float) u0Var8.f47571a, (float) u0Var8.f47572b), f10, f11, f21, -1);
+                                        boolean a11 = v0Var.a(new PointF((float) u0Var8.f47606a, (float) u0Var8.f47607b), f10, f11, f21, -1);
                                         if (!a11) {
                                             u0VarArr = u0VarArr4;
                                             z15 = a11;
                                             break;
                                         }
-                                        u0 u0Var10 = new u0(u0Var9.f47571a + (u0Var.f47571a * max), u0Var9.f47572b + (u0Var.f47572b * max), u0Var9.f47573c + (u0Var.f47573c * max));
+                                        u0 u0Var10 = new u0(u0Var9.f47606a + (u0Var.f47606a * max), u0Var9.f47607b + (u0Var.f47607b * max), u0Var9.f47608c + (u0Var.f47608c * max));
                                         z15 = a11;
                                         f20 = f11;
                                         u0Var8 = u0Var10;
@@ -642,9 +642,9 @@ public final class q0 {
                                 }
                                 if (z15 && z12) {
                                     v0Var.b(1);
-                                    v0Var.a(new PointF((float) u0Var2.f47571a, (float) u0Var2.f47572b), f10, f11, min, -1);
+                                    v0Var.a(new PointF((float) u0Var2.f47606a, (float) u0Var2.f47607b), f10, f11, min, -1);
                                 }
-                                v0Var.f47578g = d - d10;
+                                v0Var.f47613g = d - d10;
                                 size2 = i15;
                                 i13 = i14;
                                 f15 = f18;
@@ -654,7 +654,7 @@ public final class q0 {
                         }
                         float f22 = f15;
                         int i18 = i12;
-                        r0Var.f47529a = v0Var.f47578g;
+                        r0Var.f47564a = v0Var.f47613g;
                         rectF = new RectF(f22, f22, f22, f22);
                         int i19 = v0Var.h;
                         if (i19 <= 0) {
@@ -665,17 +665,17 @@ public final class q0 {
                             allocateDirect.order(ByteOrder.nativeOrder());
                             FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
                             asFloatBuffer.position(0);
-                            ByteBuffer byteBuffer2 = v0Var.f47580j;
-                            if (byteBuffer2 != null && v0Var.f47579i > 0) {
+                            ByteBuffer byteBuffer2 = v0Var.f47615j;
+                            if (byteBuffer2 != null && v0Var.f47614i > 0) {
                                 byteBuffer2.position(0);
                             }
                             int i21 = 0;
                             for (int i22 = 0; i22 < i19; i22++) {
-                                float f23 = v0Var.f47580j.getFloat();
-                                float f24 = v0Var.f47580j.getFloat();
-                                float f25 = v0Var.f47580j.getFloat();
-                                float f26 = v0Var.f47580j.getFloat();
-                                float f27 = v0Var.f47580j.getFloat();
+                                float f23 = v0Var.f47615j.getFloat();
+                                float f24 = v0Var.f47615j.getFloat();
+                                float f25 = v0Var.f47615j.getFloat();
+                                float f26 = v0Var.f47615j.getFloat();
+                                float f27 = v0Var.f47615j.getFloat();
                                 RectF rectF2 = new RectF(f23 - f25, f24 - f25, f23 + f25, f24 + f25);
                                 float f28 = rectF2.left;
                                 float f29 = rectF2.top;
@@ -770,7 +770,7 @@ public final class q0 {
                 i11 = 36160;
             }
             GLES20.glBindFramebuffer(i11, i10);
-            e3 e3Var = this.f47503a;
+            e3 e3Var = this.f47538a;
             if (e3Var != null) {
                 e3Var.v0();
             }
@@ -787,9 +787,9 @@ public final class q0 {
         if (rectF == null || !rectF.setIntersect(rectF, f())) {
             return null;
         }
-        Object obj = this.f47503a.f17210b;
-        ng ngVar = new ng((ByteBuffer) h(rectF, true, z10, false).f18294c, z10 ? 1 : 0, rectF);
-        ((c1) this.f47503a.f17210b).f47376b.b(UUID.randomUUID(), new o0(this, ngVar, 1));
+        Object obj = this.f47538a.f17209b;
+        ng ngVar = new ng((ByteBuffer) h(rectF, true, z10, false).f18293c, z10 ? 1 : 0, rectF);
+        ((c1) this.f47538a.f17209b).f47411b.b(UUID.randomUUID(), new o0(this, ngVar, 1));
         return ngVar;
     }
 
@@ -802,17 +802,17 @@ public final class q0 {
         int currentColor;
         int i12;
         if (f1Var != null) {
-            m mVar = this.f47508i;
-            l lVar = f1Var.f47415a;
-            if (lVar != null && i10 == this.f47516q) {
+            m mVar = this.f47543i;
+            l lVar = f1Var.f47450a;
+            if (lVar != null && i10 == this.f47551q) {
                 mVar = lVar;
             }
-            if (mVar != null && this.f47506f != null && (d1Var = (d1) this.f47517r.get(mVar.i(0))) != null) {
-                GLES20.glUseProgram(d1Var.f47389a);
-                GLES20.glUniformMatrix4fv(d1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(this.f47523y));
+            if (mVar != null && this.f47541f != null && (d1Var = (d1) this.f47552r.get(mVar.i(0))) != null) {
+                GLES20.glUseProgram(d1Var.f47424a);
+                GLES20.glUniformMatrix4fv(d1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(this.f47558y));
                 GLES20.glUniform1i(d1Var.d("texture"), 0);
                 GLES20.glUniform1i(d1Var.d("mask"), 1);
-                d1.a(d1Var.d("color"), i0.a.o(this.f47506f.getCurrentColor(), (int) (Color.alpha(currentColor) * f7)));
+                d1.a(d1Var.d("color"), i0.a.o(this.f47541f.getCurrentColor(), (int) (Color.alpha(currentColor) * f7)));
                 GLES20.glActiveTexture(33984);
                 GLES20.glBindTexture(3553, i10);
                 GLES20.glActiveTexture(33985);
@@ -820,16 +820,16 @@ public final class q0 {
                 if (mVar instanceof l) {
                     GLES20.glUniform1i(d1Var.d("type"), ((l) mVar).o());
                     int d = d1Var.d("resolution");
-                    qw0 qw0Var = this.f47507g;
-                    GLES20.glUniform2f(d, qw0Var.f32054a, qw0Var.f32055b);
-                    GLES20.glUniform2f(d1Var.d("center"), f1Var.f47416b, f1Var.f47417c);
+                    rw0 rw0Var = this.f47542g;
+                    GLES20.glUniform2f(d, rw0Var.f32392a, rw0Var.f32393b);
+                    GLES20.glUniform2f(d1Var.d("center"), f1Var.f47451b, f1Var.f47452c);
                     GLES20.glUniform2f(d1Var.d("radius"), f1Var.d, f1Var.e);
-                    GLES20.glUniform1f(d1Var.d("thickness"), f1Var.f47418f);
-                    GLES20.glUniform1f(d1Var.d("rounding"), f1Var.f47419g);
-                    GLES20.glUniform2f(d1Var.d("middle"), f1Var.f47420i, f1Var.f47421j);
+                    GLES20.glUniform1f(d1Var.d("thickness"), f1Var.f47453f);
+                    GLES20.glUniform1f(d1Var.d("rounding"), f1Var.f47454g);
+                    GLES20.glUniform2f(d1Var.d("middle"), f1Var.f47455i, f1Var.f47456j);
                     GLES20.glUniform1f(d1Var.d("rotation"), f1Var.h);
-                    GLES20.glUniform1i(d1Var.d("fill"), f1Var.f47423l ? 1 : 0);
-                    GLES20.glUniform1f(d1Var.d("arrowTriangleLength"), f1Var.f47422k);
+                    GLES20.glUniform1i(d1Var.d("fill"), f1Var.f47458l ? 1 : 0);
+                    GLES20.glUniform1f(d1Var.d("arrowTriangleLength"), f1Var.f47457k);
                     GLES20.glUniform1i(d1Var.d("composite"), 0);
                     int d10 = d1Var.d("clear");
                     if (f1Var == this.d) {
@@ -840,9 +840,9 @@ public final class q0 {
                     GLES20.glUniform1i(d10, i12);
                 }
                 GLES20.glBlendFunc(1, 771);
-                GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f47512m);
+                GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f47547m);
                 GLES20.glEnableVertexAttribArray(0);
-                GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f47513n);
+                GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f47548n);
                 GLES20.glEnableVertexAttribArray(1);
                 GLES20.glDrawArrays(5, 0, 4);
                 yf.a();
@@ -895,7 +895,7 @@ public final class q0 {
             GLES20.glBindTexture(3553, j10);
             RectF rectF = (RectF) ngVar.f640c;
             GLES20.glTexSubImage2D(3553, 0, (int) rectF.left, (int) rectF.top, (int) rectF.width(), (int) ((RectF) ngVar.f640c).height(), 6408, 5121, byteBuffer);
-            if (this.f47518s <= 0 && (e3Var = this.f47503a) != null) {
+            if (this.f47553s <= 0 && (e3Var = this.f47538a) != null) {
                 e3Var.v0();
             }
             if (z10 && (file = (File) ngVar.d) != null) {
@@ -908,7 +908,7 @@ public final class q0 {
     public final void q(m mVar) {
         Bitmap bitmap;
         Bitmap c10;
-        this.f47508i = mVar;
+        this.f47543i = mVar;
         if ((mVar instanceof b) && (bitmap = this.A) != null && this.F == null) {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
@@ -937,18 +937,18 @@ public final class q0 {
             }
             canvas.drawBitmap(bitmap, 0.0f, 0.0f, this.M);
             canvas.restore();
-            c1 c1Var = this.f47506f;
+            c1 c1Var = this.f47541f;
             if (c1Var != null && (c10 = c1Var.c(false, false)) != null) {
                 canvas.scale(width / c10.getWidth(), height / c10.getHeight());
                 canvas.drawBitmap(c10, 0.0f, 0.0f, this.M);
                 c10.recycle();
             }
             Utilities.stackBlurBitmap(this.C, (int) 8.0f);
-            r1 r1Var = this.f47524z;
+            r1 r1Var = this.f47559z;
             if (r1Var != null) {
                 r1Var.a(false);
             }
-            this.f47524z = new r1(this.C);
+            this.f47559z = new r1(this.C);
         }
     }
 }

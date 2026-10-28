@@ -7,31 +7,31 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 public final class c {
-    public final HashMap f13503a;
+    public final HashMap f13502a;
 
     public c(int i10) {
         switch (i10) {
             case 1:
-                this.f13503a = new HashMap();
+                this.f13502a = new HashMap();
                 return;
             case 2:
-                this.f13503a = new HashMap();
+                this.f13502a = new HashMap();
                 return;
             default:
-                this.f13503a = new HashMap();
+                this.f13502a = new HashMap();
                 return;
         }
     }
 
     public void a(Runnable runnable) {
-        Runnable runnable2 = (Runnable) this.f13503a.remove(runnable);
+        Runnable runnable2 = (Runnable) this.f13502a.remove(runnable);
         if (runnable2 != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable2);
         }
     }
 
     public void b() {
-        HashMap hashMap = this.f13503a;
+        HashMap hashMap = this.f13502a;
         for (Map.Entry entry : hashMap.entrySet()) {
             AndroidUtilities.cancelRunOnUIThread((Runnable) entry.getValue());
         }
@@ -39,7 +39,7 @@ public final class c {
     }
 
     public void c(IBinder iBinder) {
-        synchronized (this.f13503a) {
+        synchronized (this.f13502a) {
             if (iBinder != null) {
                 try {
                     iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
@@ -48,7 +48,7 @@ public final class c {
                 }
             }
             new z8.b();
-            for (Map.Entry entry : this.f13503a.entrySet()) {
+            for (Map.Entry entry : this.f13502a.entrySet()) {
                 if (entry.getValue() == null) {
                     try {
                         throw null;

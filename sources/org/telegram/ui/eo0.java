@@ -1,25 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class eo0 {
-    public final po0 f39153a;
-
-    public eo0(po0 po0Var) {
-        this.f39153a = po0Var;
-    }
-
-    public final void a(Exception exc) {
-        po0 po0Var = this.f39153a;
-        if (po0Var.Q0) {
-            return;
-        }
-        po0Var.I0(true, false);
-        po0Var.E0(false);
-        if (!(exc instanceof wc.a) && !(exc instanceof wc.b)) {
-            org.telegram.ui.Components.g5.v0(po0Var, exc.getMessage());
-        } else {
-            org.telegram.ui.Components.g5.v0(po0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
+import org.json.JSONObject;
+public final class eo0 extends JSONObject {
+    public eo0(ro0 ro0Var, int i10) {
+        switch (i10) {
+            case 3:
+                put("type", "PAYMENT_GATEWAY");
+                Object obj = ro0Var.M0;
+                if (obj != null) {
+                    put("parameters", obj);
+                    return;
+                }
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("gateway", "stripe");
+                jSONObject.put("stripe:publishableKey", ro0Var.f43116j0);
+                jSONObject.put("stripe:version", "3.5.0");
+                put("parameters", jSONObject);
+                return;
+            default:
+                put("type", "DIRECT");
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("protocolVersion", "ECv2");
+                jSONObject2.put("publicKey", ro0Var.K0);
+                put("parameters", jSONObject2);
+                return;
         }
     }
 }

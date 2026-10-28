@@ -5,7 +5,7 @@ import java.util.HashSet;
 public final class or extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23299a7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23300a7));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.H6));
     }
 

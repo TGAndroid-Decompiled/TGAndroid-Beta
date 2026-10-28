@@ -4,10 +4,10 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 public final class c1 implements ActionMode.Callback {
-    public final g1 f17168a;
+    public final g1 f17167a;
 
     public c1(g1 g1Var) {
-        this.f17168a = g1Var;
+        this.f17167a = g1Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class c1 implements ActionMode.Callback {
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        if (this.f17168a.length() != 0) {
+        if (this.f17167a.length() != 0) {
             return false;
         }
         for (int size = menu.size() - 1; size >= 0; size--) {

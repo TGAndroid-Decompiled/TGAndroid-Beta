@@ -35,7 +35,7 @@ public final class x2 implements RequestDelegate {
                 ((MediaDataController) this.d).lambda$loadPinnedMessageInternal$164(this.f5668b, this.f5669c, (TLRPC.TL_channels_getMessages) this.e, tLObject, tL_error);
                 return;
             case 3:
-                ((MessagesController) this.d).lambda$requestContactToken$481((Utilities.Callback) this.e, this.f5668b, this.f5669c, tLObject, tL_error);
+                ((MessagesController) this.d).lambda$requestContactToken$482((Utilities.Callback) this.e, this.f5668b, this.f5669c, tLObject, tL_error);
                 return;
             default:
                 ((TopicsController) this.d).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.e, this.f5668b, this.f5669c, tLObject, tL_error);

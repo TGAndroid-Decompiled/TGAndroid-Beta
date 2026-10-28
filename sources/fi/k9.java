@@ -20,7 +20,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.x30;
 public abstract class k9 extends ScrollView implements org.telegram.ui.ActionBar.p6 {
     public final LinearGradient E;
@@ -31,34 +31,34 @@ public abstract class k9 extends ScrollView implements org.telegram.ui.ActionBar
     public float J;
     public int K;
     public boolean L;
-    public final org.telegram.ui.ActionBar.u6 f11123a;
-    public final c2 f11124b;
-    public final int f11125c;
+    public final org.telegram.ui.ActionBar.u6 f11122a;
+    public final c2 f11123b;
+    public final int f11124c;
     public final j9 d;
     public final ArrayList e;
-    public x30 f11126f;
+    public x30 f11125f;
     public final w8 h;
-    public boolean f11127n;
-    public Utilities.Callback f11128r;
-    public final org.telegram.ui.Components.h6 f11129s;
+    public boolean f11126n;
+    public Utilities.Callback f11127r;
+    public final org.telegram.ui.Components.h6 f11128s;
     public final LinearGradient v;
-    public final Paint f11130w;
-    public final Matrix f11131x;
-    public final org.telegram.ui.Components.h6 f11132y;
+    public final Paint f11129w;
+    public final Matrix f11130x;
+    public final org.telegram.ui.Components.h6 f11131y;
 
     public k9(Context context, org.telegram.ui.ActionBar.u6 u6Var, w8 w8Var) {
         super(context);
         int i10;
         this.e = new ArrayList();
         ds dsVar = ds.h;
-        this.f11129s = new org.telegram.ui.Components.h6(this, 0L, 300L, dsVar);
+        this.f11128s = new org.telegram.ui.Components.h6(this, 0L, 300L, dsVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
         this.v = linearGradient;
         Paint paint = new Paint(1);
-        this.f11130w = paint;
-        this.f11131x = new Matrix();
-        this.f11132y = new org.telegram.ui.Components.h6(this, 0L, 300L, dsVar);
+        this.f11129w = paint;
+        this.f11130x = new Matrix();
+        this.f11131y = new org.telegram.ui.Components.h6(this, 0L, 300L, dsVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
         this.E = linearGradient2;
         Paint paint2 = new Paint(1);
@@ -69,15 +69,15 @@ public abstract class k9 extends ScrollView implements org.telegram.ui.ActionBar
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f11123a = u6Var;
+        this.f11122a = u6Var;
         this.h = w8Var;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23356d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23357d6, false));
         j9 j9Var = new j9(this, context);
         this.d = j9Var;
-        addView(j9Var, gb1.g(-2.0f, -1));
+        addView(j9Var, kb1.g(-2.0f, -1));
         c2 c2Var = new c2(this, context, 1);
-        this.f11124b = c2Var;
+        this.f11123b = c2Var;
         if (Build.VERSION.SDK_INT >= 25) {
             c2Var.setRevealOnFocusHint(false);
         }
@@ -104,7 +104,7 @@ public abstract class k9 extends ScrollView implements org.telegram.ui.ActionBar
         c2Var.setGravity(i10 | 16);
         j9Var.addView(c2Var);
         c2Var.setHintText(LocaleController.getString(R.string.Search));
-        this.f11125c = (int) c2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
+        this.f11124c = (int) c2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
         c2Var.addTextChangedListener(new h9(this));
     }
 
@@ -115,15 +115,15 @@ public abstract class k9 extends ScrollView implements org.telegram.ui.ActionBar
         canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
-        float e = this.f11129s.e(canScrollVertically(-1));
-        Matrix matrix = this.f11131x;
+        float e = this.f11128s.e(canScrollVertically(-1));
+        Matrix matrix = this.f11130x;
         matrix.reset();
         matrix.postTranslate(0.0f, scrollY2);
         this.v.setLocalMatrix(matrix);
-        Paint paint = this.f11130w;
+        Paint paint = this.f11129w;
         paint.setAlpha((int) (e * 255.0f));
         canvas.drawRect(0.0f, scrollY2, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, paint);
-        float e10 = this.f11132y.e(canScrollVertically(1));
+        float e10 = this.f11131y.e(canScrollVertically(1));
         Matrix matrix2 = this.G;
         matrix2.reset();
         matrix2.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
@@ -161,19 +161,19 @@ public abstract class k9 extends ScrollView implements org.telegram.ui.ActionBar
     }
 
     public void setOnSearchTextChange(Utilities.Callback<String> callback) {
-        this.f11128r = callback;
+        this.f11127r = callback;
     }
 
     public void setText(CharSequence charSequence) {
-        this.f11127n = true;
-        this.f11124b.setText(charSequence);
-        this.f11127n = false;
+        this.f11126n = true;
+        this.f11123b.setText(charSequence);
+        this.f11126n = false;
     }
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.ActionBar.u6 u6Var = this.f11123a;
-        c2 c2Var = this.f11124b;
+        org.telegram.ui.ActionBar.u6 u6Var = this.f11122a;
+        c2 c2Var = this.f11123b;
         if (c2Var != null) {
             try {
                 c2Var.setHintColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Xh, u6Var));
@@ -185,7 +185,7 @@ public abstract class k9 extends ScrollView implements org.telegram.ui.ActionBar
                 return;
             }
         }
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23356d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23357d6, false));
     }
 
     @Override

@@ -17,28 +17,28 @@ import java.util.List;
 import q3.h;
 public final class b implements o {
     public q e;
-    public j0 f12591f;
+    public j0 f12590f;
     public u0 h;
-    public u f12593i;
-    public int f12594j;
-    public int f12595k;
-    public a f12596l;
-    public int f12597m;
-    public long f12598n;
-    public final byte[] f12588a = new byte[42];
-    public final x f12589b = new x(new byte[32768], 0);
-    public final boolean f12590c = false;
+    public u f12592i;
+    public int f12593j;
+    public int f12594k;
+    public a f12595l;
+    public int f12596m;
+    public long f12597n;
+    public final byte[] f12587a = new byte[42];
+    public final x f12588b = new x(new byte[32768], 0);
+    public final boolean f12589c = false;
     public final s d = new Object();
-    public int f12592g = 0;
+    public int f12591g = 0;
 
     @Override
     public final boolean a(p pVar) {
-        u0 c02 = new i(8).c0(pVar, h.f46941b, 0);
+        u0 c02 = new i(8).c0(pVar, h.f46976b, 0);
         if (c02 != null) {
             int length = c02.f3465a.length;
         }
         x xVar = new x(4);
-        ((l) pVar).h(xVar.f9732a, 0, 4, false);
+        ((l) pVar).h(xVar.f9731a, 0, 4, false);
         if (xVar.C() != 1716281667) {
             return false;
         }
@@ -48,7 +48,7 @@ public final class b implements o {
     @Override
     public final void c(q qVar) {
         this.e = qVar;
-        this.f12591f = qVar.F1(0, 1);
+        this.f12590f = qVar.F1(0, 1);
         qVar.Q0();
     }
 
@@ -56,9 +56,9 @@ public final class b implements o {
     public final void d(long j10, long j11) {
         long j12 = 0;
         if (j10 == 0) {
-            this.f12592g = 0;
+            this.f12591g = 0;
         } else {
-            a aVar = this.f12596l;
+            a aVar = this.f12595l;
             if (aVar != null) {
                 aVar.d(j11);
             }
@@ -66,14 +66,14 @@ public final class b implements o {
         if (j11 != 0) {
             j12 = -1;
         }
-        this.f12598n = j12;
-        this.f12597m = 0;
-        this.f12589b.K(0);
+        this.f12597n = j12;
+        this.f12596m = 0;
+        this.f12588b.K(0);
     }
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f10287b;
+        g0 g0Var = i0.f10286b;
         return s1.e;
     }
 

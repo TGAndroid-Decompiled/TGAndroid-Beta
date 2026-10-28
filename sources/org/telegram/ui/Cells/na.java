@@ -9,34 +9,34 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.aq;
-import org.telegram.ui.Components.bm0;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.bq;
+import org.telegram.ui.Components.cm0;
+import org.telegram.ui.Components.yj0;
 import org.telegram.ui.LaunchActivity;
-public final class na implements bm0, ag.s, ImageReceiver.ImageReceiverDelegate, FlagSecureReason.FlagSecureCondition, aq, Utilities.Callback2Return {
-    public final int f24567a;
-    public final Object f24568b;
+public final class na implements cm0, ag.s, ImageReceiver.ImageReceiverDelegate, FlagSecureReason.FlagSecureCondition, bq, Utilities.Callback2Return {
+    public final int f24569a;
+    public final Object f24570b;
 
     public na(Object obj, int i10) {
-        this.f24567a = i10;
-        this.f24568b = obj;
+        this.f24569a = i10;
+        this.f24570b = obj;
     }
 
     @Override
     public void a() {
-        switch (this.f24567a) {
+        switch (this.f24569a) {
             case 4:
-                r4 r4Var = (r4) this.f24568b;
+                r4 r4Var = (r4) this.f24570b;
                 float progress = 1.0f - (r4Var.v.getProgress() * 0.143f);
-                org.telegram.ui.Components.y9 y9Var = r4Var.f24961a;
+                org.telegram.ui.Components.y9 y9Var = r4Var.f24963a;
                 y9Var.setScaleX(progress);
                 y9Var.setScaleY(progress);
                 r4Var.invalidate();
                 return;
             default:
-                k7 k7Var = (k7) this.f24568b;
+                k7 k7Var = (k7) this.f24570b;
                 float progress2 = 1.0f - (k7Var.d.getProgress() * 0.143f);
-                org.telegram.ui.Components.y9 y9Var2 = k7Var.f24340a;
+                org.telegram.ui.Components.y9 y9Var2 = k7Var.f24342a;
                 y9Var2.setScaleX(progress2);
                 y9Var2.setScaleY(progress2);
                 k7Var.invalidate();
@@ -46,21 +46,21 @@ public final class na implements bm0, ag.s, ImageReceiver.ImageReceiverDelegate,
 
     @Override
     public boolean c(int i10, View view) {
-        ra raVar = (ra) this.f24568b;
+        ra raVar = (ra) this.f24570b;
         raVar.getClass();
-        raVar.F1(((ThemesHorizontalListCell$InnerThemeView) view).f23826b);
+        raVar.F1(((ThemesHorizontalListCell$InnerThemeView) view).f23827b);
         return true;
     }
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        xj0 lottieAnimation;
+        yj0 lottieAnimation;
         s0 s0Var;
         int v;
         MessageObject messageObject;
-        switch (this.f24567a) {
+        switch (this.f24569a) {
             case 2:
-                v0 v0Var = (v0) this.f24568b;
+                v0 v0Var = (v0) this.f24570b;
                 if (z10 && (lottieAnimation = v0Var.I.getLottieAnimation()) != null) {
                     MessageObject messageObject2 = v0Var.P0;
                     if (messageObject2 != null && !messageObject2.playedGiftAnimation) {
@@ -75,17 +75,17 @@ public final class na implements bm0, ag.s, ImageReceiver.ImageReceiverDelegate,
                             } catch (Exception unused) {
                             }
                             if (v0Var.getContext() instanceof LaunchActivity) {
-                                ((LaunchActivity) v0Var.getContext()).f35567x0.c(false);
+                                ((LaunchActivity) v0Var.getContext()).f35591x0.c(false);
                             }
                             TLRPC.VideoSize videoSize = v0Var.I1;
-                            if (videoSize != null && (s0Var = v0Var.f25516f1) != null) {
+                            if (videoSize != null && (s0Var = v0Var.f25518f1) != null) {
                                 s0Var.G(v0Var, v0Var.H1, videoSize);
                                 return;
                             }
                             return;
                         }
                         return;
-                    } else if (lottieAnimation.f34736a0 < 1) {
+                    } else if (lottieAnimation.f35067a0 < 1) {
                         lottieAnimation.stop();
                         lottieAnimation.N(lottieAnimation.e[0] - 1, false, false);
                         return;
@@ -95,21 +95,21 @@ public final class na implements bm0, ag.s, ImageReceiver.ImageReceiverDelegate,
                 }
                 return;
             default:
-                w7 w7Var = (w7) this.f24568b;
+                w7 w7Var = (w7) this.f24570b;
                 ImageReceiver imageReceiver2 = w7Var.d;
-                ImageReceiver imageReceiver3 = w7Var.f25638c;
-                if (z10 && !z11 && (messageObject = w7Var.f25650n) != null && messageObject.hasMediaSpoilers() && imageReceiver3.getBitmap() != null) {
+                ImageReceiver imageReceiver3 = w7Var.f25640c;
+                if (z10 && !z11 && (messageObject = w7Var.f25652n) != null && messageObject.hasMediaSpoilers() && imageReceiver3.getBitmap() != null) {
                     if (imageReceiver2.getBitmap() != null) {
                         imageReceiver2.getBitmap().recycle();
                     }
                     imageReceiver2.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver3.getBitmap()));
                 }
-                if (z10 && !z11 && w7Var.f25663w0 && imageReceiver3.getBitmap() != null) {
+                if (z10 && !z11 && w7Var.f25665w0 && imageReceiver3.getBitmap() != null) {
                     int dominantColor = AndroidUtilities.getDominantColor(imageReceiver3.getBitmap());
-                    w7Var.f25634a = dominantColor;
+                    w7Var.f25636a = dominantColor;
                     CheckBoxBase checkBoxBase = w7Var.P;
-                    if (checkBoxBase != null && checkBoxBase.f26095x != (v = org.telegram.ui.ActionBar.y6.v(dominantColor, org.telegram.ui.ActionBar.y6.o1(0.25f, -1)))) {
-                        checkBoxBase.f26095x = v;
+                    if (checkBoxBase != null && checkBoxBase.f26097x != (v = org.telegram.ui.ActionBar.y6.v(dominantColor, org.telegram.ui.ActionBar.y6.o1(0.25f, -1)))) {
+                        checkBoxBase.f26097x = v;
                         checkBoxBase.b();
                         return;
                     }
@@ -121,38 +121,38 @@ public final class na implements bm0, ag.s, ImageReceiver.ImageReceiverDelegate,
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        int i11 = this.f24567a;
-        org.telegram.messenger.o5.a(this, i10, str, drawable);
+        int i11 = this.f24569a;
+        org.telegram.messenger.p5.a(this, i10, str, drawable);
     }
 
     @Override
     public void f(long j10) {
-        ((l) this.f24568b).b(j10);
+        ((l) this.f24570b).b(j10);
     }
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        int i10 = this.f24567a;
-        org.telegram.messenger.o5.b(this, imageReceiver);
+        int i10 = this.f24569a;
+        org.telegram.messenger.p5.b(this, imageReceiver);
     }
 
     @Override
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
-        return (CharSequence) ((ai.d0) this.f24568b).run((Integer) obj2);
+        return (CharSequence) ((ai.d0) this.f24570b).run((Integer) obj2);
     }
 
     @Override
     public boolean run() {
         TLRPC.Message message;
         o4 o4Var;
-        s1 s1Var = (s1) this.f24568b;
-        MessageObject messageObject = s1Var.f25365y7;
+        s1 s1Var = (s1) this.f24570b;
+        MessageObject messageObject = s1Var.f25367y7;
         if (messageObject == null || (message = messageObject.messageOwner) == null) {
             return false;
         }
-        if (messageObject.type != 29 || ((o4Var = s1Var.F7) != null && o4Var.f24589i)) {
-            return (message.noforwards && !messageObject.isEphemeral()) || s1Var.f25365y7.isVoiceOnce() || s1Var.f25365y7.hasRevealedExtendedMedia();
+        if (messageObject.type != 29 || ((o4Var = s1Var.F7) != null && o4Var.f24591i)) {
+            return (message.noforwards && !messageObject.isEphemeral()) || s1Var.f25367y7.isVoiceOnce() || s1Var.f25367y7.hasRevealedExtendedMedia();
         }
         return true;
     }

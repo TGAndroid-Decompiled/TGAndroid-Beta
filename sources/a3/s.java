@@ -40,7 +40,7 @@ public final class s implements e9.t {
                 return new i2.i(new y2.d(), 1000, 1000, 1000, 2000, 1000, true, x1.h);
             case 4:
                 byte[] bArr = new byte[12];
-                j2.g.f15208i.nextBytes(bArr);
+                j2.g.f15207i.nextBytes(bArr);
                 return Base64.encodeToString(bArr, 10);
             default:
                 Resources system = Resources.getSystem();

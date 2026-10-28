@@ -89,7 +89,7 @@ public final class t implements Comparator, Parcelable {
     public t(Parcel parcel) {
         this.f3439c = parcel.readString();
         s[] sVarArr = (s[]) parcel.createTypedArray(s.CREATOR);
-        String str = e2.n0.f9692a;
+        String str = e2.n0.f9691a;
         this.f3437a = sVarArr;
         this.d = sVarArr.length;
     }

@@ -1,41 +1,128 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class j90 implements org.telegram.ui.ActionBar.b2, org.telegram.ui.ActionBar.m1 {
-    public final int f29552a;
-    public final r90 f29553b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+public final class j90 extends View {
+    public static DecelerateInterpolator v;
+    public static Paint f29568w;
+    public long f29569a;
+    public float f29570b;
+    public float f29571c;
+    public long d;
+    public float e;
+    public float f29572f;
+    public int h;
+    public int f29573n;
+    public final RectF f29574r;
+    public org.telegram.ui.Components.voip.h f29575s;
 
-    public j90(r90 r90Var, int i10) {
-        this.f29552a = i10;
-        this.f29553b = r90Var;
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        switch (this.f29552a) {
-            case 0:
-                q90 q90Var = this.f29553b.f32175r;
-                if (q90Var != null) {
-                    q90Var.k();
-                    return;
-                }
-                return;
-            default:
-                q90 q90Var2 = this.f29553b.f32175r;
-                if (q90Var2 != null) {
-                    q90Var2.d();
-                    return;
-                }
-                return;
+    public j90(Context context) {
+        super(context);
+        this.f29572f = 1.0f;
+        this.f29574r = new RectF();
+        if (v == null) {
+            v = new DecelerateInterpolator();
+            Paint paint = new Paint(1);
+            f29568w = paint;
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            f29568w.setStrokeWidth(AndroidUtilities.dp(2.0f));
         }
     }
 
-    @Override
-    public void n(KeyEvent keyEvent) {
-        r90 r90Var = this.f29553b;
-        r90Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && r90Var.f32176s.isShowing()) {
-            r90Var.f32176s.d(true);
+    public final void a(float f7, boolean z10) {
+        if (!z10) {
+            this.e = f7;
+            this.f29571c = f7;
+        } else {
+            this.f29571c = this.e;
         }
+        if (f7 != 1.0f) {
+            this.f29572f = 1.0f;
+        }
+        this.f29570b = f7;
+        this.d = 0L;
+        this.f29569a = System.currentTimeMillis();
+        invalidate();
+    }
+
+    public float getCurrentProgress() {
+        return this.f29570b;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i10 = this.h;
+        RectF rectF = this.f29574r;
+        if (i10 != 0 && this.e != 1.0f) {
+            f29568w.setColor(i10);
+            f29568w.setAlpha((int) (this.f29572f * 255.0f));
+            getWidth();
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f29568w);
+        }
+        f29568w.setColor(this.f29573n);
+        f29568w.setAlpha((int) (this.f29572f * 255.0f));
+        rectF.set(0.0f, 0.0f, getWidth() * this.e, getHeight());
+        canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f29568w);
+        if (this.f29572f > 0.0f) {
+            if (this.f29575s == null) {
+                org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h(160, 0);
+                this.f29575s = hVar;
+                hVar.f33929k = false;
+                hVar.f33932n = 0.8f;
+                hVar.f33931m = 1.2f;
+            }
+            this.f29575s.f33925f = getMeasuredWidth();
+            this.f29575s.a(getHeight() / 2.0f, canvas, rectF, null);
+            invalidate();
+        }
+        long currentTimeMillis = System.currentTimeMillis();
+        long j10 = currentTimeMillis - this.f29569a;
+        this.f29569a = currentTimeMillis;
+        float f7 = this.e;
+        if (f7 != 1.0f) {
+            float f10 = this.f29570b;
+            if (f7 != f10) {
+                float f11 = this.f29571c;
+                float f12 = f10 - f11;
+                if (f12 > 0.0f) {
+                    long j11 = this.d + j10;
+                    this.d = j11;
+                    if (j11 >= 300) {
+                        this.e = f10;
+                        this.f29571c = f10;
+                        this.d = 0L;
+                    } else {
+                        this.e = (v.getInterpolation(((float) j11) / 300.0f) * f12) + f11;
+                    }
+                }
+                invalidate();
+            }
+        }
+        int i11 = (this.e > 1.0f ? 1 : (this.e == 1.0f ? 0 : -1));
+        if (i11 >= 0 && i11 == 0) {
+            float f13 = this.f29572f;
+            if (f13 != 0.0f) {
+                float f14 = f13 - (((float) j10) / 200.0f);
+                this.f29572f = f14;
+                if (f14 <= 0.0f) {
+                    this.f29572f = 0.0f;
+                }
+                invalidate();
+            }
+        }
+    }
+
+    public void setBackColor(int i10) {
+        this.h = i10;
+    }
+
+    public void setProgressColor(int i10) {
+        this.f29573n = i10;
     }
 }

@@ -159,7 +159,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         com.google.android.gms.common.api.internal.u b10 = com.google.android.gms.common.api.internal.v.b();
         b10.f6622c = new li.e3(eVar, 18);
         b10.f6620a = 2426;
-        cVar.e(0, b10.a()).addOnCompleteListener(new n4(aVar, 1));
+        cVar.e(0, b10.a()).addOnCompleteListener(new o4(aVar, 1));
     }
 
     @Override
@@ -172,16 +172,16 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         s7.c cVar = (s7.c) this.locationProviderClient;
         cVar.getClass();
         com.google.android.gms.common.api.internal.u b10 = com.google.android.gms.common.api.internal.v.b();
-        b10.f6622c = s7.a.f47894c;
+        b10.f6622c = s7.a.f47929c;
         b10.f6620a = 2414;
-        cVar.e(0, b10.a()).addOnCompleteListener(new n4(aVar, 0));
+        cVar.e(0, b10.a()).addOnCompleteListener(new o4(aVar, 0));
     }
 
     @Override
     public void init(Context context) {
-        com.google.android.gms.common.api.e eVar = h8.d.f12703a;
+        com.google.android.gms.common.api.e eVar = h8.d.f12702a;
         com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f6478c;
-        com.google.android.gms.common.api.e eVar2 = s7.c.f47896k;
+        com.google.android.gms.common.api.e eVar2 = s7.c.f47931k;
         com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f6469j;
         this.locationProviderClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
         this.settingsClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
@@ -201,14 +201,14 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         HashSet hashSet2 = new HashSet();
         ?? lVar = new a0.l(0);
         ?? lVar2 = new a0.l(0);
-        Object obj = l6.d.f16930c;
-        b8.d dVar = o8.b.f19275a;
+        Object obj = l6.d.f16929c;
+        b8.d dVar = o8.b.f19274a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         Looper mainLooper = context2.getMainLooper();
         String packageName = context2.getPackageName();
         String name = context2.getClass().getName();
-        com.google.android.gms.common.api.e eVar = h8.d.f12703a;
+        com.google.android.gms.common.api.e eVar = h8.d.f12702a;
         o6.l.i(eVar, "Api must not be null");
         lVar2.put(eVar, null);
         b8.d dVar2 = eVar.f6470a;
@@ -245,13 +245,13 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
             }
         });
         o6.l.a("must call addApi() to add at least one API", !lVar2.isEmpty());
-        o8.a aVar = o8.a.f19274a;
-        com.google.android.gms.common.api.e eVar2 = o8.b.f19276b;
+        o8.a aVar = o8.a.f19273a;
+        com.google.android.gms.common.api.e eVar2 = o8.b.f19275b;
         if (lVar2.containsKey(eVar2)) {
             aVar = (o8.a) lVar2.get(eVar2);
         }
         m.r3 r3Var = new m.r3(hashSet, lVar, packageName, name, aVar);
-        Map map = (Map) r3Var.f17846c;
+        Map map = (Map) r3Var.f17845c;
         a0.l lVar3 = new a0.l(0);
         a0.l lVar4 = new a0.l(0);
         ArrayList arrayList3 = new ArrayList();
@@ -331,7 +331,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
             cVar.getClass();
             String simpleName = h8.c.class.getSimpleName();
             o6.l.g(simpleName, "Listener type must not be empty");
-            cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(s7.b.f47895a, s7.a.f47893b);
+            cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(s7.b.f47930a, s7.a.f47928b);
         }
     }
 
@@ -344,7 +344,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
                 cVar.getClass();
                 String simpleName = h8.c.class.getSimpleName();
                 o6.l.g(simpleName, "Listener type must not be empty");
-                cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(s7.b.f47895a, s7.a.f47893b);
+                cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(s7.b.f47930a, s7.a.f47928b);
             }
             h8.c cVar2 = new h8.c() {
                 {

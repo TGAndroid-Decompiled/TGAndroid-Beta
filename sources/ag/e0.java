@@ -24,7 +24,7 @@ public final class e0 implements ViewTreeObserver.OnDrawListener {
                 h3 h3Var = (h3) this.f1272b;
                 Trace.beginSection("OnDraw");
                 try {
-                    Iterator it = ((se.b) h3Var.f8618b).iterator();
+                    Iterator it = ((se.b) h3Var.f8617b).iterator();
                     while (it.hasNext()) {
                         ((oi.h) it.next()).a();
                     }

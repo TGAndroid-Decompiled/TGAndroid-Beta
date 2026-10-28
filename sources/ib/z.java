@@ -1,8 +1,8 @@
 package ib;
 public final class z implements fb.v {
-    public final mb.a f13979a;
-    public final boolean f13980b;
-    public final Class f13981c;
+    public final mb.a f13978a;
+    public final boolean f13979b;
+    public final Class f13980c;
     public final fb.o d;
 
     public z(Object obj, mb.a aVar, boolean z10, Class cls) {
@@ -20,23 +20,23 @@ public final class z implements fb.v {
             z11 = true;
         }
         hb.d.b(z11);
-        this.f13979a = aVar;
-        this.f13980b = z10;
-        this.f13981c = cls;
+        this.f13978a = aVar;
+        this.f13979b = z10;
+        this.f13980c = cls;
     }
 
     @Override
     public final fb.u create(fb.g gVar, mb.a aVar) {
         boolean isAssignableFrom;
-        mb.a aVar2 = this.f13979a;
+        mb.a aVar2 = this.f13978a;
         if (aVar2 != null) {
-            if (!aVar2.equals(aVar) && (!this.f13980b || aVar2.f18408b != aVar.f18407a)) {
+            if (!aVar2.equals(aVar) && (!this.f13979b || aVar2.f18407b != aVar.f18406a)) {
                 isAssignableFrom = false;
             } else {
                 isAssignableFrom = true;
             }
         } else {
-            isAssignableFrom = this.f13981c.isAssignableFrom(aVar.f18407a);
+            isAssignableFrom = this.f13980c.isAssignableFrom(aVar.f18406a);
         }
         if (isAssignableFrom) {
             return new a0(this.d, gVar, aVar, this, true);

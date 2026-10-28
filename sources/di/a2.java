@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.c90;
+import org.telegram.ui.Components.d90;
 import org.telegram.ui.Components.wc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.cy;
+import org.telegram.ui.ey;
 public final class a2 implements View.OnClickListener {
     public final int f8363a;
     public final long f8364b;
@@ -33,26 +33,26 @@ public final class a2 implements View.OnClickListener {
                 } else {
                     bundle.putLong("chat_id", -j10);
                 }
-                q4Var.f9047y0.H(new ProfileActivity(bundle, null));
+                q4Var.f9046y0.I(new ProfileActivity(bundle, null));
                 return;
             case 1:
-                c90.q((c90) this.f8365c, this.f8364b);
+                d90.q((d90) this.f8365c, this.f8364b);
                 return;
             case 2:
-                cy cyVar = (cy) this.f8365c;
-                MessagesController messagesController = cyVar.getMessagesController();
+                ey eyVar = (ey) this.f8365c;
+                MessagesController messagesController = eyVar.getMessagesController();
                 long j11 = this.f8364b;
                 boolean isDialogMuted = messagesController.isDialogMuted(j11, 0L);
                 if (!isDialogMuted) {
-                    cyVar.getNotificationsController().setDialogNotificationsSettings(j11, 0L, 3);
+                    eyVar.getNotificationsController().setDialogNotificationsSettings(j11, 0L, 3);
                 } else {
-                    cyVar.getNotificationsController().setDialogNotificationsSettings(j11, 0L, 4);
+                    eyVar.getNotificationsController().setDialogNotificationsSettings(j11, 0L, 4);
                 }
-                wc.A(cyVar, !isDialogMuted, null).j();
-                cyVar.finishPreviewFragment();
+                wc.A(eyVar, !isDialogMuted, null).j();
+                eyVar.finishPreviewFragment();
                 return;
             case 3:
-                Utilities.Callback callback = ((sh.p) this.f8365c).f48665f;
+                Utilities.Callback callback = ((sh.p) this.f8365c).f48700f;
                 if (callback != null) {
                     callback.run(Long.valueOf(this.f8364b));
                     return;

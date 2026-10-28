@@ -16,19 +16,19 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class vv extends FrameLayout {
-    public final z90 f34264a;
-    public final TextView f34265b;
-    public final TextView f34266c;
+    public final aa0 f34373a;
+    public final TextView f34374b;
+    public final TextView f34375c;
     public final TextView d;
     public final tg.p0 e;
-    public final org.telegram.ui.ActionBar.w0 f34267f;
+    public final org.telegram.ui.ActionBar.w0 f34376f;
     public final boolean h;
-    public final bi.v4 f34268n;
-    public TLRPC.TL_messages_stickerSet f34269r;
-    public boolean f34270s;
+    public final bi.v4 f34377n;
+    public TLRPC.TL_messages_stickerSet f34378r;
+    public boolean f34379s;
     public float v;
-    public ValueAnimator f34271w;
-    public final aw f34272x;
+    public ValueAnimator f34380w;
+    public final aw f34381x;
 
     public vv(aw awVar, Context context, boolean z10) {
         super(context);
@@ -48,9 +48,9 @@ public final class vv extends FrameLayout {
         org.telegram.ui.ActionBar.u6 u6Var9;
         org.telegram.ui.ActionBar.u6 u6Var10;
         org.telegram.ui.ActionBar.u6 u6Var11;
-        this.f34272x = awVar;
-        this.f34268n = new bi.v4(this, 6);
-        this.f34270s = false;
+        this.f34381x = awVar;
+        this.f34377n = new bi.v4(this, 6);
+        this.f34379s = false;
         this.v = 0.0f;
         this.h = z10;
         if (!z10) {
@@ -64,38 +64,38 @@ public final class vv extends FrameLayout {
                 tg.p0 p0Var = new tg.p0(dp, context, u6Var11, false);
                 this.e = p0Var;
                 p0Var.a(LocaleController.getString(R.string.Unlock), new View.OnClickListener(this) {
-                    public final vv f32688b;
+                    public final vv f32690b;
 
                     {
-                        this.f32688b = this;
+                        this.f32690b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i12 = r2;
-                        vv vvVar = this.f32688b;
+                        vv vvVar = this.f32690b;
                         switch (i12) {
                             case 0:
-                                aw awVar2 = vvVar.f34272x;
+                                aw awVar2 = vvVar.f34381x;
                                 awVar2.Q = SystemClock.elapsedRealtime();
                                 awVar2.j0();
                                 return;
                             case 1:
-                                aw.g0(vvVar.f34268n, vvVar.f34269r, true, null, null);
+                                aw.g0(vvVar.f34377n, vvVar.f34378r, true, null, null);
                                 vvVar.a(true, true);
                                 return;
                             case 2:
-                                bi.v4 v4Var = vvVar.f34268n;
-                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = vvVar.f34269r;
-                                bq bqVar = new bq(vvVar, 13);
+                                bi.v4 v4Var = vvVar.f34377n;
+                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = vvVar.f34378r;
+                                cp cpVar = new cp(vvVar, 14);
                                 Pattern pattern = aw.V;
                                 if (v4Var != null && tL_messages_stickerSet != null && v4Var.getFragmentView() != null) {
-                                    MediaDataController.getInstance(v4Var.getCurrentAccount()).toggleStickerSet(v4Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, v4Var, true, true, bqVar, true);
+                                    MediaDataController.getInstance(v4Var.getCurrentAccount()).toggleStickerSet(v4Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, v4Var, true, true, cpVar, true);
                                 }
                                 vvVar.a(false, true);
                                 return;
                             default:
-                                vvVar.f34267f.U(null, null);
+                                vvVar.f34376f.U(null, null);
                                 return;
                         }
                     }
@@ -109,7 +109,7 @@ public final class vv extends FrameLayout {
                 marginLayoutParams.width = dp2;
                 ((ViewGroup.MarginLayoutParams) p0Var.getTextView().getLayoutParams()).leftMargin = AndroidUtilities.dp(3.0f);
                 p0Var.getChildAt(0).setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-                addView(p0Var, gb1.m(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
+                addView(p0Var, kb1.m(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
                 p0Var.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
                 f12 = (AndroidUtilities.dp(16.0f) + p0Var.getMeasuredWidth()) / AndroidUtilities.density;
             } else {
@@ -118,7 +118,7 @@ public final class vv extends FrameLayout {
             }
             float f13 = f12;
             TextView textView = new TextView(context);
-            this.f34266c = textView;
+            this.f34375c = textView;
             textView.setTypeface(AndroidUtilities.bold());
             int i12 = org.telegram.ui.ActionBar.y6.Sh;
             u6Var7 = ((org.telegram.ui.ActionBar.k3) awVar).resourcesProvider;
@@ -133,43 +133,43 @@ public final class vv extends FrameLayout {
             textView.setPadding(org.telegram.ui.d3.h(18.0f, R.string.Add, textView), 0, AndroidUtilities.dp(18.0f), 0);
             textView.setGravity(17);
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final vv f32688b;
+                public final vv f32690b;
 
                 {
-                    this.f32688b = this;
+                    this.f32690b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    vv vvVar = this.f32688b;
+                    vv vvVar = this.f32690b;
                     switch (i122) {
                         case 0:
-                            aw awVar2 = vvVar.f34272x;
+                            aw awVar2 = vvVar.f34381x;
                             awVar2.Q = SystemClock.elapsedRealtime();
                             awVar2.j0();
                             return;
                         case 1:
-                            aw.g0(vvVar.f34268n, vvVar.f34269r, true, null, null);
+                            aw.g0(vvVar.f34377n, vvVar.f34378r, true, null, null);
                             vvVar.a(true, true);
                             return;
                         case 2:
-                            bi.v4 v4Var = vvVar.f34268n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = vvVar.f34269r;
-                            bq bqVar = new bq(vvVar, 13);
+                            bi.v4 v4Var = vvVar.f34377n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = vvVar.f34378r;
+                            cp cpVar = new cp(vvVar, 14);
                             Pattern pattern = aw.V;
                             if (v4Var != null && tL_messages_stickerSet != null && v4Var.getFragmentView() != null) {
-                                MediaDataController.getInstance(v4Var.getCurrentAccount()).toggleStickerSet(v4Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, v4Var, true, true, bqVar, true);
+                                MediaDataController.getInstance(v4Var.getCurrentAccount()).toggleStickerSet(v4Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, v4Var, true, true, cpVar, true);
                             }
                             vvVar.a(false, true);
                             return;
                         default:
-                            vvVar.f34267f.U(null, null);
+                            vvVar.f34376f.U(null, null);
                             return;
                     }
                 }
             });
-            addView(textView, gb1.m(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
+            addView(textView, kb1.m(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
             textView.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f10), 1073741824));
             float max = Math.max(f13, (AndroidUtilities.dp(f11) + textView.getMeasuredWidth()) / AndroidUtilities.density);
             TextView textView2 = new TextView(context);
@@ -185,44 +185,44 @@ public final class vv extends FrameLayout {
             textView2.setPadding(org.telegram.ui.d3.h(12.0f, R.string.StickersRemove, textView2), 0, AndroidUtilities.dp(12.0f), 0);
             textView2.setGravity(17);
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final vv f32688b;
+                public final vv f32690b;
 
                 {
-                    this.f32688b = this;
+                    this.f32690b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    vv vvVar = this.f32688b;
+                    vv vvVar = this.f32690b;
                     switch (i122) {
                         case 0:
-                            aw awVar2 = vvVar.f34272x;
+                            aw awVar2 = vvVar.f34381x;
                             awVar2.Q = SystemClock.elapsedRealtime();
                             awVar2.j0();
                             return;
                         case 1:
-                            aw.g0(vvVar.f34268n, vvVar.f34269r, true, null, null);
+                            aw.g0(vvVar.f34377n, vvVar.f34378r, true, null, null);
                             vvVar.a(true, true);
                             return;
                         case 2:
-                            bi.v4 v4Var = vvVar.f34268n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = vvVar.f34269r;
-                            bq bqVar = new bq(vvVar, 13);
+                            bi.v4 v4Var = vvVar.f34377n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = vvVar.f34378r;
+                            cp cpVar = new cp(vvVar, 14);
                             Pattern pattern = aw.V;
                             if (v4Var != null && tL_messages_stickerSet != null && v4Var.getFragmentView() != null) {
-                                MediaDataController.getInstance(v4Var.getCurrentAccount()).toggleStickerSet(v4Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, v4Var, true, true, bqVar, true);
+                                MediaDataController.getInstance(v4Var.getCurrentAccount()).toggleStickerSet(v4Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, v4Var, true, true, cpVar, true);
                             }
                             vvVar.a(false, true);
                             return;
                         default:
-                            vvVar.f34267f.U(null, null);
+                            vvVar.f34376f.U(null, null);
                             return;
                     }
                 }
             });
             textView2.setClickable(false);
-            addView(textView2, gb1.m(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
+            addView(textView2, kb1.m(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
             textView2.setScaleX(0.0f);
             textView2.setScaleY(0.0f);
             textView2.setAlpha(0.0f);
@@ -233,30 +233,30 @@ public final class vv extends FrameLayout {
         }
         float f15 = f7;
         u6Var = ((org.telegram.ui.ActionBar.k3) awVar).resourcesProvider;
-        z90 z90Var = new z90(context, u6Var);
-        this.f34264a = z90Var;
-        z90Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        z90Var.setTypeface(AndroidUtilities.bold());
+        aa0 aa0Var = new aa0(context, u6Var);
+        this.f34373a = aa0Var;
+        aa0Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
+        aa0Var.setTypeface(AndroidUtilities.bold());
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        z90Var.setEllipsize(truncateAt);
-        z90Var.setSingleLine(true);
-        z90Var.setLines(1);
+        aa0Var.setEllipsize(truncateAt);
+        aa0Var.setSingleLine(true);
+        aa0Var.setLines(1);
         int i14 = org.telegram.ui.ActionBar.y6.J6;
         u6Var2 = ((org.telegram.ui.ActionBar.k3) awVar).resourcesProvider;
-        org.telegram.ui.ActionBar.f7.H(z90Var, i14, u6Var2);
-        int i15 = org.telegram.ui.ActionBar.y6.f23464j5;
+        org.telegram.ui.ActionBar.f7.H(aa0Var, i14, u6Var2);
+        int i15 = org.telegram.ui.ActionBar.y6.f23465j5;
         u6Var3 = ((org.telegram.ui.ActionBar.k3) awVar).resourcesProvider;
-        org.telegram.ui.ActionBar.f7.V(z90Var, i15, u6Var3);
+        org.telegram.ui.ActionBar.f7.V(aa0Var, i15, u6Var3);
         if (z10) {
-            z90Var.setTextSize(1, 20.0f);
-            addView(z90Var, gb1.m(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f15, 0.0f));
+            aa0Var.setTextSize(1, 20.0f);
+            addView(aa0Var, kb1.m(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f15, 0.0f));
         } else {
-            z90Var.setTextSize(1, 17.0f);
-            addView(z90Var, gb1.m(-1.0f, -2.0f, 8388659, 6.0f, 10.0f, f15, 0.0f));
+            aa0Var.setTextSize(1, 17.0f);
+            addView(aa0Var, kb1.m(-1.0f, -2.0f, 8388659, 6.0f, 10.0f, f15, 0.0f));
         }
         if (!z10) {
             TextView textView3 = new TextView(context);
-            this.f34265b = textView3;
+            this.f34374b = textView3;
             textView3.setTextSize(1, 13.0f);
             int i16 = org.telegram.ui.ActionBar.y6.q5;
             u6Var6 = ((org.telegram.ui.ActionBar.k3) awVar).resourcesProvider;
@@ -264,13 +264,13 @@ public final class vv extends FrameLayout {
             textView3.setEllipsize(truncateAt);
             textView3.setSingleLine(true);
             textView3.setLines(1);
-            addView(textView3, gb1.m(-1.0f, -2.0f, 8388659, 8.0f, 31.66f, f15, 0.0f));
+            addView(textView3, kb1.m(-1.0f, -2.0f, 8388659, 8.0f, 31.66f, f15, 0.0f));
         }
         if (z10) {
             int themedColor = awVar.getThemedColor(org.telegram.ui.ActionBar.y6.Ji);
             u6Var4 = ((org.telegram.ui.ActionBar.k3) awVar).resourcesProvider;
             org.telegram.ui.ActionBar.w0 w0Var = new org.telegram.ui.ActionBar.w0(context, null, 0, themedColor, false, u6Var4);
-            this.f34267f = w0Var;
+            this.f34376f = w0Var;
             w0Var.setLongClickEnabled(false);
             w0Var.setSubMenuOpenSide(2);
             w0Var.setIcon(R.drawable.ic_ab_other);
@@ -281,42 +281,42 @@ public final class vv extends FrameLayout {
             w0Var.setBackground(g02);
             org.telegram.ui.ActionBar.f7.k(w0Var, g02, null, N2, u6Var5);
             i10 = ((org.telegram.ui.ActionBar.k3) awVar).backgroundPaddingLeft;
-            addView(w0Var, gb1.h(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (i10 / AndroidUtilities.density), 0.0f));
+            addView(w0Var, kb1.h(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (i10 / AndroidUtilities.density), 0.0f));
             w0Var.e(1, R.drawable.msg_share, LocaleController.getString(R.string.StickersShare));
             w0Var.e(2, R.drawable.msg_link, LocaleController.getString(R.string.CopyLink));
             w0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final vv f32688b;
+                public final vv f32690b;
 
                 {
-                    this.f32688b = this;
+                    this.f32690b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    vv vvVar = this.f32688b;
+                    vv vvVar = this.f32690b;
                     switch (i122) {
                         case 0:
-                            aw awVar2 = vvVar.f34272x;
+                            aw awVar2 = vvVar.f34381x;
                             awVar2.Q = SystemClock.elapsedRealtime();
                             awVar2.j0();
                             return;
                         case 1:
-                            aw.g0(vvVar.f34268n, vvVar.f34269r, true, null, null);
+                            aw.g0(vvVar.f34377n, vvVar.f34378r, true, null, null);
                             vvVar.a(true, true);
                             return;
                         case 2:
-                            bi.v4 v4Var = vvVar.f34268n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = vvVar.f34269r;
-                            bq bqVar = new bq(vvVar, 13);
+                            bi.v4 v4Var = vvVar.f34377n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = vvVar.f34378r;
+                            cp cpVar = new cp(vvVar, 14);
                             Pattern pattern = aw.V;
                             if (v4Var != null && tL_messages_stickerSet != null && v4Var.getFragmentView() != null) {
-                                MediaDataController.getInstance(v4Var.getCurrentAccount()).toggleStickerSet(v4Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, v4Var, true, true, bqVar, true);
+                                MediaDataController.getInstance(v4Var.getCurrentAccount()).toggleStickerSet(v4Var.getFragmentView().getContext(), tL_messages_stickerSet, 0, v4Var, true, true, cpVar, true);
                             }
                             vvVar.a(false, true);
                             return;
                         default:
-                            vvVar.f34267f.U(null, null);
+                            vvVar.f34376f.U(null, null);
                             return;
                     }
                 }
@@ -334,14 +334,14 @@ public final class vv extends FrameLayout {
         float f12;
         float f13;
         float f14;
-        if (this.f34270s != z10) {
-            this.f34270s = z10;
-            ValueAnimator valueAnimator = this.f34271w;
+        if (this.f34379s != z10) {
+            this.f34379s = z10;
+            ValueAnimator valueAnimator = this.f34380w;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f34271w = null;
+                this.f34380w = null;
             }
-            TextView textView2 = this.f34266c;
+            TextView textView2 = this.f34375c;
             if (textView2 != null && (textView = this.d) != null) {
                 textView2.setClickable(!z10);
                 textView.setClickable(z10);
@@ -352,11 +352,11 @@ public final class vv extends FrameLayout {
                         f15 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f16, f15);
-                    this.f34271w = ofFloat;
+                    this.f34380w = ofFloat;
                     ofFloat.addUpdateListener(new n6(this, 19));
-                    this.f34271w.setInterpolator(ds.h);
-                    this.f34271w.setDuration(250L);
-                    this.f34271w.start();
+                    this.f34380w.setInterpolator(ds.h);
+                    this.f34380w.setDuration(250L);
+                    this.f34380w.start();
                     return;
                 }
                 if (z10) {

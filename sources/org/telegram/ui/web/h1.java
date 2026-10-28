@@ -13,36 +13,35 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Cells.g6;
-import org.telegram.ui.Components.ak0;
-import org.telegram.ui.Components.cy0;
-import org.telegram.ui.Components.pl0;
-import org.telegram.ui.af1;
-import org.telegram.ui.io;
-import org.telegram.ui.un;
-import org.telegram.ui.w91;
-import sg.n2;
-import sg.x2;
+import org.telegram.ui.Components.bk0;
+import org.telegram.ui.Components.dy0;
+import org.telegram.ui.Components.ql0;
+import org.telegram.ui.cf1;
+import org.telegram.ui.ko;
+import org.telegram.ui.wn;
+import org.telegram.ui.y91;
+import sg.w2;
 public final class h1 implements Runnable {
-    public final int f45257a;
-    public final Object f45258b;
+    public final int f44768a;
+    public final Object f44769b;
 
     public h1(Object obj, int i10) {
-        this.f45257a = i10;
-        this.f45258b = obj;
+        this.f44768a = i10;
+        this.f44769b = obj;
     }
 
     @Override
     public final void run() {
         long j10;
-        switch (this.f45257a) {
+        switch (this.f44768a) {
             case 0:
-                HttpGetFileTask.a((HttpGetFileTask) this.f45258b);
+                HttpGetFileTask.a((HttpGetFileTask) this.f44769b);
                 return;
             case 1:
-                ((org.telegram.ui.Cells.m1) this.f45258b).invalidateSelf();
+                ((org.telegram.ui.Cells.m1) this.f44769b).invalidateSelf();
                 return;
             case 2:
-                y1 y1Var = (y1) this.f45258b;
+                y1 y1Var = (y1) this.f44769b;
                 File databasePath = ApplicationLoader.applicationContext.getDatabasePath("webview.db");
                 long j11 = 0;
                 if (databasePath != null && databasePath.exists()) {
@@ -66,39 +65,39 @@ public final class h1 implements Runnable {
                 if (file3.exists()) {
                     j11 = y1.a0(file3, Boolean.TRUE);
                 }
-                AndroidUtilities.runOnUIThread(new io(y1Var, j10, j11, 1));
+                AndroidUtilities.runOnUIThread(new ko(y1Var, j10, j11, 1));
                 return;
             case 3:
-                ((boolean[]) this.f45258b)[0] = true;
+                ((boolean[]) this.f44769b)[0] = true;
                 return;
             case 4:
-                ((p4.e) this.f45258b).k();
+                ((p4.e) this.f44769b).k();
                 return;
             case 5:
-                ((p4.g) this.f45258b).f46690n = -1;
+                ((p4.g) this.f44769b).f46725n = -1;
                 return;
             case 6:
-                ((pl0) this.f45258b).b();
+                ((ql0) this.f44769b).b();
                 return;
             case 7:
-                af1 af1Var = (af1) this.f45258b;
-                if (af1Var.getParentLayout() != null) {
-                    af1Var.H = true;
+                cf1 cf1Var = (cf1) this.f44769b;
+                if (cf1Var.getParentLayout() != null) {
+                    cf1Var.H = true;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", af1Var.f37734a);
-                    un unVar = new un(bundle);
-                    unVar.va = true;
-                    af1Var.presentFragment(unVar);
+                    bundle.putLong("chat_id", cf1Var.f38288a);
+                    wn wnVar = new wn(bundle);
+                    wnVar.f45374za = true;
+                    cf1Var.presentFragment(wnVar);
                     return;
                 }
                 return;
             case 8:
-                r2.f fVar = (r2.f) this.f45258b;
-                synchronized (fVar.f47203a) {
+                r2.f fVar = (r2.f) this.f44769b;
+                synchronized (fVar.f47238a) {
                     try {
-                        if (!fVar.f47212m) {
-                            long j12 = fVar.f47211l - 1;
-                            fVar.f47211l = j12;
+                        if (!fVar.f47247m) {
+                            long j12 = fVar.f47246l - 1;
+                            fVar.f47246l = j12;
                             int i10 = (j12 > 0L ? 1 : (j12 == 0L ? 0 : -1));
                             if (i10 <= 0) {
                                 if (i10 < 0) {
@@ -116,21 +115,21 @@ public final class h1 implements Runnable {
                     }
                 }
             case 9:
-                e3 e3Var = ((rg.p0) this.f45258b).f47489b.f47503a;
+                e3 e3Var = ((rg.p0) this.f44769b).f47524b.f47538a;
                 if (e3Var != null) {
                     e3Var.v0();
                     return;
                 }
                 return;
             case 10:
-                rg.q0 q0Var = ((rg.p0) this.f45258b).f47489b;
+                rg.q0 q0Var = ((rg.p0) this.f44769b).f47524b;
                 if (q0Var.d == null) {
                     q0Var.L = null;
                     return;
                 }
-                int currentColor = q0Var.f47506f.getCurrentColor();
-                q0Var.l(q0Var.f47504b, false, false);
-                ng d = q0Var.d(q0Var.f47504b, currentColor, new RectF(q0Var.h));
+                int currentColor = q0Var.f47541f.getCurrentColor();
+                q0Var.l(q0Var.f47539b, false, false);
+                ng d = q0Var.d(q0Var.f47539b, currentColor, new RectF(q0Var.h));
                 q0Var.b();
                 rg.f1 f1Var = q0Var.d;
                 RectF rectF = new RectF();
@@ -144,94 +143,94 @@ public final class h1 implements Runnable {
                 q0Var.L = null;
                 return;
             case 11:
-                ((rg.a1) ((cy0) this.f45258b).f27284b).f47368y.f47375a.a();
+                ((rg.a1) ((dy0) this.f44769b).f27574b).f47403y.f47410a.a();
                 return;
             case 12:
-                rg.s1 s1Var = ((rg.t1) this.f45258b).f47562a;
+                rg.s1 s1Var = ((rg.t1) this.f44769b).f47597a;
                 if (s1Var != null) {
                     s1Var.a();
                     return;
                 }
                 return;
             case 13:
-                rh.c cVar = (rh.c) this.f45258b;
-                rh.b bVar = cVar.f47613c;
-                if (bVar == rh.b.f47609b) {
-                    cVar.a(rh.b.f47608a, true);
+                rh.c cVar = (rh.c) this.f44769b;
+                rh.b bVar = cVar.f47648c;
+                if (bVar == rh.b.f47644b) {
+                    cVar.a(rh.b.f47643a, true);
                     return;
-                } else if (bVar == rh.b.f47610c) {
+                } else if (bVar == rh.b.f47645c) {
                     cVar.a(rh.b.d, true);
                     return;
                 } else {
                     return;
                 }
             case 14:
-                RecyclerView recyclerView = (RecyclerView) this.f45258b;
+                RecyclerView recyclerView = (RecyclerView) this.f44769b;
                 if (recyclerView.getAdapter() != null) {
                     recyclerView.getAdapter().l();
                     return;
                 }
                 return;
             case 15:
-                com.google.firebase.messaging.q qVar = (com.google.firebase.messaging.q) this.f45258b;
+                com.google.firebase.messaging.q qVar = (com.google.firebase.messaging.q) this.f44769b;
                 ((t5.g) ((u5.c) qVar.d)).f(new org.telegram.ui.Components.voip.j1(qVar, 9));
                 return;
             case 16:
-                q5 q5Var = (q5) this.f45258b;
-                q5Var.f48219x0 = true;
+                q5 q5Var = (q5) this.f44769b;
+                q5Var.f48245x0 = true;
                 q5Var.s();
                 return;
             case 17:
-                ((View) this.f45258b).performClick();
+                ((View) this.f44769b).performClick();
                 return;
             case 18:
-                MediaDataController.getInstance(UserConfig.selectedAccount).addRecentSticker(2, null, ((n2) this.f45258b).f48376f.document, (int) (System.currentTimeMillis() / 1000), false);
+                MediaDataController.getInstance(UserConfig.selectedAccount).addRecentSticker(2, null, ((sg.m2) this.f44769b).f48402f.document, (int) (System.currentTimeMillis() / 1000), false);
                 return;
             case 19:
-                AndroidUtilities.showKeyboard(((x2) this.f45258b).f48563q0);
+                AndroidUtilities.showKeyboard(((w2) this.f44769b).f48588q0);
                 return;
             case 20:
-                AndroidUtilities.showKeyboard(((sh.c) this.f45258b).f48618a);
+                AndroidUtilities.showKeyboard(((sh.c) this.f44769b).f48653a);
                 return;
             case 21:
-                sh.c cVar2 = (sh.c) ((g6) this.f45258b).d;
-                org.telegram.ui.Cells.s1 s1Var2 = cVar2.f48622n;
+                sh.c cVar2 = (sh.c) ((g6) this.f44769b).d;
+                org.telegram.ui.Cells.s1 s1Var2 = cVar2.f48657n;
                 if (s1Var2 != null && s1Var2.getDelegate() != null) {
-                    cVar2.f48622n.getDelegate().n1(cVar2.f48622n, false);
+                    cVar2.f48657n.getDelegate().n1(cVar2.f48657n, false);
                     return;
                 }
                 return;
             case 22:
-                ((sh.q) this.f45258b).f48671c.f32152g3.O(true);
+                ((sh.q) this.f44769b).f48706c.f32504g3.O(true);
                 return;
             case 23:
-                ((sh.p) this.f45258b).a();
+                ((sh.p) this.f44769b).a();
                 return;
             case 24:
-                tg.j0 j0Var = ((tg.c0) this.f45258b).f48829c;
-                j0Var.f26811n.presentFragment(w91.c0(j0Var.w1(), true));
+                tg.j0 j0Var = ((tg.c0) this.f44769b).f48864c;
+                j0Var.f26793n.presentFragment(y91.c0(j0Var.w1(), true));
                 return;
             case 25:
-                ak0 ak0Var = ((tg.p0) this.f45258b).F;
-                ak0Var.getAnimatedDrawable().N(0, true, false);
-                ak0Var.d();
+                bk0 bk0Var = ((tg.p0) this.f44769b).F;
+                bk0Var.getAnimatedDrawable().N(0, true, false);
+                bk0Var.d();
                 return;
             case 26:
-                ((tg.w0) this.f45258b).f49089b.B();
+                ((tg.w0) this.f44769b).f49124b.B();
                 return;
             case 27:
-                tg.q1 q1Var = (tg.q1) this.f45258b;
-                int size = 1073741823 - (1073741823 % q1Var.f49000f3.size());
-                s4.c0 c0Var = q1Var.f49001g3;
-                q1Var.f49014t3 = size;
+                tg.q1 q1Var = (tg.q1) this.f44769b;
+                int size = 1073741823 - (1073741823 % q1Var.f49035f3.size());
+                s4.c0 c0Var = q1Var.f49036g3;
+                q1Var.f49049t3 = size;
                 c0Var.h1(size, (q1Var.getMeasuredHeight() - q1Var.getChildAt(0).getMeasuredHeight()) >> 1);
                 q1Var.C1(null, false);
                 return;
             case 28:
-                ((tg.s1) this.f45258b).invalidate();
+                ((tg.s1) this.f44769b).invalidate();
                 return;
             default:
-                ((tg.a2) this.f45258b).a();
+                ((tg.a2) this.f44769b).a();
                 return;
         }
     }

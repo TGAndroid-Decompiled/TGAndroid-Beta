@@ -11,10 +11,10 @@ public final class n extends b {
 
     @Override
     public final void b(ByteBuffer byteBuffer) {
-        this.d = (ByteBuffer) byteBuffer.slice().limit(this.f19298b);
+        this.d = (ByteBuffer) byteBuffer.slice().limit(this.f19297b);
     }
 
     public final String toString() {
-        return "UnknownDescriptor{tag=" + this.f19297a + ", sizeOfInstance=" + this.f19298b + ", data=" + this.d + '}';
+        return "UnknownDescriptor{tag=" + this.f19296a + ", sizeOfInstance=" + this.f19297b + ", data=" + this.d + '}';
     }
 }

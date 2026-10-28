@@ -14,31 +14,31 @@ import org.telegram.ui.Cells.m6;
 import org.telegram.ui.Cells.v8;
 import org.telegram.ui.Cells.z3;
 import org.telegram.ui.Components.c10;
-import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.mm0;
 import org.telegram.ui.Components.vn;
-public abstract class t1 extends lm0 {
+public abstract class t1 extends mm0 {
     public int E;
     public int F;
     public ArrayList G;
     public ArrayList H;
     public String I;
     public int J;
-    public Context f14251c;
+    public Context f14250c;
     public ArrayList d;
     public ArrayList e;
-    public a2 f14252f;
+    public a2 f14251f;
     public a0.h h;
-    public Timer f14253n;
-    public boolean f14254r;
-    public boolean f14255s;
+    public Timer f14252n;
+    public boolean f14253r;
+    public boolean f14254s;
     public boolean v;
-    public boolean f14256w;
-    public long f14257x;
-    public boolean f14258y;
+    public boolean f14255w;
+    public long f14256x;
+    public boolean f14257y;
 
     @Override
     public final boolean D(s4.e1 e1Var) {
-        int i10 = e1Var.f47741f;
+        int i10 = e1Var.f47776f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -48,9 +48,9 @@ public abstract class t1 extends lm0 {
     public final Object E(int i10) {
         int size = this.d.size();
         int size2 = this.H.size();
-        a2 a2Var = this.f14252f;
+        a2 a2Var = this.f14251f;
         int size3 = a2Var.e.size();
-        int size4 = a2Var.f13994j.size();
+        int size4 = a2Var.f13993j.size();
         if (i10 >= 0 && i10 < size) {
             return this.d.get(i10);
         }
@@ -65,7 +65,7 @@ public abstract class t1 extends lm0 {
             i11 -= size2 + 1;
         }
         if (i11 >= 0 && i11 < size4) {
-            return a2Var.f13994j.get(i11);
+            return a2Var.f13993j.get(i11);
         }
         int i12 = i11 - size4;
         if (i12 <= 0 || i12 > size3) {
@@ -78,7 +78,7 @@ public abstract class t1 extends lm0 {
 
     public final void G(String str) {
         try {
-            Timer timer = this.f14253n;
+            Timer timer = this.f14252n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -88,20 +88,20 @@ public abstract class t1 extends lm0 {
         this.d.clear();
         this.H.clear();
         this.e.clear();
-        if (this.f14254r) {
-            this.f14252f.g(null, true, false, this.f14255s, this.v, this.f14257x, this.f14256w, 0, 0);
+        if (this.f14253r) {
+            this.f14251f.g(null, true, false, this.f14254s, this.v, this.f14256x, this.f14255w, 0, 0);
         }
         l();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f14253n = timer2;
+            this.f14252n = timer2;
             timer2.schedule(new r1(this, str, 0), 200L, 300L);
         }
     }
 
     @Override
     public final int h() {
-        a2 a2Var = this.f14252f;
+        a2 a2Var = this.f14251f;
         this.J = -1;
         int size = this.d.size();
         if (!this.H.isEmpty()) {
@@ -112,7 +112,7 @@ public abstract class t1 extends lm0 {
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = a2Var.f13994j.size();
+        int size3 = a2Var.f13993j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -145,7 +145,7 @@ public abstract class t1 extends lm0 {
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         z3 z3Var;
-        Context context = this.f14251c;
+        Context context = this.f14250c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -156,7 +156,7 @@ public abstract class t1 extends lm0 {
                             c10 c10Var = new c10(context, null);
                             c10Var.setIsSingleCell(true);
                             c10Var.setViewType(29);
-                            f7.i(y6.f23356d6, c10Var, null);
+                            f7.i(y6.f23357d6, c10Var, null);
                             z3Var = c10Var;
                         }
                     } else {

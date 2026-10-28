@@ -6,19 +6,19 @@ import android.graphics.Point;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class y3 extends LinearLayout {
-    public final int f34917a;
-    public boolean f34918b;
-    public final md0 f34919c;
-    public final md0 d;
-    public final md0 e;
+    public final int f34952a;
+    public boolean f34953b;
+    public final nd0 f34954c;
+    public final nd0 d;
+    public final nd0 e;
 
-    public y3(Context context, md0 md0Var, md0 md0Var2, md0 md0Var3, int i10) {
+    public y3(Context context, nd0 nd0Var, nd0 nd0Var2, nd0 nd0Var3, int i10) {
         super(context);
-        this.f34917a = i10;
-        this.f34919c = md0Var;
-        this.d = md0Var2;
-        this.e = md0Var3;
-        this.f34918b = false;
+        this.f34952a = i10;
+        this.f34954c = nd0Var;
+        this.d = nd0Var2;
+        this.e = nd0Var3;
+        this.f34953b = false;
     }
 
     @Override
@@ -29,91 +29,91 @@ public final class y3 extends LinearLayout {
         int i15;
         int i16;
         int i17;
-        switch (this.f34917a) {
+        switch (this.f34952a) {
             case 0:
                 x3 x3Var = (x3) this.e;
                 w3 w3Var = (w3) this.d;
-                this.f34918b = true;
+                this.f34953b = true;
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
                     i12 = 3;
                 } else {
                     i12 = 5;
                 }
-                md0 md0Var = this.f34919c;
-                md0Var.setItemCount(i12);
+                nd0 nd0Var = this.f34954c;
+                nd0Var.setItemCount(i12);
                 w3Var.setItemCount(i12);
                 x3Var.setItemCount(i12);
-                md0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+                nd0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
                 w3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
                 x3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-                this.f34918b = false;
+                this.f34953b = false;
                 super.onMeasure(i10, i11);
                 return;
             case 1:
                 b4 b4Var = (b4) this.e;
                 z3 z3Var = (z3) this.d;
-                this.f34918b = true;
+                this.f34953b = true;
                 Point point2 = AndroidUtilities.displaySize;
                 if (point2.x > point2.y) {
                     i13 = 3;
                 } else {
                     i13 = 5;
                 }
-                md0 md0Var2 = this.f34919c;
-                md0Var2.setItemCount(i13);
+                nd0 nd0Var2 = this.f34954c;
+                nd0Var2.setItemCount(i13);
                 z3Var.setItemCount(i13);
                 b4Var.setItemCount(i13);
-                md0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
+                nd0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
                 z3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
                 b4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
-                this.f34918b = false;
+                this.f34953b = false;
                 super.onMeasure(i10, i11);
                 return;
             case 2:
                 g4 g4Var = (g4) this.e;
                 f4 f4Var = (f4) this.d;
-                this.f34918b = true;
+                this.f34953b = true;
                 Point point3 = AndroidUtilities.displaySize;
                 if (point3.x > point3.y) {
                     i14 = 3;
                 } else {
                     i14 = 5;
                 }
-                md0 md0Var3 = this.f34919c;
-                md0Var3.setItemCount(i14);
+                nd0 nd0Var3 = this.f34954c;
+                nd0Var3.setItemCount(i14);
                 f4Var.setItemCount(i14);
                 g4Var.setItemCount(i14);
-                md0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i14;
+                nd0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i14;
                 f4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i14;
                 g4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i14;
-                this.f34918b = false;
+                this.f34953b = false;
                 super.onMeasure(i10, i11);
                 return;
             case 3:
                 j4 j4Var = (j4) this.e;
                 i4 i4Var = (i4) this.d;
-                this.f34918b = true;
+                this.f34953b = true;
                 Point point4 = AndroidUtilities.displaySize;
                 if (point4.x > point4.y) {
                     i15 = 3;
                 } else {
                     i15 = 5;
                 }
-                md0 md0Var4 = this.f34919c;
-                md0Var4.setItemCount(i15);
+                nd0 nd0Var4 = this.f34954c;
+                nd0Var4.setItemCount(i15);
                 i4Var.setItemCount(i15);
                 j4Var.setItemCount(i15);
-                md0Var4.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i15;
+                nd0Var4.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i15;
                 i4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i15;
                 j4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i15;
-                this.f34918b = false;
+                this.f34953b = false;
                 super.onMeasure(i10, i11);
                 return;
             case 4:
                 n4 n4Var = (n4) this.e;
                 m4 m4Var = (m4) this.d;
-                this.f34918b = true;
+                this.f34953b = true;
                 Point point5 = AndroidUtilities.displaySize;
                 if (point5.x > point5.y) {
                     i16 = 3;
@@ -124,30 +124,30 @@ public final class y3 extends LinearLayout {
                 m4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i16;
                 n4Var.setItemCount(i16);
                 n4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i16;
-                md0 md0Var5 = this.f34919c;
-                md0Var5.setItemCount(i16);
-                md0Var5.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i16;
-                this.f34918b = false;
+                nd0 nd0Var5 = this.f34954c;
+                nd0Var5.setItemCount(i16);
+                nd0Var5.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i16;
+                this.f34953b = false;
                 super.onMeasure(i10, i11);
                 return;
             default:
                 w4 w4Var = (w4) this.e;
                 v4 v4Var = (v4) this.d;
-                this.f34918b = true;
+                this.f34953b = true;
                 Point point6 = AndroidUtilities.displaySize;
                 if (point6.x > point6.y) {
                     i17 = 3;
                 } else {
                     i17 = 5;
                 }
-                md0 md0Var6 = this.f34919c;
-                md0Var6.setItemCount(i17);
+                nd0 nd0Var6 = this.f34954c;
+                nd0Var6.setItemCount(i17);
                 v4Var.setItemCount(i17);
                 w4Var.setItemCount(i17);
-                md0Var6.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i17;
+                nd0Var6.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i17;
                 v4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i17;
                 w4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i17;
-                this.f34918b = false;
+                this.f34953b = false;
                 super.onMeasure(i10, i11);
                 return;
         }
@@ -155,39 +155,39 @@ public final class y3 extends LinearLayout {
 
     @Override
     public final void requestLayout() {
-        switch (this.f34917a) {
+        switch (this.f34952a) {
             case 0:
-                if (!this.f34918b) {
+                if (!this.f34953b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 1:
-                if (!this.f34918b) {
+                if (!this.f34953b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 2:
-                if (!this.f34918b) {
+                if (!this.f34953b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 3:
-                if (!this.f34918b) {
+                if (!this.f34953b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 4:
-                if (!this.f34918b) {
+                if (!this.f34953b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             default:
-                if (!this.f34918b) {
+                if (!this.f34953b) {
                     super.requestLayout();
                     return;
                 }
@@ -195,12 +195,12 @@ public final class y3 extends LinearLayout {
         }
     }
 
-    public y3(Activity activity, m4 m4Var, n4 n4Var, md0 md0Var) {
+    public y3(Activity activity, m4 m4Var, n4 n4Var, nd0 nd0Var) {
         super(activity);
-        this.f34917a = 4;
+        this.f34952a = 4;
         this.d = m4Var;
         this.e = n4Var;
-        this.f34919c = md0Var;
-        this.f34918b = false;
+        this.f34954c = nd0Var;
+        this.f34953b = false;
     }
 }

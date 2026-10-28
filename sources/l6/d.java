@@ -20,7 +20,7 @@ import com.google.android.gms.common.api.GoogleApiActivity;
 import o6.q;
 import o6.r;
 public final class d extends e {
-    public static final Object f16930c = new Object();
+    public static final Object f16929c = new Object();
     public static final d d = new Object();
 
     public static AlertDialog f(Activity activity, int i10, r rVar, DialogInterface.OnCancelListener onCancelListener) {
@@ -76,14 +76,14 @@ public final class d extends e {
         o6.l.i(alertDialog, "Cannot display null dialog");
         alertDialog.setOnCancelListener(null);
         alertDialog.setOnDismissListener(null);
-        dialogFragment.f16924a = alertDialog;
-        dialogFragment.f16925b = onCancelListener;
+        dialogFragment.f16923a = alertDialog;
+        dialogFragment.f16924b = onCancelListener;
         dialogFragment.show(fragmentManager, str);
     }
 
     @Override
     public final int c(Context context) {
-        return d(context, e.f16931a);
+        return d(context, e.f16930a);
     }
 
     public final void e(GoogleApiActivity googleApiActivity, int i10, GoogleApiActivity googleApiActivity2) {
@@ -124,34 +124,34 @@ public final class d extends e {
             o6.l.h(systemService);
             NotificationManager notificationManager = (NotificationManager) systemService;
             e0.q qVar = new e0.q(context, null);
-            qVar.f9592t = true;
+            qVar.f9591t = true;
             qVar.h(16, true);
             qVar.e = e0.q.d(d10);
             e0.l lVar = new e0.l(false);
-            lVar.f9564f = e0.q.d(e);
+            lVar.f9563f = e0.q.d(e);
             qVar.n(lVar);
             PackageManager packageManager = context.getPackageManager();
-            if (v6.b.f50075b == null) {
-                v6.b.f50075b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+            if (v6.b.f50110b == null) {
+                v6.b.f50110b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
             }
-            if (v6.b.f50075b.booleanValue()) {
+            if (v6.b.f50110b.booleanValue()) {
                 qVar.F.icon = context.getApplicationInfo().icon;
-                qVar.f9582j = 2;
+                qVar.f9581j = 2;
                 if (v6.b.f(context)) {
                     qVar.a(2131231010, resources.getString(2131689573), pendingIntent);
                 } else {
-                    qVar.f9580g = pendingIntent;
+                    qVar.f9579g = pendingIntent;
                 }
             } else {
                 qVar.F.icon = 17301642;
                 qVar.p(resources.getString(2131689565));
                 qVar.F.when = System.currentTimeMillis();
-                qVar.f9580g = pendingIntent;
+                qVar.f9579g = pendingIntent;
                 qVar.f(e);
             }
             if (v6.b.d()) {
                 o6.l.k(v6.b.d());
-                synchronized (f16930c) {
+                synchronized (f16929c) {
                 }
                 NotificationChannel notificationChannel = notificationManager.getNotificationChannel("com.google.android.gms.availability");
                 String string = context.getResources().getString(2131689564);
@@ -161,13 +161,13 @@ public final class d extends e {
                     notificationChannel.setName(string);
                     notificationManager.createNotificationChannel(notificationChannel);
                 }
-                qVar.f9596y = "com.google.android.gms.availability";
+                qVar.f9595y = "com.google.android.gms.availability";
             }
             Notification b10 = qVar.b();
             if (i10 != 1 && i10 != 2 && i10 != 3) {
                 i11 = 39789;
             } else {
-                g.f16934a.set(false);
+                g.f16933a.set(false);
                 i11 = 10436;
             }
             notificationManager.notify(i11, b10);

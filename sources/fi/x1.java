@@ -4,11 +4,11 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.kw;
 public final class x1 extends kw {
-    public final z1 f11952g0;
+    public final z1 f11951g0;
 
     public x1(z1 z1Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
-        super(context, u6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23692v6, u6Var), false);
-        this.f11952g0 = z1Var;
+        super(context, u6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23693v6, u6Var), false);
+        this.f11951g0 = z1Var;
     }
 
     @Override
@@ -16,10 +16,10 @@ public final class x1 extends kw {
         int i11;
         int paddingTop;
         e2 e2Var;
-        z1 z1Var = this.f11952g0;
-        n1 n1Var = z1Var.f12050b;
-        y1 y1Var = z1Var.f12051c;
-        f2 f2Var = z1Var.f12052f;
+        z1 z1Var = this.f11951g0;
+        n1 n1Var = z1Var.f12049b;
+        y1 y1Var = z1Var.f12050c;
+        f2 f2Var = z1Var.f12051f;
         int i12 = 0;
         if (this.d) {
             return false;
@@ -36,9 +36,9 @@ public final class x1 extends kw {
             y1Var.D(null);
         }
         while (true) {
-            if (i12 < y1Var.f11991y.size()) {
-                i11 = y1Var.f11991y.keyAt(i12);
-                if (y1Var.f11991y.valueAt(i12) == i10) {
+            if (i12 < y1Var.f11990y.size()) {
+                i11 = y1Var.f11990y.keyAt(i12);
+                if (y1Var.f11990y.valueAt(i12) == i10) {
                     break;
                 }
                 i12++;
@@ -48,12 +48,12 @@ public final class x1 extends kw {
             }
         }
         if (i11 >= 0) {
-            float f7 = z1Var.f12053n;
+            float f7 = z1Var.f12052n;
             if (f7 >= 0.0f) {
                 paddingTop = n1Var.getPaddingTop();
             } else {
                 f7 = z1Var.b();
-                z1Var.f12053n = f7;
+                z1Var.f12052n = f7;
                 paddingTop = n1Var.getPaddingTop();
             }
             n1.C1(n1Var, i11, ((int) (f7 + paddingTop)) - AndroidUtilities.dp(102.0f));

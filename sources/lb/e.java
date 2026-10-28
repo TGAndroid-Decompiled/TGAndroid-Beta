@@ -4,16 +4,16 @@ import ib.g;
 import java.sql.Timestamp;
 import java.util.Date;
 public final class e extends g {
-    public final int f16963b;
+    public final int f16962b;
 
     public e(Class cls, int i10) {
         super(cls);
-        this.f16963b = i10;
+        this.f16962b = i10;
     }
 
     @Override
     public final Date a(Date date) {
-        switch (this.f16963b) {
+        switch (this.f16962b) {
             case 0:
                 return new java.sql.Date(date.getTime());
             default:

@@ -1,68 +1,27 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ne1 extends s4.l {
-    public Runnable F;
-    public int G;
-    public final af1 H;
+import android.content.Context;
+import java.util.ArrayList;
+public final class ne1 extends af1 {
+    public final cf1 f41785p3;
 
-    public ne1(af1 af1Var) {
-        this.H = af1Var;
+    public ne1(cf1 cf1Var, Context context) {
+        super(cf1Var, context);
+        this.f41785p3 = cf1Var;
     }
 
     @Override
-    public final void F() {
-        if (this.G == -1) {
-            this.G = this.H.getNotificationCenter().setAnimationInProgress(this.G, null, false);
-            Runnable runnable = this.F;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.F = null;
-            }
+    public final boolean S0() {
+        ArrayList arrayList = this.f41785p3.f38291b;
+        if (getAdapter() == null || this.V1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((te1) arrayList.get(0)).f43620c == null || ((te1) arrayList.get(0)).f43620c.f22080id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public final void N() {
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.F = null;
-        }
-        me1 me1Var = new me1(this, 0);
-        this.F = me1Var;
-        AndroidUtilities.runOnUIThread(me1Var);
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        me1 me1Var = new me1(this, 1);
-        this.F = me1Var;
-        AndroidUtilities.runOnUIThread(me1Var);
-    }
-
-    @Override
-    public final void z(s4.e1 e1Var) {
-        af1 af1Var = this.H;
-        View view = af1Var.f37742c1;
-        if (view == e1Var.f47738a) {
-            view.setTranslationX(0.0f);
-            ee1 ee1Var = af1Var.O;
-            if (ee1Var != null) {
-                ee1Var.F.clear();
-            }
-            View view2 = af1Var.f37742c1;
-            if (view2 instanceof xe1) {
-                xe1 xe1Var = (xe1) view2;
-                xe1Var.setTopicIcon(xe1Var.f45751c5);
-            }
-            af1Var.f37742c1 = null;
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f41785p3.y0();
     }
 }

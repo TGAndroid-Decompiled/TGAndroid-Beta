@@ -87,7 +87,7 @@ public final class AgentController {
 
     public TL_agent.agentProvider getProvider(String str) {
         for (int i10 = 0; i10 < this.providers.size(); i10++) {
-            if (TextUtils.equals(this.providers.get(i10).f22237id, str)) {
+            if (TextUtils.equals(this.providers.get(i10).f22238id, str)) {
                 return this.providers.get(i10);
             }
         }

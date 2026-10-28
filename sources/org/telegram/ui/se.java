@@ -7,86 +7,86 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 public final class se implements Runnable {
-    public final int f43478a;
-    public final un f43479b;
-    public final String f43480c;
+    public final int f43304a;
+    public final wn f43305b;
+    public final String f43306c;
 
-    public se(un unVar, String str, int i10) {
-        this.f43478a = i10;
-        this.f43479b = unVar;
-        this.f43480c = str;
+    public se(wn wnVar, String str, int i10) {
+        this.f43304a = i10;
+        this.f43305b = wnVar;
+        this.f43306c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f43478a) {
+        switch (this.f43304a) {
             case 0:
-                un.o0(this.f43479b, this.f43480c);
+                wn.f0(this.f43305b, this.f43306c);
                 return;
             case 1:
-                un.g0(this.f43479b, this.f43480c);
+                wn.g1(this.f43305b, this.f43306c);
                 return;
             case 2:
-                j4.f(this.f43480c, r1.currentAccount, r1.f44295j1, null, this.f43479b.f44388qa);
+                j4.f(this.f43306c, r1.currentAccount, r1.f45163j1, null, this.f43305b.f45309ua);
                 return;
             case 3:
-                un unVar = this.f43479b;
-                String str = this.f43480c;
+                wn wnVar = this.f43305b;
+                String str = this.f43306c;
                 if (str != null) {
-                    unVar.getClass();
+                    wnVar.getClass();
                     if (str.length() != 0) {
-                        unVar.getMessagesController().sendBotStart(unVar.f44245f, str);
+                        wnVar.getMessagesController().sendBotStart(wnVar.f45113f, str);
                         return;
                     }
                 }
-                unVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", unVar.f44252f6, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                wnVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", wnVar.f45168j6, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 4:
-                this.f43479b.va(this.f43480c);
+                this.f43305b.ya(this.f43306c);
                 return;
             case 5:
-                this.f43479b.na(this.f43480c, false);
+                wn wnVar2 = this.f43305b;
+                wnVar2.getClass();
+                wnVar2.presentFragment(new org.telegram.ui.Wallet.i9(this.f43306c));
                 return;
             case 6:
-                Activity parentActivity = this.f43479b.getParentActivity();
-                qf.d.r(parentActivity, "tel:" + this.f43480c);
-                return;
-            case 7:
-                AndroidUtilities.addToClipboard(this.f43480c);
-                org.telegram.messenger.vh.m(R.string.PhoneCopied, org.telegram.ui.Components.wc.b0(this.f43479b));
-                return;
-            case 8:
-                un.e0(this.f43479b, this.f43480c);
-                return;
-            case 9:
-                Activity parentActivity2 = this.f43479b.getParentActivity();
-                qf.d.r(parentActivity2, "tel:" + this.f43480c);
-                return;
-            case 10:
-                AndroidUtilities.addToClipboard(this.f43480c);
-                org.telegram.messenger.vh.m(R.string.PhoneCopied, org.telegram.ui.Components.wc.b0(this.f43479b));
-                return;
-            case 11:
-                un unVar2 = this.f43479b;
-                unVar2.getClass();
-                unVar2.presentFragment(new org.telegram.ui.Wallet.i9(this.f43480c));
-                return;
-            case 12:
-                un unVar3 = this.f43479b;
-                String str2 = unVar3.getMessagesController().tonBlockchainExplorerUrl;
+                wn wnVar3 = this.f43305b;
+                String str2 = wnVar3.getMessagesController().tonBlockchainExplorerUrl;
                 if (TextUtils.isEmpty(str2)) {
                     str2 = "https://tonviewer.com/";
                 } else if (!str2.endsWith("/")) {
                     str2 = str2.concat("/");
                 }
-                Activity parentActivity3 = unVar3.getParentActivity();
+                Activity parentActivity = wnVar3.getParentActivity();
                 StringBuilder u10 = a1.g.u(str2);
-                u10.append(Uri.encode(this.f43480c));
-                qf.d.t(parentActivity3, u10.toString());
+                u10.append(Uri.encode(this.f43306c));
+                qf.d.t(parentActivity, u10.toString());
+                return;
+            case 7:
+                this.f43305b.qa(this.f43306c, false);
+                return;
+            case 8:
+                Activity parentActivity2 = this.f43305b.getParentActivity();
+                qf.d.r(parentActivity2, "tel:" + this.f43306c);
+                return;
+            case 9:
+                AndroidUtilities.addToClipboard(this.f43306c);
+                org.telegram.messenger.wh.m(R.string.PhoneCopied, org.telegram.ui.Components.wc.b0(this.f43305b));
+                return;
+            case 10:
+                wn.j1(this.f43305b, this.f43306c);
+                return;
+            case 11:
+                Activity parentActivity3 = this.f43305b.getParentActivity();
+                qf.d.r(parentActivity3, "tel:" + this.f43306c);
+                return;
+            case 12:
+                AndroidUtilities.addToClipboard(this.f43306c);
+                org.telegram.messenger.wh.m(R.string.PhoneCopied, org.telegram.ui.Components.wc.b0(this.f43305b));
                 return;
             default:
-                Activity parentActivity4 = this.f43479b.getParentActivity();
-                qf.d.r(parentActivity4, "https://fragment.com/username/" + this.f43480c);
+                Activity parentActivity4 = this.f43305b.getParentActivity();
+                qf.d.r(parentActivity4, "https://fragment.com/username/" + this.f43306c);
                 return;
         }
     }

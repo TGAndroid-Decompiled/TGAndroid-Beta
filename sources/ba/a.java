@@ -1446,12 +1446,12 @@ public final class a {
             }
             switch (c10) {
                 case 0:
-                    eVar.f49185c = Integer.valueOf(jsonReader.nextInt());
+                    eVar.f49220c = Integer.valueOf(jsonReader.nextInt());
                     break;
                 case 1:
                     String nextString = jsonReader.nextString();
                     if (nextString != null) {
-                        eVar.f49184b = nextString;
+                        eVar.f49219b = nextString;
                         break;
                     } else {
                         throw new NullPointerException("Null processName");
@@ -1949,13 +1949,13 @@ public final class a {
                                         case 2:
                                             String nextString10 = jsonReader.nextString();
                                             if (nextString10 != null) {
-                                                eVar.f49185c = nextString10;
+                                                eVar.f49220c = nextString10;
                                                 break;
                                             } else {
                                                 throw new NullPointerException("Null version");
                                             }
                                         case 3:
-                                            eVar.f49184b = Integer.valueOf(jsonReader.nextInt());
+                                            eVar.f49219b = Integer.valueOf(jsonReader.nextInt());
                                             break;
                                         default:
                                             jsonReader.skipValue();

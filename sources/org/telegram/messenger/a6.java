@@ -1,23 +1,25 @@
 package org.telegram.messenger;
 
-import android.location.Location;
-public final class a6 implements q0.a {
-    public final int f19594a;
-    public final LocationController f19595b;
+import java.util.ArrayList;
+public final class a6 implements Runnable {
+    public final int f19596a;
+    public final LocationController f19597b;
+    public final ArrayList f19598c;
 
-    public a6(LocationController locationController, int i10) {
-        this.f19594a = i10;
-        this.f19595b = locationController;
+    public a6(LocationController locationController, ArrayList arrayList, int i10) {
+        this.f19596a = i10;
+        this.f19597b = locationController;
+        this.f19598c = arrayList;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f19594a) {
+    public final void run() {
+        switch (this.f19596a) {
             case 0:
-                this.f19595b.lambda$onConnected$4((Integer) obj);
+                LocationController.E(this.f19597b, this.f19598c);
                 return;
             default:
-                this.f19595b.setLastKnownLocation((Location) obj);
+                LocationController.i(this.f19597b, this.f19598c);
                 return;
         }
     }

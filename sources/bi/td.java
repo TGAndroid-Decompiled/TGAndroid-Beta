@@ -65,7 +65,7 @@ public final class td {
             this.f5497l = e0Var;
             float width = createBitmap.getWidth();
             float height = createBitmap.getHeight();
-            for (int i14 = 0; i14 < e0Var.f9529b; i14++) {
+            for (int i14 = 0; i14 < e0Var.f9528b; i14++) {
                 e0.e0.c((float[]) e0Var.d, i14, 0.0f, 0.0f, width, height);
             }
             this.f5498m = org.telegram.ui.Components.aa.a(createBitmap);
@@ -99,7 +99,7 @@ public final class td {
                 e0.e0 e0Var = this.f5497l;
                 float f14 = sdVar.f5425a;
                 float f15 = sdVar.f5426b;
-                e0.e0.c((float[]) e0Var.f9530c, i12, f14 - f12, f15 - f13, f14 + f12, f15 + f13);
+                e0.e0.c((float[]) e0Var.f9529c, i12, f14 - f12, f15 - f13, f14 + f12, f15 + f13);
                 this.f5497l.f(i12, i0.a.o(i10, (int) (Utilities.clamp01(sdVar.h * f7) * 255.0f)));
             }
             org.telegram.ui.Components.aa.b(canvas, this.f5497l, min, this.f5498m);

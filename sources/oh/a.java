@@ -5,7 +5,7 @@ import android.util.SparseArray;
 import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Components.zq;
 public abstract class a {
-    public static final SparseArray f19418a = new SparseArray(6);
+    public static final SparseArray f19417a = new SparseArray(6);
 
     public static SpannableStringBuilder a(int i10, CharSequence charSequence, boolean z10) {
         SpannableStringBuilder spannableStringBuilder;
@@ -19,7 +19,7 @@ public abstract class a {
         } else {
             spannableStringBuilder.insert(0, (CharSequence) "* ");
         }
-        SparseArray sparseArray = f19418a;
+        SparseArray sparseArray = f19417a;
         zq zqVar = (zq) sparseArray.get(i10);
         if (zqVar == null) {
             zqVar = new zq(i10, 0);

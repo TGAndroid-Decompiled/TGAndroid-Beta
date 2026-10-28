@@ -9,30 +9,30 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class h2 extends FrameLayout {
-    public String f33832a;
-    public final ImageView f33833b;
-    public final TextView f33834c;
+    public String f33937a;
+    public final ImageView f33938b;
+    public final TextView f33939c;
     public boolean d;
     public final r1 e;
-    public final RectF f33835f;
+    public final RectF f33940f;
 
     public h2(Context context, r1 r1Var, int i10) {
         super(context);
-        this.f33835f = new RectF();
+        this.f33940f = new RectF();
         setFocusable(true);
         setFocusableInTouchMode(true);
         this.e = r1Var;
         r1Var.a(this);
         ImageView imageView = new ImageView(context);
-        this.f33833b = imageView;
-        addView(imageView, gb1.h(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
+        this.f33938b = imageView;
+        addView(imageView, kb1.h(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
         TextView textView = new TextView(context);
-        this.f33834c = textView;
+        this.f33939c = textView;
         textView.setTextColor(-1);
         textView.setTextSize(1, 14.0f);
-        addView(textView, gb1.h(-2, -2.0f, 16, i10 != 0 ? 36.0f : 14.0f, 2.0f, 14.0f, 2.0f));
+        addView(textView, kb1.h(-2, -2.0f, 16, i10 != 0 ? 36.0f : 14.0f, 2.0f, 14.0f, 2.0f));
     }
 
     @Override
@@ -40,13 +40,13 @@ public final class h2 extends FrameLayout {
         Paint b10;
         Paint b11;
         Paint b12;
-        RectF rectF = this.f33835f;
+        RectF rectF = this.f33940f;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         float x9 = ((View) getParent()).getX() + getX();
         float y3 = ((View) getParent()).getY() + getY();
         r1 r1Var = this.e;
         r1Var.d(x9, y3);
-        Paint paint = r1Var.f34051l;
+        Paint paint = r1Var.f34156l;
         if (this.d) {
             b10 = paint;
         } else {

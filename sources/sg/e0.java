@@ -1,68 +1,23 @@
 package sg;
 
-import org.telegram.ui.nt0;
-import org.telegram.ui.xq0;
-public final class e0 implements rg.b1 {
-    public final xq0 f48192a;
-    public final nt0 f48193b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.ui.pt0;
+public final class e0 extends View {
+    public final pt0 f48228a;
 
-    public e0(nt0 nt0Var, xq0 xq0Var) {
-        this.f48193b = nt0Var;
-        this.f48192a = xq0Var;
+    public e0(pt0 pt0Var, Context context) {
+        super(context);
+        this.f48228a = pt0Var;
     }
 
     @Override
-    public final void a() {
-        this.f48192a.run();
-    }
-
-    @Override
-    public final void b() {
-        f0 f0Var = this.f48193b.M0;
-        if (f0Var != null) {
-            f0Var.invalidate();
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        c0 c0Var = this.f48228a.L0;
+        if (c0Var != null) {
+            c0Var.d(canvas);
         }
-    }
-
-    @Override
-    public final void c() {
-        nt0 nt0Var = this.f48193b;
-        if (nt0Var.Z0) {
-            nt0Var.Z0 = false;
-            return;
-        }
-        nt0Var.f48342i1.b(1);
-        nt0Var.i((rg.m) rg.m.f47465a.get(0));
-    }
-
-    @Override
-    public final boolean d() {
-        boolean z10;
-        nt0 nt0Var = this.f48193b;
-        if (nt0Var.H0 == null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!z10) {
-            nt0Var.q0(null, true);
-        }
-        return z10;
-    }
-
-    @Override
-    public final void e() {
-        nt0 nt0Var = this.f48193b;
-        nt0Var.f48358u0.f47562a.a();
-        nt0Var.f48332a1.setViewHidden(false);
-    }
-
-    @Override
-    public final void f() {
-        nt0 nt0Var = this.f48193b;
-        if (nt0Var.H0 != null) {
-            nt0Var.q0(null, true);
-        }
-        nt0Var.f48332a1.setViewHidden(true);
     }
 }

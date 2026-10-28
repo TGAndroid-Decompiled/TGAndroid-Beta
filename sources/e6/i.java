@@ -7,18 +7,18 @@ import android.os.RemoteException;
 import com.google.android.gms.internal.cast.l4;
 import com.google.android.gms.internal.cast.t6;
 public final class i {
-    public final c f9819a;
+    public final c f9818a;
 
     public i(c cVar) {
-        this.f9819a = cVar;
+        this.f9818a = cVar;
     }
 
     public final void a() {
-        c cVar = this.f9819a;
+        c cVar = this.f9818a;
         q qVar = cVar.e;
         if (qVar != null) {
             try {
-                f6.h hVar = cVar.f9808j;
+                f6.h hVar = cVar.f9807j;
                 if (hVar != null) {
                     hVar.u();
                 }
@@ -28,9 +28,9 @@ public final class i {
                 N0.writeInt(0);
                 oVar.R0(N0, 1);
             } catch (RemoteException e) {
-                c.f9803m.a(e, "Unable to call %s on %s.", "onConnected", q.class.getSimpleName());
+                c.f9802m.a(e, "Unable to call %s on %s.", "onConnected", q.class.getSimpleName());
             }
-            l4 l4Var = cVar.f9810l;
+            l4 l4Var = cVar.f9809l;
             if (l4Var != null) {
                 me.D(l4Var.f6819a, new t6(new ng(3, 4)));
             }

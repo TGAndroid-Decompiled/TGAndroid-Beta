@@ -21,39 +21,39 @@ public class r3 {
     public org.telegram.ui.j4 J;
     public hi.f1 K;
     public boolean L;
-    public hi.c5 f23004a;
-    public org.telegram.ui.web.x0 f23005b;
-    public org.telegram.ui.m3 f23006c;
+    public hi.c5 f23005a;
+    public org.telegram.ui.web.x0 f23006b;
+    public org.telegram.ui.m3 f23007c;
     public Object d;
     public boolean e;
-    public String f23007f;
-    public int f23008g;
+    public String f23008f;
+    public int f23009g;
     public int h;
-    public int f23009i;
-    public boolean f23010j;
-    public float f23011k = Float.MAX_VALUE;
-    public boolean f23012l = true;
-    public Bitmap f23013m;
-    public boolean f23014n;
-    public boolean f23015o;
-    public int f23016p;
-    public int f23017q;
-    public int f23018r;
-    public int f23019s;
-    public boolean f23020t;
-    public boolean f23021u;
+    public int f23010i;
+    public boolean f23011j;
+    public float f23012k = Float.MAX_VALUE;
+    public boolean f23013l = true;
+    public Bitmap f23014m;
+    public boolean f23015n;
+    public boolean f23016o;
+    public int f23017p;
+    public int f23018q;
+    public int f23019r;
+    public int f23020s;
+    public boolean f23021t;
+    public boolean f23022u;
     public boolean v;
-    public ng f23022w;
-    public String f23023x;
-    public boolean f23024y;
-    public boolean f23025z;
+    public ng f23023w;
+    public String f23024x;
+    public boolean f23025y;
+    public boolean f23026z;
 
     public final void a() {
         try {
-            org.telegram.ui.web.x0 x0Var = this.f23005b;
+            org.telegram.ui.web.x0 x0Var = this.f23006b;
             if (x0Var != null) {
                 x0Var.destroy();
-                this.f23005b = null;
+                this.f23006b = null;
             }
             org.telegram.ui.j4 j4Var = this.J;
             if (j4Var != null) {
@@ -71,13 +71,13 @@ public class r3 {
             }
             return this.E;
         }
-        hi.c5 c5Var = this.f23004a;
+        hi.c5 c5Var = this.f23005a;
         if (c5Var == null) {
             return "";
         }
-        if (c5Var.f12919g == 6) {
+        if (c5Var.f12918g == 6) {
             return c5Var.e;
         }
-        return UserObject.getUserName(MessagesController.getInstance(c5Var.f12915a).getUser(Long.valueOf(this.f23004a.f12917c)));
+        return UserObject.getUserName(MessagesController.getInstance(c5Var.f12914a).getUser(Long.valueOf(this.f23005a.f12916c)));
     }
 }

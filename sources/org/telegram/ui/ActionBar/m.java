@@ -7,26 +7,26 @@ import android.widget.FrameLayout;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public abstract class m extends FrameLayout implements oe.k {
-    public final u6 f22857a;
-    public final c2.b f22858b;
-    public final oe.l f22859c;
+    public final u6 f22858a;
+    public final c2.b f22859b;
+    public final oe.l f22860c;
 
     public m(Context context, u6 u6Var, c2.b bVar) {
         super(context);
-        this.f22859c = new oe.l(this, ds.h, 350L);
-        this.f22857a = u6Var;
-        this.f22858b = bVar;
+        this.f22860c = new oe.l(this, ds.h, 350L);
+        this.f22858a = u6Var;
+        this.f22859b = bVar;
     }
 
     public void b(oe.l lVar) {
         float f7;
-        Iterator it = this.f22859c.iterator();
+        Iterator it = this.f22860c.iterator();
         while (it.hasNext()) {
             oe.g gVar = (oe.g) it.next();
             float c10 = gVar.c();
-            Object obj = gVar.f19337a;
+            Object obj = gVar.f19336a;
             float lerp = AndroidUtilities.lerp(0.85f, 1.0f, c10);
             l lVar2 = (l) obj;
             lVar2.setAlpha(c10);
@@ -45,13 +45,13 @@ public abstract class m extends FrameLayout implements oe.k {
         boolean z11;
         SpannableString spannableString;
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        oe.l lVar = this.f22859c;
+        oe.l lVar = this.f22860c;
         if (isEmpty) {
-            lVar.f19350a.q(null, true);
+            lVar.f19349a.q(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
-        c2.b bVar = this.f22858b;
+        c2.b bVar = this.f22859b;
         if (indexOf >= 0) {
             SpannableString valueOf = SpannableString.valueOf(charSequence);
             bVar.A(valueOf, indexOf);
@@ -63,7 +63,7 @@ public abstract class m extends FrameLayout implements oe.k {
         }
         l lVar2 = new l(this, getContext());
         int i10 = y6.gl;
-        u6 u6Var = this.f22857a;
+        u6 u6Var = this.f22858a;
         f7.V(lVar2, i10, u6Var);
         f7.H(lVar2, i10, u6Var);
         lVar2.setTextSize(1, 14.0f);
@@ -72,23 +72,23 @@ public abstract class m extends FrameLayout implements oe.k {
         if (z11) {
             bVar.c(lVar2);
         }
-        addView(lVar2, gb1.g(-2.0f, -2));
+        addView(lVar2, kb1.g(-2.0f, -2));
         lVar.h(lVar2, true);
     }
 
     public final void d() {
-        Iterator it = this.f22859c.iterator();
+        Iterator it = this.f22860c.iterator();
         while (it.hasNext()) {
             oe.g gVar = (oe.g) it.next();
             int i10 = y6.gl;
-            u6 u6Var = this.f22857a;
-            ((l) gVar.f19337a).setTextColor(y6.w0(i10, u6Var));
-            ((l) gVar.f19337a).setLinkTextColor(y6.w0(i10, u6Var));
+            u6 u6Var = this.f22858a;
+            ((l) gVar.f19336a).setTextColor(y6.w0(i10, u6Var));
+            ((l) gVar.f19336a).setLinkTextColor(y6.w0(i10, u6Var));
         }
     }
 
     public float getTotalVisibility() {
-        return this.f22859c.f19350a.d.f19343c.f19351a;
+        return this.f22860c.f19349a.d.f19342c.f19350a;
     }
 
     @Override

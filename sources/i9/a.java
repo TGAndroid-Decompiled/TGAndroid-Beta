@@ -31,14 +31,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class a {
-    public static final j0 f13898f;
-    public static final e9.a f13899g;
+    public static final j0 f13897f;
+    public static final e9.a f13898g;
     public static final HashMap h;
-    public static final a f13900i;
-    public static final l f13901j;
-    public final String f13902a;
-    public final String f13903b;
-    public final j0 f13904c;
+    public static final a f13899i;
+    public static final l f13900j;
+    public final String f13901a;
+    public final String f13902b;
+    public final j0 f13903c;
     public String d;
     public int e;
 
@@ -49,7 +49,7 @@ public final class a {
         s a2 = s.a();
         c0 c0Var = (c0) a2.get("charset");
         if (c0Var == null) {
-            g0 g0Var = i0.f10287b;
+            g0 g0Var = i0.f10286b;
             o.f(4, "expectedSize");
             c0Var = new b0(4);
             a2.put("charset", c0Var);
@@ -60,7 +60,7 @@ public final class a {
             j0Var = y.h;
         } else {
             q qVar = (q) entrySet;
-            ng ngVar = new ng(qVar.f10326b.size(), 7);
+            ng ngVar = new ng(qVar.f10325b.size(), 7);
             Iterator it = qVar.iterator();
             int i10 = 0;
             while (it.hasNext()) {
@@ -72,13 +72,13 @@ public final class a {
             }
             j0Var = new j0(ngVar.c(true), i10);
         }
-        f13898f = j0Var;
+        f13897f = j0Var;
         b bVar = b.d;
         b bVar2 = b.e;
         bVar2.getClass();
         c cVar = new c(bVar2);
         bVar.getClass();
-        f13899g = new e9.a(new e9.a(new e9.a(bVar, cVar), new e(' ', 1)), i.b("()<>@,;:\\\"/[]?=").d());
+        f13898g = new e9.a(new e9.a(new e9.a(bVar, cVar), new e(' ', 1)), i.b("()<>@,;:\\\"/[]?=").d());
         i.b("\"\\\r").d().getClass();
         i.b(" \t\r\n");
         h = new HashMap();
@@ -152,7 +152,7 @@ public final class a {
         b("application", "javascript");
         a("application", "jose");
         a("application", "jose+json");
-        f13900i = b("application", "json");
+        f13899i = b("application", "json");
         a("application", "jwt");
         b("application", "manifest+json");
         a("application", "vnd.google-earth.kml+xml");
@@ -198,13 +198,13 @@ public final class a {
         a("font", "ttf");
         a("font", "woff");
         a("font", "woff2");
-        f13901j = new l(new j("; "), 15);
+        f13900j = new l(new j("; "), 15);
     }
 
     public a(String str, String str2, j0 j0Var) {
-        this.f13902a = str;
-        this.f13903b = str2;
-        this.f13904c = j0Var;
+        this.f13901a = str;
+        this.f13902b = str2;
+        this.f13903c = j0Var;
     }
 
     public static void a(String str, String str2) {
@@ -213,21 +213,21 @@ public final class a {
     }
 
     public static a b(String str, String str2) {
-        a aVar = new a(str, str2, f13898f);
+        a aVar = new a(str, str2, f13897f);
         h.put(aVar, aVar);
         StandardCharsets.UTF_8.getClass();
         return aVar;
     }
 
     public final h1 c() {
-        return new h1(this.f13904c.b(), new b6.i(new gh.a(27), 18));
+        return new h1(this.f13903c.b(), new b6.i(new gh.a(27), 18));
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (this.f13902a.equals(aVar.f13902a) && this.f13903b.equals(aVar.f13903b) && c().equals(aVar.c())) {
+                if (this.f13901a.equals(aVar.f13901a) && this.f13902b.equals(aVar.f13902b) && c().equals(aVar.c())) {
                     return true;
                 }
                 return false;
@@ -240,7 +240,7 @@ public final class a {
     public final int hashCode() {
         int i10 = this.e;
         if (i10 == 0) {
-            int hashCode = Arrays.hashCode(new Object[]{this.f13902a, this.f13903b, c()});
+            int hashCode = Arrays.hashCode(new Object[]{this.f13901a, this.f13902b, c()});
             this.e = hashCode;
             return hashCode;
         }
@@ -251,14 +251,14 @@ public final class a {
         String str = this.d;
         if (str == null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f13902a);
+            sb2.append(this.f13901a);
             sb2.append('/');
-            sb2.append(this.f13903b);
-            j0 j0Var = this.f13904c;
-            if (j0Var.f10288f != 0) {
+            sb2.append(this.f13902b);
+            j0 j0Var = this.f13903c;
+            if (j0Var.f10287f != 0) {
                 sb2.append("; ");
                 Collection a2 = new l1(j0Var, new b6.i(new gh.a(26), 18)).a();
-                l lVar = f13901j;
+                l lVar = f13900j;
                 lVar.getClass();
                 try {
                     lVar.l(sb2, a2.iterator());

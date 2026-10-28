@@ -5,14 +5,14 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.ui.Components.p1;
 public final class c {
     public static final c e;
-    public static final c f47645f;
-    public static final c f47646g;
+    public static final c f47680f;
+    public static final c f47681g;
     public static final c h;
-    public static final c f47647i;
-    public static final c f47648j;
-    public final Object f47649a;
-    public final int f47650b;
-    public final Class f47651c;
+    public static final c f47682i;
+    public static final c f47683j;
+    public final Object f47684a;
+    public final int f47685b;
+    public final Class f47686c;
     public final p1 d;
 
     static {
@@ -43,8 +43,8 @@ public final class c {
         new c(f.class, 512);
         new c(g.class, 1024);
         new c(g.class, 2048);
-        f47645f = new c(4096, (String) null);
-        f47646g = new c(8192, (String) null);
+        f47680f = new c(4096, (String) null);
+        f47681g = new c(8192, (String) null);
         new c(16384, (String) null);
         new c(32768, (String) null);
         new c(65536, (String) null);
@@ -58,7 +58,7 @@ public final class c {
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_TO_POSITION, 16908343, null, null, i.class);
         h = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_UP, 16908344, null, null, null);
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_LEFT, 16908345, null, null, null);
-        f47647i = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN, 16908346, null, null, null);
+        f47682i = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN, 16908346, null, null, null);
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_RIGHT, 16908347, null, null, null);
         if (i10 >= 29) {
             accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_UP;
@@ -90,7 +90,7 @@ public final class c {
         } else {
             accessibilityAction5 = null;
         }
-        f47648j = new c(accessibilityAction5, 16908349, null, null, j.class);
+        f47683j = new c(accessibilityAction5, 16908349, null, null, j.class);
         if (i10 >= 26) {
             accessibilityAction6 = AccessibilityNodeInfo.AccessibilityAction.ACTION_MOVE_WINDOW;
         } else {
@@ -156,15 +156,15 @@ public final class c {
     }
 
     public final int a() {
-        return ((AccessibilityNodeInfo.AccessibilityAction) this.f47649a).getId();
+        return ((AccessibilityNodeInfo.AccessibilityAction) this.f47684a).getId();
     }
 
     public final boolean equals(Object obj) {
         if (obj == null || !(obj instanceof c)) {
             return false;
         }
-        Object obj2 = ((c) obj).f47649a;
-        Object obj3 = this.f47649a;
+        Object obj2 = ((c) obj).f47684a;
+        Object obj3 = this.f47684a;
         if (obj3 == null) {
             if (obj2 != null) {
                 return false;
@@ -178,7 +178,7 @@ public final class c {
     }
 
     public final int hashCode() {
-        Object obj = this.f47649a;
+        Object obj = this.f47684a;
         if (obj != null) {
             return obj.hashCode();
         }
@@ -187,9 +187,9 @@ public final class c {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("AccessibilityActionCompat: ");
-        String e10 = d.e(this.f47650b);
+        String e10 = d.e(this.f47685b);
         if (e10.equals("ACTION_UNKNOWN")) {
-            Object obj = this.f47649a;
+            Object obj = this.f47684a;
             if (((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel() != null) {
                 e10 = ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel().toString();
             }
@@ -203,13 +203,13 @@ public final class c {
     }
 
     public c(Object obj, int i10, CharSequence charSequence, p1 p1Var, Class cls) {
-        this.f47650b = i10;
+        this.f47685b = i10;
         this.d = p1Var;
         if (obj == null) {
-            this.f47649a = new AccessibilityNodeInfo.AccessibilityAction(i10, charSequence);
+            this.f47684a = new AccessibilityNodeInfo.AccessibilityAction(i10, charSequence);
         } else {
-            this.f47649a = obj;
+            this.f47684a = obj;
         }
-        this.f47651c = cls;
+        this.f47686c = cls;
     }
 }

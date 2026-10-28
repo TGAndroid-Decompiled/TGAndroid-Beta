@@ -1,29 +1,31 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.sc1;
-public final class mp implements sc1 {
-    public final int f30679a;
-    public final ti f30680b;
-    public final org.telegram.ui.gc f30681c;
+import android.animation.ValueAnimator;
+public final class mp implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f30570a = false;
+    public final c31 f30571b;
+    public final float f30572c;
+    public final boolean d;
+    public final zp e;
 
-    public mp(ti tiVar, org.telegram.ui.gc gcVar, int i10) {
-        this.f30679a = i10;
-        this.f30680b = tiVar;
-        this.f30681c = gcVar;
+    public mp(zp zpVar, c31 c31Var, float f7, boolean z10) {
+        this.e = zpVar;
+        this.f30571b = c31Var;
+        this.f30572c = f7;
+        this.d = z10;
     }
 
     @Override
-    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f30679a) {
-            case 0:
-                this.f30680b.dismissInternal();
-                this.f30681c.run(tL_wallPaper);
-                return;
-            default:
-                this.f30680b.dismissInternal();
-                this.f30681c.run(tL_wallPaper);
-                return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        zp zpVar = this.e;
+        zpVar.R = floatValue;
+        if (!this.d) {
+            floatValue = 1.0f - floatValue;
+        }
+        this.f30571b.setRadius(this.f30572c * floatValue);
+        if (!this.f30570a && zpVar.R > 0.5f) {
+            this.f30570a = true;
         }
     }
 }

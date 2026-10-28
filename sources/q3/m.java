@@ -3,13 +3,13 @@ package q3;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class m extends i {
-    public final String f46950b;
-    public final byte[] f46951c;
+    public final String f46985b;
+    public final byte[] f46986c;
 
     public m(String str, byte[] bArr) {
         super("PRIV");
-        this.f46950b = str;
-        this.f46951c = bArr;
+        this.f46985b = str;
+        this.f46986c = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +18,7 @@ public final class m extends i {
         }
         if (obj != null && m.class == obj.getClass()) {
             m mVar = (m) obj;
-            if (Objects.equals(this.f46950b, mVar.f46950b) && Arrays.equals(this.f46951c, mVar.f46951c)) {
+            if (Objects.equals(this.f46985b, mVar.f46985b) && Arrays.equals(this.f46986c, mVar.f46986c)) {
                 return true;
             }
         }
@@ -27,17 +27,17 @@ public final class m extends i {
 
     public final int hashCode() {
         int i10;
-        String str = this.f46950b;
+        String str = this.f46985b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        return Arrays.hashCode(this.f46951c) + ((527 + i10) * 31);
+        return Arrays.hashCode(this.f46986c) + ((527 + i10) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f46943a + ": owner=" + this.f46950b;
+        return this.f46978a + ": owner=" + this.f46985b;
     }
 }

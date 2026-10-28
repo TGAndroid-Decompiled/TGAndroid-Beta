@@ -1,62 +1,13 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class u21 extends lm0 {
-    public final Context f33230c;
-    public int d;
-    public ArrayList e = new ArrayList();
-    public ArrayList f33231f = new ArrayList();
-    public org.telegram.ui.g4 h;
-    public String f33232n;
-    public final ThemeEditorView.EditorAlert f33233r;
-
-    public u21(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f33233r = editorAlert;
-        this.f33230c = context;
-    }
-
-    public static CharSequence E(String str, String str2) {
-        if (TextUtils.isEmpty(str)) {
-            return "";
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        String trim = str.trim();
-        String lowerCase = trim.toLowerCase();
-        int i10 = 0;
-        while (true) {
-            int indexOf = lowerCase.indexOf(str2, i10);
-            if (indexOf == -1) {
-                break;
-            }
-            int length = str2.length() + indexOf;
-            if (i10 != 0 && i10 != indexOf + 1) {
-                spannableStringBuilder.append((CharSequence) trim.substring(i10, indexOf));
-            } else if (i10 == 0 && indexOf != 0) {
-                spannableStringBuilder.append((CharSequence) trim.substring(0, indexOf));
-            }
-            String substring = trim.substring(indexOf, Math.min(trim.length(), length));
-            if (substring.startsWith(" ")) {
-                spannableStringBuilder.append((CharSequence) " ");
-            }
-            String trim2 = substring.trim();
-            int length2 = spannableStringBuilder.length();
-            spannableStringBuilder.append((CharSequence) trim2);
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, trim2.length() + length2, 33);
-            i10 = length;
-        }
-        if (i10 != -1 && i10 < trim.length()) {
-            spannableStringBuilder.append((CharSequence) trim.substring(i10));
-        }
-        return spannableStringBuilder;
-    }
+public final class u21 extends mm0 {
+    public Context f33215c;
+    public ArrayList d;
 
     @Override
     public final boolean D(s4.e1 e1Var) {
@@ -65,10 +16,11 @@ public final class u21 extends lm0 {
 
     @Override
     public final int h() {
-        if (this.e.isEmpty()) {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty()) {
             return 0;
         }
-        return this.e.size() + 1;
+        return arrayList.size() + 1;
     }
 
     @Override
@@ -82,18 +34,17 @@ public final class u21 extends lm0 {
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         int c10;
-        if (e1Var.f47741f == 0) {
+        if (e1Var.f47776f == 0) {
             boolean z10 = true;
-            int i11 = i10 - 1;
-            org.telegram.ui.ActionBar.h7 h7Var = (org.telegram.ui.ActionBar.h7) ((ArrayList) this.e.get(i11)).get(0);
+            org.telegram.ui.ActionBar.h7 h7Var = (org.telegram.ui.ActionBar.h7) ((ArrayList) this.d.get(i10 - 1)).get(0);
             if (h7Var.e == org.telegram.ui.ActionBar.y6.Nd) {
                 c10 = 0;
             } else {
                 c10 = h7Var.c();
             }
-            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) e1Var.f47738a;
-            d9Var.f24015a.setText((CharSequence) this.f33231f.get(i11));
-            d9Var.f24016b = c10;
+            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) e1Var.f47773a;
+            d9Var.f24017a.setText(org.telegram.ui.ActionBar.m5.c(h7Var.e));
+            d9Var.f24018b = c10;
             if (c10 != 0) {
                 z10 = false;
             }
@@ -105,7 +56,7 @@ public final class u21 extends lm0 {
     @Override
     public final s4.e1 x(ViewGroup viewGroup, int i10) {
         View d9Var;
-        Context context = this.f33230c;
+        Context context = this.f33215c;
         if (i10 != 0) {
             d9Var = new View(context);
             d9Var.setLayoutParams(new s4.q0(-1, AndroidUtilities.dp(56.0f)));

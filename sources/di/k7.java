@@ -9,27 +9,27 @@ import android.text.TextPaint;
 import android.util.TypedValue;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.yj0;
 public final class k7 extends View {
-    public final String f8721a;
-    public final String f8722b;
-    public final xj0 f8723c;
+    public final String f8720a;
+    public final String f8721b;
+    public final yj0 f8722c;
     public final Paint d;
     public final TextPaint e;
-    public final TextPaint f8724f;
+    public final TextPaint f8723f;
     public final RectF h;
-    public float f8725n;
-    public final Rect f8726r;
+    public float f8724n;
+    public final Rect f8725r;
 
     public k7(Context context, int i10, String str, String str2) {
         super(context);
-        this.f8726r = new Rect();
-        this.f8721a = str;
-        this.f8722b = str2;
-        xj0 xj0Var = new xj0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
-        this.f8723c = xj0Var;
-        xj0Var.K(1);
-        xj0Var.R(this);
+        this.f8725r = new Rect();
+        this.f8720a = str;
+        this.f8721b = str2;
+        yj0 yj0Var = new yj0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
+        this.f8722c = yj0Var;
+        yj0Var.K(1);
+        yj0Var.R(this);
         Paint paint = new Paint(1);
         this.d = paint;
         paint.setColor(383310040);
@@ -39,7 +39,7 @@ public final class k7 extends View {
         textPaint.setTextSize(TypedValue.applyDimension(1, 16.0f, getResources().getDisplayMetrics()));
         textPaint.setTypeface(AndroidUtilities.bold());
         TextPaint textPaint2 = new TextPaint(1);
-        this.f8724f = textPaint2;
+        this.f8723f = textPaint2;
         textPaint2.setColor(-1761607681);
         textPaint2.setTextSize(TypedValue.applyDimension(1, 14.0f, getResources().getDisplayMetrics()));
         this.h = new RectF();
@@ -49,31 +49,31 @@ public final class k7 extends View {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int dp = AndroidUtilities.dp(40.0f);
-        int dp2 = (int) ((AndroidUtilities.dp(8.0f) * this.f8725n) + AndroidUtilities.dp(36.0f));
+        int dp2 = (int) ((AndroidUtilities.dp(8.0f) * this.f8724n) + AndroidUtilities.dp(36.0f));
         int i10 = dp2 / 2;
         int i11 = dp - i10;
         int measuredHeight = (getMeasuredHeight() / 2) - i10;
-        xj0 xj0Var = this.f8723c;
-        xj0Var.setBounds(i11, measuredHeight, i11 + dp2, dp2 + measuredHeight);
-        xj0Var.draw(canvas);
-        if (this.f8725n > 0.0f) {
-            float dpf2 = (1.0f - this.f8725n) * AndroidUtilities.dpf2(4.0f);
+        yj0 yj0Var = this.f8722c;
+        yj0Var.setBounds(i11, measuredHeight, i11 + dp2, dp2 + measuredHeight);
+        yj0Var.draw(canvas);
+        if (this.f8724n > 0.0f) {
+            float dpf2 = (1.0f - this.f8724n) * AndroidUtilities.dpf2(4.0f);
             float f7 = dpf2 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f7;
             float measuredHeight2 = getMeasuredHeight() - f7;
             RectF rectF = this.h;
             rectF.set(dpf2, dpf2, measuredWidth, measuredHeight2);
-            int i12 = (int) (this.f8725n * 30.0f);
+            int i12 = (int) (this.f8724n * 30.0f);
             Paint paint = this.d;
             paint.setAlpha(i12);
             canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), paint);
             canvas.save();
-            float f10 = this.f8725n;
+            float f10 = this.f8724n;
             canvas.scale((f10 * 0.05f) + 1.0f, (f10 * 0.05f) + 1.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
         }
-        canvas.drawText(this.f8721a, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dpf2(4.0f), this.e);
-        canvas.drawText(this.f8722b, AndroidUtilities.dpf2(80.0f), AndroidUtilities.dpf2(18.0f) + (getMeasuredHeight() / 2.0f), this.f8724f);
-        if (this.f8725n > 0.0f) {
+        canvas.drawText(this.f8720a, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dpf2(4.0f), this.e);
+        canvas.drawText(this.f8721b, AndroidUtilities.dpf2(80.0f), AndroidUtilities.dpf2(18.0f) + (getMeasuredHeight() / 2.0f), this.f8723f);
+        if (this.f8724n > 0.0f) {
             canvas.restore();
         }
     }
@@ -86,6 +86,6 @@ public final class k7 extends View {
         int i12 = dp2 / 2;
         int i13 = dp - i12;
         int measuredHeight = (getMeasuredHeight() / 2) - i12;
-        this.f8723c.setBounds(i13, measuredHeight, i13 + dp2, dp2 + measuredHeight);
+        this.f8722c.setBounds(i13, measuredHeight, i13 + dp2, dp2 + measuredHeight);
     }
 }

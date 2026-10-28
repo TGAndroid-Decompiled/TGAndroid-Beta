@@ -7,7 +7,7 @@ public final class f {
 
     static {
         l lVar = new l(f.class);
-        q.f16670a.getClass();
+        q.f16669a.getClass();
         f8291a = new yd.g[]{lVar};
     }
 }

@@ -1,96 +1,35 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import j$.util.Objects;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class zr0 implements Runnable {
-    public final int f35395a;
-    public final int f35396b;
-    public final Object f35397c;
-    public final Object d;
-    public final Object e;
+    public final int f35437a;
+    public final bw0 f35438b;
+    public final int f35439c;
 
-    public zr0(int i10, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.r2 r2Var, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
-        this.f35395a = 15;
-        this.f35396b = i10;
-        this.d = tL_error;
-        this.e = r2Var;
-        this.f35397c = tL_payments_assignPlayMarketTransaction;
-    }
-
-    private final void a() {
-        aa.b0 b0Var = (aa.b0) this.d;
-        m5.i iVar = (m5.i) this.e;
-        int i10 = this.f35396b;
-        Runnable runnable = (Runnable) this.f35397c;
-        u5.c cVar = (u5.c) b0Var.d;
-        try {
-            try {
-                t5.d dVar = (t5.d) b0Var.f1034f;
-                Objects.requireNonNull(dVar);
-                ((t5.g) cVar).f(new org.telegram.ui.Components.voip.j1(dVar, 7));
-                NetworkInfo activeNetworkInfo = ((ConnectivityManager) ((Context) b0Var.f1031a).getSystemService("connectivity")).getActiveNetworkInfo();
-                if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-                    b0Var.e(iVar, i10);
-                } else {
-                    ((t5.g) cVar).f(new i2.z(b0Var, iVar, i10, 19));
-                }
-                runnable.run();
-            } catch (u5.a unused) {
-                ((s4.d) b0Var.f1032b).s(iVar, i10 + 1, false);
-                runnable.run();
-            }
-        } catch (Throwable th2) {
-            runnable.run();
-            throw th2;
-        }
+    public zr0(bw0 bw0Var, int i10, int i11) {
+        this.f35437a = i11;
+        this.f35438b = bw0Var;
+        this.f35439c = i10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zr0.run():void");
-    }
-
-    public zr0(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f35395a = i11;
-        this.d = obj;
-        this.f35396b = i10;
-        this.e = obj2;
-        this.f35397c = obj3;
-    }
-
-    public zr0(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f35395a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f35396b = i10;
-        this.f35397c = obj3;
-    }
-
-    public zr0(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f35395a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f35397c = obj3;
-        this.f35396b = i10;
-    }
-
-    public zr0(String str, int i10, org.telegram.ui.ActionBar.k3 k3Var, org.telegram.ui.ActionBar.u6 u6Var) {
-        this.f35395a = 7;
-        this.f35397c = str;
-        this.f35396b = i10;
-        this.d = k3Var;
-        this.e = u6Var;
-    }
-
-    public zr0(tz0 tz0Var, int i10, String str, ArrayList arrayList) {
-        this.f35395a = 3;
-        this.d = tz0Var;
-        this.f35396b = i10;
-        this.f35397c = str;
-        this.e = arrayList;
+        switch (this.f35437a) {
+            case 0:
+                this.f35438b.m1(this.f35439c);
+                return;
+            case 1:
+                bw0 bw0Var = this.f35438b;
+                bw0Var.U0(bw0Var.f26992x1, bw0Var.l1, this.f35439c);
+                return;
+            case 2:
+                this.f35438b.l1(this.f35439c, false);
+                return;
+            case 3:
+                this.f35438b.m1(this.f35439c);
+                return;
+            default:
+                bw0 bw0Var2 = this.f35438b;
+                bw0Var2.V0(bw0Var2.f26992x1, bw0Var2.l1, this.f35439c);
+                return;
+        }
     }
 }

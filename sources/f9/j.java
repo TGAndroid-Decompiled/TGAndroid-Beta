@@ -17,7 +17,7 @@ public final class j extends ta implements ListIterator {
         dh dhVar = this.e;
         boolean isEmpty = dhVar.isEmpty();
         c().add(obj);
-        ((k1) dhVar.h).f10293f++;
+        ((k1) dhVar.h).f10292f++;
         if (isEmpty) {
             dhVar.h();
         }

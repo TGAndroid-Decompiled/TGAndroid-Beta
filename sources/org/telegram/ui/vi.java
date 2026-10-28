@@ -1,35 +1,67 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class vi implements ValueAnimator.AnimatorUpdateListener {
-    public final int f44818a;
-    public final org.telegram.ui.ActionBar.r2 f44819b;
+import org.telegram.messenger.AndroidUtilities;
+public final class vi extends qf.c {
+    public final int d;
+    public final int e;
+    public final org.telegram.ui.Cells.s1 f44360f;
+    public final wn f44361g;
 
-    public vi(int i10, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f44818a = i10;
-        this.f44819b = r2Var;
+    public vi(wn wnVar, int i10, org.telegram.ui.Cells.s1 s1Var, int i11) {
+        this.d = i11;
+        this.f44361g = wnVar;
+        this.e = i10;
+        this.f44360f = s1Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f44818a) {
+    public final void c(boolean z10) {
+        switch (this.d) {
             case 0:
-                un unVar = (un) this.f44819b;
-                unVar.f44480xa = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                unVar.f44295j1.invalidate();
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ag.r0(this, this.e, 23), 240L);
+                    return;
+                }
                 return;
             case 1:
-                cy cyVar = (cy) this.f44819b;
-                cyVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = cyVar.fragmentView;
-                if (view != null) {
-                    view.invalidate();
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ag.r0(this, this.e, 26), 240L);
                     return;
                 }
                 return;
             default:
-                ((tc1) this.f44819b).f43802y0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ag.r0(this, this.e, 27), 240L);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void d() {
+        switch (this.d) {
+            case 0:
+                int i10 = this.e;
+                wn wnVar = this.f44361g;
+                wnVar.Wb = i10;
+                wnVar.Xb = 6;
+                this.f44360f.invalidate();
+                return;
+            case 1:
+                int i11 = this.e;
+                wn wnVar2 = this.f44361g;
+                wnVar2.Wb = i11;
+                wnVar2.Xb = 5;
+                wnVar2.Zb = null;
+                this.f44360f.invalidate();
+                return;
+            default:
+                int i12 = this.e;
+                wn wnVar3 = this.f44361g;
+                wnVar3.Wb = i12;
+                wnVar3.Xb = 7;
+                this.f44360f.invalidate();
                 return;
         }
     }

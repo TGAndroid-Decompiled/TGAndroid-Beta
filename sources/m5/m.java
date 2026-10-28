@@ -2,14 +2,14 @@ package m5;
 
 import java.util.Arrays;
 public final class m {
-    public final j5.c f18341a;
-    public final byte[] f18342b;
+    public final j5.c f18340a;
+    public final byte[] f18341b;
 
     public m(j5.c cVar, byte[] bArr) {
         if (cVar != null) {
             if (bArr != null) {
-                this.f18341a = cVar;
-                this.f18342b = bArr;
+                this.f18340a = cVar;
+                this.f18341b = bArr;
                 return;
             }
             throw new NullPointerException("bytes is null");
@@ -25,17 +25,17 @@ public final class m {
             return false;
         }
         m mVar = (m) obj;
-        if (!this.f18341a.equals(mVar.f18341a)) {
+        if (!this.f18340a.equals(mVar.f18340a)) {
             return false;
         }
-        return Arrays.equals(this.f18342b, mVar.f18342b);
+        return Arrays.equals(this.f18341b, mVar.f18341b);
     }
 
     public final int hashCode() {
-        return ((this.f18341a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f18342b);
+        return ((this.f18340a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f18341b);
     }
 
     public final String toString() {
-        return "EncodedPayload{encoding=" + this.f18341a + ", bytes=[...]}";
+        return "EncodedPayload{encoding=" + this.f18340a + ", bytes=[...]}";
     }
 }

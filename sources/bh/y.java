@@ -1,7 +1,7 @@
 package bh;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.wa0;
+import org.telegram.ui.Components.xa0;
 public final class y implements Runnable {
     public final int f4210a;
     public final i0 f4211b;
@@ -29,9 +29,9 @@ public final class y implements Runnable {
                         } catch (Exception unused) {
                         }
                     }
-                    wa0 wa0Var = i0Var.f4059p;
-                    if (wa0Var != null) {
-                        wa0Var.run();
+                    xa0 xa0Var = i0Var.f4059p;
+                    if (xa0Var != null) {
+                        xa0Var.run();
                         return;
                     }
                     return;

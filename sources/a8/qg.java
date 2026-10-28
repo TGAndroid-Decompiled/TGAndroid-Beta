@@ -31,7 +31,7 @@ public final class qg extends b2.h {
             case 2:
                 w7.a9 a9Var = (w7.a9) obj;
                 sb.g c12 = sb.g.c();
-                return new w7.d9(c12.b(), (sb.k) c12.a(sb.k.class), new w7.b9(sb.g.c().b(), a9Var), a9Var.f50814a);
+                return new w7.d9(c12.b(), (sb.k) c12.a(sb.k.class), new w7.b9(sb.g.c().b(), a9Var), a9Var.f50870a);
             case 3:
                 sb.g c13 = sb.g.c();
                 return new x7.ma(c13.b(), (sb.k) c13.a(sb.k.class), new x7.la(sb.g.c().b(), (x7.ja) obj));

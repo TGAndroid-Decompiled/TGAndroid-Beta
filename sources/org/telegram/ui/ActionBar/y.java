@@ -5,30 +5,30 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ye;
 public final class y {
-    public z f23271a;
-    public int f23272b;
-    public int f23273c;
+    public z f23272a;
+    public int f23273b;
+    public int f23274c;
     public CharSequence d;
     public int e;
-    public Drawable f23274f;
-    public int f23275g;
+    public Drawable f23275f;
+    public int f23276g;
     public u6 h;
-    public float f23276i;
-    public Boolean f23277j;
-    public Boolean f23278k;
-    public int f23279l;
-    public w0 f23280m;
-    public ArrayList f23281n;
-    public Integer f23282o;
+    public float f23277i;
+    public Boolean f23278j;
+    public Boolean f23279k;
+    public int f23280l;
+    public w0 f23281m;
+    public ArrayList f23282n;
+    public Integer f23283o;
 
     public final void a() {
-        z zVar = this.f23271a;
-        if (this.f23280m == null) {
+        z zVar = this.f23272a;
+        if (this.f23281m == null) {
             int childCount = zVar.getChildCount();
             ArrayList arrayList = zVar.e;
             int i10 = 0;
             if (arrayList != null) {
-                int indexOf = arrayList.indexOf(Integer.valueOf(this.f23272b));
+                int indexOf = arrayList.indexOf(Integer.valueOf(this.f23273b));
                 int i11 = 0;
                 while (true) {
                     if (i11 >= zVar.getChildCount()) {
@@ -44,74 +44,74 @@ public final class y {
                     i11++;
                 }
             }
-            w0 f7 = zVar.f(childCount, this.f23272b, this.f23273c, null, this.e, this.f23274f, this.f23275g, null, this.h);
-            this.f23280m = f7;
-            f7.setVisibility(this.f23279l);
+            w0 f7 = zVar.f(childCount, this.f23273b, this.f23274c, null, this.e, this.f23275f, this.f23276g, null, this.h);
+            this.f23281m = f7;
+            f7.setVisibility(this.f23280l);
             CharSequence charSequence = this.d;
             if (charSequence != null) {
-                this.f23280m.setContentDescription(charSequence);
+                this.f23281m.setContentDescription(charSequence);
             }
-            Boolean bool = this.f23278k;
+            Boolean bool = this.f23279k;
             if (bool != null) {
-                this.f23280m.R = bool.booleanValue();
+                this.f23281m.R = bool.booleanValue();
             }
-            Boolean bool2 = this.f23277j;
+            Boolean bool2 = this.f23278j;
             if (bool2 != null) {
-                this.f23280m.S = bool2.booleanValue();
+                this.f23281m.S = bool2.booleanValue();
             }
-            this.f23280m.setAlpha(this.f23276i);
-            ArrayList arrayList2 = this.f23281n;
+            this.f23281m.setAlpha(this.f23277i);
+            ArrayList arrayList2 = this.f23282n;
             if (arrayList2 != null) {
                 int size = arrayList2.size();
                 while (i10 < size) {
                     Object obj = arrayList2.get(i10);
                     i10++;
-                    ((Utilities.Callback) obj).run(this.f23280m);
+                    ((Utilities.Callback) obj).run(this.f23281m);
                 }
-                this.f23281n = null;
+                this.f23282n = null;
             }
         }
     }
 
     public final void b(ye yeVar) {
-        w0 w0Var = this.f23280m;
+        w0 w0Var = this.f23281m;
         if (w0Var != null) {
             yeVar.run(w0Var);
             return;
         }
-        if (this.f23281n == null) {
-            this.f23281n = new ArrayList();
+        if (this.f23282n == null) {
+            this.f23282n = new ArrayList();
         }
-        this.f23281n.add(yeVar);
+        this.f23282n.add(yeVar);
     }
 
     public final void c() {
-        this.f23278k = Boolean.FALSE;
-        w0 w0Var = this.f23280m;
+        this.f23279k = Boolean.FALSE;
+        w0 w0Var = this.f23281m;
         if (w0Var != null) {
             w0Var.R = false;
         }
     }
 
     public final void d() {
-        this.f23277j = Boolean.TRUE;
-        w0 w0Var = this.f23280m;
+        this.f23278j = Boolean.TRUE;
+        w0 w0Var = this.f23281m;
         if (w0Var != null) {
             w0Var.S = true;
         }
     }
 
     public final void e() {
-        this.f23282o = null;
+        this.f23283o = null;
     }
 
     public final void f(int i10) {
-        if (this.f23279l != i10) {
-            this.f23279l = i10;
+        if (this.f23280l != i10) {
+            this.f23280l = i10;
             if (i10 == 0) {
                 a();
             }
-            w0 w0Var = this.f23280m;
+            w0 w0Var = this.f23281m;
             if (w0Var != null) {
                 w0Var.setVisibility(i10);
             }

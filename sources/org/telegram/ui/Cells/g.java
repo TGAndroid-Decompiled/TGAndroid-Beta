@@ -2,70 +2,70 @@ package org.telegram.ui.Cells;
 
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.da0;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.nm0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.SessionsActivity;
-import org.telegram.ui.cy;
+import org.telegram.ui.ey;
 public final class g implements Runnable {
-    public final int f24130a;
-    public final Object f24131b;
+    public final int f24132a;
+    public final Object f24133b;
 
     public g(Object obj, int i10) {
-        this.f24130a = i10;
-        this.f24131b = obj;
+        this.f24132a = i10;
+        this.f24133b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f24130a) {
+        switch (this.f24132a) {
             case 0:
-                h hVar = (h) this.f24131b;
-                da0 da0Var = hVar.d;
-                if (da0Var != null) {
-                    hVar.h.E.l(da0Var, true);
+                h hVar = (h) this.f24133b;
+                ea0 ea0Var = hVar.d;
+                if (ea0Var != null) {
+                    hVar.h.E.l(ea0Var, true);
                     return;
                 }
                 return;
             case 1:
-                j1 j1Var = ((t1) this.f24131b).e;
+                j1 j1Var = ((t1) this.f24133b).e;
                 if (j1Var != null) {
                     j1Var.j();
                     return;
                 }
                 return;
             case 2:
-                ((z1) this.f24131b).a();
+                ((z1) this.f24133b).a();
                 return;
             case 3:
-                AndroidUtilities.hideKeyboard(((zh.t4) this.f24131b).f24001b.getEditText());
+                AndroidUtilities.hideKeyboard(((zh.t4) this.f24133b).f24003b.getEditText());
                 return;
             case 4:
-                AndroidUtilities.hideKeyboard(((g3) this.f24131b).d);
+                AndroidUtilities.hideKeyboard(((g3) this.f24133b).d);
                 return;
             case 5:
-                m6 m6Var = (m6) this.f24131b;
-                if (m6Var.getParent() instanceof mm0) {
-                    ((mm0) m6Var.getParent()).getOnItemClickListener().c(RecyclerView.R(m6Var), m6Var);
+                m6 m6Var = (m6) this.f24133b;
+                if (m6Var.getParent() instanceof nm0) {
+                    ((nm0) m6Var.getParent()).getOnItemClickListener().c(RecyclerView.R(m6Var), m6Var);
                     return;
                 } else {
                     m6Var.callOnClick();
                     return;
                 }
             case 6:
-                ((w7) this.f24131b).h();
+                ((w7) this.f24133b).h();
                 return;
             case 7:
-                fa faVar = (fa) this.f24131b;
+                fa faVar = (fa) this.f24133b;
                 faVar.C.invalidate();
                 faVar.T();
                 return;
             case 8:
-                ((p9) this.f24131b).f24781b.T();
+                ((p9) this.f24133b).f24783b.T();
                 return;
             case 9:
-                ka kaVar = (ka) this.f24131b;
-                kaVar.f24365s = -1;
+                ka kaVar = (ka) this.f24133b;
+                kaVar.f24367s = -1;
                 int i10 = 0;
                 while (true) {
                     s1[] s1VarArr = kaVar.e;
@@ -81,10 +81,10 @@ public final class g implements Runnable {
                 }
             case 10:
                 qc.e();
-                ((cy) this.f24131b).presentFragment(new SessionsActivity(0));
+                ((ey) this.f24133b).presentFragment(new SessionsActivity(0));
                 return;
             default:
-                org.telegram.ui.ActionBar.k3 k3Var = (org.telegram.ui.ActionBar.k3) this.f24131b;
+                org.telegram.ui.ActionBar.k3 k3Var = (org.telegram.ui.ActionBar.k3) this.f24133b;
                 k3Var.setCanDismissWithSwipe(true);
                 k3Var.setCanDismissWithTouchOutside(true);
                 return;

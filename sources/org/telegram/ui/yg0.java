@@ -1,29 +1,34 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class yg0 implements Runnable {
-    public final jh0 f46066a;
+    public final int f46014a;
+    public final lh0 f46015b;
+    public final TLRPC.TL_chatInviteExported f46016c;
+    public final TLRPC.TL_error d;
+    public final TLObject e;
+    public final boolean f46017f;
 
-    public yg0(jh0 jh0Var) {
-        this.f46066a = jh0Var;
+    public yg0(lh0 lh0Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10, int i10) {
+        this.f46014a = i10;
+        this.f46015b = lh0Var;
+        this.f46016c = tL_chatInviteExported;
+        this.d = tL_error;
+        this.e = tLObject;
+        this.f46017f = z10;
     }
 
     @Override
     public final void run() {
-        jh0 jh0Var = this.f46066a;
-        if (jh0Var.f40647b == null) {
-            return;
+        switch (this.f46014a) {
+            case 0:
+                lh0 lh0Var = this.f46015b;
+                lh0Var.getNotificationCenter().doOnIdle(new yg0(lh0Var, this.f46016c, this.d, this.e, this.f46017f, 1));
+                return;
+            default:
+                lh0.V(this.f46015b, this.f46016c, this.d, this.e, this.f46017f);
+                return;
         }
-        for (int i10 = 0; i10 < jh0Var.f40647b.getChildCount(); i10++) {
-            View childAt = jh0Var.f40647b.getChildAt(i10);
-            if (childAt instanceof gh0) {
-                gh0 gh0Var = (gh0) childAt;
-                if (gh0Var.I) {
-                    gh0Var.b(gh0Var.f39692n, gh0Var.f39693r);
-                }
-            }
-        }
-        AndroidUtilities.runOnUIThread(this, 500L);
     }
 }

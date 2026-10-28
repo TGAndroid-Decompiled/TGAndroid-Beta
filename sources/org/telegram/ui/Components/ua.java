@@ -21,7 +21,7 @@ public abstract class ua extends bb {
     }
 
     @Override
-    public final lm0 v(mm0 mm0Var) {
+    public final mm0 v(nm0 nm0Var) {
         return new bi.h5(this, 2);
     }
 

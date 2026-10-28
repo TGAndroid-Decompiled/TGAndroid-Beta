@@ -17,10 +17,10 @@ public abstract class k {
     }
 
     public static void c(n0.c cVar) {
-        LocaleList.setDefault(LocaleList.forLanguageTags(cVar.f18566a.a()));
+        LocaleList.setDefault(LocaleList.forLanguageTags(cVar.f18565a.a()));
     }
 
     public static void d(Configuration configuration, n0.c cVar) {
-        configuration.setLocales(LocaleList.forLanguageTags(cVar.f18566a.a()));
+        configuration.setLocales(LocaleList.forLanguageTags(cVar.f18565a.a()));
     }
 }

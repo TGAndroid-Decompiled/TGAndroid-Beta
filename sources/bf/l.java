@@ -26,9 +26,9 @@ public final class l {
         }
         String str2 = this.e;
         ?? pVar = new ef.p();
-        pVar.f9934g = str2;
+        pVar.f9933g = str2;
         pVar.h = a2;
-        pVar.f9935i = str;
+        pVar.f9934i = str;
         this.f3961c.add(pVar);
         this.d = null;
         this.f3964i = false;

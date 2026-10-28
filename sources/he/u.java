@@ -2,7 +2,7 @@ package he;
 
 import a8.jd;
 public abstract class u {
-    public static final int f12819a = 0;
+    public static final int f12818a = 0;
 
     static {
         Object a2;

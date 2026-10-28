@@ -12,16 +12,16 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
 public final class e extends h implements NavigableMap {
-    public final k1 f10276n;
+    public final k1 f10275n;
 
     public e(k1 k1Var, NavigableMap navigableMap) {
         super(k1Var, navigableMap);
-        this.f10276n = k1Var;
+        this.f10275n = k1Var;
     }
 
     @Override
     public final SortedSet b() {
-        return new f(this.f10276n, d());
+        return new f(this.f10275n, d());
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class e extends h implements NavigableMap {
 
     @Override
     public final NavigableMap descendingMap() {
-        return new e(this.f10276n, d().descendingMap());
+        return new e(this.f10275n, d().descendingMap());
     }
 
     public final e0 e(Iterator it) {
@@ -58,7 +58,7 @@ public final class e extends h implements NavigableMap {
             return null;
         }
         Map.Entry entry = (Map.Entry) it.next();
-        Collection h = this.f10276n.h();
+        Collection h = this.f10275n.h();
         h.addAll((Collection) entry.getValue());
         it.remove();
         return new e0(entry.getKey(), DesugarCollections.unmodifiableList((List) h));
@@ -166,16 +166,16 @@ public final class e extends h implements NavigableMap {
 
     @Override
     public final NavigableMap headMap(Object obj, boolean z10) {
-        return new e(this.f10276n, d().headMap(obj, z10));
+        return new e(this.f10275n, d().headMap(obj, z10));
     }
 
     @Override
     public final NavigableMap subMap(Object obj, boolean z10, Object obj2, boolean z11) {
-        return new e(this.f10276n, d().subMap(obj, z10, obj2, z11));
+        return new e(this.f10275n, d().subMap(obj, z10, obj2, z11));
     }
 
     @Override
     public final NavigableMap tailMap(Object obj, boolean z10) {
-        return new e(this.f10276n, d().tailMap(obj, z10));
+        return new e(this.f10275n, d().tailMap(obj, z10));
     }
 }

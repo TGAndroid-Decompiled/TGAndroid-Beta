@@ -5,31 +5,31 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class t implements Utilities.Callback3 {
-    public final int f37253a = 0;
-    public final l0 f37254b;
-    public final Object f37255c;
+    public final int f37277a = 0;
+    public final l0 f37278b;
+    public final Object f37279c;
     public final Object d;
     public final Object e;
 
     public t(l0 l0Var, Utilities.Callback callback, byte[] bArr, i0 i0Var) {
-        this.f37254b = l0Var;
-        this.f37255c = callback;
+        this.f37278b = l0Var;
+        this.f37279c = callback;
         this.d = bArr;
         this.e = i0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2, Object obj3) {
-        switch (this.f37253a) {
+        switch (this.f37277a) {
             case 0:
-                Utilities.Callback callback = (Utilities.Callback) this.f37255c;
+                Utilities.Callback callback = (Utilities.Callback) this.f37279c;
                 byte[] bArr = (byte[]) this.d;
                 i0 i0Var = (i0) this.e;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
-                l0 l0Var = this.f37254b;
-                int i10 = l0Var.f36807a;
+                l0 l0Var = this.f37278b;
+                int i10 = l0Var.f36834a;
                 if (tL_error == null || !"WALLET_PROOF_EXPIRED".equalsIgnoreCase(tL_error.text)) {
                     if (tL_error != null) {
                         String str = tL_error.text;
@@ -39,34 +39,34 @@ public final class t implements Utilities.Callback3 {
                         callback.run(str);
                         return;
                     }
-                    l0Var.i0(walletState);
-                    new p0(l0.v(), l0Var.s(), i10).p(UserConfig.getInstance(i10).getClientUserId(), bArr, i0Var, callback);
-                    l0Var.P();
+                    l0Var.l0(walletState);
+                    new p0(l0.w(), l0Var.t(), i10).p(UserConfig.getInstance(i10).getClientUserId(), bArr, i0Var, callback);
+                    l0Var.R();
                     return;
                 }
                 return;
             default:
-                r9 r9Var = (r9) this.f37255c;
+                r9 r9Var = (r9) this.f37279c;
                 TLRPC.User user = (TLRPC.User) this.d;
                 String str2 = (String) this.e;
                 String str3 = (String) obj;
                 Boolean bool = (Boolean) obj2;
                 Utilities.Callback callback2 = (Utilities.Callback) obj3;
-                String str4 = r9Var.f37200f;
-                l0 l0Var2 = this.f37254b;
-                if (!l0.a(str4, l0Var2.s())) {
+                String str4 = r9Var.f37224f;
+                l0 l0Var2 = this.f37278b;
+                if (!l0.b(str4, l0Var2.t())) {
                     callback2.run("WALLET_CHANGED");
                     return;
                 } else {
-                    l0Var2.b0(user, str2, 0L, str3, null, r9Var.e, null, new s(13, r9Var, callback2), null, null);
+                    l0Var2.d0(user, str2, 0L, str3, null, r9Var.e, null, new s(13, r9Var, callback2), null, null);
                     return;
                 }
         }
     }
 
     public t(r9 r9Var, l0 l0Var, TLRPC.User user, String str) {
-        this.f37255c = r9Var;
-        this.f37254b = l0Var;
+        this.f37279c = r9Var;
+        this.f37278b = l0Var;
         this.d = user;
         this.e = str;
     }

@@ -36,7 +36,7 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     }
 
     public void lambda$onDataSetChanged$0() {
-        this.accountInstance.getNotificationCenter().addObserver(this, NotificationCenter.messagesDidLoad);
+        this.accountInstance.getNotificationCenter().addWeakObserver(this, NotificationCenter.messagesDidLoad);
         if (this.classGuid == 0) {
             this.classGuid = ConnectionsManager.generateClassGuid();
         }

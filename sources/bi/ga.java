@@ -13,9 +13,9 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.bw0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class ga implements Runnable {
     public final int f4688a;
     public final long f4689b;
@@ -36,11 +36,11 @@ public final class ga implements Runnable {
                 Long l4 = (Long) this.d;
                 org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
                 if (U != null) {
-                    un ba2 = un.ba(l4.longValue());
-                    U.presentFragment(ba2);
+                    wn ea2 = wn.ea(l4.longValue());
+                    U.presentFragment(ea2);
                     TLRPC.Chat chat = MessagesController.getInstance(this.f4690c).getChat(Long.valueOf(-l4.longValue()));
                     if (chat != null) {
-                        AndroidUtilities.runOnUIThread(new ia(ba2, this.f4689b, chat, 0), 250L);
+                        AndroidUtilities.runOnUIThread(new ia(ea2, this.f4689b, chat, 0), 250L);
                         return;
                     }
                     return;
@@ -48,18 +48,18 @@ public final class ga implements Runnable {
                 return;
             case 1:
                 di.h7 h7Var = (di.h7) this.d;
-                LongSparseIntArray longSparseIntArray = h7Var.f8633f;
+                LongSparseIntArray longSparseIntArray = h7Var.f8632f;
                 long j10 = this.f4689b;
                 int i10 = longSparseIntArray.get(j10, 0);
                 int i11 = this.f4690c;
                 int max = Math.max(i10, i11);
-                h7Var.f8633f.put(j10, max);
-                h7Var.f8637k.i(max, j10);
+                h7Var.f8632f.put(j10, max);
+                h7Var.f8636k.i(max, j10);
                 TL_stories.PeerStories y3 = h7Var.y(j10);
                 if (y3 != null && i11 > y3.max_read_id) {
                     y3.max_read_id = i11;
-                    Collections.sort(h7Var.f8634g, h7Var.J);
-                    NotificationCenter.getInstance(h7Var.f8630a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                    Collections.sort(h7Var.f8633g, h7Var.J);
+                    NotificationCenter.getInstance(h7Var.f8629a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                     return;
                 }
                 return;
@@ -73,7 +73,7 @@ public final class ga implements Runnable {
                 ((MediaDataController) this.d).lambda$deletePeer$159(this.f4689b, this.f4690c);
                 return;
             case 5:
-                ((MessagesController) this.d).lambda$processUpdateArray$425(this.f4689b, this.f4690c);
+                ((MessagesController) this.d).lambda$processUpdateArray$426(this.f4689b, this.f4690c);
                 return;
             case 6:
                 SendMessagesHelper.lambda$finishGroup$120((AccountInstance) this.d, this.f4689b, this.f4690c);
@@ -86,7 +86,7 @@ public final class ga implements Runnable {
                 }
                 return;
             default:
-                aw0.m((aw0) this.d, this.f4689b, this.f4690c);
+                bw0.m((bw0) this.d, this.f4689b, this.f4690c);
                 return;
         }
     }

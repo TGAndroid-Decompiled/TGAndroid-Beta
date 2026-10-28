@@ -1,187 +1,4003 @@
 package org.telegram.ui;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Vibrator;
+import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Property;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+import androidx.core.content.FileProvider;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.security.KeyFactory;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import javax.crypto.Cipher;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SecureDocument;
+import org.telegram.messenger.SecureDocumentKey;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class kn0 implements View.OnClickListener {
-    public final int f40991a;
-    public final po0 f40992b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class kn0 extends org.telegram.ui.ActionBar.r2 implements NotificationCenter.NotificationCenterDelegate {
+    public LinearLayout A0;
+    public String A1;
+    public ImageView B0;
+    public an0 B1;
+    public TextView C0;
+    public boolean C1;
+    public TextView D0;
+    public final jm0 D1;
+    public final TLRPC.TL_secureRequiredType E;
+    public TextView E0;
+    public String E1;
+    public TLRPC.TL_secureRequiredType F;
+    public org.telegram.ui.Components.uz F0;
+    public Runnable F1;
+    public ArrayList G;
+    public org.telegram.ui.Cells.i9 G0;
+    public ym0 G1;
+    public final TLRPC.TL_secureValue H;
+    public org.telegram.ui.Cells.i9 H0;
+    public an0 H1;
+    public final TLRPC.TL_secureValue I;
+    public ImageView I0;
+    public int I1;
+    public TL_account.Password J;
+    public TextView J0;
+    public final org.telegram.ui.Components.bx0[] J1;
+    public TLRPC.TL_auth_sentCode K;
+    public TextView K0;
+    public org.telegram.ui.ActionBar.e2 K1;
+    public org.telegram.ui.ActionBar.w0 L;
+    public FrameLayout L0;
+    public Dialog L1;
+    public AnimatorSet M;
+    public TextView M0;
+    public final ArrayList M1;
+    public org.telegram.ui.Components.er N;
+    public int N0;
+    public int N1;
+    public TextView O;
+    public final byte[] O0;
+    public int O1;
+    public org.telegram.ui.Components.er P;
+    public final byte[] P0;
+    public int P1;
+    public FrameLayout Q;
+    public String Q0;
+    public org.telegram.ui.Cells.ga R;
+    public org.telegram.ui.Components.ti R0;
+    public View S;
+    public int S0;
+    public View T;
+    public int T0;
+    public org.telegram.ui.Cells.h9 U;
+    public final ArrayList U0;
+    public org.telegram.ui.Cells.h9 V;
+    public final HashMap V0;
+    public org.telegram.ui.Cells.h9 W;
+    public final HashMap W0;
+    public org.telegram.ui.Cells.ga X;
+    public final HashMap X0;
+    public EditTextBoldCursor[] Y;
+    public HashMap Y0;
+    public ViewGroup[] Z;
+    public boolean Z0;
+    public String f40835a;
+    public EditTextBoldCursor[] f40836a0;
+    public boolean f40837a1;
+    public final int f40838b;
+    public ScrollView f40839b0;
+    public long f40840b1;
+    public long f40841c;
+    public LinearLayout f40842c0;
+    public byte[] f40843c1;
+    public final String d;
+    public LinearLayout f40844d0;
+    public String f40845d1;
+    public final String e;
+    public LinearLayout f40846e0;
+    public byte[] f40847e1;
+    public boolean f40848f;
+    public LinearLayout f40849f0;
+    public boolean f40850f1;
+    public LinearLayout f40851g0;
+    public boolean f40852g1;
+    public final String h;
+    public LinearLayout f40853h0;
+    public kn0 f40854h1;
+    public LinearLayout f40855i0;
+    public final ArrayList f40856i1;
+    public org.telegram.ui.Cells.q4 f40857j0;
+    public SecureDocument f40858j1;
+    public final ArrayList f40859k0;
+    public final ArrayList f40860k1;
+    public org.telegram.ui.Cells.f7 f40861l0;
+    public SecureDocument l1;
+    public org.telegram.ui.Cells.f7 m0;
+    public SecureDocument f40862m1;
+    public final String f40863n;
+    public org.telegram.ui.Cells.i9 f40864n0;
+    public final HashMap f40865n1;
+    public org.telegram.ui.Cells.i9 f40866o0;
+    public final HashMap f40867o1;
+    public org.telegram.ui.Cells.i9 f40868p0;
+    public final HashMap f40869p1;
+    public org.telegram.ui.Cells.i9 f40870q0;
+    public final HashMap f40871q1;
+    public final String f40872r;
+    public org.telegram.ui.Cells.ga f40873r0;
+    public final HashMap f40874r1;
+    public String f40875s;
+    public int f40876s0;
+    public final HashMap f40877s1;
+    public final boolean[] f40878t0;
+    public final HashMap f40879t1;
+    public boolean f40880u0;
+    public final HashMap f40881u1;
+    public String v;
+    public boolean f40882v0;
+    public final HashMap f40883v1;
+    public String f40884w;
+    public TextView f40885w0;
+    public HashMap f40886w1;
+    public final int[] f40887x;
+    public org.telegram.ui.Cells.ga f40888x0;
+    public HashMap f40889x1;
+    public TL_account.authorizationForm f40890y;
+    public org.telegram.ui.Cells.ga f40891y0;
+    public final HashMap f40892y1;
+    public org.telegram.ui.Cells.f7 f40893z0;
+    public String f40894z1;
 
-    public kn0(po0 po0Var, int i10) {
-        this.f40991a = i10;
-        this.f40992b = po0Var;
+    public kn0(int i10, TL_account.authorizationForm authorizationform, TL_account.Password password, TLRPC.TL_secureRequiredType tL_secureRequiredType, TLRPC.TL_secureValue tL_secureValue, TLRPC.TL_secureRequiredType tL_secureRequiredType2, TLRPC.TL_secureValue tL_secureValue2, HashMap hashMap, HashMap hashMap2) {
+        super(null);
+        this.f40875s = "";
+        this.v = "";
+        this.f40887x = new int[3];
+        this.f40859k0 = new ArrayList();
+        this.f40878t0 = new boolean[3];
+        this.f40880u0 = true;
+        this.U0 = new ArrayList();
+        this.V0 = new HashMap();
+        this.W0 = new HashMap();
+        this.X0 = new HashMap();
+        this.f40856i1 = new ArrayList();
+        this.f40860k1 = new ArrayList();
+        this.f40865n1 = new HashMap();
+        this.f40867o1 = new HashMap();
+        this.f40869p1 = new HashMap();
+        this.f40871q1 = new HashMap();
+        this.f40874r1 = new HashMap();
+        this.f40881u1 = new HashMap();
+        this.f40883v1 = new HashMap();
+        this.f40892y1 = new HashMap();
+        this.D1 = new jm0(this);
+        this.f40838b = i10;
+        this.f40890y = authorizationform;
+        this.E = tL_secureRequiredType;
+        if (tL_secureRequiredType != null) {
+            this.f40880u0 = tL_secureRequiredType.native_names;
+        }
+        this.H = tL_secureValue;
+        this.F = tL_secureRequiredType2;
+        this.I = tL_secureValue2;
+        this.J = password;
+        this.f40877s1 = hashMap;
+        this.f40879t1 = hashMap2;
+        if (i10 == 3) {
+            this.M1 = new ArrayList();
+        } else if (i10 == 7) {
+            this.J1 = new org.telegram.ui.Components.bx0[3];
+        }
+        if (hashMap == null) {
+            this.f40877s1 = new HashMap();
+        }
+        if (hashMap2 == null) {
+            this.f40879t1 = new HashMap();
+        }
+        if (i10 == 5) {
+            if (UserConfig.getInstance(this.currentAccount).savedPasswordHash != null && UserConfig.getInstance(this.currentAccount).savedSaltedPassword != null) {
+                this.N0 = 1;
+                this.O0 = UserConfig.getInstance(this.currentAccount).savedPasswordHash;
+                this.P0 = UserConfig.getInstance(this.currentAccount).savedSaltedPassword;
+            }
+            TL_account.Password password2 = this.J;
+            if (password2 == null) {
+                w1();
+            } else {
+                TwoStepVerificationActivity.n0(password2);
+                if (this.N0 == 1) {
+                    B1(true);
+                }
+            }
+            if (SharedConfig.isPassportConfigLoaded()) {
+                return;
+            }
+            TLRPC.TL_help_getPassportConfig tL_help_getPassportConfig = new TLRPC.TL_help_getPassportConfig();
+            tL_help_getPassportConfig.hash = SharedConfig.passportConfigHash;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_help_getPassportConfig, new di.d6(18));
+        }
+    }
+
+    public static int C0(kn0 kn0Var, String str) {
+        kn0Var.getClass();
+        str.getClass();
+        char c10 = 65535;
+        switch (str.hashCode()) {
+            case -2006252145:
+                if (str.equals("residence_country_code")) {
+                    c10 = 0;
+                    break;
+                }
+                break;
+            case -1537298398:
+                if (str.equals("last_name_native")) {
+                    c10 = 1;
+                    break;
+                }
+                break;
+            case -1249512767:
+                if (str.equals("gender")) {
+                    c10 = 2;
+                    break;
+                }
+                break;
+            case -796150911:
+                if (str.equals("street_line1")) {
+                    c10 = 3;
+                    break;
+                }
+                break;
+            case -796150910:
+                if (str.equals("street_line2")) {
+                    c10 = 4;
+                    break;
+                }
+                break;
+            case -160985414:
+                if (str.equals("first_name")) {
+                    c10 = 5;
+                    break;
+                }
+                break;
+            case 3053931:
+                if (str.equals("city")) {
+                    c10 = 6;
+                    break;
+                }
+                break;
+            case 109757585:
+                if (str.equals("state")) {
+                    c10 = 7;
+                    break;
+                }
+                break;
+            case 421072629:
+                if (str.equals("middle_name")) {
+                    c10 = '\b';
+                    break;
+                }
+                break;
+            case 451516732:
+                if (str.equals("first_name_native")) {
+                    c10 = '\t';
+                    break;
+                }
+                break;
+            case 475919162:
+                if (str.equals("expiry_date")) {
+                    c10 = '\n';
+                    break;
+                }
+                break;
+            case 506677093:
+                if (str.equals("document_no")) {
+                    c10 = 11;
+                    break;
+                }
+                break;
+            case 1168724782:
+                if (str.equals("birth_date")) {
+                    c10 = '\f';
+                    break;
+                }
+                break;
+            case 1181577377:
+                if (str.equals("middle_name_native")) {
+                    c10 = '\r';
+                    break;
+                }
+                break;
+            case 1481071862:
+                if (str.equals("country_code")) {
+                    c10 = 14;
+                    break;
+                }
+                break;
+            case 2002465324:
+                if (str.equals("post_code")) {
+                    c10 = 15;
+                    break;
+                }
+                break;
+            case 2013122196:
+                if (str.equals("last_name")) {
+                    c10 = 16;
+                    break;
+                }
+                break;
+        }
+        switch (c10) {
+            case 0:
+                return 26;
+            case 1:
+            case 16:
+                return 22;
+            case 2:
+                return 24;
+            case 3:
+                return 29;
+            case 4:
+                return 30;
+            case 5:
+            case '\t':
+                return 20;
+            case 6:
+                return 32;
+            case 7:
+                return 33;
+            case '\b':
+            case '\r':
+                return 21;
+            case '\n':
+                return 28;
+            case 11:
+                return 27;
+            case '\f':
+                return 23;
+            case 14:
+                return 25;
+            case 15:
+                return 31;
+            default:
+                return 100;
+        }
+    }
+
+    public static boolean D0(org.telegram.ui.kn0 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kn0.D0(org.telegram.ui.kn0):boolean");
+    }
+
+    public static void J0(kn0 kn0Var, EditTextBoldCursor editTextBoldCursor, String str, Editable editable, boolean z10) {
+        String str2;
+        String str3;
+        String str4;
+        String str5;
+        HashMap hashMap = kn0Var.f40892y1;
+        if (hashMap != null && (str3 = (String) hashMap.get(str)) != null) {
+            if (TextUtils.equals(str3, editable)) {
+                HashMap hashMap2 = kn0Var.f40886w1;
+                if (hashMap2 != null && (str5 = (String) hashMap2.get(str)) != null) {
+                    editTextBoldCursor.setErrorText(str5);
+                } else {
+                    HashMap hashMap3 = kn0Var.f40889x1;
+                    if (hashMap3 != null && (str4 = (String) hashMap3.get(str)) != null) {
+                        editTextBoldCursor.setErrorText(str4);
+                    }
+                }
+            } else {
+                editTextBoldCursor.setErrorText(null);
+            }
+        } else {
+            editTextBoldCursor.setErrorText(null);
+        }
+        if (z10) {
+            str2 = "error_document_all";
+        } else {
+            str2 = "error_all";
+        }
+        if (hashMap != null && hashMap.containsKey(str2)) {
+            hashMap.remove(str2);
+            kn0Var.a1(false);
+        }
+    }
+
+    public static void M0(kn0 kn0Var, int i10) {
+        kn0Var.currentAccount = i10;
+    }
+
+    public static int N0(kn0 kn0Var) {
+        return kn0Var.currentAccount;
+    }
+
+    public static void P1(EditTextBoldCursor[] editTextBoldCursorArr, boolean z10, boolean z11) {
+        if (editTextBoldCursorArr != null) {
+            for (EditTextBoldCursor editTextBoldCursor : editTextBoldCursorArr) {
+                if (editTextBoldCursor != null) {
+                    org.telegram.ui.ActionBar.f7.m(editTextBoldCursor, 30, org.telegram.ui.ActionBar.y6.G6, null);
+                    if (z10) {
+                        org.telegram.ui.ActionBar.f7.m(editTextBoldCursor, 34, org.telegram.ui.ActionBar.y6.H6, null);
+                        org.telegram.ui.ActionBar.f7.m(editTextBoldCursor, 35, org.telegram.ui.ActionBar.y6.L6, null);
+                        if (z11) {
+                            int paddingLeft = editTextBoldCursor.getPaddingLeft();
+                            int paddingTop = editTextBoldCursor.getPaddingTop();
+                            int paddingRight = editTextBoldCursor.getPaddingRight();
+                            int paddingBottom = editTextBoldCursor.getPaddingBottom();
+                            org.telegram.ui.ActionBar.f7.G(editTextBoldCursor, org.telegram.ui.ActionBar.y6.f23485k6, org.telegram.ui.ActionBar.y6.f23503l6, org.telegram.ui.ActionBar.y6.f23582p7, null);
+                            if (editTextBoldCursor.getPaddingLeft() != paddingLeft || editTextBoldCursor.getPaddingTop() != paddingTop || editTextBoldCursor.getPaddingRight() != paddingRight || editTextBoldCursor.getPaddingBottom() != paddingBottom) {
+                                editTextBoldCursor.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static void V(kn0 kn0Var, TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery) {
+        TL_account.Password password = kn0Var.J;
+        password.email_unconfirmed_pattern = tL_auth_passwordRecovery.email_pattern;
+        kn0Var.presentFragment(new fg1(kn0Var.currentAccount, 4, password));
+    }
+
+    public static void W(kn0 kn0Var) {
+        ArrayList arrayList;
+        int i10;
+        int i11;
+        TLRPC.TL_secureRequiredType tL_secureRequiredType;
+        TLRPC.TL_secureRequiredType tL_secureRequiredType2;
+        TLRPC.TL_secureRequiredType tL_secureRequiredType3;
+        HashMap hashMap = kn0Var.f40874r1;
+        HashMap hashMap2 = kn0Var.f40871q1;
+        String str = kn0Var.f40872r;
+        ArrayList arrayList2 = new ArrayList();
+        int size = kn0Var.f40890y.required_types.size();
+        for (int i12 = 0; i12 < size; i12++) {
+            TLRPC.SecureRequiredType secureRequiredType = kn0Var.f40890y.required_types.get(i12);
+            if (secureRequiredType instanceof TLRPC.TL_secureRequiredType) {
+                tL_secureRequiredType = (TLRPC.TL_secureRequiredType) secureRequiredType;
+            } else {
+                if (secureRequiredType instanceof TLRPC.TL_secureRequiredTypeOneOf) {
+                    TLRPC.TL_secureRequiredTypeOneOf tL_secureRequiredTypeOneOf = (TLRPC.TL_secureRequiredTypeOneOf) secureRequiredType;
+                    if (!tL_secureRequiredTypeOneOf.types.isEmpty()) {
+                        TLRPC.SecureRequiredType secureRequiredType2 = tL_secureRequiredTypeOneOf.types.get(0);
+                        if (secureRequiredType2 instanceof TLRPC.TL_secureRequiredType) {
+                            TLRPC.TL_secureRequiredType tL_secureRequiredType4 = (TLRPC.TL_secureRequiredType) secureRequiredType2;
+                            int size2 = tL_secureRequiredTypeOneOf.types.size();
+                            int i13 = 0;
+                            while (true) {
+                                if (i13 < size2) {
+                                    TLRPC.SecureRequiredType secureRequiredType3 = tL_secureRequiredTypeOneOf.types.get(i13);
+                                    if (secureRequiredType3 instanceof TLRPC.TL_secureRequiredType) {
+                                        TLRPC.TL_secureRequiredType tL_secureRequiredType5 = (TLRPC.TL_secureRequiredType) secureRequiredType3;
+                                        if (kn0Var.r1(tL_secureRequiredType5, true) != null) {
+                                            tL_secureRequiredType = tL_secureRequiredType5;
+                                            break;
+                                        }
+                                    }
+                                    i13++;
+                                } else {
+                                    tL_secureRequiredType = tL_secureRequiredType4;
+                                    break;
+                                }
+                            }
+                        } else {
+                            continue;
+                        }
+                    } else {
+                        continue;
+                    }
+                } else {
+                    continue;
+                }
+            }
+            TLRPC.TL_secureValue r12 = kn0Var.r1(tL_secureRequiredType, true);
+            if (r12 == null) {
+                Vibrator vibrator = (Vibrator) kn0Var.getParentActivity().getSystemService("vibrator");
+                if (vibrator != null) {
+                    vibrator.vibrate(200L);
+                }
+                jn0 jn0Var = (jn0) hashMap2.get(tL_secureRequiredType);
+                if (jn0Var == null && (tL_secureRequiredType2 = (TLRPC.TL_secureRequiredType) hashMap.get(tL_secureRequiredType)) != null) {
+                    jn0Var = (jn0) hashMap2.get(tL_secureRequiredType2);
+                }
+                AndroidUtilities.shakeView(jn0Var);
+                return;
+            }
+            HashMap hashMap3 = (HashMap) kn0Var.f40881u1.get(o1(tL_secureRequiredType.type));
+            if (hashMap3 != null && !hashMap3.isEmpty()) {
+                Vibrator vibrator2 = (Vibrator) kn0Var.getParentActivity().getSystemService("vibrator");
+                if (vibrator2 != null) {
+                    vibrator2.vibrate(200L);
+                }
+                jn0 jn0Var2 = (jn0) hashMap2.get(tL_secureRequiredType);
+                if (jn0Var2 == null && (tL_secureRequiredType3 = (TLRPC.TL_secureRequiredType) hashMap.get(tL_secureRequiredType)) != null) {
+                    jn0Var2 = (jn0) hashMap2.get(tL_secureRequiredType3);
+                }
+                AndroidUtilities.shakeView(jn0Var2);
+                return;
+            }
+            boolean z10 = tL_secureRequiredType.selfie_required;
+            boolean z11 = tL_secureRequiredType.translation_required;
+            ?? obj = new Object();
+            obj.f40829a = r12;
+            obj.f40830b = z10;
+            obj.f40831c = z11;
+            arrayList2.add(obj);
+        }
+        kn0Var.N1(false, true);
+        TL_account.acceptAuthorization acceptauthorization = new TL_account.acceptAuthorization();
+        acceptauthorization.bot_id = kn0Var.f40841c;
+        acceptauthorization.scope = kn0Var.h;
+        acceptauthorization.public_key = str;
+        JSONObject jSONObject = new JSONObject();
+        int size3 = arrayList2.size();
+        int i14 = 0;
+        while (i14 < size3) {
+            km0 km0Var = (km0) arrayList2.get(i14);
+            TLRPC.TL_secureValue tL_secureValue = km0Var.f40829a;
+            JSONObject jSONObject2 = new JSONObject();
+            TLRPC.SecurePlainData securePlainData = tL_secureValue.plain_data;
+            if (securePlainData != null) {
+                if (securePlainData instanceof TLRPC.TL_securePlainEmail) {
+                    TLRPC.TL_securePlainEmail tL_securePlainEmail = (TLRPC.TL_securePlainEmail) securePlainData;
+                } else if (securePlainData instanceof TLRPC.TL_securePlainPhone) {
+                    TLRPC.TL_securePlainPhone tL_securePlainPhone = (TLRPC.TL_securePlainPhone) securePlainData;
+                }
+            } else {
+                try {
+                    JSONObject jSONObject3 = new JSONObject();
+                    TLRPC.TL_secureData tL_secureData = tL_secureValue.data;
+                    if (tL_secureData != null) {
+                        byte[] i15 = kn0Var.i1(tL_secureData.secret, tL_secureData.data_hash);
+                        arrayList = arrayList2;
+                        try {
+                            jSONObject2.put("data_hash", Base64.encodeToString(tL_secureValue.data.data_hash, 2));
+                            jSONObject2.put("secret", Base64.encodeToString(i15, 2));
+                            jSONObject3.put("data", jSONObject2);
+                        } catch (Exception unused) {
+                        }
+                    } else {
+                        arrayList = arrayList2;
+                    }
+                    if (!tL_secureValue.files.isEmpty()) {
+                        JSONArray jSONArray = new JSONArray();
+                        int i16 = 0;
+                        for (int size4 = tL_secureValue.files.size(); i16 < size4; size4 = size4) {
+                            TLRPC.TL_secureFile tL_secureFile = (TLRPC.TL_secureFile) tL_secureValue.files.get(i16);
+                            i10 = size3;
+                            try {
+                                i11 = i14;
+                                try {
+                                    byte[] i17 = kn0Var.i1(tL_secureFile.secret, tL_secureFile.file_hash);
+                                    JSONObject jSONObject4 = new JSONObject();
+                                    jSONObject4.put("file_hash", Base64.encodeToString(tL_secureFile.file_hash, 2));
+                                    jSONObject4.put("secret", Base64.encodeToString(i17, 2));
+                                    jSONArray.put(jSONObject4);
+                                    i16++;
+                                    size3 = i10;
+                                    i14 = i11;
+                                } catch (Exception unused2) {
+                                }
+                            } catch (Exception unused3) {
+                            }
+                        }
+                        i10 = size3;
+                        i11 = i14;
+                        jSONObject3.put("files", jSONArray);
+                    } else {
+                        i10 = size3;
+                        i11 = i14;
+                    }
+                    TLRPC.SecureFile secureFile = tL_secureValue.front_side;
+                    if (secureFile instanceof TLRPC.TL_secureFile) {
+                        TLRPC.TL_secureFile tL_secureFile2 = (TLRPC.TL_secureFile) secureFile;
+                        byte[] i18 = kn0Var.i1(tL_secureFile2.secret, tL_secureFile2.file_hash);
+                        JSONObject jSONObject5 = new JSONObject();
+                        jSONObject5.put("file_hash", Base64.encodeToString(tL_secureFile2.file_hash, 2));
+                        jSONObject5.put("secret", Base64.encodeToString(i18, 2));
+                        jSONObject3.put("front_side", jSONObject5);
+                    }
+                    TLRPC.SecureFile secureFile2 = tL_secureValue.reverse_side;
+                    if (secureFile2 instanceof TLRPC.TL_secureFile) {
+                        TLRPC.TL_secureFile tL_secureFile3 = (TLRPC.TL_secureFile) secureFile2;
+                        byte[] i19 = kn0Var.i1(tL_secureFile3.secret, tL_secureFile3.file_hash);
+                        JSONObject jSONObject6 = new JSONObject();
+                        jSONObject6.put("file_hash", Base64.encodeToString(tL_secureFile3.file_hash, 2));
+                        jSONObject6.put("secret", Base64.encodeToString(i19, 2));
+                        jSONObject3.put("reverse_side", jSONObject6);
+                    }
+                    if (km0Var.f40830b) {
+                        TLRPC.SecureFile secureFile3 = tL_secureValue.selfie;
+                        if (secureFile3 instanceof TLRPC.TL_secureFile) {
+                            TLRPC.TL_secureFile tL_secureFile4 = (TLRPC.TL_secureFile) secureFile3;
+                            byte[] i110 = kn0Var.i1(tL_secureFile4.secret, tL_secureFile4.file_hash);
+                            JSONObject jSONObject7 = new JSONObject();
+                            jSONObject7.put("file_hash", Base64.encodeToString(tL_secureFile4.file_hash, 2));
+                            jSONObject7.put("secret", Base64.encodeToString(i110, 2));
+                            jSONObject3.put("selfie", jSONObject7);
+                        }
+                    }
+                    if (km0Var.f40831c && !tL_secureValue.translation.isEmpty()) {
+                        JSONArray jSONArray2 = new JSONArray();
+                        int size5 = tL_secureValue.translation.size();
+                        for (int i20 = 0; i20 < size5; i20++) {
+                            TLRPC.TL_secureFile tL_secureFile5 = (TLRPC.TL_secureFile) tL_secureValue.translation.get(i20);
+                            byte[] i111 = kn0Var.i1(tL_secureFile5.secret, tL_secureFile5.file_hash);
+                            JSONObject jSONObject8 = new JSONObject();
+                            jSONObject8.put("file_hash", Base64.encodeToString(tL_secureFile5.file_hash, 2));
+                            jSONObject8.put("secret", Base64.encodeToString(i111, 2));
+                            jSONArray2.put(jSONObject8);
+                        }
+                        jSONObject3.put("translation", jSONArray2);
+                    }
+                    jSONObject.put(o1(tL_secureValue.type), jSONObject3);
+                } catch (Exception unused4) {
+                }
+                TLRPC.TL_secureValueHash tL_secureValueHash = new TLRPC.TL_secureValueHash();
+                tL_secureValueHash.type = tL_secureValue.type;
+                tL_secureValueHash.hash = tL_secureValue.hash;
+                acceptauthorization.value_hashes.add(tL_secureValueHash);
+                i14 = i11 + 1;
+                arrayList2 = arrayList;
+                size3 = i10;
+            }
+            arrayList = arrayList2;
+            i10 = size3;
+            i11 = i14;
+            TLRPC.TL_secureValueHash tL_secureValueHash2 = new TLRPC.TL_secureValueHash();
+            tL_secureValueHash2.type = tL_secureValue.type;
+            tL_secureValueHash2.hash = tL_secureValue.hash;
+            acceptauthorization.value_hashes.add(tL_secureValueHash2);
+            i14 = i11 + 1;
+            arrayList2 = arrayList;
+            size3 = i10;
+        }
+        JSONObject jSONObject9 = new JSONObject();
+        try {
+            jSONObject9.put("secure_data", jSONObject);
+        } catch (Exception unused5) {
+        }
+        Object obj2 = kn0Var.d;
+        if (obj2 != null) {
+            try {
+                jSONObject9.put("payload", obj2);
+            } catch (Exception unused6) {
+            }
+        }
+        Object obj3 = kn0Var.e;
+        if (obj3 != null) {
+            try {
+                jSONObject9.put("nonce", obj3);
+            } catch (Exception unused7) {
+            }
+        }
+        a8.me k12 = kn0Var.k1(AndroidUtilities.getStringBytes(jSONObject9.toString()));
+        TLRPC.TL_secureCredentialsEncrypted tL_secureCredentialsEncrypted = new TLRPC.TL_secureCredentialsEncrypted();
+        acceptauthorization.credentials = tL_secureCredentialsEncrypted;
+        tL_secureCredentialsEncrypted.hash = (byte[]) k12.d;
+        tL_secureCredentialsEncrypted.data = (byte[]) k12.f616c;
+        try {
+            String replace = str.replaceAll("\\n", "").replace("-----BEGIN PUBLIC KEY-----", "").replace("-----END PUBLIC KEY-----", "");
+            Cipher cipher = Cipher.getInstance("RSA/NONE/OAEPWithSHA1AndMGF1Padding");
+            cipher.init(1, (RSAPublicKey) KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(Base64.decode(replace, 0))));
+            acceptauthorization.credentials.secret = cipher.doFinal((byte[]) k12.f615b);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        ConnectionsManager.getInstance(kn0Var.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(kn0Var.currentAccount).sendRequest(acceptauthorization, new yl0(kn0Var, 1)), kn0Var.classGuid);
+    }
+
+    public static void X(kn0 kn0Var, TLRPC.TL_error tL_error, String str, an0 an0Var, TLObject tLObject, TL_account.sendVerifyPhoneCode sendverifyphonecode) {
+        if (tL_error == null) {
+            HashMap hashMap = new HashMap();
+            hashMap.put("phone", str);
+            kn0 kn0Var2 = new kn0(7, kn0Var.f40890y, kn0Var.J, kn0Var.E, (TLRPC.TL_secureValue) null, (TLRPC.TL_secureRequiredType) null, (TLRPC.TL_secureValue) null, hashMap, (HashMap) null);
+            kn0Var2.currentAccount = kn0Var.currentAccount;
+            kn0Var2.f40847e1 = kn0Var.f40847e1;
+            kn0Var2.f40843c1 = kn0Var.f40843c1;
+            kn0Var2.B1 = an0Var;
+            kn0Var2.K = (TLRPC.TL_auth_sentCode) tLObject;
+            kn0Var.presentFragment(kn0Var2, true);
+            return;
+        }
+        org.telegram.ui.Components.g5.e0(kn0Var.currentAccount, tL_error, kn0Var, sendverifyphonecode, str);
+    }
+
+    public static void Y(kn0 kn0Var, SecureDocument secureDocument, int i10) {
+        HashMap hashMap = kn0Var.f40865n1;
+        int i11 = kn0Var.S0;
+        if (i11 == 1) {
+            SecureDocument secureDocument2 = kn0Var.f40858j1;
+            if (secureDocument2 != null) {
+                in0 in0Var = (in0) hashMap.remove(secureDocument2);
+                if (in0Var != null) {
+                    kn0Var.f40851g0.removeView(in0Var);
+                }
+                kn0Var.f40858j1 = null;
+            }
+        } else if (i11 == 4) {
+            if (kn0Var.f40860k1.size() >= 20) {
+                return;
+            }
+        } else if (i11 == 2) {
+            SecureDocument secureDocument3 = kn0Var.l1;
+            if (secureDocument3 != null) {
+                in0 in0Var2 = (in0) hashMap.remove(secureDocument3);
+                if (in0Var2 != null) {
+                    kn0Var.f40846e0.removeView(in0Var2);
+                }
+                kn0Var.l1 = null;
+            }
+        } else if (i11 == 3) {
+            SecureDocument secureDocument4 = kn0Var.f40862m1;
+            if (secureDocument4 != null) {
+                in0 in0Var3 = (in0) hashMap.remove(secureDocument4);
+                if (in0Var3 != null) {
+                    kn0Var.f40849f0.removeView(in0Var3);
+                }
+                kn0Var.f40862m1 = null;
+            }
+        } else if (i11 == 0 && kn0Var.f40856i1.size() >= 20) {
+            return;
+        }
+        kn0Var.f40867o1.put(secureDocument.path, secureDocument);
+        kn0Var.L.setEnabled(false);
+        kn0Var.L.setAlpha(0.5f);
+        FileLoader.getInstance(kn0Var.currentAccount).uploadFile(secureDocument.path, false, true, 16777216);
+        kn0Var.R0(secureDocument, i10);
+        kn0Var.T1(i10);
+    }
+
+    public static void Z(org.telegram.ui.kn0 r9, boolean r10, java.lang.String r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kn0.Z(org.telegram.ui.kn0, boolean, java.lang.String):void");
+    }
+
+    public static boolean Z0(byte[] bArr, Long l4) {
+        if (bArr == null || bArr.length != 32) {
+            return false;
+        }
+        int i10 = 0;
+        for (byte b10 : bArr) {
+            i10 += b10 & 255;
+        }
+        if (i10 % 255 != 239) {
+            return false;
+        }
+        if (l4 != null && Utilities.bytesToLong(Utilities.computeSHA256(bArr)) != l4.longValue()) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void a0(int i10, String str, SecureDocument secureDocument, in0 in0Var, kn0 kn0Var) {
+        HashMap hashMap = kn0Var.f40867o1;
+        kn0Var.f40865n1.remove(secureDocument);
+        if (i10 == 1) {
+            kn0Var.f40858j1 = null;
+            kn0Var.f40851g0.removeView(in0Var);
+        } else if (i10 == 4) {
+            kn0Var.f40860k1.remove(secureDocument);
+            kn0Var.f40853h0.removeView(in0Var);
+        } else if (i10 == 2) {
+            kn0Var.l1 = null;
+            kn0Var.f40846e0.removeView(in0Var);
+        } else if (i10 == 3) {
+            kn0Var.f40862m1 = null;
+            kn0Var.f40849f0.removeView(in0Var);
+        } else {
+            kn0Var.f40856i1.remove(secureDocument);
+            kn0Var.f40844d0.removeView(in0Var);
+        }
+        if (str != null) {
+            HashMap hashMap2 = kn0Var.f40889x1;
+            if (hashMap2 != null) {
+                hashMap2.remove(str);
+            }
+            HashMap hashMap3 = kn0Var.f40892y1;
+            if (hashMap3 != null) {
+                hashMap3.remove(str);
+            }
+        }
+        kn0Var.T1(i10);
+        String str2 = secureDocument.path;
+        if (str2 != null && hashMap.remove(str2) != null) {
+            if (hashMap.isEmpty()) {
+                kn0Var.L.setEnabled(true);
+                kn0Var.L.setAlpha(1.0f);
+            }
+            FileLoader.getInstance(kn0Var.currentAccount).cancelFileUpload(secureDocument.path, false);
+        }
+    }
+
+    public static void b0(kn0 kn0Var) {
+        TL_account.deleteSecureValue deletesecurevalue = new TL_account.deleteSecureValue();
+        for (int i10 = 0; i10 < kn0Var.f40890y.values.size(); i10++) {
+            deletesecurevalue.types.add(kn0Var.f40890y.values.get(i10).type);
+        }
+        kn0Var.y1();
+        ConnectionsManager.getInstance(kn0Var.currentAccount).sendRequest(deletesecurevalue, new yl0(kn0Var, 2));
+    }
+
+    public static void c0(kn0 kn0Var) {
+        fg1 fg1Var = new fg1(kn0Var.currentAccount, 0, kn0Var.J);
+        fg1Var.Y = true;
+        kn0Var.presentFragment(fg1Var);
+    }
+
+    public static void d0(kn0 kn0Var) {
+        if (kn0Var.J.has_recovery) {
+            kn0Var.y1();
+            ConnectionsManager.getInstance(kn0Var.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(kn0Var.currentAccount).sendRequest(new TLRPC.TL_auth_requestPasswordRecovery(), new yl0(kn0Var, 0), 10), kn0Var.classGuid);
+        } else if (kn0Var.getParentActivity() == null) {
+        } else {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kn0Var.getParentActivity());
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.h(LocaleController.getString(R.string.RestorePasswordResetAccount), new xl0(kn0Var, 4));
+            alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
+            String string = LocaleController.getString(R.string.RestorePasswordNoEmailText);
+            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
+            e2Var.T = string;
+            kn0Var.showDialog(e2Var);
+        }
+    }
+
+    public static void e0(kn0 kn0Var) {
+        Activity parentActivity = kn0Var.getParentActivity();
+        qf.d.r(parentActivity, "https://telegram.org/deactivate?phone=" + UserConfig.getInstance(kn0Var.currentAccount).getClientPhone());
+    }
+
+    public static int f0(kn0 kn0Var) {
+        return kn0Var.currentAccount;
+    }
+
+    public static String h1(byte[] bArr, byte[] bArr2, byte[] bArr3) {
+        if (bArr != null && bArr2 != null && bArr2.length == 32 && bArr3 != null && bArr3.length == 32) {
+            byte[] computeSHA512 = Utilities.computeSHA512(bArr2, bArr3);
+            byte[] bArr4 = new byte[32];
+            System.arraycopy(computeSHA512, 0, bArr4, 0, 32);
+            byte[] bArr5 = new byte[16];
+            System.arraycopy(computeSHA512, 32, bArr5, 0, 16);
+            int length = bArr.length;
+            byte[] bArr6 = new byte[length];
+            System.arraycopy(bArr, 0, bArr6, 0, bArr.length);
+            Utilities.aesCbcEncryptionByteArraySafe(bArr6, bArr4, bArr5, 0, length, 0, 0);
+            if (Arrays.equals(Utilities.computeSHA256(bArr6), bArr3)) {
+                int i10 = bArr6[0] & 255;
+                return new String(bArr6, i10, length - i10);
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static int i0(kn0 kn0Var) {
+        return kn0Var.currentAccount;
+    }
+
+    public static String n1(SecureDocument secureDocument) {
+        byte[] bArr;
+        if (secureDocument != null) {
+            TLRPC.TL_secureFile tL_secureFile = secureDocument.secureFile;
+            if (tL_secureFile != null && (bArr = tL_secureFile.file_hash) != null) {
+                return Base64.encodeToString(bArr, 2);
+            }
+            byte[] bArr2 = secureDocument.fileHash;
+            if (bArr2 != null) {
+                return Base64.encodeToString(bArr2, 2);
+            }
+            return "";
+        }
+        return "";
+    }
+
+    public static String o1(TLRPC.SecureValueType secureValueType) {
+        if (secureValueType instanceof TLRPC.TL_secureValueTypePersonalDetails) {
+            return "personal_details";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypePassport) {
+            return "passport";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeInternalPassport) {
+            return "internal_passport";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeDriverLicense) {
+            return "driver_license";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeIdentityCard) {
+            return "identity_card";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeUtilityBill) {
+            return "utility_bill";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeAddress) {
+            return "address";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeBankStatement) {
+            return "bank_statement";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeRentalAgreement) {
+            return "rental_agreement";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeTemporaryRegistration) {
+            return "temporary_registration";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypePassportRegistration) {
+            return "passport_registration";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeEmail) {
+            return "email";
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypePhone) {
+            return "phone";
+        }
+        return "";
+    }
+
+    public static byte[] p1() {
+        byte[] bArr = new byte[32];
+        Utilities.random.nextBytes(bArr);
+        int i10 = 0;
+        for (int i11 = 0; i11 < 32; i11++) {
+            i10 += 255 & bArr[i11];
+        }
+        int i12 = i10 % 255;
+        if (i12 != 239) {
+            int nextInt = Utilities.random.nextInt(32);
+            int i13 = (bArr[nextInt] & 255) + (239 - i12);
+            if (i13 < 255) {
+                i13 += 255;
+            }
+            bArr[nextInt] = (byte) (i13 % 255);
+        }
+        return bArr;
+    }
+
+    public static String q1(TLRPC.SecureValueType secureValueType) {
+        if (secureValueType instanceof TLRPC.TL_secureValueTypePassport) {
+            return LocaleController.getString(R.string.ActionBotDocumentPassport);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeDriverLicense) {
+            return LocaleController.getString(R.string.ActionBotDocumentDriverLicence);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeIdentityCard) {
+            return LocaleController.getString(R.string.ActionBotDocumentIdentityCard);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeUtilityBill) {
+            return LocaleController.getString(R.string.ActionBotDocumentUtilityBill);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeBankStatement) {
+            return LocaleController.getString(R.string.ActionBotDocumentBankStatement);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeRentalAgreement) {
+            return LocaleController.getString(R.string.ActionBotDocumentRentalAgreement);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeInternalPassport) {
+            return LocaleController.getString(R.string.ActionBotDocumentInternalPassport);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypePassportRegistration) {
+            return LocaleController.getString(R.string.ActionBotDocumentPassportRegistration);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeTemporaryRegistration) {
+            return LocaleController.getString(R.string.ActionBotDocumentTemporaryRegistration);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypePhone) {
+            return LocaleController.getString(R.string.ActionBotDocumentPhone);
+        }
+        if (secureValueType instanceof TLRPC.TL_secureValueTypeEmail) {
+            return LocaleController.getString(R.string.ActionBotDocumentEmail);
+        }
+        return "";
+    }
+
+    public static int r0(kn0 kn0Var) {
+        return kn0Var.currentAccount;
+    }
+
+    public static int s0(kn0 kn0Var) {
+        return kn0Var.currentAccount;
+    }
+
+    public static int t0(kn0 kn0Var) {
+        return kn0Var.currentAccount;
+    }
+
+    public static boolean t1(TLRPC.SecureValueType secureValueType) {
+        if (!(secureValueType instanceof TLRPC.TL_secureValueTypeUtilityBill) && !(secureValueType instanceof TLRPC.TL_secureValueTypeBankStatement) && !(secureValueType instanceof TLRPC.TL_secureValueTypePassportRegistration) && !(secureValueType instanceof TLRPC.TL_secureValueTypeTemporaryRegistration) && !(secureValueType instanceof TLRPC.TL_secureValueTypeRentalAgreement)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static int v0(kn0 kn0Var) {
+        return kn0Var.currentAccount;
+    }
+
+    public static boolean v1(TLRPC.SecureValueType secureValueType) {
+        if (!(secureValueType instanceof TLRPC.TL_secureValueTypeDriverLicense) && !(secureValueType instanceof TLRPC.TL_secureValueTypePassport) && !(secureValueType instanceof TLRPC.TL_secureValueTypeInternalPassport) && !(secureValueType instanceof TLRPC.TL_secureValueTypeIdentityCard)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void A1(boolean z10) {
+        if (getParentActivity() == null) {
+            return;
+        }
+        Vibrator vibrator = (Vibrator) getParentActivity().getSystemService("vibrator");
+        if (vibrator != null) {
+            vibrator.vibrate(200L);
+        }
+        if (z10) {
+            this.Y[0].setText("");
+        }
+        AndroidUtilities.shakeView(this.Y[0]);
+    }
+
+    public final void B1(boolean z10) {
+        String obj;
+        if (z10) {
+            obj = null;
+        } else {
+            obj = this.Y[0].getText().toString();
+            if (TextUtils.isEmpty(obj)) {
+                A1(false);
+                return;
+            }
+            N1(true, true);
+        }
+        Utilities.globalQueue.postRunnable(new f80(this, z10, obj, 3));
+    }
+
+    public final void C1() {
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        if (s1(TLRPC.TL_secureValueTypePhone.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentPhone));
+            arrayList2.add(TLRPC.TL_secureValueTypePhone.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypeEmail.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentEmail));
+            arrayList2.add(TLRPC.TL_secureValueTypeEmail.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypePersonalDetails.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentIdentity));
+            arrayList2.add(TLRPC.TL_secureValueTypePersonalDetails.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypePassport.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentPassport));
+            arrayList2.add(TLRPC.TL_secureValueTypePassport.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypeInternalPassport.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentInternalPassport));
+            arrayList2.add(TLRPC.TL_secureValueTypeInternalPassport.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypePassportRegistration.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentPassportRegistration));
+            arrayList2.add(TLRPC.TL_secureValueTypePassportRegistration.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypeTemporaryRegistration.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentTemporaryRegistration));
+            arrayList2.add(TLRPC.TL_secureValueTypeTemporaryRegistration.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypeIdentityCard.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentIdentityCard));
+            arrayList2.add(TLRPC.TL_secureValueTypeIdentityCard.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypeDriverLicense.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentDriverLicence));
+            arrayList2.add(TLRPC.TL_secureValueTypeDriverLicense.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypeAddress.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentAddress));
+            arrayList2.add(TLRPC.TL_secureValueTypeAddress.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypeUtilityBill.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentUtilityBill));
+            arrayList2.add(TLRPC.TL_secureValueTypeUtilityBill.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypeBankStatement.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentBankStatement));
+            arrayList2.add(TLRPC.TL_secureValueTypeBankStatement.class);
+        }
+        if (s1(TLRPC.TL_secureValueTypeRentalAgreement.class)) {
+            arrayList.add(LocaleController.getString(R.string.ActionBotDocumentRentalAgreement));
+            arrayList2.add(TLRPC.TL_secureValueTypeRentalAgreement.class);
+        }
+        if (getParentActivity() != null && !arrayList.isEmpty()) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+            alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.PassportNoDocumentsAdd);
+            alertDialog$Builder.f((CharSequence[]) arrayList.toArray(new CharSequence[0]), new ng.j(9, this, arrayList2));
+            showDialog(alertDialog$Builder.f22369a);
+        }
+    }
+
+    public final void D1() {
+        boolean z10;
+        int size;
+        if (getParentActivity() == null) {
+            return;
+        }
+        int i10 = this.S0;
+        ArrayList arrayList = this.f40856i1;
+        int i11 = 1;
+        if (i10 == 0 && arrayList.size() >= 20) {
+            M1(LocaleController.getString(R.string.AppName), LocaleController.formatString("PassportUploadMaxReached", R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", 20, new Object[0])));
+            return;
+        }
+        c1();
+        org.telegram.ui.Components.ti tiVar = this.R0;
+        int i12 = this.S0;
+        if (i12 == 1) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        tiVar.X1 = z10;
+        if (i12 == 0) {
+            size = arrayList.size();
+        } else {
+            if (i12 == 4) {
+                size = this.f40860k1.size();
+            }
+            tiVar.R1(i11, false);
+            this.R0.f33002j0.g0();
+            this.R0.w1();
+            showDialog(this.R0);
+        }
+        i11 = 20 - size;
+        tiVar.R1(i11, false);
+        this.R0.f33002j0.g0();
+        this.R0.w1();
+        showDialog(this.R0);
+    }
+
+    public final void E1(TLRPC.TL_secureRequiredType tL_secureRequiredType, TLRPC.TL_secureRequiredType tL_secureRequiredType2, ArrayList arrayList, boolean z10) {
+        int i10;
+        TLRPC.SecureValueType secureValueType;
+        int i11;
+        HashMap hashMap;
+        HashMap hashMap2;
+        HashMap hashMap3;
+        if (arrayList != null) {
+            i10 = arrayList.size();
+        } else {
+            i10 = 0;
+        }
+        TLRPC.SecureValueType secureValueType2 = tL_secureRequiredType.type;
+        if (tL_secureRequiredType2 != null) {
+            secureValueType = tL_secureRequiredType2.type;
+        } else {
+            secureValueType = null;
+        }
+        if (secureValueType2 instanceof TLRPC.TL_secureValueTypePersonalDetails) {
+            i11 = 1;
+        } else if (secureValueType2 instanceof TLRPC.TL_secureValueTypeAddress) {
+            i11 = 2;
+        } else if (secureValueType2 instanceof TLRPC.TL_secureValueTypePhone) {
+            i11 = 3;
+        } else if (secureValueType2 instanceof TLRPC.TL_secureValueTypeEmail) {
+            i11 = 4;
+        } else {
+            i11 = -1;
+        }
+        if (i11 != -1) {
+            HashMap hashMap4 = this.f40881u1;
+            if (!z10) {
+                hashMap = (HashMap) hashMap4.get(o1(secureValueType2));
+            } else {
+                hashMap = null;
+            }
+            HashMap hashMap5 = (HashMap) hashMap4.get(o1(secureValueType));
+            TLRPC.TL_secureValue r12 = r1(tL_secureRequiredType, false);
+            TLRPC.TL_secureValue r13 = r1(tL_secureRequiredType2, false);
+            HashMap hashMap6 = hashMap;
+            TL_account.authorizationForm authorizationform = this.f40890y;
+            int i12 = i11;
+            TL_account.Password password = this.J;
+            HashMap hashMap7 = this.f40869p1;
+            HashMap hashMap8 = (HashMap) hashMap7.get(tL_secureRequiredType);
+            if (tL_secureRequiredType2 != null) {
+                hashMap2 = hashMap5;
+                hashMap3 = (HashMap) hashMap7.get(tL_secureRequiredType2);
+            } else {
+                hashMap2 = hashMap5;
+                hashMap3 = null;
+            }
+            kn0 kn0Var = new kn0(i12, authorizationform, password, tL_secureRequiredType, r12, tL_secureRequiredType2, r13, hashMap8, hashMap3);
+            kn0Var.B1 = new nm0(this, secureValueType2, z10, i10);
+            kn0Var.currentAccount = this.currentAccount;
+            kn0Var.f40847e1 = this.f40847e1;
+            kn0Var.f40843c1 = this.f40843c1;
+            kn0Var.f40841c = this.f40841c;
+            kn0Var.f40886w1 = hashMap6;
+            kn0Var.f40882v0 = z10;
+            kn0Var.f40889x1 = hashMap2;
+            kn0Var.G = arrayList;
+            if (i12 == 4) {
+                kn0Var.f40845d1 = this.f40845d1;
+            }
+            presentFragment(kn0Var);
+        }
+    }
+
+    public final void F1(int i10) {
+        if (i10 == 0) {
+            int i11 = Build.VERSION.SDK_INT;
+            if (getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 19);
+                return;
+            }
+            try {
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                File generatePicturePath = AndroidUtilities.generatePicturePath();
+                if (generatePicturePath != null) {
+                    if (i11 >= 24) {
+                        Activity parentActivity = getParentActivity();
+                        intent.putExtra("output", FileProvider.d(parentActivity, ApplicationLoader.getApplicationId() + ".provider", generatePicturePath));
+                        intent.addFlags(2);
+                        intent.addFlags(1);
+                    } else {
+                        intent.putExtra("output", Uri.fromFile(generatePicturePath));
+                    }
+                    this.Q0 = generatePicturePath.getAbsolutePath();
+                }
+                startActivityForResult(intent, 0);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+    }
+
+    public final void G1(ArrayList arrayList) {
+        boolean z10;
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        int i10 = this.S0;
+        boolean z11 = true;
+        if (i10 != 1 && i10 != 4 && (this.E.type instanceof TLRPC.TL_secureValueTypePersonalDetails)) {
+            int i11 = 0;
+            while (true) {
+                EditTextBoldCursor[] editTextBoldCursorArr = this.Y;
+                if (i11 < editTextBoldCursorArr.length) {
+                    if (i11 != 5 && i11 != 8 && i11 != 4 && i11 != 6 && editTextBoldCursorArr[i11].length() > 0) {
+                        z11 = false;
+                        break;
+                    }
+                    i11++;
+                } else {
+                    break;
+                }
+            }
+            z10 = z11;
+        } else {
+            z10 = false;
+        }
+        Utilities.globalQueue.postRunnable(new org.telegram.messenger.voip.j0(this.S0, 7, this, arrayList, z10));
+    }
+
+    public final TLRPC.TL_secureValue H1(TLRPC.TL_secureRequiredType tL_secureRequiredType) {
+        if (tL_secureRequiredType == null) {
+            return null;
+        }
+        int size = this.f40890y.values.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            if (tL_secureRequiredType.type.getClass() == this.f40890y.values.get(i10).type.getClass()) {
+                return this.f40890y.values.remove(i10);
+            }
+        }
+        return null;
+    }
+
+    public final void I1(View view) {
+        while (view != null && this.f40842c0.indexOfChild(view) < 0) {
+            view = (View) view.getParent();
+        }
+        if (view != null) {
+            this.f40839b0.smoothScrollTo(0, view.getTop() - ((this.f40839b0.getMeasuredHeight() - view.getMeasuredHeight()) / 2));
+        }
+    }
+
+    public final void J1(HashMap hashMap, EditTextBoldCursor editTextBoldCursor, String str) {
+        CharSequence charSequence;
+        CharSequence charSequence2;
+        String str2 = (String) hashMap.get(str);
+        if (str2 != null) {
+            char c10 = 65535;
+            switch (str.hashCode()) {
+                case -2006252145:
+                    if (str.equals("residence_country_code")) {
+                        c10 = 0;
+                        break;
+                    }
+                    break;
+                case -1249512767:
+                    if (str.equals("gender")) {
+                        c10 = 1;
+                        break;
+                    }
+                    break;
+                case 475919162:
+                    if (str.equals("expiry_date")) {
+                        c10 = 2;
+                        break;
+                    }
+                    break;
+                case 1481071862:
+                    if (str.equals("country_code")) {
+                        c10 = 3;
+                        break;
+                    }
+                    break;
+            }
+            switch (c10) {
+                case 0:
+                    this.v = str2;
+                    CharSequence charSequence3 = (String) this.Y0.get(str2);
+                    if (charSequence3 != null) {
+                        editTextBoldCursor.setText(charSequence3);
+                        break;
+                    }
+                    break;
+                case 1:
+                    if ("male".equals(str2)) {
+                        this.f40884w = str2;
+                        editTextBoldCursor.setText(LocaleController.getString(R.string.PassportMale));
+                        break;
+                    } else if ("female".equals(str2)) {
+                        this.f40884w = str2;
+                        editTextBoldCursor.setText(LocaleController.getString(R.string.PassportFemale));
+                        break;
+                    }
+                    break;
+                case 2:
+                    boolean isEmpty = TextUtils.isEmpty(str2);
+                    int[] iArr = this.f40887x;
+                    if (!isEmpty) {
+                        String[] split = str2.split("\\.");
+                        if (split.length == 3) {
+                            iArr[0] = Utilities.parseInt((CharSequence) split[2]).intValue();
+                            iArr[1] = Utilities.parseInt((CharSequence) split[1]).intValue();
+                            iArr[2] = Utilities.parseInt((CharSequence) split[0]).intValue();
+                            editTextBoldCursor.setText(str2);
+                            break;
+                        }
+                    }
+                    iArr[2] = 0;
+                    iArr[1] = 0;
+                    iArr[0] = 0;
+                    editTextBoldCursor.setText(LocaleController.getString(R.string.PassportNoExpireDate));
+                    break;
+                case 3:
+                    this.f40875s = str2;
+                    CharSequence charSequence4 = (String) this.Y0.get(str2);
+                    if (charSequence4 != null) {
+                        editTextBoldCursor.setText(charSequence4);
+                        break;
+                    }
+                    break;
+                default:
+                    editTextBoldCursor.setText(str2);
+                    break;
+            }
+        }
+        HashMap hashMap2 = this.f40886w1;
+        HashMap hashMap3 = this.f40892y1;
+        if (hashMap2 != null && (charSequence2 = (String) hashMap2.get(str)) != null) {
+            editTextBoldCursor.setErrorText(charSequence2);
+            hashMap3.put(str, editTextBoldCursor.getText().toString());
+            return;
+        }
+        HashMap hashMap4 = this.f40889x1;
+        if (hashMap4 != null && (charSequence = (String) hashMap4.get(str)) != null) {
+            editTextBoldCursor.setErrorText(charSequence);
+            hashMap3.put(str, editTextBoldCursor.getText().toString());
+        }
+    }
+
+    public final void K1(Bundle bundle, int i10, boolean z10) {
+        if (i10 == 3) {
+            this.L.setVisibility(8);
+        }
+        int i11 = this.I1;
+        org.telegram.ui.Components.bx0[] bx0VarArr = this.J1;
+        org.telegram.ui.Components.bx0 bx0Var = bx0VarArr[i11];
+        org.telegram.ui.Components.bx0 bx0Var2 = bx0VarArr[i10];
+        this.I1 = i10;
+        bx0Var2.m(bundle, false);
+        bx0Var2.j();
+        if (z10) {
+            bx0Var2.setTranslationX(AndroidUtilities.displaySize.x);
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
+            animatorSet.setDuration(300L);
+            animatorSet.playTogether(ObjectAnimator.ofFloat(bx0Var, "translationX", -AndroidUtilities.displaySize.x), ObjectAnimator.ofFloat(bx0Var2, "translationX", 0.0f));
+            animatorSet.addListener(new org.telegram.ui.Components.ml0(bx0Var2, bx0Var, 9));
+            animatorSet.start();
+            return;
+        }
+        bx0Var2.setTranslationX(0.0f);
+        bx0Var2.setVisibility(0);
+        if (bx0Var != bx0Var2) {
+            bx0Var.setVisibility(8);
+        }
+    }
+
+    public final void L1(org.telegram.tgnet.TLRPC.TL_secureRequiredType r31, java.lang.String r32, java.lang.String r33, org.telegram.tgnet.TLRPC.TL_secureRequiredType r34, java.lang.String r35, boolean r36, int r37) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kn0.L1(org.telegram.tgnet.TLRPC$TL_secureRequiredType, java.lang.String, java.lang.String, org.telegram.tgnet.TLRPC$TL_secureRequiredType, java.lang.String, boolean, int):void");
+    }
+
+    public final void M1(String str, String str2) {
+        if (getParentActivity() == null) {
+            return;
+        }
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
+        e2Var.R = str;
+        e2Var.T = str2;
+        showDialog(e2Var);
+    }
+
+    public final void N1(boolean z10, boolean z11) {
+        AnimatorSet animatorSet = this.M;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        if (z10 && this.L != null) {
+            this.M = new AnimatorSet();
+            if (z11) {
+                this.N.setVisibility(0);
+                this.L.setEnabled(false);
+                AnimatorSet animatorSet2 = this.M;
+                View contentView = this.L.getContentView();
+                Property property = View.SCALE_X;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(contentView, property, 0.1f);
+                View contentView2 = this.L.getContentView();
+                Property property2 = View.SCALE_Y;
+                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(contentView2, property2, 0.1f);
+                View contentView3 = this.L.getContentView();
+                Property property3 = View.ALPHA;
+                animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(contentView3, property3, 0.0f), ObjectAnimator.ofFloat(this.N, property, 1.0f), ObjectAnimator.ofFloat(this.N, property2, 1.0f), ObjectAnimator.ofFloat(this.N, property3, 1.0f));
+            } else {
+                this.L.getContentView().setVisibility(0);
+                this.L.setEnabled(true);
+                AnimatorSet animatorSet3 = this.M;
+                org.telegram.ui.Components.er erVar = this.N;
+                Property property4 = View.SCALE_X;
+                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(erVar, property4, 0.1f);
+                org.telegram.ui.Components.er erVar2 = this.N;
+                Property property5 = View.SCALE_Y;
+                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(erVar2, property5, 0.1f);
+                org.telegram.ui.Components.er erVar3 = this.N;
+                Property property6 = View.ALPHA;
+                animatorSet3.playTogether(ofFloat3, ofFloat4, ObjectAnimator.ofFloat(erVar3, property6, 0.0f), ObjectAnimator.ofFloat(this.L.getContentView(), property4, 1.0f), ObjectAnimator.ofFloat(this.L.getContentView(), property5, 1.0f), ObjectAnimator.ofFloat(this.L.getContentView(), property6, 1.0f));
+            }
+            this.M.addListener(new om0(this, z11, 0));
+            this.M.setDuration(150L);
+            this.M.start();
+        } else if (this.O != null) {
+            this.M = new AnimatorSet();
+            if (z11) {
+                this.P.setVisibility(0);
+                this.Q.setEnabled(false);
+                AnimatorSet animatorSet4 = this.M;
+                TextView textView = this.O;
+                Property property7 = View.SCALE_X;
+                ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(textView, property7, 0.1f);
+                TextView textView2 = this.O;
+                Property property8 = View.SCALE_Y;
+                ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(textView2, property8, 0.1f);
+                TextView textView3 = this.O;
+                Property property9 = View.ALPHA;
+                animatorSet4.playTogether(ofFloat5, ofFloat6, ObjectAnimator.ofFloat(textView3, property9, 0.0f), ObjectAnimator.ofFloat(this.P, property7, 1.0f), ObjectAnimator.ofFloat(this.P, property8, 1.0f), ObjectAnimator.ofFloat(this.P, property9, 1.0f));
+            } else {
+                this.O.setVisibility(0);
+                this.Q.setEnabled(true);
+                AnimatorSet animatorSet5 = this.M;
+                org.telegram.ui.Components.er erVar4 = this.P;
+                Property property10 = View.SCALE_X;
+                ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(erVar4, property10, 0.1f);
+                org.telegram.ui.Components.er erVar5 = this.P;
+                Property property11 = View.SCALE_Y;
+                ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(erVar5, property11, 0.1f);
+                org.telegram.ui.Components.er erVar6 = this.P;
+                Property property12 = View.ALPHA;
+                animatorSet5.playTogether(ofFloat7, ofFloat8, ObjectAnimator.ofFloat(erVar6, property12, 0.0f), ObjectAnimator.ofFloat(this.O, property10, 1.0f), ObjectAnimator.ofFloat(this.O, property11, 1.0f), ObjectAnimator.ofFloat(this.O, property12, 1.0f));
+            }
+            this.M.addListener(new om0(this, z11, 1));
+            this.M.setDuration(150L);
+            this.M.start();
+        }
+    }
+
+    public final void O1(boolean z10, String str, Runnable runnable, ym0 ym0Var, an0 an0Var) {
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
+        if (telephonyManager.getSimState() != 1 && telephonyManager.getPhoneType() != 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (getParentActivity() != null && z11) {
+            if (getParentActivity().checkSelfPermission("android.permission.READ_PHONE_STATE") == 0) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            if (z10) {
+                this.M1.clear();
+                if (!z12) {
+                    this.M1.add("android.permission.READ_PHONE_STATE");
+                }
+                if (!this.M1.isEmpty()) {
+                    if (getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_PHONE_STATE")) {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+                        alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.AppName);
+                        alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                        String string = LocaleController.getString(R.string.AllowReadCall);
+                        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
+                        e2Var.T = string;
+                        this.L1 = showDialog(e2Var);
+                    } else {
+                        getParentActivity().requestPermissions((String[]) this.M1.toArray(new String[0]), 6);
+                    }
+                    this.E1 = str;
+                    this.G1 = ym0Var;
+                    this.F1 = runnable;
+                    this.H1 = an0Var;
+                    return;
+                }
+            }
+        } else {
+            z12 = true;
+        }
+        TL_account.sendVerifyPhoneCode sendverifyphonecode = new TL_account.sendVerifyPhoneCode();
+        sendverifyphonecode.phone_number = str;
+        TLRPC.TL_codeSettings tL_codeSettings = new TLRPC.TL_codeSettings();
+        sendverifyphonecode.settings = tL_codeSettings;
+        if (z11 && z12) {
+            z13 = true;
+        } else {
+            z13 = false;
+        }
+        tL_codeSettings.allow_flashcall = z13;
+        tL_codeSettings.allow_app_hash = PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices();
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
+        if (sendverifyphonecode.settings.allow_app_hash) {
+            sharedPreferences.edit().putString("sms_hash", BuildVars.getSmsHash()).commit();
+        } else {
+            sharedPreferences.edit().remove("sms_hash").commit();
+        }
+        if (sendverifyphonecode.settings.allow_flashcall) {
+            try {
+                String line1Number = telephonyManager.getLine1Number();
+                if (!TextUtils.isEmpty(line1Number)) {
+                    sendverifyphonecode.settings.current_number = PhoneNumberUtils.compare(str, line1Number);
+                    TLRPC.TL_codeSettings tL_codeSettings2 = sendverifyphonecode.settings;
+                    if (!tL_codeSettings2.current_number) {
+                        tL_codeSettings2.allow_flashcall = false;
+                    }
+                } else {
+                    TLRPC.TL_codeSettings tL_codeSettings3 = sendverifyphonecode.settings;
+                    tL_codeSettings3.unknown_number = true;
+                    tL_codeSettings3.current_number = false;
+                }
+            } catch (Exception e) {
+                sendverifyphonecode.settings.allow_flashcall = false;
+                FileLog.e(e);
+            }
+        }
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(sendverifyphonecode, new bi.i2(this, str, an0Var, sendverifyphonecode, 14), 2);
+    }
+
+    public final void Q1() {
+        TLRPC.TL_secureRequiredType tL_secureRequiredType = this.F;
+        if (tL_secureRequiredType != null) {
+            this.actionBar.setTitle(q1(tL_secureRequiredType.type));
+        } else {
+            this.actionBar.setTitle(LocaleController.getString(R.string.PassportPersonal));
+        }
+        T1(2);
+        T1(3);
+        T1(1);
+        T1(4);
+    }
+
+    public final void R0(final SecureDocument secureDocument, final int i10) {
+        String string;
+        final String str;
+        String formatDateForBan;
+        HashMap hashMap;
+        if (i10 == 1) {
+            this.f40858j1 = secureDocument;
+            if (this.f40851g0 == null) {
+                return;
+            }
+        } else if (i10 == 4) {
+            this.f40860k1.add(secureDocument);
+            if (this.f40853h0 == null) {
+                return;
+            }
+        } else if (i10 == 2) {
+            this.l1 = secureDocument;
+            if (this.f40846e0 == null) {
+                return;
+            }
+        } else if (i10 == 3) {
+            this.f40862m1 = secureDocument;
+            if (this.f40849f0 == null) {
+                return;
+            }
+        } else {
+            this.f40856i1.add(secureDocument);
+            if (this.f40844d0 == null) {
+                return;
+            }
+        }
+        if (getParentActivity() == null) {
+            return;
+        }
+        final in0 in0Var = new in0(this, getParentActivity());
+        in0Var.setTag(secureDocument);
+        org.telegram.ui.Cells.y M0 = org.telegram.ui.ActionBar.y6.M0(true);
+        org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23357d6);
+        org.telegram.ui.ActionBar.b7 N2 = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23449i6);
+        in0Var.setBackground(M0);
+        org.telegram.ui.ActionBar.f7.k(in0Var, M0, N, N2, null);
+        this.f40865n1.put(secureDocument, in0Var);
+        String n12 = n1(secureDocument);
+        if (i10 == 1) {
+            string = LocaleController.getString(R.string.PassportSelfie);
+            this.f40851g0.addView(in0Var, org.telegram.ui.Components.kb1.r(-1, -2));
+            str = "selfie" + n12;
+        } else if (i10 == 4) {
+            string = LocaleController.getString(R.string.AttachPhoto);
+            this.f40853h0.addView(in0Var, org.telegram.ui.Components.kb1.r(-1, -2));
+            str = "translation" + n12;
+        } else if (i10 == 2) {
+            TLRPC.SecureValueType secureValueType = this.F.type;
+            if (!(secureValueType instanceof TLRPC.TL_secureValueTypePassport) && !(secureValueType instanceof TLRPC.TL_secureValueTypeInternalPassport)) {
+                string = LocaleController.getString(R.string.PassportFrontSide);
+            } else {
+                string = LocaleController.getString(R.string.PassportMainPage);
+            }
+            this.f40846e0.addView(in0Var, org.telegram.ui.Components.kb1.r(-1, -2));
+            str = "front" + n12;
+        } else if (i10 == 3) {
+            string = LocaleController.getString(R.string.PassportReverseSide);
+            this.f40849f0.addView(in0Var, org.telegram.ui.Components.kb1.r(-1, -2));
+            str = "reverse" + n12;
+        } else {
+            string = LocaleController.getString(R.string.AttachPhoto);
+            this.f40844d0.addView(in0Var, org.telegram.ui.Components.kb1.r(-1, -2));
+            str = "files" + n12;
+        }
+        if (str != null && (hashMap = this.f40889x1) != null && (formatDateForBan = (String) hashMap.get(str)) != null) {
+            org.telegram.ui.ActionBar.f7.V(in0Var.f40216b, org.telegram.ui.ActionBar.y6.f23582p7, null);
+            this.f40892y1.put(str, "");
+        } else {
+            formatDateForBan = LocaleController.formatDateForBan(secureDocument.secureFile.date);
+        }
+        in0Var.f40215a.setText(string);
+        in0Var.f40216b.setText(formatDateForBan);
+        org.telegram.ui.Components.y9 y9Var = in0Var.f40217c;
+        y9Var.getClass();
+        y9Var.m(ImageLocation.getForSecureDocument(secureDocument), "48_48", null, null, null, null, 0, null);
+        in0Var.f40218f = secureDocument;
+        in0Var.a(false);
+        in0Var.setOnClickListener(new ai.w(this, i10, 27));
+        in0Var.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public final boolean onLongClick(View view) {
+                kn0 kn0Var = this;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kn0Var.getParentActivity());
+                int i11 = i10;
+                if (i11 == 1) {
+                    alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.PassportDeleteSelfie);
+                } else {
+                    alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.PassportDeleteScan);
+                }
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.k(LocaleController.getString(R.string.OK), new bi.e6(kn0Var, secureDocument, i11, in0Var, str, 4));
+                kn0Var.showDialog(alertDialog$Builder.f22369a);
+                return true;
+            }
+        });
+    }
+
+    public final void R1() {
+        if (this.f40890y.values.isEmpty()) {
+            this.A0.setVisibility(0);
+            this.f40861l0.setVisibility(8);
+            this.f40857j0.setVisibility(8);
+            this.f40888x0.setVisibility(8);
+            this.f40891y0.setVisibility(8);
+            this.f40893z0.setVisibility(8);
+            return;
+        }
+        this.A0.setVisibility(8);
+        this.f40861l0.setVisibility(0);
+        this.f40857j0.setVisibility(0);
+        this.f40891y0.setVisibility(0);
+        this.f40893z0.setVisibility(0);
+        if (!s1(TLRPC.TL_secureValueTypePhone.class) && !s1(TLRPC.TL_secureValueTypeEmail.class) && !s1(TLRPC.TL_secureValueTypePersonalDetails.class) && !s1(TLRPC.TL_secureValueTypePassport.class) && !s1(TLRPC.TL_secureValueTypeInternalPassport.class) && !s1(TLRPC.TL_secureValueTypeIdentityCard.class) && !s1(TLRPC.TL_secureValueTypeDriverLicense.class) && !s1(TLRPC.TL_secureValueTypeAddress.class) && !s1(TLRPC.TL_secureValueTypeUtilityBill.class) && !s1(TLRPC.TL_secureValueTypePassportRegistration.class) && !s1(TLRPC.TL_secureValueTypeTemporaryRegistration.class) && !s1(TLRPC.TL_secureValueTypeBankStatement.class) && !s1(TLRPC.TL_secureValueTypeRentalAgreement.class)) {
+            this.f40888x0.setVisibility(8);
+        } else {
+            this.f40888x0.setVisibility(0);
+        }
+    }
+
+    public final void S0(TLRPC.TL_secureFile tL_secureFile, int i10) {
+        byte[] bArr = tL_secureFile.secret;
+        byte[] bArr2 = tL_secureFile.file_hash;
+        byte[] computeSHA512 = Utilities.computeSHA512(i1(bArr, bArr2), bArr2);
+        byte[] bArr3 = new byte[32];
+        System.arraycopy(computeSHA512, 0, bArr3, 0, 32);
+        byte[] bArr4 = new byte[16];
+        System.arraycopy(computeSHA512, 32, bArr4, 0, 16);
+        R0(new SecureDocument(new SecureDocumentKey(bArr3, bArr4), tL_secureFile, null, null, null), i10);
+    }
+
+    public final void S1() {
+        ImageView imageView = this.I0;
+        if (imageView != null) {
+            TL_account.Password password = this.J;
+            if (password != null && this.N0 == 0) {
+                if (!password.has_password) {
+                    this.G0.setVisibility(0);
+                    this.I0.setVisibility(0);
+                    this.J0.setVisibility(0);
+                    this.K0.setVisibility(0);
+                    this.L0.setVisibility(8);
+                    this.Z[0].setVisibility(8);
+                    this.L.setVisibility(8);
+                    this.M0.setVisibility(8);
+                    this.H0.setVisibility(8);
+                    this.G0.setLayoutParams(org.telegram.ui.Components.kb1.o(0.0f, 25.0f, 0.0f, 0.0f, -1, -2));
+                    this.F0.setVisibility(8);
+                    return;
+                }
+                this.G0.setVisibility(0);
+                this.I0.setVisibility(8);
+                this.J0.setVisibility(8);
+                this.K0.setVisibility(8);
+                this.F0.setVisibility(8);
+                this.L0.setVisibility(0);
+                this.Z[0].setVisibility(0);
+                this.L.setVisibility(0);
+                this.M0.setVisibility(0);
+                this.H0.setVisibility(0);
+                this.G0.setLayoutParams(org.telegram.ui.Components.kb1.o(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+                if (this.Y != null) {
+                    TL_account.Password password2 = this.J;
+                    if (password2 != null && !TextUtils.isEmpty(password2.hint)) {
+                        this.Y[0].setHint(this.J.hint);
+                        return;
+                    } else {
+                        this.Y[0].setHint(LocaleController.getString(R.string.LoginPassword));
+                        return;
+                    }
+                }
+                return;
+            }
+            imageView.setVisibility(8);
+            this.J0.setVisibility(8);
+            this.K0.setVisibility(8);
+            this.L0.setVisibility(8);
+            this.Z[0].setVisibility(8);
+            this.L.setVisibility(8);
+            this.M0.setVisibility(8);
+            this.H0.setVisibility(8);
+            this.G0.setVisibility(8);
+            this.F0.setVisibility(0);
+        }
+    }
+
+    public final void T0(ArrayList arrayList) {
+        this.f40856i1.clear();
+        int size = arrayList.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            TLRPC.SecureFile secureFile = (TLRPC.SecureFile) arrayList.get(i10);
+            if (secureFile instanceof TLRPC.TL_secureFile) {
+                S0((TLRPC.TL_secureFile) secureFile, 0);
+            }
+        }
+    }
+
+    public final void T1(int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kn0.T1(int):void");
+    }
+
+    public final org.telegram.ui.jn0 U0(android.content.Context r28, org.telegram.tgnet.TLRPC.TL_secureRequiredType r29, java.util.ArrayList r30, boolean r31, boolean r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kn0.U0(android.content.Context, org.telegram.tgnet.TLRPC$TL_secureRequiredType, java.util.ArrayList, boolean, boolean):org.telegram.ui.jn0");
+    }
+
+    public final void V0(ArrayList arrayList) {
+        this.f40860k1.clear();
+        int size = arrayList.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            TLRPC.SecureFile secureFile = (TLRPC.SecureFile) arrayList.get(i10);
+            if (secureFile instanceof TLRPC.TL_secureFile) {
+                S0((TLRPC.TL_secureFile) secureFile, 4);
+            }
+        }
+    }
+
+    public final void W0(boolean z10) {
+        int i10;
+        if (!this.f40852g1) {
+            String str = this.f40863n;
+            boolean isEmpty = TextUtils.isEmpty(str);
+            int i11 = this.f40838b;
+            if (!isEmpty) {
+                if (z10) {
+                    Activity parentActivity = getParentActivity();
+                    qf.d.o(parentActivity, Uri.parse(str + "&tg_passport=success"), true, true);
+                } else if (!this.f40850f1 && (i11 == 5 || i11 == 0)) {
+                    Activity parentActivity2 = getParentActivity();
+                    qf.d.o(parentActivity2, Uri.parse(str + "&tg_passport=cancel"), true, true);
+                }
+                this.f40852g1 = true;
+            } else if (this.C1) {
+                if (z10 || (!this.f40850f1 && (i11 == 5 || i11 == 0))) {
+                    Activity parentActivity3 = getParentActivity();
+                    if (z10) {
+                        i10 = -1;
+                    } else {
+                        i10 = 0;
+                    }
+                    parentActivity3.setResult(i10);
+                }
+                this.f40852g1 = true;
+            }
+        }
+    }
+
+    public final boolean X0(boolean z10) {
+        if (u1()) {
+            return false;
+        }
+        if (z10) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+            alertDialog$Builder.k(LocaleController.getString(R.string.PassportDiscard), new xl0(this, 1));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.DiscardChanges);
+            String string = LocaleController.getString(R.string.PassportDiscardChanges);
+            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
+            e2Var.T = string;
+            showDialog(e2Var);
+            return true;
+        }
+        return true;
+    }
+
+    public final void Y0(boolean z10) {
+        EditTextBoldCursor[] editTextBoldCursorArr;
+        if (this.f40836a0 != null) {
+            String str = (String) this.Y0.get(this.v);
+            String str2 = SharedConfig.getCountryLangs().get(this.v);
+            String str3 = null;
+            int i10 = 0;
+            if (this.E.native_names && !TextUtils.isEmpty(this.v) && !"EN".equals(str2)) {
+                if (this.f40870q0.getVisibility() != 0) {
+                    this.f40870q0.setVisibility(0);
+                    this.f40857j0.setVisibility(0);
+                    this.T.setVisibility(0);
+                    int i11 = 0;
+                    while (true) {
+                        editTextBoldCursorArr = this.f40836a0;
+                        if (i11 >= editTextBoldCursorArr.length) {
+                            break;
+                        }
+                        ((View) editTextBoldCursorArr[i11].getParent()).setVisibility(0);
+                        i11++;
+                    }
+                    if (editTextBoldCursorArr[0].length() == 0 && this.f40836a0[1].length() == 0 && this.f40836a0[2].length() == 0) {
+                        int i12 = 0;
+                        while (true) {
+                            boolean[] zArr = this.f40878t0;
+                            if (i12 >= zArr.length) {
+                                break;
+                            } else if (zArr[i12]) {
+                                this.f40836a0[0].setText(this.Y[0].getText());
+                                this.f40836a0[1].setText(this.Y[1].getText());
+                                this.f40836a0[2].setText(this.Y[2].getText());
+                                break;
+                            } else {
+                                i12++;
+                            }
+                        }
+                    }
+                    org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider, org.telegram.ui.ActionBar.y6.f23319b7, getParentActivity(), this.m0, null);
+                }
+                this.f40870q0.setText(LocaleController.formatString("PassportNativeInfo", R.string.PassportNativeInfo, str));
+                if (str2 != null) {
+                    str3 = LocaleController.getServerString("PassportLanguage_".concat(str2));
+                }
+                if (str3 != null) {
+                    this.f40857j0.setText(LocaleController.formatString("PassportNativeHeaderLang", R.string.PassportNativeHeaderLang, str3));
+                } else {
+                    this.f40857j0.setText(LocaleController.getString(R.string.PassportNativeHeader));
+                }
+                for (int i13 = 0; i13 < 3; i13++) {
+                    if (i13 != 0) {
+                        if (i13 != 1) {
+                            if (i13 == 2) {
+                                if (str3 != null) {
+                                    this.f40836a0[i13].setHintText(LocaleController.getString(R.string.PassportSurname));
+                                } else {
+                                    this.f40836a0[i13].setHintText(LocaleController.formatString("PassportSurnameCountry", R.string.PassportSurnameCountry, str));
+                                }
+                            }
+                        } else if (str3 != null) {
+                            this.f40836a0[i13].setHintText(LocaleController.getString(R.string.PassportMidname));
+                        } else {
+                            this.f40836a0[i13].setHintText(LocaleController.formatString("PassportMidnameCountry", R.string.PassportMidnameCountry, str));
+                        }
+                    } else if (str3 != null) {
+                        this.f40836a0[i13].setHintText(LocaleController.getString(R.string.PassportName));
+                    } else {
+                        this.f40836a0[i13].setHintText(LocaleController.formatString("PassportNameCountry", R.string.PassportNameCountry, str));
+                    }
+                }
+                if (z10) {
+                    AndroidUtilities.runOnUIThread(new ul0(this, 2));
+                }
+            } else if (this.f40870q0.getVisibility() != 8) {
+                this.f40870q0.setVisibility(8);
+                this.f40857j0.setVisibility(8);
+                this.T.setVisibility(8);
+                while (true) {
+                    EditTextBoldCursor[] editTextBoldCursorArr2 = this.f40836a0;
+                    if (i10 >= editTextBoldCursorArr2.length) {
+                        break;
+                    }
+                    ((View) editTextBoldCursorArr2[i10].getParent()).setVisibility(8);
+                    i10++;
+                }
+                if (((this.f40841c != 0 || this.F == null) && this.H != null && !this.f40882v0) || this.I != null) {
+                    org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider, org.telegram.ui.ActionBar.y6.f23319b7, getParentActivity(), this.m0, null);
+                    return;
+                }
+                org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.y6.f23319b7, getParentActivity(), this.m0, null);
+            }
+        }
+    }
+
+    public final void a1(boolean z10) {
+        SpannableStringBuilder spannableStringBuilder;
+        String str;
+        String str2;
+        if (this.f40868p0 != null) {
+            HashMap hashMap = this.f40886w1;
+            HashMap hashMap2 = this.f40892y1;
+            if (hashMap != null && ((z10 || hashMap2.containsKey("error_all")) && (str2 = (String) this.f40886w1.get("error_all")) != null)) {
+                spannableStringBuilder = new SpannableStringBuilder(str2);
+                if (z10) {
+                    hashMap2.put("error_all", "");
+                }
+            } else {
+                spannableStringBuilder = null;
+            }
+            if (this.f40889x1 != null && ((z10 || hashMap2.containsKey("error_document_all")) && (str = (String) this.f40889x1.get("error_all")) != null)) {
+                if (spannableStringBuilder == null) {
+                    spannableStringBuilder = new SpannableStringBuilder(str);
+                } else {
+                    spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) str);
+                }
+                if (z10) {
+                    hashMap2.put("error_document_all", "");
+                }
+            }
+            if (spannableStringBuilder != null) {
+                spannableStringBuilder.setSpan(new org.telegram.ui.Components.p10(org.telegram.ui.ActionBar.y6.f23582p7, null), 0, spannableStringBuilder.length(), 33);
+                this.f40868p0.setText(spannableStringBuilder);
+                this.f40868p0.setVisibility(0);
+            } else if (this.f40868p0.getVisibility() != 8) {
+                this.f40868p0.setVisibility(8);
+            }
+        }
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z10;
-        int i10 = this.f40991a;
-        po0 po0Var = this.f40992b;
-        switch (i10) {
-            case 0:
-                if (po0Var.getParentActivity() != null) {
-                    po0Var.H0(null);
-                    return;
+    public final void addThemeColorKeys(HashSet hashSet) {
+        super.addThemeColorKeys(hashSet);
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.E7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.D7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.Mh));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.I6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23657t8));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.A8));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23695v8));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23637s8));
+    }
+
+    public final void b1(Context context) {
+        long j10;
+        String str;
+        this.Y0 = new HashMap();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.getResources().getAssets().open("countries.txt")));
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine == null) {
+                    break;
                 }
-                return;
-            case 1:
-                po0 po0Var2 = new po0(po0Var.f42591b1, po0Var.C0, po0Var.N0, po0Var.O0, 0, po0Var.E0, po0Var.G0, po0Var.H0, null, po0Var.f42623x0, po0Var.I0, po0Var.U0, null, po0Var.f42614r0, po0Var.W0);
-                po0Var2.f42594c1 = po0Var.f42594c1;
-                po0Var2.f42596d1 = po0Var.f42596d1;
-                po0Var2.T = new un0(po0Var);
-                po0Var.presentFragment(po0Var2);
-                return;
-            case 2:
-                po0 po0Var3 = new po0(po0Var.f42591b1, po0Var.C0, po0Var.N0, po0Var.O0, 0, po0Var.E0, po0Var.G0, po0Var.H0, null, po0Var.f42623x0, po0Var.I0, po0Var.U0, null, po0Var.f42614r0, po0Var.W0);
-                po0Var3.f42594c1 = po0Var.f42594c1;
-                po0Var3.f42596d1 = po0Var.f42596d1;
-                po0Var3.T = new vn0(po0Var);
-                po0Var.presentFragment(po0Var3);
-                return;
-            case 3:
-                po0 po0Var4 = new po0(po0Var.f42591b1, po0Var.C0, po0Var.N0, po0Var.O0, 0, po0Var.E0, po0Var.G0, po0Var.H0, null, po0Var.f42623x0, po0Var.I0, po0Var.U0, null, po0Var.f42614r0, po0Var.W0);
-                po0Var4.f42594c1 = po0Var.f42594c1;
-                po0Var4.f42596d1 = po0Var.f42596d1;
-                po0Var4.T = new wn0(po0Var);
-                po0Var.presentFragment(po0Var4);
-                return;
-            case 4:
-                po0 po0Var5 = new po0(po0Var.f42591b1, po0Var.C0, po0Var.N0, po0Var.O0, 0, po0Var.E0, po0Var.G0, po0Var.H0, null, po0Var.f42623x0, po0Var.I0, po0Var.U0, null, po0Var.f42614r0, po0Var.W0);
-                po0Var5.f42594c1 = po0Var.f42594c1;
-                po0Var5.f42596d1 = po0Var.f42596d1;
-                po0Var5.T = new xn0(po0Var);
-                po0Var.presentFragment(po0Var5);
-                return;
-            case 5:
-                if (!po0Var.P0) {
-                    boolean z11 = !po0Var.F;
-                    po0Var.F = z11;
-                    po0Var.V.setChecked(z11);
-                    po0Var.W.a(po0Var.F, true);
-                    return;
+                String[] split = readLine.split(";");
+                this.Y0.put(split[1], split[2]);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        org.telegram.ui.Cells.i9 i9Var = new org.telegram.ui.Cells.i9(context);
+        this.f40868p0 = i9Var;
+        int i10 = R.drawable.greydivider_top;
+        int i11 = org.telegram.ui.ActionBar.y6.f23319b7;
+        org.telegram.ui.ActionBar.f7.a0(i10, i11, context, i9Var, null);
+        this.f40868p0.setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
+        this.f40842c0.addView(this.f40868p0, org.telegram.ui.Components.kb1.r(-1, -2));
+        a1(true);
+        TLRPC.TL_secureRequiredType tL_secureRequiredType = this.F;
+        if (tL_secureRequiredType != null) {
+            TLRPC.SecureValueType secureValueType = tL_secureRequiredType.type;
+            if (secureValueType instanceof TLRPC.TL_secureValueTypeRentalAgreement) {
+                this.actionBar.setTitle(LocaleController.getString(R.string.ActionBotDocumentRentalAgreement));
+            } else if (secureValueType instanceof TLRPC.TL_secureValueTypeBankStatement) {
+                this.actionBar.setTitle(LocaleController.getString(R.string.ActionBotDocumentBankStatement));
+            } else if (secureValueType instanceof TLRPC.TL_secureValueTypeUtilityBill) {
+                this.actionBar.setTitle(LocaleController.getString(R.string.ActionBotDocumentUtilityBill));
+            } else if (secureValueType instanceof TLRPC.TL_secureValueTypePassportRegistration) {
+                this.actionBar.setTitle(LocaleController.getString(R.string.ActionBotDocumentPassportRegistration));
+            } else if (secureValueType instanceof TLRPC.TL_secureValueTypeTemporaryRegistration) {
+                this.actionBar.setTitle(LocaleController.getString(R.string.ActionBotDocumentTemporaryRegistration));
+            }
+            org.telegram.ui.Cells.q4 q4Var = new org.telegram.ui.Cells.q4(context);
+            this.f40857j0 = q4Var;
+            q4Var.setText(LocaleController.getString(R.string.PassportDocuments));
+            org.telegram.ui.Cells.q4 q4Var2 = this.f40857j0;
+            int i12 = org.telegram.ui.ActionBar.y6.f23357d6;
+            org.telegram.ui.ActionBar.f7.i(i12, q4Var2, null);
+            this.f40842c0.addView(this.f40857j0, org.telegram.ui.Components.kb1.r(-1, -2));
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.f40844d0 = linearLayout;
+            linearLayout.setOrientation(1);
+            this.f40842c0.addView(this.f40844d0, org.telegram.ui.Components.kb1.r(-1, -2));
+            org.telegram.ui.Cells.ga gaVar = new org.telegram.ui.Cells.ga(context);
+            this.R = gaVar;
+            org.telegram.ui.Cells.y M0 = org.telegram.ui.ActionBar.y6.M0(true);
+            org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i12);
+            int i13 = org.telegram.ui.ActionBar.y6.f23449i6;
+            j10 = 0;
+            org.telegram.ui.ActionBar.b7 N2 = org.telegram.ui.ActionBar.f7.N(i13);
+            gaVar.setBackground(M0);
+            org.telegram.ui.ActionBar.f7.k(gaVar, M0, N, N2, null);
+            this.f40842c0.addView(this.R, org.telegram.ui.Components.kb1.r(-1, -2));
+            this.R.setOnClickListener(new vl0(this, 7));
+            org.telegram.ui.Cells.i9 i9Var2 = new org.telegram.ui.Cells.i9(context);
+            this.f40864n0 = i9Var2;
+            org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider, i11, context, i9Var2, null);
+            if (this.f40841c != 0) {
+                this.f40894z1 = LocaleController.getString(R.string.PassportAddAddressUploadInfo);
+            } else {
+                TLRPC.SecureValueType secureValueType2 = this.F.type;
+                if (secureValueType2 instanceof TLRPC.TL_secureValueTypeRentalAgreement) {
+                    this.f40894z1 = LocaleController.getString(R.string.PassportAddAgreementInfo);
+                } else if (secureValueType2 instanceof TLRPC.TL_secureValueTypeUtilityBill) {
+                    this.f40894z1 = LocaleController.getString(R.string.PassportAddBillInfo);
+                } else if (secureValueType2 instanceof TLRPC.TL_secureValueTypePassportRegistration) {
+                    this.f40894z1 = LocaleController.getString(R.string.PassportAddPassportRegistrationInfo);
+                } else if (secureValueType2 instanceof TLRPC.TL_secureValueTypeTemporaryRegistration) {
+                    this.f40894z1 = LocaleController.getString(R.string.PassportAddTemporaryRegistrationInfo);
+                } else if (secureValueType2 instanceof TLRPC.TL_secureValueTypeBankStatement) {
+                    this.f40894z1 = LocaleController.getString(R.string.PassportAddBankInfo);
+                } else {
+                    this.f40894z1 = "";
                 }
-                return;
-            case 6:
-                po0.a0(po0Var);
-                return;
-            case 7:
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(po0Var.getParentActivity());
-                String string = LocaleController.getString(R.string.TurnPasswordOffQuestion);
-                if (po0Var.f42587a0.has_secure_values) {
-                    string = org.telegram.messenger.t.h(R.string.TurnPasswordOffPassport, org.telegram.ui.Components.b10.l(string, "\n\n"));
+            }
+            String str2 = this.f40894z1;
+            HashMap hashMap = this.f40889x1;
+            HashMap hashMap2 = this.f40892y1;
+            String str3 = str2;
+            if (hashMap != null) {
+                String str4 = (String) hashMap.get("files_all");
+                str3 = str2;
+                if (str4 != null) {
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str4);
+                    spannableStringBuilder.append((CharSequence) "\n\n");
+                    spannableStringBuilder.append((CharSequence) this.f40894z1);
+                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.p10(org.telegram.ui.ActionBar.y6.f23582p7, null), 0, str4.length(), 33);
+                    hashMap2.put("files_all", "");
+                    str3 = spannableStringBuilder;
                 }
-                org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22368a;
-                e2Var.T = string;
-                e2Var.R = LocaleController.getString(R.string.TurnPasswordOffQuestionTitle);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Disable), new on0(po0Var, 3));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                po0Var.showDialog(e2Var);
-                TextView textView = (TextView) e2Var.d(-1);
-                if (textView != null) {
-                    org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23598q7, po0Var.Y0);
-                    return;
+            }
+            this.f40864n0.setText(str3);
+            this.f40842c0.addView(this.f40864n0, org.telegram.ui.Components.kb1.r(-1, -2));
+            if (this.F.translation_required) {
+                org.telegram.ui.Cells.q4 q4Var3 = new org.telegram.ui.Cells.q4(context);
+                this.f40857j0 = q4Var3;
+                q4Var3.setText(LocaleController.getString(R.string.PassportTranslation));
+                org.telegram.ui.ActionBar.f7.i(i12, this.f40857j0, null);
+                this.f40842c0.addView(this.f40857j0, org.telegram.ui.Components.kb1.r(-1, -2));
+                LinearLayout linearLayout2 = new LinearLayout(context);
+                this.f40853h0 = linearLayout2;
+                linearLayout2.setOrientation(1);
+                this.f40842c0.addView(this.f40853h0, org.telegram.ui.Components.kb1.r(-1, -2));
+                org.telegram.ui.Cells.ga gaVar2 = new org.telegram.ui.Cells.ga(context);
+                this.X = gaVar2;
+                org.telegram.ui.Cells.y M02 = org.telegram.ui.ActionBar.y6.M0(true);
+                org.telegram.ui.ActionBar.b7 N3 = org.telegram.ui.ActionBar.f7.N(i12);
+                org.telegram.ui.ActionBar.b7 N4 = org.telegram.ui.ActionBar.f7.N(i13);
+                gaVar2.setBackground(M02);
+                org.telegram.ui.ActionBar.f7.k(gaVar2, M02, N3, N4, null);
+                this.f40842c0.addView(this.X, org.telegram.ui.Components.kb1.r(-1, -2));
+                this.X.setOnClickListener(new vl0(this, 8));
+                org.telegram.ui.Cells.i9 i9Var3 = new org.telegram.ui.Cells.i9(context);
+                this.f40866o0 = i9Var3;
+                org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider, i11, context, i9Var3, null);
+                if (this.f40841c != 0) {
+                    this.A1 = LocaleController.getString(R.string.PassportAddTranslationUploadInfo);
+                } else {
+                    TLRPC.SecureValueType secureValueType3 = this.F.type;
+                    if (secureValueType3 instanceof TLRPC.TL_secureValueTypeRentalAgreement) {
+                        this.A1 = LocaleController.getString(R.string.PassportAddTranslationAgreementInfo);
+                    } else if (secureValueType3 instanceof TLRPC.TL_secureValueTypeUtilityBill) {
+                        this.A1 = LocaleController.getString(R.string.PassportAddTranslationBillInfo);
+                    } else if (secureValueType3 instanceof TLRPC.TL_secureValueTypePassportRegistration) {
+                        this.A1 = LocaleController.getString(R.string.PassportAddTranslationPassportRegistrationInfo);
+                    } else if (secureValueType3 instanceof TLRPC.TL_secureValueTypeTemporaryRegistration) {
+                        this.A1 = LocaleController.getString(R.string.PassportAddTranslationTemporaryRegistrationInfo);
+                    } else if (secureValueType3 instanceof TLRPC.TL_secureValueTypeBankStatement) {
+                        this.A1 = LocaleController.getString(R.string.PassportAddTranslationBankInfo);
+                    } else {
+                        this.A1 = "";
+                    }
                 }
-                return;
-            case 8:
-                boolean z12 = !po0Var.T0;
-                po0Var.T0 = z12;
-                po0Var.L.setChecked(z12);
-                return;
-            case 9:
-                boolean z13 = !po0Var.U0;
-                po0Var.U0 = z13;
-                po0Var.L.setChecked(z13);
-                return;
-            case 10:
-                boolean z14 = !po0Var.U0;
-                po0Var.U0 = z14;
-                po0Var.L.setChecked(z14);
-                return;
-            case 11:
-                po0Var.getClass();
-                int intValue = ((Integer) view.getTag()).intValue();
-                int i11 = 0;
-                while (true) {
-                    org.telegram.ui.Cells.o6[] o6VarArr = po0Var.h;
-                    if (i11 < o6VarArr.length) {
-                        org.telegram.ui.Cells.o6 o6Var = o6VarArr[i11];
-                        if (intValue == i11) {
-                            z10 = true;
+                String str5 = this.A1;
+                HashMap hashMap3 = this.f40889x1;
+                String str6 = str5;
+                if (hashMap3 != null) {
+                    String str7 = (String) hashMap3.get("translation_all");
+                    str6 = str5;
+                    if (str7 != null) {
+                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str7);
+                        spannableStringBuilder2.append((CharSequence) "\n\n");
+                        spannableStringBuilder2.append((CharSequence) this.A1);
+                        spannableStringBuilder2.setSpan(new org.telegram.ui.Components.p10(org.telegram.ui.ActionBar.y6.f23582p7, null), 0, str7.length(), 33);
+                        hashMap2.put("translation_all", "");
+                        str6 = spannableStringBuilder2;
+                    }
+                }
+                this.f40866o0.setText(str6);
+                this.f40842c0.addView(this.f40866o0, org.telegram.ui.Components.kb1.r(-1, -2));
+            }
+        } else {
+            j10 = 0;
+            this.actionBar.setTitle(LocaleController.getString(R.string.PassportAddress));
+        }
+        org.telegram.ui.Cells.q4 q4Var4 = new org.telegram.ui.Cells.q4(context);
+        this.f40857j0 = q4Var4;
+        q4Var4.setText(LocaleController.getString(R.string.PassportAddressHeader));
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d6, this.f40857j0, null);
+        this.f40842c0.addView(this.f40857j0, org.telegram.ui.Components.kb1.r(-1, -2));
+        this.Y = new EditTextBoldCursor[6];
+        for (int i14 = 0; i14 < 6; i14++) {
+            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+            this.Y[i14] = editTextBoldCursor;
+            em0 em0Var = new em0(context, editTextBoldCursor, 0);
+            em0Var.setWillNotDraw(false);
+            this.f40842c0.addView(em0Var, org.telegram.ui.Components.kb1.r(-1, -2));
+            int i15 = org.telegram.ui.ActionBar.y6.f23357d6;
+            org.telegram.ui.ActionBar.f7.i(i15, em0Var, null);
+            int i16 = 5;
+            if (i14 == 5) {
+                View view = new View(context);
+                this.S = view;
+                org.telegram.ui.ActionBar.f7.i(i15, view, null);
+                this.f40842c0.addView(this.S, org.telegram.ui.Components.kb1.r(-1, 6));
+            }
+            if (this.f40882v0 && this.F != null) {
+                em0Var.setVisibility(8);
+                View view2 = this.S;
+                if (view2 != null) {
+                    view2.setVisibility(8);
+                }
+            }
+            this.Y[i14].setTag(Integer.valueOf(i14));
+            this.Y[i14].setSupportRtlHint(true);
+            this.Y[i14].setTextSize(1, 16.0f);
+            org.telegram.ui.ActionBar.f7.B(this.Y[i14], org.telegram.ui.ActionBar.y6.H6, null);
+            org.telegram.ui.ActionBar.f7.A(this.Y[i14], org.telegram.ui.ActionBar.y6.L6, null);
+            this.Y[i14].setTransformHintToHeader(true);
+            EditTextBoldCursor editTextBoldCursor2 = this.Y[i14];
+            int i17 = org.telegram.ui.ActionBar.y6.G6;
+            org.telegram.ui.ActionBar.f7.V(editTextBoldCursor2, i17, null);
+            this.Y[i14].setBackgroundDrawable(null);
+            org.telegram.ui.ActionBar.f7.w(this.Y[i14], i17, null);
+            this.Y[i14].setCursorSize(AndroidUtilities.dp(20.0f));
+            this.Y[i14].setCursorWidth(1.5f);
+            org.telegram.ui.ActionBar.f7.G(this.Y[i14], org.telegram.ui.ActionBar.y6.f23485k6, org.telegram.ui.ActionBar.y6.f23503l6, org.telegram.ui.ActionBar.y6.f23582p7, null);
+            if (i14 == 5) {
+                this.Y[i14].setOnTouchListener(new wl0(this, 2));
+                this.Y[i14].setInputType(0);
+                this.Y[i14].setFocusable(false);
+            } else {
+                this.Y[i14].setInputType(16385);
+                this.Y[i14].setImeOptions(268435461);
+            }
+            if (i14 != 0) {
+                if (i14 != 1) {
+                    if (i14 != 2) {
+                        if (i14 != 3) {
+                            if (i14 != 4) {
+                                if (i14 == 5) {
+                                    this.Y[i14].setHintText(LocaleController.getString(R.string.PassportCountry));
+                                    str = "country_code";
+                                }
+                            } else {
+                                this.Y[i14].setHintText(LocaleController.getString(R.string.PassportState));
+                                str = "state";
+                            }
                         } else {
-                            z10 = false;
+                            this.Y[i14].setHintText(LocaleController.getString(R.string.PassportCity));
+                            str = "city";
                         }
-                        o6Var.a(z10, true);
-                        i11++;
+                    } else {
+                        this.Y[i14].setHintText(LocaleController.getString(R.string.PassportPostcode));
+                        str = "post_code";
+                    }
+                } else {
+                    this.Y[i14].setHintText(LocaleController.getString(R.string.PassportStreet2));
+                    str = "street_line2";
+                }
+            } else {
+                this.Y[i14].setHintText(LocaleController.getString(R.string.PassportStreet1));
+                str = "street_line1";
+            }
+            J1(this.f40877s1, this.Y[i14], str);
+            if (i14 == 2) {
+                this.Y[i14].addTextChangedListener(new fm0(this, editTextBoldCursor, str));
+                this.Y[i14].setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+            } else {
+                this.Y[i14].addTextChangedListener(new gm0(this, editTextBoldCursor, str, 0));
+            }
+            EditTextBoldCursor editTextBoldCursor3 = this.Y[i14];
+            editTextBoldCursor3.setSelection(editTextBoldCursor3.length());
+            this.Y[i14].setPadding(0, 0, 0, 0);
+            EditTextBoldCursor editTextBoldCursor4 = this.Y[i14];
+            if (!LocaleController.isRTL) {
+                i16 = 3;
+            }
+            editTextBoldCursor4.setGravity(i16 | 16);
+            em0Var.addView(this.Y[i14], org.telegram.ui.Components.kb1.h(-1, 64.0f, 51, 21.0f, 0.0f, 21.0f, 0.0f));
+            this.Y[i14].setOnEditorActionListener(new tl0(this, 4));
+        }
+        org.telegram.ui.Cells.f7 f7Var = new org.telegram.ui.Cells.f7(context, (d3) null);
+        this.f40861l0 = f7Var;
+        this.f40842c0.addView(f7Var, org.telegram.ui.Components.kb1.r(-1, -2));
+        if (this.f40882v0 && this.F != null) {
+            this.f40857j0.setVisibility(8);
+            this.f40861l0.setVisibility(8);
+        }
+        int i18 = (this.f40841c > j10 ? 1 : (this.f40841c == j10 ? 0 : -1));
+        TLRPC.TL_secureValue tL_secureValue = this.I;
+        if (((i18 != 0 || this.F == null) && this.H != null && !this.f40882v0) || tL_secureValue != null) {
+            if (tL_secureValue != null) {
+                T0(tL_secureValue.files);
+                V0(tL_secureValue.translation);
+            }
+            org.telegram.ui.Cells.f7 f7Var2 = this.f40861l0;
+            int i19 = R.drawable.greydivider;
+            int i20 = org.telegram.ui.ActionBar.y6.f23319b7;
+            org.telegram.ui.ActionBar.f7.a0(i19, i20, context, f7Var2, null);
+            org.telegram.ui.Cells.ga gaVar3 = new org.telegram.ui.Cells.ga(context);
+            org.telegram.ui.ActionBar.f7.V(gaVar3.getTextView(), org.telegram.ui.ActionBar.y6.f23582p7, null);
+            org.telegram.ui.Cells.y M03 = org.telegram.ui.ActionBar.y6.M0(true);
+            org.telegram.ui.ActionBar.b7 N5 = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23357d6);
+            org.telegram.ui.ActionBar.b7 N6 = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23449i6);
+            gaVar3.setBackground(M03);
+            org.telegram.ui.ActionBar.f7.k(gaVar3, M03, N5, N6, null);
+            if (this.F == null) {
+                gaVar3.b(LocaleController.getString(R.string.PassportDeleteInfo), false);
+            } else {
+                gaVar3.b(LocaleController.getString(R.string.PassportDeleteDocument), false);
+            }
+            this.f40842c0.addView(gaVar3, org.telegram.ui.Components.kb1.r(-1, -2));
+            gaVar3.setOnClickListener(new vl0(this, 9));
+            org.telegram.ui.Cells.f7 f7Var3 = new org.telegram.ui.Cells.f7(context, (d3) null);
+            this.f40861l0 = f7Var3;
+            org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider_bottom, i20, context, f7Var3, null);
+            this.f40842c0.addView(this.f40861l0, org.telegram.ui.Components.kb1.r(-1, -2));
+        } else {
+            org.telegram.ui.Cells.f7 f7Var4 = this.f40861l0;
+            int i21 = R.drawable.greydivider_bottom;
+            int i22 = org.telegram.ui.ActionBar.y6.f23319b7;
+            org.telegram.ui.ActionBar.f7.a0(i21, i22, context, f7Var4, null);
+            if (this.f40882v0 && this.F != null) {
+                org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider_bottom, i22, context, this.f40864n0, null);
+            }
+        }
+        T1(0);
+        T1(4);
+    }
+
+    public final void c1() {
+        if (getParentActivity() != null && this.R0 == null) {
+            org.telegram.ui.Components.ti tiVar = new org.telegram.ui.Components.ti(getParentActivity(), this, false, false);
+            this.R0 = tiVar;
+            tiVar.f32982c2 = new pm0(this);
+        }
+    }
+
+    @Override
+    public final android.view.View createView(android.content.Context r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kn0.createView(android.content.Context):android.view.View");
+    }
+
+    public final void d1() {
+        int dp;
+        int dp2;
+        boolean[] zArr = {true};
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new cf0(2, this, zArr));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        String string = LocaleController.getString(R.string.AppName);
+        org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22369a;
+        e2Var.R = string;
+        boolean z10 = this.f40882v0;
+        TLRPC.TL_secureRequiredType tL_secureRequiredType = this.E;
+        if (z10 && this.F == null && (tL_secureRequiredType.type instanceof TLRPC.TL_secureValueTypeAddress)) {
+            e2Var.T = LocaleController.getString(R.string.PassportDeleteAddressAlert);
+        } else if (z10 && this.F == null && (tL_secureRequiredType.type instanceof TLRPC.TL_secureValueTypePersonalDetails)) {
+            e2Var.T = LocaleController.getString(R.string.PassportDeletePersonalAlert);
+        } else {
+            e2Var.T = LocaleController.getString(R.string.PassportDeleteDocumentAlert);
+        }
+        if (!this.f40882v0 && this.F != null) {
+            FrameLayout frameLayout = new FrameLayout(getParentActivity());
+            org.telegram.ui.Cells.y1 y1Var = new org.telegram.ui.Cells.y1(getParentActivity(), 1);
+            org.telegram.ui.Cells.y M0 = org.telegram.ui.ActionBar.y6.M0(false);
+            org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23449i6);
+            y1Var.setBackground(M0);
+            org.telegram.ui.ActionBar.f7.k(y1Var, M0, null, N, null);
+            TLRPC.SecureValueType secureValueType = tL_secureRequiredType.type;
+            if (secureValueType instanceof TLRPC.TL_secureValueTypeAddress) {
+                y1Var.e(LocaleController.getString(R.string.PassportDeleteDocumentAddress), "", true, false, false);
+            } else if (secureValueType instanceof TLRPC.TL_secureValueTypePersonalDetails) {
+                y1Var.e(LocaleController.getString(R.string.PassportDeleteDocumentPersonal), "", true, false, false);
+            }
+            if (LocaleController.isRTL) {
+                dp = AndroidUtilities.dp(16.0f);
+            } else {
+                dp = AndroidUtilities.dp(8.0f);
+            }
+            if (LocaleController.isRTL) {
+                dp2 = AndroidUtilities.dp(8.0f);
+            } else {
+                dp2 = AndroidUtilities.dp(16.0f);
+            }
+            y1Var.setPadding(dp, 0, dp2, 0);
+            frameLayout.addView(y1Var, org.telegram.ui.Components.kb1.i(-1, 48, 51));
+            y1Var.setOnClickListener(new p8(4, zArr));
+            alertDialog$Builder.o(frameLayout);
+        }
+        showDialog(e2Var);
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        EditTextBoldCursor editTextBoldCursor;
+        in0 in0Var;
+        org.telegram.ui.ActionBar.w0 w0Var;
+        if (i10 == NotificationCenter.fileUploaded) {
+            String str = (String) objArr[0];
+            HashMap hashMap = this.f40867o1;
+            SecureDocument secureDocument = (SecureDocument) hashMap.get(str);
+            if (secureDocument != null) {
+                secureDocument.inputFile = (TLRPC.TL_inputFile) objArr[1];
+                hashMap.remove(str);
+                if (hashMap.isEmpty() && (w0Var = this.L) != null) {
+                    w0Var.setEnabled(true);
+                    this.L.setAlpha(1.0f);
+                }
+                HashMap hashMap2 = this.f40865n1;
+                if (hashMap2 != null && (in0Var = (in0) hashMap2.get(secureDocument)) != null) {
+                    in0Var.a(true);
+                }
+                HashMap hashMap3 = this.f40892y1;
+                if (hashMap3 != null && hashMap3.containsKey("error_document_all")) {
+                    hashMap3.remove("error_document_all");
+                    a1(false);
+                }
+                int i12 = secureDocument.type;
+                if (i12 == 0) {
+                    if (this.f40864n0 != null && !TextUtils.isEmpty(this.f40894z1)) {
+                        this.f40864n0.setText(this.f40894z1);
+                    }
+                    hashMap3.remove("files_all");
+                } else if (i12 == 4) {
+                    if (this.f40866o0 != null && !TextUtils.isEmpty(this.A1)) {
+                        this.f40866o0.setText(this.A1);
+                    }
+                    hashMap3.remove("translation_all");
+                }
+            }
+        } else if (i10 != NotificationCenter.fileUploadFailed && i10 == NotificationCenter.twoStepPasswordChanged) {
+            if (objArr != null && objArr.length > 0) {
+                Object obj = objArr[7];
+                if (obj != null && (editTextBoldCursor = this.Y[0]) != null) {
+                    editTextBoldCursor.setText((String) obj);
+                }
+                if (objArr[6] == null) {
+                    TL_account.TL_password tL_password = new TL_account.TL_password();
+                    this.J = tL_password;
+                    tL_password.current_algo = (TLRPC.PasswordKdfAlgo) objArr[1];
+                    tL_password.new_secure_algo = (TLRPC.SecurePasswordKdfAlgo) objArr[2];
+                    tL_password.secure_random = (byte[]) objArr[3];
+                    tL_password.has_recovery = !TextUtils.isEmpty((String) objArr[4]);
+                    TL_account.Password password = this.J;
+                    password.hint = (String) objArr[5];
+                    password.srp_id = -1L;
+                    byte[] bArr = new byte[256];
+                    password.srp_B = bArr;
+                    Utilities.random.nextBytes(bArr);
+                    EditTextBoldCursor editTextBoldCursor2 = this.Y[0];
+                    if (editTextBoldCursor2 != null && editTextBoldCursor2.length() > 0) {
+                        this.N0 = 2;
+                    }
+                }
+            } else {
+                this.J = null;
+                w1();
+            }
+            S1();
+        }
+    }
+
+    @Override
+    public final void dismissCurrentDialog() {
+        org.telegram.ui.Components.ti tiVar = this.R0;
+        if (tiVar != null && this.visibleDialog == tiVar) {
+            tiVar.f33002j0.b0(false);
+            this.R0.dismissInternal();
+            this.R0.f33002j0.e0(true);
+            return;
+        }
+        super.dismissCurrentDialog();
+    }
+
+    @Override
+    public final boolean dismissDialogOnPause(Dialog dialog) {
+        if (dialog != this.R0 && super.dismissDialogOnPause(dialog)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void e1(Context context) {
+        long j10;
+        int i10;
+        String str;
+        int i11;
+        String str2;
+        this.Y0 = new HashMap();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.getResources().getAssets().open("countries.txt")));
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine == null) {
+                    break;
+                }
+                String[] split = readLine.split(";");
+                this.Y0.put(split[1], split[2]);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        org.telegram.ui.Cells.i9 i9Var = new org.telegram.ui.Cells.i9(context);
+        this.f40868p0 = i9Var;
+        int i12 = R.drawable.greydivider_top;
+        int i13 = org.telegram.ui.ActionBar.y6.f23319b7;
+        org.telegram.ui.ActionBar.f7.a0(i12, i13, context, i9Var, null);
+        boolean z10 = false;
+        this.f40868p0.setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
+        int i14 = -1;
+        this.f40842c0.addView(this.f40868p0, org.telegram.ui.Components.kb1.r(-1, -2));
+        a1(true);
+        TLRPC.TL_secureRequiredType tL_secureRequiredType = this.F;
+        TLRPC.TL_secureRequiredType tL_secureRequiredType2 = this.E;
+        if (tL_secureRequiredType != null) {
+            org.telegram.ui.Cells.q4 q4Var = new org.telegram.ui.Cells.q4(context);
+            this.f40857j0 = q4Var;
+            if (this.f40882v0) {
+                q4Var.setText(LocaleController.getString(R.string.PassportDocuments));
+            } else {
+                q4Var.setText(LocaleController.getString(R.string.PassportRequiredDocuments));
+            }
+            org.telegram.ui.Cells.q4 q4Var2 = this.f40857j0;
+            int i15 = org.telegram.ui.ActionBar.y6.f23357d6;
+            org.telegram.ui.ActionBar.f7.i(i15, q4Var2, null);
+            this.f40842c0.addView(this.f40857j0, org.telegram.ui.Components.kb1.r(-1, -2));
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.f40846e0 = linearLayout;
+            linearLayout.setOrientation(1);
+            this.f40842c0.addView(this.f40846e0, org.telegram.ui.Components.kb1.r(-1, -2));
+            org.telegram.ui.Cells.h9 h9Var = new org.telegram.ui.Cells.h9(context);
+            this.U = h9Var;
+            org.telegram.ui.Cells.y M0 = org.telegram.ui.ActionBar.y6.M0(true);
+            org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i15);
+            int i16 = org.telegram.ui.ActionBar.y6.f23449i6;
+            j10 = 0;
+            org.telegram.ui.ActionBar.b7 N2 = org.telegram.ui.ActionBar.f7.N(i16);
+            h9Var.setBackground(M0);
+            org.telegram.ui.ActionBar.f7.k(h9Var, M0, N, N2, null);
+            this.f40842c0.addView(this.U, org.telegram.ui.Components.kb1.r(-1, -2));
+            this.U.setOnClickListener(new vl0(this, 0));
+            LinearLayout linearLayout2 = new LinearLayout(context);
+            this.f40849f0 = linearLayout2;
+            linearLayout2.setOrientation(1);
+            this.f40842c0.addView(this.f40849f0, org.telegram.ui.Components.kb1.r(-1, -2));
+            boolean z11 = this.F.selfie_required;
+            org.telegram.ui.Cells.h9 h9Var2 = new org.telegram.ui.Cells.h9(context);
+            this.V = h9Var2;
+            org.telegram.ui.Cells.y M02 = org.telegram.ui.ActionBar.y6.M0(true);
+            org.telegram.ui.ActionBar.b7 N3 = org.telegram.ui.ActionBar.f7.N(i15);
+            org.telegram.ui.ActionBar.b7 N4 = org.telegram.ui.ActionBar.f7.N(i16);
+            h9Var2.setBackground(M02);
+            org.telegram.ui.ActionBar.f7.k(h9Var2, M02, N3, N4, null);
+            this.V.a(LocaleController.getString(R.string.PassportReverseSide), LocaleController.getString(R.string.PassportReverseSideInfo), z11);
+            this.f40842c0.addView(this.V, org.telegram.ui.Components.kb1.r(-1, -2));
+            this.V.setOnClickListener(new vl0(this, 2));
+            if (this.F.selfie_required) {
+                LinearLayout linearLayout3 = new LinearLayout(context);
+                this.f40851g0 = linearLayout3;
+                linearLayout3.setOrientation(1);
+                this.f40842c0.addView(this.f40851g0, org.telegram.ui.Components.kb1.r(-1, -2));
+                org.telegram.ui.Cells.h9 h9Var3 = new org.telegram.ui.Cells.h9(context);
+                this.W = h9Var3;
+                org.telegram.ui.Cells.y M03 = org.telegram.ui.ActionBar.y6.M0(true);
+                org.telegram.ui.ActionBar.b7 N5 = org.telegram.ui.ActionBar.f7.N(i15);
+                org.telegram.ui.ActionBar.b7 N6 = org.telegram.ui.ActionBar.f7.N(i16);
+                h9Var3.setBackground(M03);
+                org.telegram.ui.ActionBar.f7.k(h9Var3, M03, N5, N6, null);
+                this.W.a(LocaleController.getString(R.string.PassportSelfie), LocaleController.getString(R.string.PassportSelfieInfo), tL_secureRequiredType2.translation_required);
+                this.f40842c0.addView(this.W, org.telegram.ui.Components.kb1.r(-1, -2));
+                this.W.setOnClickListener(new vl0(this, 3));
+            }
+            org.telegram.ui.Cells.i9 i9Var2 = new org.telegram.ui.Cells.i9(context);
+            this.f40864n0 = i9Var2;
+            org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider, i13, context, i9Var2, null);
+            this.f40864n0.setText(LocaleController.getString(R.string.PassportPersonalUploadInfo));
+            this.f40842c0.addView(this.f40864n0, org.telegram.ui.Components.kb1.r(-1, -2));
+            if (this.F.translation_required) {
+                org.telegram.ui.Cells.q4 q4Var3 = new org.telegram.ui.Cells.q4(context);
+                this.f40857j0 = q4Var3;
+                q4Var3.setText(LocaleController.getString(R.string.PassportTranslation));
+                org.telegram.ui.ActionBar.f7.i(i15, this.f40857j0, null);
+                this.f40842c0.addView(this.f40857j0, org.telegram.ui.Components.kb1.r(-1, -2));
+                LinearLayout linearLayout4 = new LinearLayout(context);
+                this.f40853h0 = linearLayout4;
+                linearLayout4.setOrientation(1);
+                this.f40842c0.addView(this.f40853h0, org.telegram.ui.Components.kb1.r(-1, -2));
+                org.telegram.ui.Cells.ga gaVar = new org.telegram.ui.Cells.ga(context);
+                this.X = gaVar;
+                org.telegram.ui.Cells.y M04 = org.telegram.ui.ActionBar.y6.M0(true);
+                org.telegram.ui.ActionBar.b7 N7 = org.telegram.ui.ActionBar.f7.N(i15);
+                org.telegram.ui.ActionBar.b7 N8 = org.telegram.ui.ActionBar.f7.N(i16);
+                gaVar.setBackground(M04);
+                org.telegram.ui.ActionBar.f7.k(gaVar, M04, N7, N8, null);
+                this.f40842c0.addView(this.X, org.telegram.ui.Components.kb1.r(-1, -2));
+                this.X.setOnClickListener(new vl0(this, 4));
+                org.telegram.ui.Cells.i9 i9Var3 = new org.telegram.ui.Cells.i9(context);
+                this.f40866o0 = i9Var3;
+                org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider, i13, context, i9Var3, null);
+                if (this.f40841c != 0) {
+                    this.A1 = LocaleController.getString(R.string.PassportAddTranslationUploadInfo);
+                } else {
+                    TLRPC.SecureValueType secureValueType = this.F.type;
+                    if (secureValueType instanceof TLRPC.TL_secureValueTypePassport) {
+                        this.A1 = LocaleController.getString(R.string.PassportAddPassportInfo);
+                    } else if (secureValueType instanceof TLRPC.TL_secureValueTypeInternalPassport) {
+                        this.A1 = LocaleController.getString(R.string.PassportAddInternalPassportInfo);
+                    } else if (secureValueType instanceof TLRPC.TL_secureValueTypeIdentityCard) {
+                        this.A1 = LocaleController.getString(R.string.PassportAddIdentityCardInfo);
+                    } else if (secureValueType instanceof TLRPC.TL_secureValueTypeDriverLicense) {
+                        this.A1 = LocaleController.getString(R.string.PassportAddDriverLicenceInfo);
+                    } else {
+                        this.A1 = "";
+                    }
+                }
+                String str3 = this.A1;
+                HashMap hashMap = this.f40889x1;
+                String str4 = str3;
+                if (hashMap != null) {
+                    String str5 = (String) hashMap.get("translation_all");
+                    str4 = str3;
+                    if (str5 != null) {
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str5);
+                        spannableStringBuilder.append((CharSequence) "\n\n");
+                        spannableStringBuilder.append((CharSequence) this.A1);
+                        spannableStringBuilder.setSpan(new org.telegram.ui.Components.p10(org.telegram.ui.ActionBar.y6.f23582p7, null), 0, str5.length(), 33);
+                        this.f40892y1.put("translation_all", "");
+                        str4 = spannableStringBuilder;
+                    }
+                }
+                this.f40866o0.setText(str4);
+                this.f40842c0.addView(this.f40866o0, org.telegram.ui.Components.kb1.r(-1, -2));
+            }
+        } else {
+            j10 = 0;
+            org.telegram.ui.Cells.ga gaVar2 = new org.telegram.ui.Cells.ga(context);
+            this.f40873r0 = gaVar2;
+            org.telegram.ui.Cells.y M05 = org.telegram.ui.ActionBar.y6.M0(true);
+            org.telegram.ui.ActionBar.b7 N9 = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23357d6);
+            org.telegram.ui.ActionBar.b7 N10 = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23449i6);
+            gaVar2.setBackground(M05);
+            org.telegram.ui.ActionBar.f7.k(gaVar2, M05, N9, N10, null);
+            this.f40873r0.b(LocaleController.getString(R.string.PassportScanPassport), false);
+            this.f40842c0.addView(this.f40873r0, org.telegram.ui.Components.kb1.r(-1, -2));
+            this.f40873r0.setOnClickListener(new vl0(this, 5));
+            org.telegram.ui.Cells.i9 i9Var4 = new org.telegram.ui.Cells.i9(context);
+            this.f40864n0 = i9Var4;
+            org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider, i13, context, i9Var4, null);
+            this.f40864n0.setText(LocaleController.getString(R.string.PassportScanPassportInfo));
+            this.f40842c0.addView(this.f40864n0, org.telegram.ui.Components.kb1.r(-1, -2));
+        }
+        org.telegram.ui.Cells.q4 q4Var4 = new org.telegram.ui.Cells.q4(context);
+        this.f40857j0 = q4Var4;
+        if (this.f40882v0) {
+            q4Var4.setText(LocaleController.getString(R.string.PassportDocument));
+        } else {
+            q4Var4.setText(LocaleController.getString(R.string.PassportPersonal));
+        }
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d6, this.f40857j0, null);
+        this.f40842c0.addView(this.f40857j0, org.telegram.ui.Components.kb1.r(-1, -2));
+        int i17 = 7;
+        if (this.F != null) {
+            i10 = 9;
+        } else {
+            i10 = 7;
+        }
+        this.Y = new EditTextBoldCursor[i10];
+        int i18 = 0;
+        while (true) {
+            HashMap hashMap2 = this.f40877s1;
+            if (i18 < i10) {
+                EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+                this.Y[i18] = editTextBoldCursor;
+                em0 em0Var = new em0(context, editTextBoldCursor, 1);
+                em0Var.setWillNotDraw(z10);
+                this.f40842c0.addView(em0Var, org.telegram.ui.Components.kb1.r(i14, 64));
+                int i19 = org.telegram.ui.ActionBar.y6.f23357d6;
+                org.telegram.ui.ActionBar.f7.i(i19, em0Var, null);
+                if (i18 == i10 - 1) {
+                    View view = new View(context);
+                    this.S = view;
+                    org.telegram.ui.ActionBar.f7.i(i19, view, null);
+                    this.f40842c0.addView(this.S, org.telegram.ui.Components.kb1.r(i14, 6));
+                }
+                if (this.f40882v0 && this.F != null && i18 < i17) {
+                    em0Var.setVisibility(8);
+                    View view2 = this.S;
+                    if (view2 != null) {
+                        view2.setVisibility(8);
+                    }
+                }
+                this.Y[i18].setTag(Integer.valueOf(i18));
+                this.Y[i18].setSupportRtlHint(true);
+                this.Y[i18].setTextSize(1, 16.0f);
+                org.telegram.ui.ActionBar.f7.B(this.Y[i18], org.telegram.ui.ActionBar.y6.H6, null);
+                EditTextBoldCursor editTextBoldCursor2 = this.Y[i18];
+                int i20 = org.telegram.ui.ActionBar.y6.G6;
+                org.telegram.ui.ActionBar.f7.V(editTextBoldCursor2, i20, null);
+                org.telegram.ui.ActionBar.f7.A(this.Y[i18], org.telegram.ui.ActionBar.y6.L6, null);
+                this.Y[i18].setTransformHintToHeader(true);
+                this.Y[i18].setBackgroundDrawable(null);
+                org.telegram.ui.ActionBar.f7.w(this.Y[i18], i20, null);
+                this.Y[i18].setCursorSize(AndroidUtilities.dp(20.0f));
+                this.Y[i18].setCursorWidth(1.5f);
+                org.telegram.ui.ActionBar.f7.G(this.Y[i18], org.telegram.ui.ActionBar.y6.f23485k6, org.telegram.ui.ActionBar.y6.f23503l6, org.telegram.ui.ActionBar.y6.f23582p7, null);
+                int i21 = 5;
+                if (i18 != 5 && i18 != 6) {
+                    if (i18 != 3 && i18 != 8) {
+                        if (i18 == 4) {
+                            this.Y[i18].setOnTouchListener(new wl0(this, 1));
+                            this.Y[i18].setInputType(0);
+                            this.Y[i18].setFocusable(false);
+                        } else {
+                            this.Y[i18].setInputType(16385);
+                            this.Y[i18].setImeOptions(268435461);
+                        }
+                    } else {
+                        this.Y[i18].setOnTouchListener(new fi.o1(7, this, context));
+                        this.Y[i18].setInputType(0);
+                        this.Y[i18].setFocusable(false);
+                    }
+                } else {
+                    this.Y[i18].setOnTouchListener(new wl0(this, 0));
+                    this.Y[i18].setInputType(0);
+                }
+                HashMap hashMap3 = this.f40879t1;
+                switch (i18) {
+                    case 0:
+                        if (tL_secureRequiredType2.native_names) {
+                            this.Y[i18].setHintText(LocaleController.getString(R.string.PassportNameLatin));
+                        } else {
+                            this.Y[i18].setHintText(LocaleController.getString(R.string.PassportName));
+                        }
+                        str2 = "first_name";
+                        break;
+                    case 1:
+                        if (tL_secureRequiredType2.native_names) {
+                            this.Y[i18].setHintText(LocaleController.getString(R.string.PassportMidnameLatin));
+                        } else {
+                            this.Y[i18].setHintText(LocaleController.getString(R.string.PassportMidname));
+                        }
+                        str2 = "middle_name";
+                        break;
+                    case 2:
+                        if (tL_secureRequiredType2.native_names) {
+                            this.Y[i18].setHintText(LocaleController.getString(R.string.PassportSurnameLatin));
+                        } else {
+                            this.Y[i18].setHintText(LocaleController.getString(R.string.PassportSurname));
+                        }
+                        str2 = "last_name";
+                        break;
+                    case 3:
+                        this.Y[i18].setHintText(LocaleController.getString(R.string.PassportBirthdate));
+                        str2 = "birth_date";
+                        break;
+                    case 4:
+                        this.Y[i18].setHintText(LocaleController.getString(R.string.PassportGender));
+                        str2 = "gender";
+                        break;
+                    case 5:
+                        this.Y[i18].setHintText(LocaleController.getString(R.string.PassportCitizenship));
+                        str2 = "country_code";
+                        break;
+                    case 6:
+                        this.Y[i18].setHintText(LocaleController.getString(R.string.PassportResidence));
+                        str2 = "residence_country_code";
+                        break;
+                    case 7:
+                        this.Y[i18].setHintText(LocaleController.getString(R.string.PassportDocumentNumber));
+                        str2 = "document_no";
+                        hashMap2 = hashMap3;
+                        break;
+                    case 8:
+                        this.Y[i18].setHintText(LocaleController.getString(R.string.PassportExpired));
+                        str2 = "expiry_date";
+                        hashMap2 = hashMap3;
+                        break;
+                    default:
+                        i18++;
+                        i17 = 7;
+                        z10 = false;
+                        i14 = -1;
+                }
+                J1(hashMap2, this.Y[i18], str2);
+                EditTextBoldCursor editTextBoldCursor3 = this.Y[i18];
+                editTextBoldCursor3.setSelection(editTextBoldCursor3.length());
+                if (i18 != 0 && i18 != 2 && i18 != 1) {
+                    this.Y[i18].addTextChangedListener(new org.telegram.ui.Components.qy0(this, editTextBoldCursor, str2, hashMap2));
+                } else {
+                    this.Y[i18].addTextChangedListener(new im0(this, editTextBoldCursor, str2));
+                }
+                this.Y[i18].setPadding(0, 0, 0, 0);
+                EditTextBoldCursor editTextBoldCursor4 = this.Y[i18];
+                if (!LocaleController.isRTL) {
+                    i21 = 3;
+                }
+                editTextBoldCursor4.setGravity(i21 | 16);
+                em0Var.addView(this.Y[i18], org.telegram.ui.Components.kb1.h(-1, -1.0f, 51, 21.0f, 0.0f, 21.0f, 0.0f));
+                this.Y[i18].setOnEditorActionListener(new tl0(this, 1));
+                i18++;
+                i17 = 7;
+                z10 = false;
+                i14 = -1;
+            } else {
+                org.telegram.ui.Cells.f7 f7Var = new org.telegram.ui.Cells.f7(context, (d3) null);
+                this.m0 = f7Var;
+                this.f40842c0.addView(f7Var, org.telegram.ui.Components.kb1.r(-1, -2));
+                org.telegram.ui.Cells.q4 q4Var5 = new org.telegram.ui.Cells.q4(context);
+                this.f40857j0 = q4Var5;
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d6, q4Var5, null);
+                this.f40842c0.addView(this.f40857j0, org.telegram.ui.Components.kb1.r(-1, -2));
+                this.f40836a0 = new EditTextBoldCursor[3];
+                int i22 = 0;
+                for (int i23 = 3; i22 < i23; i23 = 3) {
+                    EditTextBoldCursor editTextBoldCursor5 = new EditTextBoldCursor(context);
+                    this.f40836a0[i22] = editTextBoldCursor5;
+                    em0 em0Var2 = new em0(context, editTextBoldCursor5, 2);
+                    em0Var2.setWillNotDraw(false);
+                    this.f40842c0.addView(em0Var2, org.telegram.ui.Components.kb1.r(-1, 64));
+                    int i24 = org.telegram.ui.ActionBar.y6.f23357d6;
+                    org.telegram.ui.ActionBar.f7.i(i24, em0Var2, null);
+                    if (i22 == 2) {
+                        View view3 = new View(context);
+                        this.T = view3;
+                        org.telegram.ui.ActionBar.f7.i(i24, view3, null);
+                        this.f40842c0.addView(this.T, org.telegram.ui.Components.kb1.r(-1, 6));
+                    }
+                    this.f40836a0[i22].setTag(Integer.valueOf(i22));
+                    this.f40836a0[i22].setSupportRtlHint(true);
+                    this.f40836a0[i22].setTextSize(1, 16.0f);
+                    org.telegram.ui.ActionBar.f7.B(this.f40836a0[i22], org.telegram.ui.ActionBar.y6.H6, null);
+                    EditTextBoldCursor editTextBoldCursor6 = this.f40836a0[i22];
+                    int i25 = org.telegram.ui.ActionBar.y6.G6;
+                    org.telegram.ui.ActionBar.f7.V(editTextBoldCursor6, i25, null);
+                    org.telegram.ui.ActionBar.f7.A(this.f40836a0[i22], org.telegram.ui.ActionBar.y6.L6, null);
+                    this.f40836a0[i22].setTransformHintToHeader(true);
+                    this.f40836a0[i22].setBackgroundDrawable(null);
+                    org.telegram.ui.ActionBar.f7.w(this.f40836a0[i22], i25, null);
+                    this.f40836a0[i22].setCursorSize(AndroidUtilities.dp(20.0f));
+                    this.f40836a0[i22].setCursorWidth(1.5f);
+                    org.telegram.ui.ActionBar.f7.G(this.f40836a0[i22], org.telegram.ui.ActionBar.y6.f23485k6, org.telegram.ui.ActionBar.y6.f23503l6, org.telegram.ui.ActionBar.y6.f23582p7, null);
+                    this.f40836a0[i22].setInputType(16385);
+                    this.f40836a0[i22].setImeOptions(268435461);
+                    if (i22 != 0) {
+                        if (i22 != 1) {
+                            if (i22 == 2) {
+                                str = "last_name_native";
+                            } else {
+                                i22++;
+                            }
+                        } else {
+                            str = "middle_name_native";
+                        }
+                    } else {
+                        str = "first_name_native";
+                    }
+                    J1(hashMap2, this.f40836a0[i22], str);
+                    EditTextBoldCursor editTextBoldCursor7 = this.f40836a0[i22];
+                    editTextBoldCursor7.setSelection(editTextBoldCursor7.length());
+                    if (i22 == 0 || i22 == 2 || i22 == 1) {
+                        this.f40836a0[i22].addTextChangedListener(new gm0(this, editTextBoldCursor5, str, 1));
+                    }
+                    this.f40836a0[i22].setPadding(0, 0, 0, 0);
+                    EditTextBoldCursor editTextBoldCursor8 = this.f40836a0[i22];
+                    if (LocaleController.isRTL) {
+                        i11 = 5;
+                    } else {
+                        i11 = 3;
+                    }
+                    editTextBoldCursor8.setGravity(i11 | 16);
+                    em0Var2.addView(this.f40836a0[i22], org.telegram.ui.Components.kb1.h(-1, -1.0f, 51, 21.0f, 0.0f, 21.0f, 0.0f));
+                    this.f40836a0[i22].setOnEditorActionListener(new tl0(this, 2));
+                    i22++;
+                }
+                org.telegram.ui.Cells.i9 i9Var5 = new org.telegram.ui.Cells.i9(context);
+                this.f40870q0 = i9Var5;
+                this.f40842c0.addView(i9Var5, org.telegram.ui.Components.kb1.r(-1, -2));
+                int i26 = (this.f40841c > j10 ? 1 : (this.f40841c == j10 ? 0 : -1));
+                TLRPC.TL_secureValue tL_secureValue = this.I;
+                if (((i26 != 0 || this.F == null) && this.H != null && !this.f40882v0) || tL_secureValue != null) {
+                    if (tL_secureValue != null) {
+                        T0(tL_secureValue.files);
+                        TLRPC.SecureFile secureFile = tL_secureValue.front_side;
+                        if (secureFile instanceof TLRPC.TL_secureFile) {
+                            S0((TLRPC.TL_secureFile) secureFile, 2);
+                        }
+                        TLRPC.SecureFile secureFile2 = tL_secureValue.reverse_side;
+                        if (secureFile2 instanceof TLRPC.TL_secureFile) {
+                            S0((TLRPC.TL_secureFile) secureFile2, 3);
+                        }
+                        TLRPC.SecureFile secureFile3 = tL_secureValue.selfie;
+                        if (secureFile3 instanceof TLRPC.TL_secureFile) {
+                            S0((TLRPC.TL_secureFile) secureFile3, 1);
+                        }
+                        V0(tL_secureValue.translation);
+                    }
+                    org.telegram.ui.Cells.ga gaVar3 = new org.telegram.ui.Cells.ga(context);
+                    org.telegram.ui.ActionBar.f7.V(gaVar3.getTextView(), org.telegram.ui.ActionBar.y6.f23582p7, null);
+                    org.telegram.ui.Cells.y M06 = org.telegram.ui.ActionBar.y6.M0(true);
+                    org.telegram.ui.ActionBar.b7 N11 = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23357d6);
+                    org.telegram.ui.ActionBar.b7 N12 = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23449i6);
+                    gaVar3.setBackground(M06);
+                    org.telegram.ui.ActionBar.f7.k(gaVar3, M06, N11, N12, null);
+                    if (this.F == null) {
+                        gaVar3.b(LocaleController.getString(R.string.PassportDeleteInfo), false);
+                    } else {
+                        gaVar3.b(LocaleController.getString(R.string.PassportDeleteDocument), false);
+                    }
+                    this.f40842c0.addView(gaVar3, org.telegram.ui.Components.kb1.r(-1, -2));
+                    gaVar3.setOnClickListener(new vl0(this, 1));
+                    org.telegram.ui.Cells.i9 i9Var6 = this.f40870q0;
+                    int i27 = R.drawable.greydivider;
+                    int i28 = org.telegram.ui.ActionBar.y6.f23319b7;
+                    org.telegram.ui.ActionBar.f7.a0(i27, i28, context, i9Var6, null);
+                    org.telegram.ui.Cells.f7 f7Var2 = new org.telegram.ui.Cells.f7(context, (d3) null);
+                    this.f40861l0 = f7Var2;
+                    org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider_bottom, i28, context, f7Var2, null);
+                    this.f40842c0.addView(this.f40861l0, org.telegram.ui.Components.kb1.r(-1, -2));
+                } else {
+                    org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.y6.f23319b7, context, this.f40870q0, null);
+                }
+                Q1();
+                Y0(false);
+                return;
+            }
+        }
+    }
+
+    public final void f1(android.content.Context r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kn0.f1(android.content.Context):void");
+    }
+
+    public final void g1(Context context) {
+        String str;
+        String str2;
+        TelephonyManager telephonyManager;
+        ViewGroup frameLayout;
+        this.actionBar.setTitle(LocaleController.getString(R.string.PassportPhone));
+        this.Y0 = new HashMap();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.getResources().getAssets().open("countries.txt")));
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine == null) {
+                    break;
+                }
+                String[] split = readLine.split(";");
+                this.U0.add(0, split[2]);
+                this.V0.put(split[2], split[0]);
+                this.W0.put(split[0], split[2]);
+                if (split.length > 3) {
+                    this.X0.put(split[0], split[3]);
+                }
+                this.Y0.put(split[1], split[2]);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        Collections.sort(this.U0, new dv(20));
+        String str3 = UserConfig.getInstance(this.currentAccount).getCurrentUser().phone;
+        org.telegram.ui.Cells.ga gaVar = new org.telegram.ui.Cells.ga(context);
+        org.telegram.ui.ActionBar.f7.V(gaVar.getTextView(), org.telegram.ui.ActionBar.y6.f23598q6, null);
+        org.telegram.ui.Cells.y M0 = org.telegram.ui.ActionBar.y6.M0(true);
+        int i10 = org.telegram.ui.ActionBar.y6.f23357d6;
+        org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i10);
+        org.telegram.ui.ActionBar.b7 N2 = org.telegram.ui.ActionBar.f7.N(org.telegram.ui.ActionBar.y6.f23449i6);
+        gaVar.setBackground(M0);
+        org.telegram.ui.ActionBar.f7.k(gaVar, M0, N, N2, null);
+        gaVar.b(LocaleController.formatString("PassportPhoneUseSame", R.string.PassportPhoneUseSame, kf.b.c().b("+" + str3)), false);
+        this.f40842c0.addView(gaVar, org.telegram.ui.Components.kb1.r(-1, -2));
+        gaVar.setOnClickListener(new vl0(this, 16));
+        org.telegram.ui.Cells.i9 i9Var = new org.telegram.ui.Cells.i9(context);
+        this.f40864n0 = i9Var;
+        org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.y6.f23319b7, context, i9Var, null);
+        this.f40864n0.setText(LocaleController.getString(R.string.PassportPhoneUseSameInfo));
+        this.f40842c0.addView(this.f40864n0, org.telegram.ui.Components.kb1.r(-1, -2));
+        org.telegram.ui.Cells.q4 q4Var = new org.telegram.ui.Cells.q4(context);
+        this.f40857j0 = q4Var;
+        q4Var.setText(LocaleController.getString(R.string.PassportPhoneUseOther));
+        org.telegram.ui.ActionBar.f7.i(i10, this.f40857j0, null);
+        this.f40842c0.addView(this.f40857j0, org.telegram.ui.Components.kb1.r(-1, -2));
+        this.Y = new EditTextBoldCursor[3];
+        for (int i11 = 0; i11 < 3; i11++) {
+            if (i11 == 2) {
+                this.Y[i11] = new org.telegram.ui.Components.q40(context);
+            } else {
+                this.Y[i11] = new EditTextBoldCursor(context);
+            }
+            if (i11 == 1) {
+                frameLayout = org.telegram.messenger.wh.d(context, 0);
+                this.f40842c0.addView(frameLayout, org.telegram.ui.Components.kb1.r(-1, 50));
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d6, frameLayout, null);
+            } else if (i11 == 2) {
+                frameLayout = (ViewGroup) this.Y[1].getParent();
+            } else {
+                frameLayout = new FrameLayout(context);
+                this.f40842c0.addView(frameLayout, org.telegram.ui.Components.kb1.r(-1, 50));
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23357d6, frameLayout, null);
+            }
+            this.Y[i11].setTag(Integer.valueOf(i11));
+            this.Y[i11].setTextSize(1, 16.0f);
+            org.telegram.ui.ActionBar.f7.E(this.Y[i11], org.telegram.ui.ActionBar.y6.H6, null);
+            EditTextBoldCursor editTextBoldCursor = this.Y[i11];
+            int i12 = org.telegram.ui.ActionBar.y6.G6;
+            org.telegram.ui.ActionBar.f7.V(editTextBoldCursor, i12, null);
+            this.Y[i11].setBackgroundDrawable(null);
+            org.telegram.ui.ActionBar.f7.w(this.Y[i11], i12, null);
+            this.Y[i11].setCursorSize(AndroidUtilities.dp(20.0f));
+            this.Y[i11].setCursorWidth(1.5f);
+            if (i11 == 0) {
+                this.Y[i11].setOnTouchListener(new wl0(this, 3));
+                this.Y[i11].setText(LocaleController.getString(R.string.ChooseCountry));
+                this.Y[i11].setInputType(0);
+                this.Y[i11].setFocusable(false);
+            } else {
+                this.Y[i11].setInputType(3);
+                if (i11 == 2) {
+                    this.Y[i11].setImeOptions(268435462);
+                } else {
+                    this.Y[i11].setImeOptions(268435461);
+                }
+            }
+            EditTextBoldCursor editTextBoldCursor2 = this.Y[i11];
+            editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+            int i13 = 5;
+            if (i11 == 1) {
+                TextView textView = new TextView(context);
+                this.f40885w0 = textView;
+                textView.setText("+");
+                org.telegram.ui.ActionBar.f7.V(this.f40885w0, i12, null);
+                this.f40885w0.setTextSize(1, 16.0f);
+                frameLayout.addView(this.f40885w0, org.telegram.ui.Components.kb1.o(21.0f, 12.0f, 0.0f, 6.0f, -2, -2));
+                this.Y[i11].setPadding(AndroidUtilities.dp(10.0f), 0, 0, 0);
+                this.Y[i11].setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
+                this.Y[i11].setGravity(19);
+                frameLayout.addView(this.Y[i11], org.telegram.ui.Components.kb1.o(0.0f, 12.0f, 16.0f, 6.0f, 55, -2));
+                this.Y[i11].addTextChangedListener(new xm0(this));
+            } else if (i11 == 2) {
+                this.Y[i11].setPadding(0, 0, 0, 0);
+                this.Y[i11].setGravity(19);
+                this.Y[i11].setHintText(null);
+                this.Y[i11].setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+                frameLayout.addView(this.Y[i11], org.telegram.ui.Components.kb1.o(0.0f, 12.0f, 21.0f, 6.0f, -1, -2));
+                this.Y[i11].addTextChangedListener(new wr(this, 3));
+            } else {
+                this.Y[i11].setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+                EditTextBoldCursor editTextBoldCursor3 = this.Y[i11];
+                if (!LocaleController.isRTL) {
+                    i13 = 3;
+                }
+                editTextBoldCursor3.setGravity(i13);
+                frameLayout.addView(this.Y[i11], org.telegram.ui.Components.kb1.h(-1, -2.0f, 51, 21.0f, 12.0f, 21.0f, 6.0f));
+            }
+            this.Y[i11].setOnEditorActionListener(new tl0(this, 0));
+            if (i11 == 2) {
+                this.Y[i11].setOnKeyListener(new mg(this, 1));
+            }
+            if (i11 == 0) {
+                View view = new View(context);
+                this.f40859k0.add(view);
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23358d7, view, null);
+                frameLayout.addView(view, new FrameLayout.LayoutParams(-1, 1, 83));
+            }
+        }
+        try {
+            telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
+        } catch (Exception e10) {
+            FileLog.e(e10);
+        }
+        if (telephonyManager != null) {
+            str = telephonyManager.getSimCountryIso().toUpperCase();
+            if (str != null && (str2 = (String) this.Y0.get(str)) != null && this.U0.indexOf(str2) != -1) {
+                this.Y[1].setText((CharSequence) this.V0.get(str2));
+            }
+            org.telegram.ui.Cells.i9 i9Var2 = new org.telegram.ui.Cells.i9(context);
+            this.f40864n0 = i9Var2;
+            org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.y6.f23319b7, context, i9Var2, null);
+            this.f40864n0.setText(LocaleController.getString(R.string.PassportPhoneUploadInfo));
+            this.f40842c0.addView(this.f40864n0, org.telegram.ui.Components.kb1.r(-1, -2));
+        }
+        str = null;
+        if (str != null) {
+            this.Y[1].setText((CharSequence) this.V0.get(str2));
+        }
+        org.telegram.ui.Cells.i9 i9Var22 = new org.telegram.ui.Cells.i9(context);
+        this.f40864n0 = i9Var22;
+        org.telegram.ui.ActionBar.f7.a0(R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.y6.f23319b7, context, i9Var22, null);
+        this.f40864n0.setText(LocaleController.getString(R.string.PassportPhoneUploadInfo));
+        this.f40842c0.addView(this.f40864n0, org.telegram.ui.Components.kb1.r(-1, -2));
+    }
+
+    @Override
+    public final ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.f40839b0, 32768, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23637s8));
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.actionBar, 134217728, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.C8));
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.actionBar, 67108864, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.D8));
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            ArrayList arrayList2 = this.f40859k0;
+            if (i11 >= arrayList2.size()) {
+                break;
+            }
+            arrayList.add(new org.telegram.ui.ActionBar.h7((View) arrayList2.get(i11), 1, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23358d7));
+            i11++;
+        }
+        for (Map.Entry entry : this.f40865n1.entrySet()) {
+            arrayList.add(new org.telegram.ui.ActionBar.h7((in0) entry.getValue(), 268435456, new Class[]{in0.class}, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23357d6));
+        }
+        int i12 = org.telegram.ui.ActionBar.y6.f23357d6;
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.f40842c0, 268435456, new Class[]{org.telegram.ui.Cells.h9.class}, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.f40842c0, 268435456, new Class[]{org.telegram.ui.Cells.ga.class}, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.f40842c0, 268435456, new Class[]{jn0.class}, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, i12));
+        if (this.Y != null) {
+            int i13 = 0;
+            while (true) {
+                EditTextBoldCursor[] editTextBoldCursorArr = this.Y;
+                if (i13 >= editTextBoldCursorArr.length) {
+                    break;
+                }
+                arrayList.add(new org.telegram.ui.ActionBar.h7((View) editTextBoldCursorArr[i13].getParent(), 1, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23357d6));
+                arrayList.add(new org.telegram.ui.ActionBar.h7(this.Y[i13], 8390656, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.L6));
+                arrayList.add(new org.telegram.ui.ActionBar.h7(this.Y[i13], 32, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23485k6));
+                arrayList.add(new org.telegram.ui.ActionBar.h7(this.Y[i13], 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23503l6));
+                arrayList.add(new org.telegram.ui.ActionBar.h7(this.Y[i13], 2080, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23582p7));
+                i13++;
+            }
+        } else {
+            arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.G6));
+            arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 8388608, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.H6));
+            arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 8390656, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.L6));
+            arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 32, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23485k6));
+            arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23503l6));
+            arrayList.add(new org.telegram.ui.ActionBar.h7((View) null, 2080, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23582p7));
+        }
+        if (this.f40836a0 != null) {
+            while (true) {
+                EditTextBoldCursor[] editTextBoldCursorArr2 = this.f40836a0;
+                if (i10 >= editTextBoldCursorArr2.length) {
+                    break;
+                }
+                arrayList.add(new org.telegram.ui.ActionBar.h7((View) editTextBoldCursorArr2[i10].getParent(), 1, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23357d6));
+                arrayList.add(new org.telegram.ui.ActionBar.h7(this.f40836a0[i10], 8390656, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.L6));
+                arrayList.add(new org.telegram.ui.ActionBar.h7(this.f40836a0[i10], 32, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23485k6));
+                arrayList.add(new org.telegram.ui.ActionBar.h7(this.f40836a0[i10], 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23503l6));
+                arrayList.add(new org.telegram.ui.ActionBar.h7(this.f40836a0[i10], 2080, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23582p7));
+                i10++;
+            }
+        }
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.F0, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23429h6));
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.Q, 32, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23626rh));
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.Q, 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23646sh));
+        return arrayList;
+    }
+
+    public final byte[] i1(byte[] bArr, byte[] bArr2) {
+        if (bArr == null || bArr.length != 32 || bArr2 == null || bArr2.length != 32) {
+            return null;
+        }
+        byte[] bArr3 = new byte[32];
+        System.arraycopy(this.f40847e1, 0, bArr3, 0, 32);
+        byte[] bArr4 = new byte[16];
+        System.arraycopy(this.f40847e1, 32, bArr4, 0, 16);
+        byte[] bArr5 = new byte[32];
+        System.arraycopy(this.f40843c1, 0, bArr5, 0, 32);
+        Utilities.aesCbcEncryptionByteArraySafe(bArr5, bArr3, bArr4, 0, 32, 0, 0);
+        if (!Z0(bArr5, null)) {
+            return null;
+        }
+        byte[] computeSHA512 = Utilities.computeSHA512(bArr5, bArr2);
+        byte[] bArr6 = new byte[32];
+        System.arraycopy(computeSHA512, 0, bArr6, 0, 32);
+        byte[] bArr7 = new byte[16];
+        System.arraycopy(computeSHA512, 32, bArr7, 0, 16);
+        byte[] bArr8 = new byte[32];
+        System.arraycopy(bArr, 0, bArr8, 0, 32);
+        Utilities.aesCbcEncryptionByteArraySafe(bArr8, bArr6, bArr7, 0, 32, 0, 0);
+        return bArr8;
+    }
+
+    public final void j1(final TLRPC.TL_secureRequiredType tL_secureRequiredType, final TLRPC.TL_secureRequiredType tL_secureRequiredType2, final ArrayList arrayList, final boolean z10, final ul0 ul0Var, final xl0 xl0Var, final boolean z11) {
+        if (tL_secureRequiredType == null) {
+            return;
+        }
+        TL_account.deleteSecureValue deletesecurevalue = new TL_account.deleteSecureValue();
+        if (z11 && tL_secureRequiredType2 != null) {
+            deletesecurevalue.types.add(tL_secureRequiredType2.type);
+        } else {
+            if (z10) {
+                deletesecurevalue.types.add(tL_secureRequiredType.type);
+            }
+            if (tL_secureRequiredType2 != null) {
+                deletesecurevalue.types.add(tL_secureRequiredType2.type);
+            }
+        }
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(deletesecurevalue, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+                final kn0 kn0Var = kn0.this;
+                final ym0 ym0Var = xl0Var;
+                final boolean z12 = z11;
+                final TLRPC.TL_secureRequiredType tL_secureRequiredType3 = tL_secureRequiredType2;
+                final TLRPC.TL_secureRequiredType tL_secureRequiredType4 = tL_secureRequiredType;
+                final boolean z13 = z10;
+                final ArrayList arrayList2 = arrayList;
+                final Runnable runnable = ul0Var;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        String str;
+                        TLRPC.TL_secureData tL_secureData;
+                        String str2;
+                        LinearLayout linearLayout;
+                        kn0 kn0Var2 = kn0.this;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        String str3 = null;
+                        if (tL_error2 != null) {
+                            ym0 ym0Var2 = ym0Var;
+                            if (ym0Var2 != null) {
+                                ym0Var2.d(tL_error2.text, null);
+                            }
+                            kn0Var2.M1(LocaleController.getString(R.string.AppName), tL_error2.text);
+                            return;
+                        }
+                        boolean z14 = z12;
+                        TLRPC.TL_secureRequiredType tL_secureRequiredType5 = tL_secureRequiredType3;
+                        TLRPC.TL_secureRequiredType tL_secureRequiredType6 = tL_secureRequiredType4;
+                        boolean z15 = z13;
+                        if (z14) {
+                            if (tL_secureRequiredType5 != null) {
+                                kn0Var2.H1(tL_secureRequiredType5);
+                            } else {
+                                kn0Var2.H1(tL_secureRequiredType6);
+                            }
+                        } else {
+                            if (z15) {
+                                kn0Var2.H1(tL_secureRequiredType6);
+                            }
+                            kn0Var2.H1(tL_secureRequiredType5);
+                        }
+                        int i10 = 0;
+                        if (kn0Var2.f40838b == 8) {
+                            jn0 jn0Var = (jn0) kn0Var2.f40871q1.remove(tL_secureRequiredType6);
+                            if (jn0Var != null) {
+                                kn0Var2.f40842c0.removeView(jn0Var);
+                                View childAt = kn0Var2.f40842c0.getChildAt(linearLayout.getChildCount() - 6);
+                                if (childAt instanceof jn0) {
+                                    ((jn0) childAt).setNeedDivider(false);
+                                }
+                            }
+                            kn0Var2.R1();
+                        } else {
+                            ArrayList arrayList3 = arrayList2;
+                            if (tL_secureRequiredType5 != null && arrayList3 != null && arrayList3.size() > 1) {
+                                int size = arrayList3.size();
+                                int i11 = 0;
+                                while (true) {
+                                    if (i11 < size) {
+                                        TLRPC.TL_secureRequiredType tL_secureRequiredType7 = (TLRPC.TL_secureRequiredType) arrayList3.get(i11);
+                                        TLRPC.TL_secureValue r12 = kn0Var2.r1(tL_secureRequiredType7, false);
+                                        if (r12 != null) {
+                                            TLRPC.TL_secureData tL_secureData2 = r12.data;
+                                            if (tL_secureData2 != null) {
+                                                str2 = kn0.h1(tL_secureData2.data, kn0Var2.i1(tL_secureData2.secret, tL_secureData2.data_hash), r12.data.data_hash);
+                                            } else {
+                                                str2 = null;
+                                            }
+                                            str = str2;
+                                            tL_secureRequiredType5 = tL_secureRequiredType7;
+                                        } else {
+                                            i11++;
+                                        }
+                                    } else {
+                                        str = null;
+                                        break;
+                                    }
+                                }
+                                if (tL_secureRequiredType5 == null) {
+                                    tL_secureRequiredType5 = (TLRPC.TL_secureRequiredType) arrayList3.get(0);
+                                }
+                            } else {
+                                str = null;
+                            }
+                            if (z15) {
+                                if (arrayList3 != null) {
+                                    i10 = arrayList3.size();
+                                }
+                                kn0Var2.L1(tL_secureRequiredType6, null, null, tL_secureRequiredType5, str, z14, i10);
+                            } else {
+                                TLRPC.TL_secureRequiredType tL_secureRequiredType8 = tL_secureRequiredType5;
+                                String str4 = str;
+                                TLRPC.TL_secureValue r13 = kn0Var2.r1(tL_secureRequiredType6, false);
+                                if (r13 != null && (tL_secureData = r13.data) != null) {
+                                    str3 = kn0.h1(tL_secureData.data, kn0Var2.i1(tL_secureData.secret, tL_secureData.data_hash), r13.data.data_hash);
+                                }
+                                if (arrayList3 != null) {
+                                    i10 = arrayList3.size();
+                                }
+                                kn0Var2.L1(tL_secureRequiredType6, null, str3, tL_secureRequiredType8, str4, z14, i10);
+                            }
+                        }
+                        Runnable runnable2 = runnable;
+                        if (runnable2 != null) {
+                            runnable2.run();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    public final a8.me k1(byte[] bArr) {
+        byte[] p12 = p1();
+        int nextInt = Utilities.random.nextInt(208) + 32;
+        while ((bArr.length + nextInt) % 16 != 0) {
+            nextInt++;
+        }
+        byte[] bArr2 = new byte[nextInt];
+        Utilities.random.nextBytes(bArr2);
+        bArr2[0] = (byte) nextInt;
+        int length = nextInt + bArr.length;
+        byte[] bArr3 = new byte[length];
+        System.arraycopy(bArr2, 0, bArr3, 0, nextInt);
+        System.arraycopy(bArr, 0, bArr3, nextInt, bArr.length);
+        byte[] computeSHA256 = Utilities.computeSHA256(bArr3);
+        byte[] computeSHA512 = Utilities.computeSHA512(p12, computeSHA256);
+        byte[] bArr4 = new byte[32];
+        System.arraycopy(computeSHA512, 0, bArr4, 0, 32);
+        byte[] bArr5 = new byte[16];
+        System.arraycopy(computeSHA512, 32, bArr5, 0, 16);
+        Utilities.aesCbcEncryptionByteArraySafe(bArr3, bArr4, bArr5, 0, length, 0, 1);
+        byte[] bArr6 = new byte[32];
+        System.arraycopy(this.f40847e1, 0, bArr6, 0, 32);
+        byte[] bArr7 = new byte[16];
+        System.arraycopy(this.f40847e1, 32, bArr7, 0, 16);
+        byte[] bArr8 = new byte[32];
+        System.arraycopy(this.f40843c1, 0, bArr8, 0, 32);
+        Utilities.aesCbcEncryptionByteArraySafe(bArr8, bArr6, bArr7, 0, 32, 0, 0);
+        byte[] computeSHA5122 = Utilities.computeSHA512(bArr8, computeSHA256);
+        byte[] bArr9 = new byte[32];
+        System.arraycopy(computeSHA5122, 0, bArr9, 0, 32);
+        byte[] bArr10 = new byte[16];
+        System.arraycopy(computeSHA5122, 32, bArr10, 0, 16);
+        byte[] bArr11 = new byte[32];
+        System.arraycopy(p12, 0, bArr11, 0, 32);
+        Utilities.aesCbcEncryptionByteArraySafe(bArr11, bArr9, bArr10, 0, 32, 0, 1);
+        ?? obj = new Object();
+        obj.f616c = bArr3;
+        obj.f614a = bArr11;
+        obj.d = computeSHA256;
+        obj.f615b = p12;
+        obj.e = new SecureDocumentKey(bArr4, bArr5);
+        return obj;
+    }
+
+    public final void l1(Bundle bundle, TLRPC.TL_auth_sentCode tL_auth_sentCode, boolean z10) {
+        bundle.putString("phoneHash", tL_auth_sentCode.phone_code_hash);
+        TLRPC.auth_CodeType auth_codetype = tL_auth_sentCode.next_type;
+        if (auth_codetype instanceof TLRPC.TL_auth_codeTypeCall) {
+            bundle.putInt("nextType", 4);
+        } else if (auth_codetype instanceof TLRPC.TL_auth_codeTypeFlashCall) {
+            bundle.putInt("nextType", 3);
+        } else if (auth_codetype instanceof TLRPC.TL_auth_codeTypeSms) {
+            bundle.putInt("nextType", 2);
+        }
+        if (tL_auth_sentCode.timeout == 0) {
+            tL_auth_sentCode.timeout = 60;
+        }
+        bundle.putInt("timeout", tL_auth_sentCode.timeout * 1000);
+        TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
+        if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeCall) {
+            bundle.putInt("type", 4);
+            bundle.putInt("length", tL_auth_sentCode.type.length);
+            K1(bundle, 2, z10);
+        } else if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeFlashCall) {
+            bundle.putInt("type", 3);
+            bundle.putString("pattern", tL_auth_sentCode.type.pattern);
+            K1(bundle, 1, z10);
+        } else if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeSms) {
+            bundle.putInt("type", 2);
+            bundle.putInt("length", tL_auth_sentCode.type.length);
+            K1(bundle, 0, z10);
+        }
+    }
+
+    public final String m1() {
+        StringBuilder sb2 = new StringBuilder();
+        int i10 = 0;
+        while (true) {
+            EditTextBoldCursor[] editTextBoldCursorArr = this.Y;
+            if (i10 >= editTextBoldCursorArr.length) {
+                break;
+            }
+            sb2.append((CharSequence) editTextBoldCursorArr[i10].getText());
+            sb2.append(",");
+            i10++;
+        }
+        if (this.f40836a0 != null) {
+            int i11 = 0;
+            while (true) {
+                EditTextBoldCursor[] editTextBoldCursorArr2 = this.f40836a0;
+                if (i11 >= editTextBoldCursorArr2.length) {
+                    break;
+                }
+                sb2.append((CharSequence) editTextBoldCursorArr2[i11].getText());
+                sb2.append(",");
+                i11++;
+            }
+        }
+        ArrayList arrayList = this.f40856i1;
+        int size = arrayList.size();
+        for (int i12 = 0; i12 < size; i12++) {
+            sb2.append(((SecureDocument) arrayList.get(i12)).secureFile.f22165id);
+        }
+        SecureDocument secureDocument = this.l1;
+        if (secureDocument != null) {
+            sb2.append(secureDocument.secureFile.f22165id);
+        }
+        SecureDocument secureDocument2 = this.f40862m1;
+        if (secureDocument2 != null) {
+            sb2.append(secureDocument2.secureFile.f22165id);
+        }
+        SecureDocument secureDocument3 = this.f40858j1;
+        if (secureDocument3 != null) {
+            sb2.append(secureDocument3.secureFile.f22165id);
+        }
+        ArrayList arrayList2 = this.f40860k1;
+        int size2 = arrayList2.size();
+        for (int i13 = 0; i13 < size2; i13++) {
+            sb2.append(((SecureDocument) arrayList2.get(i13)).secureFile.f22165id);
+        }
+        return sb2.toString();
+    }
+
+    @Override
+    public final void onActivityResultFragment(int i10, int i11, Intent intent) {
+        if (i11 == -1) {
+            if (i10 != 0 && i10 != 2) {
+                if (i10 == 1) {
+                    if (intent != null && intent.getData() != null) {
+                        ArrayList arrayList = new ArrayList();
+                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                        sendingMediaInfo.uri = intent.getData();
+                        arrayList.add(sendingMediaInfo);
+                        G1(arrayList);
+                        return;
+                    } else if (getParentActivity() != null) {
+                        Toast.makeText(getParentActivity(), LocaleController.getString(R.string.UnsupportedAttachment), 0).show();
+                        return;
                     } else {
                         return;
                     }
                 }
-            case 12:
-                po0Var.P.setClickable(false);
-                try {
-                    JSONObject put = new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
-                    JSONObject q02 = po0.q0();
-                    if (po0Var.K0 != null && po0Var.M0 == null) {
-                        q02.put("tokenizationSpecification", new co0(po0Var, 1));
-                    } else {
-                        q02.put("tokenizationSpecification", new co0(po0Var, 3));
+                return;
+            }
+            c1();
+            org.telegram.ui.Components.ti tiVar = this.R0;
+            if (tiVar != null) {
+                tiVar.f33002j0.h0(i10, intent, this.Q0);
+            }
+            this.Q0 = null;
+        }
+    }
+
+    @Override
+    public final boolean onBackPressed(boolean z10) {
+        int i10 = this.f40838b;
+        if (i10 == 7) {
+            if (z10) {
+                int i11 = this.I1;
+                org.telegram.ui.Components.bx0[] bx0VarArr = this.J1;
+                bx0VarArr[i11].c(true);
+                for (org.telegram.ui.Components.bx0 bx0Var : bx0VarArr) {
+                    if (bx0Var != null) {
+                        bx0Var.f();
                     }
-                    put.put("allowedPaymentMethods", new JSONArray().put(q02));
-                    JSONObject jSONObject = new JSONObject();
-                    ArrayList arrayList = new ArrayList(po0Var.C0.invoice.prices);
-                    TLRPC.TL_shippingOption tL_shippingOption = po0Var.G0;
-                    if (tL_shippingOption != null) {
-                        arrayList.addAll(tL_shippingOption.prices);
-                    }
-                    long j10 = 0;
-                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                        j10 += ((TLRPC.TL_labeledPrice) arrayList.get(i12)).amount;
-                    }
-                    jSONObject.put("totalPrice", LocaleController.getInstance().formatCurrencyDecimalString(j10, po0Var.C0.invoice.currency, false));
-                    jSONObject.put("totalPriceStatus", "FINAL");
-                    if (!TextUtils.isEmpty(po0Var.L0)) {
-                        jSONObject.put("countryCode", po0Var.L0);
-                    }
-                    jSONObject.put("currencyCode", po0Var.C0.invoice.currency);
-                    jSONObject.put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE");
-                    put.put("transactionInfo", jSONObject);
-                    put.put("merchantInfo", new JSONObject().put("merchantName", po0Var.f42611p0));
-                    String jSONObject2 = put.toString();
-                    ?? obj = new Object();
-                    obj.f51111r = true;
-                    o6.l.i(jSONObject2, "paymentDataRequestJson cannot be null!");
-                    obj.f51112s = jSONObject2;
-                    a6.a aVar = po0Var.e;
-                    aVar.getClass();
-                    com.google.android.gms.common.api.internal.u b10 = com.google.android.gms.common.api.internal.v.b();
-                    b10.f6622c = new li.h5(obj);
-                    b10.d = new l6.c[]{w8.p.f51123b};
-                    b10.f6621b = true;
-                    b10.f6620a = 23707;
-                    w8.a.a(aVar.e(1, b10.a()), po0Var.getParentActivity());
-                    return;
-                } catch (JSONException e) {
-                    FileLog.e(e);
-                    return;
                 }
-            case 13:
-                po0Var.f42619v0 = false;
-                po0Var.u0();
-                return;
-            default:
-                po0Var.f42599f[0].requestFocus();
-                AndroidUtilities.showKeyboard(po0Var.f42599f[0]);
-                return;
+            }
+        } else if (i10 != 0 && i10 != 5) {
+            if (i10 == 1 || i10 == 2) {
+                return !X0(z10);
+            }
+        } else if (z10) {
+            W0(false);
+        }
+        return true;
+    }
+
+    @Override
+    public final void onDialogDismiss(Dialog dialog) {
+        if (this.f40838b == 3 && dialog == this.L1) {
+            ArrayList arrayList = this.M1;
+            if (!arrayList.isEmpty()) {
+                getParentActivity().requestPermissions((String[]) arrayList.toArray(new String[0]), 6);
+            }
+        }
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        NotificationCenter.getInstance(this.currentAccount).addWeakObserver(this, NotificationCenter.fileUploaded);
+        NotificationCenter.getInstance(this.currentAccount).addWeakObserver(this, NotificationCenter.fileUploadFailed);
+        NotificationCenter.getInstance(this.currentAccount).addWeakObserver(this, NotificationCenter.twoStepPasswordChanged);
+        NotificationCenter.getInstance(this.currentAccount).addWeakObserver(this, NotificationCenter.didRemoveTwoStepPassword);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploaded);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploadFailed);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.twoStepPasswordChanged);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didRemoveTwoStepPassword);
+        int i10 = 0;
+        W0(false);
+        org.telegram.ui.Components.ti tiVar = this.R0;
+        if (tiVar != null) {
+            tiVar.dismissInternal();
+            this.R0.B1();
+        }
+        if (this.f40838b == 7) {
+            while (true) {
+                org.telegram.ui.Components.bx0[] bx0VarArr = this.J1;
+                if (i10 >= bx0VarArr.length) {
+                    break;
+                }
+                org.telegram.ui.Components.bx0 bx0Var = bx0VarArr[i10];
+                if (bx0Var != null) {
+                    bx0Var.f();
+                }
+                i10++;
+            }
+            org.telegram.ui.ActionBar.e2 e2Var = this.K1;
+            if (e2Var != null) {
+                try {
+                    e2Var.dismiss();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                this.K1 = null;
+            }
+        }
+    }
+
+    @Override
+    public final void onPause() {
+        super.onPause();
+        org.telegram.ui.Components.ti tiVar = this.R0;
+        if (tiVar != null) {
+            tiVar.D1();
+        }
+    }
+
+    @Override
+    public final void onRequestPermissionsResultFragment(int i10, String[] strArr, int[] iArr) {
+        org.telegram.ui.Components.ti tiVar;
+        org.telegram.ui.Cells.ga gaVar;
+        int i11 = this.f40838b;
+        if ((i11 == 1 || i11 == 2) && (tiVar = this.R0) != null) {
+            if (i10 == 17) {
+                tiVar.f33002j0.V(false);
+            } else if (i10 == 21) {
+                if (getParentActivity() != null && iArr != null && iArr.length != 0 && iArr[0] != 0) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+                    alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.AppName);
+                    alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.PermissionNoAudioVideoWithHint);
+                    alertDialog$Builder.h(LocaleController.getString(R.string.PermissionOpenSettings), new xl0(this, 0));
+                    org.telegram.messenger.t.p(R.string.OK, alertDialog$Builder, null);
+                }
+            } else if (i10 == 19 && iArr != null && iArr.length > 0 && iArr[0] == 0) {
+                F1(0);
+            } else if (i10 == 22 && iArr != null && iArr.length > 0 && iArr[0] == 0 && (gaVar = this.f40873r0) != null) {
+                gaVar.callOnClick();
+            }
+        } else if (i11 == 3 && i10 == 6) {
+            O1(false, this.E1, this.F1, this.G1, this.H1);
+        }
+    }
+
+    @Override
+    public final void onResume() {
+        ViewGroup[] viewGroupArr;
+        ViewGroup viewGroup;
+        super.onResume();
+        org.telegram.ui.Components.ti tiVar = this.R0;
+        if (tiVar != null) {
+            tiVar.E1();
+        }
+        if (this.f40838b == 5 && (viewGroupArr = this.Z) != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
+            this.Y[0].requestFocus();
+            AndroidUtilities.showKeyboard(this.Y[0]);
+            AndroidUtilities.runOnUIThread(new ul0(this, 0), 200L);
+        }
+        AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
+    }
+
+    @Override
+    public final void onThemeColorsChanged() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kn0.onThemeColorsChanged():void");
+    }
+
+    @Override
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (this.f40854h1 != null) {
+            AndroidUtilities.runOnUIThread(new ul0(this, 1));
+        }
+        int i10 = this.f40838b;
+        if (i10 == 5) {
+            if (z10) {
+                if (this.Z[0].getVisibility() == 0) {
+                    this.Y[0].requestFocus();
+                    AndroidUtilities.showKeyboard(this.Y[0]);
+                }
+                if (this.N0 == 2) {
+                    B1(false);
+                }
+            }
+        } else if (i10 == 7) {
+            if (z10) {
+                this.J1[this.I1].j();
+            }
+        } else if (i10 == 4) {
+            if (z10) {
+                this.Y[0].requestFocus();
+                AndroidUtilities.showKeyboard(this.Y[0]);
+            }
+        } else if (i10 == 6) {
+            if (z10) {
+                this.Y[0].requestFocus();
+                AndroidUtilities.showKeyboard(this.Y[0]);
+            }
+        } else if (i10 != 2 && i10 != 1) {
+        } else {
+            c1();
+        }
+    }
+
+    public final TLRPC.TL_secureValue r1(TLRPC.TL_secureRequiredType tL_secureRequiredType, boolean z10) {
+        String[] strArr;
+        if (tL_secureRequiredType != null) {
+            int size = this.f40890y.values.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                TLRPC.TL_secureValue tL_secureValue = this.f40890y.values.get(i10);
+                if (tL_secureRequiredType.type.getClass() == tL_secureValue.type.getClass()) {
+                    if (z10) {
+                        if (!tL_secureRequiredType.selfie_required || (tL_secureValue.selfie instanceof TLRPC.TL_secureFile)) {
+                            if (!tL_secureRequiredType.translation_required || !tL_secureValue.translation.isEmpty()) {
+                                if (!t1(tL_secureRequiredType.type) || !tL_secureValue.files.isEmpty()) {
+                                    if (!v1(tL_secureRequiredType.type) || (tL_secureValue.front_side instanceof TLRPC.TL_secureFile)) {
+                                        TLRPC.SecureValueType secureValueType = tL_secureRequiredType.type;
+                                        if ((!(secureValueType instanceof TLRPC.TL_secureValueTypeDriverLicense) && !(secureValueType instanceof TLRPC.TL_secureValueTypeIdentityCard)) || (tL_secureValue.reverse_side instanceof TLRPC.TL_secureFile)) {
+                                            boolean z11 = secureValueType instanceof TLRPC.TL_secureValueTypePersonalDetails;
+                                            if (z11 || (secureValueType instanceof TLRPC.TL_secureValueTypeAddress)) {
+                                                if (z11) {
+                                                    strArr = tL_secureRequiredType.native_names ? new String[]{"first_name_native", "last_name_native", "birth_date", "gender", "country_code", "residence_country_code"} : new String[]{"first_name", "last_name", "birth_date", "gender", "country_code", "residence_country_code"};
+                                                } else {
+                                                    strArr = new String[]{"street_line1", "street_line2", "post_code", "city", "state", "country_code"};
+                                                }
+                                                try {
+                                                    TLRPC.TL_secureData tL_secureData = tL_secureValue.data;
+                                                    JSONObject jSONObject = new JSONObject(h1(tL_secureData.data, i1(tL_secureData.secret, tL_secureData.data_hash), tL_secureValue.data.data_hash));
+                                                    for (int i11 = 0; i11 < strArr.length; i11++) {
+                                                        if (!jSONObject.has(strArr[i11]) || TextUtils.isEmpty(jSONObject.getString(strArr[i11]))) {
+                                                            return null;
+                                                        }
+                                                    }
+                                                } catch (Throwable unused) {
+                                                    return null;
+                                                }
+                                            }
+                                        } else {
+                                            return null;
+                                        }
+                                    } else {
+                                        return null;
+                                    }
+                                } else {
+                                    return null;
+                                }
+                            } else {
+                                return null;
+                            }
+                        } else {
+                            return null;
+                        }
+                    }
+                    return tL_secureValue;
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final void restoreSelfArgs(Bundle bundle) {
+        this.Q0 = bundle.getString("path");
+    }
+
+    public final boolean s1(Class cls) {
+        int size = this.f40890y.values.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            if (this.f40890y.values.get(i10).type.getClass() == cls) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void saveSelfArgs(Bundle bundle) {
+        String str = this.Q0;
+        if (str != null) {
+            bundle.putString("path", str);
+        }
+    }
+
+    public final boolean u1() {
+        String str = this.f40835a;
+        if (str != null && !str.equals(m1())) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void w1() {
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new yl0(this, 3)), this.classGuid);
+    }
+
+    public final void x1() {
+        org.telegram.ui.ActionBar.e2 e2Var = this.K1;
+        if (e2Var == null) {
+            return;
+        }
+        try {
+            e2Var.dismiss();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        this.K1 = null;
+    }
+
+    public final void y1() {
+        if (getParentActivity() != null && !getParentActivity().isFinishing() && this.K1 == null) {
+            org.telegram.ui.ActionBar.e2 e2Var = new org.telegram.ui.ActionBar.e2(getParentActivity(), 3, null);
+            this.K1 = e2Var;
+            e2Var.f22576i0 = false;
+            e2Var.show();
+        }
+    }
+
+    public final void z1(View view) {
+        if (view == null) {
+            return;
+        }
+        Vibrator vibrator = (Vibrator) getParentActivity().getSystemService("vibrator");
+        if (vibrator != null) {
+            vibrator.vibrate(200L);
+        }
+        AndroidUtilities.shakeView(view);
+        I1(view);
+    }
+
+    public kn0(int i10, long j10, String str, String str2, String str3, String str4, String str5, TL_account.authorizationForm authorizationform, TL_account.Password password) {
+        this(i10, authorizationform, password, (TLRPC.TL_secureRequiredType) null, (TLRPC.TL_secureValue) null, (TLRPC.TL_secureRequiredType) null, (TLRPC.TL_secureValue) null, (HashMap) null, (HashMap) null);
+        int i11;
+        String o12;
+        String str6;
+        String str7;
+        String str8;
+        String str9;
+        this.f40841c = j10;
+        this.d = str3;
+        this.e = str4;
+        this.h = str;
+        this.f40872r = str2;
+        this.f40863n = str5;
+        if (i10 != 0 || authorizationform.errors.isEmpty()) {
+            return;
+        }
+        try {
+            Collections.sort(authorizationform.errors, new qm0(this));
+            int size = authorizationform.errors.size();
+            int i12 = 0;
+            while (i12 < size) {
+                TLRPC.SecureValueError secureValueError = authorizationform.errors.get(i12);
+                byte[] bArr = null;
+                if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
+                    TLRPC.TL_secureValueErrorFrontSide tL_secureValueErrorFrontSide = (TLRPC.TL_secureValueErrorFrontSide) secureValueError;
+                    o12 = o1(tL_secureValueErrorFrontSide.type);
+                    str6 = tL_secureValueErrorFrontSide.text;
+                    bArr = tL_secureValueErrorFrontSide.file_hash;
+                    str7 = null;
+                    str8 = "front";
+                } else if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
+                    TLRPC.TL_secureValueErrorReverseSide tL_secureValueErrorReverseSide = (TLRPC.TL_secureValueErrorReverseSide) secureValueError;
+                    o12 = o1(tL_secureValueErrorReverseSide.type);
+                    str6 = tL_secureValueErrorReverseSide.text;
+                    bArr = tL_secureValueErrorReverseSide.file_hash;
+                    str7 = null;
+                    str8 = "reverse";
+                } else if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
+                    TLRPC.TL_secureValueErrorSelfie tL_secureValueErrorSelfie = (TLRPC.TL_secureValueErrorSelfie) secureValueError;
+                    o12 = o1(tL_secureValueErrorSelfie.type);
+                    str6 = tL_secureValueErrorSelfie.text;
+                    bArr = tL_secureValueErrorSelfie.file_hash;
+                    str7 = null;
+                    str8 = "selfie";
+                } else {
+                    if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
+                        TLRPC.TL_secureValueErrorTranslationFile tL_secureValueErrorTranslationFile = (TLRPC.TL_secureValueErrorTranslationFile) secureValueError;
+                        o12 = o1(tL_secureValueErrorTranslationFile.type);
+                        str6 = tL_secureValueErrorTranslationFile.text;
+                        bArr = tL_secureValueErrorTranslationFile.file_hash;
+                        str7 = null;
+                    } else if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
+                        TLRPC.TL_secureValueErrorTranslationFiles tL_secureValueErrorTranslationFiles = (TLRPC.TL_secureValueErrorTranslationFiles) secureValueError;
+                        o12 = o1(tL_secureValueErrorTranslationFiles.type);
+                        str6 = tL_secureValueErrorTranslationFiles.text;
+                        str7 = null;
+                    } else {
+                        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
+                            TLRPC.TL_secureValueErrorFile tL_secureValueErrorFile = (TLRPC.TL_secureValueErrorFile) secureValueError;
+                            o12 = o1(tL_secureValueErrorFile.type);
+                            str6 = tL_secureValueErrorFile.text;
+                            bArr = tL_secureValueErrorFile.file_hash;
+                            str7 = null;
+                        } else if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
+                            TLRPC.TL_secureValueErrorFiles tL_secureValueErrorFiles = (TLRPC.TL_secureValueErrorFiles) secureValueError;
+                            o12 = o1(tL_secureValueErrorFiles.type);
+                            str6 = tL_secureValueErrorFiles.text;
+                            str7 = null;
+                        } else if (secureValueError instanceof TLRPC.TL_secureValueError) {
+                            TLRPC.TL_secureValueError tL_secureValueError = (TLRPC.TL_secureValueError) secureValueError;
+                            o12 = o1(tL_secureValueError.type);
+                            str6 = tL_secureValueError.text;
+                            bArr = tL_secureValueError.hash;
+                            str7 = null;
+                            str8 = "error_all";
+                        } else {
+                            if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
+                                TLRPC.TL_secureValueErrorData tL_secureValueErrorData = (TLRPC.TL_secureValueErrorData) secureValueError;
+                                int i13 = 0;
+                                while (i13 < authorizationform.values.size()) {
+                                    TLRPC.TL_secureData tL_secureData = authorizationform.values.get(i13).data;
+                                    if (tL_secureData == null || !Arrays.equals(tL_secureData.data_hash, tL_secureValueErrorData.data_hash)) {
+                                        i13++;
+                                        size = size;
+                                    } else {
+                                        o12 = o1(tL_secureValueErrorData.type);
+                                        str6 = tL_secureValueErrorData.text;
+                                        String str10 = tL_secureValueErrorData.field;
+                                        bArr = tL_secureValueErrorData.data_hash;
+                                        str7 = str10;
+                                        str8 = "data";
+                                    }
+                                }
+                            }
+                            i11 = size;
+                            i12++;
+                            size = i11;
+                        }
+                        str8 = "files";
+                    }
+                    str8 = "translation";
+                }
+                HashMap hashMap = (HashMap) this.f40881u1.get(o12);
+                if (hashMap == null) {
+                    hashMap = new HashMap();
+                    i11 = size;
+                    this.f40881u1.put(o12, hashMap);
+                    this.f40883v1.put(o12, str6);
+                } else {
+                    i11 = size;
+                }
+                if (bArr != null) {
+                    str9 = Base64.encodeToString(bArr, 2);
+                } else {
+                    str9 = "";
+                }
+                switch (str8.hashCode()) {
+                    case -1840647503:
+                        if (!str8.equals("translation")) {
+                            continue;
+                        } else if (bArr != null) {
+                            hashMap.put("translation" + str9, str6);
+                            break;
+                        } else {
+                            hashMap.put("translation_all", str6);
+                            break;
+                        }
+                    case -906020504:
+                        if (str8.equals("selfie")) {
+                            hashMap.put("selfie" + str9, str6);
+                            break;
+                        } else {
+                            continue;
+                        }
+                    case 3076010:
+                        if (!str8.equals("data")) {
+                            continue;
+                        } else if (str7 == null) {
+                            break;
+                        } else {
+                            hashMap.put(str7, str6);
+                            break;
+                        }
+                    case 97434231:
+                        if (!str8.equals("files")) {
+                            continue;
+                        } else if (bArr != null) {
+                            hashMap.put("files" + str9, str6);
+                            break;
+                        } else {
+                            hashMap.put("files_all", str6);
+                            break;
+                        }
+                    case 97705513:
+                        if (str8.equals("front")) {
+                            hashMap.put("front" + str9, str6);
+                            break;
+                        } else {
+                            continue;
+                        }
+                    case 329856746:
+                        if (str8.equals("error_all")) {
+                            hashMap.put("error_all", str6);
+                            break;
+                        } else {
+                            continue;
+                        }
+                    case 1099846370:
+                        if (str8.equals("reverse")) {
+                            hashMap.put("reverse" + str9, str6);
+                            break;
+                        } else {
+                            continue;
+                        }
+                    default:
+                        continue;
+                }
+                i12++;
+                size = i11;
+            }
+        } catch (Exception unused) {
         }
     }
 }

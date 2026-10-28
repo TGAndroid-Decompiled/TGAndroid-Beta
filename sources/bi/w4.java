@@ -8,14 +8,14 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.mr0;
-public final class w4 extends mr0 {
+import org.telegram.ui.Components.nr0;
+public final class w4 extends nr0 {
     public final h7 f5601a1;
 
     public w4(h7 h7Var, Context context, String str, String str2, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context, null, null, str, null, false, str2, null, false, false, true, null, u6Var);
         this.f5601a1 = h7Var;
-        this.f30701b0 = true;
+        this.f31032b0 = true;
     }
 
     @Override
@@ -27,8 +27,8 @@ public final class w4 extends mr0 {
                 long j10 = hVar.j(0);
                 if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
                     org.telegram.ui.Components.qc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
-                    G.f31898s = false;
-                    G.f31900u = true;
+                    G.f31870s = false;
+                    G.f31872u = true;
                     G.j();
                 } else if (j10 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
@@ -40,19 +40,19 @@ public final class w4 extends mr0 {
                         str = chat.title;
                     }
                     org.telegram.ui.Components.qc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f31898s = false;
-                    G2.f31900u = true;
+                    G2.f31870s = false;
+                    G2.f31872u = true;
                     G2.j();
                 } else {
                     org.telegram.ui.Components.qc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
-                    G3.f31898s = false;
-                    G3.f31900u = true;
+                    G3.f31870s = false;
+                    G3.f31872u = true;
                     G3.j();
                 }
             } else {
                 org.telegram.ui.Components.qc R = bulletinFactory.R(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
-                R.f31898s = false;
-                R.f31900u = true;
+                R.f31870s = false;
+                R.f31872u = true;
                 R.j();
             }
             try {

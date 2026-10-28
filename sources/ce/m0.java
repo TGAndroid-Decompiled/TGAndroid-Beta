@@ -6,7 +6,7 @@ public abstract class m0 extends je.i {
     public int f6242c;
 
     public m0(int i10) {
-        super(0L, je.k.f15608g);
+        super(0L, je.k.f15607g);
         this.f6242c = i10;
     }
 

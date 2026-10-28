@@ -2,68 +2,53 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.widget.FrameLayout;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class w41 extends FrameLayout {
-    public final Path f44975a;
-    public final Paint f44976b;
-    public final boolean f44977c;
-    public final boolean d;
-    public final org.telegram.ui.ActionBar.u6 e;
-    public final Integer f44978f;
-    public final c61 h;
+public final class w41 extends u51 {
+    public final f61 G;
 
-    public w41(c61 c61Var, Context context, boolean z10, boolean z11, org.telegram.ui.ActionBar.u6 u6Var, Integer num) {
-        super(context);
-        this.h = c61Var;
-        this.f44977c = z10;
-        this.d = z11;
-        this.e = u6Var;
-        this.f44978f = num;
-        this.f44975a = new Path();
-        this.f44976b = new Paint(1);
+    public w41(f61 f61Var, Context context, boolean z10) {
+        super(f61Var, context, z10);
+        this.G = f61Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        float intValue;
-        c61 c61Var = this.h;
-        if (!c61Var.Q0) {
-            super.dispatchDraw(canvas);
-        } else if (this.f44977c) {
-            canvas.save();
-            boolean z10 = this.d;
-            Paint paint = this.f44976b;
-            if (z10) {
-                org.telegram.ui.ActionBar.y6.m(paint);
-            }
-            paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.G8, this.e));
-            paint.setAlpha((int) (getAlpha() * 255.0f));
-            Integer num = this.f44978f;
-            if (num == null) {
-                intValue = getWidth() / 2.0f;
+        float y3;
+        f61 f61Var = this.G;
+        r41 r41Var = f61Var.f39200g0;
+        w41 w41Var = f61Var.f39198f0;
+        f51 f51Var = f61Var.U;
+        if (f51Var != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            float x9 = r41Var.getX() + w41Var.getX();
+            float y10 = r41Var.getY() + w41Var.getY();
+            ai.f0 f0Var = (ai.f0) f51Var;
+            bh.i0 i0Var = (bh.i0) f0Var.f1485b;
+            bh.h0 h0Var = i0Var.f4047a;
+            RectF rectF = AndroidUtilities.rectTmp;
+            float f7 = 0;
+            rectF.set(f7, f7, measuredWidth, measuredHeight);
+            org.telegram.ui.Components.fl0 delegate = ((org.telegram.ui.Components.gl0) f0Var.f1486c).getDelegate();
+            float x10 = h0Var.getX() + x9;
+            if (i0Var.f4067y == 1) {
+                y3 = h0Var.getY() - AndroidUtilities.statusBarHeight;
             } else {
-                intValue = num.intValue();
+                y3 = h0Var.getY() + i0Var.f4049c.getY();
             }
-            float dp = intValue + AndroidUtilities.dp(20.0f);
-            float width = (getWidth() - getPaddingLeft()) - getPaddingRight();
-            float height = (getHeight() - getPaddingBottom()) - getPaddingTop();
-            if (c61Var.n()) {
-                AndroidUtilities.rectTmp.set((dp - (c61Var.f38283a1 * dp)) + getPaddingLeft(), c3.h0.z(1.0f, c61Var.f38286b1, height, getPaddingTop()), ((width - dp) * c61Var.f38283a1) + getPaddingLeft() + dp, getPaddingTop() + height);
-            } else {
-                AndroidUtilities.rectTmp.set((dp - (c61Var.f38283a1 * dp)) + getPaddingLeft(), getPaddingTop(), ((width - dp) * c61Var.f38283a1) + getPaddingLeft() + dp, (height * c61Var.f38286b1) + getPaddingTop());
+            delegate.l(canvas, rectF, 0.0f, x10, y3 + y10, 255, true);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        if (f7 != getTranslationY()) {
+            super.setTranslationY(f7);
+            if (this.G.U != null) {
+                invalidate();
             }
-            Path path = this.f44975a;
-            path.rewind();
-            path.addRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
-            canvas.drawPath(path, paint);
-            canvas.clipPath(path);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-        } else {
-            super.dispatchDraw(canvas);
         }
     }
 }

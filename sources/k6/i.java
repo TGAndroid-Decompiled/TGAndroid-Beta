@@ -11,18 +11,18 @@ import java.util.concurrent.TimeUnit;
 import k9.u;
 import n4.s;
 public final class i implements Runnable {
-    public final int f16413a;
-    public final k f16414b;
+    public final int f16412a;
+    public final k f16413b;
 
     public i(k kVar, int i10) {
-        this.f16413a = i10;
-        this.f16414b = kVar;
+        this.f16412a = i10;
+        this.f16413b = kVar;
     }
 
     private final void a() {
-        k kVar = this.f16414b;
+        k kVar = this.f16413b;
         synchronized (kVar) {
-            if (kVar.f16416a == 1) {
+            if (kVar.f16415a == 1) {
                 kVar.a("Timed out while binding");
             }
         }
@@ -30,52 +30,52 @@ public final class i implements Runnable {
 
     @Override
     public final void run() {
-        switch (this.f16413a) {
+        switch (this.f16412a) {
             case 0:
                 break;
             case 1:
                 a();
                 return;
             default:
-                this.f16414b.a("Service disconnected");
+                this.f16413b.a("Service disconnected");
                 return;
         }
         while (true) {
-            k kVar = this.f16414b;
+            k kVar = this.f16413b;
             synchronized (kVar) {
                 try {
-                    if (kVar.f16416a == 2) {
+                    if (kVar.f16415a == 2) {
                         if (kVar.d.isEmpty()) {
                             kVar.c();
                             return;
                         }
                         l lVar = (l) kVar.d.poll();
-                        kVar.e.put(lVar.f16420a, lVar);
-                        ((ScheduledExecutorService) kVar.f16419f.f16425c).schedule(new u(18, kVar, lVar), 30L, TimeUnit.SECONDS);
+                        kVar.e.put(lVar.f16419a, lVar);
+                        ((ScheduledExecutorService) kVar.f16418f.f16424c).schedule(new u(18, kVar, lVar), 30L, TimeUnit.SECONDS);
                         if (Log.isLoggable("MessengerIpcClient", 3)) {
                             Log.d("MessengerIpcClient", "Sending ".concat(String.valueOf(lVar)));
                         }
-                        m mVar = kVar.f16419f;
-                        Messenger messenger = kVar.f16417b;
-                        int i10 = lVar.f16422c;
+                        m mVar = kVar.f16418f;
+                        Messenger messenger = kVar.f16416b;
+                        int i10 = lVar.f16421c;
                         Message obtain = Message.obtain();
                         obtain.what = i10;
-                        obtain.arg1 = lVar.f16420a;
+                        obtain.arg1 = lVar.f16419a;
                         obtain.replyTo = messenger;
                         Bundle bundle = new Bundle();
                         bundle.putBoolean("oneWay", lVar.a());
-                        bundle.putString("pkg", ((Context) mVar.f16424b).getPackageName());
+                        bundle.putString("pkg", ((Context) mVar.f16423b).getPackageName());
                         bundle.putBundle("data", lVar.d);
                         obtain.setData(bundle);
                         try {
-                            s sVar = kVar.f16418c;
-                            Messenger messenger2 = (Messenger) sVar.f18696b;
+                            s sVar = kVar.f16417c;
+                            Messenger messenger2 = (Messenger) sVar.f18695b;
                             if (messenger2 != null) {
                                 messenger2.send(obtain);
                             } else {
-                                g gVar = (g) sVar.f18697c;
+                                g gVar = (g) sVar.f18696c;
                                 if (gVar != null) {
-                                    Messenger messenger3 = gVar.f16409a;
+                                    Messenger messenger3 = gVar.f16408a;
                                     messenger3.getClass();
                                     messenger3.send(obtain);
                                 } else {

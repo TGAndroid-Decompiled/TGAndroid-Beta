@@ -19,7 +19,7 @@ public final class j implements zd.b {
                 return new b((String) this.f1244b);
             case 1:
                 ?? obj = new Object();
-                obj.f52852c = pe.a(obj, obj, (r1) this.f1244b);
+                obj.f52910c = pe.a(obj, obj, (r1) this.f1244b);
                 return obj;
             default:
                 return (Iterator) this.f1244b;

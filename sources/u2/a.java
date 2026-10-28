@@ -8,26 +8,26 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class a {
-    public final ArrayList f49239a = new ArrayList(1);
-    public final HashSet f49240b = new HashSet(1);
-    public final ng f49241c = new ng(new CopyOnWriteArrayList(), 0, (g0) null);
+    public final ArrayList f49274a = new ArrayList(1);
+    public final HashSet f49275b = new HashSet(1);
+    public final ng f49276c = new ng(new CopyOnWriteArrayList(), 0, (g0) null);
     public final n2.j d = new n2.j(new CopyOnWriteArrayList(), 0, null);
     public Looper e;
-    public b2.p1 f49242f;
-    public j2.j f49243g;
+    public b2.p1 f49277f;
+    public j2.j f49278g;
 
     public boolean a(b2.p0 p0Var) {
         return false;
     }
 
     public final ng b(g0 g0Var) {
-        return new ng((CopyOnWriteArrayList) this.f49241c.d, 0, g0Var);
+        return new ng((CopyOnWriteArrayList) this.f49276c.d, 0, g0Var);
     }
 
     public abstract e0 c(g0 g0Var, a8.h0 h0Var, long j10);
 
     public final void d(h0 h0Var) {
-        HashSet hashSet = this.f49240b;
+        HashSet hashSet = this.f49275b;
         boolean isEmpty = hashSet.isEmpty();
         hashSet.remove(h0Var);
         if (!isEmpty && hashSet.isEmpty()) {
@@ -37,7 +37,7 @@ public abstract class a {
 
     public final void f(h0 h0Var) {
         this.e.getClass();
-        HashSet hashSet = this.f49240b;
+        HashSet hashSet = this.f49275b;
         boolean isEmpty = hashSet.isEmpty();
         hashSet.add(h0Var);
         if (isEmpty) {
@@ -67,12 +67,12 @@ public abstract class a {
             z10 = true;
         }
         yb.g(z10);
-        this.f49243g = jVar;
-        b2.p1 p1Var = this.f49242f;
-        this.f49239a.add(h0Var);
+        this.f49278g = jVar;
+        b2.p1 p1Var = this.f49277f;
+        this.f49274a.add(h0Var);
         if (this.e == null) {
             this.e = myLooper;
-            this.f49240b.add(h0Var);
+            this.f49275b.add(h0Var);
             m(c0Var);
         } else if (p1Var != null) {
             f(h0Var);
@@ -83,8 +83,8 @@ public abstract class a {
     public abstract void m(g2.c0 c0Var);
 
     public final void n(b2.p1 p1Var) {
-        this.f49242f = p1Var;
-        ArrayList arrayList = this.f49239a;
+        this.f49277f = p1Var;
+        ArrayList arrayList = this.f49274a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -97,13 +97,13 @@ public abstract class a {
     public abstract void o(e0 e0Var);
 
     public final void p(h0 h0Var) {
-        ArrayList arrayList = this.f49239a;
+        ArrayList arrayList = this.f49274a;
         arrayList.remove(h0Var);
         if (arrayList.isEmpty()) {
             this.e = null;
-            this.f49242f = null;
-            this.f49243g = null;
-            this.f49240b.clear();
+            this.f49277f = null;
+            this.f49278g = null;
+            this.f49275b.clear();
             q();
             return;
         }
@@ -113,22 +113,22 @@ public abstract class a {
     public abstract void q();
 
     public final void r(n2.k kVar) {
-        CopyOnWriteArrayList copyOnWriteArrayList = this.d.f18627c;
+        CopyOnWriteArrayList copyOnWriteArrayList = this.d.f18626c;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             n2.i iVar = (n2.i) it.next();
-            if (iVar.f18624b == kVar) {
+            if (iVar.f18623b == kVar) {
                 copyOnWriteArrayList.remove(iVar);
             }
         }
     }
 
     public final void s(k0 k0Var) {
-        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) this.f49241c.d;
+        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) this.f49276c.d;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             j0 j0Var = (j0) it.next();
-            if (j0Var.f49324b == k0Var) {
+            if (j0Var.f49359b == k0Var) {
                 copyOnWriteArrayList.remove(j0Var);
             }
         }

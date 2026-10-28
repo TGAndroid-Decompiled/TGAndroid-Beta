@@ -16,31 +16,31 @@ import java.util.List;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.au;
 public final class c5 {
-    public static final o4 f22502p = new Object();
-    public static final List f22503q = Arrays.asList(Integer.valueOf(R.id.menu_regular), Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_quote), Integer.valueOf(R.id.menu_date));
-    public static final List f22504r = Arrays.asList(Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler), Integer.valueOf(R.id.menu_quote));
-    public final View f22505a;
-    public final a5 f22506b;
+    public static final o4 f22503p = new Object();
+    public static final List f22504q = Arrays.asList(Integer.valueOf(R.id.menu_regular), Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_quote), Integer.valueOf(R.id.menu_date));
+    public static final List f22505r = Arrays.asList(Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler), Integer.valueOf(R.id.menu_quote));
+    public final View f22506a;
+    public final a5 f22507b;
     public Menu e;
-    public final int f22510i;
-    public Runnable f22511j;
-    public au f22512k;
-    public final u6 f22515n;
-    public final ch.b f22516o;
-    public final Rect f22507c = new Rect();
+    public final int f22511i;
+    public Runnable f22512j;
+    public au f22513k;
+    public final u6 f22516n;
+    public final ch.b f22517o;
+    public final Rect f22508c = new Rect();
     public final Rect d = new Rect();
-    public ArrayList f22508f = new ArrayList();
-    public MenuItem.OnMenuItemClickListener f22509g = f22502p;
+    public ArrayList f22509f = new ArrayList();
+    public MenuItem.OnMenuItemClickListener f22510g = f22503p;
     public boolean h = true;
-    public final p4 f22513l = new p4(this);
-    public final n4 f22514m = new n4(0);
+    public final p4 f22514l = new p4(this);
+    public final n4 f22515m = new n4(0);
 
     public c5(Context context, View view, int i10, u6 u6Var, ch.b bVar) {
-        this.f22505a = view;
-        this.f22510i = i10;
-        this.f22516o = bVar;
-        this.f22515n = u6Var;
-        this.f22506b = new a5(this, context, view);
+        this.f22506a = view;
+        this.f22511i = i10;
+        this.f22517o = bVar;
+        this.f22516n = u6Var;
+        this.f22507b = new a5(this, context, view);
     }
 
     public static AnimatorSet a(RelativeLayout relativeLayout, int i10, AnimatorListenerAdapter animatorListenerAdapter) {
@@ -72,7 +72,7 @@ public final class c5 {
                 SubMenu subMenu = item.getSubMenu();
                 if (subMenu != null) {
                     arrayList.addAll(d(subMenu));
-                } else if ((item.getItemId() != R.id.menu_quote || (auVar = this.f22512k) == null || ((Boolean) auVar.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != R.id.menu_regular || this.f22511j == null)) {
+                } else if ((item.getItemId() != R.id.menu_quote || (auVar = this.f22513k) == null || ((Boolean) auVar.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != R.id.menu_regular || this.f22512j == null)) {
                     arrayList.add(item);
                 }
             }

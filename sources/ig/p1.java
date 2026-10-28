@@ -2,12 +2,12 @@ package ig;
 
 import android.view.ViewGroup;
 import bi.cc;
-import org.telegram.ui.Components.lm0;
-public final class p1 extends lm0 {
-    public j1 f14203c;
+import org.telegram.ui.Components.mm0;
+public final class p1 extends mm0 {
+    public j1 f14202c;
     public Integer d;
     public cc e;
-    public boolean f14204f;
+    public boolean f14203f;
     public int h;
 
     @Override
@@ -15,12 +15,12 @@ public final class p1 extends lm0 {
         if (e1Var.b() == 0) {
             return false;
         }
-        return this.f14203c.D(e1Var);
+        return this.f14202c.D(e1Var);
     }
 
     @Override
     public final int h() {
-        j1 j1Var = this.f14203c;
+        j1 j1Var = this.f14202c;
         int K = j1Var.K();
         j1Var.M0 = K;
         return K + 1;
@@ -31,13 +31,13 @@ public final class p1 extends lm0 {
         if (i10 == 0) {
             return -983904;
         }
-        return this.f14203c.j(i10 - 1);
+        return this.f14202c.j(i10 - 1);
     }
 
     @Override
     public final void v(s4.e1 e1Var, int i10) {
         if (i10 > 0) {
-            this.f14203c.v(e1Var, i10 - 1);
+            this.f14202c.v(e1Var, i10 - 1);
         }
     }
 
@@ -48,6 +48,6 @@ public final class p1 extends lm0 {
             this.e = ccVar;
             return new s4.e1(ccVar);
         }
-        return this.f14203c.x(viewGroup, i10);
+        return this.f14202c.x(viewGroup, i10);
     }
 }

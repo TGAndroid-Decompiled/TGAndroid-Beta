@@ -3,34 +3,34 @@ package li;
 import a8.ye;
 import android.view.View;
 public final class l3 extends ye {
-    public final t3 f17346a;
-    public final v3 f17347b;
+    public final t3 f17345a;
+    public final v3 f17346b;
 
     public l3(v3 v3Var, t3 t3Var) {
-        this.f17347b = v3Var;
-        this.f17346a = t3Var;
+        this.f17346b = v3Var;
+        this.f17345a = t3Var;
     }
 
     @Override
     public final void a(boolean z10) {
-        this.f17346a.n();
-        v3 v3Var = this.f17347b;
+        this.f17345a.n();
+        v3 v3Var = this.f17346b;
         if (z10) {
-            j3 j3Var = v3Var.f17569v3;
-            v3Var.f17573x3 = j3Var.B0;
+            j3 j3Var = v3Var.f17568v3;
+            v3Var.f17572x3 = j3Var.B0;
             v3Var.y3 = j3Var.C0;
-            v3Var.f17576z3 = j3Var.D0;
+            v3Var.f17575z3 = j3Var.D0;
             v3Var.setEditTextsLocked(true);
             v3Var.t3();
             v3Var.b3();
             return;
         }
-        final int i10 = v3Var.f17573x3;
+        final int i10 = v3Var.f17572x3;
         final int i11 = v3Var.y3;
-        final int i12 = v3Var.f17576z3;
-        v3Var.f17573x3 = -1;
+        final int i12 = v3Var.f17575z3;
+        v3Var.f17572x3 = -1;
         v3Var.y3 = -1;
-        v3Var.f17576z3 = 0;
+        v3Var.f17575z3 = 0;
         boolean z11 = v3Var.A3;
         final float f7 = v3Var.B3;
         final float f10 = v3Var.C3;
@@ -41,7 +41,7 @@ public final class l3 extends ye {
             v3Var.post(new Runnable() {
                 @Override
                 public final void run() {
-                    v3 v3Var2 = l3.this.f17347b;
+                    v3 v3Var2 = l3.this.f17346b;
                     for (int i13 = 0; i13 < v3Var2.getChildCount(); i13++) {
                         View childAt = v3Var2.getChildAt(i13);
                         boolean z12 = childAt instanceof d6;

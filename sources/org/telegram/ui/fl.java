@@ -1,143 +1,33 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.concurrent.atomic.AtomicReference;
-public final class fl extends org.telegram.ui.ActionBar.b6 {
-    public final int M0;
-    public final Object N0;
+import android.app.Activity;
+import android.text.style.CharacterStyle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.UndoView;
+public final class fl extends UndoView {
+    public final wn f39396j0;
 
-    public fl(Object obj, Context context, int i10) {
-        super(context);
-        this.M0 = i10;
-        this.N0 = obj;
+    public fl(wn wnVar, Activity activity, wn wnVar2, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(activity, wnVar2, true, u6Var);
+        this.f39396j0 = wnVar;
     }
 
     @Override
-    public boolean k(CharSequence charSequence) {
-        org.telegram.ui.ActionBar.b6 b6Var;
-        switch (this.M0) {
-            case 1:
-                AtomicReference atomicReference = (AtomicReference) this.N0;
-                if (atomicReference != null && (b6Var = (org.telegram.ui.ActionBar.b6) atomicReference.get()) != null) {
-                    b6Var.k(charSequence);
-                }
-                return l(charSequence, false);
-            default:
-                return super.k(charSequence);
-        }
+    public final void b(CharacterStyle characterStyle) {
+        this.f39396j0.d8(characterStyle, false, null, null);
     }
 
     @Override
-    public void onAttachedToWindow() {
-        switch (this.M0) {
-            case 2:
-                super.onAttachedToWindow();
-                ((pp0) this.N0).f42635s.a();
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
+    public final void k(long j10, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
+        float f7;
+        int i11;
+        dk dkVar = this.f39396j0.f45164j2;
+        if (dkVar != null && (((i11 = dkVar.U) == 1 || i11 == 3) && dkVar.T)) {
+            f7 = AndroidUtilities.dp(dkVar.getStyleHeight());
+        } else {
+            f7 = 0.0f;
         }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.M0) {
-            case 2:
-                super.onDetachedFromWindow();
-                ((pp0) this.N0).f42635s.b();
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.M0) {
-            case 3:
-                int rightDrawableX = getRightDrawableX();
-                super.onDraw(canvas);
-                if (rightDrawableX != getRightDrawableX()) {
-                    ((ProfileActivity) this.N0).h5();
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.M0) {
-            case 3:
-                ProfileActivity profileActivity = (ProfileActivity) this.N0;
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f36039n != null) {
-                        StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f36039n != null) {
-                            if (sb2.length() > 0) {
-                                sb2.append(", ");
-                            }
-                            sb2.append(profileActivity.f36039n);
-                        }
-                        if (profileActivity.h != null) {
-                            if (sb2.length() > 0) {
-                                sb2.append(", ");
-                            }
-                            sb2.append(profileActivity.h);
-                        }
-                        accessibilityNodeInfo.setText(sb2);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public void setTranslationY(float f7) {
-        org.telegram.ui.ActionBar.b6 b6Var;
-        switch (this.M0) {
-            case 0:
-                super.setTranslationY(f7);
-                un unVar = (un) this.N0;
-                if (this == unVar.P2[0] && unVar.T2[1] != null) {
-                    if (unVar.f44184a5 && f7 < 0.0f) {
-                        unVar.L2.setTranslationY(f7 / 2.0f);
-                        return;
-                    } else {
-                        unVar.L2.setTranslationY(0.0f);
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                AtomicReference atomicReference = (AtomicReference) this.N0;
-                if (atomicReference != null && (b6Var = (org.telegram.ui.ActionBar.b6) atomicReference.get()) != null) {
-                    b6Var.setTranslationY(f7);
-                }
-                super.setTranslationY(f7);
-                return;
-            default:
-                super.setTranslationY(f7);
-                return;
-        }
-    }
-
-    public fl(Context context, AtomicReference atomicReference) {
-        super(context);
-        this.M0 = 1;
-        this.N0 = atomicReference;
+        setAdditionalTranslationY(f7);
+        super.k(j10, i10, obj, obj2, runnable, runnable2);
     }
 }

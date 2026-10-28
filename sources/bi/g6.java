@@ -18,14 +18,14 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.gb1;
-import org.telegram.ui.Components.w01;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.Components.w40;
+import org.telegram.ui.Components.x01;
 public final class g6 {
     public final TL_stars.TL_starGiftUnique f4661a;
     public final Context f4662b;
@@ -67,9 +67,9 @@ public final class g6 {
         } else {
             chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
         }
-        LinearLayout d = vh.d(context, 1);
+        LinearLayout d = wh.d(context, 1);
         f6 f6Var = new f6(this, context);
-        f6Var.addView(d, gb1.g(-2.0f, -1));
+        f6Var.addView(d, kb1.g(-2.0f, -1));
         if (!z11) {
             w40 w40Var = new w40(context, u6Var);
             this.f4666i = w40Var;
@@ -77,36 +77,36 @@ public final class g6 {
             arrayList.add(LocaleController.getString(R.string.Gift2BuyInStars));
             arrayList.add(LocaleController.getString(R.string.Gift2BuyInTON));
             w40Var.b(arrayList, new x0(this, 2));
-            d.addView(w40Var, gb1.x(-2, -2, 1, 18, 0, 18, 12));
+            d.addView(w40Var, kb1.x(-2, -2, 1, 18, 0, 18, 12));
         } else {
             this.f4666i = null;
             TextView textView = new TextView(context);
-            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23748y6, u6Var);
+            org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23749y6, u6Var);
             textView.setTextSize(1, 14.0f);
-            vh.k(R.string.Gift2BuyPriceOnlyTON, textView, 17);
-            d.addView(textView, gb1.x(-2, -2, 17, 24, 4, 24, 4));
+            wh.k(R.string.Gift2BuyPriceOnlyTON, textView, 17);
+            d.addView(textView, kb1.x(-2, -2, 17, 24, 4, 24, 4));
         }
-        d.addView(new b6(context, tL_starGiftUnique, chat), gb1.x(-1, -2, 48, 0, -4, 0, 0));
+        d.addView(new b6(context, tL_starGiftUnique, chat), kb1.x(-1, -2, 48, 0, -4, 0, 0));
         TextView textView2 = new TextView(context);
         this.f4667j = textView2;
-        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23464j5, u6Var);
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23465j5, u6Var);
         textView2.setTextSize(1, 16.0f);
-        d.addView(textView2, gb1.x(-1, -2, 48, 24, 4, 24, 4));
+        d.addView(textView2, kb1.x(-1, -2, 48, 24, 4, 24, 4));
         if (z10) {
-            w01 w01Var = new w01(context, u6Var);
-            h7.H1(w01Var, ca.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class));
-            h7.H1(w01Var, ca.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class));
-            h7.H1(w01Var, ca.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class));
+            x01 x01Var = new x01(context, u6Var);
+            h7.H1(x01Var, ca.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class));
+            h7.H1(x01Var, ca.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class));
+            h7.H1(x01Var, ca.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class));
             if (!TextUtils.isEmpty(tL_starGiftUnique.slug) && (tL_starGiftUnique.flags & 256) != 0) {
-                w01Var.c(LocaleController.getString(R.string.GiftValue2), b10.j("~", BillingController.getInstance().formatCurrency(tL_starGiftUnique.value_amount, tL_starGiftUnique.value_currency, BillingController.getInstance().getCurrencyExp(tL_starGiftUnique.value_currency), true)), null, null);
+                x01Var.c(LocaleController.getString(R.string.GiftValue2), b10.j("~", BillingController.getInstance().formatCurrency(tL_starGiftUnique.value_amount, tL_starGiftUnique.value_currency, BillingController.getInstance().getCurrencyExp(tL_starGiftUnique.value_currency), true)), null, null);
             }
-            d.addView(w01Var, gb1.x(-1, -2, 48, 23, 16, 23, 4));
+            d.addView(x01Var, kb1.x(-1, -2, 48, 23, 16, 23, 4));
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, u6Var);
         alertDialog$Builder.o(f6Var);
         alertDialog$Builder.k("_", new e6(this, i10, context, u6Var, callback2, 0));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        this.h = alertDialog$Builder.f22368a;
+        this.h = alertDialog$Builder.f22369a;
     }
 
     public final void a(boolean z10) {
@@ -218,8 +218,8 @@ public final class g6 {
         e2Var.Z0 = true;
         e2Var.show();
         this.f4669l = (TextView) e2Var.d(-1);
-        this.f4668k = e2Var.f22560b1;
-        FrameLayout frameLayout = e2Var.f22557a1;
+        this.f4668k = e2Var.f22561b1;
+        FrameLayout frameLayout = e2Var.f22558a1;
         this.f4670m = frameLayout;
         if (frameLayout != null && this.f4664f) {
             fi.v3 v3Var = new fi.v3(this.f4662b, 3);
@@ -230,7 +230,7 @@ public final class g6 {
             v3Var.u();
             this.f4675r = v3Var;
             v3Var.setPadding(AndroidUtilities.dp(7.33f), 0, AndroidUtilities.dp(7.33f), 0);
-            this.f4670m.addView(this.f4675r, gb1.h(-2, 100.0f, 48, 0.0f, 26.0f, 0.0f, 0.0f));
+            this.f4670m.addView(this.f4675r, kb1.h(-2, 100.0f, 48, 0.0f, 26.0f, 0.0f, 0.0f));
         }
         a(false);
     }

@@ -1,21 +1,21 @@
 package ue;
 public final class b {
     public static final b e;
-    public boolean f49713a;
-    public boolean f49714b;
-    public boolean f49715c;
+    public boolean f49748a;
+    public boolean f49749b;
+    public boolean f49750c;
     public boolean d;
 
     static {
         ?? obj = new Object();
-        obj.f49713a = true;
-        obj.f49714b = true;
-        obj.f49715c = false;
+        obj.f49748a = true;
+        obj.f49749b = true;
+        obj.f49750c = false;
         obj.d = false;
         e = obj;
-        obj.f49713a = true;
-        obj.f49714b = true;
-        obj.f49715c = false;
+        obj.f49748a = true;
+        obj.f49749b = true;
+        obj.f49750c = false;
         obj.d = false;
     }
 

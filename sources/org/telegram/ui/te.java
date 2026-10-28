@@ -6,14 +6,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class te implements Runnable {
-    public final int f43813a;
-    public final un f43814b;
-    public final MessageObject f43815c;
+    public final int f43607a;
+    public final wn f43608b;
+    public final MessageObject f43609c;
 
-    public te(un unVar, MessageObject messageObject, int i10) {
-        this.f43813a = i10;
-        this.f43814b = unVar;
-        this.f43815c = messageObject;
+    public te(wn wnVar, MessageObject messageObject, int i10) {
+        this.f43607a = i10;
+        this.f43608b = wnVar;
+        this.f43609c = messageObject;
     }
 
     @Override
@@ -24,23 +24,23 @@ public final class te implements Runnable {
         int i11;
         int i12;
         int i13;
-        switch (this.f43813a) {
+        switch (this.f43607a) {
             case 0:
-                MessageObject messageObject = this.f43815c;
+                MessageObject messageObject = this.f43609c;
                 TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
                 if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
                     LaunchActivity launchActivity = LaunchActivity.I1;
                     if (launchActivity == null || launchActivity.P() == null || LaunchActivity.I1.P().l(messageObject) == null) {
-                        this.f43814b.createArticleViewer(false).N(messageObject, null, null, null);
+                        this.f43608b.createArticleViewer(false).N(messageObject, null, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                un unVar = this.f43814b;
-                unVar.getClass();
-                MessageObject messageObject2 = this.f43815c;
+                wn wnVar = this.f43608b;
+                wnVar.getClass();
+                MessageObject messageObject2 = this.f43609c;
                 TLRPC.Message message = messageObject2.messageOwner;
                 int i14 = message.ttl;
                 if (i14 != Integer.MAX_VALUE) {
@@ -53,85 +53,85 @@ public final class te implements Runnable {
                 } else {
                     i10 = i14;
                 }
-                message.destroyTime = unVar.getConnectionsManager().getCurrentTime() + i10;
-                messageObject2.messageOwner.destroyTimeMillis = unVar.getConnectionsManager().getCurrentTimeMillis() + (i10 * 1000);
-                if (unVar.h != null) {
-                    unVar.getMessagesController().markMessageAsRead(unVar.f44252f6, messageObject2.messageOwner.random_id, i10);
+                message.destroyTime = wnVar.getConnectionsManager().getCurrentTime() + i10;
+                messageObject2.messageOwner.destroyTimeMillis = wnVar.getConnectionsManager().getCurrentTimeMillis() + (i10 * 1000);
+                if (wnVar.h != null) {
+                    wnVar.getMessagesController().markMessageAsRead(wnVar.f45168j6, messageObject2.messageOwner.random_id, i10);
                     return;
                 } else {
-                    unVar.getMessagesController().markMessageAsRead2(unVar.f44252f6, messageObject2.getId(), null, i10, 0L, z10);
+                    wnVar.getMessagesController().markMessageAsRead2(wnVar.f45168j6, messageObject2.getId(), null, i10, 0L, z10);
                     return;
                 }
             case 2:
-                int id2 = this.f43815c.getId();
-                un unVar2 = this.f43814b;
-                unVar2.gb(id2, 0, true, 0, true, 0, null, null, new jg(unVar2, 15));
-                if (unVar2.f44424t6.isEmpty()) {
-                    unVar2.Xb(false);
+                int id2 = this.f43609c.getId();
+                wn wnVar2 = this.f43608b;
+                wnVar2.kb(id2, 0, true, 0, true, 0, null, null, new ig(wnVar2, 15));
+                if (wnVar2.f45345x6.isEmpty()) {
+                    wnVar2.bc(false);
                     return;
                 }
                 return;
             case 3:
-                un unVar3 = this.f43814b;
-                unVar3.getClass();
-                MessageObject messageObject3 = this.f43815c;
+                wn wnVar3 = this.f43608b;
+                wnVar3.getClass();
+                MessageObject messageObject3 = this.f43609c;
                 int replyMsgId = messageObject3.getReplyMsgId();
-                int i15 = messageObject3.messageOwner.f22048id;
-                if (messageObject3.getDialogId() == unVar3.X6) {
+                int i15 = messageObject3.messageOwner.f22049id;
+                if (messageObject3.getDialogId() == wnVar3.f45065b7) {
                     i11 = 1;
                 } else {
                     i11 = 0;
                 }
-                unVar3.gb(replyMsgId, i15, true, i11, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
+                wnVar3.kb(replyMsgId, i15, true, i11, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
                 return;
             case 4:
-                un unVar4 = this.f43814b;
-                unVar4.getClass();
-                MessageObject messageObject4 = this.f43815c;
+                wn wnVar4 = this.f43608b;
+                wnVar4.getClass();
+                MessageObject messageObject4 = this.f43609c;
                 int replyMsgId2 = messageObject4.getReplyMsgId();
-                int i16 = messageObject4.messageOwner.f22048id;
-                if (messageObject4.getDialogId() == unVar4.X6) {
+                int i16 = messageObject4.messageOwner.f22049id;
+                if (messageObject4.getDialogId() == wnVar4.f45065b7) {
                     i12 = 1;
                 } else {
                     i12 = 0;
                 }
-                unVar4.gb(replyMsgId2, i16, true, i12, false, 0, null, null, null);
+                wnVar4.kb(replyMsgId2, i16, true, i12, false, 0, null, null, null);
                 return;
             case 5:
-                un unVar5 = this.f43814b;
-                unVar5.getClass();
-                MessageObject messageObject5 = this.f43815c;
+                wn wnVar5 = this.f43608b;
+                wnVar5.getClass();
+                MessageObject messageObject5 = this.f43609c;
                 int replyMsgId3 = messageObject5.getReplyMsgId();
-                int i17 = messageObject5.messageOwner.f22048id;
-                if (messageObject5.getDialogId() == unVar5.X6) {
+                int i17 = messageObject5.messageOwner.f22049id;
+                if (messageObject5.getDialogId() == wnVar5.f45065b7) {
                     i13 = 1;
                 } else {
                     i13 = 0;
                 }
-                unVar5.j(replyMsgId3, i17, true, i13, false, 0);
+                wnVar5.j(replyMsgId3, i17, true, i13, false, 0);
                 return;
             case 6:
-                un unVar6 = this.f43814b;
-                unVar6.getClass();
-                MessageObject messageObject6 = this.f43815c;
+                wn wnVar6 = this.f43608b;
+                wnVar6.getClass();
+                MessageObject messageObject6 = this.f43609c;
                 if (messageObject6.isVideo()) {
-                    unVar6.ra(null, messageObject6);
+                    wnVar6.ua(null, messageObject6);
                     return;
                 } else {
                     MediaController.getInstance().playMessage(messageObject6);
                     return;
                 }
             case 7:
-                un unVar7 = this.f43814b;
-                unVar7.getMessagesController().pinMessage(unVar7.e, unVar7.f44245f, this.f43815c.getId(), true, false, false);
-                unVar7.M3 = null;
+                wn wnVar7 = this.f43608b;
+                wnVar7.getMessagesController().pinMessage(wnVar7.e, wnVar7.f45113f, this.f43609c.getId(), true, false, false);
+                wnVar7.M3 = null;
                 return;
             default:
-                un unVar8 = this.f43814b;
-                org.telegram.ui.Components.wc.b0(unVar8).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessageObject messageObject7 = this.f43815c;
-                unVar8.Oa(messageObject7);
-                unVar8.Qa(messageObject7);
+                wn wnVar8 = this.f43608b;
+                org.telegram.ui.Components.wc.b0(wnVar8).c(LocaleController.getString(R.string.AdHidden)).j();
+                MessageObject messageObject7 = this.f43609c;
+                wnVar8.Ra(messageObject7);
+                wnVar8.Ta(messageObject7);
                 return;
         }
     }

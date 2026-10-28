@@ -1,25 +1,25 @@
 package ni;
 public final class l implements Runnable {
-    public final int f18890a;
-    public final q f18891b;
+    public final int f18889a;
+    public final q f18890b;
 
     public l(q qVar, int i10) {
-        this.f18890a = i10;
-        this.f18891b = qVar;
+        this.f18889a = i10;
+        this.f18890b = qVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f18890a) {
+        switch (this.f18889a) {
             case 0:
-                b bVar = this.f18891b.v;
+                b bVar = this.f18890b.v;
                 if (bVar != null) {
                     bVar.close();
                     return;
                 }
                 return;
             default:
-                this.f18891b.a();
+                this.f18890b.a();
                 return;
         }
     }

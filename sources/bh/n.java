@@ -36,13 +36,13 @@ import org.telegram.ui.Components.kw;
 import org.telegram.ui.Components.m40;
 import org.telegram.ui.Components.n10;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.tz0;
-import org.telegram.ui.Components.us0;
-import org.telegram.ui.Components.wp;
+import org.telegram.ui.Components.uz0;
+import org.telegram.ui.Components.vs0;
 import org.telegram.ui.Components.xp;
 import org.telegram.ui.Components.yp;
-import org.telegram.ui.jm;
-import org.telegram.ui.mo;
+import org.telegram.ui.Components.zp;
+import org.telegram.ui.lm;
+import org.telegram.ui.oo;
 public final class n implements Runnable {
     public final int f4086a;
     public final boolean f4087b;
@@ -109,7 +109,7 @@ public final class n implements Runnable {
                     }
                 }
                 h7Var2.U0 = -1;
-                qc qcVar = qc.f31882x;
+                qc qcVar = qc.f31854x;
                 if (qcVar != null) {
                     qcVar.c(0L, false);
                     return;
@@ -117,12 +117,12 @@ public final class n implements Runnable {
                 return;
             case 4:
                 ei.r rVar = (ei.r) obj;
-                us0 us0Var = rVar.W;
+                vs0 vs0Var = rVar.W;
                 if (z11) {
-                    new ei.u(us0Var.f10015a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new ai.i(us0Var, 14)).show();
+                    new ei.u(vs0Var.f10014a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new ai.i(vs0Var, 14)).show();
                     return;
                 } else {
-                    us0Var.b(rVar.f10001a.E);
+                    vs0Var.b(rVar.f10000a.E);
                     return;
                 }
             case 5:
@@ -135,7 +135,7 @@ public final class n implements Runnable {
                     return;
                 }
             case 6:
-                a4 a4Var = ((b4) obj).f10549b;
+                a4 a4Var = ((b4) obj).f10548b;
                 if (!z11) {
                     i13 = 8;
                 }
@@ -162,7 +162,7 @@ public final class n implements Runnable {
             case 9:
                 ta taVar = (ta) obj;
                 if (!z11) {
-                    taVar.f11725p2.f11636j1.setVisibility(8);
+                    taVar.f11724p2.f11635j1.setVisibility(8);
                     return;
                 } else {
                     taVar.getClass();
@@ -171,7 +171,7 @@ public final class n implements Runnable {
             case 10:
                 m3 m3Var = (m3) obj;
                 hi.k3 k3Var2 = m3Var.E;
-                e3 e3Var = m3Var.f13133y;
+                e3 e3Var = m3Var.f13132y;
                 if (e3Var.getWebView() != null) {
                     e3Var.getWebView().animate().cancel();
                     e3Var.getWebView().animate().alpha(0.0f).start();
@@ -192,11 +192,11 @@ public final class n implements Runnable {
                 ((ii.r0) obj).f(z11, false);
                 return;
             case 12:
-                String str = e2.n0.f9692a;
-                i2.j0 j0Var = ((i2.d0) ((k2.v) ((rf.b) obj).f47336c)).f13509a;
-                if (j0Var.f13588d0 != z11) {
-                    j0Var.f13588d0 = z11;
-                    j0Var.f13603m.e(23, new i2.y(1, z11));
+                String str = e2.n0.f9691a;
+                i2.j0 j0Var = ((i2.d0) ((k2.v) ((rf.b) obj).f47371c)).f13508a;
+                if (j0Var.f13587d0 != z11) {
+                    j0Var.f13587d0 = z11;
+                    j0Var.f13602m.e(23, new i2.y(1, z11));
                     return;
                 }
                 return;
@@ -240,48 +240,48 @@ public final class n implements Runnable {
                 qf.d.r(context, LocaleController.getString(i11));
                 return;
             case 24:
-                tz0 tz0Var = ((jm) obj).f40688c.f44370p1;
-                if (tz0Var != null && z11) {
-                    tz0Var.setVisibility(8);
+                uz0 uz0Var = ((lm) obj).f41203c.f45238p1;
+                if (uz0Var != null && z11) {
+                    uz0Var.setVisibility(8);
                     return;
                 }
                 return;
             case 25:
-                mo moVar = (mo) obj;
-                moVar.f41626w0.autotranslation = z11;
-                moVar.getMessagesController().putChat(moVar.f41626w0, false);
+                oo ooVar = (oo) obj;
+                ooVar.f42158w0.autotranslation = z11;
+                ooVar.getMessagesController().putChat(ooVar.f42158w0, false);
                 return;
             case 26:
-                yp ypVar = (yp) obj;
-                wp wpVar = ypVar.h;
-                if (wpVar != null && wpVar.d != null && !ypVar.isDismissed()) {
-                    ypVar.G(z11, true);
-                    if (ypVar.L != null) {
-                        ypVar.O = true;
-                        if (!ypVar.A()) {
-                            wallPaper = ypVar.f35106n.f43546g;
+                zp zpVar = (zp) obj;
+                xp xpVar = zpVar.h;
+                if (xpVar != null && xpVar.d != null && !zpVar.isDismissed()) {
+                    zpVar.G(z11, true);
+                    if (zpVar.L != null) {
+                        zpVar.O = true;
+                        if (!zpVar.A()) {
+                            wallPaper = zpVar.f35422n.f44060g;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        h4 h4Var = ypVar.L.f34793a;
-                        if (h4Var.f22682a) {
-                            ypVar.f35106n.q(null, wallPaper2, false, Boolean.valueOf(z11), false);
+                        h4 h4Var = zpVar.L.f35124a;
+                        if (h4Var.f22683a) {
+                            zpVar.f35422n.q(null, wallPaper2, false, Boolean.valueOf(z11), false);
                         } else {
-                            ypVar.f35106n.q(h4Var, wallPaper2, false, Boolean.valueOf(z11), false);
+                            zpVar.f35422n.q(h4Var, wallPaper2, false, Boolean.valueOf(z11), false);
                         }
                     }
-                    if (AndroidUtilities.isTablet() && (t10 = yp.t(z11)) != null && t10 != y6.I) {
-                        if (z11 == ypVar.f35108s) {
+                    if (AndroidUtilities.isTablet() && (t10 = zp.t(z11)) != null && t10 != y6.I) {
+                        if (z11 == zpVar.f35424s) {
                             z10 = false;
                         }
-                        ypVar.f35103i0 = z10;
-                        ypVar.J(t10);
+                        zpVar.f35419i0 = z10;
+                        zpVar.J(t10);
                     }
-                    if (wpVar.d != null) {
-                        while (i13 < wpVar.d.size()) {
-                            ((xp) wpVar.d.get(i13)).f34795c = z11 ? 1 : 0;
+                    if (xpVar.d != null) {
+                        while (i13 < xpVar.d.size()) {
+                            ((yp) xpVar.d.get(i13)).f35126c = z11 ? 1 : 0;
                             i13++;
                         }
-                        wpVar.l();
+                        xpVar.l();
                         return;
                     }
                     return;
@@ -296,12 +296,12 @@ public final class n implements Runnable {
                 return;
             case 28:
                 n10 n10Var = (n10) obj;
-                n10Var.S(n10Var.f30823y0, z11);
+                n10Var.S(n10Var.f30721y0, z11);
                 return;
             default:
                 m40 m40Var = (m40) obj;
                 if (!z11) {
-                    m40Var.f30382r.setVisibility(8);
+                    m40Var.f30380r.setVisibility(8);
                     return;
                 } else {
                     m40Var.getClass();

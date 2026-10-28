@@ -4,8 +4,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.qo0;
-import org.telegram.ui.rp0;
+import org.telegram.ui.so0;
+import org.telegram.ui.tp0;
 public final class w3 implements Utilities.Callback2 {
     public final int f5597a;
     public final TL_stars.TL_starGiftUnique f5598b;
@@ -51,7 +51,7 @@ public final class w3 implements Utilities.Callback2 {
                 }
                 return;
             default:
-                rp0.V((rp0) this.d, (boolean[]) this.e, this.f5598b, this.f5599c, (qo0) this.f5600f, (d6) obj, (qf.c) obj2);
+                tp0.V((tp0) this.d, (boolean[]) this.e, this.f5598b, this.f5599c, (so0) this.f5600f, (d6) obj, (qf.c) obj2);
                 return;
         }
     }

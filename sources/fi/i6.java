@@ -7,71 +7,71 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vh;
+import org.telegram.messenger.wh;
 import org.telegram.ui.Components.ds;
 public final class i6 extends FrameLayout {
-    public View f10997a;
-    public ArrayList f10998b;
-    public h6 f10999c;
+    public View f10996a;
+    public ArrayList f10997b;
+    public h6 f10998c;
     public String d;
     public boolean e;
-    public Utilities.Callback f11000f;
+    public Utilities.Callback f10999f;
     public boolean h;
-    public float f11001n;
-    public boolean f11002r;
-    public ValueAnimator f11003s;
+    public float f11000n;
+    public boolean f11001r;
+    public ValueAnimator f11002s;
 
     public final void a(int i10, int i11, String str) {
         g6 g6Var = new g6(this, getContext(), i10, i11);
         g6Var.setContentDescription(str);
-        this.f10998b.add(g6Var);
+        this.f10997b.add(g6Var);
         addView(g6Var);
     }
 
     public final void b(boolean z10, boolean z11) {
-        if (this.f11002r == z10) {
+        if (this.f11001r == z10) {
             return;
         }
-        ValueAnimator valueAnimator = this.f11003s;
+        ValueAnimator valueAnimator = this.f11002s;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        this.f11002r = z10;
+        this.f11001r = z10;
         float f7 = 0.0f;
         if (z11) {
-            float f10 = this.f11001n;
+            float f10 = this.f11000n;
             if (z10) {
                 f7 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f11003s = ofFloat;
+            this.f11002s = ofFloat;
             ofFloat.addUpdateListener(new e4(this, 1));
-            if (this.f11002r) {
-                this.f11003s.setDuration(450L);
-                this.f11003s.setInterpolator(new LinearInterpolator());
+            if (this.f11001r) {
+                this.f11002s.setDuration(450L);
+                this.f11002s.setInterpolator(new LinearInterpolator());
             } else {
-                this.f11003s.setDuration(350L);
-                this.f11003s.setInterpolator(ds.h);
+                this.f11002s.setDuration(350L);
+                this.f11002s.setInterpolator(ds.h);
             }
-            this.f11003s.start();
+            this.f11002s.start();
             return;
         }
         if (z10) {
             f7 = 1.0f;
         }
-        this.f11001n = f7;
+        this.f11000n = f7;
         e();
     }
 
     public final boolean c() {
-        ArrayList arrayList = this.f10998b;
+        ArrayList arrayList = this.f10997b;
         int i10 = 0;
         while (true) {
             if (i10 >= arrayList.size()) {
                 break;
             }
             g6 g6Var = (g6) arrayList.get(i10);
-            if (g6Var.f10906a == 4) {
+            if (g6Var.f10905a == 4) {
                 if (g6Var.getVisibility() == 0) {
                     return true;
                 }
@@ -84,10 +84,10 @@ public final class i6 extends FrameLayout {
 
     public final void d(int i10, boolean z10) {
         int i11;
-        ArrayList arrayList = this.f10998b;
+        ArrayList arrayList = this.f10997b;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             g6 g6Var = (g6) arrayList.get(i12);
-            if (g6Var.f10906a == i10) {
+            if (g6Var.f10905a == i10) {
                 if (z10) {
                     i11 = 0;
                 } else {
@@ -99,13 +99,13 @@ public final class i6 extends FrameLayout {
     }
 
     public final void e() {
-        View view = this.f10997a;
-        view.setAlpha(this.f11001n);
-        view.setTranslationY((1.0f - this.f11001n) * AndroidUtilities.dp(16.0f));
+        View view = this.f10996a;
+        view.setAlpha(this.f11000n);
+        view.setTranslationY((1.0f - this.f11000n) * AndroidUtilities.dp(16.0f));
         for (int i10 = 1; i10 < getChildCount(); i10++) {
             View childAt = getChildAt(i10);
-            float f7 = this.f11001n;
-            if (this.f11002r) {
+            float f7 = this.f11000n;
+            if (this.f11001r) {
                 f7 = ds.h.getInterpolation(AndroidUtilities.cascade(f7, i10 - 1, getChildCount() - 1, 3.0f));
             }
             childAt.setAlpha(f7);
@@ -118,13 +118,13 @@ public final class i6 extends FrameLayout {
         int C;
         float f7;
         int i14;
-        ArrayList arrayList = this.f10998b;
+        ArrayList arrayList = this.f10997b;
         int i15 = i12 - i10;
         int i16 = i13 - i11;
-        this.f10997a.layout(0, 0, i15, i16);
-        h6 h6Var = this.f10999c;
-        h6Var.layout(i15 - h6Var.getMeasuredWidth(), (i16 - this.f10999c.getMeasuredHeight()) / 2, i15, (this.f10999c.getMeasuredHeight() + i16) / 2);
-        int dp = (i15 - AndroidUtilities.dp(32.33f)) - this.f10999c.getMeasuredWidth();
+        this.f10996a.layout(0, 0, i15, i16);
+        h6 h6Var = this.f10998c;
+        h6Var.layout(i15 - h6Var.getMeasuredWidth(), (i16 - this.f10998c.getMeasuredHeight()) / 2, i15, (this.f10998c.getMeasuredHeight() + i16) / 2);
+        int dp = (i15 - AndroidUtilities.dp(32.33f)) - this.f10998c.getMeasuredWidth();
         int i17 = 0;
         for (int i18 = 0; i18 < arrayList.size(); i18++) {
             if (((g6) arrayList.get(i18)).getVisibility() == 0) {
@@ -134,7 +134,7 @@ public final class i6 extends FrameLayout {
         if (i17 < 2) {
             C = 0;
         } else {
-            C = vh.C(40.0f, i17, dp) / (i17 - 1);
+            C = wh.C(40.0f, i17, dp) / (i17 - 1);
         }
         if (c()) {
             f7 = 20.0f;
@@ -142,11 +142,11 @@ public final class i6 extends FrameLayout {
             f7 = 30.0f;
         }
         int min = Math.min(AndroidUtilities.dp(f7), C);
-        int B = vh.B(40.0f, i16, 2);
+        int B = wh.B(40.0f, i16, 2);
         int dp2 = (AndroidUtilities.dp(40.0f) + i16) / 2;
         int dp3 = AndroidUtilities.dp(12.33f);
         if (!c()) {
-            i14 = (vh.C(40.0f, i17, dp) - ((i17 - 1) * min)) / 2;
+            i14 = (wh.C(40.0f, i17, dp) - ((i17 - 1) * min)) / 2;
         } else {
             i14 = 0;
         }
@@ -165,14 +165,14 @@ public final class i6 extends FrameLayout {
     }
 
     public void setOnClickListener(Utilities.Callback<Integer> callback) {
-        this.f11000f = callback;
+        this.f10999f = callback;
     }
 
     public void setShareEnabled(boolean z10) {
         if (this.h != z10) {
             this.h = z10;
-            h6 h6Var = this.f10999c;
-            h6Var.f10959s = z10;
+            h6 h6Var = this.f10998c;
+            h6Var.f10958s = z10;
             h6Var.invalidate();
         }
     }

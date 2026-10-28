@@ -40,13 +40,13 @@ public final class y9 implements Runnable {
                 }
                 if (!aaVar.f4279m) {
                     aaVar.f4279m = true;
-                    aaVar.f4273f.f29603b = 5000L;
+                    aaVar.f4273f.f29634b = 5000L;
                     AndroidUtilities.cancelRunOnUIThread(y9Var);
                     AndroidUtilities.runOnUIThread(y9Var, 5000L);
                     qcVar.k(true);
-                    qcVar.f31901w = y9Var;
+                    qcVar.f31873w = y9Var;
                 }
-                aaVar.e.f29899b.setText(aaVar.d());
+                aaVar.e.f29926b.setText(aaVar.d());
                 return;
         }
     }

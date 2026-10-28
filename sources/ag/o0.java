@@ -5,20 +5,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.ui.ActionBar.y6;
-import org.telegram.ui.Components.e41;
+import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.wc;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.un;
+import org.telegram.ui.wn;
 public final class o0 implements Runnable {
     public final int f1358a;
-    public final un f1359b;
+    public final wn f1359b;
     public final long f1360c;
 
-    public o0(long j10, un unVar) {
+    public o0(long j10, wn wnVar) {
         this.f1358a = 0;
         this.f1360c = j10;
-        this.f1359b = unVar;
+        this.f1359b = wnVar;
     }
 
     @Override
@@ -28,40 +28,40 @@ public final class o0 implements Runnable {
                 this.f1359b.presentFragment(new ProfileActivity(a1.g.h(this.f1360c, "user_id"), null));
                 return;
             case 1:
-                this.f1359b.getMessagesController().loadFullChat(this.f1360c, 0, true);
+                r0.getMediaDataController().loadBotInfo(this.f1360c, r1, true, this.f1359b.classGuid);
                 return;
             case 2:
-                un unVar = this.f1359b;
-                LongSparseIntArray longSparseIntArray = unVar.Y5;
+                this.f1359b.getMessagesController().loadFullChat(this.f1360c, 0, true);
+                return;
+            case 3:
+                wn wnVar = this.f1359b;
+                LongSparseIntArray longSparseIntArray = wnVar.f45079c6;
                 long j10 = this.f1360c;
                 longSparseIntArray.put(j10, 0);
-                e41 e41Var = unVar.f44222d2;
-                if (e41Var != null) {
-                    e41Var.setAllTopicsHidden(false);
+                f41 f41Var = wnVar.f45089d2;
+                if (f41Var != null) {
+                    f41Var.setAllTopicsHidden(false);
                 }
-                if (j10 == unVar.f44373p4) {
-                    unVar.A0.O(false);
+                if (j10 == wnVar.f45241p4) {
+                    wnVar.A0.O(false);
                     return;
                 }
                 return;
-            case 3:
-                un unVar2 = this.f1359b;
-                qc v = wc.v(unVar2.getParentActivity(), unVar2, null, 1, this.f1360c, 1, unVar2.getThemedColor(y6.Fi), unVar2.getThemedColor(y6.Hi), 5000, true, null);
-                v.f31890k = true;
-                v.k(true);
-                return;
             case 4:
-                un unVar3 = this.f1359b;
-                unVar3.getClass();
-                unVar3.presentFragment(un.ba(this.f1360c));
+                wn wnVar2 = this.f1359b;
+                wnVar2.getClass();
+                wnVar2.presentFragment(wn.ea(this.f1360c));
                 return;
             case 5:
-                un unVar4 = this.f1359b;
-                unVar4.getClass();
-                unVar4.presentFragment(ProfileActivity.t4(this.f1360c));
+                wn wnVar3 = this.f1359b;
+                wnVar3.getClass();
+                wnVar3.presentFragment(ProfileActivity.t4(this.f1360c));
                 return;
             case 6:
-                r0.getMediaDataController().loadBotInfo(this.f1360c, r1, true, this.f1359b.classGuid);
+                wn wnVar4 = this.f1359b;
+                qc v = wc.v(wnVar4.getParentActivity(), wnVar4, null, 1, this.f1360c, 1, wnVar4.getThemedColor(y6.Fi), wnVar4.getThemedColor(y6.Hi), 5000, true, null);
+                v.f31862k = true;
+                v.k(true);
                 return;
             default:
                 wc.b0(this.f1359b).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) this.f1360c)), R.raw.stars_topup).k(true);
@@ -69,9 +69,9 @@ public final class o0 implements Runnable {
         }
     }
 
-    public o0(un unVar, long j10, int i10) {
+    public o0(wn wnVar, long j10, int i10) {
         this.f1358a = i10;
-        this.f1359b = unVar;
+        this.f1359b = wnVar;
         this.f1360c = j10;
     }
 }

@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 public final class r extends fb.u {
-    public static final p f13955c = new p(fb.t.f10399a, 1);
-    public final fb.g f13956a;
-    public final fb.t f13957b;
+    public static final p f13954c = new p(fb.t.f10398a, 1);
+    public final fb.g f13955a;
+    public final fb.t f13956b;
 
     public r(fb.g gVar, fb.t tVar) {
-        this.f13956a = gVar;
-        this.f13957b = tVar;
+        this.f13955a = gVar;
+        this.f13956b = tVar;
     }
 
     public final Serializable a(nb.a aVar, int i10) {
@@ -28,7 +28,7 @@ public final class r extends fb.u {
                 }
                 return Boolean.valueOf(aVar.n());
             }
-            return this.f13957b.a(aVar);
+            return this.f13956b.a(aVar);
         }
         return aVar.v();
     }
@@ -114,7 +114,7 @@ public final class r extends fb.u {
             return;
         }
         Class<?> cls = obj.getClass();
-        fb.g gVar = this.f13956a;
+        fb.g gVar = this.f13955a;
         gVar.getClass();
         fb.u b10 = gVar.b(new mb.a(cls));
         if (b10 instanceof r) {

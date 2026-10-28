@@ -74,13 +74,13 @@ public final class d implements jg {
                 l0Var.c(j10);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) l0Var.f47119a.get()) != null) {
+            if (interpolator != null && (view = (View) l0Var.f47154a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
             if (((m0) this.e) != null) {
                 l0Var.d((i) this.f8318f);
             }
-            View view2 = (View) l0Var.f47119a.get();
+            View view2 = (View) l0Var.f47154a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
@@ -107,7 +107,7 @@ public final class d implements jg {
         f.f8323l.getClass();
         int i12 = aVar.e;
         if (i12 == -1) {
-            Bitmap bitmap = aVar.f51707a;
+            Bitmap bitmap = aVar.f51765a;
             l.h(bitmap);
             i10 = bitmap.getAllocationByteCount();
         } else if (i12 != 17 && i12 != 842094169) {
@@ -143,8 +143,8 @@ public final class d implements jg {
         } else {
             zaVar = za.BITMAP;
         }
-        sVar.f18696b = zaVar;
-        sVar.f18697c = Integer.valueOf(i10 & Integer.MAX_VALUE);
+        sVar.f18695b = zaVar;
+        sVar.f18696c = Integer.valueOf(i10 & Integer.MAX_VALUE);
         obj.f615b = new ab(sVar);
         obj.f616c = fVar.e.a();
         if (bhVar != null) {
@@ -185,8 +185,8 @@ public final class d implements jg {
             }
         }
         ?? obj3 = new Object();
-        obj3.f17846c = ob.TYPE_THIN;
-        obj3.f17847f = new ne(obj);
+        obj3.f17845c = ob.TYPE_THIN;
+        obj3.f17846f = new ne(obj);
         return new ng((r3) obj3, 0);
     }
 

@@ -26,7 +26,7 @@ public final class ld extends yd {
         }
         if (this.m0) {
             di.v0 v0Var = beVar.G;
-            v0Var.f9242g = j10;
+            v0Var.f9241g = j10;
             beVar.H.set(v0Var);
             int i11 = this.f5055n0;
             f(di.u.b(i11, i10, 3), di.u.b(i11, i10, 4), true);

@@ -5,13 +5,13 @@ import android.os.Bundle;
 import androidx.core.graphics.drawable.IconCompat;
 import java.util.ArrayList;
 public final class g {
-    public final IconCompat f9536a;
-    public final CharSequence f9537b;
-    public final PendingIntent f9538c;
+    public final IconCompat f9535a;
+    public final CharSequence f9536b;
+    public final PendingIntent f9537c;
     public boolean d;
     public final Bundle e;
-    public ArrayList f9539f;
-    public int f9540g;
+    public ArrayList f9538f;
+    public int f9539g;
     public boolean h;
 
     public g(int i10, String str, PendingIntent pendingIntent) {
@@ -24,28 +24,28 @@ public final class g {
         Bundle bundle = new Bundle();
         this.d = true;
         this.h = true;
-        this.f9536a = e;
-        this.f9537b = q.d(str);
-        this.f9538c = pendingIntent;
+        this.f9535a = e;
+        this.f9536b = q.d(str);
+        this.f9537c = pendingIntent;
         this.e = bundle;
-        this.f9539f = null;
+        this.f9538f = null;
         this.d = true;
-        this.f9540g = 0;
+        this.f9539g = 0;
         this.h = true;
     }
 
     public final void a(n0 n0Var) {
-        if (this.f9539f == null) {
-            this.f9539f = new ArrayList();
+        if (this.f9538f == null) {
+            this.f9538f = new ArrayList();
         }
-        this.f9539f.add(n0Var);
+        this.f9538f.add(n0Var);
     }
 
     public final h b() {
         n0[] n0VarArr;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        ArrayList arrayList3 = this.f9539f;
+        ArrayList arrayList3 = this.f9538f;
         if (arrayList3 != null) {
             int size = arrayList3.size();
             int i10 = 0;
@@ -66,7 +66,7 @@ public final class g {
         if (!arrayList2.isEmpty()) {
             n0VarArr2 = (n0[]) arrayList2.toArray(new n0[arrayList2.size()]);
         }
-        return new h(this.f9536a, this.f9537b, this.f9538c, this.e, n0VarArr2, n0VarArr, this.d, this.f9540g, this.h);
+        return new h(this.f9535a, this.f9536b, this.f9537c, this.e, n0VarArr2, n0VarArr, this.d, this.f9539g, this.h);
     }
 
     public final void c() {

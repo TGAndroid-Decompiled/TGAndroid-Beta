@@ -8,33 +8,33 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class e5 extends FrameLayout {
-    public final ta f10778a;
+    public final ta f10777a;
 
     public e5(ta taVar, Context context) {
         super(context);
-        this.f10778a = taVar;
+        this.f10777a = taVar;
         setWillNotDraw(false);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        ta taVar = this.f10778a;
-        Paint paint = taVar.f10790g1;
-        sg.q1 q1Var = taVar.f10779a1;
-        paint.setAlpha((int) ((1.0f - taVar.f10794i1) * q1Var.getAlpha() * 20.0f));
+        ta taVar = this.f10777a;
+        Paint paint = taVar.f10789g1;
+        sg.p1 p1Var = taVar.f10778a1;
+        paint.setAlpha((int) ((1.0f - taVar.f10793i1) * p1Var.getAlpha() * 20.0f));
         RectF rectF = AndroidUtilities.rectTmp;
-        q1Var.b(rectF);
+        p1Var.b(rectF);
         a6 a6Var = taVar.I0;
         int top = a6Var.getTop();
-        float translationY = q1Var.getTranslationY() + a6Var.getTranslationY() + q1Var.getTop() + top;
+        float translationY = p1Var.getTranslationY() + a6Var.getTranslationY() + p1Var.getTop() + top;
         float f7 = rectF.left;
-        sg.v1 v1Var = taVar.f10780b1;
-        rectF.set(AndroidUtilities.lerp(f7, v1Var.getLeft(), taVar.f10794i1), AndroidUtilities.lerp(rectF.top + translationY, v1Var.getTop() - v1Var.getTranslationY(), taVar.f10794i1), AndroidUtilities.lerp(rectF.right, v1Var.getRight(), taVar.f10794i1), AndroidUtilities.lerp(translationY + rectF.bottom, v1Var.getBottom() - v1Var.getTranslationY(), taVar.f10794i1));
-        float dp = AndroidUtilities.dp(AndroidUtilities.lerp(32, 16, taVar.f10794i1));
-        Paint paint2 = taVar.f10792h1;
+        sg.u1 u1Var = taVar.f10779b1;
+        rectF.set(AndroidUtilities.lerp(f7, u1Var.getLeft(), taVar.f10793i1), AndroidUtilities.lerp(rectF.top + translationY, u1Var.getTop() - u1Var.getTranslationY(), taVar.f10793i1), AndroidUtilities.lerp(rectF.right, u1Var.getRight(), taVar.f10793i1), AndroidUtilities.lerp(translationY + rectF.bottom, u1Var.getBottom() - u1Var.getTranslationY(), taVar.f10793i1));
+        float dp = AndroidUtilities.dp(AndroidUtilities.lerp(32, 16, taVar.f10793i1));
+        Paint paint2 = taVar.f10791h1;
         int alpha = paint2.getAlpha();
-        paint2.setAlpha((int) (alpha * taVar.f10794i1));
+        paint2.setAlpha((int) (alpha * taVar.f10793i1));
         canvas.drawRoundRect(rectF, dp, dp, paint2);
         paint2.setAlpha(alpha);
         canvas.drawRoundRect(rectF, dp, dp, paint);
@@ -43,8 +43,8 @@ public final class e5 extends FrameLayout {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getActionMasked() == 0) {
-            ta taVar = this.f10778a;
-            if (taVar.f10796j1) {
+            ta taVar = this.f10777a;
+            if (taVar.f10795j1) {
                 taVar.M0(false);
                 return true;
             }

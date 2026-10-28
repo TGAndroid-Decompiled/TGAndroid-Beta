@@ -1,28 +1,19 @@
 package org.telegram.ui.Components;
+public final class dy0 implements Runnable {
+    public final int f27573a;
+    public final Object f27574b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class dy0 extends AnimatorListenerAdapter {
-    public final int f27635a;
-    public final ey0 f27636b;
+    public dy0(Object obj, int i10) {
+        this.f27573a = i10;
+        this.f27574b = obj;
+    }
 
-    public dy0(ey0 ey0Var, int i10) {
-        this.f27635a = i10;
-        this.f27636b = ey0Var;
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dy0.a():void");
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27635a) {
-            case 0:
-                this.f27636b.f28020s.setVisibility(8);
-                return;
-            case 1:
-                this.f27636b.f28020s.setVisibility(8);
-                return;
-            default:
-                this.f27636b.f28020s.setVisibility(8);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dy0.run():void");
     }
 }

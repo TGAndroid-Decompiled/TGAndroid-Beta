@@ -5,8 +5,8 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.UUID;
 public final class h {
-    public static final byte f48035a = Byte.parseByte("01110000", 2);
-    public static final byte f48036b = Byte.parseByte("00001111", 2);
+    public static final byte f48073a = Byte.parseByte("01110000", 2);
+    public static final byte f48074b = Byte.parseByte("00001111", 2);
 
     public static String a() {
         UUID randomUUID = UUID.randomUUID();
@@ -16,7 +16,7 @@ public final class h {
         byte[] array = wrap.array();
         byte b10 = array[0];
         array[16] = b10;
-        array[0] = (byte) ((b10 & f48036b) | f48035a);
+        array[0] = (byte) ((b10 & f48074b) | f48073a);
         return new String(Base64.encode(array, 11), Charset.defaultCharset()).substring(0, 22);
     }
 }

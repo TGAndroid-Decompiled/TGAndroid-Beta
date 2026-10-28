@@ -6,34 +6,34 @@ import android.graphics.Paint;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class nm extends TextView {
-    public float f31041a;
-    public boolean f31042b;
-    public final Paint f31043c;
+    public float f30955a;
+    public boolean f30956b;
+    public final Paint f30957c;
 
     public nm(Context context, Paint paint) {
         super(context);
-        this.f31043c = paint;
-        this.f31041a = 0.0f;
+        this.f30957c = paint;
+        this.f30955a = 0.0f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int i10 = (int) ((this.f31041a * 130.0f) + 125.0f);
-        Paint paint = this.f31043c;
+        int i10 = (int) ((this.f30955a * 130.0f) + 125.0f);
+        Paint paint = this.f30957c;
         paint.setAlpha(i10);
-        if (!this.f31042b) {
-            float f7 = this.f31041a - 0.026666667f;
-            this.f31041a = f7;
+        if (!this.f30956b) {
+            float f7 = this.f30955a - 0.026666667f;
+            this.f30955a = f7;
             if (f7 <= 0.0f) {
-                this.f31041a = 0.0f;
-                this.f31042b = true;
+                this.f30955a = 0.0f;
+                this.f30956b = true;
             }
         } else {
-            float f10 = this.f31041a + 0.026666667f;
-            this.f31041a = f10;
+            float f10 = this.f30955a + 0.026666667f;
+            this.f30955a = f10;
             if (f10 >= 1.0f) {
-                this.f31041a = 1.0f;
-                this.f31042b = false;
+                this.f30955a = 1.0f;
+                this.f30956b = false;
             }
         }
         super.onDraw(canvas);

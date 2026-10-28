@@ -29,7 +29,7 @@ import org.telegram.ui.ActionBar.y6;
 import org.telegram.ui.Cells.r9;
 import org.telegram.ui.Cells.s9;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class y0 extends z implements p6, r9, k0, DownloadController.FileDownloadProgressListener {
     public final ImageReceiver E;
     public final j0 F;
@@ -50,21 +50,21 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
     public TLRPC.Document U;
     public int V;
     public boolean W;
-    public int f17634a0;
-    public final int f17635n;
-    public final u6 f17636r;
-    public final Paint f17637s;
+    public int f17633a0;
+    public final int f17634n;
+    public final u6 f17635r;
+    public final Paint f17636s;
     public final Paint v;
-    public final TextPaint f17638w;
-    public final TextPaint f17639x;
-    public final RadialProgress2 f17640y;
+    public final TextPaint f17637w;
+    public final TextPaint f17638x;
+    public final RadialProgress2 f17639y;
 
     public y0(Context context, int i10, u6 u6Var) {
         super(context);
-        this.f17637s = new Paint(1);
+        this.f17636s = new Paint(1);
         this.v = new Paint(1);
-        this.f17638w = new TextPaint(1);
-        this.f17639x = new TextPaint(1);
+        this.f17637w = new TextPaint(1);
+        this.f17638x = new TextPaint(1);
         int dp = AndroidUtilities.dp(10.0f);
         this.H = dp;
         int dp2 = AndroidUtilities.dp(44.0f);
@@ -72,14 +72,14 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         this.J = AndroidUtilities.dp(16.0f);
         this.K = AndroidUtilities.dp(16.0f);
         this.V = -1;
-        this.f17634a0 = f7.f22628b;
-        this.f17635n = i10;
-        this.f17636r = u6Var;
+        this.f17633a0 = f7.f22629b;
+        this.f17634n = i10;
+        this.f17635r = u6Var;
         setWillNotDraw(false);
         setMinimumHeight(AndroidUtilities.dp(66.0f));
         this.G = DownloadController.getInstance(i10).generateObserverTag();
         RadialProgress2 radialProgress2 = new RadialProgress2(this, u6Var);
-        this.f17640y = radialProgress2;
+        this.f17639y = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i11 = this.J;
         radialProgress2.r(i11, dp, i11 + dp2, dp2 + dp);
@@ -89,7 +89,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
         j0 j0Var = new j0(context, u6Var, new b6.i(this, 29));
         this.F = j0Var;
-        addView(j0Var.f17306a, gb1.i(-2, -2, 51));
+        addView(j0Var.f17305a, kb1.i(-2, -2, 51));
         updateColors();
     }
 
@@ -100,7 +100,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(y6.f23682uf));
+        hashSet.add(Integer.valueOf(y6.f23683uf));
     }
 
     @Override
@@ -117,18 +117,18 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
     @Override
     public final void draw(Canvas canvas) {
         int i10;
-        int i11 = this.f17634a0;
-        int i12 = f7.f22628b;
+        int i11 = this.f17633a0;
+        int i12 = f7.f22629b;
         if (i11 != i12) {
-            this.f17634a0 = i12;
+            this.f17633a0 = i12;
             try {
-                RadialProgress2 radialProgress2 = this.f17640y;
-                u6 u6Var = this.f17636r;
+                RadialProgress2 radialProgress2 = this.f17639y;
+                u6 u6Var = this.f17635r;
                 if (radialProgress2 != null && (i10 = this.V) >= 0) {
                     radialProgress2.d = y6.w0(i10, u6Var);
                 }
                 if (this.W && (getBackground() instanceof y1)) {
-                    ((y1) getBackground()).a(y6.w0(y6.f23356d6, u6Var));
+                    ((y1) getBackground()).a(y6.w0(y6.f23357d6, u6Var));
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -157,7 +157,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         }
         int i13 = this.J;
         int i14 = this.I;
-        this.f17640y.r(i13, i11, i13 + i14, i14 + i11);
+        this.f17639y.r(i13, i11, i13 + i14, i14 + i11);
         requestLayout();
     }
 
@@ -177,9 +177,9 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         MessageObject messageObject;
         String str3;
         t tVar;
-        a aVar = this.f17653a;
+        a aVar = this.f17652a;
         ImageLocation imageLocation = null;
-        if (aVar != null && (tVar = aVar.f17057g) != null) {
+        if (aVar != null && (tVar = aVar.f17056g) != null) {
             str = tVar.e;
         } else {
             str = null;
@@ -210,7 +210,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         if (this.M) {
             i10 = 0;
         } else {
-            i10 = this.f17655c;
+            i10 = this.f17654c;
         }
         int i12 = dp + i10;
         this.K = i12;
@@ -225,7 +225,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         }
         int i13 = this.J;
         int i14 = this.I;
-        this.f17640y.r(i13, i11, i13 + i14, i14 + i11);
+        this.f17639y.r(i13, i11, i13 + i14, i14 + i11);
         ImageReceiver imageReceiver = this.E;
         if (z10) {
             imageReceiver.setImageCoords(this.K, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
@@ -236,7 +236,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
             if (q3Var == null) {
                 messageObject = null;
             } else {
-                messageObject = q3Var.f17429a.f17559q3;
+                messageObject = q3Var.f17428a.f17558q3;
             }
             imageReceiver.setImageCoords(this.K, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
             if (closestPhotoSizeWithSize != null) {
@@ -255,7 +255,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
 
     @Override
     public g1 getCaptionEditText() {
-        return this.F.f17306a;
+        return this.F.f17305a;
     }
 
     @Override
@@ -265,13 +265,13 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
 
     @Override
     public a getRow() {
-        return this.f17653a;
+        return this.f17652a;
     }
 
     public final TLRPC.Document h() {
         t tVar;
-        a aVar = this.f17653a;
-        if (aVar != null && (tVar = aVar.f17057g) != null) {
+        a aVar = this.f17652a;
+        if (aVar != null && (tVar = aVar.f17056g) != null) {
             return tVar.h;
         }
         return null;
@@ -279,8 +279,8 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
 
     public final boolean i() {
         t tVar;
-        a aVar = this.f17653a;
-        if (aVar != null && (tVar = aVar.f17057g) != null && tVar.a()) {
+        a aVar = this.f17652a;
+        if (aVar != null && (tVar = aVar.f17056g) != null && tVar.a()) {
             return true;
         }
         return false;
@@ -312,19 +312,19 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         }
         int dp3 = (i11 - dp) - AndroidUtilities.dp(16.0f);
         if (this.M) {
-            i12 = this.f17655c;
+            i12 = this.f17654c;
         } else {
             i12 = 0;
         }
         int max = Math.max(dp2, dp3 - i12);
-        TextPaint textPaint = this.f17638w;
+        TextPaint textPaint = this.f17637w;
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        TextPaint textPaint2 = this.f17639x;
+        TextPaint textPaint2 = this.f17638x;
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         String documentFileName = FileLoader.getDocumentFileName(h);
-        if (TextUtils.isEmpty(documentFileName) && (tVar = this.f17653a.f17057g) != null && !TextUtils.isEmpty(tVar.e)) {
-            documentFileName = new File(this.f17653a.f17057g.e).getName();
+        if (TextUtils.isEmpty(documentFileName) && (tVar = this.f17652a.f17056g) != null && !TextUtils.isEmpty(tVar.e)) {
+            documentFileName = new File(this.f17652a.f17056g.e).getName();
         }
         if (documentFileName == null) {
             documentFileName = "";
@@ -334,9 +334,9 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         this.Q = new StaticLayout(ellipsize, textPaint, max, alignment, 1.0f, 0.0f, false);
         long j10 = h.size;
         if (j10 <= 0) {
-            t tVar2 = this.f17653a.f17057g;
+            t tVar2 = this.f17652a.f17056g;
             if (tVar2 != null && !TextUtils.isEmpty(tVar2.e)) {
-                j10 = new File(this.f17653a.f17057g.e).length();
+                j10 = new File(this.f17652a.f17056g.e).length();
             } else {
                 j10 = 0;
             }
@@ -352,7 +352,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.N = true;
-        this.f17640y.n(this);
+        this.f17639y.n(this);
         this.E.onAttachedToWindow();
         k(false);
     }
@@ -362,7 +362,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         super.onDetachedFromWindow();
         this.N = false;
         this.E.onDetachedFromWindow();
-        DownloadController.getInstance(this.f17635n).removeLoadingFileObserver(this);
+        DownloadController.getInstance(this.f17634n).removeLoadingFileObserver(this);
     }
 
     @Override
@@ -375,14 +375,14 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         float f10;
         if (h() != null) {
             boolean z10 = this.L;
-            u6 u6Var = this.f17636r;
+            u6 u6Var = this.f17635r;
             if (z10 && !this.E.draw(canvas)) {
                 int w02 = y6.w0(y6.Gd, u6Var);
                 Paint paint = this.v;
                 paint.setColor(w02);
                 canvas.drawRoundRect(this.K, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f) + this.K, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
             }
-            this.f17640y.draw(canvas);
+            this.f17639y.draw(canvas);
             if (this.L) {
                 i10 = this.K;
                 f7 = 97.0f;
@@ -391,7 +391,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
                 f7 = 54.0f;
             }
             int dp = AndroidUtilities.dp(f7) + i10;
-            this.f17638w.setColor(y6.w0(y6.Dd, u6Var));
+            this.f17637w.setColor(y6.w0(y6.Dd, u6Var));
             int dp2 = AndroidUtilities.dp(12.0f);
             if (this.Q != null) {
                 canvas.save();
@@ -399,7 +399,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
                 this.Q.draw(canvas);
                 canvas.restore();
             }
-            this.f17639x.setColor(y6.w0(y6.f23547nd, u6Var));
+            this.f17638x.setColor(y6.w0(y6.f23548nd, u6Var));
             StaticLayout staticLayout = this.Q;
             int i12 = 0;
             if (staticLayout == null) {
@@ -414,20 +414,20 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
                 this.R.draw(canvas);
                 canvas.restore();
             }
-            if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f17429a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
+            if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f17428a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
                 ((RecyclerView) getParent()).getClass();
                 int R = RecyclerView.R(this);
-                if (R > textSelectionHelper.f25410p0 && R <= textSelectionHelper.f25413s0) {
+                if (R > textSelectionHelper.f25412p0 && R <= textSelectionHelper.f25415s0) {
                     if (this.M) {
                         i11 = 0;
                     } else {
-                        i11 = this.f17655c;
+                        i11 = this.f17654c;
                     }
                     float dp4 = AndroidUtilities.dp(8.0f) + i11;
                     float dp5 = AndroidUtilities.dp(2.0f);
                     int width = getWidth();
                     if (this.M) {
-                        i12 = this.f17655c;
+                        i12 = this.f17654c;
                     }
                     float dp6 = (width - i12) - AndroidUtilities.dp(8.0f);
                     if (this.L) {
@@ -435,7 +435,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
                     } else {
                         f10 = 64.0f;
                     }
-                    canvas.drawRoundRect(dp4, dp5, dp6, AndroidUtilities.dp(f10), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f17637s);
+                    canvas.drawRoundRect(dp4, dp5, dp6, AndroidUtilities.dp(f10), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f17636s);
                 }
             }
         }
@@ -455,10 +455,10 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         if (z11) {
             i14 = 0;
         } else {
-            i14 = this.f17655c;
+            i14 = this.f17654c;
         }
         if (z11) {
-            i15 = this.f17655c;
+            i15 = this.f17654c;
         }
         int i16 = i12 - i10;
         if (this.L) {
@@ -480,10 +480,10 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         if (z10) {
             i12 = 0;
         } else {
-            i12 = this.f17655c;
+            i12 = this.f17654c;
         }
         if (z10) {
-            i13 = this.f17655c;
+            i13 = this.f17654c;
         }
         int h = this.F.h(i12, i13, size);
         if (this.L) {
@@ -502,12 +502,12 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
         } else {
             min = Math.min(1.0f, ((float) j10) / ((float) j11));
         }
-        this.f17640y.p(min, true);
+        this.f17639y.p(min, true);
     }
 
     @Override
     public final void onSuccessDownload(String str) {
-        this.f17640y.p(1.0f, true);
+        this.f17639y.p(1.0f, true);
         k(true);
     }
 
@@ -518,7 +518,7 @@ public final class y0 extends z implements p6, r9, k0, DownloadController.FileDo
 
     @Override
     public final void updateColors() {
-        this.f17637s.setColor(y6.w0(y6.f23682uf, this.f17636r));
+        this.f17636s.setColor(y6.w0(y6.f23683uf, this.f17635r));
         j0 j0Var = this.F;
         if (j0Var != null) {
             j0Var.a();

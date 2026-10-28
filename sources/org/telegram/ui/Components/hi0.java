@@ -1,185 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class hi0 extends y9 implements sw0 {
-    public final int G;
-    public RadialProgress2 H;
-    public ValueAnimator I;
-    public float J;
-    public long K;
-    public boolean L;
-    public final int M;
-    public final Paint N;
-    public Runnable O;
-    public final ni0 P;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessagesController;
+public final class hi0 implements a5.i {
+    public final org.telegram.ui.bz0 f28998a;
 
-    public hi0(ni0 ni0Var, Context context, int i10, Paint paint) {
-        super(context);
-        this.P = ni0Var;
-        this.G = AndroidUtilities.dp(64.0f);
-        this.K = -1L;
-        this.M = i10;
-        this.N = paint;
-        setLayerNum(ni0Var.l1);
+    public hi0(org.telegram.ui.bz0 bz0Var) {
+        this.f28998a = bz0Var;
     }
 
     @Override
-    public final void e(Runnable runnable) {
-        this.O = runnable;
-    }
-
-    @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        super.invalidate(i10, i11, i12, i13);
-        Runnable runnable = this.O;
-        if (runnable != null) {
-            runnable.run();
+    public final void a(int i10) {
+        boolean z10;
+        org.telegram.ui.bz0 bz0Var = this.f28998a;
+        int i11 = bz0Var.f31308o1;
+        int i12 = 0;
+        if (i10 >= i11) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i10 != i11) {
+            bz0Var.f31308o1 = i10;
+        }
+        MessagesController.DialogPhotos dialogPhotos = bz0Var.S0;
+        if (dialogPhotos != null) {
+            ni0 ni0Var = bz0Var.D0;
+            if (ni0Var != null) {
+                i12 = ni0Var.j();
+            }
+            dialogPhotos.loadAfter(i10 - i12, z10);
         }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        pa0 pa0Var;
-        long j10;
-        ni0 ni0Var = this.P;
-        float[] fArr = ni0Var.O0;
-        Path path = ni0Var.M0;
-        ArrayList arrayList = ni0Var.f30987b1;
-        RectF rectF = ni0Var.N0;
-        org.telegram.ui.cv0 cv0Var = ni0Var.f30993h1;
-        if (cv0Var == null || !cv0Var.f38544n) {
-            if (this.H != null) {
-                int k10 = ni0Var.D0.k(this.M);
-                if (ni0Var.f30994i1) {
-                    k10--;
-                }
-                Drawable drawable = getImageReceiver().getDrawable();
-                long j11 = 0;
-                if (k10 >= arrayList.size() || arrayList.get(k10) == null ? !(drawable == null || (this.L && (!(drawable instanceof g6) || ((g6) drawable).d[4] <= 0))) : ((Float) arrayList.get(k10)).floatValue() >= 1.0f) {
-                    if (this.I == null) {
-                        RadialProgress2 radialProgress2 = this.H;
-                        if (radialProgress2.f26245c) {
-                            pa0Var = radialProgress2.f26249j;
-                        } else {
-                            pa0Var = radialProgress2.f26248i;
+    public final void b(float f7, int i10, int i11) {
+        ImageLocation imageLocation;
+        org.telegram.ui.bz0 bz0Var = this.f28998a;
+        ni0 ni0Var = bz0Var.D0;
+        ArrayList arrayList = bz0Var.W0;
+        bz0Var.B(f7, i10);
+        if (i11 == 0) {
+            int k10 = ni0Var.k(i10);
+            bz0Var.getCurrentItemView();
+            int childCount = bz0Var.getChildCount();
+            for (int i12 = 0; i12 < childCount; i12++) {
+                View childAt = bz0Var.getChildAt(i12);
+                if (childAt instanceof y9) {
+                    int k11 = ni0Var.k(ni0Var.d.indexOf(childAt));
+                    ImageReceiver imageReceiver = ((y9) childAt).getImageReceiver();
+                    boolean allowStartAnimation = imageReceiver.getAllowStartAnimation();
+                    if (k11 >= 0 && k11 < arrayList.size()) {
+                        if (k11 == k10) {
+                            if (!allowStartAnimation) {
+                                imageReceiver.setAllowStartAnimation(true);
+                                imageReceiver.startAnimation();
+                            }
+                            ImageLocation imageLocation2 = (ImageLocation) arrayList.get(k11);
+                            if (imageLocation2 != null) {
+                                FileLoader.getInstance(bz0Var.L0).setForceStreamLoadingFile(imageLocation2.location, "mp4");
+                            }
+                        } else if (allowStartAnimation) {
+                            g6 animation = imageReceiver.getAnimation();
+                            if (animation != null && (imageLocation = (ImageLocation) arrayList.get(k11)) != null) {
+                                animation.y(imageLocation.videoSeekTo, false, true);
+                            }
+                            imageReceiver.setAllowStartAnimation(false);
+                            imageReceiver.stopAnimation();
                         }
-                        if (pa0Var.f31512w < 1.0f) {
-                            radialProgress2.p(1.0f, true);
-                            j11 = 100;
-                        }
-                        this.J = this.H.E;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        this.I = ofFloat;
-                        ofFloat.setStartDelay(j11);
-                        this.I.setDuration(this.J * 250.0f);
-                        this.I.setInterpolator(ds.f27586f);
-                        this.I.addUpdateListener(new e80(this, 5));
-                        this.I.addListener(new hi.y2(this, k10, 9));
-                        this.I.start();
-                    }
-                } else {
-                    if (this.K < 0) {
-                        this.K = System.currentTimeMillis();
-                    } else {
-                        long currentTimeMillis = System.currentTimeMillis() - this.K;
-                        if (this.L) {
-                            j10 = 250;
-                        } else {
-                            j10 = 750;
-                        }
-                        if (currentTimeMillis <= 250 + j10 && currentTimeMillis > j10) {
-                            this.H.E = ds.f27586f.getInterpolation(((float) (currentTimeMillis - j10)) / 250.0f);
-                        }
-                    }
-                    if (ni0Var.f30992g1) {
-                        invalidate();
-                    } else {
-                        postInvalidateOnAnimation();
-                    }
-                    invalidate();
-                }
-                int i10 = ni0Var.f30997m1;
-                if (i10 == 0 && ni0Var.f30998n1 == 0) {
-                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.N);
-                    canvas2 = canvas;
-                } else {
-                    canvas2 = canvas;
-                    int i11 = ni0Var.f30998n1;
-                    Paint paint = this.N;
-                    if (i10 == i11) {
-                        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                        float f7 = ni0Var.f30997m1;
-                        canvas2.drawRoundRect(rectF, f7, f7, paint);
-                    } else {
-                        path.reset();
-                        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                        for (int i12 = 0; i12 < 4; i12++) {
-                            fArr[i12] = ni0Var.f30997m1;
-                            fArr[i12 + 4] = ni0Var.f30998n1;
-                        }
-                        path.addRoundRect(rectF, fArr, Path.Direction.CW);
-                        canvas2.drawPath(path, paint);
                     }
                 }
-            } else {
-                canvas2 = canvas;
-            }
-            super.onDraw(canvas);
-            RadialProgress2 radialProgress22 = this.H;
-            if (radialProgress22 != null && radialProgress22.E > 0.0f) {
-                radialProgress22.draw(canvas2);
             }
         }
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        int i14;
-        super.onSizeChanged(i10, i11, i12, i13);
-        if (this.H != null) {
-            if (this.P.f31005z0.getOccupyStatusBar()) {
-                i14 = AndroidUtilities.statusBarHeight;
-            } else {
-                i14 = 0;
-            }
-            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i14;
-            int dp2 = AndroidUtilities.dp2(80.0f);
-            RadialProgress2 radialProgress2 = this.H;
-            int i15 = this.G;
-            int i16 = (i11 - currentActionBarHeight) - dp2;
-            radialProgress2.r((i10 - i15) / 2, ic.a.A(i16, i15, 2, currentActionBarHeight), (i10 + i15) / 2, ((i16 + i15) / 2) + currentActionBarHeight);
-        }
-    }
-
-    @Override
-    public final void invalidate(Rect rect) {
-        super.invalidate(rect);
-        Runnable runnable = this.O;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        ni0 ni0Var = this.P;
-        if (ni0Var.f30992g1) {
-            ni0Var.invalidate();
-        }
-        Runnable runnable = this.O;
-        if (runnable != null) {
-            runnable.run();
-        }
+    public final void c(int i10) {
     }
 }

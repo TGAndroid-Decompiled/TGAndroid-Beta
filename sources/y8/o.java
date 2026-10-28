@@ -7,11 +7,11 @@ import androidx.versionedparcelable.ParcelImpl;
 import com.google.android.gms.wearable.ConnectionConfiguration;
 import java.util.ArrayList;
 public final class o implements Parcelable.Creator {
-    public final int f52403a;
+    public final int f52461a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f52403a) {
+        switch (this.f52461a) {
             case 0:
                 int z10 = bf.z(parcel);
                 String str = null;
@@ -79,7 +79,7 @@ public final class o implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f52403a) {
+        switch (this.f52461a) {
             case 0:
                 return new ConnectionConfiguration[i10];
             default:

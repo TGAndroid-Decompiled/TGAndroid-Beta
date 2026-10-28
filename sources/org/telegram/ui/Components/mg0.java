@@ -1,225 +1,78 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.provider.Settings;
-import android.view.MotionEvent;
-import android.view.View;
-import android.webkit.WebView;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.Locale;
+import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.PhotoViewer;
-public abstract class mg0 extends FrameLayout {
-    public float E;
-    public boolean F;
-    public boolean G;
-    public int H;
-    public int I;
-    public float J;
-    public boolean K;
-    public wa0 L;
-    public int f30574a;
-    public PhotoViewer f30575b;
-    public LinearLayout f30576c;
-    public TextView d;
-    public TextView e;
-    public xu f30577f;
-    public bi.cc h;
-    public RadialProgressView f30578n;
-    public View f30579r;
-    public String f30580s;
-    public ArrayList v;
-    public String f30581w;
-    public boolean f30582x;
-    public TLRPC.WebPage f30583y;
+public final class mg0 {
+    public final org.telegram.ui.xt0 f30537a;
 
-    public static void a(org.telegram.ui.vt0 vt0Var, String str) {
-        String str2;
-        double ceil;
-        int videoDuration = vt0Var.getVideoDuration() / 1000;
-        ArrayList arrayList = vt0Var.v;
-        arrayList.clear();
-        if (videoDuration > 15) {
-            String[] split = str.split("\\|");
-            String s10 = a1.g.s(new StringBuilder(), split[0].split("\\$")[0], "2/");
-            String str3 = split[0].split("\\$N")[1];
-            if (split.length == 3) {
-                str2 = split[2].split("M#")[1];
-            } else if (split.length == 2) {
-                str2 = split[1].split("t#")[1];
-            } else {
-                str2 = split[3].split("M#")[1];
-            }
-            if (videoDuration <= 100) {
-                ceil = Math.ceil(videoDuration / 25.0f);
-            } else if (videoDuration <= 250) {
-                ceil = Math.ceil((videoDuration / 2.0f) / 25.0f);
-            } else if (videoDuration <= 500) {
-                ceil = Math.ceil((videoDuration / 4.0f) / 25.0f);
-            } else if (videoDuration <= 1000) {
-                ceil = Math.ceil((videoDuration / 5.0f) / 25.0f);
-            } else {
-                ceil = Math.ceil((videoDuration / 10.0f) / 25.0f);
-            }
-            int i10 = (int) ceil;
-            for (int i11 = 0; i11 < i10; i11++) {
-                Locale locale = Locale.ROOT;
-                arrayList.add(s10 + "M" + i11 + str3 + "&sigh=" + str2);
-            }
+    public mg0(org.telegram.ui.xt0 xt0Var) {
+        this.f30537a = xt0Var;
+    }
+
+    @JavascriptInterface
+    public void onPlayerError(String str) {
+        AndroidUtilities.runOnUIThread(new h2(this, Integer.parseInt(str), 9));
+    }
+
+    @JavascriptInterface
+    public void onPlayerLoaded() {
+        AndroidUtilities.runOnUIThread(new kg0(this, 0));
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyBufferedPosition(float f7) {
+        this.f30537a.J = f7;
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyCurrentPosition(int i10) {
+        this.f30537a.I = i10 * 1000;
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyDuration(int i10) {
+        org.telegram.ui.xt0 xt0Var = this.f30537a;
+        xt0Var.H = i10 * 1000;
+        String str = xt0Var.f30912s;
+        if (str != null) {
+            ng0.a(xt0Var, str);
+            xt0Var.f30912s = null;
         }
     }
 
-    public final void b(boolean z10) {
-        wa0 wa0Var = this.L;
-        if (!z10 && this.G) {
-            AndroidUtilities.runOnUIThread(wa0Var, 500L);
-        } else if (z10 && !this.G) {
-            AndroidUtilities.cancelRunOnUIThread(wa0Var);
-        }
-    }
-
-    public final java.lang.String c(int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mg0.c(int):java.lang.String");
-    }
-
-    public final boolean d() {
-        return this.f30582x;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.K) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public final boolean e() {
+    @JavascriptInterface
+    public void onPlayerStateChange(String str) {
         boolean z10;
-        if (this.f30582x && "inapp".equals(MessagesController.getInstance(this.f30574a).youtubePipType)) {
-            z10 = true;
-        } else {
+        int parseInt = Integer.parseInt(str);
+        org.telegram.ui.xt0 xt0Var = this.f30537a;
+        boolean z11 = xt0Var.G;
+        boolean z12 = false;
+        int i10 = 1;
+        if (parseInt != 1 && parseInt != 3) {
             z10 = false;
-        }
-        if (!z10 && !Settings.canDrawOverlays(getContext())) {
-            g5.A((Activity) getContext(), null, false);
-            return false;
-        } else if (this.f30578n.getVisibility() == 0) {
-            return false;
         } else {
-            if (ch0.f27159p0.P) {
-                ch0.j(false);
-                AndroidUtilities.runOnUIThread(new hg0(this, 0), 300L);
-                return true;
+            z10 = true;
+        }
+        xt0Var.G = z10;
+        xt0Var.b(z11);
+        if (parseInt != 0) {
+            if (parseInt != 1) {
+                if (parseInt != 2) {
+                    if (parseInt == 3) {
+                        z12 = true;
+                        i10 = 2;
+                    }
+                }
+            } else {
+                z12 = true;
             }
-            this.h.setVisibility(0);
-            Activity activity = (Activity) getContext();
-            xu xuVar = this.f30577f;
-            TLRPC.WebPage webPage = this.f30583y;
-            if (ch0.x(z10, activity, this, xuVar, webPage.embed_width, webPage.embed_height, false)) {
-                ch0.w(PhotoViewer.u1());
-            }
-            return true;
+            i10 = 3;
+        } else {
+            i10 = 4;
         }
-    }
-
-    public final void f() {
-        if (this.G && this.f30582x) {
-            h("pauseVideo();");
-            this.G = false;
-            b(true);
+        if (i10 == 3 && xt0Var.h.getVisibility() != 4) {
+            AndroidUtilities.runOnUIThread(new kg0(this, 1), 300L);
         }
-    }
-
-    public final void g() {
-        if (!this.G && this.f30582x) {
-            h("playVideo();");
-            this.G = true;
-            b(false);
-        }
-    }
-
-    public float getBufferedPosition() {
-        return this.J;
-    }
-
-    public int getCurrentPosition() {
-        return this.I;
-    }
-
-    public int getVideoDuration() {
-        return this.H;
-    }
-
-    public WebView getWebView() {
-        return this.f30577f;
-    }
-
-    public final void h(String str) {
-        this.f30577f.evaluateJavascript(str, null);
-    }
-
-    public final void i(long j10) {
-        boolean z10 = this.G;
-        this.I = (int) j10;
-        if (z10) {
-            f();
-        }
-        if (z10) {
-            AndroidUtilities.runOnUIThread(new bi.r3(this, j10, 25), 100L);
-            return;
-        }
-        h("seekTo(" + Math.round(((float) j10) / 1000.0f) + ", true);");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        xu xuVar = this.f30577f;
-        if (xuVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.f30583y;
-            int i12 = webPage.embed_width;
-            int i13 = 100;
-            if (i12 == 0) {
-                i12 = 100;
-            }
-            int i14 = webPage.embed_height;
-            if (i14 != 0) {
-                i13 = i14;
-            }
-            int size = View.MeasureSpec.getSize(i10);
-            int size2 = View.MeasureSpec.getSize(i11);
-            float f7 = i12;
-            float f10 = i13;
-            float min = Math.min(size / f7, size2 / f10);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) xuVar.getLayoutParams();
-            int i15 = (int) (f7 * min);
-            layoutParams.width = i15;
-            int i16 = (int) (f10 * min);
-            layoutParams.height = i16;
-            layoutParams.topMargin = (size2 - i16) / 2;
-            layoutParams.leftMargin = (size - i15) / 2;
-        }
-        super.onMeasure(i10, i11);
-    }
-
-    public void setPlaybackSpeed(float f7) {
-        this.E = f7;
-        if (this.f30578n.getVisibility() != 0) {
-            if (this.f30582x) {
-                h("setPlaybackSpeed(" + f7 + ");");
-                return;
-            }
-            return;
-        }
-        this.F = true;
-    }
-
-    public void setTouchDisabled(boolean z10) {
-        this.K = z10;
+        AndroidUtilities.runOnUIThread(new bi.u8(this, z12, i10, 2));
     }
 }

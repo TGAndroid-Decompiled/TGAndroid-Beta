@@ -1,27 +1,25 @@
 package org.telegram.messenger;
-public final class dd implements Runnable {
-    public final int f19909a;
-    public final org.telegram.ui.ActionBar.r2 f19910b;
 
-    public dd(int i10, org.telegram.ui.ActionBar.r2 r2Var) {
-        this.f19909a = i10;
-        this.f19910b = r2Var;
+import org.telegram.tgnet.tl.TL_account;
+public final class dd implements Runnable {
+    public final int f19906a;
+    public final MessagesController f19907b;
+    public final TL_account.TL_webBrowserSettings f19908c;
+
+    public dd(MessagesController messagesController, TL_account.TL_webBrowserSettings tL_webBrowserSettings, int i10) {
+        this.f19906a = i10;
+        this.f19907b = messagesController;
+        this.f19908c = tL_webBrowserSettings;
     }
 
     @Override
     public final void run() {
-        switch (this.f19909a) {
+        switch (this.f19906a) {
             case 0:
-                MessagesController.lambda$checkSensitive$452(this.f19910b);
-                return;
-            case 1:
-                org.telegram.ui.Components.g5.s0(7, this.f19910b, null);
-                return;
-            case 2:
-                org.telegram.ui.Components.g5.s0(8, this.f19910b, null);
+                this.f19907b.lambda$loadWebBrowserConfig$514(this.f19908c);
                 return;
             default:
-                TranslateController.lambda$pushToSummarize$18(this.f19910b);
+                this.f19907b.lambda$loadWebBrowserConfig$516(this.f19908c);
                 return;
         }
     }

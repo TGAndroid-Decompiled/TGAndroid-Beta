@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
 public final class f6 implements Runnable {
-    public final int f39278a;
-    public final Utilities.Callback f39279b;
-    public final long f39280c;
+    public final int f39178a;
+    public final Utilities.Callback f39179b;
+    public final long f39180c;
 
     public f6(long j10, int i10, Utilities.Callback callback) {
-        this.f39278a = i10;
-        this.f39279b = callback;
-        this.f39280c = j10;
+        this.f39178a = i10;
+        this.f39179b = callback;
+        this.f39180c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f39278a) {
+        switch (this.f39178a) {
             case 0:
-                this.f39279b.run(Long.valueOf(this.f39280c));
+                this.f39179b.run(Long.valueOf(this.f39180c));
                 return;
             default:
-                this.f39279b.run(Long.valueOf(this.f39280c));
+                this.f39179b.run(Long.valueOf(this.f39180c));
                 return;
         }
     }

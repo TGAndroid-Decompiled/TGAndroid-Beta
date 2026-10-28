@@ -1,40 +1,44 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.FileLog;
-public final class q41 extends s4.t {
-    public final int Q;
-    public final c61 R;
+import java.util.ArrayList;
+public final class q41 extends g.o {
+    public final int f42614c;
+    public final f61 d;
 
-    public q41(c61 c61Var, int i10) {
-        super(40);
-        this.Q = i10;
-        this.R = c61Var;
+    public q41(f61 f61Var, int i10) {
+        this.f42614c = i10;
+        this.d = f61Var;
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.b1 b1Var, int i10) {
-        switch (this.Q) {
+    public final int i(int i10) {
+        int i11;
+        ArrayList arrayList;
+        int i12;
+        switch (this.f42614c) {
             case 0:
-                try {
-                    fi.k1 k1Var = new fi.k1(this, recyclerView.getContext(), 3);
-                    k1Var.f47680a = i10;
-                    w0(k1Var);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
+                f61 f61Var = this.d;
+                if (f61Var.f39234w0.indexOfKey(i10) < 0 && f61Var.f39242z0.indexOfKey(i10) < 0 && i10 != f61Var.f39197f && i10 != f61Var.f39239y && i10 != f61Var.f39212n && i10 != f61Var.h && i10 != f61Var.v && i10 != f61Var.f39184a && i10 != f61Var.f39236x) {
+                    if ((i10 >= f61Var.E && i10 < f61Var.F) || f61Var.Q) {
+                        return 8;
+                    }
+                    return 5;
                 }
+                return f61Var.f39222r0.J;
             default:
-                try {
-                    fi.k1 k1Var2 = new fi.k1(this, recyclerView.getContext(), 5);
-                    k1Var2.f47680a = i10;
-                    w0(k1Var2);
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
+                f61 f61Var2 = this.d;
+                p51 p51Var = f61Var2.f39219q0;
+                int j10 = p51Var.j(i10);
+                if (j10 == 6) {
+                    return f61Var2.f39222r0.J;
                 }
+                if (j10 != 5) {
+                    f61 f61Var3 = p51Var.f42312s;
+                    if (f61Var3.W != 14 ? i10 <= (i11 = p51Var.f42308c) || (i10 - i11) - 1 >= f61Var3.D1.size() : (arrayList = f61Var3.C1) == null || i10 < (i12 = p51Var.f42308c) || i10 - i12 >= arrayList.size()) {
+                        return 5;
+                    }
+                }
+                return 8;
         }
     }
 }

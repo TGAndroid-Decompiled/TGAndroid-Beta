@@ -1,15 +1,40 @@
 package org.telegram.ui;
-public final class ct0 implements Runnable {
-    public final int f38524a;
-    public final dt0 f38525b;
 
-    public ct0(dt0 dt0Var, int i10) {
-        this.f38524a = i10;
-        this.f38525b = dt0Var;
+import android.app.Activity;
+import android.content.Context;
+import android.view.OrientationEventListener;
+public final class ct0 extends OrientationEventListener {
+    public final PhotoViewer f38455a;
+
+    public ct0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f38455a = photoViewer;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ct0.run():void");
+    public final void onOrientationChanged(int i10) {
+        ht0 ht0Var;
+        Activity activity;
+        int i11;
+        PhotoViewer photoViewer = this.f38455a;
+        if (photoViewer.W3 != null && (ht0Var = photoViewer.f35852y2) != null && ht0Var.getVisibility() == 0 && (activity = photoViewer.f35849y) != null && (i11 = photoViewer.Y3) != 0) {
+            if (i11 == 1) {
+                if (i10 >= 240 && i10 <= 300) {
+                    photoViewer.Z3 = true;
+                } else if (photoViewer.Z3 && i10 > 0) {
+                    if (i10 >= 330 || i10 <= 30) {
+                        activity.setRequestedOrientation(photoViewer.X3);
+                        photoViewer.Y3 = 0;
+                        photoViewer.Z3 = false;
+                    }
+                }
+            } else if (i10 > 0 && (i10 >= 330 || i10 <= 30)) {
+                photoViewer.Z3 = true;
+            } else if (photoViewer.Z3 && i10 >= 240 && i10 <= 300) {
+                activity.setRequestedOrientation(photoViewer.X3);
+                photoViewer.Y3 = 0;
+                photoViewer.Z3 = false;
+            }
+        }
     }
 }

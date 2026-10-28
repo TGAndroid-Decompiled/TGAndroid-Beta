@@ -6,16 +6,16 @@ import j$.util.Objects;
 public final class r1 {
     public static final String d;
     public static final String e;
-    public static final String f18213f;
-    public final int f18214a;
-    public final String f18215b;
-    public final Bundle f18216c;
+    public static final String f18212f;
+    public final int f18213a;
+    public final String f18214b;
+    public final Bundle f18215c;
 
     static {
-        String str = e2.n0.f9692a;
+        String str = e2.n0.f9691a;
         d = Integer.toString(0, 36);
         e = Integer.toString(1, 36);
-        f18213f = Integer.toString(2, 36);
+        f18212f = Integer.toString(2, 36);
     }
 
     public r1(int i10) {
@@ -24,11 +24,11 @@ public final class r1 {
 
     public final Bundle a() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d, this.f18214a);
-        bundle.putString(e, this.f18215b);
-        Bundle bundle2 = this.f18216c;
+        bundle.putInt(d, this.f18213a);
+        bundle.putString(e, this.f18214b);
+        Bundle bundle2 = this.f18215c;
         if (!bundle2.isEmpty()) {
-            bundle.putBundle(f18213f, bundle2);
+            bundle.putBundle(f18212f, bundle2);
         }
         return bundle;
     }
@@ -41,14 +41,14 @@ public final class r1 {
             return false;
         }
         r1 r1Var = (r1) obj;
-        if (this.f18214a == r1Var.f18214a && Objects.equals(this.f18215b, r1Var.f18215b)) {
+        if (this.f18213a == r1Var.f18213a && Objects.equals(this.f18214b, r1Var.f18214b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f18214a), this.f18215b);
+        return Objects.hash(Integer.valueOf(this.f18213a), this.f18214b);
     }
 
     public r1(String str, int i10, Bundle bundle) {
@@ -57,8 +57,8 @@ public final class r1 {
             z10 = false;
         }
         yb.g(z10);
-        this.f18214a = i10;
-        this.f18215b = str;
-        this.f18216c = bundle;
+        this.f18213a = i10;
+        this.f18214b = str;
+        this.f18215c = bundle;
     }
 }

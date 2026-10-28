@@ -10,15 +10,15 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.db;
-import org.telegram.messenger.fc;
+import org.telegram.messenger.ec;
+import org.telegram.messenger.he;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.voip.g2;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ph1;
+import org.telegram.ui.rh1;
 public class VoIPGroupNotification {
     public static long currentCallId;
     public static State currentState;
@@ -62,9 +62,9 @@ public class VoIPGroupNotification {
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                ph1 ph1Var = ph1.f42509n1;
-                if (ph1Var != null) {
-                    ph1Var.onStateChanged(getCallState());
+                rh1 rh1Var = rh1.f42999n1;
+                if (rh1Var != null) {
+                    rh1Var.onStateChanged(getCallState());
                 }
             }
         }
@@ -162,9 +162,9 @@ public class VoIPGroupNotification {
         TL_phone.declineConferenceCallInvite declineconferencecallinvite = new TL_phone.declineConferenceCallInvite();
         declineconferencecallinvite.msg_id = i11;
         ConnectionsManager.getInstance(i10).sendRequest(declineconferencecallinvite, new s2(i10, 1));
-        ph1 ph1Var = ph1.f42509n1;
-        if (ph1Var != null) {
-            ph1Var.m();
+        rh1 rh1Var = rh1.f42999n1;
+        if (rh1Var != null) {
+            rh1Var.m();
         }
     }
 
@@ -187,9 +187,9 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            ph1 ph1Var = ph1.f42509n1;
-            if (ph1Var != null) {
-                ph1Var.m();
+            rh1 rh1Var = rh1.f42999n1;
+            if (rh1Var != null) {
+                rh1Var.m();
             }
         }
     }
@@ -216,7 +216,7 @@ public class VoIPGroupNotification {
     }
 
     public static void lambda$request$1(int i10, long j10, long j11, int i11, boolean z10, Context context, String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new db(tLObject, i10, j10, j11, i11, z10, context, str));
+        AndroidUtilities.runOnUIThread(new he(tLObject, i10, j10, j11, i11, z10, context, str));
     }
 
     public static void open(Context context, int i10, int i11) {
@@ -234,7 +234,7 @@ public class VoIPGroupNotification {
                 findActivity = LaunchActivity.I1;
             }
             if (findActivity != null) {
-                ph1.v(findActivity, i10);
+                rh1.v(findActivity, i10);
             }
         }
     }
@@ -256,7 +256,7 @@ public class VoIPGroupNotification {
                         getgroupcall.call = tL_inputGroupCallInviteMessage;
                         tL_inputGroupCallInviteMessage.msg_id = i11;
                         getgroupcall.limit = 3;
-                        ConnectionsManager.getInstance(i10).sendRequest(getgroupcall, new fc(context, i10, j10, str, j11, i11, z10));
+                        ConnectionsManager.getInstance(i10).sendRequest(getgroupcall, new ec(context, i10, j10, str, j11, i11, z10));
                     }
                 }
             }
@@ -278,9 +278,9 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            ph1 ph1Var = ph1.f42509n1;
-            if (ph1Var != null) {
-                ph1Var.m();
+            rh1 rh1Var = rh1.f42999n1;
+            if (rh1Var != null) {
+                rh1Var.m();
             }
         }
     }

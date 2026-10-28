@@ -5,8 +5,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 public abstract class l1 {
-    public static final int[] f17762a = {16842912};
-    public static final int[] f17763b = new int[0];
+    public static final int[] f17761a = {16842912};
+    public static final int[] f17762b = new int[0];
 
     static {
         new Rect();
@@ -18,9 +18,9 @@ public abstract class l1 {
         if (i10 >= 29 && i10 < 31 && "android.graphics.drawable.ColorStateListDrawable".equals(name)) {
             int[] state = drawable.getState();
             if (state != null && state.length != 0) {
-                drawable.setState(f17763b);
+                drawable.setState(f17762b);
             } else {
-                drawable.setState(f17762a);
+                drawable.setState(f17761a);
             }
             drawable.setState(state);
         }

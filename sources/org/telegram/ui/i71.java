@@ -1,28 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.UndoView;
-public final class i71 extends UndoView {
-    public final SessionsActivity f40167j0;
+public final class i71 implements Utilities.Callback {
+    public final int f40061a;
+    public final SessionsActivity f40062b;
 
-    public i71(SessionsActivity sessionsActivity, Context context) {
-        super(context);
-        this.f40167j0 = sessionsActivity;
+    public i71(SessionsActivity sessionsActivity, int i10) {
+        this.f40061a = i10;
+        this.f40062b = sessionsActivity;
     }
 
     @Override
-    public final void d(int i10, boolean z10) {
-        int i11;
-        if (!z10 && getCurrentInfoObject() != null) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
-            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-            resetauthorization.hash = tL_authorization.hash;
-            i11 = ((org.telegram.ui.ActionBar.r2) this.f40167j0).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new j10(28, this, tL_authorization));
+    public final void run(Object obj) {
+        switch (this.f40061a) {
+            case 0:
+                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
+                SessionsActivity sessionsActivity = this.f40062b;
+                sessionsActivity.getClass();
+                if (connectedbots != null) {
+                    sessionsActivity.f36238f = connectedbots.connected_bots;
+                    if (sessionsActivity.f36235a != null) {
+                        sessionsActivity.n0();
+                        sessionsActivity.f36235a.l();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                SessionsActivity.W(this.f40062b, (Boolean) obj);
+                return;
         }
-        super.d(i10, z10);
     }
 }

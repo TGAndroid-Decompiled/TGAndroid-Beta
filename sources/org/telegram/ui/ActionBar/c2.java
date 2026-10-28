@@ -4,17 +4,17 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 public final class c2 implements u6 {
-    public final int f22496a;
-    public final Object f22497b;
+    public final int f22497a;
+    public final Object f22498b;
 
     public c2(Object obj, int i10) {
-        this.f22496a = i10;
-        this.f22497b = obj;
+        this.f22497a = i10;
+        this.f22498b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f22496a) {
+        switch (this.f22497a) {
             case 0:
             default:
                 return y6.I.q();
@@ -23,7 +23,7 @@ public final class c2 implements u6 {
 
     @Override
     public final void b(float f7, float f10, int i10, int i11) {
-        switch (this.f22496a) {
+        switch (this.f22497a) {
             case 0:
                 y6.q(f7, f10, i10, i11);
                 return;
@@ -35,17 +35,17 @@ public final class c2 implements u6 {
 
     @Override
     public final ColorFilter c() {
-        switch (this.f22496a) {
+        switch (this.f22497a) {
             case 0:
-                return y6.f23689v3;
+                return y6.f23690v3;
             default:
-                return y6.f23689v3;
+                return y6.f23690v3;
         }
     }
 
     @Override
     public final Paint d(String str) {
-        switch (this.f22496a) {
+        switch (this.f22497a) {
             case 0:
                 return y6.U0(str);
             default:
@@ -55,7 +55,7 @@ public final class c2 implements u6 {
 
     @Override
     public final int e(int i10) {
-        switch (this.f22496a) {
+        switch (this.f22497a) {
             case 0:
                 return g(i10);
             default:
@@ -65,7 +65,7 @@ public final class c2 implements u6 {
 
     @Override
     public final boolean f() {
-        switch (this.f22496a) {
+        switch (this.f22497a) {
             case 0:
                 return false;
             default:
@@ -75,17 +75,17 @@ public final class c2 implements u6 {
 
     @Override
     public final int g(int i10) {
-        switch (this.f22496a) {
+        switch (this.f22497a) {
             case 0:
-                return ((e2) this.f22497b).f(i10);
+                return ((e2) this.f22498b).f(i10);
             default:
-                return ((r2) this.f22497b).getThemedColor(i10);
+                return ((r2) this.f22498b).getThemedColor(i10);
         }
     }
 
     @Override
     public final Drawable getDrawable(String str) {
-        switch (this.f22496a) {
+        switch (this.f22497a) {
             case 0:
                 return null;
             default:
@@ -95,12 +95,12 @@ public final class c2 implements u6 {
 
     @Override
     public final void h(int i10, int i11) {
-        int i12 = this.f22496a;
+        int i12 = this.f22497a;
     }
 
     @Override
     public final int i(int i10) {
-        switch (this.f22496a) {
+        switch (this.f22497a) {
             case 0:
                 return g(i10);
             default:

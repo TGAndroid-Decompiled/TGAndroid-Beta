@@ -3,7 +3,7 @@ package bi;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.e50;
+import org.telegram.ui.g50;
 public final class l7 extends AnimatorListenerAdapter {
     public final int f5028a;
     public final float f5029b;
@@ -35,9 +35,9 @@ public final class l7 extends AnimatorListenerAdapter {
                 return;
             case 1:
                 di.w1 w1Var = (di.w1) obj;
-                w1Var.f9292n = f7;
+                w1Var.f9291n = f7;
                 w1Var.invalidate();
-                if (animator == w1Var.f9293r && runnable != null) {
+                if (animator == w1Var.f9292r && runnable != null) {
                     runnable.run();
                     return;
                 }
@@ -56,8 +56,8 @@ public final class l7 extends AnimatorListenerAdapter {
                 sbVar.L = null;
                 sbVar.I = f7;
                 sbVar.j();
-                sbVar.f11658r.invalidate();
-                sbVar.f11645n.invalidate();
+                sbVar.f11657r.invalidate();
+                sbVar.f11644n.invalidate();
                 runnable.run();
                 sbVar.P.unlock();
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
@@ -68,13 +68,13 @@ public final class l7 extends AnimatorListenerAdapter {
                     runnable2.run();
                     sbVar.Q = null;
                 }
-                sbVar.f11658r.invalidate();
-                sbVar.f11629h0.invalidate();
+                sbVar.f11657r.invalidate();
+                sbVar.f11628h0.invalidate();
                 return;
             default:
-                e50 e50Var = (e50) obj;
-                e50Var.h = f7;
-                e50Var.f38992a.invalidate();
+                g50 g50Var = (g50) obj;
+                g50Var.h = f7;
+                g50Var.f39507a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;

@@ -13,7 +13,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 import org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy;
 public final class t0 implements Utilities.Callback2 {
     public final int f5433a;
@@ -68,12 +68,12 @@ public final class t0 implements Utilities.Callback2 {
                 v3Var2.k(11.0f, 8.0f, 11.0f, 7.0f);
                 v3Var2.q(10.0f);
                 v3Var2.s(replaceTags);
-                v3Var2.f11798l0 = new u2(v3Var2, 1);
+                v3Var2.f11797l0 = new u2(v3Var2, 1);
                 v3Var2.setTranslationY((-AndroidUtilities.dp(100.0f)) + y3);
                 v3Var2.h = AndroidUtilities.dp(300.0f);
                 v3Var2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
                 v3Var2.m(0.0f, x9 - AndroidUtilities.dp(4.0f));
-                frameLayout.addView(v3Var2, gb1.i(-1, 100, 55));
+                frameLayout.addView(v3Var2, kb1.i(-1, 100, 55));
                 v3Var2.u();
                 return;
             case 2:
@@ -101,11 +101,11 @@ public final class t0 implements Utilities.Callback2 {
                 ArrayList arrayList = (ArrayList) obj2;
                 if (TextUtils.isEmpty(str)) {
                     a1Var.x(x7Var, "prepared_message_sent", null);
-                    org.telegram.ui.web.g0 g0Var = a1Var.f45158c;
+                    org.telegram.ui.web.g0 g0Var = a1Var.f44669c;
                     if (g0Var != null) {
                         g0Var.c();
                     }
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6(12, botWebViewContainer$BotWebViewProxy, arrayList), 500L);
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.a6(13, botWebViewContainer$BotWebViewProxy, arrayList), 500L);
                     return;
                 }
                 a1Var.x(x7Var, "prepared_message_failed", org.telegram.ui.web.a1.A(str, "error"));
@@ -142,12 +142,12 @@ public final class t0 implements Utilities.Callback2 {
                 v3Var4.k(11.0f, 8.0f, 11.0f, 7.0f);
                 v3Var4.q(10.0f);
                 v3Var4.s(replaceTags2);
-                v3Var4.f11798l0 = new u2(v3Var4, 3);
+                v3Var4.f11797l0 = new u2(v3Var4, 3);
                 v3Var4.setTranslationY((-AndroidUtilities.dp(100.0f)) + y10);
                 v3Var4.h = AndroidUtilities.dp(300.0f);
                 v3Var4.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
                 v3Var4.m(0.0f, x10 - AndroidUtilities.dp(4.0f));
-                frameLayout2.addView(v3Var4, gb1.i(-1, 100, 55));
+                frameLayout2.addView(v3Var4, kb1.i(-1, 100, 55));
                 v3Var4.u();
                 return;
             default:
@@ -156,7 +156,7 @@ public final class t0 implements Utilities.Callback2 {
                 String str2 = (String) obj2;
                 ((qf.c) this.f5435c).b();
                 if (((Boolean) obj).booleanValue()) {
-                    p2 p2Var = g4Var.f53018f0;
+                    p2 p2Var = g4Var.f53076f0;
                     if (p2Var != null) {
                         p2Var.run(tL_starGiftUnique);
                     }

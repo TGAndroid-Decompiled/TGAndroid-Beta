@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.SortedMap;
 public final class k1 extends l implements a1, Serializable {
     public final transient Map e;
-    public transient int f10293f;
+    public transient int f10292f;
     public transient j1 h;
 
     public k1(Map map) {
@@ -29,7 +29,7 @@ public final class k1 extends l implements a1, Serializable {
             collection.clear();
         }
         map.clear();
-        this.f10293f = 0;
+        this.f10292f = 0;
     }
 
     @Override
@@ -85,6 +85,6 @@ public final class k1 extends l implements a1, Serializable {
 
     @Override
     public final int size() {
-        return this.f10293f;
+        return this.f10292f;
     }
 }

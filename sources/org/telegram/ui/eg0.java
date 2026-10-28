@@ -1,113 +1,62 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import android.os.Build;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class eg0 {
-    public final fg0 f39105a;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class eg0 extends AnimatedPhoneNumberEditText {
+    public final hg0 G;
 
-    public eg0(fg0 fg0Var) {
-        this.f39105a = fg0Var;
+    public eg0(hg0 hg0Var, Context context) {
+        super(context);
+        this.G = hg0Var;
     }
 
-    public final void a(tf0 tf0Var) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        int i10;
-        fg0 fg0Var = this.f39105a;
-        fg0Var.N = true;
-        gg0 gg0Var = fg0Var.f39362a0;
-        gg0Var.J = 0;
-        gg0Var.s1(0, false);
-        int i11 = Build.VERSION.SDK_INT;
-        if (AndroidUtilities.isSimAvailable()) {
-            if (gg0Var.getParentActivity().checkSelfPermission("android.permission.READ_PHONE_STATE") == 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            if (gg0Var.getParentActivity().checkSelfPermission("android.permission.CALL_PHONE") == 0) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            if (i11 >= 28 && gg0Var.getParentActivity().checkSelfPermission("android.permission.READ_CALL_LOG") != 0) {
-                z13 = false;
-            } else {
-                z13 = true;
-            }
-            if (i11 >= 26 && gg0Var.getParentActivity().checkSelfPermission("android.permission.READ_PHONE_NUMBERS") != 0) {
-                z14 = false;
-            } else {
-                z14 = true;
-            }
-            mj0 mj0Var = fg0Var.f39361a;
-            if (mj0Var != null && "888".equals(mj0Var.getText())) {
-                z11 = true;
-                z12 = true;
-                z13 = true;
-                z14 = true;
-            }
-            if (gg0Var.v) {
-                gg0Var.f39672r.clear();
-                if (!z11) {
-                    gg0Var.f39672r.add("android.permission.READ_PHONE_STATE");
-                }
-                if (!z12) {
-                    gg0Var.f39672r.add("android.permission.CALL_PHONE");
-                }
-                if (!z13) {
-                    gg0Var.f39672r.add("android.permission.READ_CALL_LOG");
-                }
-                if (!z14 && i11 >= 26) {
-                    gg0Var.f39672r.add("android.permission.READ_PHONE_NUMBERS");
-                }
-                if (!gg0Var.f39672r.isEmpty()) {
-                    SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                    if (!globalMainSettings.getBoolean("firstlogin", true) && !gg0Var.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_PHONE_STATE") && !gg0Var.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_CALL_LOG")) {
-                        try {
-                            gg0Var.getParentActivity().requestPermissions((String[]) gg0Var.f39672r.toArray(new String[0]), 6);
-                            return;
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            return;
-                        }
-                    }
-                    globalMainSettings.edit().putBoolean("firstlogin", false).commit();
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(gg0Var.getParentActivity());
-                    alertDialog$Builder.k(LocaleController.getString("Continue", R.string.Continue), null);
-                    if (!z11 && (!z12 || !z13)) {
-                        alertDialog$Builder.f22368a.T = LocaleController.getString("AllowReadCallAndLog", R.string.AllowReadCallAndLog);
-                        i10 = R.raw.calls_log;
-                    } else if (z12 && z13) {
-                        alertDialog$Builder.f22368a.T = LocaleController.getString("AllowReadCall", R.string.AllowReadCall);
-                        i10 = R.raw.incoming_calls;
-                    } else {
-                        alertDialog$Builder.f22368a.T = LocaleController.getString("AllowReadCallLog", R.string.AllowReadCallLog);
-                        i10 = R.raw.calls_log;
-                    }
-                    int i12 = org.telegram.ui.ActionBar.y6.L5;
-                    alertDialog$Builder.m(i10, 46, org.telegram.ui.ActionBar.y6.x0(null, i12, false), null);
-                    alertDialog$Builder.n(i12, null);
-                    gg0Var.h = gg0Var.showDialog(alertDialog$Builder.f22368a);
-                    fg0Var.N = true;
-                    return;
-                }
-            }
-            z10 = true;
+    @Override
+    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
+        float f7;
+        super.onFocusChanged(z10, i10, rect);
+        hg0 hg0Var = this.G;
+        ig0 ig0Var = hg0Var.f39882a0;
+        org.telegram.ui.Components.sd0 sd0Var = hg0Var.f39885f;
+        if (!z10 && !hg0Var.f39881a.isFocused()) {
+            f7 = 0.0f;
         } else {
-            z10 = true;
+            f7 = 1.0f;
         }
-        dg0 dg0Var = new dg0(0, tf0Var, this);
-        tf0Var.h.f(z10, z10);
-        AndroidUtilities.runOnUIThread(dg0Var, 400L);
+        sd0Var.b(f7, f7, true);
+        if (z10) {
+            ig0Var.f40144c.setEditText(this);
+            ig0Var.f40144c.setDispatchBackWhenEmpty(true);
+            if (hg0Var.E == 2) {
+                hg0Var.setCountryButtonText(LocaleController.getString(R.string.WrongCountry));
+            }
+        } else if (hg0Var.E == 2) {
+            hg0Var.setCountryButtonText(null);
+        }
+    }
+
+    @Override
+    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        hg0 hg0Var = this.G;
+        oj0 oj0Var = hg0Var.f39881a;
+        if (i10 == 67 && hg0Var.f39883b.length() == 0) {
+            oj0Var.requestFocus();
+            oj0Var.setSelection(oj0Var.length());
+            oj0Var.dispatchKeyEvent(keyEvent);
+        }
+        return super.onKeyDown(i10, keyEvent);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && !ig0.W0(this.G.f39882a0, this)) {
+            clearFocus();
+            requestFocus();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

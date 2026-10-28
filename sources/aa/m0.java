@@ -52,7 +52,7 @@ import m.m2;
 import m.r3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.bz0;
+import org.telegram.ui.Components.cz0;
 import org.telegram.ui.LaunchActivity;
 public final class m0 {
     public Object f1150a;
@@ -74,7 +74,7 @@ public final class m0 {
     public static n0 a(n0 n0Var, z9.e eVar, r3 r3Var) {
         String str;
         m0 a2 = n0Var.a();
-        String y3 = ((z9.c) eVar.f52821b).y();
+        String y3 = ((z9.c) eVar.f52879b).y();
         if (y3 != null) {
             a2.e = new x0(y3);
         } else if (Log.isLoggable("FirebaseCrashlytics", 2)) {
@@ -104,7 +104,7 @@ public final class m0 {
     }
 
     public static c2 c(n0 n0Var, r3 r3Var) {
-        List l4 = ((d5.z) r3Var.f17847f).l();
+        List l4 = ((d5.z) r3Var.f17846f).l();
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < l4.size(); i10++) {
             z9.l lVar = (z9.l) l4.get(i10);
@@ -113,16 +113,16 @@ public final class m0 {
             z9.b bVar = (z9.b) lVar;
             String str = bVar.e;
             if (str != null) {
-                String str2 = bVar.f52813b;
+                String str2 = bVar.f52871b;
                 if (str2 != null) {
                     obj.f7758b = new z0(str2, str);
-                    String str3 = bVar.f52814c;
+                    String str3 = bVar.f52872c;
                     if (str3 != null) {
                         obj.f7757a = str3;
                         String str4 = bVar.d;
                         if (str4 != null) {
                             obj.f7759c = str4;
-                            obj.d = Long.valueOf(bVar.f52815f);
+                            obj.d = Long.valueOf(bVar.f52873f);
                             arrayList.add(obj.e());
                         } else {
                             throw new NullPointerException("Null parameterValue");
@@ -157,14 +157,14 @@ public final class m0 {
     public static m0 j(Context context, y9.v vVar, da.c cVar, y9.a aVar, z9.e eVar, r3 r3Var, rf.b bVar, b0 b0Var, y9.l lVar, y9.j jVar) {
         y9.q qVar = new y9.q(context, vVar, aVar, bVar, b0Var);
         da.b bVar2 = new da.b(cVar, b0Var, jVar);
-        ba.a aVar2 = ea.a.f9859b;
+        ba.a aVar2 = ea.a.f9858b;
         m5.t.b(context);
-        return new m0(qVar, bVar2, new ea.a(new ea.c(m5.t.a().c(new k5.a(ea.a.f9860c, ea.a.d)).a("FIREBASE_CRASHLYTICS_REPORT", new j5.c("json"), ea.a.e), b0Var.d(), lVar)), eVar, r3Var, vVar);
+        return new m0(qVar, bVar2, new ea.a(new ea.c(m5.t.a().c(new k5.a(ea.a.f9859c, ea.a.d)).a("FIREBASE_CRASHLYTICS_REPORT", new j5.c("json"), ea.a.e), b0Var.d(), lVar)), eVar, r3Var, vVar);
     }
 
     public static ColorStateList k(Context context, int i10) {
         int c10 = b3.c(context, 2130968728);
-        return new ColorStateList(new int[][]{b3.f17681b, b3.d, b3.f17682c, b3.f17683f}, new int[]{b3.b(context, 2130968726), i0.a.k(c10, i10), i0.a.k(c10, i10), i10});
+        return new ColorStateList(new int[][]{b3.f17680b, b3.d, b3.f17681c, b3.f17682f}, new int[]{b3.b(context, 2130968726), i0.a.k(c10, i10), i0.a.k(c10, i10), i10});
     }
 
     public static u2.g0 n(b2.g1 g1Var, f9.i0 i0Var, u2.g0 g0Var, b2.m1 m1Var) {
@@ -251,12 +251,12 @@ public final class m0 {
     }
 
     public static boolean s(u2.g0 g0Var, Object obj, boolean z10, int i10, int i11, int i12) {
-        Object obj2 = g0Var.f49297a;
-        int i13 = g0Var.f49298b;
+        Object obj2 = g0Var.f49332a;
+        int i13 = g0Var.f49333b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z10 || i13 != i10 || g0Var.f49299c != i11) {
+        if (!z10 || i13 != i10 || g0Var.f49334c != i11) {
             if (z10 || i13 != -1 || g0Var.e != i12) {
                 return false;
             }
@@ -267,12 +267,12 @@ public final class m0 {
 
     public static void z(Drawable drawable, int i10, PorterDuff.Mode mode) {
         PorterDuffColorFilter h;
-        int[] iArr = m.l1.f17762a;
+        int[] iArr = m.l1.f17761a;
         Drawable mutate = drawable.mutate();
         if (mode == null) {
-            mode = m.q.f17819b;
+            mode = m.q.f17818b;
         }
-        PorterDuff.Mode mode2 = m.q.f17819b;
+        PorterDuff.Mode mode2 = m.q.f17818b;
         synchronized (m.q.class) {
             h = m2.h(i10, mode);
         }
@@ -284,20 +284,20 @@ public final class m0 {
         try {
             x(str, str2, bundle);
             k6.a aVar = (k6.a) this.f1152c;
-            k6.n nVar = k6.n.f16426a;
-            b4.d dVar = aVar.f16400c;
+            k6.n nVar = k6.n.f16425a;
+            b4.d dVar = aVar.f16399c;
             if (dVar.f() < 12000000) {
                 if (dVar.g() != 0) {
                     return aVar.a(bundle).continueWithTask(nVar, new rf.b(28, aVar, bundle));
                 }
                 return Tasks.forException(new IOException("MISSING_INSTANCEID_SERVICE"));
             }
-            k6.m j10 = k6.m.j(aVar.f16399b);
+            k6.m j10 = k6.m.j(aVar.f16398b);
             synchronized (j10) {
-                i10 = j10.f16423a;
-                j10.f16423a = i10 + 1;
+                i10 = j10.f16422a;
+                j10.f16422a = i10 + 1;
             }
-            return j10.k(new k6.l(i10, 1, bundle, 1)).continueWith(nVar, k6.b.f16403a);
+            return j10.k(new k6.l(i10, 1, bundle, 1)).continueWith(nVar, k6.b.f16402a);
         } catch (InterruptedException | ExecutionException e) {
             return Tasks.forException(e);
         }
@@ -311,7 +311,7 @@ public final class m0 {
             ((ValueAnimator) arrayList3.get(i10)).cancel();
             if (z10) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ArrayList) this.d).get(i10)).floatValue(), 0.0f);
-                ofFloat.addUpdateListener(new bz0(this, i10, 0));
+                ofFloat.addUpdateListener(new cz0(this, i10, 0));
                 ofFloat.setDuration(100L);
                 ofFloat.start();
             }
@@ -320,7 +320,7 @@ public final class m0 {
             ((ValueAnimator) arrayList2.get(i11)).cancel();
             if (z10) {
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.e).get(i11)).floatValue(), 0.0f);
-                ofFloat2.addUpdateListener(new bz0(this, i11, 1));
+                ofFloat2.addUpdateListener(new cz0(this, i11, 1));
                 ofFloat2.setDuration(100L);
                 ofFloat2.start();
             }
@@ -329,7 +329,7 @@ public final class m0 {
             ((ValueAnimator) arrayList.get(i12)).cancel();
             if (z10) {
                 ValueAnimator ofFloat3 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f1153f).get(i12)).floatValue(), 0.0f);
-                ofFloat3.addUpdateListener(new bz0(this, i12, 2));
+                ofFloat3.addUpdateListener(new cz0(this, i12, 2));
                 ofFloat3.setDuration(100L);
                 ofFloat3.start();
             }
@@ -383,7 +383,7 @@ public final class m0 {
         sf.d dVar = (sf.d) this.e;
         sf.d dVar2 = null;
         for (sf.d dVar3 : ((HashMap) this.f1150a).values()) {
-            if (dVar3.f48137m || dVar3.f48129b.f49722a != 0) {
+            if (dVar3.f48175m || dVar3.f48167b.f49757a != 0) {
                 if (dVar2 == null || dVar3.d > dVar2.d) {
                     dVar2 = dVar3;
                 }
@@ -393,7 +393,7 @@ public final class m0 {
             this.e = dVar2;
             StringBuilder sb2 = new StringBuilder("onMaxPrioritySourceChanged ");
             if (dVar2 != null) {
-                str = dVar2.f48130c;
+                str = dVar2.f48168c;
             } else {
                 str = null;
             }
@@ -407,12 +407,12 @@ public final class m0 {
                     AndroidUtilities.resetPictureInPictureParams(launchActivity);
                 }
             }
-            if (dVar != null && dVar.f48131f) {
+            if (dVar != null && dVar.f48169f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (dVar2 != null && dVar2.f48131f) {
+            if (dVar2 != null && dVar2.f48169f) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -421,40 +421,40 @@ public final class m0 {
                 m4.y yVar = (m4.y) this.f1153f;
                 if (yVar != null) {
                     try {
-                        synchronized (m4.y.f18299b) {
-                            m4.y.f18300c.remove(yVar.f18301a.f18046i);
+                        synchronized (m4.y.f18298b) {
+                            m4.y.f18299c.remove(yVar.f18300a.f18045i);
                         }
-                        yVar.f18301a.r();
+                        yVar.f18300a.r();
                     } catch (Exception unused) {
                     }
                     this.f1153f = null;
                 }
                 if (dVar2 != null) {
-                    m4.s sVar = new m4.s((LaunchActivity) this.d, dVar2.f48136l);
-                    sVar.f18220c = "pip-media-session";
-                    yb.p(!sVar.f18227m);
-                    sVar.f18227m = true;
-                    Context context = sVar.f18218a;
-                    Object obj = m4.y.f18299b;
+                    m4.s sVar = new m4.s((LaunchActivity) this.d, dVar2.f48174l);
+                    sVar.f18219c = "pip-media-session";
+                    yb.p(!sVar.f18226m);
+                    sVar.f18226m = true;
+                    Context context = sVar.f18217a;
+                    Object obj = m4.y.f18298b;
                     int intValue = ((Integer) m4.f0.C.get()).intValue();
                     int i10 = Build.VERSION.SDK_INT;
                     if (i10 < 27) {
                         intValue = Math.max(intValue, (int) TypedValue.applyDimension(1, 320.0f, context.getResources().getDisplayMetrics()));
                     }
-                    e2.d dVar4 = sVar.f18222g;
+                    e2.d dVar4 = sVar.f18221g;
                     if (dVar4 == null) {
                         ?? obj2 = new Object();
                         obj2.f7972c = context;
                         obj2.f7970a = -1;
                         obj2.f7970a = intValue;
                         obj2.f7971b = true;
-                        sVar.f18222g = new g2.i(obj2);
+                        sVar.f18221g = new g2.i(obj2);
                     } else {
-                        sVar.f18222g = new d5.z(dVar4, intValue, 6);
+                        sVar.f18221g = new d5.z(dVar4, intValue, 6);
                     }
                     if (i10 == 29) {
-                        e2.d dVar5 = sVar.f18222g;
-                        AtomicReference atomicReference = m4.s.f18217n;
+                        e2.d dVar5 = sVar.f18221g;
+                        AtomicReference atomicReference = m4.s.f18216n;
                         j9.a aVar = (j9.a) atomicReference.get();
                         if (aVar == null) {
                             Display defaultDisplay = ((WindowManager) context.getSystemService(WindowManager.class)).getDefaultDisplay();
@@ -469,22 +469,22 @@ public final class m0 {
                             atomicReference.set(aVar2);
                             aVar = aVar2;
                         }
-                        sVar.f18222g = new m4.w1(0, dVar5, aVar);
+                        sVar.f18221g = new m4.w1(0, dVar5, aVar);
                     }
-                    sVar.f18222g = new m4.c(sVar.f18222g, 0);
-                    this.f1153f = new m4.y(sVar.f18218a, sVar.f18220c, sVar.f18219b, sVar.f18223i, sVar.f18224j, sVar.f18225k, sVar.d, sVar.e, sVar.f18221f, sVar.f18222g, sVar.h, sVar.f18226l);
+                    sVar.f18221g = new m4.c(sVar.f18221g, 0);
+                    this.f1153f = new m4.y(sVar.f18217a, sVar.f18219c, sVar.f18218b, sVar.f18222i, sVar.f18223j, sVar.f18224k, sVar.d, sVar.e, sVar.f18220f, sVar.f18221g, sVar.h, sVar.f18225l);
                 }
             }
             if (dVar != null) {
-                uf.e eVar = dVar.f48129b;
-                eVar.f49732n = false;
+                uf.e eVar = dVar.f48167b;
+                eVar.f49767n = false;
                 eVar.h();
-                sf.d dVar6 = eVar.f49728j;
-                ((sf.b) dVar6.f48128a.f1151b).f48106a.remove(eVar);
-                ((sf.b) dVar6.f48128a.f1151b).f48107b.remove(eVar);
-                m0 m0Var = dVar6.f48128a;
-                String str2 = dVar6.f48130c;
-                HashMap hashMap = ((sf.b) m0Var.f1151b).f48108c;
+                sf.d dVar6 = eVar.f49763j;
+                ((sf.b) dVar6.f48166a.f1151b).f48144a.remove(eVar);
+                ((sf.b) dVar6.f48166a.f1151b).f48145b.remove(eVar);
+                m0 m0Var = dVar6.f48166a;
+                String str2 = dVar6.f48168c;
+                HashMap hashMap = ((sf.b) m0Var.f1151b).f48146c;
                 ArrayList arrayList = (ArrayList) hashMap.get(str2);
                 if (arrayList != null) {
                     arrayList.remove((Object) null);
@@ -496,20 +496,20 @@ public final class m0 {
             if (dVar2 != null) {
                 m4.y yVar2 = (m4.y) this.f1153f;
                 if (yVar2 != null) {
-                    b2.g1 g1Var = yVar2.f18301a.f18057t.f18169a;
-                    i2.j0 j0Var = dVar2.f48136l;
+                    b2.g1 g1Var = yVar2.f18300a.f18056t.f18168a;
+                    i2.j0 j0Var = dVar2.f48174l;
                     if (g1Var != j0Var) {
                         yVar2.a(j0Var);
                     }
                 }
                 ((sf.a) this.f1152c).bringToFront();
-                uf.e eVar2 = dVar2.f48129b;
-                sf.d dVar7 = eVar2.f49728j;
-                ((sf.b) dVar7.f48128a.f1151b).f48106a.add(eVar2);
-                ((sf.b) dVar7.f48128a.f1151b).f48107b.add(eVar2);
-                m0 m0Var2 = dVar7.f48128a;
-                String str3 = dVar7.f48130c;
-                HashMap hashMap2 = ((sf.b) m0Var2.f1151b).f48108c;
+                uf.e eVar2 = dVar2.f48167b;
+                sf.d dVar7 = eVar2.f49763j;
+                ((sf.b) dVar7.f48166a.f1151b).f48144a.add(eVar2);
+                ((sf.b) dVar7.f48166a.f1151b).f48145b.add(eVar2);
+                m0 m0Var2 = dVar7.f48166a;
+                String str3 = dVar7.f48168c;
+                HashMap hashMap2 = ((sf.b) m0Var2.f1151b).f48146c;
                 ArrayList arrayList2 = (ArrayList) hashMap2.get(str3);
                 if (arrayList2 == null) {
                     arrayList2 = new ArrayList();
@@ -534,7 +534,7 @@ public final class m0 {
 
     public void d(ng ngVar, u2.g0 g0Var, b2.p1 p1Var) {
         if (g0Var != null) {
-            if (p1Var.b(g0Var.f49297a) != -1) {
+            if (p1Var.b(g0Var.f49332a) != -1) {
                 ngVar.w(g0Var, p1Var);
                 return;
             }
@@ -666,8 +666,8 @@ public final class m0 {
             }
             m4.y yVar = (m4.y) this.f1153f;
             if (yVar != null) {
-                b2.g1 g1Var = yVar.f18301a.f18057t.f18169a;
-                i2.j0 j0Var = dVar.f48136l;
+                b2.g1 g1Var = yVar.f18300a.f18056t.f18168a;
+                i2.j0 j0Var = dVar.f48174l;
                 if (g1Var != j0Var) {
                     yVar.a(j0Var);
                 }
@@ -699,19 +699,19 @@ public final class m0 {
             int[] iArr2 = new int[3];
             ColorStateList d = b3.d(context, 2130968734);
             if (d != null && d.isStateful()) {
-                int[] iArr3 = b3.f17681b;
+                int[] iArr3 = b3.f17680b;
                 iArr[0] = iArr3;
                 iArr2[0] = d.getColorForState(iArr3, 0);
                 iArr[1] = b3.e;
                 iArr2[1] = b3.c(context, 2130968727);
-                iArr[2] = b3.f17683f;
+                iArr[2] = b3.f17682f;
                 iArr2[2] = d.getDefaultColor();
             } else {
-                iArr[0] = b3.f17681b;
+                iArr[0] = b3.f17680b;
                 iArr2[0] = b3.b(context, 2130968734);
                 iArr[1] = b3.e;
                 iArr2[1] = b3.c(context, 2130968727);
-                iArr[2] = b3.f17683f;
+                iArr[2] = b3.f17682f;
                 iArr2[2] = b3.c(context, 2130968734);
             }
             return new ColorStateList(iArr, iArr2);
@@ -749,7 +749,7 @@ public final class m0 {
         boolean z11;
         boolean equals = str2.equals("crash");
         y9.q qVar = (y9.q) this.f1150a;
-        Context context = qVar.f52472a;
+        Context context = qVar.f52530a;
         int i10 = context.getResources().getConfiguration().orientation;
         rf.b bVar2 = qVar.d;
         Stack stack = new Stack();
@@ -765,7 +765,7 @@ public final class m0 {
         ?? obj = new Object();
         obj.f1151b = str2;
         obj.f1150a = Long.valueOf(j10);
-        v1 b10 = v9.c.f50101a.b(context);
+        v1 b10 = v9.c.f50136a.b(context);
         int i11 = ((v0) b10).f1215c;
         if (i11 > 0) {
             if (i11 != 100) {
@@ -907,44 +907,44 @@ public final class m0 {
         while (i12 < size2) {
             int i13 = i12 + 1;
             y9.b bVar = (y9.b) arrayList.get(i12);
-            if (str == null || str.equals(bVar.f52416b)) {
+            if (str == null || str.equals(bVar.f52474b)) {
                 ea.a aVar2 = (ea.a) this.f1152c;
-                if (bVar.f52415a.f1017f == null) {
+                if (bVar.f52473a.f1017f == null) {
                     try {
                         str2 = (String) y9.x.a(((sa.c) ((y9.v) this.f1153f).d).d());
                     } catch (Exception e11) {
                         Log.w("FirebaseCrashlytics", "Failed to retrieve Firebase Installation ID.", e11);
                         str2 = null;
                     }
-                    ff a2 = bVar.f52415a.a();
+                    ff a2 = bVar.f52473a.a();
                     a2.e = str2;
-                    bVar = new y9.b(a2.a(), bVar.f52416b, bVar.f52417c);
+                    bVar = new y9.b(a2.a(), bVar.f52474b, bVar.f52475c);
                 }
                 if (str != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                ea.c cVar = aVar2.f9861a;
-                synchronized (cVar.f9868f) {
+                ea.c cVar = aVar2.f9860a;
+                synchronized (cVar.f9867f) {
                     try {
                         taskCompletionSource = new TaskCompletionSource();
                         if (z10) {
-                            ((AtomicInteger) cVar.f9870i.f52437a).getAndIncrement();
-                            if (cVar.f9868f.size() < cVar.e) {
-                                v9.b bVar2 = v9.b.f50100a;
-                                bVar2.b("Enqueueing report: " + bVar.f52416b);
-                                bVar2.b("Queue size: " + cVar.f9868f.size());
-                                cVar.f9869g.execute(new com.google.android.gms.common.api.internal.q1(cVar, bVar, taskCompletionSource, 5));
-                                bVar2.b("Closing task for report: " + bVar.f52416b);
+                            ((AtomicInteger) cVar.f9869i.f52495a).getAndIncrement();
+                            if (cVar.f9867f.size() < cVar.e) {
+                                v9.b bVar2 = v9.b.f50135a;
+                                bVar2.b("Enqueueing report: " + bVar.f52474b);
+                                bVar2.b("Queue size: " + cVar.f9867f.size());
+                                cVar.f9868g.execute(new com.google.android.gms.common.api.internal.q1(cVar, bVar, taskCompletionSource, 5));
+                                bVar2.b("Closing task for report: " + bVar.f52474b);
                                 taskCompletionSource.trySetResult(bVar);
                             } else {
                                 cVar.a();
-                                String str3 = "Dropping report due to queue being full: " + bVar.f52416b;
+                                String str3 = "Dropping report due to queue being full: " + bVar.f52474b;
                                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                     Log.d("FirebaseCrashlytics", str3, null);
                                 }
-                                ((AtomicInteger) cVar.f9870i.f52438b).getAndIncrement();
+                                ((AtomicInteger) cVar.f9869i.f52496b).getAndIncrement();
                                 taskCompletionSource.trySetResult(bVar);
                             }
                         } else {

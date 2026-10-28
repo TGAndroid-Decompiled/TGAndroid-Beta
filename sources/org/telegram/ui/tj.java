@@ -1,49 +1,67 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class tj extends s4.n0 {
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class tj extends mi.m {
+    public Runnable W;
+    public final wn X;
+
+    public tj(wn wnVar, wn wnVar2, rj rjVar, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(wnVar2, rjVar, u6Var);
+        this.X = wnVar;
+    }
+
     @Override
-    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
-        org.telegram.ui.Cells.s1 s1Var;
-        MessageObject.GroupedMessages currentMessagesGroup;
-        MessageObject.GroupedMessagePosition currentPosition;
-        float[] fArr;
-        int i10 = 0;
-        rect.bottom = 0;
-        if ((view instanceof org.telegram.ui.Cells.s1) && (currentMessagesGroup = (s1Var = (org.telegram.ui.Cells.s1) view).getCurrentMessagesGroup()) != null && (currentPosition = s1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
-            Point point = AndroidUtilities.displaySize;
-            float max = Math.max(point.x, point.y) * 0.5f;
-            int extraInsetHeight = s1Var.getExtraInsetHeight();
-            int i11 = 0;
-            while (true) {
-                if (i11 >= currentPosition.siblingHeights.length) {
-                    break;
-                }
-                extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
-                i11++;
-            }
-            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
-            int size = currentMessagesGroup.posArray.size();
-            while (true) {
-                if (i10 < size) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i10);
-                    byte b10 = groupedMessagePosition.minY;
-                    byte b11 = currentPosition.minY;
-                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
-                        round = org.telegram.messenger.t.B(4.0f, (int) Math.ceil(max * groupedMessagePosition.f19546ph), round);
-                        break;
-                    }
-                    i10++;
-                } else {
-                    break;
-                }
-            }
-            rect.bottom = -round;
+    public final void F() {
+        wn wnVar = this.X;
+        if (wnVar.X9 == -1) {
+            wnVar.X9 = wnVar.getNotificationCenter().setAnimationInProgress(wnVar.X9, wn.f45041ld, false);
         }
+    }
+
+    @Override
+    public final void N() {
+        super.N();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.W = null;
+        }
+        sj sjVar = new sj(this, 1);
+        this.W = sjVar;
+        AndroidUtilities.runOnUIThread(sjVar);
+    }
+
+    @Override
+    public final void W() {
+        wn wnVar = this.X;
+        wnVar.X9 = wnVar.getNotificationCenter().setAnimationInProgress(wnVar.X9, wn.f45041ld, false);
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.W = null;
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("chatItemAnimator disable notifications");
+        }
+        org.telegram.ui.ActionBar.z2 z2Var = wnVar.Y.getAdjustPanLayoutHelper().h;
+        AndroidUtilities.cancelRunOnUIThread(z2Var);
+        z2Var.run();
+        org.telegram.ui.Components.af afVar = wnVar.Y.Y3;
+        AndroidUtilities.cancelRunOnUIThread(afVar);
+        afVar.run();
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        sj sjVar = new sj(this, 0);
+        this.W = sjVar;
+        AndroidUtilities.runOnUIThread(sjVar);
     }
 }

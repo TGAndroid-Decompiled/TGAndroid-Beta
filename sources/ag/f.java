@@ -27,7 +27,7 @@ public final class f implements Runnable {
                 return;
             default:
                 rg.j0.h = this.f1274b;
-                rg.j0.f47439i = false;
+                rg.j0.f47474i = false;
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.customTypefacesLoaded, new Object[0]);
                 return;
         }

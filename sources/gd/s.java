@@ -11,14 +11,14 @@ public enum s extends a2 {
             if (d != '/') {
                 kVar.h("<");
                 aVar.q();
-                kVar.f12459c = a2.f12419f;
+                kVar.f12458c = a2.f12418f;
                 return;
             }
             kVar.e();
-            kVar.f12459c = a2.G;
+            kVar.f12458c = a2.G;
             return;
         }
         kVar.h("<!");
-        kVar.f12459c = a2.I;
+        kVar.f12458c = a2.I;
     }
 }

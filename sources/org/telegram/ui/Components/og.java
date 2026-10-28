@@ -70,7 +70,7 @@ public interface og {
 
     boolean h1();
 
-    org.telegram.ui.kn i0();
+    org.telegram.ui.mn i0();
 
     void j1();
 

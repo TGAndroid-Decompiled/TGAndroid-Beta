@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.LocaleController;
-public final class x3 extends md0 {
+public final class x3 extends nd0 {
     @Override
     public final CharSequence d(int i10) {
         return LocaleController.formatPluralString("Minutes", i10, new Object[0]);

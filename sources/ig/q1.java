@@ -1,12 +1,12 @@
 package ig;
 
 import java.util.ArrayList;
-import org.telegram.ui.ns;
+import org.telegram.ui.ps;
 public final class q1 implements z1 {
-    public final ns f14208a;
+    public final ps f14207a;
 
-    public q1(ns nsVar) {
-        this.f14208a = nsVar;
+    public q1(ps psVar) {
+        this.f14207a = psVar;
     }
 
     @Override
@@ -16,10 +16,10 @@ public final class q1 implements z1 {
 
     @Override
     public final void f(int i10) {
-        ns nsVar = this.f14208a;
-        nsVar.l();
+        ps psVar = this.f14207a;
+        psVar.l();
         if (i10 != 0) {
-            nsVar.F();
+            psVar.F();
         }
     }
 

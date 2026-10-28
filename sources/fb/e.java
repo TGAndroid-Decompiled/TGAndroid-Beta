@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicLongArray;
 public final class e extends u {
-    public final int f10385a;
-    public final u f10386b;
+    public final int f10384a;
+    public final u f10385b;
 
     public e(u uVar, int i10) {
-        this.f10385a = i10;
-        this.f10386b = uVar;
+        this.f10384a = i10;
+        this.f10385b = uVar;
     }
 
     @Override
     public final Object read(nb.a aVar) {
-        switch (this.f10385a) {
+        switch (this.f10384a) {
             case 0:
-                return new AtomicLong(((Number) this.f10386b.read(aVar)).longValue());
+                return new AtomicLong(((Number) this.f10385b.read(aVar)).longValue());
             case 1:
                 ArrayList arrayList = new ArrayList();
                 aVar.a();
                 while (aVar.k()) {
-                    arrayList.add(Long.valueOf(((Number) this.f10386b.read(aVar)).longValue()));
+                    arrayList.add(Long.valueOf(((Number) this.f10385b.read(aVar)).longValue()));
                 }
                 aVar.e();
                 int size = arrayList.size();
@@ -35,22 +35,22 @@ public final class e extends u {
                     aVar.t();
                     return null;
                 }
-                return this.f10386b.read(aVar);
+                return this.f10385b.read(aVar);
         }
     }
 
     @Override
     public final void write(nb.b bVar, Object obj) {
-        switch (this.f10385a) {
+        switch (this.f10384a) {
             case 0:
-                this.f10386b.write(bVar, Long.valueOf(((AtomicLong) obj).get()));
+                this.f10385b.write(bVar, Long.valueOf(((AtomicLong) obj).get()));
                 return;
             case 1:
                 AtomicLongArray atomicLongArray = (AtomicLongArray) obj;
                 bVar.b();
                 int length = atomicLongArray.length();
                 for (int i10 = 0; i10 < length; i10++) {
-                    this.f10386b.write(bVar, Long.valueOf(atomicLongArray.get(i10)));
+                    this.f10385b.write(bVar, Long.valueOf(atomicLongArray.get(i10)));
                 }
                 bVar.e();
                 return;
@@ -59,7 +59,7 @@ public final class e extends u {
                     bVar.i();
                     return;
                 } else {
-                    this.f10386b.write(bVar, obj);
+                    this.f10385b.write(bVar, obj);
                     return;
                 }
         }

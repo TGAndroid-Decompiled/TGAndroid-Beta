@@ -6,26 +6,26 @@ import c3.p;
 import e2.x;
 import java.io.EOFException;
 public final class f {
-    public int f51381a;
-    public long f51382b;
-    public int f51383c;
+    public int f51439a;
+    public long f51440b;
+    public int f51441c;
     public int d;
     public int e;
-    public final int[] f51384f = new int[255];
-    public final x f51385g = new x(255);
+    public final int[] f51442f = new int[255];
+    public final x f51443g = new x(255);
 
     public final boolean a(p pVar, boolean z10) {
         boolean z11;
         boolean z12;
-        this.f51381a = 0;
-        this.f51382b = 0L;
-        this.f51383c = 0;
+        this.f51439a = 0;
+        this.f51440b = 0L;
+        this.f51441c = 0;
         this.d = 0;
         this.e = 0;
-        x xVar = this.f51385g;
+        x xVar = this.f51443g;
         xVar.K(27);
         try {
-            z11 = pVar.h(xVar.f9732a, 0, 27, z10);
+            z11 = pVar.h(xVar.f9731a, 0, 27, z10);
         } catch (EOFException e) {
             if (z10) {
                 z11 = false;
@@ -39,17 +39,17 @@ public final class f {
                     throw x0.c("unsupported bit stream revision");
                 }
             } else {
-                this.f51381a = xVar.A();
-                this.f51382b = xVar.p();
+                this.f51439a = xVar.A();
+                this.f51440b = xVar.p();
                 xVar.r();
                 xVar.r();
                 xVar.r();
                 int A = xVar.A();
-                this.f51383c = A;
+                this.f51441c = A;
                 this.d = A + 27;
                 xVar.K(A);
                 try {
-                    z12 = pVar.h(xVar.f9732a, 0, this.f51383c, z10);
+                    z12 = pVar.h(xVar.f9731a, 0, this.f51441c, z10);
                 } catch (EOFException e10) {
                     if (z10) {
                         z12 = false;
@@ -58,9 +58,9 @@ public final class f {
                     }
                 }
                 if (z12) {
-                    for (int i10 = 0; i10 < this.f51383c; i10++) {
+                    for (int i10 = 0; i10 < this.f51441c; i10++) {
                         int A2 = xVar.A();
-                        this.f51384f[i10] = A2;
+                        this.f51442f[i10] = A2;
                         this.e += A2;
                     }
                     return true;
@@ -80,7 +80,7 @@ public final class f {
             z10 = false;
         }
         yb.g(z10);
-        x xVar = this.f51385g;
+        x xVar = this.f51443g;
         xVar.K(4);
         while (true) {
             i10 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
@@ -88,7 +88,7 @@ public final class f {
                 break;
             }
             try {
-                z11 = pVar.h(xVar.f9732a, 0, 4, true);
+                z11 = pVar.h(xVar.f9731a, 0, 4, true);
             } catch (EOFException unused) {
                 z11 = false;
             }
@@ -100,7 +100,7 @@ public final class f {
                 pVar.p();
                 return true;
             }
-            pVar.q(1);
+            pVar.r(1);
         }
         do {
             if (i10 != 0 && pVar.getPosition() >= j10) {

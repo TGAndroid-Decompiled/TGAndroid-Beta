@@ -6,20 +6,20 @@ import org.telegram.tgnet.TLRPC;
 public final class h5 extends c5 {
     @Override
     public final void a() {
-        MessagesController.getInstance(UserConfig.selectedAccount).loadUserInfo((TLRPC.User) this.f38266c, false, this.d);
+        MessagesController.getInstance(UserConfig.selectedAccount).loadUserInfo((TLRPC.User) this.f38173c, false, this.d);
     }
 
     @Override
     public final void b(Object... objArr) {
-        if (((Long) objArr[0]).longValue() == ((TLRPC.User) this.f38266c).f22176id) {
+        if (((Long) objArr[0]).longValue() == ((TLRPC.User) this.f38173c).f22177id) {
             TLRPC.UserFull userFull = (TLRPC.UserFull) objArr[1];
-            boolean z10 = this.f38268g;
+            boolean z10 = this.f38175g;
             if (z10) {
                 if (z10) {
-                    this.f38268g = false;
-                    this.f38265b.removeObserver(this.f38264a, this.e);
+                    this.f38175g = false;
+                    this.f38172b.removeObserver(this.f38171a, this.e);
                 }
-                this.f38267f.accept(userFull);
+                this.f38174f.accept(userFull);
             }
         }
     }

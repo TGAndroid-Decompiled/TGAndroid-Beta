@@ -16,13 +16,13 @@ public final class c7 extends z6 {
 
     public final void F(ArrayList arrayList) {
         int i10;
-        ArrayList arrayList2 = this.f9493i;
+        ArrayList arrayList2 = this.f9492i;
         arrayList2.size();
         int i11 = 0;
         int i12 = 0;
         while (true) {
             int size = arrayList.size();
-            i10 = this.f9490c;
+            i10 = this.f9489c;
             if (i11 >= size) {
                 break;
             }
@@ -47,7 +47,7 @@ public final class c7 extends z6 {
     @Override
     public final MessageObject f(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f9493i;
+            ArrayList arrayList = this.f9492i;
             if (i10 < arrayList.size()) {
                 return (MessageObject) arrayList.get(i10);
             }
@@ -58,7 +58,7 @@ public final class c7 extends z6 {
 
     @Override
     public final int g() {
-        return this.f9493i.size();
+        return this.f9492i.size();
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class c7 extends z6 {
 
     @Override
     public final int i() {
-        return this.f9493i.size();
+        return this.f9492i.size();
     }
 
     @Override

@@ -188,7 +188,7 @@ public class ta implements Iterator {
                 }
                 yb.o("no calls to next() since the last call to remove()", z12);
                 this.f938b.remove();
-                ((f9.k1) ((pb) this.d).e).f10293f -= ((Collection) this.f939c).size();
+                ((f9.k1) ((pb) this.d).e).f10292f -= ((Collection) this.f939c).size();
                 ((Collection) this.f939c).clear();
                 this.f939c = null;
                 return;
@@ -201,7 +201,7 @@ public class ta implements Iterator {
                 yb.o("no calls to next() since the last call to remove()", z13);
                 Collection collection2 = (Collection) ((Map.Entry) this.f939c).getValue();
                 this.f938b.remove();
-                ((f9.d) this.d).f10272c.f10293f -= collection2.size();
+                ((f9.d) this.d).f10271c.f10292f -= collection2.size();
                 collection2.clear();
                 this.f939c = null;
                 return;
@@ -209,7 +209,7 @@ public class ta implements Iterator {
                 this.f938b.remove();
                 dh dhVar = (dh) this.d;
                 f9.k1 k1Var = (f9.k1) dhVar.f413f;
-                k1Var.f10293f--;
+                k1Var.f10292f--;
                 dhVar.n();
                 return;
             case 6:
@@ -243,7 +243,7 @@ public class ta implements Iterator {
                 if (z15) {
                     Collection collection3 = (Collection) entry2.getValue();
                     this.f938b.remove();
-                    ((y7.a) this.d).f52070c.d -= collection3.size();
+                    ((y7.a) this.d).f52128c.d -= collection3.size();
                     collection3.clear();
                     this.f939c = null;
                     return;

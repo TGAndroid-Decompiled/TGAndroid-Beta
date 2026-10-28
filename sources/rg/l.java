@@ -3,10 +3,10 @@ package rg;
 import java.util.Arrays;
 import java.util.List;
 public abstract class l extends m {
-    public static final List f47460b = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object());
+    public static final List f47495b = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object());
 
     public static l p(int i10) {
-        List list = f47460b;
+        List list = f47495b;
         if (i10 >= 0 && i10 <= list.size()) {
             return (l) list.get(i10);
         }

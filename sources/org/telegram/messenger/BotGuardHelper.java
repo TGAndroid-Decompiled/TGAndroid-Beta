@@ -58,16 +58,16 @@ public class BotGuardHelper extends BaseController {
 
     public void closeGuardBotWebApp(long j10, long j11, TLRPC.JoinChatBotResult joinChatBotResult) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.guardBotDecisionResult, new GuardBotDecisionResultNotification(j10, this.queryIdToBotId.get(j11, 0L), j11, joinChatBotResult));
-        HashSet hashSet = hi.m3.f13098a1;
+        HashSet hashSet = hi.m3.f13097a1;
         if (hashSet != null) {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
                 hi.m3 m3Var = (hi.m3) it.next();
-                hi.c5 c5Var = m3Var.f13130w0;
-                if (c5Var != null && c5Var.f12919g == 5) {
-                    long j12 = c5Var.f12916b;
+                hi.c5 c5Var = m3Var.f13129w0;
+                if (c5Var != null && c5Var.f12918g == 5) {
+                    long j12 = c5Var.f12915b;
                     if (j12 == j10 || j12 == 0) {
-                        TLObject tLObject = c5Var.f12928q;
+                        TLObject tLObject = c5Var.f12927q;
                         if ((tLObject instanceof TLRPC.TL_webViewResultUrl) && ((TLRPC.TL_webViewResultUrl) tLObject).query_id == j11) {
                             m3Var.k(false);
                             return;
@@ -104,7 +104,7 @@ public class BotGuardHelper extends BaseController {
         hi.m3 m3Var = new hi.m3(LaunchActivity.I1, null);
         m3Var.x(false);
         m3Var.B0 = true;
-        m3Var.f13116l0 = LaunchActivity.I1;
+        m3Var.f13115l0 = LaunchActivity.I1;
         m3Var.t(R2, b10);
         m3Var.show();
     }

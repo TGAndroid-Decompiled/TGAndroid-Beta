@@ -6,31 +6,31 @@ import java.io.IOException;
 import java.io.InputStream;
 import org.telegram.ui.Components.b10;
 public final class t {
-    public final int f17988a = 0;
-    public final String f17989b;
-    public final String f17990c;
+    public final int f17987a = 0;
+    public final String f17988b;
+    public final String f17989c;
 
     public t(String str, String str2) {
-        this.f17989b = str;
-        this.f17990c = str2;
+        this.f17988b = str;
+        this.f17989c = str2;
     }
 
     public String toString() {
-        switch (this.f17988a) {
+        switch (this.f17987a) {
             case 0:
-                return this.f17989b + ", " + this.f17990c;
+                return this.f17988b + ", " + this.f17989c;
             default:
                 return super.toString();
         }
     }
 
     public t(m4.c cVar) {
-        Context context = (Context) cVar.f18009b;
+        Context context = (Context) cVar.f18008b;
         int e = y9.h.e(context, "com.google.firebase.crashlytics.unity_version", "string");
         if (e != 0) {
-            this.f17989b = "Unity";
+            this.f17988b = "Unity";
             String string = context.getResources().getString(e);
-            this.f17990c = string;
+            this.f17989c = string;
             String j10 = b10.j("Unity Editor version is: ", string);
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                 Log.v("FirebaseCrashlytics", j10, null);
@@ -44,19 +44,19 @@ public final class t {
                 if (open != null) {
                     open.close();
                 }
-                this.f17989b = "Flutter";
-                this.f17990c = null;
+                this.f17988b = "Flutter";
+                this.f17989c = null;
                 if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                     Log.v("FirebaseCrashlytics", "Development platform is: Flutter", null);
                     return;
                 }
                 return;
             } catch (IOException unused) {
-                this.f17989b = null;
-                this.f17990c = null;
+                this.f17988b = null;
+                this.f17989c = null;
             }
         }
-        this.f17989b = null;
-        this.f17990c = null;
+        this.f17988b = null;
+        this.f17989c = null;
     }
 }

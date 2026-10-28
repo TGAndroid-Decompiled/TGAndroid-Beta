@@ -11,14 +11,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.b10;
 import org.telegram.ui.Components.ds;
 public final class ea extends ReplacementSpan {
-    public View f8536a;
+    public View f8535a;
     public float d;
     public boolean e;
-    public long f8539f;
-    public boolean f8540n;
-    public boolean f8541r;
-    public int f8537b = 1;
-    public int f8538c = 2;
+    public long f8538f;
+    public boolean f8539n;
+    public boolean f8540r;
+    public int f8536b = 1;
+    public int f8537c = 2;
     public final ds h = new ds(0.0f, 0.5f, 0.5f, 1.0f);
 
     public static CharSequence a(TextView textView, String str) {
@@ -40,8 +40,8 @@ public final class ea extends ReplacementSpan {
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             ea eaVar = new ea();
-            eaVar.f8536a = textView;
-            eaVar.f8540n = false;
+            eaVar.f8535a = textView;
+            eaVar.f8539n = false;
             spannableStringBuilder.setSpan(eaVar, i12, i12 + i11, 33);
             i12 += i11 - 1;
             i12++;
@@ -53,8 +53,8 @@ public final class ea extends ReplacementSpan {
     }
 
     public final void b(org.telegram.ui.Cells.v0 v0Var) {
-        this.f8536a = v0Var;
-        this.f8540n = false;
+        this.f8535a = v0Var;
+        this.f8539n = false;
     }
 
     @Override
@@ -65,14 +65,14 @@ public final class ea extends ReplacementSpan {
         float y3;
         TextPaint textPaint = (TextPaint) paint;
         float measureText = paint.measureText("…") / 3.0f;
-        if (this.f8541r) {
+        if (this.f8540r) {
             f10 = textPaint.getFontMetrics().ascent;
         } else {
             f10 = textPaint.getFontMetrics().top;
         }
         float f13 = -f10;
         float f14 = textPaint.getFontMetrics().bottom - textPaint.getFontMetrics().top;
-        if (this.f8540n) {
+        if (this.f8539n) {
             f11 = 0.05f;
         } else {
             f11 = 0.0365f;
@@ -80,7 +80,7 @@ public final class ea extends ReplacementSpan {
         float f15 = f14 * f11;
         float f16 = f13 - f15;
         if (this.e) {
-            if (System.currentTimeMillis() - this.f8539f > 1000) {
+            if (System.currentTimeMillis() - this.f8538f > 1000) {
                 this.e = false;
             }
         } else {
@@ -88,21 +88,21 @@ public final class ea extends ReplacementSpan {
             this.d = f17;
             if (f17 > 1.0f) {
                 this.d = 0.0f;
-                int i15 = this.f8537b - 1;
-                this.f8537b = i15;
-                this.f8538c--;
+                int i15 = this.f8536b - 1;
+                this.f8536b = i15;
+                this.f8537c--;
                 if (i15 < 0) {
-                    this.f8537b = 1;
-                    this.f8538c = 2;
+                    this.f8536b = 1;
+                    this.f8537c = 2;
                     this.e = true;
-                    this.f8539f = System.currentTimeMillis();
+                    this.f8538f = System.currentTimeMillis();
                 }
             }
         }
         for (int i16 = 0; i16 < 3; i16++) {
             float f18 = measureText / 2.0f;
             float f19 = (i16 * measureText) + f7 + f18;
-            if (i16 == this.f8537b) {
+            if (i16 == this.f8536b) {
                 f19 = AndroidUtilities.lerp(f19, b10.e(measureText, i16 + 1, f7, f18), this.d);
                 float f20 = this.d;
                 if (f20 < 0.5f) {
@@ -112,14 +112,14 @@ public final class ea extends ReplacementSpan {
                 }
                 f12 = AndroidUtilities.lerp(f16, f16 - f18, this.h.getInterpolation(y3));
             } else {
-                if (i16 == this.f8538c) {
+                if (i16 == this.f8537c) {
                     f19 = AndroidUtilities.lerp(f19, b10.e(measureText, i16 - 1, f7, f18), this.d);
                 }
                 f12 = f16;
             }
             canvas.drawCircle(f19, f12, f15, paint);
         }
-        View view = this.f8536a;
+        View view = this.f8535a;
         if (view != null) {
             view.invalidate();
         }

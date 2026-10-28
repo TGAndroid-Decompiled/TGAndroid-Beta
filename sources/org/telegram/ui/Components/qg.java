@@ -1,39 +1,39 @@
 package org.telegram.ui.Components;
 public final class qg implements Runnable {
-    public final int f31916a;
-    public final sg f31917b;
-    public final fi.v3 f31918c;
+    public final int f31884a;
+    public final sg f31885b;
+    public final fi.v3 f31886c;
 
     public qg(sg sgVar, fi.v3 v3Var, int i10) {
-        this.f31916a = i10;
-        this.f31917b = sgVar;
-        this.f31918c = v3Var;
+        this.f31884a = i10;
+        this.f31885b = sgVar;
+        this.f31886c = v3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f31916a) {
+        switch (this.f31884a) {
             case 0:
-                sg sgVar = this.f31917b;
-                fi.v3 v3Var = this.f31918c;
+                sg sgVar = this.f31885b;
+                fi.v3 v3Var = this.f31886c;
                 sgVar.removeView(v3Var);
-                if (sgVar.f32543b == v3Var) {
-                    sgVar.f32543b = null;
+                if (sgVar.f32582b == v3Var) {
+                    sgVar.f32582b = null;
                     return;
                 }
                 return;
             case 1:
-                this.f31917b.removeView(this.f31918c);
+                this.f31885b.removeView(this.f31886c);
                 return;
             case 2:
-                this.f31917b.removeView(this.f31918c);
+                this.f31885b.removeView(this.f31886c);
                 return;
             default:
-                sg sgVar2 = this.f31917b;
-                fi.v3 v3Var2 = this.f31918c;
+                sg sgVar2 = this.f31885b;
+                fi.v3 v3Var2 = this.f31886c;
                 sgVar2.removeView(v3Var2);
-                if (sgVar2.f32541a == v3Var2) {
-                    sgVar2.f32541a = null;
+                if (sgVar2.f32580a == v3Var2) {
+                    sgVar2.f32580a = null;
                     return;
                 }
                 return;

@@ -20,12 +20,12 @@ public final class m extends ge.b implements k, b {
     @Override
     public final Object b(Object obj, nd.c cVar) {
         d(obj);
-        return jd.i.f15580a;
+        return jd.i.f15579a;
     }
 
     public final Object c() {
         Object obj = e.get(this);
-        if (obj == ge.e.f12478a) {
+        if (obj == ge.e.f12477a) {
             return null;
         }
         return obj;
@@ -36,7 +36,7 @@ public final class m extends ge.b implements k, b {
         o[] oVarArr;
         v vVar;
         if (obj == null) {
-            obj = ge.e.f12478a;
+            obj = ge.e.f12477a;
         }
         synchronized (this) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = e;
@@ -48,16 +48,16 @@ public final class m extends ge.b implements k, b {
             if ((i11 & 1) == 0) {
                 int i12 = i11 + 1;
                 this.d = i12;
-                o[] oVarArr2 = this.f12472a;
+                o[] oVarArr2 = this.f12471a;
                 while (true) {
                     if (oVarArr2 != null) {
                         for (o oVar : oVarArr2) {
                             if (oVar != null) {
-                                AtomicReference atomicReference = oVar.f10466a;
+                                AtomicReference atomicReference = oVar.f10465a;
                                 while (true) {
                                     Object obj2 = atomicReference.get();
-                                    if (obj2 != null && obj2 != (vVar = n.f10465b)) {
-                                        v vVar2 = n.f10464a;
+                                    if (obj2 != null && obj2 != (vVar = n.f10464b)) {
+                                        v vVar2 = n.f10463a;
                                         if (obj2 == vVar2) {
                                             while (!atomicReference.compareAndSet(obj2, vVar)) {
                                                 if (atomicReference.get() != obj2) {
@@ -70,7 +70,7 @@ public final class m extends ge.b implements k, b {
                                                     break;
                                                 }
                                             }
-                                            ((ce.m) obj2).resumeWith(jd.i.f15580a);
+                                            ((ce.m) obj2).resumeWith(jd.i.f15579a);
                                             break;
                                         }
                                     }
@@ -84,7 +84,7 @@ public final class m extends ge.b implements k, b {
                             this.d = i12 + 1;
                             return;
                         }
-                        oVarArr = this.f12472a;
+                        oVarArr = this.f12471a;
                     }
                     oVarArr2 = oVarArr;
                     i12 = i10;

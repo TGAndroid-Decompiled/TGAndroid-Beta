@@ -9,8 +9,8 @@ public final class m0 {
         boolean z10;
         boolean z11;
         int i10;
-        int i11 = sVar.f10114a;
-        ByteBuffer byteBuffer = sVar.f10115b;
+        int i11 = sVar.f10113a;
+        ByteBuffer byteBuffer = sVar.f10114b;
         if (i11 != 6 && i11 != 3) {
             z10 = false;
         } else {
@@ -21,14 +21,14 @@ public final class m0 {
         byte[] bArr = new byte[min];
         byteBuffer.asReadOnlyBuffer().get(bArr);
         a4.g gVar = new a4.g(bArr, min);
-        if (!tVar.f10116a) {
+        if (!tVar.f10115a) {
             if (gVar.f()) {
                 this.f6089a = false;
                 return;
             }
             int g7 = gVar.g(2);
             boolean f7 = gVar.f();
-            if (!tVar.f10117b) {
+            if (!tVar.f10116b) {
                 if (!f7) {
                     this.f6089a = true;
                     return;
@@ -47,11 +47,11 @@ public final class m0 {
                             throw new Exception();
                         }
                     }
-                    if (!tVar.f10118c) {
+                    if (!tVar.f10117c) {
                         if (g7 != 3) {
                             gVar.n();
                         }
-                        gVar.o(tVar.f10119f);
+                        gVar.o(tVar.f10118f);
                         if (g7 != 2 && g7 != 0 && !z11) {
                             gVar.o(3);
                         }

@@ -1,17 +1,21 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class l30 extends s4.n0 {
+import android.view.ViewGroup;
+public final class l30 extends s4.l {
+    public final x50 F;
+
+    public l30(x50 x50Var) {
+        this.F = x50Var;
+    }
+
     @Override
-    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
-        RecyclerView.R(view);
-        if (!v50.F3) {
-            rect.set(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        } else {
-            rect.set(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-        }
+    public final void P(s4.e1 e1Var) {
+        ViewGroup viewGroup;
+        x50 x50Var = this.F;
+        x50Var.Q.invalidate();
+        x50Var.a2.invalidate();
+        viewGroup = ((org.telegram.ui.ActionBar.k3) x50Var).containerView;
+        viewGroup.invalidate();
+        x50.J0(x50Var);
     }
 }

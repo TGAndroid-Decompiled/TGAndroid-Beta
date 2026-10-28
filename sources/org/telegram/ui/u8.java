@@ -6,21 +6,21 @@ import java.util.Map;
 import java.util.function.Predicate;
 import org.telegram.tgnet.TLRPC;
 public final class u8 implements Predicate {
-    public final int f44037a;
-    public final long f44038b;
+    public final int f43900a;
+    public final long f43901b;
 
     public u8(long j10, int i10) {
-        this.f44037a = i10;
-        this.f44038b = j10;
+        this.f43900a = i10;
+        this.f43901b = j10;
     }
 
     public Predicate and(Predicate predicate) {
-        int i10 = this.f44037a;
+        int i10 = this.f43900a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f44037a) {
+        switch (this.f43900a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -31,27 +31,27 @@ public final class u8 implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i10 = this.f44037a;
+        int i10 = this.f43900a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
     public final boolean test(Object obj) {
-        switch (this.f44037a) {
+        switch (this.f43900a) {
             case 0:
-                if (((TLRPC.User) obj).f22176id == this.f44038b) {
+                if (((TLRPC.User) obj).f22177id == this.f43901b) {
                     return true;
                 }
                 return false;
             case 1:
-                if (((TLRPC.User) obj).f22176id == this.f44038b) {
+                if (((TLRPC.User) obj).f22177id == this.f43901b) {
                     return true;
                 }
                 return false;
             default:
                 Map.Entry entry = (Map.Entry) obj;
                 if (((View) entry.getKey()).isAttachedToWindow() && ((View) entry.getKey()).isShown() && ((View) entry.getKey()).getWindowVisibility() == 0) {
-                    if (this.f44038b - ((Long) entry.getValue()).longValue() <= 300) {
+                    if (this.f43901b - ((Long) entry.getValue()).longValue() <= 300) {
                         return false;
                     }
                 }

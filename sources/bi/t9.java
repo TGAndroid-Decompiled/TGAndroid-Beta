@@ -245,7 +245,7 @@ public final class t9 implements u9 {
                     ArrayList arrayList2 = this.f5471l;
                     if (i12 < arrayList2.size()) {
                         TL_stars.StarGift starGift3 = ((TL_stars.SavedStarGift) arrayList2.get(i12)).gift;
-                        if (starGift3 != null && starGift3.f22256id == starGift2.f22256id) {
+                        if (starGift3 != null && starGift3.f22257id == starGift2.f22257id) {
                             arrayList2.remove(i12);
                             this.f5473n = Math.max(0, this.f5473n - 1);
                             z10 = true;

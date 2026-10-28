@@ -72,17 +72,17 @@ import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k3;
 import org.telegram.ui.ActionBar.u6;
 import org.telegram.ui.Cells.v8;
-import org.telegram.ui.Components.am0;
 import org.telegram.ui.Components.bm0;
+import org.telegram.ui.Components.cm0;
 import org.telegram.ui.Components.hu;
-import org.telegram.ui.Components.k80;
+import org.telegram.ui.Components.l80;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.wc;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.c51;
-import org.telegram.ui.kc0;
-import org.telegram.ui.qf1;
-public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, OnFailureListener, jh.i, OnCompleteListener, Continuation, r8, s9.d, am0, bm0, e2.p, e2.o, Utilities.Callback3Return, kc0, li.n0, hu, i4, m4.o0 {
+import org.telegram.ui.f51;
+import org.telegram.ui.mc0;
+import org.telegram.ui.sf1;
+public final class f0 implements CameraView.CameraViewDelegate, f51, sf1, b2, OnFailureListener, jh.i, OnCompleteListener, Continuation, r8, s9.d, bm0, cm0, e2.p, e2.o, Utilities.Callback3Return, mc0, li.n0, hu, i4, m4.o0 {
     public final int f1484a;
     public final Object f1485b;
     public final Object f1486c;
@@ -94,11 +94,11 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
     }
 
     @Override
-    public k80 a(li.g1 g1Var) {
-        li.q qVar = (li.q) ((rf.b) this.f1485b).f47336c;
-        k80 k80Var = new k80(qVar, (u6) this.f1486c, g1Var, false, false, true);
-        qVar.H = k80Var;
-        return k80Var;
+    public l80 a(li.g1 g1Var) {
+        li.q qVar = (li.q) ((rf.b) this.f1485b).f47371c;
+        l80 l80Var = new l80(qVar, (u6) this.f1486c, g1Var, false, false, true);
+        qVar.H = l80Var;
+        return l80Var;
     }
 
     @Override
@@ -109,27 +109,27 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                 q4 q4Var = (q4) this.f1485b;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f1486c;
                 TL_stories.TL_stories_editStory tL_stories_editStory = new TL_stories.TL_stories_editStory();
-                tL_stories_editStory.peer = MessagesController.getInstance(q4Var.f9021r2).getInputPeer(storyItem.dialogId);
-                tL_stories_editStory.f22270id = storyItem.f22266id;
+                tL_stories_editStory.peer = MessagesController.getInstance(q4Var.f9020r2).getInputPeer(storyItem.dialogId);
+                tL_stories_editStory.f22271id = storyItem.f22267id;
                 tL_stories_editStory.flags |= 4;
-                tL_stories_editStory.privacy_rules = l9Var.f11182b;
-                ConnectionsManager.getInstance(q4Var.f9021r2).sendRequest(tL_stories_editStory, new i2(q4Var, q0Var, storyItem, l9Var, 5));
+                tL_stories_editStory.privacy_rules = l9Var.f11181b;
+                ConnectionsManager.getInstance(q4Var.f9020r2).sendRequest(tL_stories_editStory, new i2(q4Var, q0Var, storyItem, l9Var, 5));
                 return;
             default:
                 h4 h4Var = (h4) this.f1485b;
                 n9 n9Var = (n9) this.f1486c;
-                q4 q4Var2 = h4Var.f8626l;
+                q4 q4Var2 = h4Var.f8625l;
                 o4 o4Var = q4Var2.D1;
-                TL_stories.StoryItem storyItem2 = o4Var.f8871a;
+                TL_stories.StoryItem storyItem2 = o4Var.f8870a;
                 if (storyItem2 != null && storyItem2.pinned) {
                     z14 = true;
                 } else {
                     z14 = false;
                 }
                 if (z14 != z12) {
-                    MessagesController.getInstance(q4Var2.f9021r2).getStoriesController().o0(q4Var2.f9016q1, q4Var2.f8994k1, z12, null);
+                    MessagesController.getInstance(q4Var2.f9020r2).getStoriesController().r0(q4Var2.f9015q1, q4Var2.f8993k1, z12, null);
                 }
-                TL_stories.StoryItem storyItem3 = o4Var.f8871a;
+                TL_stories.StoryItem storyItem3 = o4Var.f8870a;
                 if (storyItem3 != null) {
                     TLRPC.MessageMedia messageMedia = storyItem3.media;
                     if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
@@ -138,7 +138,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                         togglegroupcallsettings.call = inputGroupCall;
                         togglegroupcallsettings.messages_enabled = Boolean.valueOf(z10);
                         togglegroupcallsettings.send_paid_messages_stars = Long.valueOf(i10);
-                        ConnectionsManager.getInstance(q4Var2.f9021r2).sendRequest(togglegroupcallsettings, new bi.j(9, h4Var, n9Var));
+                        ConnectionsManager.getInstance(q4Var2.f9020r2).sendRequest(togglegroupcallsettings, new bi.j(9, h4Var, n9Var));
                         return;
                     }
                     return;
@@ -168,7 +168,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
         s9.a aVar = (s9.a) this.f1486c;
         try {
             Trace.beginSection(str);
-            return aVar.f47986f.d1(meVar);
+            return aVar.f48021f.d1(meVar);
         } finally {
             Trace.endSection();
         }
@@ -202,51 +202,51 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
         g9 g9Var = (g9) this.f1485b;
         Context context = (Context) this.f1486c;
         ArrayList arrayList2 = g9Var.L;
-        a0.h hVar = g9Var.f10921b;
-        z8 z8Var = g9Var.f10928x;
-        ArrayList arrayList3 = g9Var.f10922c;
+        a0.h hVar = g9Var.f10920b;
+        z8 z8Var = g9Var.f10927x;
+        ArrayList arrayList3 = g9Var.f10921c;
         HashMap hashMap = g9Var.d;
         n9 n9Var = g9Var.W;
         if (i10 >= 0 && i10 < arrayList2.size()) {
             u8 u8Var = (u8) arrayList2.get(i10);
-            int i21 = u8Var.f47040a;
+            int i21 = u8Var.f47075a;
             int i22 = 0;
             if (i21 == 3) {
-                if (u8Var.f11760n && n9Var.F) {
+                if (u8Var.f11759n && n9Var.F) {
                     i20 = ((k3) n9Var).currentAccount;
                     boolean z11 = n9Var.K;
-                    TLRPC.InputPeer inputPeer = n9Var.f11313c;
+                    TLRPC.InputPeer inputPeer = n9Var.f11312c;
                     x8 x8Var = new x8(g9Var, 0);
                     u6Var9 = ((k3) n9Var).resourcesProvider;
                     new p8(context, i20, z11, inputPeer, x8Var, u6Var9).show();
                     return;
                 }
-                int i23 = u8Var.f11755i;
+                int i23 = u8Var.f11754i;
                 if (i23 == 1) {
                     if (n9Var.N == 1 || n9.K0(n9Var).isEmpty()) {
                         n9Var.M = 1;
-                        n9Var.f11311b.E(1);
+                        n9Var.f11310b.E(1);
                     }
                     n9Var.N = 1;
                     g9Var.f(true);
                 } else if (i23 == 3) {
-                    if (n9Var.N == 3 || (n9Var.f11316n.isEmpty() && n9Var.f11317r.isEmpty())) {
+                    if (n9Var.N == 3 || (n9Var.f11315n.isEmpty() && n9Var.f11316r.isEmpty())) {
                         n9Var.M = 3;
-                        n9Var.f11311b.E(1);
+                        n9Var.f11310b.E(1);
                     }
                     n9Var.N = 3;
                     g9Var.f(true);
                 } else if (i23 == 2) {
                     if (n9Var.N == 2) {
                         n9Var.M = 2;
-                        n9Var.f11311b.E(1);
+                        n9Var.f11310b.E(1);
                     }
                     n9Var.N = 2;
                     g9Var.f(true);
                 } else if (i23 == 4) {
                     if (n9Var.N == 4) {
                         n9Var.M = 4;
-                        n9Var.f11311b.E(1);
+                        n9Var.f11310b.E(1);
                     }
                     n9Var.N = 4;
                     g9Var.f(true);
@@ -254,12 +254,12 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                     if (i23 > 0) {
                         arrayList3.clear();
                         hashMap.clear();
-                        n9Var.N = u8Var.f11755i;
+                        n9Var.N = u8Var.f11754i;
                         z8Var.d.a();
                     } else {
                         TLRPC.Chat chat = u8Var.h;
                         if (chat != null) {
-                            long j10 = chat.f22027id;
+                            long j10 = chat.f22028id;
                             if (n9.e1(n9Var, chat) > 200) {
                                 try {
                                     g9Var.performHapticFeedback(3, 1);
@@ -268,8 +268,8 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 Context context2 = g9Var.getContext();
                                 u6Var7 = ((k3) n9Var).resourcesProvider;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2, 0, u6Var7);
-                                alertDialog$Builder.f22368a.R = LocaleController.getString(R.string.GroupTooLarge);
-                                alertDialog$Builder.f22368a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
+                                alertDialog$Builder.f22369a.R = LocaleController.getString(R.string.GroupTooLarge);
+                                alertDialog$Builder.f22369a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
                                 org.telegram.messenger.t.p(R.string.OK, alertDialog$Builder, null);
                             } else if (!hashMap.containsKey(Long.valueOf(j10))) {
                                 i17 = ((k3) n9Var).currentAccount;
@@ -313,12 +313,12 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 g9Var.i(true);
                             }
                         } else {
-                            TLRPC.User user = u8Var.f11754g;
+                            TLRPC.User user = u8Var.f11753g;
                             if (user != null) {
-                                if (g9Var.f10920a == 0) {
+                                if (g9Var.f10919a == 0) {
                                     n9Var.N = 0;
                                 }
-                                long j11 = user.f22176id;
+                                long j11 = user.f22177id;
                                 HashSet hashSet = new HashSet(arrayList3);
                                 if (arrayList3.contains(Long.valueOf(j11))) {
                                     Iterator it = hashMap.entrySet().iterator();
@@ -362,11 +362,11 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                 if (view instanceof v8) {
                     v8 v8Var = (v8) view;
                     v8Var.setChecked(!v8Var.d());
-                    u8Var.f11757k = v8Var.d();
-                    int i24 = u8Var.f11752c;
+                    u8Var.f11756k = v8Var.d();
+                    int i24 = u8Var.f11751c;
                     if (i24 == 0) {
                         boolean d = v8Var.d();
-                        n9Var.f11320x = d;
+                        n9Var.f11319x = d;
                         if (n9Var.N == 4) {
                             z10 = true;
                         } else {
@@ -383,7 +383,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 i16 = R.string.StoryEnabledScreenshots;
                             }
                             qc G = wcVar.G(i25, 4, LocaleController.getString(i16));
-                            G.f31889j = 5000;
+                            G.f31861j = 5000;
                             G.k(true);
                             return;
                         }
@@ -397,12 +397,12 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                             i15 = R.string.StoryDisabledScreenshots;
                         }
                         qc G2 = wcVar2.G(i26, 4, LocaleController.getString(i15));
-                        G2.f31889j = 5000;
+                        G2.f31861j = 5000;
                         G2.k(true);
                     } else if (i24 == 1) {
                         boolean d10 = v8Var.d();
-                        n9Var.f11321y = d10;
-                        boolean z12 = n9Var.f11313c instanceof TLRPC.TL_inputPeerChannel;
+                        n9Var.f11320y = d10;
+                        boolean z12 = n9Var.f11312c instanceof TLRPC.TL_inputPeerChannel;
                         if (d10) {
                             h3 h3Var3 = n9Var.container;
                             u6Var4 = ((k3) n9Var).resourcesProvider;
@@ -414,7 +414,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 i14 = R.string.StoryEnableKeep;
                             }
                             qc G3 = wcVar3.G(i27, 4, LocaleController.getString(i14));
-                            G3.f31889j = 5000;
+                            G3.f31861j = 5000;
                             G3.k(true);
                         } else {
                             h3 h3Var4 = n9Var.container;
@@ -427,24 +427,24 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                                 i13 = R.string.StoryDisableKeep;
                             }
                             qc G4 = wcVar4.G(i28, 4, LocaleController.getString(i13));
-                            G4.f31889j = 5000;
+                            G4.f31861j = 5000;
                             G4.k(true);
                         }
                         g9Var.g(true);
                     } else if (i24 == 2) {
-                        n9Var.f11319w = v8Var.d();
+                        n9Var.f11318w = v8Var.d();
                         g9Var.g(true);
                     }
                 }
             } else if (i21 == 9) {
-                int i29 = u8Var.f11763q;
+                int i29 = u8Var.f11762q;
                 if (i29 == 0) {
-                    p9 p9Var = n9Var.f11314c0;
+                    p9 p9Var = n9Var.f11313c0;
                     if (p9Var != null) {
                         p9Var.run();
                     }
                 } else if (i29 == 1) {
-                    TLRPC.InputPeer inputPeer2 = n9Var.f11313c;
+                    TLRPC.InputPeer inputPeer2 = n9Var.f11312c;
                     if (inputPeer2 == null) {
                         i12 = ((k3) n9Var).currentAccount;
                         clientUserId = UserConfig.getInstance(i12).getClientUserId();
@@ -452,10 +452,10 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                         clientUserId = DialogObject.getPeerDialogId(inputPeer2);
                     }
                     u6Var2 = ((k3) n9Var).resourcesProvider;
-                    k80 F = k80.F(g9Var, u6Var2, view);
+                    l80 F = l80.F(g9Var, u6Var2, view);
                     F.c(R.drawable.msg_addfolder, LocaleController.getString(R.string.StoriesAlbumNewAlbum), new r3(g9Var, clientUserId, 7), false);
                     F.k();
-                    k80.f(F, n9Var.j1().B(clientUserId, true), n9Var.v, false, null, new n1(12, g9Var, F));
+                    l80.f(F, n9Var.j1().B(clientUserId, true), n9Var.v, false, null, new n1(12, g9Var, F));
                     F.Z();
                 } else if (i29 == 5) {
                     Context context4 = g9Var.getContext();
@@ -464,7 +464,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                     e2Var3.r(500L);
                     TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
                     getgroupcallstreamrtmpurl.live_story = true;
-                    TLRPC.InputPeer inputPeer3 = n9Var.f11313c;
+                    TLRPC.InputPeer inputPeer3 = n9Var.f11312c;
                     if (inputPeer3 == null) {
                         inputPeer3 = new TLRPC.TL_inputPeerSelf();
                     }
@@ -494,13 +494,13 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
             default:
                 p5 p5Var = (p5) this.f1485b;
                 s5 s5Var = (s5) this.f1486c;
-                TL_iv.pageTableCell pagetablecell = s5Var.f17476b;
+                TL_iv.pageTableCell pagetablecell = s5Var.f17475b;
                 if (pagetablecell != null) {
-                    h6.d(pagetablecell, s5Var.f17475a.getText());
+                    h6.d(pagetablecell, s5Var.f17474a.getText());
                 }
                 b3 b3Var = p5Var.E;
-                if (b3Var != null && p5Var.f17653a != null) {
-                    v3.U1(b3Var.f17154a);
+                if (b3Var != null && p5Var.f17652a != null) {
+                    v3.U1(b3Var.f17153a);
                     return;
                 }
                 return;
@@ -517,16 +517,16 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                 h4 h4Var = (h4) this.f1485b;
                 di.h1 h1Var = ((y9) this.f1486c).A0;
                 if (h1Var != null) {
-                    if (!h1Var.f8611w) {
+                    if (!h1Var.f8610w) {
                         TL_phone.discardGroupCall discardgroupcall = new TL_phone.discardGroupCall();
-                        discardgroupcall.call = h1Var.f8607f;
+                        discardgroupcall.call = h1Var.f8606f;
                         ConnectionsManager.getInstance(h1Var.e).sendRequest(discardgroupcall, new di.z0(h1Var, 4));
                         h1Var.e();
                         return;
                     }
                     return;
                 }
-                q4.d0(h4Var.f8626l);
+                q4.d0(h4Var.f8625l);
                 return;
             case 15:
                 d4.x0((d4) this.f1485b, (TL_payments.connectedBotStarRef) this.f1486c);
@@ -547,17 +547,17 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
     public void i(m4.w wVar) {
         switch (this.f1484a) {
             case 28:
-                ((m4.e) this.f1486c).f(((m4.p0) this.f1485b).f18181g.f18057t);
+                ((m4.e) this.f1486c).f(((m4.p0) this.f1485b).f18180g.f18056t);
                 return;
             default:
                 m4.p0 p0Var = (m4.p0) this.f1485b;
                 p0Var.getClass();
-                String str = ((n4.h) this.f1486c).f18663a;
+                String str = ((n4.h) this.f1486c).f18662a;
                 if (TextUtils.isEmpty(str)) {
                     e2.a.l("MediaSessionLegacyStub", "onRemoveQueueItem(): Media ID shouldn't be null");
                     return;
                 }
-                m4.n1 n1Var = p0Var.f18181g.f18057t;
+                m4.n1 n1Var = p0Var.f18180g.f18056t;
                 if (!n1Var.o0(17)) {
                     e2.a.l("MediaSessionLegacyStub", "Can't remove item by ID without COMMAND_GET_TIMELINE being available");
                     return;
@@ -717,10 +717,10 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
         jg.n nVar = (jg.n) this.f1485b;
         TLRPC.Document document = (TLRPC.Document) obj2;
         Boolean bool = (Boolean) obj3;
-        nVar.f15784w = false;
+        nVar.f15783w = false;
         AndroidUtilities.cancelRunOnUIThread(nVar.e);
-        jg.j jVar = nVar.f15781n;
-        nVar.f15785x = document;
+        jg.j jVar = nVar.f15780n;
+        nVar.f15784x = document;
         jVar.setSticker(document);
         ((v8) ((View) this.f1486c)).setValueSticker(document);
         nVar.f0(true);

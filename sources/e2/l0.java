@@ -1,20 +1,20 @@
 package e2;
 
 import java.util.concurrent.ThreadFactory;
-import org.telegram.ui.Components.s51;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.yj0;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class l0 implements ThreadFactory {
-    public final int f9686a;
+    public final int f9685a;
 
     public l0(int i10) {
-        this.f9686a = i10;
+        this.f9685a = i10;
     }
 
     @Override
     public final Thread newThread(Runnable runnable) {
         Thread lambda$new$0;
-        switch (this.f9686a) {
+        switch (this.f9685a) {
             case 0:
                 return new Thread(runnable, "ExoPlayer:AudioTrackReleaseThread");
             case 1:
@@ -22,11 +22,11 @@ public final class l0 implements ThreadFactory {
                 thread.setDaemon(true);
                 return thread;
             case 2:
-                return new Thread(runnable, "Lottie-" + xj0.P0.getAndIncrement());
+                return new Thread(runnable, "Lottie-" + yj0.P0.getAndIncrement());
             case 3:
-                return new Thread(runnable, "LottieLow-" + xj0.Q0.getAndIncrement());
+                return new Thread(runnable, "LottieLow-" + yj0.Q0.getAndIncrement());
             case 4:
-                Thread thread2 = new Thread(new s51(runnable, 12), "widget-sandbox-io");
+                Thread thread2 = new Thread(new t51(runnable, 13), "widget-sandbox-io");
                 thread2.setDaemon(true);
                 return thread2;
             case 5:

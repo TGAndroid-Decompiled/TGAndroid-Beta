@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 public final class u extends nd.h implements ud.p {
-    public Object f16534b;
-    public Iterator f16535c;
+    public Object f16533b;
+    public Iterator f16534c;
     public int d;
     public int e;
-    public Object f16536f;
+    public Object f16535f;
     public final Iterator h;
 
     public u(Iterator it, ld.c cVar) {
@@ -20,13 +20,13 @@ public final class u extends nd.h implements ud.p {
     @Override
     public final ld.c create(Object obj, ld.c cVar) {
         u uVar = new u(this.h, cVar);
-        uVar.f16536f = obj;
+        uVar.f16535f = obj;
         return uVar;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((u) create((zd.c) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15580a);
+        return ((u) create((zd.c) obj, (ld.c) obj2)).invokeSuspend(jd.i.f15579a);
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class u extends nd.h implements ud.p {
         t tVar;
         zd.c cVar2;
         Object[] array;
-        md.a aVar = md.a.f18412a;
+        md.a aVar = md.a.f18411a;
         int i11 = this.e;
         if (i11 != 0) {
             if (i11 != 1) {
@@ -49,24 +49,24 @@ public final class u extends nd.h implements ud.p {
                                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                             }
                         } else {
-                            tVar = (t) this.f16534b;
-                            cVar2 = (zd.c) this.f16536f;
+                            tVar = (t) this.f16533b;
+                            cVar2 = (zd.c) this.f16535f;
                             jd.b(obj);
                             tVar.m();
                         }
                     } else {
-                        Iterator it2 = this.f16535c;
-                        t tVar2 = (t) this.f16534b;
-                        zd.c cVar3 = (zd.c) this.f16536f;
+                        Iterator it2 = this.f16534c;
+                        t tVar2 = (t) this.f16533b;
+                        zd.c cVar3 = (zd.c) this.f16535f;
                         jd.b(obj);
                         tVar2.m();
                         while (true) {
-                            int i12 = tVar2.f16532b;
-                            Object[] objArr = tVar2.f16531a;
+                            int i12 = tVar2.f16531b;
+                            Object[] objArr = tVar2.f16530a;
                             if (it2.hasNext()) {
                                 Object next = it2.next();
                                 if (tVar2.h() != i12) {
-                                    int i13 = tVar2.f16533c;
+                                    int i13 = tVar2.f16532c;
                                     int i14 = tVar2.d;
                                     objArr[(i13 + i14) % i12] = next;
                                     tVar2.d = i14 + 1;
@@ -76,7 +76,7 @@ public final class u extends nd.h implements ud.p {
                                             if (i15 > 20) {
                                                 i15 = 20;
                                             }
-                                            if (tVar2.f16533c == 0) {
+                                            if (tVar2.f16532c == 0) {
                                                 array = Arrays.copyOf(objArr, i15);
                                                 kotlin.jvm.internal.i.d(array, "copyOf(...)");
                                             } else {
@@ -85,12 +85,12 @@ public final class u extends nd.h implements ud.p {
                                             tVar2 = new t(tVar2.d, array);
                                         } else {
                                             ArrayList arrayList2 = new ArrayList(tVar2);
-                                            this.f16536f = cVar3;
-                                            this.f16534b = tVar2;
-                                            this.f16535c = it2;
+                                            this.f16535f = cVar3;
+                                            this.f16533b = tVar2;
+                                            this.f16534c = it2;
                                             this.e = 3;
                                             cVar3.b(arrayList2, this);
-                                            md.a aVar2 = md.a.f18412a;
+                                            md.a aVar2 = md.a.f18411a;
                                             return aVar;
                                         }
                                     }
@@ -106,37 +106,37 @@ public final class u extends nd.h implements ud.p {
                     }
                     if (tVar.d > 20) {
                         ArrayList arrayList3 = new ArrayList(tVar);
-                        this.f16536f = cVar2;
-                        this.f16534b = tVar;
-                        this.f16535c = null;
+                        this.f16535f = cVar2;
+                        this.f16533b = tVar;
+                        this.f16534c = null;
                         this.e = 4;
                         cVar2.b(arrayList3, this);
-                        md.a aVar3 = md.a.f18412a;
+                        md.a aVar3 = md.a.f18411a;
                         return aVar;
                     }
                     if (!tVar.isEmpty()) {
-                        this.f16536f = null;
-                        this.f16534b = null;
-                        this.f16535c = null;
+                        this.f16535f = null;
+                        this.f16533b = null;
+                        this.f16534c = null;
                         this.e = 5;
                         cVar2.b(tVar, this);
-                        md.a aVar4 = md.a.f18412a;
+                        md.a aVar4 = md.a.f18411a;
                         return aVar;
                     }
-                    return jd.i.f15580a;
+                    return jd.i.f15579a;
                 }
                 jd.b(obj);
-                return jd.i.f15580a;
+                return jd.i.f15579a;
             }
             i10 = this.d;
-            it = this.f16535c;
-            ArrayList arrayList4 = (ArrayList) this.f16534b;
-            cVar = (zd.c) this.f16536f;
+            it = this.f16534c;
+            ArrayList arrayList4 = (ArrayList) this.f16533b;
+            cVar = (zd.c) this.f16535f;
             jd.b(obj);
             arrayList = new ArrayList(20);
         } else {
             jd.b(obj);
-            cVar = (zd.c) this.f16536f;
+            cVar = (zd.c) this.f16535f;
             arrayList = new ArrayList(20);
             it = this.h;
             i10 = 0;
@@ -151,26 +151,26 @@ public final class u extends nd.h implements ud.p {
             } else {
                 arrayList.add(next2);
                 if (arrayList.size() == 20) {
-                    this.f16536f = cVar4;
-                    this.f16534b = arrayList;
-                    this.f16535c = it3;
+                    this.f16535f = cVar4;
+                    this.f16533b = arrayList;
+                    this.f16534c = it3;
                     this.d = i16;
                     this.e = 1;
                     cVar4.b(arrayList, this);
-                    md.a aVar5 = md.a.f18412a;
+                    md.a aVar5 = md.a.f18411a;
                     return aVar;
                 }
             }
         }
         if (!arrayList.isEmpty()) {
-            this.f16536f = null;
-            this.f16534b = null;
-            this.f16535c = null;
+            this.f16535f = null;
+            this.f16533b = null;
+            this.f16534c = null;
             this.e = 2;
             cVar4.b(arrayList, this);
-            md.a aVar6 = md.a.f18412a;
+            md.a aVar6 = md.a.f18411a;
             return aVar;
         }
-        return jd.i.f15580a;
+        return jd.i.f15579a;
     }
 }

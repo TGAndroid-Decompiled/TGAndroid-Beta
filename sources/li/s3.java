@@ -4,14 +4,14 @@ import android.text.TextUtils;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class s3 {
-    public final a f17469a;
-    public final int f17470b;
-    public final v3 f17471c;
+    public final a f17468a;
+    public final int f17469b;
+    public final v3 f17470c;
 
     public s3(v3 v3Var, a aVar, int i10) {
-        this.f17471c = v3Var;
-        this.f17469a = aVar;
-        this.f17470b = i10;
+        this.f17470c = v3Var;
+        this.f17468a = aVar;
+        this.f17469b = i10;
     }
 
     public final void a(String str, TL_keyboard.InlineButtonType inlineButtonType) {
@@ -19,14 +19,14 @@ public final class s3 {
         boolean z10;
         TL_keyboard.PageButton pageButton;
         if (!TextUtils.isEmpty(str) && k4.c(inlineButtonType) && (d = d()) != null) {
-            int i10 = this.f17470b;
+            int i10 = this.f17469b;
             if (i10 >= 0 && i10 < d.buttons.size()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z10 || d.buttons.size() < 8) {
-                v3 v3Var = this.f17471c;
+                v3 v3Var = this.f17470c;
                 f2 f2Var = v3Var.R3;
                 if (f2Var != null) {
                     f2Var.d();
@@ -44,12 +44,12 @@ public final class s3 {
                 if (!z10) {
                     d.buttons.add(pageButton);
                 }
-                v3Var.f32152g3.O(false);
+                v3Var.f32504g3.O(false);
                 f2 f2Var2 = v3Var.R3;
                 if (f2Var2 != null) {
                     f2Var2.h();
                 }
-                v3Var.f17557p3.onContentChanged();
+                v3Var.f17556p3.onContentChanged();
             }
         }
     }
@@ -57,35 +57,35 @@ public final class s3 {
     public final void b() {
         int i10;
         TL_iv.pageBlockButtonRow d = d();
-        if (d != null && (i10 = this.f17470b) >= 0 && i10 < d.buttons.size()) {
-            v3 v3Var = this.f17471c;
+        if (d != null && (i10 = this.f17469b) >= 0 && i10 < d.buttons.size()) {
+            v3 v3Var = this.f17470c;
             f2 f2Var = v3Var.R3;
             if (f2Var != null) {
                 f2Var.d();
             }
             d.buttons.remove(i10);
-            v3Var.f32152g3.O(false);
+            v3Var.f32504g3.O(false);
             f2 f2Var2 = v3Var.R3;
             if (f2Var2 != null) {
                 f2Var2.h();
             }
-            v3Var.f17557p3.onContentChanged();
+            v3Var.f17556p3.onContentChanged();
         }
     }
 
     public final boolean c() {
         int i10;
         TL_iv.pageBlockButtonRow d = d();
-        if (d != null && (i10 = this.f17470b) >= 0 && i10 < d.buttons.size()) {
+        if (d != null && (i10 = this.f17469b) >= 0 && i10 < d.buttons.size()) {
             return true;
         }
         return false;
     }
 
     public final TL_iv.pageBlockButtonRow d() {
-        a aVar = this.f17469a;
+        a aVar = this.f17468a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f17054b;
+            TL_iv.PageBlock pageBlock = aVar.f17053b;
             if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
                 return (TL_iv.pageBlockButtonRow) pageBlock;
             }

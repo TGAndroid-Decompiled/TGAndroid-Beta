@@ -1,16 +1,16 @@
 package tg;
 public class e0 {
-    public final int f48849a;
-    public final int f48850b;
-    public final String f48851c;
+    public final int f48884a;
+    public final int f48885b;
+    public final String f48886c;
     public final String d;
     public final int e;
-    public boolean f48852f;
+    public boolean f48887f;
 
     public e0(int i10, int i11, int i12, String str, String str2) {
-        this.f48849a = i10;
-        this.f48850b = i11;
-        this.f48851c = str;
+        this.f48884a = i10;
+        this.f48885b = i11;
+        this.f48886c = str;
         this.d = str2;
         this.e = i12;
     }

@@ -14,38 +14,38 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.kb1;
 public final class w8 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
-    public final Paint f9334a;
-    public final Paint f9335b;
-    public final TextView f9336c;
+    public final Paint f9333a;
+    public final Paint f9334b;
+    public final TextView f9335c;
     public final TextView d;
     public final TextView e;
-    public final org.telegram.ui.ActionBar.u6 f9337f;
+    public final org.telegram.ui.ActionBar.u6 f9336f;
 
     public w8(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f9334a = paint;
+        this.f9333a = paint;
         Paint paint2 = new Paint(1);
-        this.f9335b = paint2;
-        this.f9337f = u6Var;
-        paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23598q7, u6Var));
+        this.f9334b = paint2;
+        this.f9336f = u6Var;
+        paint.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23599q7, u6Var));
         paint2.setColor(-1);
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f9336c = textView;
+        this.f9335c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setText(LocaleController.getString(R.string.StoryError));
         textView.setTextColor(-1);
-        addView(textView, gb1.h(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
+        addView(textView, kb1.h(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 8.0f);
         textView2.setTextColor(org.telegram.ui.ActionBar.y6.o1(0.5f, -1));
         textView2.setVisibility(8);
         textView2.setTranslationY(AndroidUtilities.dp(9.0f));
-        addView(textView2, gb1.h(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
+        addView(textView2, kb1.h(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.e = textView3;
         textView3.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
@@ -56,7 +56,7 @@ public final class w8 extends FrameLayout implements org.telegram.ui.ActionBar.p
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(-1);
         textView3.setGravity(17);
-        addView(textView3, gb1.h(-2, 32.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+        addView(textView3, kb1.h(-2, 32.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
     }
 
     @Override
@@ -64,17 +64,17 @@ public final class w8 extends FrameLayout implements org.telegram.ui.ActionBar.p
         super.onDraw(canvas);
         float dp = AndroidUtilities.dp(23.0f);
         float height = getHeight() / 2.0f;
-        canvas.drawCircle(dp, height, AndroidUtilities.dp(10.0f), this.f9334a);
+        canvas.drawCircle(dp, height, AndroidUtilities.dp(10.0f), this.f9333a);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(dp - AndroidUtilities.dp(1.0f), height - AndroidUtilities.dpf2(4.6f), AndroidUtilities.dp(1.0f) + dp, AndroidUtilities.dpf2(1.6f) + height);
-        Paint paint = this.f9335b;
+        Paint paint = this.f9334b;
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
         rectF.set(dp - AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(2.6f) + height, dp + AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(4.6f) + height);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
     }
 
     public void set(TLRPC.TL_error tL_error) {
-        TextView textView = this.f9336c;
+        TextView textView = this.f9335c;
         TextView textView2 = this.d;
         if (tL_error != null && !TextUtils.isEmpty(tL_error.text)) {
             textView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
@@ -94,7 +94,7 @@ public final class w8 extends FrameLayout implements org.telegram.ui.ActionBar.p
     @Override
     public final void updateColors() {
         try {
-            this.f9334a.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23598q7, this.f9337f));
+            this.f9333a.setColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23599q7, this.f9336f));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

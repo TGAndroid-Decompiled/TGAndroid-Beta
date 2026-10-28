@@ -21,14 +21,14 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PasskeysActivity;
 import org.telegram.ui.PrivacySettingsActivity;
-import org.telegram.ui.vj0;
+import org.telegram.ui.bu0;
 import org.telegram.ui.xj0;
-import org.telegram.ui.zt0;
+import org.telegram.ui.zj0;
 public final class v0 implements Utilities.Callback2 {
     public final int f5535a;
     public final int f5536b;
@@ -94,7 +94,7 @@ public final class v0 implements Utilities.Callback2 {
                     if (!(webPage2 instanceof TLRPC.TL_webPageEmpty)) {
                         if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                             if (webPage2 instanceof TLRPC.TL_webPagePending) {
-                                long j10 = webPage2.f22182id;
+                                long j10 = webPage2.f22183id;
                                 int i16 = this.f5536b;
                                 hi.l1 l1Var = new hi.l1(j10, notificationCenterDelegateArr, i16, j1Var);
                                 notificationCenterDelegateArr[0] = l1Var;
@@ -176,12 +176,12 @@ public final class v0 implements Utilities.Callback2 {
                     i14 = 1;
                 }
                 if (i14 == 0) {
-                    MessagesController.getInstance(i17).generateJoinMessage(chat2.f22027id, true);
+                    MessagesController.getInstance(i17).generateJoinMessage(chat2.f22028id, true);
                 }
-                AndroidUtilities.runOnUIThread(new zt0(c1Var, 5));
+                AndroidUtilities.runOnUIThread(new bu0(c1Var, 5));
                 AndroidUtilities.runOnUIThread(new ag.r0(i17, chat2, 18), 1000L);
                 MessagesStorage messagesStorage = MessagesStorage.getInstance(i17);
-                long j11 = chat2.f22027id;
+                long j11 = chat2.f22028id;
                 messagesStorage.updateDialogsWithDeletedMessages(-j11, j11, new ArrayList<>(), null);
                 return;
             case 5:
@@ -214,14 +214,14 @@ public final class v0 implements Utilities.Callback2 {
                 }
                 return;
             case 8:
-                xj0 xj0Var = (xj0) obj5;
-                vj0 vj0Var = (vj0) obj4;
+                zj0 zj0Var = (zj0) obj5;
+                xj0 xj0Var = (xj0) obj4;
                 Context context2 = (Context) obj3;
                 ArrayList arrayList4 = (ArrayList) obj;
-                j71 j71Var = (j71) obj2;
-                ArrayList arrayList5 = xj0Var.f45785c;
-                if (i13 != 2 || !TextUtils.isEmpty(xj0Var.N)) {
-                    ArrayList arrayList6 = vj0Var.f44838a;
+                k71 k71Var = (k71) obj2;
+                ArrayList arrayList5 = zj0Var.f46289c;
+                if (i13 != 2 || !TextUtils.isEmpty(zj0Var.N)) {
+                    ArrayList arrayList6 = xj0Var.f45713a;
                     int size = arrayList6.size();
                     int i20 = 0;
                     while (i20 < size) {
@@ -229,9 +229,9 @@ public final class v0 implements Utilities.Callback2 {
                         i20++;
                         if (obj6 instanceof MessageObject) {
                             MessageObject messageObject = (MessageObject) obj6;
-                            ArrayList arrayList7 = (ArrayList) vj0Var.f44840c.get(messageObject);
-                            int i21 = org.telegram.ui.Cells.v3.f25583a;
-                            t61 K = t61.K(org.telegram.ui.Cells.v3.class);
+                            ArrayList arrayList7 = (ArrayList) xj0Var.f45715c.get(messageObject);
+                            int i21 = org.telegram.ui.Cells.v3.f25585a;
+                            u61 K = u61.K(org.telegram.ui.Cells.v3.class);
                             K.G = messageObject;
                             if (arrayList7 == null) {
                                 arrayList = null;
@@ -243,70 +243,70 @@ public final class v0 implements Utilities.Callback2 {
                             K.B = messageObject.getDialogId();
                             arrayList4.add(K);
                         } else if (!arrayList5.isEmpty()) {
-                            HashSet hashSet = xj0Var.d;
-                            org.telegram.ui.t3 t3Var = new org.telegram.ui.t3(xj0Var, 14);
-                            int i22 = org.telegram.ui.Cells.r3.f24960a;
-                            t61 K2 = t61.K(org.telegram.ui.Cells.r3.class);
+                            HashSet hashSet = zj0Var.d;
+                            org.telegram.ui.t3 t3Var = new org.telegram.ui.t3(zj0Var, 14);
+                            int i22 = org.telegram.ui.Cells.r3.f24962a;
+                            u61 K2 = u61.K(org.telegram.ui.Cells.r3.class);
                             K2.G = new org.telegram.ui.Cells.s3(arrayList5, hashSet, t3Var);
                             arrayList4.add(K2);
-                        } else if (xj0Var.f45788r) {
-                            arrayList4.add(t61.e(-2, LocaleController.getString(R.string.Retry)));
+                        } else if (zj0Var.f46292r) {
+                            arrayList4.add(u61.e(-2, LocaleController.getString(R.string.Retry)));
                         }
                     }
-                    if ((i13 == 2 || !vj0Var.f44847m) && (vj0Var.h || !vj0Var.f44843i)) {
+                    if ((i13 == 2 || !xj0Var.f45722m) && (xj0Var.h || !xj0Var.f45718i)) {
                         while (true) {
-                            if (vj0Var.f44838a.isEmpty()) {
+                            if (xj0Var.f45713a.isEmpty()) {
                                 i11 = 3;
                             } else {
                                 i11 = 1;
                             }
                             if (i14 < i11) {
-                                arrayList4.add(t61.q((-10) - i14, 39));
+                                arrayList4.add(u61.q((-10) - i14, 39));
                                 i14++;
                             }
                         }
-                    } else if (vj0Var.f44845k) {
-                        if (vj0Var.f44841f == null) {
+                    } else if (xj0Var.f45720k) {
+                        if (xj0Var.f45716f == null) {
                             if (i13 == 2) {
-                                f03 = xj0Var.g0(context2);
+                                f03 = zj0Var.g0(context2);
                             } else {
-                                f03 = xj0Var.f0(context2, vj0Var.f44842g);
+                                f03 = zj0Var.f0(context2, xj0Var.f45717g);
                             }
-                            vj0Var.f44841f = f03;
+                            xj0Var.f45716f = f03;
                         }
-                        ViewGroup viewGroup = vj0Var.f44841f;
-                        t61 t61Var = new t61(-3);
-                        t61Var.f32869c = viewGroup;
-                        t61Var.f32888z = 0;
-                        t61Var.f32887y = 1;
-                        arrayList4.add(t61Var);
-                    } else if (!vj0Var.h && vj0Var.f44843i && (arrayList4.isEmpty() || (vj0Var.f44844j && i13 != 2))) {
-                        if (vj0Var.f44841f == null) {
+                        ViewGroup viewGroup = xj0Var.f45716f;
+                        u61 u61Var = new u61(-3);
+                        u61Var.f33243c = viewGroup;
+                        u61Var.f33262z = 0;
+                        u61Var.f33261y = 1;
+                        arrayList4.add(u61Var);
+                    } else if (!xj0Var.h && xj0Var.f45718i && (arrayList4.isEmpty() || (xj0Var.f45719j && i13 != 2))) {
+                        if (xj0Var.f45716f == null) {
                             if (i13 == 2) {
-                                f02 = xj0Var.g0(context2);
+                                f02 = zj0Var.g0(context2);
                             } else {
-                                f02 = xj0Var.f0(context2, vj0Var.f44842g);
+                                f02 = zj0Var.f0(context2, xj0Var.f45717g);
                             }
-                            vj0Var.f44841f = f02;
+                            xj0Var.f45716f = f02;
                         }
                         if (arrayList4.isEmpty()) {
-                            ViewGroup viewGroup2 = vj0Var.f44841f;
-                            t61 t61Var2 = new t61(-3);
-                            t61Var2.f32869c = viewGroup2;
-                            t61Var2.f32888z = 0;
-                            t61Var2.f32887y = 1;
-                            arrayList4.add(t61Var2);
+                            ViewGroup viewGroup2 = xj0Var.f45716f;
+                            u61 u61Var2 = new u61(-3);
+                            u61Var2.f33243c = viewGroup2;
+                            u61Var2.f33262z = 0;
+                            u61Var2.f33261y = 1;
+                            arrayList4.add(u61Var2);
                         } else {
-                            ((t61) ic.a.g(1, arrayList4)).f32873j = true;
-                            ViewGroup viewGroup3 = vj0Var.f44841f;
-                            t61 t61Var3 = new t61(-1);
-                            t61Var3.f32869c = viewGroup3;
-                            t61Var3.f32888z = -2;
-                            arrayList4.add(t61Var3);
+                            ((u61) ic.a.g(1, arrayList4)).f33247j = true;
+                            ViewGroup viewGroup3 = xj0Var.f45716f;
+                            u61 u61Var3 = new u61(-1);
+                            u61Var3.f33243c = viewGroup3;
+                            u61Var3.f33262z = -2;
+                            arrayList4.add(u61Var3);
                         }
                     }
                     if (!arrayList4.isEmpty()) {
-                        ((t61) ic.a.g(1, arrayList4)).f32873j = true;
+                        ((u61) ic.a.g(1, arrayList4)).f33247j = true;
                         return;
                     }
                     return;
@@ -322,7 +322,7 @@ public final class v0 implements Utilities.Callback2 {
                     if ("EMPTY".equalsIgnoreCase(str3)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context3);
                         String string = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
-                        org.telegram.ui.ActionBar.e2 e2Var3 = alertDialog$Builder.f22368a;
+                        org.telegram.ui.ActionBar.e2 e2Var3 = alertDialog$Builder.f22369a;
                         e2Var3.R = string;
                         e2Var3.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);

@@ -2,11 +2,11 @@ package ee;
 
 import a8.we;
 public final class a {
-    public static final a[] f9894a;
+    public static final a[] f9893a;
 
     static {
         a[] aVarArr = {new Enum("SUSPEND", 0), new Enum("DROP_OLDEST", 1), new Enum("DROP_LATEST", 2)};
-        f9894a = aVarArr;
+        f9893a = aVarArr;
         we.a(aVarArr);
     }
 
@@ -15,6 +15,6 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) f9894a.clone();
+        return (a[]) f9893a.clone();
     }
 }

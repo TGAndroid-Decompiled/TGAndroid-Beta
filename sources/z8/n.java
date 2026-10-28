@@ -11,12 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 public final class n extends p6.a {
     public static final Parcelable.Creator<n> CREATOR = new d(8);
-    public final Uri f52752a;
-    public final HashMap f52753b;
-    public final byte[] f52754c;
+    public final Uri f52810a;
+    public final HashMap f52811b;
+    public final byte[] f52812c;
 
     public n(Uri uri, Bundle bundle, byte[] bArr) {
-        this.f52752a = uri;
+        this.f52810a = uri;
         HashMap hashMap = new HashMap();
         ClassLoader classLoader = DataItemAssetParcelable.class.getClassLoader();
         o6.l.h(classLoader);
@@ -26,8 +26,8 @@ public final class n extends p6.a {
             o6.l.h(parcelable);
             hashMap.put(str, (DataItemAssetParcelable) parcelable);
         }
-        this.f52753b = hashMap;
-        this.f52754c = bArr;
+        this.f52811b = hashMap;
+        this.f52812c = bArr;
     }
 
     public final String toString() {
@@ -35,17 +35,17 @@ public final class n extends p6.a {
         boolean isLoggable = Log.isLoggable("DataItem", 3);
         StringBuilder sb2 = new StringBuilder("DataItemParcelable[@");
         sb2.append(Integer.toHexString(hashCode()));
-        byte[] bArr = this.f52754c;
+        byte[] bArr = this.f52812c;
         if (bArr == null) {
             valueOf = "null";
         } else {
             valueOf = Integer.valueOf(bArr.length);
         }
         sb2.append(",dataSz=".concat(valueOf.toString()));
-        HashMap hashMap = this.f52753b;
+        HashMap hashMap = this.f52811b;
         int size = hashMap.size();
         sb2.append(", numAssets=" + size);
-        sb2.append(", uri=".concat(String.valueOf(this.f52752a)));
+        sb2.append(", uri=".concat(String.valueOf(this.f52810a)));
         if (!isLoggable) {
             sb2.append("]");
             return sb2.toString();
@@ -62,16 +62,16 @@ public final class n extends p6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        df.k(parcel, 2, this.f52752a, i10);
+        df.k(parcel, 2, this.f52810a, i10);
         Bundle bundle = new Bundle();
         ClassLoader classLoader = DataItemAssetParcelable.class.getClassLoader();
         o6.l.h(classLoader);
         bundle.setClassLoader(classLoader);
-        for (Map.Entry entry : this.f52753b.entrySet()) {
+        for (Map.Entry entry : this.f52811b.entrySet()) {
             bundle.putParcelable((String) entry.getKey(), new DataItemAssetParcelable((y8.f) entry.getValue()));
         }
         df.b(parcel, 4, bundle);
-        df.c(parcel, 5, this.f52754c);
+        df.c(parcel, 5, this.f52812c);
         df.r(parcel, q5);
     }
 }

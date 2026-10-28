@@ -29,11 +29,11 @@ public final class l2 extends h7 {
     public wc getBulletinFactory() {
         switch (this.B1) {
             case 0:
-                return wc.b0(((m2) this.C1).f53143a.f53230a);
+                return wc.b0(((m2) this.C1).f53201a.f53288a);
             case 1:
-                return wc.b0(((m2) this.C1).f53143a.f53230a);
+                return wc.b0(((m2) this.C1).f53201a.f53288a);
             case 2:
-                return wc.b0(((m2) this.C1).f53143a.f53230a);
+                return wc.b0(((m2) this.C1).f53201a.f53288a);
             default:
                 return super.getBulletinFactory();
         }

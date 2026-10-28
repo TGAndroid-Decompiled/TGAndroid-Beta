@@ -7,17 +7,17 @@ import h8.j;
 import o6.l;
 public final class e extends p6.a {
     public static final Parcelable.Creator<e> CREATOR = new j(14);
-    public final String f16442a;
+    public final String f16441a;
 
     public e(String str) {
         l.i(str, "json must not be null");
-        this.f16442a = str;
+        this.f16441a = str;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q5 = df.q(parcel, 20293);
-        df.l(parcel, 2, this.f16442a);
+        df.l(parcel, 2, this.f16441a);
         df.r(parcel, q5);
     }
 }

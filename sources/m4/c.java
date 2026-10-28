@@ -48,33 +48,33 @@ import org.telegram.ui.Cells.p2;
 import org.telegram.ui.Cells.t9;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.cm0;
-import org.telegram.ui.Components.i11;
-import org.telegram.ui.Components.kp0;
-import org.telegram.ui.Components.vw0;
+import org.telegram.ui.Components.dm0;
+import org.telegram.ui.Components.j11;
+import org.telegram.ui.Components.lp0;
+import org.telegram.ui.Components.ww0;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Wallet.m5;
-import org.telegram.ui.ay;
-import org.telegram.ui.cv0;
-import org.telegram.ui.cy;
 import org.telegram.ui.d3;
+import org.telegram.ui.dy;
+import org.telegram.ui.ev0;
+import org.telegram.ui.ey;
 import org.telegram.ui.l5;
-import org.telegram.ui.qx;
+import org.telegram.ui.tx;
 import x7.qa;
-public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, oe.d, y2.n, SuccessContinuation {
-    public final int f18008a;
-    public Object f18009b;
-    public Object f18010c;
+public final class c implements e2.d, lp0, org.telegram.ui.Cells.j1, dm0, hh.a, oe.d, y2.n, SuccessContinuation {
+    public final int f18007a;
+    public Object f18008b;
+    public Object f18009c;
 
     public c(int i10, Object obj, Object obj2) {
-        this.f18008a = i10;
-        this.f18009b = obj;
-        this.f18010c = obj2;
+        this.f18007a = i10;
+        this.f18008b = obj;
+        this.f18009c = obj2;
     }
 
     public void A(String str, PrintWriter printWriter) {
         boolean z10;
-        w1.b bVar = (w1.b) this.f18010c;
+        w1.b bVar = (w1.b) this.f18009c;
         if (bVar.d.f30c > 0) {
             printWriter.print(str);
             printWriter.println("Loaders:");
@@ -97,8 +97,8 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
                     printWriter.println((Object) null);
                     printWriter.print(str2);
                     printWriter.print("mLoader=");
-                    printWriter.println(aVar.f50648l);
-                    b6.d dVar = aVar.f50648l;
+                    printWriter.println(aVar.f50706l);
+                    b6.d dVar = aVar.f50706l;
                     String str3 = str2 + "  ";
                     dVar.getClass();
                     printWriter.print(str3);
@@ -138,11 +138,11 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
                         dVar.h.getClass();
                         printWriter.println(false);
                     }
-                    if (aVar.f50650n != null) {
+                    if (aVar.f50708n != null) {
                         printWriter.print(str2);
                         printWriter.print("mCallbacks=");
-                        printWriter.println(aVar.f50650n);
-                        b2.u uVar = aVar.f50650n;
+                        printWriter.println(aVar.f50708n);
+                        b2.u uVar = aVar.f50708n;
                         uVar.getClass();
                         printWriter.print(str2 + "  ");
                         printWriter.print("mDeliveredData=");
@@ -150,7 +150,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
                     }
                     printWriter.print(str2);
                     printWriter.print("mData=");
-                    b6.d dVar2 = aVar.f50648l;
+                    b6.d dVar2 = aVar.f50706l;
                     Object obj2 = aVar.e;
                     if (obj2 != androidx.lifecycle.z.f2830k) {
                         obj = obj2;
@@ -184,15 +184,15 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     }
 
     public byte[] B(n3.a aVar) {
-        DataOutputStream dataOutputStream = (DataOutputStream) this.f18010c;
-        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) this.f18009b;
+        DataOutputStream dataOutputStream = (DataOutputStream) this.f18009c;
+        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) this.f18008b;
         byteArrayOutputStream.reset();
         try {
-            dataOutputStream.writeBytes(aVar.f18649a);
+            dataOutputStream.writeBytes(aVar.f18648a);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeBytes(aVar.f18650b);
+            dataOutputStream.writeBytes(aVar.f18649b);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeLong(aVar.f18651c);
+            dataOutputStream.writeLong(aVar.f18650c);
             dataOutputStream.writeLong(aVar.d);
             dataOutputStream.write(aVar.e);
             dataOutputStream.flush();
@@ -205,10 +205,10 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     public c3.j0 B0(int i10) {
         int i11 = 0;
         while (true) {
-            int[] iArr = (int[]) this.f18009b;
+            int[] iArr = (int[]) this.f18008b;
             if (i11 < iArr.length) {
                 if (i10 == iArr[i11]) {
-                    return ((u2.c1[]) this.f18010c)[i11];
+                    return ((u2.c1[]) this.f18009c)[i11];
                 }
                 i11++;
             } else {
@@ -220,7 +220,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public boolean C0(long j10) {
-        return ((i11) this.f18010c).v;
+        return ((j11) this.f18009c).v;
     }
 
     @Override
@@ -230,15 +230,15 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public void E(int i10, float f7, float f10, oe.e eVar) {
-        rh.i iVar = (rh.i) this.f18010c;
-        iVar.f47621c.a(f7);
+        rh.i iVar = (rh.i) this.f18009c;
+        iVar.f47656c.a(f7);
         iVar.d.a(f7);
-        iVar.f47620b.a(f7);
-        ((Runnable) this.f18009b).run();
+        iVar.f47655b.a(f7);
+        ((Runnable) this.f18008b).run();
     }
 
     @Override
-    public cv0 E1() {
+    public ev0 E1() {
         return null;
     }
 
@@ -248,20 +248,20 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public boolean G1(long j10) {
-        return ((i11) this.f18010c).f29148s;
+        return ((j11) this.f18009c).f29476s;
     }
 
     @Override
     public k9.y H(byte[] bArr) {
         byte[] bArr2;
-        k6.c cVar = (k6.c) this.f18010c;
-        if (cVar != null && (bArr2 = (byte[]) cVar.f16406b) != null && Arrays.equals(bArr2, bArr)) {
-            k9.y yVar = (k9.y) ((k6.c) this.f18010c).d;
+        k6.c cVar = (k6.c) this.f18009c;
+        if (cVar != null && (bArr2 = (byte[]) cVar.f16405b) != null && Arrays.equals(bArr2, bArr)) {
+            k9.y yVar = (k9.y) ((k6.c) this.f18009c).d;
             yVar.getClass();
             return yVar;
         }
-        k9.y H = ((e2.d) this.f18009b).H(bArr);
-        this.f18010c = new k6.c(bArr, H);
+        k9.y H = ((e2.d) this.f18008b).H(bArr);
+        this.f18009c = new k6.c(bArr, H);
         return H;
     }
 
@@ -306,20 +306,20 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     }
 
     public File R() {
-        if (((File) this.f18009b) == null) {
+        if (((File) this.f18008b) == null) {
             synchronized (this) {
                 try {
-                    if (((File) this.f18009b) == null) {
-                        m9.h hVar = (m9.h) this.f18010c;
+                    if (((File) this.f18008b) == null) {
+                        m9.h hVar = (m9.h) this.f18009c;
                         hVar.a();
-                        File filesDir = hVar.f18380a.getFilesDir();
-                        this.f18009b = new File(filesDir, "PersistedInstallation." + ((m9.h) this.f18010c).d() + ".json");
+                        File filesDir = hVar.f18379a.getFilesDir();
+                        this.f18008b = new File(filesDir, "PersistedInstallation." + ((m9.h) this.f18009c).d() + ".json");
                     }
                 } finally {
                 }
             }
         }
-        return (File) this.f18009b;
+        return (File) this.f18008b;
     }
 
     @Override
@@ -334,8 +334,8 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public Object S1(Uri uri, g2.k kVar) {
-        t2.a aVar = (t2.a) ((y2.n) this.f18009b).S1(uri, kVar);
-        List list = (List) this.f18010c;
+        t2.a aVar = (t2.a) ((y2.n) this.f18008b).S1(uri, kVar);
+        List list = (List) this.f18009c;
         if (list != null && !list.isEmpty()) {
             return (t2.a) aVar.a(list);
         }
@@ -343,8 +343,8 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     }
 
     public String T(String str) {
-        Resources resources = (Resources) this.f18009b;
-        int identifier = resources.getIdentifier(str, "string", (String) this.f18010c);
+        Resources resources = (Resources) this.f18008b;
+        int identifier = resources.getIdentifier(str, "string", (String) this.f18009c);
         if (identifier == 0) {
             return null;
         }
@@ -353,11 +353,11 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public void U(float f7, boolean z10) {
-        l5.f41139c = f7;
-        ((TextView) this.f18009b).setText("Saturation " + (f7 * 5.0f));
-        vw0 vw0Var = ((l5) this.f18010c).f41140b;
-        vw0Var.M();
-        vw0Var.L();
+        l5.f40977c = f7;
+        ((TextView) this.f18008b).setText("Saturation " + (f7 * 5.0f));
+        ww0 ww0Var = ((l5) this.f18009c).f40978b;
+        ww0Var.M();
+        ww0Var.L();
     }
 
     @Override
@@ -383,16 +383,16 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     public void Y(ta.a aVar) {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("Fid", aVar.f48758a);
-            jSONObject.put("Status", m1.j.c(aVar.f48759b));
-            jSONObject.put("AuthToken", aVar.f48760c);
+            jSONObject.put("Fid", aVar.f48793a);
+            jSONObject.put("Status", m1.j.c(aVar.f48794b));
+            jSONObject.put("AuthToken", aVar.f48795c);
             jSONObject.put("RefreshToken", aVar.d);
-            jSONObject.put("TokenCreationEpochInSecs", aVar.f48761f);
+            jSONObject.put("TokenCreationEpochInSecs", aVar.f48796f);
             jSONObject.put("ExpiresInSecs", aVar.e);
-            jSONObject.put("FisError", aVar.f48762g);
-            m9.h hVar = (m9.h) this.f18010c;
+            jSONObject.put("FisError", aVar.f48797g);
+            m9.h hVar = (m9.h) this.f18009c;
             hVar.a();
-            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", hVar.f18380a.getFilesDir());
+            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", hVar.f18379a.getFilesDir());
             FileOutputStream fileOutputStream = new FileOutputStream(createTempFile);
             fileOutputStream.write(jSONObject.toString().getBytes("UTF-8"));
             fileOutputStream.close();
@@ -404,14 +404,14 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     }
 
     public void a(s4.e1 e1Var, b2.v0 v0Var) {
-        a0.f fVar = (a0.f) this.f18009b;
+        a0.f fVar = (a0.f) this.f18008b;
         s4.k1 k1Var = (s4.k1) fVar.get(e1Var);
         if (k1Var == null) {
             k1Var = s4.k1.a();
             fVar.put(e1Var, k1Var);
         }
-        k1Var.f47786c = v0Var;
-        k1Var.f47784a |= 8;
+        k1Var.f47821c = v0Var;
+        k1Var.f47819a |= 8;
     }
 
     @Override
@@ -420,9 +420,9 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     }
 
     public void b() {
-        String str = (String) this.f18009b;
+        String str = (String) this.f18008b;
         try {
-            da.c cVar = (da.c) this.f18010c;
+            da.c cVar = (da.c) this.f18009c;
             cVar.getClass();
             new File(cVar.f8274b, str).createNewFile();
         } catch (IOException e) {
@@ -452,19 +452,19 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public boolean mo17e(float f7, float f10, int i10, View view) {
-        cy cyVar = (cy) this.f18010c;
+        ey eyVar = (ey) this.f18009c;
         if (view instanceof p2) {
             p2 p2Var = (p2) view;
-            if (p2Var.f24694n2) {
-                cyVar.V4(p2Var.getDialogId(), view);
+            if (p2Var.f24696n2) {
+                eyVar.V4(p2Var.getDialogId(), view);
                 return true;
             }
         }
-        qx qxVar = cyVar.f38693z0;
-        if (qxVar != null && qxVar.getVisibility() == 0 && cyVar.f38693z0.f32377n) {
+        tx txVar = eyVar.f39105z0;
+        if (txVar != null && txVar.getVisibility() == 0 && eyVar.f39105z0.f32432n) {
             return false;
         }
-        return cyVar.w4(view, i10, f7, ((ay) this.f18009b).d);
+        return eyVar.w4(view, i10, f7, ((dy) this.f18008b).d);
     }
 
     @Override
@@ -478,7 +478,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     }
 
     public boolean f0() {
-        m5 m5Var = (m5) this.f18010c;
+        m5 m5Var = (m5) this.f18009c;
         if (m5Var.I0 <= 0.0f && !m5Var.w0()) {
             return false;
         }
@@ -489,7 +489,7 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     public void g() {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            ((cy) this.f18010c).finishPreviewFragment();
+            ((ey) this.f18009c).finishPreviewFragment();
         }
     }
 
@@ -510,8 +510,8 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     public void i0(Exception exc, boolean z10) {
         int i10;
-        this.f18010c = null;
-        HashSet hashSet = (HashSet) this.f18009b;
+        this.f18009c = null;
+        HashSet hashSet = (HashSet) this.f18008b;
         f9.i0 u10 = f9.i0.u(hashSet);
         hashSet.clear();
         f9.g0 listIterator = u10.listIterator(0);
@@ -530,8 +530,8 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     public ArrayList k() {
         ?? arrayList;
         ArrayList arrayList2 = new ArrayList();
-        Context context = (Context) this.f18009b;
-        Class cls = ((hb.e) this.f18010c).f12731a;
+        Context context = (Context) this.f18008b;
+        Class cls = ((hb.e) this.f18009c).f12730a;
         Bundle bundle = null;
         try {
             PackageManager packageManager = context.getPackageManager();
@@ -578,25 +578,25 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     public b2.v0 l0(s4.e1 e1Var, int i10) {
         s4.k1 k1Var;
         b2.v0 v0Var;
-        a0.f fVar = (a0.f) this.f18009b;
+        a0.f fVar = (a0.f) this.f18008b;
         int c10 = fVar.c(e1Var);
         if (c10 >= 0 && (k1Var = (s4.k1) fVar.h(c10)) != null) {
-            int i11 = k1Var.f47784a;
+            int i11 = k1Var.f47819a;
             if ((i11 & i10) != 0) {
                 int i12 = i11 & (~i10);
-                k1Var.f47784a = i12;
+                k1Var.f47819a = i12;
                 if (i10 == 4) {
-                    v0Var = k1Var.f47785b;
+                    v0Var = k1Var.f47820b;
                 } else if (i10 == 8) {
-                    v0Var = k1Var.f47786c;
+                    v0Var = k1Var.f47821c;
                 } else {
                     throw new IllegalArgumentException("Must provide flag PRE or POST");
                 }
                 if ((i12 & 12) == 0) {
                     fVar.f(c10);
-                    k1Var.f47784a = 0;
-                    k1Var.f47785b = null;
-                    k1Var.f47786c = null;
+                    k1Var.f47819a = 0;
+                    k1Var.f47820b = null;
+                    k1Var.f47821c = null;
                     s4.k1.d.r(k1Var);
                 }
                 return v0Var;
@@ -609,23 +609,23 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     public void o(float f7) {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            ((cy) this.f18010c).movePreviewFragment(f7);
+            ((ey) this.f18009c).movePreviewFragment(f7);
         }
     }
 
     public void p0(n2.b bVar) {
-        ((HashSet) this.f18009b).add(bVar);
-        if (((n2.b) this.f18010c) != null) {
+        ((HashSet) this.f18008b).add(bVar);
+        if (((n2.b) this.f18009c) != null) {
             return;
         }
-        this.f18010c = bVar;
-        n2.p k10 = bVar.f18585b.k();
-        bVar.f18605z = k10;
-        android.support.v4.media.session.f fVar = bVar.f18599s;
-        String str = e2.n0.f9692a;
+        this.f18009c = bVar;
+        n2.p k10 = bVar.f18584b.k();
+        bVar.f18604z = k10;
+        android.support.v4.media.session.f fVar = bVar.f18598s;
+        String str = e2.n0.f9691a;
         k10.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new n2.a(u2.u.f49435g.getAndIncrement(), true, SystemClock.elapsedRealtime(), k10)).sendToTarget();
+        fVar.obtainMessage(1, new n2.a(u2.u.f49470g.getAndIncrement(), true, SystemClock.elapsedRealtime(), k10)).sendToTarget();
     }
 
     @Override
@@ -647,43 +647,43 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     public k9.y t(b2.s0 s0Var) {
         Uri uri;
         byte[] bArr;
-        k6.c cVar = (k6.c) this.f18010c;
-        if (cVar != null && (((uri = (Uri) cVar.f16407c) != null && uri.equals(s0Var.f3420n)) || ((bArr = (byte[]) cVar.f16406b) != null && Arrays.equals(bArr, s0Var.f3417k)))) {
-            k9.y yVar = (k9.y) ((k6.c) this.f18010c).d;
+        k6.c cVar = (k6.c) this.f18009c;
+        if (cVar != null && (((uri = (Uri) cVar.f16406c) != null && uri.equals(s0Var.f3420n)) || ((bArr = (byte[]) cVar.f16405b) != null && Arrays.equals(bArr, s0Var.f3417k)))) {
+            k9.y yVar = (k9.y) ((k6.c) this.f18009c).d;
             yVar.getClass();
             return yVar;
         }
-        k9.y t10 = ((e2.d) this.f18009b).t(s0Var);
+        k9.y t10 = ((e2.d) this.f18008b).t(s0Var);
         if (t10 == null) {
             return null;
         }
-        this.f18010c = new k6.c(s0Var, t10);
+        this.f18009c = new k6.c(s0Var, t10);
         return t10;
     }
 
     @Override
     public Task then(Object obj) {
         fa.a aVar = (fa.a) obj;
-        u4.f fVar = (u4.f) this.f18010c;
+        u4.f fVar = (u4.f) this.f18009c;
         if (aVar == null) {
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        y9.l lVar = (y9.l) fVar.f49586c;
-        y9.n.b((y9.n) ((y9.l) fVar.f49586c).f52438b);
-        ((y9.n) lVar.f52438b).f52451m.v((Executor) this.f18009b, null);
-        ((y9.n) lVar.f52438b).f52455q.trySetResult(null);
+        y9.l lVar = (y9.l) fVar.f49621c;
+        y9.n.b((y9.n) ((y9.l) fVar.f49621c).f52496b);
+        ((y9.n) lVar.f52496b).f52509m.v((Executor) this.f18008b, null);
+        ((y9.n) lVar.f52496b).f52513q.trySetResult(null);
         return Tasks.forResult(null);
     }
 
     public String toString() {
-        switch (this.f18008a) {
+        switch (this.f18007a) {
             case 24:
                 StringBuilder sb2 = new StringBuilder(128);
                 sb2.append("LoaderManager{");
                 sb2.append(Integer.toHexString(System.identityHashCode(this)));
                 sb2.append(" in ");
-                Class<?> cls = ((androidx.lifecycle.t) this.f18009b).getClass();
+                Class<?> cls = ((androidx.lifecycle.t) this.f18008b).getClass();
                 sb2.append(cls.getSimpleName());
                 sb2.append("{");
                 sb2.append(Integer.toHexString(System.identityHashCode(cls)));
@@ -696,11 +696,11 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public String u(long j10) {
-        String trim = ((EditTextBoldCursor) this.f18009b).getText().toString().trim();
+        String trim = ((EditTextBoldCursor) this.f18008b).getText().toString().trim();
         if (trim.length() > 16) {
             trim = trim.substring(0, 16);
         }
-        if (!((i11) this.f18010c).f29148s && TextUtils.isEmpty(trim)) {
+        if (!((j11) this.f18009c).f29476s && TextUtils.isEmpty(trim)) {
             return null;
         }
         return trim;
@@ -754,16 +754,16 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
 
     @Override
     public void w(Canvas canvas, float f7, float f10, float f11, float f12) {
-        Paint paint = (Paint) this.f18009b;
-        PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f18010c;
+        Paint paint = (Paint) this.f18008b;
+        PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f18009c;
         tg.a1 a1Var = premiumPreviewFragment.m0;
-        if (premiumPreviewFragment.f35876h0) {
-            paint.setColor(premiumPreviewFragment.getThemedColor(y6.f23299a7));
+        if (premiumPreviewFragment.f35900h0) {
+            paint.setColor(premiumPreviewFragment.getThemedColor(y6.f23300a7));
             canvas.drawRect(f7, f10, f11, f12, paint);
             return;
         }
-        a1Var.d(0, (-premiumPreviewFragment.f35871d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f35868b0, 0, premiumPreviewFragment.f35871d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f35871d0.getMeasuredHeight());
-        canvas.drawRect(f7, f10, f11, f12, a1Var.f48797f);
+        a1Var.d(0, (-premiumPreviewFragment.f35895d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f35892b0, 0, premiumPreviewFragment.f35895d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f35895d0.getMeasuredHeight());
+        canvas.drawRect(f7, f10, f11, f12, a1Var.f48832f);
     }
 
     @Override
@@ -772,11 +772,11 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     }
 
     public void x0(s4.e1 e1Var) {
-        s4.k1 k1Var = (s4.k1) ((a0.f) this.f18009b).get(e1Var);
+        s4.k1 k1Var = (s4.k1) ((a0.f) this.f18008b).get(e1Var);
         if (k1Var == null) {
             return;
         }
-        k1Var.f47784a &= -2;
+        k1Var.f47819a &= -2;
     }
 
     @Override
@@ -790,8 +790,8 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     }
 
     public void z0(s4.e1 e1Var) {
-        a0.f fVar = (a0.f) this.f18009b;
-        a0.h hVar = (a0.h) this.f18010c;
+        a0.f fVar = (a0.f) this.f18008b;
+        a0.h hVar = (a0.h) this.f18009c;
         int m10 = hVar.m() - 1;
         while (true) {
             if (m10 < 0) {
@@ -811,82 +811,82 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
         s4.k1 k1Var = (s4.k1) fVar.get(e1Var);
         if (k1Var != null) {
             fVar.remove(e1Var);
-            k1Var.f47784a = 0;
-            k1Var.f47785b = null;
-            k1Var.f47786c = null;
+            k1Var.f47819a = 0;
+            k1Var.f47820b = null;
+            k1Var.f47821c = null;
             s4.k1.d.r(k1Var);
         }
     }
 
     public c(int i10, boolean z10) {
-        this.f18008a = i10;
+        this.f18007a = i10;
     }
 
     public c(Context context, int i10) {
-        this.f18008a = i10;
-        this.f18010c = null;
-        this.f18009b = context;
+        this.f18007a = i10;
+        this.f18009c = null;
+        this.f18008b = context;
     }
 
     public c(Object obj, int i10) {
-        this.f18008a = i10;
-        this.f18009b = obj;
+        this.f18007a = i10;
+        this.f18008b = obj;
     }
 
     public c(Object obj, Object obj2, boolean z10, int i10) {
-        this.f18008a = i10;
-        this.f18010c = obj;
-        this.f18009b = obj2;
+        this.f18007a = i10;
+        this.f18009c = obj;
+        this.f18008b = obj2;
     }
 
     public c(Context context) {
-        this.f18008a = 5;
+        this.f18007a = 5;
         o6.l.h(context);
         Resources resources = context.getResources();
-        this.f18009b = resources;
-        this.f18010c = resources.getResourcePackageName(2131689566);
+        this.f18008b = resources;
+        this.f18009c = resources.getResourcePackageName(2131689566);
     }
 
     public c(s4.d dVar) {
-        this.f18008a = 26;
-        this.f18010c = new Object();
-        this.f18009b = dVar;
+        this.f18007a = 26;
+        this.f18009c = new Object();
+        this.f18008b = dVar;
         qa.b();
     }
 
     public c(androidx.lifecycle.t tVar, androidx.lifecycle.t0 t0Var) {
-        this.f18008a = 24;
-        this.f18009b = tVar;
-        this.f18010c = (w1.b) new a8.h0(t0Var, w1.b.f50651f).m(w1.b.class);
+        this.f18007a = 24;
+        this.f18008b = tVar;
+        this.f18009c = (w1.b) new a8.h0(t0Var, w1.b.f50709f).m(w1.b.class);
     }
 
     public c(m9.h hVar) {
-        this.f18008a = 21;
-        this.f18010c = hVar;
+        this.f18007a = 21;
+        this.f18009c = hVar;
     }
 
     public c(EditText editText) {
-        this.f18008a = 15;
-        this.f18009b = editText;
+        this.f18007a = 15;
+        this.f18008b = editText;
         q1.i iVar = new q1.i(editText);
-        this.f18010c = iVar;
+        this.f18009c = iVar;
         editText.addTextChangedListener(iVar);
-        if (q1.a.f46897b == null) {
-            synchronized (q1.a.f46896a) {
+        if (q1.a.f46932b == null) {
+            synchronized (q1.a.f46931a) {
                 try {
-                    if (q1.a.f46897b == null) {
+                    if (q1.a.f46932b == null) {
                         ?? factory = new Editable.Factory();
                         try {
-                            q1.a.f46898c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
+                            q1.a.f46933c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
                         } catch (Throwable unused) {
                         }
-                        q1.a.f46897b = factory;
+                        q1.a.f46932b = factory;
                     }
                 } finally {
                 }
             }
         }
-        editText.setEditableFactory(q1.a.f46897b);
+        editText.setEditableFactory(q1.a.f46932b);
     }
 
     @Override
@@ -1026,25 +1026,25 @@ public final class c implements e2.d, kp0, org.telegram.ui.Cells.j1, cm0, hh.a, 
     }
 
     public c(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f18008a = 13;
-        this.f18010c = premiumPreviewFragment;
-        this.f18009b = new Paint();
+        this.f18007a = 13;
+        this.f18009c = premiumPreviewFragment;
+        this.f18008b = new Paint();
     }
 
     public c(int i10) {
-        this.f18008a = i10;
+        this.f18007a = i10;
         switch (i10) {
             case 2:
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(512);
-                this.f18009b = byteArrayOutputStream;
-                this.f18010c = new DataOutputStream(byteArrayOutputStream);
+                this.f18008b = byteArrayOutputStream;
+                this.f18009c = new DataOutputStream(byteArrayOutputStream);
                 return;
             case 18:
-                this.f18009b = new a0.l(0);
-                this.f18010c = new a0.h();
+                this.f18008b = new a0.l(0);
+                this.f18009c = new a0.h();
                 return;
             default:
-                this.f18009b = new HashSet();
+                this.f18008b = new HashSet();
                 return;
         }
     }

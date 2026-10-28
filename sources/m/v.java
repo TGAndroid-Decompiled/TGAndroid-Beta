@@ -12,38 +12,38 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 public class v extends ImageView {
-    public final e2.c f17870a;
-    public final ng f17871b;
-    public boolean f17872c;
+    public final e2.c f17869a;
+    public final ng f17870b;
+    public boolean f17871c;
 
     public v(Context context, AttributeSet attributeSet, int i10) {
         super(context, attributeSet, i10);
         c3.a(context);
-        this.f17872c = false;
+        this.f17871c = false;
         b3.a(this, getContext());
         e2.c cVar = new e2.c(this);
-        this.f17870a = cVar;
+        this.f17869a = cVar;
         cVar.f(attributeSet, i10);
         ng ngVar = new ng(this);
-        this.f17871b = ngVar;
+        this.f17870b = ngVar;
         ngVar.t(attributeSet, i10);
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f17870a;
+        e2.c cVar = this.f17869a;
         if (cVar != null) {
             cVar.b();
         }
-        ng ngVar = this.f17871b;
+        ng ngVar = this.f17870b;
         if (ngVar != null) {
             ngVar.b();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f17870a;
+        e2.c cVar = this.f17869a;
         if (cVar != null) {
             return cVar.d();
         }
@@ -51,7 +51,7 @@ public class v extends ImageView {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f17870a;
+        e2.c cVar = this.f17869a;
         if (cVar != null) {
             return cVar.e();
         }
@@ -60,16 +60,16 @@ public class v extends ImageView {
 
     public ColorStateList getSupportImageTintList() {
         d3 d3Var;
-        ng ngVar = this.f17871b;
+        ng ngVar = this.f17870b;
         if (ngVar == null || (d3Var = (d3) ngVar.d) == null) {
             return null;
         }
-        return (ColorStateList) d3Var.f17707c;
+        return (ColorStateList) d3Var.f17706c;
     }
 
     public PorterDuff.Mode getSupportImageTintMode() {
         d3 d3Var;
-        ng ngVar = this.f17871b;
+        ng ngVar = this.f17870b;
         if (ngVar == null || (d3Var = (d3) ngVar.d) == null) {
             return null;
         }
@@ -78,7 +78,7 @@ public class v extends ImageView {
 
     @Override
     public final boolean hasOverlappingRendering() {
-        if (!(((ImageView) this.f17871b.f640c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+        if (!(((ImageView) this.f17870b.f640c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
             return true;
         }
         return false;
@@ -87,7 +87,7 @@ public class v extends ImageView {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f17870a;
+        e2.c cVar = this.f17869a;
         if (cVar != null) {
             cVar.g();
         }
@@ -96,7 +96,7 @@ public class v extends ImageView {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f17870a;
+        e2.c cVar = this.f17869a;
         if (cVar != null) {
             cVar.h(i10);
         }
@@ -105,7 +105,7 @@ public class v extends ImageView {
     @Override
     public void setImageBitmap(Bitmap bitmap) {
         super.setImageBitmap(bitmap);
-        ng ngVar = this.f17871b;
+        ng ngVar = this.f17870b;
         if (ngVar != null) {
             ngVar.b();
         }
@@ -113,14 +113,14 @@ public class v extends ImageView {
 
     @Override
     public void setImageDrawable(Drawable drawable) {
-        ng ngVar = this.f17871b;
-        if (ngVar != null && drawable != null && !this.f17872c) {
+        ng ngVar = this.f17870b;
+        if (ngVar != null && drawable != null && !this.f17871c) {
             ngVar.f639b = drawable.getLevel();
         }
         super.setImageDrawable(drawable);
         if (ngVar != null) {
             ngVar.b();
-            if (!this.f17872c) {
+            if (!this.f17871c) {
                 ImageView imageView = (ImageView) ngVar.f640c;
                 if (imageView.getDrawable() != null) {
                     imageView.getDrawable().setLevel(ngVar.f639b);
@@ -132,12 +132,12 @@ public class v extends ImageView {
     @Override
     public void setImageLevel(int i10) {
         super.setImageLevel(i10);
-        this.f17872c = true;
+        this.f17871c = true;
     }
 
     @Override
     public void setImageResource(int i10) {
-        ng ngVar = this.f17871b;
+        ng ngVar = this.f17870b;
         if (ngVar != null) {
             ImageView imageView = (ImageView) ngVar.f640c;
             if (i10 != 0) {
@@ -156,48 +156,48 @@ public class v extends ImageView {
     @Override
     public void setImageURI(Uri uri) {
         super.setImageURI(uri);
-        ng ngVar = this.f17871b;
+        ng ngVar = this.f17870b;
         if (ngVar != null) {
             ngVar.b();
         }
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f17870a;
+        e2.c cVar = this.f17869a;
         if (cVar != null) {
             cVar.l(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f17870a;
+        e2.c cVar = this.f17869a;
         if (cVar != null) {
             cVar.m(mode);
         }
     }
 
     public void setSupportImageTintList(ColorStateList colorStateList) {
-        ng ngVar = this.f17871b;
+        ng ngVar = this.f17870b;
         if (ngVar != null) {
             if (((d3) ngVar.d) == null) {
                 ngVar.d = new Object();
             }
             d3 d3Var = (d3) ngVar.d;
-            d3Var.f17707c = colorStateList;
-            d3Var.f17706b = true;
+            d3Var.f17706c = colorStateList;
+            d3Var.f17705b = true;
             ngVar.b();
         }
     }
 
     public void setSupportImageTintMode(PorterDuff.Mode mode) {
-        ng ngVar = this.f17871b;
+        ng ngVar = this.f17870b;
         if (ngVar != null) {
             if (((d3) ngVar.d) == null) {
                 ngVar.d = new Object();
             }
             d3 d3Var = (d3) ngVar.d;
             d3Var.d = mode;
-            d3Var.f17705a = true;
+            d3Var.f17704a = true;
             ngVar.b();
         }
     }

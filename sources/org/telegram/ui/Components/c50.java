@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Intent;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
-public final class c50 implements org.telegram.ui.zp0 {
+public final class c50 implements org.telegram.ui.bq0 {
     public final g50 f27075a;
 
     public c50(g50 g50Var) {
@@ -20,7 +20,7 @@ public final class c50 implements org.telegram.ui.zp0 {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("image/*");
-            this.f27075a.f28421a.startActivityForResult(intent, 14);
+            this.f27075a.f28388a.startActivityForResult(intent, 14);
         } catch (Exception e) {
             FileLog.e(e);
         }
