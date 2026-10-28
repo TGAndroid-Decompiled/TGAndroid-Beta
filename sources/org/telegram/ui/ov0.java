@@ -114,6 +114,14 @@ public final class ov0 extends org.telegram.ui.ActionBar.r2 implements Notificat
         this.N = 2;
     }
 
+    public static org.telegram.ui.ActionBar.k a0(ov0 ov0Var) {
+        return ov0Var.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k b0(ov0 ov0Var) {
+        return ov0Var.actionBar;
+    }
+
     public static void d0(ov0 ov0Var, View view, int i10) {
         int i11;
         int i12;

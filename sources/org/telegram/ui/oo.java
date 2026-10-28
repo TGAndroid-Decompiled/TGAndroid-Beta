@@ -243,6 +243,14 @@ public class oo extends org.telegram.ui.ActionBar.r2 implements org.telegram.ui.
         NotificationCenter.getInstance(ooVar.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
     }
 
+    public static org.telegram.ui.ActionBar.r5 c0(oo ooVar) {
+        return ooVar.simpleActionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.r5 d0(oo ooVar) {
+        return ooVar.simpleActionBar;
+    }
+
     public static SpannableStringBuilder e0(String str) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
         spannableStringBuilder.append((CharSequence) "  d");

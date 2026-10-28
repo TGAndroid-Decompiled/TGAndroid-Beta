@@ -561,6 +561,10 @@ public final class wb extends org.telegram.ui.ActionBar.r2 implements Notificati
         messageObject.measureInlineBotButtons();
     }
 
+    public static org.telegram.ui.ActionBar.k b0(wb wbVar) {
+        return wbVar.actionBar;
+    }
+
     public static CharSequence b1(SpannableStringBuilder spannableStringBuilder) {
         int charSequenceIndexOf = AndroidUtilities.charSequenceIndexOf(spannableStringBuilder, "\n\n");
         if (charSequenceIndexOf >= 0 && Build.VERSION.SDK_INT >= 29) {
@@ -571,6 +575,42 @@ public final class wb extends org.telegram.ui.ActionBar.r2 implements Notificati
             spannableStringBuilder.setSpan(android.support.v4.media.session.x.g(AndroidUtilities.dp(8.0f)), charSequenceIndexOf + 1, charSequenceIndexOf + 2, 33);
         }
         return spannableStringBuilder;
+    }
+
+    public static org.telegram.ui.ActionBar.k c0(wb wbVar) {
+        return wbVar.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k d0(wb wbVar) {
+        return wbVar.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k e0(wb wbVar) {
+        return wbVar.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k f0(wb wbVar) {
+        return wbVar.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k g0(wb wbVar) {
+        return wbVar.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k h0(wb wbVar) {
+        return wbVar.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k i0(wb wbVar) {
+        return wbVar.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k j0(wb wbVar) {
+        return wbVar.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k k0(wb wbVar) {
+        return wbVar.actionBar;
     }
 
     public static int m0(wb wbVar) {

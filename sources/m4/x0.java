@@ -1,7 +1,6 @@
 package m4;
 
 import a8.qd;
-import android.graphics.BlendMode;
 import android.graphics.RectF;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,10 +50,6 @@ public final class x0 implements h1, e2.j, j5.g, n2.l, e9.k, b2, zw0, Utilities.
             }
             throw th2;
         }
-    }
-
-    public static BlendMode e() {
-        return BlendMode.SOFT_LIGHT;
     }
 
     @Override
